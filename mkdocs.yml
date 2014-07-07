@@ -3,3 +3,17 @@ site_name: Giant Swarm Docs
 dev_addr: '0.0.0.0:8000'
 
 docs_dir: sources
+
+
+pages:
+# Introduction
+- ['index.md', 'About']
+
+# Installation
+- ['installation/index.md', 'Installation']
+
+# Guides
+- ['guides/index.md', 'Guides']
+
+# Reference
+- ['reference/index.md', 'Reference']

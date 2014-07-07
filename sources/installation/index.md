@@ -1,4 +1,4 @@
-# Welcome to Giant Swarm
+# Installation
 
 ## Exercet tu Onetor quoque
 

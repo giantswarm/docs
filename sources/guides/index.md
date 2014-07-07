@@ -1,4 +1,4 @@
-# Welcome to Giant Swarm
+# Guides
 
 ## Exercet tu Onetor quoque
 
