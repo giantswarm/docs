@@ -1,52 +1,49 @@
 # Installation
 
-## Exercet tu Onetor quoque
+## Getting started
 
-Lorem markdownum lactisque pice recondere cacumine est, quoniam unda nivis
-potiere rursus. Postquam ulterius curva, palpitat abscedat criminis thalamos a
-rupta inhaesit. Addunt et suam nec gerere peteretur linguae ad abesto quam
-tellure remotam: subiectis est iuncta **in utque** solvit. Invita quoque
-[digitos ergo tigride](http://www.youtube.com/watch?v=MghiBW3r65M) hunc, fibula,
-post tecta quaeris est nomenque erat. Pendet iter, **flumen agitati** Hippotades
-illo rubescere suis percutiensque Pirithoum Peleus visus, tumulum.
+> **Note**:
+> We are currently in an early alpha state. Although we do our best this documentation might be outdated. If something unexepected happens please don't hesitate to contact us: [support@giantswarm.io](mailto:support@giantswarm.io)
 
-Tenetur fulva. Pro gradus vereri nitenti tutus et inportuna novissimus nulli
-undique vigil qua latratibus **in**.
+Here are the steps we are going to cover
 
-## Et carinam tofis
+* Prerequisites: Install CLI and create a cluster.
+* Configure helloworld application.
+* Deploy and run helloworld application.
 
-Terras pugnae et cruorem quam nectare. Quos saepe statione notis terris, et suum
-ne suum digitos nec. Supplex nec.
+### Prerequisites: Install CLI and create a cluster.
 
-Lacu distantes pede tu Iovemque exspes optastis **est vetito**, tum viscera?
-Volanti ova internodia Melanthus quid quidem dedit inmotas rotis posuisset.
+* Write an Email to support@giantswarm.io to have your own cluster created. You will also get a `swarm` binary.
 
-## Coepta coniugium quem
 
-Iunonem haec mortis ut monte finire pias ingentia tamen tenuit micuerunt saepe
-temptat. Iuvenem lumina, mei eburnea adplicat miserae, parce illa, ferebat **ea
-poenamque venit** si sanguine supplicium? Rubentem mittit pater: *ecce*
-lanigerosve largoque manus *domique* ignisque posset telum.
+### Configure helloworld application
 
-## Rasilis anhelis laniata posset forti
+    helloworld.json
+    {
+        "app_name": "helloworld",
+        "services": [
+            {
+                "service_name": "helloworld-service",
+                "components": [
+                    {
+                        "component_name": "python",
+                        "image": "python:3",
+                        "args": ["sh -c 'echo \"Hello Giant Swarm. \\o/\" > index.html && python -m http.server'"],
+                        "ports": [ "8000/tcp" ],
+                        "domains": { "helloworld.cluster-matthias.giantswarm.io": "8000" }
+                    }
+                ]
+            }
+        ]
+    }
 
-Cupiere solet passa quia veniat Pellaeus vicibus oro reddite pomis Erysicthone
-iaculi: creverunt. Scire flumine ore exhortari fracta bellum, motis dixi
-doloris. Periturae serta redeuntem aurem, ipse ac faciente dubiaque certe
-duplici reposcunt si lumina, *ipse* capit.
+Pure Docker equivalent: 
+```docker run -p 8001:8001 python:3 sh -c 'echo hello-swarm > index.html && python -m http.server 8001'```
 
-## Aesone minantia tacebitur mulcebunt mihi sic stellamque
 
-Unam discordia, mille utque ulli rogum vim ab *nitentibus plagamque terras*
-signans demissus, inops Taurusque edax Aeneaeque. Quae sine bene temptata, ego
-cladis *veteris* stare purpuraque unda, uno ipse alter, digredimur venerat locus
-laetabitur. Trepidante inclinat desistere socios prospectat antiquum exercet
-vasto, tu totiens laboribus.
 
-Ad breve perpessi profundum iussus fessos tremenda vacuum, pacis nec similem
-deus; Minervae istae *agros ac latebras* illic. Te egentes capit, numina heres
-Pittheia erectus iuvenes virgultis, auro aures solidaque telo. Cyllaron ipse,
-loco facto nymphae spumisque *gerit primitias Talia* Sirinosque. Concidit cum
-florem tela: ad rostris montes ad utrumque *modo* ignorat, qua.
+### Deploy and run helloworld application.
 
-[digitos ergo tigride]: http://www.youtube.com/watch?v=MghiBW3r65M
+    $ swarm --api-endpoint="http://cluster-matthias.giant;2Dswarm.io/v1/" create helloworld.json
+    $ swarm --api-endpoint="http://cluster-matthias.giant;2Dswarm.io/v1/" start helloworld
+
