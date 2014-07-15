@@ -1,6 +1,6 @@
 # Installation
 
-This page should get your started with Giant Swarm. 
+This page should get you started with Giant Swarm. 
 
 > **Note**:
 > We are currently in an early alpha state and lots of things are still in development. Although we do our best this documentation might be outdated. If something unexepected happens don't hesitate to contact us: [support@giantswarm.io](mailto:support@giantswarm.io)
@@ -14,7 +14,7 @@ This page should get your started with Giant Swarm.
 
 ## Prerequisites: Install the CLI and create a cluster.
 
-We currently don't have an automated sign-up. So for the installation of your cluster and the Commandline interface (CLI) we like to ask you to write an an email to support@giantswarm.io. In this Email please include:
+We currently don't have an automated sign-up. So for the installation of your cluster and the Commandline interface (CLI) we like to ask you to write an email to support@giantswarm.io. In this Email please include:
 
   * Full name and Email-Adress
   * If you are working on a Mac or a Linux machine
