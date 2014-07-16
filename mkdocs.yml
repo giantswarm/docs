@@ -4,6 +4,7 @@ dev_addr: '0.0.0.0:8000'
 
 docs_dir: sources
 
+theme_dir: ./theme/giantswarm/
 
 pages:
 # Introduction
