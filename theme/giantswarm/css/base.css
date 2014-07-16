@@ -104,3 +104,6 @@ div.source-links {
 .navbar-default {
     background-color: #304050;
 }
+.navbar-logo {
+    float: left;
+}
