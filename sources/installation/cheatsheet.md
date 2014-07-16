@@ -5,9 +5,9 @@ This is a very condensed cheat sheet. For more details see [Getting Started](get
 
 Command      | Purpose
 ------------ | -------------
+`$ export SWARM_ENDPOINT_URL=http://cluster-matthias-02.giantswarm.io/v1/` | define your swarm endpoint
 `$ swarm`    | test your swarm CLI installation
 `$ curl http://cluster-matthias-02.giantswarm.io/v1/` | test your cluster endpoint 
-`$ export SWARM_ENDPOINT_URL=http://cluster-matthias-02.giantswarm.io/v1/` | define your swarm endpoint
 
 ## Create and run an app
 
