@@ -1,5 +1,13 @@
-default: build run
+PROJECT=docs
+registry=registry.giantswarm.io
+
+default: run
+
 build:
-	docker build -t docs .
-run:
-	docker run  -i -t -p 8000:8000 docs
+	docker build -t $(registry)/$(PROJECT) .
+
+run: build
+	docker run  -i -t -p 8000:8000 $(registry)/$(PROJECT)
+
+release: build
+	docker push $(registry)/$(PROJECT)
