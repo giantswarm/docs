@@ -12,6 +12,7 @@ pages:
 # Installation
 - ['installation/cheatsheet.md', 'Installation', 'Cheatsheet']
 - ['installation/gettingstarted.md', 'Installation', 'Getting Started']
+- ['installation/gettingstarted2.md', 'Installation', 'Getting Started - Part 2']
 
 # Guides
 - ['guides/index.md', 'Guides']
