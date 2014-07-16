@@ -11,3 +11,5 @@ run: build
 
 release: build
 	docker push $(registry)/$(PROJECT)
+	swarm create swarmdocs.json
+	swarm start swarmdocs

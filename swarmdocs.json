@@ -1,0 +1,17 @@
+{
+    "app_name": "swarmdocs",
+    "services": [
+        {
+            "service_name": "docs-service",
+            "components": [
+                {
+                    "component_name": "mkdocs",
+                    "image": "registry.giantswarm.io/docs",
+                    "args": ["mkdocs server"],
+                    "ports": [ "8000/tcp" ],
+                    "domains": { "docs.cluster-matthias-02.giantswarm.io": "8000" }
+                }
+            ]
+        }
+    ]
+}
