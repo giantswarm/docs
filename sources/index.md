@@ -1,6 +1,10 @@
 # Welcome to Giant Swarm
 
+
+
 ## What is Giant Swarm?
+
+![anty](img/ant.png)
 
 Give an overview what Giant Swarm is. More from a technical POV. No marketing copy from landing page.
 
