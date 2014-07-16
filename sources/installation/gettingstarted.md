@@ -1,16 +1,16 @@
-# Installation
+# Getting started
 
 This page should get you started with Giant Swarm. 
 
 > **Note**:
 > We are currently in an early alpha state and lots of things are still in development. Although we do our best this documentation might be outdated. If something unexepected happens don't hesitate to contact us: [support@giantswarm.io](mailto:support@giantswarm.io)
 
-### TOC:
-
+*TOC:*
 * Prerequisites: Install the CLI and create a cluster.
 * Configure a helloworld application.
 * Deploy and run the helloworld application.
 * Helpful tools like ```swarm status``` and ```swarm logs```
+
 
 ## Prerequisites: Install the CLI and create a cluster.
 

@@ -10,7 +10,8 @@ pages:
 - ['index.md', 'Welcome']
 
 # Installation
-- ['installation/index.md', 'Installation']
+- ['installation/cheatsheet.md', 'Installation', 'Cheatsheet']
+- ['installation/gettingstarted.md', 'Installation', 'Getting Started']
 
 # Guides
 - ['guides/index.md', 'Guides']
