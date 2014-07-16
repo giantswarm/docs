@@ -23,7 +23,7 @@ ASAP we will provide you with:
   * A cluster name and URL: e.g.: http://cluster-matthias.giantswarm.io/v1/
   * A `swarm` binary
 
-Install the binary on your machine and set the ENV variable ```SWARM_ENDPOINT_URL``` to the provided cluster URL. e.g. 
+Install the binary on your machine and set the ENV variable `SWARM_ENDPOINT_URL` to the provided cluster URL. e.g. 
 
     $ export SWARM_ENDPOINT_URL=http://cluster-matthias-02.giantswarm.io/v1/
 
@@ -34,7 +34,7 @@ Check the clusters status and availability:
 
 ## Configure a helloworld application
 
-Create a file with your favourite editor called ```helloworld.json``` and fill it with the following json.
+Create a file with your favourite editor called `helloworld.json` and fill it with the following json.
 
     {
         "app_name": "helloworld",
@@ -58,16 +58,16 @@ This configures a simple app with one service. The service consists of one compo
 
 ## Run the helloworld application
 
-Before you can run the application it needs to be created. To do so use the ```create``` command followed by the json file you have just created: 
+Before you can run the application it needs to be created. To do so use the `create` command followed by the json file you have just created: 
 
     $ swarm create helloworld.json
     $ Creating app ...
 
-To start this app use the ```start``` command followed by the ```app_name``` specified in the json:
+To start this app use the `start` command followed by the `app_name` specified in the json:
 
     $ swarm start helloworld
 
-While it's starting (which may take a while) you may check it's status with the ```status``` command:
+While it's starting (which may take a while) you may check it's status with the `status` command:
 
     $ swarm status helloworld
     App helloworld is starting!
@@ -84,6 +84,6 @@ On the way you might want to check for the logs:
 
     $ swarm logs
 
-To stop and delete an app use ```swarm stop``` and ```swarm delete```.
+To stop and delete an app use `swarm stop` and `swarm delete`.
 
 > *Congratulations* you've created and started your first swarm app!
