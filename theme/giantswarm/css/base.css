@@ -99,3 +99,8 @@ div.source-links {
         width: 263px;
     }
 }
+
+/* yellow: #F3B64B*/
+.navbar-default {
+    background-color: #304050;
+}
