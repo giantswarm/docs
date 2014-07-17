@@ -107,3 +107,7 @@ div.source-links {
 .navbar-logo {
     float: left;
 }
+th {
+    padding: 3px;
+    background-color: #E8E8E8;
+}
