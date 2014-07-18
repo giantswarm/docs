@@ -6,8 +6,8 @@
             "components": [
                 {
                     "component_name": "mkdocs",
-                    "image": "registry.giantswarm.io/docs",
-                    "args": ["mkdocs server"],
+                    "image": "registry.private.giantswarm.io/docs",
+                    "args": ["mkdocs serve"],
                     "ports": [ "8000/tcp" ],
                     "domains": { "swarmdocs.cluster-matthias-02.giantswarm.io": "8000" }
                 }
