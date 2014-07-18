@@ -15,11 +15,13 @@ Command                          | Purpose
 ------------                     | -------------
 `$ swarm create helloworld.json` | create an app
 `$ swarm status helloworld`      | show status for an app
+`$ swarm logs <instance-id>`     | show logs from an app
 `$ swarm start helloworld`       | start an app
 `$ swarm stop helloworld`        | stop an app
-`$ swarm logs helloworld`        | show logs from an app
 
 ## helloworld.json
+
+Using a predefined python image and expose a http server:
 
     {
         "app_name": "helloworld",

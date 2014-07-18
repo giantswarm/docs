@@ -1,6 +1,7 @@
 # Welcome to Giant Swarm
 
-
+> **Note**:
+> We are currently in an early alpha state and lots of things are still in development. Although we do our best, some parts of this documentation might be outdated. If something unexepected happens don't hesitate to contact us: [support@giantswarm.io](mailto:support@giantswarm.io)
 
 ## What is Giant Swarm?
 
