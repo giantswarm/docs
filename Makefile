@@ -9,7 +9,9 @@ build:
 run: build
 	docker run  -i -t -p 8000:8000 $(registry)/$(PROJECT)
 
-release: build
+push: build 
 	docker push $(registry)/$(PROJECT)
+
+deploy: push
 	swarm create swarmdocs.json
 	swarm start swarmdocs
