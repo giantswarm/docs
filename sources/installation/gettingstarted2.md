@@ -5,6 +5,7 @@ This page provides a slighlty more complex example using two components and a cu
 *TOC:*
 
 * Example overview
+* The currentweather server
 * Create and push own images
 * Defining dependencies
 
@@ -20,24 +21,7 @@ To get the data we are calling an external web service: [openweathermap.org](ope
 
 All the sources can be found here: [github.com/luebken/currentweather](github.com/luebken/currentweather)
 
-## Create and push own images
-
-Giant Swarm uses Docker images. To create your own image you can use all the tools Docker provides although we recomind to use a [Dockerfile](https://docs.docker.com/reference/builder/)
-
-Dockerfile for *currentweather*: Dockerfile
-
-```
-FROM dockerfile/nodejs
-
-WORKDIR /root
-
-ADD package.json /root/
-RUN npm install
-
-ADD server.js /root/
-EXPOSE 1337
-CMD ["/usr/local/bin/node", "server.js"]
-``` 
+## The currentweather server
 
 The Node.JS server: server.js
 
@@ -95,6 +79,29 @@ and the *package.json*
   }
 }
 ```
+
+
+
+## Create and push own images
+
+Giant Swarm uses Docker images. To create your own image you can use all the tools Docker provides although we recomind to use a [Dockerfile](https://docs.docker.com/reference/builder/)
+
+Dockerfile for *currentweather*: Dockerfile
+
+```
+FROM dockerfile/nodejs
+
+WORKDIR /root
+
+ADD package.json /root/
+RUN npm install
+
+ADD server.js /root/
+EXPOSE 1337
+CMD ["/usr/local/bin/node", "server.js"]
+``` 
+
+
 
 The swarm configuration: *currentweather.json*
 ```
