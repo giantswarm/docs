@@ -17,6 +17,7 @@ pages:
 
 # Guides
 - ['guides/index.md', 'Guides']
+- ['guides/ruby_on_rails.md', 'Guides']
 
 # Reference
 - ['reference/index.md', 'Reference']
