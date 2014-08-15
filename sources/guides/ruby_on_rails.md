@@ -155,8 +155,8 @@ TODO: explain the domain part
 As you can see, we are using the image `zeisss/example-rails` for the app. You can replace this with your own `username/imagename` from the docker hub, after you have uploaded it:
 
 ```
-docker tag sample_rails_4 username/sample_rails_4
-docker push username/sample_rails_4
+$ docker tag sample_rails_4 username/sample_rails_4
+$ docker push username/sample_rails_4
 ```
 
 Thats it. With the `swarm` command line tool we can now create and start our containers on the GiantSwarm cluster:
@@ -166,3 +166,5 @@ $ swarm create swarm.json
 $ swarm start rails-sample-1
 $ swarm status rails-sample-1
 ```
+
+Now open your browser and head to [rails-example.cluster-02.giantswarm.io](http://rails-example.cluster-02.giantswarm.io)
