@@ -113,6 +113,18 @@ First, as we currently do not yet support SSL, we need to disable it for the pro
 +  config.force_ssl = false 
 ```
 
+Since Giantswarm has no access to the images on your host, we also need to publish it. As the docker hub images must all be prefixed with your username (and we changed a file), we need to rebuild it:
+
+```
+$ docker build -t username/sample_rails_4 .
+$ docker push username/sample_rails_4
+```
+
+If you don't want to share your application publicly with the rest of the world, you can also use our private registries.
+
+
+### The swarm.json
+
 We also need an application describing our containers:
 
 ```json
@@ -131,7 +143,7 @@ We also need an application describing our containers:
     },
     {
       "component_name": "rails",
-      "image": "registry.private.giantswarm.io/zeisss/example-rails",
+      "image": "zeisss/example-rails",
       "env": [
         "SECRET_KEY_BASE=somemagicsecrethashkeyblablablabla",
         "RAILS_ENV=production",
@@ -150,14 +162,11 @@ We also need an application describing our containers:
 }
 ```
 
+Here, we define one app `rails-sample-1` with one service `web`. This service is build from two components: `database` and `rails`. Each 
+
 TODO: explain the domain part
 
-As you can see, we are using the image `zeisss/example-rails` for the app. You can replace this with your own `username/imagename` from the docker hub, after you have uploaded it:
-
-```
-$ docker tag sample_rails_4 username/sample_rails_4
-$ docker push username/sample_rails_4
-```
+### Run 
 
 Thats it. With the `swarm` command line tool we can now create and start our containers on the GiantSwarm cluster:
 
