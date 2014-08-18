@@ -17,3 +17,8 @@ Microservices is a USP. We should say something about it.
 ## Whats next?
 
 Explain the current state of Giant Swarm and what the next steps are.
+
+
+## Guides
+
+* [Swarmify Ruby on Rails](./guides/ruby_on_rails.md)

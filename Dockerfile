@@ -3,11 +3,13 @@
 FROM 		ubuntu:14.04
 MAINTAINER	Matthias Luebken <matthias@giantswarm.io>
 
+
+
 RUN 	apt-get update && apt-get install -yq python-pip gettext
 RUN		pip install mkdocs
 
-ADD 	. /docs
 WORKDIR	/docs
-
 EXPOSE	8000
+ADD 	. /docs
+
 CMD 	["mkdocs", "serve"]
