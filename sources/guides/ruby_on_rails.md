@@ -47,6 +47,7 @@ Since we now use the mysql2 driver, we also need it to our Gemfile for the `prod
 ```
 
 If we now start our containers, our app connects to the database, but encounters two problems:
+
 1. There is no database `app` in the mysql container
 2. Without a database, all the tables are missing too - we need to execute `rake db:migrate`
 
@@ -166,8 +167,8 @@ We also need an application file describing our containers:
 
 Here, we define one app `rails-sample-1` with one service `web`. This service is build from two components: `database` and `rails`. We configure each through environment variables. The ports define the accessible interface which can be accessed by two ways:
 
-1) With a `dependency` to access it from another container
-2) By adding `domains` definition, so our LoadBalancer can forward public requests to your container.
+1. With a `dependency` to access it from another container
+2. By adding `domains` definition, so our LoadBalancer can forward public requests to your container.
 
 You can either use your own domains (which you have to configure to forward to us) or use a subdomain of the cluster you are using. In the example we are using `cluster-02.giantswarm.io` - modify this to match your needs.
 
