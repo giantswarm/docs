@@ -46,7 +46,7 @@ Since we now use the mysql2 driver, we also need it to our Gemfile for the `prod
 +  gem 'mysql2'
 ```
 
-If we would know start our containers, our app connect to the database, but encounter two problems:
+If we now start our containers, our app connects to the database, but encounters two problems:
 1) There is no database `app` in the mysql container
 2) Without a database, all the tables are missing too - we need to execute `rake db:migrate`
 
