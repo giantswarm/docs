@@ -16,11 +16,11 @@ Upon `docker build -t sample_rails_4 .` this image adds your current working dir
 
 ## Adding mysql
 
-Next we want to run this app with a mysql database both running in docker containers. As a database we can use the `tutum/mysql` image, which automatically creates an `admin` user with a random password on startup. It also supports reading the initial password from the `MYSQL_PASS` environment variable. So to start our database, we run this:
+Next we want to run this app with a mysql database both running in docker containers. As a database we can use the [mysql](https://registry.hub.docker.com/_/mysql/) image, which automatically creates an `admin` user with a random password on startup. It also supports reading the initial password from the `MYSQL_ROOT_PASSWORD` environment variable. So to start our database, we run this:
 
 ```bash
 PASS=somesecretpassword
-docker run -d --name database -e MYSQL_PASS=${PASS} -p 3306 tutum/mysql
+docker run -d --name database -e MYSQL_ROOT_PASSWORD=${PASS} -p 3306 mysql
 ```
 
 When linking containers, docker injects certain environment variables which can be used to discover the IP and port of the linked container. We now need to modify our rails sample app to use these variables for connecting to the database:
@@ -94,7 +94,7 @@ PASS=somesecretpassword
 SECRET_KEY=somesecretkeyforrails
 
 # Start the mysql database
-docker run -d --name database -e MYSQL_PASS=${PASS} -p 3306 tutum/mysql
+docker run -d --name database -e MYSQL_ROOT_PASSWORD=${PASS} -p 3306 mysql
 
 # Now the rails app - linked to the mysql
 docker run -d -e RAILS_ENV=production -e SECRET_KEY_BASE=${SECRET_KEY} \
@@ -138,10 +138,10 @@ We also need an application file describing our containers:
     "service_name": "web",
     "components": [{
       "component_name": "database",
-      "image": "tutum/mysql",
+      "image": "mysql",
       "ports": ["3306"],
       "env": [
-        "MYSQL_PASS=foobar"
+        "MYSQL_ROOT_PASSWORD=foobar"
       ]
     },
     {
