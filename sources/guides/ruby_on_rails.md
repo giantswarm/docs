@@ -2,7 +2,7 @@
 
 The following guide will explain how to configure the [RailsTutorials Sample App](https://github.com/railstutorial/sample_app_rails_4/) to GiantSwarm. In the end we will run one container for Mysql and one container for your Rails application. You should have a basic understanding of Docker and Rails.
 
-The whole diff to the original repository can be found [here](https://git.giantswarm.io/giantswarm/rails-example/merge_requests/1).
+You can also find all changes we do in this guide in the following PR: [here](https://git.giantswarm.io/giantswarm/rails-example/merge_requests/1).
 
 ## Running rails with docker on localhost
 
@@ -39,18 +39,18 @@ production:
   port: <%=ENV['DATABASE_PORT_3306_TCP_PORT'] %>
 ```
 
-Since we now use the mysql2 driver, we also need it to our Gemfile for the `production` group:
+Since we now use the mysql2 driver, we also need it to our Gemfile for the `production` group (you can also drop `pg` if you want):
 
 ```ruby
 # File Gemfile
 +  gem 'mysql2'
 ```
 
-If we would know start our containers we would have two problems:
+If we would know start our containers, our app connect to the database, but encounter two problems:
 1) There is no database `app` in the mysql container
 2) Without a database, all the tables are missing too - we need to execute `rake db:migrate`
 
-For now we fix this by writing a custom start script which ensures both points are created:
+We can fix this by writing a custom start script which ensures both points are created:
 
 ```bash
 #!/bin/bash
@@ -83,6 +83,8 @@ ADD ./start /start
 
 CMD ["/start"]
 ```
+
+__NOTE__: We realize this is a non-optimal solution for now, so this will change in the future.
 
 Calling `docker build -t rails_sample_4 .` to build the new image, we can now run everything on the local docker daemon:
 
@@ -120,12 +122,12 @@ $ docker build -t username/sample_rails_4 .
 $ docker push username/sample_rails_4
 ```
 
-If you don't want to share your application publicly with the rest of the world, you can also use our private registries.
+If you don't want to share your application publicly with the rest of the world, you can also use our private registry soon.
 
 
 ### The swarm.json
 
-We also need an application describing our containers:
+We also need an application file describing our containers:
 
 ```json
 # File swarm.json
@@ -162,9 +164,12 @@ We also need an application describing our containers:
 }
 ```
 
-Here, we define one app `rails-sample-1` with one service `web`. This service is build from two components: `database` and `rails`. Each 
+Here, we define one app `rails-sample-1` with one service `web`. This service is build from two components: `database` and `rails`. We configure each through environment variables. The ports define the accessible interface which can be accessed by two ways:
 
-TODO: explain the domain part
+1) With a `dependency` to access it from another container
+2) By adding `domains` definition, so our LoadBalancer can forward public requests to your container.
+
+You can either use your own domains (which you have to configure to forward to us) or use a subdomain of the cluster you are using. In the example we are using `cluster-02.giantswarm.io` - modify this to match your needs.
 
 ### Run 
 
