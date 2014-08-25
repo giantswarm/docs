@@ -5,11 +5,16 @@
             "service_name": "docs-service",
             "components": [
                 {
-                    "component_name": "mkdocs",
+                    "component_name": "docs-auth",
+                    "image": "registry.private.giantswarm.io/docs-auth:0.0.1",
+                    "ports": [ "80/tcp" ],
+                    "dependencies": [{ "name": "upstream", "port": 8000 }],
+                    "domains": { "docs.giantswarm.io": "80" }
+                },
+                {
+                    "component_name": "upstream",
                     "image": "registry.private.giantswarm.io/docs",
-                    "args": ["mkdocs serve"],
-                    "ports": [ "8000/tcp" ],
-                    "domains": { "swarmdocs.cluster-matthias-02.giantswarm.io": "8000" }
+                    "ports": [ "8000/tcp" ]
                 }
             ]
         }

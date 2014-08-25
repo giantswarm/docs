@@ -7,7 +7,7 @@ build:
 	docker build -t $(registry)/$(PROJECT) .
 
 run: build
-	docker run  -i -t -p 8000:8000 $(registry)/$(PROJECT)
+	docker run --rm -p 8000:8000 $(registry)/$(PROJECT)
 
 push: build 
 	docker push $(registry)/$(PROJECT)
