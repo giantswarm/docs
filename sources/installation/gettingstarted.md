@@ -42,7 +42,7 @@ Create a file with your favourite editor called `helloworld.json` and fill it wi
                     {
                         "component_name": "python",
                         "image": "python:3",
-                        "args": ["sh -c 'echo \"Hello Giant Swarm. \\o/\" > index.html && python -m http.server'"],
+                        "args": ["sh", "-c", "echo \"Hello Giant Swarm. \\o/\" > index.html && python -m http.server"],
                         "ports": [ "8000/tcp" ],
                         "domains": { "helloworld.cluster-matthias.giantswarm.io": "8000" }
                     }
@@ -58,7 +58,6 @@ This configures a simple app with one service. The service consists of one compo
 Before you can run the application it needs to be created. To do so use the `create` command followed by the json file you have just created: 
 
     $ swarm create helloworld.json
-    $ Creating app ...
 
 To start this app use the `start` command followed by the `app_name` specified in the json:
 
@@ -77,7 +76,7 @@ Once it's up you can check by opening the specified domain in a browser or `curl
     $ curl helloworld.cluster-matthias.giantswarm.io
     Hello Giant Swarm. \o/
 
-On the way you might want to check for the logs:
+On the way you might want to check for the logs by quering against the instanceid:
 
     $ swarm logs 4cc709fc-5250-4bab-83d3-837cd0f7af36
 
