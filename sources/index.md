@@ -3,22 +3,27 @@
 > **Note**:
 > We are currently in an early alpha state and lots of things are still in development. Although we do our best, some parts of this documentation might be outdated. If something unexepected happens don't hesitate to contact us: [support@giantswarm.io](mailto:support@giantswarm.io)
 
-## What is Giant Swarm?
-
 ![anty](img/ant.png)
 
-Give an overview what Giant Swarm is. More from a technical POV. No marketing copy from landing page.
+## What is Giant Swarm?
+
+Giant Swarm enables you to easily develop, deploy and host your micro-serviced application. We leverage serveral technologies like Docker and CoreOS and bring them together to an simple yet powerful platform. Besides Docker and your application stack there is not much to know to get started.
 
 ## Why Microservices?
 
-Microservices is a USP. We should say something about it.
+The days of big monolith applications are long over. Modularizing your application in services has been the way to go for some time. Each self-contained functionality is developed in a separate service. This makes them independently developable, deployable and scalable. Each which it's own potential database and programming language. The right tool for the job! The [12factor Apps](http://12factor.net/) apps go futher and descripe 12 factors of modern software-as-a-service. Worth looking at. 
 
+At the same time it has always  been a hazzle to set up a truely service oriented application. Or the solutions were to cumbersome and stood in the way. Giantswarm keeps it lean and gets out of the way.
 
-## Whats next?
+## Overview of the docs
 
-Explain the current state of Giant Swarm and what the next steps are.
+We currently have three sections in our docs:
 
+### <i class="fa fa-rocket fa-2x"></i> [Installation](installation/cheatsheet.md)
+This section gets you started with Giant Swarm. How to install the CLI and get up and running. It starts with a cheatsheet for the anxious developers. And has a simple and slightly more complex example. 
 
-## Guides
+### <i class="fa fa-book fa-2x"></i> [Guides](guides/ruby_on_rails.md) 
+This section provides in depth guides to specific problems. The first one is how to [Swarmify Ruby on Rails](./guides/ruby_on_rails.md).
 
-* [Swarmify Ruby on Rails](./guides/ruby_on_rails.md)
+### <i class="fa fa-bookmark fa-2x"></i> [Reference](reference/)
+This section will contain detailed description of the different features Giant Swarm has.
