@@ -1,7 +1,7 @@
 PROJECT=docs
 registry=registry.giantswarm.io
 
-default: run
+default: ;
 
 build:
 	docker build -t $(registry)/$(PROJECT) .
@@ -9,9 +9,6 @@ build:
 run: build
 	docker run --rm -p 8000:8000 $(registry)/$(PROJECT)
 
-push: build 
-	docker push $(registry)/$(PROJECT)
-
-deploy: push
+deploy: 
 	swarm create swarmdocs.json
 	swarm start swarmdocs
