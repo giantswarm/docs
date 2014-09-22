@@ -19,7 +19,7 @@ The example we are using here is very simple:
 We have Docker container `currentweather` which contains a simple Node.JS script. This provides a http endpoint to see the current weather from Cologne. \* 
 To get the data we are calling an external web service: [openweathermap.org](openweathermap.org). Since this is a great open API we want to be good citizens and cache the data locally and only get new data once a minute. The redis lives in a predefined redis container. 
 
-All the sources can be found here: [github.com/luebken/currentweather](github.com/luebken/currentweather)
+All the sources can be found here: [github.com/luebken/currentweather](http://github.com/luebken/currentweather)
 
 ## The currentweather server
 
