@@ -42,9 +42,9 @@ Create a file with your favourite editor called `helloworld.json` and fill it wi
                     {
                         "component_name": "python",
                         "image": "python:3",
-                        "args": ["sh", "-c", "echo \"Hello Giant Swarm. \\o/\" > index.html && python -m http.server"],
+                        "args": ["sh", "-c", "'echo \"Hello Giant Swarm. \\o/\" > index.html && python -m http.server'"],
                         "ports": [ "8000/tcp" ],
-                        "domains": { "helloworld.cluster-matthias.giantswarm.io": "8000" }
+                        "domains": { "helloworld.cluster-02.giantswarm.io": "8000" }
                     }
                 ]
             }
