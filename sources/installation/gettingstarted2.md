@@ -7,7 +7,7 @@ This page provides a slighlty more complex example using two components and a cu
 * Example overview
 * The currentweather server
 * Create and push own images
-* Defining dependencies
+* Define dependency
 
 
 ## Example overview
@@ -80,11 +80,9 @@ and the *package.json*
 }
 ```
 
-
-
 ## Create and push own images
 
-Giant Swarm uses Docker images. To create your own image you can use all the tools Docker provides although we recomind to use a [Dockerfile](https://docs.docker.com/reference/builder/)
+Giant Swarm uses Docker images from private and public Docker registries. The easiest way to get started is to use the official [Docker Hub](https://hub.docker.com/) it provides one free private repo.
 
 Dockerfile for *currentweather*: Dockerfile
 
@@ -101,7 +99,23 @@ EXPOSE 1337
 CMD ["/usr/local/bin/node", "server.js"]
 ``` 
 
+To use this Docker image it has to be build and uploaded to a repository. E.g. to push this image to the official repo for the user *luebken* you would use:
 
+```
+$ docker build -t luebken/currentweather .
+$ docker push luebken/currentweather
+```
+
+To test this setup locally you first have to start a container of the official 'redis' image. Afterwards you have to start a container from your currentweather image and link it with the redis container:
+
+```
+$ docker run -d --name redis redis
+$ docker run  -i -p 1337:1337 --link redis:redis luebken/currentweather
+```
+
+## Define dependency
+
+In the 'swarm.json' you have these two containers defined as components. The depdency is defined by the container (here the currentweather-service) that uses the user container:
 
 The swarm configuration: *currentweather.json*
 ```
@@ -118,7 +132,7 @@ The swarm configuration: *currentweather.json*
                     "dependencies": [
                         { "name": "redis", "port": 6379 }
                     ],
-                    "domains": { "currentweather.cluster-matthias-02.giantswarm.io": "1337" }
+                    "domains": { "currentweather.cluster-02.giantswarm.io": "1337" }
                 },
                 {
                     "component_name": "redis",
@@ -132,5 +146,45 @@ The swarm configuration: *currentweather.json*
 
 ```
 
+To start this example:
+```
+$ swarm create currentweather.json
+
+$ swarm ls
+1 app created so far!
+
+app             env         company     created
+currentweather  production  giantswarm  2014-09-22 18:53:44
+
+$  swarm status currentweather
+App currentweather is down!
+
+service                 component                 instanceid                            status
+currentweather-service  currentweather-component  d4664c37-49cb-436b-a2f0-727bb5539538  down
+currentweather-service  redis                     02288488-4185-473b-8de1-47f91971bdb2  down
+
+$ swarm start currentweather
+Starting app currentweather ...
+```
+
+Check the status until all components are *up*:
+```
+$ swarm status currentweather
+App currentweather is starting!
+
+service                 component                 instanceid                            status
+currentweather-service  currentweather-component  d4664c37-49cb-436b-a2f0-727bb5539538  starting
+currentweather-service  redis                     02288488-4185-473b-8de1-47f91971bdb2  up
+
+$ swarm status currentweather
+App currentweather is up!
+
+service                 component                 instanceid                            status
+currentweather-service  redis                     02288488-4185-473b-8de1-47f91971bdb2  up
+currentweather-service  currentweather-component  d4664c37-49cb-436b-a2f0-727bb5539538  up
+
+$ curl currentweather.cluster-02.giantswarm.io
+Hello World from Cologne: overcast clouds
+```
 
 \* This example was already finished when Anna noted that there are already some weather website where you can check Colognes weather. Duuh.  
