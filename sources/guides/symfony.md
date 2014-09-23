@@ -50,12 +50,6 @@ If you look at [php:5.6-apache Dockerfile](https://github.com/docker-library/php
 	    ]
 	}
 
-#### Create, start test and upload the image:
-	
-	$ docker build -t luebken/hellophp .
-	$ docker run -d luebken/hellophp .
-	$ curl localhost:8000
-
 ## Swarmify Symfony
 
 Getting Symfony running in Docker and on the Swarm requires a couple of steps. We will show them with the symfony-standard example. The whole sources can be found in our [dockerize branch](https://github.com/giantswarm/symfony-standard/tree/dockerize).
