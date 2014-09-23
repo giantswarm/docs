@@ -2,6 +2,9 @@
 
 The following guide will explain how to configure the [RailsTutorials Sample App](https://github.com/railstutorial/sample_app_rails_4/) to GiantSwarm. In the end we will run one container for Mysql and one container for your Rails application. You should have a basic understanding of Docker and Rails.
 
+    $ git clone https://github.com/railstutorial/sample_app_rails_4.git
+    $ cd sample_app_rails_4/
+
 You can also find all changes we do in this guide in the following PR: [here](https://git.giantswarm.io/giantswarm/rails-example/merge_requests/1).
 
 ## Running rails with docker on localhost
@@ -9,18 +12,22 @@ You can also find all changes we do in this guide in the following PR: [here](ht
 The [Docker-Library Team](https://registry.hub.docker.com/_/rails/) ([Github](https://github.com/docker-library/rails)) already provides a base image for Ruby on Rails, so is easy to run your app with Docker: only a simple `Dockerfile` needs to be written:
 
 ```
-FROM rails
+FROM rails:onbuild
 ```
 
-Upon `docker build -t sample_rails_4 .` this image adds your current working directory to the container. If you now run run your build you can access it on the public port for the container port 3000.
+Upon `docker build -t sample_rails_4 .` this image adds your current working directory to the container. 
+=> No!
+
+If you now run run your build you can access it on the public port for the container port 3000.
+=> No
 
 ## Adding mysql
 
 Next we want to run this app with a mysql database both running in docker containers. As a database we can use the [mysql](https://registry.hub.docker.com/_/mysql/) image, which automatically creates an `admin` user with a random password on startup. It also supports reading the initial password from the `MYSQL_ROOT_PASSWORD` environment variable. So to start our database, we run this:
 
 ```bash
-PASS=somesecretpassword
-docker run -d --name database -e MYSQL_ROOT_PASSWORD=${PASS} -p 3306 mysql
+$ PASS=somesecretpassword
+$ docker run -d --name database -e MYSQL_ROOT_PASSWORD=${PASS} -p 3306 mysql
 ```
 
 When linking containers, docker injects certain environment variables which can be used to discover the IP and port of the linked container. We now need to modify our rails sample app to use these variables for connecting to the database:
