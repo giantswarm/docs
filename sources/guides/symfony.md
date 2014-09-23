@@ -17,18 +17,18 @@ To get PHP running in the Swarm is rather easy. Use the [official PHP image](htt
 	FROM php:5.6-apache
 	COPY . /var/www/html
 
-See the [php:5.6-apache Dockerfile](https://github.com/docker-library/php/blob/e19f15271b1cbe9d3e5c9f0c552beca9579f0677/5.6/apache/Dockerfile) for details like exported ports and default commands.
+If you look at [php:5.6-apache Dockerfile](https://github.com/docker-library/php/blob/e19f15271b1cbe9d3e5c9f0c552beca9579f0677/5.6/apache/Dockerfile) you will see that port 80 is exported and the default command is to start `httpd`.
 
 
-#### Add a simple `hello.php`:
+#### Add a simple `index.php`:
 	
 	<? echo "<p>Hello from PHP</p>"; ?>
 
 #### Build, test and upload the image:
 	
 	$ docker build -t luebken/hellophp .
-	$ docker run -d luebken/hellophp
-	$ curl localhost:8000
+	$ docker run -d -p 8080:80 luebken/hellophp
+	$ curl localhost:8080
 	$ docker push luebken/hellophp
  
 #### Refer to that image in the `swarm.json`:
@@ -42,6 +42,7 @@ See the [php:5.6-apache Dockerfile](https://github.com/docker-library/php/blob/e
 	                {
 	                    "component_name": "hellophp-component",
 	                    "image": "luebken/hellophp",
+						"ports": [ "80/tcp" ],
 	                    "domains": { "hellophp.cluster-02.giantswarm.io": "80" }
 	                }
 	            ]
