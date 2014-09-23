@@ -2,7 +2,7 @@
 
 The following guide will explain how to configure the [RailsTutorials Sample App](https://github.com/railstutorial/sample_app_rails_4/) to GiantSwarm. In the end we will run one container for Mysql and one container for your Rails application. You should have a basic understanding of Docker and Rails.
 
-You can also find all changes we do in this guide in the following PR: [here](https://git.giantswarm.io/giantswarm/rails-example/merge_requests/1).
+You can also find all changes we do in this guide in the following PR: [here](https://github.com/giantswarm/sample_app_rails_4/pull/1).
 
 ## Running rails with docker on localhost
 
