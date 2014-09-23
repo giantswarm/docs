@@ -19,6 +19,7 @@ ASAP we will provide you with:
 
   * A cluster name and URL: e.g.: http://cluster-matthias.giantswarm.io/v1/
   * A `swarm` binary
+  * A user and a password
 
 Install the binary on your machine and set the ENV variable `SWARM_ENDPOINT_URL` to the provided cluster URL. e.g. 
 
@@ -28,6 +29,18 @@ Check the clusters status and availability:
 
     $ swarm ping
     $ OK
+
+Login to your account and update your password
+
+    $ swarm login
+    $ user or mail: luebken
+    $ password:
+
+    $ swarm user -u password
+    $ old password:
+    $ new password:
+    $ confirm new password:
+
 
 ## Configure a helloworld application
 
