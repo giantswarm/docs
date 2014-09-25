@@ -107,7 +107,7 @@ CMD ["./start"]
 
 __NOTE__: We realize this is a non-optimal solution for now, so this will change in the future.
 
-Calling `docker build -t rails_sample_4 .` to build the new image, we can now run everything on the local docker daemon:
+Calling `docker build -t sample_rails_4 .` to build the new image, we can now run everything on the local docker daemon:
 
 ```bash
 PASS=somesecretpassword
@@ -117,7 +117,7 @@ SECRET_KEY=somesecretkeyforrails
 docker run -d --name database -e MYSQL_ROOT_PASSWORD=${PASS} -p 3306 mysql
 
 # Now the rails app - linked to the mysql
-docker run -d -e RAILS_ENV=production -e SECRET_KEY_BASE=${SECRET_KEY} \
+docker run -e RAILS_ENV=production -e SECRET_KEY_BASE=${SECRET_KEY} \
 	-e MYSQL_PASS=${PASS} -e MYSQL_USER=admin --link database:database \
 	-p 3000:3000 sample_rails_4
 ```
