@@ -5,32 +5,43 @@ The following guide will explain how to configure the [RailsTutorials Sample App
     $ git clone https://github.com/railstutorial/sample_app_rails_4.git
     $ cd sample_app_rails_4/
 
-You can also find all changes we do in this guide in the following PR: [here](https://git.giantswarm.io/giantswarm/rails-example/merge_requests/1).
+You can also find all changes we do in this guide in a [dockerize branch](https://github.com/giantswarm/sample_app_rails_4/tree/dockerize).
 
 ## Running rails with docker on localhost
 
-The [Docker-Library Team](https://registry.hub.docker.com/_/rails/) ([Github](https://github.com/docker-library/rails)) already provides a base image for Ruby on Rails, so is easy to run your app with Docker: only a simple `Dockerfile` needs to be written:
+The [Docker-Library Team](https://registry.hub.docker.com/_/rails/) ([Github](https://github.com/docker-library/rails)) already provides a base image for Ruby on Rails. We are using the onbuild version which makes it easy to write our own `Dockerfile`. At the root of the sample rails app create a new file called `Dockerfile` with the following statement: 
 
 ```
 FROM rails:onbuild
 ```
 
-Upon `docker build -t sample_rails_4 .` this image adds your current working directory to the container. 
-=> No!
+Before you can build the Rails app we need to fix the `Gemfile` and set the Ruby version to `2.1.2`:
 
-If you now run run your build you can access it on the public port for the container port 3000.
-=> No
+```
+source 'https://rubygems.org'
+ruby '2.1.2'
+#ruby-gemset=railstutorial_rails_4_0
+
+gem 'rails', '4.0.8'
+gem 'bootstrap-sass', '2.3.2.0'
+....
+```
+
+Upon `docker build -t sample_rails_4 .` our patched Rails Gemfile is added and the dependencies are installed. Then the Rails app is added and NodeJS is installed. See the [Rails Dockerfile](
+https://github.com/docker-library/rails/blob/7bb6ade7f97129cc58967d7d0ae17f4b62ae52eb/onbuild/Dockerfile) for details.
+
+If you now run your container with `docker run -p 3000:3000 sample_rails_4` you can access the rails app on port 3000. But hold on we need to configure our databse.
 
 ## Adding mysql
 
-Next we want to run this app with a mysql database both running in docker containers. As a database we can use the [mysql](https://registry.hub.docker.com/_/mysql/) image, which automatically creates an `admin` user with a random password on startup. It also supports reading the initial password from the `MYSQL_ROOT_PASSWORD` environment variable. So to start our database, we run this:
+Next we want to run this app with a mysql database in it's own container. As a database we can use the [mysql](https://registry.hub.docker.com/_/mysql/) image, which automatically creates an `admin` user with a random password on startup. It also supports reading the initial password from the `MYSQL_ROOT_PASSWORD` environment variable. So to start our database, we run this:
 
 ```bash
 $ PASS=somesecretpassword
 $ docker run -d --name database -e MYSQL_ROOT_PASSWORD=${PASS} -p 3306 mysql
 ```
 
-When linking containers, docker injects certain environment variables which can be used to discover the IP and port of the linked container. We now need to modify our rails sample app to use these variables for connecting to the database:
+To hook our Rails app to the database we are using [Docker links](https://docs.docker.com/userguide/dockerlinks/). When linking containers Docker injects certain environment variables which can be used to discover the IP and port of the linked container. We need to modify our Rails app to use these variables for connecting to the database:
 
 ```yaml
 # File config/database.yml - only the production environment is shown
@@ -53,7 +64,9 @@ Since we now use the mysql2 driver, we also need it to our Gemfile for the `prod
 +  gem 'mysql2'
 ```
 
-If we now start our containers, our app connects to the database, but encounters two problems:
+Since we have changed the Gemfile we would need to build our application image again. But before we do that lets fix the last little problem.
+
+If start our app and it connects to the database it encounters two problems:
 
 1. There is no database `app` in the mysql container
 2. Without a database, all the tables are missing too - we need to execute `rake db:migrate`
@@ -81,15 +94,15 @@ rake db:migrate
 exec rails s $*
 ```
 
-We also need to register this in our `Dockerfile`:
+To get this running we need to install an mysql client and register our start script in our `Dockerfile`:
 
 ```
-FROM rails
+FROM rails:onbuild
 
-RUN apt-get install -y mysql-client
-ADD ./start /start
+RUN apt-get update && apt-get install -y mysql-client
+RUN chmod +x start
 
-CMD ["/start"]
+CMD ["./start"]
 ```
 
 __NOTE__: We realize this is a non-optimal solution for now, so this will change in the future.
@@ -105,11 +118,11 @@ docker run -d --name database -e MYSQL_ROOT_PASSWORD=${PASS} -p 3306 mysql
 
 # Now the rails app - linked to the mysql
 docker run -d -e RAILS_ENV=production -e SECRET_KEY_BASE=${SECRET_KEY} \
-	MYSQL_PASS=${PASS} -e MYSQL_USER=admin --link database:database \
-	-p 8000:3000 sample_rails_4
+	-e MYSQL_PASS=${PASS} -e MYSQL_USER=admin --link database:database \
+	-p 3000:3000 sample_rails_4
 ```
 
-You can now access your app on [port 8000](http://localhost:8000).
+You can now access your app on [port 3000](http://localhost:3000).
 
 ## Swarmifying
 
