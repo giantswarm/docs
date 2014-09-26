@@ -4,14 +4,14 @@ The following guide will explain how to configure the [RailsTutorials Sample App
 
 ## TL;DR with fig
 
-Before we get into the details let's have the setup run locally with [fig.sh](http://www.fig.sh/). Therefor clone our repository switch to the [dockerize branch](https://github.com/giantswarm/sample_app_rails_4/tree/dockerize) and start the setup with 'fig up':
+Before we get into the details let us have the setup run locally with [fig.sh](http://www.fig.sh/). Therefor clone our repository switch to the [dockerize branch](https://github.com/giantswarm/sample_app_rails_4/tree/dockerize) and start the setup with 'fig up':
 
     $ git clone https://github.com/giantswarm/sample_app_rails_4
     $ cd sample_app_rails_4/
     $ git checkout dockerize
     $ fig up
 
-You can now access your app on [port 3000](http://localhost:3000).
+That's it. Two containers up, linked and running. You can now access your app on [port 3000](http://localhost:3000).
 
 ## Get up and running with Docker on localhost
 
@@ -45,7 +45,7 @@ If you now run your container with `docker run -p 3000:3000 sample_rails_4` you 
 
 ## Adding mysql
 
-As a database we choose a mysql which is should be it's own container. Fortunatly we can use the predefined [mysql](https://registry.hub.docker.com/_/mysql/) image, which automatically creates an `root` user with a random password on startup. It also supports reading the initial password from the `MYSQL_ROOT_PASSWORD` environment variable. So to start our database, we run this:
+As a database we choose a mysql which should run in it's own container. Fortunatly we can use the predefined [mysql](https://registry.hub.docker.com/_/mysql/) image, which automatically creates an `root` user. It also supports reading the initial password from the `MYSQL_ROOT_PASSWORD` environment variable. So to start our database we run this:
 
 ```bash
 $ PASS=somesecretpassword
@@ -75,9 +75,7 @@ Since we now use the mysql2 driver, we also need to add it to our Gemfile for th
 +  gem 'mysql2'
 ```
 
-Since we have changed the Gemfile we would need to build our application image again. But before we do that lets fix the last little problem.
-
-If we start our app and it connects to the database it encounters two problems:
+Since we have changed the Gemfile we would need to build our application image again. But before we do that lets fix the next problem. If we start our app and it connects to the database it encounters two problems:
 
 1. There is no database `app` in the mysql container
 2. Without a database, all the tables are missing too - we need to execute `rake db:migrate`
@@ -118,7 +116,7 @@ CMD ["./start"]
 
 __NOTE__: We realize this is a non-optimal solution for now, so this will change in the future.
 
-As as we currently do not yet support SSL, we need to disable it for the production environment:
+One last step: As as we currently do not yet support SSL, we need to disable it for the production environment:
 
 ```
 # File config/environments/production.rb
@@ -126,7 +124,7 @@ As as we currently do not yet support SSL, we need to disable it for the product
 +  config.force_ssl = false 
 ```
 
-Calling `docker build -t sample_rails_4 .` to build the new image, we can now run everything on the local docker daemon:
+Calling `docker build -t sample_rails_4 .` to build the new image, we can now run everything on the local Docker daemon:
 
 ```bash
 PASS=somesecretpassword
@@ -147,7 +145,7 @@ You can now access your app on [port 3000](http://localhost:3000).
 
 Now lets port all this to GiantSwarm!
 
-Since Giantswarm has no access to the images on your host, we also need to publish it. As the docker hub images must all be prefixed with your username we need to rebuild it:
+Since Giant Swarm has no access to the images on your host, we also need to publish it. As the docker hub images must all be prefixed with your username we need to rebuild it:
 
 ```
 $ docker build -t <username>/sample_rails_4 .
@@ -202,7 +200,7 @@ You can either use your own domains (which you have to configure to forward to u
 
 ### Run 
 
-Thats it. With the `swarm` command line tool we can now create and start our containers on the GiantSwarm cluster:
+Thats it. With the `swarm` command line tool we can now create and start our containers on the Giant Swarm cluster:
 
 ```
 $ swarm create swarm.json
