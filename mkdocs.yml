@@ -16,7 +16,8 @@ pages:
 - ['installation/gettingstarted2.md', 'Installation', 'Getting Started - Part 2']
 
 # Guides
-- ['guides/ruby_on_rails.md', 'Guides']
+- ['guides/ruby_on_rails.md', 'Guides', 'Rails']
+- ['guides/symfony.md', 'Guides', 'PHP and Symfony']
 
 # Reference
 - ['reference/index.md', 'Reference']
