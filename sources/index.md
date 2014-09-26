@@ -23,7 +23,11 @@ We currently have three sections in our docs:
 This section gets you started with Giant Swarm. How to install the CLI and get up and running. It starts with a cheatsheet for the anxious developers. And has a simple and slightly more complex example. 
 
 ### <i class="fa fa-book fa-2x"></i> [Guides](guides/ruby_on_rails.md) 
-This section provides in depth guides to specific problems. The first one is how to [Swarmify Ruby on Rails](./guides/ruby_on_rails.md).
+This section provides in depth guides to specific topics:
+ 
+ * [Swarmify Ruby on Rails](./guides/ruby_on_rails.md)
+
+ * [Swarmify PHP and Symfony](./guides/symfony.md)
 
 ### <i class="fa fa-bookmark fa-2x"></i> [Reference](reference/)
 This section will contain detailed description of the different features Giant Swarm has.

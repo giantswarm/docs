@@ -52,11 +52,16 @@ If you look at [php:5.6-apache Dockerfile](https://github.com/docker-library/php
 
 ## Swarmify Symfony
 
-Getting Symfony running in Docker and on the Swarm requires a couple of steps. We will show them with the symfony-standard example. The whole sources can be found in our [dockerize branch](https://github.com/giantswarm/symfony-standard/tree/dockerize).
+Getting Symfony running in Docker and on the Swarm requires a couple of steps. To get a head start you can just clone our repo and use [fig](http://www.fig.sh/) to get everything up and running.
 
+```
+	$ git clone git@github.com:giantswarm/symfony-standard.git
+	$ cd symfony-standard
+	$ git checkout dockerize
+	$ fig up
+```
 
-
-	TODO
+	TODO explain the steps
 
 ## Run a Symfony app on the Swarm
 	
