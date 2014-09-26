@@ -1,29 +1,58 @@
 # Swarmify Ruby on Rails
 
-The following guide will explain how to configure the [RailsTutorials Sample App](https://github.com/railstutorial/sample_app_rails_4/) to GiantSwarm. In the end we will run one container for Mysql and one container for your Rails application. You should have a basic understanding of Docker and Rails.
+The following guide will explain how to configure the [RailsTutorials Sample App](https://github.com/railstutorial/sample_app_rails_4/) to GiantSwarm. We will run one container for Mysql and one container for your Rails application. You should have a basic understanding of Docker and Rails.
 
-You can also find all changes we do in this guide in the following PR: [here](https://github.com/giantswarm/sample_app_rails_4/pull/1).
+## TL;DR with fig
 
-## Running rails with docker on localhost
+Before we get into the details let us have the setup run locally with [fig.sh](http://www.fig.sh/). Therefor clone our repository switch to the [dockerize branch](https://github.com/giantswarm/sample_app_rails_4/tree/dockerize) and start the setup with 'fig up':
 
-The [Docker-Library Team](https://registry.hub.docker.com/_/rails/) ([Github](https://github.com/docker-library/rails)) already provides a base image for Ruby on Rails, so is easy to run your app with Docker: only a simple `Dockerfile` needs to be written:
+    $ git clone https://github.com/giantswarm/sample_app_rails_4
+    $ cd sample_app_rails_4/
+    $ git checkout dockerize
+    $ fig up
+
+That's it. Two containers up, linked and running. You can now access your app on [port 3000](http://localhost:3000).
+
+## Get up and running with Docker on localhost
+
+Now let's see what needs to get done to manually dockerize the Sample Rails app. 
+
+    $ git clone https://github.com/railstutorial/sample_app_rails_4
+    $ cd sample_app_rails_4/
+
+The [Docker-Library Team](https://registry.hub.docker.com/_/rails/) ([Github](https://github.com/docker-library/rails)) already provides a base image for Ruby on Rails. We are using the onbuild version which makes it easy to write our own `Dockerfile`. At the root of the sample rails app create a new file called `Dockerfile` with the following statement: 
 
 ```
-FROM rails
+FROM rails:onbuild
 ```
 
-Upon `docker build -t sample_rails_4 .` this image adds your current working directory to the container. If you now run run your build you can access it on the public port for the container port 3000.
+Before you can build the Rails app we need to fix the `Gemfile` and set the Ruby version to `2.1.2`:
+
+```
+source 'https://rubygems.org'
+ruby '2.1.2'
+#ruby-gemset=railstutorial_rails_4_0
+
+gem 'rails', '4.0.8'
+gem 'bootstrap-sass', '2.3.2.0'
+....
+```
+
+Upon `docker build -t sample_rails_4 .` our patched Rails Gemfile is added and the dependencies are installed. Then the Rails sample app is added and NodeJS is installed. See the [Rails Dockerfile](
+https://github.com/docker-library/rails/blob/7bb6ade7f97129cc58967d7d0ae17f4b62ae52eb/onbuild/Dockerfile) for details.
+
+If you now run your container with `docker run -p 3000:3000 sample_rails_4` you should runtime error that no database is configured. Great let's do that.
 
 ## Adding mysql
 
-Next we want to run this app with a mysql database both running in docker containers. As a database we can use the [mysql](https://registry.hub.docker.com/_/mysql/) image, which automatically creates an `admin` user with a random password on startup. It also supports reading the initial password from the `MYSQL_ROOT_PASSWORD` environment variable. So to start our database, we run this:
+As a database we choose a mysql which should run in it's own container. Fortunatly we can use the predefined [mysql](https://registry.hub.docker.com/_/mysql/) image, which automatically creates an `root` user. It also supports reading the initial password from the `MYSQL_ROOT_PASSWORD` environment variable. So to start our database we run this:
 
 ```bash
-PASS=somesecretpassword
-docker run -d --name database -e MYSQL_ROOT_PASSWORD=${PASS} -p 3306 mysql
+$ PASS=somesecretpassword
+$ docker run -d --name database -e MYSQL_ROOT_PASSWORD=${PASS} -p 3306 mysql
 ```
 
-When linking containers, docker injects certain environment variables which can be used to discover the IP and port of the linked container. We now need to modify our rails sample app to use these variables for connecting to the database:
+To hook our Rails app to the database we are using [Docker links](https://docs.docker.com/userguide/dockerlinks/). When linking containers Docker injects certain environment variables which can be used to discover the IP and port of the linked container. We need to modify our Rails app to use these variables for connecting to the database:
 
 ```yaml
 # File config/database.yml - only the production environment is shown
@@ -39,14 +68,14 @@ production:
   port: <%=ENV['DATABASE_PORT_3306_TCP_PORT'] %>
 ```
 
-Since we now use the mysql2 driver, we also need it to our Gemfile for the `production` group (you can also drop `pg` if you want):
+Since we now use the mysql2 driver, we also need to add it to our Gemfile for the `production` group (you can also drop `pg` if you want):
 
 ```ruby
 # File Gemfile
 +  gem 'mysql2'
 ```
 
-If we now start our containers, our app connects to the database, but encounters two problems:
+Since we have changed the Gemfile we would need to build our application image again. But before we do that lets fix the next problem. If we start our app and it connects to the database it encounters two problems:
 
 1. There is no database `app` in the mysql container
 2. Without a database, all the tables are missing too - we need to execute `rake db:migrate`
@@ -74,20 +103,28 @@ rake db:migrate
 exec rails s $*
 ```
 
-We also need to register this in our `Dockerfile`:
+To get this running we need to install an mysql client and register our start script in our `Dockerfile`:
 
 ```
-FROM rails
+FROM rails:onbuild
 
-RUN apt-get install -y mysql-client
-ADD ./start /start
+RUN apt-get update && apt-get install -y mysql-client
+RUN chmod +x start
 
-CMD ["/start"]
+CMD ["./start"]
 ```
 
 __NOTE__: We realize this is a non-optimal solution for now, so this will change in the future.
 
-Calling `docker build -t rails_sample_4 .` to build the new image, we can now run everything on the local docker daemon:
+One last step: As as we currently do not yet support SSL, we need to disable it for the production environment:
+
+```
+# File config/environments/production.rb
+-  config.force_ssl = true
++  config.force_ssl = false 
+```
+
+Calling `docker build -t sample_rails_4 .` to build the new image, we can now run everything on the local Docker daemon:
 
 ```bash
 PASS=somesecretpassword
@@ -97,34 +134,23 @@ SECRET_KEY=somesecretkeyforrails
 docker run -d --name database -e MYSQL_ROOT_PASSWORD=${PASS} -p 3306 mysql
 
 # Now the rails app - linked to the mysql
-docker run -d -e RAILS_ENV=production -e SECRET_KEY_BASE=${SECRET_KEY} \
-	MYSQL_PASS=${PASS} -e MYSQL_USER=admin --link database:database \
-	-p 8000:3000 sample_rails_4
+docker run -e RAILS_ENV=production -e SECRET_KEY_BASE=${SECRET_KEY} \
+	-e MYSQL_PASS=${PASS} -e MYSQL_USER=root --link database:database \
+	-p 3000:3000 sample_rails_4
 ```
 
-You can now access your app on [port 8000](http://localhost:8000).
+You can now access your app on [port 3000](http://localhost:3000).
 
 ## Swarmifying
 
-Now, lets port all this to GiantSwarm!
+Now lets port all this to GiantSwarm!
 
-First, as we currently do not yet support SSL, we need to disable it for the production environment:
-
-```
-# File config/environments/production.rb
--  config.force_ssl = true
-+  config.force_ssl = false 
-```
-
-Since Giantswarm has no access to the images on your host, we also need to publish it. As the docker hub images must all be prefixed with your username (and we changed a file), we need to rebuild it:
+Since Giant Swarm has no access to the images on your host, we also need to publish it. As the docker hub images must all be prefixed with your username we need to rebuild it:
 
 ```
-$ docker build -t username/sample_rails_4 .
-$ docker push username/sample_rails_4
+$ docker build -t <username>/sample_rails_4 .
+$ docker push <username>/sample_rails_4
 ```
-
-If you don't want to share your application publicly with the rest of the world, you can also use our private registry soon.
-
 
 ### The swarm.json
 
@@ -141,17 +167,17 @@ We also need an application file describing our containers:
       "image": "mysql",
       "ports": ["3306"],
       "env": [
-        "MYSQL_ROOT_PASSWORD=foobar"
+        "MYSQL_ROOT_PASSWORD=somesecretpassword"
       ]
     },
     {
       "component_name": "rails",
-      "image": "zeisss/example-rails",
+      "image": "<username>/sample_rails_4",
       "env": [
-        "SECRET_KEY_BASE=somemagicsecrethashkeyblablablabla",
+        "SECRET_KEY_BASE=somesecretkeyforrails",
         "RAILS_ENV=production",
-        "MYSQL_PASS=foobar",
-        "MYSQL_USER=admin"
+        "MYSQL_PASS=somesecretpassword",
+        "MYSQL_USER=root"
       ],
       "dependencies": [
         {"name": "database", "port": 3306}
@@ -174,7 +200,7 @@ You can either use your own domains (which you have to configure to forward to u
 
 ### Run 
 
-Thats it. With the `swarm` command line tool we can now create and start our containers on the GiantSwarm cluster:
+Thats it. With the `swarm` command line tool we can now create and start our containers on the Giant Swarm cluster:
 
 ```
 $ swarm create swarm.json
