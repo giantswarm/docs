@@ -17,13 +17,13 @@ We currently don't have an automated sign-up. So for the setup of your cluster a
 
 ASAP we will provide you with:
 
-  * A cluster name and URL: e.g.: http://cluster-02.giantswarm.io/v1/
+  * A cluster name and URL: e.g.: http://alpha.giantswarm.io/v1/
   * A `swarm` binary
   * A user and a password
 
 Install the binary on your machine and set the ENV variable `SWARM_ENDPOINT_URL` to the provided cluster URL. e.g. 
 
-    $ export SWARM_ENDPOINT_URL=http://cluster-02.giantswarm.io/v1/
+    $ export SWARM_ENDPOINT_URL=http://alpha.giantswarm.io/v1/
 
 Check the clusters status and availability:
 
@@ -57,7 +57,7 @@ Create a file with your favourite editor called `helloworld.json` and fill it wi
                         "image": "python:3",
                         "args": ["sh", "-c", "echo \"Hello Giant Swarm. \\o/\" > index.html && python -m http.server"],
                         "ports": [ "8000/tcp" ],
-                        "domains": { "helloworld.cluster-02.giantswarm.io": "8000" }
+                        "domains": { "helloworld.alpha.giantswarm.io": "8000" }
                     }
                 ]
             }

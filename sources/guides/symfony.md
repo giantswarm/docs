@@ -43,7 +43,7 @@ If you look at [php:5.6-apache Dockerfile](https://github.com/docker-library/php
 	                    "component_name": "hellophp-component",
 	                    "image": "luebken/hellophp",
 						"ports": [ "80/tcp" ],
-	                    "domains": { "hellophp.cluster-02.giantswarm.io": "80" }
+	                    "domains": { "hellophp.alpha.giantswarm.io": "80" }
 	                }
 	            ]
 	        }

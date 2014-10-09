@@ -132,7 +132,7 @@ The swarm configuration: *currentweather.json*
                     "dependencies": [
                         { "name": "redis", "port": 6379 }
                     ],
-                    "domains": { "currentweather.cluster-02.giantswarm.io": "1337" }
+                    "domains": { "currentweather.alpha.giantswarm.io": "1337" }
                 },
                 {
                     "component_name": "redis",
@@ -183,7 +183,7 @@ service                 component                 instanceid                    
 currentweather-service  redis                     02288488-4185-473b-8de1-47f91971bdb2  up
 currentweather-service  currentweather-component  d4664c37-49cb-436b-a2f0-727bb5539538  up
 
-$ curl currentweather.cluster-02.giantswarm.io
+$ curl currentweather.alpha.giantswarm.io
 Hello World from Cologne: overcast clouds
 ```
 

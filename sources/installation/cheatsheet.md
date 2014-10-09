@@ -5,7 +5,7 @@ This is a very condensed cheat sheet. For more details see [Getting Started](get
 
 Command       | Purpose
 ------------- | -------------
-`$ export SWARM_ENDPOINT_URL=http://cluster-XY.giantswarm.io/v1/` | define your swarm endpoint
+`$ export SWARM_ENDPOINT_URL=http://alpha.giantswarm.io/v1/` | define your swarm endpoint
 `$ swarm`     | test the swam cli and see avaible commands
 `$ swarm ping` | test your cluster endpoint 
 `$ swarm login` | login to your account 
@@ -35,7 +35,7 @@ Using a predefined python image and expose a http server:
                         "image": "python:3",
                         "args": ["sh", "-c", "echo \"Hello Giant Swarm. \\o/\" > index.html && python -m http.server"],
                         "ports": [ "8000/tcp" ],
-                        "domains": { "helloworld.cluster-02.giantswarm.io": "8000" }
+                        "domains": { "helloworld.alpha.giantswarm.io": "8000" }
                     }
                 ]
             }
