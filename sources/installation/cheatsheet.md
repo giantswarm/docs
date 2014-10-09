@@ -9,6 +9,8 @@ Command       | Purpose
 `$ swarm`     | test the swam cli and see avaible commands
 `$ swarm ping` | test your cluster endpoint 
 `$ swarm login` | login to your account 
+`$ swarm env <username>/dev` | Use the default environment
+`$ swarm ls` | List your apps to check if everything is working
 
 ## Create and run an app
 

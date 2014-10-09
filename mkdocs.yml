@@ -21,4 +21,5 @@ pages:
 - ['guides/python.md', 'Guides', 'Python']
 
 # Reference
-- ['reference/index.md', 'Reference']
+- ['reference/index.md', 'Reference', 'Overview']
+- ['reference/env.md', 'Reference', 'Working with environments']
