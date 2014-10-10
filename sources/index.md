@@ -7,13 +7,13 @@
 
 ## What is Giant Swarm?
 
-Giant Swarm enables you to easily develop, deploy and host your micro-serviced application. We leverage serveral technologies like Docker and CoreOS and bring them together to an simple yet powerful platform. Besides Docker and your application stack there is not much to know to get started.
+Giant Swarm enables you to easily develop, deploy and host your micro-serviced application. We leverage several technologies like Docker and CoreOS and bring them together to a simple yet powerful platform. Besides Docker and your application stack there is not much to know to get started.
 
 ## Why Microservices?
 
-The days of big monolith applications are long over. Modularizing your application in services has been the way to go for some time. Each self-contained functionality is developed in a separate service. This makes them independently developable, deployable and scalable. Each which it's own potential database and programming language. The right tool for the job! The [12factor Apps](http://12factor.net/) apps go futher and descripe 12 factors of modern software-as-a-service. Worth looking at. 
+The days of big monolith applications are long over. Modularizing your application in services has been the way to go for some time. Each self-contained functionality is developed in a separate service. This makes them independently developable, deployable and scalable. Each with it's own potential database and programming language. The right tool for the job! The [12factor Apps](http://12factor.net/) paradigm goes even further by describing twelve fundamental requirements of modern software-as-a-service. Worth looking at.
 
-At the same time it has always  been a hazzle to set up a truely service oriented application. Or the solutions were to cumbersome and stood in the way. Giantswarm keeps it lean and gets out of the way.
+At the same time it has always been a hassle to set up a truly service-oriented application. Or the solutions were too cumbersome and stood in the way. Giant Swarm keeps it lean and gets out of the way.
 
 ## Overview of the docs
 
