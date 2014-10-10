@@ -19,6 +19,7 @@ pages:
 - ['guides/ruby_on_rails.md', 'Guides', 'Rails']
 - ['guides/symfony.md', 'Guides', 'PHP and Symfony']
 - ['guides/python.md', 'Guides', 'Python']
+- ['guides/java.md', 'Guides', 'Java']
 
 # Reference
 - ['reference/index.md', 'Reference', 'Overview']
