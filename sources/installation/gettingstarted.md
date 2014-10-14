@@ -41,6 +41,11 @@ Login to your account and update your password
     $ new password:
     $ confirm new password:
 
+Configure your default environment:
+
+    $ swarm env <username>/dev
+
+See [Working with environments](reference/env/) for further usages.
 
 ## Configure a helloworld application
 
