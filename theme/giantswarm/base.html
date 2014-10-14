@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
+        <title>{{ page_title }}</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% if page_description %}<meta name="description" content="{{ page_description }}">{% endif %}
@@ -9,8 +10,8 @@
         {% if canonical_url %}<link rel="canonical" href="{{ canonical_url }}">{% endif %}
         {% if favicon %}<link rel="shortcut icon" href="{{ favicon }}">
         {% else %}<link rel="shortcut icon" href="{{ base_url }}/img/favicon.ico">{% endif %}
-
-        <title>{{ page_title }}</title>
+        
+        <link rel="publisher" href="https://plus.google.com/117315999979228308375"/>        
 
         <link href="{{ base_url }}/css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="{{ base_url }}/css/font-awesome-4.0.3.css" rel="stylesheet">
