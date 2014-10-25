@@ -23,4 +23,5 @@ pages:
 
 # Reference
 - ['reference/index.md', 'Reference', 'Overview']
-- ['reference/env.md', 'Reference', 'Working with environments']
+- ['reference/companies.md', 'Reference', 'Companies']
+- ['reference/env.md', 'Reference', 'Environments']
