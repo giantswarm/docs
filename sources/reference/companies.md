@@ -1,0 +1,28 @@
+# Companies
+
+Companies allow to share resources between users.
+
+## Creating a company
+
+To create a company, call `swarm company` and enter the company name when prompted:
+
+    $ swarm company
+    Company: mygreatcompany
+
+
+## Listing company membership
+
+To list the companies you belong to, use the `-l` switch:
+
+    $ swarm company -l
+    giantswarm
+    luebken
+    mygreatcompany
+
+
+## Adding a user to a company
+
+In order to make a user a member of a certain company, the initial creator of the company can issue a `swarm company add-user` command with the company name and the user name as additional arguments:
+
+    $ swarm company add-user mycompany myuser
+
