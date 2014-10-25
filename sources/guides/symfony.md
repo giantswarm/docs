@@ -2,36 +2,38 @@
 
 This page should get you started with PHP, Symfony and the Swarm. 
 
-*TOC:*
+__Overview__:
 
 * Swarmify PHP
 * Dockerizing Symfony
 * Swarmify Symfony
 
-## Swarmify PHP 
-To get PHP running in the Swarm is rather easy. Use the [official PHP image](https://registry.hub.docker.com/_/php/) build your own image from it, upload it and start it.
+## Swarmify PHP
 
-#### Start with a simple `Dockerfile`:
+To get PHP running on Giant Swarm is rather easy. Use the [official PHP Docker image](https://registry.hub.docker.com/_/php/), build your own image from it, upload and start it.
 
-	# from https://registry.hub.docker.com/_/php/	
-	FROM php:5.6-apache
-	COPY . /var/www/html
+Start with a simple `Dockerfile`:
 
-If you look at [php:5.6-apache Dockerfile](https://github.com/docker-library/php/blob/e19f15271b1cbe9d3e5c9f0c552beca9579f0677/5.6/apache/Dockerfile) you will see that port 80 is exported and the default command is to start `httpd`.
+```
+# from https://registry.hub.docker.com/_/php/	
+FROM php:5.6-apache
+COPY . /var/www/html
+```
 
+If you look at [php:5.6-apache's Dockerfile](https://github.com/docker-library/php/blob/e19f15271b1cbe9d3e5c9f0c552beca9579f0677/5.6/apache/Dockerfile), you will see that port 80 is exported and the default command to run is `httpd`.
 
-#### Add a simple `index.php`:
+Next, add a simple `index.php` for testing pruposes:
 	
 	<? echo "<p>Hello from PHP</p>"; ?>
 
-#### Build, test and upload the image:
+Now build, test and upload the image:
 	
 	$ docker build -t luebken/hellophp .
 	$ docker run -d -p 8080:80 luebken/hellophp
 	$ curl localhost:8080
 	$ docker push luebken/hellophp
  
-#### Refer to that image in the `swarm.json`:
+This image can then be referred to in the new `swarm.json` file:
 
 	{
 	    "app_name": "hellophp",
