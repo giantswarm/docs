@@ -20,7 +20,11 @@ At the same time it has always been a hassle to set up a truly service-oriented 
 We currently have three sections in our docs:
 
 ### <i class="fa fa-cogs"></i> [Installation](installation/cheatsheet.md)
-This section gets you started with Giant Swarm: how to install the CLI and get up and running. It starts with a cheat sheet for the anxious developers. And it features one simple and one slightly more complex example.
+This section gets you started with Giant Swarm: how to install the CLI and get up and running.
+
+ * [Cheatsheet](./installation/cheatsheet.md)
+ * [Getting started, part 1](./installation/gettingstarted.md)
+ * [Getting started, part 2](./installation/gettingstarted2.md)
 
 ### <i class="fa fa-road"></i> [Guides](guides/ruby_on_rails.md) 
 This section provides in-depth guides to specific topics:
