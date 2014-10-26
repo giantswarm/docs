@@ -26,10 +26,11 @@ This section gets you started with Giant Swarm: how to install the CLI and get u
 This section provides in-depth guides to specific topics:
  
  * [Swarmify Ruby on Rails](./guides/ruby_on_rails.md)
-
  * [Swarmify PHP and Symfony](./guides/symfony.md)
- 
  * [Swarmify Python](./guides/python.md)
 
 ### <i class="fa fa-bookmark fa-2x"></i> [Reference](reference/)
 This section will contain detailed description of the different features Giant Swarm has to offer.
+
+ * [Companies](./reference/companies.md)
+ * [Environments](./reference/env.md)
