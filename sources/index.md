@@ -19,17 +19,17 @@ At the same time it has always been a hassle to set up a truly service-oriented 
 
 We currently have three sections in our docs:
 
-### <i class="fa fa-rocket fa-2x"></i> [Installation](installation/cheatsheet.md)
-This section gets you started with Giant Swarm: how to install the CLI and get up and running. It starts with a cheat sheet for the anxious developers. And it features one simple and one slightly more complex example. 
+### <i class="fa fa-cogs"></i> [Installation](installation/cheatsheet.md)
+This section gets you started with Giant Swarm: how to install the CLI and get up and running. It starts with a cheat sheet for the anxious developers. And it features one simple and one slightly more complex example.
 
-### <i class="fa fa-book fa-2x"></i> [Guides](guides/ruby_on_rails.md) 
+### <i class="fa fa-road"></i> [Guides](guides/ruby_on_rails.md) 
 This section provides in-depth guides to specific topics:
  
  * [Swarmify Ruby on Rails](./guides/ruby_on_rails.md)
  * [Swarmify PHP and Symfony](./guides/symfony.md)
  * [Swarmify Python](./guides/python.md)
 
-### <i class="fa fa-bookmark fa-2x"></i> [Reference](reference/)
+### <i class="fa fa-book"></i> [Reference](reference/)
 This section will contain detailed description of the different features Giant Swarm has to offer.
 
  * [Companies](./reference/companies.md)
