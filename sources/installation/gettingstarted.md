@@ -1,45 +1,59 @@
 # Getting started
 
-This page should get you started with Giant Swarm. It will show you how to install the prerequisites tools and get a prefined image running.
+This page should get you started with Giant Swarm. It will show you how to install the required tools and get a provided Docker image running.
 
-## Prerequisites: Install the CLI
+## Installing the swarm CLI
 
-We currently don't have an automated sign-up. So for the setup of your cluster and the Commandline interface (CLI) we like to ask you to write an email to support@giantswarm.io. In this Email please include:
+As of now, we don't have an automated sign-up process yet. In order to provide you with access to a Giant Swarm cluster and the required command line interface (CLI) client, please __send us an email__ to [support@giantswarm.io](mailto:support@giantswarm.io). In this email, please include the following details:
 
-  * Full name and Email-Adress
-  * If you are working on a Mac or a Linux machine
+ * Your full name and email address
+ * The operating system you use on your machine (Linux, Mac OS, ...)
 
-ASAP we will provide you with:
+We will then provide you with:
 
-  * A cluster name and URL: e.g.: http://alpha.giantswarm.io/v1/
-  * A `swarm` binary
-  * A user and a password
+  * a `swarm` binary for your platform
+  * a cluster name and URL. Example: http://alpha.giantswarm.io/v1/
+  * a user name
+  * a password
 
-Install the binary on your machine and set the ENV variable `SWARM_ENDPOINT_URL` to the provided cluster URL. e.g. 
+The first thing you should do then is __install the swarm binary__ somewhere convenient, preferably in a location that's contained in your `PATH` environment variable. For example, `/usr/local/bin/` works fine in many cases.
+
+Next we need to tell the swarm client __what cluster you want to work with__. This is what the cluster URL we sent you is for. Store this URL in the environment variable `SWARM_ENDPOINT_URL` like this: 
 
     $ export SWARM_ENDPOINT_URL=http://alpha.giantswarm.io/v1/
 
-Check the clusters status and availability:
+<i class="fa fa-info-circle"></i> You might want to add this line to your profile file (e. g. `~/.bash_profile`) to have this automatically set for all new terminal sessions.
+
+Once you have this, you can use the swarm client to check your cluster's availability:
 
     $ swarm ping
-    $ OK
 
-Login to your account and update your password
+You should get an `OK` as a result.
+
+Now that the connection to your cluster is set up, it's time to __log in__ with your user account. That's what the `swarm login` command is for. You will then be prompted for *your* user name or email address and for your password.
 
     $ swarm login
-    $ user or mail: luebken
-    $ password:
+    user or mail: luebken
+    password:
+
+Note that the password won't be displayed while you type.
+
+Since we sent you your password in plain text via email, it is recommended to __change your password__ now. Use `swarm user -u password` for that purpose. You will be prompted to enter the old password and then twice the new one.
 
     $ swarm user -u password
-    $ old password:
-    $ new password:
-    $ confirm new password:
+    old password:
+    new password:
+    confirm new password:
+
+Very well! The next thing you might want to try is __setting up a specific environment__. Environments allow you to run your apps in specific contexts, for example to distinguish development from production.
+
+TODO: clarify if it's necessary to change the default environment.
 
 Configure your default environment:
 
     $ swarm env <username>/dev
 
-See [Working with environments](reference/env/) for further usages.
+See [Working with environments](reference/env/) for further details.
 
 ## Configure a helloworld application
 
