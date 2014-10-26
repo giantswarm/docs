@@ -2,12 +2,6 @@
 
 This page should get you started with Giant Swarm. It will show you how to install the prerequisites tools and get a prefined image running.
 
-*TOC:*
-
-* Prerequisites: Install the CLI
-* Configure a helloworld application
-* Run the helloworld application
-
 ## Prerequisites: Install the CLI
 
 We currently don't have an automated sign-up. So for the setup of your cluster and the Commandline interface (CLI) we like to ask you to write an email to support@giantswarm.io. In this Email please include:
