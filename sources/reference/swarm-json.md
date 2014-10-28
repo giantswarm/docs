@@ -1,5 +1,7 @@
 # Valid keys and values for swarm.json
 
+This page should give an rough overview of possible `swarm.json` keys and their values.
+
 > **Note**:
 > This is not valid JSON. It's purely for documentation purpose. 
 
@@ -12,7 +14,7 @@
     "services":[
         {   
 
-            // Name of the service. Type: String.
+            // Name of the service. Type: String
             "service_name": "api-service",
 
             // Array of contained components. Type: JSON
@@ -24,27 +26,45 @@
 
                     // Docker image to be used. Type: String 
                     // Format: <registry>/<image>:<tag>
-                    "image":"registry.private.giantswarm.io/redis-example:0.0.2",
+                    "image":"registry.private.giantswarm.io/rails-example:0.0.2",
 
-                    // TODO
-                    "scaling_policy": { "min": 3 },
+                    // Docker env to inject into docker containers. Type: Array of strings
+                    // Format: "<key>=<value>"
+                     "env": [
+                        "SECRET_KEY_BASE=somesecretkeyforrails",
+                        "RAILS_ENV=production"
+                    ],
+
+                    // Minimum and maximum instances to launch.
+                    "scaling_policy": { "min": 3, "max" : 10 },
 
                     // Array of export ports. Type: Array of strings.
                     // String format: <port>/<protocol>
                     "ports":[ "80/tcp" ],
 
                     // Array of dependent components. Type: JSON
-                    // Format: { "name": <componentname>, "port": <exposed_port> }
+                    // Format: { 
+                    //    "name": <componentname>, 
+                    //    "port": <exposed_required_port>, 
+                    //    "same_machine": true | false }
                     "dependencies": [
                         { "name": "redis", "port": 6379 }
+                    ],
+
+                    // Array of public domains. Type: JSON
+                    // Format: { <URL>, <Port> }
+                    "domains": [
+                        { "hello.alpha.giantswarm.io": "80" },
+                        { "hello.alpha.io": "80" }
                     ]
+
                 },
                 {
                     "component_name": "redis",
                     "image":"dockerfile/redis",
                     "ports":[ "6379/tcp" ],
-                    
-                    // Array of mounted volumes. Type: JSON.
+
+                    // Array of mounted volumes. Type: JSON
                     // Format: { "path": <mount_point>, "size": <nr> GB }
                     "volumes": [
                         { "path": "/mnt/redis", "size": "5 GB" },
