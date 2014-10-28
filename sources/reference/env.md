@@ -17,7 +17,7 @@ When you start working with the swarm client, you are automatically assigned to 
 
     luebken/dev
 
-Note that you are free to set up environments with completely arbitrary names (TODO: explain character set limitations). Read on for details on creating environments.
+Note that you are free to set up environments with arbitrary names. Read on for details on creating environments.
 
 To find out which environment you are currently working in (i. e your current default environment), simply use the `swarm env` command without any argument:
 
@@ -29,7 +29,9 @@ To add a new environment or make an environment the current default, use the `sw
     
     $ swarm env luebken/prod
 
-(TODO: explain what actually happens when creating an environment)
+<!--
+TODO: explain what actually happens when creating an environment)
+-->
 
 ## Showing available environments
 
