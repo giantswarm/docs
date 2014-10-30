@@ -111,3 +111,11 @@ th {
     padding: 3px;
     background-color: #E8E8E8;
 }
+
+/** last modified date (<p>) **/
+.lastmod {
+    font-size: 13px;
+    color: #999;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
