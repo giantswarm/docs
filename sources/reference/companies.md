@@ -1,5 +1,7 @@
 # Companies
 
+__Last edited on October 28, 2014 by Matthias Lübken__
+
 Companies allow to share resources between users.
 
 ## Creating a company

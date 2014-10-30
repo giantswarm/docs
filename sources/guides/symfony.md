@@ -1,5 +1,7 @@
 # Swarmify PHP and Symfony
 
+__Last edited on October 25, 2014 by Marian Steinbach__
+
 This page should get you started with PHP, Symfony and the Swarm. 
 
 __Overview__:

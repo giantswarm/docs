@@ -1,5 +1,7 @@
 # Swarmify Python
 
+__Last edited on October 8, 2014 by Matthias Lübken__
+
 ## Dockerfile
 ```
 FROM python:2.7

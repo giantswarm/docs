@@ -1,5 +1,7 @@
 # Swarmify Ruby on Rails
 
+__Last edited on October 25, 2014 by Marian Steinbach__
+
 The following guide will explain how to configure the [RailsTutorials Sample App](https://github.com/railstutorial/sample_app_rails_4/) to GiantSwarm. We will run one container for MySQL and one for your Rails application. You should have a basic understanding of Docker and Rails.
 
 ## TL;DR with fig

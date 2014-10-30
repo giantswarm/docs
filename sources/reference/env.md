@@ -1,5 +1,7 @@
 # Environments
 
+__Last edited on October 28, 2014 by Matthias Lübken__
+
 Environments allow you to deploy your apps in __multiple independent contexts__ for different purposes. As an example, you might want to have one environment for development purposes and another for production.
 
 Environments are maneged with the swarm client using the `swarm env` command. In order to list all available options, use:
