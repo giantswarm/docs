@@ -30,7 +30,7 @@ This page should give an rough overview of possible `swarm.json` keys and their 
 
                     // Docker env to inject into docker containers. Type: Array of strings. Optional.
                     // Format: "<key>=<value>"
-                     "env": [
+                    "env": [
                         "SECRET_KEY_BASE=somesecretkeyforrails",
                         "RAILS_ENV=production"
                     ],
