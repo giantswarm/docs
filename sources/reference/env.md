@@ -1,6 +1,6 @@
 # Environments
 
-__Last edited on October 28, 2014 by Matthias Lübken__
+<p class="lastmod">Last edited on October 28, 2014 by Matthias Lübken</p>
 
 Environments allow you to deploy your apps in __multiple independent contexts__ for different purposes. As an example, you might want to have one environment for development purposes and another for production.
 
