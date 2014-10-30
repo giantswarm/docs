@@ -1,5 +1,27 @@
 body {
     padding-top: 70px;
+    font-family: Roboto, sans-serif;
+    font-weight: 300;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Roboto, sans-serif;
+    font-weight: 300;
+}
+
+h1 {
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+
+strong {
+    font-weight: 700;
+    color: #444;
 }
 
 ul.nav li.main {
@@ -110,4 +132,17 @@ div.source-links {
 th {
     padding: 3px;
     background-color: #E8E8E8;
+}
+
+/** Code **/
+pre {
+    font-size: 15px;
+}
+code {
+    font-family: "Inconsolata", "Consolas", "Lucida Console", monospace;
+}
+
+
+#contentcontainer {
+    padding-bottom: 30px;
 }
