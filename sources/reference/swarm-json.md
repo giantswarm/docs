@@ -26,11 +26,11 @@ This page should give an rough overview of possible `swarm.json` keys and their 
 
                     // Docker image to be used. Type: String 
                     // Format: <registry>/<image>:<tag>
-                    "image":"registry.private.giantswarm.io/rails-example:0.0.2",
+                    "image":"giantswarm/flaskexample:0.0.2",
 
                     // Docker env to inject into docker containers. Type: Array of strings. Optional.
                     // Format: "<key>=<value>"
-                     "env": [
+                    "env": [
                         "SECRET_KEY_BASE=somesecretkeyforrails",
                         "RAILS_ENV=production"
                     ],

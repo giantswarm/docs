@@ -1,5 +1,7 @@
 # Companies
 
+<p class="lastmod">Last edited on October 28, 2014 by Matthias Lübken</p>
+
 Companies allow to share resources between users.
 
 ## Creating a company
@@ -26,3 +28,6 @@ In order to make a user a member of a certain company, the initial creator of th
 
     $ swarm company add-user mycompany myuser
 
+## Using companies
+
+To see and use applications from colleagues you have to use the right environment. See the [environments](/reference/env) reference for details. 

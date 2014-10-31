@@ -142,7 +142,14 @@ code {
     font-family: "Inconsolata", "Consolas", "Lucida Console", monospace;
 }
 
-
 #contentcontainer {
     padding-bottom: 30px;
+}
+
+/** last modified date (<p>) **/
+.lastmod {
+    font-size: 13px;
+    color: #999;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }

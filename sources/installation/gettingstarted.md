@@ -1,5 +1,7 @@
 # Getting started
 
+<p class="lastmod">Last edited on October 26, 2014 by Marian Steinbach</p>
+
 This page should get you started with Giant Swarm. It will show you how to install the required tools and get a provided Docker image running.
 
 ## Installing the swarm CLI
