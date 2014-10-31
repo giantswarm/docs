@@ -1,6 +1,6 @@
 # Swarmify Python
 
-__Last edited on October 8, 2014 by Matthias Lübken__
+<p class="lastmod">Last edited on October 8, 2014 by Matthias Lübken</p>
 
 ## Dockerfile
 ```
