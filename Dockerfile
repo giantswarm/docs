@@ -6,7 +6,7 @@ MAINTAINER	Matthias Luebken <matthias@giantswarm.io>
 
 
 RUN 	apt-get update && apt-get install -yq python-pip gettext
-RUN		pip install mkdocs
+RUN		pip install mkdocs==0.9
 
 WORKDIR	/docs
 EXPOSE	8000
