@@ -2,7 +2,7 @@
 
 <p class="lastmod">Last edited on October 09, 2014 by Matthias Lübken</p>
 
-This page provides a slighlty more complex example using two components and a custom image. Please make you have `swarm` running. For details see [Getting Started](gettingstarted.md).
+This page provides a slighlty more complex example using two components and a custom image. Please make sure you have `swarm` running. For details see [Getting Started](gettingstarted.md).
 
 *TOC:*
 
