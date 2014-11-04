@@ -26,3 +26,4 @@ pages:
 - ['reference/companies.md', 'Reference', 'Companies']
 - ['reference/env.md', 'Reference', 'Environments']
 - ['reference/swarm-json.md', 'Reference', 'Swarm JSON']
+- ['reference/completion.md', 'Reference', 'Shell command completion']

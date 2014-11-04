@@ -39,3 +39,4 @@ This section will contain detailed description of the different features Giant S
  * [Companies](./reference/companies.md)
  * [Environments](./reference/env.md)
  * [Swarm.json reference](./reference/swarm-json.md)
+ * [Shell command completion](./reference/completion.md)
