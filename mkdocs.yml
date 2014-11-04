@@ -22,7 +22,6 @@ pages:
 - ['guides/java.md', 'Guides', 'Java']
 
 # Reference
-- ['reference/index.md', 'Reference', 'Overview']
 - ['reference/companies.md', 'Reference', 'Companies']
 - ['reference/env.md', 'Reference', 'Environments']
 - ['reference/swarm-json.md', 'Reference', 'Swarm JSON']
