@@ -16,7 +16,7 @@ This page provides a slighlty more complex example using two components and a cu
 
 The example we are using here is very simple:
 
-![](http://yuml.me/diagram/scruffy/class/[%E2%98%BA%20%7Bbg:yellow%7D]-%3E[CurrentWeather],[CurrentWeather]-%3E[Redis],%20[CurrentWeather]-%3E[openweathermap.org%20%7Bbg:white%7D]])
+![](/img/gettingstarted2_appschema.svg)
 
 We have Docker container `currentweather` which contains a simple Node.JS script. This provides a http endpoint to see the current weather from Cologne. \* 
 To get the data we are calling an external web service: [openweathermap.org](openweathermap.org). Since this is a great open API we want to be good citizens and cache the data locally and only get new data once a minute. The redis lives in a predefined redis container. 
