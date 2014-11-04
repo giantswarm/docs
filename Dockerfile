@@ -5,7 +5,7 @@ MAINTAINER	Matthias Luebken <matthias@giantswarm.io>
 
 
 
-RUN 	apt-get update && apt-get install -yq python-pip gettext
+RUN 	apt-get update -q && apt-get install -yq python-pip gettext
 RUN		pip install mkdocs==0.9
 
 WORKDIR	/docs
