@@ -1,5 +1,7 @@
 # Valid keys and values for swarm.json
 
+<p class="lastmod">Last edited on October 30, 2014 by Matthias Lübken</p>
+
 This page should give an rough overview of possible `swarm.json` keys and their values.
 
 > **Note**:
