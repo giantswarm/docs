@@ -59,7 +59,7 @@ See [Working with environments](reference/env/) for further details.
 
 ## Configure a helloworld application
 
-Create a file with your favourite editor called `helloworld.json` and fill it with the following json.
+Create a file with your favourite editor called `swarm.json` and fill it with the following json.
 
     {
         "app_name": "helloworld",
@@ -85,7 +85,7 @@ This configures a simple app with one service. The service consists of one compo
 
 Before you can run the application it needs to be created. To do so use the `create` command followed by the json file you have just created: 
 
-    $ swarm create helloworld.json
+    $ swarm create swarm.json
 
 To start this app use the `start` command followed by the `app_name` specified in the json:
 

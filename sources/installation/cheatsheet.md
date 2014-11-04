@@ -19,13 +19,13 @@ Command       | Purpose
 
 Command                          | Purpose
 ------------                     | -------------
-`$ swarm create helloworld.json` | create an app
+`$ swarm create swarm.json`      | create an app from swarm.json
 `$ swarm status helloworld`      | show status for an app
 `$ swarm logs <instance-id>`     | show logs from an app
 `$ swarm start helloworld`       | start an app
 `$ swarm stop helloworld`        | stop an app
 
-## helloworld.json
+## swarm.json
 
 Using a predefined python image and expose a http server:
 
