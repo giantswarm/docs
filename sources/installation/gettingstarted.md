@@ -48,15 +48,7 @@ Since we sent you your password in plain text via email, it is recommended to __
     new password:
     confirm new password:
 
-Very well! The next thing you might want to try is __setting up a specific environment__. Environments allow you to run your apps in specific contexts, for example to distinguish development from production.
-
-TODO: clarify if it's necessary to change the default environment.
-
-Configure your default environment:
-
-    $ swarm env <username>/dev
-
-See [Working with environments](reference/env/) for further details.
+The next thing you might want to try is setting up a specific environment. See [Working with environments](/reference/env/) for further details.
 
 ## Configure a helloworld application
 
