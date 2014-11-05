@@ -119,7 +119,7 @@ $ docker run  -i -p 1337:1337 --link redis:redis luebken/currentweather
 
 In the 'swarm.json' you have these two containers defined as components. The depdency is defined by the container (here the currentweather-service) that uses the user container:
 
-The swarm configuration: *currentweather.json*
+The swarm configuration: *swarm.json*
 ```
 {
     "app_name": "currentweather",
@@ -150,7 +150,7 @@ The swarm configuration: *currentweather.json*
 
 To start this example:
 ```
-$ swarm create currentweather.json
+$ swarm create swarm.json
 
 $ swarm ls
 1 app created so far!
