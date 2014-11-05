@@ -14,19 +14,12 @@ As of now, we don't have an automated sign-up process yet. In order to provide y
 We will then provide you with:
 
   * a `swarm` binary for your platform
-  * a cluster name and URL. Example: http://alpha.giantswarm.io/v1/
   * a user name
   * a password
 
-The first thing you should do then is __install the swarm binary__ somewhere convenient, preferably in a location that's contained in your `PATH` environment variable. For example, `/usr/local/bin/` works fine in many cases.
+The first thing you should do is to __install the swarm binary__ somewhere convenient, preferably in a location that's contained in your `PATH` environment variable. For example, `/usr/local/bin/` works fine in many cases.
 
-Next we need to tell the swarm client __what cluster you want to work with__. This is what the cluster URL we sent you is for. Store this URL in the environment variable `SWARM_ENDPOINT_URL` like this: 
-
-    $ export SWARM_ENDPOINT_URL=http://alpha.giantswarm.io/v1/
-
-<i class="fa fa-info-circle"></i> You might want to add this line to your profile file (e. g. `~/.bash_profile`) to have this automatically set for all new terminal sessions.
-
-Once you have this, you can use the swarm client to check your cluster's availability:
+Once you have this, you can use the swarm client to check the cluster's availability:
 
     $ swarm ping
 
