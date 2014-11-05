@@ -1,21 +1,29 @@
 # Getting started
 
-<p class="lastmod">Last edited on October 26, 2014 by Marian Steinbach</p>
+<p class="lastmod">Last edited on November 5, 2014 by Matthias Lübken</p>
 
 This page should get you started with Giant Swarm. It will show you how to install the required tools and get a provided Docker image running.
 
-## Installing the swarm CLI
+## Prerequisites
 
 As of now, we don't have an automated sign-up process yet. In order to provide you with access to a Giant Swarm cluster and the required command line interface (CLI) client, please __send us an email__ to [support@giantswarm.io](mailto:support@giantswarm.io). In this email, please include the following details:
 
  * Your full name and email address
- * The operating system you use on your machine (Linux, Mac OS, ...)
 
 We will then provide you with:
 
-  * a `swarm` binary for your platform
   * a user name
-  * a password
+  * and a password
+
+## The current swarm CLI
+
+The current CLI is 0.6.0. Downloads:
+
+  * [Mac](https://s3-eu-west-1.amazonaws.com/downloads.giantswarm.io/swarm/clients/0.6.0/swarm-0.6.0-mac.tar.gz)
+  * [Linux](https://s3-eu-west-1.amazonaws.com/downloads.giantswarm.io/swarm/clients/0.6.0/swarm-0.6.0-linux.tar.gz)
+
+
+## Installing the swarm CLI
 
 The first thing you should do is to __install the swarm binary__ somewhere convenient, preferably in a location that's contained in your `PATH` environment variable. For example, `/usr/local/bin/` works fine in many cases.
 
