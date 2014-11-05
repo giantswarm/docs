@@ -1,32 +1,33 @@
 # Getting started
 
-<p class="lastmod">Last edited on October 26, 2014 by Marian Steinbach</p>
+<p class="lastmod">Last edited on November 5, 2014 by Matthias Lübken</p>
 
 This page should get you started with Giant Swarm. It will show you how to install the required tools and get a provided Docker image running.
 
-## Installing the swarm CLI
+## Prerequisites
 
 As of now, we don't have an automated sign-up process yet. In order to provide you with access to a Giant Swarm cluster and the required command line interface (CLI) client, please __send us an email__ to [support@giantswarm.io](mailto:support@giantswarm.io). In this email, please include the following details:
 
  * Your full name and email address
- * The operating system you use on your machine (Linux, Mac OS, ...)
 
 We will then provide you with:
 
-  * a `swarm` binary for your platform
-  * a cluster name and URL. Example: http://alpha.giantswarm.io/v1/
   * a user name
-  * a password
+  * and a password
 
-The first thing you should do then is __install the swarm binary__ somewhere convenient, preferably in a location that's contained in your `PATH` environment variable. For example, `/usr/local/bin/` works fine in many cases.
+## The current swarm CLI
 
-Next we need to tell the swarm client __what cluster you want to work with__. This is what the cluster URL we sent you is for. Store this URL in the environment variable `SWARM_ENDPOINT_URL` like this: 
+The current CLI is 0.6.0. Downloads:
 
-    $ export SWARM_ENDPOINT_URL=http://alpha.giantswarm.io/v1/
+  * [Mac](https://s3-eu-west-1.amazonaws.com/downloads.giantswarm.io/swarm/clients/0.6.0/swarm-0.6.0-mac.tar.gz)
+  * [Linux](https://s3-eu-west-1.amazonaws.com/downloads.giantswarm.io/swarm/clients/0.6.0/swarm-0.6.0-linux.tar.gz)
 
-<i class="fa fa-info-circle"></i> You might want to add this line to your profile file (e. g. `~/.bash_profile`) to have this automatically set for all new terminal sessions.
 
-Once you have this, you can use the swarm client to check your cluster's availability:
+## Installing the swarm CLI
+
+The first thing you should do is to __install the swarm binary__ somewhere convenient, preferably in a location that's contained in your `PATH` environment variable. For example, `/usr/local/bin/` works fine in many cases.
+
+Once you have this, you can use the swarm client to check the cluster's availability:
 
     $ swarm ping
 
@@ -47,15 +48,7 @@ Since we sent you your password in plain text via email, it is recommended to __
     new password:
     confirm new password:
 
-Very well! The next thing you might want to try is __setting up a specific environment__. Environments allow you to run your apps in specific contexts, for example to distinguish development from production.
-
-TODO: clarify if it's necessary to change the default environment.
-
-Configure your default environment:
-
-    $ swarm env <username>/dev
-
-See [Working with environments](reference/env/) for further details.
+The next thing you might want to try is setting up a specific environment. See [Working with environments](/reference/env/) for further details.
 
 ## Configure a helloworld application
 

@@ -6,7 +6,7 @@ default: ;
 build:
 	docker build -t $(registry)/$(PROJECT) .
 
-run: build
+run:
 	docker run --rm -p 8000:8000 $(registry)/$(PROJECT)
 
 deploy: 
