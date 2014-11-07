@@ -1,5 +1,10 @@
 # Welcome to Giant Swarm
 
+<form class="search" method="GET" action="/search/">
+	Search the documentation: <input name="q" placeholder="Search term" />
+	<input type="submit" value="Search" />
+</form>
+
 > **Note**:
 > We are currently in an early alpha state and lots of things are still in development. Although we do our best, some parts of this documentation might be outdated. If something unexepected happens don't hesitate to contact us: [support@giantswarm.io](mailto:support@giantswarm.io)
 
