@@ -113,12 +113,12 @@ function doSearch(q) {
                 $.each(data.hits.hits, function(index, hit){
                     d = $("<a class='item'></>").attr("href", hit.fields.uri);
                     if (typeof(hit.highlight) !== "undefined" && typeof(hit.highlight.title) !== "undefined") {
-                        d.append("<h4>" + (index + 1) + ". " + hit.highlight.title + "</h4>");
+                        d.append($("<h4></h4>").html((index + 1) + ". " + hit.highlight.title));
                     } else {
-                        d.append("<h4>" + (index + 1) + ". " + hit.fields.title + "</h4>");
+                        d.append($("<h4></h4>").html((index + 1) + ". " + hit.fields.title));
                     }
                     if (typeof(hit.highlight) !== "undefined" && typeof(hit.highlight.body) !== "undefined" && hit.highlight.body.length > 0) {
-                        d.append("<p class='snippet'>" + hit.highlight.body.join(' <span class="hellip">[...]</span> ') + "</p>");
+                        d.append($("<p class='snippet'></p>").html(hit.highlight.body.join(' <span class="hellip">[...]</span> ')));
                     }
                     //d.append("<p class='uri'>" + hit.fields.uri + "</p>");
                     $(".result").append(d);
