@@ -43,7 +43,11 @@ fi
 
 ## Installing shell completion using swarm
 
-The `swarm` command line client provides a command named `completion` for installing the necessary script in the right place (the bash_completionn.d` directory mentioned before). Call it like this:
+The `swarm` command line client provides a command named `completion` for installing the necessary script in the right place (the `bash_completion.d` directory mentioned before). Call it like this:
+
+    $ swarm completion bash <bash_completion.d path>
+
+where `<bash_completion.d path>` should be replaced with the `bash_completion.d` directory path mentioned before. If this path happens to be the very commonly used `/etc/bash_completion.d`, you can completely ommit the last argument and simply use
 
     $ swarm completion bash
 
