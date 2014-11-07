@@ -49,4 +49,4 @@ The `swarm` command line client provides a command named `completion` for instal
 
 This is it. In order to actually use the completion mechanism, you need to open a new shell session.
 
-To try it out, simply type `swarm scale` and hit Enter.
+To try it out, simply type `swarm scale` and hit the TAB key.
