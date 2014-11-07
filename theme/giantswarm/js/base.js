@@ -73,12 +73,10 @@ function doSearch(q) {
         "_source": false,
         "fields": ["uri", "title", "breadcrumb", "breadcrumb_1"],
         "query": {
-            //"term": {
-            //    "text": q
-            //}
-            "multi_match": {
-                "query": q,
-                "fields": ["title", "text", "uri", "breadcrumb"]
+            "query_string": {
+                "default_field": "text",
+                "default_operator": "AND",
+                "query": q
             }
         },
         "highlight" : {
