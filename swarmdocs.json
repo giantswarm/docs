@@ -8,8 +8,15 @@
                     "component_name": "docs-auth",
                     "image": "registry.private.giantswarm.io/docs-auth:0.0.1",
                     "ports": [ "80/tcp" ],
-                    "dependencies": [{ "name": "upstream", "port": 8000 }],
-                    "domains": { "docs.giantswarm.io": "80" }
+                    "dependencies": [
+                        {
+                            "name": "upstream",
+                            "port": 8000
+                        }
+                    ],
+                    "domains": {
+                        "docs.giantswarm.io": "80"
+                    }
                 },
                 {
                     "component_name": "upstream",
