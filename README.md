@@ -10,4 +10,6 @@ Currently we have 3 sections:
   * Guides: howto types for typical user scenarios
   * Reference: detailed description of options / commands etc.
 
-Currently there is only one master version.  
+Currently there is only one master version. 
+
+There is more information available in the [Wiki](https://git.giantswarm.io/giantswarm/docs/wikis/home).
