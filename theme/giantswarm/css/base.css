@@ -164,6 +164,9 @@ form.search {
     margon-top: 20px;
     margin-bottom: 30px;
 }
+form.search input[@type="submit"]{
+    border-radius: 3px
+}
 #qinput {
     width: 300px;
 }
@@ -186,11 +189,11 @@ form.search {
 .bs-sidebar .searchhint {
     padding: 5px;
 }
-a.item p.snippet {
+a.item p.snippet, a.item p.sbreadcrumb {
     color: #333;
 }
 a.item em {
-    background-color: rgba(250, 136, 22, 0.3);
+    background-color: #E6F7EB;
     color: #000;
     font-style: normal;
 }
