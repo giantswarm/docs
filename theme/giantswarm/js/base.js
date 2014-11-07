@@ -108,8 +108,13 @@ function doSearch(q) {
             if (data.hits.total == 0) {
                 // no results
                 $("h1").text("No results for '" + q + "', sorry.");
+                ga('send', 'event', 'search', 'zerohits', q, 0);
             } else {
-                $("h1").text(data.hits.total + " hits for '" + q + "'");
+                if (data.hits.total === 1) {
+                    $("h1").text("1 hit for '" + q + "'");
+                } else {
+                    $("h1").text(data.hits.total + " hits for '" + q + "'");
+                }
                 $.each(data.hits.hits, function(index, hit){
                     d = $("<a class='item'></>").attr("href", hit.fields.uri);
                     if (typeof(hit.highlight) !== "undefined" && typeof(hit.highlight.title) !== "undefined") {
@@ -117,12 +122,16 @@ function doSearch(q) {
                     } else {
                         d.append($("<h4></h4>").html((index + 1) + ". " + hit.fields.title));
                     }
+                    if (typeof(hit.fields.breadcrumb) !== "undefined" && hit.fields.breadcrumb.length > 0) {
+                        d.append($("<p class='sbreadcrumb'></p>").html("In: " + hit.fields.breadcrumb.join(" / ")));
+                    }
                     if (typeof(hit.highlight) !== "undefined" && typeof(hit.highlight.body) !== "undefined" && hit.highlight.body.length > 0) {
                         d.append($("<p class='snippet'></p>").html(hit.highlight.body.join(' <span class="hellip">[...]</span> ')));
                     }
                     //d.append("<p class='uri'>" + hit.fields.uri + "</p>");
                     $(".result").append(d);
                 });
+                ga('send', 'event', 'search', 'hits', q, data.hits.total);
             }
         }
     });
