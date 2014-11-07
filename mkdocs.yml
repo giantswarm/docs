@@ -9,6 +9,7 @@ theme_dir: ./theme/giantswarm/
 pages:
 # Introduction
 - ['index.md', 'Welcome']
+- ['search.md', 'Search']
 
 # Installation
 - ['installation/cheatsheet.md', 'Installation', 'Cheat Sheet']
