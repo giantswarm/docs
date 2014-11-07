@@ -7,7 +7,12 @@ build:
 	docker build -t $(registry)/$(PROJECT) .
 
 run:
-	docker run --rm -p 8000:8000 $(registry)/$(PROJECT)
+	docker run --name=$(PROJECT) --rm -p 8000:8000 $(registry)/$(PROJECT)
+
+delete:
+	docker stop $(PROJECT)
+	docker rm $(PROJECT)
+	docker rmi $(registry)/$(PROJECT)
 
 deploy: 
 	swarm stop swarmdocs
