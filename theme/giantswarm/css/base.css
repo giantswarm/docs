@@ -157,3 +157,43 @@ code {
 p > img {
     margin: 20px 0 30px 0;
 }
+
+/** Search **/
+
+form.search {
+    margon-top: 20px;
+    margin-bottom: 30px;
+}
+#qinput {
+    width: 300px;
+}
+.result a.item {
+    display: block;
+    padding: 4px;
+    cursor: pointer;
+}
+.result a.item > * {
+    cursor: pointer;
+}
+.result a.item:hover, .result a.item:focus {
+    background-color: #fbfbfb;
+    text-decoration: none;
+}
+.result a.item:hover h4, .result a.item:focus p.uri {
+    text-decoration: underline;
+}
+
+.bs-sidebar .searchhint {
+    padding: 5px;
+}
+a.item p.snippet {
+    color: #333;
+}
+a.item em {
+    background-color: rgba(250, 136, 22, 0.3);
+    color: #000;
+    font-style: normal;
+}
+a.item .hellip {
+    color: #aaa;
+}
