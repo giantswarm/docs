@@ -45,8 +45,6 @@ def markdown_to_text(markdown_text):
     html = markdown(markdown_text)
     text = ''.join(BeautifulSoup(html).findAll(text=True))
     text = text.replace(" | ", " ")
-    text = text.replace("&lt;", "<")
-    text = text.replace("&gt;", ">")
     text = re.sub(r"[\-]{3,}", "-", text)  # markdown tables
     return text
 
