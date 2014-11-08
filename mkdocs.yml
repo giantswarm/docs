@@ -22,6 +22,9 @@ pages:
 - ['guides/java.md', 'Guides', 'Java']
 
 # Reference
+- ['reference/index.md', 'Reference', 'Overview']
+- ['reference/global-options.md', 'Reference', 'Global options']
 - ['reference/companies.md', 'Reference', 'Companies']
 - ['reference/env.md', 'Reference', 'Environments']
+- ['reference/create.md', 'Reference', 'Creating an app']
 - ['reference/swarm-json.md', 'Reference', 'Swarm JSON']
