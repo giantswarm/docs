@@ -36,6 +36,12 @@ div.source-links {
     float: right;
 }
 
+table {
+    font-size: 15px;
+}
+td, th {
+    padding: 3px 5px 3px 5px;
+}
 /*
  * Side navigation
  *
