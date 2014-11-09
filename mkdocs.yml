@@ -32,4 +32,5 @@ pages:
 - ['reference/stats.md', 'Reference', 'Getting instance statistics']
 - ['reference/scaleup.md', 'Reference', 'Scaling up a component']
 - ['reference/scaledown.md', 'Reference', 'Scaling down a component']
+- ['reference/logs.md', 'Reference', 'Accessing process logs']
 - ['reference/swarm-json.md', 'Reference', 'Swarm JSON']
