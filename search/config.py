@@ -47,7 +47,7 @@ ELASTICSEARCH_MAPPING = {
 
 
 # Path to mkdocs YAML file
-MKDOCS_FILE = "mkdocs.yml"
+MKDOCS_FILE = "../mkdocs.yml"
 
 # Path to markdown files
-SOURCE_PATH = "sources/"
+SOURCE_PATH = "../sources"

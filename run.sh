@@ -5,4 +5,4 @@
 cd search && python indexer.py
 
 # use mkdocs server to publish pages
-exec mkdocs serve
+cd /docs && exec mkdocs serve
