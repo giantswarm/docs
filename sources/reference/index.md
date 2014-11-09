@@ -26,8 +26,8 @@ Command                 | Description
 stop                    | Stop an environment, app or service
 delete                  | Delete an app. Note that you lose all contained data by doing so.
 update                  | Update a component by changing the docker image to a newer version
-scaleup                 | Increase number of instances running a component
-scaledown               | Reduce number of instances running a component
+[scaleup](scaleup/)     | Increase number of instances running a component
+[scaledown](scaledown/) | Reduce number of instances running a component
 logs                    | Prints an app's standard output and error messages
 [stats](stats/)         | Prints basic statistics of an instance
 version                 | Print swarm client version
