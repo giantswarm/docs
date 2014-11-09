@@ -18,8 +18,8 @@ A place to quickly lookup help pages for all `swarm` <abbr title="command line i
 Command                 | Description
 ----------------------- | -------------------------------
 [create](create/)       | Define a new app by loading a json file
-status                  | Show current status of an app or service
-start                   | Start an environment, app or service
+[status](status/)       | Show current status of an app or service
+[start](start/)         | Start an environment, app or service
 stop                    | Stop an environment, app or service
 delete                  | Delete an app. Note that you lose all contained data by doing so.
 update                  | Update a component by changing the docker image to a newer version
