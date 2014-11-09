@@ -34,7 +34,7 @@ update                  | Update a component by changing the docker image to a n
 version                 | Print swarm client version
 ping                    | Check if your cluster is available
 ls                      | List all apps
-env                     | Configure the swarm shell under ~/
+[env](env/)             | Handle environments
 cat                     | Show content of an app's swarm.json
 login                   | Log in to your account
 logout                  | Log out from your account
