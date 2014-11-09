@@ -1,8 +1,10 @@
 # Welcome to Giant Swarm
 
-<form class="search" method="GET" action="/search/">
-	Search the documentation: <input name="q" placeholder="Search term" />
-	<input type="submit" value="Search" />
+<form class="search form-inline" method="GET" action="/search/" role="form">
+	<div class="form-group">
+		<input id="qinput" name="q" class="form-control" placeholder="Search term" />
+		<button type="button" class="btn btn-primary"><i class="fa fa-search"></i> Search</button>
+	</div>
 </form>
 
 > **Note**:
