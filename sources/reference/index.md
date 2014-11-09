@@ -10,6 +10,7 @@ The reference area of our documentation is where you get structured information 
  * [Creating an app](create/)
  * [Starting an environment, app or service](start/)
  * [Getting an app's status](status/)
+ * [Getting instance statistics](stats/)
  * [swarm.json file format](swarm-json/)
 
 
@@ -28,7 +29,7 @@ update                  | Update a component by changing the docker image to a n
 scaleup                 | Increase number of instances running a component
 scaledown               | Reduce number of instances running a component
 logs                    | Prints an app's standard output and error messages
-stats                   | Prints basic statistics of an instance
+[stats](stats/)         | Prints basic statistics of an instance
 version                 | Print swarm client version
 ping                    | Check if your cluster is available
 ls                      | List all apps

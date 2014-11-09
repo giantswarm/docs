@@ -29,4 +29,5 @@ pages:
 - ['reference/create.md', 'Reference', 'Creating an app']
 - ['reference/start.md', 'Reference', 'Starting an environment, app or service']
 - ['reference/status.md', 'Reference', 'Getting status information']
+- ['reference/stats.md', 'Reference', 'Getting instance statistics']
 - ['reference/swarm-json.md', 'Reference', 'Swarm JSON']
