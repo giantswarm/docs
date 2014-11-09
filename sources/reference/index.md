@@ -8,6 +8,8 @@ The reference area of our documentation is where you get structured information 
  * [Companies](companies/)
  * [Environments](env/)
  * [Creating an app](create/)
+ * [Starting an environment, app or service](start/)
+ * [Getting an app's status](status/)
  * [swarm.json file format](swarm-json/)
 
 
