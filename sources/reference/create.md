@@ -68,7 +68,7 @@ So, if your application config is called `swarm.json` and the variables file is 
 
     $ swarm create swarm.json --var-file=swarmvars.json
 
-TODO: Clarify if the CLI always uses a swarmvars.json if present and no --var-file option is given.
+Note that if your variables file is in the current directory _and_ has the name `swarmvars.json`, it is used automatically. So there is actually no need to specify the `--var-file` option in the case shown above.
 
 ## Combining command line options and file
 
