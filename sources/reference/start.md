@@ -4,7 +4,7 @@
 
 Using the `swarm start` command you can start all apps in the current environment, one specific app or one service inside an app.
 
-Since all of these commands require you to be aware of the current environment, when in doubt, read more about dealing with environments on the [environments reference page](../env/).
+All of these commands require you to be aware of the current environment. When in doubt, you can learn more about dealing with environments on the [environments reference page](../env/).
 
 ## Starting an environment
 

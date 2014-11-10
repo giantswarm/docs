@@ -1,6 +1,6 @@
 # Accessing process logs
 
-<p class="lastmod">Last edited on November 9, 2014 by Marian Steinbach</p>
+<p class="lastmod">Last edited on November 10, 2014 by Marian Steinbach</p>
 
 Logs of processes running on Giant Swarm can be accesses using the `swarm logs` command.
 
