@@ -1,6 +1,6 @@
 # Creating an app
 
-<p class="lastmod">Last edited on November 8, 2014 by Marian Steinbach</p>
+<p class="lastmod">Last edited on November 10, 2014 by Marian Steinbach</p>
 
 Services running on Giant Swarm are grouped as *apps* which are described in `swarm.json` files. Creation of apps is done via the `swarm create` command.
 
@@ -14,7 +14,7 @@ Assuming that your app configuration file `swarm.json` is in the current directo
 
     $ swarm create swarm.json
 
-For further information about the app configuration file, please refer to the [swarm.json reference page](./swarm-json/).
+For further information about the app configuration file, please refer to the [swarm.json reference page](../swarm-json/).
 
 <!-- TODO: Explain what this actually does in the background or alternatively link to the architecture overview article which explains this in more detail. -->
 
