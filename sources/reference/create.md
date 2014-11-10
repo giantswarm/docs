@@ -6,19 +6,23 @@ Services running on Giant Swarm are grouped as *apps* which are described in `sw
 
 ## Basic app creation
 
-Assuming that your app configuration file path is `swarm.json`, simply call the `swarm create` command like this:
+The basic command syntax is:
+
+    $ swarm create <app-config-file>
+
+Assuming that your app configuration file `swarm.json` is in the current directory, simply call the `swarm create` command like this:
 
     $ swarm create swarm.json
 
-Note: For further information about the app configuration file, please refer to the [swarm.json reference page](./swarm-json/).
+For further information about the app configuration file, please refer to the [swarm.json reference page](./swarm-json/).
 
-TODO: Explain what this actually does in the background or alternatively link to the architecture overview article which explains this in more detail.
+<!-- TODO: Explain what this actually does in the background or alternatively link to the architecture overview article which explains this in more detail. -->
 
 ## Using variable definitions
 
-You can use an app configuration file like `swarm.json` as a template with variables instead of actual values in them. Variables act as placeholder keys which are then replaced by valueswhich you pass to the `swarm create` command.
+You can use an app configuration file like `swarm.json` as a template with variables instead of actual values in them. Variables act as placeholder keys which are then replaced by values which you pass to the `swarm create` command.
 
-Variables names in the app configuration file have to start with a __dollar sign__ (`$`).
+Variables names in the app configuration file have to start with a *dollar sign* (`$`).
 
 When creating a new app, you can pass values for your variables in two different ways:
 
@@ -31,7 +35,7 @@ Also, both approaches can be combined.
 
 If you want to define variable values directly on the command line, you can use the `--var` option for that purpose. Here is the basic format:
 
-    $ swarm create <app-config-path> --var=<key=value>
+    $ swarm create swarm.json --var=<key=value>
 
 If, for example, your app configuration file `swarm.json` contains the two variables `$var1` and `$var2`, you can assign values in the following way:
 
@@ -52,13 +56,13 @@ For frequent re-use you can store your app creation variables in a JSON variable
 }
 ```
 
-As you can see, the file contains a single JSON object, which on the top level defines keys that are named after Giant Swarm [environments](../env/). This structure is required, even if you have only one environment you are working with. It allows you to assign different values to variables for each of your environments.
+As you can see, the file contains a single JSON object, which on the top level defines keys that are named after your [environments](../env/). This structure allows you to assign different values to variables for each of your environments.
 
 With the example above, you would now use a variable name `$redis_port` (dont forget the dollar sign!) where appropriate in your app configuration file (`swarm.json`).
 
 Here is how you make use of your variables file when calling `swarm create`:
 
-    $ swarm create <app-config-path>> --var-file=<var-file-path>
+    $ swarm create <app-config-file> --var-file=<var-file-path>
 
 So, if your application config is called `swarm.json` and the variables file is `swarmvars.json`, the command is:
 
@@ -68,7 +72,7 @@ TODO: Clarify if the CLI always uses a swarmvars.json if present and no --var-fi
 
 ## Combining command line options and file
 
-It is possible to combine both approaches of passing variable values described above. In this case, whenever a variable is defined both in the file adn via the command line option, the value assigned via the command line value is used.
+It is possible to combine both approaches of passing variable values described above. In this case, whenever a variable is defined both in the file and via the command line option, the value assigned via the command line value is used.
 
 Here is an example:
 
