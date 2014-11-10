@@ -22,6 +22,15 @@ pages:
 - ['guides/java.md', 'Guides', 'Java']
 
 # Reference
+- ['reference/index.md', 'Reference', 'Overview']
+- ['reference/global-options.md', 'Reference', 'Global options']
 - ['reference/companies.md', 'Reference', 'Companies']
 - ['reference/env.md', 'Reference', 'Environments']
+- ['reference/create.md', 'Reference', 'Creating an app']
+- ['reference/start.md', 'Reference', 'Starting an environment, app or service']
+- ['reference/status.md', 'Reference', 'Getting status information']
+- ['reference/stats.md', 'Reference', 'Getting instance statistics']
+- ['reference/scaleup.md', 'Reference', 'Scaling up a component']
+- ['reference/scaledown.md', 'Reference', 'Scaling down a component']
+- ['reference/logs.md', 'Reference', 'Accessing process logs']
 - ['reference/swarm-json.md', 'Reference', 'Swarm JSON']
