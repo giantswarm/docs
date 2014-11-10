@@ -65,7 +65,7 @@ function doSearch(q) {
     console.debug("Searched for", q);
     // insert into form
     $("#qinput").val(q);
-    $("h1").text("Search results for '" + q + "'");
+    //$("h1").text("Searching results for '" + q + "'");
     var postData = {
         "from": 0,
         "size": 1000,
@@ -106,8 +106,10 @@ function doSearch(q) {
             if (data.hits.total == 0) {
                 // no results
                 $("h1").text("No results for '" + q + "', sorry.");
+                $("#searchinstructions").show();
                 ga('send', 'event', 'search', 'zerohits', q, 0);
             } else {
+                $("#searchinstructions").hide();
                 if (data.hits.total === 1) {
                     $("h1").text("1 hit for '" + q + "'");
                 } else {
@@ -142,8 +144,8 @@ $(document).ready(function(){
     }
 
     // empty left sidebar
-    $(".bs-sidebar").empty();
-    $(".bs-sidebar").append("<div class='searchhint'>Here we could place some search filters or some hints on advanced search features.</div>");
+    $(".bs-sidebar").remove();
+    //$(".bs-sidebar").append("<div class='searchhint'>Here we could place some search filters or some hints on advanced search features.</div>");
 
     var q = getParameterByName("q");
 
