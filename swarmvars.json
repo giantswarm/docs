@@ -1,0 +1,8 @@
+{
+	"marian/dev": {
+		"domain1_name": "docs.alpha.giantswarm.io"
+	},
+	"giantswarm/production": {
+		"domain1_name": "docs.giantswarm.io"
+	}
+}
