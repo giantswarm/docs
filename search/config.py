@@ -4,8 +4,9 @@
 Configuration for searchindexer
 """
 
+# Path of YAML file containing
 # ElasticSearch host names or IP addresses and port
-ELASTICSEARCH_HOSTS = ["192.168.59.103:9200"]
+ELASTICSEARCH_HOSTS = "hosts.yml"
 
 ELASTICSEARCH_INDEX = "docs"
 

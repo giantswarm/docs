@@ -9,6 +9,8 @@ What it does:
 - Parses mkdocs.yml
 - For each markdown file mentioned in mkdocs.yml
   - pushes content to elasticsearch
+
+Run from the same directory
 """
 
 import config
@@ -22,6 +24,11 @@ from datetime import datetime
 from BeautifulSoup import BeautifulSoup
 from markdown import markdown
 
+def hosts_config(path):
+    file_handle = open(path, "r")
+    hosts = yaml.load(file_handle)
+    file_handle.close()
+    return hosts
 
 def mkdocs_pages(path):
     """
@@ -105,14 +112,19 @@ if __name__ == "__main__":
     root = logging.getLogger()
     root.setLevel(logging.DEBUG)
 
+    # logging setup
     ch = logging.StreamHandler(sys.stdout)
     ch.setLevel(logging.INFO)
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     ch.setFormatter(formatter)
     root.addHandler(ch)
 
-    es = Elasticsearch(
-        hosts=config.ELASTICSEARCH_HOSTS)
+    # read hosts config
+    eshosts = hosts_config(config.ELASTICSEARCH_HOSTS)
+    for host in eshosts:
+        logging.info("Found elasticsearch host in %s: %s" % (config.ELASTICSEARCH_HOSTS, host))
+
+    es = Elasticsearch(hosts=eshosts)
     pages = mkdocs_pages(config.MKDOCS_FILE)
 
     # make temporary index name
