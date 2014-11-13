@@ -6,7 +6,7 @@ The `swarm scaledown` command is used to decrease the number of instances runnin
 
 ## Command syntax
 
-The command requires a service component name as well as the number of instances to be added as arguments.
+The command requires a service component name as well as the number of instances to be subtracted as arguments.
 
     $ swarm scaledown <app/service/component> --count=<num-to-add>
 
