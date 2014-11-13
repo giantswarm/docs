@@ -6,7 +6,7 @@
             "components": [
                 {
                     "component_name": "docs-auth",
-                    "image": "registry.private.giantswarm.io/docs-auth:0.0.1",
+                    "image": "registry.private.giantswarm.io/docs-auth:0.2.0",
                     "ports": [ "80/tcp" ],
                     "dependencies": [
                         {
@@ -25,7 +25,13 @@
                 {
                     "component_name": "upstream",
                     "image": "registry.private.giantswarm.io/docs:0.14.4",
-                    "ports": [ "8000/tcp" ]
+                    "ports": [ "8000/tcp" ],
+                    "dependencies": [
+                        {
+                            "name": "sitesearch",
+                            "port": 9200
+                        }
+                    ]
                 },
                 {
                     "component_name": "sitesearch",
