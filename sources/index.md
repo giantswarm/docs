@@ -1,5 +1,12 @@
 # Welcome to Giant Swarm
 
+<form class="search form-inline" method="GET" action="/search/" role="form">
+	<div class="form-group">
+		<input id="qinput" name="q" class="form-control" placeholder="Search term" />
+		<button id="searchsubmit" type="button" class="btn btn-primary"><i class="fa fa-search"></i> Search</button>
+	</div>
+</form>
+
 > **Note**:
 > We are currently in an early alpha state and lots of things are still in development. Although we do our best, some parts of this documentation might be outdated. If something unexepected happens don't hesitate to contact us: [support@giantswarm.io](mailto:support@giantswarm.io)
 

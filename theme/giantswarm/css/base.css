@@ -163,3 +163,64 @@ code {
 p > img {
     margin: 20px 0 30px 0;
 }
+
+/** Forms **/
+input, .form-control {
+    font-size: 15px;
+}
+.form-group .btn, .input-group-addon, .input-group-btn .btn {
+    font-size: 15px;
+}
+.btn-primary {
+    background-color: #23c451;
+    border-color: #23c451;
+}
+.btn-primary:hover {
+    background-color: #1c9d41;
+    border-color: #1c9d41;
+}
+
+/** Search **/
+
+form.search {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+form.search input[@type="submit"]{
+    border-radius: 3px
+}
+#qinput {
+    width: 300px;
+    height: 39px;
+    line-height: 23px;
+}
+.result a.item {
+    display: block;
+    padding: 4px;
+    cursor: pointer;
+}
+.result a.item > * {
+    cursor: pointer;
+}
+.result a.item:hover, .result a.item:focus {
+    background-color: #fbfbfb;
+    text-decoration: none;
+}
+.result a.item:hover h4, .result a.item:focus p.uri {
+    text-decoration: underline;
+}
+
+.bs-sidebar .searchhint {
+    padding: 5px;
+}
+a.item p.snippet, a.item p.sbreadcrumb {
+    color: #333;
+}
+a.item em {
+    background-color: #E6F7EB;
+    color: #000;
+    font-style: normal;
+}
+a.item .hellip {
+    color: #aaa;
+}

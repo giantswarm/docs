@@ -6,15 +6,37 @@
             "components": [
                 {
                     "component_name": "docs-auth",
-                    "image": "registry.private.giantswarm.io/docs-auth:0.0.1",
+                    "image": "registry.private.giantswarm.io/docs-auth:0.2.0",
                     "ports": [ "80/tcp" ],
-                    "dependencies": [{ "name": "upstream", "port": 8000 }],
-                    "domains": { "docs.giantswarm.io": "80" }
+                    "dependencies": [
+                        {
+                            "name": "upstream",
+                            "port": 8000
+                        },
+                        {
+                            "name": "sitesearch",
+                            "port": 9200
+                        }
+                    ],
+                    "domains": {
+                        "docs.giantswarm.io": "80"
+                    }
                 },
                 {
                     "component_name": "upstream",
-                    "image": "registry.private.giantswarm.io/docs:0.15.0",
-                    "ports": [ "8000/tcp" ]
+                    "image": "registry.private.giantswarm.io/docs:0.14.4",
+                    "ports": [ "8000/tcp" ],
+                    "dependencies": [
+                        {
+                            "name": "sitesearch",
+                            "port": 9200
+                        }
+                    ]
+                },
+                {
+                    "component_name": "sitesearch",
+                    "image": "registry.private.giantswarm.io/sitesearch:0.0.1",
+                    "ports": [ "9200/tcp" ]
                 }
             ]
         }
