@@ -61,11 +61,15 @@ function getParameterByName(name) {
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
+/**
+ * Perform a search and display the result
+ * 
+ * @param q  String     The user's search query
+ */
 function doSearch(q) {
-    console.debug("Searched for", q);
-    // insert into form
+    //console.debug("Searched for", q);
     $("#qinput").val(q);
-    //$("h1").text("Searching results for '" + q + "'");
+    // assemble the big query object for ElasticSearch
     var postData = {
         "from": 0,
         "size": 1000,
@@ -101,7 +105,6 @@ function doSearch(q) {
             console.warn("Error in ajax call to /api/search/:", textStatus, errorThrown);
         },
         success: function(data){
-            console.debug(data);
             $(".result").empty();
             if (data.hits.total == 0) {
                 // no results
@@ -116,20 +119,7 @@ function doSearch(q) {
                     $("h1").text(data.hits.total + " hits for '" + q + "'");
                 }
                 $.each(data.hits.hits, function(index, hit){
-                    d = $("<a class='item'></>").attr("href", hit.fields.uri);
-                    if (typeof(hit.highlight) !== "undefined" && typeof(hit.highlight.title) !== "undefined") {
-                        d.append($("<h4></h4>").html((index + 1) + ". " + hit.highlight.title));
-                    } else {
-                        d.append($("<h4></h4>").html((index + 1) + ". " + hit.fields.title));
-                    }
-                    if (typeof(hit.fields.breadcrumb) !== "undefined" && hit.fields.breadcrumb.length > 0) {
-                        d.append($("<p class='sbreadcrumb'></p>").html("In: " + hit.fields.breadcrumb.join(" / ")));
-                    }
-                    if (typeof(hit.highlight) !== "undefined" && typeof(hit.highlight.body) !== "undefined" && hit.highlight.body.length > 0) {
-                        d.append($("<p class='snippet'></p>").html(hit.highlight.body.join(' <span class="hellip">[...]</span> ')));
-                    }
-                    //d.append("<p class='uri'>" + hit.fields.uri + "</p>");
-                    $(".result").append(d);
+                    $(".result").append(renderSerpEntry(index, hit));
                 });
                 ga('send', 'event', 'search', 'hits', q, data.hits.total);
             }
@@ -137,8 +127,37 @@ function doSearch(q) {
     });
 }
 
+/**
+ * Returns a jQuery DOM object for a given search result entry
+ * 
+ * @param index  Int     Index number of this entry, starting with 0
+ * @param data   Object  Result hit item as returned by elasticsearch
+ */
+function renderSerpEntry(index, hit) {
+    d = $("<a class='item'></>").attr("href", hit.fields.uri);
+    if (typeof(hit.highlight) !== "undefined" && typeof(hit.highlight.title) !== "undefined") {
+        d.append($("<h4></h4>").html((index + 1) + ". " + hit.highlight.title));
+    } else {
+        d.append($("<h4></h4>").html((index + 1) + ". " + hit.fields.title));
+    }
+    if (typeof(hit.fields.breadcrumb) !== "undefined" && hit.fields.breadcrumb.length > 0) {
+        d.append($("<p class='sbreadcrumb'></p>").html("In: " + hit.fields.breadcrumb.join(" / ")));
+    }
+    if (typeof(hit.highlight) !== "undefined" && typeof(hit.highlight.body) !== "undefined" && hit.highlight.body.length > 0) {
+        d.append($("<p class='snippet'></p>").html(hit.highlight.body.join(' <span class="hellip">[...]</span> ')));
+    }
+    return d;
+}
+
 /* handle search */
 $(document).ready(function(){
+    
+    // click handler for search button
+    $("#searchsubmit").click(function(evt){
+        evt.preventDefault();
+        $("form.search").submit();
+    });
+
     if (document.location.pathname !== "/search/") {
         return;
     }
