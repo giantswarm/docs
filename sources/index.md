@@ -3,7 +3,7 @@
 <form class="search form-inline" method="GET" action="/search/" role="form">
 	<div class="form-group">
 		<input id="qinput" name="q" class="form-control" placeholder="Search term" />
-		<button type="button" class="btn btn-primary"><i class="fa fa-search"></i> Search</button>
+		<button id="searchsubmit" type="button" class="btn btn-primary"><i class="fa fa-search"></i> Search</button>
 	</div>
 </form>
 
