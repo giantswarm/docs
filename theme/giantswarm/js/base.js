@@ -151,7 +151,7 @@ function renderSerpEntry(index, hit) {
 
 /* handle search */
 $(document).ready(function(){
-    
+
     // click handler for search button
     $("#searchsubmit").click(function(evt){
         evt.preventDefault();
@@ -164,7 +164,6 @@ $(document).ready(function(){
 
     // empty left sidebar
     $(".bs-sidebar").remove();
-    //$(".bs-sidebar").append("<div class='searchhint'>Here we could place some search filters or some hints on advanced search features.</div>");
 
     var q = getParameterByName("q");
 
