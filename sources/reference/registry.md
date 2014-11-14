@@ -4,7 +4,7 @@
 
 Giant Swarm provides you a protected registry to deposit and deploy your [Docker](https://docker.com/) images. Here we give you the information you need to login and push images to our registry and use these images within your applications.
 
-The registry uses software provided by Docker and is accessed via standard Docker tools. If you are familiary with the concept of registries and know how to deal with images there, you can easily transfer that knowledge to our protected registry. In this case, please make sure that you read and understand the section on *company namespaces* below, since this is a Giant Swarm specialty.
+The registry uses software provided by Docker and is accessed via standard Docker tools. If you are familiary with the concept of registries and know how to deal with images there, you can easily transfer that knowledge to our protected registry. In this case, please make sure that you read and understand how we use company names as namespaces, as explained in the section _company namespaces_.
 
 In addition to using the Giant Swarm registry, you have the option to use any publicly accessible Docker registry, including the [Docker Hub](https://registry.hub.docker.com/) with lots of readily available Open Source software packages.
 
@@ -24,15 +24,27 @@ Example of a full image name:
 
 ## Company namespaces
 
-On the Giant Swarm platform, users are associated with [companies](../companies/) to allow for shared resources between multiple users. Docker images are an example of these shared resources.
+In our systems, users are associated with [companies](../companies/) to allow for shared resources between multiple users. Docker images are an example of these shared resources.
 
-> Every image you push to the registry has to belong to a certain company. This is expressed by using the company name as a namespace indicator.
+> Every image you push to the registry has to belong to a certain company. This is expressed by using the company name as the image's namespace.
 
 If, for example, you belong to the company called `acmecorp` and want to create an image which can be used by all users of that company, the name `acmecorp` has to be used as the name space field within the image name, like here:
 
     registry.giantswarm.io/acmecorp/exampleimage:1.4.2
 
 We will be using the company name `acmecorp` throughout this page as a placeholder for your desired company name.
+
+## Logging in
+
+Before you can do anything like uploading or downloading images to/from our registry, you first have to log in. Have your Giant Swarm user name and password ready for that purpose. The actual login is performed interactively using the `docker login` command:
+
+    $ docker login https://registry.giantswarm.io
+
+You will be prompted to input your username, then your password and finally you email address.
+
+As a side note, you can currently enter any email address here. We don't use this piece of information, however the `docker login` command prompts for it, which we cannot influence.
+
+Once you have successfully logged in, you can proceed to the next section.
 
 ## Naming and tagging an image
 
@@ -57,33 +69,17 @@ As for naming _after the build_: If, for example, you have locally created a lit
 
 You might have wondered what the `:latest` or `:1.4.2` suffixes are about. They are called _tags_ and are distinct indicators for different variants of an image. They are frequently used for versioning images.
 
-## Logging in
-
-Before you can do anything like uploading or downloading images to/from our registry, you first have to log in. Have your Giant Swarm user name and password ready for that purpose. The actual login is performed interactively using the `docker login` command:
-
-    $ docker login https://registry.giantswarm.io
-
-You will be prompted to input your username, then your password and finally you email address.
-
-You might wonder why you have to input an email address here. Frankly: we don't know, and we don't use the data you enter there. But we have no control over this function of the `docker` client. Still, you have to enter something looking like a valid email address here, otherwise you will get an error message and won't be able to log in.
-
-Once you have successfully logged in, you can proceed to the next section.
-
 ## Pushing an image
 
 To make use of your images within your Giant Swarm applications, you have to upload or "push" them to our registry. This is done using the `docker push` command.
 
 In a section before you learnt that you have to name an image with the appropriate name _before_ pushing it. Now you can use the full image name to push that same image. This is the general command syntax:
 
-    $ docker push registry.giantswarm.io/<company_namespace>/<image_name>[:<tag>]
+    $ docker push registry.giantswarm.io/<company_namespace>/<image_name>:<tag>
 
-The `:<tag>` part is optional and if you don't specify a tag here, the image with the `:latest` tag is pushed.
+There are cases where the `:<tag>` part would be optional. Going into depth here would make this reference a lot bigger. For now, we simply recommend to explicitly name the tag. If you like, you can read more about this topic in the Docker documentation (link given below). 
 
 So to push our example image to the registry, the command we would use might be:
-
-    $ docker push registry.giantswarm.io/acmecorp/exampleimage
-
-or, more specifically:
 
     $ docker push registry.giantswarm.io/acmecorp/exampleimage:1.4.2
 
@@ -107,24 +103,24 @@ Your application is potentially built of several components with one `"image"` d
 }
 ```
 
-We _explicitly recommend_ to use the full name including a specific tag here. Do not use the `:latest` alias here, otherwise it will be up the Docker host to resolve this to the actual image version, which might be influenced by caches.
+We _explicitly recommend_ to use the full name including a specific tag here. Do not use the `:latest` alias here, otherwise it will be up the registry endpoint to resolve this to the actual image version.
 
-Be aware that you can use variables in your `swarm.json` file, which can be defined either in another JSON file or as command line parameters. Read more about this on reference page about [creating apps](../create/).
+Be aware that you can use variables in your `swarm.json` file, which can be defined either in another JSON file or as command line parameters. Read more about this on the reference page about [creating apps](../create/).
 
 ## Putting it together
 
 As a synopsis, here is the complete command workflow from build to push.
 
-Build your image with the right name (or name it afterwards using `docker tag`):
-
-```
-$ docker build -t registry.giantswarm.io/acmecorp/exampleimage:1.4.2 .
-```
-
 Make sure you are logged into the registry:
 
 ```
 $ docker login https://registry.giantswarm.io
+```
+
+Build your image with the right name (or name it afterwards using `docker tag`):
+
+```
+$ docker build -t registry.giantswarm.io/acmecorp/exampleimage:1.4.2 .
 ```
 
 Upload the image to the registry:
@@ -138,8 +134,9 @@ $ docker push registry.giantswarm.io/acmecorp/exampleimage:1.4.2
 ## Further reading
 
 * [swarm.json reference page](../swarm-json/)
-* [swarm.json reference page](../cerate/)
+* [Creating an app](../create/)
 
 External resources:
 
+* [Introduction to Docker Images](https://docs.docker.com/terms/image/)
 * [Working with Docker Images](https://docs.docker.com/userguide/dockerimages/)

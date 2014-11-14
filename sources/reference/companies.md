@@ -1,8 +1,8 @@
 # Companies
 
-<p class="lastmod">Last edited on October 28, 2014 by Matthias Lübken</p>
+<p class="lastmod">Last edited on November 14, 2014 by Marian Steinbach</p>
 
-Companies allow to share resources between users. Users belonging to the same company can, for example, control applications of that company or access the companie's docker images on our [registry](../registry/).
+Companies allow to share resources between users. Users belonging to the same company can, for example, control applications of that company or access the company's docker images on our [registry](../registry/).
 
 ## Creating a company
 
