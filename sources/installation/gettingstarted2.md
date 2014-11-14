@@ -84,7 +84,7 @@ and the *package.json*
 
 ## Create and push own images
 
-Giant Swarm uses Docker images from the public Docker registry and the private Giant Swarm registry. See the [registry reference](/reference/registry.md) for more information.
+Giant Swarm uses Docker images from public registries and the private Giant Swarm registry. See the [registry reference](/reference/registry.md) for more information.
 
 For using Giant Swarms private registry login with Docker: 
 ```
@@ -106,7 +106,7 @@ EXPOSE 1337
 CMD ["/usr/local/bin/node", "server.js"]
 ``` 
 
-To use this Docker image it has to be build and uploaded to a repository. E.g. to push this image to the Giant Swarm registry:
+To use this Docker image it has to be build and uploaded to a repository. E.g. to push this image to the Giant Swarm registry for the user 'luebken' you would use:
 
 ```
 $ docker build -t registry.giantswarm.io/luebken/currentweather .
@@ -161,7 +161,7 @@ $ swarm ls
 1 app created so far!
 
 app             env   company    created
-currentweather  dev   dev        2014-09-22 18:53:44
+currentweather  dev   luebken    2014-09-22 18:53:44
 
 $  swarm status currentweather
 App currentweather is down!
