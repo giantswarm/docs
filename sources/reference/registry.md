@@ -9,7 +9,17 @@ Login to the Giant Swarm registry:
 $ docker login https://registry.giantswarm.io
 ```
 
-Using an image of the private registry in an swarm.json:
+Build your image with the right name:
+```
+$ docker build -t registry.giantswarm.io/acmecorp/exampleimage:1.4.2 .
+```
+
+Upload the image to the registry:
+```
+$ docker push registry.giantswarm.io/acmecorp/exampleimage:1.4.2
+```
+
+Reference the image in your app config:
 ```
 {
     "component_name": "upstream",
@@ -124,30 +134,6 @@ Your application is potentially built of several components with one `"image"` d
 We _explicitly recommend_ to use the full name including a specific tag here. Do not use the `:latest` alias here, otherwise it will be up the registry endpoint to resolve this to the actual image version.
 
 Be aware that you can use variables in your `swarm.json` file, which can be defined either in another JSON file or as command line parameters. Read more about this on the reference page about [creating apps](../create/).
-
-## Putting it together
-
-As a synopsis, here is the complete command workflow from build to push.
-
-Make sure you are logged into the registry:
-
-```
-$ docker login https://registry.giantswarm.io
-```
-
-Build your image with the right name (or name it afterwards using `docker tag`):
-
-```
-$ docker build -t registry.giantswarm.io/acmecorp/exampleimage:1.4.2 .
-```
-
-Upload the image to the registry:
-
-```
-$ docker push registry.giantswarm.io/acmecorp/exampleimage:1.4.2
-```
-
-... and then reference the full image name including tag in your app config.
 
 ## Further reading
 
