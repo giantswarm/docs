@@ -1,6 +1,6 @@
 # Getting started - Part 2
 
-<p class="lastmod">Last edited on November 05, 2014 by Matthias Lübken</p>
+<p class="lastmod">Last edited on November 14, 2014 by Matthias Lübken</p>
 
 This page provides a slightly more complex example using two components and a custom image. Please make sure you have `swarm` running. For details see [Getting Started](gettingstarted.md).
 
@@ -84,7 +84,12 @@ and the *package.json*
 
 ## Create and push own images
 
-Giant Swarm uses Docker images from private and public Docker registries. The easiest way to get started is to use the official [Docker Hub](https://hub.docker.com/) it provides one free private repo.
+Giant Swarm uses Docker images from the public Docker registry and the private Giant Swarm registry. See the [registry reference](/reference/registry.md) for more information.
+
+For using Giant Swarms private registry login with Docker: 
+```
+$ docker login https://registry.giantswarm.io
+```
 
 Dockerfile for *currentweather*: Dockerfile
 
@@ -101,18 +106,18 @@ EXPOSE 1337
 CMD ["/usr/local/bin/node", "server.js"]
 ``` 
 
-To use this Docker image it has to be build and uploaded to a repository. E.g. to push this image to the official repo for the user *luebken* you would use:
+To use this Docker image it has to be build and uploaded to a repository. E.g. to push this image to the Giant Swarm registry:
 
 ```
-$ docker build -t luebken/currentweather .
-$ docker push luebken/currentweather
+$ docker build -t registry.giantswarm.io/luebken/currentweather .
+$ docker push registry.giantswarm.io/luebken/currentweather
 ```
 
 To test this setup locally you first have to start a container of the official 'redis' image. Afterwards you have to start a container from your currentweather image and link it with the redis container:
 
 ```
 $ docker run -d --name redis redis
-$ docker run  -i -p 1337:1337 --link redis:redis luebken/currentweather
+$ docker run  -i -p 1337:1337 --link redis:redis registry.giantswarm.io/luebken/currentweather
 ```
 
 ## Define dependency
@@ -129,7 +134,7 @@ The swarm configuration: *swarm.json*
             "components": [
                 {
                     "component_name": "currentweather-component",
-                    "image": "luebken/currentweather",
+                    "image": "registry.giantswarm.io/luebken/currentweather",
                     "ports": [ "1337/tcp" ],
                     "dependencies": [
                         { "name": "redis", "port": 6379 }
@@ -155,8 +160,8 @@ $ swarm create swarm.json
 $ swarm ls
 1 app created so far!
 
-app             env         company     created
-currentweather  production  giantswarm  2014-09-22 18:53:44
+app             env   company    created
+currentweather  dev   dev        2014-09-22 18:53:44
 
 $  swarm status currentweather
 App currentweather is down!
