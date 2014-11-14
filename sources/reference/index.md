@@ -13,6 +13,7 @@ The reference area of our documentation is where you get structured information 
  * [Getting instance statistics](stats/)
  * [Accessing process logs](logs/)
  * [swarm.json file format](swarm-json/)
+ * [Using the registry](registry/)
 
 
 ## Command reference
