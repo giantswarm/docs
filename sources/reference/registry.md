@@ -4,6 +4,23 @@
 
 Giant Swarm provides you a protected registry to deposit and deploy your [Docker](https://docker.com/) images. Here we give you the information you need to login and push images to our registry and use these images within your applications.
 
+## TL;DR
+
+Login to Giant Swarms registry:
+```
+$ docker login https://registry.giantswarm.io
+```
+
+Using an image of the private registry in the swarm.json:
+```
+{
+    "component_name": "upstream",
+    "image": "registry.giantswarm.io/acmecorp/exampleimage:1.4.2",
+    ...
+}
+```
+
+
 The registry uses software provided by Docker and is accessed via standard Docker tools. If you are familiary with the concept of registries and know how to deal with images there, you can easily transfer that knowledge to our protected registry. In this case, please make sure that you read and understand how we use company names as namespaces, as explained in the section _company namespaces_.
 
 In addition to using the Giant Swarm registry, you have the option to use any publicly accessible Docker registry, including the [Docker Hub](https://registry.hub.docker.com/) with lots of readily available Open Source software packages.
