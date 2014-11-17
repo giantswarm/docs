@@ -26,9 +26,13 @@ from markdown import markdown
 
 def hosts_config(path):
     file_handle = open(path, "r")
-    hosts = yaml.load(file_handle)
-    file_handle.close()
-    return hosts
+    try:
+        hosts = yaml.load(file_handle)
+        file_handle.close()
+        return hosts
+    except yaml.parser.ParserError:
+        logging.error("Could not interpret %s as YAML file" % (path))
+        logging.info("Maybe you are lacking the according environment variables?")
 
 def mkdocs_pages(path):
     """
@@ -112,6 +116,8 @@ if __name__ == "__main__":
     root = logging.getLogger()
     root.setLevel(logging.DEBUG)
 
+    es = None
+
     # logging setup
     ch = logging.StreamHandler(sys.stdout)
     ch.setLevel(logging.INFO)
@@ -121,10 +127,13 @@ if __name__ == "__main__":
 
     # read hosts config
     eshosts = hosts_config(config.ELASTICSEARCH_HOSTS)
-    for host in eshosts:
-        logging.info("Found elasticsearch host in %s: %s" % (config.ELASTICSEARCH_HOSTS, host))
-
-    es = Elasticsearch(hosts=eshosts)
+    if eshosts is not None:
+        for host in eshosts:
+            logging.info("Found elasticsearch host in %s: %s" % (config.ELASTICSEARCH_HOSTS, host))
+        es = Elasticsearch(hosts=eshosts)
+    else:
+        logging.error("Search index won't be updated, since no connection to ElasticSearch possible.")
+        sys.exit(1)
     pages = mkdocs_pages(config.MKDOCS_FILE)
 
     # make temporary index name
