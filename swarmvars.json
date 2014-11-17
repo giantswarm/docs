@@ -8,7 +8,7 @@
 	"giantswarm/production": {
 		"domain1_name": "docs.giantswarm.io",
 		"sitesearch_image": "registry.private.giantswarm.io/giantswarm/sitesearch:0.1.1",
-		"docs_image": "registry.private.giantswarm.io/giantswarm/docs:0.18.0",
+		"docs_image": "registry.private.giantswarm.io/giantswarm/docs:latest",
 		"docsauth_image": "registry.private.giantswarm.io/giantswarm/docs-auth:0.2.1"
 	}
 }
