@@ -2,6 +2,34 @@
 
 <p class="lastmod">Last edited on November 13, 2014 by Marian Steinbach</p>
 
+## TL;DR
+
+Login to the Giant Swarm registry:
+```
+$ docker login https://registry.giantswarm.io
+```
+
+Build your image with the right name:
+```
+$ docker build -t registry.giantswarm.io/acmecorp/exampleimage:1.4.2 .
+```
+
+Upload the image to the registry:
+```
+$ docker push registry.giantswarm.io/acmecorp/exampleimage:1.4.2
+```
+
+Reference the image in your app config:
+```
+{
+    "component_name": "upstream",
+    "image": "registry.giantswarm.io/acmecorp/exampleimage:1.4.2",
+    ...
+}
+```
+
+## Intro
+
 Giant Swarm provides you a protected registry to deposit and deploy your [Docker](https://docker.com/) images. Here we give you the information you need to login and push images to our registry and use these images within your applications.
 
 The registry uses software provided by Docker and is accessed via standard Docker tools. If you are familiary with the concept of registries and know how to deal with images there, you can easily transfer that knowledge to our protected registry. In this case, please make sure that you read and understand how we use company names as namespaces, as explained in the section _company namespaces_.
@@ -106,30 +134,6 @@ Your application is potentially built of several components with one `"image"` d
 We _explicitly recommend_ to use the full name including a specific tag here. Do not use the `:latest` alias here, otherwise it will be up the registry endpoint to resolve this to the actual image version.
 
 Be aware that you can use variables in your `swarm.json` file, which can be defined either in another JSON file or as command line parameters. Read more about this on the reference page about [creating apps](../create/).
-
-## Putting it together
-
-As a synopsis, here is the complete command workflow from build to push.
-
-Make sure you are logged into the registry:
-
-```
-$ docker login https://registry.giantswarm.io
-```
-
-Build your image with the right name (or name it afterwards using `docker tag`):
-
-```
-$ docker build -t registry.giantswarm.io/acmecorp/exampleimage:1.4.2 .
-```
-
-Upload the image to the registry:
-
-```
-$ docker push registry.giantswarm.io/acmecorp/exampleimage:1.4.2
-```
-
-... and then reference the full image name including tag in your app config.
 
 ## Further reading
 
