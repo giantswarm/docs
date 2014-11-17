@@ -17,10 +17,10 @@ We will then provide you with:
 
 ## The current swarm CLI
 
-The current CLI is 0.6.2. Downloads:
+The current CLI is 0.6.3. Downloads:
 
-  * [Mac](http://downloads.giantswarm.io/swarm/clients/0.6.2/swarm-0.6.2-darwin-amd64.tar.gz)
-  * [Linux](http://downloads.giantswarm.io/swarm/clients/0.6.2/swarm-latest-linux-amd64.tar.gz)
+  * [Mac](http://downloads.giantswarm.io/swarm/clients/0.6.3/swarm-0.6.3-darwin-amd64.tar.gz)
+  * [Linux](http://downloads.giantswarm.io/swarm/clients/0.6.3/swarm-0.6.3-linux-amd64.tar.gz)
 
 
 ## Installing the swarm CLI
