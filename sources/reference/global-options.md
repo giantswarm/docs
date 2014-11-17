@@ -22,7 +22,7 @@ Show help for command.
 
 ### `--api-endpoint`
 
-Explicitly sets the API endpoint for the command call. If used, this overrides the `SWARM_ENDPOINT_URL` environment variable.
+Explicitly sets the API endpoint for the command call. If used, this overrides the `SWARM_ENDPOINT_URL` environment variable, but only for this very command.
 
 Example:
 

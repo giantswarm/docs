@@ -2,10 +2,10 @@
 
 <p class="lastmod">Last edited on October 30, 2014 by Matthias Lübken</p>
 
-This page should give an rough overview of possible `swarm.json` keys and their values.
+This page should give a rough overview of possible `swarm.json` keys and their values.
 
 > **Note**:
-> This is not valid JSON. It's purely for documentation purpose. 
+> This is not valid JSON. It's purely for documentation purposes. 
 
 ```
 {

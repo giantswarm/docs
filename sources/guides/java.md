@@ -2,11 +2,11 @@
 
 <p class="lastmod">Last edited on October 20, 2014 by Matthias Lübken</p>
 
-There are tons of Java web stacks. For our first example we choose [Spark](http://www.sparkjava.com/) a tiny Sinatra inspired framework in Java 8.
+There are tons of Java web stacks. For our first example we chose [Spark](http://www.sparkjava.com/) a tiny Sinatra inspired framework in Java 8.
 
 For the simplest helloworld see [https://github.com/giantswarm/sparkexample](https://github.com/giantswarm/sparkexample)
 
-A slightly more advanced TODO example see [https://github.com/giantswarm/todoapp-spark](https://github.com/giantswarm/todoapp-spark)
+For a slightly more advanced TODO example see [https://github.com/giantswarm/todoapp-spark](https://github.com/giantswarm/todoapp-spark)
 
 
 ## Dockerfile

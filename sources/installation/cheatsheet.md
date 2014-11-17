@@ -9,11 +9,11 @@ This is a very condensed cheat sheet. For more details see [Getting Started](get
 Command       | Purpose
 ------------- | -------------
 `$ export SWARM_ENDPOINT_URL=https://alpha.giantswarm.io/v1/` | define your swarm endpoint
-`$ swarm`     | test the swam cli and see avaible commands
+`$ swarm`     | test the swam CLI and see avaible commands
 `$ swarm ping` | test your cluster endpoint 
 `$ swarm login` | login to your account 
-`$ swarm env <username>/dev` | Use the default environment
-`$ swarm ls` | List your apps to check if everything is working
+`$ swarm env <username>/dev` | use the default environment
+`$ swarm ls` | list your apps to check if everything is working
 
 ## Create and run an app
 
@@ -27,7 +27,7 @@ Command                          | Purpose
 
 ## swarm.json
 
-Using a predefined python image and expose a http server:
+Example using a predefined python image and exposing a http server:
 
     {
         "app_name": "helloworld",
