@@ -14,11 +14,11 @@
 
 ## What is Giant Swarm?
 
-Giant Swarm enables you to easily develop, deploy and host your micro-serviced application. We leverage several technologies like Docker and CoreOS and bring them together to a simple yet powerful platform. Besides Docker and your application stack there is not much to know to get started.
+Giant Swarm enables you to easily develop, deploy, and host your micro-serviced applications. We leverage several technologies like Docker and CoreOS and bring them together to provide a simple yet powerful platform. Besides Docker and your application stack there is not much you need to know in order to get started.
 
 ## Why Microservices?
 
-The days of big monolith applications are long over. Modularizing your application in services has been the way to go for some time. Each self-contained functionality is developed in a separate service. This makes them independently developable, deployable and scalable. Each with it's own potential database and programming language. The right tool for the job! The [12factor Apps](http://12factor.net/) paradigm goes even further by describing twelve fundamental requirements of modern software-as-a-service. Worth looking at.
+The days of big monolith applications are long over. Modularizing your applications in services has been the way to go for some time. Each self-contained functionality constitutes a separate service. This makes them independently developable, deployable, and scalable. Each with its own potential database and programming language. The right tool for the job! The [12factor Apps](http://12factor.net/) paradigm goes even further by describing twelve fundamental requirements of modern Software-as-a-Service apps - worth looking at.
 
 At the same time it has always been a hassle to set up a truly service-oriented application. Or the solutions were too cumbersome and stood in the way. Giant Swarm keeps it lean and gets out of the way.
 
@@ -27,7 +27,7 @@ At the same time it has always been a hassle to set up a truly service-oriented 
 We currently have three sections in our docs:
 
 ### <i class="fa fa-cogs"></i> [Installation](installation/cheatsheet.md)
-This section gets you started with Giant Swarm: how to install the CLI and get up and running.
+This section gets you started with Giant Swarm: How to install the CLI and get up and running.
 
  * [Cheat sheet](./installation/cheatsheet.md)
  * [Getting started, part 1](./installation/gettingstarted.md)
@@ -41,7 +41,7 @@ This section provides in-depth guides to specific topics:
  * [Swarmify Python](./guides/python.md)
 
 ### <i class="fa fa-book"></i> [Reference](reference/)
-This section will contain detailed description of the different features Giant Swarm has to offer.
+This section will contain detailed descriptions of the different features Giant Swarm has to offer.
 
  * [Companies](./reference/companies.md)
  * [Environments](./reference/env.md)
