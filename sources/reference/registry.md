@@ -105,7 +105,7 @@ Above, you learnt that you have to name an image with the appropriate name _befo
 
     $ docker push registry.giantswarm.io/<company_namespace>/<image_name>:<tag>
 
-There are cases where the `:<tag>` part would be optional. Going into depth here would make this reference a lot longer. For now, we simply recommend to explicitly name the tag. If you like, you can read more about this topic in the Docker documentation (link given [below](#further-reading)). 
+There are cases where the `:<tag>` part would be optional. Going into depth here would make this reference a lot longer. For now, we simply recommend to explicitly name the tag. If you like, you can read more about this topic in the Docker documentation (link given [below](#related-reading)). 
 
 So to push our example image to the registry, the command we would use might be:
 
@@ -135,7 +135,7 @@ We _explicitly recommend_ to use the full name including a specific tag here. Do
 
 Be aware that you can use variables in your `swarm.json` file, which can be defined either in another JSON file or as command line parameters. Read more about this on the reference page for [creating apps](../create/).
 
-## Further reading
+## Related reading
 
 * [swarm.json reference page](../swarm-json/)
 * [Creating an app](../create/)
