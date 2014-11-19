@@ -2,11 +2,11 @@
 
 <p class="lastmod">Last edited on November 9, 2014 by Marian Steinbach</p>
 
-The `swarm` command line tool provides the `status` command for you to fetch information on a specific app as well as it's services and components.
+The `swarm` command line tool provides the `status` command for you to fetch information on a specific app as well as its services and components.
 
 ## Syntax and output
 
-The command needs the name of your app which you have set in the app configuration with the `app_name` key as an argument. The syntax is:
+The command needs the name of your app, which you have to set with the `app_name` key as an argument. Here, `<app_name>` is the name you used in your app configuration file (`swarm.json`) when [creating](../create/) the app. The syntax is:
 
     $ swarm status <app_name>
 
@@ -30,9 +30,9 @@ imageserver  nginx          d29df528-0e5a-4b82-9223-6ed0626817bd  up
 payments     payments       71481fdf-1fa1-49f0-9320-d29df5297ae5  up
 ```
 
-The first line of the output shows as a summary the status of the app. This status is an aggregation of the individual component's statuses, with the "worst" status of all components being reported. This means that if one component is `down`, the entire app is considered `down`, too.
+The first line of the output shows the status of the app as a summary. This status is an aggregation of the individual component's statuses, with the "worst" status of all components being reported. This means that if even one component is `down`, the entire app is considered `down`, too.
 
-The second part is a table of all components within all services of that app. The table columns show which service the component belongs to, the component name, the ID of the instance the component is running on and the component status. If a component is running on more than one instance, each instance is represented in an individual row.
+The second part is a table of all components within all services of that app. The table columns show which service the component belongs to, the component name, the ID of the instance the component is running on, and the component status. If a component is running on more than one instance, each instance is represented in an individual row.
 
 <!-- TODO: Create reference page on instance IDs and link from here. -->
 
@@ -43,7 +43,7 @@ Your components can have either of the following statuses:
  * `up`: The component is currently running
  * `starting`: The component is currently starting
  * `down`: The component is currently not running
- * `failed`: An error occurred during the attempt to start the component and it is currently not running
+ * `failed`: An error occurred during the attempt to start the component and it's currently not running
 
 <!-- ## Further reading
 

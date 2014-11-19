@@ -8,7 +8,7 @@ The reference area of our documentation is where you get structured information 
  * [Companies](companies/)
  * [Environments](env/)
  * [Creating an app](create/)
- * [Starting an environment, app or service](start/)
+ * [Starting an environment, app, or service](start/)
  * [Getting an app's status](status/)
  * [Getting instance statistics](stats/)
  * [Accessing process logs](logs/)
@@ -24,14 +24,14 @@ Command                 | Description
 ----------------------- | -------------------------------
 [create](create/)       | Define a new app by loading a json file
 [status](status/)       | Show current status of an app or service
-[start](start/)         | Start an environment, app or service
-stop                    | Stop an environment, app or service
+[start](start/)         | Start an environment, app, or service
+stop                    | Stop an environment, app, or service
 delete                  | Delete an app. Note that you lose all contained data by doing so.
 update                  | Update a component by changing the docker image to a newer version
 [scaleup](scaleup/)     | Increase number of instances running a component
 [scaledown](scaledown/) | Reduce number of instances running a component
-[logs](logs/)           | Prints an app's standard output and error messages
-[stats](stats/)         | Prints basic statistics of an instance
+[logs](logs/)           | Print an app's standard output and error messages
+[stats](stats/)         | Print basic statistics of an instance
 version                 | Print swarm client version
 ping                    | Check if your cluster is available
 ls                      | List all apps
@@ -41,4 +41,4 @@ login                   | Log in to your account
 logout                  | Log out from your account
 user                    | Create and modify users
 [company](companies/)   | Manage companies
-completion              | Setup cli completion
+completion              | Setup CLI completion

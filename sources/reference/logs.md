@@ -2,13 +2,13 @@
 
 <p class="lastmod">Last edited on November 10, 2014 by Marian Steinbach</p>
 
-Logs of processes running on Giant Swarm can be accesses using the `swarm logs` command.
+Logs of processes running on Giant Swarm can be accessed using the `swarm logs` command.
 
 Note: For logs to be accessible in this way, processes have to send their log messages to STDOUT or STDERR. This is the standard with Docker containers running single processes each.
 
 ## Returning all log messages
 
-The command requires an instance ID for the instance your component is running on. If the component you are interested in is running on multiple instances, you have to acquire the logs for each instance seperately.
+The command requires an instance ID for the instance your component is running on. If the component you are interested in is running on multiple instances, you have to inquire the logs for each instance seperately.
 
 <!-- TODO link instance IDs reference page here once it's created -->
 
