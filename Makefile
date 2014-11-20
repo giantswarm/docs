@@ -18,8 +18,9 @@ delete:
 	docker rm $(PROJECT)
 	docker rmi $(registry)/$(COMPANY)/$(PROJECT)
 
-deploy: 
-	swarm stop swarmdocs
-	swarm delete swarmdocs
-	swarm create swarmdocs.json
-	swarm start swarmdocs
+deploy:
+	swarm --api-endpoint="https://cluster-01.giantswarm.io/v1/" stop swarmdocs
+	swarm --api-endpoint="https://cluster-01.giantswarm.io/v1/" delete swarmdocs
+	swarm --api-endpoint="https://cluster-01.giantswarm.io/v1/" create swarmdocs.json
+	swarm --api-endpoint="https://cluster-01.giantswarm.io/v1/" create swarm.json
+	swarm --api-endpoint="https://cluster-01.giantswarm.io/v1/" swarm start swarmdocs
