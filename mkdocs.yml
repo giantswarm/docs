@@ -9,7 +9,6 @@ theme_dir: ./theme/giantswarm/
 pages:
 # Introduction
 - ['index.md', 'Welcome']
-- ['search.md', 'Search']
 
 # Installation
 - ['installation/cheatsheet.md', 'Installation', 'Cheat Sheet']
@@ -36,3 +35,6 @@ pages:
 - ['reference/logs.md', 'Reference', 'Accessing process logs']
 - ['reference/swarm-json.md', 'Reference', 'Swarm JSON']
 - ['reference/registry.md', 'Reference', 'Using the registry']
+
+# Search
+- ['search.md', 'Search']
