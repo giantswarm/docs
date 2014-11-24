@@ -84,7 +84,7 @@ and the *package.json*
 
 ## Create and push own images
 
-Giant Swarm uses Docker images from public registries and the private Giant Swarm registry. See the [registry reference](/reference/registry.md) for more information.
+Giant Swarm uses Docker images from public registries and the private Giant Swarm registry. See the [registry reference](../../reference/registry/) for more information.
 
 For using Giant Swarm's private registry login with Docker: 
 ```
