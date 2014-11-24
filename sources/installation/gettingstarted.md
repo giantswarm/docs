@@ -1,6 +1,6 @@
 # Getting started
 
-<p class="lastmod">Last edited on November 17, 2014 by Matthias Lübken</p>
+<p class="lastmod">Last edited on November 5, 2014 by Matthias Lübken</p>
 
 This page should get you started with Giant Swarm. It will show you how to install the required tools and get a provided Docker image running.
 
@@ -17,10 +17,10 @@ We will then provide you with:
 
 ## The current swarm CLI
 
-The current CLI is 0.7.0. Downloads:
+The current CLI is 0.6.0. Downloads:
 
-  * [Mac](http://downloads.giantswarm.io/swarm/clients/0.7.0/swarm-0.7.0-darwin-amd64.tar.gz)
-  * [Linux](http://downloads.giantswarm.io/swarm/clients/0.7.0/swarm-0.7.0-linux-amd64.tar.gz)
+  * [Mac](https://s3-eu-west-1.amazonaws.com/downloads.giantswarm.io/swarm/clients/0.6.0/swarm-0.6.0-mac.tar.gz)
+  * [Linux](https://s3-eu-west-1.amazonaws.com/downloads.giantswarm.io/swarm/clients/0.6.0/swarm-0.6.0-linux.tar.gz)
 
 
 ## Installing the swarm CLI
