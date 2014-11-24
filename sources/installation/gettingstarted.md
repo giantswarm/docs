@@ -1,6 +1,6 @@
 # Getting started
 
-<p class="lastmod">Last edited on November 17, 2014 by Matthias Lübken</p>
+<p class="lastmod">Last edited on November 24, 2014 by Matthias Lübken</p>
 
 This page should get you started with Giant Swarm. It will show you how to install the required tools and get a provided Docker image running.
 
@@ -94,7 +94,7 @@ While it's starting (which may take a while) you may check it's status with the 
 
 Once it's up you can check by opening the specified domain in a browser or `curl`ing it:
     
-    $ curl helloworld.cluster-matthias.giantswarm.io
+    $ curl helloworld.alpha.giantswarm.io
     Hello Giant Swarm. \o/
 
 On the way you might want to check for the logs by quering against the instanceid:
