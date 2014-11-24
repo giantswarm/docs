@@ -6,14 +6,14 @@ The following guide will explain how to configure the [RailsTutorials Sample App
 
 ## TL;DR with fig
 
-Before we get into the details, let us have the setup run locally with [fig.sh](http://www.fig.sh/). Therefore clone our repository, switch to the [dockerize branch](https://github.com/giantswarm/sample_app_rails_4/tree/dockerize) and start the setup with `fig up`:
+Before we get into the details, let us first run the setup locally with [fig](http://www.fig.sh/). For this, we clone our repository, switch to the [dockerize branch](https://github.com/giantswarm/sample_app_rails_4/tree/dockerize) and start the setup with `fig up`:
 
     $ git clone https://github.com/giantswarm/sample_app_rails_4
     $ cd sample_app_rails_4/
     $ git checkout dockerize
     $ fig up
 
-That's it. Two containers are up, linked and running. You can now access your app on [port 3000](http://localhost:3000/).
+That's it. Two containers are up, linked, and running. You can now access your app on [port 3000](http://localhost:3000/) of your localhost.
 
 ## Get up and running with Docker on localhost
 
@@ -22,7 +22,7 @@ Now let's see what needs to get done to manually dockerize the Sample Rails app.
     $ git clone https://github.com/railstutorial/sample_app_rails_4
     $ cd sample_app_rails_4/
 
-The team behind [Docker-Library](https://registry.hub.docker.com/_/rails/) ([GitHub repository](https://github.com/docker-library/rails)) already provides a base image for Ruby on Rails. We are using the "onbuild" version which makes it easy to write our own Dockerfile. At the root of the sample rails app, create a new file called `Dockerfile` with the following statement: 
+The team behind [Docker-Library](https://registry.hub.docker.com/_/rails/) ([GitHub repository](https://github.com/docker-library/rails)) already provides a base image for Ruby on Rails. We are using the "onbuild" version, which makes it easy to write our own Dockerfile. At the root of the sample rails app, create a new file called `Dockerfile` with the following statement: 
 
 ```
 FROM rails:onbuild
@@ -47,14 +47,14 @@ If you now run your container with `docker run -p 3000:3000 sample_rails_4` you 
 
 ## Adding MySQL
 
-As a database we choose MySQL which should run in it's own container. Fortunatly we can use the predefined [MySQL docker image](https://registry.hub.docker.com/_/mysql/), which automatically creates a `root` user. It also supports reading the initial password from the `MYSQL_ROOT_PASSWORD` environment variable. So to start our database we run this:
+As a database we chose MySQL, which should run in its own container. Fortunatly we can use the predefined [MySQL docker image](https://registry.hub.docker.com/_/mysql/), which automatically creates a `root` user. It also supports reading the initial password from the `MYSQL_ROOT_PASSWORD` environment variable. So to start our database we run this:
 
 ```bash
 $ PASS=somesecretpassword
 $ docker run -d --name database -e MYSQL_ROOT_PASSWORD=${PASS} -p 3306 mysql
 ```
 
-To hook our Rails app to the database we are using [Docker links](https://docs.docker.com/userguide/dockerlinks/). When linking containers, Docker injects certain environment variables which can be used to discover the IP and port of the linked container. We need to modify our Rails app to use these variables for connecting to the database:
+To hook our Rails app to the database we are using [Docker links](https://docs.docker.com/userguide/dockerlinks/). When linking containers, Docker injects certain environment variables, which can be used to discover the IP and port of the linked container. We need to modify our Rails app to use these variables for connecting to the database:
 
 ```yaml
 # File config/database.yml - only the production environment is shown
@@ -80,9 +80,9 @@ Since we now use the `mysql2` driver, we also need to add it to our Gemfile for 
 Since we have changed the Gemfile, we would normally need to build our application image again. But before we do that, let's fix the next problem. If we start our app and it connects to the database, it encounters two problems:
 
 1. There is no database `app` in the MySQL container
-2. Without a database, all the tables are missing too -- we need to execute `rake db:migrate`
+2. Without a database, all the tables are missing, too - we need to execute `rake db:migrate`
 
-We can fix this by writing a custom start script which ensures both points are created:
+We can fix this by writing a custom start script which ensures both points are fixed:
 
 ```bash
 #!/bin/bash
@@ -141,7 +141,7 @@ docker run -e RAILS_ENV=production -e SECRET_KEY_BASE=${SECRET_KEY} \
 	-p 3000:3000 sample_rails_4
 ```
 
-You can now access your app on [port 3000](http://localhost:3000).
+You can now access your app on [port 3000](http://localhost:3000) of localhost again.
 
 ## Swarmifying
 
@@ -156,7 +156,7 @@ $ docker push <username>/sample_rails_4
 
 ### The swarm.json
 
-We also need an application file describing our containers:
+Now, we just need to add an application file describing our containers:
 
 ```json
 # File swarm.json
@@ -193,12 +193,12 @@ We also need an application file describing our containers:
 }
 ```
 
-Here, we define one app `rails-sample-1` with one service `web`. This service is build from two components: `database` and `rails`. We configure each through environment variables. The ports define the accessible interface which can be accessed by two ways:
+Here, we define one app `rails-sample-1` with one service `web`. This service comprises two components: `database` and `rails`. We configure each through environment variables. The ports define the accessible interface which can be accessed by two ways:
 
 1. With a `dependency` to access it from another container
-2. By adding `domains` definition, so our load balancer can forward public requests to your container.
+2. By adding a `domains` definition, so our load balancer can forward public requests to your container.
 
-You can either use your own domains (which you have to configure to forward to us) or use a subdomain of the cluster you are using. In the example we are using `alpha.giantswarm.io` - modify this to match your needs.
+You can either use your own domains (which you have to configure to forward to us) or use a subdomain of the cluster you are using. In this example we are using `alpha.giantswarm.io` - modify this to match your needs.
 
 ### Run 
 

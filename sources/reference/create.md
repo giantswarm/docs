@@ -20,9 +20,9 @@ For further information about the app configuration file, please refer to the [s
 
 ## Using variable definitions
 
-You can use an app configuration file like `swarm.json` as a template with variables instead of actual values in them. Variables act as placeholder keys which are then replaced by values which you pass to the `swarm create` command.
+You can use an app configuration file like `swarm.json` as a template with variables instead of actual values in them. Variables act as placeholder keys, which are then replaced by values, which you pass to the `swarm create` command.
 
-Variables names in the app configuration file have to start with a *dollar sign* (`$`).
+Variable names in the app configuration file have to start with a *dollar sign* (`$`).
 
 When creating a new app, you can pass values for your variables in two different ways:
 
@@ -33,7 +33,7 @@ Also, both approaches can be combined.
 
 ### Passing variables on the command line
 
-If you want to define variable values directly on the command line, you can use the `--var` option for that purpose. Here is the basic format:
+If you want to define variable values directly on the command line, you can use the `--var` option. Here is the basic format:
 
     $ swarm create swarm.json --var=<key=value>
 
@@ -72,7 +72,7 @@ Note that if your variables file is in the current directory _and_ has the name 
 
 ## Combining command line options and file
 
-It is possible to combine both approaches of passing variable values described above. In this case, whenever a variable is defined both in the file and via the command line option, the value assigned via the command line value is used.
+It is possible to combine both approaches of passing variable values described above. In this case, whenever a variable is defined both in the file and via the command line option, the value assigned via the command line is used.
 
 Here is an example:
 

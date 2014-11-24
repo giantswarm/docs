@@ -18,14 +18,14 @@ The example we are using here is very simple:
 
 ![](/img/gettingstarted2_appschema.svg)
 
-We have Docker container `currentweather` which contains a simple Node.JS script. This provides a http endpoint to see the current weather from Cologne. \* 
-To get the data we are calling an external web service: [openweathermap.org](openweathermap.org). Since this is a great open API we want to be good citizens and cache the data locally and only get new data once a minute. The redis lives in a predefined redis container. 
+We have a Docker container `currentweather` which contains a simple NodeJS script. This provides a http endpoint to see the current weather from Cologne. \* 
+To get the data we are calling an external web service: [openweathermap.org](openweathermap.org). Since this is a great open API, we want to be good citizens and cache the data locally and only get new data once a minute. For this we use a redis cache. The redis lives in a predefined redis container.
 
 All the sources can be found here: [github.com/luebken/currentweather](http://github.com/luebken/currentweather)
 
 ## The currentweather server
 
-The Node.JS server: server.js
+The NodeJS server: server.js
 
 ```
 var http = require('http');
@@ -84,9 +84,9 @@ and the *package.json*
 
 ## Create and push own images
 
-Giant Swarm uses Docker images from public registries and the private Giant Swarm registry. See the [registry reference](../../reference/registry/) for more information.
+Giant Swarm uses Docker images from public registries and the private Giant Swarm registry. See the [registry reference](/reference/registry.md) for more information.
 
-For using Giant Swarms private registry login with Docker: 
+For using Giant Swarm's private registry login with Docker: 
 ```
 $ docker login https://registry.giantswarm.io
 ```
@@ -106,14 +106,14 @@ EXPOSE 1337
 CMD ["/usr/local/bin/node", "server.js"]
 ``` 
 
-To use this Docker image it has to be build and uploaded to a repository. E.g. to push this image to the Giant Swarm registry for the user 'luebken' you would use:
+To use this Docker image it has to be built and uploaded to a repository. E.g. to push this image to the Giant Swarm registry for the user 'luebken' you would use:
 
 ```
 $ docker build -t registry.giantswarm.io/luebken/currentweather .
 $ docker push registry.giantswarm.io/luebken/currentweather
 ```
 
-To test this setup locally you first have to start a container of the official 'redis' image. Afterwards you have to start a container from your currentweather image and link it with the redis container:
+To test this setup locally, you first have to start a container from the official 'redis' image. Afterwards you have to start a container from your currentweather image and link it with the redis container:
 
 ```
 $ docker run -d --name redis redis
@@ -122,7 +122,7 @@ $ docker run  -i -p 1337:1337 --link redis:redis registry.giantswarm.io/luebken/
 
 ## Define dependency
 
-In the 'swarm.json' you have these two containers defined as components. The depdency is defined by the container (here the currentweather-service) that uses the user container:
+In the 'swarm.json' you have these two containers defined as components. The depdency is defined by the container (here the currentweather-service) that uses the other container:
 
 The swarm configuration: *swarm.json*
 ```
@@ -194,4 +194,4 @@ $ curl currentweather.alpha.giantswarm.io
 Hello World from Cologne: overcast clouds
 ```
 
-\* This example was already finished when Anna noted that there are already some weather website where you can check Colognes weather. Duuh.  
+\* This example was already finished when Anna noted that there are already some weather websites, where you can check Cologne's weather. Duuh.  

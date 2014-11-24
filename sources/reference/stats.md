@@ -2,7 +2,7 @@
 
 <p class="lastmod">Last edited on November 9, 2014 by Marian Steinbach</p>
 
-The `swarm stats` command allows you to get infomrmation on the current system load for a specific instance.
+The `swarm stats` command allows you to get information on the current system load for a specific instance.
 
 ## Command syntax
 

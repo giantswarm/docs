@@ -4,7 +4,7 @@
 
 Environments allow you to deploy your apps in __multiple independent contexts__ for different purposes. As an example, you might want to have one environment for development purposes and another for production.
 
-Environments are maneged with the swarm client using the `swarm env` command. In order to list all available options, use:
+Environments are managed with the swarm client using the `swarm env` command. In order to list all available options, use:
 
     $ swarm help env
 
@@ -21,16 +21,17 @@ When you start working with the swarm client, you are automatically assigned to 
 
 Note that you are free to set up environments with arbitrary names. Read on for details on creating environments.
 
-To find out which environment you are currently working in (i. e your current default environment), simply use the `swarm env` command without any argument:
+To find out which environment you are currently working in (i.e. your current environment), simply use the `swarm env` command without any argument:
 
     $ swarm env
 
 ## Creating and selecting an environment
 
-To add a new environment or make an environment the current default, use the `swarm env` command with the respective environment name as argument. To create or select an environment called "luebken/prod" your command would look like this:
+To add a new environment or make an environment the current one, use the `swarm env` command with the respective environment name as argument. To create or select an environment called "luebken/prod" your command would look like this:
     
     $ swarm env luebken/prod
 
+If the environment already exists, it is now set as your current one. If it doesn't exist, yet, it first gets created and then set as your current environment.
 <!--
 TODO: explain what actually happens when creating an environment)
 -->
@@ -43,7 +44,7 @@ To lists all environments, use the `swarm env` command with the `-a` switch:
         luebken/dev
      *  luebken/prod
 
-Here, the names of all environments are printed. In addition, the current default environment is marked with an asterisk.
+Here, the names of all environments are printed. In addition, the current environment is marked with an asterisk.
 
 ## Deleting an environment
 

@@ -2,7 +2,7 @@
 
 <p class="lastmod">Last edited on October 25, 2014 by Marian Steinbach</p>
 
-This page should get you started with PHP, Symfony and the Swarm. 
+This page should get you started with PHP, Symfony, and the Swarm. 
 
 __Overview__:
 
@@ -12,7 +12,7 @@ __Overview__:
 
 ## Swarmify PHP
 
-To get PHP running on Giant Swarm is rather easy. Use the [official PHP Docker image](https://registry.hub.docker.com/_/php/), build your own image from it, upload and start it.
+Getting PHP running on Giant Swarm is rather easy. Use the [official PHP Docker image](https://registry.hub.docker.com/_/php/), build your own image from it, upload and start it.
 
 Start with a simple `Dockerfile`:
 
@@ -22,13 +22,13 @@ FROM php:5.6-apache
 COPY . /var/www/html
 ```
 
-If you look at [php:5.6-apache's Dockerfile](https://github.com/docker-library/php/blob/e19f15271b1cbe9d3e5c9f0c552beca9579f0677/5.6/apache/Dockerfile), you will see that port 80 is exported and the default command to run is `httpd`.
+If you look at [php:5.6-apache's Dockerfile](https://github.com/docker-library/php/blob/e19f15271b1cbe9d3e5c9f0c552beca9579f0677/5.6/apache/Dockerfile), you will see that port 80 is exposed and the default command to run is `httpd`.
 
 Next, add a simple `index.php` for testing pruposes:
 	
 	<? echo "<p>Hello from PHP</p>"; ?>
 
-Now build, test and upload the image:
+Now build, test, and upload the image:
 	
 	$ docker build -t luebken/hellophp .
 	$ docker run -d -p 8080:80 luebken/hellophp
@@ -56,7 +56,7 @@ This image can then be referred to in the new `swarm.json` file:
 
 ## Swarmify Symfony
 
-Getting Symfony running in Docker and on the Swarm requires a couple of steps. To get a head start you can just clone our repo and use [fig](http://www.fig.sh/) to get everything up and running.
+Getting Symfony running in Docker and on the Swarm only requires a couple of steps. To get a head start you can just clone our repo and use [fig](http://www.fig.sh/) to get everything up and running.
 
 ```
 	$ git clone git@github.com:giantswarm/symfony-standard.git

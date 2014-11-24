@@ -14,6 +14,6 @@ For example, if you have an "onlineshop" app with a service called "imageserver"
 
     $ swarm scaleup onlineshop/imageserver/nginx --count=1
 
-## Further reading
+## Related reading
 
  * [Scaling down a component](../scaledown/)
