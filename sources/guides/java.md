@@ -1,15 +1,13 @@
 # Swarmify Java and JavaSpark
 
-<p class="lastmod">Last edited on October 20, 2014 by Matthias Lübken</p>
+<p class="lastmod">Last edited on November 24, 2014 by Matthias Lübken</p>
 
 There are tons of Java web stacks. For our first example we choose [Spark](http://www.sparkjava.com/) a tiny Sinatra inspired framework in Java 8.
 
 For the simplest helloworld see [https://github.com/giantswarm/sparkexample](https://github.com/giantswarm/sparkexample)
 
-A slightly more advanced TODO example see [https://github.com/giantswarm/todoapp-spark](https://github.com/giantswarm/todoapp-spark)
-
-
 ## Dockerfile
+A simple Dockerfile using the official Java image, installing maven, compiling and packaging via maven and starting it:
 ```
 FROM dockerfile/java:oracle-java8 
 
@@ -25,7 +23,7 @@ CMD ["java", "-jar", "target/sparkexample-jar-with-dependencies.jar"]
 ```
 
 ## src / main / java / sparkexample / Hello . java
-
+A simple SparkJava class returning a string:
 ```
 package sparkexample;
 
@@ -42,6 +40,7 @@ public class Hello {
 ```
 
 ## pom.xml
+Java project dependencies and build steps defined in a maven configuration:
 ```
 
 <?xml version="1.0" encoding="UTF-8"?>
@@ -116,14 +115,8 @@ public class Hello {
 
 ```
 
-## commands
-```
-$ docker build -t giantswarm/sparkexample .
-$ docker run -p 4567:4567 giantswarm/sparkexample
-$ docker push giantswarm/flaskexample
-```
-
 ## swarm.json
+A simple `swarm.json` using a custom image `giantswarm/sparkexample` and publishing it with the port `4567`:
 ```
 {
     "app_name": "hellospark",
@@ -133,7 +126,7 @@ $ docker push giantswarm/flaskexample
             "components": [
                 {
                     "component_name": "sparkexample",
-                    "image": "giantswarm/sparkexample",
+                    "image": "registry.giantswarm.io/giantswarm/sparkexample",
                     "ports": [ "4567/tcp" ],
                     "domains": { "hellospark.alpha.giantswarm.io": "4567" }
                 }
@@ -142,3 +135,19 @@ $ docker push giantswarm/flaskexample
     ]
 }
 ```
+
+## Commands
+```
+# Build the image:
+$ docker build -t registry.giantswarm.io/giantswarm/sparkexample .
+# Test the image locally:
+$ docker run -p 4567:4567 registry.giantswarm.io/giantswarm/sparkexample
+# Push the image:
+$ docker push registry.giantswarm.io/giantswarm/currentweather
+# Start the app:
+$ swarm create swarm.json
+```
+
+## Next steps
+
+A slightly more advanced TODO example see [https://github.com/giantswarm/todoapp-spark](https://github.com/giantswarm/todoapp-spark)
