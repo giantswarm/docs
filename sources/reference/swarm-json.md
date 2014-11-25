@@ -57,13 +57,13 @@ This page should give a rough overview of possible `swarm.json` keys and their v
                         { "name": "redis", "port": 6379 }
                     ],
 
-                    // Array of public domains. Type: JSON
-                    // Format: { <url>, <Port> }
+                    // Map of public domains. Type: JSON
+                    // Format: { <url>: <Port> }
                     // Optional.
-                    "domains": [
-                        { "hello.alpha.giantswarm.io": "80" },
-                        { "hello.alpha.io": "80" }
-                    ]
+                    "domains": {
+                        "hello.alpha.giantswarm.io": "80",
+                        "hello.alpha.io": "80"
+                    }
 
                 },
                 {
