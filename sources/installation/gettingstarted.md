@@ -15,18 +15,29 @@ We will then provide you with:
   * a user name
   * and a password
 
-## The current swarm CLI
+## Installing the CLI
 
-The current CLI is 0.7.1. Downloads:
+The current CLI is 0.7.1. 
+
+If you are on Mac OS X and have [homebrew](http://brew.sh/) installed, you can just tap it:
+
+```
+$ brew tap giantswarm/swarm
+$ brew install swarm-client
+```
+
+### Manual install the swarm CLI
+
+For manual installation, download a tarball from here:
 
   * [Mac](http://downloads.giantswarm.io/swarm/clients/0.7.1/swarm-0.7.1-darwin-amd64.tar.gz)
   * [Linux](http://downloads.giantswarm.io/swarm/clients/0.7.1/swarm-0.7.1-linux-amd64.tar.gz)
 
-## Installing the swarm CLI
+You can place the __swarm binary__ somewhere convenient, preferably in a location that's contained in your `PATH` environment variable. For example, `/usr/local/bin/` works fine in many cases.
 
-The first thing you should do is to __install the swarm binary__ somewhere convenient, preferably in a location that's contained in your `PATH` environment variable. For example, `/usr/local/bin/` works fine in many cases.
+## Say hi to the swarm
 
-Once you have this, you can use the swarm client to check the cluster's availability:
+Now that you have the `swarm` command available, you can use check the cluster's availability:
 
     $ swarm ping
 
