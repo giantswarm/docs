@@ -1,6 +1,6 @@
 # Valid keys and values for swarm.json
 
-<p class="lastmod">Last edited on October 30, 2014 by Matthias Lübken</p>
+<p class="lastmod">Last edited on November 25, 2014 by Stephan Zeissler</p>
 
 This page should give a rough overview of possible `swarm.json` keys and their values.
 

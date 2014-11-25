@@ -1,6 +1,6 @@
 # Getting started
 
-<p class="lastmod">Last edited on November 24, 2014 by Matthias Lübken</p>
+<p class="lastmod">Last edited on November 25, 2014 by Stephan Zeissler</p>
 
 This page should get you started with Giant Swarm. It will show you how to install the required tools and get a provided Docker image running.
 
