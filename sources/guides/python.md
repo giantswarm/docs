@@ -1,8 +1,12 @@
 # Swarmify Python
 
-<p class="lastmod">Last edited on October 8, 2014 by Matthias Lübken</p>
+<p class="lastmod">Last edited on November 25, 2014 by Matthias Lübken</p>
+
+This is a simple helloworld with Python and [Flask](http://flask.pocoo.org/). You find all the source files at [github.com/giantswarm/flaskexample](https://github.com/giantswarm/flaskexample).
 
 ## Dockerfile
+A simple Dockerfile using the official Python image, installing Flask via pip, adding the app as `app.py` and starting it:
+
 ```
 FROM python:2.7
 
@@ -15,6 +19,7 @@ CMD python app.py
 ```
 
 ## app.py
+A simple Flask file return a string at the root route and starting the Flask app:
 ```
 from flask import Flask
 app = Flask(__name__)
@@ -27,23 +32,8 @@ if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)
 ```
 
-## fig.yml
-```
-web:
-  build: .
-  command: python app.py
-  ports:
-   - "5000:5000"
-```
-
-## commands
-```
-$ docker build -t giantswarm/flaskexample .
-$ docker run -p 5000:5000 giantswarm/flaskexample
-$ docker push giantswarm/flaskexample
-```
-
 ## swarm.json
+A simple `swarm.json` using a custom image `registry.giantswarm.io/giantswarm/flaskexample` and publishing it with the port `5000`:
 ```
 {
     "app_name": "helloflask",
@@ -53,7 +43,7 @@ $ docker push giantswarm/flaskexample
             "components": [
                 {
                     "component_name": "flaskexample",
-                    "image": "giantswarm/flaskexample",
+                    "image": "registry.giantswarm.io/giantswarm/flaskexample",
                     "args": ["python", "app.py"],
                     "ports": [ "5000/tcp" ],
                     "domains": { "helloflask.alpha.giantswarm.io": "5000" }
@@ -62,4 +52,18 @@ $ docker push giantswarm/flaskexample
         }
     ]
 }
+```
+
+## Commands
+```
+# Build the image:
+$ docker build -t registry.giantswarm.io/giantswarm/flaskexample .
+# Test the image locally:
+$ docker run -p 5000:5000 registry.giantswarm.io/giantswarm/flaskexample
+# Push the image:
+$ docker push registry.giantswarm.io/giantswarm/flaskexample
+# Create the app:
+$ swarm create swarm.json
+# Start the app:
+$ swarm start helloflask
 ```
