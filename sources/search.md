@@ -8,7 +8,7 @@
 </form>
 
 <div id="searchinstructions">
-<p><strong>Hint</strong>: You can use [Lucene search syntax](http://www.lucenetutorial.com/lucene-query-syntax.html), including operators like <code>OR</code>, <code>AND</code>, <code>NOT</code>, <code>-</code>, <code>+</code> and bracketing.</p>
+<p><strong>Hint</strong>: You can use <a href="http://www.lucenetutorial.com/lucene-query-syntax.html">Lucene search syntax</a>, including operators like <code>OR</code>, <code>AND</code>, <code>NOT</code>, <code>-</code>, <code>+</code> and bracketing.</p>
 </div>
 
 <div class="result">
