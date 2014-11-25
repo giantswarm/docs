@@ -36,7 +36,7 @@ version                 | Print swarm client version
 ping                    | Check if your cluster is available
 ls                      | List all apps
 [env](env/)             | Handle environments
-cat                     | Show content of an app's swarm.json
+cat                     | Show the configuration of an application
 login                   | Log in to your account
 logout                  | Log out from your account
 user                    | Create and modify users
