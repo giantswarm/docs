@@ -22,8 +22,10 @@ EXPOSE 4567
 CMD ["java", "-jar", "target/sparkexample-jar-with-dependencies.jar"]
 ```
 
-## src / main / java / sparkexample / Hello . java
-A simple SparkJava class returning a string:
+## Hello.java
+
+This file resides in `src/main/java/sparkexample/Hello.java`. It's a simple SparkJava class returning a string:
+
 ```
 package sparkexample;
 
