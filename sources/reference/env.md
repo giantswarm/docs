@@ -21,17 +21,17 @@ When you start working with the swarm client, you are automatically assigned to 
 
 Note that you are free to set up environments with arbitrary names. Read on for details on creating environments.
 
-To find out which environment you are currently working in (i.e. your current environment), simply use the `swarm env` command without any argument:
+To find out which environment you are currently working in (i.e. your selected environment), simply use the `swarm env` command without any argument:
 
     $ swarm env
 
 ## Creating and selecting an environment
 
-To add a new environment or make an environment the current one, use the `swarm env` command with the respective environment name as argument. To create or select an environment called "luebken/prod" your command would look like this:
+To select an environment, use the `swarm env` command with the respective environment name as argument. This will create the environment if it didn't exist already. To select/create an environment called "luebken/prod" your command would look like this:
     
     $ swarm env luebken/prod
 
-If the environment already exists, it is now set as your current one. If it doesn't exist, yet, it first gets created and then set as your current environment.
+If the environment already existed, it is now the selected environment. If it didn't exist, yet, it is created and then selected.
 <!--
 TODO: explain what actually happens when creating an environment)
 -->
@@ -44,11 +44,16 @@ To lists all environments, use the `swarm env` command with the `-a` switch:
         luebken/dev
      *  luebken/prod
 
-Here, the names of all environments are printed. In addition, the current environment is marked with an asterisk.
+Here, the names of all environments are printed. In addition, the selected environment is marked with an asterisk.
 
 ## Deleting an environment
+
+Deleting an environment removes that environment from the list of known environments which you see when you issue the `swarm env` command without argument.
+
+Be aware that deleting an environment does not delete or stop any applications you (or someone else in your company) might have deployed in that environment.
 
 To delete an environment, use the `swarm env` command with the `-d` switch and the respective env name:
 
     $ swarm env -d mycompany/test
 
+If you delete the currently selected environment this way, your default environment (see above) will be selected.
