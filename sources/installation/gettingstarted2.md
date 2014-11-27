@@ -155,7 +155,7 @@ The swarm configuration: *swarm.json*
 
 To start this example:
 ```
-$ swarm create swarm.json
+$ swarm create
 
 $ swarm ls
 1 app created so far!

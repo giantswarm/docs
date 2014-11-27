@@ -63,7 +63,7 @@ $ docker run -p 5000:5000 registry.giantswarm.io/giantswarm/flaskexample
 # Push the image:
 $ docker push registry.giantswarm.io/giantswarm/flaskexample
 # Create the app:
-$ swarm create swarm.json
+$ swarm create
 # Start the app:
 $ swarm start helloflask
 ```

@@ -145,7 +145,7 @@ $ docker run -p 4567:4567 registry.giantswarm.io/giantswarm/sparkexample
 # Push the image:
 $ docker push registry.giantswarm.io/giantswarm/currentweather
 # Start the app:
-$ swarm create swarm.json
+$ swarm create
 ```
 
 ## Next steps

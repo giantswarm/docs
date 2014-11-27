@@ -86,9 +86,9 @@ This configures a simple app with one service. The service consists of one compo
 
 ## Run the helloworld application
 
-Before you can run the application it needs to be created. To do so use the `create` command followed by the JSON file you have just created: 
+Before you can run the application it needs to be created. To do so, use the `create` command in the directory where your `swarm.json` file resides: 
 
-    $ swarm create swarm.json
+    $ swarm create
 
 To start this app use the `start` command followed by the `app_name` specified in the JSON:
 

@@ -205,7 +205,7 @@ You can either use your own domains (which you have to configure to forward to u
 Thats it. With the `swarm` command line tool we can now create and start our containers on the Giant Swarm cluster:
 
 ```
-$ swarm create swarm.json
+$ swarm create
 $ swarm start rails-sample-1
 $ swarm status rails-sample-1
 ```
