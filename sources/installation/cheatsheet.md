@@ -8,9 +8,8 @@ This is a very condensed cheat sheet. For more details see [Getting Started](get
 
 Command       | Purpose
 ------------- | -------------
-`$ export SWARM_ENDPOINT_URL=https://alpha.giantswarm.io/v1/` | define your swarm endpoint
 `$ swarm`     | test the swarm CLI and see avaible commands
-`$ swarm ping` | test your cluster endpoint 
+`$ swarm ping` | test the swarm cluster 
 `$ swarm login` | login to your account 
 `$ swarm env <username>/dev` | use the default environment
 `$ swarm ls` | list your apps to check if everything is working
