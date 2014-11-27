@@ -1,6 +1,6 @@
 # Swarmify Python
 
-<p class="lastmod">Last edited on November 25, 2014 by Matthias Lübken</p>
+<p class="lastmod">Last edited on November 27, 2014 by Marian Steinbach</p>
 
 This is a simple helloworld with Python and [Flask](http://flask.pocoo.org/). You find all the source files at [github.com/giantswarm/flaskexample](https://github.com/giantswarm/flaskexample).
 

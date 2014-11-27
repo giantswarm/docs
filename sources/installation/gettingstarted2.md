@@ -1,6 +1,6 @@
 # Getting started - Part 2
 
-<p class="lastmod">Last edited on November 14, 2014 by Matthias Lübken</p>
+<p class="lastmod">Last edited on November 27, 2014 by Marian Steinbach</p>
 
 This page provides a slightly more complex example using two components and a custom image. Please make sure you have `swarm` running. For details see [Getting Started](gettingstarted.md).
 
