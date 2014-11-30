@@ -145,7 +145,7 @@ $ docker build -t registry.giantswarm.io/giantswarm/sparkexample .
 # Test the image locally:
 $ docker run -p 4567:4567 registry.giantswarm.io/giantswarm/sparkexample
 # Push the image:
-$ docker push registry.giantswarm.io/giantswarm/currentweather
+$ docker push registry.giantswarm.io/giantswarm/sparkexample
 # Start the app:
 $ swarm create swarm.json
 ```
