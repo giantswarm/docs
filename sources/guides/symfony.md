@@ -1,6 +1,6 @@
 # Swarmify PHP and Symfony
 
-<p class="lastmod">Last edited on October 25, 2014 by Marian Steinbach</p>
+<p class="lastmod">Last edited on November 30, 2014 by Matthias Lübken</p>
 
 This page should get you started with PHP, Symfony, and the Swarm. 
 
@@ -30,10 +30,10 @@ Next, add a simple `index.php` for testing pruposes:
 
 Now build, test, and upload the image:
 	
-	$ docker build -t luebken/hellophp .
-	$ docker run -d -p 8080:80 luebken/hellophp
+	$ docker build -t registry.giantswarm.io/giantswarm/hellophp .
+	$ docker run -d -p 8080:80 registry.giantswarm.io/giantswarm/hellophp
 	$ curl localhost:8080
-	$ docker push luebken/hellophp
+	$ docker push registry.giantswarm.io/giantswarm/hellophp
  
 This image can then be referred to in the new `swarm.json` file:
 
@@ -45,7 +45,7 @@ This image can then be referred to in the new `swarm.json` file:
 	            "components": [
 	                {
 	                    "component_name": "hellophp-component",
-	                    "image": "luebken/hellophp",
+	                    "image": "registry.giantswarm.io/giantswarm/hellophp",
 						"ports": [ "80/tcp" ],
 	                    "domains": { "hellophp.alpha.giantswarm.io": "80" }
 	                }
