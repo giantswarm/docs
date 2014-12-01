@@ -6,6 +6,8 @@ With Giant Swarm you can build and host server-side applications. There are no r
 
 A Swarm application consists of an application description and one or more Docker containers. Giant Swarm is very easy to [get started](gettingstarted/) and grows with your needs once you become familiar with it. 
 
+![](/img/overview.png)
+
 ## What is Docker
 
 > Self-sufficient linux containers.
