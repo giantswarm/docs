@@ -2,10 +2,9 @@
 
 <p class="lastmod">Last edited on December 1, 2014 by Matthias Lübken</p>
 
+With Giant Swarm you can build and host server-side applications. There are no restrictions concerning programming languages, web frameworks or databases. We especially are optimized for applications that are build in a microservice style.
 
-With Giant Swarm you can build and host server-side applications. There are no restrictions concerning programming languages, web frameworks or databases. We especially are optimized for applications that are build in a micro service style.
-
-A Swarm application consists of an application description called `swarm.json`and one or more Docker containers. 
+A Swarm application consists of an application description and one or more Docker containers. Giant Swarm is very easy to [get started](gettingstarted/) and grows with your needs once you become familiar with it. 
 
 ## What is Docker
 
@@ -15,7 +14,7 @@ Docker is the most popular application container format. It let's you package yo
 
 Docker makes a great tool for developers since it allows you to package different parts of your applications in your own containers. These containers can run on different environments like your and your colleagues notebook and different server environments.
 
-Another great aspect of Docker is that there are lots of predefined containers available. From different languages like JavaScript to Golang over different webstacks like Spring to Rails down to databases like Redis or MySQL. In addition defining your own Docker container is very easy. If you follow our `Getting started` you will define your first Docker container within the next half an hour or so.
+Another great aspect of Docker is that there are lots of predefined containers available. From different languages like JavaScript to Golang over different webstacks like Spring to Rails down to databases like Redis or MySQL. In addition defining your own Docker container is very easy. If you follow our [Getting Started](gettingstarted/) you will define your first Docker container within the next half an hour or so.
 
 ## What is the swarm.json
 
