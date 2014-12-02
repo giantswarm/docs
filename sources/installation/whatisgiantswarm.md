@@ -4,7 +4,7 @@
 
 With Giant Swarm you can build and host server-side applications. There are no restrictions concerning programming languages, web frameworks or databases. We especially are optimized for applications that are build in a microservice style.
 
-A Swarm application consists of an application description and one or more Docker containers. Giant Swarm is very easy to [get started](gettingstarted/) and grows with your needs once you become familiar with it. 
+A Swarm application consists of an application configuration (`swarm.json`) and one or more Docker containers. To deploy and start an application you use the `docker` client to build and push containers and `swarm` to push the application configuration and manage your application:
 
 ![](/img/overview.png)
 
@@ -14,21 +14,29 @@ A Swarm application consists of an application description and one or more Docke
  
 Docker is the most popular application container format. It let's you package your own Linux in lightweight, portable and self-sufficient manner. Some call it therefor lightweight VM. In contrast to traditional VM's its an order of magnitude faster, lighter and more fun. ;-)
 
-Docker makes a great tool for developers since it allows you to package different parts of your applications in your own containers. These containers can run on different environments like your and your colleagues notebook and different server environments.
+Docker makes a great tool for developers since it allows you to package different parts of your applications in your own containers. These containers can run on different environments like your and your colleagues notebook and different server environments like Giant Swarm.
 
-Another great aspect of Docker is that there are lots of predefined containers available. From different languages like JavaScript to Golang over different webstacks like Spring to Rails down to databases like Redis or MySQL. In addition defining your own Docker container is very easy. If you follow our [Getting Started](gettingstarted/) you will define your first Docker container within the next half an hour or so.
+Another great aspect of Docker is that there are lots of predefined containers available. From different languages like JavaScript to Golang over different webstacks like Spring to Rails down to databases like Redis or MySQL. In addition defining your own Docker container is very easy. 
+
+## What is a Giant Swarm application
+
+> Orchestrated services backed by Docker containers
+
+A Giant Swarm application consists of one or more services. These form logical units in your application describing domain or technical services. Examples would be a `user-service` or a `redis-service.` 
+
+Each service itself is backed by one or more components. A component contains a Docker container by referencing its image. These images can be one of the many predifined images from the [Docker Hub](https://registry.hub.docker.com/) or can be build by yourself. If you follow our [Getting Started](gettingstarted2.md) you will define your first Docker container within the next half an hour or so.
 
 ## What is the swarm.json
 
-> Configuration for describing your Giant Swarm apps
+> The Giant Swarm application configuration
 
-Giant Sarm enables you to easily deploy, orchestrate and operate your Docker based applications. For this means you start describing your application with simple json file. Your application is structured into services and components. The services from logical units and contain one or more components. Components leverage Docker images.
+Your Giant Swarm application is described and configured with a simple configuration file called: `swarm.json`. 
+
+Look at this simple of a Giant Swarm application consisting of two services: The first service has one component and the second service has two components. Component-a and component-x use userdefined Docker containers. Component-y use the standard redis container.
 
 ![](/img/overview-app-service-component.png)
 
-This is an example of an Giant Swarm application consisting of two services. Where the first service has one component and the second service has two components.  
-
-The apropiate `swarm.json` would look something like:
+A `swarm.json` would look something like:
 ```
 {
     "app_name": "application",
@@ -53,7 +61,8 @@ The apropiate `swarm.json` would look something like:
                     "ports": [ "1337/tcp" ],
                     "dependencies": [
                         { "name": "component-y", "port": 6379 }
-                    ]                },
+                    ]                
+                },
                 {
                     "component_name": "component-y",
                     "image": "redis",
@@ -80,16 +89,15 @@ currentweather  dev  luebken  2014-11-28 14:01:35
 helloworld      dev  luebken  2014-11-28 14:01:43
 ```
 
-## Microservices?
+## Microservices
 
 The days of big monolith applications are long over. Modularizing your applications in services has been the way to go for some time. Each self-contained functionality constitutes a separate service. This makes them independently developable, deployable, and scalable. Each with its own potential database and programming language. The right tool for the job! The [12factor Apps](http://12factor.net/) paradigm goes even further by describing twelve fundamental requirements of modern Software-as-a-Service apps - worth looking at.
 
-At the same time it has always been a hassle to set up a truly service-oriented application. Or the solutions were too cumbersome and stood in the way. Giant Swarm keeps it lean and gets out of the way.
-
+Giant Swarm helps you creating apps a microservice fashsion. Each service is truely seperate and independently developable, deployable, and scalable. In the end it's up to you how much and little you put in a service.
 
 ## Where to go from here?
 
-Please start with the `Getting Started` guides. It give you a short and pratical tour on working with Giant Swarm. If you need any help please visit us in our chat or let us know via Email: [support@giantswarm.io](mailto:support@giantswarm.io).
+Please start with the [Getting Started](gettingstarted.md) guides. It give you a short and pratical tour on working with Giant Swarm. If you need any help please visit us in our chat or let us know via Email: [support@giantswarm.io](mailto:support@giantswarm.io).
 
 
    
