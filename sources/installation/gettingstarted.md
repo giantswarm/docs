@@ -10,7 +10,7 @@ This section assumes that you have an account with Giant Swarm. If not please si
 
 ## Installing the CLI
 
-The current CLI is 0.7.1. 
+The current CLI is v0.8.0.
 
 If you are on Mac OS X and have [homebrew](http://brew.sh/) installed, you can just tap it:
 
@@ -23,8 +23,8 @@ $ brew install swarm-client
 
 For manual installation, download a tarball from here:
 
-  * [Mac](http://downloads.giantswarm.io/swarm/clients/0.7.1/swarm-0.7.1-darwin-amd64.tar.gz)
-  * [Linux](http://downloads.giantswarm.io/swarm/clients/0.7.1/swarm-0.7.1-linux-amd64.tar.gz)
+  * [Mac](http://downloads.giantswarm.io/swarm/clients/0.8.0/swarm-0.8.0-darwin-amd64.tar.gz)
+  * [Linux](http://downloads.giantswarm.io/swarm/clients/0.8.0/swarm-0.8.0-linux-amd64.tar.gz)
 
 You can place the __swarm binary__ somewhere convenient, preferably in a location that's contained in your `PATH` environment variable. For example, `/usr/local/bin/` works fine in many cases.
 
