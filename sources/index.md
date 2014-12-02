@@ -25,4 +25,4 @@ The [Reference](reference/) section contains detailed descriptions of the differ
 
 ### <i class="fa  fa-question-circle"></i> Help
 
-We are currently in an early alpha state and lots of things are still in development. Although we do our best there will probably be something  unexepected happen. Please don't hesitate to contact us via [support@giantswarm.io](mailto:support@giantswarm.io) or our users chat [gitter.im/giantswarm/users](https://gitter.im/giantswarm/users).
+We are currently in an early alpha state and lots of things are still in development. Although we do our best there will probably be something unexepected happening. Please don't hesitate to contact us via [support@giantswarm.io](mailto:support@giantswarm.io) or our users chat [gitter.im/giantswarm/users](https://gitter.im/giantswarm/users).
