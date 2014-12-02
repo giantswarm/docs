@@ -1,19 +1,12 @@
 # Getting started
 
-<p class="lastmod">Last edited on November 25, 2014 by Stephan Zeissler</p>
+<p class="lastmod">Last edited on December 1, 2014 by Matthias Lübken</p>
 
-This page should get you started with Giant Swarm. It will show you how to install the required tools and get a provided Docker image running.
+This page gets you started with Giant Swarm. It will show you how to install the required tools and get a provided Docker image running.
 
 ## Prerequisites
 
-As of now, we don't have an automated sign-up process, yet. In order to provide you with access to a Giant Swarm cluster and the required command line interface (CLI) client, please __send an email__ to [support@giantswarm.io](mailto:support@giantswarm.io). In this email, please include the following details:
-
- * Your full name and email address
-
-We will then provide you with:
-
-  * a user name
-  * and a password
+This section assumes that you have an account with Giant Swarm. If not please sign up at [giantswarm.io](http://giantswarm.io). Please note that we currently have a waiting list. It may take a while before you get an invite.
 
 ## Installing the CLI
 

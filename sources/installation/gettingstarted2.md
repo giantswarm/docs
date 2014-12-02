@@ -1,8 +1,15 @@
 # Getting started - Part 2
 
-<p class="lastmod">Last edited on November 14, 2014 by Matthias Lübken</p>
+<p class="lastmod">Last edited on December 1, 2014 by Matthias Lübken</p>
 
-This page provides a slightly more complex example using two components and a custom image. Please make sure you have `swarm` running. For details see [Getting Started](gettingstarted.md).
+This page provides a slightly more complex example using two components and a custom Docker image. 
+
+
+## Prerequisites
+
+Please make sure you have `swarm` running. For details see [Getting Started](gettingstarted.md). In addition we assume that you have a basic understanding of Docker. Please make sure that you have Docker installed.
+
+<!-- TODO Link good Docker resources and have a Docker getting started -->
 
 *TOC:*
 
