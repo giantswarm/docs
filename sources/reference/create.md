@@ -1,6 +1,6 @@
 # Creating an app
 
-<p class="lastmod">Last edited on November 10, 2014 by Marian Steinbach</p>
+<p class="lastmod">Last edited on November 27, 2014 by Marian Steinbach</p>
 
 Services running on Giant Swarm are grouped as *apps* which are described in `swarm.json` files. Creation of apps is done via the `swarm create` command.
 
@@ -8,11 +8,11 @@ Services running on Giant Swarm are grouped as *apps* which are described in `sw
 
 The basic command syntax is:
 
-    $ swarm create <app-config-file>
+    $ swarm create [<app-config-file>]
 
-Assuming that your app configuration file `swarm.json` is in the current directory, simply call the `swarm create` command like this:
+Assuming that your app configuration file is called `swarm.json` and resides in the current directory, simply call the `swarm create` command like this:
 
-    $ swarm create swarm.json
+    $ swarm create
 
 For further information about the app configuration file, please refer to the [swarm.json reference page](../swarm-json/).
 
@@ -35,11 +35,11 @@ Also, both approaches can be combined.
 
 If you want to define variable values directly on the command line, you can use the `--var` option. Here is the basic format:
 
-    $ swarm create swarm.json --var=<key=value>
+    $ swarm create --var=<key=value>
 
 If, for example, your app configuration file `swarm.json` contains the two variables `$var1` and `$var2`, you can assign values in the following way:
 
-    $ swarm create swarm.json --var=var1=foo --var=var2=bar
+    $ swarm create --var=var1=foo --var=var2=bar
 
 ### Passing variables in a file
 
@@ -62,13 +62,17 @@ With the example above, you would now use a variable name `$redis_port` (dont fo
 
 Here is how you make use of your variables file when calling `swarm create`:
 
-    $ swarm create <app-config-file> --var-file=<var-file-path>
+    $ swarm create [<app-config-file>] --var-file=<var-file-path>
 
-So, if your application config is called `swarm.json` and the variables file is `swarmvars.json`, the command is:
+So, if your application config is called `swarm.json` and the variables file is `swarmvars.json`, the command would be:
 
     $ swarm create swarm.json --var-file=swarmvars.json
 
-Note that if your variables file is in the current directory _and_ has the name `swarmvars.json`, it is used automatically. So there is actually no need to specify the `--var-file` option in the case shown above.
+or simply
+
+    $ swarm create
+
+Note that if your variables file is in the current directory _and_ has the name `swarmvars.json`, it is used automatically. So there is actually no need to specify the `--var-file` option in the case shown above. And since the configuration file is assumed to be `swarm.json`, you don't have to specify this either.
 
 ## Combining command line options and file
 
@@ -76,7 +80,7 @@ It is possible to combine both approaches of passing variable values described a
 
 Here is an example:
 
-    $ swarm create swarm.json --var-file=swarmvars.json --var=var1=foo --var=var2=bar
+    $ swarm create --var-file=swarmvars.json --var=var1=foo --var=var2=bar
 
 The order of the command line options is not important.
 

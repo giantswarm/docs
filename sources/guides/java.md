@@ -1,6 +1,6 @@
 # Swarmify Java and JavaSpark
 
-<p class="lastmod">Last edited on November 24, 2014 by Matthias Lübken</p>
+<p class="lastmod">Last edited on November 27, 2014 by Marian Steinbach</p>
 
 There are tons of Java web stacks. For our first example we chose [Spark](http://www.sparkjava.com/) a tiny Sinatra inspired framework in Java 8.
 
@@ -147,7 +147,7 @@ $ docker run -p 4567:4567 registry.giantswarm.io/giantswarm/sparkexample
 # Push the image:
 $ docker push registry.giantswarm.io/giantswarm/sparkexample
 # Start the app:
-$ swarm create swarm.json
+$ swarm create
 ```
 
 ## Next steps

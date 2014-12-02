@@ -1,6 +1,6 @@
 # Swarmify Python
 
-<p class="lastmod">Last edited on November 25, 2014 by Matthias Lübken</p>
+<p class="lastmod">Last edited on November 27, 2014 by Marian Steinbach</p>
 
 This is a simple helloworld with Python and [Flask](http://flask.pocoo.org/). You find all the source files at [github.com/giantswarm/flaskexample](https://github.com/giantswarm/flaskexample).
 
@@ -63,7 +63,7 @@ $ docker run -p 5000:5000 registry.giantswarm.io/giantswarm/flaskexample
 # Push the image:
 $ docker push registry.giantswarm.io/giantswarm/flaskexample
 # Create the app:
-$ swarm create swarm.json
+$ swarm create
 # Start the app:
 $ swarm start helloflask
 ```

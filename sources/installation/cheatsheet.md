@@ -1,6 +1,7 @@
 # TL;DR Cheat sheet
 
-<p class="lastmod">Last edited on December 01, 2014 by Matthias Lübken</p>
+<p class="lastmod">Last edited on December 1, 2014 by Matthias Lübken</p>
+
 
 This is a very condensed cheat sheet. For more details see [Getting Started](gettingstarted.md).
 
@@ -18,8 +19,8 @@ Command       | Purpose
 ## Create and run an app
 
 Command                          | Purpose
-------------                     | -------------
-`$ swarm create swarm.json`      | create an app from swarm.json
+-------------------------------- | -------------
+`$ swarm create`                 | create an app from swarm.json
 `$ swarm status helloworld`      | show status for an app
 `$ swarm logs <instance-id>`     | show logs from an app
 `$ swarm start helloworld`       | start an app
