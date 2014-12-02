@@ -1,6 +1,7 @@
 # TL;DR Cheat sheet
 
-<p class="lastmod">Last edited on November 27, 2014 by Marian Steinbach</p>
+<p class="lastmod">Last edited on December 1, 2014 by Matthias Lübken</p>
+
 
 This is a very condensed cheat sheet. For more details see [Getting Started](gettingstarted.md).
 
@@ -8,12 +9,12 @@ This is a very condensed cheat sheet. For more details see [Getting Started](get
 
 Command       | Purpose
 ------------- | -------------
-`$ export SWARM_ENDPOINT_URL=https://alpha.giantswarm.io/v1/` | define your swarm endpoint
 `$ swarm`     | test the swarm CLI and see avaible commands
-`$ swarm ping` | test your cluster endpoint 
+`$ swarm ping` | test the swarm cluster 
 `$ swarm login` | login to your account 
-`$ swarm env <username>/dev` | use the default environment
+`$ swarm env <username>/dev` | change the environment
 `$ swarm ls` | list your apps to check if everything is working
+`$ docker login https://registry.giantswarm.io` | login to the private Docker registry
 
 ## Create and run an app
 

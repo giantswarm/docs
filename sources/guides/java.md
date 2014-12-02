@@ -22,8 +22,10 @@ EXPOSE 4567
 CMD ["java", "-jar", "target/sparkexample-jar-with-dependencies.jar"]
 ```
 
-## src / main / java / sparkexample / Hello . java
-A simple SparkJava class returning a string:
+## Hello.java
+
+This file resides in `src/main/java/sparkexample/Hello.java`. It's a simple SparkJava class returning a string:
+
 ```
 package sparkexample;
 
@@ -143,7 +145,7 @@ $ docker build -t registry.giantswarm.io/giantswarm/sparkexample .
 # Test the image locally:
 $ docker run -p 4567:4567 registry.giantswarm.io/giantswarm/sparkexample
 # Push the image:
-$ docker push registry.giantswarm.io/giantswarm/currentweather
+$ docker push registry.giantswarm.io/giantswarm/sparkexample
 # Start the app:
 $ swarm create
 ```

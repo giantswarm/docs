@@ -1,23 +1,17 @@
 # Getting started
 
-<p class="lastmod">Last edited on November 27, 2014 by Marian Steinbach</p>
+<p class="lastmod">Last edited on December 1, 2014 by Matthias Lübken</p>
 
-This page should get you started with Giant Swarm. It will show you how to install the required tools and get a provided Docker image running.
+
+This page gets you started with Giant Swarm. It will show you how to install the required tools and get a provided Docker image running.
 
 ## Prerequisites
 
-As of now, we don't have an automated sign-up process, yet. In order to provide you with access to a Giant Swarm cluster and the required command line interface (CLI) client, please __send an email__ to [support@giantswarm.io](mailto:support@giantswarm.io). In this email, please include the following details:
-
- * Your full name and email address
-
-We will then provide you with:
-
-  * a user name
-  * and a password
+This section assumes that you have an account with Giant Swarm. If not please sign up at [giantswarm.io](http://giantswarm.io). Please note that we currently have a waiting list. It may take a while before you get an invite.
 
 ## Installing the CLI
 
-The current CLI is 0.7.1. 
+The current CLI is v0.8.0.
 
 If you are on Mac OS X and have [homebrew](http://brew.sh/) installed, you can just tap it:
 
@@ -30,8 +24,8 @@ $ brew install swarm-client
 
 For manual installation, download a tarball from here:
 
-  * [Mac](http://downloads.giantswarm.io/swarm/clients/0.7.1/swarm-0.7.1-darwin-amd64.tar.gz)
-  * [Linux](http://downloads.giantswarm.io/swarm/clients/0.7.1/swarm-0.7.1-linux-amd64.tar.gz)
+  * [Mac](http://downloads.giantswarm.io/swarm/clients/0.8.0/swarm-0.8.0-darwin-amd64.tar.gz)
+  * [Linux](http://downloads.giantswarm.io/swarm/clients/0.8.0/swarm-0.8.0-linux-amd64.tar.gz)
 
 You can place the __swarm binary__ somewhere convenient, preferably in a location that's contained in your `PATH` environment variable. For example, `/usr/local/bin/` works fine in many cases.
 

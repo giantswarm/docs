@@ -12,6 +12,7 @@ pages:
 
 # Installation
 - ['installation/cheatsheet.md', 'Installation', 'Cheat Sheet']
+- ['installation/whatisgiantswarm.md', 'Installation', 'What is Giant Swarm?']
 - ['installation/gettingstarted.md', 'Installation', 'Getting Started']
 - ['installation/gettingstarted2.md', 'Installation', 'Getting Started - Part 2']
 
