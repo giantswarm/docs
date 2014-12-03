@@ -10,7 +10,7 @@ This is a very condensed cheat sheet. For more details see [Getting Started](get
 Command       | Purpose
 ------------- | -------------
 `$ swarm`     | test the swarm CLI and see avaible commands
-`$ swarm ping` | test the swarm cluster 
+`$ swarm info` | print current swarm settings
 `$ swarm login` | login to your account 
 `$ swarm env <username>/dev` | change the environment
 `$ swarm ls` | list your apps to check if everything is working
@@ -18,13 +18,16 @@ Command       | Purpose
 
 ## Create and run an app
 
+Most commands use infos from `swarm.json` in the current path as a default.
+
 Command                          | Purpose
 -------------------------------- | -------------
-`$ swarm create`                 | create an app from swarm.json
-`$ swarm status helloworld`      | show status for an app
+`$ swarm up [swarm.json]`        | create and start an app
+`$ swarm create [swarm.json]`    | create an app
+`$ swarm start [app name]`       | start an app
+`$ swarm stop [app name]`        | stop an app
+`$ swarm status [app name]`      | show status for an app
 `$ swarm logs <instance-id>`     | show logs from an app
-`$ swarm start helloworld`       | start an app
-`$ swarm stop helloworld`        | stop an app
 
 ## swarm.json
 
@@ -41,7 +44,7 @@ Example using a predefined python image and exposing a http server:
                         "image": "python:3",
                         "args": ["sh", "-c", "echo \"Hello Giant Swarm. \\o/\" > index.html && python -m http.server"],
                         "ports": [ "8000/tcp" ],
-                        "domains": { "helloworld.alpha.giantswarm.io": "8000" }
+                        "domains": { "helloworld.gigantic.io": "8000" }
                     }
                 ]
             }
