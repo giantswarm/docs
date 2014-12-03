@@ -1,6 +1,6 @@
 # TL;DR Cheat sheet
 
-<p class="lastmod">Last edited on December 1, 2014 by Matthias Lübken</p>
+<p class="lastmod">Last edited on December 3, 2014 by Matthias Lübken</p>
 
 
 This is a very condensed cheat sheet. For more details see [Getting Started](gettingstarted.md).
