@@ -1,6 +1,6 @@
 # Getting started
 
-<p class="lastmod">Last edited on December 1, 2014 by Matthias Lübken</p>
+<p class="lastmod">Last edited on December 3, 2014 by Matthias Lübken</p>
 
 
 This page gets you started with Giant Swarm. It will show you how to install the required tools and get a provided Docker image running.
@@ -11,16 +11,9 @@ This section assumes that you have an account with Giant Swarm. If not please si
 
 ## Installing the CLI
 
-The current CLI is v0.8.0.
+The current CLI version is __v0.8.0__.
 
-If you are on Mac OS X and have [homebrew](http://brew.sh/) installed, you can just tap it:
-
-```
-$ brew tap giantswarm/swarm
-$ brew install swarm-client
-```
-
-### Manual install the swarm CLI
+__Manual install__
 
 For manual installation, download a tarball from here:
 
@@ -29,15 +22,30 @@ For manual installation, download a tarball from here:
 
 You can place the __swarm binary__ somewhere convenient, preferably in a location that's contained in your `PATH` environment variable. For example, `/usr/local/bin/` works fine in many cases.
 
+__Mac install via Homebrew__
+
+If you are on Mac OS X and have [homebrew](http://brew.sh/) installed, you can just tap it:
+
+```
+# First install:
+$ brew tap giantswarm/swarm
+$ brew install swarm-client
+# Update:
+$ brew update
+$ brew upgrade swarm-client
+```
+
 ## Say hi to the swarm
 
-Now that you have the `swarm` command available, you can use check the cluster's availability:
+Now that you have the `swarm` command available, you can check the cluster's availability and your settings:
 
-    $ swarm ping
+    $ swarm info
+    Cluster status:      reachable
+    Logged in as user:   luebken
+    Current company:     giantswarm
+    Current environment: giantswarm/dev
 
-You should get an `OK` as a result.
-
-Now that the connection to your cluster is set up, it's time to __log in__ with your user account. That's what the `swarm login` command is for. You will then be prompted for your user name or email address and for your password.
+Now that everything is set up, it's time to __log in__ with your user account. That's what the `swarm login` command is for. You will then be prompted for your user name or email address and for your password.
 
     $ swarm login
     user or mail: luebken
@@ -69,7 +77,7 @@ Create a file called `swarm.json` with your favourite editor and fill it with th
                         "image": "python:3",
                         "args": ["sh", "-c", "echo \"Hello Giant Swarm. \\o/\" > index.html && python -m http.server"],
                         "ports": [ "8000/tcp" ],
-                        "domains": { "helloworld.alpha.giantswarm.io": "8000" }
+                        "domains": { "helloworld.gigantic.io": "8000" }
                     }
                 ]
             }
@@ -80,17 +88,21 @@ This configures a simple app with one service. The service consists of one compo
 
 ## Run the helloworld application
 
-Before you can run the application it needs to be created. To do so, use the `create` command in the directory where your `swarm.json` file resides: 
+To create and start an app just use the `up` command:
+
+    $ swarm up
+
+If you want to do it in smaller steps use the `create` and `start` commands:
 
     $ swarm create
 
-To start this app use the `start` command followed by the `app_name` specified in the JSON:
+    $ swarm start -d
 
-    $ swarm start helloworld
+You can optionaly specify an app-name. Without a specifing app name we examine the local `swarm.json`.
 
 While it's starting (which may take a while) you may check its status with the `status` command:
 
-    $ swarm status helloworld
+    $ swarm status
     App helloworld is starting!
 
     service             component  instanceid                            status
@@ -98,7 +110,7 @@ While it's starting (which may take a while) you may check its status with the `
 
 Once it's up, you can check it by opening the specified domain in a browser or `curl`ing it:
     
-    $ curl helloworld.alpha.giantswarm.io
+    $ curl helloworld.gigantic.io
     Hello Giant Swarm. \o/
 
 On the way you might want to check for the logs by querying against the instanceid:
