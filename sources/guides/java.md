@@ -1,3 +1,5 @@
+description: Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
+
 # Swarmify Java and JavaSpark
 
 <p class="lastmod">Last edited on November 27, 2014 by Marian Steinbach</p>
