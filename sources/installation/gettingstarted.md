@@ -1,6 +1,6 @@
 # Getting started
 
-<p class="lastmod">Last edited on December 3, 2014 by Matthias Lübken</p>
+<p class="lastmod">Last edited on December 8, 2014 by Matthias Lübken</p>
 
 
 This page gets you started with Giant Swarm. It will show you how to install the required tools and get a provided Docker image running.
@@ -92,15 +92,7 @@ To create and start an app just use the `up` command:
 
     $ swarm up
 
-If you want to do it in smaller steps use the `create` and `start` commands:
-
-    $ swarm create
-
-    $ swarm start -d
-
-You can optionaly specify an app-name. Without a specifing app name we examine the local `swarm.json`.
-
-While it's starting (which may take a while) you may check its status with the `status` command:
+While it's starting you may check its status with the `status` command from a new shell:
 
     $ swarm status
     App helloworld is starting!
