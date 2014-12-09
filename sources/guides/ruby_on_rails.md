@@ -186,7 +186,7 @@ Now, we just need to add an application file describing our containers:
       ],
       "ports": ["3000"],
       "domains": {
-        "rails-example.alpha.giantswarm.io": "3000"
+        "rails-example.gigantic.io": "3000"
       }
     }]
   }]
@@ -198,7 +198,7 @@ Here, we define one app `rails-sample-1` with one service `web`. This service co
 1. With a `dependency` to access it from another container
 2. By adding a `domains` definition, so our load balancer can forward public requests to your container.
 
-You can either use your own domains (which you have to configure to forward to us) or use a subdomain of the cluster you are using. In this example we are using `alpha.giantswarm.io` - modify this to match your needs.
+You can either use your own domains (which you have to configure to forward to us) or use a subdomain of the cluster you are using. In this example we are using `gigantic.io` - modify this to match your needs.
 
 ### Run 
 
@@ -210,4 +210,4 @@ $ swarm start rails-sample-1
 $ swarm status rails-sample-1
 ```
 
-Now open your browser and head to [rails-example.alpha.giantswarm.io](http://rails-example.alpha.giantswarm.io)
+Now open your browser and head to [rails-example.gigantic.io](http://rails-example.gigantic.io)
