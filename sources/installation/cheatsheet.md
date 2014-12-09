@@ -7,6 +7,10 @@ This is a very condensed cheat sheet. For more details see [Getting Started](get
 
 ## Installation
 
+Mac: `$ brew tap giantswarm/swarm && brew install swarm-client`
+
+Linux: `$ curl -O http://downloads.giantswarm.io/swarm/clients/0.9.0/swarm-0.9.0-linux-amd64.tar.gz`
+
 Command       | Purpose
 ------------- | -------------
 `$ swarm`     | test the swarm CLI and see avaible commands
