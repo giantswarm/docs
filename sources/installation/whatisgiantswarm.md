@@ -48,7 +48,7 @@ A `swarm.json` would look something like:
                     "component_name": "component-a",
                     "image": "registry.giantswarm.io/giantswarm/customimage",
                     "ports": [ "1337/tcp" ],
-                    "domains": { "helloworld.alpha.giantswarm.io": "1337" }
+                    "domains": { "helloworld.gigantic.io": "1337" }
                 }
             ]
         },
