@@ -1,6 +1,6 @@
 # Swarmify Java and JavaSpark
 
-<p class="lastmod">Last edited on November 27, 2014 by Marian Steinbach</p>
+<p class="lastmod">Last edited on December 9, 2014 by Matthias Lübken</p>
 
 There are tons of Java web stacks. For our first example we chose [Spark](http://www.sparkjava.com/) a tiny Sinatra inspired framework in Java 8.
 
@@ -130,7 +130,7 @@ A simple `swarm.json` using a custom image `giantswarm/sparkexample` and publish
                     "component_name": "sparkexample",
                     "image": "registry.giantswarm.io/giantswarm/sparkexample",
                     "ports": [ "4567/tcp" ],
-                    "domains": { "hellospark.alpha.giantswarm.io": "4567" }
+                    "domains": { "hellospark.gigantic.io": "4567" }
                 }
             ]
         }
