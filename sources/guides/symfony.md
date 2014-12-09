@@ -47,7 +47,7 @@ This image can then be referred to in the new `swarm.json` file:
 	                    "component_name": "hellophp-component",
 	                    "image": "registry.giantswarm.io/giantswarm/hellophp",
 						"ports": [ "80/tcp" ],
-	                    "domains": { "hellophp.alpha.giantswarm.io": "80" }
+	                    "domains": { "hellophp.gigantic.io": "80" }
 	                }
 	            ]
 	        }

@@ -61,7 +61,7 @@ This page should give a rough overview of possible `swarm.json` keys and their v
                     // Format: { <url>: <Port> }
                     // Optional.
                     "domains": {
-                        "hello.alpha.giantswarm.io": "80",
+                        "hello.gigantic.io": "80",
                         "hello.alpha.io": "80"
                     }
 
