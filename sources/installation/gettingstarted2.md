@@ -1,6 +1,6 @@
 # Getting started - Part 2
 
-<p class="lastmod">Last edited on December 1, 2014 by Matthias Lübken</p>
+<p class="lastmod">Last edited on December 9, 2014 by Matthias Lübken</p>
 
 This page provides a slightly more complex example using two components and a custom Docker image. 
 
@@ -101,16 +101,15 @@ $ docker login https://registry.giantswarm.io
 Dockerfile for *currentweather*: Dockerfile
 
 ```
-FROM dockerfile/nodejs
+FROM google/nodejs
 
-WORKDIR /root
-
-ADD package.json /root/
+WORKDIR /app
+ADD package.json /app/
 RUN npm install
 
-ADD server.js /root/
+ADD server.js /app/
 EXPOSE 1337
-CMD ["/usr/local/bin/node", "server.js"]
+CMD ["/nodejs/bin/node", "server.js"]
 ``` 
 
 To use this Docker image it has to be built and uploaded to a repository. E.g. to push this image to the Giant Swarm registry for the user 'luebken' you would use:
@@ -146,7 +145,7 @@ The swarm configuration: *swarm.json*
                     "dependencies": [
                         { "name": "redis", "port": 6379 }
                     ],
-                    "domains": { "currentweather.alpha.giantswarm.io": "1337" }
+                    "domains": { "currentweather.gigantic.io": "1337" }
                 },
                 {
                     "component_name": "redis",
@@ -197,7 +196,7 @@ service                 component                 instanceid                    
 currentweather-service  redis                     02288488-4185-473b-8de1-47f91971bdb2  up
 currentweather-service  currentweather-component  d4664c37-49cb-436b-a2f0-727bb5539538  up
 
-$ curl currentweather.alpha.giantswarm.io
+$ curl currentweather.gigantic.io
 Hello World from Cologne: overcast clouds
 ```
 
