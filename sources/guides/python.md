@@ -46,7 +46,7 @@ A simple `swarm.json` using a custom image `registry.giantswarm.io/giantswarm/fl
                     "image": "registry.giantswarm.io/giantswarm/flaskexample",
                     "args": ["python", "app.py"],
                     "ports": [ "5000/tcp" ],
-                    "domains": { "helloflask.alpha.giantswarm.io": "5000" }
+                    "domains": { "helloflask.gigantic.io": "5000" }
                 }
             ]
         }
