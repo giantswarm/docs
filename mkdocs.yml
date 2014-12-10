@@ -28,6 +28,7 @@ pages:
 - ['reference/info.md', 'Reference', 'Getting basic information']
 - ['reference/companies.md', 'Reference', 'Companies']
 - ['reference/env.md', 'Reference', 'Environments']
+- ['reference/up.md', 'Reference', 'Creating and starting an app']
 - ['reference/create.md', 'Reference', 'Creating an app']
 - ['reference/start.md', 'Reference', 'Starting an environment, app or service']
 - ['reference/status.md', 'Reference', 'Getting status information']
