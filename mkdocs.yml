@@ -25,6 +25,7 @@ pages:
 # Reference
 - ['reference/index.md', 'Reference', 'Overview']
 - ['reference/global-options.md', 'Reference', 'Global options']
+- ['reference/info.md', 'Reference', 'Getting basic information']
 - ['reference/companies.md', 'Reference', 'Companies']
 - ['reference/env.md', 'Reference', 'Environments']
 - ['reference/up.md', 'Reference', 'Creating and starting an app']
