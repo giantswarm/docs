@@ -1,6 +1,6 @@
 # Environments
 
-<p class="lastmod">Last edited on October 28, 2014 by Matthias Lübken</p>
+<p class="lastmod">Last edited on December 10, 2014 by Marian Steinbach</p>
 
 Environments allow you to deploy your apps in __multiple independent contexts__ for different purposes. As an example, you might want to have one environment for development purposes and another for production.
 
@@ -38,9 +38,9 @@ TODO: explain what actually happens when creating an environment)
 
 ## Showing available environments
 
-To lists all environments, use the `swarm env` command with the `-a` switch:
+To lists all environments, use the `swarm env` command with the `-l` switch:
 
-    $ swarm env -a
+    $ swarm env -l
         luebken/dev
      *  luebken/prod
 
