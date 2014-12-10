@@ -33,7 +33,6 @@ update                  | Update a component by changing the docker image to a n
 [logs](logs/)           | Print an app's standard output and error messages
 [stats](stats/)         | Print basic statistics of an instance
 version                 | Print swarm client version
-ping                    | Check if your cluster is available
 ls                      | List all apps
 [env](env/)             | Handle environments
 cat                     | Show the configuration of an application
