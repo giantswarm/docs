@@ -1,3 +1,5 @@
+description: A first practical introduction into using Giant Swarm. This will take you to a simple Hello World example.
+
 # Getting started
 
 <p class="lastmod">Last edited on December 8, 2014 by Matthias Lübken</p>

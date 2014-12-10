@@ -1,3 +1,5 @@
+description: Reference page about global command line options of the 'swarm' CLI.
+
 # Global command line options
 
 <p class="lastmod">Last edited on November 8, 2014 by Marian Steinbach</p>

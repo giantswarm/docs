@@ -1,3 +1,5 @@
+description: Reference page for the 'swarm scaledown' comand that allows to reduce the number of instances running a particular component.
+
 # Scaling down a component
 
 <p class="lastmod">Last edited on November 9, 2014 by Marian Steinbach</p>

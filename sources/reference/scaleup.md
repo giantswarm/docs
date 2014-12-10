@@ -1,3 +1,5 @@
+description: Reference page for the 'swarm scaleup' comand that allows to increase the number of instances running a particular component.
+
 # Scaling up a component
 
 <p class="lastmod">Last edited on November 9, 2014 by Marian Steinbach</p>

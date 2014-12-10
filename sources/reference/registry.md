@@ -1,3 +1,5 @@
+description: Reference page on how to use the Giant Swarm registry
+
 # Using the registry
 
 <p class="lastmod">Last edited on November 13, 2014 by Marian Steinbach</p>

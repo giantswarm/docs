@@ -1,3 +1,5 @@
+description: Reference page for the 'swarm env' command which allows you to select, create and delete environments.
+
 # Environments
 
 <p class="lastmod">Last edited on December 10, 2014 by Marian Steinbach</p>

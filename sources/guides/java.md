@@ -1,3 +1,6 @@
+description: This guide shows you how to create, deploy and run a simple Java/Spark project on Giant Swarm
+
+
 # Swarmify Java and JavaSpark
 
 <p class="lastmod">Last edited on December 9, 2014 by Matthias Lübken</p>

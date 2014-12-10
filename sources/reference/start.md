@@ -1,3 +1,5 @@
+description: Reference page for the 'swarm start' comand that allows you to start an application.
+
 # Starting an environment, app, or service
 
 <p class="lastmod">Last edited on November 8, 2014 by Marian Steinbach</p>
