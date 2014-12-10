@@ -1,3 +1,5 @@
+description: Reference page for the application configuration file usually called 'swarm.json'.
+
 # Valid keys and values for swarm.json
 
 <p class="lastmod">Last edited on November 25, 2014 by Stephan Zeissler</p>

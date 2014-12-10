@@ -1,3 +1,5 @@
+description: Reference page for the 'swarm stats' comand that allows to access basic statistics about the resource usage of your components.
+
 # Getting instance statistics
 
 <p class="lastmod">Last edited on November 9, 2014 by Marian Steinbach</p>

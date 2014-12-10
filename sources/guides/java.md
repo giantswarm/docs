@@ -1,4 +1,5 @@
-description: Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
+description: This guide shows you how to create, deploy and run a simple Java/Spark project on Giant Swarm
+
 
 # Swarmify Java and JavaSpark
 

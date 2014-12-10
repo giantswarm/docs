@@ -1,3 +1,5 @@
+description: Reference page for the 'swarm company' command which allows you to manage teams of users.
+
 # Companies
 
 <p class="lastmod">Last edited on November 14, 2014 by Marian Steinbach</p>

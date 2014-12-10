@@ -1,3 +1,5 @@
+description: This guide shows you how to create, deploy and run a simple PHP/Symfony project on Giant Swarm
+
 # Swarmify PHP and Symfony
 
 <p class="lastmod">Last edited on November 30, 2014 by Matthias Lübken</p>

@@ -1,3 +1,5 @@
+description: This guide shows you how to create, deploy and run a simple Python/Flask project on Giant Swarm
+
 # Swarmify Python
 
 <p class="lastmod">Last edited on November 27, 2014 by Marian Steinbach</p>

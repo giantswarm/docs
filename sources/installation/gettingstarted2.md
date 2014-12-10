@@ -1,3 +1,5 @@
+description: A slightly more involved tutorial for those who have tested out our Getting Started guide part 1.
+
 # Getting started - Part 2
 
 <p class="lastmod">Last edited on December 1, 2014 by Matthias Lübken</p>

@@ -1,3 +1,5 @@
+description: A general introduction into what Giant Swarm is and does. Start here if you are interested in using our service.
+
 # What is Giant Swarm?
 
 <p class="lastmod">Last edited on December 1, 2014 by Matthias Lübken</p>
