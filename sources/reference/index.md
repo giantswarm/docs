@@ -26,11 +26,8 @@ A place to quickly lookup help pages for all `swarm` <abbr title="command line i
 
 Command                 | Description
 ----------------------- | -------------------------------
-<<<<<<< HEAD
 [up](up/)               | Define and start a new app
-=======
 [info](info/)           | Get basic information on context and environment
->>>>>>> master
 [create](create/)       | Define a new app by loading a json file
 [status](status/)       | Show current status of an app or service
 [start](start/)         | Start an environment, app, or service
