@@ -2,6 +2,8 @@ description: Reference page for the 'swarm up' command that allows you to create
 
 # Creating and starting an application in one step
 
+<p class="lastmod">Last edited on December 10, 2014 by Marian Steinbach</p>
+
 The `swarm up` command allows you to create a new application based on your configuration and start it immediately afterwards.
 
 In other words, it does what [`swarm create`](../create/) and [`swarm start`](../start/) do, but with one command call.
