@@ -1,3 +1,5 @@
+description: Reference page for 'swarm logs' which allows to access logs of your component instances.
+
 # Accessing process logs
 
 <p class="lastmod">Last edited on November 10, 2014 by Marian Steinbach</p>

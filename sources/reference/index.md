@@ -1,3 +1,5 @@
+description: Reference table of content, including an overview of 'swarm' CLI subcommands.
+
 # Reference
 
 The reference area of our documentation is where you get structured information about (eventually) all parts of our client software.

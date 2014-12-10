@@ -1,3 +1,5 @@
+description: Main page of Giant Swarm's documentation
+
 # Welcome to Giant Swarms documentation
 
 Giant Swarm enables you to easily develop, deploy, and host your micro-serviced applications. We leverage several technologies like Docker and CoreOS and bring them together to provide a simple yet powerful infrastructure. Besides Docker and your application stack there is not much you need to know in order to get started.

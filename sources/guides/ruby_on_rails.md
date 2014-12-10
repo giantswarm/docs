@@ -1,3 +1,5 @@
+description: This guide shows you how to create, deploy and run a simple Ruby on Rails project on Giant Swarm
+
 # Swarmify Ruby on Rails
 
 <p class="lastmod">Last edited on November 27, 2014 by Marian Steinbach</p>

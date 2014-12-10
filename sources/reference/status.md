@@ -1,3 +1,5 @@
+description: Reference page for the 'swarm status' comand that prints out the status of a oarticular application and it's services and components.
+
 # Getting an app's status
 
 <p class="lastmod">Last edited on November 9, 2014 by Marian Steinbach</p>

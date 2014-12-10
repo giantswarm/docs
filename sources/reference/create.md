@@ -1,3 +1,5 @@
+description: Reference page for the 'swarm create' command which allows you to create a new application based on your configuration.
+
 # Creating an app
 
 <p class="lastmod">Last edited on November 27, 2014 by Marian Steinbach</p>
