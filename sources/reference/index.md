@@ -9,6 +9,7 @@ The reference area of our documentation is where you get structured information 
  * [Global command line options](global-options/)
  * [Companies](companies/)
  * [Environments](env/)
+ * [Getting basic information](info/)
  * [Creating an app](create/)
  * [Starting an environment, app, or service](start/)
  * [Getting an app's status](status/)
@@ -24,6 +25,7 @@ A place to quickly lookup help pages for all `swarm` <abbr title="command line i
 
 Command                 | Description
 ----------------------- | -------------------------------
+[info](info/)           | Get basic information on context and environment
 [create](create/)       | Define a new app by loading a json file
 [status](status/)       | Show current status of an app or service
 [start](start/)         | Start an environment, app, or service
