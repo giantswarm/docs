@@ -41,5 +41,5 @@ Say you have, for example, a service called "payment" in your app called "online
 ## Further reading
 
 * [Environments](../env/)
-* [App configuration](../swarm-json/)
+* [Application configuration](../swarm-json/)
 * [Global command line options](../global-options/)
