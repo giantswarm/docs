@@ -1,38 +1,40 @@
-description: Reference page for the 'swarm start' comand that allows you to start an application.
+description: Reference page for the 'swarm start' comand that allows you to start an application or service.
 
-# Starting an environment, app, or service
+# Starting an application or service
 
-<p class="lastmod">Last edited on November 8, 2014 by Marian Steinbach</p>
+<p class="lastmod">Last edited on December 11, 2014 by Marian Steinbach</p>
 
-Using the `swarm start` command you can start all apps in the current environment, one specific app, or one service inside an app.
+Using the `swarm start` command you can start an application or a specific service inside an application.
 
-All of these commands require you to be aware of the current environment. When in doubt, you can learn more about dealing with environments on the [environments reference page](../env/).
+Before you can actually start an application it has to be created in the selected environment before. You can learn more about this on the [environments reference page](../env/) and the reference page on [Creating an application](../create/).
 
-## Starting an environment
+## General syntax
 
-To start all apps existing within the current environment, all you have to do is run the command
+The overall syntax of the `swarm start` command is as follows:
 
-    $ swarm start
+    $ swarm start [-d|--detach] [app_name[/service_name]]
 
-## Starting an app
+The optional `app_name` argument specifies the application to be started. It refers to the name you see when running `swarm ls` to list applications. Using the additional `service_name`, seperated by `/`, you can specify a service to be started.
 
-If you only want to start a specific app inside the current environment, you can use the name of the app as an argument for the `swarm start` command.
+If the `app_name` (and `service_name`) argument is ommitted, the CLI looks if there is a `swarm.json` [application configuration](../swarm-json/) file in the current directory. If this is the case, the application defined in that configuration file is started.
 
-    $ swarm start <app_name>
+The flag `-d` or `--detach` can be used to immediately exit the command after issuing the command to the API. When immitted, the command is running until the application is either running an error occurs.
 
-Here, `<app_name>` is the name you used in your app configuration file (`swarm.json`) when [creating](../create/) the app.
+## Starting an application
 
-For example, if your app is called "onlineshop":
+For example, if you have created an application called "onlineshop" in your current environment, you can start it this way:
 
     $ swarm start onlineshop
 
+The name `onlineshop` refers to the `app_name` directive in your application configuration (namely `swarm.json` file).
+
+Remember, if the `swarm.json` file for that application is in your current directory, all you have to run is this:
+
+    $ swarm start
+
 ## Starting a service
 
-You can become even more specific and only start a specific service of one of your apps. This again uses the definition in your app configuration file. In addition to the `app_name`, here the `service_name` is referenced. The command syntax:
-
-    $ swarm start <app_name>/<service_name>
-
-So if you had, for example, a service called "payment" in your app called "onlineshop", you could use this command to start that service:
+Say you have, for example, a service called "payment" in your app called "onlineshop", you could start this specific service using the following command:
 
     $ swarm start onlineshop/payment
 

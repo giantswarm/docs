@@ -30,7 +30,7 @@ pages:
 - ['reference/env.md', 'Reference', 'Environments']
 - ['reference/up.md', 'Reference', 'Creating and starting an app']
 - ['reference/create.md', 'Reference', 'Creating an app']
-- ['reference/start.md', 'Reference', 'Starting an environment, app or service']
+- ['reference/start.md', 'Reference', 'Starting an app or service']
 - ['reference/status.md', 'Reference', 'Getting status information']
 - ['reference/stats.md', 'Reference', 'Getting instance statistics']
 - ['reference/scaleup.md', 'Reference', 'Scaling up a component']
