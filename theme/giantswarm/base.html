@@ -5,12 +5,22 @@
         <title>{{ page_title }}</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        {% if page_description %}<meta name="description" content="{{ page_description }}">{% endif %}
-        {% for d in meta.description %} <meta name="description" content="{{ d }}"> {% endfor %}
-        {% if site_author %}<meta name="author" content="{{ site_author }}">{% endif %}
-        {% if canonical_url %}<link rel="canonical" href="{{ canonical_url }}">{% endif %}
-        {% if favicon %}<link rel="shortcut icon" href="{{ favicon }}">
-        {% else %}<link rel="shortcut icon" href="{{ base_url }}/img/favicon.ico">{% endif %}
+        {% if page_description -%}
+        <meta name="description" content="{{ page_description }}">
+        {% elif meta.description -%}
+        <meta name="description" content="{{ meta.description[0] }}">
+        {% endif -%}
+        {% if site_author -%}
+        <meta name="author" content="{{ site_author }}">
+        {% endif -%}
+        {% if canonical_url -%}
+        <link rel="canonical" href="{{ canonical_url }}">
+        {% endif -%}
+        {% if favicon -%}
+        <link rel="shortcut icon" href="{{ favicon }}">
+        {% else -%}
+        <link rel="shortcut icon" href="{{ base_url }}/img/favicon.ico">
+        {% endif -%}
         
         <link rel="publisher" href="https://plus.google.com/117315999979228308375"/>        
 
