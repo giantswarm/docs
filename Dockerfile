@@ -6,9 +6,7 @@ MAINTAINER	Matthias Luebken <matthias@giantswarm.io>
 
 
 RUN apt-get update -qq && apt-get install -y -qq python-pip gettext
-RUN pip install mkdocs==0.9
-RUN pip install BeautifulSoup==3.2.1
-RUN pip install elasticsearch==1.2.0
+RUN pip install mkdocs==0.9 BeautifulSoup==3.2.1 elasticsearch==1.2.0
 
 
 WORKDIR	/docs
