@@ -1,4 +1,4 @@
-description: This is the reference page for the 'swarm company' command which allows you to manage teams of users.
+description: This is the reference page for the 'swarm company' command, which allows you to manage teams of users.
 
 # Companies
 
