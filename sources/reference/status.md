@@ -1,4 +1,4 @@
-description: Reference page for the 'swarm status' comand that prints out the status of a oarticular application and it's services and components.
+description: Reference page for the 'swarm status' command, which prints out the status of a particular application and its services and components.
 
 # Getting an app's status
 
