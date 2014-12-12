@@ -1,4 +1,4 @@
-description: Reference page on how to use the Giant Swarm registry
+description: This is the reference page on how to use the Giant Swarm registry with Docker
 
 # Using the registry
 
