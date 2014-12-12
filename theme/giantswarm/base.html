@@ -56,7 +56,12 @@
 
         <div class="container">
             <div class="col-md-3">{% include "toc.html" %}</div>
-            <div class="col-md-9" role="main" id="contentcontainer">{% include "content.html" %}</div>
+            <div class="col-md-9" role="main" id="contentcontainer">
+                {% include "content.html" %}
+
+                {% include "feedback.html" %}
+            </div>
+
         </div>
 
         {% if include_search %}{% include "search.html" %}{% endif %}
