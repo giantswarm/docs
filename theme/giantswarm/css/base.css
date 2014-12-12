@@ -28,6 +28,10 @@ ul.nav li.main {
     font-weight: bold;
 }
 
+.dropdown-menu > li > a {
+    padding: 7px 15px;
+}
+
 div.col-md-3 {
     padding-left: 0;
 }
