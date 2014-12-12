@@ -2,7 +2,7 @@ description: Reference page on how to use the Giant Swarm registry
 
 # Using the registry
 
-<p class="lastmod">Last edited on November 13, 2014 by Marian Steinbach</p>
+<p class="lastmod">Last edited on December 12, 2014 by Marian Steinbach</p>
 
 ## TL;DR
 
@@ -56,6 +56,8 @@ Example of a full image name:
 
 In our systems, users are associated with [companies](../companies/) to allow for shared resources between multiple users. Docker images are an example of these shared resources.
 
+In fact, even if you don't collaborate with other users, you are part of a company. The default company you belong to has the same name as your username. This is relevant for the registry, because:
+
 > Every image you push to the registry has to belong to a certain company. This is expressed by using the company name as the image's namespace.
 
 If, for example, you belong to the company called `acmecorp` and want to create an image, which can be used by all users of that company, the name `acmecorp` has to be used as the name space field within the image name, like here:
@@ -63,6 +65,8 @@ If, for example, you belong to the company called `acmecorp` and want to create 
     registry.giantswarm.io/acmecorp/exampleimage:1.4.2
 
 We will be using the company name `acmecorp` throughout this page as a placeholder for your respective company name.
+
+If you aren't planning to share your images with other users, you can of course use your default company name, which is identitcal with your user name.
 
 ## Logging in
 
