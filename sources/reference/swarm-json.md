@@ -1,4 +1,4 @@
-description: Reference page for the application configuration file usually called 'swarm.json'.
+description: This is the reference page for the application configuration file, usually called 'swarm.json'.
 
 # Valid keys and values for swarm.json
 
