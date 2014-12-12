@@ -1,4 +1,4 @@
-description: A quick overview of frequently used commands
+description: Here you can get a quick overview of frequently used commands for the swarm CLI.
 
 # TL;DR Cheat sheet
 
