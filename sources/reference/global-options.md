@@ -1,4 +1,4 @@
-description: Reference page about global command line options of the 'swarm' CLI.
+description: This is the reference page for the global command line options of the 'swarm' CLI.
 
 # Global command line options
 

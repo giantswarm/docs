@@ -1,4 +1,4 @@
-description: Reference table of content, including an overview of 'swarm' CLI subcommands.
+description: This is the table of contents for the Giant Swarm Reference, including an overview of 'swarm' CLI subcommands.
 
 # Reference
 

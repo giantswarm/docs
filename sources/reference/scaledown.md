@@ -1,4 +1,4 @@
-description: Reference page for the 'swarm scaledown' comand that allows to reduce the number of instances running a particular component.
+description: Reference page for the 'swarm scaledown' command, which allows you to reduce the number of instances running for a particular component.
 
 # Scaling down a component
 

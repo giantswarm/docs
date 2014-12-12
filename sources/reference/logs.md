@@ -1,4 +1,4 @@
-description: Reference page for 'swarm logs' which allows to access logs of your component instances.
+description: This is the reference page for the 'swarm logs' command, which allows you to access the logs of your component instances.
 
 # Accessing process logs
 

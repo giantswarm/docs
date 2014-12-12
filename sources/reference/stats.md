@@ -1,4 +1,4 @@
-description: Reference page for the 'swarm stats' comand that allows to access basic statistics about the resource usage of your components.
+description: Reference page for the 'swarm stats' command, which allows you to access basic statistics about the resource usage of your components.
 
 # Getting instance statistics
 

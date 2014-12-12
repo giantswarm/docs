@@ -1,4 +1,4 @@
-description: Reference page for the 'swarm up' command that allows you to create and start an application in one step.
+description: This is the reference page for the 'swarm up' command, which allows you to create and start an application in one step.
 
 # Creating and starting an application in one step
 

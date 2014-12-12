@@ -1,4 +1,4 @@
-description: Reference page for the 'swarm env' command which allows you to select, create and delete environments.
+description: This is the reference page for the 'swarm env' command, which allows you to select, create, and delete environments.
 
 # Environments
 
