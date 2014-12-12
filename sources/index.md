@@ -23,8 +23,4 @@ This section provides in-depth guides to specific topics:
  * [Swarmify Java](./guides/java.md)
 
 ### <i class="fa fa-book"></i> [Reference](reference/)
-The [Reference](reference/) section contains detailed descriptions of the different features Giant Swarm has to offer. Please also use the [search](search/). 
-
-### <i class="fa  fa-question-circle"></i> Help
-
-We are currently in an early alpha state and lots of things are still in development. Although we do our best there will probably be something unexepected happening. Please don't hesitate to contact us via [support@giantswarm.io](mailto:support@giantswarm.io) or our users chat [gitter.im/giantswarm/users](https://gitter.im/giantswarm/users).
+The [Reference](reference/) section contains detailed descriptions of the different features Giant Swarm has to offer. Please also use the [search](search/).
