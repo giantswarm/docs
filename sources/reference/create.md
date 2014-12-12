@@ -1,4 +1,4 @@
-description: Reference page for the 'swarm create' command which allows you to create a new application based on your configuration.
+description: This is the reference page for the 'swarm create' command, which allows you to create a new application based on your configuration.
 
 # Creating an app
 
