@@ -1,4 +1,4 @@
-description: Reference page for the 'swarm start' comand that allows you to start an application or service.
+description: This is the reference page for the 'swarm start' command, which allows you to start an application or service.
 
 # Starting an application or service
 
