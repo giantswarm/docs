@@ -1,4 +1,4 @@
-description: Reference page for the 'swarm scaleup' comand that allows to increase the number of instances running a particular component.
+description: Reference page for the 'swarm scaleup' command, which allows you to increase the number of instances running for a particular component.
 
 # Scaling up a component
 
