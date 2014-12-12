@@ -1,4 +1,4 @@
-description: Reference page for the `swarm info` command which allows you to get some basic information your login and environment status.
+description: Reference page for the `swarm info` command, which allows you to get some basic information on your login and environment status.
 
 # Getting basic information
 
