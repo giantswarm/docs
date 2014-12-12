@@ -1,4 +1,4 @@
-description: Main page of Giant Swarm's documentation
+description: Main page of Giant Swarm's documentation. From here you can navigate to all documentations, incl. Installation, Guides, and Reference.
 
 # Welcome to Giant Swarms documentation
 
