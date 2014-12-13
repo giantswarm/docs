@@ -19,11 +19,11 @@ Prerequisites:
 
 1. Build local docker image
 
-    make build
+    `make build`
 
 2. Run docker container
 
-    make run
+    `make run`
 
 3. Open [http://192.168.59.103:8000/](http://192.168.59.103:8000/)
 
@@ -34,19 +34,19 @@ Prerequisites:
 
 1. Create the virtual environment
 
-    virtualenv venv
+    `virtualenv venv`
 
 2. Activate it
 
-    source venv/bin/activate
+    `source venv/bin/activate`
 
 3. Install requirements
 
-    pip install -r requirements.txt
+    `pip install -r requirements.txt`
 
 4. Run mkdocs
 
-    mkdocs serve
+    `mkdocs serve`
 
 5. Open [http://localhost:8000/](http://localhost:8000/)
 
