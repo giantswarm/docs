@@ -22,7 +22,7 @@ What does this information tell you?
 
 * __Cluster status__: This is the general platform health and should say `reachable`.
 * __Logged in as user__: Here you find the username you are currently logged in with.
-* __Current environment__: The currently selected environment you are working in.
+* __Current environment__: The currently selected environment you are working in. Hint: Your can also get this information using [`swarm env`](../env/).
 
 ## Further reading
 
