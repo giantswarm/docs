@@ -2,7 +2,7 @@ description: Reference page for the `swarm info` command, which allows you to ge
 
 # Getting basic information
 
-<p class="lastmod">Last edited on December 10, 2014 by Marian Steinbach</p>
+<p class="lastmod">Last edited on December 13, 2014 by Marian Steinbach</p>
 
 The `swarm info` command is available to access some very basic information on your current status and settings.
 
