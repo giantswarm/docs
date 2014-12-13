@@ -21,7 +21,7 @@ Here is an example output:
 What does this information tell you?
 
 * __Cluster status__: This is the general platform health and should say `reachable`.
-* __Logged in as user__: Here you find the username you are currently logged in with.
+* __Logged in as user__: Here you find the username you are currently logged in with. Hint: If you are only interested in the current user name, you can use the [`swarm user`](../user/) command for that.
 * __Current environment__: The currently selected environment you are working in.
 
 ## Further reading
