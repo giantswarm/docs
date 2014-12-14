@@ -36,7 +36,7 @@ pages:
 - ['reference/scaleup.md', 'Reference', 'Scaling up a component']
 - ['reference/scaledown.md', 'Reference', 'Scaling down a component']
 - ['reference/logs.md', 'Reference', 'Accessing process logs']
-- ['reference/swarm-json.md', 'Reference', 'Swarm JSON']
+- ['reference/swarm-json.md', 'Reference', 'Application configuration (swarm.json)']
 - ['reference/registry.md', 'Reference', 'Using the registry']
 
 # Search
