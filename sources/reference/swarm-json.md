@@ -249,7 +249,7 @@ Note that there currently is a hard [limit](https://giantswarm.io/limits/) of 10
 This key expects an array of simple objects as value, one object for each volume you want to define. Each of these objects must have the following keys:
 
 * `path`: The path in which the volume will be mounted
-* `size`: A string defining the volume space in a format like `<n> <unit>`, where `n` is a number and `<unit>` is either `MB` (megabytes) or `GB` (gigybytes).
+* `size`: A string defining the volume size in gigabytes in a format like `<n> GB`.
 
 These volumes will be created when the application is created and will be deleted upon application deletion.
 
