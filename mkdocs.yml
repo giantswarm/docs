@@ -28,6 +28,7 @@ pages:
 - ['reference/info.md', 'Reference', 'Getting basic information']
 - ['reference/companies.md', 'Reference', 'Companies']
 - ['reference/env.md', 'Reference', 'Environments']
+- ['reference/swarm-json.md', 'Reference', 'Application configuration (swarm.json)']
 - ['reference/up.md', 'Reference', 'Creating and starting an app']
 - ['reference/create.md', 'Reference', 'Creating an app']
 - ['reference/start.md', 'Reference', 'Starting an app or service']
@@ -36,7 +37,7 @@ pages:
 - ['reference/scaleup.md', 'Reference', 'Scaling up a component']
 - ['reference/scaledown.md', 'Reference', 'Scaling down a component']
 - ['reference/logs.md', 'Reference', 'Accessing process logs']
-- ['reference/swarm-json.md', 'Reference', 'Application configuration (swarm.json)']
+- ['reference/user.md', 'Reference', 'Modifying user settings']
 - ['reference/registry.md', 'Reference', 'Using the registry']
 
 # Search
