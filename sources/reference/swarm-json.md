@@ -2,7 +2,7 @@ description: This is the reference page for the application configuration file, 
 
 # Application configuration (`swarm.json`)
 
-<p class="lastmod">Last edited on November 14, 2014 by Marian Steinbach</p>
+<p class="lastmod">Last edited on December 14, 2014 by Marian Steinbach</p>
 
 Giant Swarm applications are defined using a JSON configuration file format. The configuration file is ususlly called `swarm.json`.
 
@@ -166,11 +166,15 @@ In addition, this dependency definition results in a network link between the `a
 
     REDIS_PORT_6379_TCP_ADDR
 
-Be aware that this example variable name is directly derived from two required keys from our example dependency definition above. The variable name schema, which you might have guessed by now, is:
+from two required keys from our example dependency definition above. The variable name schema, which you might have guessed by now, is:
 
     <NAME_or_ALIAS>_PORT_<PORT>_ADDR
 
-The `alias` key (mentioned above), if used, takes precedence over the `name` when it comes to variable generation. So if there is an `alias`, it defines how the environment variable for linking will be called.
+In addition to that environment variable, an entry in `/etc/hosts` is generated with the name of the required component and it's ip address. Example:
+
+    redis 123.123.123.123
+
+Be aware that this example variable and host name is directly derived The `alias` key (mentioned above), if used, takes precedence over the `name` when it comes to variable generation. So if there is an `alias`, it defines how the environment variable for linking will be called.
 
 Suppose we would change the dependency configuration above to this instead:
 
@@ -184,7 +188,7 @@ Suppose we would change the dependency configuration above to this instead:
 ]
 ```
 
-As a result, our component would now provide an environment variable with the name `DB_PORT_6379_TCP_ADDR`.
+As a result, our component would now provide an environment variable with the name `DB_PORT_6379_TCP_ADDR`. The according `/etc/hosts` would now be named `db`.
 
 As a third and last example, imagine we had an additional service in our application configuration called `payment` with a component called `restapi` and port 8000 exposed. To myke our current component depend on that component, the dependency configuration would have to look like this:
 
@@ -197,7 +201,7 @@ As a third and last example, imagine we had an additional service in our applica
 ]
 ```
 
-As a result, our current component would provide the environment variable `RESTAPI_PORT_800_TCP_ADDR`. As you can see, while contained in the `name` key, the service name (`payment`) is not used in the envinronment variable name. In order to make your environment variable name more explicit, you could of course set an alias as explained above.
+As a result, our current component would provide the environment variable `RESTAPI_PORT_800_TCP_ADDR` and an `/etc/hosts` entry `restapi`. As you can see, while contained in the `name` key, the service name (`payment`) is not used in the environment variable name nor in the `/etc/hosts` entry. In order to make these names more explicit, you could of course set an alias as explained above.
 
 ### `domains`
 
