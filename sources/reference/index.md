@@ -16,6 +16,7 @@ The reference area of our documentation is where you get structured information 
  * [Getting an app's status](status/)
  * [Getting instance statistics](stats/)
  * [Accessing process logs](logs/)
+ * [Modifying user settings](user/)
  * [swarm.json file format](swarm-json/)
  * [Using the registry](registry/)
 
@@ -44,6 +45,6 @@ ls                      | List all apps
 cat                     | Show the configuration of an application
 login                   | Log in to your account
 logout                  | Log out from your account
-user                    | Create and modify users
+[user](user/)           | Create and modify users
 [company](companies/)   | Manage companies
 completion              | Setup CLI completion
