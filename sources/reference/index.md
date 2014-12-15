@@ -7,9 +7,10 @@ The reference area of our documentation is where you get structured information 
 ## Contents
 
  * [Global command line options](global-options/)
+ * [Getting basic information](info/)
  * [Companies](companies/)
  * [Environments](env/)
- * [Getting basic information](info/)
+ * [Application configuration (`swarm.json`)](swarm-json/)
  * [Creating an app](create/)
  * [Creating and starting an app](up/)
  * [Starting an application or service](start/)
@@ -17,7 +18,6 @@ The reference area of our documentation is where you get structured information 
  * [Getting instance statistics](stats/)
  * [Accessing process logs](logs/)
  * [Modifying user settings](user/)
- * [swarm.json file format](swarm-json/)
  * [Using the registry](registry/)
 
 
