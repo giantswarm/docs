@@ -2,7 +2,7 @@ description: A first practical introduction into using Giant Swarm. This will ta
 
 # Getting started
 
-<p class="lastmod">Last edited on December 8, 2014 by Matthias Lübken</p>
+<p class="lastmod">Last edited on December 16, 2014 by Marian Steinbach</p>
 
 
 This page gets you started with Giant Swarm. It will show you how to install the required tools and get a provided Docker image running.
@@ -44,7 +44,6 @@ Now that you have the `swarm` command available, you can check the cluster's ava
     $ swarm info
     Cluster status:      reachable
     Logged in as user:   luebken
-    Current company:     giantswarm
     Current environment: giantswarm/dev
 
 Now that everything is set up, it's time to __log in__ with your user account. That's what the `swarm login` command is for. You will then be prompted for your user name or email address and for your password.
