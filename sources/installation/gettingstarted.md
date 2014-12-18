@@ -9,7 +9,7 @@ This page gets you started with Giant Swarm. It will show you how to install the
 
 ## Prerequisites
 
-This section assumes that you have an account with Giant Swarm. If not please sign up at [giantswarm.io](http://giantswarm.io). Please note that we currently have a waiting list. It may take a while before you get an invite.
+This section assumes that you have an account with Giant Swarm. If not, please [request an invite](https://giantswarm.io/request-invite/) first. Please note that we currently have a waiting list. It may take a while before you get an invite.
 
 ## Installing the CLI
 
