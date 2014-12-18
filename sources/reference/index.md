@@ -14,6 +14,7 @@ The reference area of our documentation is where you get structured information 
  * [Creating an app](create/)
  * [Creating and starting an app](up/)
  * [Starting an application or service](start/)
+ * [Stopping an application or service](stop/)
  * [Getting an app's status](status/)
  * [Getting instance statistics](stats/)
  * [Accessing process logs](logs/)
@@ -32,7 +33,7 @@ Command                 | Description
 [create](create/)       | Define a new app by loading a json file
 [status](status/)       | Show current status of an app or service
 [start](start/)         | Start an application or service
-stop                    | Stop an application or service
+[stop](stop/)           | Stop an application or service
 delete                  | Delete an app. Note that you lose all contained data by doing so.
 update                  | Update a component by changing the docker image to a newer version
 [scaleup](scaleup/)     | Increase number of instances running a component
