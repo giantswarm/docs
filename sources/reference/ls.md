@@ -32,8 +32,8 @@ The application status is an aggregate of the statuses of all component instance
 
  * `up`: All component instances are running.
  * `starting`: One or more component instances, possibly all of them, are currently being started, some might already be up.
- * `down`: The component is currently not running
- * `failed`: An error occurred during the attempt to start the component and it's currently not running
+ * `down`: At least one component instances is currently down (meaning neither running nor started. This might as well mean. Any number of other instances might be up or starting.
+ * `failed`: At least one component instance has a failure. Any number of other instances might be down, starting or up.
 
 
 ## Further reading
