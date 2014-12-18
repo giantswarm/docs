@@ -16,6 +16,8 @@ To stop an application, you simply call `swarm stop` with the application name a
 
     $ swarm stop myapp
 
+When in a terminal, you will see a little activity indicator until the application is actually stopped.
+
 ## Stopping a service
 
 To stop a service, provide the name of the service as defined in your application configuration (`swarm.json`), prefixed with the application name and a slash (`/`). Example:
