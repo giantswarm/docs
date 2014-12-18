@@ -32,6 +32,7 @@ pages:
 - ['reference/up.md', 'Reference', 'Creating and starting an app']
 - ['reference/create.md', 'Reference', 'Creating an app']
 - ['reference/start.md', 'Reference', 'Starting an app or service']
+- ['reference/ls.md', 'Reference', 'Listing applications']
 - ['reference/status.md', 'Reference', 'Getting status information']
 - ['reference/stats.md', 'Reference', 'Getting instance statistics']
 - ['reference/scaleup.md', 'Reference', 'Scaling up a component']
