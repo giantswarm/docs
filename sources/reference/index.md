@@ -15,6 +15,7 @@ The reference area of our documentation is where you get structured information 
  * [Creating and starting an app](up/)
  * [Starting an application or service](start/)
  * [Stopping an application or service](stop/)
+ * [Listing applications](ls/)
  * [Getting an app's status](status/)
  * [Getting instance statistics](stats/)
  * [Accessing process logs](logs/)
@@ -41,7 +42,7 @@ update                  | Update a component by changing the docker image to a n
 [logs](logs/)           | Print an app's standard output and error messages
 [stats](stats/)         | Print basic statistics of an instance
 version                 | Print swarm client version
-ls                      | List all apps
+[ls](ls/)               | List all apps
 [env](env/)             | Handle environments
 cat                     | Show the configuration of an application
 login                   | Log in to your account
