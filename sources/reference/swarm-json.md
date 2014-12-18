@@ -2,7 +2,7 @@ description: This is the reference page for the application configuration file, 
 
 # Application configuration (`swarm.json`)
 
-<p class="lastmod">Last edited on December 14, 2014 by Marian Steinbach</p>
+<p class="lastmod">Last edited on December 15, 2014 by Marian Steinbach</p>
 
 Giant Swarm applications are defined using a JSON configuration file format. The configuration file is ususlly called `swarm.json`.
 
@@ -246,12 +246,12 @@ Note that there currently is a hard [limit](https://giantswarm.io/limits/) of 10
 
 ### `volumes`
 
-This key expects an array of simple objects as value, one object for each volume you want to define. Each of these objects must have the following keys:
+When you stop an application component, all data written to the file system in the docker container representing this component is lost. With volumes you can preserve your data to survive stops and starts. The volumes you define will be created when the application is created and will be deleted upon application deletion.
 
-* `path`: The path in which the volume will be mounted
+The `volumes` key expects an array of simple objects as value, one object for each volume you want to define. Each of these objects must have the following keys:
+
+* `path`: The path in which the volume will be mounted, as a string
 * `size`: A string defining the volume size in gigabytes in a format like `<n> GB`.
-
-These volumes will be created when the application is created and will be deleted upon application deletion.
 
 <i class="fa fa-exclamation-triangle"></i> Please note that we currently do not provide a backup mechanism. If you need to preserve the data on your volumes, please think about a solution using for example an FTP server or cloud storage like Amazon S3 from within your component.
 
