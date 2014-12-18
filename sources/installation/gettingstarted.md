@@ -2,7 +2,7 @@ description: A first practical introduction into using Giant Swarm. This will ta
 
 # Getting started
 
-<p class="lastmod">Last edited on December 8, 2014 by Matthias Lübken</p>
+<p class="lastmod">Last edited on December 16, 2014 by Marian Steinbach</p>
 
 
 This page gets you started with Giant Swarm. It will show you how to install the required tools and get a provided Docker image running.
@@ -54,13 +54,6 @@ Now that everything is set up, it's time to __log in__ with your user account. T
     password:
 
 Note that the password won't be displayed while you type.
-
-Since we sent you your password in plain text via email, it is recommended to __change your password__ now. Use `swarm user -u password` for that purpose. You will be prompted to enter the old password, and then the new one twice.
-
-    $ swarm user -u password
-    old password:
-    new password:
-    confirm new password:
 
 The next thing you might want to try is setting up a specific environment. See [Working with environments](/reference/env/) for further details.
 
