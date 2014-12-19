@@ -219,7 +219,7 @@ When using a `.gigantic.io` subdomain in your example configuration, there is no
 
 <i class="fa fa-exclamation-triangle"></i> As of now we do not yet have checks in place to ensure a `gigantic.io` subdomain is used only by one application. This could theoretically result in another user's application grabbing a name you want for yourself. This is clearly to be solved and we will come up with a solution rather sooner than later.
 
-If you plan to use your own domain name in your configuration, there is one additional thing to take care of: please set up a CNAME entry for the desired subdomain pointing to `gigantic.io`.
+If you plan to use your own domain name in your configuration, there is one additional thing to take care of: please set up a CNAME entry for the desired subdomain pointing to `catchall.gigantic.io`.
 
 ### `env`
 
