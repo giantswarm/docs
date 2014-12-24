@@ -2,7 +2,7 @@ description: This is the reference page for the application configuration file, 
 
 # Application configuration (`swarm.json`)
 
-<p class="lastmod">Last edited on December 19, 2014 by Marian Steinbach</p>
+<p class="lastmod">Last edited on December 24, 2014 by Marian Steinbach</p>
 
 Giant Swarm applications are defined using a JSON configuration file format. The configuration file is ususlly called `swarm.json`.
 
