@@ -136,6 +136,22 @@ The name of a docker image. This can be a name like `ubuntu` or `redis` when usi
 
 Find out more on the [registry reference page](../registry/).
 
+### `args`
+
+The `args` key is optional and, if present, expects as value an array of strings. These strings will be passed as arguments when your container is started, just like the arguments you can pas to `docker run`. The effect of these arguments depends on how the container is set up. Please refer to the [Dockerfile documentation](https://docs.docker.com/reference/builder/), expecially on the `CMD` and `ENTRYPOINT` directives.
+
+As already shown in our [minimal example](#minimal-example) above, when using a simple Linux image, the `args` key can be used to define which process is to be called.
+
+    "image": "ubuntu",
+    "args": ["/usr/bin/some_process"]
+
+With this setup, further argument array entries could be used to pass arguments to the call of a binary. Example:
+
+    "image": "ubuntu",
+    "args": ["ps", "aux"]
+
+This provides for some convenience, since it potentially allows you to use container images in a flexible way for more than a single purpose. So it might save you from building and pushing multiple almost identical images.
+
 ### `dependencies`
 
 Array of dependency objects, which are used to define dependencies between components. Defining a dependency object within _component A_ pointing to _component B_ indicates that _component A_ requires _component B_ to be running. Dependencies can refer to components within the same service or within different services.
