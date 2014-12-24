@@ -44,7 +44,7 @@ update                  | Update a component by changing the docker image to a n
 version                 | Print swarm client version
 [ls](ls/)               | List all apps
 [env](env/)             | Handle environments
-cat                     | Show the configuration of an application
+[cat](cat/)             | Show the configuration of an application
 login                   | Log in to your account
 logout                  | Log out from your account
 [user](user/)           | Create and modify users
