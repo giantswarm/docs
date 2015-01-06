@@ -2,7 +2,7 @@ description: A slightly more involved tutorial for those who have tested out our
 
 # Getting started - Part 2
 
-<p class="lastmod">Last edited on December 9, 2014 by Matthias Lübken</p>
+<p class="lastmod">Last edited on January 6, 2015 by Ewout Prangsma</p>
 
 This page provides a slightly more complex example using two components and a custom Docker image. 
 
@@ -174,9 +174,9 @@ currentweather  dev   luebken    2014-09-22 18:53:44
 $  swarm status currentweather
 App currentweather is down!
 
-service                 component                 instanceid                            status
-currentweather-service  currentweather-component  d4664c37-49cb-436b-a2f0-727bb5539538  down
-currentweather-service  redis                     02288488-4185-473b-8de1-47f91971bdb2  down
+service                 component                 instanceid                            created status
+currentweather-service  currentweather-component  d4664c37-49cb-436b-a2f0-727bb5539538  6 Jan 15 10:28 UTC down
+currentweather-service  redis                     02288488-4185-473b-8de1-47f91971bdb2  6 Jan 15 10:28 UTC down
 
 $ swarm start currentweather
 Starting app currentweather ...
@@ -187,16 +187,16 @@ Check the status until all components are *up*:
 $ swarm status currentweather
 App currentweather is starting!
 
-service                 component                 instanceid                            status
-currentweather-service  currentweather-component  d4664c37-49cb-436b-a2f0-727bb5539538  starting
-currentweather-service  redis                     02288488-4185-473b-8de1-47f91971bdb2  up
+service                 component                 instanceid                            created            status
+currentweather-service  currentweather-component  d4664c37-49cb-436b-a2f0-727bb5539538                     6 Jan 15 10:28 UTC starting
+currentweather-service  redis                     02288488-4185-473b-8de1-47f91971bdb2  6 Jan 15 10:28 UTC up
 
 $ swarm status currentweather
 App currentweather is up!
 
-service                 component                 instanceid                            status
-currentweather-service  redis                     02288488-4185-473b-8de1-47f91971bdb2  up
-currentweather-service  currentweather-component  d4664c37-49cb-436b-a2f0-727bb5539538  up
+service                 component                 instanceid                            created            status
+currentweather-service  redis                     02288488-4185-473b-8de1-47f91971bdb2  6 Jan 15 10:28 UTC up
+currentweather-service  currentweather-component  d4664c37-49cb-436b-a2f0-727bb5539538                     6 Jan 15 10:28 UTC up
 
 $ curl currentweather.gigantic.io
 Hello World from Cologne: overcast clouds
