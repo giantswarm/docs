@@ -2,7 +2,7 @@ description: A slightly more involved tutorial for those who have tested out our
 
 # Getting started - Part 2
 
-<p class="lastmod">Last edited on December 9, 2014 by Matthias Lübken</p>
+<p class="lastmod">Last edited on January 6, 2015 by Ewout Prangsma</p>
 
 This page provides a slightly more complex example using two components and a custom Docker image. 
 
@@ -166,10 +166,10 @@ To start this example:
 $ swarm create
 
 $ swarm ls
-1 app created so far!
+1 application available:
 
-app             env   company    created
-currentweather  dev   luebken    2014-09-22 18:53:44
+application     environment    created              status
+currentweather  luebken/dev    2014-09-22 18:53:44  down
 
 $  swarm status currentweather
 App currentweather is down!

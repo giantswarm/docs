@@ -2,7 +2,7 @@ description: The reference page for the 'swarm ls' command, which is used to sho
 
 # Listing applications
 
-<p class="lastmod">Last edited on December 18, 2014 by Marian Steinbach</p>
+<p class="lastmod">Last edited on January 6, 2014 by Ewout Prangsma</p>
 
 The `swarm ls` helps you to find out which applications are configured in your current environment and what their status is.
 
@@ -12,17 +12,16 @@ The command is simply called without any arguments, like this:
 
 You get a table-like output of your applications. Here is an example:
 
-    2 apps available:
+    2 applications available:
 
-    app              env  company  created              status
-    graphhopper-cgn  dev  marian   2014-12-09 11:07:45  up
-    twofishes        dev  marian   2014-12-18 06:43:11  down
+    application      environment  created              status
+    graphhopper-cgn  marian/dev   2014-12-09 11:07:45  up
+    twofishes        marian/dev   2014-12-18 06:43:11  down
 
 The columns in detail:
 
- * `app`: The application name as defined in your application configuration
- * `env`: The environment name the application is running in
- * `company`: The company owning the environment and thus the application
+ * `application`: The application name as defined in your application configuration
+ * `environment`: The environment name the application is running in
  * `created`: The UTC date and time when the application has been created
  * `status`: The overall status of the application
 
