@@ -2,7 +2,7 @@ description: This is the reference page for the 'swarm user' command, which allo
 
 # Modify user settings
 
-<p class="lastmod">Last edited on January 7, 2014 by Marian Steinbach</p>
+<p class="lastmod">Last edited on January 7, 2015 by Marian Steinbach</p>
 
 The `swarm user` command allows you to fiddle with a few things regarding your user account.
 
