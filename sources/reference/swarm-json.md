@@ -2,7 +2,7 @@ description: This is the reference page for the application configuration file, 
 
 # Application configuration (`swarm.json`)
 
-<p class="lastmod">Last edited on December 19, 2014 by Marian Steinbach</p>
+<p class="lastmod">Last edited on January 7, 2015 by Marian Steinbach</p>
 
 Giant Swarm applications are defined using a JSON configuration file format. The configuration file is ususlly called `swarm.json`.
 
@@ -66,9 +66,9 @@ This example makes use of all possible keys to illustrate their use.
           "ports": [
             "8080/tcp"
           ],
-          "env": [
-            "MODE=development"
-          ],
+          "env": {
+            "MODE": "development"
+          },
           "dependencies": [
             {
               "name": "redis",
@@ -223,7 +223,15 @@ If you plan to use your own domain name in your configuration, there is one addi
 
 ### `env`
 
-Array of environment variables as strings in the format `<variable_name>=<value>`. These variables will be available within the running docker containers.
+Environment variables definitions. These variables will be available within the running docker containers. Variable values _must_ be of type string. Example:
+
+```json
+"env": {
+  "FIRST_VARIABLE": "foo",
+  "SECOND_VARIABLE": "bar",
+  "NUMERIC_VARIABLE": "123"
+}
+```
 
 ### `ports`
 
