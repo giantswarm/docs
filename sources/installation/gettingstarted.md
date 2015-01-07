@@ -60,23 +60,25 @@ The next thing you might want to try is setting up a specific environment. See [
 
 Create a file called `swarm.json` with your favourite editor and fill it with the following JSON code.
 
+```json
+{
+  "app_name": "helloworld",
+  "services": [
     {
-        "app_name": "helloworld",
-        "services": [
-            {
-                "service_name": "helloworld-service",
-                "components": [
-                    {
-                        "component_name": "python",
-                        "image": "python:3",
-                        "args": ["sh", "-c", "echo \"Hello Giant Swarm. \\o/\" > index.html && python -m http.server"],
-                        "ports": [ "8000/tcp" ],
-                        "domains": { "helloworld.gigantic.io": "8000" }
-                    }
-                ]
-            }
-        ]
+      "service_name": "helloworld-service",
+      "components": [
+        {
+          "component_name": "python",
+          "image": "python:3",
+          "args": ["sh", "-c", "echo \"Hello Giant Swarm. \\o/\" > index.html && python -m http.server"],
+          "ports": [ "8000/tcp" ],
+          "domains": { "helloworld.gigantic.io": "8000" }
+        }
+      ]
     }
+  ]
+}
+```
 
 This configures a simple app with one service. The service consists of one component. The component uses a predefined image and starts a python web http server.
 
@@ -91,8 +93,8 @@ While it's starting you may check its status with the `status` command from a ne
     $ swarm status
     App helloworld is starting!
 
-    service             component  instanceid                            created             status
-    helloworld-service  python     4cc709fc-5250-4bab-83d3-837cd0f7af36  06 Jan 15 10:28 UTC starting
+    service             component  instanceid                            created              status
+    helloworld-service  python     4cc709fc-5250-4bab-83d3-837cd0f7af36  06 Jan 15 10:28 UTC  starting
 
 Once it's up, you can check it by opening the specified domain in a browser or `curl`ing it:
     

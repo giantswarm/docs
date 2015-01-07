@@ -161,7 +161,6 @@ $ docker push <username>/sample_rails_4
 Now, we just need to add an application file describing our containers:
 
 ```json
-# File swarm.json
 {
   "app_name": "rails-sample-1",
   "services": [{
