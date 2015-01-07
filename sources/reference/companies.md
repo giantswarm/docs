@@ -2,16 +2,16 @@ description: This is the reference page for the 'swarm company' command, which a
 
 # Companies
 
-<p class="lastmod">Last edited on November 14, 2014 by Marian Steinbach</p>
+<p class="lastmod">Last edited on January 6, 2015 by Ewout Prangsma</p>
 
 Companies allow for sharing resources between users. Users belonging to the same company can, for example, control applications of that company or access the company's docker images on our [registry](../registry/).
 
 ## Creating a company
 
-To create a company, call `swarm company` and enter the company name when prompted:
+To create a company, call `swarm company create <company-name>`:
 
-    $ swarm company
-    Company: mygreatcompany
+    $ swarm company create mygreatcompany
+    Company mygreatcompany has been created
 
 Note that company names are unique within Giant Swarm, so if the company has been already created, additional users have to be [added](#adding-a-user-to-a-company) by the initial creator of the company.
 
