@@ -2,13 +2,19 @@ description: This is the reference page for the 'swarm user' command, which allo
 
 # Modify user settings
 
-<p class="lastmod">Last edited on December 13, 2014 by Marian Steinbach</p>
+<p class="lastmod">Last edited on January 7, 2015 by Marian Steinbach</p>
 
 The `swarm user` command allows you to fiddle with a few things regarding your user account.
 
 Note: In case you __lost your password__, the CLI _does not allow you_ to restore your password. Please contact us at [support@giantswarm](mailto:support@giantswarm) to help you in this case.
 
 In addition, please be aware that it is currently not possible to change your _user name_.
+
+## Printing your user name
+
+Use this command to print out your own user name:
+
+    $ swarm user
 
 ## Setting a new password
 
