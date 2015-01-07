@@ -56,7 +56,7 @@ This image can then be referred to in the new `swarm.json` file:
     }
   ]
 }
-``
+```
 
 ## Swarmify Symfony
 
