@@ -2,7 +2,7 @@ description: A first practical introduction into using Giant Swarm. This will ta
 
 # Getting started
 
-<p class="lastmod">Last edited on December 16, 2014 by Marian Steinbach</p>
+<p class="lastmod">Last edited on January 6, 2015 by Ewout Prangsma</p>
 
 
 This page gets you started with Giant Swarm. It will show you how to install the required tools and get a provided Docker image running.
@@ -91,8 +91,8 @@ While it's starting you may check its status with the `status` command from a ne
     $ swarm status
     App helloworld is starting!
 
-    service             component  instanceid                            status
-    helloworld-service  python     4cc709fc-5250-4bab-83d3-837cd0f7af36  starting
+    service             component  instanceid                            created             status
+    helloworld-service  python     4cc709fc-5250-4bab-83d3-837cd0f7af36  06 Jan 15 10:28 UTC starting
 
 Once it's up, you can check it by opening the specified domain in a browser or `curl`ing it:
     
