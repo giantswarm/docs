@@ -2,7 +2,7 @@ description: A general introduction into what Giant Swarm is and does. Start her
 
 # What is Giant Swarm?
 
-<p class="lastmod">Last edited on December 1, 2014 by Matthias Lübken</p>
+<p class="lastmod">Last edited on January 6, 2015 by Ewout Prangsma</p>
 
 With Giant Swarm you can build and host server-side applications. There are no restrictions regarding programming languages, web frameworks, or databases. We are especially optimized for applications that are built in a microservice style.
 
@@ -84,11 +84,11 @@ The main interface to Giant Swarm is a CLI called `swarm`. After you have been a
 
 ```
 $ swarm ls
-2 apps available:
+2 applications available:
 
-app             env  company  created
-currentweather  dev  luebken  2014-11-28 14:01:35
-helloworld      dev  luebken  2014-11-28 14:01:43
+application     environment  created              status
+currentweather  luebken/dev  2014-11-28 14:01:35  up
+helloworld      luebken/dev  2014-11-28 14:01:43  up
 ```
 
 ## Microservices
