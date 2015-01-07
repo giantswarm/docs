@@ -44,7 +44,6 @@ Now that you have the `swarm` command available, you can check the cluster's ava
     $ swarm info
     Cluster status:      reachable
     Logged in as user:   luebken
-    Current company:     giantswarm
     Current environment: giantswarm/dev
 
 Now that everything is set up, it's time to __log in__ with your user account. That's what the `swarm login` command is for. You will then be prompted for your user name or email address and for your password.
