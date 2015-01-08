@@ -36,7 +36,6 @@ Command                 | Description
 [start](start/)         | Start an application or service
 [stop](stop/)           | Stop an application or service
 delete                  | Delete an app. Note that you lose all contained data by doing so.
-update                  | Update a component by changing the docker image to a newer version
 [scaleup](scaleup/)     | Increase number of instances running a component
 [scaledown](scaledown/) | Reduce number of instances running a component
 [logs](logs/)           | Print an app's standard output and error messages
@@ -50,3 +49,7 @@ logout                  | Log out from your account
 [user](user/)           | Create and modify users
 [company](companies/)   | Manage companies
 completion              | Setup CLI completion
+
+<!-- Command is deactivated
+update                  | Update a component by changing the docker image to a newer version
+-->
