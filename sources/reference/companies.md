@@ -8,13 +8,13 @@ Companies allow for sharing resources between users. Users belonging to the same
 
 ## Your default company
 
-As a Giant Swarm user you automatically have a _default company_ assigned to you. This is named after your user name. So if your user name is `yourname`, your default company name is `yourname`, too.
+As a Giant Swarm user you automatically have a _default company_ assigned to you. This is named after your username. So if your username is `yourname`, your default company name is `yourname`, too.
 
 This is especially relevant for two reasons:
 
 * All your applications on Giant Swarm are associated with a distinct [environment](../env/). When you first login with the `swarm` CLI as user `yourname`, an environment is automatically created and selected. This default environment is called `yourname/dev` and belongs to your default company.
 
-* When using our [private registry](../registry/) for your Docker images, company names are used as namespace identifiers. When starting with Giant Swarm, simply use your default company name (your user name) as image namespace.
+* When using our [private registry](../registry/) for your Docker images, company names are used as namespace identifiers. When starting with Giant Swarm, simply use your default company name (your username) as image namespace.
 
 ## Creating a company
 
@@ -37,7 +37,7 @@ As a user you can be part of any number of companies. To list the companies you 
 
 ## Adding a user to a company
 
-In order to add a user as a member of a certain existing company, the initial creator of the company can issue a `swarm company add-user` command with the company name and the user name as arguments. The general syntax is like this:
+In order to add a user as a member of a certain existing company, the initial creator of the company can issue a `swarm company add-user` command with the company name and the username as arguments. The general syntax is like this:
 
     $ swarm company add-user <company> <user>
 
