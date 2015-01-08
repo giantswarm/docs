@@ -39,32 +39,34 @@ Now build, test, and upload the image:
  
 This image can then be referred to in the new `swarm.json` file:
 
-	{
-	    "app_name": "hellophp",
-	    "services": [
-	        {
-	            "service_name": "hellophp-service",
-	            "components": [
-	                {
-	                    "component_name": "hellophp-component",
-	                    "image": "registry.giantswarm.io/giantswarm/hellophp",
-						"ports": [ "80/tcp" ],
-	                    "domains": { "hellophp.gigantic.io": "80" }
-	                }
-	            ]
-	        }
-	    ]
-	}
+```json
+{
+  "app_name": "hellophp",
+  "services": [
+    {
+      "service_name": "hellophp-service",
+      "components": [
+        {
+          "component_name": "hellophp-component",
+          "image": "registry.giantswarm.io/giantswarm/hellophp",
+          "ports": [ "80/tcp" ],
+          "domains": { "hellophp.gigantic.io": "80" }
+        }
+      ]
+    }
+  ]
+}
+```
 
 ## Swarmify Symfony
 
 Getting Symfony running in Docker and on the Swarm only requires a couple of steps. To get a head start you can just clone our repo and use [fig](http://www.fig.sh/) to get everything up and running.
 
 ```
-	$ git clone git@github.com:giantswarm/symfony-standard.git
-	$ cd symfony-standard
-	$ git checkout dockerize
-	$ fig up
+$ git clone git@github.com:giantswarm/symfony-standard.git
+$ cd symfony-standard
+$ git checkout dockerize
+$ fig up
 ```
 
 	TODO explain the steps
