@@ -2,7 +2,7 @@ description: This is the reference page for the 'swarm company' command, which a
 
 # Companies
 
-<p class="lastmod">Last edited on January 7, 2015 by Marian Steinbach</p>
+<p class="lastmod">Last edited on January 8, 2015 by Marian Steinbach</p>
 
 Companies allow for sharing resources between users. Users belonging to the same company can, for example, control applications of that company or access the company's docker images on our [registry](../registry/).
 
@@ -37,7 +37,7 @@ As a user you can be part of any number of companies. To list the companies you 
 
 ## Adding a user to a company
 
-In order to add a user as a member of a certain existing company, the initial creator of the company can issue a `swarm company add-user` command with the company name and the username as arguments. The general syntax is like this:
+In order to add a user as a member of a certain existing company, a member of that company can issue a `swarm company add-user` command with the company name and the username as arguments. The general syntax is like this:
 
     $ swarm company add-user <company> <user>
 
