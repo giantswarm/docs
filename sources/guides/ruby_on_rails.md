@@ -2,7 +2,7 @@ description: This guide shows you how to create, deploy, and run a simple Ruby o
 
 # Swarmify Ruby on Rails
 
-<p class="lastmod">Last edited on November 27, 2014 by Marian Steinbach</p>
+<p class="lastmod">Last edited on January 7, 2015 by Marian Steinbach</p>
 
 The following guide will explain how to configure the [RailsTutorials Sample App](https://github.com/railstutorial/sample_app_rails_4/) to GiantSwarm. We will run one container for MySQL and one for your Rails application. You should have a basic understanding of Docker and Rails.
 
@@ -161,7 +161,6 @@ $ docker push <username>/sample_rails_4
 Now, we just need to add an application file describing our containers:
 
 ```json
-# File swarm.json
 {
   "app_name": "rails-sample-1",
   "services": [{
@@ -170,19 +169,19 @@ Now, we just need to add an application file describing our containers:
       "component_name": "database",
       "image": "mysql",
       "ports": ["3306"],
-      "env": [
-        "MYSQL_ROOT_PASSWORD=somesecretpassword"
-      ]
+      "env": {
+        "MYSQL_ROOT_PASSWORD": "somesecretpassword"
+      }
     },
     {
       "component_name": "rails",
       "image": "<username>/sample_rails_4",
-      "env": [
-        "SECRET_KEY_BASE=somesecretkeyforrails",
-        "RAILS_ENV=production",
-        "MYSQL_PASS=somesecretpassword",
-        "MYSQL_USER=root"
-      ],
+      "env": {
+        "SECRET_KEY_BASE": "somesecretkeyforrails",
+        "RAILS_ENV": "production",
+        "MYSQL_PASS": "somesecretpassword",
+        "MYSQL_USER": "root"
+      },
       "dependencies": [
         {"name": "database", "port": 3306}
       ],

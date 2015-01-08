@@ -2,7 +2,7 @@ description: This is the reference page for the application configuration file, 
 
 # Application configuration (`swarm.json`)
 
-<p class="lastmod">Last edited on December 24, 2014 by Marian Steinbach</p>
+<p class="lastmod">Last edited on January 7, 2015 by Marian Steinbach</p>
 
 Giant Swarm applications are defined using a JSON configuration file format. The configuration file is ususlly called `swarm.json`.
 
@@ -66,9 +66,9 @@ This example makes use of all possible keys to illustrate their use.
           "ports": [
             "8080/tcp"
           ],
-          "env": [
-            "MODE=development"
-          ],
+          "env": {
+            "MODE": "development"
+          },
           "dependencies": [
             {
               "name": "redis",
@@ -138,7 +138,7 @@ Find out more on the [registry reference page](../registry/).
 
 ### `args`
 
-The `args` key is optional and, if present, expects as value an array of strings. These strings will be passed as arguments when your container is started, just like the arguments you can pas to `docker run`. The effect of these arguments depends on how the container is set up. Please refer to the [Dockerfile documentation](https://docs.docker.com/reference/builder/), expecially on the `CMD` and `ENTRYPOINT` directives.
+The `args` key is optional and, if present, expects as value an array of strings. These strings will be passed as arguments when your container is started, just like the arguments you can pass to `docker run`. The effect of these arguments depends on how the container is set up. Please refer to the [Dockerfile documentation](https://docs.docker.com/reference/builder/), especially on the `CMD` and `ENTRYPOINT` directives.
 
 As already shown in our [minimal example](#minimal-example) above, when using a simple Linux image, the `args` key can be used to define which process is to be called.
 
@@ -239,7 +239,15 @@ If you plan to use your own domain name in your configuration, there is one addi
 
 ### `env`
 
-Array of environment variables as strings in the format `<variable_name>=<value>`. These variables will be available within the running docker containers.
+Environment variables definitions. These variables will be available within the running docker containers. Variable values _must_ be of type string. Example:
+
+```json
+"env": {
+  "FIRST_VARIABLE": "foo",
+  "SECOND_VARIABLE": "bar",
+  "NUMERIC_VARIABLE": "123"
+}
+```
 
 ### `ports`
 

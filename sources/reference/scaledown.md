@@ -2,7 +2,7 @@ description: Reference page for the 'swarm scaledown' command, which allows you 
 
 # Scaling down a component
 
-<p class="lastmod">Last edited on November 9, 2014 by Marian Steinbach</p>
+<p class="lastmod">Last edited on January 6, 2015 by Ewout Prangsma</p>
 
 The `swarm scaledown` command is used to decrease the number of instances running a service component.
 
@@ -10,11 +10,11 @@ The `swarm scaledown` command is used to decrease the number of instances runnin
 
 The command requires a service component name as well as the number of instances to be subtracted as arguments.
 
-    $ swarm scaledown <app/service/component> --count=<num-to-add>
+    $ swarm scaledown <app/service/component> <num-to-remove>
 
 For example, if you have an "onlineshop" app with a service called "imageserver" and a component called "nginx", use the following command to __take away one__ instance from this component:
 
-    $ swarm scaledown onlineshop/imageserver/nginx --count=1
+    $ swarm scaledown onlineshop/imageserver/nginx 1
 
 ## Related reading
 

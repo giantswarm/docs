@@ -145,11 +145,18 @@ th {
 }
 
 /** Code **/
-pre {
+pre, pre.prettyprint.well {
     font-size: 15px;
+    white-space: pre !important;
+    word-wrap: normal !important;
+    word-break: initial !important;
+    overflow-x: auto !important;
+    overflow-y: hidden;
 }
 code {
     font-family: "Inconsolata", "Consolas", "Lucida Console", monospace;
+    white-space: pre !important;
+
 }
 
 #contentcontainer {

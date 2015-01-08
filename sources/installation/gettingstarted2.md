@@ -2,7 +2,7 @@ description: A slightly more involved tutorial for those who have tested out our
 
 # Getting started - Part 2
 
-<p class="lastmod">Last edited on December 9, 2014 by Matthias Lübken</p>
+<p class="lastmod">Last edited on January 6, 2015 by Ewout Prangsma</p>
 
 This page provides a slightly more complex example using two components and a custom Docker image. 
 
@@ -36,7 +36,7 @@ All the sources can be found here: [github.com/luebken/currentweather](http://gi
 
 The NodeJS server: server.js
 
-```
+```javascript
 var http = require('http');
 var redis = require('redis');
 
@@ -82,7 +82,7 @@ console.log('Server running at http://0.0.0.0:1337/');
 
 and the *package.json*
 
-```
+```json
 {
   "name": "currentweather",
   "dependencies": {
@@ -95,7 +95,8 @@ and the *package.json*
 
 Giant Swarm uses Docker images from public registries and the private Giant Swarm registry. See the [registry reference](../reference/registry.md) for more information.
 
-For using Giant Swarm's private registry login with Docker: 
+For using Giant Swarm's private registry login with Docker:
+
 ```
 $ docker login https://registry.giantswarm.io
 ```
@@ -125,7 +126,7 @@ To test this setup locally, you first have to start a container from the officia
 
 ```
 $ docker run -d --name redis redis
-$ docker run  -i -p 1337:1337 --link redis:redis registry.giantswarm.io/luebken/currentweather
+$ docker run -i -p 1337:1337 --link redis:redis registry.giantswarm.io/luebken/currentweather
 ```
 
 ## Define dependency
@@ -135,28 +136,28 @@ In the 'swarm.json' you have these two containers defined as components. The dep
 The swarm configuration: *swarm.json*
 ```
 {
-    "app_name": "currentweather",
-    "services": [
+  "app_name": "currentweather",
+  "services": [
+    {
+      "service_name": "currentweather-service",
+      "components": [
         {
-            "service_name": "currentweather-service",
-            "components": [
-                {
-                    "component_name": "currentweather-component",
-                    "image": "registry.giantswarm.io/luebken/currentweather",
-                    "ports": [ "1337/tcp" ],
-                    "dependencies": [
-                        { "name": "redis", "port": 6379 }
-                    ],
-                    "domains": { "currentweather.gigantic.io": "1337" }
-                },
-                {
-                    "component_name": "redis",
-                    "image": "redis",
-                    "ports": [ "6379/tcp" ]
-                }
-            ]
+          "component_name": "currentweather-component",
+          "image": "registry.giantswarm.io/luebken/currentweather",
+          "ports": [ "1337/tcp" ],
+          "dependencies": [
+            { "name": "redis", "port": 6379 }
+          ],
+          "domains": { "currentweather.gigantic.io": "1337" }
+        },
+        {
+          "component_name": "redis",
+          "image": "redis",
+          "ports": [ "6379/tcp" ]
         }
-    ]
+      ]
+    }
+  ]
 }
 
 ```
@@ -164,40 +165,51 @@ The swarm configuration: *swarm.json*
 To start this example:
 ```
 $ swarm create
+```
 
+```
 $ swarm ls
-1 app created so far!
+1 application available:
 
-app             env   company    created
-currentweather  dev   luebken    2014-09-22 18:53:44
+application     environment    created              status
+currentweather  luebken/dev    2014-09-22 18:53:44  down
+```
 
+```
 $  swarm status currentweather
 App currentweather is down!
 
-service                 component                 instanceid                            status
-currentweather-service  currentweather-component  d4664c37-49cb-436b-a2f0-727bb5539538  down
-currentweather-service  redis                     02288488-4185-473b-8de1-47f91971bdb2  down
+service                 component                 instanceid                            created             status
+currentweather-service  currentweather-component  d4664c37-49cb-436b-a2f0-727bb5539538  6 Jan 15 10:28 UTC  down
+currentweather-service  redis                     02288488-4185-473b-8de1-47f91971bdb2  6 Jan 15 10:28 UTC  down
+```
 
+```
 $ swarm start currentweather
 Starting app currentweather ...
 ```
 
 Check the status until all components are *up*:
+
 ```
 $ swarm status currentweather
 App currentweather is starting!
 
-service                 component                 instanceid                            status
-currentweather-service  currentweather-component  d4664c37-49cb-436b-a2f0-727bb5539538  starting
-currentweather-service  redis                     02288488-4185-473b-8de1-47f91971bdb2  up
+service                 component                 instanceid                            created             status
+currentweather-service  currentweather-component  d4664c37-49cb-436b-a2f0-727bb5539538  6 Jan 15 10:28 UTC  starting
+currentweather-service  redis                     02288488-4185-473b-8de1-47f91971bdb2  6 Jan 15 10:28 UTC  up
+```
 
+```
 $ swarm status currentweather
 App currentweather is up!
 
-service                 component                 instanceid                            status
-currentweather-service  redis                     02288488-4185-473b-8de1-47f91971bdb2  up
-currentweather-service  currentweather-component  d4664c37-49cb-436b-a2f0-727bb5539538  up
+service                 component                 instanceid                            created             status
+currentweather-service  redis                     02288488-4185-473b-8de1-47f91971bdb2  6 Jan 15 10:28 UTC  up
+currentweather-service  currentweather-component  d4664c37-49cb-436b-a2f0-727bb5539538  6 Jan 15 10:28 UTC  up
+```
 
+```
 $ curl currentweather.gigantic.io
 Hello World from Cologne: overcast clouds
 ```
