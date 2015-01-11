@@ -206,7 +206,7 @@ Suppose we would change the dependency configuration above to this instead:
 
 As a result, our component would now provide an environment variable with the name `DB_PORT_6379_TCP_ADDR`. The according `/etc/hosts` would now be named `db`.
 
-As a third and last example, imagine we had an additional service in our application configuration called `payment` with a component called `restapi` and port 8000 exposed. To myke our current component depend on that component, the dependency configuration would have to look like this:
+As a third and last example, imagine we had an additional service in our application configuration called `payment` with a component called `restapi` and port 8000 exposed. To make our current component depend on that component, the dependency configuration would have to look like this:
 
 ```json
 "dependencies": [
