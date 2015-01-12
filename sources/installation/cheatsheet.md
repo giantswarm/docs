@@ -2,7 +2,7 @@ description: Here you can get a quick overview of frequently used commands for t
 
 # TL;DR Cheat sheet
 
-<p class="lastmod">Last edited on December 3, 2014 by Matthias Lübken</p>
+<p class="lastmod">Last edited on January 12, 2015 by Marian Steinbach</p>
 
 
 This is a very condensed cheat sheet. For more details see [Getting Started](gettingstarted.md).

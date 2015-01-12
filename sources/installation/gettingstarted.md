@@ -2,7 +2,7 @@ description: A first practical introduction into using Giant Swarm. This will ta
 
 # Getting started
 
-<p class="lastmod">Last edited on January 9, 2015 by Ewout Prangsma</p>
+<p class="lastmod">Last edited on January 12, 2015 by Marian Steinbach</p>
 
 
 This page gets you started with Giant Swarm. It will show you how to install the required tools and get a provided Docker image running.
