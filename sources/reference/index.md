@@ -6,6 +6,7 @@ The reference area of our documentation is where you get structured information 
 
 ## Contents
 
+ * [Release notes](release-notes/)
  * [Global command line options](global-options/)
  * [Getting basic information](info/)
  * [Companies](companies/)

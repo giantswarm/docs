@@ -24,6 +24,7 @@ pages:
 
 # Reference
 - ['reference/index.md', 'Reference', 'Overview']
+- ['reference/release-notes.md', 'Reference', 'Release notes']
 - ['reference/global-options.md', 'Reference', 'Global options']
 - ['reference/info.md', 'Reference', 'Getting basic information']
 - ['reference/companies.md', 'Reference', 'Companies']
@@ -42,9 +43,6 @@ pages:
 - ['reference/logs.md', 'Reference', 'Accessing process logs']
 - ['reference/user.md', 'Reference', 'Modifying user settings']
 - ['reference/registry.md', 'Reference', 'Using the registry']
-
-# Release notes
-- ['release-notes.md', "Release notes"]
 
 # Search
 - ['search.md', 'Search']
