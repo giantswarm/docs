@@ -2,37 +2,50 @@
     "app_name": "swarmdocs",
     "services": [
         {
-            "service_name": "docs-service",
+            "service_name": "proxy",
             "components": [
                 {
-                    "component_name": "docs-auth",
-                    "image": "$docsauth_image",
+                    "component_name": "proxy",
+                    "image": "$proxy_image",
                     "ports": [ "80/tcp" ],
                     "dependencies": [
                         {
-                            "name": "upstream",
-                            "port": 8000
+                            "name": "mkdocs/mkdocs",
+                            "port": 8000,
+                            "alias": "upstream"
                         },
                         {
-                            "name": "sitesearch",
-                            "port": 9200
+                            "name": "sitesearch/sitesearch",
+                            "port": 9200,
+                            "alias": "sitesearch"
                         }
                     ],
                     "domains": {
                         "$domain1_name": "80"
                     }
-                },
+                }
+            ]
+        },
+        {
+            "service_name": "mkdocs",
+            "components": [
                 {
-                    "component_name": "upstream",
-                    "image": "$docs_image",
+                    "component_name": "mkdocs",
+                    "image": "$mkdocs_image",
                     "ports": [ "8000/tcp" ],
                     "dependencies": [
                         {
-                            "name": "sitesearch",
-                            "port": 9200
+                            "name": "sitesearch/sitesearch",
+                            "port": 9200,
+                            "alias": "sitesearch"
                         }
                     ]
-                },
+                }
+            ]
+        },
+        {
+            "service_name": "sitesearch",
+            "components": [
                 {
                     "component_name": "sitesearch",
                     "image": "$sitesearch_image",
