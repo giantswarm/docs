@@ -32,7 +32,7 @@ Here we list the more important changes we made between releases.
 
 * New subcommands have been incorporated into the bash completion configuration.
 
-* Changing the email address via `swarm user` now only requires to enter the new email address once.
+* Changing the email address via `swarm user -u email` no longer requires to enter the old email address.
 
 * `swarm info` no longer shows a "Current company", since there actually is no such thing. There was and is a "Current environment" however, which automatically belongs to a company, as indicated by its name.
 
