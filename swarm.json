@@ -10,9 +10,14 @@
                     "ports": [ "80/tcp" ],
                     "dependencies": [
                         {
-                            "name": "mkdocs/mkdocs",
+                            "name": "mkdocs-master/mkdocs",
                             "port": 8000,
-                            "alias": "upstream"
+                            "alias": "mkdocsmaster"
+                        },
+                        {
+                            "name": "mkdocs-slave/mkdocs",
+                            "port": 8000,
+                            "alias": "mkdocsslave"
                         },
                         {
                             "name": "sitesearch/sitesearch",
@@ -27,7 +32,7 @@
             ]
         },
         {
-            "service_name": "mkdocs",
+            "service_name": "mkdocs-master",
             "components": [
                 {
                     "component_name": "mkdocs",
@@ -40,6 +45,16 @@
                             "alias": "sitesearch"
                         }
                     ]
+                }
+            ]
+        },
+        {
+            "service_name": "mkdocs-slave",
+            "components": [
+                {
+                    "component_name": "mkdocs",
+                    "image": "$mkdocs_image",
+                    "ports": [ "8000/tcp" ]
                 }
             ]
         },
