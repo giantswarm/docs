@@ -66,9 +66,9 @@ This example makes use of all possible keys to illustrate their use.
           "ports": [
             "8080/tcp"
           ],
-          "env": {
-            "MODE": "development"
-          },
+          "env": [
+            "MODE=development"
+          ],
           "dependencies": [
             {
               "name": "redis",
@@ -254,14 +254,14 @@ If you plan to use your own domain name in your configuration, there is one conf
 
 ### `env`
 
-Environment variables definitions. These variables will be available within the running docker containers. Variable values _must_ be of type string. Example:
+Environment variables definitions. These variables will be available within the running docker containers. Entries _must_ be of type string. Example:
 
 ```json
-"env": {
-  "FIRST_VARIABLE": "foo",
-  "SECOND_VARIABLE": "bar",
-  "NUMERIC_VARIABLE": "123"
-}
+"env": [
+  "FIRST_VARIABLE=foo",
+  "SECOND_VARIABLE=bar",
+  "NUMERIC_VARIABLE=123"
+]
 ```
 
 ### `ports`

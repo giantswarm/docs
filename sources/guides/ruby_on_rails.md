@@ -169,19 +169,19 @@ Now, we just need to add an application file describing our containers:
       "component_name": "database",
       "image": "mysql",
       "ports": ["3306"],
-      "env": {
-        "MYSQL_ROOT_PASSWORD": "somesecretpassword"
-      }
+      "env": [
+        "MYSQL_ROOT_PASSWORD=somesecretpassword"
+      ]
     },
     {
       "component_name": "rails",
       "image": "<username>/sample_rails_4",
-      "env": {
-        "SECRET_KEY_BASE": "somesecretkeyforrails",
-        "RAILS_ENV": "production",
-        "MYSQL_PASS": "somesecretpassword",
-        "MYSQL_USER": "root"
-      },
+      "env": [
+        "SECRET_KEY_BASE=somesecretkeyforrails",
+        "RAILS_ENV=production",
+        "MYSQL_PASS=somesecretpassword",
+        "MYSQL_USER=root"
+      ],
       "dependencies": [
         {"name": "database", "port": 3306}
       ],
