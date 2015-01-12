@@ -43,5 +43,8 @@ pages:
 - ['reference/user.md', 'Reference', 'Modifying user settings']
 - ['reference/registry.md', 'Reference', 'Using the registry']
 
+# Release notes
+- ['release-notes.md', "Release notes"]
+
 # Search
 - ['search.md', 'Search']
