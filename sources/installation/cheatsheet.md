@@ -2,7 +2,7 @@ description: Here you can get a quick overview of frequently used commands for t
 
 # TL;DR Cheat sheet
 
-<p class="lastmod">Last edited on December 3, 2014 by Matthias Lübken</p>
+<p class="lastmod">Last edited on January 12, 2015 by Marian Steinbach</p>
 
 
 This is a very condensed cheat sheet. For more details see [Getting Started](gettingstarted.md).
@@ -11,7 +11,7 @@ This is a very condensed cheat sheet. For more details see [Getting Started](get
 
 Mac: `$ brew tap giantswarm/swarm && brew install swarm-client`
 
-Linux: `$ curl -O http://downloads.giantswarm.io/swarm/clients/0.10.0/swarm-0.10.0-linux-amd64.tar.gz`
+Linux: `$ curl -O http://downloads.giantswarm.io/swarm/clients/0.10.2/swarm-0.10.2-linux-amd64.tar.gz`
 
 Command       | Purpose
 ------------- | -------------
