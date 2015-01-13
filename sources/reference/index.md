@@ -8,7 +8,7 @@ The reference area of our documentation is where you get structured information 
 
 #### [Release notes](release-notes/)
 
-Check this page for news on the latest release of our command line intrface (CLI).
+Check this page for news on the latest release of our command line interface (CLI).
 
 #### [Global command line options](global-options/)
 
