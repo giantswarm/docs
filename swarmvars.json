@@ -1,14 +1,14 @@
 {
-	"marian/dev": {
-		"domain1_name": "docs.gigantic.io",
-		"sitesearch_image": "registry.giantswarm.io/company/sitesearch:0.1.1",
-		"docs_image": "registry.giantswarm.io/marian/docs:latest",
-		"docsauth_image": "registry.giantswarm.io/giantswarm/docs-auth:0.2.0"
+	"giantswarm/testing": {
+		"domain1_name": "docs-staging.gigantic.io",
+		"sitesearch_image": "registry.giantswarm.io/giantswarm/sitesearch:0.1.1",
+		"mkdocs_image": "registry.giantswarm.io/giantswarm/docs-dev:latest",
+		"proxy_image": "registry.giantswarm.io/giantswarm/docs-auth-dev:latest"
 	},
 	"giantswarm/production": {
 		"domain1_name": "docs.giantswarm.io",
 		"sitesearch_image": "registry.giantswarm.io/giantswarm/sitesearch:0.1.1",
-		"docs_image": "registry.giantswarm.io/giantswarm/docs:latest",
-		"docsauth_image": "registry.giantswarm.io/giantswarm/docs-auth:latest"
+		"mkdocs_image": "registry.giantswarm.io/giantswarm/docs:latest",
+		"proxy_image": "registry.giantswarm.io/giantswarm/docs-auth:latest"
 	}
 }
