@@ -64,7 +64,7 @@ RUN chmod u+x /backup.sh
 CMD /backup.sh
 ```
 
-The image we build with this `Dockerfile` will be based on the official `python` image version 2.7 so we have all the required dependencies in place for installing and running Python programs. Reason: the AWS command line interface (`awscli`) is written in Python and with the prerequisites provided it can be easily installed using `pip install awscli`.
+The image we build with this `Dockerfile` will be based on the official `python` image version 2.7 so we have all the required dependencies in place for installing and running Python programs. So the AWS command line interface (`awscli`), which is written in Python, can be easily installed using `pip install awscli`.
 
 In addition, the `mysql-client-5.5` Debian package is installed, which provides the `mysqldump` command line utility we need to create our SQL dumps.
 
