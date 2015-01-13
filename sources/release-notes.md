@@ -2,11 +2,11 @@ description: Release notes and changelog for the swarm CLI, showing you what has
 
 # Release Notes
 
-<p class="lastmod">Last edited on January 12, 2015 by Marian Steinbach</p>
+<p class="lastmod">Last edited on January 13, 2015 by Marian Steinbach</p>
 
 Here we list the more important changes we made between releases.
 
-## Version 0.10.1
+## Version 0.10.2
 
 * We added a simpler, more straight-forward way to define environment variables in the application configuration (`swarm.json`). They can now be set as an object like this: `"env": {"KEY_ONE": "value_one", ...}`. The old Array format will still work, but all documentation has been updated to use the new format.
 

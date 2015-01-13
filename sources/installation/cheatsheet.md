@@ -11,7 +11,7 @@ This is a very condensed cheat sheet. For more details see [Getting Started](get
 
 Mac: `$ brew tap giantswarm/swarm && brew install swarm-client`
 
-Linux: `$ curl -O http://downloads.giantswarm.io/swarm/clients/0.10.1/swarm-0.10.1-linux-amd64.tar.gz`
+Linux: `$ curl -O http://downloads.giantswarm.io/swarm/clients/0.10.2/swarm-0.10.2-linux-amd64.tar.gz`
 
 Command       | Purpose
 ------------- | -------------

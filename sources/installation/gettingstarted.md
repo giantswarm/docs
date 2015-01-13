@@ -13,14 +13,14 @@ This section assumes that you have an account with Giant Swarm. If not, please [
 
 ## Installing the CLI
 
-The current CLI version is __v0.10.1__.
+The current CLI version is __v0.10.2__.
 
 __Manual install__
 
 For manual installation, download a tarball from here:
 
-  * [Mac](http://downloads.giantswarm.io/swarm/clients/0.10.1/swarm-0.10.1-darwin-amd64.tar.gz)
-  * [Linux](http://downloads.giantswarm.io/swarm/clients/0.10.1/swarm-0.10.1-linux-amd64.tar.gz)
+  * [Mac](http://downloads.giantswarm.io/swarm/clients/0.10.2/swarm-0.10.2-darwin-amd64.tar.gz)
+  * [Linux](http://downloads.giantswarm.io/swarm/clients/0.10.2/swarm-0.10.2-linux-amd64.tar.gz)
 
 You can place the __swarm binary__ somewhere convenient, preferably in a location that's contained in your `PATH` environment variable. For example, `/usr/local/bin/` works fine in many cases.
 
