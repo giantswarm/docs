@@ -50,7 +50,7 @@ $ docker run -d -p 3306:3306 \
 
 With the command above, you start MySQL in the background with one database called `mydb`. The password for the MySQL user `root` is set to `some-password`. You can change this to whatever you want.
 
-To create you MySQL archiver Docker image, you best build your own from this `Dockerfile`:
+To create a Docker image for your MySQL archiver service, use this simple `Dockerfile`:
 
 ```dockerfile
 FROM python:2.7
@@ -60,12 +60,15 @@ RUN apt-get install -y mysql-client-5.5
 RUN pip install awscli
 WORKDIR /
 ADD backup.sh /backup.sh
+RUN chmod u+x /backup.sh
 CMD /backup.sh
 ```
 
-The image we build with this `Dockerfile` will be based on the official `python` image version 2.7 so we have all the required dependencies in place for installing and running Python programs. Reason: the AWS command line interface (`awscli`) is written in Python and with the prerequisites provided it can be easily installed using `pip install awscli`. In addition, the `mysql-client-5.5` Debian package is installed, which provides the `mysqldump` command line utility we need to create our backups.
+The image we build with this `Dockerfile` will be based on the official `python` image version 2.7 so we have all the required dependencies in place for installing and running Python programs. Reason: the AWS command line interface (`awscli`) is written in Python and with the prerequisites provided it can be easily installed using `pip install awscli`.
 
-Last not least, we add a shell script called `backup.sh` to our image, which is executed by default when the container is started. Let's have a look.
+In addition, the `mysql-client-5.5` Debian package is installed, which provides the `mysqldump` command line utility we need to create our SQL dumps.
+
+Last but not least, we add a shell script called `backup.sh` to our image, which is executed by default when the container is started. Let's have a look.
 
 ```bash
 #!/bin/bash
