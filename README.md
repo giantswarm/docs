@@ -54,3 +54,8 @@ Currently there is only one master version.
 
 There is more information available in the [Wiki](https://git.giantswarm.io/giantswarm/docs/wikis/home).
 
+### Deploying new content
+
+1. Create the latest `registry.giantswarm.io/giantswarm/docs` image using `builder release <patch|minor|major>`
+2. Stop and start the `mkdocs-master` service
+3. Stop and start the `mkdocs-slave` service
