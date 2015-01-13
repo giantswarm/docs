@@ -12,7 +12,7 @@ In this guide we show you how you can add a service to your Giant Swarm applicat
 
 This guide proposes Amazon S3 as a means to store backups, because it's well-known. And it has the advantage that it is possble to create user accounts with very specific permission. You might adapt this guide to use different cloud storage services or your own (S)FTP server. If you write this up, let us know. We're happy to learn.
 
-<i class="fa fa-exclamation-triangle"></i> Note that being able to create periodic backups should not drive you to use Giant Swarm for production pruposes now. We are still in Alpha. Things can and will break, all the time.
+<i class="fa fa-exclamation-triangle"></i> Note that being able to create periodic backups should not drive you to use Giant Swarm in production. We are still in Alpha. Things can and will break, all the time.
 
 ## Before you start
 
@@ -48,7 +48,7 @@ $ docker run -d -p 3306:3306 \
     mysql:5.5
 ```
 
-With the command above, you start MySQL in the background with one database called `mydb`. The password for the MySQL user root is set to `mydb`. You can change this to whatever you want.
+With the command above, you start MySQL in the background with one database called `mydb`. The password for the MySQL user `root` is set to `some-password`. You can change this to whatever you want.
 
 To create you MySQL archiver Docker image, you best build your own from this `Dockerfile`:
 
