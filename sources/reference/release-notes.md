@@ -14,7 +14,7 @@ Here we list the more important changes we made between releases.
 
 * The `swarm update` has been deactivated due to possible problems and side-effects until we come up with a more stable implementation. Updating components requires the use of `swarm stop` and `swarm start`.
 
-* The `swarm company` command has changed in several ways. `swarm company -l` now lists all companies for the user. `swarm create <companyname>` creates a new company. Check the [reference page](../reference/companies/) for details.
+* The `swarm company` command has changed in several ways. `swarm company -l` now lists all companies for the user. `swarm company create <companyname>` creates a new company. Check the [reference page](../companies/) for details.
 
 * The `swarm scaleup` and `swarm scaledown` commands have changed. They can now be used with only a component name as argument and the number `1` will be assumed as default number to scale by. The named argument `--count` can no longer be used.
 
