@@ -199,6 +199,7 @@ Let's assume you have the Docker registry account `rocker` and plan to use the D
 
 ```
 $ docker tag mysql-archiver docker.
+```
 
 Set up your Giant Swarm application to contain the MySQL-Archiver as a service. To have something to backup, you will of course need a MySQL component in some other service.
 
