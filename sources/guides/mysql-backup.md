@@ -4,11 +4,11 @@ description: This guide shows you how you can create periodic backups of your My
 
 <p class="lead">In this guide we show you how a specialized service running inside your Giant Swarm application can be used to create periodic backups of your MySQL database</p>
 
-<p class="lastmod">Last edited on January 13, 2014 by Marian Steinbach</p>
+<p class="lastmod">Last edited on January 14, 2014 by Marian Steinbach</p>
 
-Setting up a MySQL database on Giant Swarm is simple. The Docker Hub provides a [standard image](https://registry.hub.docker.com/u/library/mysql/) in various flavors. But what happens as soon as your applications creates actual data? Servers can break any time. Data can be lost. So you need backups.
+Setting up a MySQL database on Giant Swarm is simple. The Docker Hub provides a [standard image](https://registry.hub.docker.com/u/library/mysql/) in various flavors. But what happens as soon as your applications creates actual data? Servers can break any time, data can be lost. So you need a backup system.
 
-In this guide we show you how you can add a service to your Giant Swarm application that accomplishes one thing only: Create a database dump and store it to Amazon S3. This way you don't have to touch your existing services. Each function has it's place. Truly microservice-istic. ;-)
+In this guide we show you how you can add a service to your Giant Swarm application that accomplishes one thing only: Create a database dump and store it to Amazon S3. This way you don't have to touch your existing services. Each function has it's place. Truly microservistic. :-)
 
 This guide proposes Amazon S3 as a means to store backups, because it's well-known. And it has the advantage that it is possble to create user accounts with very specific permission. You might adapt this guide to use different cloud storage services or your own (S)FTP server. If you write this up, let us know. We're happy to learn.
 
@@ -19,25 +19,40 @@ This guide proposes Amazon S3 as a means to store backups, because it's well-kno
 To follow this guide, you will need the following:
 
 * The `docker` command line utility. [Get Installation instructions here.](https://docs.docker.com/installation/)
-* A dedicated AWS user account with credentials (see below for a quick guide)
+* A dedicated AWS user account with credentials
 * S3 bucket with the correct permissions for the user
 * Giant Swarm user account
 * Network connection
 
-## Quick guide to AWS setup
+All the sample code used in this guide is on GitHub. [Browse the code](https://github.com/giantswarm/TODO) or clone it:
 
-If you read this, chances are you already have an Amazon AWS account. If not, got to http://aws.amazon.com/ and create an account now.
+```
+$ git clone git@github.com:giantswarm/TODO.git
+```
 
-* Create a user group
+## AWS S3 setup overview
+
+Setting up everything on AWS involves a few steps which are outlined here. We don't go into all the details, since there should be plenty of tutorials for that elsewhere.
+
+Not that we explicitly recommend to create a dedicated AWS identity exclusively for this backup service. This way you can easily revoke permissions in the case that the according credentials get in the wrong hands. And you can easily restrict the S3 permissions to uploading into a specific bucket.
+
+Here is our checklist for your permission setup:
+
+* Create an AWS user group
 * Create an S3 bucket
 * Create a policy with write permission for this group and bucket
+* Add the policy to the bucket
 * Create a user
-* Store the credentials, as you will need them in a moment
+* Store the credentials for this user, as you will need them in a moment
 * Add the user to the group
 
-## Running MySQL docker container locally
+Here is the [AWS documentation on identities and bucket policies](http://docs.aws.amazon.com/AmazonS3/latest/dev/using-iam-policies.html). Also very helpful: The [AWS Policy Generator](http://awspolicygen.s3.amazonaws.com/policygen.html).
 
-The first thing we need locally is a MySQL database container to test against. Probably the application you are working on already has a MySQL docker image set up. If not, it is very easy to run one using a standard MySQL docker image.
+## A local MySQL database for testing
+
+Before deploying things to Giant Swarm, we want to test our Backup service locally. So we need a MySQL database to backup.
+
+If you don't already have a database available for that purpose, the easiest thing you can do is run one using a standard MySQL docker image.
 
 Here is an example command:
 
@@ -50,7 +65,11 @@ $ docker run -d -p 3306:3306 \
 
 With the command above, you start MySQL in the background with one database called `mydb`. The password for the MySQL user `root` is set to `some-password`. You can change this to whatever you want.
 
-To create a Docker image for your MySQL archiver service, use this simple `Dockerfile`:
+## Building our archiver Docker image
+
+Docker containers are the building blocks of applications on Giant Swarm. We will now build the image for our archiver container.
+
+The image is based on this simple Dockerfile:
 
 ```dockerfile
 FROM python:2.7
@@ -64,11 +83,11 @@ RUN chmod u+x /backup.sh
 CMD /backup.sh
 ```
 
-The image we build with this `Dockerfile` will be based on the official `python` image version 2.7 so we have all the required dependencies in place for installing and running Python programs. So the AWS command line interface (`awscli`), which is written in Python, can be easily installed using `pip install awscli`.
+What does it do? The image we build with this Dockerfile will be based on the official `python` image version 2.7 to have all the required dependencies in place for installing and running Python programs. So the AWS command line interface (`awscli`), which is written in Python, can be easily installed using `pip install awscli`.
 
 In addition, the `mysql-client-5.5` Debian package is installed, which provides the `mysqldump` command line utility we need to create our SQL dumps.
 
-Last but not least, we add a shell script called `backup.sh` to our image, which is executed by default when the container is started. Let's have a look.
+Last but not least, we add a shell script called `backup.sh` to our image, which is executed by default when the container is started. Let's have a look at that script.
 
 ```bash
 #!/bin/bash
@@ -86,13 +105,9 @@ dbpass=$DB_PASSWORD
 # Amazon S3 target bucket
 bucket=$S3_BUCKET
 
-# pattern to create subdirectories from dateelements,
+# pattern to create subdirectories from date elements,
 # e. g. '%Y/%m/%d' or '%Y/%Y-%m-%d'
 pathpattern=$PATH_DATEPATTERN
-
-# initially wait a minute before first backup
-#sleep 60
-sleep 1
 
 count=1
 
@@ -127,15 +142,15 @@ The script provides a generic way to
 * Compress the SQL file using GZip
 * Upload the compressed file to some S3 bucket
 
-All configuration is provided via environment variables, which means that the image we create with this script contained can be used for various databases.
+All configuration is provided via environment variables, which means that the Docker image we create can be used for various databases.
 
-But first, let's build the Docker image for our MySQL archiver. It takes not more than this:
+Let's build the Docker image now. It takes not more than this:
 
 ```
-docker build -t mysql-archiver .
+$ docker build -t mysql-archiver .
 ```
 
-Here is a way to run locally for testing purposes and set all the required environment variables for the backup job:
+When this is done, we can run a container from this image locally to test if things work as they should. As said, all configuration for the `backup.sh` is taken from environment variables, so we have to pass them all to the container. Here is how we do it locally:
 
 ```
 docker run --rm -ti \
@@ -153,7 +168,7 @@ docker run --rm -ti \
   mysql-archiver
 ```
 
-Let's have a closer look at what these environment variables are doing.
+What these environment variables mean:
 
 * `S3_BUCKET`: Name of the bucket you want to put backups in. May include additional path elements. Do not prepend `s3://`!
 * `AWS_ACCESS_KEY_ID`: The access key ID of the AWS account you configured to write to your target bucket.
@@ -169,56 +184,68 @@ Let's have a closer look at what these environment variables are doing.
 
 Except for `AWS_DEFAULT_REGION`, all these variables are in fact required.
 
-Now, adapt the `docker run` command above to match your requirements and give it a try. Hint: Set a low `BACKUP_INTERVAL`, for example `10` seconds, when testing.
+Now, adapt the `docker run` command above to match your requirements and give it a try. Hint: Set a low `BACKUP_INTERVAL`, for example `10` seconds, when testing so you don't have to wait too long for a second and third backup to be made.
 
-You should see a log output like this:
+Execute the adapted `docker run` command. You should see a log output like this:
 
 ```
 Writing backup No. 1 for 192.168.59.103:3306/mysql to s3://my-bucket/backup/mysql/2015/01/2015-01-13_17-48.sql.gz
--- Warning: Skipping the data of table mysql.event. Specify the --events option explicitly.
 upload: ./2015-01-13_17-48.sql.gz to s3://my-bucket/backup/mysql/2015/01/2015-01-13_17-48.sql.gz
 Writing backup No. 1 finished.
 Writing backup No. 2 for 192.168.59.103:3306/mysql to s3://my-bucket/backup/mysql/2015/01/2015-01-13_17-49.sql.gz
--- Warning: Skipping the data of table mysql.event. Specify the --events option explicitly.
 upload: ./2015-01-13_17-49.sql.gz to s3://my-bucket/backup/mysql/2015/01/2015-01-13_17-49.sql.gz
 Writing backup No. 2 finished.
 ```
 
 When you get this kind of output, congratulations! You have just written database backups to Amazon S3.
 
-You can then stop the process using `Ctrl + C`.
+You can stop the process using `Ctrl + C`.
 
-## Giant Swarm Application setup
+## Bringing it to Giant Swarm
 
 After your Docker image is proven locally, let's make it ready for use in the cloud. On Giant Swarm, that is.
 
 ### Uploading to a Docker registry
 
-If you stick close to our example, there should be nothing personal in the `mysql-archiver` Docker image. So actually you can even use the public Docker registry to deploy this image, if you want to.
+If you stick close to our example, there should be nothing personal in the `mysql-archiver` Docker image you just created. So you could actually push it to the public Docker registry, if you like. Since Giant Swarm provides you with a private registry and we want to make sure you know how to use it, we'll use this one for this guide.
 
-Depending on what registry you are pushing to, you have to tag your docker image before.
-
-Let's assume you have the Docker registry account `rocker` and plan to use the Docker Hub you could tag the image like this:
+Let's assume your Giant Swarm username is `yourusername` and you are going to use this image only on your own (as opposed to make it available for a certain [company](../../reference/companies/)), here is how you should tag your image:
 
 ```
-$ docker tag mysql-archiver docker.
+$ docker tag mysql-archiver registry.giantswarm.io/yourusername/mysql-archive:latest
 ```
 
-Set up your Giant Swarm application to contain the MySQL-Archiver as a service. To have something to backup, you will of course need a MySQL component in some other service.
+Next, make sure you are logged in with `docker` and our registry. Use your Giant Swarm username and the according password.
+
+```
+$ docker login https://registry.giantswarm.io
+```
+
+Now push your image to the registry.
+
+```
+$ docker push registry.giantswarm.io/yourusername/mysql-archive:latest
+```
+
+### Modifying your application configuration
+
+You might already have an application with a MySQL component ready. If not, you can easily create one from the example `swarm.json` below. Keep in mind that the example won't do anything meaningful. It only contains an empty database to be backed up.
+
+With an existing application, add a new service with a single component for your MySQL archiver. You can use the `mysql-archiver` service in the example below as a template.
 
 ```json
 {
   "app_name": "your-app",
   "services": [
     {
-      "service_name": "db",
+      "service_name": "mysql",
       "components": [
         {
           "component_name": "mysql",
           "image": "mysql:5.5",
           "ports": ["3306"],
           "env": {
-            "MYSQL_ROOT_PASSWORD": "somepassword",
+            "MYSQL_ROOT_PASSWORD": "some-password",
             "MYSQL_DATABASE": "mydb"
           },
           "volumes": [
@@ -231,16 +258,22 @@ Set up your Giant Swarm application to contain the MySQL-Archiver as a service. 
       ]
     },
     {
-      "service_name": "db-archiver",
+      "service_name": "mysql-archiver",
       "components": [
         {
           "component_name": "mysql-archiver",
-          "image": "registry.giantswarm.io/<username>/mysql-archiver:latest",
+          "image": "registry.giantswarm.io/yourusername/mysql-archiver:latest",
           "env": {
             "BACKUP_INTERVAL": "3600",
             "DB_NAME": "mydb",
             "DB_USER": "root",
-            "DB_PASSWORD": "somepassword"
+            "DB_PASSWORD": "some-password",
+            "S3_BUCKET": "your-bucket-name/your-path-to-mysql-backups/",
+            "AWS_ACCESS_KEY_ID": "your-aws-access-key-id",
+            "AWS_SECRET_ACCESS_KEY": "your-aws-secret-access-key",
+            "AWS_DEFAULT_REGION": "eu-central-1",
+            "BACKUP_INTERVAL": "3600",
+            "PATH_DATEPATTERN": "%Y/%m"
           },
           "dependencies": [
             {
@@ -257,8 +290,50 @@ Set up your Giant Swarm application to contain the MySQL-Archiver as a service. 
 }
 ```
 
-TODO
+The example shows how the Docker image you created, tested locally and pushed to the registry is now used as a component inside a service definition. The `service_name` and `component_name` values are only examples, you can chose your own here. The `image` key needs as a value the complete image name you used when pushing your Docker image to the registry.
+
+The `env` key of the component definition gets the familiar environment variable definitions that are needed for the backup script working in the container. With two exceptions: the variables for IP address and port of the MySQL server (`MYSQL_PORT_3306_TCP_ADDR` and `MYSQL_PORT_3306_TCP_PORT`) are missing. We don't have to declare them manually. In fact, we couldn't, since we can never now before starting an application on which machine it will run and via what IP address it will be available.
+
+This is taken care of through the `dependency` definition. The `mysql-archiver` component is made to depend on the `db/mysql` service/component, aliased as `mysql`, with exposed port 3306. As a result, the environment variables named `MYSQL_PORT_3306_TCP_ADDR` and `MYSQL_PORT_3306_TCP_PORT` are declared when the component is started.
+
+### Start your application
+
+If you already had the application created on Giant Swarm and you now modified it to contain the archiver component, you will have to delete this app using `swarm delete <application>`. Note that this results in the __loss of all data__ in your containers and volumes of that application (That's why we do all this in the first place, isn't it?).
+
+If you just created the application configuration for a new application (or you deleted the old one), you can now create and start it on Giant Swarm in one step:
+
+
+```
+$ swarm up
+```
+
+This will create the application and start it's services. When the application is launched, you can inspect the logs of the archiver component to find out if everything works as expected. Use the `swarm status` command to list all components first. Your output should look similar to this:
+
+```
+App your-app is up
+
+service         component       instanceid                            created              status
+mysql           mysql           715a3b72-7ab2-4294-8337-bfe4b3758bc1  2015-01-13 18:02:37  up
+mysql-archiver  mysql-archiver  f8ce5429-74da-4445-acfe-1b84a600c81d  2015-01-13 18:02:37  up
+
+```
+
+Using the instance ID of the `mysql-archiver` component, you can now access the logs:
+
+```
+$ swarm logs f8ce5429-74da-4445-acfe-1b84a600c81d
+```
+
+If everything works fine, they look pretty similar to what you saw when running the container locally.
+
+## Stopping and starting the archiver
+
+With the archiver running in it's own service, you can stop and start it independently of the database service. To stop, use `swarm stop your-app/mysql-archiver`. To start again, use `swarm start your-app/mysql-archiver`.
+
+This way you could also use the archiver service as a backup on demand tool. Just start it when you want to create a backup and stop it manually when that backup is finished (checking the logs or looking for the file to appear on S3).
 
 ## Further reading
 
-TODO
+* [Using the registry](../../reference/registry/)
+* [mysqldump reference](http://dev.mysql.com/doc/refman/5.5/en/mysqldump.html)
+
