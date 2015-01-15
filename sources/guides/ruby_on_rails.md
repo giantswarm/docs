@@ -203,7 +203,7 @@ You can either use your own domains (which you have to configure to forward to u
 
 ### Run 
 
-Thats it. With the `swarm` command line tool we can now create and start our containers on the Giant Swarm cluster:
+That's it. With the `swarm` command line tool we can now create and start our containers on the Giant Swarm cluster:
 
 ```
 $ swarm create
