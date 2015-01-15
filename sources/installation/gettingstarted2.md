@@ -2,216 +2,264 @@ description: A slightly more involved tutorial for those who have tested out our
 
 # Getting started - Part 2
 
-<p class="lastmod">Last edited on January 6, 2015 by Ewout Prangsma</p>
+<p class="lastmod">Last edited on January 15, 2015 by Marian Steinbach</p>
 
-This page provides a slightly more complex example using two components and a custom Docker image. 
-
+This page provides a slightly more complex example using two components and a custom Docker image. The core is a NodeJS server. In addition, a Redis cache is used and we connect to an external API.
 
 ## Prerequisites
 
-Please make sure you have `swarm` running. For details see [Getting Started](gettingstarted.md). In addition we assume that you have a basic understanding of Docker. Please make sure that you have Docker installed.
+* Please make sure you have the `swarm` <abbr title="Command Line Interface">CLI</abbr> installed. Ideally you have followed our [Getting Started Guide - Part 1](gettingstarted.md).
 
-<!-- TODO Link good Docker resources and have a Docker getting started -->
+* In addition we assume that you have a basic understanding of Docker. Please make sure that you have Docker installed. Docker provides extensive [installation instructions](https://docs.docker.com/installation/) and [user guides](https://docs.docker.com/userguide/).
 
-*TOC:*
+All the sources for this guide can be found here: [github.com/giantswarm/TODO](http://github.com/giantswarm/TODO)
 
-* Example overview
-* The currentweather server
-* Create and push own images
-* Define dependency
+## Overview of our application
 
+This diagram depicts how our application components will be set up.
 
-## Example overview
+![Application schema diagram](/img/gettingstarted2_appschema.svg)
 
-The example we are using here is very simple:
+We have one component which we call `nodejs` as the core piece. It will provide a NodeJS HTTP server. When accessed by a user, it should display the current weather at our home town, Cologne/Germany<sup>1</sup>.
 
-![](/img/gettingstarted2_appschema.svg)
+We get the weather data from the [openweathermap.org](openweathermap.org) API. Since we want to be good citizens and not call that API more often than necessary, we cache the API responses locally for a while. For this we use a Redis cache, which is our second component, called `redis` in the diagram above.
 
-We have a Docker container `currentweather` which contains a simple NodeJS script. This provides a http endpoint to see the current weather from Cologne. \* 
-To get the data we are calling an external web service: [openweathermap.org](openweathermap.org). Since this is a great open API, we want to be good citizens and cache the data locally and only get new data once a minute. For this we use a redis cache. The redis lives in a predefined redis container.
+## The NodeJS server component
 
-All the sources can be found here: [github.com/luebken/currentweather](http://github.com/luebken/currentweather)
-
-## The currentweather server
-
-The NodeJS server: server.js
+Our NodeJS server basically consists of a single JavaScript file we call `server.js`:
 
 ```javascript
-var http = require('http');
-var redis = require('redis');
+var http = require("http");
+var redis = require("redis");
 
-var addr = process.env.REDIS_PORT_6379_TCP_ADDR;
-var port = process.env.REDIS_PORT_6379_TCP_PORT;
+var redisAddress = process.env.REDIS_PORT_6379_TCP_ADDR,
+  redisPort = process.env.REDIS_PORT_6379_TCP_PORT,
+  httpAddress = "0.0.0.0",
+  httpPort = "1337";
 
-client = redis.createClient(port, addr);
+client = redis.createClient(redisPort, redisAddress);
 
-http.createServer(function (req, res) {
-  client.get("currentweather", function (err, weather) {
-    if(weather == null) {
-      console.log('querying live weather data');
+http.createServer(function (request, response) {
+  client.get("currentweather", function (err, weatherString) {
+    if (weatherString == null) {
+      console.log("Querying live weather data");
       var url = "http://api.openweathermap.org/data/2.5/weather?q=Cologne";
-      http.get(url, function(res2) {
-        var body = '';
-        res2.on('data', function(chunk) {
+      http.get(url, function(apiResponse) {
+        var body = "";
+        apiResponse.on("data", function(chunk) {
           body += chunk;
         });
-        res2.on('end', function() {
-          var weatherjson = JSON.parse(body);
-          var weather_new = weatherjson.weather[0].description;
-          client.set('currentweather', weather_new);
-          client.expire('currentweather', 60);
-          writeResponse(res, weather_new);
+        apiResponse.on("end", function() {
+          var weather = JSON.parse(body);
+          weatherString = weather.weather[0].description;
+          weatherString += ", temperature " + Math.round(weather.main.temp - 273);
+          weatherString += " degrees, wind " + Math.round(weather.wind.speed * 3.6) +  " km/h"
+          client.set("currentweather", weatherString);
+          client.expire("currentweather", 60);
+          writeResponse(response, weatherString);
         });
-      }).on('error', function(e) {
+      }).on("error", function(e) {
         console.log("Got error: ", e);
       });
     } else {
-      console.log('using cached weather data');
-      writeResponse(res, weather);
+      console.log("Using cached weather data");
+      writeResponse(response, weatherString);
     }
-  })
-}).listen(1337, '0.0.0.0');
+  });
+}).listen(httpPort, httpAddress);
 
 function writeResponse(res, weather) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Hello World from Cologne: ' + weather + '\n');
+  res.writeHead(200, {"Content-Type": "text/html"});
+  res.end("Current weather in Cologne: " + weather + "\n");
 }
 
-console.log('Server running at http://0.0.0.0:1337/');
+console.log("Server running at http://" + httpAddress + ":" + httpPort + "/");
 ```
 
-and the *package.json*
+To provide NodeJS with the required dependencies, there is also this `package.json` file:
 
 ```json
 {
   "name": "currentweather",
+  "description": "A sample application for Giant Swarm using NodeJS and Redis",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/giantswarm/TODO.git"
+  },
   "dependencies": {
     "redis": "*"
   }
 }
 ```
 
-## Create and push own images
+## Building our Docker image
 
-Giant Swarm uses Docker images from public registries and the private Giant Swarm registry. See the [registry reference](../reference/registry.md) for more information.
-
-For using Giant Swarm's private registry login with Docker:
-
-```
-$ docker login https://registry.giantswarm.io
-```
-
-Dockerfile for *currentweather*: Dockerfile
+We now create a Docker image for our NodeJS server. Here is the `Dockerfile` we use for that purpose:
 
 ```
 FROM google/nodejs
 
 WORKDIR /app
 ADD package.json /app/
+ADD server.js /app/
 RUN npm install
 
-ADD server.js /app/
 EXPOSE 1337
-CMD ["/nodejs/bin/node", "server.js"]
+CMD /nodejs/bin/node server.js
 ``` 
 
-To use this Docker image it has to be built and uploaded to a repository. E.g. to push this image to the Giant Swarm registry for the user 'luebken' you would use:
+As you can see, we use a [NodeJS image provided by Google](https://registry.hub.docker.com/u/google/nodejs/) as a basis. That means NodeJS is already in place. All we have to do is add the two files we introduced earlier to the container and execute `npm install` inside it.
+
+Assuming that your Giant Swarm username is `yourusername`, to build the image, execute
 
 ```
-$ docker build -t registry.giantswarm.io/luebken/currentweather .
-$ docker push registry.giantswarm.io/luebken/currentweather
+$ docker build -t registry.giantswarm.io/yourusername/currentweather .
 ```
 
-To test this setup locally, you first have to start a container from the official 'redis' image. Afterwards you have to start a container from your currentweather image and link it with the redis container:
+## Testing locally
+
+To test locally before deploying to Giant Swarm, we also need a redis server. This is very simple, since we can use a standard image here without any modification. Simply run this to start your local Redis server container:
 
 ```
-$ docker run -d --name redis redis
-$ docker run -i -p 1337:1337 --link redis:redis registry.giantswarm.io/luebken/currentweather
+$ docker run --name="redis" -p 6379:6379 -d redis
 ```
 
-## Define dependency
+Now let's start the server container for which we just created the Docker image. Here is the command:
 
-In the 'swarm.json' you have these two containers defined as components. The depdency is defined by the container (here the currentweather-service) that uses the other container:
+```
+$ docker run --link redis:redis -p 1337:1337 -ti --rm registry.giantswarm.io/marian/currentweather
+```
 
-The swarm configuration: *swarm.json*
+Accessing the server in a browser requires knowledge of the IP address your docker host binds to containers. With `boot2docker` you can find it out using `boot2docker ip`. The default here is `192.168.59.103`. When on Linux, the command `ip addr show docker0|grep inet` should print out a line containing the correct address. The default in this case is `172.17.42.1`.
+
+So one of the following two commands will likely work:
+
+```
+$ curl 192.168.59.103:1337
+$ curl 172.17.42.1:1337
+```
+
+Your output should look something like
+
+```
+Current weather in Cologne: moderate rain, temperature 10 degrees, wind 42 km/h
+```
+
+Try a second request immediately after to test the cache.
+
+In the server console you will see an output like
+
+```
+Server running at http://0.0.0.0:1337/
+Querying live weather data
+Using cached weather data
+```
+
+Awesome. Now let's deploy it to the cloud.
+
+## Bringing it to Giant Swarm
+
+### Uploading to a Docker registry
+
+To use this Docker image it has to be built and uploaded to a repository. It's up to you to decide which registry you want to use. Giant Swarm offers you a private registry, so we explain how to upload ("push") to that one here.
+
+Before pushing to the registry, you have to log in with the `docker` client. Use this command:
+
+```
+$ docker login https://registry.giantswarm.io
+```
+
+You will be prompted for username and password. Use your Giant Swarm account credentials here.
+
+Still assuming that your username is `yourusername`, you can now push the image like this:
+
+```
+$ docker push registry.giantswarm.io/yourusername/currentweather
+```
+
+For more information on using the Giant Swarm registry, see our [registry reference](../reference/registry.md).
+
+### Configuring your application
+
+As you should already know, applications in Giant Swarm are configured using a JSON configuration file that is usually called `swarm.json`. Four this application, we create a configuration containing one service with two components.
+
+Pay close attention to how we create a link between our two components by defining a dependency in the `nodejs` component pointing to the `redis` component.
+
 ```
 {
-  "app_name": "currentweather",
+  "app_name": "currentweather-app",
   "services": [
     {
       "service_name": "currentweather-service",
       "components": [
         {
-          "component_name": "currentweather-component",
-          "image": "registry.giantswarm.io/luebken/currentweather",
-          "ports": [ "1337/tcp" ],
+          "component_name": "nodejs",
+          "image": "registry.giantswarm.io/yourusername/currentweather",
+          "ports": ["1337/tcp"],
           "dependencies": [
-            { "name": "redis", "port": 6379 }
+            {
+              "name": "redis",
+              "port": 6379
+            }
           ],
-          "domains": { "currentweather.gigantic.io": "1337" }
+          "domains": {
+            "currentweather-yourusername.gigantic.io": "1337"
+          }
         },
         {
           "component_name": "redis",
           "image": "redis",
-          "ports": [ "6379/tcp" ]
+          "ports": ["6379/tcp"]
         }
       ]
     }
   ]
 }
+```
+
+With the above configuration saved as `swarm.json` in our current directory and all occurrences of `yourusername` replaced with your actual username, you can now create and start the application:
+
+```
+$ swarm up
+```
+
+You will get some progress output like this during creation and startup of your application:
+
+```
+Creating 'currentweather-app' in the 'marian/dev' environment...
+Application created successfully!
+Starting application currentweather-app...
+Application currentweather-app is up.
+You can see all services and components using this command:
+
+    swarm status currentweather-app
 
 ```
 
-To start this example:
-```
-$ swarm create
-```
+Let's do as we are told and check the status of this application.
 
 ```
-$ swarm ls
-1 application available:
+$ swarm status currentweather-app
+App currentweather-app is up
 
-application     environment    created              status
-currentweather  luebken/dev    2014-09-22 18:53:44  down
+service                 component  instanceid                            created              status
+currentweather-service  nodejs     1d23c62a-3ebf-4a01-a054-05fbf024eb0a  2015-01-15 15:35:46  up
+currentweather-service  redis      04570837-9ac3-4959-bc74-ad49eafaaa3f  2015-01-15 15:35:46  up
 ```
 
-```
-$  swarm status currentweather
-App currentweather is down!
+Here you have them, your two components, running on Giant Swarm. If you want to, you can check the logs using the instance IDs you see in the `swarm status output`. The syntax for the command is `swarm logs <instance-id>`. 
 
-service                 component                 instanceid                            created             status
-currentweather-service  currentweather-component  d4664c37-49cb-436b-a2f0-727bb5539538  6 Jan 15 10:28 UTC  down
-currentweather-service  redis                     02288488-4185-473b-8de1-47f91971bdb2  6 Jan 15 10:28 UTC  down
-```
+Seeing is believing, they say. So let's do the final test that your application is actually doing what it should.
 
 ```
-$ swarm start currentweather
-Starting app currentweather ...
+$ curl currentweather-yourusername.gigantic.io
+Current weather in Cologne: light rain, temperature 9 degrees, wind 41 km/h
 ```
 
-Check the status until all components are *up*:
+## Further reading
 
-```
-$ swarm status currentweather
-App currentweather is starting!
+* TODO: Where should we link to? swarm.json reference page?
 
-service                 component                 instanceid                            created             status
-currentweather-service  currentweather-component  d4664c37-49cb-436b-a2f0-727bb5539538  6 Jan 15 10:28 UTC  starting
-currentweather-service  redis                     02288488-4185-473b-8de1-47f91971bdb2  6 Jan 15 10:28 UTC  up
-```
+## Remarks
 
-```
-$ swarm status currentweather
-App currentweather is up!
-
-service                 component                 instanceid                            created             status
-currentweather-service  redis                     02288488-4185-473b-8de1-47f91971bdb2  6 Jan 15 10:28 UTC  up
-currentweather-service  currentweather-component  d4664c37-49cb-436b-a2f0-727bb5539538  6 Jan 15 10:28 UTC  up
-```
-
-```
-$ curl currentweather.gigantic.io
-Hello World from Cologne: overcast clouds
-```
-
-\* This example was already finished when Anna noted that there are already some weather websites, where you can check Cologne's weather. Duuh.  
+<sup>1</sup> This example was already finished when our team member Anna pointed out that there are already numerous sites on the web allowing us to check Cologne's current weather. Duuh.
