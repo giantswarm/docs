@@ -212,3 +212,7 @@ $ swarm status rails-sample-1
 ```
 
 Now open your browser and head to [rails-example.gigantic.io](http://rails-example.gigantic.io)
+
+## Further reading
+
+* In our blog: [Getting Started with Microservices using Ruby on Rails and Docker](http://blog.giantswarm.io/getting-started-with-microservices-using-ruby-on-rails-and-docker)
