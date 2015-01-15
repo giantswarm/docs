@@ -12,7 +12,7 @@ This page provides a slightly more complex example using two components and a cu
 
 * In addition we assume that you have a basic understanding of Docker. Please make sure that you have Docker installed. Docker provides extensive [installation instructions](https://docs.docker.com/installation/) and [user guides](https://docs.docker.com/userguide/).
 
-All the sources for this guide can be found here: [github.com/giantswarm/TODO](http://github.com/giantswarm/TODO)
+All the sources for this guide can be found here: [https://github.com/giantswarm/giantswarm-currentweather](https://github.com/giantswarm/giantswarm-currentweather)
 
 ## Overview of our application
 
@@ -84,7 +84,7 @@ To provide NodeJS with the required dependencies, there is also this `package.js
   "description": "A sample application for Giant Swarm using NodeJS and Redis",
   "repository": {
     "type": "git",
-    "url": "http://github.com/giantswarm/TODO.git"
+    "url": "https://github.com/giantswarm/giantswarm-currentweather"
   },
   "dependencies": {
     "redis": "*"
@@ -194,7 +194,7 @@ Pay close attention to how we create a link between our two components by defini
       "components": [
         {
           "component_name": "nodejs",
-          "image": "registry.giantswarm.io/yourusername/currentweather",
+          "image": "registry.giantswarm.io/$company/currentweather",
           "ports": ["1337/tcp"],
           "dependencies": [
             {
@@ -203,7 +203,7 @@ Pay close attention to how we create a link between our two components by defini
             }
           ],
           "domains": {
-            "currentweather-yourusername.gigantic.io": "1337"
+            "currentweather-$company.gigantic.io": "1337"
           }
         },
         {
@@ -217,11 +217,13 @@ Pay close attention to how we create a link between our two components by defini
 }
 ```
 
-With the above configuration saved as `swarm.json` in our current directory and all occurrences of `yourusername` replaced with your actual username, you can now create and start the application:
+With the above configuration saved as `swarm.json` in your current directory you can now create and start the application. Make sure to replace `yourusername` with your actual username.
 
 ```
-$ swarm up
+$ swarm up --var=company=yourusername
 ```
+
+The flag `--var=company=yourusername` will take care of placing your username in the positions where the `$company` variable is used in `swarm.json`.
 
 You will get some progress output like this during creation and startup of your application:
 
