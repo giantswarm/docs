@@ -95,11 +95,13 @@ To test locally before deploying to Giant Swarm, we also need a redis server. Th
 $ docker run --name=redis -d redis
 ```
 
-Now let's start the server container for which we just created the Docker image. Here is the command:
+Now let's start the server container for which we just created the Docker image. Here is the command (replace `yourusername` with your username):
 
 ```
-$ docker run --link redis:redis -p 1337:1337 -ti --rm registry.giantswarm.io/marian/currentweather
+$ docker run --link redis:redis -p 1337:1337 -ti --rm registry.giantswarm.io/yourusername/currentweather
 ```
+
+It should be running. But we need proof! Let's issue an HTTP request.
 
 Accessing the server in a browser requires knowledge of the IP address your docker host binds to containers. This depends on the operating system.
 
@@ -114,15 +116,15 @@ $ curl 192.168.59.103:1337
 $ curl 172.17.42.1:1337
 ```
 
-Your output should look something like
+Your output should look something like this:
 
 ```
 Current weather in Cologne: moderate rain, temperature 10 degrees, wind 42 km/h
 ```
 
-Try a second request immediately after to test the cache.
+Try at least two requests within 60 seconds to verify your cache is working.
 
-In the server console you will see an output like
+In the server console you will see an output like this:
 
 ```
 Server running at http://0.0.0.0:1337/
@@ -192,18 +194,18 @@ Pay close attention to how we create a link between our two components by defini
 }
 ```
 
-With the above configuration saved as `swarm.json` in your current directory you can now create and start the application. Make sure to replace `yourusername` with your actual username.
+### Starting the application
+
+With the above configuration saved as `swarm.json` in your current directory you can now create and start the application using the `swarm up` command below. As always, replace `yourusername` with your actual username. The flag `--var=company=yourusername` will take care of placing your username in the positions where the `$company` variable is used in `swarm.json`.
 
 ```
 $ swarm up --var=company=yourusername
 ```
 
-The flag `--var=company=yourusername` will take care of placing your username in the positions where the `$company` variable is used in `swarm.json`.
-
-You will get some progress output like this during creation and startup of your application:
+You will see some progress output during creation and startup of your application:
 
 ```
-Creating 'currentweather-app' in the 'marian/dev' environment...
+Creating 'currentweather-app' in the 'yourusername/dev' environment...
 Application created successfully!
 Starting application currentweather-app...
 Application currentweather-app is up.
@@ -213,10 +215,22 @@ You can see all services and components using this command:
 
 ```
 
-Let's do as we are told and check the status of this application.
+Seeing is believing, they say. So let's do the final test that your application is actually doing what it should.
+
+```
+$ curl currentweather-yourusername.gigantic.io
+Current weather in Cologne: light rain, temperature 9 degrees, wind 41 km/h
+```
+
+If you watched closely, after starting our app we got the recommendation to check it's status using
 
 ```
 $ swarm status currentweather-app
+```
+
+So here is what we get when doing so (your output will vary slightly):
+
+```
 App currentweather-app is up
 
 service                 component  instanceid                            created              status
@@ -226,14 +240,19 @@ currentweather-service  redis      04570837-9ac3-4959-bc74-ad49eafaaa3f  2015-01
 
 Here you have them, your two components, running on Giant Swarm. If you want to, you can check the logs using the instance IDs you see in the `swarm status output`. The syntax for the command is `swarm logs <instance-id>`. 
 
-Seeing is believing, they say. So let's do the final test that your application is actually doing what it should.
+Now if you like, you can stop or even delete the application again.
 
 ```
-$ curl currentweather-yourusername.gigantic.io
-Current weather in Cologne: light rain, temperature 9 degrees, wind 41 km/h
+$ swarm stop currentweather-app
+$ swarm delete currentweather-app
 ```
+
+We hope you enjoyed this tutorial. If yes, feel free to tweet and blog it out in the world. If not, please let us know what bugged you (see chat and support info at the bottom of this page).
+
+If you're still hungry, why not continue with a platform-specific tutorial?
 
 ## Further reading
 
-* TODO: Where should we link to? swarm.json reference page?
-
+* [Swarmify Ruby on Rails](../guides/ruby_on_rails.md) - A simple Rails example involving MySQL
+* [Swarmify Python](../guides/python.md) - A very simple Flask boilerplate
+* [Getting started with Docker and MeanJS](http://blog.giantswarm.io/getting-started-with-docker-and-meanjs) - Easily adaptable to Giant Swarm with the experience you have by now.
