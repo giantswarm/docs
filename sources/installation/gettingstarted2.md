@@ -122,7 +122,7 @@ $ docker build -t registry.giantswarm.io/yourusername/currentweather .
 To test locally before deploying to Giant Swarm, we also need a redis server. This is very simple, since we can use a standard image here without any modification. Simply run this to start your local Redis server container:
 
 ```
-$ docker run --name="redis" -p 6379:6379 -d redis
+$ docker run --name="currentweather-redis" -d redis
 ```
 
 Now let's start the server container for which we just created the Docker image. Here is the command:
