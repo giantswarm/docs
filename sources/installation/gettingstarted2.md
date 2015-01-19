@@ -4,7 +4,7 @@ description: A slightly more involved tutorial for those who have tested out our
 
 <p class="lastmod">Last edited on January 19, 2015 by Marian Steinbach</p>
 
-This page provides a slightly more complex example using two components and a custom Docker image. The core is a NodeJS server. In addition, a Redis cache is used and we connect to an external API.
+This tutorial guides you through the creation of a application using two interlinked components and a custom Docker image. The core is a NodeJS server (however you don't need any knowledge of NodeJS, let alone install anything NodeJS-specific). A Redis server is used as a temporary data store and we connect to an external API.
 
 ## Prerequisites
 
@@ -12,7 +12,14 @@ This page provides a slightly more complex example using two components and a cu
 
 * In addition we assume that you have a basic understanding of Docker. Please make sure that you have Docker installed. Docker provides extensive [installation instructions](https://docs.docker.com/installation/) and [user guides](https://docs.docker.com/userguide/).
 
-All the sources for this guide can be found here: [https://github.com/giantswarm/giantswarm-currentweather](https://github.com/giantswarm/giantswarm-currentweather)
+* The sources code for this tutorial can be found here: [https://github.com/giantswarm/giantswarm-currentweather](https://github.com/giantswarm/giantswarm-currentweather).
+
+To facilitate following this guide, we recommend you clone the repository:
+
+```
+git clone git@github.com:giantswarm/giantswarm-currentweather.git
+cd giantswarm-currentweather
+```
 
 ## Overview of our application
 
