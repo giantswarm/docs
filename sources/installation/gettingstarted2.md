@@ -166,7 +166,9 @@ Awesome. Now let's deploy it to the cloud.
 
 ### Uploading to a Docker registry
 
-To use this Docker image it has to be built and uploaded to a repository. It's up to you to decide which registry you want to use. Giant Swarm offers you a private registry, so we explain how to upload ("push") to that one here.
+To use this Docker image it has to be built and uploaded to a registry. It's up to you to decide which registry you want to use. Giant Swarm offers you a private registry, so we explain how to upload ("push") to that one here.
+
+For more information on using the Giant Swarm registry, see our [registry reference](../reference/registry.md).
 
 Before pushing to the registry, you have to log in with the `docker` client. Use this command:
 
@@ -181,8 +183,6 @@ Still assuming that your username is `yourusername`, you can now push the image 
 ```
 $ docker push registry.giantswarm.io/yourusername/currentweather
 ```
-
-For more information on using the Giant Swarm registry, see our [registry reference](../reference/registry.md).
 
 ### Configuring your application
 
