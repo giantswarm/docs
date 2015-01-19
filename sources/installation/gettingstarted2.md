@@ -37,7 +37,7 @@ $ docker pull redis && docker pull google/nodejs
 $ sudo docker pull redis && sudo docker pull google/nodejs
 ```
 
-We won't repeat the `sudo` note for the sake of readability of the rest of this tutorial.
+We won't repeat the `sudo` note for the sake of readability of the rest of this tutorial. Docker warns you if the priveleges aren't okay, so you'll be remembered anyway.
 
 While your terminal and network connection are kept busy with loading Docker images, let's have a look on what exatly it is we are going to build.
 
@@ -47,7 +47,7 @@ This diagram depicts how our application components will be set up.
 
 ![Application schema diagram](/img/gettingstarted2_appschema.svg)
 
-We have one component which we call `nodejs` as the core piece. It will provide a NodeJS HTTP server. When accessed by a user, it should display the current weather at our home town, Cologne/Germany<sup>1</sup>.
+We have one component which we call `nodejs` as the core piece. It will provide a NodeJS HTTP server. When accessed by a user, it should display the current weather at our home town, Cologne/Germany.
 
 We get the weather data from the [openweathermap.org](openweathermap.org) API. Since we want to be good citizens and not call that API more often than necessary, we cache the API responses locally for a while. For this we use a Redis cache, which is our second component, called `redis` in the diagram above.
 
@@ -79,7 +79,9 @@ CMD ["/nodejs/bin/node", "server.js"]
 
 As you can see, we use a [NodeJS image provided by Google](https://registry.hub.docker.com/u/google/nodejs/) as a basis. That means NodeJS is already in place. All we have to do is add the two files we introduced earlier to the container and execute `npm install` inside it.
 
-Assuming that your Giant Swarm username is `yourusername`, to build the image, execute
+The prefetching of Docker images you started a couple of minutes ago should be finished by now. If not, please wait until it's done.
+
+Assuming that your Giant Swarm username is `yourusername`, to build the image, you  then execute:
 
 ```
 $ docker build -t registry.giantswarm.io/yourusername/currentweather .
@@ -235,6 +237,3 @@ Current weather in Cologne: light rain, temperature 9 degrees, wind 41 km/h
 
 * TODO: Where should we link to? swarm.json reference page?
 
-## Remarks
-
-<sup>1</sup> This example was already finished when our team member Anna pointed out that there are already numerous sites on the web allowing us to check Cologne's current weather. Duuh.
