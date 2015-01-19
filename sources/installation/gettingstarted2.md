@@ -2,7 +2,7 @@ description: A slightly more involved tutorial for those who have tested out our
 
 # Getting started - Part 2
 
-<p class="lastmod">Last edited on January 15, 2015 by Marian Steinbach</p>
+<p class="lastmod">Last edited on January 19, 2015 by Marian Steinbach</p>
 
 This page provides a slightly more complex example using two components and a custom Docker image. The core is a NodeJS server. In addition, a Redis cache is used and we connect to an external API.
 
@@ -100,12 +100,13 @@ We now create a Docker image for our NodeJS server. Here is the `Dockerfile` we 
 FROM google/nodejs
 
 WORKDIR /app
+
 ADD package.json /app/
 ADD server.js /app/
 RUN npm install
 
 EXPOSE 1337
-CMD /nodejs/bin/node server.js
+CMD ["/nodejs/bin/node", "server.js"]
 ``` 
 
 As you can see, we use a [NodeJS image provided by Google](https://registry.hub.docker.com/u/google/nodejs/) as a basis. That means NodeJS is already in place. All we have to do is add the two files we introduced earlier to the container and execute `npm install` inside it.
