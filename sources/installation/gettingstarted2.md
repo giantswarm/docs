@@ -33,71 +33,12 @@ We get the weather data from the [openweathermap.org](openweathermap.org) API. S
 
 ## The NodeJS server component
 
-Our NodeJS server basically consists of a single JavaScript file we call `server.js`:
+Our NodeJS server consists of only two little files:
 
-```javascript
-var http = require("http");
-var redis = require("redis");
+* A JavaScript file called `server.js` which contains all our application logic
+* A dependencies description file called `package.json`
 
-var redisAddress = process.env.REDIS_PORT_6379_TCP_ADDR,
-  redisPort = process.env.REDIS_PORT_6379_TCP_PORT,
-  httpAddress = "0.0.0.0",
-  httpPort = "1337";
-
-client = redis.createClient(redisPort, redisAddress);
-
-http.createServer(function (request, response) {
-  client.get("currentweather", function (err, weatherString) {
-    if (weatherString == null) {
-      console.log("Querying live weather data");
-      var url = "http://api.openweathermap.org/data/2.5/weather?q=Cologne";
-      http.get(url, function(apiResponse) {
-        var body = "";
-        apiResponse.on("data", function(chunk) {
-          body += chunk;
-        });
-        apiResponse.on("end", function() {
-          var weather = JSON.parse(body);
-          weatherString = weather.weather[0].description;
-          weatherString += ", temperature " + Math.round(weather.main.temp - 273);
-          weatherString += " degrees, wind " + Math.round(weather.wind.speed * 3.6) +  " km/h"
-          client.set("currentweather", weatherString);
-          client.expire("currentweather", 60);
-          writeResponse(response, weatherString);
-        });
-      }).on("error", function(e) {
-        console.log("Got error: ", e);
-      });
-    } else {
-      console.log("Using cached weather data");
-      writeResponse(response, weatherString);
-    }
-  });
-}).listen(httpPort, httpAddress);
-
-function writeResponse(res, weather) {
-  res.writeHead(200, {"Content-Type": "text/html"});
-  res.end("Current weather in Cologne: " + weather + "\n");
-}
-
-console.log("Server running at http://" + httpAddress + ":" + httpPort + "/");
-```
-
-To provide NodeJS with the required dependencies, there is also this `package.json` file:
-
-```json
-{
-  "name": "currentweather",
-  "description": "A sample application for Giant Swarm using NodeJS and Redis",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/giantswarm/giantswarm-currentweather"
-  },
-  "dependencies": {
-    "redis": "*"
-  }
-}
-```
+If you're interested in the internal workings of the server, check their contents. For our tutorial, it's not too important, so we cut the details here.
 
 ## Building our Docker image
 
