@@ -131,7 +131,11 @@ Now let's start the server container for which we just created the Docker image.
 $ docker run --link redis:redis -p 1337:1337 -ti --rm registry.giantswarm.io/marian/currentweather
 ```
 
-Accessing the server in a browser requires knowledge of the IP address your docker host binds to containers. With `boot2docker` you can find it out using `boot2docker ip`. The default here is `192.168.59.103`. When on Linux, the command `ip addr show docker0|grep inet` should print out a line containing the correct address. The default in this case is `172.17.42.1`.
+Accessing the server in a browser requires knowledge of the IP address your docker host binds to containers. This depends on the operating system.
+
+__Mac/Windows__: with `boot2docker` you can find it out using `boot2docker ip`. The default here is `192.168.59.103`.
+
+__Linux__: the command `ip addr show docker0|grep inet` should print out a line containing the correct address. The default in this case is `172.17.42.1`.
 
 So one of the following two commands will likely work:
 
