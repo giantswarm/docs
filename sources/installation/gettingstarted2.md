@@ -21,6 +21,26 @@ git clone git@github.com:giantswarm/giantswarm-currentweather.git
 cd giantswarm-currentweather
 ```
 
+## Testing Docker and getting some base images
+
+We have a Docker task ahead of us that could be a little time-consuming. The good thing is that we can make things a lot faster with some preparation. As a side effect, you can make sure that `docker` is working as expected on your system.
+
+We need to pull two images from the public Docker library, namely `redis` and `google/nodejs`. Together they can take a few hundret megabyte of data transfer. Start the prefetching using this command:
+
+```
+$ docker pull redis && docker pull google/nodejs
+```
+
+<i class="fa fa-exclamation-triangle"></i> __Note for Linux users__: You probably have to call the `docker` binary with root privileges, so please use `sudo docker` whenever the docker command is required here. For example, initiatie the prefetching like this:
+
+```
+$ sudo docker pull redis && sudo docker pull google/nodejs
+```
+
+We won't repeat the `sudo` note for the sake of readability of the rest of this tutorial.
+
+While your terminal and network connection are kept busy with loading Docker images, let's have a look on what exatly it is we are going to build.
+
 ## Overview of our application
 
 This diagram depicts how our application components will be set up.
@@ -38,7 +58,7 @@ Our NodeJS server consists of only two little files:
 * A JavaScript file called `server.js` which contains all our application logic
 * A dependencies description file called `package.json`
 
-If you're interested in the internal workings of the server, check their contents. For our tutorial, it's not too important, so we cut the details here.
+If you're interested in the internal workings of the server, check their content from the [GitHub](https://github.com/giantswarm/giantswarm-currentweather) repository. For our tutorial, it's not too important, so we cut the details here.
 
 ## Building our Docker image
 
