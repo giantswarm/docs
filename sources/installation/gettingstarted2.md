@@ -4,7 +4,7 @@ description: A slightly more involved tutorial for those who have tested out our
 
 <p class="lastmod">Last edited on January 19, 2015 by Marian Steinbach</p>
 
-This tutorial guides you through the creation of a application using two interlinked components and a custom Docker image. The core is a NodeJS server (however you don't need any knowledge of NodeJS, let alone install anything NodeJS-specific). A Redis server is used as a temporary data store and we connect to an external API.
+This tutorial guides you through the creation of an application using two interlinked components and a custom Docker image. The core is a NodeJS server (however you don't need any knowledge of NodeJS, let alone install anything NodeJS-specific). A Redis server is used as a temporary data store and we connect to an external API.
 
 ## Prerequisites
 
@@ -21,17 +21,35 @@ git clone git@github.com:giantswarm/giantswarm-currentweather.git
 cd giantswarm-currentweather
 ```
 
+## For the impatient
+
+If you're not the type who likes to read a lot, we have a `Makefile` in that repository mentioned above. You can get everything described below going using these commands:
+
+```
+swarm login <yourusername>
+make build
+make run-local-redis
+make run-local-nodejs
+# now test http://<your-docker-ip>:1337
+# then quit using Ctrl+C
+make push
+make deploy
+# open http://currentweather-<yourusername>.gigantic.io
+```
+
+Everybody else, follow the path to wisdom and read on.
+
 ## Testing Docker and getting some base images
 
 We have a Docker task ahead of us that could be a little time-consuming. The good thing is that we can make things a lot faster with some preparation. As a side effect, you can make sure that `docker` is working as expected on your system.
 
-We need to pull two images from the public Docker library, namely `redis` and `google/nodejs`. Together they can take a few hundret megabyte of data transfer. Start the prefetching using this command:
+We need to pull two images from the public Docker library, namely `redis` and `google/nodejs`. Together they can take a few hundred MB of data transfer. Start the prefetching using this command:
 
 ```
 $ docker pull redis && docker pull google/nodejs
 ```
 
-<i class="fa fa-exclamation-triangle"></i> __Note for Linux users__: You probably have to call the `docker` binary with root privileges, so please use `sudo docker` whenever the docker command is required here. For example, initiatie the prefetching like this:
+__For Linux users__: You probably have to call the `docker` binary with root privileges, so please use `sudo docker` whenever the docker command is required here. For example, initiatie the prefetching like this:
 
 ```
 $ sudo docker pull redis && sudo docker pull google/nodejs
@@ -136,11 +154,9 @@ Awesome. Now let's deploy it to the cloud.
 
 ## Bringing it to Giant Swarm
 
-### Uploading to a Docker registry
+### Uploading to the registry
 
-To use this Docker image it has to be built and uploaded to a registry. It's up to you to decide which registry you want to use. Giant Swarm offers you a private registry, so we explain how to upload ("push") to that one here.
-
-For more information on using the Giant Swarm registry, see our [registry reference](../reference/registry.md).
+To use this Docker image on Giant Swarm it has to be uploaded to a Docker registry. Giant Swarm offers you a such a registry. Here we briefly explain how to use it. For more information on using the Giant Swarm registry, see our [registry reference](../reference/registry.md).
 
 Before pushing to the registry, you have to log in with the `docker` client. Use this command:
 
@@ -148,7 +164,7 @@ Before pushing to the registry, you have to log in with the `docker` client. Use
 $ docker login https://registry.giantswarm.io
 ```
 
-You will be prompted for username and password. Use your Giant Swarm account credentials here.
+You will be prompted for username, password and email. Use your Giant Swarm account credentials here.
 
 Still assuming that your username is `yourusername`, you can now push the image like this:
 
@@ -158,7 +174,7 @@ $ docker push registry.giantswarm.io/yourusername/currentweather
 
 ### Configuring your application
 
-Applications in Giant Swarm are [configured using a JSON configuration file](../reference/swarm-json.md) that is usually called `swarm.json`. Four this application, we create a configuration containing one service with two components.
+Applications in Giant Swarm are [configured using a JSON configuration file](../reference/swarm-json.md) that is usually called `swarm.json`. For this application, we create a configuration containing one service with two components.
 
 Pay close attention to how we create a link between our two components by defining a dependency in the `nodejs` component pointing to the `redis` component.
 
@@ -171,7 +187,7 @@ Pay close attention to how we create a link between our two components by defini
       "components": [
         {
           "component_name": "nodejs",
-          "image": "registry.giantswarm.io/$company/currentweather",
+          "image": "registry.giantswarm.io/$username/currentweather",
           "ports": ["1337/tcp"],
           "dependencies": [
             {
@@ -180,7 +196,7 @@ Pay close attention to how we create a link between our two components by defini
             }
           ],
           "domains": {
-            "currentweather-$company.gigantic.io": "1337"
+            "currentweather-$username.gigantic.io": "1337"
           }
         },
         {
@@ -196,7 +212,7 @@ Pay close attention to how we create a link between our two components by defini
 
 ### Starting the application
 
-With the above configuration saved as `swarm.json` in your current directory you can now create and start the application using the `swarm up` command below. As always, replace `yourusername` with your actual username. The flag `--var=company=yourusername` will take care of placing your username in the positions where the `$company` variable is used in `swarm.json`.
+With the above configuration saved as `swarm.json` in your current directory you can now create and start the application using the `swarm up` command below. As always, replace `yourusername` with your actual username. The flag `--var=company=yourusername` will take care of placing your username in the positions where the `$username` variable is used in `swarm.json`.
 
 ```
 $ swarm up --var=company=yourusername
@@ -215,12 +231,9 @@ You can see all services and components using this command:
 
 ```
 
-Seeing is believing, they say. So let's do the final test that your application is actually doing what it should.
+Seeing is believing, they say. So let's do the final test that your application is actually doing what it should. Open the URL (with your username in the right place) in the browser:
 
-```
-$ curl currentweather-yourusername.gigantic.io
-Current weather in Cologne: light rain, temperature 9 degrees, wind 41 km/h
-```
+[http://currentweather-yourusername.gigantic.io/](http://currentweather-yourusername.gigantic.io/)
 
 If you watched closely, after starting our app we got the recommendation to check it's status using
 
