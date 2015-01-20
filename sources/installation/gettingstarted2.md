@@ -2,7 +2,7 @@ description: A slightly more involved tutorial for those who have tested out our
 
 # Getting started - Part 2
 
-<p class="lastmod">Last edited on January 19, 2015 by Marian Steinbach</p>
+<p class="lastmod">Last edited on January 20, 2015 by Marian Steinbach</p>
 
 This tutorial guides you through the creation of an application using two interlinked components and a custom Docker image. The core is a NodeJS server (however you don't need any knowledge of NodeJS, let alone install anything NodeJS-specific). A Redis server is used as a temporary data store and we connect to an external API.
 
