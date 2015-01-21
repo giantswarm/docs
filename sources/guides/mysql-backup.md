@@ -8,26 +8,21 @@ description: This guide shows you how you can create periodic backups of your My
 
 Setting up a MySQL database on Giant Swarm is simple. The Docker Hub provides a [standard image](https://registry.hub.docker.com/u/library/mysql/) in various flavors. But what happens as soon as your applications creates actual data? Servers can break any time, data can be lost. So you need a backup system.
 
-In this guide we show you how you can add a service to your Giant Swarm application that accomplishes one thing only: Create a database dump and store it to Amazon S3. This way you don't have to touch your existing services. Each function has it's place. Truly microservistic. :-)
+In this guide we show you how you can add a service to your Giant Swarm application that accomplishes one thing only: Create a database dump and store it to Amazon S3. This way you don't have to touch your existing services. Each function has it's place. Truly microservistic. :-) However, be aware that this is only one possible solution and might not be ideal for you.
 
 This guide proposes Amazon S3 as a means to store backups, because it's well-known. And it has the advantage that it is possble to create user accounts with very specific permission. You might adapt this guide to use different cloud storage services or your own (S)FTP server. If you write this up, let us know. We're happy to learn.
 
-<i class="fa fa-exclamation-triangle"></i> Note that being able to create periodic backups should not drive you to use Giant Swarm in production. We are still in Alpha. Things can and will break, all the time.
-
-## Before you start
+## Prerequisites
 
 To follow this guide, you will need the following:
 
-* The `docker` command line utility. [Get Installation instructions here.](https://docs.docker.com/installation/)
-* A dedicated AWS user account with credentials
-* S3 bucket with the correct permissions for the user
-* Giant Swarm user account
-* Network connection
-
-All the sample code used in this guide is on GitHub. [Browse the code](https://github.com/giantswarm/TODO) or clone it:
+* The `swarm` and `docker` utilities and some basic knowledge on how to use them. If you followed our [Getting Started - Part 2](../installation/gettingstarted2.md) tutorial, you'll be fine.
+* An S3 bucket and a dedicated AWS user account with permission to upload files into the bucket
+* The source code used in this guide from [GitHub](https://github.com/giantswarm/giantswarm-mysql-archiver). We recommend to quickly clone it:
 
 ```
-$ git clone git@github.com:giantswarm/TODO.git
+$ git clone git@github.com:giantswarm/giantswarm-mysql-archiver.git
+$ cd giantswarm-mysql-archiver
 ```
 
 ## AWS S3 setup overview
@@ -36,15 +31,15 @@ Setting up everything on AWS involves a few steps which are outlined here. We do
 
 Not that we explicitly recommend to create a dedicated AWS identity exclusively for this backup service. This way you can easily revoke permissions in the case that the according credentials get in the wrong hands. And you can easily restrict the S3 permissions to uploading into a specific bucket.
 
-Here is our checklist for your permission setup:
+Here is our recipe for your permission setup:
 
-* Create an AWS user group
-* Create an S3 bucket
-* Create a policy with write permission for this group and bucket
-* Add the policy to the bucket
-* Create a user
-* Store the credentials for this user, as you will need them in a moment
-* Add the user to the group
+1. Create an AWS user group
+2. Create an S3 bucket
+3. Create a policy with write permission for this group and bucket
+4. Add the policy to the bucket
+5. Create a user
+6. Store the credentials for this user, as you will need them in a moment
+7. Add the user to the group
 
 Here is the [AWS documentation on identities and bucket policies](http://docs.aws.amazon.com/AmazonS3/latest/dev/using-iam-policies.html). Also very helpful: The [AWS Policy Generator](http://awspolicygen.s3.amazonaws.com/policygen.html).
 
