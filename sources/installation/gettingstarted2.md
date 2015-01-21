@@ -102,7 +102,7 @@ The prefetching of Docker images you started a couple of minutes ago should be f
 Assuming that your Giant Swarm username is `yourusername`, to build the image, you  then execute:
 
 ```
-$ docker build -t registry.giantswarm.io/yourusername/currentweather .
+$ docker build -t registry.giantswarm.io/yourusername/currentweather ./
 ```
 
 ## Testing locally
