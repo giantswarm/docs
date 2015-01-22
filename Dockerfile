@@ -1,6 +1,6 @@
 # Inspired by https://github.com/dotcloud/docker/blob/master/docs/Dockerfile
 
-FROM 		ubuntu:14.04
+FROM 		debian:wheezy
 MAINTAINER	Matthias Luebken <matthias@giantswarm.io>
 
 
