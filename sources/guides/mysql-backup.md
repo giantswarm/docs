@@ -25,6 +25,8 @@ $ git clone git@github.com:giantswarm/giantswarm-mysql-archiver.git
 $ cd giantswarm-mysql-archiver
 ```
 
+A hint for the impatient: There is a `Makefile` in that repository which allows you to call most commands described in this tutorial in a reproducible way.
+
 ## AWS S3 setup overview
 
 Setting up everything on AWS involves a few steps which are outlined here. We don't go into all the details, since there should be plenty of tutorials for that elsewhere.
