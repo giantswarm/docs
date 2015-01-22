@@ -21,6 +21,7 @@ pages:
 - ['guides/symfony.md', 'Guides', 'PHP and Symfony']
 - ['guides/python.md', 'Guides', 'Python']
 - ['guides/java.md', 'Guides', 'Java']
+- ['guides/mysql-backup.md', 'Guides', 'MySQL with Backups']
 
 # Reference
 - ['reference/index.md', 'Reference', 'Overview']
