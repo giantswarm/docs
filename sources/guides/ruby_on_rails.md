@@ -139,8 +139,8 @@ docker run -d --name database -e MYSQL_ROOT_PASSWORD=${PASS} -p 3306 mysql
 
 # Now the Rails app - linked to MySQL
 docker run -e RAILS_ENV=production -e SECRET_KEY_BASE=${SECRET_KEY} \
-	-e MYSQL_PASS=${PASS} -e MYSQL_USER=root --link database:database \
-	-p 3000:3000 sample_rails_4
+  -e MYSQL_PASS=${PASS} -e MYSQL_USER=root --link database:database \
+  -p 3000:3000 sample_rails_4
 ```
 
 You can now access your app on [port 3000](http://localhost:3000) of localhost again.
@@ -163,34 +163,47 @@ Now, we just need to add an application file describing our containers:
 ```json
 {
   "app_name": "rails-sample-1",
-  "services": [{
-    "service_name": "web",
-    "components": [{
-      "component_name": "database",
-      "image": "mysql",
-      "ports": ["3306"],
-      "env": {
-        "MYSQL_ROOT_PASSWORD": "somesecretpassword"
-      }
-    },
+  "services": [
     {
-      "component_name": "rails",
-      "image": "<username>/sample_rails_4",
-      "env": {
-        "SECRET_KEY_BASE": "somesecretkeyforrails",
-        "RAILS_ENV": "production",
-        "MYSQL_PASS": "somesecretpassword",
-        "MYSQL_USER": "root"
-      },
-      "dependencies": [
-        {"name": "database", "port": 3306}
-      ],
-      "ports": ["3000"],
-      "domains": {
-        "rails-example.gigantic.io": "3000"
-      }
-    }]
-  }]
+      "service_name": "web",
+      "components": [
+        {
+          "component_name": "database",
+          "image": "mysql",
+          "ports": ["3306"],
+          "env": {
+            "MYSQL_ROOT_PASSWORD": "somesecretpassword"
+          },
+          "volumes": [
+            {
+              "path": "/var/lib/mysql",
+              "size": "1 GB"
+            } 
+          ]
+        },
+        {
+          "component_name": "rails",
+          "image": "<username>/sample_rails_4",
+          "env": {
+            "SECRET_KEY_BASE": "somesecretkeyforrails",
+            "RAILS_ENV": "production",
+            "MYSQL_PASS": "somesecretpassword",
+            "MYSQL_USER": "root"
+          },
+          "dependencies": [
+            {
+              "name": "database",
+              "port": 3306
+            }
+          ],
+          "ports": ["3000"],
+          "domains": {
+            "rails-example.gigantic.io": "3000"
+          }
+        }
+      ]
+    }
+  ]
 }
 ```
 
