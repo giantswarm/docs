@@ -12,11 +12,21 @@ run:
 		-v $(shell pwd)/sources/:/docs/sources/ \
 		$(registry)/$(COMPANY)/$(PROJECT)
 
+run-nginx:
+	docker run -d --name="docs-auth" -p 8080:80 \
+		--link docs:mkdocsmaster \
+		--link docs-sitesearch:sitesearch \
+		-e MKDOCSSLAVE_PORT_8000_TCP_ADDR=0.0.0.0 \
+		-e MKDOCSSLAVE_PORT_8000_TCP_PORT=8000 \
+		registry.giantswarm.io/giantswarm/docs-auth
+
+run-sitesearch:
+	docker run -d --name="docs-sitesearch" -p 9200:9200 \
+		registry.giantswarm.io/giantswarm/sitesearch
 
 run-with-indexer:
 	docker run --name=$(PROJECT) --rm -p 8000:8000 \
-		-e SITESEARCH_PORT_9200_TCP_ADDR=$(SITESEARCH_PORT_9200_TCP_ADDR) \
-		-e SITESEARCH_PORT_9200_TCP_PORT=$(SITESEARCH_PORT_9200_TCP_PORT) \
+		--link docs-sitesearch:sitesearch \
 		-v $(shell pwd)/sources/:/docs/sources/ \
 		$(registry)/$(COMPANY)/$(PROJECT)
 
