@@ -1,7 +1,7 @@
 # encoding: utf8
 
 """
-Search indexer for mkdocs
+Search indexer for the Giant Swarm Docs
 
 Written by Marian
 
@@ -10,11 +10,15 @@ What it does:
 - For each markdown file mentioned in mkdocs.yml
   - pushes content to elasticsearch
 
-Run from the same directory
+Run from the same directory that contains this file (python ./indexer.py)
+
+Expected env variables:
+- SITESEARCH_PORT_9200_TCP_ADDR
+- SITESEARCH_PORT_9200_TCP_PORT
+
 """
 
 import config
-import yaml
 import os
 import re
 import sys
@@ -23,31 +27,37 @@ from elasticsearch import Elasticsearch
 from datetime import datetime
 from BeautifulSoup import BeautifulSoup
 from markdown import markdown
+import toml
 
-def hosts_config(path):
-    file_handle = open(path, "r")
-    try:
-        hosts = yaml.load(file_handle)
-        file_handle.close()
-        return hosts
-    except yaml.parser.ParserError:
-        logging.error("Could not interpret %s as YAML file" % (path))
-        logging.info("Maybe you are lacking the according environment variables?")
+def get_pages(root_path):
+    """
+    Reads the content folder structure and returns a list dicts, one per page.
+    Each page dict has these keys.
 
-def mkdocs_pages(path):
+        path: list of logical uri path elements
+        uri: URI of the final rendered page as string
+        file_path: physical path of the file, as valid from within this script
+
+    Won't return anything for the home page and other index pages.
     """
-    Reads the mkdocs YAML file contents
-    and returns a list of dicts per markdown page
-    """
-    file_handle = open(path, "r")
-    data = yaml.load(file_handle)
+    num_root_elements = len(root_path.split(os.sep))
     pages = []
-    for item in data["pages"]:
-        record = {
-            "file": item.pop(0)
-        }
-        record["breadcrumb"] = item
-        pages.append(record)
+    structured_path = []
+    for root, dirs, files in os.walk(root_path):
+        for filename in files:
+            path = root.split(os.sep)[num_root_elements:]
+            file_path = root + os.sep + filename
+            if filename != "index.md":
+                # append name of file (without suffix) as last uri segment
+                segment = filename[:-3]
+                path.append(segment)
+            uri = "/" + "/".join(path) + "/"
+            record = {
+                "path": path,
+                "uri": uri,
+                "file_path": file_path
+            }
+            pages.append(record)
     return pages
 
 
@@ -60,51 +70,58 @@ def markdown_to_text(markdown_text):
     return text
 
 
-def index_page(path, breadcrumb, index):
+def index_page(path, breadcrumb, uri, index):
     """
-    Send one page to elasticsearch
+    Send one page to elasticsearch. Arguments:
+
+    path: File path
+    breadcrumb: structured path (list of segments)
+    uri: The URI
+    index: Elasticsearch index to write to
     """
     # get document body
-    file_handler = open(os.path.join(config.SOURCE_PATH, path), "r")
-    mdtext = file_handler.read()
+    file_handler = open(path, "r")
+    source_text = file_handler.read()
+    source_text_unicode = source_text.decode("utf8")
     file_handler.close()
-    mdtext = mdtext.decode("utf8")
-    text = markdown_to_text(mdtext)
 
-    title = breadcrumb.pop()
+    # parse front matter
+    data = {
+        "title": u""
+    }
+    title = None
+    matches = list(re.finditer(r"(\+\+\+)", source_text_unicode))
+    if len(matches) < 2:
+        logging.warn("Indexing page %s: No front matter found (looking for +++ blah +++)" % path)
+        text = markdown_to_text(source_text_unicode)
+    else:
+        front_matter_start = matches[0].start(1)
+        front_matter_end = matches[1].start(1)
+        data = toml.loads(source_text[(front_matter_start + 3):front_matter_end])
+        text = markdown_to_text(source_text_unicode[(front_matter_end+3):])
+        for key in data.keys():
+            if type(data[key]) == str:
+                data[key] = data[key].decode("utf8")
 
-    # remove trailing index.md
-    path = re.sub(r"index\.md$", "", path)
-    uri = "/%s/" % path.replace(".md", "")
-    uri = uri.replace("//", "/")
+    data["uri"] = uri
+    data["breadcrumb"] = breadcrumb
 
     # catch-all text field
-    alltext = title
-    alltext += " " + text
-    alltext += " " + uri
-    alltext += " " + " ".join(breadcrumb)
-
-    # document data
-    docdata = {
-        "title": title,
-        "uri": uri,
-        "body": text,
-        "timestamp": datetime.utcnow(),
-        "breadcrumb": breadcrumb,
-        "text": alltext,
-    }
+    data["text"] = data["title"]
+    data["text"] += " " + text
+    data["text"] += " " + uri
+    data["text"] += " " + " ".join(breadcrumb)
 
     # set main/sub categories "breadcrumb_<i>"
     for i in range(1, len(breadcrumb) + 1):
-        key = "breadcrumb_%d" % i
-        docdata[key] = breadcrumb[i - 1]
+        data["breadcrumb_%d" % i] = breadcrumb[i - 1]
 
     # send to ElasticSearch
     es.index(
         index=index,
         doc_type=config.ELASTICSEARCH_DOCTYPE,
         id=uri,
-        body=docdata)
+        body=data)
 
 
 def make_indexname(name_prefix):
@@ -126,17 +143,20 @@ if __name__ == "__main__":
     root.addHandler(ch)
 
     # read hosts config
-    eshosts = hosts_config(config.ELASTICSEARCH_HOSTS)
-    if eshosts is not None:
-        for host in eshosts:
-            logging.info("Found elasticsearch host in %s: %s" % (config.ELASTICSEARCH_HOSTS, host))
-        es = Elasticsearch(hosts=eshosts)
+    es_addr = os.getenv("SITESEARCH_PORT_9200_TCP_ADDR")
+    es_port = os.getenv("SITESEARCH_PORT_9200_TCP_PORT")
+    if es_addr is not None and es_port is not None:
+        es_hosts = ["%s:%s" % (es_addr, es_port)]
+        logging.info("Found ElasticSearch host config %s" % es_hosts)
+        es = Elasticsearch(hosts=es_hosts)
     else:
         logging.error("Search index won't be updated, since no connection to ElasticSearch possible.")
         sys.exit(1)
-    pages = mkdocs_pages(config.MKDOCS_FILE)
 
-    # make temporary index name
+    # get page data
+    pages = get_pages(config.SOURCE_PATH)
+
+    # generate temporary index name
     tempindex = make_indexname(config.ELASTICSEARCH_INDEX)
 
     es.indices.create(index=tempindex)
@@ -144,12 +164,11 @@ if __name__ == "__main__":
         doc_type=config.ELASTICSEARCH_DOCTYPE,
         body=config.ELASTICSEARCH_MAPPING)
     
-    # index to new index
-    for item in pages:
-        index_page(item["file"], item["breadcrumb"], tempindex)
+    # index each page into new index
+    for page in pages:
+        index_page(page["file_path"], page["path"], page["uri"], tempindex)
 
-
-    # remove old if existed, re-create alias
+    # remove old indexif existed, re-create alias
     if es.indices.exists_alias(name=config.ELASTICSEARCH_INDEX):
         old_index = es.indices.get_alias(name=config.ELASTICSEARCH_INDEX)
         # here we assume there is only one index behind this alias
