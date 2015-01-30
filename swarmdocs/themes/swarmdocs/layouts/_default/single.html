@@ -7,12 +7,15 @@
 
 <div class="row">
   <div class="col-md-4 col-lg-3 hidden-sm hidden-xs toc-sidebar">
-    <div class="toc">
-      {{ .TableOfContents }}
-    </div>
+    <!--<div data-spy="affix" data-offset-top="40" data-offset-bottom="0">-->
+    <div>
+      <div class="toc">
+        {{ .TableOfContents }}
+      </div>
 
-    <div clas="hidden-sm hidden-xs">
-      {{ partial "request_invite.html" . }}
+      <div clas="hidden-sm hidden-xs">
+        {{ partial "request_invite.html" . }}
+      </div>
     </div>
   </div>
   <div class="col-sm-12 col-md-8 col-lg-8 col-lg-offset-1">

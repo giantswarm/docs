@@ -42,7 +42,8 @@ Look at this simple example of a Giant Swarm application consisting of two servi
 ![](/img/overview-app-service-component.png)
 
 A `swarm.json` would look something like:
-```
+
+```json
 {
     "app_name": "application",
     "services": [
@@ -85,7 +86,7 @@ A `swarm.json` would look something like:
 
 The main interface to Giant Swarm is a CLI called `swarm`. After you have been authenticated you can create apps; start, stop, and update them and monitor them. A small example `swarm ls` lists the current installed apps on Giant Swarm:  
 
-```
+```nohighlight
 $ swarm ls
 2 applications available:
 

@@ -19,9 +19,7 @@ Environments are managed with the swarm client using the `swarm env` command. Th
 
 ## The default environment
 
-When you start working with the swarm client, you are automatically assigned to a default environment named after your username as the company name part and `dev` as the second part. For a user named `bouncer`, this would be:
-
-    bouncer/dev
+When you start working with the swarm client, you are automatically assigned to a default environment named after your username as the company name part and `dev` as the second part. For a user named `bouncer`, this would be: `bouncer/dev`.
 
 Note that you are free to set up environments with arbitrary names. Read on for details on creating environments.
 
@@ -29,7 +27,9 @@ Note that you are free to set up environments with arbitrary names. Read on for 
 
 To find out which environment you are currently working in (i.e. your selected environment), simply use the `swarm env` command without any argument:
 
-    $ swarm env
+```nohighlight
+$ swarm env
+```
 
 ## Creating and selecting an environment
 
@@ -37,7 +37,9 @@ To select an environment, use the `swarm env` command with the respective enviro
 
 To select/create an environment called `bouncer/prod` your command would look like this:
     
-    $ swarm env bouncer/prod
+```nohighlight
+$ swarm env bouncer/prod
+```
 
 If the environment already existed, it is now the selected environment. If it didn't exist yet, it is created and then selected.
 
@@ -49,9 +51,11 @@ TODO: explain what actually happens when creating an environment)
 
 To lists all environments, use the `swarm env` command with the `-l` switch:
 
-    $ swarm env -l
-       bouncer/dev
-     * bouncer/prod
+```nohighlight
+$ swarm env -l
+   bouncer/dev
+ * bouncer/prod
+```
 
 Here, the names of all environments are printed. In addition, the selected environment is marked with an asterisk.
 
@@ -63,6 +67,8 @@ Be aware that deleting an environment does not delete or stop any applications y
 
 To delete an environment, use the `swarm env` command with the `-d` switch and the respective env name:
 
-    $ swarm env -d bouncer/test
+```nohighlight
+$ swarm env -d bouncer/test
+```
 
 If you delete the currently selected environment this way, your default environment (see above) will be selected.

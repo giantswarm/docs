@@ -1,7 +1,7 @@
 +++
 title = "Creating and starting an application in one step"
 description = "This is the reference page for the 'swarm up' command, which allows you to create and start an application in one step."
-date = "2014-12-10"
+date = "2015-01-29"
 type = "page"
 categories = ["Reference", "Swarm CLI Commands"]
 tags = ["swarm up"]
@@ -18,7 +18,9 @@ In other words, it does what [`swarm create`](../create/) and [`swarm start`](..
 
 The general syntax is this:
 
-    $ swarm up [-d|--detach] [<config_filepath>] [--var-file=<filepath>] [--var=<key=value>]
+```nohighlight
+$ swarm up [-d|--detach] [config_filepath] [--var-file=<filepath>] [--var=<key=value>]
+```
 
 By default the `swarm up` exits after the application has been started successfully (or an error has occurred). Alternatively you can make it exit immediately after issuing the command to the API. That's what the `-d` (or `--detach`) flag is for.
 
@@ -32,7 +34,9 @@ If you want to know more about using variables in your application configuration
 
 The easiest is to run this command without any further arguments:
 
-    $ swarm up
+```nohighlight
+$ swarm up
+```
 
 This assumes that your application configuration file is in the current directory and it is called `swarm.json`. Optional configuration variables in `swarmvars.json` are read from the same directory, too, if present.
 

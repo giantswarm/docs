@@ -15,9 +15,18 @@ h4 {
 	color: #666;
 }
 
+pre {
+	background-color: #002b36;
+	padding: 4;
+}
+
 code {
 	color: #3b5e72;
 	background-color: #e7ecee;
+}
+
+pre code {
+	color: #839496;
 }
 
 .centered-text {
@@ -172,7 +181,29 @@ code {
 	margin-bottom: 10px;
 }
 
+.linklist {
+	list-style-type: none;
+	margin-left: 0px;
+	margin-right: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+.linklist li {
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-bottom: 20px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+.linklist a {
+	font-size: 20px;
+}
+.linklist .meta {
+	margin-top: 6px;
+}
+
 #TableOfContents {
+	font-size: 14px;
 	border: 1px solid #ddd;
 	padding: 10px 0px 10px 0px;
 }
@@ -183,9 +214,8 @@ code {
 }
 #TableOfContents li a {
 	margin: 0;
-	padding: 6px 15px 6px 20px;
+	padding: 5px 14px 5px 18px;
 	line-height: 23px;
-	font-size: 14px;
 	display: block;
 	border-left: 2px solid #fff;
 }

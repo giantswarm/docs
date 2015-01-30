@@ -1,9 +1,10 @@
 +++
-title = "Swarmify Ruby on Rails"
+title = "Swarmify PHP/Symfony"
 description = "This guide shows you how to create, deploy, and run a simple PHP/Symfony project on Giant Swarm"
 date = "2014-11-30"
 type = "page"
-weight = 100
+weight = 300
+categories = ["advanced"]
 +++
 
 # Swarmify PHP and Symfony

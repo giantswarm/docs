@@ -3,7 +3,8 @@ title = "MySQL with Backups"
 description = "This guide shows you how you can create periodic backups of your MySQL database with a very simple, additional service running in your application."
 date = "2015-01-22"
 type = "page"
-weight = 100
+weight = 200
+categories = ["advanced"]
 +++
 
 # MySQL with Backups

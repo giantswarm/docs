@@ -4,6 +4,7 @@ description = "This guide shows you how to create, deploy, and run a simple Pyth
 date = "2014-11-27"
 type = "page"
 weight = 100
+categories = ["advanced"]
 +++
 
 # Swarmify Python

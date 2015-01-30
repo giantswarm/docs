@@ -3,7 +3,8 @@ title = "Your first application — in NodeJS"
 description = "A slightly more involved tutorial for those who have tested out our Getting Started guide part 1."
 date = "2015-01-20"
 type = "page"
-weight = 100
+weight = 50
+categories = ["basic"]
 +++
 
 # Your first application — in JavaScript on NodeJS
@@ -20,7 +21,7 @@ This tutorial guides you through the creation of an application using two interl
 
 To facilitate following this guide, we recommend you clone the repository:
 
-```
+```nohighlight
 git clone git@github.com:giantswarm/giantswarm-currentweather.git
 cd giantswarm-currentweather
 ```

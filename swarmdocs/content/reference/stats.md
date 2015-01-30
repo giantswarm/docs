@@ -16,13 +16,17 @@ The `swarm stats` command allows you to get information on the current system lo
 
 The command requires an instance ID as the first argument.
 
-    $ swarm stats <instance_id>
+```nohighlight
+$ swarm stats <instance_id>
+```
 
 <!-- TODO: Create reference page on instance IDs and link from here. -->
 
+## Output
+
 Here is an example output:
 
-```
+```nohighlight
 component               memory usage (mb)  memory capacity (mb)  memory usage (%)  cpu usage (%)
 docs/docsservice/nginx  16.19              3956.24               0.41              2
 ```

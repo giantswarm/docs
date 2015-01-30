@@ -2,12 +2,15 @@
 hljs.initHighlightingOnLoad();
 
 /* Scrollspy */
-var navHeight = $('#TableOfContents').outerHeight(true) + 10
+//var navHeight = $('#TableOfContents').outerHeight(true) + 10
 
+/*
 $('body').scrollspy({
     target: '.toc-sidebar',
     offset: navHeight
-})
+});
+*/
+
 
 /* Prevent disabled links from causing a page reload */
 $("li.disabled a").click(function() {

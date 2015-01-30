@@ -20,13 +20,17 @@ In addition, please be aware that it is currently not possible to change your _u
 
 Use this command to print out your own user name:
 
-    $ swarm user
+```nohighlight
+$ swarm user
+```
 
 ## Setting a new password
 
 You can change your password while logged in with the CLI. Use the following command:
 
-    $ swarm user -u password
+```nohighlight
+$ swarm user -u password
+```
 
 You will be prompted to enter the current password first, then the new password and then once again the new password.
 
@@ -34,7 +38,9 @@ You will be prompted to enter the current password first, then the new password 
 
 To change the email address associated with your account, use this command:
 
-    $ swarm user -u email
+```nohighlight
+$ swarm user -u email
+```
 
 You will prompted to enter the new email address on the prompt interactively.
 

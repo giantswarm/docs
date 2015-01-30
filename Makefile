@@ -8,8 +8,8 @@ build:
 	docker build -t $(registry)/$(COMPANY)/$(PROJECT) .
 
 run:
-	docker run --name=$(PROJECT) --rm -p 8000:8000 \
-		-v $(shell pwd)/sources/:/docs/sources/ \
+	docker run --name=$(PROJECT) --rm -ti -p 8000:8000 \
+		-v $(shell pwd)/swarmdocs/:/docs/swarmdocs/ \
 		$(registry)/$(COMPANY)/$(PROJECT)
 
 run-nginx:
@@ -22,12 +22,12 @@ run-nginx:
 
 run-sitesearch:
 	docker run -d --name="docs-sitesearch" -p 9200:9200 \
-		registry.giantswarm.io/giantswarm/sitesearch
+		$(registry)/$(COMPANY)/sitesearch
 
 run-with-indexer:
 	docker run --name=$(PROJECT) --rm -p 8000:8000 \
 		--link docs-sitesearch:sitesearch \
-		-v $(shell pwd)/sources/:/docs/sources/ \
+		-v $(shell pwd)/swarmdocs/:/docs/swarmdocs/ \
 		$(registry)/$(COMPANY)/$(PROJECT)
 
 
@@ -38,6 +38,17 @@ delete:
 
 pull:
 	docker pull $(registry)/$(COMPANY)/$(PROJECT)
+
+highlight.js:
+	rm -rf highlight.js
+	git clone git@github.com:giantswarm/highlight.js.git
+
+highlight.js-build: highlight.js
+	rm -rf highlight.js/build
+	cd highlight.js && npm install
+	cd highlight.js && node tools/build.js -n bash dockerfile java javascript json php python ruby
+	cp highlight.js/build/highlight.pack.js swarmdocs/themes/swarmdocs/static/js/
+	cp highlight.js/src/styles/solarized_dark.css swarmdocs/themes/swarmdocs/static/css/
 
 deploy:
 	export SWARM_CLUSTER_ID=cluster-01.giantswarm.io && swarm stop swarmdocs

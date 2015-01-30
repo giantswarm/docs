@@ -20,7 +20,9 @@ The command requires an instance ID for the instance your component is running o
 
 <!-- TODO link instance IDs reference page here once it's created -->
 
-    $ swarm logs <instance_id>
+```nohighlight
+$ swarm logs <instance_id>
+```
 
 As a result, all log entries recorded so far will be printed to your console.
 
@@ -32,25 +34,35 @@ To make log access faster and more efficient, you can specify a number of lines 
 
 Here is how to use it:
 
-    $ swarm logs <instance_id> -t <num-lines>
+```nohighlight
+$ swarm logs <instance_id> -t <num-lines>
+```
 
 Or
 
-    $ swarm logs <instance_id> --tail=<num-lines>
+```nohighlight
+$ swarm logs <instance_id> --tail=<num-lines>
+```
 
 ## Continuous output
 
 You can print out new log messages as they occur. For this purpose, add the `--follow` or `-f` switch to the command.
 
-    $ swarm logs <instance_id> -f
+```nohighlight
+$ swarm logs <instance_id> -f
+```
 
 Or
 
-    $ swarm logs <instance_id> --follow
+```nohighlight
+$ swarm logs <instance_id> --follow
+```
 
 You can also combine the `--tail`/`-t` and the `--follow`/`-f` switches to first cap the log output returned and then follow new messages as they come up. An example:
 
-    $ swarm logs b4405a86-958e-4a46-ac14-41404c5e17bd -t 100 -f
+```nohighlight
+$ swarm logs b4405a86-958e-4a46-ac14-41404c5e17bd -t 100 -f
+```
 
 ## Further reading
 

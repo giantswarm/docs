@@ -1,7 +1,7 @@
 +++
 title = "Getting an application's configuration"
 description = "This is the reference page for the 'swarm cat' command, which allows you to fetch the effective configuration of an application."
-date = "2014-12-24"
+date = "2015-01-29"
 type = "page"
 categories = ["Reference", "Swarm CLI Commands"]
 tags = ["swarm cat"]
@@ -18,11 +18,19 @@ The `swarm cat` command allows you to inspect the current effective configuratio
 
 * Reconstruction of a lost configuration file. In case you lost your local version of the application confoguration, this is an easy way to reconstruct the file.
 
-The syntax is simple:
+## Command syntax
 
-    $ swarm cat [app_name]
+The general command syntax is:
+
+```nohighlight
+$ swarm cat [app_name]
+```
 
 The `app_name` argument is optional when there is a proper `swarm.json` file in your current directory, containing the required `app_name` key.
+
+## Output
+
+The effective application configuration is printed in JSON format. VIf variables were used when creating the application, they are replaced with their respective values.
 
 ## Further reading
 

@@ -1,7 +1,7 @@
 +++
 title = "Getting basic information"
 description = "Reference page for the `swarm info` command, which allows you to get some basic information on your login and environment status."
-date = "2014-12-13"
+date = "2015-01-29"
 type = "page"
 categories = ["Reference", "Swarm CLI Commands"]
 tags = ["swarm info"]
@@ -12,17 +12,23 @@ weight = 100
 
 The `swarm info` command is available to access some very basic information on your current status and settings.
 
-## Syntax
+## Command syntax
 
-Simply run
+The comand is called without any arguments, like this:
 
-    $ swarm info
+```nohighlight
+$ swarm info
+```
+
+## Output
 
 Here is an example output:
 
-    Cluster status:      reachable
-    Logged in as user:   someuser
-    Current environment: acmecorp/dev
+```nohighlight
+Cluster status:      reachable
+Logged in as user:   someuser
+Current environment: acmecorp/dev
+```
 
 What does this information tell you?
 

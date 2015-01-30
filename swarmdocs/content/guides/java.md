@@ -1,12 +1,13 @@
 +++
-title = "Swarmify Java and JavaSpark"
+title = "Swarmify Java and Spark"
 description = "This guide shows you how to create, deploy, and run a simple Java/Spark/Maven project on Giant Swarm"
 date = "2014-12-09"
 type = "page"
 weight = 100
+categories = ["advanced"]
 +++
 
-# Swarmify Java and JavaSpark
+# Swarmify Java and Spark
 
 There are tons of Java web stacks. For our first example we chose [Spark](http://www.sparkjava.com/) a tiny Sinatra inspired framework in Java 8.
 

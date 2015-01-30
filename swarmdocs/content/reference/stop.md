@@ -20,7 +20,9 @@ Stopping a service means that all components defined within this service will be
 
 To stop an application, you simply call `swarm stop` with the application name as an argument. The application name is defined in your application configuration file (`swarm.json`). Example:
 
-    $ swarm stop myapp
+```nohighlight
+$ swarm stop myapp
+```
 
 When in a terminal, you will see a little activity indicator until the application is actually stopped.
 
@@ -28,7 +30,9 @@ When in a terminal, you will see a little activity indicator until the applicati
 
 To stop a service, provide the name of the service as defined in your application configuration (`swarm.json`), prefixed with the application name and a slash (`/`). Example:
 
-    $ swarm stop myapp/myservice
+```nohighlight
+$ swarm stop myapp/myservice
+```
 
 ## Non-blocking execution
 
@@ -36,9 +40,10 @@ Stopping an application or service usually takes a few seconds at most. By defau
 
 To execute the command in a non-blocking or "detached" way, you can use the `-d` or `--detach` flag:
 
-    $ swarm stop -d myapp
-    $ swarm stop -d myapp/myservice
-
+```nohighlight
+$ swarm stop -d myapp
+$ swarm stop -d myapp/myservice
+```
 
 ## Further reading
 

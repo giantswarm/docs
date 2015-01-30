@@ -1,7 +1,7 @@
 +++
 title = "Listing applications"
 description = "The reference page for the 'swarm ls' command, which is used to show a list of applications in an environment."
-date = "2015-01-06"
+date = "2015-01-29"
 type = "page"
 categories = ["Reference", "Swarm CLI Commands"]
 tags = ["swarm ls"]
@@ -12,17 +12,25 @@ weight = 100
 
 The `swarm ls` helps you to find out which applications are configured in your current environment and what their status is.
 
+## Command syntax
+
 The command is simply called without any arguments, like this:
 
-    $ swarm ls
+```nohighlight
+$ swarm ls
+```
+
+## Output
 
 You get a table-like output of your applications. Here is an example:
 
-    2 applications available:
+```nohighlight
+2 applications available:
 
-    application      environment  created              status
-    graphhopper-cgn  marian/dev   2014-12-09 11:07:45  up
-    twofishes        marian/dev   2014-12-18 06:43:11  down
+application      environment  created              status
+graphhopper-cgn  marian/dev   2014-12-09 11:07:45  up
+twofishes        marian/dev   2014-12-18 06:43:11  down
+```
 
 The columns in detail:
 
@@ -31,7 +39,7 @@ The columns in detail:
  * `created`: The UTC date and time when the application has been created
  * `status`: The overall status of the application
 
-## Application status
+## Application status meaning
 
 The application status is an aggregate of the statuses of all component instances within that application. When reported on an application level, the possible statuses and their meaning are:
 

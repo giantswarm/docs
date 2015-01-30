@@ -4,10 +4,6 @@
 Configuration for searchindexer
 """
 
-# Path of YAML file containing
-# ElasticSearch host names or IP addresses and port
-ELASTICSEARCH_HOSTS = "hosts.yml"
-
 ELASTICSEARCH_INDEX = "docs"
 
 ELASTICSEARCH_DOCTYPE = "page"
@@ -46,9 +42,5 @@ ELASTICSEARCH_MAPPING = {
 	}
 }
 
-
-# Path to mkdocs YAML file
-MKDOCS_FILE = "../mkdocs.yml"
-
 # Path to markdown files
-SOURCE_PATH = "../sources"
+SOURCE_PATH = "../swarmdocs/content"

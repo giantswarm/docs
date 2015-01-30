@@ -4,6 +4,7 @@ description = "A first practical introduction into using Giant Swarm. This will 
 date = "2015-01-12"
 type = "page"
 weight = 10
+categories = ["basic"]
 +++
 
 # The Annotated Hello World Example
