@@ -2,3 +2,4 @@
 venv*
 swarmdocs/public/*
 .DS_Store
+highlight.js
