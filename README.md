@@ -10,8 +10,7 @@ On the Mac:
 
 ```
 brew install hugo
-cd swarmdocs/
-hugo server -w .
+./run-dev.sh
 ```
 
 (On Linux the process of installing HUGO in the correct version is more involved. Check the Dockerfile for hints.)
