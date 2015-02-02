@@ -10,14 +10,14 @@
                     "ports": [ "80/tcp" ],
                     "dependencies": [
                         {
-                            "name": "mkdocs-master/mkdocs",
-                            "port": 8000,
-                            "alias": "mkdocsmaster"
+                            "name": "content-master/content",
+                            "port": 80,
+                            "alias": "docsmaster"
                         },
                         {
-                            "name": "mkdocs-slave/mkdocs",
-                            "port": 8000,
-                            "alias": "mkdocsslave"
+                            "name": "content-slave/content",
+                            "port": 80,
+                            "alias": "docsslave"
                         },
                         {
                             "name": "sitesearch/sitesearch",
@@ -26,18 +26,21 @@
                         }
                     ],
                     "domains": {
-                        "$domain1_name": "80"
+                        "$domain_name": "80"
+                    },
+                    "env": {
+                        "BASE_URL": "http://$domain_name"
                     }
                 }
             ]
         },
         {
-            "service_name": "mkdocs-master",
+            "service_name": "content-master",
             "components": [
                 {
-                    "component_name": "mkdocs",
-                    "image": "$mkdocs_image",
-                    "ports": [ "8000/tcp" ],
+                    "component_name": "content",
+                    "image": "$content_image",
+                    "ports": [ "80/tcp" ],
                     "dependencies": [
                         {
                             "name": "sitesearch/sitesearch",
@@ -49,12 +52,12 @@
             ]
         },
         {
-            "service_name": "mkdocs-slave",
+            "service_name": "content-slave",
             "components": [
                 {
-                    "component_name": "mkdocs",
-                    "image": "$mkdocs_image",
-                    "ports": [ "8000/tcp" ]
+                    "component_name": "content",
+                    "image": "$content_image",
+                    "ports": [ "80/tcp" ]
                 }
             ]
         },

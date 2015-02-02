@@ -5,6 +5,7 @@ registry=registry.giantswarm.io
 default: ;
 
 build:
+	rm -rf swarmdocs/public/*
 	docker build -t $(registry)/$(COMPANY)/$(PROJECT) .
 
 run:

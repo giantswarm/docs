@@ -30,9 +30,11 @@ ADD requirements.txt /requirements.txt
 RUN ["pip", "install", "-r", "/requirements.txt"]
 
 # clean up stuff we only need for building, not for running
-RUN apt-get remove -qy wget curl build-essential ca-certificates git-core mercurial && \
+RUN apt-get remove -qy wget curl build-essential ca-certificates git-core mercurial bzr python-pip python-dev && \
 	apt-get clean && \
 	rm -rf /var/lib/apt/lists/*
+RUN rm -rf /goroot && rm -rf /gopath
+
 
 ADD . /docs
 
@@ -40,4 +42,4 @@ WORKDIR /docs
 
 CMD ["/docs/run.sh"]
 
-EXPOSE	8000
+EXPOSE	80

@@ -9,64 +9,65 @@ categories = ["basic"]
 
 # The Annotated Hello World Example
 
-This page gets you started with Giant Swarm. It will show you how to install the required tools and get a provided Docker image running.
+<p class="lead">This should be your first step with Giant Swarm, a quick check that everything is working just fine.</p>
 
-## Prerequisites
+If you already followed the __Quick Start__ on the [documentation home page](/) without any trouble, you can skip this guide in favor of creating [your first real application](/guides/your-first-application/), unless you want some more explanation of what you just accomplished.
 
-This section assumes that you have an account with Giant Swarm. If not, please [request an invite](https://giantswarm.io/request-invite/) first. Please note that we currently have a waiting list. It may take a while before you get an invite.
+## What you need
 
-## Installing the CLI
+In order to run applications on Giant Swrm, you need a Giant Swarm account. If you don't have one yet, [request an invite](https://giantswarm.io/request-invite/) first. Please note that we currently have a waiting list. It may take a while before you get an invite.
 
-The current CLI version is __v{{% cli_latest_version %}}__.
+Besides that, you should be on a Linux (64 bit) or Mac OS machine and be a little bit comfortable with using the command line.
 
-__Manual install__
+## Installing `swarm`
 
-For manual installation, download a tarball from here:
-
-  * [Mac](http://downloads.giantswarm.io/swarm/clients/{{% cli_latest_version %}}/swarm-{{% cli_latest_version %}}-darwin-amd64.tar.gz)
-  * [Linux](http://downloads.giantswarm.io/swarm/clients/{{% cli_latest_version %}}/swarm-{{% cli_latest_version %}}-linux-amd64.tar.gz)
-
-You can place the __swarm binary__ somewhere convenient, preferably in a location that's contained in your `PATH` environment variable. For example, `/usr/local/bin/` works fine in many cases.
-
-__Mac install via Homebrew__
-
-If you are on Mac OS X and have [homebrew](http://brew.sh/) installed, you can just tap it:
+The Giant Swarm command line interface (CLI) is called `swarm`. For __Mac users__ it's recommended to install it via Homebrew using
 
 ```nohighlight
-# First install:
 $ brew tap giantswarm/swarm
 $ brew install swarm-client
-# Update:
-$ brew update
-$ brew upgrade swarm-client
 ```
 
-## Say hi to the swarm
+Check our [installation reference page](/reference/installation/) for details.
 
-Now that you have the `swarm` command available, you can check the cluster's availability and your settings:
+__Linux users__ take the manual approach and download and unpack manually and move the binary to a place in their PATH, for example `/usr/local/bin`.
 
 ```nohighlight
-$ swarm info
-Cluster status:      reachable
-Logged in as user:   luebken
-Current environment: giantswarm/dev
+$ curl -O http://downloads.giantswarm.io/swarm/clients/{{% cli_latest_version %}}/swarm-{{% cli_latest_version %}}-linux-amd64.tar.gz
+$ tar xzf swarm-{{% cli_latest_version %}}-linux-amd64.tar.gz
+$ sudo cp swarm /usr/local/bin/
 ```
 
-Now that everything is set up, it's time to __log in__ with your user account. That's what the `swarm login` command is for. You will then be prompted for your user name or email address and for your password.
+## Logging in
+
+Before you can do anything useful with `swarm`, you have to log in once. This is done by calling the `swarm login` command with your username as argument:
 
 ```nohighlight
-$ swarm login
-user or mail: luebken
-password:
+$ swarm login yourusername
 ```
 
-Note that the password won't be displayed while you type.
+Of course, you type your real username instead of `yourusername` here. Needless to say.
 
-The next thing you might want to try is setting up a specific environment. See [Working with environments](/reference/env/) for further details.
+You will be prompted to enter your Giant Swarm password. Note that the password won't be displayed while you type.
 
-## Configure a helloworld application
+You find a bit more about that command in the [login reference](/reference/login/).
 
-Create a file called `swarm.json` with your favourite editor and fill it with the following JSON code.
+## Getting the code
+
+We provide a very simple [example application](https://github.com/giantswarm/helloworld) for you on GitHub. To checkout the source via git, do
+
+```nohighlight
+$ git clone https://github.com/giantswarm/helloworld.git
+$ cd helloworld
+```
+
+Alternatively you can [download a ZIP file](https://github.com/giantswarm/helloworld/archive/master.zip) file, so you don't even need `git` installed.
+
+When looking at the contents, you'll find that there is only one actual file contained, called `swarm.json`. This is really all we need for now.
+
+## Checking the application config
+
+In case you want to understand what your application is doing, let's have a look at the `swarm.json` file.
 
 ```json
 {
@@ -76,53 +77,65 @@ Create a file called `swarm.json` with your favourite editor and fill it with th
       "service_name": "helloworld-service",
       "components": [
         {
-          "component_name": "python",
+          "component_name": "helloworld-component",
           "image": "python:3",
-          "args": ["sh", "-c", "echo \"Hello Giant Swarm. \\o/\" > index.html && python -m http.server"],
-          "ports": [ "8000/tcp" ],
-          "domains": { "helloworld.gigantic.io": "8000" }
+          "args": ["sh", "-c", "echo \"Hello from Giant Swarm. \\o/\" > index.html && python -m http.server"],
+          "ports": ["8000/tcp"],
+          "domains": {
+            "$domain": "8000"
+          }
         }
       ]
     }
   ]
 }
-```
+``` 
 
-This configures a simple app with one service. The service consists of one component. The component uses a predefined image and starts a python web http server.
+The file configures an application called `helloworld` with a single service. This service contains a single component named `helloworld-component`. This component uses the standard [python version 3](https://registry.hub.docker.com/_/python/) image from the public Docker registry. The `args` key defines arguments to be called when the container is started. In this case, the arguments form a command that writes an HTML file and then starts a little web server to serve it. The `ports` definition exposes port 8000 of the component, which is finally exposed via the `domains` entry via standard HTTP port 80.
 
-## Run the helloworld application
+There is a nifty thing: We use a variable `$domain` in this file, so that you can pick your own domain name for your application without even having to edit that file.
 
-To create and start an app just use the `up` command:
 
-```nohighlight
-$ swarm up
-```
+## Running the application
 
-While it's starting you may check its status with the `status` command from a new shell:
+We create and start the application in one step, using the `swarm up` command. See how we now set the `$domain` variable with a custom domain name using your swarm username.
 
 ```nohighlight
-$ swarm status
-App helloworld is starting!
-
-service             component  instanceid                            created              status
-helloworld-service  python     4cc709fc-5250-4bab-83d3-837cd0f7af36  06 Jan 15 10:28 UTC  starting
+$ swarm up --var=domain=hello-$(swarm user).gigantic.io
 ```
 
-Once it's up, you can check it by opening the specified domain in a browser or `curl`ing it:
+Now your application is created on Giant Swarm. The `python:3` image you are using in your component is loaded from the Docker registry and started as a container on some machine of our cluster. Access to the application via your configured domain name is set up.
+
+Once everything is done, you get a success notice on the terminal.
 
 ```nohighlight
-$ curl helloworld.gigantic.io
+Creating 'helloworld' in the 'yourusername/dev' environment...
+Application created successfully!
+Starting application helloworld...
+Application helloworld is up.
+You can see all services and components using this command:
+
+    swarm status helloworld
+
+```
+
+The app should be running, so let's check it in a browser. Note that the URL contains your Giant Swarm username and looks like `hello-yourusername.gigantic.io`. If everything went fine, you see something like this:
+
+```nohighlight
 Hello Giant Swarm. \o/
 ```
 
-On the way you might want to check for the logs by querying against the instanceid:
+Cool. Take a breath and enjoy your achievement, before it's time to clean up.
+
+The following two commands will stop and delete the application to free resources on the cluster.
 
 ```nohighlight
-$ swarm logs 4cc709fc-5250-4bab-83d3-837cd0f7af36
+$ swarm stop helloworld
+$ swarm delete helloworld
 ```
 
-To stop and delete an app use `swarm stop` and `swarm delete`.
+Congratulations! You are now prepared for greater achievements.
 
-*Congratulations*, you've created and started your first swarm app!
+## Next steps
 
-After you have celebrated your success head over to [Part 2](gettingstarted2.md) to see how to define your own images.
+Get real! Check out [Your First Application - in your language](/guides/your-first-application/) and learn to create your first real Giant Swarm application.

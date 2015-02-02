@@ -159,9 +159,6 @@ $(document).ready(function(){
         return;
     }
 
-    // empty left sidebar
-    $(".bs-sidebar").remove();
-
     var q = getParameterByName("q");
 
     // sanitize query string by eleminating trailing / (PHP SimpleHTTPServer problem)
@@ -182,6 +179,5 @@ $(document).ready(function(){
         return;
     }
     var innerToc = toc.find("ul:first-child > li:first-child > ul").html();
-    //console.debug(innerToc);
     toc.html("<ul>" + innerToc + "</ul>");
 });

@@ -9,21 +9,6 @@
 
     <hr>
 
-    <h3>Basic Guides</h3>
-
-    <ul class="linklist">
-      {{ range .Site.Taxonomies.subcategory.basic.ByWeight }}
-      <li>
-        <a href="{{ .Permalink }}">{{ .Title }}</a>
-        <div class="meta">{{ .Description }}</div>
-      </li>
-      {{ end }}
-    </ul>
-
-    <hr>
-
-    <h3>Other Guides</h3>
-
     <ul class="linklist">
       {{ range .Data.Pages.ByWeight }}
       <li>

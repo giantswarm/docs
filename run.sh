@@ -8,8 +8,6 @@
 # Run indexer (if ElasticSearch address is configured)
 [ -z "$SITESEARCH_PORT_9200_TCP_ADDR" ] || {
 	echo "SITESEARCH_PORT_9200_TCP_ADDR is set. Indexing.";
-	# set SITESEARCH ip/port for search indexer
-	echo "- ${SITESEARCH_PORT_9200_TCP_ADDR}:${SITESEARCH_PORT_9200_TCP_PORT}" > search/hosts.yml;
 	# start indexing content for search
 	sleep 10
 	cd /docs/search && python ./indexer.py
@@ -18,9 +16,13 @@
 
 cd /docs/swarmdocs
 
+echo "DEVELOPMENT_MODE: ${DEVELOPMENT_MODE}"
+echo "BASE_URL: ${BASE_URL}"
+
+
 if [ -z ${DEVELOPMENT_MODE+x} ];
 then
-	exec hugo server -p 8000
+	exec hugo server --port=80 --baseUrl=${BASE_URL}
 else 
-	exec hugo server -p 8000 -w
+	exec hugo server --port=80 --baseUrl=${BASE_URL} --watch
 fi
