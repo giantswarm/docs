@@ -1,61 +1,51 @@
 +++
-title = "Installing the swarm CLI"
+title = "Installing the Giant Swarm CLI"
 description = "A detailed description of how to install Giant Swarm client software on various platforms"
-date = "2015-01-12"
+date = "2015-02-01"
 type = "page"
 weight = 10
 +++
 
-# TL;DR Cheat sheet
+# Installing the Giant Swarm CLI
 
-This is a very condensed cheat sheet. For more details see [Getting Started](gettingstarted.md).
+<p class="lead">Instructions for installing the `swarm` command line interface on the supported platforms. By the way, the latest version is <strong>{{% cli_latest_version %}}</strong>.</p>
 
-## Installation
+## Mac OS X
 
-Mac: `$ brew tap giantswarm/swarm && brew install swarm-client`
+If you're on a Mac, the recommended way to install the `swarm` command line interface (CLI) is to use [Homebrew](http://brew.sh/).
 
-Linux: `$ curl -O http://downloads.giantswarm.io/swarm/clients/{{% cli_latest_version %}}/swarm-{{% cli_latest_version %}}-linux-amd64.tar.gz`
+Once Homebrew is set up, these commands will install the latest swarm <abbr title="command line interface">CLI</abbr> in your PATH.
 
-Command       | Purpose
-------------- | -------------
-`$ swarm`     | test the swarm CLI and see avaible commands
-`$ swarm info` | print current swarm settings
-`$ swarm login` | login to your account 
-`$ swarm env <username>/dev` | change the environment
-`$ swarm ls` | list your apps to check if everything is working
-`$ docker login https://registry.giantswarm.io` | login to the private Docker registry
+```nohighlight
+$ brew tap giantswarm/swarm
+$ brew install swarm-client
+```
 
-## Create and run an app
+In order to update the swarm <abbr title="command line interface">CLI</abbr> to the latest version, use these commands: 
 
-Most commands use infos from `swarm.json` in the current path as a default.
+```nohighlight
+$ brew update
+$ brew upgrade swarm-client
+```
 
-Command                          | Purpose
--------------------------------- | -------------
-`$ swarm up [swarm.json]`        | create and start an app
-`$ swarm create [swarm.json]`    | create an app
-`$ swarm start [app name]`       | start an app
-`$ swarm stop [app name]`        | stop an app
-`$ swarm status [app name]`      | show status for an app
-`$ swarm logs <instance-id>`     | show logs from an app
+## Linux
 
-## swarm.json
+Please note that the `swarm` <abbr title="command line interface">CLI</abbr> requires a 64 bit system.
 
-Example using a predefined python image and exposing a http server:
+First, download the tarball and unpack it:
 
-    {
-        "app_name": "helloworld",
-        "services": [
-            {
-                "service_name": "helloworld-service",
-                "components": [
-                    {
-                        "component_name": "python",
-                        "image": "python:3",
-                        "args": ["sh", "-c", "echo \"Hello Giant Swarm. \\o/\" > index.html && python -m http.server"],
-                        "ports": [ "8000/tcp" ],
-                        "domains": { "helloworld.gigantic.io": "8000" }
-                    }
-                ]
-            }
-        ]
-    }
+```nohighlight
+$ curl -O http://downloads.giantswarm.io/swarm/clients/{{% cli_latest_version %}}/swarm-{{% cli_latest_version %}}-linux-amd64.tar.gz
+$ tar xzf swarm-{{% cli_latest_version %}}-linux-amd64.tar.gz
+```
+
+We recommend to make the `swarm` binary available in your PATH by copying it to a directory that's already contained in your PATH. For example:
+
+```nohighlight
+$ sudo cp swarm /usr/local/bin/
+```
+
+## Next steps
+
+* [The Annotated Hello World Example](/guides/annotated-helloworld/): A quick check that everything is working fine
+* [Your First Application - in Your Language](/guides/your-first-application/): Learn how to create your first application on Giant Swarm on your prefered technology
