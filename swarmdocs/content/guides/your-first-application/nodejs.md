@@ -78,7 +78,7 @@ Our NodeJS server consists of only two little files:
 * A JavaScript file called [server.js](https://github.com/giantswarm/giantswarm-firstapp-nodejs/blob/master/server.js) which contains all our application logic
 * A dependencies description file called [package.json](https://github.com/giantswarm/giantswarm-firstapp-nodejs/blob/master/package.json)
 
-If you're interested in the internal workings of the server, check their content from the [GitHub](https://github.com/giantswarm/giantswarm-currentweather) repository. For our tutorial, it's not too important, so we cut the details here.
+If you're interested in the internal workings of the server, check their content from the [GitHub](https://github.com/giantswarm/giantswarm-firstapp-nodejs) repository. For our tutorial, it's not too important, so we cut the details here.
 
 ## Building our Docker image
 
@@ -214,10 +214,10 @@ Pay close attention to how we create a link between our two components by defini
 
 ### Starting the application
 
-With the above configuration saved as `swarm.json` in your current directory you can now create and start the application using the `swarm up` command below. As always, replace `yourusername` with your actual username. The flag `--var=company=yourusername` will take care of placing your username in the positions where the `$username` variable is used in `swarm.json`.
+With the above configuration saved as `swarm.json` in your current directory you can now create and start the application using the `swarm up` command below. As always, replace `yourusername` with your actual username. The flag `--var=username=yourusername` will take care of placing your username in the positions where the `$username` variable is used in `swarm.json`.
 
 ```nohighlight
-$ swarm up --var=company=yourusername
+$ swarm up --var=username=yourusername
 ```
 
 You will see some progress output during creation and startup of your application:
@@ -268,6 +268,6 @@ If you're still hungry, why not continue with a more advanced tutorial?
 
 ## Further reading
 
+* [Your first application - in your language](../): this guide in other languages
 * [Swarmify Ruby on Rails](../guides/ruby_on_rails.md) - A simple Rails example involving MySQL
-* [Swarmify Python](../guides/python.md) - A very simple Flask boilerplate
 * [Getting started with Docker and MeanJS](http://blog.giantswarm.io/getting-started-with-docker-and-meanjs) - Easily adaptable to Giant Swarm with the experience you have by now.
