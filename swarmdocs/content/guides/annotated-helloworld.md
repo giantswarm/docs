@@ -48,8 +48,6 @@ $ swarm login yourusername
 
 You will be prompted to enter your Giant Swarm password. Note that the password won't be displayed while you type.
 
-You find a bit more about that command in the [login reference](/reference/login/).
-
 ## Getting the code
 
 We provide a very simple [example application](https://github.com/giantswarm/helloworld) for you on GitHub. To checkout the source via git, do
