@@ -1,11 +1,11 @@
 sitesearch:
   image: registry.giantswarm.io/giantswarm/sitesearch
 docsslave:
-  image: registry.giantswarm.io/giantswarm/docs
+  image: registry.giantswarm.io/giantswarm/docs:testing201502031608
   environment:
     BASE_URL: http://192.168.59.103
 docsmaster:
-  image: registry.giantswarm.io/giantswarm/docs
+  image: registry.giantswarm.io/giantswarm/docs:testing201502031608
   links:
    - "sitesearch"
   environment:
