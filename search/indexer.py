@@ -105,6 +105,7 @@ def index_page(path, breadcrumb, uri, index):
 
     data["uri"] = uri
     data["breadcrumb"] = breadcrumb
+    data["body"] = text
 
     # catch-all text field
     data["text"] = data["title"]
