@@ -51,7 +51,7 @@ We need to pull two images from the public Docker library, namely `redis` and `g
 $ docker pull redis && docker pull google/nodejs
 ```
 
-__For Linux users__: You probably have to call the `docker` binary with root privileges, so please use `sudo docker` whenever the docker command is required here. For example, initiatie the prefetching like this:
+__For Linux users__: You probably have to call the `docker` binary with root privileges, so please use `sudo docker` whenever the docker command is required here. For example, initiate the prefetching like this:
 
 ```nohighlight
 $ sudo docker pull redis && sudo docker pull google/nodejs
