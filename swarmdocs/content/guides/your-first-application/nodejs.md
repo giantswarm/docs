@@ -253,7 +253,7 @@ currentweather-service  nodejs     1d23c62a-3ebf-4a01-a054-05fbf024eb0a  2015-01
 currentweather-service  redis      04570837-9ac3-4959-bc74-ad49eafaaa3f  2015-01-15 15:35:46  up
 ```
 
-Here you have them, your two components, running on Giant Swarm. If you want to, you can check the logs using the instance IDs you see in the `swarm status output`. The syntax for the command is `swarm logs <instance-id>`. 
+Here you have them, your two components, running on Giant Swarm. If you want to, you can check the logs using the instance IDs you see in the `swarm status` output. The syntax for the command is `swarm logs <instance-id>`. 
 
 Now if you like, you can stop or even delete the application again.
 
@@ -262,7 +262,7 @@ $ swarm stop currentweather-app
 $ swarm delete currentweather-app
 ```
 
-We hope you enjoyed this tutorial. If yes, feel free to tweet and blog it out in the world. If not, please let us know what bugged you (see chat and support info at the bottom of this page).
+We hope you enjoyed this tutorial. If yes, feel free to tweet and blog it out to the world. If not, please let us know what bugged you (see chat and support info at the bottom of this page).
 
 If you're still hungry, why not continue with a more advanced tutorial?
 
