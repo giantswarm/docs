@@ -15,7 +15,7 @@ If you already followed the __Quick Start__ on the [documentation home page](/) 
 
 ## What you need
 
-In order to run applications on Giant Swrm, you need a Giant Swarm account. If you don't have one yet, [request an invite](https://giantswarm.io/request-invite/) first. Please note that we currently have a waiting list. It may take a while before you get an invite.
+In order to run applications on Giant Swarm, you need a Giant Swarm account. If you don't have one yet, [request an invite](https://giantswarm.io/request-invite/) first. Please note that we currently have a waiting list. It may take a while before you get an invite.
 
 Besides that, you should be on a Linux (64 bit) or Mac OS machine and be a little bit comfortable with using the command line.
 
