@@ -13,7 +13,7 @@ categories = ["basic"]
 
 ## Select your preferred language/platform
 
-* [JavaScript/NodeJS](nodejs/)
-* [Golang](golang/)
-* [Python/Flask](python/)
-* [Ruby/Sinatra](ruby/)
+* [NodeJS](nodejs/)
+* [Go](golang/)
+* [Python](python/)
+* [Ruby](ruby/)

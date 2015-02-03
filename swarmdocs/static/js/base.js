@@ -174,18 +174,16 @@ $(document).ready(function(){
 });
 
 /** Re-format the table of contents **/
-$(document).ready(function(){
-    var toc = $('#TableOfContents');
-    if (toc.length == 0) {
-        return;
-    }
+
+var toc = $('#TableOfContents');
+if (toc.length !== 0) {
     var innerToc = toc.find("ul:first-child > li:first-child > ul").html();
     if (typeof innerToc !== "undefined") {
         toc.html("<ul>" + innerToc + "</ul>");
     } else {
         $('#TableOfContents').remove();
     }
-});
+}
 
 /** Adapt username in quickstart **/
 var username = getParameterByName("username");
