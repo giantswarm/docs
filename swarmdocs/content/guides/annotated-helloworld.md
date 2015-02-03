@@ -1,7 +1,7 @@
 +++
 title = "The Annotated Hello World Example"
 description = "A first practical introduction into using Giant Swarm. This will take you to a simple Hello World example."
-date = "2015-01-12"
+date = "2015-02-02"
 type = "page"
 weight = 10
 categories = ["basic"]

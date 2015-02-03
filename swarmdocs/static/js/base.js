@@ -138,7 +138,7 @@ function renderSerpEntry(index, hit) {
         d.append($("<h4></h4>").html((index + 1) + ". " + hit.fields.title));
     }
     if (typeof(hit.fields.breadcrumb) !== "undefined" && hit.fields.breadcrumb.length > 0) {
-        d.append($("<p class='sbreadcrumb'></p>").html("In: " + hit.fields.breadcrumb.join(" / ")));
+        d.append($("<p class='sbreadcrumb'></p>").html("/" + hit.fields.breadcrumb.join("/") + "/"));
     }
     if (typeof(hit.highlight) !== "undefined" && typeof(hit.highlight.body) !== "undefined" && hit.highlight.body.length > 0) {
         d.append($("<p class='snippet'></p>").html(hit.highlight.body.join(' <span class="hellip">[...]</span> ')));
@@ -167,6 +167,7 @@ $(document).ready(function(){
     }
 
     if (typeof(q) === "undefined" || q == null || q === "") {
+        $(".feedback").hide();
         return;
     }
     doSearch(q);
@@ -179,5 +180,29 @@ $(document).ready(function(){
         return;
     }
     var innerToc = toc.find("ul:first-child > li:first-child > ul").html();
-    toc.html("<ul>" + innerToc + "</ul>");
+    if (typeof innerToc !== "undefined") {
+        toc.html("<ul>" + innerToc + "</ul>");
+    } else {
+        $('#TableOfContents').remove();
+    }
 });
+
+/** Adapt username in quickstart **/
+var username = getParameterByName("username");
+if (typeof username !== "undefined" && username !== "") {
+    $(".username").text(username);
+    $(".welcome-alert").show();
+}
+
+/** Adapt docs menu **/
+if (document.location.pathname == "/") {
+    $("#homelink").addClass("active");
+} else {
+    $(".docsnav .nav li").each(function(index, item){
+        var link = $(item).find("a").attr("href");
+        if (link !== "/" && document.location.pathname.indexOf(link) == 0) {
+            $(item).addClass("active");
+            return;
+        }
+    });
+}

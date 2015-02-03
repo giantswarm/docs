@@ -1,7 +1,7 @@
 <div class="row docsnav">
   <div class="col-md-8">
     <ul class="nav nav-pills">
-      <li role="presentation"><a href="/">Docs Home</a>
+      <li role="presentation" id="homelink"><a href="/">Docs Home</a>
       {{ range .Site.Menus.main }}
       <li role="presentation"><a href="{{ .Url }}">{{ .Name }}</a></li>
       {{end}}

@@ -1,7 +1,7 @@
 +++
 title = "Your first application — in NodeJS"
 description = "A slightly more involved tutorial for those who have tested out our Getting Started guide part 1."
-date = "2015-01-20"
+date = "2015-02-03"
 type = "page"
 weight = 50
 categories = ["basic"]
@@ -9,37 +9,32 @@ categories = ["basic"]
 
 # Your first application — in JavaScript on NodeJS
 
-This tutorial guides you through the creation of an application using two interlinked components and a custom Docker image. The core is a NodeJS server (however you don't need any knowledge of NodeJS, let alone install anything NodeJS-specific). A Redis server is used as a temporary data store and we connect to an external API.
+This tutorial guides you through the creation of an application using two interlinked components and a custom Docker image. The core is a NodeJS server. Additionally, a Redis server is used as a temporary data store and we connect to an external API.
 
 ## Prerequisites
 
-* Please make sure you have the `swarm` <abbr title="Command Line Interface">CLI</abbr> installed. Ideally you have followed our [Getting Started Guide - Part 1](gettingstarted.md).
+* You should have done the [Quick Start](/) or the [Annotated Hello World Example](/guides/annotated-helloworld/) and everything should have worked fine.
 
-* In addition we assume that you have a basic understanding of Docker. Please make sure that you have Docker installed. Docker provides extensive [installation instructions](https://docs.docker.com/installation/) and [user guides](https://docs.docker.com/userguide/).
+* We assume that you have a basic understanding of Docker and you have Docker installed. Docker provides extensive [installation instructions](https://docs.docker.com/installation/) and [user guides](https://docs.docker.com/userguide/).
 
-* The sources code for this tutorial can be found here: [https://github.com/giantswarm/giantswarm-currentweather](https://github.com/giantswarm/giantswarm-currentweather).
-
-To facilitate following this guide, we recommend you clone the repository:
+* The sources code for this tutorial can be found [on GitHub](https://github.com/giantswarm/giantswarm-firstapp-nodejs). To facilitate following this guide, we recommend you clone the repository using this command:
 
 ```nohighlight
-git clone git@github.com:giantswarm/giantswarm-currentweather.git
-cd giantswarm-currentweather
+$ git clone https://github.com/giantswarm/giantswarm-firstapp-nodejs.git
+$ cd giantswarm-firstapp-nodejs
 ```
 
 ## For the impatient
 
-If you're not the type who likes to read a lot, we have a `Makefile` in that repository mentioned above. You can get everything described below going using these commands:
+If you're not the type who likes to read a lot, we have a `Makefile` in the repository. This file helps you to get everything described below going using these commands:
 
-```
-swarm login <yourusername>
-make build
-make run-local-redis
-make run-local-nodejs
-# now test http://<your-docker-ip>:1337
-# then quit using Ctrl+C
-make push
-make deploy
-# open http://currentweather-<yourusername>.gigantic.io
+```nohighlight
+$ swarm login <yourusername>
+$ make docker-build
+$ make docker-run-redis
+$ make docker-run
+$ make docker-push
+$ make swarm-up
 ```
 
 Everybody else, follow the path to wisdom and read on.
@@ -50,19 +45,19 @@ We have a Docker task ahead of us that could be a little time-consuming. The goo
 
 We need to pull two images from the public Docker library, namely `redis` and `google/nodejs`. Together they can take a few hundred MB of data transfer. Start the prefetching using this command:
 
-```
+```nohighlight
 $ docker pull redis && docker pull google/nodejs
 ```
 
 __For Linux users__: You probably have to call the `docker` binary with root privileges, so please use `sudo docker` whenever the docker command is required here. For example, initiatie the prefetching like this:
 
-```
+```nohighlight
 $ sudo docker pull redis && sudo docker pull google/nodejs
 ```
 
 We won't repeat the `sudo` note for the sake of readability of the rest of this tutorial. Docker warns you if the priveleges aren't okay, so you'll be remembered anyway.
 
-While your terminal and network connection are kept busy with loading Docker images, let's have a look on what exatly it is we are going to build.
+While your terminal and network connection are kept busy with loading Docker images, let's have a look on what exactly we are going to build.
 
 ## Overview of our application
 
@@ -72,7 +67,7 @@ This diagram depicts how our application components will be set up.
 
 We have one component which we call `nodejs` as the core piece. It will provide a NodeJS HTTP server. When accessed by a user, it should display the current weather at our home town, Cologne/Germany.
 
-We get the weather data from the [openweathermap.org](openweathermap.org) API. Since we want to be good citizens and not call that API more often than necessary, we cache the API responses locally for a while. For this we use a Redis cache, which is our second component, called `redis` in the diagram above.
+We get the weather data from the [openweathermap.org](http://openweathermap.org/) API. Since we want to be good citizens and not call that API more often than necessary, we cache the API responses locally for a while. For this we use a Redis cache, which is our second component, called `redis` in the diagram above.
 
 ## The NodeJS server component
 
@@ -87,7 +82,7 @@ If you're interested in the internal workings of the server, check their content
 
 We now create a Docker image for our NodeJS server. Here is the `Dockerfile` we use for that purpose:
 
-```
+```Dockerfile
 FROM google/nodejs
 
 WORKDIR /app
@@ -106,7 +101,7 @@ The prefetching of Docker images you started a couple of minutes ago should be f
 
 Assuming that your Giant Swarm username is `yourusername`, to build the image, you  then execute:
 
-```
+```nohighlight
 $ docker build -t registry.giantswarm.io/yourusername/currentweather ./
 ```
 
@@ -114,13 +109,13 @@ $ docker build -t registry.giantswarm.io/yourusername/currentweather ./
 
 To test locally before deploying to Giant Swarm, we also need a redis server. This is very simple, since we can use a standard image here without any modification. Simply run this to start your local Redis server container:
 
-```
+```nohighlight
 $ docker run --name=redis -d redis
 ```
 
 Now let's start the server container for which we just created the Docker image. Here is the command (replace `yourusername` with your username):
 
-```
+```nohighlight
 $ docker run --link redis:redis -p 1337:1337 -ti --rm registry.giantswarm.io/yourusername/currentweather
 ```
 
@@ -134,14 +129,14 @@ __Linux__: the command `ip addr show docker0|grep inet` should print out a line 
 
 So one of the following two commands will likely work:
 
-```
+```nohighlight
 $ curl 192.168.59.103:1337
 $ curl 172.17.42.1:1337
 ```
 
 Your output should look something like this:
 
-```
+```nohighlight
 Current weather in Cologne: moderate rain, temperature 10 degrees, wind 42 km/h
 ```
 
@@ -149,7 +144,7 @@ Try at least two requests within 60 seconds to verify your cache is working.
 
 In the server console you will see an output like this:
 
-```
+```nohighlight
 Server running at http://0.0.0.0:1337/
 Querying live weather data
 Using cached weather data
@@ -165,7 +160,7 @@ To use this Docker image on Giant Swarm it has to be uploaded to a Docker regist
 
 Before pushing to the registry, you have to log in with the `docker` client. Use this command:
 
-```
+```nohighlight
 $ docker login https://registry.giantswarm.io
 ```
 
@@ -173,7 +168,7 @@ You will be prompted for username, password and email. Use your Giant Swarm acco
 
 Still assuming that your username is `yourusername`, you can now push the image like this:
 
-```
+```nohighlight
 $ docker push registry.giantswarm.io/yourusername/currentweather
 ```
 
@@ -183,7 +178,7 @@ Applications in Giant Swarm are [configured using a JSON configuration file](../
 
 Pay close attention to how we create a link between our two components by defining a dependency in the `nodejs` component pointing to the `redis` component.
 
-```
+```json
 {
   "app_name": "currentweather-app",
   "services": [
@@ -219,13 +214,13 @@ Pay close attention to how we create a link between our two components by defini
 
 With the above configuration saved as `swarm.json` in your current directory you can now create and start the application using the `swarm up` command below. As always, replace `yourusername` with your actual username. The flag `--var=company=yourusername` will take care of placing your username in the positions where the `$username` variable is used in `swarm.json`.
 
-```
+```nohighlight
 $ swarm up --var=company=yourusername
 ```
 
 You will see some progress output during creation and startup of your application:
 
-```
+```nohighlight
 Creating 'currentweather-app' in the 'yourusername/dev' environment...
 Application created successfully!
 Starting application currentweather-app...
@@ -242,13 +237,13 @@ Seeing is believing, they say. So let's do the final test that your application 
 
 If you watched closely, after starting our app we got the recommendation to check it's status using
 
-```
+```nohighlight
 $ swarm status currentweather-app
 ```
 
 So here is what we get when doing so (your output will vary slightly):
 
-```
+```nohighlight
 App currentweather-app is up
 
 service                 component  instanceid                            created              status
@@ -260,7 +255,7 @@ Here you have them, your two components, running on Giant Swarm. If you want to,
 
 Now if you like, you can stop or even delete the application again.
 
-```
+```nohighlight
 $ swarm stop currentweather-app
 $ swarm delete currentweather-app
 ```

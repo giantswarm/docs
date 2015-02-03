@@ -1,7 +1,7 @@
 +++
 title = "Your first application — in your language"
 description = "Learn to create your first real Giant Swarm application, using your own Docker container and connecting multiple components."
-date = "2015-01-28"
+date = "2015-02-02"
 type = "page"
 weight = 30
 categories = ["basic"]
@@ -9,4 +9,11 @@ categories = ["basic"]
 
 # Your first application — in your language
 
-This tutorial guides you through the creation of an application using two interlinked components and a custom Docker image. The core is a NodeJS server (however you don't need any knowledge of NodeJS, let alone install anything NodeJS-specific). A Redis server is used as a temporary data store and we connect to an external API.
+<p class="lead">Get real with your first application on Giant Swarm. Learn how to configure an application, build a custom Docker image, link containers and control your application.</p>
+
+## Select your preferred language/platform
+
+* [JavaScript/NodeJS](nodejs/)
+* [Golang](golang/)
+* [Python/Flask](python/)
+* [Ruby/Sinatra](ruby/)

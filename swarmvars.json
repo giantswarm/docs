@@ -2,7 +2,7 @@
 	"giantswarm/testing": {
 		"domain_name": "docs-staging.cluster-01.giantswarm.io",
 		"sitesearch_image": "registry.giantswarm.io/giantswarm/sitesearch:0.1.1",
-		"content_image": "registry.giantswarm.io/giantswarm/docs:testing201501311832",
+		"content_image": "registry.giantswarm.io/giantswarm/docs:testing2015020311301",
 		"proxy_image": "registry.giantswarm.io/giantswarm/docs-proxy:latest"
 	},
 	"giantswarm/production": {

@@ -12,6 +12,7 @@ h3 {
 	margin-bottom: 15px;
 }
 h4 {
+	font-weight: 300;
 	color: #666;
 }
 
@@ -54,7 +55,9 @@ pre code {
 }
 
 .quickstart {
-	background-color: #D1E8D8;
+	background-color: #dff0d8;
+	border: 1px solid #d6e9c6;
+	box-sizing: border-box;
 	padding: 20px 15px 10px 15px;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
@@ -65,15 +68,25 @@ pre code {
 	border-color: #999 !important;
 	font-size: 14px;
 }
-.quickstart .nav-tabs>li>a; .quickstart .nav-tabs>li>a:hover; .quickstart .nav-tabs>li>a:focus, .quickstart .nav>li>a:hover {
-	background-color: #D1E8D8 !important;
+.quickstart .nav-tabs>li>a {
+	background-color: #dff0d8 !important;
 	border-color: #999 !important;
 	font-size: 14px;
 }
 .quickstart .nav-tabs>li.active>a, .quickstart .nav-tabs>li.active>a:hover, .quickstart .nav-tabs>li.active>a:focus {
-	background-color: #D1E8D8 !important;
+	background-color: #dff0d8 !important;
 	border-color: #999 !important;
+	border-bottom-color: #dff0d8 !important;
 	font-size: 14px;
+}
+.quickstart .nav-tabs li.other-link a {
+	border-bottom-color: #999 !important;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	height: 42px;
+}
+.nav-tabs>li>a:hover {
+	background-color: #dff0d8 !important;
 }
 .quickstart h3 {
 	margin-top: 0;
@@ -246,19 +259,31 @@ form.search-full input[@type="submit"]{
 .result a.item > * {
     cursor: pointer;
 }
-.result a.item:hover, .result a.item:focus {
+.result a.item:hover, .result a.item:focus, .result a.item:hover > * {
     background-color: #fbfbfb;
     text-decoration: none;
 }
+.result a.item h4 {
+	margin-bottom: 10px;
+}
 .result a.item:hover h4, .result a.item:focus p.uri {
-    text-decoration: underline;
+    color: #1c91d5;
+	text-decoration: underline;
 }
 
 .bs-sidebar .searchhint {
     padding: 5px;
 }
-a.item p.snippet, a.item p.sbreadcrumb {
+a.item p.snippet {
     color: #333;
+}
+a.item p.sbreadcrumb {
+	font-size: 14px;
+	color: #333;
+}
+a.item:hover p.sbreadcrumb {
+	color: #1c91d5;
+	text-decoration: underline;
 }
 a.item em {
     background-color: #E6F7EB;
@@ -267,4 +292,9 @@ a.item em {
 }
 a.item .hellip {
     color: #aaa;
+}
+
+/* Nav Pills */
+.nav-pills>li.active>a {
+	background-color: #3e83ac;
 }

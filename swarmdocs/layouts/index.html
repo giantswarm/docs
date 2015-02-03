@@ -4,6 +4,12 @@
 
 <div id="home">
 
+  <div class="row welcome-alert" style="display: none">
+    <div class="col-sm-12">
+      <div class="alert alert-success" role="alert"><strong>Congratulations <span class="username">yourusername</span> for making the sign-up!</strong> How about taking the Quick Start now? It only 3 minutes.</div>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col-md-5">
       <div class="home-introbox">
@@ -38,24 +44,24 @@
           </ul>
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="mac">
-              <pre><code class="nohighlight">brew tap giantswarm/swarm
-  brew install swarm-client
-  git clone git@github.com:giantswarm/helloworld.git
-  cd helloworld
-  swarm login <b class="username">yourusername</b></code></pre>
+              <pre><code class="nohighlight"><b>$</b> brew tap giantswarm/swarm
+<b>$</b> brew install swarm-client
+<b>$</b> git clone git@github.com:giantswarm/helloworld.git
+<b>$</b> cd helloworld
+<b>$</b> swarm login <b class="username">yourusername</b></code></pre>
               <p>Now enter your Giant Swarm credentials.</p>
 
-              <pre><code class="nohighlight">swarm up --var=domain=helloworld-<b class="username">yourusername</b>.gigantic.io</code></pre>
+              <pre><code class="nohighlight"><b>$</b> swarm up --var=domain=helloworld-<b class="username">yourusername</b>.gigantic.io</code></pre>
 
               </p>Then open your running application at <a href="http://helloworld-yourusername.gigantic.io/" target="_blank">helloworld-yourusername.gigantic.io</a></p>
             </div>
             <div role="tabpanel" class="tab-pane" id="linux">
-              <pre><code class="nohighlight">curl -O http://downloads.giantswarm.io/swarm/clients/{{ partial "cli_latest_version" . }}/swarm-{{ partial "cli_latest_version" . }}-linux-amd64.tar.gz
-  tar xzf swarm-{{ partial "cli_latest_version" . }}-linux-amd64.tar.gz
-  sudo cp swarm /usr/bin/
-  git clone git@github.com:giantswarm/helloworld.git
-  cd helloworld
-  swarm login <b class="username">yourusername</b></code></pre>
+              <pre><code class="nohighlight"><b>$</b> curl -O http://downloads.giantswarm.io/swarm/clients/{{ partial "cli_latest_version" . }}/swarm-{{ partial "cli_latest_version" . }}-linux-amd64.tar.gz
+<b>$</b> tar xzf swarm-{{ partial "cli_latest_version" . }}-linux-amd64.tar.gz
+<b>$</b> sudo cp swarm /usr/bin/
+<b>$</b> git clone git@github.com:giantswarm/helloworld.git
+<b>$</b> cd helloworld
+<b>$</b> swarm login <b class="username">yourusername</b></code></pre>
               <p>Now enter your Giant Swarm credentials.</p>
 
               <pre><code class="nohighlight">swarm up --var=domain=helloworld-<b class="username">yourusername</b>.gigantic.io</code></pre>
@@ -80,7 +86,6 @@
           <a class="btn btn-default btn-firstapp" href="/guides/your-first-application/ruba/">Ruby</a>
           <a class="btn btn-default btn-firstapp" href="/guides/your-first-application/php/">PHP</a>
           <a class="btn btn-default btn-firstapp" href="/guides/your-first-application/python/">Python</a>
-          <a class="btn btn-default btn-firstapp" href="/guides/your-first-application/java/">Java</a>
         </div>
       </div>
 
