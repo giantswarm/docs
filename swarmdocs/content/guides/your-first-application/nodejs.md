@@ -28,7 +28,7 @@ $ cd giantswarm-firstapp-nodejs
 ```
 
 
-If you're not the type who likes to read a lot, we have a `Makefile` in the repository. This file helps you to get everything described below going using these commands:
+If you're not the type who likes to read a lot, we have a [Makefile](https://github.com/giantswarm/giantswarm-firstapp-nodejs/blob/master/Makefile) in the repository. This file helps you to get everything described below going using these commands:
 
 ```nohighlight
 $ swarm login <yourusername>
@@ -51,7 +51,7 @@ We need to pull two images from the public Docker library, namely `redis` and `g
 $ docker pull redis && docker pull google/nodejs
 ```
 
-__For Linux users__: You probably have to call the `docker` binary with root privileges, so please use `sudo docker` whenever the docker command is required here. For example, initiate the prefetching like this:
+__For Linux users__: You probably have to call the `docker` binary with root privileges, so please use `sudo docker` whenever the docker command is required here. For example, initiatie the prefetching like this:
 
 ```nohighlight
 $ sudo docker pull redis && sudo docker pull google/nodejs
@@ -75,8 +75,8 @@ We get the weather data from the [openweathermap.org](http://openweathermap.org/
 
 Our NodeJS server consists of only two little files:
 
-* A JavaScript file called `server.js` which contains all our application logic
-* A dependencies description file called `package.json`
+* A JavaScript file called [server.js](https://github.com/giantswarm/giantswarm-firstapp-nodejs/blob/master/server.js) which contains all our application logic
+* A dependencies description file called [package.json](https://github.com/giantswarm/giantswarm-firstapp-nodejs/blob/master/package.json)
 
 If you're interested in the internal workings of the server, check their content from the [GitHub](https://github.com/giantswarm/giantswarm-currentweather) repository. For our tutorial, it's not too important, so we cut the details here.
 
@@ -264,7 +264,7 @@ $ swarm delete currentweather-app
 
 We hope you enjoyed this tutorial. If yes, feel free to tweet and blog it out in the world. If not, please let us know what bugged you (see chat and support info at the bottom of this page).
 
-If you're still hungry, why not continue with a platform-specific tutorial?
+If you're still hungry, why not continue with a more advanced tutorial?
 
 ## Further reading
 
