@@ -191,7 +191,7 @@ Pay close attention to how we create a link between our two components by defini
 
 ```json
 {
-  "app_name": "currentweather-app",
+  "app_name": "currentweather",
   "services": [
     {
       "service_name": "currentweather-service",
@@ -232,13 +232,13 @@ $ swarm up --var=username=yourusername
 You will see some progress output during creation and startup of your application:
 
 ```nohighlight
-Creating 'currentweather-app' in the 'yourusername/dev' environment...
+Creating 'currentweather' in the 'yourusername/dev' environment...
 Application created successfully!
-Starting application currentweather-app...
-Application currentweather-app is up.
+Starting application currentweather...
+Application currentweather is up.
 You can see all services and components using this command:
 
-    swarm status currentweather-app
+    swarm status currentweather
 
 ```
 
@@ -249,13 +249,13 @@ Seeing is believing, they say. So let's do the final test that your application 
 If you watched closely, after starting our app we got the recommendation to check it's status using
 
 ```nohighlight
-$ swarm status currentweather-app
+$ swarm status currentweather
 ```
 
 So here is what we get when doing so (your output will vary slightly):
 
 ```nohighlight
-App currentweather-app is up
+App currentweather is up
 
 service                 component  instanceid                            created              status
 currentweather-service  php        1d23c62a-3ebf-4a01-a054-05fbf024eb0a  2015-02-03 17:02:46  up
@@ -267,8 +267,8 @@ Here you have them, your two components, running on Giant Swarm. If you want to,
 Now if you like, you can stop or even delete the application again.
 
 ```nohighlight
-$ swarm stop currentweather-app
-$ swarm delete currentweather-app
+$ swarm stop currentweather
+$ swarm delete currentweather
 ```
 
 We hope you enjoyed this tutorial. If yes, feel free to tweet and blog it out to the world. If not, please let us know what bugged you (see chat and support info at the bottom of this page).
