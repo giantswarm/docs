@@ -1,6 +1,6 @@
 +++
 title = "Your first application — in NodeJS"
-description = "A slightly more involved tutorial for those who have tested out our Getting Started guide part 1."
+description = "Your first NodeJS application on Giant Swarm, using your own Docker container and connecting multiple components."
 date = "2015-02-03"
 type = "page"
 weight = 50
@@ -17,16 +17,18 @@ This tutorial guides you through the creation of an application using two interl
 
 * We assume that you have a basic understanding of Docker and you have Docker installed. Docker provides extensive [installation instructions](https://docs.docker.com/installation/) and [user guides](https://docs.docker.com/userguide/).
 
-* The sources code for this tutorial can be found [on GitHub](https://github.com/giantswarm/giantswarm-firstapp-nodejs). To facilitate following this guide, we recommend you clone the repository using this command:
+
+## For the impatient
+
+The sources code for this tutorial can be found [on GitHub](https://github.com/giantswarm/giantswarm-firstapp-nodejs). To facilitate following this guide, we recommend you clone the repository using this command:
 
 ```nohighlight
 $ git clone https://github.com/giantswarm/giantswarm-firstapp-nodejs.git
 $ cd giantswarm-firstapp-nodejs
 ```
 
-## For the impatient
 
-If you're not the type who likes to read a lot, we have a `Makefile` in the repository. This file helps you to get everything described below going using these commands:
+If you're not the type who likes to read a lot, we have a [Makefile](https://github.com/giantswarm/giantswarm-firstapp-nodejs/blob/master/Makefile) in the repository. This file helps you to get everything described below going using these commands:
 
 ```nohighlight
 $ swarm login <yourusername>
@@ -73,8 +75,8 @@ We get the weather data from the [openweathermap.org](http://openweathermap.org/
 
 Our NodeJS server consists of only two little files:
 
-* A JavaScript file called `server.js` which contains all our application logic
-* A dependencies description file called `package.json`
+* A JavaScript file called [server.js](https://github.com/giantswarm/giantswarm-firstapp-nodejs/blob/master/server.js) which contains all our application logic
+* A dependencies description file called [package.json](https://github.com/giantswarm/giantswarm-firstapp-nodejs/blob/master/package.json)
 
 If you're interested in the internal workings of the server, check their content from the [GitHub](https://github.com/giantswarm/giantswarm-currentweather) repository. For our tutorial, it's not too important, so we cut the details here.
 
@@ -262,7 +264,7 @@ $ swarm delete currentweather-app
 
 We hope you enjoyed this tutorial. If yes, feel free to tweet and blog it out in the world. If not, please let us know what bugged you (see chat and support info at the bottom of this page).
 
-If you're still hungry, why not continue with a platform-specific tutorial?
+If you're still hungry, why not continue with a more advanced tutorial?
 
 ## Further reading
 

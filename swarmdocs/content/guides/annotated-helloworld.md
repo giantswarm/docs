@@ -15,7 +15,7 @@ If you already followed the __Quick Start__ on the [documentation home page](/) 
 
 ## What you need
 
-In order to run applications on Giant Swrm, you need a Giant Swarm account. If you don't have one yet, [request an invite](https://giantswarm.io/request-invite/) first. Please note that we currently have a waiting list. It may take a while before you get an invite.
+In order to run applications on Giant Swarm, you need a Giant Swarm account. If you don't have one yet, [request an invite](https://giantswarm.io) first. Please note that we currently have a waiting list. It may take a while before you get an invite.
 
 Besides that, you should be on a Linux (64 bit) or Mac OS machine and be a little bit comfortable with using the command line.
 
@@ -28,8 +28,6 @@ $ brew tap giantswarm/swarm
 $ brew install swarm-client
 ```
 
-Check our [installation reference page](/reference/installation/) for details.
-
 __Linux users__ take the manual approach and download and unpack manually and move the binary to a place in their PATH, for example `/usr/local/bin`.
 
 ```nohighlight
@@ -37,6 +35,8 @@ $ curl -O http://downloads.giantswarm.io/swarm/clients/{{% cli_latest_version %}
 $ tar xzf swarm-{{% cli_latest_version %}}-linux-amd64.tar.gz
 $ sudo cp swarm /usr/local/bin/
 ```
+
+Check our [installation reference page](/reference/installation/) for details.
 
 ## Logging in
 
@@ -46,11 +46,7 @@ Before you can do anything useful with `swarm`, you have to log in once. This is
 $ swarm login yourusername
 ```
 
-Of course, you type your real username instead of `yourusername` here. Needless to say.
-
 You will be prompted to enter your Giant Swarm password. Note that the password won't be displayed while you type.
-
-You find a bit more about that command in the [login reference](/reference/login/).
 
 ## Getting the code
 
