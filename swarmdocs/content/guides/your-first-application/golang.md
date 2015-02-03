@@ -47,13 +47,13 @@ Everybody else, follow the path to wisdom and read on.
 We need to pull two images from the public Docker library, namely `redis` and `busybox`:
 
 ```nohighlight
-$ docker pull redis:lastest && docker pull busybox:ubuntu-14.04
+$ docker pull redis:latest && docker pull busybox:ubuntu-14.04
 ```
 
 __For Linux users__: You probably have to call the `docker` binary with root privileges, so please use `sudo docker` whenever the docker command is required here. For example, initiate the prefetching like this:
 
 ```nohighlight
-$ docker pull redis:lastest && docker pull busybox:ubuntu-14.04
+$ docker pull redis:latest && docker pull busybox:ubuntu-14.04
 ```
 
 We won't repeat the `sudo` note for the sake of readability of the rest of this tutorial. Docker warns you if the priveleges aren't okay, so you'll be remembered anyway.
