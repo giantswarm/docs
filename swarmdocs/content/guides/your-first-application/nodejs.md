@@ -1,6 +1,6 @@
 +++
 title = "Your first application — in NodeJS"
-description = "A slightly more involved tutorial for those who have tested out our Getting Started guide part 1."
+description = "Learn to create your first NodeJS application on Giant Swarm, using your own Docker container and connecting multiple components."
 date = "2015-02-03"
 type = "page"
 weight = 50
