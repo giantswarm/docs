@@ -2,10 +2,12 @@ PROJECT=docs
 COMPANY=giantswarm
 registry=registry.giantswarm.io
 
+
 default: ;
 
 build:
 	rm -rf swarmdocs/public/*
+	echo `date +"%Y%m%d%H%M"` > swarmdocs/layouts/partials/cache_datestamp.html
 	docker build -t $(registry)/$(COMPANY)/$(PROJECT) .
 
 run:
