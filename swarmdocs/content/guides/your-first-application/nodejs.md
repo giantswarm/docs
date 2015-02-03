@@ -17,14 +17,16 @@ This tutorial guides you through the creation of an application using two interl
 
 * We assume that you have a basic understanding of Docker and you have Docker installed. Docker provides extensive [installation instructions](https://docs.docker.com/installation/) and [user guides](https://docs.docker.com/userguide/).
 
-* The sources code for this tutorial can be found [on GitHub](https://github.com/giantswarm/giantswarm-firstapp-nodejs). To facilitate following this guide, we recommend you clone the repository using this command:
+
+## For the impatient
+
+The sources code for this tutorial can be found [on GitHub](https://github.com/giantswarm/giantswarm-firstapp-nodejs). To facilitate following this guide, we recommend you clone the repository using this command:
 
 ```nohighlight
 $ git clone https://github.com/giantswarm/giantswarm-firstapp-nodejs.git
 $ cd giantswarm-firstapp-nodejs
 ```
 
-## For the impatient
 
 If you're not the type who likes to read a lot, we have a `Makefile` in the repository. This file helps you to get everything described below going using these commands:
 
@@ -49,7 +51,7 @@ We need to pull two images from the public Docker library, namely `redis` and `g
 $ docker pull redis && docker pull google/nodejs
 ```
 
-__For Linux users__: You probably have to call the `docker` binary with root privileges, so please use `sudo docker` whenever the docker command is required here. For example, initiatie the prefetching like this:
+__For Linux users__: You probably have to call the `docker` binary with root privileges, so please use `sudo docker` whenever the docker command is required here. For example, initiate the prefetching like this:
 
 ```nohighlight
 $ sudo docker pull redis && sudo docker pull google/nodejs
