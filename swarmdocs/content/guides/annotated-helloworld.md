@@ -28,8 +28,6 @@ $ brew tap giantswarm/swarm
 $ brew install swarm-client
 ```
 
-Check our [installation reference page](/reference/installation/) for details.
-
 __Linux users__ take the manual approach and download and unpack manually and move the binary to a place in their PATH, for example `/usr/local/bin`.
 
 ```nohighlight
@@ -37,6 +35,8 @@ $ curl -O http://downloads.giantswarm.io/swarm/clients/{{% cli_latest_version %}
 $ tar xzf swarm-{{% cli_latest_version %}}-linux-amd64.tar.gz
 $ sudo cp swarm /usr/local/bin/
 ```
+
+Check our [installation reference page](/reference/installation/) for details.
 
 ## Logging in
 
