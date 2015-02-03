@@ -46,8 +46,6 @@ Before you can do anything useful with `swarm`, you have to log in once. This is
 $ swarm login yourusername
 ```
 
-Of course, you type your real username instead of `yourusername` here. Needless to say.
-
 You will be prompted to enter your Giant Swarm password. Note that the password won't be displayed while you type.
 
 You find a bit more about that command in the [login reference](/reference/login/).
