@@ -1,6 +1,7 @@
 FROM debian:wheezy
 
-MAINTAINER	Matthias Luebken <matthias@giantswarm.io>, Marian Steinbach <marian@giantswarm.io>
+MAINTAINER Matthias Luebken <matthias@giantswarm.io>
+MAINTAINER Marian Steinbach <marian@giantswarm.io>
 
 ENV DEBIAN_FRONTEND noninteractive
 
