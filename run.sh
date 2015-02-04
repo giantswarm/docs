@@ -13,16 +13,7 @@
 	cd /docs/search && python ./indexer.py
 }
 
-
 cd /docs/swarmdocs
 
-echo "DEVELOPMENT_MODE: ${DEVELOPMENT_MODE}"
 echo "BASE_URL: ${BASE_URL}"
-
-
-if [ -z ${DEVELOPMENT_MODE+x} ];
-then
-	exec hugo server --port=80 --baseUrl=${BASE_URL}
-else 
-	exec hugo server --port=80 --baseUrl=${BASE_URL} --watch
-fi
+exec hugo server --port=80 --baseUrl=${BASE_URL}
