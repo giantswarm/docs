@@ -3,3 +3,4 @@ venv*
 swarmdocs/public/*
 .DS_Store
 highlight.js
+swarmdocs/layouts/partials/cache_datestamp.html
