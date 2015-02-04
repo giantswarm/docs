@@ -9,7 +9,17 @@ WORKDIR	/
 
 # install basics
 RUN apt-get update -qq && \
-	apt-get install -y -q --no-install-recommends wget curl build-essential ca-certificates git-core mercurial bzr python2.7 python-pip python-dev
+	apt-get install -y -q --no-install-recommends \
+  wget \
+  curl \
+  build-essential \
+  ca-certificates \
+  git-core \
+  mercurial \
+  bzr \
+  python2.7 \
+  python-pip \
+  python-dev
 
 # install Go 1.3
 RUN mkdir /goroot && curl https://storage.googleapis.com/golang/go1.3.1.linux-amd64.tar.gz | tar xvzf - -C /goroot --strip-components=1
