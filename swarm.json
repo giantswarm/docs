@@ -1,5 +1,5 @@
 {
-    "app_name": "swarmdocs",
+    "app_name": "docs",
     "services": [
         {
             "service_name": "proxy",
@@ -27,9 +27,6 @@
                     ],
                     "domains": {
                         "$domain_name": "80"
-                    },
-                    "env": {
-                        "BASE_URL": "http://$domain_name"
                     }
                 }
             ]
@@ -41,6 +38,9 @@
                     "component_name": "content",
                     "image": "$content_image",
                     "ports": [ "80/tcp" ],
+                    "env": {
+                        "BASE_URL": "http://$domain_name"
+                    },
                     "dependencies": [
                         {
                             "name": "sitesearch/sitesearch",
@@ -57,7 +57,10 @@
                 {
                     "component_name": "content",
                     "image": "$content_image",
-                    "ports": [ "80/tcp" ]
+                    "ports": [ "80/tcp" ],
+                    "env": {
+                        "BASE_URL": "http://$domain_name"
+                    }
                 }
             ]
         },
