@@ -103,12 +103,8 @@ Giant Swarm helps you creating apps in microservice fashion. Each service is tru
 
 ## Where to go from here?
 
-Please start with the [Getting Started](gettingstarted.md) guides. They give you a short and pratical tour on working with Giant Swarm. If you need any help, please visit us in our [chat](https://gitter.im/giantswarm/users) or let us know via Email: [support@giantswarm.io](mailto:support@giantswarm.io).
+* If you don't have an account for Giant Swarm yet, [request an invite](https://giantswarm.io/) now. We have a waiting list and the sooner you get on the list, the sooner you will be able to start using Giant Swarm.
 
+* Once you have an acccount, check that everything is working finde using the Quick Start on the [documentation start page](/).
 
-   
-
-
-
-
-
+* Then we recommend to create [Your first application - in your language](/guides/your-first-application/) on Giant Swarm.
