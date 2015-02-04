@@ -279,6 +279,7 @@ If you're still hungry, why not continue with a more advanced tutorial?
 
 ## Further reading
 
+* [Your first application - in your language](../): this guide in other languages
 * [Swarmify Ruby on Rails](../guides/ruby_on_rails.md) - A simple Rails example involving MySQL
 * [Swarmify Python](../guides/python.md) - A very simple Flask boilerplate
 * [Getting started with Docker and MeanJS](http://blog.giantswarm.io/getting-started-with-docker-and-meanjs) - Easily adaptable to Giant Swarm with the experience you have by now.
