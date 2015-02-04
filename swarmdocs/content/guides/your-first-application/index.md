@@ -15,5 +15,5 @@ categories = ["basic"]
 
 * [NodeJS](nodejs/)
 * [Go](golang/)
+* [PHP](php/)
 * [Python](python/)
-* [Ruby](ruby/)

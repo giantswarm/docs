@@ -21,7 +21,7 @@ This guide proposes Amazon S3 as a means to store backups, because it's well-kno
 
 To follow this guide, you will need the following:
 
-* The `swarm` and `docker` utilities and some basic knowledge on how to use them. If you followed our [Getting Started - Part 2](../installation/gettingstarted2.md) tutorial, you'll be fine.
+* The `swarm` and `docker` utilities and some basic knowledge on how to use them. If you followed our [Your first application](/guides/your-first-application/) tutorial, you'll be fine.
 * An S3 bucket and a dedicated AWS user account with permission to upload files into the bucket
 * The source code used in this guide from [GitHub](https://github.com/giantswarm/giantswarm-mysql-archiver). We recommend to quickly clone it:
 

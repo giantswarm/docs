@@ -59,7 +59,7 @@ Your components can have either of the following statuses:
 
 ## Further reading
 
-* [List applications](../list/)
+* [List applications](../ls/)
 * [Accessing process logs](../logs/)
 * [Getting instance statistics](../stats/)
 * [Getting basic information](../info/)

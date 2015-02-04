@@ -163,7 +163,7 @@ Awesome. Now let's deploy it to the cloud.
 
 ### Uploading to the registry
 
-To use this Docker image on Giant Swarm it has to be uploaded to a Docker registry. Giant Swarm offers you a such a registry. Here we briefly explain how to use it. For more information on using the Giant Swarm registry, see our [registry reference](../reference/registry.md).
+To use this Docker image on Giant Swarm it has to be uploaded to a Docker registry. Giant Swarm offers you a such a registry. Here we briefly explain how to use it. For more information on using the Giant Swarm registry, see our [registry reference](/reference/registry/).
 
 Before pushing to the registry, you have to log in with the `docker` client. Use this command:
 
@@ -181,7 +181,7 @@ $ docker push registry.giantswarm.io/yourusername/currentweather
 
 ### Configuring your application
 
-Applications in Giant Swarm are [configured using a JSON configuration file](../reference/swarm-json.md) that is usually called `swarm.json`. For this application, we create a configuration containing one service with two components.
+Applications in Giant Swarm are [configured using a JSON configuration file](/reference/swarm-json/) that is usually called `swarm.json`. For this application, we create a configuration containing one service with two components.
 
 Pay close attention to how we create a link between our two components by defining a dependency in the `flask` component pointing to the `redis` component.
 
@@ -274,5 +274,5 @@ If you're still hungry, why not continue with a more advanced tutorial?
 ## Further reading
 
 * [Your first application - in your language](../): this guide in other languages
-* [Swarmify Ruby on Rails](../guides/ruby_on_rails.md) - A simple Rails example involving MySQL
+* [Swarmify Ruby on Rails](/guides/ruby_on_rails/) - a simple Rails example involving MySQL
 * [Getting started with Docker and MeanJS](http://blog.giantswarm.io/getting-started-with-docker-and-meanjs) - Easily adaptable to Giant Swarm with the experience you have by now.

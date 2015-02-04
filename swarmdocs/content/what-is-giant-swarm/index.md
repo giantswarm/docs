@@ -29,7 +29,7 @@ Another great aspect of Docker is that there are lots of predefined containers a
 
 A Giant Swarm application consists of one or more services. These form logical units in your application describing domain or technical services. Examples would be a `user-service` or a `redis-service.` 
 
-Each service itself consists of one or more components. A component is backed by a Docker container by referencing its image. These images can be one of the many predifined images from the [Docker Hub](https://registry.hub.docker.com/) or can be built by yourself. If you follow our [Getting Started](gettingstarted2.md) you will define your first Docker container within the next half an hour or less.
+Each service itself consists of one or more components. A component is backed by a Docker container by referencing its image. These images can be one of the many predifined images from the [Docker Hub](https://registry.hub.docker.com/) or can be built by yourself. If you follow our [Your first application](/guides/your-first-application/) tutorial, you will define your first Docker container within the next half an hour or less.
 
 ## What is the swarm.json?
 
