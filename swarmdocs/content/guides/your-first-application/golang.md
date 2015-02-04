@@ -1,13 +1,13 @@
 +++
 title = "Your first application — in Go"
-description = "Your first Go application on Giant Swarm, using your own Docker container and connecting multiple components."
-date = "2015-02-03"
+description = "Your first Go/Golang application on Giant Swarm, using your own Docker container and connecting multiple components."
+date = "2015-02-04"
 type = "page"
 weight = 50
 categories = ["basic"]
 +++
 
-# Your first application — in Go on Giant Swarm
+# Your first application — in Go
 
 This tutorial guides you through the creation of an application using two interlinked components and a custom Docker image. The core is a Golang server. Additionally, a Redis server is used as a temporary data store and we connect to an external API.
 
@@ -44,16 +44,16 @@ Everybody else, follow the path to wisdom and read on.
 
 ## Testing Docker and getting some base images
 
-We need to pull two images from the public Docker library, namely `redis` and `busybox`:
+We need to pull two images from the public Docker library, namely `redis:latest` and `busybox:ubuntu-14.04`. We pre-fetch them here since they sum up to several hundred megabytes and the download might take a while.
 
 ```nohighlight
-$ docker pull redis:latest && docker pull busybox:ubuntu-14.04
+$ docker pull golang:1.3.1-cross && docker pull redis:latest && docker pull busybox:ubuntu-14.04
 ```
 
 __For Linux users__: You probably have to call the `docker` binary with root privileges, so please use `sudo docker` whenever the docker command is required here. For example, initiate the prefetching like this:
 
 ```nohighlight
-$ docker pull redis:latest && docker pull busybox:ubuntu-14.04
+$ sudo docker pull golang:1.3.1-cross && sudo docker pull redis:latest && sudo docker pull busybox:ubuntu-14.04
 ```
 
 We won't repeat the `sudo` note for the sake of readability of the rest of this tutorial. Docker warns you if the priveleges aren't okay, so you'll be remembered anyway.
@@ -70,15 +70,34 @@ We have one component which we call `webserver` as the core piece. It will provi
 
 We get the weather data from the [openweathermap.org](http://openweathermap.org/) API. Since we want to be good citizens and not call that API more often than necessary, we cache the API responses locally for a while. For this we use a Redis cache, which is our second component, called `redis` in the diagram above.
 
-## The Go server component
+## Compiling the Go server component
 
-Our Go server consists of one file called [main.go](https://github.com/giantswarm/giantswarm-firstapp-go/blob/master/main.go) which contains all our application logic. There is quite some nice Golang features in file like go functions and channels. For our tutorial, it's not too important, so we cut the details here.
+Our Go server consists of one file called [main.go](https://github.com/giantswarm/giantswarm-firstapp-go/blob/master/main.go) which contains all our application logic. For our tutorial, we focus more on the overall architecture, so we cut the details here.
 
-One thing that is important in the Go context is that we build platform specific binaries. Since Docker is based on Linux we need to make sure that we build a Linux binary. Fortunately there is a [Dockerfile](https://github.com/docker-library/golang/blob/acc4ed5ba8dfad17bd484ac858950bc6a6f9acde/1.3/cross/Dockerfile) we can leverage to cross-compile. Please see the [Makefile target](https://github.com/giantswarm/giantswarm-firstapp-go/blob/master/Makefile#L30) to see how to start it.
+To run Go code, we need a platform-specific binary. As we want to run our code on Docker, we have to build a Linux binary.
+
+If you're __on Linux and have done this before__, you might be able to compile the binary by running
+
+```nohighlight
+$ go build main.go
+```
+
+When not on Linux, or if you don't want to fiddle with Go-specific environment configuration, there is an easy alternative to compile the binary for linux. It uses a specific version of the [official goalng Docker image](https://registry.hub.docker.com/_/golang/) and compiles the binary inside a Docker container. The only downside is that the image is about 1.7 GB in size, so getting the base image could take some time.
+
+Before proceeding, please make sure that the prefetching of Docker images you started earlier has finished.
+
+Our `Makefile` contains the target for cross-compiling, so in order to start the build in the cross-compiler container, simply run:
+
+```nohighlight
+$ make
+```
+
+You will be informed about the progress in the terminal. If the process ends without an error message, the `currentweather` binary should be present in the current directory.
+
 
 ## Building our Docker image
 
-We now create a Docker image for our Go server. Here is the `Dockerfile` we use for that purpose:
+With the compiled server binary in place, we now create the Docker image for our Go server component. Here is the `Dockerfile` we use for that purpose:
 
 ```Dockerfile
 FROM busybox:ubuntu-14.04
@@ -90,11 +109,9 @@ EXPOSE 8080
 ENTRYPOINT ["currentweather"]
 ``` 
 
-We use a tiny [busybox image](https://github.com/jpetazzo/docker-busybox/blob/ca435164f45c40d761fad9ef9b5a76a6ba0d5f1a/Dockerfile) and just need to add our `currentweather` binary. All the beauty of a indpendent binary.
+We use a tiny [busybox image](https://github.com/jpetazzo/docker-busybox/blob/ca435164f45c40d761fad9ef9b5a76a6ba0d5f1a/Dockerfile) as a foundation. The only thing we add is our `currentweather binary`. The beauty of an indpendent binary. In addition, the `EXPOSE 8080` setting ensures that port 8080 of our container is exposed to the network.
 
-The prefetching of Docker images you started a couple of minutes ago should be finished by now. If not, please wait until it's done.
-
-Assuming that your Giant Swarm username is `yourusername`, to build the image, you  then execute:
+Assuming that your Giant Swarm username is `yourusername`, to build the image, you then execute:
 
 ```nohighlight
 $ docker build -t registry.giantswarm.io/yourusername/currentweather ./
@@ -102,7 +119,7 @@ $ docker build -t registry.giantswarm.io/yourusername/currentweather ./
 
 ## Testing locally
 
-To test locally before deploying to Giant Swarm, we also need a redis server. This is very simple, since we can use a standard image here without any modification. Simply run this to start your local Redis server container:
+To test locally before deploying to Giant Swarm, we want a redis server. This is easy to get, since we can use a standard image here without any modification. Simply run this to start your local Redis server container:
 
 ```nohighlight
 $ docker run --name=redis -d redis
@@ -111,7 +128,7 @@ $ docker run --name=redis -d redis
 Now let's start the server container for which we just created the Docker image. Here is the command (replace `yourusername` with your username):
 
 ```nohighlight
-$ docker run --link redis:redis -p 1337:1337 -ti --rm registry.giantswarm.io/yourusername/currentweather
+$ docker run --link redis:redis -p 8080:8080 -ti --rm registry.giantswarm.io/yourusername/currentweather
 ```
 
 It should be running. But we need proof! Let's issue an HTTP request.
@@ -125,14 +142,14 @@ __Linux__: the command `ip addr show docker0|grep inet` should print out a line 
 So one of the following two commands will likely work:
 
 ```nohighlight
-$ curl 192.168.59.103:1337
-$ curl 172.17.42.1:1337
+$ curl 192.168.59.103:8080
+$ curl 172.17.42.1:8080
 ```
 
 Your output should look something like this:
 
 ```nohighlight
-Current weather in Cologne: moderate rain, temperature 10 degrees, wind 42 km/h
+Current temperature is -1.1 °C
 ```
 
 Try at least two requests within 60 seconds to verify your cache is working.
@@ -140,9 +157,10 @@ Try at least two requests within 60 seconds to verify your cache is working.
 In the server console you will see an output like this:
 
 ```nohighlight
-Server running at http://0.0.0.0:1337/
-Querying live weather data
-Using cached weather data
+2015/02/04 09:40:48 Establishing connection to Redis
+2015/02/04 09:40:48 Starting current weather server at :8080
+2015/02/04 09:41:00 Querying live weather data
+2015/02/04 09:41:01 Using cached weather data
 ```
 
 Awesome. Now let's deploy it to the cloud.
