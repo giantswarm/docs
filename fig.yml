@@ -1,0 +1,20 @@
+sitesearch:
+  image: registry.giantswarm.io/giantswarm/sitesearch
+docsslave:
+  image: registry.giantswarm.io/giantswarm/docs
+  environment:
+    BASE_URL: http://192.168.59.103
+docsmaster:
+  image: registry.giantswarm.io/giantswarm/docs
+  links:
+   - "sitesearch"
+  environment:
+    BASE_URL: http://192.168.59.103
+docsproxy:
+  image: registry.giantswarm.io/giantswarm/docs-proxy
+  links:
+   - "sitesearch"
+   - "docsmaster"
+   - "docsslave"
+  ports:
+   - "80:80"

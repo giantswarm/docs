@@ -1,61 +1,68 @@
 # docs - User documentation for Giant Swarm
 
-Simple markdown based documentation based on [MkDocs](http://www.mkdocs.org/). Setup inspired by [Docker docs](https://github.com/dotcloud/docker/tree/master/docs).
+Our Documentation is based on Markdown and HTML content and generated using [HUGO](http://gohugo.io/), a static site generator written in Go.
 
-## How to document
+## Setup for writing and checking content
 
-Currently we have 3 sections:
-  * Welcome: for a general introduction
-  * Installation: on how to get started
-  * Guides: howto types for typical user scenarios
-  * Reference: detailed description of options / commands etc.
+In order to contribute content or simply review content, all you need is a local install of HUGO.
 
-## Local install
+On the Mac:
 
-### Running via Docker
+```
+brew install hugo
+./run-dev.sh
+```
 
-Prerequisites:
- * `docker`
+(On Linux the process of installing HUGO in the correct version is more involved. Check the Dockerfile for hints.)
 
-1. Build local docker image
+Access the site at [localhost:1313](http://localhost:1313/).
 
-    `make build`
+Content changes should automatically load in your browser. No manual reloading required.
 
-2. Run docker container
+In order to review a Pull Request, check out the according branch.
 
-    `make run`
+## Setup for development
 
-3. Open [http://192.168.59.103:8000/](http://192.168.59.103:8000/)
+The documentation application consists of several components. The best way to run them all locally is using `fig`. To start the application locally, including proxy and search functions, use
 
-### Running in a local Python environment
+```
+fig up
+```
 
-Prerequisites:
- * `virtualenv`
+Look at the `fig.yml` file for details on what happens here.
 
-1. Create the virtual environment
+## Building Docker images
 
-    `virtualenv venv`
+For testing purposes, the image can be built using `make build`.
 
-2. Activate it
+For a new production deployment, the latest image is created and pushed using `builder`.
 
-    `source venv/bin/activate`
+```
+builder release <patch|minor|major>
+```
 
-3. Install requirements
+## Deploying content updates
 
-    `pip install -r requirements.txt`
+1. Create and push a new docs image using builder, as decribed above
 
-4. Run mkdocs
+2. Stop and start the `content-master` component:
 
-    `mkdocs serve`
+```
+SWARM_CLUSTER_ID=cluster-01.giantswarm.io swarm stop swarmdocs/content-master
+SWARM_CLUSTER_ID=cluster-01.giantswarm.io swarm start swarmdocs/content-master
+```
 
-5. Open [http://localhost:8000/](http://localhost:8000/)
+This will update the search index adn replace the first of the content servers.
 
-Currently there is only one master version. 
+3. Stop and start the `content-slave` component:
+
+```
+SWARM_CLUSTER_ID=cluster-01.giantswarm.io swarm stop swarmdocs/content-slave
+SWARM_CLUSTER_ID=cluster-01.giantswarm.io swarm start swarmdocs/content-slave
+```
+
+This will replace the second of the content servers.
+
+## About writing for the documentation
 
 There is more information available in the [Wiki](https://git.giantswarm.io/giantswarm/docs/wikis/home).
-
-### Deploying new content
-
-1. Create the latest `registry.giantswarm.io/giantswarm/docs` image using `builder release <patch|minor|major>`
-2. Stop and start the `mkdocs-master` service
-3. Stop and start the `mkdocs-slave` service

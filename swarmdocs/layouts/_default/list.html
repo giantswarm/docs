@@ -1,0 +1,17 @@
+{{ partial "header.html" . }}
+
+<div class="row">
+  <div class="col-md-12 col-lg-8 col-lg-offset-2">
+    <h1 id="title">{{ .Title }}</h1>
+    <ul class="linklist">
+      {{ range .Data.Pages.ByWeight }}
+      <li>
+        <a href="{{ .Permalink }}">{{ .Title }}</a>
+        <div class="meta">{{ .Description }}</div>
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+</div>
+
+{{ partial "footer.html" . }}

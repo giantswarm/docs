@@ -1,14 +1,14 @@
 {
 	"giantswarm/testing": {
-		"domain1_name": "docs-staging.gigantic.io",
+		"domain_name": "docs.staging.gigantic.io",
 		"sitesearch_image": "registry.giantswarm.io/giantswarm/sitesearch:0.1.1",
-		"mkdocs_image": "registry.giantswarm.io/giantswarm/docs-dev:latest",
-		"proxy_image": "registry.giantswarm.io/giantswarm/docs-auth-dev:latest"
+		"content_image": "registry.giantswarm.io/giantswarm/docs:testing201502041509",
+		"proxy_image": "registry.giantswarm.io/giantswarm/docs-proxy:latest"
 	},
 	"giantswarm/production": {
-		"domain1_name": "docs.giantswarm.io",
+		"domain_name": "docs.giantswarm.io",
 		"sitesearch_image": "registry.giantswarm.io/giantswarm/sitesearch:0.1.1",
-		"mkdocs_image": "registry.giantswarm.io/giantswarm/docs:latest",
-		"proxy_image": "registry.giantswarm.io/giantswarm/docs-auth:latest"
+		"content_image": "registry.giantswarm.io/giantswarm/docs:latest",
+		"proxy_image": "registry.giantswarm.io/giantswarm/docs-proxy:latest"
 	}
 }

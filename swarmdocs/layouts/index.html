@@ -1,0 +1,97 @@
+{{ partial "header.html" . }}
+
+<h1>The Giant Swarm Docs</h1>
+
+<div id="home">
+
+  <div class="row welcome-alert" style="display: none">
+    <div class="col-sm-12">
+      <div class="alert alert-success" role="alert"><strong>Congratulations <span class="username">yourusername</span> for making the sign-up!</strong> How about taking the Quick Start now? It takes only 3 minutes.</div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-5">
+      <div class="home-introbox">
+        <h3>What is Giant Swarm?</h3>
+        <p>Giant Swarm enables you to easily develop, deploy, and host your micro-serviced applications. We leverage several technologies like Docker and CoreOS and bring them together to provide a simple yet powerful infrastructure. <a href="/what-is-giant-swarm/">Read more <i class="fa fa-arrow-circle-right"></i></a></p>
+        <hr>
+        <h4>Getting started</h4>
+        <ul>
+          <li>Step 1: <a href="/guides/annotated-helloworld/"><i class="fa fa-arrow-circle-right"></i> The Annotated Hello World Example</a></li>
+          <li>Step 2: <a href="/guides/your-first-application/"><i class="fa fa-arrow-circle-right"></i> Your First Application - In Your Language</a></li>
+          <li>Step 3: <a href="/guides/"><i class="fa fa-arrow-circle-right"></i> Check out more guides and tutorials</a></li>
+        </ul>
+        <hr>
+        <h4>Digging deeper</h4>
+        <ul>
+          <li><a href="/reference/"><i class="fa fa-arrow-circle-right"></i> The Reference</a></li>
+        </ul>
+      </div>
+
+      {{ partial "request_invite.html" . }}
+    </div>
+    <div class="col-md-7">
+
+      <div class="quickstart home-quickstart">
+        <h3>Quick Start</h3>
+        <p>Your easy way to get going with your new Giant Swarm account</p>
+        <div role="tabpanel">
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#mac" aria-controls="mac" role="tab" data-toggle="tab">Mac + Homebrew</a></li>
+            <li role="presentation"><a href="#linux" aria-controls="linux" role="tab" data-toggle="tab">Linux</a></li>
+            <li class="other-link"><a href="/reference/installation/"><span class="hidden-xs">Installation instructions for all platforms</span><span class="visible-xs-inline">Other platforms</span> <i class="fa fa-arrow-circle-right"></i></a></li>
+          </ul>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="mac">
+              <pre><code class="nohighlight"><b>$</b> brew tap giantswarm/swarm
+<b>$</b> brew install swarm-client
+<b>$</b> git clone git@github.com:giantswarm/helloworld.git
+<b>$</b> cd helloworld
+<b>$</b> swarm login <b class="username">yourusername</b></code></pre>
+              <p>Now enter your Giant Swarm credentials.</p>
+
+              <pre><code class="nohighlight"><b>$</b> swarm up --var=domain=helloworld-<b class="username">yourusername</b>.gigantic.io</code></pre>
+
+              </p>Then open your running application at <a href="http://helloworld-yourusername.gigantic.io/" target="_blank">helloworld-yourusername.gigantic.io</a></p>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="linux">
+              <pre><code class="nohighlight"><b>$</b> curl -O http://downloads.giantswarm.io/swarm/clients/{{ partial "cli_latest_version" . }}/swarm-{{ partial "cli_latest_version" . }}-linux-amd64.tar.gz
+<b>$</b> tar xzf swarm-{{ partial "cli_latest_version" . }}-linux-amd64.tar.gz
+<b>$</b> sudo cp swarm /usr/bin/
+<b>$</b> git clone git@github.com:giantswarm/helloworld.git
+<b>$</b> cd helloworld
+<b>$</b> swarm login <b class="username">yourusername</b></code></pre>
+              <p>Now enter your Giant Swarm credentials.</p>
+
+              <pre><code class="nohighlight">swarm up --var=domain=helloworld-<b class="username">yourusername</b>.gigantic.io</code></pre>
+
+              </p>Then open your running application at <a href="http://helloworld-yourusername.gigantic.io/" target="_blank">helloworld-yourusername.gigantic.io</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 40px"><hr></div>
+
+      <div class="center-block" style="padding: 20px; font-size: 45px; position: relative; top: -73px; margin-bottom: -75px">
+        <i style="background-color: #fff; color: #666; display: block; line-height: 58px; padding: 0 10px 0 10px; width: 58px; height: 58px; text-align: center; margin-left: auto; margin-right: auto;" class="fa fa-arrow-circle-o-down"></i>
+      </div>
+
+      <div class="home-yourfirstapp">
+        <div class="centered-text">
+          <p><strong>Get Real!</strong> Create your first real Giant Swarm application &ndash; in your language.</p>
+          <a class="btn btn-default btn-firstapp" href="/guides/your-first-application/nodejs/">NodeJS</a>
+          <a class="btn btn-default btn-firstapp" href="/guides/your-first-application/python/">Python</a>
+          <a class="btn btn-default btn-firstapp" href="/guides/your-first-application/golang/">Go</a>
+          <a class="btn btn-default btn-firstapp" href="/guides/your-first-application/php/">PHP</a>
+          <a class="btn btn-default btn-firstapp disabled" href="#">Ruby</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+{{ partial "footer.html" . }}

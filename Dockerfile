@@ -1,19 +1,45 @@
-# Inspired by https://github.com/dotcloud/docker/blob/master/docs/Dockerfile
+FROM debian:wheezy
 
-FROM 		debian:wheezy
-MAINTAINER	Matthias Luebken <matthias@giantswarm.io>
+MAINTAINER	Matthias Luebken <matthias@giantswarm.io>, Marian Steinbach <marian@giantswarm.io>
 
 ENV DEBIAN_FRONTEND noninteractive
 
+WORKDIR	/
+
+# install basics
 RUN apt-get update -qq && \
-	apt-get install -y -qq python-pip gettext && \
+	apt-get install -y -q --no-install-recommends wget curl build-essential ca-certificates git-core mercurial bzr python2.7 python-pip python-dev
+
+# install Go 1.3
+RUN mkdir /goroot && curl https://storage.googleapis.com/golang/go1.3.1.linux-amd64.tar.gz | tar xvzf - -C /goroot --strip-components=1
+RUN mkdir /gopath && mkdir /gopath/src
+ENV GOROOT /goroot
+ENV GOPATH /gopath
+ENV PATH $PATH:$GOROOT/bin:$GOPATH/bin
+
+# install HUGO
+WORKDIR	/gopath/src
+RUN wget -q https://github.com/spf13/hugo/archive/v0.12.tar.gz && tar xzf v0.12.tar.gz
+WORKDIR /gopath/src/hugo-0.12
+RUN go get && go build main.go && mv main /usr/bin/hugo
+WORKDIR	/
+RUN rm -rf /gopath/src/hugo-0.12
+
+# install everything needed for docs indexing
+ADD requirements.txt /requirements.txt
+RUN ["pip", "install", "-r", "/requirements.txt"]
+
+# clean up stuff we only need for building, not for running
+RUN apt-get remove -qy wget curl build-essential ca-certificates git-core mercurial bzr python-pip python-dev && \
 	apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-RUN pip install mkdocs==0.9 BeautifulSoup==3.2.1 elasticsearch==1.2.0
+	rm -rf /var/lib/apt/lists/*
+RUN rm -rf /goroot && rm -rf /gopath
 
 
-WORKDIR	/docs
-EXPOSE	8000
-ADD 	. /docs
+ADD . /docs
 
-CMD ["./run.sh"]
+WORKDIR /docs
+
+CMD ["/docs/run.sh"]
+
+EXPOSE	80

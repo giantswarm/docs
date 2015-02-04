@@ -1,14 +1,4 @@
 BeautifulSoup==3.2.1
-Jinja2==2.7.1
-LinkChecker==9.3
 Markdown==2.3.1
-MarkupSafe==0.23
-PyYAML==3.10
-argh==0.26.1
 elasticsearch==1.2.0
-ghp-import==0.4.1
-mkdocs==0.9
-pathtools==0.1.2
-requests==2.4.3
-urllib3==1.9.1
-watchdog==0.7.0
+toml==0.8.2
