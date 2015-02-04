@@ -41,3 +41,6 @@ deploy:
 	swarm stop swarmdocs/content-slave
 	swarm start swarmdocs/content-slave
 	unset SWARM_CLUSTER_ID
+
+linkcheck:
+	linklint -http -host localhost:1313 -limit 1000 -doc linklinttest /@
