@@ -11,7 +11,7 @@ build:
 	docker build -t $(registry)/$(COMPANY)/$(PROJECT) .
 
 run:
-	docker run --name=$(PROJECT) --rm -ti -p 8000:8000 \
+	docker run --name=$(PROJECT) --rm -ti -p 8000:80 \
 		-v $(shell pwd)/swarmdocs/:/docs/swarmdocs/ \
 		$(registry)/$(COMPANY)/$(PROJECT)
 
