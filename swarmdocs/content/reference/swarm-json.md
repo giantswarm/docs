@@ -1,7 +1,7 @@
 +++
 title = "Application configuration (swarm.json)"
 description = "This is the reference page for the application configuration file, usually called 'swarm.json'."
-date = "2015-01-07"
+date = "2015-02-05"
 type = "page"
 weight = 100
 +++
@@ -166,7 +166,6 @@ The keys of a dependency object are as follows:
 
 * `name`: Either the name of a required component within the same service or, if the required component is defined in a different service, the service name and component name in the format `<service_name>/<component_name>`. This key is required. A string is expected as value.
 * `port`: An exposed port of the required component. This key is required. An integer is expected as a value.
-* `same_machine`: This optional key, if present, must have the boolean `true` as a value. This enforces the current and the required component to be run on the same server.
 * `alias`: An optional alias name to be used instead of the actual component name when automatically generating environment variables for host and port of the required component. Read on for more information on that.
 
 Let's review the dependencies key in our full-fledged example above, specifically in the `appserver` component:
