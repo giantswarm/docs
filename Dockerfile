@@ -51,6 +51,6 @@ ADD . /docs
 
 WORKDIR /docs
 
-CMD ["/docs/run.sh"]
+ENTRYPOINT ["/docs/run.sh"]
 
 EXPOSE	80
