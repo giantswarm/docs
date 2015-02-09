@@ -64,7 +64,7 @@ While your terminal and network connection are kept busy with loading Docker ima
 
 This diagram depicts how our application components will be set up.
 
-![Application schema diagram](/img/your-first-application-schema-python.svg)
+![Application schema diagram](/img/your-first-application-schema-python.png)
 
 We have one component which we call `flask` as the core piece. It will provide a Python HTTP server. When accessed by a user, it should display the current weather at our home town, Cologne/Germany.
 
