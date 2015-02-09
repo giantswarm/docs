@@ -64,7 +64,7 @@ While your terminal and network connection are kept busy with loading Docker ima
 
 This diagram depicts how our application components will be set up.
 
-![Application schema diagram](/img/your-first-application-schema-go.svg)
+![Application schema diagram](/img/your-first-application-schema-go.png)
 
 We have one component which we call `webserver` as the core piece. It will provide a Go HTTP server. When accessed by a user, it should display the current weather at our home town, Cologne/Germany.
 
