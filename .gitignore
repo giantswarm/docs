@@ -1,6 +1,7 @@
 *.pyc
 venv*
-swarmdocs/public/*
+swarmdocs/public
+swarmdocs/archetypes
 .DS_Store
 highlight.js
 swarmdocs/layouts/partials/cache_datestamp.html
