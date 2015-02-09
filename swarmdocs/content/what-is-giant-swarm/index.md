@@ -105,6 +105,6 @@ Giant Swarm helps you creating apps in microservice fashion. Each service is tru
 
 * If you don't have an account for Giant Swarm yet, [request an invite](https://giantswarm.io/) now. We have a waiting list and the sooner you get on the list, the sooner you will be able to start using Giant Swarm.
 
-* Once you have an acccount, check that everything is working finde using the Quick Start on the [documentation start page](/).
+* Once you have an acccount, check that everything is working fine using the Quick Start on the [documentation start page](/).
 
 * Then we recommend to create [Your first application - in your language](/guides/your-first-application/) on Giant Swarm.
