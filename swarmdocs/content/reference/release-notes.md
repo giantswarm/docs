@@ -1,7 +1,7 @@
 +++
 title = "Release Notes"
 description = "Release notes and changelog for the swarm CLI, showing you what has changed form release to release."
-date = "2015-01-13"
+date = "2015-02-09"
 type = "page"
 weight = 10
 +++
@@ -9,6 +9,14 @@ weight = 10
 # Release Notes
 
 Here we list the more important changes we made between releases.
+
+## Version 0.12.0
+
+* `swarm status` now prints the Docker image used by each component.
+* When an error occurs during stopping a component (`swarm stop` or `swarm delete`), this error is displayed to the end user. A common cause for errors when stopping is the improper handling of the stop signal (`SIGTERM`). When you see this kind of error, make sure your containers handle this signal properly.
+* The parsing of a local application configuration file (`swarm.json`) has improved so that the use of commands like `swarm status`, `swarm start` and `swarm stop` is possible without using an application name as argument, even when there are variables in the configuration file.
+* `swarm info` and `swarm version` now check whether the current CLI version is the latest. In addition, the CLI now sends the CLI version with every request to the API. With this, we are working towards automatic compatibility checks and warnings.
+* Several fixes and improvements of robustness.
 
 ## Version 0.10.2
 
