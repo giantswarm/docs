@@ -1,15 +1,15 @@
 +++
-title = "Your first application — in Python"
-description = "Your first Python application on Giant Swarm, using your own Docker container and connecting multiple components."
+title = "Your first application — in Ruby"
+description = "Your first Ruby application on Giant Swarm, using your own Docker container and connecting multiple components."
 date = "2015-02-10"
 type = "page"
 weight = 55
 categories = ["basic"]
 +++
 
-# Your first application — in Python
+# Your first application — in Ruby
 
-This tutorial guides you through the creation of an application using two interlinked components and a custom Docker image. The core is a Python/Flask web application. Additionally, a Redis server is used as a temporary data store and we connect to an external API.
+This tutorial guides you through the creation of an application using two interlinked components and a custom Docker image. The core is a Ruby web application. Additionally, a Redis server is used as a temporary data store and we connect to an external API.
 
 ## Prerequisites
 
@@ -20,14 +20,14 @@ This tutorial guides you through the creation of an application using two interl
 
 ## For the impatient
 
-The sources code for this tutorial can be found [on GitHub](https://github.com/giantswarm/giantswarm-firstapp-python). To facilitate following this guide, we recommend you clone the repository using this command:
+The sources code for this tutorial can be found [on GitHub](https://github.com/giantswarm/giantswarm-firstapp-ruby). To facilitate following this guide, we recommend you clone the repository using this command:
 
 ```nohighlight
-$ git clone https://github.com/giantswarm/giantswarm-firstapp-python.git
-$ cd giantswarm-firstapp-python
+$ git clone https://github.com/giantswarm/giantswarm-firstapp-ruby.git
+$ cd giantswarm-firstapp-ruby
 ```
 
-If you're not the type who likes to read a lot, we have a [Makefile](https://github.com/giantswarm/giantswarm-firstapp-python/blob/master/Makefile) in the repository. This file helps you to get everything described below going using these commands:
+If you're not the type who likes to read a lot, we have a [Makefile](https://github.com/giantswarm/giantswarm-firstapp-ruby/blob/master/Makefile) in the repository. This file helps you to get everything described below going using these commands:
 
 ```nohighlight
 $ swarm login <yourusername>
@@ -44,16 +44,16 @@ Everybody else, follow the path to wisdom and read on.
 
 We have a Docker task ahead of us that could be a little time-consuming. The good thing is that we can make things a lot faster with some preparation. As a side effect, you can make sure that `docker` is working as expected on your system.
 
-We need to pull two images from the public Docker library, namely `redis` and `debian:wheezy`. Together they can take a few hundred MB of data transfer. Start the prefetching using this command:
+We need to pull two images from the public Docker library, namely `redis` and `ruby:2.2-onbuild`. Together they can take a few hundred MB of data transfer. Start the prefetching using this command:
 
 ```nohighlight
-$ docker pull redis && docker pull debian:wheezy
+$ docker pull redis && docker pull ruby:2.2-onbuild
 ```
 
 __For Linux users__: You probably have to call the `docker` binary with root privileges, so please use `sudo docker` whenever the docker command is required here. For example, initiate the prefetching like this:
 
 ```nohighlight
-$ sudo docker pull redis && sudo docker pull debian:wheezy
+$ sudo docker pull redis && sudo docker pull ruby:2.2-onbuild
 ```
 
 We won't repeat the `sudo` note for the sake of readability of the rest of this tutorial. Docker warns you if the privileges aren't okay, so you'll be remembered anyway.
@@ -64,44 +64,29 @@ While your terminal and network connection are kept busy with loading Docker ima
 
 This diagram depicts how our application components will be set up.
 
-![Application schema diagram](/img/your-first-application-schema-python.png)
+![Application schema diagram](/img/your-first-application-schema-ruby.png)
 
-We have one component which we call `flask` as the core piece. It will provide a Python HTTP server. When accessed by a user, it should display the current weather at our home town, Cologne/Germany.
+We have one component which we call `ruby` as the core piece. It will provide a little HTTP server. When accessed by a user, it should display the current weather at our home town, Cologne/Germany.
 
 We get the weather data from the [openweathermap.org](http://openweathermap.org/) API. Since we want to be good citizens and not call that API more often than necessary, we cache the API responses locally for a while. For this we use a Redis cache, which is our second component, called `redis` in the diagram above.
 
-## The Python server component
+## The Ruby server component
 
-Our application server consists of only one little file: A Python file called [server.py](https://github.com/giantswarm/giantswarm-firstapp-python/blob/master/server.py) which contains all our application logic. If you're interested in the internal workings of the server, check it's content. For our tutorial, it's not too important, so we cut the details here.
+Our application server consists of only one little file: A Ruby file called [current_weather_service.rb](https://github.com/giantswarm/giantswarm-firstapp-ruby/blob/master/current_weather_service.rb) which contains all our application logic. If you're interested in the internal workings of the server, check it's content. For our tutorial, it's not too important, so we cut the details here.
 
 ## Building our Docker image
 
-We now create a Docker image for our Python server. Here is the `Dockerfile` we use for that purpose:
+We now create a Docker image for our Ruby server. Here is the `Dockerfile` we use for that purpose:
 
 ```Dockerfile
-FROM debian:wheezy
+FROM ruby:2.2-onbuild
 
-MAINTAINER Marian Steinbach <marian@giantswarm.io>
+EXPOSE 4567
 
-ENV DEBIAN_FRONTEND noninteractive
-
-RUN apt-get update -qq && \
-  apt-get install -y -q --no-install-recommends \
-  python2.7 python-pip build-essential python-dev
-
-RUN pip install Flask Flask-Cache requests redis
-
-RUN apt-get clean && \
-  rm -rf /var/lib/apt/lists/*
-
-ADD server.py /server.py
-
-ENTRYPOINT ["python", "server.py"]
-
-EXPOSE 5000
+ENTRYPOINT ["bundle", "exec", "ruby", "current_weather_service.rb"]
 ``` 
 
-As you can see, we use a [Debian base image](https://registry.hub.docker.com/_/debian/) as a basis. We install a few more packages we need to run Python and build some additional dependencies.
+As you can see, we use a [ruby base image](https://registry.hub.docker.com/_/ruby/) as a basis. We don't have to add or install anything. The Docker base image takes care that our dependencies and script are bundled into our final image.
 
 The prefetching of Docker images you started a couple of minutes ago should be finished by now. If not, please wait until it's done.
 
@@ -122,7 +107,7 @@ $ docker run --name=redis -d redis
 Now let's start the server container for which we just created the Docker image. Here is the command (replace `yourusername` with your username):
 
 ```nohighlight
-$ docker run --link redis:redis -p 5000:5000 -ti --rm registry.giantswarm.io/yourusername/currentweather
+$ docker run --link redis:redis -p 4567:4567 -ti --rm registry.giantswarm.io/yourusername/currentweather
 ```
 
 It should be running. But we need proof! Let's issue an HTTP request.
@@ -136,25 +121,37 @@ __Linux__: the command `ip addr show docker0|grep inet` should print out a line 
 So one of the following two commands will likely work:
 
 ```nohighlight
-$ curl 192.168.59.103:5000
-$ curl 172.17.42.1:5000
+$ curl 192.168.59.103:4567
+$ curl 172.17.42.1:4567
 ```
 
 Your output should look something like this:
 
 ```nohighlight
-moderate rain, temperature 10 degrees, wind 42 km/h
+Current weather in Cologne: moderate rain, temperature 10 degrees, wind 42 km/h
 ```
 
 Try at least two requests within 60 seconds to verify your cache is working.
 
 In the server console you will see an output like this:
 
+
 ```nohighlight
- * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
-Querying live weather data
-192.168.59.3 - - [03/Feb/2015 18:42:55] "GET / HTTP/1.1" 200 -
-192.168.59.3 - - [03/Feb/2015 18:42:57] "GET / HTTP/1.1" 200 -
+[2015-02-10 07:13:04] INFO  WEBrick 1.3.1
+[2015-02-10 07:13:04] INFO  ruby 2.2.0 (2014-12-25) [x86_64-linux]
+== Sinatra/1.4.5 has taken the stage on 4567 for development with backup from WEBrick
+[2015-02-10 07:13:04] INFO  WEBrick::HTTPServer#start: pid=1 port=4567
+#<Redis client v3.2.0 for redis://172.17.0.205:6379/0>
+I, [2015-02-10T07:13:09.591611 #1]  INFO -- : Requesting live weather data for Cologne...
+192.168.59.3 - - [10/Feb/2015:07:13:09 +0000] "GET / HTTP/1.1" 200 76 0.1702
+192.168.59.3 - - [10/Feb/2015:07:13:09 UTC] "GET / HTTP/1.1" 200 76
+- -> /
+#<Redis client v3.2.0 for redis://172.17.0.205:6379/0>
+I, [2015-02-10T07:13:16.924905 #1]  INFO -- : Using cached weather data for Cologne...
+192.168.59.3 - - [10/Feb/2015:07:13:16 +0000] "GET / HTTP/1.1" 200 76 0.0020
+192.168.59.3 - - [10/Feb/2015:07:13:16 UTC] "GET / HTTP/1.1" 200 76
+- -> /
+
 ```
 
 Awesome. Now let's deploy it to the cloud.
@@ -187,15 +184,15 @@ Pay close attention to how we create a link between our two components by defini
 
 ```json
 {
-  "app_name": "currentweather",
+  "app_name": "currentweather-app",
   "services": [
     {
       "service_name": "currentweather-service",
       "components": [
         {
-          "component_name": "flask",
-          "image": "registry.giantswarm.io/$username/currentweather",
-          "ports": ["5000/tcp"],
+          "component_name": "ruby-web-component",
+          "image": "registry.giantswarm.io/$username/currentweather:1.0",
+          "ports": ["4567/tcp"],
           "dependencies": [
             {
               "name": "redis",
@@ -203,7 +200,7 @@ Pay close attention to how we create a link between our two components by defini
             }
           ],
           "domains": {
-            "currentweather-$username.gigantic.io": "5000"
+            "currentweather-$username.gigantic.io": "4567"
           }
         },
         {
@@ -228,13 +225,13 @@ $ swarm up --var=username=yourusername
 You will see some progress output during creation and startup of your application:
 
 ```nohighlight
-Creating 'currentweather' in the 'yourusername/dev' environment...
+Creating 'currentweather-app' in the 'yourusername/dev' environment...
 Application created successfully!
-Starting application currentweather...
-Application currentweather is up.
+Starting application currentweather-app...
+Application currentweather-app is up.
 You can see all services and components using this command:
 
-    swarm status currentweather
+    swarm status currentweather-app
 
 ```
 
@@ -245,17 +242,17 @@ Seeing is believing, they say. So let's do the final test that your application 
 If you watched closely, after starting our app we got the recommendation to check it's status using
 
 ```nohighlight
-$ swarm status currentweather
+$ swarm status currentweather-app
 ```
 
 So here is what we get when doing so (your output will vary slightly):
 
 ```nohighlight
-App currentweather is up
+App currentweather-app is up
 
-service                 component  instanceid                            created              status
-currentweather-service  flask      1d23c62a-3ebf-4a01-a054-05fbf024eb0a  2015-01-15 15:35:46  up
-currentweather-service  redis      04570837-9ac3-4959-bc74-ad49eafaaa3f  2015-01-15 15:35:46  up
+service                 component           instanceid                            created              status
+currentweather-service  ruby-web-component  1d23c62a-3ebf-4a01-a054-05fbf024eb0a  2015-02-10 07:20:03  up
+currentweather-service  redis               04570837-9ac3-4959-bc74-ad49eafaaa3f  2015-02-10 07:20:02  up
 ```
 
 Here you have them, your two components, running on Giant Swarm. If you want to, you can check the logs using the instance IDs you see in the `swarm status` output. The syntax for the command is `swarm logs <instance-id>`.
@@ -263,8 +260,8 @@ Here you have them, your two components, running on Giant Swarm. If you want to,
 Now if you like, you can stop or even delete the application again.
 
 ```nohighlight
-$ swarm stop currentweather
-$ swarm delete currentweather
+$ swarm stop currentweather-app
+$ swarm delete currentweather-app
 ```
 
 We hope you enjoyed this tutorial. If yes, feel free to tweet and blog it out to the world. If not, please let us know what bugged you (see chat and support info at the bottom of this page).
