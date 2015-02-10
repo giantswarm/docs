@@ -1,7 +1,7 @@
 +++
 title = "Your first application — in PHP"
 description = "Your first PHP application on Giant Swarm, using your own Docker container and connecting multiple components."
-date = "2015-02-03"
+date = "2015-02-10"
 type = "page"
 weight = 60
 categories = ["basic"]
@@ -199,7 +199,7 @@ Pay close attention to how we create a link between our two components by defini
         {
           "component_name": "php",
           "image": "registry.giantswarm.io/$username/currentweather",
-          "ports": ["80/tcp"],
+          "ports": [80],
           "dependencies": [
             {
               "name": "redis",
@@ -207,13 +207,13 @@ Pay close attention to how we create a link between our two components by defini
             }
           ],
           "domains": {
-            "currentweather-$username.gigantic.io": "80"
+            "currentweather-$username.gigantic.io": 80
           }
         },
         {
           "component_name": "redis",
           "image": "redis",
-          "ports": ["6379/tcp"]
+          "ports": [6379]
         }
       ]
     }

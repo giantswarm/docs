@@ -1,7 +1,7 @@
 +++
 title = "Your first application — in Go"
 description = "Your first Go/Golang application on Giant Swarm, using your own Docker container and connecting multiple components."
-date = "2015-02-04"
+date = "2015-02-10"
 type = "page"
 weight = 50
 categories = ["basic"]
@@ -201,7 +201,7 @@ Pay close attention to how we create a link between our two components by defini
         {
           "component_name": "webserver",
           "image": "registry.giantswarm.io/$username/currentweather:latest",
-          "ports": ["8080/tcp"],
+          "ports": [8080],
           "dependencies": [
             {
               "name": "redis",
@@ -209,13 +209,13 @@ Pay close attention to how we create a link between our two components by defini
             }
           ],
           "domains": {
-            "currentweather-$username.gigantic.io": "8080"
+            "currentweather-$username.gigantic.io": 8080
           }
         },
         {
           "component_name": "redis:latest",
           "image": "redis",
-          "ports": ["6379/tcp"]
+          "ports": [6379]
         }
       ]
     }

@@ -1,7 +1,7 @@
 +++
 title = "Your first application — in NodeJS"
 description = "Your first NodeJS application on Giant Swarm, using your own Docker container and connecting multiple components."
-date = "2015-02-03"
+date = "2015-02-10"
 type = "page"
 weight = 50
 categories = ["basic"]
@@ -190,7 +190,7 @@ Pay close attention to how we create a link between our two components by defini
         {
           "component_name": "nodejs",
           "image": "registry.giantswarm.io/$username/currentweather",
-          "ports": ["1337/tcp"],
+          "ports": [1337],
           "dependencies": [
             {
               "name": "redis",
@@ -198,13 +198,13 @@ Pay close attention to how we create a link between our two components by defini
             }
           ],
           "domains": {
-            "currentweather-$username.gigantic.io": "1337"
+            "currentweather-$username.gigantic.io": 1337
           }
         },
         {
           "component_name": "redis",
           "image": "redis",
-          "ports": ["6379/tcp"]
+          "ports": [6379]
         }
       ]
     }

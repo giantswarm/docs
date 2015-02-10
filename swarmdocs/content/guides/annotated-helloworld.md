@@ -1,7 +1,7 @@
 +++
 title = "The Annotated Hello World Example"
 description = "A first practical introduction into using Giant Swarm. This will take you to a simple Hello World example."
-date = "2015-02-02"
+date = "2015-02-10"
 type = "page"
 weight = 10
 categories = ["basic"]
@@ -76,9 +76,9 @@ In case you want to understand what your application is doing, let's have a look
           "component_name": "helloworld-component",
           "image": "python:3",
           "args": ["sh", "-c", "echo \"Hello from Giant Swarm. \\o/\" > index.html && python -m http.server"],
-          "ports": ["8000/tcp"],
+          "ports": [8000],
           "domains": {
-            "$domain": "8000"
+            "$domain": 8000
           }
         }
       ]

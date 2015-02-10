@@ -1,7 +1,7 @@
 +++
 title = "MySQL with Backups"
 description = "This guide shows you how you can create periodic backups of your MySQL database with a very simple, additional service running in your application."
-date = "2015-01-22"
+date = "2015-02-10"
 type = "page"
 weight = 200
 categories = ["advanced"]
@@ -242,7 +242,7 @@ With an existing application, add a new service with a single component for your
         {
           "component_name": "mysql",
           "image": "mysql:5.5",
-          "ports": ["3306"],
+          "ports": [3306],
           "env": {
             "MYSQL_ROOT_PASSWORD": "$mysqlpass",
             "MYSQL_DATABASE": "$mysqldb"
@@ -280,7 +280,7 @@ With an existing application, add a new service with a single component for your
               "alias": "mysql"
             }
           ],
-          "ports": ["3000"]
+          "ports": [3000]
         }
       ]
     }
