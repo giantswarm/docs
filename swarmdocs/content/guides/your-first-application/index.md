@@ -1,7 +1,7 @@
 +++
 title = "Your first application — in your language"
 description = "Your first real Giant Swarm application, using your own Docker container and connecting multiple components."
-date = "2015-02-02"
+date = "2015-02-10"
 type = "page"
 weight = 30
 categories = ["basic"]
