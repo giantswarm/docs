@@ -1,7 +1,7 @@
 +++
 title = "Application configuration (swarm.json)"
 description = "This is the reference page for the application configuration file, usually called 'swarm.json'."
-date = "2015-02-05"
+date = "2015-02-10"
 type = "page"
 weight = 100
 +++
@@ -67,9 +67,7 @@ This example makes use of all possible keys to illustrate their use.
               "size": "10 GB"
             }
           ],
-          "ports": [
-            "8080/tcp"
-          ],
+          "ports": [ 8080 ],
           "env": [
             "MODE=development"
           ],
@@ -84,15 +82,13 @@ This example makes use of all possible keys to illustrate their use.
             "max" : 10
           },
           "domains": {
-            "myexample.gigantic.io": "8080"
+            "myexample.gigantic.io": 8080
           }
         },
         {
           "component_name": "redis",
           "image": "dockerfile/redis",
-          "ports": [
-            "6379/tcp"
-          ]
+          "ports": [ 6379 ]
         }
       ]
     }
@@ -165,7 +161,7 @@ Besides making sure that the components are started in the appropriate order, de
 The keys of a dependency object are as follows:
 
 * `name`: Either the name of a required component within the same service or, if the required component is defined in a different service, the service name and component name in the format `<service_name>/<component_name>`. This key is required. A string is expected as value.
-* `port`: An exposed port of the required component. This key is required. An integer is expected as a value.
+* `port`: An exposed port of the required component. This key is required. An integer or string is expected as a value.
 * `alias`: An optional alias name to be used instead of the actual component name when automatically generating environment variables for host and port of the required component. Read on for more information on that.
 
 Let's review the dependencies key in our full-fledged example above, specifically in the `appserver` component:
@@ -230,7 +226,7 @@ The example below makes the given component's exposed port 8080 available under 
 
 ```json
 "domains": {
-  "myexample.gigantic.io": "8080"
+  "myexample.gigantic.io": 8080
 }
 ```
 
@@ -269,9 +265,9 @@ Environment variables definitions. These variables will be available within the 
 
 ### `ports`
 
-This key can have as a value an array of strings defining one or more ports to be exposed for this component. If, for example, a component should expose TCP port 80, the according value would be:
+This key expects as value an array of one or more port numbers to be exposed for this component. If, for example, a component should expose TCP port 80, the according value would be:
 
-    "ports": ["80/tcp"]
+    "ports": [80]
 
 ### `scaling_policy`
 

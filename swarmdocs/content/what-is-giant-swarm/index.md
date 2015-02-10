@@ -1,7 +1,7 @@
 +++
 title = "What is Giant Swarm?"
 description = "A general introduction into what Giant Swarm is and does. Start here if you are interested in using our service."
-date = "2015-01-06"
+date = "2015-02-10"
 type = "page"
 +++
 
@@ -53,8 +53,8 @@ A `swarm.json` would look something like:
                 {
                     "component_name": "component-a",
                     "image": "registry.giantswarm.io/giantswarm/customimage",
-                    "ports": [ "1337/tcp" ],
-                    "domains": { "helloworld.gigantic.io": "1337" }
+                    "ports": [ 1337 ],
+                    "domains": { "helloworld.gigantic.io": 1337 }
                 }
             ]
         },
@@ -64,7 +64,7 @@ A `swarm.json` would look something like:
                 {
                     "component_name": "component-x",
                     "image": "registry.giantswarm.io/giantswarm/customimage",
-                    "ports": [ "1337/tcp" ],
+                    "ports": [ 1337 ],
                     "dependencies": [
                         { "name": "component-y", "port": 6379 }
                     ]                
@@ -72,7 +72,7 @@ A `swarm.json` would look something like:
                 {
                     "component_name": "component-y",
                     "image": "redis",
-                    "ports": [ "6379/tcp" ]
+                    "ports": [ 6379 ]
                 }
             ]
         }

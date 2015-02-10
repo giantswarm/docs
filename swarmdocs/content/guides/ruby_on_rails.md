@@ -173,7 +173,7 @@ Now, we just need to add an application file describing our containers:
     "components": [{
       "component_name": "database",
       "image": "mysql",
-      "ports": ["3306"],
+      "ports": [3306],
       "env": {
         "MYSQL_ROOT_PASSWORD": "somesecretpassword"
       }
@@ -190,9 +190,9 @@ Now, we just need to add an application file describing our containers:
       "dependencies": [
         {"name": "database", "port": 3306}
       ],
-      "ports": ["3000"],
+      "ports": [3000],
       "domains": {
-        "rails-example.gigantic.io": "3000"
+        "rails-example.gigantic.io": 3000
       }
     }]
   }]
