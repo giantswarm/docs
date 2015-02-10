@@ -6,8 +6,18 @@ registry=registry.giantswarm.io
 default: ;
 
 build:
+	#
+	# clean
 	rm -rf swarmdocs/public/*
+	#
+	# cache date
 	echo `date +"%Y%m%d%H%M"` > swarmdocs/layouts/partials/cache_datestamp.html
+	#
+	# update download links
+	echo -n $(shell curl -s http://downloads.giantswarm.io/swarm/clients/VERSION) > swarmdocs/layouts/partials/cli_latest_version.html
+	echo -n $(shell curl -s http://downloads.giantswarm.io/swarm/clients/VERSION) > swarmdocs/layouts/shortcodes/cli_latest_version.html
+	#
+	# build
 	docker build -t $(registry)/$(COMPANY)/$(PROJECT) .
 
 run:
