@@ -68,9 +68,9 @@ This example makes use of all possible keys to illustrate their use.
             }
           ],
           "ports": [ 8080 ],
-          "env": [
-            "MODE=development"
-          ],
+          "env": {
+            "MODE": "development"
+          },
           "dependencies": [
             {
               "name": "redis",
