@@ -180,7 +180,7 @@ $ docker push registry.giantswarm.io/yourusername/currentweather
 
 Applications in Giant Swarm are [configured using a JSON configuration file](/reference/swarm-json/) that is usually called `swarm.json`. For this application, we create a configuration containing one service with two components.
 
-Pay close attention to how we create a link between our two components by defining a dependency in the `flask` component pointing to the `redis` component.
+Pay close attention to how we create a link between our two components by defining a dependency in the `ruby-web-component` component pointing to the `redis` component.
 
 ```json
 {
