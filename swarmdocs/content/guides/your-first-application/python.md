@@ -122,7 +122,7 @@ $ docker run --name=redis -d redis
 Now let's start the server container for which we just created the Docker image. Here is the command (replace `yourusername` with your username):
 
 ```nohighlight
-$ docker run --link redis:redis -p 1337:1337 -ti --rm registry.giantswarm.io/yourusername/currentweather
+$ docker run --link redis:redis -p 5000:5000 -ti --rm registry.giantswarm.io/yourusername/currentweather
 ```
 
 It should be running. But we need proof! Let's issue an HTTP request.
