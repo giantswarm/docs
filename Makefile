@@ -14,8 +14,9 @@ build:
 	echo `date +"%Y%m%d%H%M"` > swarmdocs/layouts/partials/cache_datestamp.html
 	#
 	# update download links
-	echo -n $(shell curl -s http://downloads.giantswarm.io/swarm/clients/VERSION) > swarmdocs/layouts/partials/cli_latest_version.html
-	echo -n $(shell curl -s http://downloads.giantswarm.io/swarm/clients/VERSION) > swarmdocs/layouts/shortcodes/cli_latest_version.html
+	$(eval VERSION := $(shell curl -s http://downloads.giantswarm.io/swarm/clients/VERSION))
+	echo -n $(VERSION) > swarmdocs/layouts/partials/cli_latest_version.html
+	echo -n $(VERSION) > swarmdocs/layouts/shortcodes/cli_latest_version.html
 	#
 	# build
 	docker build -t $(registry)/$(COMPANY)/$(PROJECT) .
