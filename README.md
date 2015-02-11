@@ -63,17 +63,6 @@ SWARM_CLUSTER_ID=cluster-01.giantswarm.io swarm start swarmdocs/content-slave
 
 This will replace the second of the content servers.
 
-## Update CLI download links
-
-There are two files you need to modify to update the download links in the docs:
-
-- [`swarmdocs/layouts/partials/cli_latest_version.html`](/giantswarm/docs/blob/master/swarmdocs/layouts/partials/cli_latest_version.html)
-- [`swarmdocs/layouts/shortcodes/cli_latest_version.html`](https://github.com/giantswarm/docs/blob/master/swarmdocs/layouts/shortcodes/cli_latest_version.html)
-
-Please make sure that there is **no white space** in these files.
-
-Having that changed and deployed, users will be able to download the latest tagged CLI version.
-
 ## About writing for the documentation
 
 There is more information available in the [Wiki](https://git.giantswarm.io/giantswarm/docs/wikis/home).

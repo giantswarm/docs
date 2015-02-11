@@ -5,4 +5,6 @@ swarmdocs/archetypes
 .DS_Store
 highlight.js
 swarmdocs/layouts/partials/cache_datestamp.html
+swarmdocs/layouts/partials/cli_latest_version.html
+swarmdocs/layouts/shortcodes/cli_latest_version.html
 linklinttest
