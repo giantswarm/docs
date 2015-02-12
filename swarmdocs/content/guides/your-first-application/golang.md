@@ -1,7 +1,7 @@
 +++
 title = "Your first application — in Go"
 description = "Your first Go/Golang application on Giant Swarm, using your own Docker container and connecting multiple components."
-date = "2015-02-04"
+date = "2015-02-10"
 type = "page"
 weight = 50
 categories = ["basic"]
@@ -56,7 +56,7 @@ __For Linux users__: You probably have to call the `docker` binary with root pri
 $ sudo docker pull golang:1.3.1-cross && sudo docker pull redis:latest && sudo docker pull busybox:ubuntu-14.04
 ```
 
-We won't repeat the `sudo` note for the sake of readability of the rest of this tutorial. Docker warns you if the priveleges aren't okay, so you'll be remembered anyway.
+We won't repeat the `sudo` note for the sake of readability of the rest of this tutorial. Docker warns you if the privileges aren't okay, so you'll be remembered anyway.
 
 While your terminal and network connection are kept busy with loading Docker images, let's have a look on what exactly we are going to build.
 
@@ -64,7 +64,7 @@ While your terminal and network connection are kept busy with loading Docker ima
 
 This diagram depicts how our application components will be set up.
 
-![Application schema diagram](/img/your-first-application-schema-go.svg)
+![Application schema diagram](/img/your-first-application-schema-go.png)
 
 We have one component which we call `webserver` as the core piece. It will provide a Go HTTP server. When accessed by a user, it should display the current weather at our home town, Cologne/Germany.
 
@@ -201,7 +201,7 @@ Pay close attention to how we create a link between our two components by defini
         {
           "component_name": "webserver",
           "image": "registry.giantswarm.io/$username/currentweather:latest",
-          "ports": ["8080/tcp"],
+          "ports": [8080],
           "dependencies": [
             {
               "name": "redis",
@@ -209,13 +209,13 @@ Pay close attention to how we create a link between our two components by defini
             }
           ],
           "domains": {
-            "currentweather-$username.gigantic.io": "8080"
+            "currentweather-$username.gigantic.io": 8080
           }
         },
         {
           "component_name": "redis:latest",
           "image": "redis",
-          "ports": ["6379/tcp"]
+          "ports": [6379]
         }
       ]
     }

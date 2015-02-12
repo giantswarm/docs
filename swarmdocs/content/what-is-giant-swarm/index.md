@@ -1,7 +1,7 @@
 +++
 title = "What is Giant Swarm?"
 description = "A general introduction into what Giant Swarm is and does. Start here if you are interested in using our service."
-date = "2015-01-06"
+date = "2015-02-10"
 type = "page"
 +++
 
@@ -53,8 +53,8 @@ A `swarm.json` would look something like:
                 {
                     "component_name": "component-a",
                     "image": "registry.giantswarm.io/giantswarm/customimage",
-                    "ports": [ "1337/tcp" ],
-                    "domains": { "helloworld.gigantic.io": "1337" }
+                    "ports": [ 1337 ],
+                    "domains": { "helloworld.gigantic.io": 1337 }
                 }
             ]
         },
@@ -64,7 +64,7 @@ A `swarm.json` would look something like:
                 {
                     "component_name": "component-x",
                     "image": "registry.giantswarm.io/giantswarm/customimage",
-                    "ports": [ "1337/tcp" ],
+                    "ports": [ 1337 ],
                     "dependencies": [
                         { "name": "component-y", "port": 6379 }
                     ]                
@@ -72,7 +72,7 @@ A `swarm.json` would look something like:
                 {
                     "component_name": "component-y",
                     "image": "redis",
-                    "ports": [ "6379/tcp" ]
+                    "ports": [ 6379 ]
                 }
             ]
         }
@@ -105,6 +105,6 @@ Giant Swarm helps you creating apps in microservice fashion. Each service is tru
 
 * If you don't have an account for Giant Swarm yet, [request an invite](https://giantswarm.io/) now. We have a waiting list and the sooner you get on the list, the sooner you will be able to start using Giant Swarm.
 
-* Once you have an acccount, check that everything is working finde using the Quick Start on the [documentation start page](/).
+* Once you have an acccount, check that everything is working fine using the Quick Start on the [documentation start page](/).
 
 * Then we recommend to create [Your first application - in your language](/guides/your-first-application/) on Giant Swarm.
