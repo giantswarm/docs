@@ -16,13 +16,14 @@ build:
 	# update download links
 	$(eval VERSION := $(shell curl -s http://downloads.giantswarm.io/swarm/clients/VERSION))
 	echo -n $(VERSION) > swarmdocs/layouts/partials/cli_latest_version.html
+	mkdir -p swarmdocs/layouts/shortcodes
 	echo -n $(VERSION) > swarmdocs/layouts/shortcodes/cli_latest_version.html
 	#
 	# build
 	docker build -t $(registry)/$(COMPANY)/$(PROJECT) .
 
 run:
-	docker run --name=$(PROJECT) --rm -ti -p 8000:8000 \
+	docker run --name=$(PROJECT) --rm -ti -p 8000:80 \
 		-v $(shell pwd)/swarmdocs/:/docs/swarmdocs/ \
 		$(registry)/$(COMPANY)/$(PROJECT)
 
