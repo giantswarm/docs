@@ -16,6 +16,7 @@ build:
 	# update download links
 	$(eval VERSION := $(shell curl -s http://downloads.giantswarm.io/swarm/clients/VERSION))
 	echo -n $(VERSION) > swarmdocs/layouts/partials/cli_latest_version.html
+	mkdir -p swarmdocs/layouts/shortcodes
 	echo -n $(VERSION) > swarmdocs/layouts/shortcodes/cli_latest_version.html
 	#
 	# build
