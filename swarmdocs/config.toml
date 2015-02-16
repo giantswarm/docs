@@ -2,6 +2,10 @@ baseurl = "http://docs.giantswarm.io"
 languageCode = "en"
 title = "Giant Swarm Documentation"
 pluralizeListTitles = false
+
+[Blackfriday]
+    plainIdAnchors = true
+
 [[menu.main]]
     name = "What is Giant Swarm?"
     url = "/what-is-giant-swarm/"
