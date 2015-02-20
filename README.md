@@ -52,7 +52,7 @@ SWARM_CLUSTER_ID=cluster-01.giantswarm.io swarm stop swarmdocs/content-master
 SWARM_CLUSTER_ID=cluster-01.giantswarm.io swarm start swarmdocs/content-master
 ```
 
-This will update the search index adn replace the first of the content servers.
+This will update the search index and replace the first of the content servers.
 
 3. Stop and start the `content-slave` component:
 
