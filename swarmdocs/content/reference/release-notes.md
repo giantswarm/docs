@@ -10,6 +10,16 @@ weight = 10
 
 Here we list the more important changes we made between releases.
 
+
+## Version 0.15.0
+
+Released 2015-02-24
+
+* We introduced version checks between CLI and API. Deprecated clients now show an error and prompt the user to install an update.
+* Password changes now result in the user being logged out.
+* Fixed a problem with continuous log output (`-f` switch in `swarm logs`).
+
+
 ## Version 0.12.0
 
 Released 2015-02-09
