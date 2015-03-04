@@ -256,11 +256,11 @@ If you plan to use your own domain name in your configuration, there is one conf
 Environment variables definitions. These variables will be available within the running docker containers. Entries _must_ be of type string. Example:
 
 ```json
-"env": [
-  "FIRST_VARIABLE=foo",
-  "SECOND_VARIABLE=bar",
-  "NUMERIC_VARIABLE=123"
-]
+"env": {
+  "FIRST_VARIABLE": "foo",
+  "SECOND_VARIABLE": "bar",
+  "NUMERIC_VARIABLE": "123"
+}
 ```
 
 ### `ports`
