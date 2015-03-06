@@ -21,7 +21,7 @@ You can create as many companies as you like. And each company can have as many 
 
 The basis for team collaboration is to have a company every team member belongs to. So the first step when starting to work as a team is to create the appropriate company using the `swarm CLI`.
 
-Probably the hardest part here is to come up with a good company name. Company names are between 4 and 30 characters long and only consist of the characters a-z, 0-9 and the underscore (_). Also, the names has to be unique for the entire Giant Swarm platform.
+Probably the hardest part here is to come up with a good company name. Company names are between 4 and 30 characters long and only consist of the characters a-z, 0-9 and the underscore (_). Also, the name has to be unique for the entire Giant Swarm platform.
 
 Say you want to create a new company called `ateam`, this is how you would do it.
 
