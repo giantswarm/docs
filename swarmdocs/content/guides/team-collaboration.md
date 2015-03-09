@@ -13,9 +13,11 @@ categories = ["advanced"]
 
 ## Companies and environments
 
-Whenever you're logged in with the `swarm` CLI and interact with our infrastructure, your current context is the [environment](/reference/env/). Each environment, in turn, belongs to a [company](/reference/companies/). This is visible in the environment name pattern, which is always prefixed with a company name: `<company_name>/<environment_suffix>`.
+A [company](/reference/companies/) on Giant Swarm is a simply a named group of users. An [environment](/reference/env/) is a named context in which to deploy applications. Each environment belongs to a company. This is visible in the environment name, which is always prefixed with a company name: `<company_name>/<environment_suffix>`.
 
-You can create as many companies as you like. And each company can have as many environments as needed.
+Whenever you're logged in with the `swarm` CLI and interact with our infrastructure, an environment is selected as your context. This even happens without you knowing about these concepts. With your first login, a company named after your username is created and an environment with the name pattern `<company_name>/dev` is created and selected. This is called the default environment.
+
+However, for collaboration in a team, there should be a dedicated company for any team you work with. You can create as many companies as you like, and each company can have as many environments as needed.
 
 ## Creating a company for your team
 
@@ -23,7 +25,7 @@ The basis for team collaboration is to have a company every team member belongs 
 
 Probably the hardest part here is to come up with a good company name. Company names are between 4 and 30 characters long and only consist of the characters a-z, 0-9 and the underscore (_). Also, the name has to be unique for the entire Giant Swarm platform.
 
-Say you want to create a new company called `ateam`, this is how you would do it.
+Say you want to create a new company called `ateam`, this is how you would do it:
 
 ```nohighlight
 $ swarm company create ateam
@@ -47,7 +49,7 @@ To add a user to a company, you need to know the Giant Swarm username of the use
 $ swarm company add-user ateam murdock
 ```
 
-## Tagging images for team access
+## Naming images for team access
 
 The building blocks of your Giant Swarm applications are Docker containers, which can be created from images on any public registry or the [private registry](/reference/registry/) Giant Swarm provides. This section assumes that you want to make use of our private registry.
 
