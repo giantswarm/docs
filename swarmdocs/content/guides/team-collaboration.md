@@ -9,7 +9,7 @@ categories = ["advanced"]
 
 # Collaborating as a team
 
-<p class="lead">Giant Swarm provides the means to collaborate on applications as a team. This guide gives an introduction of the most important aspects to take care of when deploying and controlling applications in a multi-user work group.</p>
+<p class="lead">Giant Swarm provides the means to collaborate on applications as a team. This guide gives an introduction to the most important aspects to take care of when deploying and controlling applications in a multi-user work group.</p>
 
 ## Companies and environments
 
@@ -21,7 +21,7 @@ However, for collaboration in a team, there should be a dedicated company for an
 
 ## Creating a company for your team
 
-The basis for team collaboration is to have a company every team member belongs to. So the first step when starting to work as a team is to create the appropriate company using the `swarm CLI`.
+The basis for team collaboration is to have a company that every team member belongs to. So the first step when starting to work as a team is to create the appropriate company using the `swarm CLI`.
 
 Probably the hardest part here is to come up with a good company name. Company names are between 4 and 30 characters long and only consist of the characters a-z, 0-9 and the underscore (_). Also, the name has to be unique for the entire Giant Swarm platform.
 
@@ -101,7 +101,7 @@ Not only does this create the environment, it also selects it as the current one
 
 So, regardless if the environment existed before or not, `swarm env ateam/dev` will select the according environment for the current user. Every team member has to do this in order to conveniently control applications running in this environment.
 
-As you might have guessed, only members of the company `ateam` are allowed to to select it's environment.
+As you might have guessed, only members of the company `ateam` are allowed to select its environments.
 
 ### Deploying applications
 
@@ -111,7 +111,7 @@ Your [application configuration](/reference/swarm-json/) has to make use of the 
 
 ## Wrapping it up
 
-This is all there is to it. We have just explained how to create a company for your team and add members to it, creating environments for the team and tagging images to be accessed by the team.
+This is all there is to it. You have just learned how to create a company for your team and add members to it, creating environments for the team, and tagging images to be accessed by the team.
 
 ## Further reading
 
