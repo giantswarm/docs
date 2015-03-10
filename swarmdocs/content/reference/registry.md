@@ -1,7 +1,7 @@
 +++
 title = "Using the registry"
 description = "This is the reference page on how to use the Giant Swarm registry with Docker"
-date = "2014-12-12"
+date = "2015-03-06"
 type = "page"
 weight = 100
 +++
@@ -11,22 +11,26 @@ weight = 100
 ## TL;DR
 
 Login to the Giant Swarm registry:
-```
+
+```nohighlight
 $ docker login https://registry.giantswarm.io
 ```
 
 Build your image with the right name:
-```
+
+```nohighlight
 $ docker build -t registry.giantswarm.io/acmecorp/exampleimage:1.4.2 .
 ```
 
 Upload the image to the registry:
-```
+
+```nohighlight
 $ docker push registry.giantswarm.io/acmecorp/exampleimage:1.4.2
 ```
 
 Reference the image in your app config:
-```
+
+```json
 {
     "component_name": "upstream",
     "image": "registry.giantswarm.io/acmecorp/exampleimage:1.4.2",
@@ -48,13 +52,17 @@ The URL of our registry is `https://registry.giantswarm.io`.
 
 The full image name format is
 
-    registry.giantswarm.io/<company_namespace>/<image_name>:<tag>
+```nohighlight
+registry.giantswarm.io/<company_namespace>/<image_name>:<tag>
+```
 
 Note that the URL scheme (`https://`) is ommited here.
 
 Example of a full image name:
 
-    registry.giantswarm.io/acmecorp/webserver:1.4.2
+```nohighlight
+registry.giantswarm.io/acmecorp/webserver:1.4.2
+```
 
 ## Company namespaces
 
@@ -66,7 +74,9 @@ In fact, even if you don't collaborate with other users, you are part of a compa
 
 If, for example, you belong to the company called `acmecorp` and want to create an image, which can be used by all users of that company, the name `acmecorp` has to be used as the name space field within the image name, like here:
 
-    registry.giantswarm.io/acmecorp/exampleimage:1.4.2
+```nohighlight
+registry.giantswarm.io/acmecorp/exampleimage:1.4.2
+```
 
 We will be using the company name `acmecorp` throughout this page as a placeholder for your respective company name.
 
@@ -76,7 +86,9 @@ If you aren't planning to share your images with other users, you can of course 
 
 Before you can do anything like uploading or downloading images to/from our registry, you first have to log in. Have your Giant Swarm user name and password ready for that purpose. The actual login is performed interactively using the `docker login` command:
 
-    $ docker login https://registry.giantswarm.io
+```nohighlight
+$ docker login https://registry.giantswarm.io
+```
 
 You will be prompted to input your username, then your password, and finally your email address.
 
@@ -95,15 +107,19 @@ You have several choices on when to name the image with its final name:
 
 Naming the image _during build time_ saves you an extra step but also requires you to plan ahead. When in the directory containg the `Dockerfile` for your `exampleimage` image, any of the following commands would create a named image:
 
-    docker build -t registry.giantswarm.io/acmecorp/exampleimage .
-    docker build -t registry.giantswarm.io/acmecorp/exampleimage:latest .
-    docker build -t registry.giantswarm.io/acmecorp/exampleimage:1.4.2 .
+```nohighlight
+$ docker build -t registry.giantswarm.io/acmecorp/exampleimage .
+$ docker build -t registry.giantswarm.io/acmecorp/exampleimage:latest .
+$ docker build -t registry.giantswarm.io/acmecorp/exampleimage:1.4.2 .
+```
 
 As for naming _after the build_: If, for example, you have locally created a little image with the simple name `exampleimage`, there are several alternatives how you can give it a name that is valid for the registry:
 
-    docker tag exampleimage registry.giantswarm.io/acmecorp/exampleimage
-    docker tag exampleimage registry.giantswarm.io/acmecorp/exampleimage:latest
-    docker tag exampleimage registry.giantswarm.io/acmecorp/exampleimage:1.4.2
+```nohighlight
+$ docker tag exampleimage registry.giantswarm.io/acmecorp/exampleimage
+$ docker tag exampleimage registry.giantswarm.io/acmecorp/exampleimage:latest
+$ docker tag exampleimage registry.giantswarm.io/acmecorp/exampleimage:1.4.2
+```
 
 You might have wondered what the `:latest` or `:1.4.2` suffixes are about. They are called _tags_ and are distinct indicators for different variants of an image. They are frequently used for versioning images.
 
@@ -113,13 +129,17 @@ To make use of your images within your Giant Swarm applications, you have to upl
 
 Above, you learnt that you have to name an image with the appropriate name _before_ pushing it. Now you can use the full image name to push that same image. This is the general command syntax:
 
-    $ docker push registry.giantswarm.io/<company_namespace>/<image_name>:<tag>
+```nohighlight
+$ docker push registry.giantswarm.io/<company_namespace>/<image_name>:<tag>
+```
 
 There are cases where the `:<tag>` part would be optional. Going into depth here would make this reference a lot longer. For now, we simply recommend to explicitly name the tag. If you like, you can read more about this topic in the Docker documentation (link given [below](#related-reading)). 
 
 So to push our example image to the registry, the command we would use might be:
 
-    $ docker push registry.giantswarm.io/acmecorp/exampleimage:1.4.2
+```nohighlight
+$ docker push registry.giantswarm.io/acmecorp/exampleimage:1.4.2
+```
 
 <!-- TODO: show progress output -->
 
