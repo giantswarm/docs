@@ -5,7 +5,7 @@ date = "2014-12-13"
 type = "page"
 categories = ["Reference", "Swarm CLI Commands"]
 tags = ["swarm env"]
-weight = 100
+weight = 40
 +++
 
 # Environments

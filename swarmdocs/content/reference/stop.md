@@ -5,7 +5,7 @@ date = "2014-12-18"
 type = "page"
 categories = ["Reference", "Swarm CLI Commands"]
 tags = ["swarm stop"]
-weight = 100
+weight = 60
 +++
 
 # Stopping an application or service

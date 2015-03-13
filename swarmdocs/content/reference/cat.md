@@ -5,7 +5,7 @@ date = "2015-01-29"
 type = "page"
 categories = ["Reference", "Swarm CLI Commands"]
 tags = ["swarm cat"]
-weight = 100
+weight = 82
 +++
 
 # Getting an application's configuration

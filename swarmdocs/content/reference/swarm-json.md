@@ -3,7 +3,7 @@ title = "Application configuration (swarm.json)"
 description = "This is the reference page for the application configuration file, usually called 'swarm.json'."
 date = "2015-02-10"
 type = "page"
-weight = 100
+weight = 40
 +++
 
 # Application configuration (`swarm.json`)

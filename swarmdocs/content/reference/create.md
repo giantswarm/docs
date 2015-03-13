@@ -5,7 +5,7 @@ date = "2015-01-29"
 type = "page"
 categories = ["Reference", "Swarm CLI Commands"]
 tags = ["swarm create"]
-weight = 100
+weight = 50
 +++
 
 # Creating an application

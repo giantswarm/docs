@@ -5,7 +5,7 @@ date = "2015-01-12"
 type = "page"
 categories = ["Reference", "Swarm CLI Commands"]
 tags = ["swarm scaledown"]
-weight = 100
+weight = 91
 +++
 
 # Scaling down a component
