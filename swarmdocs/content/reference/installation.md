@@ -8,9 +8,11 @@ weight = 10
 
 # Installing the Giant Swarm CLI
 
-<p class="lead">Instructions for installing the `swarm` command line interface on the supported platforms. By the way, the latest version is <strong>{{% cli_latest_version %}}</strong>.</p>
+<p class="lead">Instructions for installing the <code>swarm</code> command line interface on the supported platforms. By the way, the latest version is <strong>{{% cli_latest_version %}}</strong>.</p>
 
 ## Mac OS X
+
+### Mac OS X install via Homebrew
 
 If you're on a Mac, the recommended way to install the `swarm` command line interface (CLI) is to use [Homebrew](http://brew.sh/).
 
@@ -21,12 +23,23 @@ $ brew tap giantswarm/swarm
 $ brew install swarm-client
 ```
 
-In order to update the swarm <abbr title="command line interface">CLI</abbr> to the latest version, use these commands: 
+In order to update the swarm <abbr title="command line interface">CLI</abbr> to the latest version, use these commands:
 
 ```nohighlight
 $ brew update
 $ brew upgrade swarm-client
 ```
+
+### Mac OS X manual install
+
+If you don't want to use Homebrew, here is how you could download and install the <abbr title="command line interface">CLI</abbr> manually.
+
+```nohighlight
+$ curl -O http://downloads.giantswarm.io/swarm/clients/{{% cli_latest_version %}}/swarm-{{% cli_latest_version %}}-darwin-amd64.tar.gz
+$ tar xzf swarm-{{% cli_latest_version %}}-darwin-amd64.tar.gz
+```
+
+Please add the `swarm` binary to your PATH.
 
 ## Linux
 
