@@ -12,6 +12,8 @@ weight = 70
 
 The `swarm update` command enables you to update the container version that's running in a specific component. This results in the component being stopped, the new image being pulled from the registry and then the component being restarted.
 
+If a component was not running before the `swarm update` command is issued on it, it will be started as a result.
+
 You can use the `swarm update` command to either update a component to use a specific version (tag) of an image, or simply let it pull the newest image with the `latest` tag.
 
 ## Updating to the latest image version {#latestversion}
