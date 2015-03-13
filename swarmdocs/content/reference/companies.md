@@ -5,7 +5,7 @@ date = "2015-01-08"
 type = "page"
 categories = ["Reference", "Swarm CLI Commands"]
 tags = ["swarm company"]
-weight = 100
+weight = 40
 +++
 
 # Companies

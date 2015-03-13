@@ -5,7 +5,7 @@ date = "2014-12-11"
 type = "page"
 categories = ["Reference", "Swarm CLI Commands"]
 tags = ["swarm start"]
-weight = 100
+weight = 50
 +++
 
 # Starting an application or service

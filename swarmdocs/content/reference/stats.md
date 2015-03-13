@@ -5,7 +5,7 @@ date = "2014-11-09"
 type = "page"
 categories = ["Reference", "Swarm CLI Commands"]
 tags = ["swarm stats"]
-weight = 100
+weight = 86
 +++
 
 # Getting instance statistics

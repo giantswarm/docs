@@ -3,7 +3,7 @@ title = "Using the registry"
 description = "This is the reference page on how to use the Giant Swarm registry with Docker"
 date = "2015-03-06"
 type = "page"
-weight = 100
+weight = 40
 +++
 
 # Using the registry
