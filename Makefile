@@ -10,6 +10,12 @@ build:
 	# clean
 	rm -rf swarmdocs/public/*
 	#
+	# copy content from content repo (which needs to be in the neighbor folder)
+	rm -rf swarmdocs/content
+	rm -rf swarmdocs/static/img
+	cp -r ../docs-content/content swarmdocs/
+	cp -r ../docs-content/img swarmdocs/static/
+	#
 	# cache date
 	echo `date +"%Y%m%d%H%M"` > swarmdocs/layouts/partials/cache_datestamp.html
 	#
