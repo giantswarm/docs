@@ -157,6 +157,8 @@ pre code {
 	background-color: #234a61;
 	color: #ddd;
 	font-family: Inconsolata, monospace;
+	padding-left: 22px;
+	padding-right: 22px;
 }
 .btn-firstapp:hover {
 	background-color: #3b5e72;
