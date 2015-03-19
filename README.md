@@ -2,28 +2,17 @@
 
 Our Documentation is based on Markdown and HTML content and generated using [HUGO](http://gohugo.io/), a static site generator written in Go.
 
-## Setup for writing and checking content
+## Where's the content?
 
-In order to contribute content or simply review content, all you need is a local install of HUGO.
+Content is in this public repo: [giantswarm/docs-content](https://github.com/giantswarm/docs-content).
 
-On the Mac:
+## Development setup
 
-```
-brew install hugo
-./run-dev.sh
-```
+To have the up-to-date content in the local directory, execute `make build` first. This will check out the docs-content repository and copy it's content to the correct locations. Do this whenever content has changed.
 
-(On Linux the process of installing HUGO in the correct version is more involved. Check the Dockerfile for hints.)
+For a quick preview, with `hugo` installed (`brew install hugo`), run `./run-dev.sh` and access `http://localhost:1313/`.
 
-Access the site at [localhost:1313](http://localhost:1313/).
-
-Content changes should automatically load in your browser. No manual reloading required.
-
-In order to review a Pull Request, check out the according branch.
-
-## Setup for development
-
-The documentation application consists of several components. The best way to run them all locally is using `fig`. To start the application locally, including proxy and search functions, use
+The full documentation application consists of several components. The best way to run them all locally is using `fig`. To start the application locally, including proxy and search functions, use
 
 ```
 fig up
