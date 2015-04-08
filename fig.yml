@@ -1,5 +1,7 @@
 sitesearch:
   image: registry.giantswarm.io/giantswarm/sitesearch
+  volumes:
+   - sitesearch-volume-data:/data
 docsslave:
   image: registry.giantswarm.io/giantswarm/docs
   environment:

@@ -70,7 +70,13 @@
                 {
                     "component_name": "sitesearch",
                     "image": "$sitesearch_image",
-                    "ports": [ "9200/tcp" ]
+                    "ports": [ "9200/tcp" ],
+                    "volumes": [
+                        {
+                            "path": "/data",
+                            "size": "2 GB"
+                        }
+                    ]
                 }
             ]
         }
