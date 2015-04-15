@@ -204,3 +204,13 @@ if (document.location.pathname == "/") {
         }
     });
 }
+
+/** Adapt API specs **/
+if ($("h1").text().indexOf("API") !== -1) {
+    // ad .table class for bootdtrap styling of tables
+    $("table").addClass("table");
+    // truncate long menu entries
+    $("#TableOfContents").css("overflow", "hidden");
+    // make content column wider
+    $(".col-sm-12.col-md-8.col-lg-8.col-lg-offset-1").attr("class", "col-sm-12 col-md-8 col-lg-9")
+}
