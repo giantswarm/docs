@@ -173,7 +173,7 @@ $(document).ready(function(){
     doSearch(q);
 });
 
-/** Re-format the table of contents **/
+/** Re-format the table of contents to eleminate the uppermost level **/
 
 var toc = $('#TableOfContents');
 if (toc.length !== 0) {

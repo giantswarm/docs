@@ -1,0 +1,7 @@
++++
+title = "API methods"
+description = "Description of all methods the Giant Swarm API provides."
+date = "2015-03-24"
+type = "page"
+weight = 100
++++

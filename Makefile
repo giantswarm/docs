@@ -17,6 +17,10 @@ build:
 	git clone --depth 1 git@github.com:giantswarm/docs-content.git
 	cp -r docs-content/content swarmdocs/
 	cp -r docs-content/img swarmdocs/static/
+	# make API docs
+	mkdir -p swarmdocs/content/api
+	cat api/frontmatter.txt > swarmdocs/content/api/methods.md
+	cat ../api/docs/api.md >> swarmdocs/content/api/methods.md
 	#
 	# cache date
 	echo `date +"%Y%m%d%H%M"` > swarmdocs/layouts/partials/cache_datestamp.html
