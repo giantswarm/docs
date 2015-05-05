@@ -204,3 +204,7 @@ if (document.location.pathname == "/") {
         }
     });
 }
+
+// make all tables bootstrappy
+$("table").addClass("table");
+    
