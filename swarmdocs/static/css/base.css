@@ -62,7 +62,7 @@ a code {
     font-weight: 700;
 }
 
-.quickstart {
+.quickstart, .docs-video {
 	background-color: #dff0d8;
 	border: 1px solid #d6e9c6;
 	box-sizing: border-box;
@@ -96,7 +96,7 @@ a code {
 .nav-tabs>li>a:hover {
 	background-color: #dff0d8 !important;
 }
-.quickstart h3 {
+.quickstart h3, .docs-video h3 {
 	margin-top: 0;
 }
 .quickstart pre {
@@ -125,14 +125,15 @@ a code {
 	line-height: 1.6;
 }
 
-.home-introbox {
-	padding: 20px 15px 20px 15px;
-	border: 1px solid #ccc;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	margin-bottom: 20px;
+.docs-video {
+	background-color: #3E83AC;
+	padding-bottom: 30px;
+	color: #ffffff;
 }
+.docs-video h3 {
+	font-size: 20px;
+}
+
 .home-introbox h3 {
 	margin-top: 0;
 }
@@ -152,21 +153,22 @@ a code {
 	margin: 15px 0 15px 0;
 }
 
-.home-yourfirstapp {
-	padding: 20px 15px 20px 15px;
-	border: 1px solid #ccc;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	margin-bottom: 20px;
+ul.notype {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+ul.notype li {
+	margin-top: 7px;
+	margin-bottom: 7px;
 }
 
 .btn-firstapp {
 	background-color: #234a61;
 	color: #ddd;
 	font-family: Inconsolata, monospace;
-	padding-left: 22px;
-	padding-right: 22px;
+	padding-left: 14px;
+	padding-right: 14px;
 }
 .btn-firstapp:hover {
 	background-color: #3b5e72;

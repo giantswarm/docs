@@ -1,7 +1,5 @@
 {{ partial "header.html" . }}
 
-<h1>The Giant Swarm Docs</h1>
-
 <div id="home">
 
   <div class="row welcome-alert" style="display: none">
@@ -11,25 +9,94 @@
   </div>
 
   <div class="row">
-    <div class="col-md-5">
-      <div class="home-introbox">
-        <h3>What is Giant Swarm?</h3>
-        <p>Giant Swarm enables you to easily develop, deploy, and host your micro-serviced applications. We leverage several technologies like Docker and CoreOS and bring them together to provide a simple yet powerful infrastructure. <a href="/what-is-giant-swarm/">Read more <i class="fa fa-arrow-circle-right"></i></a></p>
-        <hr>
-        <h4>Getting started</h4>
-        <ul>
-          <li>Step 1: <a href="/guides/annotated-helloworld/"><i class="fa fa-arrow-circle-right"></i> The Annotated Hello World Example</a></li>
-          <li>Step 2: <a href="/guides/your-first-application/"><i class="fa fa-arrow-circle-right"></i> Your First Application - In Your Language</a></li>
-          <li>Step 3: <a href="/guides/"><i class="fa fa-arrow-circle-right"></i> Check out more guides and tutorials</a></li>
-        </ul>
-        <hr>
-        <h4>Digging deeper</h4>
-        <ul>
-          <li><a href="/reference/"><i class="fa fa-arrow-circle-right"></i> The Reference</a></li>
-        </ul>
+    <div class="col-md-5 home-introbox">
+
+      <hr>
+      <h2>Introduction to Giant Swarm</h2>
+      <p>Giant Swarm provides infrastructure for your microservices and enables running your modular, server-side applications. <a href="/introduction/">Read More <i class="fa fa-arrow-circle-right"></i></a></p>
+      <hr>
+
+      <div class="row">
+        <div class="col-md-6">
+          <h3>Getting started</h3>
+          <ul class="notype">
+            <li><a href="#video"><i class="fa fa-arrow-circle-right"></i> Watch the Introduction Video</a></li>
+            <li><a href="/reference/installation/"><i class="fa fa-arrow-circle-right"></i> Install the CLI</a></li>
+            <li><a href="/guides/annotated-helloworld/"><i class="fa fa-arrow-circle-right"></i> Run the Hello World Example</a></li>
+            <li><a href="/reference/cli/"><i class="fa fa-arrow-circle-right"></i> Check out the CLI reference</a></li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <h3>Advanced Guides</h3>
+          <ul>
+            <li><a href="/guides/mysql-with-backus/"><i class="fa fa-arrow-circle-right"></i> MySQL with Backups</a></li>
+            <li><a href="/guides/ruby-on-rails/"><i class="fa fa-arrow-circle-right"></i> Ruby on Rails</a></li>
+            <li><a href="/guides/team-collaboration/"><i class="fa fa-arrow-circle-right"></i> Team Collaboration</a></li>
+          </ul>
+          <!--<a href="/guides/">More Guides <i class="fa fa-arrow-circle-right"></i></a>-->
+        </div>
       </div>
 
-      {{ partial "request_invite.html" . }}
+      <div class="home-yourfirstapp">
+        <div class="centered-text">
+          <hr>
+          <h3>Your First Application</h3>
+          <p>Pick your language and learn by creating an example application:</p>
+          <a class="btn btn-default btn-firstapp" href="/guides/your-first-application/nodejs/">NodeJS</a>
+          <a class="btn btn-default btn-firstapp" href="/guides/your-first-application/python/">Python</a>
+          <a class="btn btn-default btn-firstapp" href="/guides/your-first-application/golang/">Go</a>
+          <a class="btn btn-default btn-firstapp" href="/guides/your-first-application/java/">Java</a>
+          <a class="btn btn-default btn-firstapp" href="/guides/your-first-application/php/">PHP</a>
+          <a class="btn btn-default btn-firstapp" href="/guides/your-first-application/ruby/">Ruby</a>
+        </div>
+      </div>
+
+      <hr>
+      <h2>Reference</h2>
+      <div class="row">
+
+        <div class="col-sm-6">
+          <hr>
+          <h3>The swarm CLI</h3>
+          <ul class="links">
+            <li><strong><a href="/reference/cli/">CLI Reference Overview</a></strong></li>
+            <li><a href="/reference/cli/installation/">Installation and Configuration</a></li>
+            <li><a href="/reference/cli/global-options/">Global Options</a></li>
+            <li><a href="/reference/cli/release-notes/">Release Notes</a></li>
+          </ul>
+        </div>
+
+        <div class="col-sm-6">
+          <hr>
+          <h3>The API</h3>
+          <ul class="links">
+            <li><strong><a href="/reference/api/">API Reference Overview</a></strong></li>
+          </ul>
+        </div>
+
+      </div>
+      <div class="row">
+
+        <div class="col-sm-6">
+          <hr>
+          <h3>Basic Concepts</h3>
+          <ul class="links">
+            <li><a href="/reference/cli/org/">Organizations</a></li>
+            <li><a href="/reference/cli/env/">Environments</a></li>
+          </ul>
+        </div>
+
+        <div class="col-sm-6">
+          <hr>
+          <h3>Practical Knowledge</h3>
+          <ul class="links">
+            <li><a href="/reference/swarm-json/">Application Configuration (<code>swarm.json</code>)</a></li>
+            <li><a href="/reference/registry/">Using the Registry</a></li>
+          </ul>
+        </div>
+
+      </div>
+
     </div>
     <div class="col-md-7">
 
@@ -71,23 +138,13 @@
         </div>
       </div>
 
-      <div style="margin-top: 40px"><hr></div>
-
-      <div class="center-block" style="padding: 20px; font-size: 45px; position: relative; top: -73px; margin-bottom: -75px">
-        <i style="background-color: #fff; color: #666; display: block; line-height: 58px; padding: 0 10px 0 10px; width: 58px; height: 58px; text-align: center; margin-left: auto; margin-right: auto;" class="fa fa-arrow-circle-o-down"></i>
-      </div>
-
-      <div class="home-yourfirstapp">
-        <div class="centered-text">
-          <p><strong>Get Real!</strong> Create your first real Giant Swarm application &ndash; in your language.</p>
-          <a class="btn btn-default btn-firstapp" href="/guides/your-first-application/nodejs/">NodeJS</a>
-          <a class="btn btn-default btn-firstapp" href="/guides/your-first-application/python/">Python</a>
-          <a class="btn btn-default btn-firstapp" href="/guides/your-first-application/golang/">Go</a>
-          <a class="btn btn-default btn-firstapp" href="/guides/your-first-application/java/">Java</a>
-          <a class="btn btn-default btn-firstapp" href="/guides/your-first-application/php/">PHP</a>
-          <a class="btn btn-default btn-firstapp" href="/guides/your-first-application/ruby/">Ruby</a>
+      <div class="docs-video">
+        <h3>Video Introduction</h3>
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/wCc2v7izk8w" frameborder="0" allowfullscreen></iframe>
         </div>
       </div>
+
 
     </div>
   </div>
