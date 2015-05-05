@@ -2,12 +2,7 @@
 
 <div class="row">
   <div class="col-md-12 col-lg-8 col-lg-offset-2">
-    <h1 id="title">Reference Documentation</h1>
-    <p class="lead">The place for in-depth, specific, granular documentation, topic by topic. If you need a more guided way of learning about Giant Swarm, check out our <a href="../guides/">Guides and Tutorials</a>.</p>
-
-    <p class="lead">Looking for a specific <code>swarm</code> command? Scroll down find the <a href="#commands">command reference</a>.</p>
-
-    <hr>
+    <h1 id="title">CLI Reference</h1>
 
     <ul class="linklist">
       {{ range .Data.Pages.ByWeight }}
@@ -19,10 +14,6 @@
     </ul>
 
     <hr>
-
-    <h2 id="commands">swarm <abbr title="command line interface">CLI</abbr> command reference</h2>
-
-    <p>A place to quickly look up help the reference for <code>swarm</code> commands.</p>
 
     <table class="table">
       <thead>
@@ -59,8 +50,6 @@
 
   </div>
 </div>
-
-
 
 
 {{ partial "footer.html" . }}
