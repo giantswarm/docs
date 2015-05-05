@@ -30,12 +30,20 @@ pre code {
 	color: #839496;
 }
 
+a code {
+	color: #1c91d5;
+}
+
 .centered-text {
     text-align: center
 }
 
 .docsnav {
 	margin-bottom: 40px;
+}
+.docsnav .nav>li>a {
+	font-size: 14px;
+	padding: 6px 9px;
 }
 
 .lastmod {
@@ -306,4 +314,14 @@ a.item .hellip {
 	height: auto;
 	margin-top: 20px;
 	margin-bottom: 20px;
+}
+
+
+ul.links {
+	list-style-type: none;
+	padding-left: 0;
+}
+ul.links li {
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
