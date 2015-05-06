@@ -127,11 +127,17 @@ a code {
 
 .docs-video {
 	background-color: #3E83AC;
-	padding-bottom: 30px;
+	padding-bottom: 5px;
 	color: #ffffff;
 }
 .docs-video h3 {
 	font-size: 20px;
+}
+.docs-video a, .docs-video a:hover {
+	color: #fff;
+}
+.docs-video .embed-responsive {
+	margin-bottom: 10px;
 }
 
 .home-introbox h3 {
@@ -153,6 +159,40 @@ a code {
 	margin: 15px 0 15px 0;
 }
 
+.search-cta {
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	padding-top: 25px;
+	padding-bottom: 25px;
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+.search-cta-header {
+	font-size: 22px;
+	margin-bottom: 10px;
+	position: relative;
+	left: 40px;
+}
+.search-cta-header input {
+	border: none;
+	border-bottom: 2px solid #555;
+	font-family: Inconsolata, monospace;
+	color: #666;
+	min-width: 100px;
+	padding-left: 4px;
+	padding-right: 4px;
+}
+.search-cta-header button {
+	margin-left: 10px;
+	padding-left: 14px;
+	padding-right: 14px;
+	opacity: 0;
+}
+.search-cta-text {
+	font-size: 18px;
+}
+
+
 ul.notype {
 	list-style-type: none;
 	margin: 0;
@@ -167,8 +207,9 @@ ul.notype li {
 	background-color: #234a61;
 	color: #ddd;
 	font-family: Inconsolata, monospace;
-	padding-left: 14px;
-	padding-right: 14px;
+	padding-left: 11px;
+	padding-right: 11px;
+	font-size: 14px;
 }
 .btn-firstapp:hover {
 	background-color: #3b5e72;
@@ -203,6 +244,34 @@ ul.notype li {
 .mobile-cta .requestinvite .toprow, .mobile-cta .requestinvite .lastrow {
 	font-size: 16px;
 	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.home-introbox h2 {
+	margin-top: 0;
+	margin-bottom: 15px;
+	font-size: 24px;
+}
+.home-introbox h3 {
+	margin-top: 0;
+	margin-bottom: 10px;
+	font-size: 20px;
+}
+.home-introbox hr {
+	margin-top: 15px;
+}
+.home-introbox hr:first-of-type {
+	margin-top: 0;
+	margin-bottom: 15px;
+}
+.home-introbox ul {
+	margin-bottom: 15px;
+}
+
+.home-yourfirstapp {
+	padding-bottom: 10px;
+}
+.home-yourfirstapp h2 {
 	margin-bottom: 10px;
 }
 
