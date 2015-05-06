@@ -207,4 +207,12 @@ if (document.location.pathname == "/") {
 
 // make all tables bootstrappy
 $("table").addClass("table");
-    
+
+$(".search-cta input").on("change keypress keyup", function(evt){
+    console.log("Input captured");
+    if ($(".search-cta input").val() === "") {
+        $(".search-cta button").animate({"opacity": 0.0});
+    } else {
+        $(".search-cta button").animate({"opacity": 1.0});
+    }
+});
