@@ -11,14 +11,14 @@
   <div class="row">
     <div class="col-md-5 home-introbox">
 
-      <hr>
+      <hr/>
       <h2>Introduction to Giant Swarm</h2>
       <p>Giant Swarm provides infrastructure for your microservices and enables running your modular, server-side applications. <a href="/introduction/">Read More <i class="fa fa-arrow-circle-right"></i></a></p>
-      <hr>
+      <hr/>
 
       <div class="row">
         <div class="col-md-6">
-          <h3>Getting started</h3>
+          <h2>Getting started</h2>
           <ul class="notype">
             <li><a href="#video"><i class="fa fa-arrow-circle-right"></i> Watch the Introduction Video</a></li>
             <li><a href="/reference/installation/"><i class="fa fa-arrow-circle-right"></i> Install the CLI</a></li>
@@ -27,7 +27,7 @@
           </ul>
         </div>
         <div class="col-md-6">
-          <h3>Advanced Guides</h3>
+          <h2>More Guides</h2>
           <ul>
             <li><a href="/guides/mysql-with-backus/"><i class="fa fa-arrow-circle-right"></i> MySQL with Backups</a></li>
             <li><a href="/guides/ruby-on-rails/"><i class="fa fa-arrow-circle-right"></i> Ruby on Rails</a></li>
@@ -40,7 +40,7 @@
       <div class="home-yourfirstapp">
         <div class="centered-text">
           <hr>
-          <h3>Your First Application</h3>
+          <h2>Your First Application</h2>
           <p>Pick your language and learn by creating an example application:</p>
           <a class="btn btn-default btn-firstapp" href="/guides/your-first-application/nodejs/">NodeJS</a>
           <a class="btn btn-default btn-firstapp" href="/guides/your-first-application/python/">Python</a>
@@ -51,12 +51,11 @@
         </div>
       </div>
 
-      <hr>
+      <hr/>
       <h2>Reference</h2>
       <div class="row">
 
         <div class="col-sm-6">
-          <hr>
           <h3>The swarm CLI</h3>
           <ul class="links">
             <li><strong><a href="/reference/cli/">CLI Reference Overview</a></strong></li>
@@ -67,7 +66,6 @@
         </div>
 
         <div class="col-sm-6">
-          <hr>
           <h3>The API</h3>
           <ul class="links">
             <li><strong><a href="/reference/api/">API Reference Overview</a></strong></li>
@@ -78,7 +76,6 @@
       <div class="row">
 
         <div class="col-sm-6">
-          <hr>
           <h3>Basic Concepts</h3>
           <ul class="links">
             <li><a href="/reference/cli/org/">Organizations</a></li>
@@ -87,7 +84,6 @@
         </div>
 
         <div class="col-sm-6">
-          <hr>
           <h3>Practical Knowledge</h3>
           <ul class="links">
             <li><a href="/reference/swarm-json/">Application Configuration (<code>swarm.json</code>)</a></li>
@@ -120,7 +116,7 @@
 
               <pre><code class="nohighlight"><b>$</b> swarm up --var=domain=helloworld-<b class="username">yourusername</b>.gigantic.io</code></pre>
 
-              </p>Then open your running application at <a href="http://helloworld-yourusername.gigantic.io/" target="_blank">helloworld-yourusername.gigantic.io</a></p>
+              <p>Then open your running application at <a href="http://helloworld-yourusername.gigantic.io/" target="_blank">helloworld-yourusername.gigantic.io</a></p>
             </div>
             <div role="tabpanel" class="tab-pane" id="linux">
               <pre><code class="nohighlight"><b>$</b> curl -O http://downloads.giantswarm.io/swarm/clients/{{ partial "cli_latest_version" . }}/swarm-{{ partial "cli_latest_version" . }}-linux-amd64.tar.gz
@@ -132,22 +128,27 @@
 
               <pre><code class="nohighlight">swarm up --var=domain=helloworld-<b class="username">yourusername</b>.gigantic.io</code></pre>
 
-              </p>Then open your running application at <a href="http://helloworld-yourusername.gigantic.io/" target="_blank">helloworld-yourusername.gigantic.io</a></p>
+              <p>Then open your running application at <a href="http://helloworld-yourusername.gigantic.io/" target="_blank">helloworld-yourusername.gigantic.io</a></p>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="docs-video">
+      <div class="docs-video" id="video">
         <h3>Video Introduction</h3>
         <div class="embed-responsive embed-responsive-16by9">
-          <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/wCc2v7izk8w" frameborder="0" allowfullscreen></iframe>
+          <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/8ms8BCl9t9Q" frameborder="0" allowfullscreen></iframe>
         </div>
+        <p><a href="/video/">More Video Guides</a>
       </div>
 
 
     </div>
-  </div>
+  </div> <!-- row -->
+
+
+  {{ partial "search_cta.html" . }}
+
 
 </div>
 
