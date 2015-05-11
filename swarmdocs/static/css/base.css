@@ -177,10 +177,10 @@ a code {
 }
 
 .search-cta {
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
-	padding-top: 25px;
-	padding-bottom: 25px;
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+.search-cta-inner {
 	margin-top: 25px;
 	margin-bottom: 25px;
 }
