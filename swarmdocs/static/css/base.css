@@ -48,6 +48,20 @@ a code {
 	font-size: 14px;
 	padding: 6px 9px;
 }
+.docsnav form {
+	margin: 0;
+	font-size: 14px;
+}
+.docsnav input {
+	font-size: 14px;
+	padding: 2px;
+	padding-bottom: 2px;
+	padding-top: 2px;
+	padding-left: 4px;
+	padding-right: 2px;
+	line-height: 18px;
+	height: 34px;
+}
 
 .lastmod {
     font-size: 13px;
