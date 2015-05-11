@@ -1,4 +1,4 @@
-FROM golang:1.3
+FROM debian:jessie
 
 MAINTAINER Matthias Luebken <matthias@giantswarm.io>
 MAINTAINER Marian Steinbach <marian@giantswarm.io>
@@ -18,10 +18,11 @@ RUN apt-get update -qq && \
   python-dev
 
 # install HUGO
-WORKDIR	/go/src
-RUN wget -q https://github.com/spf13/hugo/archive/v0.12.tar.gz && tar xzf v0.12.tar.gz
-WORKDIR /go/src/hugo-0.12
-RUN go get && go build main.go && mv main /usr/bin/hugo
+RUN set -x \
+	&& wget https://github.com/spf13/hugo/releases/download/v0.12/hugo_0.12_linux_amd64.tar.gz \
+	&& tar xzf hugo_0.12_linux_amd64.tar.gz \
+	&& mv hugo_0.12_linux_amd64/hugo_0.12_linux_amd64 /usr/bin/hugo \
+	&& rm -r hugo_0.12_linux_amd64
 
 # install everything needed for docs indexing
 ADD requirements.txt /requirements.txt
