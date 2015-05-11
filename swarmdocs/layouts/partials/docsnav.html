@@ -1,5 +1,5 @@
 <div class="row docsnav">
-  <div class="col-md-12">
+  <div class="col-xs-12">
     <nav class="navbar">
       <div class="container-fluid">
         <ul class="nav navbar-nav nav-pills">
@@ -8,12 +8,21 @@
           <li role="presentation"><a href="{{ .Url }}">{{ .Name }}</a></li>
           {{end}}
         </ul>
-        <form class="navbar-form navbar-left" method="GET" action="/search/" role="search">
+        <form class="navbar-form navbar-left hidden-xs" method="GET" action="/search/" role="search">
           <div class="form-group">
             <input type="search" name="q" class="form-control" placeholder="Search the Docs" />
           </div>
         </form>
       </div>
     </nav>
+  </div>
+  <div class="col-xs-12 visible-xs-block">
+    <form class="form-inline" id="mobileSearchForm" method="GET" action="/search/" role="search">
+      <div class="form-group">
+        <label class="sr-only" for="searchInputMobile">Search term</label>
+        <input type="search" name="q" class="form-control" placeholder="Search the Docs" id="searchInputMobile"/>
+      </div>
+      <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+    </form>
   </div>
 </div>
