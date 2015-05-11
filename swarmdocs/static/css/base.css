@@ -220,6 +220,17 @@ ul.notype li {
 	margin-bottom: 7px;
 }
 
+.bigbullets li {
+	padding-left: 22px;
+	text-indent: -10px;
+}
+.bigbullets a .fa-arrow-circle-right {
+	color: #7bb1e2;
+}
+.bigbullets a:hover .fa-arrow-circle-right {
+	color: #136391;
+}
+
 .btn-firstapp {
 	background-color: #234a61;
 	color: #ddd;
