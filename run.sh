@@ -16,4 +16,4 @@
 cd /docs/swarmdocs
 
 echo "BASE_URL: ${BASE_URL}"
-exec hugo server --port=80 --baseUrl=${BASE_URL}
+exec hugo server --port=80 --baseUrl=${BASE_URL} --appendPort=false 

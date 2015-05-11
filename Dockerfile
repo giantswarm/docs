@@ -17,16 +17,19 @@ RUN apt-get update -qq && \
   python-pip \
   python-dev
 
-# install HUGO
-RUN set -x \
-	&& wget https://github.com/spf13/hugo/releases/download/v0.12/hugo_0.12_linux_amd64.tar.gz \
-	&& tar xzf hugo_0.12_linux_amd64.tar.gz \
-	&& mv hugo_0.12_linux_amd64/hugo_0.12_linux_amd64 /usr/bin/hugo \
-	&& rm -r hugo_0.12_linux_amd64
 
 # install everything needed for docs indexing
-ADD requirements.txt /requirements.txt
+COPY requirements.txt /requirements.txt
 RUN ["pip", "install", "-r", "/requirements.txt"]
+
+
+# install HUGO
+RUN set -x \
+	&& wget https://github.com/spf13/hugo/releases/download/v0.13/hugo_0.13_linux_amd64.tar.gz \
+	&& tar xzf hugo_0.13_linux_amd64.tar.gz \
+	&& mv hugo_0.13_linux_amd64/hugo_0.13_linux_amd64 /usr/bin/hugo \
+	&& rm -r hugo_0.13_linux_amd64
+
 
 ADD . /docs
 
