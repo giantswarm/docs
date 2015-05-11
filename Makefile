@@ -30,7 +30,7 @@ build:
 	docker build -t $(registry)/$(COMPANY)/$(PROJECT) .
 
 run:
-	docker run --name=$(PROJECT) --rm -ti -p 8000:80 \
+	docker run --name=$(PROJECT) --rm -ti -p 80:80 \
 		-v $(shell pwd)/swarmdocs/:/docs/swarmdocs/ \
 		-e BASE_URL="http://192.168.59.103" \
 		$(registry)/$(COMPANY)/$(PROJECT)
