@@ -12,13 +12,15 @@ To have the up-to-date content in the local directory, execute `make build` firs
 
 For a quick preview, with `hugo` installed (`brew install hugo`), run `./run-dev.sh` and access `http://localhost:1313/`.
 
-The full documentation application consists of several components. The best way to run them all locally is using `fig`. To start the application locally, including proxy and search functions, use
+Make sure to run the same hugo version locally as on the server. The currently used version is v0.13.
+
+The full documentation application consists of several components. The best way to run them all locally is using `docker-compose`. To start the application locally, including proxy and search functions, use
 
 ```
-fig up
+docker-compose up
 ```
 
-Look at the `fig.yml` file for details on what happens here.
+Look at the `docker-compose.yml` file for details on what happens here.
 
 ## Building Docker images
 
