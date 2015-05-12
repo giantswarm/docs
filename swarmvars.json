@@ -7,7 +7,7 @@
 	},
 	"giantswarm/production": {
 		"domain_name": "docs.giantswarm.io",
-		"sitesearch_image": "registry.giantswarm.io/giantswarm/sitesearch:0.1.1",
+		"sitesearch_image": "registry.giantswarm.io/giantswarm/sitesearch:latest",
 		"content_image": "registry.giantswarm.io/giantswarm/docs:latest",
 		"proxy_image": "registry.giantswarm.io/giantswarm/docs-proxy:latest"
 	}
