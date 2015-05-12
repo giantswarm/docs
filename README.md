@@ -6,11 +6,11 @@ Our Documentation is based on Markdown and HTML content and generated using [HUG
 
 ![docs_component_architecture](https://cloud.githubusercontent.com/assets/273727/7582315/9db0bbee-f88c-11e4-90ab-ec77579f50b9.png)
 
-|Short name  | Docker image          | Source repository                                                  |
-|------------|-----------------------|--------------------------------------------------------------------|
-|docs-proxy  | giantswarm/docs-proxy | [giantswarm/docs-proxy](https://github.com/giantswarm/docs-proxy/) |
-|docs        | giantswarm/docs       | this repository                                                    |
-|sitesearch  | giantswarm/sitesearch | [giantswarm/sitesearch](https://github.com/giantswarm/sitesearch/) |
+|Short name    | Docker image            | Source repository                                                  |
+|--------------|-------------------------|--------------------------------------------------------------------|
+|`docs-proxy`  | `giantswarm/docs-proxy` | [giantswarm/docs-proxy](https://github.com/giantswarm/docs-proxy/) |
+|`docs`        | `giantswarm/docs`       | this repository                                                    |
+|`sitesearch`  | `giantswarm/sitesearch` | [giantswarm/sitesearch](https://github.com/giantswarm/sitesearch/) |
 
 
 ## Where's the content?
