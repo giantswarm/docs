@@ -1,0 +1,92 @@
+{{ partial "api_header.html" . }}
+
+<div class="row">
+  <div class="col-xs-12">
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4 col-lg-3 hidden-sm hidden-xs toc-sidebar">
+    <!--<div data-spy="affix" data-offset-top="40" data-offset-bottom="0">-->
+    <div>
+      <div class="toc">
+        <nav id="APITableOfContents">
+          <ul>
+            <li><a href="#org">Organization</a></li>
+            <ul>
+              <li><a href="#ListEnvironments">List</a></li>
+              <li><a href="#CreateOrganization">Create</a></li>
+              <li><a href="#DeleteOrganization">Delete</a></li>
+              <li><a href="#GetOrganization">Status</a></li>
+              <li><a href="#AddOrganizationMember">Add Member</a></li>
+              <li><a href="#RemoveOrganizationMember">Remove Member</a></li>
+            </ul>
+            <li><a href="#app">Application</a></li>
+            <ul>
+              <li><a href="#ListApps">List</a></li>
+              <li><a href="#CreateApp">Create</a></li>
+              <li><a href="#DeleteApp">Delete</a></li>
+              <li><a href="#StartApp">Start</a></li>
+              <li><a href="#StopApp">Stop</a></li>
+              <li><a href="#StatusApp">Status</a></li>
+              <li><a href="#ConfigApp">Config</a></li>         
+            </ul>
+            <li><a href="#service">Service</a></li>
+            <ul>
+              <li><a href="#StartService">Start</a></li>
+              <li><a href="#StopService">Stop</a></li>
+              <li><a href="#StatusService">Status</a></li>
+            </ul>
+            <li><a href="#component">Component</a></li>
+            <ul>
+              <li><a href="#StatusComponent">Status</a></li>
+              <li><a href="#UpdateComponent">Update</a></li>
+              <li><a href="#ScaleUpComponent">Scale Up</a></li>
+              <li><a href="#ScaleDownComponent">Scale Down</a></li>   
+            </ul>
+            <li><a href="#instance">Instance</a></li>
+            <ul>
+              <li><a href="#LogInstance">Logs</a></li>
+              <li><a href="#StatInstance">Stats</a></li>
+              <li><a href="#ExecInstance">Exec</a></li>   
+            </ul>
+            <li><a href="#connection">Connection</a></li>
+            <ul>
+              <li><a href="#Ping">Ping</a></li>
+            </ul>
+            <li><a href="#user">User</a></li>
+            <ul>
+              <li><a href="#LoginUser">Login + Get Token</a></li>
+              <li><a href="#LogoutUser">Logout + Expire Token</a></li>
+              <li><a href="#UpdateEmail">Update Email</a></li>
+              <li><a href="#UpdatePassword">Update Password</a></li>
+              <li><a href="#GetMe">Status</a></li>   
+              <li><a href="#GetMemberships">Memberships</a></li>
+            </ul>
+          </ul>
+        </nav>
+      </div>
+
+      <div clas="hidden-sm hidden-xs">
+        {{ partial "request_invite.html" . }}
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-8 col-lg-8 col-lg-offset-1">
+    <div class="content">
+      <p class="lastmod">Last modified {{ .Date.Format "January 2, 2006" }}</p>
+
+      {{ .Content }}
+
+      {{ partial "help_feedback.html" . }}
+
+      <div class="visible-sm-block visible-xs-block mobile-cta">
+        {{ partial "request_invite.html" . }}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{{ partial "footer.html" . }}
