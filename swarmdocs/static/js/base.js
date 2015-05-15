@@ -173,7 +173,7 @@ $(document).ready(function(){
     doSearch(q);
 });
 
-/** Re-format the table of contents **/
+/** Re-format the table of contents to eleminate the uppermost level **/
 
 var toc = $('#TableOfContents');
 if (toc.length !== 0) {
@@ -203,4 +203,14 @@ if (document.location.pathname == "/") {
             return;
         }
     });
+}
+
+/** Adapt API specs **/
+if ($("h1").text().indexOf("API") !== -1) {
+    // ad .table class for bootdtrap styling of tables
+    $("table").addClass("table");
+    // truncate long menu entries
+    $("#TableOfContents").css("overflow", "hidden");
+    // make content column wider
+    $(".col-sm-12.col-md-8.col-lg-8.col-lg-offset-1").attr("class", "col-sm-12 col-md-8 col-lg-9")
 }
