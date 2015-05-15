@@ -216,3 +216,12 @@ $(".search-cta input").on("change keypress keyup", function(evt){
         $(".search-cta button").animate({"opacity": 1.0});
     }
 });
+
+/** Adapt API specs **/
+if ($("body").hasClass("_reference_api_")) {
+
+    // Add bootstrap table class to tables
+    $("table").addClass("table");
+
+
+}
