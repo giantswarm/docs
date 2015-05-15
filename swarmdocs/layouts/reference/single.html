@@ -5,6 +5,51 @@
   </div>
 </div>
 
+<!-- hidden helper modal -->
+<div id="modal-helper" class="modal fade">
+  <div class="modal-dialog">
+    <form id="form-helper" action="#helper">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Example Helper</h4>
+        </div>
+        <div class="modal-body">
+          <p>You may use this form to update the examples on this page with your username, organization name, and active tokens for your account. Remember, you may retrieve an account token by using the <a id="link-auth" href="#passwordauth">password authentication method</a>.</p>
+          <div class="row form-group">
+            <div class="col-md-12">
+              <div class="row">
+                <input type="hidden" name="_csrf_token" value="9EdKAC">
+                <div class="col-xs-12  form-padding" id="token-field">
+                  <label class="control-label" for="token">API Token</label>
+                  <input class="form-control required" id="token" name="token" placeholder="e5239484-2299-41df-b901-d0568db7e3f9" type="text" value="">
+                </div>
+                <div class="col-xs-8  form-padding" id="username-field">
+                  <label class="control-label" for="gorg">Username</label>
+                  <input class="form-control required" id="username" name="username" placeholder="bant" type="text" value="">
+                </div>
+                <div class="col-xs-8  form-padding" id="org-field">
+                  <label class="control-label" for="org">Organization Name</label>
+                  <input class="form-control required" id="org" name="org" placeholder="bantic" type="text" value="">
+                </div>
+                <div class="col-xs-8  form-padding" id="instance-field">
+                  <label class="control-label" for="org">Instance ID</label>
+                  <input class="form-control required" id="instance" name="instance" placeholder="b3mpi5g2gqms" type="text" value="">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="modal-close-button" class="btn btn-default" data-dismiss="modal">Cancel and Reload</button>
+          <button type="button" id="modal-update-button" class="btn btn-success">Update Examples</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- end modal -->
+
 <div class="row">
   <div class="col-md-4 col-lg-3 hidden-sm hidden-xs toc-sidebar">
     <!--<div data-spy="affix" data-offset-top="40" data-offset-bottom="0">-->
@@ -14,6 +59,7 @@
           <ul>
             <li><a href="#basics">Basics</a></li>
             <ul>
+              <li><a href="#ehelper">Example Helper</a></li>
               <li><a href="#naming">Naming Conventions</a></li>
               <li><a href="#urls">API URLs</a></li>
               <li><a href="#sdks">SDKs</a></li>
@@ -26,7 +72,7 @@
               <li><a href="#passwordauth">Password Authentication</a></li>
               <li><a href="#tokenauth">Token Authentication</a></li>
             </ul>
-            <li><a href="#org">Organization</a></li>
+            <li><a href="#organization">Organization</a></li>
             <ul>
               <li><a href="#ListEnvironments">List</a></li>
               <li><a href="#CreateOrganization">Create</a></li>
@@ -101,6 +147,111 @@
   </div>
 </div>
 
-
-
 {{ partial "footer.html" . }}
+
+<script type="text/javascript">
+  // token to replace
+  var old_token = "e5239484-2299-41df-b901-d0568db7e3f9";
+  var old_org = "bantic";
+  var old_username = "bant/"; // need slash so we don't replace bantic
+  var old_instance = "b3mpi5g2gqms";
+
+  if(window.location.hash == "#helper") {
+    // show the modal
+    $('#modal-helper').modal(); 
+  }
+
+  // check for keypress to trigger click
+  $(document).keypress(function(e) {
+    var key = e.which;
+    console.log(key);
+    if (key == 72 || key == 104) {
+      $('#link-helper').click();
+    }
+  });
+
+  $().ready(function() {
+    // show modal on link click
+    $('#link-helper').click( function() {
+      if (old_token == "" || old_org == "" || old_username == "") {
+        window.location.href += "#helper";
+        location.reload();
+      }
+      $('#modal-helper').modal();
+    });
+
+    // click link in modal dismiss
+    $('#link-auth').click( function() {
+      $('#modal-helper').modal('hide');
+    });
+
+    // dismiss modal
+    $('#modal-close-button').click( function() {
+      window.location.href = "#";
+    });
+
+    // use of modal to update
+    $('#modal-update-button').click( function() {
+      // load our vars from the form
+      var token = $('#token').val();
+      var org = $('#org').val();
+      var username = $('#username').val();
+
+      // hide the modal
+      $('#modal-helper').modal('hide');
+      
+      // update the token in all code blocks on the page
+      if (token != "") {
+        $('code').each( function() {
+          var text = $(this).text();
+          console.log(old_token)
+          // replace the dummy token with the one entered by user
+          text = text.replace(old_token, token);
+          $(this).text(text);
+        });
+        // wipe old token so user can't bork page
+        old_token = "";
+      }
+
+      // update the org in all code blocks on the page
+      if (org != "") {
+        $('code').each( function() {
+          var text = $(this).text();
+
+          // replace the dummy org with the one entered by user
+          text = text.replace(old_org, org);
+          $(this).text(text);
+        });
+        // wipe old org so user can't bork page
+        old_org = "";
+      }
+
+      // update the org in all code blocks on the page
+      if (username != "") {
+        $('code').each( function() {
+          var text = $(this).text();
+
+          // replace the dummy org with the one entered by user
+          text = text.replace(old_username, username+"/"); // add slash
+          $(this).text(text);
+        });
+        // wipe old org so user can't bork page
+        old_username = "";
+      }
+
+      // update the org in all code blocks on the page
+      if (instance != "") {
+        $('code').each( function() {
+          var text = $(this).text();
+
+          // replace the dummy org with the one entered by user
+          text = text.replace(old_instance, instance); // add slash
+          $(this).text(text);
+        });
+        // wipe old org so user can't bork page
+        old_username = "";
+      }
+
+    });
+  });
+</script>
