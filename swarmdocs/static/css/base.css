@@ -6,7 +6,7 @@ h1, h2, h3, h4, h5, h6 {
 h2 {
 	font-weight: 300;
 	margin-top: 30px;
-	margin-bottom: 25px;
+	margin-bottom: 15px;
 }
 h3 {
 	margin-top: 30px;
@@ -14,9 +14,8 @@ h3 {
 }
 h4 {
 	margin-top: 30px;
-	margin-bottom: 15px;
+	margin-bottom: 10px;
 	font-weight: 300;
-	color: #666;
 }
 
 pre {
@@ -427,11 +426,39 @@ a.item .hellip {
 }
 
 
-ul.links {
-	list-style-type: none;
-	padding-left: 0;
-}
-ul.links li {
-	margin-top: 5px;
-	margin-bottom: 5px;
-}
+#TableOfContents {
+  font-size: 14px;
+  border: 1px solid #ddd;
+  padding: 10px 0px 10px 0px; }
+
+#TableOfContents ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0; }
+
+#TableOfContents li a {
+  margin: 0;
+  padding: 5px 14px 5px 18px;
+  line-height: 23px;
+  display: block;
+  border-left: 2px solid #fff; }
+
+/* second level entries */
+#TableOfContents ul ul a {
+  padding-left: 32px; }
+
+/* third level entries */
+#TableOfContents ul ul ul a {
+  display: none; }
+
+#TableOfContents ul ul ul a {
+  padding-left: 42px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  font-size: 12px;
+  line-height: 18px; }
+
+#TableOfContents li a:hover {
+  background-color: #eee;
+  border-left-color: #234a61;
+  text-decoration: none; }
