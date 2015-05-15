@@ -270,6 +270,7 @@ if ($("body").hasClass("_reference_api_")) {
         var token = $('#token').val();
         var org = $('#org').val();
         var username = $('#username').val();
+        var instance = $('#instance').val();
 
         // hide the modal
         $('#modal-helper').modal('hide');
