@@ -28,7 +28,7 @@
     <link rel="stylesheet" type="text/css" href="/css/solarized_dark.css">
     <link rel="stylesheet" type="text/css" href="/css/base.css?{{ partial "cache_datestamp.html" . }}">
   </head>
-  <body data-spy="scroll" data-target="#TableOfContents">
+  <body data-spy="scroll" data-target="#TableOfContents" class="{{if .IsPage}}{{ replace .RelPermalink "/" "_" }}{{end}}">
     {{ partial "google_tag_manager.html" . }}
     {{ partial "topnav.html" . }}
 
