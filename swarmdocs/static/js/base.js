@@ -204,3 +204,13 @@ if (document.location.pathname == "/") {
         }
     });
 }
+
+/** Adapt API specs **/
+if ($("body").hasClass("_reference_api_")) {
+
+    // Add bootstrap table class to tables
+    $("table").addClass("table");
+
+
+}
+
