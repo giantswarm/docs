@@ -45,6 +45,18 @@ pre code {
 	margin-bottom: 40px;
 }
 
+#mobileSearchForm input {
+	width: 200px;
+	height: 36px;
+}
+#mobileSearchForm button {
+	height: 36px;
+}
+#mobileSearchForm .form-group {
+	display: inline-block
+}
+
+
 .lastmod {
     font-size: 13px;
     color: #999;
