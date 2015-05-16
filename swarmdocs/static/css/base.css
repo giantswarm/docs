@@ -37,6 +37,16 @@ pre code {
 .docsnav {
   margin-bottom: 40px; }
 
+#mobileSearchForm input {
+  width: 200px;
+  height: 36px; }
+
+#mobileSearchForm button {
+  height: 36px; }
+
+#mobileSearchForm .form-group {
+  display: inline-block; }
+
 .lastmod {
   font-size: 13px;
   color: #999;
@@ -139,13 +149,56 @@ pre code {
 .home-introbox hr {
   margin: 15px 0 15px 0; }
 
-.home-yourfirstapp {
-  padding: 20px 15px 20px 15px;
-  border: 1px solid #ccc;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  margin-bottom: 20px; }
+.search-cta {
+  margin-top: 25px;
+  margin-bottom: 25px; }
+
+.search-cta-inner {
+  margin-top: 25px;
+  margin-bottom: 25px; }
+
+.search-cta-header {
+  font-size: 22px;
+  margin-bottom: 10px;
+  position: relative;
+  left: 40px; }
+
+.search-cta-header input {
+  border: none;
+  border-bottom: 2px solid #555;
+  font-family: Inconsolata, monospace;
+  color: #666;
+  min-width: 100px;
+  padding-left: 4px;
+  padding-right: 4px; }
+
+.search-cta-header button {
+  margin-left: 10px;
+  padding-left: 14px;
+  padding-right: 14px;
+  opacity: 0; }
+
+.search-cta-text {
+  font-size: 18px; }
+
+ul.notype {
+  list-style-type: none;
+  margin: 0;
+  padding: 0; }
+
+ul.notype li {
+  margin-top: 7px;
+  margin-bottom: 7px; }
+
+.bigbullets li {
+  padding-left: 22px;
+  text-indent: -10px; }
+
+.bigbullets a .fa-arrow-circle-right {
+  color: #7bb1e2; }
+
+.bigbullets a:hover .fa-arrow-circle-right {
+  color: #136391; }
 
 .btn-firstapp {
   background-color: #234a61;
@@ -186,6 +239,32 @@ pre code {
 .mobile-cta .requestinvite .toprow, .mobile-cta .requestinvite .lastrow {
   font-size: 16px;
   margin-top: 10px;
+  margin-bottom: 10px; }
+
+.home-introbox h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 24px; }
+
+.home-introbox h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 20px; }
+
+.home-introbox hr {
+  margin-top: 15px; }
+
+.home-introbox hr:first-of-type {
+  margin-top: 0;
+  margin-bottom: 15px; }
+
+.home-introbox ul {
+  margin-bottom: 15px; }
+
+.home-yourfirstapp {
+  padding-bottom: 10px; }
+
+.home-yourfirstapp h2 {
   margin-bottom: 10px; }
 
 .linklist {
@@ -308,6 +387,14 @@ a.item .hellip {
   height: auto;
   margin-top: 20px;
   margin-bottom: 20px; }
+
+ul.links {
+  list-style-type: none;
+  padding-left: 0; }
+
+ul.links li {
+  margin-top: 5px;
+  margin-bottom: 5px; }
 
 .control-label {
   margin-top: 10px;
