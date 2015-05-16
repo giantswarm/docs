@@ -22,7 +22,8 @@ h4 {
 
 pre {
   background-color: #002b36;
-  padding: 4; }
+  padding: 4;
+  margin: 25px 0 25px 0; }
 
 code {
   color: #3b5e72;
