@@ -37,12 +37,34 @@ pre code {
 	color: #839496;
 }
 
+a code {		
+	color: #1c91d5;		
+}		
+
 .centered-text {
     text-align: center
 }
 
 .docsnav {
 	margin-bottom: 40px;
+}
+.docsnav .nav>li>a {		
+	font-size: 14px;		
+	padding: 6px 9px;		
+}		
+.docsnav form {		
+	margin: 0;		
+	font-size: 14px;		
+}		
+.docsnav input {		
+	font-size: 14px;		
+	padding: 2px;		
+	padding-bottom: 2px;		
+	padding-top: 2px;		
+	padding-left: 4px;		
+	padding-right: 2px;		
+	line-height: 18px;		
+	height: 34px;		
 }
 
 #mobileSearchForm input {
@@ -55,7 +77,6 @@ pre code {
 #mobileSearchForm .form-group {
 	display: inline-block
 }
-
 
 .lastmod {
     font-size: 13px;
@@ -73,7 +94,7 @@ pre code {
     font-weight: 700;
 }
 
-.quickstart {
+.quickstart, .docs-video {
 	background-color: #dff0d8;
 	border: 1px solid #d6e9c6;
 	box-sizing: border-box;
@@ -107,7 +128,7 @@ pre code {
 .nav-tabs>li>a:hover {
 	background-color: #dff0d8 !important;
 }
-.quickstart h3 {
+.quickstart h3, .docs-video h3 {
 	margin-top: 0;
 }
 .quickstart pre {
@@ -136,14 +157,21 @@ pre code {
 	line-height: 1.6;
 }
 
-.home-introbox {
-	padding: 20px 15px 20px 15px;
-	border: 1px solid #ccc;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	margin-bottom: 20px;
+.docs-video {
+	background-color: #3E83AC;
+	padding-bottom: 5px;
+	color: #ffffff;
 }
+.docs-video h3 {		
+	font-size: 20px;		
+}		
+.docs-video a, .docs-video a:hover {		
+	color: #fff;		
+}		
+.docs-video .embed-responsive {		
+	margin-bottom: 10px;		
+}		
+
 .home-introbox h3 {
 	margin-top: 0;
 }
@@ -217,13 +245,13 @@ ul.notype li {
 	color: #136391;
 }
 
-
 .btn-firstapp {
 	background-color: #234a61;
 	color: #ddd;
 	font-family: Inconsolata, monospace;
-	padding-left: 22px;
-	padding-right: 22px;
+	padding-left: 11px;
+	padding-right: 11px;
+	font-size: 14px;
 }
 .btn-firstapp:hover {
 	background-color: #3b5e72;
