@@ -233,7 +233,7 @@ if ($("body").hasClass("_reference_api_")) {
 
     if(window.location.hash == "#helper") {
         // show the modal
-        $('#modal-helper').modal(); 
+        $('#modal-helper').modal();
     }
 
     // check for keypress to trigger click
