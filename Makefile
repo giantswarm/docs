@@ -13,8 +13,8 @@ build:
 	# copy content from content repo (which needs to be in the neighbor folder)
 	rm -rf swarmdocs/content
 	rm -rf swarmdocs/static/img
-	#rm -rf docs-content
-	#git clone --depth 1 git@github.com:giantswarm/docs-content.git
+	rm -rf docs-content
+	git clone --depth 1 git@github.com:giantswarm/docs-content.git
 	cp -r docs-content/content swarmdocs/
 	cp -r docs-content/img swarmdocs/static/
 	#
@@ -30,8 +30,9 @@ build:
 	docker build -t $(registry)/$(COMPANY)/$(PROJECT) .
 
 run:
-	docker run --name=$(PROJECT) --rm -ti -p 8000:80 \
+	docker run --name=$(PROJECT) --rm -ti -p 80:80 \
 		-v $(shell pwd)/swarmdocs/:/docs/swarmdocs/ \
+		-e BASE_URL="http://192.168.59.103" \
 		$(registry)/$(COMPANY)/$(PROJECT)
 
 delete:
@@ -62,4 +63,4 @@ deploy:
 	unset SWARM_CLUSTER_ID
 
 linkcheck:
-	linklint -http -host localhost:1313 -limit 1000 -doc linklinttest /@
+	linklint -http -host 192.168.59.103 -limit 1000 -doc linklinttest /@
