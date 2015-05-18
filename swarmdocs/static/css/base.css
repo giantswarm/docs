@@ -120,6 +120,9 @@ a code {
 .quickstart h3, .docs-video h3 {
   margin-top: 0; }
 
+.docs-video h3 {
+  color: #fff; }
+
 .quickstart pre {
   background-color: #444;
   color: #eee;
