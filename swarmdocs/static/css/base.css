@@ -425,6 +425,11 @@ a.item .hellip {
 	margin-bottom: 20px;
 }
 
+/* modal labels */
+.control-label {
+  margin-bottom: 4px;
+  margin-top: 14px;
+}
 
 #TableOfContents {
   font-size: 14px;
@@ -462,3 +467,5 @@ a.item .hellip {
   background-color: #eee;
   border-left-color: #234a61;
   text-decoration: none; }
+
+
