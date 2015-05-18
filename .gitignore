@@ -12,3 +12,5 @@ swarmdocs/layouts/shortcodes
 linklinttest
 docs-content
 sitesearch-volume-data
+*.scssc
+*.map

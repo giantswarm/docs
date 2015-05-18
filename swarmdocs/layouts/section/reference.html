@@ -1,60 +1,56 @@
 {{ partial "header.html" . }}
 
 <div class="row">
-  <div class="col-md-12 col-lg-8 col-lg-offset-2">
+  <div class="col-md-12 col-lg-10 col-lg-offset-1">
     <h1 id="title">Reference Documentation</h1>
-    <p class="lead">The place for in-depth, specific, granular documentation, topic by topic. If you need a more guided way of learning about Giant Swarm, check out our <a href="../guides/">Guides and Tutorials</a>.</p>
 
-    <p class="lead">Looking for a specific <code>swarm</code> command? Scroll down find the <a href="#commands">command reference</a>.</p>
+    <p>New to Giant Swarm? Understand <a href="/introduction/">what it's about</a>.</p>
 
-    <hr>
+    <div class="row">
 
-    <ul class="linklist">
-      {{ range .Data.Pages.ByWeight }}
-      <li>
-        <a href="{{ .Permalink }}">{{ .Title }}</a>
-        <div class="meta">{{ .Description }}</div>
-      </li>
-      {{ end }}
-    </ul>
+      <div class="col-sm-6">
+        <hr>
+        <h3>The swarm CLI</h3>
+        <ul class="links">
+          <li><strong><a href="/reference/cli/">CLI Reference Overview</a></strong></li>
+          <li><a href="/reference/cli/installation/">Installation and Configuration</a></li>
+          <li><a href="/reference/cli/global-options/">Global Options</a></li>
+          <li><a href="/reference/cli/release-notes/">Release Notes</a></li>
+        </ul>
+      </div>
 
-    <hr>
+      <div class="col-sm-6">
+        <hr>
+        <h3>The API</h3>
+        <ul class="links">
+          <li><strong><a href="/reference/api/">API Reference Overview</a></strong></li>
+        </ul>
+      </div>
 
-    <h2 id="commands">swarm <abbr title="command line interface">CLI</abbr> command reference</h2>
+    </div>
 
-    <p>A place to quickly look up help the reference for <code>swarm</code> commands.</p>
 
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Command</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td><a href="login/"><code>swarm login</code></a></td><td>Sign in with your Giant Swarm credentials</td></tr>
-        <tr><td><a href="info/"><code>swarm info</code></a></td><td>Get basic information on context and environment</td></tr>
-        <tr><td><a href="up/"><code>swarm up</code></a></td><td>Define and start a new app</td></tr>
-        <tr><td><a href="create/"><code>swarm create</code></a></td><td>Define a new app by loading a json file</td></tr>
-        <tr><td><a href="start/"><code>swarm start</code></a></td><td>Start an application or service</td></tr>
-        <tr><td><a href="stop/"><code>swarm stop</code></a></td><td>Stop an application or service</td></tr>
-        <tr><td><a href="status/"><code>swarm status</code></a></td><td>Show current status of an app or service</td></tr>
-        <tr><td><a href="scaleup/"><code>swarm scaleup</code></a></td><td>Increase number of instances running a component</td></tr>
-        <tr><td><a href="scaledown/"><code>swarm scaledown</code></a></td><td>Reduce number of instances running a component</td></tr>
-        <tr><td><a href="logs/"><code>swarm logs</code></a></td><td>Print an app's standard output and error messages</td></tr>
-        <tr><td><a href="stats/"><code>swarm stats</code></a></td><td>Print basic statistics of an instance</td></tr>
-        <tr><td><a href="ls/"><code>swarm ls</code></a></td><td>List all apps</td></tr>
-        <tr><td><a href="env/"><code>swarm env</code></a></td><td>Handle environments</td></tr>
-        <tr><td><a href="cat/"><code>swarm cat</code></a></td><td>Show the configuration of an application</td></tr>
-        <tr><td><a href="user/"><code>swarm user</code></a></td><td>Create and modify users</td></tr>
-        <tr><td><a href="org/"><code>swarm org</code></a></td><td>Manage organizations</td></tr>
-        <tr><td><a href="exec/"><code>swarm exec</code></a></td><td>Execute a command/open a shell</td></tr>
-        <tr><td><code>swarm delete</code></td><td>Delete an app. Note that you lose all contained data by doing so.</td></tr>
-        <tr><td><code>swarm version</code></td><td>Print swarm client version (<em>Reference not yet available</em>)</td></tr>
-        <tr><td><code>swarm logout</code></td><td>Log out from your account (<em>Reference not yet available</em>)</td></tr>
-        <tr><td><code>swarm completion</a></td><td>Setup CLI completion (<em>Reference not yet available</em>)</td></tr>
-      </tbody>
-    </table>
+    <div class="row">
+
+      <div class="col-sm-6">
+        <hr>
+        <h3>Basic Concepts</h3>
+        <ul class="links">
+          <li><a href="/reference/cli/org/">Organizations</a></li>
+          <li><a href="/reference/cli/env/">Environments</a></li>
+        </ul>
+      </div>
+
+      <div class="col-sm-6">
+        <hr>
+        <h3>Practical Knowledge</h3>
+        <ul class="links">
+          <li><a href="/reference/swarm-json/">Application Configuration (<code>swarm.json</code>)</a></li>
+          <li><a href="/reference/registry/">Using the Registry</a></li>
+        </ul>
+      </div>
+
+    </div>
 
     {{ partial "feedback_reference.html" . }}
 

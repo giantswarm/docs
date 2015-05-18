@@ -7,14 +7,18 @@ pluralizeListTitles = false
     plainIdAnchors = true
 
 [[menu.main]]
-    name = "What is Giant Swarm?"
-    url = "/what-is-giant-swarm/"
+    name = "Introduction"
+    url = "/introduction/"
     weight = 20
 [[menu.main]]
-    name = "Guides and Tutorials"
+    name = "Guides"
     url = "/guides/"
     weight = 30
 [[menu.main]]
     name = "Reference"
     url = "/reference/"
     weight = 40
+[[menu.main]]
+    name = "Video"
+    url = "/video/"
+    weight = 50
