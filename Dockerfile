@@ -1,4 +1,4 @@
-FROM golang:1.3
+FROM debian:jessie
 
 MAINTAINER Matthias Luebken <matthias@giantswarm.io>
 MAINTAINER Marian Steinbach <marian@giantswarm.io>
@@ -28,6 +28,14 @@ RUN set -x \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false \
         python-dev python-pip wget curl ca-certificates \
     && rm -rf /var/lib/apt/lists/*
+
+# install HUGO
+RUN set -x \
+	&& wget https://github.com/spf13/hugo/releases/download/v0.13/hugo_0.13_linux_amd64.tar.gz \
+	&& tar xzf hugo_0.13_linux_amd64.tar.gz \
+	&& mv hugo_0.13_linux_amd64/hugo_0.13_linux_amd64 /usr/bin/hugo \
+	&& rm -r hugo_0.13_linux_amd64
+
 
 ADD . /docs
 
