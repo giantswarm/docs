@@ -225,12 +225,13 @@ if ($("body").hasClass("_reference_api_")) {
 
     /* API magic */
 
-    // token to replace
+    // things to replace
     var old_token = "e5239484-2299-41df-b901-d0568db7e3f9";
     var old_org = "bantic";
-    var old_username = "bant/"; // need slash so we don't replace bantic
+    var old_username = "terminal";
     var old_instance = "by3we1wr77b7";
 
+    // show helper modal if we've got a hash
     if(window.location.hash == "#helper") {
         // show the modal
         $('#modal-helper').modal();
@@ -239,7 +240,6 @@ if ($("body").hasClass("_reference_api_")) {
     // check for keypress to trigger click
     $(document).keypress(function(e) {
         var key = e.which;
-        console.log(key);
         if (key == 72 || key == 104) {
             $('#link-helper').click();
         }
@@ -247,8 +247,8 @@ if ($("body").hasClass("_reference_api_")) {
 
     // show modal on link click
     $('#link-helper').click( function() {
-        if (old_token == "" || old_org == "" || old_username == "") {
-            window.location.href += "#helper";
+        if (old_token == "" || old_org == "" || old_username == "" || old_instance == "") {
+            window.location.href = "#helper";
             location.reload();
         }
         $('#modal-helper').modal();
@@ -262,14 +262,15 @@ if ($("body").hasClass("_reference_api_")) {
     // dismiss modal
     $('#modal-close-button').click( function() {
         window.location.href = "#";
+        window.location.reload();
     });
 
     // use of modal to update
     $('#modal-update-button').click( function() {
         // load our vars from the form
         var token = $('#token').val();
-        var org = $('#org').val();
         var username = $('#username').val();
+        var org = $('#org').val();
         var instance = $('#instance').val();
 
         // hide the modal
@@ -281,11 +282,11 @@ if ($("body").hasClass("_reference_api_")) {
                 var text = $(this).text();
                 console.log(old_token)
                 // replace the dummy token with the one entered by user
-                text = text.replace(old_token, token);
+                text = text.replace(new RegExp(old_token, "g"), token);
                 $(this).text(text);
             });
             // wipe old token so user can't bork page
-            old_token = "";
+            old_token = token;
         }
 
         // update the org in all code blocks on the page
@@ -294,11 +295,11 @@ if ($("body").hasClass("_reference_api_")) {
                 var text = $(this).text();
 
                 // replace the dummy org with the one entered by user
-                text = text.replace(old_org, org);
+                text = text.replace(new RegExp(old_org, "g"), org);
                 $(this).text(text);
             });
             // wipe old org so user can't bork page
-            old_org = "";
+            old_org = org;
         }
 
         // update the org in all code blocks on the page
@@ -307,11 +308,11 @@ if ($("body").hasClass("_reference_api_")) {
                 var text = $(this).text();
 
                 // replace the dummy org with the one entered by user
-                text = text.replace(old_username, username+"/"); // add slash
+                text = text.replace(new RegExp(old_username, "g"), username); // add slash
                 $(this).text(text);
             });
             // wipe old org so user can't bork page
-            old_username = "";
+            old_username = username;
         }
 
         // update the org in all code blocks on the page
@@ -320,11 +321,10 @@ if ($("body").hasClass("_reference_api_")) {
                 var text = $(this).text();
 
                 // replace the dummy org with the one entered by user
-                text = text.replace(old_instance, instance); // add slash
+                text = text.replace(new RegExp(old_instance, "g"), instance); // add slash
                 $(this).text(text);
             });
-            // wipe old org so user can't bork page
-            old_username = "";
+            old_instance = instance;
         }
 
     });
