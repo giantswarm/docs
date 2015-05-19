@@ -82,20 +82,18 @@ This will, amongst other things, automatically do a new build and push the image
 
 Next, to apply the new image in the live Giant Swarm application:
 
-1. Stop and start the `content-master` component:
+1. Update the `content-master` component:
 
 ```
-SWARM_CLUSTER_ID=cluster-01.private.giantswarm.io swarm stop docs/content-master
-SWARM_CLUSTER_ID=cluster-01.private.giantswarm.io swarm start docs/content-master
+SWARM_CLUSTER_ID=cluster-01.private.giantswarm.io swarm update docs/content-master/content
 ```
 
 This will update the search index and replace the first of the content servers.
 
-2. Stop and start the `content-slave` component:
+2. Update the `content-slave` component:
 
 ```
-SWARM_CLUSTER_ID=cluster-01.private.giantswarm.io swarm stop docs/content-slave
-SWARM_CLUSTER_ID=cluster-01.private.giantswarm.io swarm start docs/content-slave
+SWARM_CLUSTER_ID=cluster-01.private.giantswarm.io swarm update docs/content-slave/content
 ```
 
 This will replace the second of the content servers.
