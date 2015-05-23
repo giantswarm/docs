@@ -6,8 +6,9 @@ Search indexer for the Giant Swarm Docs
 Written by Marian
 
 What it does:
-- Parses mkdocs.yml
-- For each markdown file mentioned in mkdocs.yml
+- Reads content directory
+- For each markdown file
+  - parses front matter and content
   - pushes content to elasticsearch
 
 Run from the same directory that contains this file (python ./indexer.py)
