@@ -59,7 +59,7 @@ Caveat: Make sure to remove previously generated containers from the `docs` imag
 
 For a quick preview, with `hugo` installed (`brew install hugo`), run `./run-dev.sh` and access `http://localhost:1313/`.
 
-Make sure to run the same hugo version locally as on the server. The currently used version is v0.13.
+Make sure to run the same hugo version locally as on the server. The currently used version is v0.13.1.
 
 Hint: When using this method, you can control manually how content changes are tied into the directory structure. Look at the Makefile to get an idea what belongs where. A good way to make changes visible directly during a longer editing session is creating symlinks:
 
