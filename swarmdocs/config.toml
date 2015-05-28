@@ -1,4 +1,4 @@
-baseurl = "http://docs.giantswarm.io"
+baseurl = "https://docs.giantswarm.io"
 languageCode = "en"
 title = "Giant Swarm Documentation"
 pluralizeListTitles = false
