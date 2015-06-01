@@ -1,17 +1,18 @@
 {
   "settings" : {
     "analysis" : {
-      "tokenizer": {
-        "custom_text_tokenizer": {
-          "type": "pattern",
-          "pattern": "[\\W\\.]+"
+      "filter": {
+        "replace_period_with_space": {
+          "type": "mapping",
+          "preserve_original": 1,
+          "mappings": [".=> "]
         }
       },
       "analyzer": {
         "custom_text_analyzer": {
           "type": "custom",
-          "char_filter": [],
-          "tokenizer": "custom_text_tokenizer",
+          "char_filter": ["replace_period_with_space"],
+          "tokenizer": "standard",
           "filter": ["lowercase"]
         }
       }

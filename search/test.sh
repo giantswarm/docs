@@ -8,7 +8,7 @@ curl -XDELETE 'http://sitesearch:9200/testindex/'
 curl -XPUT 'http://sitesearch:9200/testindex/' -d "@settings.json"
 
 # put settings
-curl -s -XPUT 'http://sitesearch:9200/testindex/_settings' -d "@settings.json"|python -m json.tool
+#curl -s -XPUT 'http://sitesearch:9200/testindex/_settings' -d "@settings.json"|python -m json.tool
 
 # put mapping
 curl -s -XPUT 'http://sitesearch:9200/testindex/_mapping/page' -d "@mapping.json"|python -m json.tool
