@@ -432,4 +432,10 @@ ul.links li {
   margin-top: 14px;
   margin-bottom: 4px; }
 
+.well {
+  margin-top: 30px;
+  margin-bottom: 30px; }
+  .well h3, .well h4 {
+    margin-top: 0; }
+
 /*# sourceMappingURL=base.css.map */

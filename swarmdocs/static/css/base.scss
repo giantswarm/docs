@@ -40,7 +40,7 @@ pre code {
 
 a code {		
 	color: #1c91d5;		
-}		
+}
 
 .centered-text {
     text-align: center
@@ -461,4 +461,13 @@ ul.links li {
 	margin-top: 14px;
 	margin-bottom: 4px;
 }
+
+.well {
+	margin-top: 30px;
+	margin-bottom: 30px;
+	h3, h4 {
+		margin-top: 0;
+	}
+}
+
 
