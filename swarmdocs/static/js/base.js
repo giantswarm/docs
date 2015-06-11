@@ -190,6 +190,7 @@ var username = getParameterByName("username");
 if (typeof username !== "undefined" && username !== "") {
     $(".username").text(username);
     $(".welcome-alert").show();
+    $(".helloworldlink").html('Then open your running application at <a href="http://helloworld-' + username + '.gigantic.io/" target="_blank">helloworld-' + username + '.gigantic.io</a>')
 }
 
 /** Adapt docs menu **/
