@@ -5,7 +5,7 @@ registry=registry.giantswarm.io
 
 default: ;
 
-build:
+docker-build:
 	#
 	# clean
 	rm -rf swarmdocs/public/*
@@ -29,13 +29,18 @@ build:
 	# build
 	docker build -t $(registry)/$(COMPANY)/$(PROJECT) .
 
-run:
+docker-run:
 	docker run --name=$(PROJECT) --rm -ti -p 80:80 \
 		-v $(shell pwd)/swarmdocs/:/docs/swarmdocs/ \
 		-e BASE_URL="http://192.168.59.103" \
 		$(registry)/$(COMPANY)/$(PROJECT)
 
-delete:
+swarm-update:
+	SWARM_CLUSTER_ID=cluster-01.giantswarm.io swarm --env="giantswarm/production" update swarmdocs/content-master
+	sleep 120
+	SWARM_CLUSTER_ID=cluster-01.giantswarm.io swarm --env="giantswarm/production" update swarmdocs/content-slave
+
+clean:
 	docker stop $(PROJECT)
 	docker rm $(PROJECT)
 	docker rmi $(registry)/$(COMPANY)/$(PROJECT)
@@ -53,14 +58,6 @@ highlight.js-build: highlight.js
 	cd highlight.js && node tools/build.js -n bash dockerfile java javascript json php python ruby
 	cp highlight.js/build/highlight.pack.js swarmdocs/themes/swarmdocs/static/js/
 	cp highlight.js/src/styles/solarized_dark.css swarmdocs/themes/swarmdocs/static/css/
-
-deploy:
-	export SWARM_CLUSTER_ID=cluster-01.giantswarm.io
-	swarm stop swarmdocs/content-master
-	swarm start swarmdocs/content-master
-	swarm stop swarmdocs/content-slave
-	swarm start swarmdocs/content-slave
-	unset SWARM_CLUSTER_ID
 
 linkcheck:
 	linklint -http -host 192.168.59.103 -limit 1000 -doc linklinttest /@
