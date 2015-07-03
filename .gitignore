@@ -5,7 +5,6 @@ swarmdocs/archetypes
 swarmdocs/content
 swarmdocs/static/img
 .DS_Store
-highlight.js
 swarmdocs/layouts/partials/cache_datestamp.html
 swarmdocs/layouts/partials/cli_latest_version.html
 swarmdocs/layouts/shortcodes
