@@ -5,7 +5,7 @@ registry=registry.giantswarm.io
 
 default: ;
 
-build:
+docker-build:
 	#
 	# clean
 	rm -rf swarmdocs/public/*
@@ -29,13 +29,18 @@ build:
 	# build
 	docker build -t $(registry)/$(COMPANY)/$(PROJECT) .
 
-run:
+docker-run:
 	docker run --name=$(PROJECT) --rm -ti -p 80:80 \
 		-v $(shell pwd)/swarmdocs/:/docs/swarmdocs/ \
 		-e BASE_URL="http://192.168.59.103" \
 		$(registry)/$(COMPANY)/$(PROJECT)
 
-delete:
+swarm-update:
+	SWARM_CLUSTER_ID=cluster-01.giantswarm.io swarm --env="giantswarm/production" update swarmdocs/content-master
+	sleep 120
+	SWARM_CLUSTER_ID=cluster-01.giantswarm.io swarm --env="giantswarm/production" update swarmdocs/content-slave
+
+clean:
 	docker stop $(PROJECT)
 	docker rm $(PROJECT)
 	docker rmi $(registry)/$(COMPANY)/$(PROJECT)
