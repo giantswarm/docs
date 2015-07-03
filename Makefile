@@ -43,17 +43,6 @@ delete:
 pull:
 	docker pull $(registry)/$(COMPANY)/$(PROJECT)
 
-highlight.js:
-	rm -rf highlight.js
-	git clone git@github.com:giantswarm/highlight.js.git
-
-highlight.js-build: highlight.js
-	rm -rf highlight.js/build
-	cd highlight.js && npm install
-	cd highlight.js && node tools/build.js -n bash dockerfile java javascript json php python ruby
-	cp highlight.js/build/highlight.pack.js swarmdocs/themes/swarmdocs/static/js/
-	cp highlight.js/src/styles/solarized_dark.css swarmdocs/themes/swarmdocs/static/css/
-
 deploy:
 	export SWARM_CLUSTER_ID=cluster-01.giantswarm.io
 	swarm stop swarmdocs/content-master
