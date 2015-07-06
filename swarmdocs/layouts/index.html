@@ -122,7 +122,7 @@
             </div>
             <div role="tabpanel" class="tab-pane" id="linux">
               <pre><code class="nohighlight"><b>$</b> curl -O http://downloads.giantswarm.io/swarm/clients/{{ partial "cli_latest_version" . }}/swarm-{{ partial "cli_latest_version" . }}-linux-amd64.tar.gz
-<b>$</b> tar xzf swarm-{{ partial "cli_latest_version" . }}-linux-amd64.tar.gz -C /usr/local/bin
+<b>$</b> sudo tar xzf swarm-{{ partial "cli_latest_version" . }}-linux-amd64.tar.gz -C /usr/local/bin
 <b>$</b> git clone https://github.com/giantswarm/helloworld.git
 <b>$</b> cd helloworld
 <b>$</b> swarm login <b class="username">yourusername</b></code></pre>
