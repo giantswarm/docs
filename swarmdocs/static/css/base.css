@@ -28,6 +28,10 @@ pre {
 code {
   color: #3b5e72;
   background-color: #e7ecee; }
+h1 code {
+  background-color: #f0f5f7;
+  padding: 4px 8px;
+}
 
 pre code {
   color: #839496; }
