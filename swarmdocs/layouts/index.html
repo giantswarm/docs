@@ -124,7 +124,7 @@
               <p class="helloworldlink">Then open your running application at <a href="http://helloworld-yourusername.gigantic.io/" target="_blank">helloworld-yourusername.gigantic.io</a></p>
             </div>
             <div role="tabpanel" class="tab-pane" id="linux">
-              <pre><code class="nohighlight"><b>$</b> curl -O http://downloads.giantswarm.io/swarm/clients/{{ partial "cli_latest_version" . }}/swarm-{{ partial "cli_latest_version" . }}-linux-amd64.tar.gz
+              <pre><code class="nohighlight"><b>$</b> curl -O https://downloads.giantswarm.io/swarm/clients/{{ partial "cli_latest_version" . }}/swarm-{{ partial "cli_latest_version" . }}-linux-amd64.tar.gz
 <b>$</b> sudo tar xzf swarm-{{ partial "cli_latest_version" . }}-linux-amd64.tar.gz -C /usr/local/bin
 <b>$</b> git clone https://github.com/giantswarm/helloworld.git
 <b>$</b> cd helloworld
