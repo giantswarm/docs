@@ -272,7 +272,7 @@ if ($("body").hasClass("_reference_api_")) {
         var token = $('#token').val();
         var username = $('#username').val();
         var org = $('#org').val();
-        var instance = $('#instance').val();
+        var instanceid = $('#instanceid').val();
 
         // hide the modal
         $('#modal-helper').modal('hide');
@@ -316,13 +316,13 @@ if ($("body").hasClass("_reference_api_")) {
             old_username = username;
         }
 
+        console.log(instanceid);
         // update the org in all code blocks on the page
-        if (instance != "") {
+        if (instanceid != "") {
             $('code').each( function() {
                 var text = $(this).text();
-
                 // replace the dummy org with the one entered by user
-                text = text.replace(new RegExp(old_instance, "g"), instance); // add slash
+                text = text.replace(new RegExp(old_instance, "g"), instanceid); // add slash
                 $(this).text(text);
             });
             old_instance = instance;
