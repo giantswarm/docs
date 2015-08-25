@@ -4,7 +4,7 @@ Our Documentation is based on Markdown and HTML content and generated using [HUG
 
 ## Component Overview
 
-![docs_component_architecture](https://cloud.githubusercontent.com/assets/273727/7582315/9db0bbee-f88c-11e4-90ab-ec77579f50b9.png)
+![docs_component_architecture](https://cloud.githubusercontent.com/assets/273727/9469707/d1b3402e-4b48-11e5-8829-adf96003a790.png)
 
 |Short name    | Docker image            | Source repository                                                  |
 |--------------|-------------------------|--------------------------------------------------------------------|
