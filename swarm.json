@@ -1,84 +1,58 @@
 {
-    "app_name": "docs",
-    "services": [
-        {
-            "service_name": "proxy",
-            "components": [
+    "name": "docs",
+    "components": {
+        "proxy": {
+            "image": "$proxy_image",
+            "ports": 80,
+            "links": [
                 {
-                    "component_name": "proxy",
-                    "image": "$proxy_image",
-                    "ports": [ "80/tcp" ],
-                    "dependencies": [
-                        {
-                            "name": "content-master/content",
-                            "port": 80,
-                            "alias": "docsmaster"
-                        },
-                        {
-                            "name": "content-slave/content",
-                            "port": 80,
-                            "alias": "docsslave"
-                        },
-                        {
-                            "name": "sitesearch/sitesearch",
-                            "port": 9200,
-                            "alias": "sitesearch"
-                        }
-                    ],
-                    "domains": {
-                        "$domain_name": "80"
-                    }
+                    "component": "content-master",
+                    "target_port": 80,
+                    "alias": "docsmaster"
+                },
+                {
+                    "component": "content-slave",
+                    "target_port": 80,
+                    "alias": "docsslave"
+                },
+                {
+                    "component": "sitesearch",
+                    "target_port": 9200
+                }
+            ],
+            "domains": {
+                "80": "$domain_name"
+            }
+        },
+        "content-master": {
+            "image": "$content_image",
+            "ports": 80,
+            "env": {
+                "BASE_URL": "https://$domain_name"
+            },
+            "links": [
+                {
+                    "component": "sitesearch",
+                    "target_port": 9200
                 }
             ]
         },
-        {
-            "service_name": "content-master",
-            "components": [
-                {
-                    "component_name": "content",
-                    "image": "$content_image",
-                    "ports": [ "80/tcp" ],
-                    "env": {
-                        "BASE_URL": "http://$domain_name"
-                    },
-                    "dependencies": [
-                        {
-                            "name": "sitesearch/sitesearch",
-                            "port": 9200,
-                            "alias": "sitesearch"
-                        }
-                    ]
-                }
-            ]
+        "content-slave": {
+            "image": "$content_image",
+            "ports": 80,
+            "env": {
+                "BASE_URL": "https://$domain_name"
+            }
         },
-        {
-            "service_name": "content-slave",
-            "components": [
+        "sitesearch": {
+            "image": "$sitesearch_image",
+            "ports": 9200,
+            "volumes": [
                 {
-                    "component_name": "content",
-                    "image": "$content_image",
-                    "ports": [ "80/tcp" ],
-                    "env": {
-                        "BASE_URL": "http://$domain_name"
-                    }
-                }
-            ]
-        },
-        {
-            "service_name": "sitesearch",
-            "components": [
-                {
-                    "component_name": "sitesearch",
-                    "image": "$sitesearch_image",
-                    "ports": [ "9200/tcp" ],
-                    "volumes": [
-                        {
-                            "path": "/data",
-                            "size": "2 GB"
-                        }
-                    ]
+                    "path": "/data",
+                    "size": "2 GB"
                 }
             ]
         }
-    ]
+    }
 }

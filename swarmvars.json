@@ -1,8 +1,8 @@
 {
 	"giantswarm/testing": {
 		"domain_name": "docs.staging.gigantic.io",
-		"sitesearch_image": "registry.giantswarm.io/giantswarm/sitesearch:0.1.1",
-		"content_image": "registry.giantswarm.io/giantswarm/docs:testing201502041657",
+		"sitesearch_image": "registry.giantswarm.io/giantswarm/sitesearch:latest",
+		"content_image": "registry.giantswarm.io/giantswarm/docs:latest",
 		"proxy_image": "registry.giantswarm.io/giantswarm/docs-proxy:latest"
 	},
 	"giantswarm/production": {
