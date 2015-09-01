@@ -7,7 +7,7 @@ swarmdocs/static/img
 .DS_Store
 swarmdocs/layouts/partials/cache_datestamp.html
 swarmdocs/layouts/partials/cli_latest_version.html
-swarmdocs/layouts/shortcodes
+swarmdocs/layouts/shortcodes/cli_latest_version.html
 linklinttest
 docs-content
 sitesearch-volume-data
