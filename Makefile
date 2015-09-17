@@ -36,9 +36,9 @@ docker-run:
 		$(registry)/$(COMPANY)/$(PROJECT)
 
 swarm-update:
-	SWARM_CLUSTER_ID=cluster-01.private.giantswarm.io swarm --env="giantswarm/production" update docs/content-master/content
+	SWARM_CLUSTER_ID=cluster-01.private.giantswarm.io swarm --env="giantswarm/production" update docs/content-master
 	sleep 120
-	SWARM_CLUSTER_ID=cluster-01.private.giantswarm.io swarm --env="giantswarm/production" update docs/content-slave/content
+	SWARM_CLUSTER_ID=cluster-01.private.giantswarm.io swarm --env="giantswarm/production" update docs/content-slave
 
 clean:
 	docker stop $(PROJECT)
