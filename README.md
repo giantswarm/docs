@@ -80,6 +80,8 @@ builder release <patch|minor|major>
 
 This will, amongst other things, automatically do a new build and push the image to the registry.
 
+__Note:__ If you are deploying docs for a new CLI release build the image after having released the swarm CLI, as the docs build process curls `http://downloads.giantswarm.io/swarm/clients/VERSION` for a partial.
+
 Next, to apply the new image in the live Giant Swarm application:
 
 ```
