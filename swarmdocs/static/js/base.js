@@ -219,7 +219,7 @@ $(".search-cta input").on("change keypress keyup", function(evt){
 });
 
 /** Adapt API specs **/
-if ($("body").hasClass("_reference_api_")) {
+if ($("body").hasClass("_reference_api_v1_")) {
 
     // Add bootstrap table class to tables
     $("table").addClass("table");
