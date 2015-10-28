@@ -60,7 +60,7 @@ function getParameterByName(name) {
 
 /**
  * Perform a search and display the result
- * 
+ *
  * @param q  String     The user's search query
  */
 function doSearch(q) {
@@ -210,7 +210,6 @@ if (document.location.pathname == "/") {
 $("table").addClass("table");
 
 $(".search-cta input").on("change keypress keyup", function(evt){
-    console.log("Input captured");
     if ($(".search-cta input").val() === "") {
         $(".search-cta button").animate({"opacity": 0.0});
     } else {
@@ -276,12 +275,11 @@ if ($("body").hasClass("_reference_api_v1_")) {
 
         // hide the modal
         $('#modal-helper').modal('hide');
-        
+
         // update the token in all code blocks on the page
         if (token != "") {
             $('code').each( function() {
                 var text = $(this).text();
-                console.log(old_token)
                 // replace the dummy token with the one entered by user
                 text = text.replace(new RegExp(old_token, "g"), token);
                 $(this).text(text);
@@ -316,7 +314,6 @@ if ($("body").hasClass("_reference_api_v1_")) {
             old_username = username;
         }
 
-        console.log(instanceid);
         // update the org in all code blocks on the page
         if (instanceid != "") {
             $('code').each( function() {
