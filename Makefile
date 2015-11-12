@@ -49,7 +49,7 @@ pull:
 	docker pull $(registry)/$(COMPANY)/$(PROJECT)
 
 deploy:
-	export SWARM_CLUSTER_ID=cluster-01.giantswarm.io
+	export SWARM_CLUSTER_ID=aws-cluster-01.giantswarm.io
 	swarm stop swarmdocs/content-master
 	swarm start swarmdocs/content-master
 	swarm stop swarmdocs/content-slave
