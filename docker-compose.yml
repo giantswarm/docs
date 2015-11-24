@@ -5,13 +5,13 @@ sitesearch:
 docsslave:
   image: registry.giantswarm.io/giantswarm/docs
   environment:
-    BASE_URL: http://192.168.59.103
+    BASE_URL: http://192.168.99.100
 docsmaster:
   image: registry.giantswarm.io/giantswarm/docs
   links:
    - "sitesearch"
   environment:
-    BASE_URL: http://192.168.59.103
+    BASE_URL: http://192.168.99.100
 docsproxy:
   image: registry.giantswarm.io/giantswarm/docs-proxy
   links:
