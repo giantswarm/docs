@@ -1,3 +1,4 @@
+@charset "UTF-8";
 h1, h2, h3, h4, h5, h6 {
   text-align: left; }
 
@@ -28,10 +29,6 @@ pre {
 code {
   color: #3b5e72;
   background-color: #e7ecee; }
-h1 code {
-  background-color: #f0f5f7;
-  padding: 4px 8px;
-}
 
 pre code {
   color: #839496; }
@@ -441,5 +438,12 @@ ul.links li {
   margin-bottom: 30px; }
   .well h3, .well h4 {
     margin-top: 0; }
+
+.breadcrumb {
+  background-color: #fff !important;
+  padding-left: 0px !important;
+  border-top: 1px solid #ddd; }
+  .breadcrumb li + li:before {
+    content: "→"; }
 
 /*# sourceMappingURL=base.css.map */
