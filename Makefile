@@ -3,7 +3,7 @@ COMPANY=giantswarm
 registry=registry.giantswarm.io
 
 
-default: ;
+default: docker-build
 
 docker-build:
 	#
