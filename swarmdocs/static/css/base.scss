@@ -38,8 +38,8 @@ pre code {
 	color: #839496;
 }
 
-a code {		
-	color: #1c91d5;		
+a code {
+	color: #1c91d5;
 }
 
 .centered-text {
@@ -49,23 +49,23 @@ a code {
 .docsnav {
 	margin-bottom: 40px;
 }
-.docsnav .nav>li>a {		
-	font-size: 14px;		
-	padding: 6px 9px;		
-}		
-.docsnav form {		
-	margin: 0;		
-	font-size: 14px;		
-}		
-.docsnav input {		
-	font-size: 14px;		
-	padding: 2px;		
-	padding-bottom: 2px;		
-	padding-top: 2px;		
-	padding-left: 4px;		
-	padding-right: 2px;		
-	line-height: 18px;		
-	height: 34px;		
+.docsnav .nav>li>a {
+	font-size: 14px;
+	padding: 6px 9px;
+}
+.docsnav form {
+	margin: 0;
+	font-size: 14px;
+}
+.docsnav input {
+	font-size: 14px;
+	padding: 2px;
+	padding-bottom: 2px;
+	padding-top: 2px;
+	padding-left: 4px;
+	padding-right: 2px;
+	line-height: 18px;
+	height: 34px;
 }
 
 #mobileSearchForm input {
@@ -166,15 +166,15 @@ a code {
 	padding-bottom: 5px;
 	color: #ffffff;
 }
-.docs-video h3 {		
-	font-size: 20px;		
-}		
-.docs-video a, .docs-video a:hover {		
-	color: #fff;		
-}		
-.docs-video .embed-responsive {		
-	margin-bottom: 10px;		
-}		
+.docs-video h3 {
+	font-size: 20px;
+}
+.docs-video a, .docs-video a:hover {
+	color: #fff;
+}
+.docs-video .embed-responsive {
+	margin-bottom: 10px;
+}
 
 .home-introbox h3 {
 	margin-top: 0;
@@ -470,4 +470,11 @@ ul.links li {
 	}
 }
 
-
+.breadcrumb {
+	background-color: #fff !important;
+	padding-left: 0px !important;
+	border-top: 1px solid #ddd;
+	li+li:before {
+		content: "\02192"
+	}
+}

@@ -7,8 +7,8 @@ pluralizeListTitles = false
     plainIdAnchors = true
 
 [[menu.main]]
-    name = "Introduction"
-    url = "/introduction/"
+    name = "Fundamentals"
+    url = "/fundamentals/"
     weight = 20
 [[menu.main]]
     name = "Guides"

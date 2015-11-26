@@ -22,7 +22,7 @@ docker-build:
 	echo `date +"%Y%m%d%H%M"` > swarmdocs/layouts/partials/cache_datestamp.html
 	#
 	# update download links
-	curl -s http://downloads.giantswarm.io/swarm/clients/VERSION > swarmdocs/layouts/partials/cli_latest_version.html
+	curl -s https://downloads.giantswarm.io/swarm/clients/VERSION > swarmdocs/layouts/partials/cli_latest_version.html
 	mkdir -p swarmdocs/layouts/shortcodes
 	cp swarmdocs/layouts/partials/cli_latest_version.html swarmdocs/layouts/shortcodes/cli_latest_version.html
 	#
