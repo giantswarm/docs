@@ -478,3 +478,30 @@ ul.links li {
 		content: "\02192"
 	}
 }
+
+.nav {
+  li {
+    a {
+      padding-left: 22px;
+      padding-right: 22px;
+    }
+  }
+}
+
+#nav_contact {
+  border-radius: 5px;
+  border: 1px solid #eee;
+  font-size: 12.8px;
+  margin-left: 21px;
+  margin-top: 4px;
+
+  padding: 0px;
+  height: 42px;
+}
+
+#nav_contact a {
+	line-height: 21px;
+  padding-top: 10px;
+  padding-left: 19px;
+  padding-right: 19px
+}
