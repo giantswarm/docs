@@ -5,6 +5,9 @@ registry=registry.giantswarm.io
 
 default: docker-build
 
+build-css:
+	sass swarmdocs/static/css/base.scss swarmdocs/static/css/base.css
+
 docker-build:
 	#
 	# clean
