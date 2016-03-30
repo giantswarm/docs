@@ -1,8 +1,5 @@
 FROM debian:jessie
 
-MAINTAINER Matthias Luebken <matthias@giantswarm.io>
-MAINTAINER Marian Steinbach <marian@giantswarm.io>
-
 ENV DEBIAN_FRONTEND noninteractive
 
 WORKDIR /
