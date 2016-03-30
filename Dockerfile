@@ -28,7 +28,8 @@ RUN set -x \
   && wget https://github.com/spf13/hugo/releases/download/v0.13/hugo_0.13_linux_amd64.tar.gz \
   && tar xzf hugo_0.13_linux_amd64.tar.gz \
   && mv hugo_0.13_linux_amd64/hugo_0.13_linux_amd64 /usr/bin/hugo \
-  && rm -r hugo_0.13_linux_amd64
+  && rm -r hugo_0.13_linux_amd64 \
+  && rm hugo_0.13_linux_amd64.tar.gz
 
 
 ADD . /docs
