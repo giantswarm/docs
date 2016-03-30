@@ -48,16 +48,5 @@ clean:
 	docker rm $(PROJECT)
 	docker rmi $(registry)/$(COMPANY)/$(PROJECT)
 
-pull:
-	docker pull $(registry)/$(COMPANY)/$(PROJECT)
-
-deploy:
-	export SWARM_CLUSTER_ID=aws-cluster-01.giantswarm.io
-	swarm stop swarmdocs/content-master
-	swarm start swarmdocs/content-master
-	swarm stop swarmdocs/content-slave
-	swarm start swarmdocs/content-slave
-	unset SWARM_CLUSTER_ID
-
 linkcheck:
 	linklint -http -host 192.168.59.103 -limit 1000 -doc linklinttest /@
