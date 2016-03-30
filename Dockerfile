@@ -10,12 +10,12 @@ WORKDIR /
 # install basics
 RUN apt-get update -qq && \
   apt-get install -y -q --no-install-recommends \
-  wget \
-  curl \
-  ca-certificates \
-  python2.7 \
-  python-pip \
-  python-dev
+    wget \
+    curl \
+    ca-certificates \
+    python2.7 \
+    python-pip \
+    python-dev
 
 
 # install everything needed for docs indexing
