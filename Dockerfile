@@ -20,7 +20,7 @@ RUN apt-get update -qq && \
 
 # install everything needed for docs indexing
 COPY requirements.txt /requirements.txt
-RUN ["pip", "install", "-r", "/requirements.txt"]
+RUN pip install -r /requirements.txt
 
 
 # install HUGO
