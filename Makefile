@@ -35,7 +35,7 @@ docker-build:
 docker-run:
 	docker run --name=$(PROJECT) --rm -ti -p 80:80 \
 		-v $(shell pwd)/swarmdocs/:/docs/swarmdocs/ \
-		-e BASE_URL="http://192.168.59.103" \
+		-e BASE_URL="http://docker.dev" \
 		$(registry)/$(COMPANY)/$(PROJECT)
 
 swarm-update:
@@ -49,4 +49,4 @@ clean:
 	docker rmi $(registry)/$(COMPANY)/$(PROJECT)
 
 linkcheck:
-	linklint -http -host 192.168.59.103 -limit 1000 -doc linklinttest /@
+	linklint -http -host docker.dev -limit 1000 -doc linklinttest /@
