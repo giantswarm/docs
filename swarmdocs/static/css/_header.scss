@@ -289,3 +289,42 @@ body>header nav li.active a {
     background-color: #f8f8f8;
   }
 }
+
+body>header nav a.button {
+  height: 30px;
+  line-height: 30px;
+  font-size: 13px;
+  margin-left: 25px;
+  top: -1px;
+  position: relative;
+}
+
+.button {
+  font-size: 14px;
+  text-decoration: none;
+  display: inline-block;
+  line-height: 36px;
+  height: 36px;
+  background-color: #2b85bc;
+  color: #fff;
+  padding: 0px 30px;
+  border-radius: 5px;
+  border: 0px;
+  cursor: pointer;
+  position: relative;
+  margin-top: -3px;
+  margin-bottom: -3px;
+}
+
+.button:hover {
+  text-decoration: none;
+  color: #fff;
+}
+
+.button-green {
+  background-color: #23c451;
+}
+
+.button-green:hover {
+  background-color: #3BD566;
+}
