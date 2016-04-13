@@ -1,7 +1,7 @@
 PROJECT=docs
 COMPANY=giantswarm
 registry=registry.giantswarm.io
-
+SHELL=bash
 
 default: docker-build
 
@@ -22,7 +22,7 @@ docker-build:
 	cp -r docs-content/img swarmdocs/static/
 	#
 	# cache date
-	echo `date +"%Y%m%d%H%M"` > swarmdocs/layouts/partials/cache_datestamp.html
+	echo -n `date +"%Y%m%d%H%M"` > swarmdocs/layouts/partials/cache_datestamp.html
 	#
 	# update download links
 	curl -s https://downloads.giantswarm.io/swarm/clients/VERSION > swarmdocs/layouts/partials/cli_latest_version.html
