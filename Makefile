@@ -36,7 +36,7 @@ docker-run:
 	docker run --name=$(PROJECT) --rm -ti -p 80:80 \
 		-v $(shell pwd)/swarmdocs/:/docs/swarmdocs/ \
 		-e BASE_URL="http://docker.dev" \
-		$(registry)/$(COMPANY)/$(PROJECT)
+		$(registry)/$(COMPANY)/$(PROJECT):0.51.24
 
 swarm-update:
 	SWARM_CLUSTER_ID=leaseweb-alpha-private.giantswarm.io swarm --env="giantswarm/production" update docs/content-master
