@@ -13,10 +13,6 @@ What it does:
 
 Run from the same directory that contains this file (python ./indexer.py)
 
-Expected env variables:
-- SITESEARCH_PORT_9200_TCP_ADDR
-- SITESEARCH_PORT_9200_TCP_PORT
-
 """
 
 import config
@@ -145,15 +141,10 @@ if __name__ == "__main__":
     root.addHandler(ch)
 
     # read hosts config
-    es_addr = os.getenv("SITESEARCH_PORT_9200_TCP_ADDR")
-    es_port = os.getenv("SITESEARCH_PORT_9200_TCP_PORT")
-    if es_addr is not None and es_port is not None:
-        es_hosts = ["%s:%s" % (es_addr, es_port)]
-        logging.info("Found ElasticSearch host config %s" % es_hosts)
-        es = Elasticsearch(hosts=es_hosts)
-    else:
-        logging.error("Search index won't be updated, since no connection to ElasticSearch possible.")
-        sys.exit(1)
+    es_hosts = ["sitesearch:9200"]
+    logging.info("Found ElasticSearch host config %s" % es_hosts)
+    es = Elasticsearch(hosts=es_hosts)
+
 
     # get page data
     pages = get_pages(config.SOURCE_PATH)
@@ -165,7 +156,7 @@ if __name__ == "__main__":
     es.indices.put_mapping(index=tempindex,
         doc_type=config.ELASTICSEARCH_DOCTYPE,
         body=config.ELASTICSEARCH_MAPPING)
-    
+
     # index each page into new index
     for page in pages:
         index_page(page["file_path"], page["path"], page["uri"], tempindex)
