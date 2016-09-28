@@ -1,3 +1,5 @@
+#### WARNING: This is the legacy `firstgen` branch, documenting a phased-out Giant Swarm product. Please check out the `master` branch for content related to the current Giant Swarm offerings.
+
 # docs - User documentation for Giant Swarm
 
 Our Documentation is based on Markdown and HTML content and generated using [HUGO](http://gohugo.io/), a static site generator written in Go.
