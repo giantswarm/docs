@@ -17,7 +17,7 @@ docker-build:
 	rm -rf swarmdocs/content
 	rm -rf swarmdocs/static/img
 	rm -rf docs-content
-	git clone --depth 1 git@github.com:giantswarm/docs-content.git
+	git clone --depth 1 -b firstgen git@github.com:giantswarm/docs-content.git
 	cp -r docs-content/content swarmdocs/
 	cp -r docs-content/img swarmdocs/static/
 	#
@@ -30,7 +30,7 @@ docker-build:
 	cp swarmdocs/layouts/partials/cli_latest_version.html swarmdocs/layouts/shortcodes/cli_latest_version.html
 	#
 	# build
-	docker build -t $(registry)/$(COMPANY)/$(PROJECT) .
+	docker build -t $(registry)/$(COMPANY)/$(PROJECT):firstgen .
 
 docker-run:
 	docker run --name=$(PROJECT) --rm -ti -p 80:80 \
