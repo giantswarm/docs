@@ -1,5 +1,5 @@
 {
-    "name": "docs",
+    "name": "firstgen-docs",
     "components": {
         "proxy": {
             "image": "$proxy_image",
@@ -9,7 +9,7 @@
                     "component": "content",
                     "target_port": 80,
                     "alias": "docsmaster"
-                }
+                },
                 {
                     "component": "sitesearch",
                     "target_port": 9200
