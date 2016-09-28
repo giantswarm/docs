@@ -18,11 +18,3 @@ pluralizeListTitles = false
     name = "Reference"
     url = "/reference/"
     weight = 40
-[[menu.main]]
-    name = "Video"
-    url = "/video/"
-    weight = 50
-[[menu.main]]
-    name = "FAQ"
-    url = "/faq/"
-    weight = 60

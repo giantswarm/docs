@@ -1,19 +1,14 @@
 {
-    "name": "docs",
+    "name": "firstgen-docs",
     "components": {
         "proxy": {
             "image": "$proxy_image",
             "ports": 80,
             "links": [
                 {
-                    "component": "content-master",
+                    "component": "content",
                     "target_port": 80,
                     "alias": "docsmaster"
-                },
-                {
-                    "component": "content-slave",
-                    "target_port": 80,
-                    "alias": "docsslave"
                 },
                 {
                     "component": "sitesearch",
@@ -24,7 +19,7 @@
                 "80": "$domain_name"
             }
         },
-        "content-master": {
+        "content": {
             "image": "$content_image",
             "ports": 80,
             "env": {
@@ -36,13 +31,6 @@
                     "target_port": 9200
                 }
             ]
-        },
-        "content-slave": {
-            "image": "$content_image",
-            "ports": 80,
-            "env": {
-                "BASE_URL": "https://$domain_name"
-            }
         },
         "sitesearch": {
             "image": "$sitesearch_image",
