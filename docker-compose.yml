@@ -1,22 +1,22 @@
-sitesearch:
-  image: registry.giantswarm.io/giantswarm/sitesearch
-  volumes:
-   - sitesearch-volume-data:/data
-docsslave:
-  image: registry.giantswarm.io/giantswarm/docs
-  environment:
-    BASE_URL: http://docker.dev
-docsmaster:
-  image: registry.giantswarm.io/giantswarm/docs
-  links:
-   - "sitesearch"
-  environment:
-    BASE_URL: http://docker.dev
-docsproxy:
-  image: registry.giantswarm.io/giantswarm/docs-proxy
-  links:
-   - "sitesearch"
-   - "docsmaster"
-   - "docsslave"
-  ports:
-   - "80:80"
+version: "2"
+services:
+  sitesearch:
+    image: registry.giantswarm.io/giantswarm/sitesearch:latest
+    volumes:
+     - sitesearch-volume-data:/data
+  docsmaster:
+    image: registry.giantswarm.io/giantswarm/docs:firstgen
+    depends_on:
+     - sitesearch
+    environment:
+      BASE_URL: http://docker.dev
+  docsproxy:
+    image: registry.giantswarm.io/giantswarm/docs-proxy:firstgen
+    depends_on:
+     - sitesearch
+     - docsmaster
+    ports:
+     - "80:80"
+volumes:
+  sitesearch-volume-data:
+    external: false
