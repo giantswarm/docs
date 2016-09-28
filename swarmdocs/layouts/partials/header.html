@@ -30,6 +30,16 @@
   <body data-spy="scroll" data-target="#TableOfContents" class="{{if .IsPage}}{{ replace .RelPermalink "/" "_" }}{{end}}">
     {{ partial "topnav.html" . }}
 
+    <section id="legacy-notify">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <strong>Note:</strong> You are looking at documentation for an outdated Giant Swarm product. Visit <a href="https://docs.giantswarm.io/">docs.giantswarm.io</a> for up-to-date documentation of our current products.
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="main">
       <div class="container">
         {{ partial "docsnav.html" . }}
