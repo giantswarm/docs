@@ -20,7 +20,7 @@
     <h2>More advanced guides</h2>
 
     <ul class="linklist">
-      {{ range ..Site.Taxonomies.categories.advanced.Pages.ByWeight }}
+      {{ range .Site.Taxonomies.categories.advanced.Pages.ByWeight }}
       <li>
         <a href="{{ .Permalink }}">{{ .Title }}</a>
         <div class="meta">{{ .Description }}</div>
