@@ -8,7 +8,6 @@ swarmdocs/static/img
 linklinttest
 docs-content
 sitesearch-volume-data
-*.sass
 *.map
 .sass-cache
 build/
