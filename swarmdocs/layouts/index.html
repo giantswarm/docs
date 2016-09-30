@@ -1,155 +1,36 @@
 {{ partial "header.html" . }}
 
 <div id="home">
-
-  <div class="row welcome-alert" style="display: none">
-    <div class="col-sm-12">
-      <div class="alert alert-success" role="alert"><strong>Congratulations <span class="username">yourusername</span> for making the sign-up!</strong> How about taking the Quick Start now? It takes only 3 minutes.</div>
-    </div>
-  </div>
-
   <div class="row">
-    <div class="col-md-5 home-introbox">
-
-      <hr/>
-      <h2>Introduction to Giant Swarm</h2>
-      <p>With Giant Swarm you can build, deploy and manage your containerized server applications. <a href="/fundamentals/introduction/">Read More <i class="fa fa-arrow-circle-right"></i></a></p>
-      <hr/>
-
-      <div class="row">
-        <div class="col-md-6">
-          <h2>Getting started</h2>
-          <ul class="notype bigbullets">
-            <li><a href="#video"><i class="fa fa-arrow-circle-right"></i> Watch the Video Introduction</a></li>
-            <li><a href="/reference/installation/"><i class="fa fa-arrow-circle-right"></i> Install the CLI</a></li>
-            <li><a href="/guides/annotated-helloworld/"><i class="fa fa-arrow-circle-right"></i> Run the Hello World Example</a></li>
-            <li><a href="/reference/cli/"><i class="fa fa-arrow-circle-right"></i> View the CLI reference</a></li>
-          </ul>
-        </div>
-        <div class="col-md-6">
-          <h2>More Guides</h2>
-          <ul class="notype bigbullets">
-            <li><a href="/guides/introduction-to-docker/"><i class="fa fa-arrow-circle-right"></i> Introduction to Docker</a></li>
-            <li><a href="/guides/mysql-backup/"><i class="fa fa-arrow-circle-right"></i> MySQL with Backups</a></li>
-            <li><a href="/guides/ruby-on-rails/"><i class="fa fa-arrow-circle-right"></i> Ruby on Rails</a></li>
-            <li><a href="/guides/continuous-deployment/"><i class="fa fa-arrow-circle-right"></i> Continuous Deployment</a></li>
-            <li><a href="/guides/team-collaboration/"><i class="fa fa-arrow-circle-right"></i> Team Collaboration</a></li>
-          </ul>
-          <!--<a href="/guides/">More Guides <i class="fa fa-arrow-circle-right"></i></a>-->
-        </div>
-      </div>
-
-      <div class="home-yourfirstapp">
-        <div class="centered-text">
-          <hr>
-          <h2>Your First Service</h2>
-          <p>Pick your language and learn by creating an example service:</p>
-          <a class="btn btn-default btn-firstapp" href="/guides/your-first-service/nodejs/">NodeJS</a>
-          <a class="btn btn-default btn-firstapp" href="/guides/your-first-service/python/">Python</a>
-          <a class="btn btn-default btn-firstapp" href="/guides/your-first-service/golang/">Go</a>
-          <a class="btn btn-default btn-firstapp" href="/guides/your-first-service/java/">Java</a>
-          <a class="btn btn-default btn-firstapp" href="/guides/your-first-service/php/">PHP</a>
-          <a class="btn btn-default btn-firstapp" href="/guides/your-first-service/ruby/">Ruby</a>
-        </div>
-      </div>
-
-      <hr/>
-      <h2>Reference</h2>
-      <div class="row">
-
-        <div class="col-sm-6">
-          <h3>The swarm CLI</h3>
-          <ul class="notype bigbullets">
-            <li><strong><a href="/reference/cli/"><i class="fa fa-arrow-circle-right"></i> CLI Reference Overview</a></strong></li>
-            <li><a href="/reference/cli/installation/"><i class="fa fa-arrow-circle-right"></i> Installation and Configuration</a></li>
-            <li><a href="/reference/cli/global-options/"><i class="fa fa-arrow-circle-right"></i> Global Options</a></li>
-            <li><a href="/reference/cli/release-notes/"><i class="fa fa-arrow-circle-right"></i> Release Notes</a></li>
-          </ul>
-        </div>
-
-        <div class="col-sm-6">
-          <h3>The API</h3>
-          <ul class="notype bigbullets">
-            <li><strong><a href="/reference/api/"><i class="fa fa-arrow-circle-right"></i> API Reference Overview</a></strong></li>
-          <li><a href="/reference/api/v1/#auth"><i class="fa fa-arrow-circle-right"></i> Authentication</a></li>
-          <li><a href="/reference/api/v1/#user"><i class="fa fa-arrow-circle-right"></i> User Settings and Tokens</a></li>
-            <li><a href="/reference/api/changelog/"><i class="fa fa-arrow-circle-right"></i> Changelog</a></li>
-          </ul>
-        </div>
-
-      </div>
-      <div class="row">
-
-        <div class="col-sm-6">
-          <h3>Basic Concepts</h3>
-          <ul class="notype bigbullets">
-            <li><a href="/reference/cli/org/"><i class="fa fa-arrow-circle-right"></i> Organizations</a></li>
-            <li><a href="/reference/cli/env/"><i class="fa fa-arrow-circle-right"></i> Environments</a></li>
-          </ul>
-        </div>
-
-        <div class="col-sm-6">
-          <h3>Practical Knowledge</h3>
-          <ul class="notype bigbullets">
-            <li><a href="/reference/swarm-json/"><i class="fa fa-arrow-circle-right"></i> Service Defitinion (<code>swarm.json</code>) Reference</a></li>
-            <li><a href="/reference/registry/"><i class="fa fa-arrow-circle-right"></i> Using the Registry</a></li>
-            <li><a href="/reference/storage/"><i class="fa fa-arrow-circle-right"></i> Storage and Volumes</a></li>
-          </ul>
-        </div>
-
-      </div>
-
+    <div class="col-md-5 col-md-offset-1">
+      <h2>Learn about Giant Swarm</h2>
+      <p>Useful information on how Giant Swarm sets up Kubernetes clusters, plus some pointers to great resources on Kubernetes.</p>
+      <ul class="linklist">
+        <li>
+          <a href="/basics/kubernetes-on-giant-swarm/">Details on Kubernetes on Giant Swarm</a>
+          <div class="meta">Here  you learn how we set up things for you and what we manage for you, so you don't have to.</div>
+        </li>
+        <li>
+          <a href="/basics/kubernetes-fundamentals/">Kubernetes Fundamentals</a>
+          <div class="meta">Pointers to the best resources about Kubernetes, to get you up to speed with Kubernetes fast</div>
+        </li>
+        <li>
+          <a href="/faq/">Frequently Asked Questions</a>
+          <div class="meta">Quick facts in a compact format</div>
+        </li>
+      </ul>
     </div>
-    <div class="col-md-7">
-
-      <div class="quickstart home-quickstart">
-        <h3>Quick Start</h3>
-        <p>Your easy way to get going with your new Giant Swarm account</p>
-        <div role="tabpanel">
-          <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#mac" aria-controls="mac" role="tab" data-toggle="tab">Mac + Homebrew</a></li>
-            <li role="presentation"><a href="#linux" aria-controls="linux" role="tab" data-toggle="tab">Linux</a></li>
-            <li class="other-link"><a href="/reference/cli/installation/"><span class="hidden-xs">Installation instructions for all platforms</span><span class="visible-xs-inline">Other platforms</span> <i class="fa fa-arrow-circle-right"></i></a></li>
-          </ul>
-          <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="mac">
-              <pre><code class="nohighlight"><b>$</b> brew tap giantswarm/swarm
-<b>$</b> brew install swarm-client
-<b>$</b> git clone https://github.com/giantswarm/helloworld.git
-<b>$</b> cd helloworld
-<b>$</b> swarm login <b class="username">yourusername</b></code></pre>
-              <p>Now enter your Giant Swarm credentials.</p>
-
-              <pre><code class="nohighlight"><b>$</b> swarm up --var=domain=helloworld-<b class="username">yourusername</b>.gigantic.io</code></pre>
-
-              <p class="helloworldlink">Then access your running service at <a href="http://helloworld-yourusername.gigantic.io/" target="_blank">helloworld-yourusername.gigantic.io</a></p>
-            </div>
-            <div role="tabpanel" class="tab-pane" id="linux">
-              <pre><code class="nohighlight"><b>$</b> curl -O https://downloads.giantswarm.io/swarm/clients/{{ partial "cli_latest_version" . }}/swarm-{{ partial "cli_latest_version" . }}-linux-amd64.tar.gz
-<b>$</b> sudo tar xzf swarm-{{ partial "cli_latest_version" . }}-linux-amd64.tar.gz -C /usr/local/bin
-<b>$</b> git clone https://github.com/giantswarm/helloworld.git
-<b>$</b> cd helloworld
-<b>$</b> swarm login <b class="username">yourusername</b></code></pre>
-              <p>Now enter your Giant Swarm credentials.</p>
-
-              <pre><code class="nohighlight">swarm up --var=domain=helloworld-<b class="username">yourusername</b>.gigantic.io</code></pre>
-
-              <p class="helloworldlink">Then access your running service at <a href="http://helloworld-yourusername.gigantic.io/" target="_blank">helloworld-yourusername.gigantic.io</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="docs-video" id="video">
-        <h3>Video Introduction</h3>
-        <div class="embed-responsive embed-responsive-16by9">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/6HAAMeKN0rY" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <p><a href="/video/">More Video Guides</a></p>
-      </div>
-
-
+    <div class="col-md-5">
+      <h2>Work with Giant Swarm </h2>
+      <p>You know how Kubernetes works. You know how Giant Swarm sets up Kubernetes clusters. Here you find content helping to make you productive.</p>
+      <h3>Recipes</h3>
+      <ul class="linklist linklist-compact">
+        <li><a href="/guides/install-kubernetes-dashboard">Installing the Kubernetes Dashboard</a></li>
+        <li><a href="/guides/kubernetes-elastic-stack/">Logging with Elastic</a></li>
+        <li><a href="/guides/kubernetes-prometheus/">Monitoring with Prometheus and Grafana</a></li>
+      </ul>
     </div>
+
   </div> <!-- row -->
 
 

@@ -6,7 +6,7 @@
     <ul class="linklist">
       {{ range .Data.Pages.ByWeight }}
       <li>
-        <a href="{{ .Permalink }}">{{ .Title }}</a>
+        <a href="{{ .Permalink | relURL }}">{{ .Title }}</a>
         <div class="meta">{{ .Description }}</div>
       </li>
       {{ end }}
