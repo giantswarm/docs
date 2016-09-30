@@ -39,7 +39,7 @@ do
 
 	# Clone the repository from github
 	# TODO: go back from branch docs-integration to master
-	git clone --depth 1 -b docs-integration https://github.com/giantswarm/${reponame}.git
+	git clone --depth 1 https://github.com/giantswarm/${reponame}.git
 
 	# Create folders for markdown and images
 	mkdir -p ${CONTENT_BASE_DIR}/${reponame}
