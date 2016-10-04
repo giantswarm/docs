@@ -1,22 +1,27 @@
-sitesearch:
-  image: registry.giantswarm.io/giantswarm/sitesearch
-  volumes:
-   - sitesearch-volume-data:/data
-docsslave:
-  image: registry.giantswarm.io/giantswarm/docs
-  environment:
-    BASE_URL: http://docker.dev
-docsmaster:
-  image: registry.giantswarm.io/giantswarm/docs
-  links:
-   - "sitesearch"
-  environment:
-    BASE_URL: http://docker.dev
-docsproxy:
-  image: registry.giantswarm.io/giantswarm/docs-proxy
-  links:
-   - "sitesearch"
-   - "docsmaster"
-   - "docsslave"
-  ports:
-   - "80:80"
+version: "2"
+services:
+
+  sitesearch:
+    image: registry.giantswarm.io/giantswarm/sitesearch:0.3.1
+
+  content:
+    image: registry.giantswarm.io/giantswarm/docs:latest
+
+  proxy:
+    image: registry.giantswarm.io/giantswarm/docs-proxy:latest
+    depends_on:
+     - "sitesearch"
+     - content
+    ports:
+     - "80:80"
+
+  indexer:
+    image: registry.giantswarm.io/giantswarm/docs-indexer:latest
+    depends_on:
+      - "sitesearch"
+    environment:
+      REPOSITORY_URL: https://github.com/giantswarm/docs-content.git
+      REPOSITORY_BRANCH: secondgen
+      REPOSITORY_SUBFOLDER: content
+      KEEP_PROCESS_ALIVE: "True"
+      ELASTICSEARCH_ENDPOINT: http://admin:e4dfbjb3rohi8qpoadsffodin@sitesearch:9200
