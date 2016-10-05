@@ -54,11 +54,11 @@ do
 	cp ${reponame}/docs/*.jpg ${IMG_BASE_DIR}/${reponame}/
 
 	# adapt image paths
-	for markdownfile in ${CONTENT_BASE_DIR}/${reponame}/*.md; do
+	for markdownfile in ${CONTENT_BASE_DIR}/${targetpath}/${reponame}/*.md; do
 		sed -i ".bak" -E "s:\(([^\(]+\.)(png|jpg|jpeg|gif):\(/img/${reponame}/\1\2:g" "${markdownfile}"
 		rm -f "${markdownfile}.bak"
 	done
 
-	echo "<hr>\n" >> ${CONTENT_BASE_DIR}/${reponame}/index.md
-	echo "You can collaborate on this recipe on [GitHub](https://github.com/giantswarm/${reponame})." >> ${CONTENT_BASE_DIR}/${reponame}/index.md
+	echo "<hr>\n" >> ${CONTENT_BASE_DIR}/${targetpath}/${reponame}/index.md
+	echo "You can collaborate on this recipe on [GitHub](https://github.com/giantswarm/${reponame})." >> ${CONTENT_BASE_DIR}/${targetpath}/${reponame}/index.md
 done
