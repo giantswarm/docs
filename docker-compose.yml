@@ -5,10 +5,10 @@ services:
     image: registry.giantswarm.io/giantswarm/sitesearch:0.3.1
 
   content:
-    image: registry.giantswarm.io/giantswarm/docs:latest
+    image: registry.giantswarm.io/giantswarm/docs:secondgen
 
   proxy:
-    image: registry.giantswarm.io/giantswarm/docs-proxy:latest
+    image: registry.giantswarm.io/giantswarm/docs-proxy:secondgen
     depends_on:
      - "sitesearch"
      - content
@@ -23,5 +23,6 @@ services:
       REPOSITORY_URL: https://github.com/giantswarm/docs-content.git
       REPOSITORY_BRANCH: secondgen
       REPOSITORY_SUBFOLDER: content
+      EXTERNAL_REPOSITORY_SUBFOLDER: docs
       KEEP_PROCESS_ALIVE: "True"
       ELASTICSEARCH_ENDPOINT: http://admin:e4dfbjb3rohi8qpoadsffodin@sitesearch:9200
