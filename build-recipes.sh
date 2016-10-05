@@ -7,15 +7,12 @@
 # - add a link to the recipe repository for collaboration
 #
 # This assumes:
+# - list of repository URLs in docs-content/external-repositories.txt
 # - recipe repositories have a "docs" subfolder
 # - In the "docs" folder is an "index.md" file
 # - This index.md file has HUGO frontmatter
 # - There may be additional markdown files in that folder
 # - There may be PNG and/or JPG images in that folder
-
-
-# List of repository names to import
-declare -a repositories=("kubernetes-prometheus" "kubernetes-elastic-stack")
 
 # Path to where recipe content should be placed in the docs site
 CONTENT_BASE_DIR=$(pwd)/swarmdocs/content/guides
@@ -23,22 +20,22 @@ CONTENT_BASE_DIR=$(pwd)/swarmdocs/content/guides
 # Path to where images should be copied to
 IMG_BASE_DIR=$(pwd)/swarmdocs/static/img
 
-# verbose script output
-set -x
-
 mkdir -p build
 cd build
 
-
-for reponame in "${repositories[@]}"
+cat ../docs-content/external-repositories.txt | while read repourl
 do
-	echo "\nImporting content from recipe ${reponame}"
+	echo "\nImporting content from ${repourl}"
+
+	# derive reponame from repourl
+	filename=$(basename ${repourl})
+	parts=(${filename//./ })
+	reponame=${parts[0]}
 
 	# Empty sub-folder for this repo here in the build folder
 	rm -rf ${reponame}
 
 	# Clone the repository from github
-	# TODO: go back from branch docs-integration to master
 	git clone --depth 1 https://github.com/giantswarm/${reponame}.git
 
 	# Create folders for markdown and images
