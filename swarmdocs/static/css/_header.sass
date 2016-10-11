@@ -1,0 +1,267 @@
+body.index_view > header a
+  color: #eee
+
+body.index_view > header a:hover
+  color: #fff
+
+body.index_view > header #contact_us_link:hover
+  background-color: #559dc9
+
+@media screen and (max-width: 768px)
+  body.index_view > header.open
+    background-color: #226892
+
+  body.index_view > header.open #contact_us_link
+    border-color: #fff
+
+@media screen and (max-width: 768px) and (max-width: 768px)
+  body.index_view > header.open nav ul
+    background-color: #226892
+    display: block
+
+  body.index_view > header.open nav ul a:hover
+    background-color: #2676a7
+
+body > header.open
+  background-color: #eee
+
+body > header.open #contact_us_link
+  border-color: #888
+
+@media screen and (max-width: 768px)
+  body > header.open nav ul
+    background-color: #eee
+    display: block
+
+  body > header.open nav ul a:hover
+    background-color: #ddd
+
+body > header
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  z-index: 20
+  background-color: #fff
+
+body > header nav
+  max-width: 1170px
+  margin-left: auto
+  margin-right: auto
+  padding: 0 15px
+  font-size: 1em
+  color: #eee
+
+body > header nav::after
+  clear: both
+  content: ""
+  display: table
+
+body > header nav strong
+  font-weight: 800
+  color: #666
+
+body > header nav:hover #logo span
+  opacity: 1
+
+@media screen and (max-width: 768px)
+  body > header nav:hover #logo span
+    opacity: 0
+
+body > header nav:hover #logo:hover span
+  text-decoration: underline
+
+body > header nav .branding
+  height: 50px
+  line-height: 50px
+  float: left
+  display: block
+  margin-right: 2.85714%
+  width: 22.85714%
+
+body > header nav .branding:last-child
+  margin-right: 0
+
+@media screen and (max-width: 768px)
+  body > header nav .branding
+    float: left
+    display: block
+    margin-right: 2.85714%
+    width: 31.42857%
+    margin-right: 0
+
+  body > header nav .branding:last-child
+    margin-right: 0
+
+@media screen and (max-width: 480px)
+  body > header nav .branding
+    float: left
+    display: block
+    margin-right: 4.34783%
+    width: 47.82609%
+    margin-right: 0
+
+  body > header nav .branding:last-child
+    margin-right: 0
+
+body > header nav .navigation
+  float: left
+  display: block
+  margin-right: 2.85714%
+  width: 74.28571%
+
+body > header nav .navigation:last-child
+  margin-right: 0
+
+@media screen and (max-width: 768px)
+  body > header nav .navigation
+    float: left
+    display: block
+    margin-right: 2.85714%
+    width: 100%
+
+  body > header nav .navigation:last-child
+    margin-right: 0
+
+body > header nav .navigation #navigation_toggle
+  position: absolute
+  top: 0
+  right: 0
+  font-size: 24px
+  display: none
+
+@media screen and (max-width: 768px)
+  body > header nav .navigation #navigation_toggle
+    display: block
+
+body > header nav a
+  display: inline-block
+  color: #333
+  text-decoration: none
+  height: 50px
+  line-height: 50px
+  padding: 0 22px
+
+body > header nav a:hover
+  color: #000
+  text-decoration: underline
+
+body > header nav #logo
+  vertical-align: middle
+  height: 30px
+  padding: 0
+  position: relative
+  top: -2px
+  line-height: 26px
+
+body > header nav #logo span
+  position: relative
+  top: 4px
+  margin-left: 14px
+  opacity: 0
+  -webkit-transition: opacity .1s ease-in 0
+  -moz-transition: opacity .1s ease-in 0
+  transition-property: opacity
+  transition-duration: 0.1s
+  transition-timing-function: ease-in
+  transition-delay: 0s
+
+body > header nav ul
+  margin: 0
+  padding: 0
+  text-align: right
+  height: 50px
+
+@media screen and (max-width: 768px)
+  body > header nav ul
+    height: auto
+    background-color: #226892
+    -webkit-box-shadow: 0 9px 30px 0 rgba(0, 0, 0, 0.14)
+    -moz-box-shadow: 0 9px 30px 0 rgba(0, 0, 0, 0.14)
+    box-shadow: 0 9px 30px 0 rgba(0, 0, 0, 0.14)
+    padding: 20px 30px
+    padding-top: 10px
+    margin-left: -15px
+    margin-right: -15px
+    display: none
+
+body > header nav li
+  display: inline-block
+  vertical-align: middle
+
+body > header nav li:last-child
+  margin-right: 0
+
+@media screen and (max-width: 768px)
+  body > header nav li
+    display: block
+    text-align: left
+    margin-right: 0
+
+@media screen and (max-width: 768px)
+  body > header nav li a
+    display: block
+    padding: 20px 22px
+    line-height: 10px
+
+  body > header nav li a:hover
+    background-color: #2676a7
+
+body > header nav li.active a
+  background-color: #e7e7e7
+
+#contact_us_link
+  border-radius: 5px
+  border: 1px solid #eee
+  font-size: .8em
+  margin-left: 20px
+  padding: 20px
+  height: 30px
+  line-height: 2px
+
+#contact_us_link:hover
+  text-decoration: none
+  background-color: #eee
+
+@media screen and (max-width: 768px)
+  #contact_us_link
+    margin-top: 5px
+    display: block
+    margin-bottom: 15px
+
+  #contact_us_link:hover
+    background-color: #f8f8f8
+
+body > header nav a.button
+  height: 30px
+  line-height: 30px
+  font-size: 13px
+  margin-left: 25px
+  top: -1px
+  position: relative
+
+.button
+  font-size: 14px
+  text-decoration: none
+  display: inline-block
+  line-height: 36px
+  height: 36px
+  background-color: #2b85bc
+  color: #fff
+  padding: 0px 30px
+  border-radius: 5px
+  border: 0px
+  cursor: pointer
+  position: relative
+  margin-top: -3px
+  margin-bottom: -3px
+
+.button:hover
+  text-decoration: none
+  color: #fff
+
+.button-green
+  background-color: #23c451
+
+.button-green:hover
+  background-color: #3BD566

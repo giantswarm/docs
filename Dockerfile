@@ -1,38 +1,9 @@
-FROM debian:jessie
-
-ENV DEBIAN_FRONTEND noninteractive
-
-WORKDIR /
-
-# install basics
-RUN apt-get update -qq && \
-  apt-get install -y -q --no-install-recommends \
-    wget \
-    curl \
-    ca-certificates \
-    python2.7 \
-    python-pip \
-    python-dev
-
-
-# install everything needed for docs indexing
-COPY requirements.txt /requirements.txt
-RUN pip install -r /requirements.txt
-
-
-# install HUGO
-RUN set -x \
-  && wget https://github.com/spf13/hugo/releases/download/v0.13/hugo_0.13_linux_amd64.tar.gz \
-  && tar xzf hugo_0.13_linux_amd64.tar.gz \
-  && mv hugo_0.13_linux_amd64/hugo_0.13_linux_amd64 /usr/bin/hugo \
-  && rm -r hugo_0.13_linux_amd64 \
-  && rm hugo_0.13_linux_amd64.tar.gz
-
-
-ADD . /docs
-
-WORKDIR /docs
-
-ENTRYPOINT ["/docs/run.sh"]
+FROM nginx:stable-alpine
 
 EXPOSE  80
+WORKDIR /
+ADD hugo_0.16_linux-64bit/hugo /usr/bin/hugo
+RUN chmod u+x /usr/bin/hugo
+ADD . /docs
+WORKDIR /docs/swarmdocs
+RUN hugo --destination /usr/share/nginx/html

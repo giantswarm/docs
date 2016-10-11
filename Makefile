@@ -6,14 +6,14 @@ SHELL=bash
 default: docker-build
 
 build-css:
-	sass swarmdocs/static/css/base.scss swarmdocs/static/css/base.css
+	sass swarmdocs/static/css/base.sass swarmdocs/static/css/base.css
 
-docker-build:
+docker-build: build-css
 	#
 	# clean
 	rm -rf swarmdocs/public/*
 	#
-	# copy content from content repo (which needs to be in the neighbor folder)
+	# copy content from docs-content repo
 	rm -rf swarmdocs/content
 	rm -rf swarmdocs/static/img
 	rm -rf docs-content
@@ -21,27 +21,16 @@ docker-build:
 	cp -r docs-content/content swarmdocs/
 	cp -r docs-content/img swarmdocs/static/
 	#
-	# cache date
-	echo -n `date +"%Y%m%d%H%M"` > swarmdocs/layouts/partials/cache_datestamp.html
-	#
-	# update download links
-	curl -s https://downloads.giantswarm.io/swarm/clients/VERSION > swarmdocs/layouts/partials/cli_latest_version.html
-	mkdir -p swarmdocs/layouts/shortcodes
-	cp swarmdocs/layouts/partials/cli_latest_version.html swarmdocs/layouts/shortcodes/cli_latest_version.html
-	#
-	# build
+	rm -rf build
+	# tie in recipes frome external repositories
+	./build-recipes.sh
+	# build docker image
 	docker build -t $(registry)/$(COMPANY)/$(PROJECT) .
 
 docker-run:
-	docker run --name=$(PROJECT) --rm -ti -p 80:80 \
-		-v $(shell pwd)/swarmdocs/:/docs/swarmdocs/ \
+	docker run --rm -ti -p 80:80 \
 		-e BASE_URL="http://docker.dev" \
-		$(registry)/$(COMPANY)/$(PROJECT):0.51.24
-
-swarm-update:
-	SWARM_CLUSTER_ID=leaseweb-alpha-private.giantswarm.io swarm --env="giantswarm/production" update docs/content-master
-	sleep 120
-	SWARM_CLUSTER_ID=leaseweb-alpha-private.giantswarm.io swarm --env="giantswarm/production" update docs/content-slave
+		$(registry)/$(COMPANY)/$(PROJECT)
 
 clean:
 	docker stop $(PROJECT)

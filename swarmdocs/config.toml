@@ -7,22 +7,14 @@ pluralizeListTitles = false
     plainIdAnchors = true
 
 [[menu.main]]
-    name = "Fundamentals"
-    url = "/fundamentals/"
+    name = "Basics"
+    url = "/basics/"
     weight = 20
 [[menu.main]]
-    name = "Guides"
+    name = "User Guides"
     url = "/guides/"
     weight = 30
 [[menu.main]]
-    name = "Reference"
-    url = "/reference/"
-    weight = 40
-[[menu.main]]
-    name = "Video"
-    url = "/video/"
-    weight = 50
-[[menu.main]]
     name = "FAQ"
     url = "/faq/"
-    weight = 60
+    weight = 50

@@ -1,13 +1,13 @@
 @charset "UTF-8";
 @font-face {
-  font-family: 'icomoon';
+  font-family: "icomoon";
   src: url("https://s.giantswarm.io/giantswarmio_fonts/1/icomoon.eot?bsop34");
   src: url("https://s.giantswarm.io/giantswarmio_fonts/1/icomoon.eot?bsop34#iefix") format("embedded-opentype"), url("https://s.giantswarm.io/giantswarmio_fonts/1/icomoon.ttf?bsop34") format("truetype"), url("https://s.giantswarm.io/giantswarmio_fonts/1/icomoon.woff?bsop34") format("woff"), url("https://s.giantswarm.io/giantswarmio_fonts/1/icomoon.svg?bsop34#icomoon") format("svg");
   font-weight: normal;
   font-style: normal; }
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
+  font-family: "icomoon" !important;
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -19,79 +19,79 @@
   -moz-osx-font-smoothing: grayscale; }
 
 .icon-envelope-o:before {
-  content: "\f003"; }
+  content: ""; }
 
 .icon-download:before {
-  content: "\f019"; }
+  content: ""; }
 
 .icon-book:before {
-  content: "\f02d"; }
+  content: ""; }
 
 .icon-map-marker:before {
-  content: "\f041"; }
+  content: ""; }
 
 .icon-chevron-left:before {
-  content: "\f053"; }
+  content: ""; }
 
 .icon-chevron-right:before {
-  content: "\f054"; }
+  content: ""; }
 
 .icon-exclamation-circle:before {
-  content: "\f06a"; }
+  content: ""; }
 
 .icon-calendar:before {
-  content: "\f073"; }
+  content: ""; }
 
 .icon-twitter-square:before {
-  content: "\f081"; }
+  content: ""; }
 
 .icon-facebook-square:before {
-  content: "\f082"; }
+  content: ""; }
 
 .icon-linkedin-square:before {
-  content: "\f08c"; }
+  content: ""; }
 
 .icon-github-square:before {
-  content: "\f092"; }
+  content: ""; }
 
 .icon-phone:before {
-  content: "\f095"; }
+  content: ""; }
 
 .icon-twitter:before {
-  content: "\f099"; }
+  content: ""; }
 
 .icon-github:before {
-  content: "\f09b"; }
+  content: ""; }
 
 .icon-square:before {
-  content: "\f0c8"; }
+  content: ""; }
 
 .icon-bars:before {
-  content: "\f0c9"; }
+  content: ""; }
 
 .icon-navicon:before {
-  content: "\f0c9"; }
+  content: ""; }
 
 .icon-reorder:before {
-  content: "\f0c9"; }
+  content: ""; }
 
 .icon-google-plus-square:before {
-  content: "\f0d4"; }
+  content: ""; }
 
 .icon-google-plus:before {
-  content: "\f0d5"; }
+  content: ""; }
 
 .icon-envelope:before {
-  content: "\f0e0"; }
+  content: ""; }
 
 .icon-linkedin:before {
-  content: "\f0e1"; }
+  content: ""; }
 
 .icon-github-alt:before {
-  content: "\f113"; }
+  content: ""; }
 
 .icon-angellist:before {
-  content: "\f209"; }
+  content: ""; }
 
 body {
   margin-bottom: 0px; }
@@ -408,8 +408,8 @@ body > header nav #logo span {
   top: 4px;
   margin-left: 14px;
   opacity: 0;
-  -webkit-transition: opacity .1s ease-in 0;
-  -moz-transition: opacity .1s ease-in 0;
+  -webkit-transition: opacity 0.1s ease-in 0;
+  -moz-transition: opacity 0.1s ease-in 0;
   transition-property: opacity;
   transition-duration: 0.1s;
   transition-timing-function: ease-in;
@@ -459,7 +459,7 @@ body > header nav li.active a {
 #contact_us_link {
   border-radius: 5px;
   border: 1px solid #eee;
-  font-size: .8em;
+  font-size: 0.8em;
   margin-left: 20px;
   padding: 20px;
   height: 30px;
@@ -823,6 +823,9 @@ ul.notype li {
 .linklist .meta {
   margin-top: 6px; }
 
+.linklist.linklist-compact li {
+  margin-bottom: 6px; }
+
 #TableOfContents {
   font-size: 14px;
   border: 1px solid #ddd;
@@ -860,7 +863,7 @@ ul.notype li {
   border-left-color: #234a61;
   text-decoration: none; }
 
-/** Search **/
+/** Search */
 form.search-full {
   margin-top: 20px;
   margin-bottom: 30px; }
