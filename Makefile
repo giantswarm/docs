@@ -32,11 +32,6 @@ docker-run:
 		-e BASE_URL="http://docker.dev" \
 		$(registry)/$(COMPANY)/$(PROJECT)
 
-swarm-update:
-	SWARM_CLUSTER_ID=leaseweb-alpha-private.giantswarm.io swarm --env="giantswarm/production" update docs/content-master
-	sleep 120
-	SWARM_CLUSTER_ID=leaseweb-alpha-private.giantswarm.io swarm --env="giantswarm/production" update docs/content-slave
-
 clean:
 	docker stop $(PROJECT)
 	docker rm $(PROJECT)
