@@ -5,7 +5,7 @@ services:
     image: registry.giantswarm.io/giantswarm/sitesearch:0.3.1
 
   content:
-    image: registry.giantswarm.io/giantswarm/docs:secondgen
+    image: registry.giantswarm.io/giantswarm/docs:latest
 
   proxy:
     image: registry.giantswarm.io/giantswarm/docs-proxy:secondgen
@@ -21,7 +21,7 @@ services:
       - "sitesearch"
     environment:
       REPOSITORY_URL: https://github.com/giantswarm/docs-content.git
-      REPOSITORY_BRANCH: secondgen
+      REPOSITORY_BRANCH: master
       REPOSITORY_SUBFOLDER: content
       EXTERNAL_REPOSITORY_SUBFOLDER: docs
       KEEP_PROCESS_ALIVE: "True"
