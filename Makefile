@@ -13,11 +13,11 @@ docker-build: build-css
 	# clean
 	rm -rf swarmdocs/public/*
 	#
-	# copy content from content repo (which needs to be in the neighbor folder)
+	# copy content from docs-content repo
 	rm -rf swarmdocs/content
 	rm -rf swarmdocs/static/img
-	#rm -rf docs-content
-	#git clone --depth 1 -b secondgen git@github.com:giantswarm/docs-content.git
+	rm -rf docs-content
+	git clone --depth 1 git@github.com:giantswarm/docs-content.git
 	cp -r docs-content/content swarmdocs/
 	cp -r docs-content/img swarmdocs/static/
 	#
