@@ -1,14 +1,28 @@
 {
 	"giantswarm/staging": {
 		"domain_name": "docs.staging.gigantic.io",
-		"sitesearch_image": "registry.giantswarm.io/giantswarm/sitesearch:latest",
-		"content_image": "registry.giantswarm.io/giantswarm/docs:201609301130",
-		"proxy_image": "registry.giantswarm.io/giantswarm/docs-proxy:latest"
+		"sitesearch_image": "registry.giantswarm.io/giantswarm/sitesearch:0.3.1",
+		"content_image": "registry.giantswarm.io/giantswarm/docs:secondgen-2016-10-11-11-44-06",
+		"proxy_image": "registry.giantswarm.io/giantswarm/docs-proxy:0.6.0",
+		"indexer_image": "registry.giantswarm.io/giantswarm/docs-indexer:0.1.0",
+		"ELASTICSEARCH_ENDPOINT": "http://admin:e4dfbjb3rohi8qpoadsffodin@sitesearch:9200",
+		"REPOSITORY_URL": "https://github.com/giantswarm/docs-content.git",
+		"REPOSITORY_BRANCH": "master",
+		"REPOSITORY_SUBFOLDER": "content",
+		"EXTERNAL_REPOSITORY_SUBFOLDER": "docs",
+		"KEEP_PROCESS_ALIVE": "True"
 	},
 	"giantswarm/production": {
 		"domain_name": "docs.giantswarm.io",
-		"sitesearch_image": "registry.giantswarm.io/giantswarm/sitesearch:latest",
-		"content_image": "registry.giantswarm.io/giantswarm/docs:latest",
-		"proxy_image": "registry.giantswarm.io/giantswarm/docs-proxy:latest"
+		"sitesearch_image": "registry.giantswarm.io/giantswarm/sitesearch:0.3.1",
+		"content_image": "registry.giantswarm.io/giantswarm/docs:1.0.0",
+		"proxy_image": "registry.giantswarm.io/giantswarm/docs-proxy:0.6.0",
+		"indexer_image": "registry.giantswarm.io/giantswarm/docs-indexer:0.1.0",
+		"ELASTICSEARCH_ENDPOINT": "http://admin:e4dfbjb3rohi8qpoadsffodin@sitesearch:9200",
+		"REPOSITORY_URL": "https://github.com/giantswarm/docs-content.git",
+		"REPOSITORY_BRANCH": "master",
+		"REPOSITORY_SUBFOLDER": "content",
+		"EXTERNAL_REPOSITORY_SUBFOLDER": "docs",
+		"KEEP_PROCESS_ALIVE": "True"
 	}
 }

@@ -7,8 +7,7 @@
             "links": [
                 {
                     "component": "content",
-                    "target_port": 80,
-                    "alias": "docsmaster"
+                    "target_port": 80
                 },
                 {
                     "component": "sitesearch",
@@ -21,13 +20,7 @@
         },
         "content": {
             "image": "$content_image",
-            "ports": 80,
-            "links": [
-                {
-                    "component": "sitesearch",
-                    "target_port": 9200
-                }
-            ]
+            "ports": 80
         },
         "sitesearch": {
             "image": "$sitesearch_image",
@@ -38,6 +31,23 @@
                     "size": "2 GB"
                 }
             ]
+        },
+        "indexer": {
+            "image": "$indexer_image",
+            "links": [
+                {
+                    "component": "sitesearch",
+                    "target_port": 9200
+                }
+            ],
+            "env": {
+                "ELASTICSEARCH_ENDPOINT": "$ELASTICSEARCH_ENDPOINT",
+                "REPOSITORY_URL": "$REPOSITORY_URL",
+                "REPOSITORY_BRANCH": "$REPOSITORY_BRANCH",
+                "REPOSITORY_SUBFOLDER": "$REPOSITORY_SUBFOLDER",
+                "EXTERNAL_REPOSITORY_SUBFOLDER": "$EXTERNAL_REPOSITORY_SUBFOLDER",
+                "KEEP_PROCESS_ALIVE": "$KEEP_PROCESS_ALIVE"
+            }
         }
     }
 }
