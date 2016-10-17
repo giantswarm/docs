@@ -35,10 +35,12 @@ The build will clone the [giantswarm/docs-content](https://github.com/giantswarm
 
 ## Deploying
 
-1. Deploy the `content` component
-2. Stop and start the `indexer` component to update the search index
+1. Build the new image
+2. Deploy the `content` component
+3. Stop and start the `indexer` component to update the search index
 
 ```nohighlight
+builder release patch
 SWARM_CLUSTER_ID=leaseweb-alpha-private.giantswarm.io swarm --env=giantswarm/production update docs/content <version-tag>
 SWARM_CLUSTER_ID=leaseweb-alpha-private.giantswarm.io swarm --env=giantswarm/production stop docs/indexer
 SWARM_CLUSTER_ID=leaseweb-alpha-private.giantswarm.io swarm --env=giantswarm/production start docs/indexer
