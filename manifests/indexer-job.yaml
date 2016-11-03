@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  namespace: docs
+  name: indexer
+spec:
+  template:
+    metadata:
+      labels:
+        app: docs
+        component: indexer
+      name: indexer
+    spec:
+      containers:
+       - name: indexer
+         image: registry.giantswarm.io/giantswarm/docs-indexer:0.1.1
+         env:
+          - name: ELASTICSEARCH_ENDPOINT
+            value: http://admin:e4dfbjb3rohi8qpoadsffodin@sitesearch:9200
+          - name: EXTERNAL_REPOSITORY_SUBFOLDER
+            value: docs
+          - name: REPOSITORY_BRANCH
+            value: master
+          - name: REPOSITORY_SUBFOLDER
+            value: content
+          - name: REPOSITORY_URL
+            value: https://github.com/giantswarm/docs-content.git
+      restartPolicy: OnFailure
+      imagePullSecrets:
+       - name: registry-pull-secret

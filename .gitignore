@@ -14,3 +14,4 @@ sitesearch-volume-data
 *.map
 .sass-cache
 build/
+manifests/secrets.yaml

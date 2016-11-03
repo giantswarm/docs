@@ -1,0 +1,11 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  namespace: docs
+  name: ingress
+  labels:
+    app: docs
+spec:
+  backend:
+    serviceName: proxy
+    servicePort: 80

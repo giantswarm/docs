@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  namespace: docs
+  name: sitesearch
+  labels:
+    app: docs
+    component: sitesearch
+spec:
+  ports:
+    - port: 9200
+      targetPort: http
+  selector:
+    app: docs
+    component: sitesearch
