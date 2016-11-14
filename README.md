@@ -46,6 +46,10 @@ SWARM_CLUSTER_ID=leaseweb-alpha-private.giantswarm.io swarm --env=giantswarm/pro
 SWARM_CLUSTER_ID=leaseweb-alpha-private.giantswarm.io swarm --env=giantswarm/production start docs/indexer
 ```
 
+## Maintaining the firt generation docs site
+
+The archived documentation at http://firstgen-docs.giantswarm.io is also based on this repository, using the protected `firstgen` branch. The same goes for related repositories.
+
 ## About writing for the documentation
 
 There is more information available in the [Wiki](https://git.giantswarm.io/giantswarm/docs/wikis/home).
