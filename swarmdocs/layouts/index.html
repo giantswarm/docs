@@ -21,20 +21,22 @@
       </ul>
     </div>
     <div class="col-md-5">
-      <h2>Work with Giant Swarm </h2>
-      <p>You know how Kubernetes works. You know how Giant Swarm sets up Kubernetes clusters. Here you find content helping to make you productive.</p>
+      <h2>User Guides</h2>
+      <h3>Tutorials</h3>
+      <ul class="linklist linklist-compact">
+        {{ range .Data.Pages }}
+          {{ if in .Params.tags "tutorial" }}
+            <li><a href="{{ .Permalink | relURL }}">{{ .Title }}</a></li>
+          {{ end }}
+        {{ end }}
+      </ul>
       <h3>Recipes</h3>
       <ul class="linklist linklist-compact">
-        <li><a href="/guides/accessing-services-from-the-outside/">Accessing Services from the outside</a></li>
-        <li><a href="/guides/install-kubernetes-dashboard">Installing the Kubernetes Dashboard</a></li>
-        <li><a href="/guides/kubernetes-elastic-stack/">Logging with Elastic</a></li>
-        <li><a href="/guides/kubernetes-prometheus/">Monitoring with Prometheus and Grafana</a></li>
-        <li><a href="/guides/weave-scope-cloud/">Setting up Weave Scope or Weave Cloud</a></li>
-        <li><a href="/guides/kubernetes-heapster/">Adding Metrics with Heapster</a></li>
-        <li><a href="/guides/kubernetes-registry/">Running a Private Docker Registry</a></li>
-        <li><a href="/guides/using-the-cabin-mobile-app/">Using the Cabin Mobile App</a></li>
-        <li><a href="/guides/twitter-hot-urls-example/">Microservices &amp; Custom Metrics Example</a></li>
-        <li><a href="/guides/scheduling-constraints-and-resource-qos/">Scheduling Constraints and Resource Quality of Service</a></li>
+        {{ range .Data.Pages }}
+          {{ if in .Params.tags "recipe" }}
+            <li><a href="{{ .Permalink | relURL }}">{{ .Title }}</a></li>
+          {{ end }}
+        {{ end }}
       </ul>
     </div>
 
