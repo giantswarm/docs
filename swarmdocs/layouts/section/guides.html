@@ -3,17 +3,38 @@
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
     <h1 id="title">User Guides</h1>
+    <p>We offer two types of guides: <a href="#tutorials">Tutorials</a> guide you through solving special needs, while providing some useful knowledge along the way. <a href="#recipes">Recipes</a> help you deploying software for common use cases, by focusing on quick success.</p>
 
-    <h2>Recipes</h2>
+    <h2 id="tutorials">Tutorials</h2>
+
+    <p>Our tutorials guide you through solving special needs, while providing some useful knowledge along the way.</p>
 
     <ul class="linklist">
       {{ range .Data.Pages }}
-      <li>
-        <a href="{{ .Permalink | relURL }}">{{ .Title }}</a>
-        <div class="meta">{{ .Description }}</div>
-      </li>
+        {{ if in .Params.tags "tutorial" }}
+        <li>
+          <a href="{{ .Permalink | relURL }}">{{ .Title }}</a>
+          <div class="meta">{{ .Description }}</div>
+        </li>
+        {{ end }}
       {{ end }}
     </ul>
+
+    <h2 id="recipes">Recipes</h2>
+
+    <p></p>
+
+    <ul class="linklist">
+      {{ range .Data.Pages }}
+        {{ if in .Params.tags "recipe" }}
+        <li>
+          <a href="{{ .Permalink | relURL }}">{{ .Title }}</a>
+          <div class="meta">{{ .Description }}</div>
+        </li>
+        {{ end }}
+      {{ end }}
+    </ul>
+
 
     {{ partial "feedback_reference.html" . }}
 
