@@ -42,7 +42,7 @@ do
 	rm -rf ${reponame}
 
 	# Clone the repository from github
-	git clone --depth 1 -b more-structure https://github.com/giantswarm/${reponame}.git
+	git clone --depth 1 https://github.com/giantswarm/${reponame}.git
 
 	# Create folders for markdown and images
 	mkdir -p ${CONTENT_BASE_DIR}/${targetpath}/${reponame}

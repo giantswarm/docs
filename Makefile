@@ -17,7 +17,7 @@ docker-build: build-css
 	rm -rf swarmdocs/content
 	rm -rf swarmdocs/static/img
 	rm -rf docs-content
-	git clone --depth 1 -b more-structure git@github.com:giantswarm/docs-content.git
+	git clone --depth 1 git@github.com:giantswarm/docs-content.git
 	cp -r docs-content/content swarmdocs/
 	cp -r docs-content/img swarmdocs/static/
 	#
