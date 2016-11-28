@@ -2,34 +2,50 @@
 
 <div id="home">
   <div class="row">
-    <div class="col-md-5 col-md-offset-1">
+    <div class="col-sm-12">
       <h2>Learn about Giant Swarm</h2>
-      <p>Useful information on how Giant Swarm sets up Kubernetes clusters, plus some pointers to great resources on Kubernetes.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
       <ul class="linklist">
         <li>
           <a href="/basics/kubernetes-on-giant-swarm/">Details on Kubernetes on Giant Swarm</a>
           <div class="meta">Here  you learn how we set up things for you and what we manage for you, so you don't have to.</div>
         </li>
+      </ul>
+    </div>
+    <div class="col-sm-4">
+      <ul class="linklist">
         <li>
           <a href="/basics/kubernetes-fundamentals/">Kubernetes Fundamentals</a>
           <div class="meta">Pointers to the best resources about Kubernetes, to get you up to speed with Kubernetes fast</div>
         </li>
+      </ul>
+    </div>
+    <div class="col-sm-4">
+      <ul class="linklist">
         <li>
           <a href="/faq/">Frequently Asked Questions</a>
           <div class="meta">Quick facts in a compact format</div>
         </li>
       </ul>
     </div>
-    <div class="col-md-5">
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <hr />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
       <h2>User Guides</h2>
-      <h3>Tutorials</h3>
-      <ul class="linklist linklist-compact">
-        {{ range .Data.Pages }}
-          {{ if in .Params.tags "tutorial" }}
-            <li><a href="{{ .Permalink | relURL }}">{{ .Title }}</a></li>
-          {{ end }}
-        {{ end }}
-      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
       <h3>Recipes</h3>
       <ul class="linklist linklist-compact">
         {{ range .Data.Pages }}
@@ -39,8 +55,34 @@
         {{ end }}
       </ul>
     </div>
-
+    <div class="col-sm-6">
+      <h3>Tutorials</h3>
+      <ul class="linklist linklist-compact">
+        {{ range .Data.Pages }}
+          {{ if in .Params.tags "tutorial" }}
+            <li><a href="{{ .Permalink | relURL }}">{{ .Title }}</a></li>
+          {{ end }}
+        {{ end }}
+      </ul>
+    </div>
   </div> <!-- row -->
+
+  <div class="row">
+    <div class="col-md-12">
+      <hr />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h2>Reference Documentation</h2>
+      <ul class="linklist linklist-compact">
+        <li><a href="/reference/gsctl/">gsctl - The Giant Swarm command line utility</a> <span class="label label-info">NEW</span></li>
+        <li><a href="http://kubernetes.io/docs/user-guide/kubectl-overview/">kubectl reference <i class="fa fa-external-link" aria-hidden="true"></i></a></li>
+        <li><a href="http://kubernetes.io/docs/api/">Kubernetes API reference <i class="fa fa-external-link" aria-hidden="true"></i></a></li>
+      </ul>
+    </div>
+  </div>
 
 
   {{ partial "search_cta.html" . }}
