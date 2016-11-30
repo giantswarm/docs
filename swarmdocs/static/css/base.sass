@@ -24,6 +24,10 @@ h4
   margin-top: 20px
   margin-bottom: 20px
 
+h5
+  font-weight: 700
+  font-size: 16px
+
 pre
   background-color: #002b36
   padding: 4
@@ -338,11 +342,11 @@ ul.notype li
   display: block
   border-left: 2px solid #fff
 
-/* second level entries
+// second level entries
 #TableOfContents ul ul a
   padding-left: 32px
 
-/* third level entries
+// third level entries
 #TableOfContents ul ul ul a
   display: none
 
@@ -358,7 +362,7 @@ ul.notype li
   border-left-color: #234a61
   text-decoration: none
 
-/** Search *
+// Search
 form.search-full
   margin-top: 20px
   margin-bottom: 30px
@@ -412,7 +416,7 @@ a.item em
 a.item .hellip
   color: #aaa
 
-/* Nav Pills
+// Nav Pills
 .nav-pills > li.active > a
   background-color: #3e83ac
 
@@ -469,3 +473,37 @@ ul.links li
   padding-top: 10px
   padding-left: 19px
   padding-right: 19px
+
+// headline link icon
+.header-link
+  position: absolute
+  left: -0.5em
+  opacity: 0
+  font-size: 20px
+  line-height: 40px
+
+  -webkit-transition: opacity 0.2s ease-in-out 0.1s
+  -moz-transition: opacity 0.2s ease-in-out 0.1s
+  -ms-transition: opacity 0.2s ease-in-out 0.1s
+
+  :hover
+    color: #666
+
+h3 .header-link
+  font-size: 20px
+  line-height: 33px
+
+h4 .header-link
+  font-size: 18px
+  line-height: 22px
+
+h5 .header-link
+  font-size: 16px
+  line-height: 20px
+
+h2:hover .header-link, h3:hover .header-link, h4:hover .header-link, h5:hover .header-link, h6:hover .header-link
+  opacity: 1
+  color: #666
+
+.headline-with-link
+  cursor: default

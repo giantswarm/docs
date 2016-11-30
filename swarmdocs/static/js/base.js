@@ -126,7 +126,7 @@ function doSearch(q) {
 
 /**
  * Returns a jQuery DOM object for a given search result entry
- * 
+ *
  * @param index  Int     Index number of this entry, starting with 0
  * @param data   Object  Result hit item as returned by elasticsearch
  */
@@ -217,5 +217,19 @@ $(".search-cta input").on("change keypress keyup", function(evt){
     }
 });
 
+// link headlines
+// Thanks to http://ben.balter.com/2014/03/13/pages-anchor-links/!
+$(function() {
+  return $("h2, h3, h4, h5, h6").each(function(i, el) {
+    var $el, icon, id;
+    $el = $(el);
+    id = $el.attr('id');
+    icon = '<i class="fa fa-link"></i>';
+    if (id) {
+      console.log("Linking headline ID", id);
+      $el.addClass("headline-with-link");
+      return $el.prepend($("<a />").addClass("header-link").attr("href", "#" + id).html(icon));
     }
+  });
+});
 
