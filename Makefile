@@ -21,6 +21,14 @@ docker-build: build-css
 	cp -r docs-content/content swarmdocs/
 	cp -r docs-content/img swarmdocs/static/
 	#
+	# Cache breaker
+	echo -n `md5 -q ./swarmdocs/static/css/base.css|head -c 9` > swarmdocs/layouts/partials/cachebreaker_css.html
+	echo -n `md5 -q ./swarmdocs/static/js/base.js|head -c 9` > swarmdocs/layouts/partials/cachebreaker_js.html
+	#
+	# Latest gsctl version
+	mkdir -p swarmdocs/layouts/shortcodes
+	curl -s https://downloads.giantswarm.io/gsctl/VERSION > swarmdocs/layouts/shortcodes/gsctl_version.html
+	#
 	rm -rf build
 	# tie in recipes frome external repositories
 	./build-recipes.sh

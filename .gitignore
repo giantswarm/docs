@@ -4,6 +4,8 @@ swarmdocs/public
 swarmdocs/archetypes
 swarmdocs/content
 swarmdocs/static/img
+swarmdocs/layouts/partials/cachebreaker*
+swarmdocs/layouts/partials/gsctl_version.html
 .DS_Store
 linklinttest
 docs-content
