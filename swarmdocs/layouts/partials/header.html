@@ -25,7 +25,7 @@
     <link rel="stylesheet" type="text/css" href="https://s.giantswarm.io/giantswarmio/0.10.18/1/base.css">
     <link rel="stylesheet" type="text/css" href="/css/font-awesome-4.0.3.css">
     <link rel="stylesheet" type="text/css" href="https://s.giantswarm.io/highlightjs/8.4.0/1/solarized_dark.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/base.css?{{ partial "cachebreaker.html" . }}">
+    <link rel="stylesheet" type="text/css" href="/css/base.css?{{ partial "cachebreaker_css.html" . }}">
   </head>
   <body data-spy="scroll" data-target="#TableOfContents" class="{{if .IsPage}}{{ replace .RelPermalink "/" "_" }}{{end}}">
     {{ partial "topnav.html" . }}
