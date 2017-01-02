@@ -631,6 +631,9 @@ a code {
   border-bottom-width: 1px;
   height: 42px; }
 
+.nav-tabs {
+  margin-top: 20px; }
+
 .nav-tabs > li > a:hover {
   background-color: #dff0d8 !important; }
 
@@ -1003,5 +1006,8 @@ h2:hover .header-link, h3:hover .header-link, h4:hover .header-link, h5:hover .h
 
 .headline-with-link {
   cursor: default; }
+
+.tab-pane {
+  padding-top: 20px; }
 
 /*# sourceMappingURL=base.css.map */
