@@ -16,7 +16,7 @@ pluralizeListTitles = false
     weight = 30
 [[menu.main]]
     name = "Reference"
-    url = "/reference/gsctl/"
+    url = "/reference/"
     weight = 40
 [[menu.main]]
     name = "FAQ"
