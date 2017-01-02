@@ -631,6 +631,9 @@ a code {
   border-bottom-width: 1px;
   height: 42px; }
 
+.nav-tabs {
+  margin-top: 20px; }
+
 .nav-tabs > li > a:hover {
   background-color: #dff0d8 !important; }
 
