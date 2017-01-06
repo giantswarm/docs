@@ -451,10 +451,16 @@ ul.links li
 .breadcrumb
   background-color: #fff !important
   padding-left: 0px !important
-  border-top: 1px solid #ddd
+  margin-top: 0px
+  margin-bottom: 15px
+  padding-top: 0px
+  padding-bottom: 0px !important
+  font-size: 13px
 
   li + li:before
-    content: "→"
+    content: ""
+  li.item + li.item:before
+    content: "▸"
 
 .nav
   li

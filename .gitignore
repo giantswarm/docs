@@ -3,6 +3,7 @@ venv*
 swarmdocs/public
 swarmdocs/archetypes
 swarmdocs/content
+swarmdocs/data
 swarmdocs/static/img
 swarmdocs/layouts/partials/cachebreaker*
 swarmdocs/layouts/shortcodes/gsctl_version.html
