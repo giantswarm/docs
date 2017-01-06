@@ -1,0 +1,21 @@
+{{/* Breadcrumb that is rendered based on path segments.
+  A minimum length is configured, so that the breadcrumb does not
+  appear on the two topmost levels.
+  Friendly labels can be configured in docs/data/navtitles.yaml
+*/}}
+{{ $shortenedUrl := print ( .RelPermalink | replaceRE "[^/]+/$" "") }}
+{{ $urlElements := split $shortenedUrl "/" }}
+{{ $breadcrumLen := len $urlElements }}
+{{ if gt $breadcrumLen 1 }}
+<ol class="breadcrumb">
+  <li class="prefix">Back to:</li>
+  <li class="item"><a href="/" class="crumb">Docs</a></li>
+  {{ range $index, $element := split $shortenedUrl "/" }}
+    {{ $.Scratch.Add "path" $element }}
+      {{ if ne $element "" }}
+      <li class="item"><a href="/{{ $.Scratch.Get "path" }}/">{{- if isset $.Site.Data.navtitles . }}{{- index $.Site.Data.navtitles . -}}{{ else }}{{ . }}{{ end -}}</a></li>
+      {{ $.Scratch.Add "path" "/" }}
+      {{ end }}
+  {{ end }}
+</ol>
+{{ end }}

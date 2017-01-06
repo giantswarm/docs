@@ -15,6 +15,9 @@
     </div>
   </div>
   <div class="col-sm-12 col-md-8 col-lg-8 col-lg-offset-1">
+
+    {{ partial "breadcrumb.html" . }}
+
     <div class="content">
       <p class="lastmod">Last modified {{ .Date.Format "January 2, 2006" }}</p>
 

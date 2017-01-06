@@ -20,6 +20,7 @@ docker-build: build-css
 	git clone --depth 1 git@github.com:giantswarm/docs-content.git
 	cp -r docs-content/content swarmdocs/
 	cp -r docs-content/img swarmdocs/static/
+	cp -r docs-content/data swarmdocs/
 	#
 	# Cache breaker
 	echo -n `md5 -q ./swarmdocs/static/css/base.css|head -c 9` > swarmdocs/layouts/partials/cachebreaker_css.html
