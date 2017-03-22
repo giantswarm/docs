@@ -6,33 +6,37 @@ SHELL=bash
 default: docker-build
 
 build-css:
-	sass swarmdocs/static/css/base.sass swarmdocs/static/css/base.css
+	sass src/static/css/base.sass src/static/css/base.css
+
+vendor:
+
 
 docker-build: build-css
 	#
 	# clean
-	rm -rf swarmdocs/public/*
+	rm -rf build
+
+	# create build directory
+	mkdir build
+
+	# copy src to build directory
+	cp -r src/ build/
 	#
 	# copy content from docs-content repo
-	rm -rf swarmdocs/content
-	rm -rf swarmdocs/static/img
-	rm -rf docs-content
-	git clone --depth 1 git@github.com:giantswarm/docs-content.git
-	cp -r docs-content/content swarmdocs/
-	cp -r docs-content/img swarmdocs/static/
-	cp -r docs-content/data swarmdocs/
+	cp -r vendor/docs-content/content build/
+	cp -r vendor/docs-content/img build/static/
 	#
 	# Cache breaker
-	echo -n `md5 -q ./swarmdocs/static/css/base.css|head -c 9` > swarmdocs/layouts/partials/cachebreaker_css.html
-	echo -n `md5 -q ./swarmdocs/static/js/base.js|head -c 9` > swarmdocs/layouts/partials/cachebreaker_js.html
+	echo -n `md5 -q ./build/static/css/base.css|head -c 9` > build/layouts/partials/cachebreaker_css.html
+	echo -n `md5 -q ./build/static/js/base.js|head -c 9` > build/layouts/partials/cachebreaker_js.html
 	#
 	# Latest gsctl version
-	mkdir -p swarmdocs/layouts/shortcodes
-	curl -s https://downloads.giantswarm.io/gsctl/VERSION > swarmdocs/layouts/shortcodes/gsctl_version.html
+	mkdir -p build/layouts/shortcodes
+	curl -s https://downloads.giantswarm.io/gsctl/VERSION > build/layouts/shortcodes/gsctl_version.html
+
 	#
-	rm -rf build
 	# tie in recipes frome external repositories
-	./build-recipes.sh
+	./build-external-repositories.sh
 	# build docker image
 	docker build -t $(registry)/$(COMPANY)/$(PROJECT) .
 
@@ -42,6 +46,7 @@ docker-run:
 		$(registry)/$(COMPANY)/$(PROJECT)
 
 clean:
+	rm -rf build
 	docker stop $(PROJECT)
 	docker rm $(PROJECT)
 	docker rmi $(registry)/$(COMPANY)/$(PROJECT)
