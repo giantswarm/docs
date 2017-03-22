@@ -2,7 +2,6 @@
 venv*
 .DS_Store
 linklinttest
-docs-content
 sitesearch-volume-data
 *.map
 .sass-cache
