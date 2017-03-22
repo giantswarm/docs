@@ -16,7 +16,7 @@ spec:
         component: content
     spec:
       containers:
-        - image: registry.giantswarm.io/giantswarm/docs:1.1.6
+        - image: registry.giantswarm.io/giantswarm/docs:%%DOCKER_TAG%%
           name: content
           ports:
             - containerPort: 80

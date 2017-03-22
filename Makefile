@@ -11,7 +11,7 @@ build-css:
 vendor:
 
 
-docker-build: build-css
+build: build-css
 	#
 	# clean
 	rm -rf build
@@ -38,6 +38,8 @@ docker-build: build-css
 	# tie in recipes frome external repositories
 	./build-external-repositories.sh
 	# build docker image
+
+docker-build: build
 	docker build -t $(registry)/$(COMPANY)/$(PROJECT) .
 
 docker-run:
