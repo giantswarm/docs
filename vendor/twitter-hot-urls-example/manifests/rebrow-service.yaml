@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rebrow
+  namespace: thux
+  labels:
+    app: thux
+    component: rebrow
+spec:
+  type: NodePort
+  ports:
+  - port: 5001
+  selector:
+    app: thux
+    component: rebrow

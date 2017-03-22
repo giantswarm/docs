@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: registry
+  namespace: registry
+  labels:
+    app: registry
+    component: main
+spec:
+  type: NodePort
+  ports:
+  - name: registry
+    port: 5000
+    protocol: TCP
+  selector:
+    app: registry
+    component: main

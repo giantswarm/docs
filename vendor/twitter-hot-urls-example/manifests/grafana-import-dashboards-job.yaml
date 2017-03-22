@@ -1,0 +1,37 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: grafana-import-dashboards
+  namespace: thux
+  labels:
+    app: grafana
+    component: import-dashboards
+spec:
+  template:
+    metadata:
+      name: grafana-import-dashboards
+      labels:
+        app: grafana
+        component: import-dashboards
+    spec:
+      containers:
+      - name: grafana-import-dashboards
+        image: docker
+        command: ["/bin/sh", "-c"]
+        workingDir: /opt/grafana-import-dashboards
+        args:
+          - >
+            echo 'import dashboard "thux"' &&
+            curl --silent --fail --show-error \
+              --request POST http://admin:admin@grafana.monitoring.svc:3000/api/dashboards/import \
+              --header "Content-Type: application/json" \
+              --data-binary @thux.json ;
+
+        volumeMounts:
+        - name: config-volume
+          mountPath: /opt/grafana-import-dashboards
+      restartPolicy: Never
+      volumes:
+      - name: config-volume
+        configMap:
+          name: grafana-import-dashboards
