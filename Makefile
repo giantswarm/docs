@@ -34,8 +34,8 @@ build: build-css
 	cp -r vendor/docs-content/img build/static/
 	#
 	# Cache breaker
-	echo -n `md5 -q ./build/static/css/base.css|head -c 9` > build/layouts/partials/cachebreaker_css.html
-	echo -n `md5 -q ./build/static/js/base.js|head -c 9` > build/layouts/partials/cachebreaker_js.html
+	echo -n `git hash-object ./build/static/css/base.css|head -c 9` > build/layouts/partials/cachebreaker_css.html
+	echo -n `git hash-object ./build/static/js/base.js|head -c 9` > build/layouts/partials/cachebreaker_js.html
 	#
 	# Latest gsctl version
 	mkdir -p build/layouts/shortcodes
