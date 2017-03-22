@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Here we pull in recipes content from external repositories. While doing so we do
+# Here we pull in content from external repositories. While doing so we do
 # - copy images (png, jpg)to a special folder
 # - copy markdown content to another folder
 # - Rewrite image references in the markdown
