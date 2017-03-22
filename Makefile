@@ -13,7 +13,10 @@ vendor: clean
 	git clone --depth 1 git@github.com:giantswarm/docs-content.git vendor/docs-content
 	rm -rf vendor/docs-content/.git
 
-	wget https://github.com/spf13/hugo/releases/download/v0.16/hugo_0.16_linux-64bit.tgz vendor/docs-content
+	mkdir vendor/hugo
+	cd vendor/hugo && wget https://github.com/spf13/hugo/releases/download/v0.16/hugo_0.16_linux-64bit.tgz
+	cd vendor/hugo && tar -xvf hugo_0.16_linux-64bit.tgz
+	cd vendor/hugo && rm hugo_0.16_linux-64bit.tgz
 
 build: build-css
 	#
