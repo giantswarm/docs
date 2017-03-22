@@ -8,8 +8,12 @@ default: docker-build
 build-css:
 	sass src/static/css/base.sass src/static/css/base.css
 
-vendor:
+vendor: clean
+	mkdir vendor
+	git clone --depth 1 git@github.com:giantswarm/docs-content.git vendor/docs-content
+	rm -rf vendor/docs-content/.git
 
+	wget https://github.com/spf13/hugo/releases/download/v0.16/hugo_0.16_linux-64bit.tgz vendor/docs-content
 
 build: build-css
 	#
@@ -49,9 +53,7 @@ docker-run:
 
 clean:
 	rm -rf build
-	docker stop $(PROJECT)
-	docker rm $(PROJECT)
-	docker rmi $(registry)/$(COMPANY)/$(PROJECT)
+	rm -rf vendor
 
 linkcheck:
 	linklint -http -host docker.dev -limit 1000 -doc linklinttest /@
