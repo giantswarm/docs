@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Here we pull in content from external repositories. While doing so we do
 # - copy images (png, jpg)to a special folder
@@ -20,7 +20,7 @@ CONTENT_BASE_DIR=$(pwd)/build
 # Path to where images should be copied to
 IMG_BASE_DIR=$(pwd)/build/static/img
 
-cat ../vendor/docs-content/external-repositories.txt | while read repoline
+cat ./vendor/docs-content/external-repositories.txt | while read repoline
 do
 
 	# split line into repository URL, target path

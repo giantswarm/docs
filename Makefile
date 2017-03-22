@@ -27,10 +27,10 @@ build: build-css
 	mkdir build
 
 	# copy src to build directory
-	cp -r src/ build/
+	cp -r src/. build/
 	#
 	# copy content from docs-content repo
-	cp -r vendor/docs-content/content build/
+	cp -r vendor/docs-content/content build/content
 	cp -r vendor/docs-content/img build/static/
 	#
 	# Cache breaker
