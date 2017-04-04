@@ -29,6 +29,7 @@ from datetime import datetime
 from BeautifulSoup import BeautifulSoup
 from markdown import markdown
 import toml
+import json
 
 def get_pages(root_path):
     """
@@ -161,10 +162,15 @@ if __name__ == "__main__":
     # generate temporary index name
     tempindex = make_indexname(config.ELASTICSEARCH_INDEX)
 
-    es.indices.create(index=tempindex)
-    es.indices.put_mapping(index=tempindex,
-        doc_type=config.ELASTICSEARCH_DOCTYPE,
-        body=config.ELASTICSEARCH_MAPPING)
+    # read mapping from JSON file
+    with open(config.ELASTICSEARCH_MAPPING, "r") as jsonfile:
+        mapping = json.load(jsonfile)
+        # create index
+        es.indices.create(index=tempindex)
+        # apply mapping to index
+        es.indices.put_mapping(index=tempindex,
+            doc_type=config.ELASTICSEARCH_DOCTYPE,
+            body=mapping)
     
     # index each page into new index
     for page in pages:

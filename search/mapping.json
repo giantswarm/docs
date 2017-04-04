@@ -1,0 +1,30 @@
+{
+	"page": {
+		"properties": {
+			"title": {
+				"type": "string",
+				"store": true,
+				"index": "analyzed",
+				"term_vector": "with_positions_offsets",
+				"analyzer": "custom_text_analyzer",
+				"boost": 10.0
+			},
+			"uri": {
+				"type": "string",
+				"index": "not_analyzed",
+				"boost": 5.0
+			},
+			"breadcrumb": {
+				"type": "string",
+				"boost": 5.0
+			},
+			"text": {
+				"type": "string",
+				"store": true,
+				"index": "analyzed",
+				"term_vector": "with_positions_offsets",
+				"analyzer": "custom_text_analyzer"
+			}
+		}
+	}
+}
