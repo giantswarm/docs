@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-# Here we pull in recipes content from external repositories. While doing so we do
+# Here we pull in content from external repositories. While doing so we do
 # - copy images (png, jpg)to a special folder
 # - copy markdown content to another folder
 # - Rewrite image references in the markdown
@@ -15,15 +15,12 @@
 # - There may be PNG and/or JPG images in that folder
 
 # Path to where recipe content should be placed in the docs site
-CONTENT_BASE_DIR=$(pwd)/swarmdocs
+CONTENT_BASE_DIR=$(pwd)/build
 
 # Path to where images should be copied to
-IMG_BASE_DIR=$(pwd)/swarmdocs/static/img
+IMG_BASE_DIR=$(pwd)/build/static/img
 
-mkdir -p build
-cd build
-
-cat ../docs-content/external-repositories.txt | while read repoline
+cat ./vendor/docs-content/external-repositories.txt | while read repoline
 do
 
 	# split line into repository URL, target path
@@ -38,20 +35,14 @@ do
 	parts=(${filename//./ })
 	reponame=${parts[0]}
 
-	# Empty sub-folder for this repo here in the build folder
-	rm -rf ${reponame}
-
-	# Clone the repository from github
-	git clone --depth 1 https://github.com/giantswarm/${reponame}.git
-
 	# Create folders for markdown and images
 	mkdir -p ${CONTENT_BASE_DIR}/${targetpath}/${reponame}
 	mkdir -p ${IMG_BASE_DIR}/${reponame}
 
 	# Copy repo content to target location
-	cp ${reponame}/docs/*.md ${CONTENT_BASE_DIR}/${targetpath}/${reponame}/
-	cp ${reponame}/docs/*.png ${IMG_BASE_DIR}/${reponame}/
-	cp ${reponame}/docs/*.jpg ${IMG_BASE_DIR}/${reponame}/
+	cp vendor/${reponame}/docs/*.md ${CONTENT_BASE_DIR}/${targetpath}/${reponame}/
+	cp vendor/${reponame}/docs/*.png ${IMG_BASE_DIR}/${reponame}/
+	cp vendor/${reponame}/docs/*.jpg ${IMG_BASE_DIR}/${reponame}/
 
 	# adapt image paths
 	for markdownfile in ${CONTENT_BASE_DIR}/${targetpath}/${reponame}/*.md; do

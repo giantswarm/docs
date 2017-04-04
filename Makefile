@@ -6,34 +6,49 @@ SHELL=bash
 default: docker-build
 
 build-css:
-	sass swarmdocs/static/css/base.sass swarmdocs/static/css/base.css
+	sass src/static/css/base.sass src/static/css/base.css
 
-docker-build: build-css
-	#
-	# clean
-	rm -rf swarmdocs/public/*
-	#
-	# copy content from docs-content repo
-	rm -rf swarmdocs/content
-	rm -rf swarmdocs/static/img
-	rm -rf docs-content
-	git clone --depth 1 git@github.com:giantswarm/docs-content.git
-	cp -r docs-content/content swarmdocs/
-	cp -r docs-content/img swarmdocs/static/
-	cp -r docs-content/data swarmdocs/
-	#
-	# Cache breaker
-	echo -n `md5 -q ./swarmdocs/static/css/base.css|head -c 9` > swarmdocs/layouts/partials/cachebreaker_css.html
-	echo -n `md5 -q ./swarmdocs/static/js/base.js|head -c 9` > swarmdocs/layouts/partials/cachebreaker_js.html
-	#
-	# Latest gsctl version
-	mkdir -p swarmdocs/layouts/shortcodes
-	curl -s https://downloads.giantswarm.io/gsctl/VERSION > swarmdocs/layouts/shortcodes/gsctl_version.html
-	#
+vendor: clean
+	# Vendor docs-content
+	mkdir vendor
+	git clone --depth 1 git@github.com:giantswarm/docs-content.git vendor/docs-content
+	rm -rf vendor/docs-content/.git # Ensure git doesn't commit this as a subproject, but as actual files in the repo
+
+	# Vendor hugo
+	mkdir vendor/hugo
+	cd vendor/hugo && wget https://github.com/spf13/hugo/releases/download/v0.16/hugo_0.16_linux-64bit.tgz
+	cd vendor/hugo && tar -xvf hugo_0.16_linux-64bit.tgz
+	cd vendor/hugo && rm hugo_0.16_linux-64bit.tgz
+
+	# Vendor other external repositories as defined in docs-content repo 'external-repositories.txt'
+	./vendorize-external-repositories.sh
+
+build: build-css
+	# Clean
 	rm -rf build
-	# tie in recipes frome external repositories
-	./build-recipes.sh
-	# build docker image
+
+	# Create build directory
+	mkdir build
+
+	# Copy src to build directory
+	cp -r src/. build/
+
+	# Copy content from docs-content repo
+	cp -r vendor/docs-content/content build/content
+	cp -r vendor/docs-content/img build/static/
+
+	# Cache breaker
+	echo -n `git hash-object ./build/static/css/base.css|head -c 9` > build/layouts/partials/cachebreaker_css.html
+	echo -n `git hash-object ./build/static/js/base.js|head -c 9` > build/layouts/partials/cachebreaker_js.html
+
+	# Latest gsctl version
+	mkdir -p build/layouts/shortcodes
+	curl -s https://downloads.giantswarm.io/gsctl/VERSION > build/layouts/shortcodes/gsctl_version.html
+
+	# Tie in content from external repositories
+	./build-external-repositories.sh
+
+docker-build: build
 	docker build -t $(registry)/$(COMPANY)/$(PROJECT) .
 
 docker-run:
@@ -42,9 +57,8 @@ docker-run:
 		$(registry)/$(COMPANY)/$(PROJECT)
 
 clean:
-	docker stop $(PROJECT)
-	docker rm $(PROJECT)
-	docker rmi $(registry)/$(COMPANY)/$(PROJECT)
+	rm -rf build
+	rm -rf vendor
 
 linkcheck:
 	linklint -http -host docker.dev -limit 1000 -doc linklinttest /@

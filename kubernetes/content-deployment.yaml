@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  namespace: docs
+  name: content
+  labels:
+    app: docs
+    component: content
+spec:
+  replicas: 2
+  template:
+    metadata:
+      name: content
+      labels:
+        app: docs
+        component: content
+    spec:
+      containers:
+        - image: registry.giantswarm.io/giantswarm/docs:%%DOCKER_TAG%%
+          name: content
+          ports:
+            - containerPort: 80
+              name: http
+      imagePullSecrets:
+        - name: registry-pull-secret
