@@ -23,7 +23,7 @@ vendor: clean
 	# Vendor other external repositories as defined in docs-content repo 'external-repositories.txt'
 	./vendorize-external-repositories.sh
 
-build: build-css
+build: vendor build-css
 	# Clean
 	rm -rf build
 
