@@ -11,7 +11,7 @@ build-css:
 vendor: clean
 	# Vendor docs-content
 	mkdir vendor
-	git clone --depth 1 git@github.com:giantswarm/docs-content.git vendor/docs-content
+	git clone --depth 1 https://github.com/giantswarm/docs-content.git vendor/docs-content
 	rm -rf vendor/docs-content/.git # Ensure git doesn't commit this as a subproject, but as actual files in the repo
 
 	# Vendor hugo
