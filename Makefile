@@ -35,7 +35,8 @@ build: build-css
 
 	# Copy content from docs-content repo
 	cp -r vendor/docs-content/content build/content
-	cp -r vendor/docs-content/img build/static/
+	cp -r vendor/docs-content/img build/static/img
+	cp -r vendor/docs-content/data build/data
 
 	# Cache breaker
 	echo -n `git hash-object ./build/static/css/base.css|head -c 9` > build/layouts/partials/cachebreaker_css.html
