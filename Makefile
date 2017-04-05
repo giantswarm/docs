@@ -60,6 +60,7 @@ docker-run:
 clean:
 	rm -rf build
 	rm -rf vendor
+	rm -rf .sass-cache
 
 linkcheck:
 	linklint -http -host docker.dev -limit 1000 -doc linklinttest /@
