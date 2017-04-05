@@ -1,5 +1,0 @@
-https://github.com/giantswarm/kubernetes-prometheus.git content/guides
-https://github.com/giantswarm/kubernetes-elastic-stack.git content/guides
-https://github.com/giantswarm/kubernetes-heapster.git content/guides
-https://github.com/giantswarm/kubernetes-registry.git content/guides
-https://github.com/giantswarm/twitter-hot-urls-example.git content/guides

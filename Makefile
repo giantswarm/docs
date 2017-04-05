@@ -11,19 +11,19 @@ build-css:
 vendor: clean
 	# Vendor docs-content
 	mkdir vendor
-	git clone --depth 1 git@github.com:giantswarm/docs-content.git vendor/docs-content
+	git clone --depth 1 https://github.com/giantswarm/docs-content.git vendor/docs-content
 	rm -rf vendor/docs-content/.git # Ensure git doesn't commit this as a subproject, but as actual files in the repo
 
 	# Vendor hugo
 	mkdir vendor/hugo
-	cd vendor/hugo && wget https://github.com/spf13/hugo/releases/download/v0.16/hugo_0.16_linux-64bit.tgz
+	cd vendor/hugo && wget -q https://github.com/spf13/hugo/releases/download/v0.16/hugo_0.16_linux-64bit.tgz
 	cd vendor/hugo && tar -xvf hugo_0.16_linux-64bit.tgz
 	cd vendor/hugo && rm hugo_0.16_linux-64bit.tgz
 
 	# Vendor other external repositories as defined in docs-content repo 'external-repositories.txt'
 	./vendorize-external-repositories.sh
 
-build: build-css
+build: vendor build-css
 	# Clean
 	rm -rf build
 
@@ -35,7 +35,8 @@ build: build-css
 
 	# Copy content from docs-content repo
 	cp -r vendor/docs-content/content build/content
-	cp -r vendor/docs-content/img build/static/
+	cp -r vendor/docs-content/img build/static/img
+	cp -r vendor/docs-content/data build/data
 
 	# Cache breaker
 	echo -n `git hash-object ./build/static/css/base.css|head -c 9` > build/layouts/partials/cachebreaker_css.html
@@ -59,6 +60,7 @@ docker-run:
 clean:
 	rm -rf build
 	rm -rf vendor
+	rm -rf .sass-cache
 
 linkcheck:
 	linklint -http -host docker.dev -limit 1000 -doc linklinttest /@
