@@ -16,7 +16,7 @@ spec:
         component: content
     spec:
       containers:
-        - image: registry.giantswarm.io/giantswarm/docs:%%DOCKER_TAG%%
+        - image: quay.io/giantswarm/docs:{{ .BuildInfo.SHA }}
           name: content
           ports:
             - containerPort: 80
