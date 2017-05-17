@@ -2,10 +2,10 @@ version: "2"
 services:
 
   sitesearch:
-    image: registry.giantswarm.io/giantswarm/sitesearch:0.3.1
+    image: quay.io/giantswarm/sitesearch:6bb6daa8fd02530b319f27b0eacf84df3c785693
 
   content:
-    image: registry.giantswarm.io/giantswarm/docs
+    image: quay.io/giantswarm/docs
 
   proxy:
     image: registry.giantswarm.io/giantswarm/docs-proxy
@@ -16,7 +16,7 @@ services:
      - "80:80"
 
   indexer:
-    image: registry.giantswarm.io/giantswarm/docs-indexer
+    image: registry.giantswarm.io/giantswarm/docs-indexer:e5b2cb7ad5c1acdf5d2cfeefe6149bcd36f8fe80
     depends_on:
       - "sitesearch"
     environment:
