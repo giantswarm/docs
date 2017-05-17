@@ -19,12 +19,12 @@ test:
 
     # Just a little smoke test. Starts the production container and checks
     # for some expected output.
-    - docker run -d --name docs -p 80:80 registry.giantswarm.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
+    - docker run -d --name docs -p 80:80 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
     - curl -s http://localhost:80 | grep --quiet "Giant Swarm" # Grep returns non 0 exit code if it can't find the text, which fails the smoke test
     - docker kill docs
 
 deployment:
   master:
-    branch: master
+    branch: deployment-update
     commands:
       - ./architect deploy
