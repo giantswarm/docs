@@ -1,6 +1,6 @@
 PROJECT=docs
 COMPANY=giantswarm
-registry=registry.giantswarm.io
+REGISTRY=quay.io
 SHELL=bash
 
 default: docker-build
@@ -50,12 +50,12 @@ build: vendor build-css
 	./build-external-repositories.sh
 
 docker-build: build
-	docker build -t $(registry)/$(COMPANY)/$(PROJECT) .
+	docker build -t $(REGISTRY)/$(COMPANY)/$(PROJECT) .
 
 docker-run:
 	docker run --rm -ti -p 80:80 \
-		-e BASE_URL="http://docker.dev" \
-		$(registry)/$(COMPANY)/$(PROJECT)
+		-e BASE_URL="http://localhost" \
+		$(REGISTRY)/$(COMPANY)/$(PROJECT)
 
 clean:
 	rm -rf build
@@ -63,4 +63,4 @@ clean:
 	rm -rf .sass-cache
 
 linkcheck:
-	linklint -http -host docker.dev -limit 1000 -doc linklinttest /@
+	linklint -http -host localhost -limit 1000 -doc linklinttest /@
