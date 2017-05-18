@@ -16,7 +16,7 @@ services:
      - "80:80"
 
   indexer:
-    image: registry.giantswarm.io/giantswarm/docs-indexer:e5b2cb7ad5c1acdf5d2cfeefe6149bcd36f8fe80
+    image: quay.io/giantswarm/docs-indexer:5de9478e0404eebcc39512f25fd4b07fb9e2b327
     depends_on:
       - "sitesearch"
     environment:
