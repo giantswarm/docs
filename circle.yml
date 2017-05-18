@@ -25,7 +25,7 @@ test:
 
 deployment:
   master:
-    branch: deployment-update
+    branch: master
     commands:
       # fetch and configure kubectl
       - curl --silent --max-time 60 --remote-name https://storage.googleapis.com/kubernetes-release/release/v1.5.2/bin/linux/amd64/kubectl && chmod +x ./kubectl
