@@ -2,17 +2,18 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   namespace: docs
-  name: docs-indexer
+  name: indexer
 spec:
   template:
     metadata:
-      name: docs-indexer
+      name: indexer
       labels:
         app: docs
-        component: docs-indexer
+        component: indexer
     spec:
       containers:
-      - name: docs-indexer
+      - name: indexer
+        # This image is supposed to be publicly accessible
         image: quay.io/giantswarm/docs-indexer:e5b2cb7ad5c1acdf5d2cfeefe6149bcd36f8fe80
         env:
           - name: ELASTICSEARCH_ENDPOINT

@@ -39,5 +39,5 @@ deployment:
       - ./kubectl cluster-info
 
       # Deleting existing indexer job before applying manifests, as jobs can't be overwritten
-      - ./kubectl -n docs delete job --selector=component=docs-indexer
+      - ./kubectl -n docs delete job --selector=component=indexer
       - ./architect deploy
