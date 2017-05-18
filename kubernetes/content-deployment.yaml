@@ -16,10 +16,17 @@ spec:
         component: content
     spec:
       containers:
-        - image: registry.giantswarm.io/giantswarm/docs:%%DOCKER_TAG%%
+        - image: quay.io/giantswarm/docs:{{ .BuildInfo.SHA }}
           name: content
           ports:
             - containerPort: 80
               name: http
+          resources:
+            requests:
+              cpu: 0.2
+              memory: 10M
+            limits:
+              cpu: 0.5
+              memory: 20M
       imagePullSecrets:
         - name: registry-pull-secret
