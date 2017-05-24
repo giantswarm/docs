@@ -29,26 +29,19 @@ make
 docker-compose up
 ```
 
-Open `http://<docker-ip>/`.
+Open `http://localhost/`.
 
 The build will clone the [giantswarm/docs-content](https://github.com/giantswarm/docs-content) repository and copy it's content to the correct locations.
 
 ## Deploying
 
-1. Build the new image
-2. Deploy the `content` component
-3. Stop and start the `indexer` component to update the search index
+With every push to `master`, the latest content is automatically deployed to `docs.giantswarm.io`.
 
-```nohighlight
-builder release patch
-SWARM_CLUSTER_ID=leaseweb-alpha-private.giantswarm.io swarm --env=giantswarm/production update docs/content <version-tag>
-SWARM_CLUSTER_ID=leaseweb-alpha-private.giantswarm.io swarm --env=giantswarm/production stop docs/indexer
-SWARM_CLUSTER_ID=leaseweb-alpha-private.giantswarm.io swarm --env=giantswarm/production start docs/indexer
-```
+See `circle.yml` and `kubernetes/` for details.
 
 ## Maintaining the first generation docs site
 
-The archived documentation at http://firstgen-docs.giantswarm.io is also based on this repository, using the protected `firstgen` branch. The same goes for related repositories.
+The archived documentation at http://firstgen-docs.giantswarm.io is based on this repository, using the protected `firstgen` branch. However there is a separate repo for this, and the hosting is done using github pages.
 
 ## About writing for the documentation
 
