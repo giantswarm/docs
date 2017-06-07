@@ -226,10 +226,54 @@ $(function() {
     id = $el.attr('id');
     icon = '<i class="fa fa-link"></i>';
     if (id) {
-      console.log("Linking headline ID", id);
       $el.addClass("headline-with-link");
       return $el.prepend($("<a />").addClass("header-link").attr("href", "#" + id).html(icon));
     }
   });
 });
 
+/** Allow user to adapt ingress URL schema in guides **/
+
+// prepare document
+$(document).ready(function(){
+
+  // wrap placeholder string in easily addressable span
+  $('.content').contents().each(function(idx, i){
+    if ($(this).html()) {
+      // replace non-text nodes
+      $(this).html(function(){
+        if (!$(this).hasClass('placeholder-immutable')) {
+          return $(this).html().replace(/\.k8s\.gigantic\.io/g, "<span class='ingressBaseDomain'>.k8s.gigantic.io</span>");
+        }
+      });
+    } else if ($(this).text() !== "") {
+      // replace text nodes
+      $(this).replaceWith(function(){
+        var html = $(this).text().replace(/\.k8s\.gigantic\.io/g, "<span class='ingressBaseDomain'>.k8s.gigantic.io</span>");
+        return html;
+      });
+    }
+  });
+
+  var replaceBaseDomainPlaceholder = function(value) {
+    $('.ingressBaseDomain').text(value);
+  }
+
+  // replace placeholder on click in form
+  $("#ingressBaseDomainApplyButton").click(function(evt){
+    evt.preventDefault();
+    // manipulate URL to allow for sharing
+    var text = $('#ingressBaseDomainInput').val();
+    history.pushState({}, "", "?basedomain=" + encodeURI(text));
+    replaceBaseDomainPlaceholder(text);
+  });
+
+  // replace placeholder based on optional URL parameter
+  var baseDomain = getParameterByName("basedomain");
+  if (baseDomain != "") {
+    replaceBaseDomainPlaceholder(baseDomain);
+    $('#ingressBaseDomainInput').val(baseDomain);
+  }
+
+
+});
