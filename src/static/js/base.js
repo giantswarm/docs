@@ -256,6 +256,9 @@ $(document).ready(function(){
   });
 
   var replaceBaseDomainPlaceholder = function(value) {
+    if (value.substr(0, 1) !== '.') {
+      value = '.' + value;
+    }
     $('.ingressBaseDomain').text(value);
   }
 
