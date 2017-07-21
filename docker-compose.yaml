@@ -2,7 +2,7 @@ version: "2"
 services:
 
   sitesearch:
-    image: quay.io/giantswarm/sitesearch:6bb6daa8fd02530b319f27b0eacf84df3c785693
+    image: quay.io/giantswarm/sitesearch:latest
 
   content:
     image: quay.io/giantswarm/docs
@@ -16,7 +16,7 @@ services:
      - "80:80"
 
   indexer:
-    image: quay.io/giantswarm/docs-indexer:5de9478e0404eebcc39512f25fd4b07fb9e2b327
+    image: quay.io/giantswarm/docs-indexer:latest
     depends_on:
       - "sitesearch"
     environment:
