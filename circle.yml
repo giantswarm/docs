@@ -12,9 +12,7 @@ dependencies:
 
 test:
   override:
-    - make build-css
     - make build
-
     - ./architect build
 
     # Just a little smoke test. Starts the production container and checks

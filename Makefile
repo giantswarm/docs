@@ -8,7 +8,7 @@ default: docker-build
 build-css:
 	sass src/static/css/base.sass src/static/css/base.css
 
-vendor: clean
+vendor:
 	# Vendor docs-content
 	mkdir vendor
 	git clone --depth 1 https://github.com/giantswarm/docs-content.git vendor/docs-content
@@ -50,12 +50,7 @@ build: vendor build-css
 	./build-external-repositories.sh
 
 docker-build: build
-	docker build -t $(REGISTRY)/$(COMPANY)/$(PROJECT) .
-
-docker-run:
-	docker run --rm -ti -p 80:80 \
-		-e BASE_URL="http://localhost" \
-		$(REGISTRY)/$(COMPANY)/$(PROJECT)
+	docker build -t $(REGISTRY)/$(COMPANY)/$(PROJECT):dev .
 
 clean:
 	rm -rf build
