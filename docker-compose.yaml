@@ -1,16 +1,16 @@
 version: "2"
 services:
 
+  content:
+    image: quay.io/giantswarm/docs:dev
+
   sitesearch:
     image: quay.io/giantswarm/sitesearch:latest
-
-  content:
-    image: quay.io/giantswarm/docs
 
   proxy:
     image: registry.giantswarm.io/giantswarm/docs-proxy
     depends_on:
-     - "sitesearch"
+     - sitesearch
      - content
     ports:
      - "80:80"
