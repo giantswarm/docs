@@ -41,14 +41,12 @@ do
 
 	# Copy repo content to target location
 	cp vendor/${reponame}/docs/*.md ${CONTENT_BASE_DIR}/${targetpath}/${reponame}/
-	cp vendor/${reponame}/docs/*.png ${IMG_BASE_DIR}/${reponame}/
-	cp vendor/${reponame}/docs/*.jpg ${IMG_BASE_DIR}/${reponame}/
+	cp vendor/${reponame}/docs/*.png ${IMG_BASE_DIR}/${reponame}/ || echo "no PNG files"
+	cp vendor/${reponame}/docs/*.jpg ${IMG_BASE_DIR}/${reponame}/ || echo "no JPG files"
 
-	# adapt image paths
-	for markdownfile in ${CONTENT_BASE_DIR}/${targetpath}/${reponame}/*.md; do
-		sed -i ".bak" -E "s:\(([^\(]+\.)(png|jpg|jpeg|gif):\(/img/${reponame}/\1\2:g" "${markdownfile}"
-		rm -f "${markdownfile}.bak"
-	done
+	# Adapt image paths.
+	# To avoid sed incompatibilities, we are doing this in a Docker container.
+	docker run --rm -v $(pwd):/workdir alpine:3.6 /workdir/fix-external-repo-image-paths.sh build/${targetpath} ${reponame}
 
 	echo "<hr>\n" >> ${CONTENT_BASE_DIR}/${targetpath}/${reponame}/index.md
 	echo "You can collaborate on this recipe on [GitHub](https://github.com/giantswarm/${reponame})." >> ${CONTENT_BASE_DIR}/${targetpath}/${reponame}/index.md
