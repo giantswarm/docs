@@ -53,8 +53,6 @@ docker-build: build
 	docker build -t $(REGISTRY)/$(COMPANY)/$(PROJECT):dev .
 
 clean:
-	docker-compose down
-	docker-compose rm
 	rm -rf build
 	rm -rf vendor
 	rm -rf .sass-cache
