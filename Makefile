@@ -50,10 +50,6 @@ build: vendor build-css
 	./build-external-repositories.sh
 
 docker-build: build
-docker-run:
-	docker run --rm -ti -p 80:80 \
-		-e BASE_URL="http://localhost" \
-		$(REGISTRY)/$(COMPANY)/$(PROJECT)
 	docker build -t $(REGISTRY)/$(COMPANY)/$(PROJECT):dev .
 
 clean:
