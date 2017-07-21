@@ -8,7 +8,7 @@ default: docker-build
 build-css:
 	sass src/static/css/base.sass src/static/css/base.css
 
-vendor: clean
+vendor:
 	# Vendor docs-content
 	mkdir vendor
 	git clone --depth 1 https://github.com/giantswarm/docs-content.git vendor/docs-content
