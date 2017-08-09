@@ -46,3 +46,4 @@ The archived documentation at http://firstgen-docs.giantswarm.io is based on thi
 ## About writing for the documentation
 
 There is more information available in the [Wiki](https://git.giantswarm.io/giantswarm/docs/wikis/home).
+ 
