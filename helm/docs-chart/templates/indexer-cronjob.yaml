@@ -1,0 +1,38 @@
+apiVersion: batch/v2alpha1
+kind: CronJob
+metadata:
+  namespace: docs
+  name: indexer
+spec:
+  # once every hour. We randomly chose :57 to avoid :00.
+  schedule: "57 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          name: indexer-cronjob
+          labels:
+            app: docs
+            component: indexer-cronjob
+        spec:
+          containers:
+          - name: indexer
+            # This image is supposed to be publicly accessible
+            image: quay.io/giantswarm/docs-indexer:fd96c73d5fa50ddaa48fbcd8392a7dfd45beb27c
+            env:
+              - name: ELASTICSEARCH_ENDPOINT
+                valueFrom:
+                  secretKeyRef:
+                    name: elasticsearch-endpoint-url
+                    key: value
+              - name: EXTERNAL_REPOSITORY_SUBFOLDER
+                value: docs
+              - name: REPOSITORY_BRANCH
+                value: master
+              - name: REPOSITORY_SUBFOLDER
+                value: content
+              - name: REPOSITORY_URL
+                value: https://github.com/giantswarm/docs-content.git
+          restartPolicy: OnFailure
+          # retry for a maximum of 10 minutes
+          activeDeadlineSeconds: 600
