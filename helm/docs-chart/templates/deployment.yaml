@@ -16,7 +16,7 @@ spec:
         component: content
     spec:
       containers:
-        - image: quay.io/giantswarm/docs:{{ .BuildInfo.SHA }}
+        - image: quay.io/giantswarm/docs:[[ .SHA ]]
           name: content
           ports:
             - containerPort: 80
@@ -29,4 +29,4 @@ spec:
               cpu: 0.5
               memory: 20M
       imagePullSecrets:
-        - name: registry-pull-secret
+        - name: docs-pull-secret
