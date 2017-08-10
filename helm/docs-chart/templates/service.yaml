@@ -6,7 +6,6 @@ metadata:
   labels:
     app: docs
     component: content
-    repo: giantswarm/docs
 spec:
   ports:
     - port: 80
