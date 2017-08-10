@@ -25,17 +25,4 @@ deployment:
   master:
     branch: master
     commands:
-      # fetch and configure kubectl
-      - curl --silent --max-time 60 --remote-name https://storage.googleapis.com/kubernetes-release/release/v1.5.2/bin/linux/amd64/kubectl && chmod +x ./kubectl
-      - echo $G8S_CA | base64 --decode > ./ca.pem
-      - echo $G8S_CRT | base64 --decode > ./crt.pem
-      - echo $G8S_KEY | base64 --decode > ./key.pem
-      - ./kubectl config set-cluster g8s-cluster --server=https://api.g8s.fra-1.giantswarm.io --certificate-authority=./ca.pem
-      - ./kubectl config set-credentials g8s-admin --certificate-authority=./ca.pem --client-certificate=./crt.pem --client-key=./key.pem
-      - ./kubectl config set-context g8s-system --cluster=g8s-cluster --user=g8s-admin
-      - ./kubectl config use-context g8s-system
-      - ./kubectl cluster-info
-
-      # Deleting existing indexer job before applying manifests, as jobs can't be overwritten
-      - ./kubectl -n docs delete job --selector=component=indexer
       - ./architect deploy
