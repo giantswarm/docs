@@ -16,8 +16,10 @@ services:
       - sitesearch
       - content
       - api-spec
+    volumes:
+      - ./test/certificate:/etc/nginx/certs
     ports:
-     - "80:80"
+      - "443:8000"
 
   indexer:
     image: quay.io/giantswarm/docs-indexer:latest
