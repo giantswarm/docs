@@ -7,18 +7,22 @@ services:
   sitesearch:
     image: quay.io/giantswarm/sitesearch:latest
 
+  api-spec:
+    image: quay.io/giantswarm/api-spec:latest
+
   proxy:
     image: registry.giantswarm.io/giantswarm/docs-proxy
     depends_on:
-     - sitesearch
-     - content
+      - sitesearch
+      - content
+      - api-spec
     ports:
      - "80:80"
 
   indexer:
     image: quay.io/giantswarm/docs-indexer:latest
     depends_on:
-      - "sitesearch"
+      - sitesearch
     environment:
       REPOSITORY_URL: https://github.com/giantswarm/docs-content.git
       REPOSITORY_BRANCH: master
