@@ -2,23 +2,29 @@ version: "2"
 services:
 
   content:
-    image: quay.io/giantswarm/docs:dev
+    image: quay.io/giantswarm/docs:latest
 
   sitesearch:
     image: quay.io/giantswarm/sitesearch:latest
 
+  api-spec:
+    image: quay.io/giantswarm/api-spec:latest
+
   proxy:
-    image: registry.giantswarm.io/giantswarm/docs-proxy
+    image: quay.io/giantswarm/docs-proxy:latest
     depends_on:
-     - sitesearch
-     - content
+      - sitesearch
+      - content
+      - api-spec
+    volumes:
+      - ./test/certificate:/etc/nginx/certs
     ports:
-     - "80:80"
+      - "443:8000"
 
   indexer:
     image: quay.io/giantswarm/docs-indexer:latest
     depends_on:
-      - "sitesearch"
+      - sitesearch
     environment:
       REPOSITORY_URL: https://github.com/giantswarm/docs-content.git
       REPOSITORY_BRANCH: master

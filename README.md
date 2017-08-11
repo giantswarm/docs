@@ -9,6 +9,7 @@ Our Documentation is based on Markdown and HTML content and generated using [HUG
 |Short name    | Docker image            | Source repository                                                      |
 |--------------|-------------------------|------------------------------------------------------------------------|
 |`content`     | `giantswarm/docs`       | this repository                                                        |
+|`api-spec`    | `giantswarm/api-spec`   | [giantswarm/api-spec](https://github.com/giantswarm/api-spec)          |
 |`docs-proxy`  | `giantswarm/docs-proxy` | [giantswarm/docs-proxy](https://github.com/giantswarm/docs-proxy/)     |
 |`sitesearch`  | `giantswarm/sitesearch` | [giantswarm/sitesearch](https://github.com/giantswarm/sitesearch/)     |
 |`indexer`     | `giantswarm/indexer`    | [giantswarm/docs-indexer](https://github.com/giantswarm/docs-indexer/) |
@@ -29,7 +30,7 @@ make
 docker-compose up
 ```
 
-Open `http://localhost/`.
+Open `https://localhost/` and accept the TLS warning.
 
 The build will clone the [giantswarm/docs-content](https://github.com/giantswarm/docs-content) repository and copy it's content to the correct locations.
 
