@@ -93,13 +93,13 @@ function doSearch(q) {
             }
         }
     };
-    $.ajax("/api/search/", {
+    $.ajax("/searchapi/", {
         type: "POST",
         data: JSON.stringify(postData),
         contentType: "application/json",
         dataType: "json",
         error: function(jqXHR, textStatus, errorThrown){
-            console.warn("Error in ajax call to /api/search/:", textStatus, errorThrown);
+            console.warn("Error in ajax call to /searchapi/:", textStatus, errorThrown);
         },
         success: function(data){
             $(".result").empty();
