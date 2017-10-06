@@ -38,7 +38,7 @@ The build will clone the [giantswarm/docs-content](https://github.com/giantswarm
 
 With every push to `master`, the latest content is automatically deployed to `docs.giantswarm.io`.
 
-See `circle.yml` and `kubernetes/` for details.
+See `circle.yml` and `helm/` for details.
 
 ## Maintaining the first generation docs site
 
