@@ -48,6 +48,6 @@ do
 	# To avoid sed incompatibilities, we are doing this in a Docker container.
 	docker run --rm -v $(pwd):/workdir alpine:3.6 /workdir/fix-external-repo-image-paths.sh build/${targetpath} ${reponame}
 
-	echo "<hr>\n" >> ${CONTENT_BASE_DIR}/${targetpath}/${reponame}/index.md
+	echo "<hr>" >> ${CONTENT_BASE_DIR}/${targetpath}/${reponame}/index.md
 	echo "You can collaborate on this recipe on [GitHub](https://github.com/giantswarm/${reponame})." >> ${CONTENT_BASE_DIR}/${targetpath}/${reponame}/index.md
 done
