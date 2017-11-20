@@ -8,6 +8,7 @@ metadata:
     component: content
 spec:
   replicas: 2
+  revisionHistoryLimit: 3
   template:
     metadata:
       name: content
