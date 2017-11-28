@@ -32,3 +32,6 @@ services:
       EXTERNAL_REPOSITORY_SUBFOLDER: docs
       KEEP_PROCESS_ALIVE: "True"
       ELASTICSEARCH_ENDPOINT: http://admin:e4dfbjb3rohi8qpoadsffodin@sitesearch:9200
+      APIDOCS_BASE_URI: https://docs.giantswarm.io/api/
+      API_SPEC_FILES: yaml/spec.yaml,yaml/definitions.yaml,yaml/parameters.yaml
+      APIDOCS_BASE_PATH: /api/
