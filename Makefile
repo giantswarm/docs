@@ -50,7 +50,7 @@ build: vendor build-css
 	./build-external-repositories.sh
 
 docker-build: build
-	docker build -t $(REGISTRY)/$(COMPANY)/$(PROJECT):dev .
+	docker build -t $(REGISTRY)/$(COMPANY)/$(PROJECT):latest .
 
 clean:
 	rm -rf build
