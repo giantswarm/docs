@@ -16,9 +16,9 @@ vendor:
 
 	# Vendor hugo
 	mkdir vendor/hugo
-	cd vendor/hugo && wget -q https://github.com/spf13/hugo/releases/download/v0.16/hugo_0.16_linux-64bit.tgz
-	cd vendor/hugo && tar -xvf hugo_0.16_linux-64bit.tgz
-	cd vendor/hugo && rm hugo_0.16_linux-64bit.tgz
+	cd vendor/hugo && wget -q https://github.com/gohugoio/hugo/releases/download/v0.38.2/hugo_0.38.2_Linux-64bit.tar.gz
+	cd vendor/hugo && tar -xvf hugo_0.38.2_Linux-64bit.tar.gz
+	cd vendor/hugo && rm hugo_0.38.2_Linux-64bit.tar.gz
 
 	# Vendor other external repositories as defined in docs-content repo 'external-repositories.txt'
 	./vendorize-external-repositories.sh
@@ -50,7 +50,7 @@ build: vendor build-css
 	./build-external-repositories.sh
 
 docker-build: build
-	docker build -t $(REGISTRY)/$(COMPANY)/$(PROJECT):dev .
+	docker build -t $(REGISTRY)/$(COMPANY)/$(PROJECT):latest .
 
 clean:
 	rm -rf build

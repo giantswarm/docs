@@ -2,6 +2,7 @@ version: "2"
 services:
 
   content:
+    build: .
     image: quay.io/giantswarm/docs:latest
 
   sitesearch:
