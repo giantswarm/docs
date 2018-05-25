@@ -26,6 +26,10 @@
     <link rel="stylesheet" type="text/css" href="/css/font-awesome-4.0.3.css">
     <link rel="stylesheet" type="text/css" href="https://s.giantswarm.io/highlightjs/9.12.0/1/solarized-dark.min.css">
     <link rel="stylesheet" type="text/css" href="/css/base.css?{{ partial "cachebreaker_css.html" . }}">
+    <script>
+      window.GiantSwarmGoogleAnalyticsAccount = 'UA-52901087-2';
+      window.GiantSwarmHubspotAccount = '430224';
+    </script>
   </head>
   <body data-spy="scroll" data-target="#TableOfContents" class="{{if .IsPage}}{{ replace .RelPermalink "/" "_" }}{{end}}">
     {{ partial "topnav.html" . }}
