@@ -500,6 +500,30 @@ body > header {
   #hiring-badge:active:hover {
     background-color: #2a5874; }
 
+#consent_dialog {
+  display: none;
+  position: fixed;
+  bottom: 0px;
+  z-index: 500;
+  width: 100%;
+  background-color: #D7D7D7;
+  padding: 20px;
+  text-align: center; }
+  #consent_dialog p {
+    text-align: left; }
+  #consent_dialog .buttons {
+    text-align: center; }
+  #consent_dialog .button {
+    margin-left: 10px;
+    margin-right: 10px; }
+
+.button.button-secondary {
+  background-color: #fff;
+  color: #555; }
+
+.button.button-secondary:hover {
+  background-color: #f5f5f5; }
+
 h1, h2, h3, h4, h5, h6 {
   text-align: left; }
 

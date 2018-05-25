@@ -75,34 +75,13 @@
         </div>
       </nav>
     </footer>
+
+    {{ partial "consent_dialog.html" . }}
+
     <script type="text/javascript" src="https://s.giantswarm.io/jquery/3.3.1/1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://s.giantswarm.io/privacy/1/privacy.js"></script>
     <script type="text/javascript" src="https://s.giantswarm.io/giantswarmio/0.10.18/1/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://s.giantswarm.io/highlightjs/9.12.0/1/highlight.min.js"></script>
     <script type="text/javascript" src="/js/base.js?{{ partial "cachebreaker_js.html" . }}"></script>
-    <script>
-    // Google Analytics
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-52901087-2', 'auto');
-    ga('set', 'anonymizeIp', true);
-    ga('send', 'pageview');
-    // HubSpot
-    (function(d,s,i,r) {
-      if (d.getElementById(i)){return;}
-      var n=d.createElement(s),e=d.getElementsByTagName(s)[0];
-      n.id=i;n.src='//js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/430224.js';
-      e.parentNode.insertBefore(n, e);
-    })(document,"script","hs-analytics",300000);
-
-    // Mobile navigation
-    $( document ).ready(function() {
-      $("#navigation_toggle").click(function(event){
-        $("header").toggleClass('open');
-        event.preventDefault();
-      });
-    });
-    </script>
 </body>
 </html>
