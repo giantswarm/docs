@@ -14,11 +14,13 @@ jobs:
 
       # Just a little smoke test. Starts the production container and checks
       # for some expected output.
-      - run: docker run -d --name docs -p 80:80 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
-      - run: |
-          CURL_OUTPUT=$(curl --no-buffer -s http://localhost:80)
-          echo $CURL_OUTPUT | grep --quiet "Giant Swarm"
-      - run: docker kill docs
+      - run:
+          name: Run container as a test
+          command: |
+            docker run -d --name docs -p 80:80 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
+            CURL_OUTPUT=$(curl --no-buffer -s http://localhost:80)
+            echo $CURL_OUTPUT | grep --quiet "Giant Swarm"
+            docker kill docs
 
       - deploy:
           command: |
