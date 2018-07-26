@@ -21,6 +21,10 @@ jobs:
             CURL_OUTPUT=$(curl --no-buffer -s http://localhost:80)
             echo $CURL_OUTPUT | grep --quiet "Giant Swarm"
             docker kill docs
+      
+      - run:
+          name: Linkcheck
+          command: make linkcheck
 
       - deploy:
           command: |
