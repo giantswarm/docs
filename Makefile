@@ -57,5 +57,13 @@ clean:
 	rm -rf vendor
 	rm -rf .sass-cache
 
+# Verify links.
 linkcheck:
-	linklint -http -host localhost -limit 1000 -doc linklinttest /@
+	docker run -d --rm --name server -P $(REGISTRY)/$(COMPANY)/$(PROJECT):latest
+	sleep 2
+	docker run --rm -ti --name linkchecker \
+		--link server:server \
+		linkchecker/linkchecker \
+		http://server:80 \
+		--check-extern -t 5 --ignore-url /api/
+	docker kill server
