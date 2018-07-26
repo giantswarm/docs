@@ -14,6 +14,17 @@ jobs:
           command: make build
 
       - run:
+          name: Install architect
+          command: |
+            wget -q $(curl -sS -H "Authorization: token $RELEASE_TOKEN" https://api.github.com/repos/giantswarm/architect/releases/latest | grep browser_download_url | head -n 1 | cut -d '"' -f 4)
+            chmod +x ./architect
+            ./architect version
+
+      - run:
+          name: Build using architect
+          command: ./architect build
+
+      - run:
           name: Run container as a test
           command: |
             docker run -d --name docs -p 80:80 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
@@ -24,17 +35,6 @@ jobs:
       - run:
           name: Linkcheck
           command: make linkcheck
-
-      - run:
-          name: Install architect
-          command: |
-            wget -q $(curl -sS -H "Authorization: token $RELEASE_TOKEN" https://api.github.com/repos/giantswarm/architect/releases/latest | grep browser_download_url | head -n 1 | cut -d '"' -f 4)
-            chmod +x ./architect
-            ./architect version
-
-      - run:
-          name: Build using architect
-          command: ./architect build
 
       - deploy:
           name: Deploy (only if branch is "master")
