@@ -63,7 +63,7 @@ linkcheck:
 	sleep 2
 	docker run --rm -ti --name linkchecker \
 		--link server:server \
-		linkchecker/linkchecker \
+		jare/linkchecker \
 		http://server:80 \
 		--check-extern -t 5 --ignore-url /api/
 	docker kill server
