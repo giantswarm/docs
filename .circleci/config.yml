@@ -4,16 +4,24 @@ jobs:
     machine: true
     steps:
       - checkout
-      - run: |
-          wget -q $(curl -sS -H "Authorization: token $RELEASE_TOKEN" https://api.github.com/repos/giantswarm/architect/releases/latest | grep browser_download_url | head -n 1 | cut -d '"' -f 4)
-          chmod +x ./architect
-          ./architect version
-      - run: gem install sass
-      - run: make build
-      - run: ./architect build
+      - run:
+          name: Install architect
+          command: |
+            wget -q $(curl -sS -H "Authorization: token $RELEASE_TOKEN" https://api.github.com/repos/giantswarm/architect/releases/latest | grep browser_download_url | head -n 1 | cut -d '"' -f 4)
+            chmod +x ./architect
+            ./architect version
+      - run:
+          name: Install SASS
+          command: gem install sass
 
-      # Just a little smoke test. Starts the production container and checks
-      # for some expected output.
+      - run:
+          name: Build
+          command: make build
+
+      - run:
+          name: Build using architect
+          command: ./architect build
+
       - run:
           name: Run container as a test
           command: |
@@ -27,6 +35,7 @@ jobs:
           command: make linkcheck
 
       - deploy:
+          name: Deploy (only if branch is "master")
           command: |
             echo "Deploy only if '${CIRCLE_BRANCH}' == 'master'"
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
