@@ -4,23 +4,40 @@ jobs:
     machine: true
     steps:
       - checkout
-      - run: |
-          wget -q $(curl -sS -H "Authorization: token $RELEASE_TOKEN" https://api.github.com/repos/giantswarm/architect/releases/latest | grep browser_download_url | head -n 1 | cut -d '"' -f 4)
-          chmod +x ./architect
-          ./architect version
-      - run: gem install sass
-      - run: make build
-      - run: ./architect build
 
-      # Just a little smoke test. Starts the production container and checks
-      # for some expected output.
-      - run: docker run -d --name docs -p 80:80 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
-      - run: |
-          CURL_OUTPUT=$(curl --no-buffer -s http://localhost:80)
-          echo $CURL_OUTPUT | grep --quiet "Giant Swarm"
-      - run: docker kill docs
+      - run:
+          name: Install SASS
+          command: gem install sass
+
+      - run:
+          name: Build
+          command: make build
+
+      - run:
+          name: Install architect
+          command: |
+            wget -q $(curl -sS -H "Authorization: token $RELEASE_TOKEN" https://api.github.com/repos/giantswarm/architect/releases/latest | grep browser_download_url | head -n 1 | cut -d '"' -f 4)
+            chmod +x ./architect
+            ./architect version
+
+      - run:
+          name: Build using architect
+          command: ./architect build
+
+      - run:
+          name: Run container as a test
+          command: |
+            docker run -d --name docs -p 80:80 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
+            CURL_OUTPUT=$(curl --no-buffer -s http://localhost:80)
+            echo $CURL_OUTPUT | grep --quiet "Giant Swarm"
+            docker kill docs
+      
+      - run:
+          name: Linkcheck
+          command: make linkcheck
 
       - deploy:
+          name: Deploy (only if branch is "master")
           command: |
             echo "Deploy only if '${CIRCLE_BRANCH}' == 'master'"
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
