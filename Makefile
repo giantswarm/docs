@@ -44,6 +44,9 @@ build: vendor build-css
 docker-build: build
 	docker build -t $(REGISTRY)/$(COMPANY)/$(PROJECT):latest .
 
+docker-run:
+	docker run --rm -ti -p 8080:80 $(REGISTRY)/$(COMPANY)/$(PROJECT):latest
+
 clean:
 	rm -rf build
 	rm -rf vendor
