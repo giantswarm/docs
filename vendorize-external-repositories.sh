@@ -14,13 +14,14 @@
 # - There may be additional markdown files in that folder
 # - There may be PNG and/or JPG images in that folder
 
-cat ./vendor/docs-content/external-repositories.txt | while read repoline
+mkdir -p vendor
+
+cat ./src/external-repositories.txt | while read repoline
 do
 
   # split line into repository URL, target path
   parts=(${repoline// / })
   repourl=${parts[0]}
-  targetpath=${parts[1]}
 
   echo "\Vendorizing ${repourl}"
 
