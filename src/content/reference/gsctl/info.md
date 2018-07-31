@@ -86,3 +86,4 @@ Maximum workers per cluster:  20
 
 - [`gsctl` reference overview](../)
 - [`gsctl select endpoint`](../select-endpoint/)
+- [API: Get information on the installation](/api/#operation/getInfo)

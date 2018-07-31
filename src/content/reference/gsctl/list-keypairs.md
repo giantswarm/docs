@@ -70,3 +70,4 @@ CREATED                 EXPIRES                 ID          DESCRIPTION         
 - [`gsctl create kubeconfig`](../create-kubeconfig/)
 - [X.509 on Wikipedia](https://en.wikipedia.org/wiki/X.509)
 - [Securing your cluster with RBAC and PSP](/guides/securing-with-rbac-and-psp/)
+- [API: Get key pairs](/api/#operation/getKeyPairs)

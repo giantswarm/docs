@@ -30,4 +30,6 @@ $ gsctl delete cluster --force --cluster=<cluster-id>
 
 ## Related
 
+- [`gsctl scale cluster`](../scale-cluster/)
 - [`gsctl` reference overview](../)
+- [API: Delete cluster](/api/#operation/deleteCluster)

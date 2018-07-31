@@ -118,3 +118,4 @@ contact the Giant Swarm support team.
 - [`gsctl create kubeconfig`](../create-kubeconfig/): Obtaining a key pair and enabling `kubctl` to access a cluster
 - [`gsctl delete cluster`](../delete-cluster/): Reference for deleting a cluster
 - [`gsctl` Reference](../)
+- [API: Create cluster](/api/#operation/addCluster)

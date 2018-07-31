@@ -46,3 +46,4 @@ $ gsctl login <email> -e <endpoint> -p <password>
 ## Related
 
 - [`gsctl` reference overview](../)
+- [API: Create auth token](/api/#operation/createAuthToken)
