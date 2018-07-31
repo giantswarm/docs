@@ -868,4 +868,21 @@ h2:hover .header-link, h3:hover .header-link, h4:hover .header-link, h5:hover .h
 .tab-pane {
   padding-top: 20px; }
 
+.changelog-item {
+  padding-bottom: 1em; }
+  .changelog-item h1 {
+    font-size: 1.3em; }
+  .changelog-item h2 {
+    font-size: 1.2em; }
+
+.tag {
+  margin-left: 2px;
+  margin-right: 2px;
+  padding: 3px 5px;
+  background-color: #eaceff;
+  border-radius: 3px;
+  font-size: 0.9em;
+  font-family: Inconsolata, monospace;
+  font-weight: 400; }
+
 /*# sourceMappingURL=base.css.map */
