@@ -19,6 +19,10 @@ pluralizeListTitles = false
     url = "/reference/"
     weight = 40
 [[menu.main]]
+    name = "Changelog"
+    url = "/changelog/"
+    weight = 50
+[[menu.main]]
     name = "FAQ"
     url = "/faq/"
-    weight = 50
+    weight = 60
