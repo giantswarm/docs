@@ -7,7 +7,7 @@
 # - add a link to the recipe repository for collaboration
 #
 # This assumes:
-# - list of repository URLs in docs-content/external-repositories.txt
+# - list of repository URLs in src/external-repositories.txt
 # - recipe repositories have a "docs" subfolder
 # - In the "docs" folder is an "index.md" file
 # - This index.md file has HUGO frontmatter
@@ -20,7 +20,7 @@ CONTENT_BASE_DIR=$(pwd)/build
 # Path to where images should be copied to
 IMG_BASE_DIR=$(pwd)/build/static/img
 
-cat ./vendor/docs-content/external-repositories.txt | while read repoline
+cat ./src/external-repositories.txt | while read repoline
 do
 
 	# split line into repository URL, target path
