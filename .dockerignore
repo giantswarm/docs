@@ -2,6 +2,6 @@ venv*
 swarmdocs/public/*
 linklinttest
 sitesearch-volume-data
-docs-content
+src
 .git
 .sass-cache

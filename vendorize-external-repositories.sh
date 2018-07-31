@@ -7,7 +7,7 @@
 # - add a link to the recipe repository for collaboration
 #
 # This assumes:
-# - list of repository URLs in docs-content/external-repositories.txt
+# - list of repository URLs in src/external-repositories.txt
 # - recipe repositories have a "docs" subfolder
 # - In the "docs" folder is an "index.md" file
 # - This index.md file has HUGO frontmatter

@@ -17,7 +17,7 @@ vendor:
 		tar -xvf hugo_0.16_linux-64bit.tgz && \
 		rm hugo_0.16_linux-64bit.tgz
 
-	# Vendor other external repositories as defined in docs-content repo 'external-repositories.txt'
+	# Vendor other external repositories as defined in 'external-repositories.txt'
 	./vendorize-external-repositories.sh
 
 build: vendor build-css
