@@ -1,7 +1,7 @@
 +++
 title = "Advanced Ingress Configuration"
 description = "Here we describe how you can customize and enable specific features for the NGINX-based Ingress"
-date = "2018-07-25"
+date = "2018-07-31"
 type = "page"
 weight = 50
 tags = ["tutorial"]
@@ -294,13 +294,38 @@ The `index` option is not hashed, an in-memory index is used instead, it's quick
 
 This feature is implemented by the third party module [nginx-sticky-module-ng](https://bitbucket.org/nginx-goodies/nginx-sticky-module-ng). The workflow used to define which upstream server will be used is explained in the [module documentation (PDF)](https://bitbucket.org/nginx-goodies/nginx-sticky-module-ng/raw/08a395c66e425540982c00482f55034e1fee67b6/docs/sticky.pdf).
 
-## Global Options {#configmap}
+## Configuration snippets
 
-Your Ingress Controller can be further customized using a ConfigMap named `ingress-controller-config-custom` located in your `kube-system` namespace.
+The NGINX Ingress Controller creates an NGINX configuration file. You can directly pass chunks of configuration, so-called _configuration snippets_, into any ingress manifest. These snippets will be added to the NGINX configuration.
 
-The official documentation of the NGINX Ingress Controller contains an overview of the [configuration options](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/) and their defaults.
+Here is an example adding an `Expires` header to every response:
+
+```yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: myingress
+  namespace: mynamespace
+  annotations:
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      expires 24h;
+spec:
+  rules:
+  - host: host.example.com
+    http:
+      paths:
+      - backend:
+          serviceName: http-svc
+          servicePort: 80
+        path: /
+```
+
+Make sure to use the exact annotation scheme `nginx.ingress.kubernetes.io/configuration-snippet` in the `metadata` section of the manifest.
+
+Check out the [ingress-nginx repository](https://github.com/kubernetes/ingress-nginx/blob/master/docs/examples/customization/configuration-snippets/ingress.yaml) for more information.
 
 ## Further reading
 
 - [Official Kubernetes documentation for the Ingress Resource](http://kubernetes.io/docs/user-guide/ingress/)
 - [Configuration documentation for the NGINX Ingress Controller](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)
+- [Offical ingress-nginx configuration snippets example](https://github.com/kubernetes/ingress-nginx/tree/master/docs/examples/customization/configuration-snippets)
