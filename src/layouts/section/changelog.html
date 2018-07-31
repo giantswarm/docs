@@ -1,0 +1,32 @@
+{{ partial "header.html" . }}
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <h1 id="title">Changelog</h1>
+
+      {{ range .Data.Pages }}
+        
+        <hr />
+
+        <p>
+          <a href="{{ .Permalink | relURL }}"><i class="fa fa-link"></i></a> 
+          
+          <strong>{{ .Date.Format "2006 January 2" }}</strong>
+          {{ range .Params.tags }}
+            <span class="tag">{{ . }}</span>
+          {{ end }}
+        </p>
+        
+        <div class="changelog-item">
+        {{ .Content }}
+        </div>
+
+      {{ end }}
+
+
+    {{ partial "feedback_reference.html" . }}
+
+  </div>
+</div>
+
+{{ partial "footer.html" . }}
