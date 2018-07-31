@@ -71,3 +71,5 @@ The output lines in detail:
 
 - [`gsctl list clusters`](../list-clusters/)
 - [`gsctl scale cluster`](../scale-cluster/)
+- [`gsctl delete cluster`](../delete-cluster/)
+- [API: Get cluster details](/api/#operation/getCluster)

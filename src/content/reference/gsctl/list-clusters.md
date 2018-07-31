@@ -30,6 +30,7 @@ The details displayed are:
 
 ## Related
 
-- [`gsctl create cluster`](../create-cluster/): Creating a cluster
-- [`gsctl delete cluster`](../create-cluster/): Deleting a cluster
-- [`gsctl list releases`](../list-releases/): Listing available releases
+- [`gsctl create cluster`](../create-cluster/)
+- [`gsctl scale cluster`](../scale-cluster/)
+- [`gsctl delete cluster`](../delete-cluster/)
+- [API: Get clusters](/api/#operation/getClusters)

@@ -42,4 +42,6 @@ Use `gsctl scale cluster --help` for a additional (global) arguments.
 
 ## Related
 
+- [`gsctl delete cluster`](../delete-cluster/)
 - [`gsctl` reference overview](../)
+- [API: Modify cluster](/api/#operation/modifyCluster)

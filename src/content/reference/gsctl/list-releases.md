@@ -80,3 +80,4 @@ Output details:
 
 - [`gsctl create cluster`](../create-cluster/)
 - [`gsctl show cluster`](../show-cluster/)
+- [API: Get releases](/api/#operation/getReleases)

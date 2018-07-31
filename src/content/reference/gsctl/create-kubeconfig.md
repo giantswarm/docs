@@ -144,3 +144,4 @@ resources to your cluster.
 
 - [`gsctl create keypair`](../cerate-keypair/): Create and download a key pair
 - [kubectl reference](https://kubernetes.io/docs/user-guide/kubectl-overview/)
+- [API: Create key pair](/api/#operation/addKeyPair)
