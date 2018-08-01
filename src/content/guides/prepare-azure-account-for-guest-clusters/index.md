@@ -51,7 +51,7 @@ Giant Swarm guest clusters are owned by organizations, which allows to control a
 
 In order to run a guest cluster in your Azure subscription, the organization owning your cluster has to know about the service principal you just created.
 
-In the output from step 3 of the previous section you need to replace the `null` value in front of `subscription_id:` with your actual subscription ID. This document is the credential which need to be registered within Giant Swarm API.
+In the output from step 3 of the previous section you need to replace the `null` value in front of `subscription_id:` with your actual subscription ID. This document is the credential which needs to be registered within Giant Swarm API.
 
 - If you have direct access to the Giant Swarm API, please follow the [documentation](https://docs.giantswarm.io/api/#operation/addCredentials) to set the credentials of your organization via the API.
 - In case you work with a Giant Swarm partner, it might be that you don’t have access to the Giant Swarm API. In that case, please hand over the credential to your partner contact.
