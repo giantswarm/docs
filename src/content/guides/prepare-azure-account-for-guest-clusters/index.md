@@ -24,14 +24,14 @@ In order to run Giant Swarm guest clusters, an Azure subscription needs the foll
 In order to perform necessary actions to deploy and maintain guest clusters in your Azure subscription, `azure-operator` needs to access the subscription using a service principal.
 Here we describe all the steps to set it up.
 
-1. Prerequisites
+#### 1. Prerequisites
 
 To create a service principal you need:
 
 - An account with [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner) or [User Access Administrator](User Access Administrator) role
 - [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) installed
 
-2. Role definition
+#### 2. Role definition
 
 Download our [role definition](https://raw.githubusercontent.com/giantswarm/azure-operator/38caa99efac9db440433c73646de54a5478f8cb6/policies/guest.json).
 
@@ -39,7 +39,7 @@ Open it and replace `${SUBSCRIPTION_ID}` with your subscription id, you can find
 
 Create the role definition : `az role definition create --role-definition @/path/to/guest.json`.
 
-3. Service principal
+#### 3. Service principal
 
 Create the service principal : `az ad sp create-for-rbac --name "azure-operator-sp" --role "azure-operator" --query '{client_id:appId, secret_key:password, tenant_id:tenant, subscription_id:""}'`
 
