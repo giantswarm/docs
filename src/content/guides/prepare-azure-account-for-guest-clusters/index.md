@@ -40,6 +40,7 @@ Open it and replace `${SUBSCRIPTION_ID}` with your subscription id.
 You can find it :
 
 - [here](https://portal.azure.com/#blade/Microsoft_Azure_Billing/SubscriptionsBlade) using the portal
+![Azure Subscriptions list](/img/azure-subscriptions-list.png)
 
 - using Azure cli
 ```
