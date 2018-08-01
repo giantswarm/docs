@@ -19,7 +19,7 @@ In order to run Giant Swarm guest clusters, an Azure subscription needs the foll
 - Role definition: a set of permission to operate guest clusters in the Azure subscription.
 - Service principal: an identity (bound to the previoulsy defined role definition) to access the Azure subscription.
 
-## Create Azure role definition & service principal
+## Create Azure role definition and service principal
 
 In order to perform necessary actions to deploy and maintain guest clusters in your Azure subscription, `azure-operator` needs to access the subscription using a service principal.
 Here we describe all the steps to set it up.
