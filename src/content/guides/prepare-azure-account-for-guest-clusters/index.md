@@ -35,13 +35,63 @@ To create a service principal you need:
 
 Download our [role definition](https://raw.githubusercontent.com/giantswarm/azure-operator/38caa99efac9db440433c73646de54a5478f8cb6/policies/guest.json).
 
-Open it and replace `${SUBSCRIPTION_ID}` with your subscription id, you can find it [here](https://portal.azure.com/#blade/Microsoft_Azure_Billing/SubscriptionsBlade) using the portal, or using Azure cli `az account list --output table`.
+Open it and replace `${SUBSCRIPTION_ID}` with your subscription id.
 
-Create the role definition : `az role definition create --role-definition @/path/to/guest.json`.
+You can find it :
+
+- [here](https://portal.azure.com/#blade/Microsoft_Azure_Billing/SubscriptionsBlade) using the portal
+
+- using Azure cli
+```
+az account list --output table
+$ az account list --output table
+Name                         CloudName    SubscriptionId                        State    IsDefault
+---------------------------  -----------  ------------------------------------  -------  -----------
+Example                      AzureCloud   6ec148b8-8bea-4dd3-82bc-1787c8260e4a  Enabled  True
+```
+
+Create the role definition
+
+```
+$ az role definition create --role-definition @guest.json
+{
+  "assignableScopes": [
+    "/subscriptions/6ec148b8-8bea-4dd3-82bc-1787c8260e4a"
+  ],
+  "description": "Role for github.com/giantswarm/azure-operator",
+  "id": "/subscriptions/6ec148b8-8bea-4dd3-82bc-1787c8260e4a/providers/Microsoft.Authorization/roleDefinitions/70969f8f-eab5-4db7-87bf-5c8053431a85",
+  "name": "70969f8f-eab5-4db7-87bf-5c8053431a85",
+  "permissions": [
+    {
+      "actions": [
+        "*"
+      ],
+      "dataActions": [],
+      "notActions": [
+        "Microsoft.Authorization/elevateAccess/Action"
+      ],
+      "notDataActions": []
+    }
+  ],
+  "roleName": "azure-operator",
+  "roleType": "CustomRole",
+  "type": "Microsoft.Authorization/roleDefinitions"
+}
+```
 
 #### 3. Service principal
 
-Create the service principal : `az ad sp create-for-rbac --name "azure-operator-sp" --role "azure-operator" --query '{client_id:appId, secret_key:password, tenant_id:tenant, subscription_id:""}'`
+Create the service principal
+
+```
+$ az ad sp create-for-rbac --name "azure-operator-sp" --role "azure-operator" --query '{client_id:appId, secret_key:password, tenant_id:tenant, subscription_id:""}'
+{
+    "client_id": "72bc3de4-3cf8-46c5-bd2b-243368ed0622",
+    "secret_key": "d6b2cb93-cae9-44b3-8ec5-dc5feb8c28ba",
+    "subscription_id": null,
+    "tenant_id": "31f75bf9-3d8c-4691-95c0-83dd71613db8"
+}
+```
 
 ## Configure the Giant Swarm organization
 
