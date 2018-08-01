@@ -1,15 +1,15 @@
 +++
-title = "Prepare an Azure account to run Giant Swarm guest clusters"
-description = "This guide will walk you through all necessary steps to set up an Azure account with approriate role definition and service principal for operating Giant Swarm guest clusters."
+title = "Prepare an Azure subscription to run Giant Swarm guest clusters"
+description = "This guide will walk you through all necessary steps to set up an Azure subscription with approriate role definition and service principal for operating Giant Swarm guest clusters."
 date = "2018-08-09"
 type = "page"
 weight = 100
 tags = ["tutorial"]
 +++
 
-# Prepare an Azure account to run Giant Swarm guest clusters
+# Prepare an Azure subscription to run Giant Swarm guest clusters
 
-In a Giant Swarm installation the guest clusters (the clusters running your Kubernetes workloads) can run in a separate Azure subscription (or account) from the host cluster. This gives great flexibility depending on the requirements and the usage scenario. For example, it allows the host cluster to be running in an Azure subscription owned by Giant Swarm, while guest clusters operate in different Azure subscriptions each, depending on a customer’s department using them.
+In a Giant Swarm installation the guest clusters (the clusters running your Kubernetes workloads) can run in a separate Azure subscription from the host cluster. This gives great flexibility depending on the requirements and the usage scenario. For example, it allows the host cluster to be running in an Azure subscription owned by Giant Swarm, while guest clusters operate in different Azure subscriptions each, depending on a customer’s department using them.
 Giant Swarm operate guest clusters using a service called `azure-operator` which runs on the host cluster.
 
 ## Overview
@@ -45,11 +45,11 @@ Create the service principal : `az ad sp create-for-rbac --name "azure-operator-
 
 ## Configure the Giant Swarm organization
 
-In the previous section, we explained how to create the service principal in Azure account in order to run the Giant Swarm guest clusters.
+In the previous section, we explained how to create the service principal in Azure subscription in order to run the Giant Swarm guest clusters.
 
 Giant Swarm guest clusters are owned by organizations, which allows to control access to clusters, since only members of the owner organization have access to the management functions of a cluster.
 
-In order to run a guest cluster in your Azure account, the organization owning your cluster has to know about the service principal you just created.
+In order to run a guest cluster in your Azure subscription, the organization owning your cluster has to know about the service principal you just created.
 
 In the output from step 3 of the previous section you need to replace the `null` value in front of `subscription_id:` with your actual subscription ID. This document is the credential which need to be registered within Giant Swarm API.
 
