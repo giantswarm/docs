@@ -1,7 +1,7 @@
 +++
 title = "Prepare an Azure account to run Giant Swarm guest clusters"
 description = "This guide will walk you through all necessary steps to set up an Azure account with approriate role definition and service principal for operating Giant Swarm guest clusters."
-date = "2018-07-18"
+date = "2018-08-09"
 type = "page"
 weight = 100
 tags = ["tutorial"]
