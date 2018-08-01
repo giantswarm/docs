@@ -9,7 +9,7 @@ tags = ["tutorial"]
 
 # Prepare an Azure subscription to run Giant Swarm guest clusters
 
-In a Giant Swarm installation the guest clusters (the clusters running your Kubernetes workloads) can run in a separate Azure subscription from the host cluster. This gives great flexibility depending on the requirements and the usage scenario. For example, it allows the host cluster to be running in an Azure subscription owned by Giant Swarm, while guest clusters operate in different Azure subscriptions each, depending on a customer’s department using them.
+In a Giant Swarm installation the guest clusters (the clusters running your Kubernetes workloads) can run in a separate Azure subscription from the host cluster. This gives great flexibility depending on the requirements and the use case. For example, it allows the host cluster to be running in an Azure subscription owned by Giant Swarm, while guest clusters operate in different Azure subscriptions each, depending on a customer’s department using them.
 Giant Swarm operates guest clusters using a service called `azure-operator` which runs on the host cluster.
 
 ## Overview
