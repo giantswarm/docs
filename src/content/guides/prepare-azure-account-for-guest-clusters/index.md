@@ -45,7 +45,7 @@ Create the service principal : `az ad sp create-for-rbac --name "azure-operator-
 
 ## Configure the Giant Swarm organization
 
-In the previous section, we explained how to create the service principal in the Azure subscription in order to run the Giant Swarm guest clusters.
+In the previous section, we explained how to create the service principal in the Azure subscription in order to run Giant Swarm guest clusters.
 
 Giant Swarm guest clusters are owned by organizations, which allows to control access to clusters, since only members of the owner organization have access to the management functions of a cluster.
 
