@@ -116,3 +116,4 @@ and link, if possible, to https://giantswarm.io
 ## Deploying
 
 With every push to `master`, the latest content is automatically published. See `.circleci/config.yml` and `helm/` for details.
+
