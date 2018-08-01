@@ -14,7 +14,7 @@ Giant Swarm operates guest clusters using a service called `azure-operator` whic
 
 ## Overview
 
-In order to run Giant Swarm guest clusters, an Azure subscription need the following elements :
+In order to run Giant Swarm guest clusters, an Azure subscription needs the following elements :
 
 - Role definition: a set of permission to operate guest clusters in the Azure subscription.
 - Service principal: an identity (bound to the previoulsy defined role definition) to access the Azure subscription.
