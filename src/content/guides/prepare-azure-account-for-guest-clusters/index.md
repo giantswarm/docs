@@ -29,8 +29,8 @@ Here we describe all the steps to set it up.
 
 To create a service principal you need:
 
-- An account with [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner) or [User Access Administrator](User Access Administrator) role
-- [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) installed
+- An account with [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner) or [User Access Administrator](User Access Administrator) role.
+- [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) installed.
 
 #### 2. Role definition
 
