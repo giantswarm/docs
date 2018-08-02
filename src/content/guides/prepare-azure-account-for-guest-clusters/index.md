@@ -44,7 +44,6 @@ You can find it:
 
 - using Azure cli
 ```
-az account list --output table
 $ az account list --output table
 Name                         CloudName    SubscriptionId                        State    IsDefault
 ---------------------------  -----------  ------------------------------------  -------  -----------
