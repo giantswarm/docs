@@ -1,6 +1,6 @@
 +++
 title = "Prepare an Azure subscription to run Giant Swarm guest clusters"
-description = "This guide will walk you through all necessary steps to set up an Azure subscription with approriate role definition and Service Principal for operating Giant Swarm guest clusters."
+description = "This guide will walk you through all necessary steps to set up an Azure subscription with approriate Role definition and Service Principal for operating Giant Swarm guest clusters."
 date = "2018-08-09"
 type = "page"
 weight = 100
@@ -18,7 +18,7 @@ Giant Swarm operates guest clusters using a service called `azure-operator` whic
 In order to run Giant Swarm guest clusters, an Azure subscription needs the following elements:
 
 - Role definition: a set of permission to operate guest clusters in the Azure subscription.
-- Service Principal: an identity (bound to the previously defined role definition) to access the Azure subscription.
+- Service Principal: an identity (bound to the previously defined Role definition) to access the Azure subscription.
 
 ## Create Azure Role definition and Service Principal
 
@@ -34,7 +34,7 @@ To create a Service Principal you need:
 
 #### 2. Role definition
 
-Download our [role definition](https://raw.githubusercontent.com/giantswarm/azure-operator/master/policies/guest.json).
+Download our [Role definition](https://raw.githubusercontent.com/giantswarm/azure-operator/master/policies/guest.json).
 
 Open it and replace `${SUBSCRIPTION_ID}` with your subscription id.
 
@@ -51,7 +51,7 @@ Name                         CloudName    SubscriptionId                        
 Example                      AzureCloud   6ec148b8-8bea-4dd3-82bc-1787c8260e4a  Enabled  True
 ```
 
-Create the role definition
+Create the Role definition
 
 ```
 $ az role definition create --role-definition @guest.json
