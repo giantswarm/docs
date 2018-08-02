@@ -44,9 +44,9 @@ Alternatively you can use the Azure CLI like so:
 
 ```nohighlight
 $ az account list --output table
-Name                         CloudName    SubscriptionId                        State    IsDefault
----------------------------  -----------  ------------------------------------  -------  -----------
-Example                      AzureCloud   6ec148b8-8bea-4dd3-82bc-1787c8260e4a  Enabled  True
+Name     CloudName    SubscriptionId                        State    IsDefault
+-------  -----------  ------------------------------------  -------  -----------
+Example  AzureCloud   6ec148b8-8bea-4dd3-82bc-1787c8260e4a  Enabled  True
 ```
 
 With the edited role definition in the file `guest.json`, create the role definition using the Azure CLI:
