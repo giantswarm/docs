@@ -114,4 +114,20 @@ In the output from step 3 of the previous section you need to replace the `null`
 ```
 
 - If you have direct access to the Giant Swarm API, please follow the [documentation](https://docs.giantswarm.io/api/#operation/addCredentials) to set the credentials of your organization via the API.
+
+```
+$ curl -X POST -H "Authorization: giantswarm exampleToken" https://api.g8s.example.westeurope.azure.gigantic.io/v4/organizations/giantswarm/credentials -d \
+'{
+  "provider": "azure",
+  "azure": {
+    "credential": {
+      "client_id": "72bc3de4-3cf8-46c5-bd2b-243368ed0622",
+      "secret_key": "d6b2cb93-cae9-44b3-8ec5-dc5feb8c28ba",
+      "subscription_id": "6ec148b8-8bea-4dd3-82bc-1787c8260e4a",
+      "tenant_id": "31f75bf9-3d8c-4691-95c0-83dd71613db8"
+    }
+  }
+}'
+{"code":"RESOURCE_CREATED","message":"A new set of credentials has been created with ID 'hdc2m1'"}
+```
 - In case you work with a Giant Swarm partner, it might be that you don’t have access to the Giant Swarm API. In that case, please hand over the credential to your partner contact.
