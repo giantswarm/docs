@@ -34,7 +34,7 @@ To create a service principal you need:
 
 #### 2. Role definition
 
-Download our [role definition](https://raw.githubusercontent.com/giantswarm/azure-operator/38caa99efac9db440433c73646de54a5478f8cb6/policies/guest.json).
+Download our [role definition](https://raw.githubusercontent.com/giantswarm/azure-operator/master/policies/guest.json).
 
 Open it and replace `${SUBSCRIPTION_ID}` with your subscription id.
 
