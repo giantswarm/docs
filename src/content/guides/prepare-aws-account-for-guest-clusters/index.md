@@ -191,7 +191,9 @@ Paste the following JSON code into the JSON editor field and then hit the **Revi
 
 In the next step you have to assign a name to the policy. Please use the name 
 
-    GiantSwarmAWSOperatorPolicy
+```nohighlight
+GiantSwarmAWSOperatorPolicy
+```
 
 ### 4. Attach policy to role
 
@@ -224,7 +226,9 @@ you. From that list, open the `GiantSwarmAWSOperator` role you just created.
 The role details screen shows the _Role ARN_, which is a unique identifier for
 the role. It should look like
 
-    arn:aws:iam::<YOUR_ACCOUNT_ID>:role/GiantSwarmAWSOperator
+```nohighlight
+arn:aws:iam::<YOUR_ACCOUNT_ID>:role/GiantSwarmAWSOperator
+```
 
 Please copy the exact ARN from the screen, as you will have to provide it to us
 later.
@@ -255,7 +259,9 @@ subsection of the AWS console and select **Create role**. When asked to
 Select **Create policy** to create another policy. Use the same JSON policy code
 as before. This time, call the policy
 
-    GiantSwarmAdminPolicy
+```nohighlight
+GiantSwarmAdminPolicy
+```
 
 **Background**: We ask you to create two distinct, but identical, IAM roles at
 this point. This enables you to later adjust permissions independently if the
@@ -269,7 +275,9 @@ Attach the new `GiantSwarmAdminPolicy` policy to the role you are creating.
 
 Name this role
 
-    GiantSwarmAdmin
+```nohighlight
+GiantSwarmAdmin
+```
     
 accordingly.
 
@@ -277,7 +285,9 @@ accordingly.
 
 From the conformation screen, copy the exact ARN again. It should be in the form of
 
-    arn:aws:iam::<YOUR_ACCOUNT_ID>:role/GiantSwarmAdmin
+```nohighlight
+arn:aws:iam::<YOUR_ACCOUNT_ID>:role/GiantSwarmAdmin
+```
 
 ## Configure the Giant Swarm organization {#configure-org}
 
