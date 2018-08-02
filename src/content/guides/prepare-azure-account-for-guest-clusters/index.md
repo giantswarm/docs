@@ -34,57 +34,34 @@ To create a service principal you need:
 
 #### 2. Role definition
 
-Download our [role definition](https://raw.githubusercontent.com/giantswarm/azure-operator/master/policies/guest.json).
+Download our [role definition template](https://raw.githubusercontent.com/giantswarm/azure-operator/master/policies/guest.json). Open it and replace `${SUBSCRIPTION_ID}` with your subscription ID.
 
-Open it and replace `${SUBSCRIPTION_ID}` with your subscription id.
+To find out your subscription ID you can use [the Azure portal](https://portal.azure.com/#blade/Microsoft_Azure_Billing/SubscriptionsBlade), as shown in the screenshot below:
 
-You can find it:
-
-- [here](https://portal.azure.com/#blade/Microsoft_Azure_Billing/SubscriptionsBlade) using the portal
 ![Azure Subscriptions list](/img/azure-subscriptions-list.png)
 
-- using Azure cli
-```
+Alternatively you can use the Azure CLI like so:
+
+```nohighlight
 $ az account list --output table
 Name                         CloudName    SubscriptionId                        State    IsDefault
 ---------------------------  -----------  ------------------------------------  -------  -----------
 Example                      AzureCloud   6ec148b8-8bea-4dd3-82bc-1787c8260e4a  Enabled  True
 ```
 
-Create the role definition
+With the edited role definition in the file `guest.json`, create the role definition using the Azure CLI:
 
-```
+```nohighlight
 $ az role definition create --role-definition @guest.json
-{
-  "assignableScopes": [
-    "/subscriptions/6ec148b8-8bea-4dd3-82bc-1787c8260e4a"
-  ],
-  "description": "Role for github.com/giantswarm/azure-operator",
-  "id": "/subscriptions/6ec148b8-8bea-4dd3-82bc-1787c8260e4a/providers/Microsoft.Authorization/roleDefinitions/70969f8f-eab5-4db7-87bf-5c8053431a85",
-  "name": "70969f8f-eab5-4db7-87bf-5c8053431a85",
-  "permissions": [
-    {
-      "actions": [
-        "*"
-      ],
-      "dataActions": [],
-      "notActions": [
-        "Microsoft.Authorization/elevateAccess/Action"
-      ],
-      "notDataActions": []
-    }
-  ],
-  "roleName": "azure-operator",
-  "roleType": "CustomRole",
-  "type": "Microsoft.Authorization/roleDefinitions"
-}
 ```
+
+TODO: explain what to do with the JSON output, or explain that the output can be discarded.
 
 #### 3. Service Principal
 
-Create the service principal
+Create the service principal using the Azure CLI:
 
-```
+```nohighlight
 $ az ad sp create-for-rbac --name "azure-operator-sp" --role "azure-operator" --query '{client_id:appId, secret_key:password, tenant_id:tenant, subscription_id:""}'
 {
     "client_id": "72bc3de4-3cf8-46c5-bd2b-243368ed0622",
@@ -104,7 +81,7 @@ In order to run a guest cluster in your Azure subscription, the organization own
 
 In the output from step 3 of the previous section you need to replace the `null` value in front of `subscription_id:` with your actual subscription ID. This document is the credential which needs to be registered within Giant Swarm API.
 
-```
+```json
 {
     "client_id": "72bc3de4-3cf8-46c5-bd2b-243368ed0622",
     "secret_key": "d6b2cb93-cae9-44b3-8ec5-dc5feb8c28ba",
@@ -113,9 +90,9 @@ In the output from step 3 of the previous section you need to replace the `null`
 }
 ```
 
-- If you have direct access to the Giant Swarm API, please follow the [documentation](https://docs.giantswarm.io/api/#operation/addCredentials) to set the credentials of your organization via the API.
+If you have direct access to the Giant Swarm API, please follow the [documentation](https://docs.giantswarm.io/api/#operation/addCredentials) to set the credentials of your organization via the API.
 
-```
+```nohighlight
 $ curl -X POST -H "Authorization: giantswarm exampleToken" https://api.g8s.example.westeurope.azure.gigantic.io/v4/organizations/giantswarm/credentials -d \
 '{
   "provider": "azure",
@@ -128,6 +105,15 @@ $ curl -X POST -H "Authorization: giantswarm exampleToken" https://api.g8s.examp
     }
   }
 }'
-{"code":"RESOURCE_CREATED","message":"A new set of credentials has been created with ID 'hdc2m1'"}
 ```
-- In case you work with a Giant Swarm partner, it might be that you don’t have access to the Giant Swarm API. In that case, please hand over the credential to your partner contact.
+
+The response should look similar to this:
+
+```json
+{
+  "code": "RESOURCE_CREATED",
+  "message": "A new set of credentials has been created with ID 'hdc2m1'"
+}
+```
+
+In case you work with a Giant Swarm partner, it might be that you don’t have access to the Giant Swarm API. In that case, please hand over the credential to your partner contact.
