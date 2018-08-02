@@ -116,7 +116,7 @@ In the output from step 3 of the previous section you need to replace the `null`
 - If you have direct access to the Giant Swarm API, please follow the [documentation](https://docs.giantswarm.io/api/#operation/addCredentials) to set the credentials of your organization via the API.
 
 ```
-$ curl -X POST -H "Authorization: giantswarm exampleToken" https://api.g8s.example.westeurope.azure.gigantic.io/v4/organizations/giantswarm/credentials -d \
+$ curl -X POST -H "Authorization: giantswarm ${TOKEN}" https://api.g8s.example.westeurope.azure.gigantic.io/v4/organizations/giantswarm/credentials -d \
 '{
   "provider": "azure",
   "azure": {
