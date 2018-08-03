@@ -55,7 +55,7 @@ With the edited role definition in the file `guest.json`, create the role defini
 $ az role definition create --role-definition @guest.json
 ```
 
-On success this commands output the created role definition and can be ignored.
+On success this command prints the created role definition and can be ignored.
 
 #### 3. Service Principal
 
