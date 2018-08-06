@@ -3,6 +3,9 @@ languageCode = "en"
 title = "Giant Swarm Documentation"
 pluralizeListTitles = false
 
+[taxonomies]
+    tag = "tags"
+
 [Blackfriday]
     plainIdAnchors = true
 
