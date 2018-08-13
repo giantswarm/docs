@@ -20,7 +20,7 @@ services:
     volumes:
       - ./test/certificate:/etc/nginx/certs
     ports:
-      - "443:8000"
+      - "8000:8000"
 
   indexer:
     image: quay.io/giantswarm/docs-indexer:latest
