@@ -8,7 +8,7 @@ type = "page"
 
 # The Giant Swarm AWS Architecture
 
-Giant Swarm's Architecture is split into two logical parts, one being the Control Plane and the other being multiple Tenant Clusters. Among other services (for details see Service Architecture below), the host cluster runs our [AWS Operator](https://github.com/giantswarm/aws-operator), which handles the full lifecycle management of Tenant Clusters.
+Giant Swarm's Architecture is split into two logical parts, one being the Control Plane and the other being multiple Tenant Clusters. Among other services (for details see Service Architecture below), the control plane runs our [AWS Operator](https://github.com/giantswarm/aws-operator), which handles the full lifecycle management of Tenant Clusters.
 
 ## Giant Swarm Control Plane
 

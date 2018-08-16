@@ -11,9 +11,9 @@ tags = ["tutorial"]
 
 As detailed in the [Architecture](/reference/giantswarm-aws-architecture/) docs,
 the tenant clusters (the clusters running your Kubernetes workloads) in a Giant
-Swarm installation are running in an AWS account separate from the host cluster.
+Swarm installation are running in an AWS account separate from the control plane.
 This gives great flexibility depending on the requirements and the usage
-scenario. For example, it allows the host cluster to be running in an AWS account
+scenario. For example, it allows the control plane to be running in an AWS account
 owned by Giant Swarm, while tenant clusters operate in different AWS accounts
 each, depending on a customer's department using them.
 
@@ -90,17 +90,17 @@ dynamically based on traffic, hence the high numbers of EC2 instances requested.
 
 Giant Swarm's service creating and maintaining your tenant clusters is
 called [aws-operator](https://github.com/giantswarm/aws-operator). It is
-running in the host cluster. In order to handle resources in your AWS account,
+running in the control plane. In order to handle resources in your AWS account,
 it needs to assume a prepared IAM role in your AWS account. Here we explain all
 the required steps to set up this role.
 
-### 1. Determine the host cluster's AWS account ID
+### 1. Determine the control plane's AWS account ID
 
-First you need to know in which AWS account the Giant Swarm host cluster is
+First you need to know in which AWS account the Giant Swarm control plane is
 (or will be) running. As Giant Swarm's customer you might have already decided
 this yourself. Normally you yourself own this account.
 
-Please have the ID of the account selected to run the host cluster at hand, as
+Please have the ID of the account selected to run the control plane at hand, as
 you will need it in step 2.
 
 ### 2. Basic role setup
@@ -238,7 +238,7 @@ later.
 The second IAM role to be created is similar to the one before, but in this case
 it is used by Giant Swarm support staff. The main differences will be that this
 role must have Giant Swarm's account as a trusted entity, instead of the account
-running the host cluster, and it can have multi-factor authentication enabled.
+running the control plane, and it can have multi-factor authentication enabled.
 
 ### 1. Basic role setup
 

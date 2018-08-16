@@ -9,9 +9,9 @@ tags = ["tutorial"]
 
 # Prepare an Azure subscription to run Giant Swarm tenant clusters
 
-In a Giant Swarm installation the tenant clusters (the clusters running your Kubernetes workloads) can run in a separate Azure subscription from the host cluster. This gives greater flexibility depending on the requirements and the use case. For example, it allows the host cluster to be running in one Azure subscription, while tenant clusters operate in different Azure subscriptions, depending on a customer’s department using them.
+In a Giant Swarm installation the tenant clusters (the clusters running your Kubernetes workloads) can run in a separate Azure subscription from the control plane. This gives greater flexibility depending on the requirements and the use case. For example, it allows the control plane to be running in one Azure subscription, while tenant clusters operate in different Azure subscriptions, depending on a customer’s department using them.
 
-Giant Swarm operates tenant clusters using a service called `azure-operator` which runs on the host cluster.
+Giant Swarm operates tenant clusters using a service called `azure-operator` which runs on the control plane.
 
 ## Overview
 
