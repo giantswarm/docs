@@ -12,7 +12,7 @@ Giant Swarm's Architecture is split into two logical parts, one being the Contro
 
 ## Giant Swarm Control Plane
 
-![Control Plane Architecture](/img/architecture-aws-host-cluster.png)
+![Control Plane Architecture](/img/architecture-aws-control-plane.png)
 
 The above diagram shows our PoC setup and runs over two availability zones. We setup two Bastion hosts, one in each Availability Zone. All EC2 machines are in a private subnet and only accessible through the Bastion hosts.
 
@@ -24,7 +24,7 @@ Access to those interfaces can be configured to work with the customers' Identit
 
 ## Giant Swarm Tenant Cluster
 
-![Tenant Cluster Architecture](/img/architecture-aws-guest-cluster.png)
+![Tenant Cluster Architecture](/img/architecture-aws-tenant-cluster.png)
 
 Via the Giant Swarm API, our [CLI](https://github.com/giantswarm/gsctl), or our Happa interface, you can start Tenant Clusters of different sizes. There's a selection of recommended EC2 instance types, which can be adjusted if needed. 
 
