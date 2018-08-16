@@ -1,7 +1,7 @@
 +++
 title = "FAQ"
 description = "Frequently Asked Questions"
-date = "2018-04-25"
+date = "2018-08-16"
 type = "page"
 +++
 
@@ -53,7 +53,7 @@ The [Cron Job](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jo
 
 There are different answers to this, and some depend on your requirements. We advise that you think about where you want to go with your Giant Swarm Platform in light of the limits you might impose based on a smaller IP Block. The following is a hopefully well argued possible solution. 
 
-First we need IP space for our control plane and tenant clusters, meaning the underlying EC2 machines. We currently suggesting taking a Class C IP Block per tenant cluster, as this would allow some 240 machines or 120 if spread over two Availability Zones. While taking a full Class B IP Block would mean you can start well over 200 clusters, or e.g. 80 in three different Amazon Locations, you might be ok with using a smaller IP Range. These IPs, in case you somehow want IP to IP connections to those machines, need to be routable inside your old environment. Normally these can run over a NAT but still, the IPs should not be used inside your existing network in case systems inside the cluster need to talk to some of your old IPs, e.g. a database.
+First we need IP space for our control plane and tenant clusters, meaning the underlying EC2 machines. We currently suggest taking a Class C IP Block per tenant cluster, as this would allow some 240 machines or 120 if spread over two Availability Zones. While taking a full Class B IP Block would mean you can start well over 200 clusters, or e.g. 80 in three different Amazon Locations, you might be ok with using a smaller IP Range. These IPs, in case you somehow want IP to IP connections to those machines, need to be routable inside your old environment. Normally these can run over a NAT but still, the IPs should not be used inside your existing network in case systems inside the cluster need to talk to some of your old IPs, e.g. a database.
 
 Then we need a class B IP Block for the internal Calico based network between containers, that will be reused within each cluster as the will not bleed out. These do not need to be routed, but reserved internally and use nowhere else in case we need to talk to IPs outside the cluster.
 
