@@ -1,28 +1,28 @@
 +++
-title = "Prepare an Azure subscription to run Giant Swarm guest clusters"
-description = "This guide will walk you through all necessary steps to set up an Azure subscription with approriate Role definition and Service Principal for operating Giant Swarm guest clusters."
-date = "2018-08-09"
+title = "Prepare an Azure subscription to run Giant Swarm tenant clusters"
+description = "This guide will walk you through all necessary steps to set up an Azure subscription with approriate Role definition and Service Principal for operating Giant Swarm tenant clusters."
+date = "2018-08-16"
 type = "page"
 weight = 100
 tags = ["tutorial"]
 +++
 
-# Prepare an Azure subscription to run Giant Swarm guest clusters
+# Prepare an Azure subscription to run Giant Swarm tenant clusters
 
-In a Giant Swarm installation the guest clusters (the clusters running your Kubernetes workloads) can run in a separate Azure subscription from the host cluster. This gives greater flexibility depending on the requirements and the use case. For example, it allows the host cluster to be running in one Azure subscription, while guest clusters operate in different Azure subscriptions, depending on a customer’s department using them.
+In a Giant Swarm installation the tenant clusters (the clusters running your Kubernetes workloads) can run in a separate Azure subscription from the control plane. This gives greater flexibility depending on the requirements and the use case. For example, it allows the control plane to be running in one Azure subscription, while tenant clusters operate in different Azure subscriptions, depending on a customer’s department using them.
 
-Giant Swarm operates guest clusters using a service called `azure-operator` which runs on the host cluster.
+Giant Swarm operates tenant clusters using a service called `azure-operator` which runs on the control plane.
 
 ## Overview
 
-In order to run Giant Swarm guest clusters, an Azure subscription needs the following elements:
+In order to run Giant Swarm tenant clusters, an Azure subscription needs the following elements:
 
-- Role definition: a set of permission to operate guest clusters in the Azure subscription.
+- Role definition: a set of permission to operate tenant clusters in the Azure subscription.
 - Service Principal: an identity (bound to the previously defined Role definition) to access the Azure subscription.
 
 ## Create Azure Role definition and Service Principal
 
-In order to perform necessary actions to deploy and maintain guest clusters in your Azure subscription, `azure-operator` needs to access the subscription using a Service Principal.
+In order to perform necessary actions to deploy and maintain tenant clusters in your Azure subscription, `azure-operator` needs to access the subscription using a Service Principal.
 Here we describe all the steps to set it up.
 
 #### 1. Prerequisites
@@ -75,11 +75,11 @@ $ az ad sp create-for-rbac --name "azure-operator-sp" --role "azure-operator" --
 
 ## Configure the Giant Swarm organization
 
-In the previous section, we explained how to create the Service Principal in the Azure subscription in order to run Giant Swarm guest clusters.
+In the previous section, we explained how to create the Service Principal in the Azure subscription in order to run Giant Swarm tenant clusters.
 
-Giant Swarm guest clusters are owned by organizations, which allows to control access to clusters, since only members of the owner organization have access to the management functions of a cluster.
+Giant Swarm tenant clusters are owned by organizations, which allows you to control access to clusters, since only members of the owner organization have access to the management functions of a cluster.
 
-In order to run a guest cluster in your Azure subscription, the organization owning your cluster has to know about the Service Principal you just created.
+In order to run a tenant cluster in your Azure subscription, the organization owning your cluster has to know about the Service Principal you just created.
 
 In the output from step 3 of the previous section you need to replace the `null` value in front of `subscription_id:` with your actual subscription ID. This document is the credential which needs to be registered within Giant Swarm API.
 
