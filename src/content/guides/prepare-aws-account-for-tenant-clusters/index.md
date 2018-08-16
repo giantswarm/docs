@@ -294,7 +294,7 @@ arn:aws:iam::<YOUR_ACCOUNT_ID>:role/GiantSwarmAdmin
 In the previous sections, we explained how to create two IAM roles in the
 AWS account that's going to run the Giant Swarm tenant clusters.
 
-Giant Swarm tenant clusters are owned by _organizations_, which allows to control
+Giant Swarm tenant clusters are owned by _organizations_, which allows you to control
 access to clusters, since only members of the owner organization have access to
 the management functions of a cluster.
 

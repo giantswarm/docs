@@ -77,7 +77,7 @@ $ az ad sp create-for-rbac --name "azure-operator-sp" --role "azure-operator" --
 
 In the previous section, we explained how to create the Service Principal in the Azure subscription in order to run Giant Swarm tenant clusters.
 
-Giant Swarm tenant clusters are owned by organizations, which allows to control access to clusters, since only members of the owner organization have access to the management functions of a cluster.
+Giant Swarm tenant clusters are owned by organizations, which allows you to control access to clusters, since only members of the owner organization have access to the management functions of a cluster.
 
 In order to run a tenant cluster in your Azure subscription, the organization owning your cluster has to know about the Service Principal you just created.
 
