@@ -1,7 +1,7 @@
 +++
 title = "gsctl Command Reference: show cluster"
 description = "The 'gsctl show cluster' command displays details of a cluster."
-date = "2018-03-07"
+date = "2018-08-20"
 type = "page"
 weight = 52
 +++
@@ -31,7 +31,6 @@ Workers:                       3
 Worker instance type:          m3.large
 CPU cores in workers:          6
 RAM in worker nodes (GB):      22.5
-Storage in worker nodes (GB):  96
 ```
 
 Example output for a KVM based cluster:
@@ -64,7 +63,7 @@ The output lines in detail:
 - **Worker VM size:** (_only on Azure_) VM size used for worker nodes
 - **CPU cores in workers:** total number of CPU cores in all worker nodes in this cluster
 - **RAM in worker nodes (GB):** total amount of memory in all worker nodes in this cluster
-- **Storage in worker nodes (GB):** total amount of local storage in all worker nodes in this cluster
+- **Storage in worker nodes (GB):** (only for KVM) total amount of local storage in all worker nodes in this cluster
 - **Ingress port for &lt;protocol&gt;:** the port to forward traffic to from your data center's load balancer(s) to this cluster's ingress controller for that specific protocol
 
 ## Related
