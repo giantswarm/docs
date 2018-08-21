@@ -63,7 +63,7 @@ The output lines in detail:
 - **Worker VM size:** (_only on Azure_) VM size used for worker nodes
 - **CPU cores in workers:** total number of CPU cores in all worker nodes in this cluster
 - **RAM in worker nodes (GB):** total amount of memory in all worker nodes in this cluster
-- **Storage in worker nodes (GB):** (only for KVM) total amount of local storage in all worker nodes in this cluster
+- **Storage in worker nodes (GB):** (_only for KVM_) total amount of local storage in all worker nodes in this cluster
 - **Ingress port for &lt;protocol&gt;:** the port to forward traffic to from your data center's load balancer(s) to this cluster's ingress controller for that specific protocol
 
 ## Related
