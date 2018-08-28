@@ -1,7 +1,7 @@
 +++
 title = "Prepare an Azure subscription to run Giant Swarm tenant clusters"
 description = "This guide will walk you through all necessary steps to set up an Azure subscription with approriate Role definition and Service Principal for operating Giant Swarm tenant clusters."
-date = "2018-08-16"
+date = "2018-08-28"
 type = "page"
 weight = 100
 tags = ["tutorial"]
