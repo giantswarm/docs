@@ -125,69 +125,7 @@ Proceed to the next step to set up permissions.
 
 In the **Attach permissions policies** section, hit the **Create policy** button.
 
-Paste the following JSON code into the JSON editor field and then hit the **Review policy** button.
-
-```json
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "autoscaling:*",
-                "cloudwatch:*",
-                "cloudformation:*",
-                "elasticloadbalancing:*",
-                "events:*",
-                "kms:*",
-                "ec2:*",
-                "ecr:*",
-                "logs:*",
-                "route53:*",
-                "route53domains:*",
-                "s3:*",
-                "sts:AssumeRole",
-                "sts:DecodeAuthorizationMessage",
-                "sts:GetFederationToken",
-                "trustedadvisor:*",
-                "iam:AddRoleToInstanceProfile",
-                "iam:AttachRolePolicy",
-                "iam:CreatePolicyVersion",
-                "iam:CreatePolicy",
-                "iam:CreateInstanceProfile",
-                "iam:CreateRole",
-                "iam:DeletePolicyVersion",
-                "iam:GetAccount*",
-                "iam:GetRole",
-                "iam:GetUser",
-                "iam:GetRolePolicy",
-                "iam:GetInstanceProfile",
-                "iam:GetServiceLinkedRoleDeletionStatus",
-                "iam:GetUserPolicy",
-                "iam:GetUser",
-                "iam:DeleteInstanceProfile",
-                "iam:DeleteRole",
-                "iam:DeletePolicy",
-                "iam:DeleteRolePolicy",
-                "iam:DetachRolePolicy",
-                "iam:DeleteServiceLinkedRole",
-                "iam:ListInstanceProfilesForRole",
-                "iam:ListAttachedRolePolicies",
-                "iam:ListAttachedUserPolicies",
-                "iam:ListRolePolicies",
-                "iam:ListPolicies",
-                "iam:ListRoles",
-                "iam:PassRole",
-                "iam:PutRolePolicy",
-                "iam:UpdateAssumeRolePolicy",
-                "iam:UpdateRoleDescription",
-                "iam:RemoveRoleFromInstanceProfile"
-            ],
-            "Resource": "*"
-        }
-    ]
-}
-```
+Paste the JSON code from [tenant_cluster.json](https://raw.githubusercontent.com/giantswarm/aws-operator/master/policies/tenant_cluster.json) into the JSON editor field and then hit the **Review policy** button.
 
 In the next step you have to assign a name to the policy. Please use the name 
 
