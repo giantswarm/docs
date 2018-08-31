@@ -2,8 +2,8 @@
 title = "Kubernetes Resources"
 description = "Pointers to the best resources about Kubernetes to get you up to speed with Kubernetes fast"
 date = "2017-01-02"
+weight = 50
 type = "page"
-weight = 20
 categories = ["basics"]
 +++
 
