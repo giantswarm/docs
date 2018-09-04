@@ -12,7 +12,7 @@ tags = ["tutorial"]
 The [NGINX-based Ingress Controller](https://github.com/kubernetes/ingress-nginx) running inside your cluster has additional configuration options and features that can be customized. The functionality is split into two categories:
 
 - [Per-Service options](#yaml) in each Ingress' YAML definition either directly or via [Annotations](https://kubernetes.io/docs/user-guide/annotations/).
-- [Global options](#configmap) that influence all Ingresses via a Config Map.
+- [Global options](#configmap) that influence all Ingresses of a cluster via a ConfigMap.
 
 ## Per-Service Options {#yaml}
 
@@ -324,9 +324,9 @@ Make sure to use the exact annotation scheme `nginx.ingress.kubernetes.io/config
 
 Check out the [ingress-nginx repository](https://github.com/kubernetes/ingress-nginx/blob/master/docs/examples/customization/configuration-snippets/ingress.yaml) for more information.
 
-## Global Options {#configmap}
+## Global (per Cluster) Options {#configmap}
 
-Your Ingress Controller can be further customized using a ConfigMap named `ingress-controller-config-custom` located in your `kube-system` namespace.
+Your Giant Swarm installation may comes with some global defaults for Ingress Controller configuration. However, you can override these defaults by setting your per cluster configuration in form of a ConfigMap named `ingress-controller-config-custom` located in your `kube-system` namespace.
 
 The official documentation of the NGINX Ingress Controller contains an overview of the [configuration options](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/) and their defaults.
 
