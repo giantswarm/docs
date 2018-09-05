@@ -1,6 +1,13 @@
++++
+title = "Using OpenFaaS with Kubernetes on Giant Swarm"
+description = "TODO"
+date = "2018-09-05"
+type = "page"
+weight = 300
+tags = ["tutorial"]
++++
 
-
-# Using OpenFaaS with a Giant Swarm Cluster
+# Using OpenFaaS with Kubernetes on Giant Swarm
 
 
 ## Create a Kubernetes Cluster
