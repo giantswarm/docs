@@ -126,6 +126,8 @@ spec:
           servicePort: 8080
 ```
 
+TODO: Change this to HTTPS
+
 The `spec.rules[].host` part has to be aligned with your cluster's ingress base domain. See [our guide](https://docs.giantswarm.io/guides/accessing-services-from-the-outside/#setting-up-ingress) for details.
 
 Save the above manifest as `ingress.yaml` and then apply
