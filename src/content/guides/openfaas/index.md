@@ -100,13 +100,11 @@ Let's check out what's been installed in the `openfaas` namespace:
 
 Deployments/Pods belonging to:
 
-- `queue-worker`: Uses image [openfaas/queue-worker](https://hub.docker.com/r/openfaas/queue-worker/)
-- `gateway`: Uses image [openfaas/gateway](https://hub.docker.com/r/openfaas/gateway/) and [openfaas/openfaas-operator](https://hub.docker.com/r/openfaas/openfaas-operator/)
-- `nats`: Uses image [nats-streaming](https://hub.docker.com/_/nats-streaming/) from https://nats.io/
-- prometheus
-- alertmanager
-
-TODO: Explain what the components above are doing.
+- `gateway`: The API gateway that allows functions to be accessed from outside the cluster, that provides metrics to Prometheus, offers a web user interface, and scales functions as needed.
+- `queue-worker`: A worker that allows to execute functions asynchronously.
+- `nats`: The NATS server that provides the queue for asynchronous function execution.
+- `prometheus`: Collects metrics from the API gateway.
+- `alertmanager`: Invokes alerts based on metrics which trigger auto scaling.
 
 The gateway has two services, one named `gateway` with type ClusterIP and one `gateway-external` with type NodePort.
 
@@ -305,12 +303,115 @@ X-Start-Time: 1536158048270227415
 Hello! You said: This is the input
 ```
 
+## Getting to know our metrics
+
+FaaS is about automatic scaling. To achieve that, metrics are needed that tell us something about the demand. As you have seen before, we have a Prometheus instance running in our namespace already. And the API gateway constantly provides data regarding the execution, latency and errors of function execution.
+
+Before we rely on these metrics for automatic scaling, let's take a closer look.
+
+### Via the Prometheus UI
+
+Prometheus comes with a basic web user interface to explore all available metrics. Let's make it accessible by setting up a port forwarding directly into the Prometheus Pod:
+
+```
+$ kubectl -n openfaas port-forward \
+  $(kubectl -n openfaas get pods \
+    -l "app=prometheus" \
+    -o jsonpath="{.items[0].metadata.name}") \
+  9090
+```
+
+Open http://127.0.0.1:9090
+
+The following metrics are available:
+
+-  `gateway_function_invocation_total`: This is the number of function invocations so far, by function and response status.
+
+- `gateway_functions_seconds_bucket`: histogram of execution times. Labels allow to deduct the function executed.
+
+- `gateway_functions_seconds_sum`: The total execution time so far, by function.
+
+- `gateway_functions_seconds_count`: The number of executions accounted for in `gateway_functions_seconds_sum`
+
+- `gateway_service_count`: Number of replicas, by function
+
+With a query like
+
+[`rate(gateway_functions_seconds_sum[60s]) / rate(gateway_functions_seconds_count[60s])`](http://127.0.0.1:9090/graph?g0.range_input=1h&g0.expr=rate(gateway_functions_seconds_sum%5B60s%5D)%20%2F%20rate(gateway_functions_seconds_count%5B60s%5D)&g0.tab=0)
+
+we can see the execution rate per second. Of course, this only provides interesting data if the functions are actually invoked. So let's do that:
+
+```
+$ while :; do curl -s -X POST http://openfaas.5bjgh.k8s.gollum.westeurope.azure.gigantic.io/function/demo -d "Here the date is $(date)"; done
+```
+
+
+
+
+
+### Via Grafana
+
+For easy access to the metrics we install grafana in our `openfaas` namespace.
+
+```
+$ helm install --name grafana --namespace openfaas stable/grafana
+```
+
+Grafana is protected by a username/password combination. To obtain the password, execute the following command:
+
+```
+$ kubectl get secret -n openfaas grafana \
+  -o jsonpath="{.data.admin-password}" \
+  | base64 --decode ; echo
+```
+
+To access our Grafana instance, we create a port forward from our local machine to the Grafana pod like this:
+
+```
+$ kubectl -n openfaas port-forward \
+  $(kubectl -n openfaas get pods \
+    -l "app=grafana" \
+    -o jsonpath="{.items[0].metadata.name}") \
+  3000
+```
+
+Open http://127.0.0.1:3000/ and log in with username `admin` and the password obtained before.
+
+Add a data source for Prometheus.
+
+- Name: OpenFaaS Prometheus
+- Type: Prometheus
+- URL: `http://prometheus:9090`
+- Access: Server (default)
+
+Go to http://127.0.0.1:3000/dashboard/import to open the Import screen. Paste the ID 3526 to import the dashboard https://grafana.com/dashboards/3526 in to the appropriate field.
+
+Select the data source `OpenFaaS Prometheus` you created before.
+
+
 ## Auto-scaling
 
-TODO
+FaaS is about scaling the resources required to execute functions based on the demand. With a Kubernetes cluster, this means you want scaling to happen on two levels:
+
+1. The number of pods (replicas) providing a function
+2. The number of worker nodes
+
+OpenFaaS comes with very simplistic auto-scaling which only works on the first of the two levels. The preset logic works this way:
+
+- As soon as a function is executed (successfully) more than 5 times per second, the Alertmanager will send an alert to the API gateway.
+- The API gateway will scale up the number of replicas providing that function by a certain amount.
+
+TODO: What happens when the rate goes under 5 per second again? How is the downscaling triggered?
 
 See https://docs.openfaas.com/architecture/autoscaling/
+
+The scaling behaviour can be influenced using labels that are set when deploying a function.
 
 Decision:
 - to scale based on requests per second, use the Alertmanager rules for Prometheus provided with OpenFaas
 - to scale based on memory or CPU, use the Kubernetes HPA
+
+## Further Reading
+
+- [Using secrets in your OpenFaaS functions](https://docs.openfaas.com/reference/secrets/)
+- 
