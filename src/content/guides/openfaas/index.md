@@ -341,7 +341,8 @@ to reserve either CPU, or memory, or both. To prevent function Pods from causing
 system instabilities, we must set reasonable limits. Setting requests and limits
 to the same value will result in a QoS class of `Guaranteed`.
 
-Here is an example how we achieve this by editing our demo function's YAML manifest:
+Here is an example how we achieve this by adding `requests` and `limits` keys to
+our `demo.yml` file:
 
 ```yaml
 provider:
@@ -353,16 +354,16 @@ functions:
     lang: python3
     handler: ./demo
     image: acme/demo:latest
-    limits:
+    requests:
       memory: 30Mi
       cpu: 50m
-    requests:
+    limits:
       memory: 30Mi
       cpu: 50m
 ```
 
 In the example, we set a request and limit for memory to 30 MiB. We also reserve
-a 20th of a CPU core for each Pod. To apply this, we replace our function deployment
+5% of a CPU core for each Pod. To apply this, we replace our function deployment
 using this command:
 
 ```
@@ -379,7 +380,7 @@ FaaS is about automatic scaling. To achieve that, metrics are needed that tell u
 
 Before we rely on these metrics for automatic scaling, let's take a closer look.
 
-### Via the Prometheus UI
+### Using the Prometheus UI
 
 Prometheus comes with a basic web user interface to explore all available metrics. Let's make it accessible by setting up a port forwarding directly into the Prometheus Pod:
 
@@ -412,16 +413,21 @@ With a query like
 we can see the execution rate per second. Of course, this only provides interesting data if the functions are actually invoked. So let's do that:
 
 ```
-$ while :; do curl -s -X POST http://openfaas.5bjgh.k8s.gollum.westeurope.azure.gigantic.io/function/demo -d "Here the date is $(date)"; done
+$ while :; \
+  do curl -s -X POST -d "The date is '$(date)'" \
+  http://openfaas.5bjgh.k8s.gollum.westeurope.azure.gigantic.io/function/demo; \
+done
 ```
 
+With this running, re-execute the query in the Prometheus web UI.
 
+TODO: Screenshot
 
+### Using Grafana
 
+Grafana provides dashboards that can display graphs for a number of metrics queries simultaneously, using Prometheus as a data source. This makes it much easier to follow several metrics and explore the relationship between them during scaling. So we install grafana in our `openfaas` namespace to try it out.
 
-### Via Grafana
-
-For easy access to the metrics we install grafana in our `openfaas` namespace.
+**Note:** This is not a production-ready Grafana installation. Dashboard data will be stored in ephemeral container storage. That means that whenever the Grafana Pod is restarted, all Dashboards and data source configuration will be lost.
 
 ```
 $ helm install --name grafana --namespace openfaas stable/grafana
@@ -435,7 +441,7 @@ $ kubectl get secret -n openfaas grafana \
   | base64 --decode ; echo
 ```
 
-To access our Grafana instance, we create a port forward from our local machine to the Grafana pod like this:
+To access our Grafana instance, we create a port forward from our local machine to the Grafana Pod like this:
 
 ```
 $ kubectl -n openfaas port-forward \
@@ -447,16 +453,18 @@ $ kubectl -n openfaas port-forward \
 
 Open http://127.0.0.1:3000/ and log in with username `admin` and the password obtained before.
 
-Add a data source for Prometheus.
+Next, we set up Prometheus as a data source.
 
 - Name: OpenFaaS Prometheus
 - Type: Prometheus
 - URL: `http://prometheus:9090`
 - Access: Server (default)
 
-Go to http://127.0.0.1:3000/dashboard/import to open the Import screen. Paste the ID 3526 to import the dashboard https://grafana.com/dashboards/3526 in to the appropriate field.
+Go to http://127.0.0.1:3000/dashboard/import to open the Import screen. Paste the ID `3526` to import the dashboard https://grafana.com/dashboards/3526 in to the appropriate field.
 
 Select the data source `OpenFaaS Prometheus` you created before.
+
+TODO: Screenshot
 
 ## Auto-scaling
 
