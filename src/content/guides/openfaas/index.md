@@ -1,6 +1,6 @@
 +++
 title = "Using OpenFaaS with Kubernetes on Giant Swarm"
-description = "TODO"
+description = "OpenFaaS is a serverless framework with great support for Kubernetes. Here we show how to use it with Giant Swarm."
 date = "2018-09-05"
 type = "page"
 weight = 300
@@ -9,18 +9,24 @@ tags = ["tutorial"]
 
 # Using OpenFaaS with Kubernetes on Giant Swarm
 
-
 ## Create a Kubernetes Cluster
 
-```
-gsctl create cluster -o giantswarm -n "Marians OpenFaaS test server"
-```
+For the purpose of this tutorial we recommend to create a new cluster to stay
+out of the way of existing and important work loads.
 
 ```
-gsctl create kubeconfig --cluster=5bjgh --certificate-organizations system:masters
+gsctl create cluster --owner your-organization -n "OpenFaaS Tutorial"
 ```
 
-Wait until the cluster comes up. It can take more than 20 minutes.
+The cluster will now be created. While we wait for it to become available, we
+can already create a key-pair and a kubectl config to access the kubernetes API:
+
+```
+gsctl create kubeconfig -c your-cluster --certificate-organizations system:masters
+```
+
+Then you'll actually have to wait until the cluster comes up. This can take
+up to 20 minutes.
 
 ```
 $ kubectl cluster-info
@@ -67,7 +73,7 @@ Happy Helming!
 
 ## Install OpenFaaS
 
-Create the namespaces `openfaas` and `openfaas-fn`.
+Create the namespaces `openfaas` and `openfaas-fn` using the shortcut below:
 
 ```
 $ kubectl apply -f https://raw.githubusercontent.com/openfaas/faas-netes/master/namespaces.yml
@@ -303,6 +309,70 @@ X-Start-Time: 1536158048270227415
 Hello! You said: This is the input
 ```
 
+## Setting requests
+
+By default, a function deployed by OpenFaas does not set any memory or CPU requests nor limits.
+Your Pods running the functions will consequently be assigned the lowest quality
+of service (QoS) class named `BestEffort`. Check this via the command
+
+```
+kubectl -n openfaas-fn describe pod <pod-name> | grep "QoS Class"
+```
+
+If you are not familiar with Kubernetes scheduling, you should know that this
+is probably not ideal for a serious use case, for several reasons:
+
+- Without requests for CPU or memory resources, the scheduler does not know how
+to assign Pods to worker nodes. You may end up with too many Pods on certain
+nodes, leaving other node's resources pretty much unused.
+
+- Without limits, Pods can consume excessive amounts of resources, which may
+impair the function of the cluster as a whole or at least of the workloads on
+certain worker nodes.
+
+- Whenever resources are too scarce in a Kubernetes cluster, Pods with a QoS of 
+`BestEffort` may be removed in favour of Pods with higher QoS classes like
+`Burstable` or `Guaranteed`. Depending on the utilization of your cluster,
+your may need to set the QoS class to `Burstable` or even `Guaranteed` to ensure
+the execution of your function.
+
+So, to enable meaningful scheduling of Pods to worker nodes, we must set requests
+to reserve either CPU, or memory, or both. To prevent function Pods from causing 
+system instabilities, we must set reasonable limits. Setting requests and limits
+to the same value will result in a QoS class of `Guaranteed`.
+
+Here is an example how we achieve this by editing our demo function's YAML manifest:
+
+```yaml
+provider:
+  name: faas
+  gateway: http://openfaas.5bjgh.k8s.gollum.westeurope.azure.gigantic.io
+
+functions:
+  demo:
+    lang: python3
+    handler: ./demo
+    image: acme/demo:latest
+    limits:
+      memory: 30Mi
+      cpu: 50m
+    requests:
+      memory: 30Mi
+      cpu: 50m
+```
+
+In the example, we set a request and limit for memory to 30 MiB. We also reserve
+a 20th of a CPU core for each Pod. To apply this, we replace our function deployment
+using this command:
+
+```
+faas-cli deploy -f ./demo.yml --replace --update=false
+```
+
+Now, when checking the Pod details again, you should find the QoS has changed
+to `Guaranteed`. In order to make the QoS class `Burstable`, just make the limits
+a bit larger than the requests.
+
 ## Getting to know our metrics
 
 FaaS is about automatic scaling. To achieve that, metrics are needed that tell us something about the demand. As you have seen before, we have a Prometheus instance running in our namespace already. And the API gateway constantly provides data regarding the execution, latency and errors of function execution.
@@ -387,7 +457,6 @@ Add a data source for Prometheus.
 Go to http://127.0.0.1:3000/dashboard/import to open the Import screen. Paste the ID 3526 to import the dashboard https://grafana.com/dashboards/3526 in to the appropriate field.
 
 Select the data source `OpenFaaS Prometheus` you created before.
-
 
 ## Auto-scaling
 
