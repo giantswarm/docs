@@ -1,7 +1,7 @@
 +++
 title = "gsctl Command Reference: update organization set-credentials"
 description = "The 'gsctl update organization set-credentials' command allows to set cloud provider credentials for an organization."
-date = "2018-09-11"
+date = "2018-09-12"
 type = "page"
 weight = 55
 +++
@@ -10,7 +10,7 @@ weight = 55
 
 Giant Swarm allows you to run clusters in your own cloud provider account/subscription. We call this by the catchy term "Bring Your Own Cloud" (BYOC). As a prerequisite, the organizaiton that should own the clusters has to be prepared with cloud provider credentials.
 
-Please refer to our detailed guides on how to prepare roles and credentials inside you AWS account or Azure subscription:
+Please refer to our detailed guides on how to prepare roles and credentials inside your AWS account or Azure subscription:
 
 - [Prepare an AWS account to run Giant Swarm tenant clusters](/guides/prepare-aws-account-for-tenant-clusters/)
 - [Prepare an Azure subscription to run Giant Swarm tenant clusters](/guides/prepare-azure-subscription-for-tenant-clusters/)
