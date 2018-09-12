@@ -15,12 +15,12 @@ A Giant Swarm installation has several operational layers, which depict a separa
 
 We will go through the operational layers one by one from the bottom (infrastructre) to the top (user space) and explain the intended opreational model by defining (typical) users and permission levels. The layers are:
 
-1. Infrastructure
-2. Giant Swarm Control Plane
-3. Giant Swarm API
-4. User Space
+1. [Infrastructure](#infrastructre)
+2. [Giant Swarm Control Plane](#controlplane)
+3. [Giant Swarm API](#GSAPI)
+4. [User Space](#userspace)
 
-### Infrastructure
+### Infrastructure {#infrastructre}
 
 The infrastructre layer covers the area on top of actual (or virtual) machines, networking, etc., which is managed by Giant Swarm SREs usually accessed through VPN and bastion hosts as well as through the Cloud Provider APIs if applicable.
 
@@ -28,17 +28,17 @@ This layer does not include the actual hardware and maintenance of the Data Cent
 
 Giant Swarm SREs on this layer have root level SSH access to everything that pertains to a Giant Swarm installation. This is facilitated by a Single Sign On (SSO) mechanism including MFA. On the cloud they additionally have access to the Cloud account/subscription through a role to set up and manage the cloud resources.
 
-### Giant Swarm Control Plane
+### Giant Swarm Control Plane {#controlplane}
 
 The Giant Swarm Control Plane consists mainly of Services running inside the Control Plane Kubernetes cluster.
 
 Just like the former layer, this layer is accessed through VPN and bastion hosts. Giant Swarm SREs and Operations personel have cluster admin access to the Control Plane Kubernetes API through a tunnel, which is again facilitated by SSO with MFA.
 
-### Giant Swarm API
+### Giant Swarm API {#GSAPI}
 
 The Giant Swarm API (GS API) is a customer facing API that is usually whitelisted for only a certain IP range within the customer's network. This layer covers the API itself, but also its client manifestations in form of the Happa Web UI and `gsctl` CLI.
 
-On this layer there's two levels of access:
+On this layer there are two levels of access:
 
 1. Giant Swarm API admin
 
@@ -52,7 +52,7 @@ This is the standard type of GS API user that is given out to DevOps/Operations 
 
 Such users have access to all clusters in the organizations they belong to. They can be considered multi-cluster admins.
 
-### User Space
+### User Space {#userspace}
 
 The User Space layer is defined as the layer pertaining to a single Tenant Cluster Kubernetes API.
 
