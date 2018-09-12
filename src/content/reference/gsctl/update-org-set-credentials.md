@@ -25,7 +25,7 @@ Regardless of your cloud provider, you need an organization to work with. If you
 
 In this gsctl command, the flag `-o` or `--organization` specifies the organization to set the credentials for.
 
-### For AWS
+### For AWS {#aws}
 
 For AWS you provide two ARN (Amazon Resource Name) strings for two separate roles. Here is the general syntax:
 
@@ -47,7 +47,7 @@ gsctl update organization set-credentials \
   --aws-admin-role arn:aws:iam::0123456789:role/GiantSwarmAdmin
 ```
 
-## For Azure
+### For Azure {#azure}
 
 For Azure we require you to pass four credential details. Here is the general syntax:
 
