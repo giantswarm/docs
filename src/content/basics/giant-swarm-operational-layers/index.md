@@ -26,7 +26,7 @@ The infrastructure layer covers the area on top of actual (or virtual) machines,
 
 This layer does not include the actual hardware and maintenance of the data center. This is either covered by the (internal or external) data center provider or by the cloud provider.
 
-Giant Swarm SREs on this layer have root level SSH access to everything that pertains to a Giant Swarm installation. This is facilitated by a Single Sign On (SSO) mechanism including MFA. On the cloud they additionally have access to the cloud account/subscription through a role to set up and manage the cloud resources.
+Giant Swarm SREs on this layer have root level SSH access to everything that pertains to a Giant Swarm installation. This is facilitated by a Single Sign On (SSO) mechanism including MFA (multi-factor authentication). On the cloud they additionally have access to the cloud account/subscription through a role to set up and manage the cloud resources.
 
 ### Giant Swarm Control Plane {#controlplane}
 
