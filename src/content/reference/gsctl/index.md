@@ -32,7 +32,7 @@ Follow the links below for detailed documentation, where available. You can also
 | `scale cluster`                       | [Add or remove worker nodes of a cluster](scale-cluster/)
 | `select endpoint`                     | [Select an endpoint](select-endpoint/)
 | `show cluster`                        | [Show cluster details](show-cluster/)
-| `update organization set-credentials` | [Set provider credentials for an organnization](update-org-set-credentials/)
+| `update organization set-credentials` | [Set provider credentials for an organization](update-org-set-credentials/)
 | `version`                             | Print version number
 
 
