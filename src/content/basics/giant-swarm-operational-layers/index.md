@@ -9,11 +9,11 @@ categories = ["basics"]
 
 # Giant Swarm Operational Layers
 
-A Giant Swarm installation has several operational layers, which depict a separation of concerns both on an operational level as well as on a security level. In the following we will define the layers and explain the intended operational model.
+A Giant Swarm installation has several operational layers, which depict a separation of concerns both on an operational as well as on a security level. In the following we will define the layers and explain the intended operational model.
 
 ## Operational Layers
 
-We will go through the operational layers one by one from the bottom (infrastructre) to the top (user space). The layers are:
+We will go through the operational layers one by one from the bottom (infrastructre) to the top (user space) and explain the intended opreational model by defining (typical) users and permission levels. The layers are:
 
 1. Infrastructure
 2. Giant Swarm Control Plane
@@ -22,11 +22,11 @@ We will go through the operational layers one by one from the bottom (infrastruc
 
 ### Infrastructure
 
-The infrastructre layer covers the area of actual (or virtual) machines, networking, etc., which is managed by Giant Swarm SREs usually accessed through VPN and bastion hosts.
+The infrastructre layer covers the area on top of actual (or virtual) machines, networking, etc., which is managed by Giant Swarm SREs usually accessed through VPN and bastion hosts as well as through the Cloud Provider APIs if applicable.
 
 This layer does not include the actual hardware and maintenance of the Data Center. This is either covered by the (internal or external) Data Center provider or by the Cloud provider.
 
-Giant Swarm SREs on this layer have root level SSH access to everything that pertains to a Giant Swarm installation. This is facilitated by a Single Sign On (SSO) mechanism including MFA.
+Giant Swarm SREs on this layer have root level SSH access to everything that pertains to a Giant Swarm installation. This is facilitated by a Single Sign On (SSO) mechanism including MFA. On the cloud they additionally have access to the Cloud account/subscription through a role to set up and manage the cloud resources.
 
 ### Giant Swarm Control Plane
 
@@ -36,9 +36,9 @@ Just like the former layer, this layer is accessed through VPN and bastion hosts
 
 ### Giant Swarm API
 
-The Giant Swarm API (GS API) is a customer facing API that is usually whitelisted for only a certain IP range within the customer's network. This layer covers the API itself, but also its easy to use client manifestations in form of the Happa Web UI and `gsctl` CLI.
+The Giant Swarm API (GS API) is a customer facing API that is usually whitelisted for only a certain IP range within the customer's network. This layer covers the API itself, but also its client manifestations in form of the Happa Web UI and `gsctl` CLI.
 
-On this layer there's two types of access:
+On this layer there's two levels of access:
 
 1. Giant Swarm API admin
 
@@ -48,7 +48,7 @@ Such admin users have access to all organizations and all clusters in the Giant 
 
 2. Giant Swarm API user
 
-This is the standard type of GS API user that is given out to DevOps/Operations personel on the customer side.
+This is the standard type of GS API user that is given out to DevOps/Operations personel on the customer side. Usually that covers only few users that are tasked with cluster creation and management.
 
 Such users have access to all clusters in the organizations they belong to. They can be considered multi-cluster admins.
 
@@ -58,7 +58,9 @@ The User Space layer is defined as the layer pertaining to a single Tenant Clust
 
 Users on this level are either created by a Giant Swarm API user (in form of key pairs) or managed in an external Identity Provider (IdP), like [Azure AD](https://docs.giantswarm.io/guides/authenticating-with-microsoft-azure-active-directory/) or any other OIDC compliant IdP.
 
-However, a user with access to the Kubernetes API does not by default also gain any permissions, as the clusters are locked down by RBAC. Thus, a cluster admin first needs to create roles and bindings for the users. These roles can be defined as narrow as needed or as broad as being on cluster admin level for the specfic Tenant Kubernetes cluster. They can be bound to either single users or groups thereof. This enables the customer to individually set up their user management according to the needs of their organization.
+However, a user with access to the Kubernetes API does not by default also gain any permissions, as the clusters are locked down by RBAC. Thus, a cluster admin first needs to create roles and bindings for the users. These roles can be defined as narrow or broad as needed for the specfic Tenant Kubernetes cluster. They can be bound to either single users or groups thereof.
+
+This enables the customer to individually set up their user management according to the needs of their organization. The configuration for this can be kept in version control and needs to be done by an initial cluster admin user, which can be created by the GS API user mentioned above.
 
 ## Further Reading
 
