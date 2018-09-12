@@ -36,7 +36,7 @@ Just like the former layer, this layer is accessed through VPN and bastion hosts
 
 ### Giant Swarm API {#giant-swarm-api}
 
-The Giant Swarm API (Giant Swarm API) is a customer facing API that is usually whitelisted for only a certain IP range within the customer's network. This layer covers the API itself, but also its client manifestations in form of the Happa Web UI and `gsctl` CLI.
+The [Giant Swarm API](https://docs.giantswarm.io/api/) is a customer facing API that is usually whitelisted for only a certain IP range within the customer's network. This layer covers the API itself, but also its client manifestations in form of the Happa Web UI and `gsctl` CLI.
 
 On this layer there are two levels of access:
 
@@ -50,11 +50,11 @@ Such admin users have access to all organizations and all clusters in the Giant 
 
 This is the standard type of Giant Swarm API user that is given out to DevOps/Operations personell on the customer side. Usually that covers only few users that are tasked with cluster creation and management.
 
-Such users have access to all clusters in the organizations they belong to. They can be considered multi-cluster admins.
+Such users have access to all clusters in the organizations they belong to. They can create new clusters and organizations as well as manage or delete cluster and organization that they are part of. They can be considered multi-cluster admins.
 
 ### User Space {#userspace}
 
-The user space layer is defined as the layer pertaining to a single Tenant Cluster Kubernetes API.
+The user space layer is defined as the layer pertaining to a single Tenant Cluster Kubernetes API. Tenant Cluster are the Kubernetes clusters that run your workloads.
 
 Users on this level are either created by a Giant Swarm API user (in form of key pairs) or managed in an external Identity Provider (IdP), like [Azure AD](https://docs.giantswarm.io/guides/authenticating-with-microsoft-azure-active-directory/) or any other OIDC compliant IdP.
 
