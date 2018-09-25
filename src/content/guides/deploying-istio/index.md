@@ -3,7 +3,7 @@ title = "How to deploy Istio in your cluster"
 description = "Tutorial on how to deploy Istio on a Giant Swarm Kubernetes cluster."
 date = "2018-09-27"
 type = "page"
-weight = 30
+weight = 60
 tags = ["tutorial"]
 +++
 
@@ -21,7 +21,7 @@ Now, it is time to [download the Istio project package](https://github.com/istio
 
 Let's verify the environment is ready. First check helm is installed correctly.
 
-```
+```nohighlight
 $ helm version
 Client: &version.Version{SemVer:"v2.10.0", GitCommit:"X", GitTreeState:"clean"}
 Server: &version.Version{SemVer:"v2.10.0", GitCommit:"X", GitTreeState:"clean"}
@@ -29,7 +29,7 @@ Server: &version.Version{SemVer:"v2.10.0", GitCommit:"X", GitTreeState:"clean"}
 
 Now, ensure Istio `cli` is in your path.
 
-```
+```nohighlight
 $ istioctl version
 Version: X.X.X
 ...
@@ -147,7 +147,7 @@ Finally you may be interested in how you can integrate Istio within your existin
 
 Regardless of the provider, the first step to install Istio is to create all cluster role definitions. The service mesh uses different Kubernetes resources to manage the variety of entities in which it relies on. For example, it defines the `gateway` resource for control how the mesh is exposed to Internet.
 
-```
+```nohighlight
 # Post all resources to the Kubernetes API
 $ kubectl apply -f install/kubernetes/helm/istio/templates/crds.yaml
 ```
@@ -174,7 +174,7 @@ Although Istio can run in almost every Kubernetes cluster regardless of the unde
 
 The actual installation is quite simple thanks to helm. The following command will deploy all Istio components in a new namespace reserved.
 
-```
+```nohighlight
 $ helm install install/kubernetes/helm/istio --name istio --namespace istio-system
 ```
 
@@ -182,13 +182,14 @@ $ helm install install/kubernetes/helm/istio --name istio --namespace istio-syst
 
 The main difference with clouds is the ingress gateway service must be type `NodePort`. Since there is no automatic mechainism to provide an endpoint, the service is exposed in the host underlaying machine. Later, it is explained how to redirect the traffic from the control plane to a second tenant cluster ingress controller.
 
-```
+```nohighlight
 $ helm install install/kubernetes/helm/istio --name istio --namespace istio-system \
 --set gateways.istio-ingressgateway.type=NodePort --set gateways.istio-egressgateway.type=NodePort 
 ```
 
 Ensure all components are up and running listing the pods in the istio namespace.
-```
+
+```nohighlight
 $ kubectl get pods -n istio-system -w
 ```
 
@@ -200,13 +201,13 @@ Let's verify Istio is deployed and configure correctly. We can deploy a simple h
 
 First of all we need to label the namespace to make effective the sidecar injection.
 
-```
+```nohighlight
 kubectl label namespace default istio-injection=enabled
 ```
 
 And now we can install the chart containing the example app.
 
-```
+```nohighlight
 $ helm registry install quay.io/giantswarm/liveness-chart -n liveness
 ```
 
@@ -214,7 +215,7 @@ $ helm registry install quay.io/giantswarm/liveness-chart -n liveness
 
 In case you want the manual injection, pull the chart and use Istio command line utility to parse the deployment and insert the proxy.
 
-```
+```nohighlight
 # Pulling the chart to your local
 $ helm registry pull quay.io/giantswarm/liveness-chart --dest /tmp/
 
@@ -234,14 +235,15 @@ It will launch a deployment and service listening on the port 80. At the same ti
 
 Get the load balancer hostname. 
 
-```
+```nohighlight
 $ kubectl get service istio-ingressgateway -n istio-system -o jsonpath="{.status.loadBalancer.ingress[0].hostname}"
 ```
 
 This will return the URL under which the deployed app should reply. As we have set wildcard `*` in the hostname of the virtual service all `/healthz` traffic will be forwarded to the service.
 
 Executing this curl command should give you a `200` response.
-```
+
+```nohighlight
 curl http://<ELB_HOSTNAME>/healthz -I
 ```
 
@@ -249,13 +251,15 @@ curl http://<ELB_HOSTNAME>/healthz -I
 
 Get the ingress controller IP assigned by Azure.
 
-```
+```nohighlight
 $ kubectl get svc istio-ingressgateway -n istio-system -o jsonpath="{.status.loadBalancer.ingress[0].ip}"
 ```
+
 And it will return the URL which the deployed app should reply to. Same as AWS, the wildcard `*` set as the hostname in the virtual service will send all traffic from `/healthz` path to the liveness service.
 
 Running this curl command should give you a `200` response.
-```
+
+```nohighlight
 curl http://<IP>/healthz -I
 ```
 
@@ -265,7 +269,7 @@ As you may probably know, in our [`on premise installations`](https://docs.giant
 
 After obtaining the ports, modify the ingress gateway to set the correct configuration.
 
-```
+```nohighlight
 kubectl edit service istio-ingressgateway -n istio-system
 ```
 
@@ -286,7 +290,7 @@ kubectl edit service istio-ingressgateway -n istio-system
 
 After configured it, running the next command you should get a `200` response.
 
-```
+```nohighlight
 curl http://<LOAD_BALANCER_IP>:<PORT_TENANT_CLUSTER>/healthz -I
 ```
 
