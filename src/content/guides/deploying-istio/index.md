@@ -1,13 +1,19 @@
 +++
 title = "How to deploy Istio in your cluster"
-description = "Tutorial on how to deploy Istio in the differnet providers offered by Giant Swarm."
+description = "Tutorial on how to deploy Istio on a Giant Swarm Kubernetes cluster."
 date = "2018-09-27"
 type = "page"
 weight = 30
 tags = ["tutorial"]
 +++
 
-# Preparation
+# How to deploy Istio in your cluster
+
+After micro-services has conquered the world, another dimension of concerns has arisen. The technology has allowed us to build distributed architectures thanks to tools like Kubernetes. Although the orchestrator helps us with the deployment and maintenance of our services there a bunch of other concerns we have to deal. As an example, most people use an insecure protocol to communicate their services. For that and many other reasons, the service meshes have appeared with the goal of helping to manage these distributed scenarios.
+
+Istio is one of the main players and it stands out because of the project maturity and the easiness of adoption. Below it is described how it can be deployed in your cluster, emphasizing how to avoid usual mistakes.
+
+## Preparation
 
 Nowadays, the recommended way to deploy Istio is using Helm. Please ensure the Kubernetes package manager is installed and running in your cluster. Go to the official [docs](https://docs.helm.sh/using_helm#install-helm) in case you need to install it.
 
