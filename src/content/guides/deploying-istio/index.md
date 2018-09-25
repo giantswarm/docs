@@ -51,7 +51,7 @@ initContainers:
       privileged: true
 ```
 
-As consequence, the pod now must have the right security policies configured to run in the cluster. An easy way to solve the problem is to create a pod security policy that contains the correct capabilities. Then, define an Istio role and a role binding for wiring it together against the default service account for the namespace where your apps are running. 
+As consequence, the pod now must have the right security policies configured to run in the cluster. An easy way to solve the problem is to [create a pod security policy that contains the correct capabilities](https://docs.giantswarm.io/guides/securing-with-rbac-and-psp#pod-security-policies/). Then, define a RBAC role and a role binding for wiring it together against the default service account for the namespace(s) where your apps are running. 
 
 __Warning:__ If your apps are using a custom service account then you need to create the binding for each of them.
 
@@ -103,7 +103,9 @@ subjects:
   namespace: <NAMESPACE>
 ```
 
-## Recomendations 
+Remember replace the `NAMESPACE` placeholder with the value desired. As ax example, when you set `default` it implies all application running in the `default` namespace would have bound the `istio` pod security policy.
+
+## Recommendations 
 
 The deployment is made up of a different number of components. Some of them, as pilot, have a large impact in terms of memory and CPU,so it is recommended to have around 8GB of memory and 4 CPUs free in your cluster. Obviously, all components have `requested resources` defined, so in case you don't have enough capacity you will see pods not starting.
 
@@ -115,13 +117,11 @@ Another good practice is to name the service ports. Istio uses the name to disco
 apiVersion: v1
 kind: Service
 metadata:
-  name: app
+  name: myapp
 spec:
   ports:
-  - name: http-app
+  - name: http-myapp
     port: 80
-    protocol: TCP
-    targetPort: 80
 ```
 
 If you have multiple services exposing port of the same pods, you have to use the same kind of traffic for the ports defined in the service.
@@ -141,7 +141,7 @@ spec:                      spec:
     app: my-app                app: my-app
 ```
 
-Finally you may be interested in how you can integrate Istio within your existing workloads. By default mutual TLS is not configured, mainly for avoiding downtime issues it can provoke. But lately, there has appeared a new option which you can set the TLS policy as `permissive` and let the proxy accept traffic encrypted and unencrypted. Thus safe wise you can start with this policy and slowly move your services to a `strict` mode TLS in case it is required.
+Finally you may be interested in how you can integrate Istio within your existing workloads. By default mutual TLS is not configured, mainly for avoiding downtime issues it can provoke. But lately, there has appeared a new option where you can set the TLS policy as `permissive` and let the proxy accept both encrypted and unencrypted traffic. Thus, to be on the safe side, you can start with this policy and slowly move your services to a `strict` mode TLS in case it is required.
 
 ## Installation
 
