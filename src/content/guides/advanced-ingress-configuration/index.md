@@ -326,7 +326,15 @@ Check out the [ingress-nginx repository](https://github.com/kubernetes/ingress-n
 
 ## Global (per Cluster) Options {#configmap}
 
-Your Giant Swarm installation may come with some global defaults for Ingress Controller configuration. However, you can override these defaults by setting your per cluster configuration in form of a ConfigMap named `nginx-ingress-controller-user-values` located in your `kube-system` namespace.
+Your Giant Swarm installation comes with some global defaults for Ingress Controller configuration. However, you can override these defaults by setting your per cluster configuration in form of a ConfigMap named `nginx-ingress-controller-user-values` located in your `kube-system` namespace.
+
+__Note__ that this feature is only available in more recent cluster versions. To check if your cluster version support customization of the ConfigMap, you can check if the above-mentioned ConfigMap is present.
+
+```nohighlight
+kubectl -n kube-system get cm nginx-ingress-controller-user-values
+NAME                                   DATA      AGE
+nginx-ingress-controller-user-values   0         11m
+```
 
 The official documentation of the NGINX Ingress Controller contains an overview of the [configuration options](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/) and their defaults.
 
@@ -348,7 +356,7 @@ data:
   vts-default-filter-key: ""
 ```
 
-On cluster creation the ConfigMap is empty and above defaults will be applied to the final Ingress Controller deployment. To override any of the above values, you just need to add the line in the data field of the ConfigMap.
+On cluster creation the ConfigMap is empty and above defaults will be applied to the final Ingress Controller deployment. To override any of the above values, you just need to add the respctive line in the data field of the user ConfigMap.
 
 ## Further reading
 
