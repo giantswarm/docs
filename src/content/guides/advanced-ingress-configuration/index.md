@@ -330,6 +330,8 @@ Your Giant Swarm installation comes with some global defaults for Ingress Contro
 
 __Note__ that this feature is only available in more recent cluster versions. To check if your cluster version support customization of the ConfigMap, you can check if the above-mentioned ConfigMap is present.
 
+__Warning:__ Please do not edit any of the other nginx ingress related ConfigMaps. Only the user ConfigMap is safe to edit.
+
 ```nohighlight
 kubectl -n kube-system get cm nginx-ingress-controller-user-values
 NAME                                   DATA      AGE
