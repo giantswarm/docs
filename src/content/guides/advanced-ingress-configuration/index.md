@@ -326,9 +326,29 @@ Check out the [ingress-nginx repository](https://github.com/kubernetes/ingress-n
 
 ## Global (per Cluster) Options {#configmap}
 
-Your Giant Swarm installation may comes with some global defaults for Ingress Controller configuration. However, you can override these defaults by setting your per cluster configuration in form of a ConfigMap named `ingress-controller-config-custom` located in your `kube-system` namespace.
+Your Giant Swarm installation may come with some global defaults for Ingress Controller configuration. However, you can override these defaults by setting your per cluster configuration in form of a ConfigMap named `nginx-ingress-controller-user-values` located in your `kube-system` namespace.
 
 The official documentation of the NGINX Ingress Controller contains an overview of the [configuration options](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/) and their defaults.
+
+However, we currently only support a subset of those options, which we default like follows. If you need any other upstream documented option added to this list, please contact support.
+
+```yaml
+data:
+  disable-access-log: "false"
+  enable-vts-status: "true"
+  error-log-level: "error"
+  hsts: "false"
+  server-name-hash-bucket-size: "1024"
+  server-name-hash-max-size: "1024"
+  server-tokens: "false"
+  worker-processes: "4"
+  enable-underscores-in-headers: ""
+  proxy-buffers-size: ""
+  proxy-buffers: ""
+  vts-default-filter-key: ""
+```
+
+On cluster creation the ConfigMap is empty and above defaults will be applied to the final Ingress Controller deployment. To override any of the above values, you just need to add the line in the data field of the ConfigMap.
 
 ## Further reading
 
