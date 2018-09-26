@@ -2,8 +2,8 @@
 title = "Details on Kubernetes on Giant Swarm"
 description = "Here you learn how we set up things for you and what we manage, so you don't have to."
 date = "2018-02-19"
-type = "page"
 weight = 10
+type = "page"
 categories = ["basics"]
 +++
 

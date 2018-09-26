@@ -2,8 +2,9 @@
 title = "The Giant Swarm AWS Architecture"
 description = "Architecture Overview showing how Giant Swarm is set up on Amazon Web Services"
 date = "2018-08-16"
-weight = 10
+weight = 20
 type = "page"
+categories = ["basics"]
 +++
 
 # The Giant Swarm AWS Architecture
