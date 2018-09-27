@@ -289,7 +289,7 @@ After configuring it, running the next command should get you a `200` response.
 $ curl http://<LOAD_BALANCER_IP>:<PORT_TENANT_CLUSTER>/healthz -I
 ```
 
-Giant Swarm encourages you to leave this liveness app up-and-running in order to make our monitoring happy. By default, nginx ingress controller provides a `/healthz` endpoint to check ICs are up, but the Istio controller lacks of this functionality. For that reason, the liveness app will give us the health signal required to have the correct observability of your istio clusters.
+Istio is a great project and it could mark the future of micro-service architectures, but on the other hand, it adds another layer of complexity. Giant Swarm encourages to read and understand well how it works before deploying it in your clusters.
 
 ## Troubleshooting
 
