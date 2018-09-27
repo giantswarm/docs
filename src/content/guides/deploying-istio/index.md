@@ -271,12 +271,12 @@ $ kubectl edit service istio-ingressgateway -n istio-system
 ```yaml
 ...
   - name: http2
-    nodePort: <PORT_PROVIDED_BY_GS_OR_DEFAULT_ONE>
+    nodePort: <PORT_PROVIDED_BY_GS>
     port: 80
     protocol: TCP
     targetPort: 80
   - name: https
-    nodePort: <PORT_PROVIDED_BY_GS_OR_DEFAULT_ONE>
+    nodePort: <PORT_PROVIDED_BY_GS>
     port: 443
     protocol: TCP
     targetPort: 443
