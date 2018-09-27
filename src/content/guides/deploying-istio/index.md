@@ -291,7 +291,7 @@ $ curl http://<LOAD_BALANCER_IP>:<PORT_TENANT_CLUSTER>/healthz -I
 
 ---
 
-Istio is a great project and it could mark the future of micro-service architectures, but on the other hand, it adds another layer of complexity. Giant Swarm encourages to read and understand well how it works before deploying it in your clusters.
+__Disclaimer:__ While we do not discourage installing and using istio and even document it here, we currently do not support it managed by us. That means that if you run into issues with or because of istio, this lies in your responsibility. Furthermore, as the complexity increases with istio, debugging and fixing even not directly related issue will take longer.
 
 ## Troubleshooting
 
