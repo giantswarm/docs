@@ -163,7 +163,7 @@ $ helm install install/kubernetes/helm/istio --name istio --namespace istio-syst
 
 ### On premises (KVM)
 
-The main difference with clouds is the ingress gateway service must be type `NodePort`. Since there is no automatic mechainism to provide an endpoint, the service is exposed in the host underlaying machine. Later, it is explained how to redirect the traffic from the control plane to a second tenant cluster ingress controller.
+The main difference with clouds is the ingress gateway service must be type `NodePort`. Since there is no automatic mechainism to provide an endpoint, the service is exposed in the host underlaying VM. Further down, we explain how to redirect the traffic from the control plane to a second tenant cluster ingress controller.
 
 ```nohighlight
 $ helm install install/kubernetes/helm/istio --name istio --namespace istio-system \
@@ -187,6 +187,8 @@ First of all, we need to label the namespace to make the sidecar injection effec
 ```nohighlight
 $ kubectl label namespace default istio-injection=enabled
 ```
+
+__Warning:__ Avoid to label the namespaces `kube-system` or `giantswarm` otherwise the entire cluster could end shattered
 
 And now we can install the chart containing the example app.
 
@@ -258,7 +260,7 @@ $ curl http://<IP>/healthz -I
 
 ## On Premise (KVM)
 
-As you may already know, in our [`on premise installations`](https://docs.giantswarm.io/basics/onprem-architecture/) the tenant pods live inside the control plane pods. This means Giant Swarm creates a forward between the external ingress service to the ingress placed inside the tenant cluster. By default, the tenant clusters has an nginx ingress controller allocated out-of-the-box. But, in case you want to use Istio ingress controller you need to change the current ingress controller (remember it will affect all current traffic for that tenant cluster). Another option is asking our team to allocate a new redirection from the parent endpoint to the Istio controller. With the latter, you will have the two ingress controllers exposed to Internet.
+As you may already know, in our [`on premise installations`](https://docs.giantswarm.io/basics/onprem-architecture/) the tenant pods live inside the control plane pods. This means Giant Swarm creates a forward between the external ingress service to the ingress placed inside the tenant cluster. By default, the tenant clusters has an nginx ingress controller allocated out-of-the-box. But, in case you want to use Istio ingress controller you need to ask our team to allocate a new redirection from the parent endpoint to the Istio controller. With the latter, you will have the two ingress controllers exposed to Internet.
 
 After obtaining the ports, modify the ingress gateway to set the correct configuration.
 
