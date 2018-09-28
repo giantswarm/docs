@@ -1,6 +1,6 @@
 +++
 title = "Cluster Upgrades with Giant Swarm"
-description = "A detailed explanation how Kubernetes and other components are upgraded with Giant Swarm"
+description = "A detailed explanation how Kubernetes and other components are upgraded in a Giant Swarm installation"
 date = "2018-08-31"
 weight = 30
 type = "page"
@@ -10,23 +10,39 @@ type = "page"
 
 ## Intro
 
-The clusters created and managed by Giant Swarm consist of many components. There isn't only Kubernetes but also many other components like etcd, calico, prometheus, coredns and many others more. Each of these components has its own lifecycle and is released independently. We compile all these different projects into a Cloud Native Stack. This stack is continuously updated, both the individual project as well as the components in the control plane that manage these stacks in form of Kubernetes clusters. Each of your clusters have a version number in form of a Giant Swarm release attached to it. 
+The clusters created and managed by Giant Swarm consist of many components.
+There isn't only Kubernetes but also many other components like etcd, calico, prometheus, coredns and many others more.
+Each of these components has its own lifecycle and is released independently.
+We compile all these different projects into a Cloud Native Stack.
+This stack is continuously updated, both the individual project as well as the components in the control plane that manage these stacks in form of Kubernetes clusters.
+Each of your clusters have a version number in form of a Giant Swarm release attached to it. 
 
-Our versioning system is based on a rolling release. This means that clusters can and will be upgraded continuously. We have invested a lot of time to provide automated and graceful upgrades. It doesn't matter which components are changed in the stack. However there are some differences between releases and also the way how certain services are upgraded. This article will give you a better overview about how upgrades are done with Giant Swarm.
+Our versioning system is based on a rolling release.
+This means that clusters can and will be upgraded continuously.
+We have invested a lot of time to provide automated and graceful upgrades.
+It doesn't matter which components are changed in the stack.
+However there are some differences between releases and also the way how certain services are upgraded.
+This article will give you a better overview about how upgrades are done with Giant Swarm.
 
 ## Concepts
 
 ### Rolling update
 
-Out of experience we all know that smaller and more frequent upgrades are much easier to handle than big changes. Having one bug on a cluster that is easy to spot or to look for, because you know what was upgraded, is much simpler to deal with. On the same hand regularly doing upgrades means that the automation and the handling of the upgrades will get much better and robust compared to if you make an upgrade a rare event.
+Out of experience we all know that smaller and more frequent upgrades are much easier to handle than big changes.
+Having one bug on a cluster that is easy to spot or to look for, because you know what was upgraded, is much simpler to deal with.
+On the same hand regularly doing upgrades means that the automation and the handling of the upgrades will get much better and robust compared to if you make an upgrade a rare event.
 
 ### Immutability
 
-All components of the Giant Swarm stack are composed via images (vm and container). No components are patched or modified during their lifecycle.
+All components of the Giant Swarm stack are composed via images (vm and container).
+No components are patched or modified during their lifecycle.
 
 ### Reproducability
 
-This one is easy once everything is already immutable. But this is very important to us too. Every cluster started with the same release version will be identical. Within one version nothing changes over time.
+This one is easy once everything is already immutable.
+But this is very important to us too.
+Every cluster started with the same release version will be identical.
+Within one version nothing changes over time.
 
 * Testing (e2e and conformance)
 
@@ -38,7 +54,6 @@ This one is easy once everything is already immutable. But this is very importan
 * Explain auto-updates vs control of upgrades
     * Major upgrades can be done by customers themselves
 * Explain the lifecycle of releases (two active major versions are available at the same time. 30 days after kubernetes release it will be available to the user as a stable release. old clusters will be force upgraded)
-    * 
 * Explain versions of subcomponents
 
 ## Upgrades
