@@ -258,7 +258,7 @@ Running this curl command should give you a `200` response.
 $ curl http://<IP>/healthz -I
 ```
 
-## On Premise (KVM)
+### On Premise (KVM) Verification
 
 As you may already know, in our [`on premise installations`](https://docs.giantswarm.io/basics/onprem-architecture/) the tenant pods live inside the control plane pods. This means Giant Swarm creates a forward between the external ingress service to the ingress placed inside the tenant cluster. By default, the tenant clusters has an nginx ingress controller allocated out-of-the-box. But, in case you want to use Istio ingress controller you need to ask our team to allocate a new redirection from the parent endpoint to the Istio controller. With the latter, you will have the two ingress controllers exposed to Internet.
 
