@@ -2,7 +2,7 @@
 title = "Cluster Upgrades with Giant Swarm"
 description = "A detailed explanation how Kubernetes and other components are upgraded with Giant Swarm"
 date = "2018-08-31"
-weight = 10
+weight = 30
 type = "page"
 +++
 
