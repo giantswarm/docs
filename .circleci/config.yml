@@ -34,7 +34,15 @@ jobs:
       
       - run:
           name: Linkcheck
-          command: make linkcheck
+          command: |
+            docker run -d --rm --name server -p 80:80 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
+            sleep 2
+            docker run --rm -ti --name linkchecker \
+                --link server:server \
+                jare/linkchecker \
+                http://server:80 \
+                --check-extern -t 5 --ignore-url /api/
+            docker kill server
 
       - deploy:
           name: Deploy (only if branch is "master")
