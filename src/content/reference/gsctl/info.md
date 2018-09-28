@@ -1,6 +1,6 @@
 +++
 title = "gsctl Command Reference: info"
-description = "The 'gsctl info' lets you display information on your current status and configuration"
+description = "The 'gsctl info' command lets you display information on your current status and configuration"
 date = "2018-04-26"
 type = "page"
 weight = 41
