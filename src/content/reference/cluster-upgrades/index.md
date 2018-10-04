@@ -1,7 +1,7 @@
 +++
 title = "Cluster Upgrades with Giant Swarm"
 description = "A detailed explanation how Kubernetes and other components are upgraded in a Giant Swarm installation"
-date = "2018-08-31"
+date = "2018-10-04"
 weight = 30
 type = "page"
 +++
@@ -22,15 +22,15 @@ In this article, we explain how upgrades work in detail and how you should provi
 
 Among the third party components building a tenant cluster stack are
 
-- CoreOS container linux as the node's operating system
-- Project Calico for virtual networking
+- CoreOS Container Linux as the nodes' operating system
 - HashiCorp Vault as a public key infrastructure
 - Docker as a container runtime environment
 - CoreOS etcd as distributed storage for Kubernetes and Vault
-- CoreDNS for cluster-internal name resolution
-- Prometheus node exporter for hardware and OS metrics
 - Kubernetes with its many sub-components
+- Project Calico for virtual networking
+- CoreDNS for cluster-internal name resolution
 - NGINX Ingress Controller for connecting services with load balancers
+- Prometheus node exporter for hardware and OS metrics
 
 as well as many operators and controllers created and maintained by Giant Swarm.
 
@@ -40,7 +40,7 @@ All of the items in the list above are released independent of each other by the
 At Giant Swarm we "bundle" specific versions of these components of the tenant cluster stack into a **release**.
 A release is identified by a [semantic version number](https://semver.org/).
 
-Once deployed, the tenant cluster stack is **immutible**.
+Once deployed, the tenant cluster stack is **immutable**.
 All components are deployed based on images, either of virtual machines or of Docker containers.
 No changes are ever made to components at runtime.
 This ensures that the stack running in your environment is the exact stack we have tested before.
@@ -51,13 +51,13 @@ As a consequence, the only way to change the stack is to perform an upgrade, to 
 
 As the semantic versioning system defines, an upgrade from one version to another is either one of these:
 
-- *Patch*: The smallest type of upgrade occurs when we publish bugfixes, security fixes or make changes to the observability while maintaining the given functionality of the stack.
+- *Patch*: The smallest type of upgrade occurs when we publish bugfixes, security fixes, or make changes to the observability while maintaining the given functionality of the stack.
 This can include any sort of patch upgrades of third party components.
 
 - *Minor*: A minor upgrade occurs when we add functionality, while maintaining the functionality of the stack as it was in the previous version.
 This can include minor upgrades of third party components, with the exception of Kubernetes.
 
-- *Major*: A major upgrade occurs when (A) a minor Kubernetes version upgrade is picked up (e. g. from 1.10.* to 1.11.*), when we remove functionality or change functionality that my require changes in workloads, in automation working with the cluster or in administrator's interactions.
+- *Major*: A major upgrade occurs when (A) a minor Kubernetes version upgrade is picked up (e. g. from 1.10.* to 1.11.*), when we remove functionality or change functionality that might require changes in workloads, in automation working with the cluster or in administrator's interactions.
 
 **Note:** The release version number is provider-specific.
 Azure, AWS, and KVM based installations have independent versioning systems, as their stacks are also slightly different.
@@ -70,7 +70,7 @@ In the web UI, both the cluster overview and the cluster details page show the r
 In the cluster details page you can click the release version number to get more information about a release.
 
 Likewise in the CLI, commands like [`gsctl list clusters`](/reference/gsctl/list-clusters/) and [`gsctl show cluster`](/reference/gsctl/show-cluster/) reveal the release version number.
-To get information on all releases, use the [`gsctl list releases`](/reference/gsctl/list-releases/) command.
+To get information on all available releases, use the [`gsctl list releases`](/reference/gsctl/list-releases/) command.
 
 ### Release lifecycle
 
