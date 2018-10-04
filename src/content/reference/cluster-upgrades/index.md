@@ -76,17 +76,15 @@ To get information on all available releases, use the [`gsctl list releases`](/r
 
 **We hold two different major releases** available at any time to chose from when creating a new cluster, which means that you have two different Kubernetes minor versions to chose from.
 
-Whenever a new Kubernetes minor version is released by the Kubernetes project, we make that version available in a new major release of our stack within 30 days from the Kubernetes release.
+Whenever a new Kubernetes minor version is released by the Kubernetes project, we aim to make that version available in a new major release of our stack within 30 days from the Kubernetes release.
 
 Once we publish a new major release, we deprecate the oldest major release.
 This means that no new clusters can be created using that old release version.
-Existing clusters however are not affected.
+Existing clusters, however, are not affected.
 
-**Both patch and minor upgrades** can be rolled out at any time **automatically** by Giant Swarm without your interaction.
+**Both patch and minor upgrades** can be rolled out at any time by Giant Swarm without your interaction. Currently, this happens in coordination with your administrators and with a notice to your developers.
 
-When a **new major release** becomes available, we inform you, but leave triggering the upgrade to you. This gives you the control to decide if and when it is time for you to upgrade, potentially updating workloads first. The upgrade can be triggered using either our web UI, our CLI or the API directly.
-
-TODO: explain more, maybe show screenshot of happa upgrades, show link.
+When a **new major release** becomes available, we inform you, but leave scheduling of the upgrade to you. This gives you the control to decide if and when it is time for you to upgrade, potentially updating workloads first. These upgrades are also acommpanied or even triggered by Giant Swarm staff, to ensure we have a close eye on the upgrade process and the uptime of your workloads.
 
 ## How upgrades work
 
@@ -142,7 +140,7 @@ In particular this means:
 * Try to make containers as light as possible
 * Consider running descheduler
 * Ensure all container images (tags) are in the registry
-* Set resource limits (not a must have but could help)
+* Set resource request and limits (not a must have but could help)
 * Consider using pod priority preemption to ensure critical pods run always
 * Avoid using pods without backed up resource (deployment, daemonset, ...)
 * Avoid using local storage (or use it as cache)
