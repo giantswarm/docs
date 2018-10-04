@@ -89,14 +89,14 @@ When a **new major release** becomes available, we inform you, but leave schedul
 ## How upgrades work
 
 All levels of upgrades, patch, minor, or major, are happening at runtime.
-Your Kubernetes workloads can continue to work as expected (given they meet a few requirements, as explained firther below).
+Your Kubernetes workloads should continue to work as expected (given they meet a few requirements, as explained further below).
 
 In particular this means:
 
-- The master node will be taken down, resulting in the Kubernetes API being unavailable.
-- The worker nodes will be taken down, resulting in pods being rescheduled to other nodes.
+- The master node will be taken down, resulting in the Kubernetes API being shortly unavailable.
+- The worker nodes will be drained and taken down, resulting in pods being rescheduled to other nodes.
 
-**Note**: We have master node high-availability (multiple master nodes) on our roadmap, which will help prevent Kubernetes API downtimes during upgrades.
+**Note**: We have high-availability masters (multiple master nodes) on our roadmap, which will help prevent Kubernetes API downtimes during upgrades.
 
 ---
 
