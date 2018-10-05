@@ -15,7 +15,7 @@ Istio is one of the main players and it stands out because of the project maturi
 
 ## Preparation
 
-At the present time, the recommended way to deploy Istio is using Helm. Please ensure the Kubernetes package manager is installed and running in your cluster. Go to the official [docs](https://docs.helm.sh/using_helm#install-helm) if you need to install it. Additionally, a helm registry plugin is used to download the app charts. Please be sure you [have it configured, too](https://github.com/app-registry/appr-helm-plugin).
+At the present time, the recommended way to deploy Istio is using Helm. Please ensure the Kubernetes package manager is installed and running in your cluster. Go to the official [docs](https://docs.helm.sh/using_helm#install-helm) if you need to install it. Additionally, a Helm registry plugin is used to download the app charts. Please be sure you [have it configured, too](https://github.com/app-registry/appr-helm-plugin).
 
 Start off by [downloading the Istio project package](https://github.com/istio/istio/releases/) and include the command line interface in your path. After having it in a local folder uncompressed, make sure the `/bin` directory is under your system path.
 
