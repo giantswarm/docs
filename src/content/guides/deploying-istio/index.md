@@ -182,6 +182,15 @@ Let's verify that Istio is deployed and configured correctly. We can deploy a si
 
 ### Automated Sidecar Injection
 
+The automated injection mechanism relies on the mutate admission controllers functionality offered by Kubernetes API. It means the API server has to be deployed with the flag `enable-admission-plugins` containing `MutatingAdmissionWebhook`. Also the validate webhook (`ValidatingAdmissionWebhook`) is recommended since it used by `galley` to verify the Istio resources syntax. You can check if the admission controller flag contains the webhooks enabled running:
+
+```nohighlight
+$ kubectl get pod <API_SERVER> -n kube-system -o yaml | grep admission
+--enable-admission-plugins=NamespaceLifecycle,LimitRanger,ServiceAccount,DefaultStorageClass,DefaultTolerationSeconds,MutatingAdmissionWebhook,ValidatingAdmissionWebhook,ResourceQuota
+```
+
+__Node:__ Contact with Giant Swarm support team in case it is disabled 
+
 First of all, we need to label the namespace to make the sidecar injection effective.
 
 ```nohighlight
