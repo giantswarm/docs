@@ -133,14 +133,35 @@ In particular this means:
 
 ## How to prepare your workloads
 
-* Having 2 or more replicas for deployments
+### Scale up workloads
+
+Make sure you have 2 or more replicas for al your deployments. For critical components you might want to go with more than just the bare minimum of 2.
+
+You can adjust this depending on your environments, e.g. running 2-3 replicas in `DEV`, and 5 or more in `PROD`.
+
+In case you are using Horizontal Pod Autoscaler, above recommendations should depict your minimum replica setting.
+
+### Manage disruption budgets
+
+Configure [PodDisruptionBudgets](https://kubernetes.io/docs/tasks/run-application/configure-pdb/) for all your deployments. This tells Kubernetes to keep a minimum amount of Pods running at all times and is respected by the draining/eviction mechanisms during upgrades.
+
+### Make rescheduling graceful
+
 * Have well implemented live and ready probes
 * Set proper values for initialDelaySeconds and termincationGracePeriod (related to previous point)
-* Configure PodDisruptionBudget for deployments
+
+### Set scheduling priorities
+
+* Consider using pod priority preemption to ensure critical pods run always
+
+### Avoid ephemeral resources
+
+* Avoid using pods without backed up resource (deployment, daemonset, ...)
+* Avoid using local storage (or use it as cache)
+
+### General Pod Hygene
+
 * Try to make containers as light as possible
 * Consider running descheduler
 * Ensure all container images (tags) are in the registry
 * Set resource request and limits (not a must have but could help)
-* Consider using pod priority preemption to ensure critical pods run always
-* Avoid using pods without backed up resource (deployment, daemonset, ...)
-* Avoid using local storage (or use it as cache)
