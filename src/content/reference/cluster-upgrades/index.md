@@ -133,7 +133,9 @@ In particular this means:
 
 ## How to prepare your workloads
 
-### Scale up workloads
+The following recommendations should help you harden your workload deployments for a tpyical upgrade process. Furthermore, they also make your workloads more resilient against unpredicted failures, high load, and resource pressure in your cluster.
+
+### Scale up and distribute workloads
 
 Make sure you have 2 or more replicas for al your deployments. For critical components you might want to go with more than just the bare minimum of 2.
 
@@ -141,27 +143,45 @@ You can adjust this depending on your environments, e.g. running 2-3 replicas in
 
 In case you are using Horizontal Pod Autoscaler, above recommendations should depict your minimum replica setting.
 
+Additionally, you should make sure your replicas do not land on the same node using [inter-pod anti-affinity](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#inter-pod-affinity-and-anti-affinity-beta-feature).
+
+We recommend always using soft anti-affinity to avoid exclusivity of nodes. However, this can in cases to less distirbuted workloads on resource pressure or node failure, which will need a rescheduling to be balanced again.
+
+For such rescheduling or rebalancing you should have a look at the incubation project called [descheduler](https://github.com/kubernetes-incubator/descheduler) and evaluate its use in your clusters. It has settings for avoiding affinities, but also for rebalancing clusters with under-ultilized nodes.
+
 ### Manage disruption budgets
 
 Configure [PodDisruptionBudgets](https://kubernetes.io/docs/tasks/run-application/configure-pdb/) for all your deployments. This tells Kubernetes to keep a minimum amount of Pods running at all times and is respected by the draining/eviction mechanisms during upgrades.
 
 ### Make rescheduling graceful
 
-* Have well implemented live and ready probes
-* Set proper values for initialDelaySeconds and termincationGracePeriod (related to previous point)
+To make rescheduling during upgrades of both the cluster as well as your own deployments more graceful you should take care of a few settings on your Pods. However, these settings might not be enough, your application must be able to handle standard termination signals and have a procedure for gracefully shutting down. Further, it needs to expose some sort of liveness and/or readiness endpoints for Kubernetes to be able to probe it.
+
+1. Have well implemented [liveness and readiness probes].(https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/)
+   Often, a container being alive does not mean it is ready to recieve traffic. By differniating between liveness and readiness you can not only control when traffic gets routed to a fresh container, you can also influence graceful termination of your container.
+2. Set proper values for initialDelaySeconds (related to previous point).
+3. Set proper values for termincationGracePeriod to give your Pod time to gracefully shut down.
 
 ### Set scheduling priorities
 
-* Consider using pod priority preemption to ensure critical pods run always
+Consider using Pod priority to ensure that higher priority Pods are scheduled favorably in times of resource pressure.
+
+We recommend reading the upstream documentation abour [priority classes and pod preemption](https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/) to get a better understanding of how the scheduler works with these.
+
+To help the scheduler further with being able to correctly (re-)schedule your Pods, you should [set resource request and limits](https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/). This also sets the Quality of Service of a Pod, which again has influence on scheduling priorities.
 
 ### Avoid ephemeral resources
 
-* Avoid using pods without backed up resource (deployment, daemonset, ...)
-* Avoid using local storage (or use it as cache)
+In Kubernetes it is possible to schedule ephemeral resources.
 
-### General Pod Hygene
+For example a Pod by itself, i.e. without a deployment, daemonset, statefulset, etc., is an ephemeral resource that will not be rescheduled when it dies or gets killed. A Pod definition should thus only be used for use cases like debugging or quick manual tests. Be sure to always use a controller-managed resource for your containers.
 
-* Try to make containers as light as possible
-* Consider running descheduler
-* Ensure all container images (tags) are in the registry
-* Set resource request and limits (not a must have but could help)
+Furthermore, local storage in form of `emptyDir` is also ephemeral, and should not be used to persist data. It should only be used as a cache or temporary storage that you can live without in case of failure or rescheduling. In most cases this is also true of `hostPath` as the local storage of a new node might not be the same as the one of the old node.
+
+### General Container Hygene
+
+There's additional general container hygene recommendations that will help smoothen the upgrade process.
+
+As container images might not be already available on the new node that the Pod gets rescheduled to you should make sure that all container images (and tags) that you are using are available in the registry that is configured for the Pods.
+
+Furthermore, you should make your containers as light (in terms of size) as possible to make the pulling and with that the rescheduling process faster.
