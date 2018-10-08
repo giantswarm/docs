@@ -15,7 +15,7 @@ Istio is one of the main players and it stands out because of the project maturi
 
 ## Preparation
 
-At the present time, the recommended way to deploy Istio is using Helm. Please ensure the Kubernetes package manager is installed and running in your cluster. Go to the official [docs](https://docs.helm.sh/using_helm#install-helm) if you need to install it. Additionally, a helm registry plugin is used to download the app charts. Please be sure you [have it configured, too](https://github.com/app-registry/appr-helm-plugin).
+At the present time, the recommended way to deploy Istio is using Helm. Please ensure the Kubernetes package manager is installed and running in your cluster. Go to the official [docs](https://docs.helm.sh/using_helm#install-helm) if you need to install it. Additionally, a Helm registry plugin is used to download the app charts. Please be sure you [have it configured, too](https://github.com/app-registry/appr-helm-plugin).
 
 Start off by [downloading the Istio project package](https://github.com/istio/istio/releases/) and include the command line interface in your path. After having it in a local folder uncompressed, make sure the `/bin` directory is under your system path.
 
@@ -181,6 +181,15 @@ $ kubectl get pods -n istio-system -w
 Let's verify that Istio is deployed and configured correctly. We can deploy a simple http server that returns a `200` code for the `healthz` path of the service.
 
 ### Automated Sidecar Injection
+
+The automated injection mechanism relies on the mutate admission controllers functionality offered by Kubernetes API. It means the API server has to be deployed with the flag `enable-admission-plugins` containing `MutatingAdmissionWebhook`. Also the validate webhook (`ValidatingAdmissionWebhook`) is recommended since it used by `galley` to verify the Istio resources syntax. You can check if the admission controller flag contains the webhooks enabled running:
+
+```nohighlight
+$ kubectl get pod <API_SERVER> -n kube-system -o yaml | grep admission
+--enable-admission-plugins=NamespaceLifecycle,LimitRanger,ServiceAccount,DefaultStorageClass,DefaultTolerationSeconds,MutatingAdmissionWebhook,ValidatingAdmissionWebhook,ResourceQuota
+```
+
+__Node:__ Contact with Giant Swarm support team in case it is disabled 
 
 First of all, we need to label the namespace to make the sidecar injection effective.
 
