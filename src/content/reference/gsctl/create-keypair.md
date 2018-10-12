@@ -1,7 +1,7 @@
 +++
 title = "gsctl Command Reference: create keypair"
 description = "The 'gsctl create keypair' command creates a key pair and stores the related files in your certificate folder."
-date = "2017-12-05"
+date = "2018-10-12"
 type = "page"
 weight = 32
 +++
@@ -43,6 +43,7 @@ Three files will be placed in the `certs` folder, which is a subfolder of your g
 
 - `--cluster`, `-c`: Used to specify the cluster ID to create a key pair for.
 - `--cn-prefix`: The common name prefix for the issued certificates 'CN' field.
+  Note that only the charactes `a-z`, `0-9` and `-` can be used.
 - `--certificate-organizations`: A comma separated list of organizations for the issued certificate's 'O' fields.
 - `--description`, `-d`: Can be used to specify a description. If not given, a description like `Added by user email@example.com using 'gsctl create kubeconfig'` is set.
 - `--ttl`: Allows to set the key pair expiry, in days. Defaults to 30 days.
