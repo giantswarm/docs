@@ -1,7 +1,7 @@
 +++
 title = "Cluster Upgrades with Giant Swarm"
 description = "A detailed explanation how Kubernetes and other components are upgraded in a Giant Swarm installation"
-date = "2018-08-31"
+date = "2018-10-02"
 weight = 30
 type = "page"
 +++
@@ -22,17 +22,20 @@ In this article, we explain how upgrades work in detail and how you should provi
 
 Among the third party components building a tenant cluster stack are
 
+_TODO: link to third party projects_
+
 - CoreOS container linux as the node's operating system
-- Project Calico for virtual networking
-- HashiCorp Vault as a public key infrastructure
 - Docker as a container runtime environment
-- CoreOS etcd as distributed storage for Kubernetes and Vault
+- etcd as distributed storage for Kubernetes and Vault
+- Kubernetes with its many sub-components
+- Project Calico for virtual networking
 - CoreDNS for cluster-internal name resolution
 - Prometheus node exporter for hardware and OS metrics
-- Kubernetes with its many sub-components
 - NGINX Ingress Controller for connecting services with load balancers
 
 as well as many operators and controllers created and maintained by Giant Swarm.
+
+QUESTION: Should we go into detail regarding our own operators?
 
 ### Releases
 
@@ -40,7 +43,7 @@ All of the items in the list above are released independent of each other by the
 At Giant Swarm we "bundle" specific versions of these components of the tenant cluster stack into a **release**.
 A release is identified by a [semantic version number](https://semver.org/).
 
-Once deployed, the tenant cluster stack is **immutible**.
+Once deployed, the tenant cluster stack is **immutable**.
 All components are deployed based on images, either of virtual machines or of Docker containers.
 No changes are ever made to components at runtime.
 This ensures that the stack running in your environment is the exact stack we have tested before.
@@ -104,24 +107,29 @@ In particular this means:
 
 ## Remainders of outline
 
-* Testing (e2e and conformance)
+* Testing (e2e and conformance) - We test every release automatically. Every major release (minor kubernetes upgrade) will be tested for conformance (link upstream)
 
 ## Releases
 
-* old clusters will be force upgraded)
-* Explain versions of subcomponents
+* old clusters will be force upgraded -> lifecycle
+* Explain versions of subcomponents: Probably to deep for this article? How we version operators? Core components vs. ... ? -> architecture docs
 
 ## Upgrades
 
-* Explain upgrades in each provider. 
-* Maybe include a highlevel diagram of how cluster-operator, node-operator and provider specific operators deal with upgrades
+* Maybe include a highlevel diagram of how cluster-operator, node-operator and provider specific operators deal with upgrades. -> Marian speaks with Tim for next version
 
 ### AWS
 
-* Cloudformation upgrade. Master first. Then rolling update of the ASG. 
+-> Tim
+
+* Cloudformation stacks are upgraded
+    * Master first. Terminated, new is created.
+    * Then rolling update of the ASG.
     * more control over the ASG update is still in progress. goal here: new nodes are created first, until they are in the kubernetes api and ready and then the old nodes are drained and terminated.
 
 ### Azure
+
+-> Tim
 
 * Azure resource manager. All nodes get reimaged and the updated including the master. Master first.
     * This happens one by one. Nodes are drained and then rebooted with the new image and configuration
@@ -129,11 +137,15 @@ In particular this means:
 
 ### KVM
 
+-> Tim
+
 * kvm-operator updating one node after each other.
     * Master first?
     * Nodes are drained and then the pod is replaced with a new version.
 
-## How to prepare your workloads
+## How to prepare your workloads {#recommendations}
+
+-> Puja
 
 * Having 2 or more replicas for deployments
 * Have well implemented live and ready probes
@@ -146,3 +158,7 @@ In particular this means:
 * Consider using pod priority preemption to ensure critical pods run always
 * Avoid using pods without backed up resource (deployment, daemonset, ...)
 * Avoid using local storage (or use it as cache)
+
+## Further reading
+
+TODO
