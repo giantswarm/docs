@@ -1,7 +1,7 @@
 +++
 title = "Cluster Upgrades with Giant Swarm"
 description = "A detailed explanation how Kubernetes and other components are upgraded in a Giant Swarm installation"
-date = "2018-10-02"
+date = "2018-10-04"
 weight = 30
 type = "page"
 +++
@@ -32,6 +32,7 @@ _TODO: link to third party projects_
 - CoreDNS for cluster-internal name resolution
 - Prometheus node exporter for hardware and OS metrics
 - NGINX Ingress Controller for connecting services with load balancers
+- Prometheus node exporter for hardware and OS metrics
 
 as well as many operators and controllers created and maintained by Giant Swarm.
 
@@ -54,13 +55,13 @@ As a consequence, the only way to change the stack is to perform an upgrade, to 
 
 As the semantic versioning system defines, an upgrade from one version to another is either one of these:
 
-- *Patch*: The smallest type of upgrade occurs when we publish bugfixes, security fixes or make changes to the observability while maintaining the given functionality of the stack.
+- *Patch*: The smallest type of upgrade occurs when we publish bugfixes, security fixes, or make changes to the observability while maintaining the given functionality of the stack.
 This can include any sort of patch upgrades of third party components.
 
 - *Minor*: A minor upgrade occurs when we add functionality, while maintaining the functionality of the stack as it was in the previous version.
 This can include minor upgrades of third party components, with the exception of Kubernetes.
 
-- *Major*: A major upgrade occurs when (A) a minor Kubernetes version upgrade is picked up (e. g. from 1.10.* to 1.11.*), when we remove functionality or change functionality that my require changes in workloads, in automation working with the cluster or in administrator's interactions.
+- *Major*: A major upgrade occurs when (A) a minor Kubernetes version upgrade is picked up (e. g. from 1.10.* to 1.11.*), when we remove functionality or change functionality that might require changes in workloads, in automation working with the cluster or in administrator's interactions.
 
 **Note:** The release version number is provider-specific.
 Azure, AWS, and KVM based installations have independent versioning systems, as their stacks are also slightly different.
@@ -73,35 +74,33 @@ In the web UI, both the cluster overview and the cluster details page show the r
 In the cluster details page you can click the release version number to get more information about a release.
 
 Likewise in the CLI, commands like [`gsctl list clusters`](/reference/gsctl/list-clusters/) and [`gsctl show cluster`](/reference/gsctl/show-cluster/) reveal the release version number.
-To get information on all releases, use the [`gsctl list releases`](/reference/gsctl/list-releases/) command.
+To get information on all available releases, use the [`gsctl list releases`](/reference/gsctl/list-releases/) command.
 
 ### Release lifecycle
 
 **We hold two different major releases** available at any time to chose from when creating a new cluster, which means that you have two different Kubernetes minor versions to chose from.
 
-Whenever a new Kubernetes minor version is released by the Kubernetes project, we make that version available in a new major release of our stack within 30 days from the Kubernetes release.
+Whenever a new Kubernetes minor version is released by the Kubernetes project, we aim to make that version available in a new major release of our stack within 30 days from the Kubernetes release.
 
 Once we publish a new major release, we deprecate the oldest major release.
 This means that no new clusters can be created using that old release version.
-Existing clusters however are not affected.
+Existing clusters, however, are not affected.
 
-**Both patch and minor upgrades** can be rolled out at any time **automatically** by Giant Swarm without your interaction.
+**Both patch and minor upgrades** can be rolled out at any time by Giant Swarm without your interaction. Currently, this happens in coordination with your administrators and with a notice to your developers.
 
-When a **new major release** becomes available, we inform you, but leave triggering the upgrade to you. This gives you the control to decide if and when it is time for you to upgrade, potentially updating workloads first. The upgrade can be triggered using either our web UI, our CLI or the API directly.
-
-TODO: explain more, maybe show screenshot of happa upgrades, show link.
+When a **new major release** becomes available, we inform you, but leave scheduling of the upgrade to you. This gives you the control to decide if and when it is time for you to upgrade, potentially updating workloads first. These upgrades are also acommpanied or even triggered by Giant Swarm staff, to ensure we have a close eye on the upgrade process and the uptime of your workloads.
 
 ## How upgrades work
 
 All levels of upgrades, patch, minor, or major, are happening at runtime.
-Your Kubernetes workloads can continue to work as expected (given they meet a few requirements, as explained firther below).
+Your Kubernetes workloads should continue to work as expected (given they meet a few requirements, as explained further below).
 
 In particular this means:
 
-- The master node will be taken down, resulting in the Kubernetes API being unavailable.
-- The worker nodes will be taken down, resulting in pods being rescheduled to other nodes.
+- The master node will be taken down, resulting in the Kubernetes API being shortly unavailable.
+- The worker nodes will be drained and taken down, resulting in pods being rescheduled to other nodes.
 
-**Note**: We have master node high-availability (multiple master nodes) on our roadmap, which will help prevent Kubernetes API downtimes during upgrades.
+**Note**: We have high-availability masters (multiple master nodes) on our roadmap, which will help prevent Kubernetes API downtimes during upgrades.
 
 ---
 
@@ -120,7 +119,7 @@ In particular this means:
 
 ### AWS
 
--> Tim
+-> Marian/Tim
 
 * Cloudformation stacks are upgraded
     * Master first. Terminated, new is created.
@@ -129,7 +128,7 @@ In particular this means:
 
 ### Azure
 
--> Tim
+-> Marian/Tim
 
 * Azure resource manager. All nodes get reimaged and the updated including the master. Master first.
     * This happens one by one. Nodes are drained and then rebooted with the new image and configuration
@@ -137,7 +136,7 @@ In particular this means:
 
 ### KVM
 
--> Tim
+-> Marian/Tim
 
 * kvm-operator updating one node after each other.
     * Master first?
@@ -145,19 +144,58 @@ In particular this means:
 
 ## How to prepare your workloads {#recommendations}
 
--> Puja
+The following recommendations should help you harden your workload deployments for a tpyical upgrade process. Furthermore, they also make your workloads more resilient against unpredicted failures, high load, and resource pressure in your cluster.
 
-* Having 2 or more replicas for deployments
-* Have well implemented live and ready probes
-* Set proper values for initialDelaySeconds and termincationGracePeriod (related to previous point)
-* Configure PodDisruptionBudget for deployments
-* Try to make containers as light as possible
-* Consider running descheduler
-* Ensure all container images (tags) are in the registry
-* Set resource limits (not a must have but could help)
-* Consider using pod priority preemption to ensure critical pods run always
-* Avoid using pods without backed up resource (deployment, daemonset, ...)
-* Avoid using local storage (or use it as cache)
+### Scale up and distribute workloads
+
+Make sure you have 2 or more replicas for al your deployments. For critical components you might want to go with more than just the bare minimum of 2.
+
+You can adjust this depending on your environments, e.g. running 2-3 replicas in `DEV`, and 5 or more in `PROD`.
+
+In case you are using Horizontal Pod Autoscaler, above recommendations should depict your minimum replica setting.
+
+Additionally, you should make sure your replicas do not land on the same node using [inter-pod anti-affinity](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#inter-pod-affinity-and-anti-affinity-beta-feature).
+
+We recommend always using soft anti-affinity to avoid exclusivity of nodes. However, this can in cases to less distirbuted workloads on resource pressure or node failure, which will need a rescheduling to be balanced again.
+
+For such rescheduling or rebalancing you should have a look at the incubation project called [descheduler](https://github.com/kubernetes-incubator/descheduler) and evaluate its use in your clusters. It has settings for avoiding affinities, but also for rebalancing clusters with under-ultilized nodes.
+
+### Manage disruption budgets
+
+Configure [PodDisruptionBudgets](https://kubernetes.io/docs/tasks/run-application/configure-pdb/) for all your deployments. This tells Kubernetes to keep a minimum amount of Pods running at all times and is respected by the draining/eviction mechanisms during upgrades.
+
+### Make rescheduling graceful
+
+To make rescheduling during upgrades of both the cluster as well as your own deployments more graceful you should take care of a few settings on your Pods. However, these settings might not be enough, your application must be able to handle standard termination signals and have a procedure for gracefully shutting down. Further, it needs to expose some sort of liveness and/or readiness endpoints for Kubernetes to be able to probe it.
+
+1. Have well implemented [liveness and readiness probes].(https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/)
+   Often, a container being alive does not mean it is ready to recieve traffic. By differniating between liveness and readiness you can not only control when traffic gets routed to a fresh container, you can also influence graceful termination of your container.
+2. Set proper values for initialDelaySeconds (related to previous point).
+3. Set proper values for termincationGracePeriod to give your Pod time to gracefully shut down.
+
+### Set scheduling priorities
+
+Consider using Pod priority to ensure that higher priority Pods are scheduled favorably in times of resource pressure.
+
+We recommend reading the upstream documentation abour [priority classes and pod preemption](https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/) to get a better understanding of how the scheduler works with these.
+
+To help the scheduler further with being able to correctly (re-)schedule your Pods, you should [set resource request and limits](https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/). This also sets the Quality of Service of a Pod, which again has influence on scheduling priorities.
+
+### Avoid ephemeral resources
+
+In Kubernetes it is possible to schedule ephemeral resources.
+
+For example a Pod by itself, i.e. without a deployment, daemonset, statefulset, etc., is an ephemeral resource that will not be rescheduled when it dies or gets killed. A Pod definition should thus only be used for use cases like debugging or quick manual tests. Be sure to always use a controller-managed resource for your containers.
+
+Furthermore, local storage in form of `emptyDir` is also ephemeral, and should not be used to persist data. It should only be used as a cache or temporary storage that you can live without in case of failure or rescheduling. In most cases this is also true of `hostPath` as the local storage of a new node might not be the same as the one of the old node.
+
+### General Container Hygene
+
+There's additional general container hygene recommendations that will help smoothen the upgrade process.
+
+As container images might not be already available on the new node that the Pod gets rescheduled to you should make sure that all container images (and tags) that you are using are available in the registry that is configured for the Pods.
+
+Furthermore, you should make your containers as light (in terms of size) as possible to make the pulling and with that the rescheduling process faster.
 
 ## Further reading
 
