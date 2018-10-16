@@ -88,6 +88,9 @@ Existing clusters, however, are not affected.
 
 When a **new major release** becomes available, we inform you, but leave scheduling of the upgrade to you. This gives you the control to decide if and when it is time for you to upgrade, potentially updating workloads first. These upgrades are also acommpanied or even triggered by Giant Swarm staff, to ensure we have a close eye on the upgrade process and the uptime of your workloads.
 
+Every new minor Kubernetes release, which comes with a major Giant Swarm release, is tested for conformance using the CNCF [conformance test suite](https://github.com/cncf/k8s-conformance).
+In addition, every release, from patch to major, undergoes automated integration testing.
+
 ## How upgrades work
 
 All levels of upgrades, patch, minor, or major, are happening at runtime.
