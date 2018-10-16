@@ -39,7 +39,7 @@ QUESTION: Should we go into detail regarding our own operators?
 ### Releases
 
 All of the items in the list above are released independent of each other by their vendors.
-At Giant Swarm we "bundle" specific versions of these components of the tenant cluster stack into a **release**.
+At Giant Swarm we bundle specific versions of these components of the tenant cluster stack into a **release**.
 A release is identified by a [semantic version number](https://semver.org/).
 
 Once deployed, the tenant cluster stack is **immutable**.
