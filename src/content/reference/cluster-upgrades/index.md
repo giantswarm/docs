@@ -22,17 +22,15 @@ In this article, we explain how upgrades work in detail and how you should provi
 
 Among the third party components building a tenant cluster stack are
 
-_TODO: link to third party projects_
+- [CoreOS Container Linux](https://coreos.com/os/docs/latest/) as the node's operating system
+- [Docker](https://docs.docker.com/engine/) as a container runtime environment
+- [etcd](https://coreos.com/etcd/) as distributed storage for Kubernetes and Vault
+- [Kubernetes](https://kubernetes.io/) with its many sub-components
+- [Project Calico](https://www.projectcalico.org/) for virtual networking
+- [CoreDNS](https://coredns.io/) for cluster-internal name resolution
+- [Prometheus node exporter](https://github.com/prometheus/node_exporter) for hardware and OS metrics
+- [NGINX Ingress Controller](https://github.com/kubernetes/ingress-nginx) for connecting services with load balancers
 
-- CoreOS container linux as the node's operating system
-- Docker as a container runtime environment
-- etcd as distributed storage for Kubernetes and Vault
-- Kubernetes with its many sub-components
-- Project Calico for virtual networking
-- CoreDNS for cluster-internal name resolution
-- Prometheus node exporter for hardware and OS metrics
-- NGINX Ingress Controller for connecting services with load balancers
-- Prometheus node exporter for hardware and OS metrics
 
 as well as many operators and controllers created and maintained by Giant Swarm.
 
