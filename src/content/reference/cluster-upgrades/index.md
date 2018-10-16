@@ -1,7 +1,7 @@
 +++
 title = "Cluster Upgrades with Giant Swarm"
 description = "A detailed explanation how Kubernetes and other components are upgraded in a Giant Swarm installation"
-date = "2018-10-04"
+date = "2018-10-16"
 weight = 30
 type = "page"
 +++
@@ -115,21 +115,18 @@ In process of the worker node recreation, any data stored in worker node's local
 **Note:** We are in the process of making upgrades on AWS less disruptive.
 One goal is to make new nodes available first, then drain and remove old nodes.
 
+### Provider-specific details for Azure
 
-### Azure
-
--> Marian/Tim
-
-* Azure resource manager. All nodes get reimaged and the updated including the master. Master first.
-    * This happens one by one. Nodes are drained and then rebooted with the new image and configuration
+* Azure resource manager, VMSS. All nodes get reimaged (definition?) (apply new ARM template) and then updated (rebooted) including the master. Master first.
+    * This happens one by one. Nodes are drained and then rebooted with the new image and configuration.
     * A delete has been discussed here instead of update of existing nodes. But this is not clear yet.
+    * Node names remain the same as before the upgrade.
+    * Node storage is wiped
 
-### KVM
+### Provider-specific details for KVM
 
--> Marian/Tim
-
-* kvm-operator updating one node after each other.
-    * Master first?
+* kvm-operator updating one node after each other, where each node is represented by a k8s deployment with one pod.
+    * Master first
     * Nodes are drained and then the pod is replaced with a new version.
 
 ## How to prepare your workloads {#recommendations}
@@ -138,7 +135,7 @@ The following recommendations should help you harden your workload deployments f
 
 ### Scale up and distribute workloads
 
-Make sure you have 2 or more replicas for al your deployments. For critical components you might want to go with more than just the bare minimum of 2.
+Make sure you have 2 or more replicas for all your deployments. For critical components you might want to go with more than just the bare minimum of 2.
 
 You can adjust this depending on your environments, e.g. running 2-3 replicas in `DEV`, and 5 or more in `PROD`.
 
@@ -158,7 +155,7 @@ Configure [PodDisruptionBudgets](https://kubernetes.io/docs/tasks/run-applicatio
 
 To make rescheduling during upgrades of both the cluster as well as your own deployments more graceful you should take care of a few settings on your Pods. However, these settings might not be enough, your application must be able to handle standard termination signals and have a procedure for gracefully shutting down. Further, it needs to expose some sort of liveness and/or readiness endpoints for Kubernetes to be able to probe it.
 
-1. Have well implemented [liveness and readiness probes].(https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/)
+1. Have well implemented [liveness and readiness probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/).
    Often, a container being alive does not mean it is ready to recieve traffic. By differniating between liveness and readiness you can not only control when traffic gets routed to a fresh container, you can also influence graceful termination of your container.
 2. Set proper values for initialDelaySeconds (related to previous point).
 3. Set proper values for termincationGracePeriod to give your Pod time to gracefully shut down.
