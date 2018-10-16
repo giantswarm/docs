@@ -34,8 +34,6 @@ Among the third party components building a tenant cluster stack are
 
 as well as many operators and controllers created and maintained by Giant Swarm.
 
-QUESTION: Should we go into detail regarding our own operators?
-
 ### Releases
 
 All of the items in the list above are released independent of each other by their vendors.
@@ -98,18 +96,13 @@ Your Kubernetes workloads should continue to work as expected (given they meet a
 
 In particular this means:
 
-- The master node will be taken down, resulting in the Kubernetes API being shortly unavailable.
-- The worker nodes will be drained and taken down, resulting in pods being rescheduled to other nodes.
+- Nodes will be drained, then stopped, then recreated.
+- As a consequence of drainging, Pods running on a node will be rescheduled to other nodes. 
+- Once the master node will is taken down and recreated, the Kubernetes API will be unavailable for a short time.
 
-**Note**: We have high-availability masters (multiple master nodes) on our roadmap, which will help prevent Kubernetes API downtimes during upgrades.
+**Note**: Currently tenant clusters have one master node each. We have plans on our roadmap to allow for multiple master nodes, keeping the Kubernetes API accessible during an upgrade and increasing the resiliance in case of a machine failure.
 
----
-
-## Remainders of outline
-
-* Testing (e2e and conformance) - We test every release automatically. Every major release (minor kubernetes upgrade) will be tested for conformance (link upstream)
-
-## Releases
+### Provider-specific details for AWS
 
 * old clusters will be force upgraded -> lifecycle
 * Explain versions of subcomponents: Probably to deep for this article? How we version operators? Core components vs. ... ? -> architecture docs
