@@ -104,21 +104,17 @@ In particular this means:
 
 ### Provider-specific details for AWS
 
-* old clusters will be force upgraded -> lifecycle
-* Explain versions of subcomponents: Probably to deep for this article? How we version operators? Core components vs. ... ? -> architecture docs
+AWS resources are managed by the `aws-operator` component through a nested CloudFormation stack. For a tenant cluster upgrade, the CloudFormation stacks is updated, in several steps.
 
-## Upgrades
+The master node re-creation is started first. Meanhile, the recreation of worker nodes starts, where the all worker nodes are recreated in batches. During the upgrade, **up to 33 percent of the worker nodes can be unavailable**.
 
-* Maybe include a highlevel diagram of how cluster-operator, node-operator and provider specific operators deal with upgrades. -> Marian speaks with Tim for next version
+After recreation, worker nodes are **not expected to have the names** they had before.
 
-### AWS
+In process of the worker node recreation, any data stored in worker node's local storage - i. e. outside of EBS volumes - is lost.
 
--> Marian/Tim
+**Note:** We are in the process of making upgrades on AWS less disruptive.
+One goal is to make new nodes available first, then drain and remove old nodes.
 
-* Cloudformation stacks are upgraded
-    * Master first. Terminated, new is created.
-    * Then rolling update of the ASG.
-    * more control over the ASG update is still in progress. goal here: new nodes are created first, until they are in the kubernetes api and ready and then the old nodes are drained and terminated.
 
 ### Azure
 
