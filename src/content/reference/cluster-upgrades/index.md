@@ -117,11 +117,15 @@ One goal is to make new nodes available first, then drain and remove old nodes.
 
 ### Provider-specific details for Azure
 
-* Azure resource manager, VMSS. All nodes get reimaged (definition?) (apply new ARM template) and then updated (rebooted) including the master. Master first.
-    * This happens one by one. Nodes are drained and then rebooted with the new image and configuration.
-    * A delete has been discussed here instead of update of existing nodes. But this is not clear yet.
-    * Node names remain the same as before the upgrade.
-    * Node storage is wiped
+Our `azure-operator` manages tenant cluster on Azure via Azure Resource Manager (ARM) templates and Virtual Machine Scale Sets (VMSS).
+
+In an upgrade, all Virtual Machines (VM) are updates by reimaging with a new OS image and then rebooting.
+The master node is rebooted first.
+Worker nodes are then updated one by one, where each node is first drained (Pods re-scheduled to other nodes) and then reimaged and rebooted.
+
+On Azure, the node names visible to Kubernetes (e. g. `kubectl get nodes`) are not changed in an upgrade.
+
+**Note:** Any local storage in the node is erased. Persistent volumes are not affected by that.
 
 ### Provider-specific details for KVM
 
