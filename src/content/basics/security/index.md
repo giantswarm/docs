@@ -1,12 +1,13 @@
 +++
-title = "Security reference"
+title = "Security"
 description = "Documentation of the Giant Swarm cluster security"
 date = "2017-10-12"
 type = "page"
-weight = 15
+weight = 40
+categories = ["basics"]
 +++
 
-# Security reference
+# Security
 
 This reference gives you details on security-related measures in a Giant Swarm installation.
 

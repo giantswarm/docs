@@ -7,7 +7,7 @@ pluralizeListTitles = false
     plainIdAnchors = true
 
 [[menu.main]]
-    name = "Basics"
+    name = "Basics and Concepts"
     url = "/basics/"
     weight = 20
 [[menu.main]]

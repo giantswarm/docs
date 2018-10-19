@@ -1,7 +1,7 @@
 +++
 title = "Advanced Ingress Configuration"
 description = "Here we describe how you can customize and enable specific features for the NGINX-based Ingress"
-date = "2018-07-31"
+date = "2018-09-28"
 type = "page"
 weight = 50
 tags = ["tutorial"]
@@ -12,7 +12,7 @@ tags = ["tutorial"]
 The [NGINX-based Ingress Controller](https://github.com/kubernetes/ingress-nginx) running inside your cluster has additional configuration options and features that can be customized. The functionality is split into two categories:
 
 - [Per-Service options](#yaml) in each Ingress' YAML definition either directly or via [Annotations](https://kubernetes.io/docs/user-guide/annotations/).
-- [Global options](#configmap) that influence all Ingresses via a Config Map.
+- [Global options](#configmap) that influence all Ingresses of a cluster via a ConfigMap.
 
 ## Per-Service Options {#yaml}
 
@@ -282,7 +282,7 @@ nginx.ingress.kubernetes.io/proxy-body-size: 8m
 
 ### Session Affinity
 
-The annotation `nginx.ingress.kubernetes.io/affinity` enables and sets the affinity type in all Upstreams of an Ingress. This way, a request will always be directed to the same upstream server.
+The annotation `nginx.ingress.kubernetes.io/affinity` enables and sets the affinity type in all upstreams of an Ingress. This way, a request will always be directed to the same upstream server.
 
 #### Cookie affinity
 
@@ -294,7 +294,7 @@ The `index` option is not hashed, an in-memory index is used instead, it's quick
 
 This feature is implemented by the third party module [nginx-sticky-module-ng](https://bitbucket.org/nginx-goodies/nginx-sticky-module-ng). The workflow used to define which upstream server will be used is explained in the [module documentation (PDF)](https://bitbucket.org/nginx-goodies/nginx-sticky-module-ng/raw/08a395c66e425540982c00482f55034e1fee67b6/docs/sticky.pdf).
 
-## Configuration snippets
+### Configuration snippets
 
 The NGINX Ingress Controller creates an NGINX configuration file. You can directly pass chunks of configuration, so-called _configuration snippets_, into any ingress manifest. These snippets will be added to the NGINX configuration.
 
@@ -324,8 +324,44 @@ Make sure to use the exact annotation scheme `nginx.ingress.kubernetes.io/config
 
 Check out the [ingress-nginx repository](https://github.com/kubernetes/ingress-nginx/blob/master/docs/examples/customization/configuration-snippets/ingress.yaml) for more information.
 
+## Global (per Cluster) Options {#configmap}
+
+Your Giant Swarm installation comes with some global defaults for Ingress Controller configuration. However, you can override these defaults by setting your per cluster configuration in form of a ConfigMap named `nginx-ingress-controller-user-values` located in your `kube-system` namespace.
+
+__Note:__ This feature is only available in more recent cluster versions. To check if your cluster version supports customization of the ConfigMap, you can check if the above-mentioned ConfigMap is present.
+
+__Warning:__ Please do not edit any of the other nginx ingress related ConfigMaps. Only the user ConfigMap is safe to edit.
+
+```nohighlight
+$ kubectl -n kube-system get cm nginx-ingress-controller-user-values
+NAME                                   DATA      AGE
+nginx-ingress-controller-user-values   0         11m
+```
+
+The official documentation of the NGINX Ingress Controller contains an overview of the [configuration options](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/) and their defaults.
+
+However, we currently only support a subset of those options, which we default as follows. If you need any other upstream documented option added to this list, please contact support.
+
+```yaml
+data:
+  disable-access-log: "false"
+  enable-vts-status: "true"
+  error-log-level: "error"
+  hsts: "false"
+  server-name-hash-bucket-size: "1024"
+  server-name-hash-max-size: "1024"
+  server-tokens: "false"
+  worker-processes: "4"
+  enable-underscores-in-headers: ""
+  proxy-buffers-size: ""
+  proxy-buffers: ""
+  vts-default-filter-key: ""
+```
+
+On cluster creation the ConfigMap is empty and above defaults will be applied to the final Ingress Controller deployment. To override any of the above values, you just need to add the respective line in the data field of the user ConfigMap.
+
 ## Further reading
 
 - [Official Kubernetes documentation for the Ingress Resource](http://kubernetes.io/docs/user-guide/ingress/)
 - [Configuration documentation for the NGINX Ingress Controller](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)
-- [Offical ingress-nginx configuration snippets example](https://github.com/kubernetes/ingress-nginx/tree/master/docs/examples/customization/configuration-snippets)
+- [Official ingress-nginx configuration snippets example](https://github.com/kubernetes/ingress-nginx/tree/master/docs/examples/customization/configuration-snippets)

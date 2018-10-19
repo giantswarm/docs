@@ -1,7 +1,7 @@
 +++
 title = "Prepare an AWS account to run Giant Swarm tenant clusters"
 description = "This guide will walk you through all necessary steps to set up an Amazon AWS account with approriate IAM roles for operating Giant Swarm tenant clusters."
-date = "2018-08-16"
+date = "2018-09-12"
 type = "page"
 weight = 100
 tags = ["tutorial"]
@@ -240,17 +240,22 @@ In order to run a tenant cluster in your AWS account, the organization owning
 your cluster has to know about the roles you just created.
 
 If you have direct access to the Giant Swarm API, please set the credentials of
-your organization via the API instead. See the
-[documentation](https://docs.giantswarm.io/api/#operation/addCredentials) of the
-`POST /v4/organizations/{org}/credentials/` endpoint for details.
+your organization with our CLI [gsctl](/reference/gsctl/). Look for the
+[`update organization set-credentials`](/reference/gsctl/update-org-set-credentials/#aws)
+command.
 
 In case you work with a Giant Swarm partner, it might be that you don't have
 access to the Giant Swarm API. In that case, please hand over the role ARNs for
 the `GiantSwarmAWSOperator` role and the `GiantSwarmAdmin` role to your partner
 contact.
 
+After the organization's credentials are set, you can create clusters owned by that
+organization. These clusters' resources will be created in your AWS account.
+
 ## Further reading
 
+- [gsctl Reference: `update organization set-credentials`](/reference/gsctl/update-org-set-credentials/)
+- [API: Set credentials](https://docs.giantswarm.io/api/#operation/addCredentials)
 - [Giant Swarm Architecture](/reference/giantswarm-aws-architecture/)
 - [Giant Swarm API documentation](https://docs.giantswarm.io/api/)
 - [AWS Service Limits](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)

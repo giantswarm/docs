@@ -1,7 +1,7 @@
 +++
 title = "gsctl Reference"
 description = "Documentation on gsctl, the Giant Swarm command line utility to create and delete clusters, create key pairs and more."
-date = "2018-04-26"
+date = "2018-09-11"
 type = "page"
 weight = 10
 +++
@@ -14,25 +14,26 @@ gsctl is the command line utility to manage your Giant Swarm clusters.
 
 Follow the links below for detailed documentation, where available. You can also always use `gsctl <command> --help`.
 
-| Command              | Description
-|----------------------|------------
-| `create cluster`     | [Create a new cluster](create-cluster/)
-| `create keypair`     | [Create and download new key pair](create-keypair/)
-| `create kubeconfig`  | [Create/download new key pair and update `kubectl` configuration](create-kubeconfig/)
-| `delete cluster`     | [Delete cluster](delete-cluster/)
-| `info`               | [Print information on status, configuration, and the installation](info/)
-| `list endpoints`     | [List endpoints](list-endpoints/)
-| `list clusters`      | [List clusters](list-clusters/)
-| `list organizations` | List organizations
-| `list keypairs`      | [List key pairs](list-keypairs/)
-| `list releases`      | [List releases](list-releases/)
-| `login`              | [Sign in as a user](login/)
-| `logout`             | Sign out
-| `ping`               | Check API connection
-| `scale cluster`      | [Add or remove worker nodes of a cluster](scale-cluster/)
-| `select endpoint`    | [Select an endpoint](select-endpoint/)
-| `show cluster`       | [Show cluster details](show-cluster/)
-| `version`            | Print version number
+| Command                               | Description
+|---------------------------------------|------------
+| `create cluster`                      | [Create a new cluster](create-cluster/)
+| `create keypair`                      | [Create and download new key pair](create-keypair/)
+| `create kubeconfig`                   | [Create/download new key pair and update `kubectl` configuration](create-kubeconfig/)
+| `delete cluster`                      | [Delete cluster](delete-cluster/)
+| `info`                                | [Print information on status, configuration, and the installation](info/)
+| `list endpoints`                      | [List endpoints](list-endpoints/)
+| `list clusters`                       | [List clusters](list-clusters/)
+| `list organizations`                  | List organizations
+| `list keypairs`                       | [List key pairs](list-keypairs/)
+| `list releases`                       | [List releases](list-releases/)
+| `login`                               | [Sign in as a user](login/)
+| `logout`                              | Sign out
+| `ping`                                | Check API connection
+| `scale cluster`                       | [Add or remove worker nodes of a cluster](scale-cluster/)
+| `select endpoint`                     | [Select an endpoint](select-endpoint/)
+| `show cluster`                        | [Show cluster details](show-cluster/)
+| `update organization set-credentials` | [Set provider credentials for an organization](update-org-set-credentials/)
+| `version`                             | Print version number
 
 
 ## Installing and Updating {#install}

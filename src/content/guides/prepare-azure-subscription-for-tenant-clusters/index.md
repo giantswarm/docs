@@ -1,7 +1,7 @@
 +++
 title = "Prepare an Azure subscription to run Giant Swarm tenant clusters"
 description = "This guide will walk you through all necessary steps to set up an Azure subscription with approriate Role definition and Service Principal for operating Giant Swarm tenant clusters."
-date = "2018-08-28"
+date = "2018-09-12"
 type = "page"
 weight = 100
 tags = ["tutorial"]
@@ -81,41 +81,17 @@ Giant Swarm tenant clusters are owned by organizations, which allows you to cont
 
 In order to run a tenant cluster in your Azure subscription, the organization owning your cluster has to know about the Service Principal you just created.
 
-In the output from step 3 of the previous section you need to replace the `null` value in front of `subscription_id:` with your actual subscription ID. This document is the credential which needs to be registered within Giant Swarm API.
+If you have direct access to the Giant Swarm API, please set the credentials of
+your organization with our [gsctl](/reference/gsctl/) CLI. Look for the
+[`update organization set-credentials`](/reference/gsctl/update-org-set-credentials/#azure)
+command. You will need your Azure subscription ID and the output from step 3 as arguments.
 
-```json
-{
-    "client_id": "72bc3de4-3cf8-46c5-bd2b-243368ed0622",
-    "secret_key": "d6b2cb93-cae9-44b3-8ec5-dc5feb8c28ba",
-    "subscription_id": "6ec148b8-8bea-4dd3-82bc-1787c8260e4a",
-    "tenant_id": "31f75bf9-3d8c-4691-95c0-83dd71613db8"
-}
-```
+In case you work with a Giant Swarm partner, it might be that you don’t have access to the Giant Swarm API. In that case, please hand over your Azure subscription ID and the output from step 3 to your partner contact.
 
-If you have direct access to the Giant Swarm API, please follow the [documentation](https://docs.giantswarm.io/api/#operation/addCredentials) to set the credentials of your organization via the API.
+After the organization's credentials are set, you can create clusters owned by that
+organization. These clusters' resources will be created in your Azure subscription.
 
-```nohighlight
-$ curl -X POST -H "Authorization: giantswarm ${TOKEN}" https://api.g8s.example.westeurope.azure.gigantic.io/v4/organizations/giantswarm/credentials -d \
-'{
-  "provider": "azure",
-  "azure": {
-    "credential": {
-      "client_id": "72bc3de4-3cf8-46c5-bd2b-243368ed0622",
-      "secret_key": "d6b2cb93-cae9-44b3-8ec5-dc5feb8c28ba",
-      "subscription_id": "6ec148b8-8bea-4dd3-82bc-1787c8260e4a",
-      "tenant_id": "31f75bf9-3d8c-4691-95c0-83dd71613db8"
-    }
-  }
-}'
-```
+## Further reading
 
-The response should look similar to this:
-
-```json
-{
-  "code": "RESOURCE_CREATED",
-  "message": "A new set of credentials has been created with ID 'hdc2m1'"
-}
-```
-
-In case you work with a Giant Swarm partner, it might be that you don’t have access to the Giant Swarm API. In that case, please hand over the credential to your partner contact.
+- [gsctl Reference: `update organization set-credentials`](/reference/gsctl/update-org-set-credentials/)
+- [API: Set credentials](https://docs.giantswarm.io/api/#operation/addCredentials)
