@@ -129,9 +129,9 @@ On Azure, the node names visible to Kubernetes (e. g. `kubectl get nodes`) are n
 
 ### Provider-specific details for KVM
 
-* kvm-operator updating one node after each other, where each node is represented by a k8s deployment with one pod.
-    * Master first
-    * Nodes are drained and then the pod is replaced with a new version.
+In a KVM-based cluster, each tenant cluster node consists of a Deployment and Pod in the control plane.
+In an upgrade, each of these deployments is updated after the according node has been drained, one after another, starting with the master node.
+This leads to removeal and reacreation of the Pods.
 
 ## How to prepare your workloads {#recommendations}
 
@@ -188,6 +188,3 @@ As container images might not be already available on the new node that the Pod 
 
 Furthermore, you should make your containers as light (in terms of size) as possible to make the pulling and with that the rescheduling process faster.
 
-## Further reading
-
-TODO
