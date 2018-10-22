@@ -51,20 +51,20 @@ As a consequence, the only way to change the stack is to perform an upgrade, to 
 
 As the semantic versioning system defines, an upgrade from one version to another is either one of these:
 
-- *Patch*: The smallest type of upgrade occurs when we publish bugfixes, security fixes, or make changes to the observability while maintaining the given functionality of the stack.
+- *Patch*: The smallest type of upgrade occurs when we publish bug-fixes, security fixes, or make changes to the observability while maintaining the given functionality of the stack.
 This can include any sort of patch upgrades of third party components.
 
 - *Minor*: A minor upgrade occurs when we add functionality, while maintaining the functionality of the stack as it was in the previous version.
 This can include minor upgrades of third party components, with the exception of Kubernetes.
 
-- *Major*: A major upgrade occurs when (A) a minor Kubernetes version upgrade is picked up (e. g. from 1.10.* to 1.11.*), when we remove functionality or change functionality that might require changes in workloads, in automation working with the cluster or in administrator's interactions.
+- *Major*: A major upgrade occurs when (A) a minor Kubernetes version upgrade is picked up (e. g. from 1.10.* to 1.11.*) or (B) we remove functionality or change functionality that might require changes in workloads, in automation working with the cluster or in administrator's interactions.
 
 **Note:** The release version number is provider-specific.
 Azure, AWS, and KVM based installations have independent versioning systems, as their stacks are also slightly different.
 
 ### Determining the release version and inspecting release details
 
-As a user with access to the Giant Swarm API and being member of the organization owning the cluster, you can use both the web UI or the CLI to find out what release version your tenant cluster has currently.
+As a user with access to the Giant Swarm API and being member of the organization owning the cluster, you can use both the web UI or the CLI to find out what release version your tenant cluster currently has.
 
 In the web UI, both the cluster overview and the cluster details page show the release version number. 
 In the cluster details page you can click the release version number to get more information about a release.
@@ -84,7 +84,7 @@ Existing clusters, however, are not affected.
 
 **Both patch and minor upgrades** can be rolled out at any time by Giant Swarm without your interaction. Currently, this happens in coordination with your administrators and with a notice to your developers.
 
-When a **new major release** becomes available, we inform you, but leave scheduling of the upgrade to you. This gives you the control to decide if and when it is time for you to upgrade, potentially updating workloads first. These upgrades are also acommpanied or even triggered by Giant Swarm staff, to ensure we have a close eye on the upgrade process and the uptime of your workloads.
+When a **new major Giant Swarm release** becomes available, we inform you, but leave scheduling of the upgrade to you. This gives you the control to decide if and when it is time for you to upgrade, potentially updating workloads first. These upgrades are also accompanied or even triggered by Giant Swarm staff, to ensure we have a close eye on the upgrade process and the uptime of your workloads.
 
 Every new minor Kubernetes release, which comes with a major Giant Swarm release, is tested for conformance using the CNCF [conformance test suite](https://github.com/cncf/k8s-conformance).
 In addition, every release, from patch to major, undergoes automated integration testing.
@@ -97,31 +97,30 @@ Your Kubernetes workloads should continue to work as expected (given they meet a
 In particular this means:
 
 - Nodes will be drained, then stopped, then recreated.
-- As a consequence of drainging, Pods running on a node will be rescheduled to other nodes. 
-- Once the master node will is taken down and recreated, the Kubernetes API will be unavailable for a short time.
+- As a consequence of draining, Pods running on a node will be rescheduled to other nodes. 
+- Once the master node is taken down and recreated, the Kubernetes API will be unavailable for a short time.
 
-**Note**: Currently tenant clusters have one master node each. We have plans on our roadmap to allow for multiple master nodes, keeping the Kubernetes API accessible during an upgrade and increasing the resiliance in case of a machine failure.
+**Note**: Currently tenant clusters have one master node each. We have plans on our roadmap to allow for multiple master nodes, keeping the Kubernetes API accessible during an upgrade and increasing the resilience in case of a machine failure.
 
 ### Provider-specific details for AWS
 
-AWS resources are managed by the `aws-operator` component through a nested CloudFormation stack. For a tenant cluster upgrade, the CloudFormation stacks is updated, in several steps.
+AWS resources are managed by the [aws-operator](https://github.com/giantswarm/aws-operator) component through a nested CloudFormation stack. For a tenant cluster upgrade, the CloudFormation stacks are updated, in several steps.
 
-The master node re-creation is started first. Meanhile, the recreation of worker nodes starts, where the all worker nodes are recreated in batches. During the upgrade, **up to 33 percent of the worker nodes can be unavailable**.
+The master node re-creation is started first. Meanwhile, the recreation of worker nodes starts, where all worker nodes are recreated in batches. During the upgrade, **up to 33 percent of the worker nodes can be unavailable**.
 
-After recreation, worker nodes are **not expected to have the names** they had before.
+After recreation, worker nodes are **not expected to have the same names** they had before.
 
-In process of the worker node recreation, any data stored in worker node's local storage - i. e. outside of EBS volumes - is lost.
+In process of the worker node recreation, any data stored in worker node's local storage, i. e. outside of EBS volumes, is lost.
 
 **Note:** We are in the process of making upgrades on AWS less disruptive.
-One goal is to make new nodes available first, then drain and remove old nodes.
+One goal is to make new nodes available first, then drain and remove old nodes. Also we are aware that for larger clusters, one thirds of worker nodes becoming unavailable at the same time is often too much.
 
 ### Provider-specific details for Azure
 
-Our `azure-operator` manages tenant cluster on Azure via Azure Resource Manager (ARM) templates and Virtual Machine Scale Sets (VMSS).
+Our [azure-operator](https://github.com/giantswarm/azure-operator) manages tenant clusters on Azure via Azure Resource Manager (ARM) templates and Virtual Machine Scale Sets (VMSS).
 
-In an upgrade, all Virtual Machines (VM) are updates by reimaging with a new OS image and then rebooting.
-The master node is rebooted first.
-Worker nodes are then updated one by one, where each node is first drained (Pods re-scheduled to other nodes) and then reimaged and rebooted.
+In an upgrade, all Virtual Machines (VM) are updated by reimaging with a new OS image and then rebooting.
+Master and worker nodes are updated one by one, where each node is first drained (Pods re-scheduled to other nodes) and then reimaged and rebooted.
 
 On Azure, the node names visible to Kubernetes (e. g. `kubectl get nodes`) are not changed in an upgrade.
 
@@ -129,13 +128,13 @@ On Azure, the node names visible to Kubernetes (e. g. `kubectl get nodes`) are n
 
 ### Provider-specific details for KVM
 
-In a KVM-based cluster, each tenant cluster node consists of a Deployment and Pod in the control plane.
+In a KVM-based cluster, our [kvm-operator](https://github.com/giantswarm/kvm-operator) builds each tenant cluster node out of a Kubernetes Deployment and Pod in the control plane.
 In an upgrade, each of these deployments is updated after the according node has been drained, one after another, starting with the master node.
-This leads to removeal and reacreation of the Pods.
+This leads to removal and recreation of the Pods.
 
 ## How to prepare your workloads {#recommendations}
 
-The following recommendations should help you harden your workload deployments for a tpyical upgrade process. Furthermore, they also make your workloads more resilient against unpredicted failures, high load, and resource pressure in your cluster.
+The following recommendations should help you harden your workload deployments for a typical upgrade process. Furthermore, they also make your workloads more resilient against unpredicted failures, high load, and resource pressure in your cluster.
 
 ### Scale up and distribute workloads
 
@@ -147,9 +146,9 @@ In case you are using Horizontal Pod Autoscaler, above recommendations should de
 
 Additionally, you should make sure your replicas do not land on the same node using [inter-pod anti-affinity](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#inter-pod-affinity-and-anti-affinity-beta-feature).
 
-We recommend always using soft anti-affinity to avoid exclusivity of nodes. However, this can in cases to less distirbuted workloads on resource pressure or node failure, which will need a rescheduling to be balanced again.
+We recommend always using soft anti-affinity to avoid exclusivity of nodes. However, this can, in cases, lead to less distributed workloads on resource pressure or node failure, which will need a rescheduling to be balanced again.
 
-For such rescheduling or rebalancing you should have a look at the incubation project called [descheduler](https://github.com/kubernetes-incubator/descheduler) and evaluate its use in your clusters. It has settings for avoiding affinities, but also for rebalancing clusters with under-ultilized nodes.
+For such rescheduling or rebalancing you should have a look at the incubation project called [descheduler](https://github.com/kubernetes-incubator/descheduler) and evaluate its use in your clusters. It has settings for avoiding affinities, but also for rebalancing clusters with under-utilized nodes.
 
 ### Manage disruption budgets
 
@@ -159,16 +158,15 @@ Configure [PodDisruptionBudgets](https://kubernetes.io/docs/tasks/run-applicatio
 
 To make rescheduling during upgrades of both the cluster as well as your own deployments more graceful you should take care of a few settings on your Pods. However, these settings might not be enough, your application must be able to handle standard termination signals and have a procedure for gracefully shutting down. Further, it needs to expose some sort of liveness and/or readiness endpoints for Kubernetes to be able to probe it.
 
-1. Have well implemented [liveness and readiness probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/).
-   Often, a container being alive does not mean it is ready to recieve traffic. By differniating between liveness and readiness you can not only control when traffic gets routed to a fresh container, you can also influence graceful termination of your container.
-2. Set proper values for initialDelaySeconds (related to previous point).
-3. Set proper values for termincationGracePeriod to give your Pod time to gracefully shut down.
+1. Have well implemented [liveness and readiness probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/). Often, a container being alive does not mean it is ready to receive traffic. By differentiating between liveness and readiness you can not only control when traffic gets routed to a fresh container, you can also influence graceful termination of your container.
+2. Set proper values for `initialDelaySeconds` (related to previous point).
+3. Set proper values for `terminationGracePeriod` to give your Pod time to gracefully shut down.
 
 ### Set scheduling priorities
 
 Consider using Pod priority to ensure that higher priority Pods are scheduled favorably in times of resource pressure.
 
-We recommend reading the upstream documentation abour [priority classes and pod preemption](https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/) to get a better understanding of how the scheduler works with these.
+We recommend reading the upstream documentation about [priority classes and pod preemption](https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/) to get a better understanding of how the scheduler works with these.
 
 To help the scheduler further with being able to correctly (re-)schedule your Pods, you should [set resource request and limits](https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/). This also sets the Quality of Service of a Pod, which again has influence on scheduling priorities.
 
@@ -176,15 +174,15 @@ To help the scheduler further with being able to correctly (re-)schedule your Po
 
 In Kubernetes it is possible to schedule ephemeral resources.
 
-For example a Pod by itself, i.e. without a deployment, daemonset, statefulset, etc., is an ephemeral resource that will not be rescheduled when it dies or gets killed. A Pod definition should thus only be used for use cases like debugging or quick manual tests. Be sure to always use a controller-managed resource for your containers.
+For example a Pod by itself, i.e. without a Deployment, DaemonSet, StatefulSet, etc., is an ephemeral resource that will not be rescheduled when it dies or gets killed. A Pod definition should thus only be used for use cases like debugging or quick manual tests. Be sure to always use a controller-managed resource for your containers.
 
 Furthermore, local storage in form of `emptyDir` is also ephemeral, and should not be used to persist data. It should only be used as a cache or temporary storage that you can live without in case of failure or rescheduling. In most cases this is also true of `hostPath` as the local storage of a new node might not be the same as the one of the old node.
 
-### General Container Hygene
+### General Container Hygiene
 
-There's additional general container hygene recommendations that will help smoothen the upgrade process.
+There's additional general container hygiene recommendations that will help smoothen the upgrade process.
 
 As container images might not be already available on the new node that the Pod gets rescheduled to you should make sure that all container images (and tags) that you are using are available in the registry that is configured for the Pods.
 
-Furthermore, you should make your containers as light (in terms of size) as possible to make the pulling and with that the rescheduling process faster.
+Furthermore, you should make your containers as light (in terms of size) as possible to make the image pulling and with that the rescheduling process faster.
 
