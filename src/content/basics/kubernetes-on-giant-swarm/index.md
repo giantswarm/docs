@@ -20,7 +20,7 @@ Your cluster comes out-of-the-box as follows:
 - Full end-to-end encryption between Kubernetes components
 - Regularly rolling keys for above-mentioned encryption
 - Calico networking plugin installed (supports Network Policy API)
-- KubeDNS installed
+- CoreDNS installed
 - All resources and feature gates (incl. alpha) enabled
 - Nginx Ingress Controller (running inside your cluster)
 
