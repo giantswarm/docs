@@ -2,7 +2,6 @@
 title = "gsctl Reference"
 description = "Documentation on gsctl, the Giant Swarm command line utility to create and delete clusters, create key pairs and more."
 date = "2018-09-11"
-type = "page"
 layout = "gsctl-reference"
 weight = 10
 +++

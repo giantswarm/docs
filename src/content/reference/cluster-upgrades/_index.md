@@ -3,7 +3,7 @@ title = "Cluster Upgrades with Giant Swarm"
 description = "A detailed explanation how Kubernetes and other components are upgraded in a Giant Swarm installation"
 date = "2018-10-24"
 weight = 30
-type = "page"
+layout = "gsctl-reference"
 +++
 
 # Cluster Upgrades with Giant Swarm

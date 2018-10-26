@@ -1,0 +1,31 @@
+{{ partial "header.html" . }}
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <h1 id="title">Reference</h1>
+
+    <ul class="linklist">
+
+      <li>
+        <a href="gsctl/">gsctl CLI Reference</a>
+        <div class="meta">Documentation on gsctl, the Giant Swarm command line utility to create and delete clusters, create key pairs and more.</div>
+      </li>
+
+      <li>
+        <a href="cluster-upgrades/">Cluster Upgrades</a>
+        <div class="meta">A detailed explanation how Kubernetes and other components are upgraded in a Giant Swarm installation.</div>
+      </li>
+
+      <li>
+        <a href="cluster-definition/">Cluster Definition YAML format</a>
+        <div class="meta">Complete documentation of the Giant Swarm cluster definition YAML format.</div>
+      </li>
+
+    </ul>
+
+    {{ partial "feedback_reference.html" . }}
+
+  </div>
+</div>
+
+{{ partial "footer.html" . }}
