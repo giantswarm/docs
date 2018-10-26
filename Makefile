@@ -13,9 +13,9 @@ vendor:
 	mkdir -p vendor
 	mkdir -p vendor/hugo
 	cd vendor/hugo && \
-		wget -q https://github.com/gohugoio/hugo/releases/download/v0.46/hugo_0.46_Linux-64bit.tar.gz && \
-		tar -xvf hugo_0.46_Linux-64bit.tar.gz && \
-		rm hugo_0.46_Linux-64bit.tar.gz
+		wget -q https://github.com/gohugoio/hugo/releases/download/v0.49.2/hugo_0.49.2_Linux-64bit.tar.gz && \
+		tar -xvf hugo_0.49.2_Linux-64bit.tar.gz && \
+		rm hugo_0.49.2_Linux-64bit.tar.gz
 
 	# Vendor other external repositories as defined in 'external-repositories.txt'
 	./vendorize-external-repositories.sh
