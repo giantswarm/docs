@@ -34,7 +34,7 @@ There are some things not included in the cluster as managed by us:
 
 As mentioned above your cluster has a single running master. However, the cluster is set up in a way that your cluster keeps running even if the master is unavailable for a while (e.g. due to planned upgrades, failure, etc.), the only slight degradation you might notice is that while the master is down, you cannot change the state of your pods and other resources. As soon as the master is up again, you regain full control.
 
-Further, Kubernetes takes care of syncing your cluster with your desired state, so even when a node goes down (again e.g. due to planned upgrades, failure, etc.), pods will get restarted/rescheduled if they are not running once it comes up again. If the node was away due to a netsplit, the pods might still be running. In that case the scheduler might have added more pods to other nodes while the node was away so it will remove some pods again to be consistent with your desired number of replicas.
+Further, Kubernetes takes care of syncing your cluster with your desired state, so even when a node goes down (again e.g. due to planned upgrades, failure, etc.), pods will get restarted/rescheduled if they are not running once it comes up again. If the node was away due to a network partition, the pods might still be running. In that case the scheduler might have added more pods to other nodes while the node was away so it will remove some pods again to be consistent with your desired number of replicas.
 
 ## Specifics of your cluster
 
