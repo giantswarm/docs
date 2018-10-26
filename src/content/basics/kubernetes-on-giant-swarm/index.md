@@ -22,7 +22,7 @@ Your cluster comes out-of-the-box as follows:
 - Calico networking plugin installed (supports Network Policy API)
 - CoreDNS installed
 - All resources and feature gates (incl. alpha) enabled
-- Nginx Ingress Controller (running inside your cluster)
+- NGINX Ingress Controller (running inside your cluster)
 
 ## What is not included
 
