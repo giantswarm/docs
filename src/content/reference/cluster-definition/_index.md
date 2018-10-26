@@ -2,7 +2,7 @@
 title = "Cluster Definition YAML Reference"
 description = "Complete documentation of the Giant Swarm cluster definition YAML format"
 date = "2017-06-21"
-layout = "gsctl-reference"
+layout = "subsection"
 weight = 100
 +++
 
