@@ -28,7 +28,7 @@ Your cluster comes out-of-the-box as follows:
 
 There are some things not included in the cluster as managed by us:
 
-- Additional userspace services like Dashboard, Monitoring, Logging, Registry, etc. are not installed (getting them running is [really easy](/guides/), though),
+- Additional user-space services like Dashboard, Monitoring, Logging, Registry, etc. are not installed (getting them running is [really easy](/guides/), though),
 
 ## High Availability and Resilience
 
