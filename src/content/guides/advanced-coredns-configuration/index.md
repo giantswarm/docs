@@ -46,13 +46,23 @@ The default proxy entry we set in CoreDNS is
 proxy . /etc/resolv.conf
 ```
 
-You can add additional proxy entries by adding a proxy list to the user ConfigMap and creating a list item for each proxy entry you want to be added.
+You can add additional proxy entries by adding a each as a line to the proxy field of the user ConfigMap.
+
+For a single entry you can use the same line.
 
 ```yaml
 data:
-  proxy:
-    - foo.com 1.1.1.1
-    - bar.com 8.8.8.8
+  proxy: foo.com 1.1.1.1
+
+```
+
+For multplie entries you add a string with a proxy entry per line.
+
+```yaml
+data:
+  proxy: |
+    foo.com 1.1.1.1
+    bar.com 8.8.8.8
 ```
 
 Above example would result in following additional proxy entries in the CoreDNS configuration:
@@ -62,7 +72,7 @@ proxy foo.com 1.1.1.1
 proxy bar.com 8.8.8.8
 ```
 
-Above setting would proxy all requests within foo.com to 1.1.1.1 which is Cloudflare's DNS and all requests within bar.com to 8.8.8.8 which is Google Public DNS. All other requests will be resolved by the default DNS provider set for your cluster.
+This setting would proxy all requests within foo.com to 1.1.1.1 which is Cloudflare's DNS and all requests within bar.com to 8.8.8.8 which is Google Public DNS. All other requests will be resolved by the default DNS provider set for your cluster.
 
 The proxy plugin also supports much more detailed configuration which is documented in the [upstream documentation](https://coredns.io/plugins/proxy/).
 
