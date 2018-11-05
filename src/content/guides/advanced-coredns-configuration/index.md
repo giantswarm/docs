@@ -15,8 +15,6 @@ You can customize two of these configuration options on a per cluster basis thro
 
 __Note:__ This feature is only available in more recent cluster versions. To check if your cluster version supports customization through the ConfigMap, you can check if the above-mentioned ConfigMap is present.
 
-__Warning:__ Please do not edit any of the other CoreDNS related resources. Only the user ConfigMap is safe to edit.
-
 ```nohighlight
 $ kubectl -n kube-system get cm coredns-user-values
 NAME                                   DATA      AGE
@@ -24,6 +22,8 @@ coredns-user-values                    0         11m
 ```
 
 On cluster creation the ConfigMap is empty and below-mentioned defaults will be applied to the final CoreDNS deployment. To customize any of the configuration options, you just need to add the respective line(s) in the data field of the user ConfigMap.
+
+__Warning:__ Please do not edit any of the other CoreDNS related resources. Only the user ConfigMap is safe to edit.
 
 ## Cache Settings
 
