@@ -62,7 +62,7 @@ To prepare your credentials, either as AWS account roles or as an Azure service 
 You can then assign the credentials to your organization using several ways:
 
 - In happa via the organization details page
-- In `gsctl` using the [`update organization set-credentials`]() command
+- In `gsctl` using the [`update organization set-credentials`](/reference/gsctl/update-org-set-credentials/) command
 - Via the [Giant Swarm API](/api/#operation/addCredentials)
 
 All tenant clusters created for that organization will then use the credentials provided to the organization and will reside in the account/subscription associated with them.
