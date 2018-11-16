@@ -50,7 +50,7 @@ Details of the implementation differ between AWS and Azure.
 
 ## Get started
 
-To create clusters in a new cloud provider account, first you need to provide the credentials to the organization you'd like to use for this purpose. You are free to create a new organization for this purpose if you like. Organizations can be created in the Giant Swarm web UI, also known as happa, or via the [Giant Swarm API](/api/#operation/addOrganization).
+To create clusters in a new cloud provider account, you first need to provide the credentials to the organization you'd like to use for this purpose. You are free to create a new organization for this purpose if you like. Organizations can be created in the Giant Swarm web UI, also known as happa, or via the [Giant Swarm API](/api/#operation/addOrganization).
 
 To prepare your credentials, either as AWS account roles or as an Azure service principle, please follow our specific guides:
 
