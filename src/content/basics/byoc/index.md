@@ -13,7 +13,9 @@ The Giant Swarm architecture distinguishes between the control plane and tenant 
 
 ## What BYOC is good for {#benefits}
 
-Both on AWS and Azure, tenant cluster resources exist in an account (or in Azure terms: a subscription) separate from the one hosting the control plane resources. We configure a default account to use for all tenant clusters in an installation. Both accounts, the one for the control plane and the default one for tenant clusters, are in the customer's jurisdiction.
+Both on AWS and Azure, tenant cluster resources usually exist in an account (or in Azure terms: a subscription) separate from the one hosting the control plane resources. We configure a default account to use for all tenant clusters in an installation. Both accounts, the one for the control plane and the default one for tenant clusters, are in the customer's jurisdiction.
+
+**Note:** Some customers use the same account/subscription for both control plane and tenant cluster. This choice does not affect the capabilities described here.
 
 With BYOC you can have more fine-grained control over the accounts used by tenant clusters. Each Giant Swarm organization in an installation can have an individual configuration of which cloud provider account to use.
 
