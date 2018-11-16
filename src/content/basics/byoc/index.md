@@ -48,7 +48,7 @@ Details of the implementation differ between AWS and Azure.
 
 - Cloud provider credentials are **immutable**. Once specified on an organization, cloud provider credentials cannot be modified or deleted. In order to switch to new cloud provider credentials you'll have to create a new organization and migrate to new cluster owned by that organization.
 
-- If an organization does not yet have provider credentials configured and alrready has tenant clusters, these clusters are running in the default tenant cluster account. Setting credentials for this organization does not affect the tenant clusters created already.
+- If an organization does not yet have provider credentials configured and already has tenant clusters, these clusters are running in the default tenant cluster account. Setting credentials for this organization does not affect the tenant clusters created already.
 
 ## Get started
 
