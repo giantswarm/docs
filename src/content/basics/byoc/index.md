@@ -44,7 +44,7 @@ Details of the implementation differ between AWS and Azure.
 
 - Cloud provider account/subscription credentials are specified on the (Giant Swarm) **organization level**.
 
-- Cloud provider credentials are **immutible**. Once specified on an organization, cloud provider credentials cannot be modified or deleted. In order to switch to new cloud provider credentials you'll have to create a new organization and migrate to new cluster owned by that organization.
+- Cloud provider credentials are **immutable**. Once specified on an organization, cloud provider credentials cannot be modified or deleted. In order to switch to new cloud provider credentials you'll have to create a new organization and migrate to new cluster owned by that organization.
 
 - If an organization does not yet have provider credentials configured and alrready has tenant clusters, these clusters are running in the default tenant cluster account. Setting credentials for this organization does not affect the tenant clusters created before.
 
