@@ -8,7 +8,7 @@ weight = 55
 
 # `update organization set-credentials`
 
-Giant Swarm allows you to run clusters in your own cloud provider account/subscription. We call this by the catchy term "Bring Your Own Cloud" (BYOC). As a prerequisite, the organizaiton that should own the clusters has to be prepared with cloud provider credentials.
+Giant Swarm allows you to run clusters in your own cloud provider account/subscription. We call this by the catchy term [Bring Your Own Cloud](/basics/byoc/) (BYOC). As a prerequisite, the organizaiton that should own the clusters has to be prepared with cloud provider credentials.
 
 Please refer to our detailed guides on how to prepare roles and credentials inside your AWS account or Azure subscription:
 
@@ -69,6 +69,7 @@ The flags mean:
 
 ## Related
 
-- [Prepare an AWS account to run Giant Swarm tenant clusters](/guides/prepare-aws-account-for-tenant-clusters/)
-- [Prepare an Azure subscription to run Giant Swarm tenant clusters](/guides/prepare-azure-subscription-for-tenant-clusters/)
+- [Basics and Concepts: Bring Your Own Cloud](/basics/byoc/)
+- [Guides: Prepare an AWS account to run Giant Swarm tenant clusters](/guides/prepare-aws-account-for-tenant-clusters/)
+- [Guides: Prepare an Azure subscription to run Giant Swarm tenant clusters](/guides/prepare-azure-subscription-for-tenant-clusters/)
 - [API: Set credentials](https://docs.giantswarm.io/api/#operation/addCredentials)
