@@ -3,7 +3,7 @@ title = "Giant Swarm Operational Layers"
 description = "Here you learn how the operational layers of Giant Swarm are defined and what the intended operational model is."
 date = "2018-10-12"
 type = "page"
-weight = 30
+weight = 40
 categories = ["basics"]
 +++
 
