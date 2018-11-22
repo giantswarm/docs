@@ -39,6 +39,8 @@ This enables use cases such as
 
 - Volumes can not be moved across availability zones. You need to take this into account once designing for high availability. If the AZ with you volume goes down there will be no way to reschedule the pod to another availability zone. Either you need to create a new volume from a snapshot or you need to replicate your data across AZs.
 
+- To make sure your pods and volumes end up on the same nodes you better specify `WaitForFirstConsumer` as `volumeBindingMode` in your storage classes. See [Volume Binding Mode](https://kubernetes.io/docs/concepts/storage/storage-classes/#volume-binding-mode)
+
 ## Get started
 
 You can create clusters in several ways.
