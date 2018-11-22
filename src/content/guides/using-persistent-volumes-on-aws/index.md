@@ -127,23 +127,27 @@ spec:
 ```
 
 Then `exec` inside the pod:
-```
-kubectl exec -ti resize-pvc-pod -n <claim namespace> bash
+
+```nohighlight
+$ kubectl exec -ti resize-pvc-pod -n <claim namespace> bash
 ```
 
 Determine the attached PV block device:
-```
-df -h | grep '/data' | awk '{print $1}'
+
+```nohighlight
+$ df -h | grep '/data' | awk '{print $1}'
 ```
 
 Finally resize the filsystem:
-```
-resize2fs /dev/<disk>
+
+```nohighlight
+$ resize2fs /dev/<disk>
 ```
 
 Delete the pod.
-```
-kubectl delete pod resize-pvc-pod -n <claim namespace>
+
+```nohighlight
+$ kubectl delete pod resize-pvc-pod -n <claim namespace>
 ```
 
 ## Deleting Persistent Volumes
