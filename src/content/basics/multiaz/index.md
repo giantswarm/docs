@@ -35,6 +35,8 @@ This enables use cases such as
 
 - Availability zones get selected randomly by the Giant Swarm control plane. You only need to specify the number of availability zones. 
 
+- Nodes will get distributed evenly across availability zones. There is currently no way to determine which or how many nodes should be started in a particular availability zone. But the nodes will have a label `failure-domain.beta.kubernetes.io/zone` that indicates in which availability zone the node is running.
+
 - Single availability zone clusters start in a random availability zone too. This way we make sure that once one availability zone is unavailable not all single clusters will disappear.
 
 - Volumes can not be moved across availability zones. You need to take this into account once designing for high availability. If the AZ with you volume goes down there will be no way to reschedule the pod to another availability zone. Either you need to create a new volume from a snapshot or you need to replicate your data across AZs.
