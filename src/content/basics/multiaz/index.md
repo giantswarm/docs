@@ -11,7 +11,7 @@ categories = ["basics"]
 
 *This is currently only available with Giant Swarm 6.1.0 on AWS*
 
-With Giant Swarm you can easily launch cluster across multiple availability zones (AZs). This will lower the risk that your cluster will get unavailable while there is an incident with your cloud providers or your datacenters infrastructure.
+With Giant Swarm you can easily launch cluster across multiple availability zones (AZs). This will lower the risk that your cluster will get unavailable due to an incident in a particular AWS data center.
 
 ## What availability zones are good for {#benefits}
 
