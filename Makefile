@@ -21,6 +21,10 @@ vendor:
 	./vendorize-external-repositories.sh
 
 build: vendor build-css
+	# check dependencies
+	which jq || (echo "jq not found" && exit 1)
+	which curl || (echo "curl not found" && exit 1)
+
 	# Clean
 	rm -rf build
 
@@ -36,7 +40,7 @@ build: vendor build-css
 
 	# Latest gsctl version
 	mkdir -p build/layouts/shortcodes
-	curl -s https://downloads.giantswarm.io/gsctl/VERSION > build/layouts/shortcodes/gsctl_version.html
+	curl -s https://api.github.com/repos/giantswarm/gsctl/releases/latest|jq -r .tag_name > build/layouts/shortcodes/gsctl_version.html
 
 	# Tie in content from external repositories
 	./build-external-repositories.sh
