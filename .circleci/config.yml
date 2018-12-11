@@ -34,14 +34,17 @@ jobs:
       - run:
           name: Lighthouse audits
           command: |
+            IMAGE=quay.io/giantswarm/lighthouse:add-ci-runner
+            docker pull $IMAGE
             URLS="http://docs/ http://docs/guides/securing-with-rbac-and-psp/ http://docs/reference/gsctl/create-cluster/"
             for u in $URLS; do
+                echo ""
                 echo "Checking $u"
                 docker run --rm \
                     -v $PWD:/out \
                     -v $PWD/dev-shm:/dev/shm \
                     --link docs:docs \
-                    quay.io/giantswarm/lighthouse:add-ci-runner \
+                    $IMAGE \
                     ci-run.sh $u
             done
       
