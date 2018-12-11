@@ -34,12 +34,16 @@ jobs:
       - run:
           name: Lighthouse audits
           command: |
-            docker run --rm \
-                -v $PWD:/out \
-                -v $PWD/dev-shm:/dev/shm \
-                --link docs:docs \
-                quay.io/giantswarm/lighthouse:add-ci-runner \
-                ci-run.sh http://docs/
+            URLS="http://docs/ http://docs/guides/securing-with-rbac-and-psp/ http://docs/reference/gsctl/create-cluster/"
+            for u in $URLS; do
+                echo "Checking $u"
+                docker run --rm \
+                    -v $PWD:/out \
+                    -v $PWD/dev-shm:/dev/shm \
+                    --link docs:docs \
+                    quay.io/giantswarm/lighthouse:add-ci-runner \
+                    ci-run.sh $u
+            done
       
       - run:
           name: Linkcheck
