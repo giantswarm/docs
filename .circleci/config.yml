@@ -30,6 +30,14 @@ jobs:
             docker run -d --name docs -p 80:80 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
             CURL_OUTPUT=$(curl --no-buffer -s http://localhost:80)
             echo $CURL_OUTPUT | grep --quiet "Giant Swarm"
+
+            docker run --rm \
+                -v $PWD:/out \
+                -v $PWD/dev-shm:/dev/shm \
+                --link docs:docs \
+                quay.io/giantswarm/lighthouse:add-ci-runner \
+                ci-run.sh http://docs/
+
             docker kill docs
       
       - run:
