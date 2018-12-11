@@ -25,32 +25,30 @@ jobs:
           command: ./architect build
 
       - run:
-          name: Run container as a test
+          name: Launch container for tests
           command: |
             docker run -d --name docs -p 80:80 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
             CURL_OUTPUT=$(curl --no-buffer -s http://localhost:80)
             echo $CURL_OUTPUT | grep --quiet "Giant Swarm"
 
+      - run:
+          name: Lighthouse audits
+          command: |
             docker run --rm \
                 -v $PWD:/out \
                 -v $PWD/dev-shm:/dev/shm \
                 --link docs:docs \
                 quay.io/giantswarm/lighthouse:add-ci-runner \
                 ci-run.sh http://docs/
-
-            docker kill docs
       
       - run:
           name: Linkcheck
           command: |
-            docker run -d --rm --name server -p 80:80 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
-            sleep 2
             docker run --rm -ti --name linkchecker \
-                --link server:server \
+                --link docs:docs \
                 jare/linkchecker \
-                http://server:80 \
+                http://docs:80 \
                 --check-extern -t 5 --ignore-url /api/
-            docker kill server
 
       - deploy:
           name: Deploy (only if branch is "master")
