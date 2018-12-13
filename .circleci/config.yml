@@ -64,6 +64,7 @@ jobs:
       - run:
           name: Linkcheck
           command: |
+            docker run -d --rm --name docs -p 80:80 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
             docker run --rm -ti --name linkchecker \
                 --link docs:docs \
                 jare/linkchecker \
