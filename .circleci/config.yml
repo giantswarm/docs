@@ -49,7 +49,6 @@ jobs:
             docker run --rm \
                 -v $PWD:/out -v $PWD/dev-shm:/dev/shm --link docs:docs \
                 $IMAGE ci-run.sh $URL master
-            done
             docker kill docs
 
       - run:
