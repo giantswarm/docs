@@ -55,11 +55,11 @@ jobs:
           name: Compare lighthouse results
           command: |
             docker run --rm \
-              -v $PWD:/out \
+              -v $PWD:/reports \
               quay.io/giantswarm/lighthouse:label-reports \
                 lighthouse-keeper compare \
-                  -i master.json -l master
-                  -i $CIRCLE_BRANCH.json -l $CIRCLE_BRANCH
+                  -i /reports/master.json -l master \
+                  -i /reports/$CIRCLE_BRANCH.json -l $CIRCLE_BRANCH
       
       - run:
           name: Linkcheck
