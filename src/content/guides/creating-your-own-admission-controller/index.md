@@ -75,7 +75,7 @@ $ kubectl create secret generic grumpy \
         --from-file=cert.pem=certs/grumpy-crt.pem
 ```
 
-## Deploy grumpy server
+## Deploy validation controller
 
 In order to deploy the server we will use a deployment with a single replica which mount the certs generated to expose a secure REST endpoint where the pod request will be submited. At the same time we expose the controller through a service to configure the DNS as we has defined in the webhook resource.
 
@@ -91,7 +91,7 @@ spec:
     spec:
       containers:
         - name: webhook
-          image: pipo02mix/grumpy:1.0.1
+          image: giantswarm/grumpy:1.0.0
           ...
           volumeMounts:
             - name: webhook-certs
@@ -123,13 +123,13 @@ $ kubectl apply -f manifest.yaml
 
 Now the server should be running and ready to validate the creation of new pods.
 
-## Test the validation controller
+## Verify validation controller works
 
 Let's try to create a simple pod with a non matching name.
 
 ```$bash
 $ kubectl apply -f pod_wrong.yaml
-Error from server: error when creating "pod_wrong.yaml": admission webhook "grumpy.pipo02mix.org" denied the request: Keep calm and not add more crap in the cluster!
+Error from server: error when creating "pod_wrong.yaml": admission webhook "grumpy.giantswarm.org" denied the request: Keep calm and not add more crap in the cluster!
 ```
 
 The admission control has intercepted the request, it checked the name and it did not matched with the expected value, so it rejected. 
@@ -143,11 +143,11 @@ $ kubectl get pod
 smooth-app                    0/1     Completed   0          6s
 ```
 
-## Explain main code blocks
+## Explain validation logic
 
 In this example we have chosen go-lang to create the admission controller just because is the Kubernetes de facto language, but you could use whatever language you prefer and it should work the same.
 
-Let's start defining a server with the certs created inside the grumpy secret.
+Let's start creating a HTTP server with the certs mounted from the secret. The server will listen the path `validate` as we defined in the webhook.
 
 __Note:__ The code examples has been striped them out to make easier the understanding. For further look browse the [repository](github.com/gianstwarm/grumpy).
 
@@ -160,7 +160,7 @@ __Note:__ The code examples has been striped them out to make easier the underst
 
   // Create a secure http server
 	server := &http.Server{
-		Addr:      ":80",
+		Addr:      ":8080",
 		TLSConfig: &tls.Config{Certificates: []tls.Certificate{certs}},
 	}
 
@@ -171,24 +171,24 @@ __Note:__ The code examples has been striped them out to make easier the underst
 
 ```
 
-Inside the grumpy package we define a `server` handler which reads the request body, then it converts the data to the correct struct and finally check if the resource name is valid.
+Inside the grumpy package we define a `serve` function which reads the request body, then it converts the data to a `Pod` data type and finally check if the resource name is valid.
 
 ```go
-  if data, err := ioutil.ReadAll(r.Body); err == nil {
-		body = data
-	}
-  
-  arRequest := v1beta1.AdmissionReview{}
-	json.Unmarshal(body, &arRequest)
+	// Convert raw data in a Pod data type
+  raw := arRequest.Request.Object.Raw
+	pod := v1.Pod{}
+	json.Unmarshal(raw, &pod)
 
-	if arRequest.Request.Name != "smooth-app" {
+  // Actual validation logic
+	if pod.Name != "smooth-app" {
 		return
 	}
 ```
 
-In case the request name is not the expected one (`smooth-app`), our handler creates a response notifying the rejection.
+In case the request name is not the expected one (`smooth-app`), our handler creates a response notifying the rejection. Otherwise it returns and Kubernetes API server will follow processing the request.
 
 ```go
+  // Create a response to return to the Kubernetes API
   ar := v1beta1.AdmissionReview{
 		Response: &v1beta1.AdmissionResponse{
 			Allowed: false,
@@ -200,3 +200,16 @@ In case the request name is not the expected one (`smooth-app`), our handler cre
 	resp, err := json.Marshal(ar)
 ```
 
+# Conclusion
+
+As you could observed here, it is quite easy to implement a simple admission controller. Obviously there are plenty of possiblities to make your cluster secure and harden (accept known registries, forbid latest tags, ...). 
+
+At the same time, it encloses a great power, since it could influence in the key components running in the cluster. As an example, you could block the CNI plugin to run in case you commit an error which will lead to borked the entire cluster. So be careful and try to scope the admission logic to a namespace or a minor set of actions.
+
+Also it is good to mention there are already some projects which leverages on that pattern to enable high order functionality. As example [gatekeeper](https://github.com/replicatedhq/gatekeeper/) uses admission webhooks to implement a policy engine ([OPA](https://www.openpolicyagent.org/)) to enforce policies over Cloud Native environments.
+
+## Further reading
+
+- [Official documentation](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/)
+- [Go framework to create mutation/validation controllers](https://github.com/slok/kubewebhook/)
+- [Mutation controller Tutorial](https://github.com/morvencao/kube-mutating-webhook-tutorial/)
