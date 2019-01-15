@@ -95,12 +95,12 @@ spec:
           ...
           volumeMounts:
             - name: webhook-certs
-							mountPath: /etc/certs
-					...
+	      mountPath: /etc/certs
+	...
       volumes:
         - name: webhook-certs
           secret:
-						secretName: grumpy
+	    secretName: grumpy
 --- 
 apiVersion: v1
 kind: Service
@@ -111,8 +111,8 @@ spec:
   ports:
   - name: webhook
     port: 443
-		targetPort: 8080
-	...
+    targetPort: 8080
+    ...
 ```
 
 Applying the manifest should be enough. It also contains the webhook commented before.
