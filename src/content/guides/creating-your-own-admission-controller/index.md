@@ -57,17 +57,17 @@ The second part specifies which rules will follow the API to decide if a request
 
 ## Generate the certificates and the CA
 
-Since the scope of this guide is not teaching how you can build a PKI bundle, we have created a script, `gen_cert.sh`, in the grumpy repository which generates a CA bundle and a keypair for our grumpy server. Also we need to provide the CA in the webhook displayed before, in order to allow the Kubernetes API to create a secure connection against our shiny controller.
+Since the scope of this guide is not teaching how you can build a PKI bundle, we have created a script, `gen_cert.sh`, in the grumpy repository which generates a CA bundle and a key pair for our grumpy server. Also we need to provide the CA in the webhook displayed before, in order to allow the Kubernetes API to create a secure connection against our shiny controller.
 
-__Node:__ Inside the aforementioned script there are comments explaining the commands executed in case you have interest what has be done under the hood.
+__Node:__ Inside the aforementioned script there are comments explaining the commands executed in case you have an interest what has been done under the hood.
 
-Hence at this moment our validation webhook configuration must contain a encoded certify authority. The script besides create the certificates and the CA, inject the later in the manifest used to deploy our server.
+Hence at this moment, our validation webhook configuration must contain an encoded certify authority. The script besides creating the certificates and the CA, inject the later in the manifest used to deploy our server.
 
 ```
 $ cat manifest.yaml | grep caBundle
 ```
 
-At the same time we need to create a secret to place the certificates. After we apply the manifest, the pod will be able to mount the secret files into a directory.
+Further, we need to create a secret to place the certificates. After we apply the manifest, the pod will be able to mount the secret files into a directory.
 
 ```
 $ kubectl create secret generic grumpy \
@@ -77,7 +77,7 @@ $ kubectl create secret generic grumpy \
 
 ## Deploy validation controller
 
-In order to deploy the server we will use a deployment with a single replica which mount the certs generated to expose a secure REST endpoint where the pod request will be submited. At the same time we expose the controller through a service to configure the DNS as we has defined in the webhook resource.
+In order to deploy the server, we will use a deployment with a single replica which mounts the certs generated to expose a secure REST endpoint where the pod request will be submitted. At the same time, we expose the controller through service to configure the DNS as we have defined in the webhook resource.
 
 ```yaml
 apiVersion: apps/v1beta1
@@ -125,14 +125,14 @@ Now the server should be running and ready to validate the creation of new pods.
 
 ## Verify validation controller works
 
-Let's try to create a simple pod with a non matching name.
+Let's try to create a simple pod with a non-matching name.
 
 ```$bash
 $ kubectl apply -f pod_wrong.yaml
 Error from server: error when creating "pod_wrong.yaml": admission webhook "grumpy.giantswarm.org" denied the request: Keep calm and not add more crap in the cluster!
 ```
 
-The admission control has intercepted the request, it checked the name and it did not matched with the expected value, so it rejected. 
+The admission control has intercepted the request, it checked the name and it did not match with the expected value, so it rejected. 
 
 To confirm it works, let's try now with a correct name.
 
@@ -145,11 +145,11 @@ smooth-app                    0/1     Completed   0          6s
 
 ## Explain validation logic
 
-In this example we have chosen go-lang to create the admission controller just because is the Kubernetes de facto language, but you could use whatever language you prefer and it should work the same.
+In this example, we have chosen go-lang to create the admission controller just because is the Kubernetes de facto language, but you could use whatever language you prefer and it should work the same.
 
-Let's start creating a HTTP server with the certs mounted from the secret. The server will listen the path `validate` as we defined in the webhook.
+Let's start creating an HTTP server with the certs mounted from the secret. The server will listen to the path `validate` as we defined in the webhook.
 
-__Note:__ The code examples has been striped them out to make easier the understanding. For further look browse the [repository](github.com/gianstwarm/grumpy).
+__Note:__ The code examples have been stripped them out to make easier the understanding. For further look browse the [repository](github.com/gianstwarm/grumpy).
 
 ```go
 
@@ -171,7 +171,7 @@ __Note:__ The code examples has been striped them out to make easier the underst
 
 ```
 
-Inside the grumpy package we define a `serve` function which reads the request body, then it converts the data to a `Pod` data type and finally check if the resource name is valid.
+Inside the grumpy package, we define a `serve` function which reads the request body, then it converts the data to a `Pod` data type and finally check if the resource name is valid.
 
 ```go
 	// Convert raw data in a Pod data type
@@ -185,7 +185,7 @@ Inside the grumpy package we define a `serve` function which reads the request b
 	}
 ```
 
-In case the request name is not the expected one (`smooth-app`), our handler creates a response notifying the rejection. Otherwise it returns and Kubernetes API server will follow processing the request.
+In case the request name is not the expected one (`smooth-app`), our handler creates a response notifying the rejection. Otherwise, it returns and Kubernetes API server will follow processing the request.
 
 ```go
   // Create a response to return to the Kubernetes API
@@ -202,11 +202,11 @@ In case the request name is not the expected one (`smooth-app`), our handler cre
 
 # Conclusion
 
-As you could observed here, it is quite easy to implement a simple admission controller. Obviously there are plenty of possiblities to make your cluster secure and harden (accept known registries, forbid latest tags, ...). 
+As you could observe here, it is quite easy to implement a simple admission controller. Obviously, there is plenty of possibilities to make your cluster secure and harden (accept known registries, forbid latest tags, ...). 
 
-At the same time, it encloses a great power, since it could influence in the key components running in the cluster. As an example, you could block the CNI plugin to run in case you commit an error which will lead to borked the entire cluster. So be careful and try to scope the admission logic to a namespace or a minor set of actions.
+At the same time, it encloses a great power, since it could influence the key components running in the cluster. As an example, you could block the CNI plugin to run in case you commit an error which will lead to borked the entire cluster. So be careful and try to scope the admission logic to a namespace or a minor set of actions.
 
-Also it is good to mention there are already some projects which leverages on that pattern to enable high order functionality. As example [gatekeeper](https://github.com/replicatedhq/gatekeeper/) uses admission webhooks to implement a policy engine ([OPA](https://www.openpolicyagent.org/)) to enforce policies over Cloud Native environments.
+Also, it is good to mention there are already some projects which leverage on that pattern to enable high order functionality. As an example [gatekeeper](https://github.com/replicatedhq/gatekeeper/) uses admission webhooks to implement a policy engine ([OPA](https://www.openpolicyagent.org/)) to enforce policies over Cloud Native environments.
 
 ## Further reading
 
