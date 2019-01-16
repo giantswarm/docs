@@ -11,15 +11,15 @@ tags = ["tutorial"]
 
 The Kubernetes API is an amazing territory. Thanks to being built around the REST model, it gives us the possibility to manage all our workloads using HTTP requests. Tools like `kubectl` or `Kubernetes dashboard` take advantage of this, helping to manage the different resources. But Kubernetes API is far more. Let's take a deeper look at how it is composed:
 
-![](https://github.com/giantswarm/giantswarm/raw/master//src/static/img/api_components.png)
+![](./src/static/img/api_components.png)
 
 The picture highlights the different components living inside the API component. The request starts the API journey interfacing with the authentication controller. Once the request is authenticated, the authorization module dictates if the request issuer may perform the operation. After the request is properly authorized, the admission magic comes into play. 
 
-There are two types of admission controllers in Kubernetes. They work slightly differently. The first one, it is the validating admission controller, which proxies the requests to the subscribed webhooks. The Kubernetes API registers the webhooks based on the resource type and the request method. Every webhook runs some logic to validate the incoming resource and it replies to the API with a verdict. In case the validation webhook rejects the request, Kubernetes API returns a failed HTTP response to the user. Otherwise, it continues to the next admission.
+There are two types of admission controllers in Kubernetes. They work slightly differently. The first one, it is the **validating admission controller**, which proxies the requests to the subscribed webhooks. The Kubernetes API registers the webhooks based on the resource type and the request method. Every webhook runs some logic to validate the incoming resource and it replies to the API with a verdict. In case the validation webhook rejects the request, Kubernetes API returns a failed HTTP response to the user. Otherwise, it continues to the next admission.
 
-In the Second, there is a mutation admission controller which modifies the resource submitted by the user, so you can make some defaults or force some schema. The cluster admins can attach mutation webhooks to the API to be run in the same way as validation. Indeed mutation logic runs one step before the validation.
+In the second, there is a **mutation admission controller** which modifies the resource submitted by the user, so you can make some defaults or force some schema. The cluster admins can attach mutation webhooks to the API to be run in the same way as validation. Indeed mutation logic runs one step before the validation.
 
-I would like to mention that Kubernetes API allows you to register custom resource objects too, called `Custom Resource Definition`. In addition, you can create an API extension server which listens to a new REST path. But in this guide, we focus exclusively on the admission functionality.
+__Note:__ I would like to mention that Kubernetes API allows you to register custom resource objects too, called `Custom Resource Definition`. In addition, you can create an API extension server which listens to a new REST path. But in this guide, we focus exclusively on the admission functionality.
 
 ## Goal
 
@@ -59,9 +59,9 @@ The second part specifies which rules will follow the API to decide if a request
 
 Since the scope of this guide is not teaching how to build a PKI bundle, we have created a script, `gen_cert.sh`, in the grumpy repository which generates a CA bundle and a key pair for our grumpy server. Also we need to provide the CA in the webhook displayed above, in order to allow the Kubernetes API to create a secure connection against our shiny controller.
 
-__Node:__ Inside the aforementioned script there are comments explaining the commands executed in case you are interested in what was done under the hood.
+__Note:__ Inside the aforementioned script there are comments explaining the commands executed in case you are interested in what was done under the hood.
 
-For the purpose of this tutorial, our validation webhook configuration must contain an encoded certify authority. Besides creating the certificates and the CA, the script later injects it into the manifest used to deploy our server.
+For the purpose of this tutorial, our validation webhook configuration must contain an encoded certificate authority. Besides creating the certificates and the CA, the script later injects it into the manifest used to deploy our server.
 
 ```
 $ cat manifest.yaml | grep caBundle
@@ -137,7 +137,7 @@ The admission control has intercepted the request, it checked the name and it di
 To confirm it works, let's try now with a correct name.
 
 ```bash
-$ kubectl apply -f pod_wrong.yaml
+$ kubectl apply -f smooth-app.yaml
 pod/smooth-app created
 $ kubectl get pod   
 smooth-app                    0/1     Completed   0          6s
@@ -204,7 +204,7 @@ In case the request name is not the expected one (`smooth-app`), our handler cre
 
 As you can see from this tutorial, it is quite easy to implement a simple admission controller. Obviously, there is plenty of possibilities to make your cluster secure and harden it (accept known registries, forbid latest tags, ...). 
 
-At the same time, it holds great power, since it can influence the key components running in the cluster. As an example, you could block the CNI plugin from runninh in case you commit an error which may lead to the entire cluster being borked. So be careful and try to scope the admission logic to a namespace or a minor set of actions.
+At the same time, it holds great power, since it can influence the key components running in the cluster. As an example, you could block the CNI plugin from running in case you commit an error which may lead to the entire cluster being borked. So be careful and try to scope the admission logic to a namespace or a minor set of actions.
 
 Also, it is good to mention there are already some projects which leverage this pattern to enable high order functionality. As an example [gatekeeper](https://github.com/replicatedhq/gatekeeper/) uses admission webhooks to implement a policy engine ([OPA](https://www.openpolicyagent.org/)) to enforce policies over Cloud Native environments.
 
