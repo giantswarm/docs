@@ -1,7 +1,7 @@
 +++
 title = "gsctl Command Reference: show cluster"
 description = "The 'gsctl show cluster' command displays details of a cluster."
-date = "2018-08-20"
+date = "2018-10-26"
 type = "page"
 weight = 52
 +++
@@ -65,6 +65,9 @@ The output lines in detail:
 - **RAM in worker nodes (GB):** total amount of memory in all worker nodes in this cluster
 - **Storage in worker nodes (GB):** (_only for KVM_) total amount of local storage in all worker nodes in this cluster
 - **Ingress port for &lt;protocol&gt;:** the port to forward traffic to from your data center's load balancer(s) to this cluster's ingress controller for that specific protocol
+- **AWS account:** (_only on AWS) If the cluster is running using non-default provider credentials, here we show the AWS account ID
+- **Azure subscription:** (_only on Azure_) If the cluster is running using non-default provider credentials, here we show the subscription ID
+- **Azure tenant:** (_only on Azure_) If the cluster is running using non-default provider credentials, here we show the tenant ID
 
 ## Related
 

@@ -45,7 +45,8 @@ To create a new cluster with a specific number of nodes, use the `--num-workers`
 $ gsctl create cluster \
   --owner=myorg \
   --name="Dev cluster" \
-  --num-workers=5
+  --num-workers=6 \
+  --availability-zones=2
 ```
 
 You can use further command line arguments to specify additional parameters of the worker nodes. Still, all worker nodes will have an identical configuration. Example:
@@ -90,6 +91,7 @@ Some arguments are specific to the provider used in the installation
 - `--file`, `-f`: Definition file path. See [cluster defininition reference](../../cluster-definition/) for details.
 - `--name`: Name of the cluster. Overwrites name given in definition file.
 - `--num-workers`: Number of worker nodes. Cannot be combined with `--file`/`-f`.
+- `--availability-zones`: Number of availability zones. Cannot be combined with `--file`/`-f`.
 - `--release`, `-r`: Specific release version number to use. Defaults to the latest active release. See [list releases](../list-releases/#definition) for details on releases.
 - `--dry-run`: Add this flag (no value expected) to simulate the cluster creation. This is especially useful in combination with the global `--verbose`/`-v` flag, which will display the resulting definition YAML based on any command line argument or definition file input.
 

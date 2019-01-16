@@ -1,7 +1,7 @@
 +++
 title = "gsctl Command Reference: create kubeconfig"
 description = "The 'gsctl create kubeconfig' command creates a key pair and adds cluster, user, and context settings to your kubectl configuration."
-date = "2017-12-05"
+date = "2018-10-12"
 type = "page"
 weight = 30
 +++
@@ -91,6 +91,7 @@ $ gsctl create kubeconfig --cluster w6wn8 \
   Defaults to `giantswarm-` plus the cluster ID. This name is used with the
   `kubectl config use-context` command to select the context.
 - `--cn-prefix`: The common name prefix for the issued certificates 'CN' field.
+  Note that only the charactes `a-z`, `0-9` and `-` can be used.
 - `--certificate-organizations`: A comma separated list of organizations for the
   issued certificate's 'O' fields.
 

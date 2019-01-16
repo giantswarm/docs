@@ -21,7 +21,7 @@ documentation website.
 
 There are several additional repositories which provide additional functionality:
 
-- [docs-proxy](https://github.com/giantswarm/docs-proxy/): nginx proxy server which integratesthe search engine and the API spec (see below) into the documentation site, and provides some additional configuration, e. g. regarding HTTP headers.
+- [docs-proxy](https://github.com/giantswarm/docs-proxy/): nginx proxy server which integrates the search engine and the API spec (see below) into the documentation site, and provides some additional configuration, e. g. regarding HTTP headers.
 
 - [api-spec](https://github.com/giantswarm/api-spec/): Specification (in Swagger/OpenAPI) format for the Giant Swarm API. Available in the docs site under https://docs.giantswarm.io/api/.
 

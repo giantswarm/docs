@@ -2,7 +2,7 @@
 title = "gsctl Reference"
 description = "Documentation on gsctl, the Giant Swarm command line utility to create and delete clusters, create key pairs and more."
 date = "2018-09-11"
-type = "page"
+layout = "subsection"
 weight = 10
 +++
 
@@ -43,15 +43,13 @@ Follow the links below for detailed documentation, where available. You can also
 The current `gsctl` version is **{{% gsctl_version %}}**. Find details in the [release notes](https://github.com/giantswarm/gsctl/releases/tag/{{% gsctl_version %}}).
 
 <ul class="nav nav-tabs">
-  <li role="presentation" class="active"><a href="#install-mac-brew" data-toggle="tab">Mac OS (Homebrew)</a></li>
-  <li role="presentation"><a href="#install-mac" data-toggle="tab">Mac OS</a></li>
+  <li role="presentation" class="active"><a href="#install-mac" data-toggle="tab">Mac OS</a></li>
   <li role="presentation"><a href="#install-linux" data-toggle="tab">Linux</a></li>
-  <li role="presentation"><a href="#install-win-scoop" data-toggle="tab">Windows (scoop)</a></li>
   <li role="presentation"><a href="#install-win" data-toggle="tab">Windows</a></li>
 </ul>
 
 <div class="tab-content clearfix">
-<div class="tab-pane active" id="install-mac-brew">
+<div class="tab-pane active" id="install-mac">
 
   <p>Homebrew provides the most convenient way to install <code>gsctl</code> and keep it up to date. To install, use this command:</p>
 
@@ -62,26 +60,14 @@ brew install gsctl</code></pre>
 
   <pre><code class="language-nohighlight">brew upgrade gsctl</code></pre>
 
-</div>
-<div class="tab-pane" id="install-mac">
-
-  <p>Execute the commands below to install the latest released version. The same commands work for upgrading from a previously installed version.</p>
-
-  <pre><code class="language-nohighlight">curl -O https://downloads.giantswarm.io/gsctl/{{% gsctl_version %}}/gsctl-{{% gsctl_version %}}-darwin-amd64.tar.gz
-tar xzf gsctl-{{% gsctl_version %}}-darwin-amd64.tar.gz
-sudo cp gsctl-{{% gsctl_version %}}-darwin-amd64/gsctl /usr/local/bin/</code></pre>
-
+  <p>To install without homebrew, download the latest release <a href="https://github.com/giantswarm/gsctl/releases">from GitHub</a>, unpack the binary and move it to location covered by your `PATH` environment variable.</p>
 </div>
 <div class="tab-pane" id="install-linux">
 
-  <p>Execute the commands below to install the latest released version. The same commands work for upgrading from a previously installed version.</p>
-
-  <pre><code class="language-nohighlight">curl -O https://downloads.giantswarm.io/gsctl/{{% gsctl_version %}}/gsctl-{{% gsctl_version %}}-linux-amd64.tar.gz
-tar xzf gsctl-{{% gsctl_version %}}-linux-amd64.tar.gz
-sudo cp gsctl-{{% gsctl_version %}}-linux-amd64/gsctl /usr/local/bin/</code></pre>
+  <p>Download the latest release <a href="https://github.com/giantswarm/gsctl/releases">from GitHub</a>, unpack the binary and move it to location covered by your `PATH` environment variable.</p>
 
 </div>
-<div class="tab-pane" id="install-win-scoop">
+<div class="tab-pane" id="install-win">
 
   <p><a href="http://scoop.sh/" target="_blank">scoop</a> enables convenient installs and updates for Windows PowerShell users. Before you can install <code>gsctl</code> for the first time, execute this:</p>
 
@@ -94,14 +80,8 @@ sudo cp gsctl-{{% gsctl_version %}}-linux-amd64/gsctl /usr/local/bin/</code></pr
   <p>To update:</p>
 
   <pre><code class="language-nohighlight">scoop update gsctl</code></pre>
-</div>
-<div class="tab-pane" id="install-win">
 
-  <ul>
-    <li>Download the <a href="https://downloads.giantswarm.io/gsctl/{{% gsctl_version %}}/gsctl-{{% gsctl_version %}}-windows-amd64.zip">64 bit</a> or <a href="https://downloads.giantswarm.io/gsctl/{{% gsctl_version %}}/gsctl-{{% gsctl_version %}}-windows-386.zip">32 bit</a> version of <code>gsctl</code> for Windows</li>
-    <li>Copy the contained <code>gsctl.exe</code> to a convenient location that's in your <code>%PATH%</code>, or add the <code>gsctl.exe</code> location to your <code>%PATH%</code></li>
-  </ul>
-
+  <p>To install without scoop, download the latest release <a href="https://github.com/giantswarm/gsctl/releases">from GitHub</a>, unpack the binary and move it to location covered by your `PATH` environment variable.</p>
 </div>
 </div>
 

@@ -13,14 +13,18 @@ vendor:
 	mkdir -p vendor
 	mkdir -p vendor/hugo
 	cd vendor/hugo && \
-		wget -q https://github.com/spf13/hugo/releases/download/v0.16/hugo_0.16_linux-64bit.tgz && \
-		tar -xvf hugo_0.16_linux-64bit.tgz && \
-		rm hugo_0.16_linux-64bit.tgz
+		wget -q https://github.com/gohugoio/hugo/releases/download/v0.49.2/hugo_0.49.2_Linux-64bit.tar.gz && \
+		tar -xvf hugo_0.49.2_Linux-64bit.tar.gz && \
+		rm hugo_0.49.2_Linux-64bit.tar.gz
 
 	# Vendor other external repositories as defined in 'external-repositories.txt'
 	./vendorize-external-repositories.sh
 
 build: vendor build-css
+	# check dependencies
+	which jq || (echo "jq not found" && exit 1)
+	which curl || (echo "curl not found" && exit 1)
+
 	# Clean
 	rm -rf build
 
@@ -36,7 +40,7 @@ build: vendor build-css
 
 	# Latest gsctl version
 	mkdir -p build/layouts/shortcodes
-	curl -s https://downloads.giantswarm.io/gsctl/VERSION > build/layouts/shortcodes/gsctl_version.html
+	curl -s https://api.github.com/repos/giantswarm/gsctl/releases/latest | jq -r .tag_name > build/layouts/shortcodes/gsctl_version.html
 
 	# Tie in content from external repositories
 	./build-external-repositories.sh

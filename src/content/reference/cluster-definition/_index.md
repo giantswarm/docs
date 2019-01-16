@@ -2,8 +2,8 @@
 title = "Cluster Definition YAML Reference"
 description = "Complete documentation of the Giant Swarm cluster definition YAML format"
 date = "2017-06-21"
-type = "page"
-weight = 10
+layout = "subsection"
+weight = 100
 +++
 
 # Cluster Definition YAML Reference

@@ -348,6 +348,7 @@ data:
   enable-vts-status: "true"
   error-log-level: "error"
   hsts: "false"
+  log-format-upstream: "$status $body_bytes_sent $http_referer"
   server-name-hash-bucket-size: "1024"
   server-name-hash-max-size: "1024"
   server-tokens: "false"
