@@ -59,6 +59,11 @@ The second part specifies which rules the API will follow to decide if a request
 Since the scope of this guide is not teaching how to build a PKI bundle, we have created a script, `gen_cert.sh`, in the [grumpy repository](https://github.com/giantswarm/grumpy) which generates a CA bundle and a key pair for our grumpy server. Also we need to provide the CA in the webhook displayed above, in order to allow the Kubernetes API to create a secure connection against our shiny controller.
 
 ```bash
+// Clone repository in case you did not do it before
+$ git clone https://github.com/giantswarm/grumpy
+
+// Run the command to generate the certs under 'certs' folder
+$ cd grumpy
 $ ./gen_cert.sh
 ```
 
@@ -130,14 +135,40 @@ Now the server should be running and ready to validate the creation of new pods.
 
 Let's try to create a simple pod with a non-matching name.
 
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: non-smooth-app
+spec:
+  containers:
+  - image: busybox
+    name: non-smooth-app
+```
+
+Now let's try to apply the pod resource yaml. 
+
 ```bash
 $ kubectl apply -f non-smooth-app.yaml
-Error from server: error when creating "non-smooth-app.yaml": admission webhook "grumpy.giantswarm.org" denied the request: Keep calm and don't add more crap to the cluster!
+Error from server: error when creating "non-smooth-app.yaml": admission webhook "grumpy-webhook" denied the request: Keep calm and don't add more crap to the cluster!
 ```
 
 The admission control has intercepted the request, it checked the name and it did not match with the expected value, so it rejected it. 
 
 To confirm it works, let's try now with a correct name.
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: smooth-app
+spec:
+  containers:
+  - image: busybox
+    name: smooth-app
+```
+
+And in this case the Kubernetes API let us create the pod.
 
 ```bash
 $ kubectl apply -f smooth-app.yaml
@@ -216,3 +247,4 @@ Also, it is good to mention there are already some projects which leverage this 
 - [Official documentation](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/)
 - [Go framework to create mutation/validation controllers](https://github.com/slok/kubewebhook/)
 - [Mutation controller Tutorial](https://github.com/morvencao/kube-mutating-webhook-tutorial/)
+- [Mutation and validation controller implementing OPA framework](https://github.com/open-policy-agent/kubernetes-policy-controller)
