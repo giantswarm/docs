@@ -59,17 +59,21 @@ The second part specifies which rules will follow the API to decide if a request
 
 Since the scope of this guide is not teaching how to build a PKI bundle, we have created a script, `gen_cert.sh`, in the grumpy repository which generates a CA bundle and a key pair for our grumpy server. Also we need to provide the CA in the webhook displayed above, in order to allow the Kubernetes API to create a secure connection against our shiny controller.
 
+```bash
+$ ./gen_cert.sh
+```
+
 __Note:__ Inside the aforementioned script there are comments explaining the commands executed in case you are interested in what was done under the hood.
 
 For the purpose of this tutorial, our validation webhook configuration must contain an encoded certificate authority. Besides creating the certificates and the CA, the script later injects it into the manifest used to deploy our server.
 
-```
+```bash
 $ cat manifest.yaml | grep caBundle
 ```
 
 In the next step, we need to create a secret to place the certificates. After we apply the manifest, the pod will be able to mount the secret files into a directory.
 
-```
+```bash
 $ kubectl create secret generic grumpy \
         --from-file=key.pem=certs/grumpy-key.pem \
         --from-file=cert.pem=certs/grumpy-crt.pem
@@ -127,9 +131,9 @@ Now the server should be running and ready to validate the creation of new pods.
 
 Let's try to create a simple pod with a non-matching name.
 
-```$bash
-$ kubectl apply -f pod_wrong.yaml
-Error from server: error when creating "pod_wrong.yaml": admission webhook "grumpy.giantswarm.org" denied the request: Keep calm and not add more crap in the cluster!
+```bash
+$ kubectl apply -f non-smooth-app.yaml
+Error from server: error when creating "non-smooth-app.yaml": admission webhook "grumpy.giantswarm.org" denied the request: Keep calm and not add more crap in the cluster!
 ```
 
 The admission control has intercepted the request, it checked the name and it did not match with the expected value, so it rejected it. 
@@ -145,7 +149,7 @@ smooth-app                    0/1     Completed   0          6s
 
 ## Explain validation logic
 
-In this example, we have chosen go-lang to create the admission controller just because it is the Kubernetes de facto language, but you could use whatever language you prefer and it should work in the same way.
+In the controller example, we have chosen Go as language just because it is the Kubernetes de facto language, but you could use whatever language you prefer and it should work in the same way.
 
 Let's start creating an HTTP server with the certs mounted from the secret. The server will listen to the path `validate` as we defined in the webhook.
 
