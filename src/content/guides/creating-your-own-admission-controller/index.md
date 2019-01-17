@@ -1,34 +1,34 @@
 +++
 title = "Creating Your Own Admission Controller"
 description = "Tutorial on how to create your own admission controller."
-date = "2018-10-26"
+date = "2019-01-17"
 type = "page"
-weight = 50
+weight = 45
 tags = ["tutorial"]
 +++
 
 # Creating Your Own Admission Controller
 
-The Kubernetes API is an amazing territory. Thanks to being built around the REST model, it gives us the possibility to manage all our workloads using HTTP requests. Tools like `kubectl` or `Kubernetes dashboard` take advantage of this, helping to manage the different resources. But Kubernetes API is far more. Let's take a deeper look at how it is composed:
+The Kubernetes API is an amazing territory. Thanks to being built around the REST model, it gives us the possibility to manage all our workloads using HTTP requests. Tools like `kubectl` or `Kubernetes dashboard` take advantage of this, helping to manage the different resources. But the Kubernetes API is far more. Let's take a deeper look at how it is composed:
 
-![](./src/static/img/api_components.png)
+![](/img/api_components.png)
 
-The picture highlights the different components living inside the API component. The request starts the API journey interfacing with the authentication controller. Once the request is authenticated, the authorization module dictates if the request issuer may perform the operation. After the request is properly authorized, the admission magic comes into play. 
+The picture highlights the different components living inside the API component. The request starts the API journey communicating with the authentication controller. Once the request is authenticated, the authorization module dictates if the request issuer may perform the operation. After the request is properly authorized, the admission magic comes into play. 
 
-There are two types of admission controllers in Kubernetes. They work slightly differently. The first one, it is the **validating admission controller**, which proxies the requests to the subscribed webhooks. The Kubernetes API registers the webhooks based on the resource type and the request method. Every webhook runs some logic to validate the incoming resource and it replies to the API with a verdict. In case the validation webhook rejects the request, Kubernetes API returns a failed HTTP response to the user. Otherwise, it continues to the next admission.
+There are two types of admission controllers in Kubernetes. They work slightly differently. The first type, it is the **validating admission controller**, which proxies the requests to the subscribed webhooks. The Kubernetes API registers the webhooks based on the resource type and the request method. Every webhook runs some logic to validate the incoming resource and it replies to the API with a verdict. In case the validation webhook rejects the request, the Kubernetes API returns a failed HTTP response to the user. Otherwise, it continues with the next admission.
 
-In the second, there is a **mutating admission controller** which modifies the resource submitted by the user, so you can make some defaults or force some schema. The cluster admins can attach mutation webhooks to the API to be run in the same way as validation. Indeed mutation logic runs before the validation.
+In the second type, there is a **mutating admission controller** which modifies the resource submitted by the user, so you can make some defaults or validate the schema. The cluster admins can attach mutation webhooks to the API to be run in the same way as validation. Indeed mutation logic runs before the validation.
 
 
 ## Goal
 
-Our goal here is to create a simple validation controller which will empower us to influence the pod creation. Although there are many more possibilities and the logic can be as complex as you need. The goal is to create a basic version which makes a simple validation. You can find more real examples in the links at the bottom.
+Our goal here is to create a simple validation controller which will enable us to influence the pod creation. Although there are many more possibilities and the logic can be as complex as you need. The goal is to create a basic version which makes a simple validation. You can find more real examples in the links at the bottom.
 
 Our example controller will be called `grumpy` and will reject all new pods with a name different than `smooth-app`. We recognize it may be tempting to deploy this controller in a real cluster ;).
 
 ## How the API proxies requests
 
-The Kubernetes API server needs to know when to send the incoming request to our admission controller. The Kubernetes nature advocates the use of a declarative state always and this is no exception. Below we define a `ValidationWebhookConfiguration` which gives the needed information to the API:
+The Kubernetes API server needs to know when to send the incoming request to our admission controller. The Kubernetes philosophy advocates always using a declarative strategy and this is no exception. Below we define a `ValidationWebhookConfiguration` which gives the needed information to the API:
 
 ```yaml
 apiVersion: admissionregistration.k8s.io/v1beta1
@@ -50,13 +50,13 @@ webhooks:
         resources: ["pods"]
 ```
 
-You can see there are two main parts to be considered. In the first one, `clientConfig`, we define where our service can be found (this can be an external URL too), and the `path` which our validation server will listen on. Also, you notice there is a `CA` to be defined. Since security is always important, adding the cert authority will tell Kubernetes API to use HTTPS and validate our server using the passed asset. In the next section, you will find an explanation on how to generate all the certs needed.
+You can see there are two main parts to be considered. In the first one, `clientConfig`, we define where our service can be found (it can be an external URL), and the `path` which our validation server will listen on. Also, you notice there is a `CA` to be defined. Since security is always important, adding the cert authority will tell Kubernetes API to use HTTPS and validate our server using the passed asset. In the next section, you will find an explanation on how to generate all the certs needed.
 
 The second part specifies which rules the API will follow to decide if a request should be forwarded for validation to `grumpy` or not. Here it is configured that only requests with method equal to `CREATE` and resource type `pod` will be forwarded. 
 
 ## Generate the certificates and the CA
 
-Since the scope of this guide is not teaching how to build a PKI bundle, we have created a script, `gen_cert.sh`, in the [grumpy repository](https://github.com/giantswarm/grumpy) which generates a CA bundle and a key pair for our grumpy server. Also we need to provide the CA in the webhook displayed above, in order to allow the Kubernetes API to create a secure connection against our shiny controller.
+Since the scope of this guide is not teaching you how to build a PKI bundle, we have created a script, `gen_cert.sh`, in the [grumpy repository](https://github.com/giantswarm/grumpy) which generates a CA bundle and a key pair for our grumpy server. Also we need to provide the CA in the webhook displayed above, in order to allow the Kubernetes API to create a secure connection against our shiny controller.
 
 ```bash
 // Clone repository in case you did not do it before
@@ -67,7 +67,7 @@ $ cd grumpy
 $ ./gen_cert.sh
 ```
 
-__Note:__ Inside the aforementioned script there are comments explaining the commands executed in case you are interested in what was done under the hood.
+__Note:__ Inside the aforementioned script there are comments explaining the commands executed in case you are interested in what happened under the hood.
 
 For the purpose of this tutorial, our validation webhook configuration must contain an encoded certificate authority. Besides creating the certificates and the CA, the script later injects it into the manifest used to deploy our server.
 
@@ -75,7 +75,7 @@ For the purpose of this tutorial, our validation webhook configuration must cont
 $ cat manifest.yaml | grep caBundle
 ```
 
-In the next step, we need to create a secret to place the certificates. After we apply the manifest, the pod will be able to mount the secret files into a directory.
+In the next step, we need to create a secret to place the certificates. After we apply the manifest, the pod will be able to store the secret files into a directory.
 
 ```bash
 $ kubectl create secret generic grumpy -n default \
@@ -153,7 +153,7 @@ $ kubectl apply -f non-smooth-app.yaml
 Error from server: error when creating "non-smooth-app.yaml": admission webhook "grumpy-webhook" denied the request: Keep calm and don't add more crap to the cluster!
 ```
 
-The admission control has intercepted the request, it checked the name and it did not match with the expected value, so it rejected it. 
+The admission control has intercepted the request, it checked the name and it did not match with the expected value, so it was rejected.
 
 To confirm it works, let's try now with a correct name.
 
@@ -179,7 +179,7 @@ smooth-app                    0/1     Completed   0          6s
 
 ## Explain validation logic
 
-In the controller example, we have chosen Go as language just because it is the Kubernetes de facto language, but you could use whatever language you prefer and it should work in the same way.
+In the example, we chosen to create the admission controller in Go just because it is the Kubernetes de facto language, but you can use whichever language you prefer and it should work in the same way.
 
 Let's start creating an HTTP server with the certs mounted from the secret. The server will listen to the path `validate` as we defined in the webhook.
 
@@ -219,7 +219,7 @@ Inside the grumpy package, we define a `serve` function which reads the request 
 	}
 ```
 
-In case the request name is not the expected one (`smooth-app`), our handler creates a response notifying of the rejection. Otherwise, it returns and Kubernetes API server will follow the processing the request.
+In case the request name is not the expected one (`smooth-app`), our handler creates a response notifying of the rejection. Otherwise, it returns and the Kubernetes API server will follow the processing of the request.
 
 ```go
   // Create a response to return to the Kubernetes API
@@ -236,11 +236,11 @@ In case the request name is not the expected one (`smooth-app`), our handler cre
 
 # Conclusion
 
-As you can see from this tutorial, it is quite easy to implement a simple admission controller. Obviously, there is plenty of possibilities to make your cluster secure and harden it (accept known registries, forbid latest tags, ...). 
+As you can see from this tutorial, it is quite easy to implement a simple admission controller. Obviously, there are plenty of possibilities to make your cluster more secure and harden it (accept known registries, forbid latest tags, ...). 
 
 At the same time, it holds great power, since it can influence the key components running in the cluster. As an example, you could block the CNI plugin from running in case you commit an error which may lead to the entire cluster being borked. So be careful and try to scope the admission logic to a namespace or a minor set of actions.
 
-Also, it is good to mention there are already some projects which leverage this pattern to enable high order functionality. As an example [kubernetes-policy-controller](https://github.com/open-policy-agent/kubernetes-policy-controller) uses admission webhooks to implement a policy engine ([OPA](https://www.openpolicyagent.org/)) to enforce policies over Cloud Native environments.
+Also, it is good to mention there are already some projects which leverage this pattern to enable higher level functionality. As an example [kubernetes-policy-controller](https://github.com/open-policy-agent/kubernetes-policy-controller) uses admission webhooks to implement a policy engine ([OPA](https://www.openpolicyagent.org/)) to enforce policies over Cloud Native environments.
 
 ## Further reading
 
