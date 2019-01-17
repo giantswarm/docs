@@ -1,7 +1,7 @@
 +++
 title = "Recommendations and Best Practices"
 description = "Recommendations and best practices around cluster and node sizing as well as multi-tenant setups"
-date = "2017-06-23"
+date = "2019-01-17"
 type = "page"
 weight = 50
 tags = ["tutorial"]
@@ -89,6 +89,7 @@ The downside to the multi-tenant single cluster approach is that it, as mentione
 ## Further Reading
 
 - [Creating clusters with gsct](/reference/gsctl/create-cluster/)
+- [Cluster Size and Autoscaling](/basics/cluster-size-autoscaling/)
 - [Using RBAC Authorization](https://kubernetes.io/docs/admin/authorization/rbac/)
 - [Network Policies](https://kubernetes.io/docs/concepts/services-networking/networkpolicies/)
 - [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)
