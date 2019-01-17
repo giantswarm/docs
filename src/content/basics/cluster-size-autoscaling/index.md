@@ -10,6 +10,7 @@ categories = ["basics"]
 # Cluster Size and Autoscaling
 
 Starting with release version X.X.X (TODO) for AWS, you can leverage the benefits of the [Kubernetes autoscaling components](https://github.com/kubernetes/autoscaler) to define the number of worker nodes in a cluster based on demand.
+The autoscaler is provided with every cluster of version >= X.X.X (TODO) on AWS.
 
 On Giant Swarm installations on Azure, on bare-metal, and on AWS prior to version X.X.X (TODO), the cluster size would be defined statically.
 
