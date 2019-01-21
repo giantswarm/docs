@@ -11,7 +11,7 @@ tags = ["tutorial"]
 
 Keep in mind that these recommendations are just basic rules-of-thumb that you should adapt to your needs.
 
-## Creating A Cluster
+## Creating a Cluster
 
 ### Cluster Sizing
 
