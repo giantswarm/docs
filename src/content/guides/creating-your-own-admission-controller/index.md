@@ -183,7 +183,7 @@ In the example, we chosen to create the admission controller in Go just because 
 
 Let's start creating an HTTP server with the certs mounted from the secret. The server will listen to the path `validate` as we defined in the webhook.
 
-__Note:__ The code examples have been stripped out to make it easier to understand. For a more detailed look, browse the [repository](github.com/gianstwarm/grumpy).
+__Note:__ The code examples have been stripped out to make it easier to understand. For a more detailed look, browse the [repository](https://github.com/giantswarm/grumpy).
 
 ```golang
 // Read the certs from the convined path and convert it to a X509 keypair
