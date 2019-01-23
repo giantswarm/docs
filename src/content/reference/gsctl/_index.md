@@ -60,11 +60,11 @@ brew install gsctl</code></pre>
 
   <pre><code class="language-nohighlight">brew upgrade gsctl</code></pre>
 
-  <p>To install without homebrew, download the latest release <a href="https://github.com/giantswarm/gsctl/releases">from GitHub</a>, unpack the binary and move it to location covered by your `PATH` environment variable.</p>
+  <p>To install without homebrew, download the latest release <a href="https://github.com/giantswarm/gsctl/releases">from GitHub</a>, unpack the binary and move it to a location covered by your `PATH` environment variable.</p>
 </div>
 <div class="tab-pane" id="install-linux">
 
-  <p>Download the latest release <a href="https://github.com/giantswarm/gsctl/releases">from GitHub</a>, unpack the binary and move it to location covered by your `PATH` environment variable.</p>
+  <p>Download the latest release <a href="https://github.com/giantswarm/gsctl/releases">from GitHub</a>, unpack the binary and move it to a location covered by your `PATH` environment variable.</p>
 
 </div>
 <div class="tab-pane" id="install-win">
@@ -81,7 +81,7 @@ brew install gsctl</code></pre>
 
   <pre><code class="language-nohighlight">scoop update gsctl</code></pre>
 
-  <p>To install without scoop, download the latest release <a href="https://github.com/giantswarm/gsctl/releases">from GitHub</a>, unpack the binary and move it to location covered by your `PATH` environment variable.</p>
+  <p>To install without scoop, download the latest release <a href="https://github.com/giantswarm/gsctl/releases">from GitHub</a>, unpack the binary and move it to a location covered by your `PATH` environment variable.</p>
 </div>
 </div>
 
