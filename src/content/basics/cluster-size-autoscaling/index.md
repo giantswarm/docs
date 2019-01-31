@@ -9,10 +9,10 @@ categories = ["basics"]
 
 # Cluster Size and Autoscaling
 
-Starting with release version X.X.X (TODO) for AWS, you can leverage the benefits of the [Kubernetes autoscaling components](https://github.com/kubernetes/autoscaler) to define the number of worker nodes in a cluster based on demand.
-The autoscaler is provided with every cluster of version >= X.X.X (TODO) on AWS.
+Starting with release version 6.3.0 (TODO) for AWS, you can leverage the benefits of the [Kubernetes autoscaling components](https://github.com/kubernetes/autoscaler) to define the number of worker nodes in a cluster based on demand.
+The autoscaler is provided with every cluster of version >= 6.3.0 (TODO) on AWS.
 
-On Giant Swarm installations on Azure, on bare-metal, and on AWS prior to version X.X.X (TODO), the cluster size would be defined statically.
+On Giant Swarm installations on Azure, on bare-metal, and on AWS prior to version 6.3.0 (TODO), the cluster size would be defined statically.
 
 **Note:** the number of master nodes cannot be changed
 
@@ -24,7 +24,7 @@ To enforce an exact cluster size and **effectively disable the autoscaler**, sim
 
 ## Minimal and default cluster size
 
-When creating a cluster without specifying the number of worker nodes, **three** worker nodes will be created. This is also the minimal number supported by Giant Swarm. On AWS starting with release version X.X.X (TODO), when not specified, the maximum number of worker nodes is also set to **three**.
+When creating a cluster without specifying the number of worker nodes, **three** worker nodes will be created. This is also the minimal number supported by Giant Swarm. On AWS starting with release version 6.3.0 (TODO), when not specified, the maximum number of worker nodes is also set to **three**.
 
 Technically, while you may be able to create and run smaller clusters successfully, we don't encourage this due to reduced resilience. We explicitly deactivate all sorts of alerts for clusters with less than three worker nodes and won't get notified in case of any problems.
 
@@ -33,9 +33,9 @@ Also note that we don't support scaling a cluster to zero worker nodes.
 ## See also
 
 - [Recommendations and Best Practices regarding cluster size](/guides/recommendations-and-best-practices/#cluster-sizing)
-- [Creating clusters with gsct](/reference/gsctl/create-cluster/)
-- [Scaling clusters with gsctl](/reference/gsctl/scale-cluster/)
-- [Inspecting clusters with gsctl](/reference/gsctl/show-cluster/)
+- [`gsctl create cluster`](/reference/gsctl/create-cluster/): Creating a cluster
+- [`gsctl create cluster`](/reference/gsctl/scale-cluster/): Scaling a cluster
+- [`gsctl show cluster`](/reference/gsctl/show-cluster/): Inspecting a cluster
 - [API: Create cluster](/api/#operation/addCluster)
 - [API: Modify cluster](/api/#operation/modifyCluster)
 - [API: Get cluster details](/api/#operation/getCluster)
