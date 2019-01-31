@@ -84,6 +84,6 @@ workers:
 
 ## Related
 
-- Learn how to create a cluster based on a definition file using [`gsctl create cluster`](/reference/gsctl/create-cluster/)
-- Giant Swarm API v4: [creating clusters](/api/#operation/addCluster).
-- Listing available releases using [`gstl list releases`](/reference/gsctl/list-releases/)
+- [`gsctl create cluster`](/reference/gsctl/create-cluster/): Create a cluster based on flags or a definition file
+- [`gsctl list releases`](/reference/gsctl/list-releases/): Listing available releases
+- [API: Create cluster](/api/#operation/addCluster)
