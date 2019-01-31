@@ -12,8 +12,6 @@ categories = ["basics"]
 Starting with release version 6.3.0 for AWS, you can leverage the benefits of the [Kubernetes autoscaling components](https://github.com/kubernetes/autoscaler) to define the number of worker nodes in a cluster based on demand.
 The autoscaler is provided with every cluster of version >= 6.3.0 on AWS.
 
-
-**Note:** the number of master nodes cannot be changed
 On Giant Swarm installations on Azure, on bare-metal, and on AWS prior to version 6.3.0, the cluster size would be defined statically.
 
 ## Setting scaling limits
@@ -28,7 +26,26 @@ When creating a cluster without specifying the number of worker nodes, **three**
 
 Technically, while you may be able to create and run smaller clusters successfully, we don't encourage this due to reduced resilience. We explicitly deactivate all sorts of alerts for clusters with less than three worker nodes and won't get notified in case of any problems.
 
-Also note that we don't support scaling a cluster to zero worker nodes.
+## Minimal worker node instance type
+
+Relying on autoscaling may have an effect on the instance type you should use for your cluster.
+To explain this more detail, it is helpful to explain how the autoscaler determines whether a node is needed or not.
+
+The autoscaler periodically calculates the utilization of a node based on CPU and memory requests, compared to the node's total capacity. The utilization is compared to a configurable _utilization threshold_, which is 50% by default. If the utilization is below the threshold, the autoscaler decides to remove the node. If it's above, it will keep the node.
+
+With the services required to run a cluster, like DNS, kube-proxy, ingress and others, each node has a baseline utilization, even before you start your first workloads.
+With small instance types, e. g. only 2 CPU cores, the utilization of an otherwise empty node can already be above 50%.
+Using such a small instance type with the default utilization threshold of 50% would result in a cluster that would never get scaled down, effectively running unused worker nodes.
+
+For down-scaling to work, utilization threshold and instance type have to fit together.
+You yourself can select an appropriate instance type when creating a cluster.
+We recommend to use types with at least 4 CPU cores for autoscaling clusters.
+In addition, the Giant Swarm support team can also customize the utilization threshold for you. Setting the value to e. g. 60% could cause the autoscaler to remove a node with higher utilization.
+
+## Further restrictions
+
+- Scaling a cluster to zero worker nodes is currently not supported.
+- The number of master nodes cannot be changed as of now.
 
 ## See also
 
@@ -40,3 +57,4 @@ Also note that we don't support scaling a cluster to zero worker nodes.
 - [API: Modify cluster](/api/#operation/modifyCluster)
 - [API: Get cluster details](/api/#operation/getCluster)
 - [API: Get cluster status](/api/#operation/getClusterStatus)
+- [Kubernetes autoscaler FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md)
