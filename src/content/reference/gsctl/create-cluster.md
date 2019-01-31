@@ -41,7 +41,7 @@ To set a friendly name for your new cluster, pass the `--name` (or `-n`) argumen
 $ gsctl create cluster -o myorg --name "Test Cluster"
 ```
 
-To create a new cluster that auto-scales within a certain range, use the `--num-workers` and `--workers-max` argument:
+To create a new cluster that auto-scales within a certain range, use the `--workers-min` and `--workers-max` argument:
 
 ```nohighlight
 $ gsctl create cluster \
