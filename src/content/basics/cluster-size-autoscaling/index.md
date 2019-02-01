@@ -31,11 +31,14 @@ Technically, while you may be able to create and run smaller clusters successful
 Relying on autoscaling may have an effect on the instance type you should use for your cluster.
 To explain this more detail, it is helpful to explain how the autoscaler determines whether a node is needed or not.
 
-The autoscaler periodically calculates the utilization of a node based on CPU and memory requests, compared to the node's total capacity. The utilization is compared to a configurable _utilization threshold_, which is 50% by default. If the utilization is below the threshold, the autoscaler decides to remove the node. If it's above, it will keep the node.
+The autoscaler periodically calculates the utilization of a node based on CPU and memory requests, compared to the node's total capacity.
+The utilization is compared to a configurable _utilization threshold_, which is {{% autoscaler_utilization_threshold %}} by default.
+If the utilization is below the threshold, the autoscaler decides to remove the node.
+If it's above, it will keep the node.
 
 With the services required to run a cluster, like DNS, kube-proxy, ingress and others, each node has a baseline utilization, even before you start your first workloads.
-With small instance types, e. g. only 2 CPU cores, the utilization of an otherwise empty node can already be above 50%.
-Using such a small instance type with the default utilization threshold of 50% would result in a cluster that would never get scaled down, effectively running unused worker nodes.
+With small instance types, e. g. only 2 CPU cores, the utilization of an otherwise empty node can already be above {{% autoscaler_utilization_threshold %}}.
+Using such a small instance type with the default utilization threshold of {{% autoscaler_utilization_threshold %}} would result in a cluster that would never get scaled down, effectively running unused worker nodes.
 
 For down-scaling to work, utilization threshold and instance type have to fit together.
 You yourself can select an appropriate instance type when creating a cluster.
