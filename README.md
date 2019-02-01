@@ -102,6 +102,32 @@ The best way to contribute changes are pull requests. Please note the following 
 
 - When creating a pull request, please remember you accept that your contribution will be published under the Creative Commons referenced below. Giant Swarm will be able to use your content without restriction.   Giant Swarm is not obliged to list you as the author of your contribution, but will attempt to do so where possible.
 
+## Style
+
+We use [Title Case](https://titlecase.com/) for the main article headline, but not for lower level headlines.
+
+For **code blocks**, we give language hints to ensure proper syntax highlighting. A YAML block, for example, is opened with triple backticks followed by `yaml`.
+
+However, shell commands and their output get the fake hint `nohighlight` to prevent any funky syntax highlighting.
+
+Shell commands in code blocks are prepended with a `$ ` (dollar sign and one blank character).
+
+We use long-form CLI flags and avoid the possible equal sign between flag name and value, for best readability.
+
+Right:
+
+```nohighlight
+$ gsctl create cluster --owner acme
+```
+
+Wrong:
+
+```nohighlight
+$ gsctl create cluster --owner=acme
+$ gsctl create cluster -o=acme
+$ gsctl create cluster -o acme
+```
+
 ## License
 
 The content in this repository is licensed under the [Creative Commons Attribution ShareAlike](http://creativecommons.org/licenses/by-sa/4.0/) license.
