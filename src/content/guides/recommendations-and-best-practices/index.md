@@ -11,9 +11,9 @@ tags = ["tutorial"]
 
 Keep in mind that these recommendations are just basic rules-of-thumb that you should adapt to your needs.
 
-## Creating a Cluster
+## Creating a cluster
 
-### Cluster Sizing
+### Cluster sizing
 
 There are a few questions that you might want to answer to determine the right size for your cluster:
 
@@ -30,7 +30,7 @@ You don't want your development environment to be down, because of a minor node 
 
 For production usage the cluster should have at least 5 nodes and a buffer of 2 nodes.
 
-#### Worker Node Size
+#### Worker node size
 
 When it comes to sizing your worker nodes, there should generally be a preference for more smaller nodes vs less bigger ones.
 However, avoid node sizes of less than 1 core and 2GB RAM.
@@ -39,7 +39,7 @@ To determine the right sizing in terms of cores and RAM, you need to know what k
  and how much resources they need.
 Note that even if average load might be low, you should also account for peak load times as well as startup-peaks (i.e. some apps need a lot of resources just for their startup).
 
-## Multi-Cluster and Multi-Tenant Setups
+## Multi-cluster and multi-tenant setups
 
 There are two ways to separate environments, teams, and in general deployments from each other:
 
@@ -86,7 +86,7 @@ This way the deployments are automated and no one can manually interfere in the 
 The downside to the multi-tenant single cluster approach is that it, as mentioned above,
  needs to be secured with much more scrutiny.
 
-## Further Reading
+## Further reading
 
 - [Creating clusters with gsct](/reference/gsctl/create-cluster/)
 - [Using RBAC Authorization](https://kubernetes.io/docs/admin/authorization/rbac/)

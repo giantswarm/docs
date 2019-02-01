@@ -39,7 +39,7 @@ Three files will be placed in the `certs` folder, which is a subfolder of your g
 
 - Your client certificate (file ending `.crt`).
 
-## Full Argument Reference {#arguments}
+## Full argument reference {#arguments}
 
 - `--cluster`, `-c`: Used to specify the cluster ID to create a key pair for.
 - `--cn-prefix`: The common name prefix for the issued certificates 'CN' field.
@@ -48,13 +48,13 @@ Three files will be placed in the `certs` folder, which is a subfolder of your g
 - `--description`, `-d`: Can be used to specify a description. If not given, a description like `Added by user email@example.com using 'gsctl create kubeconfig'` is set.
 - `--ttl`: Allows to set the key pair expiry, in days. Defaults to 30 days.
 
-## Key Pair Expiry {#expiry}
+## Key pair expiry {#expiry}
 
 Each key pair has a limited lifetime, which you can affect only on creation. In general, we suggest using short-lived key pairs for security reasons.
 
 Depending on the installation, there might be a minimum and maximum key pair lifetime configured, to enforce security policies. If you'd like to find out about effective limits of your installation, please ask our support team.
 
-## Kubernetes RBAC and the Certificate's Subject Common Name and Organization fields.
+## Kubernetes RBAC and the certificate's subject common name and organization fields.
 
 Using the `--certificate-organizations` and `--cn-prefix` flags you can influence the common name (CN) and organization (O) fields of the issued certificate.
 

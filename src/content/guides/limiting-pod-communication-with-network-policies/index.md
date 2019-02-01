@@ -15,7 +15,7 @@ Currently the API only includes Ingress rules, i.e. you can only limit traffic t
 
 Here we give an overview and introduction of how to create and use these policies.
 
-## Ingress Network Policies
+## Ingress network policies
 
 NetworkPolicy resources in Kubernetes use labels to select pods and define rules which specify what traffic is allowed to the selected pods.
 
@@ -27,7 +27,7 @@ Note that Network Policies are additive, so having two Network Policies that sel
 
 Keep in mind that a NetworkPolicy is applied to a particular Namespace and only selects Pods in that particular Namespace.
 
-### Default Policies
+### Default policies
 
 You can create default policies for a Namespace by creating a NetworkPolicy that select all Pods:
 
@@ -52,11 +52,11 @@ will result in all traffic to all Pods in the Namespace to be denied.
 
 Note that the namespace needs to exist before you apply the NetworkPolicy to it.
 
-### Creating Selective Network Policies
+### Creating selective network policies
 
 No matter if you set default policies or not, you can limit access to certain Pods by creating a NetworkPolicy that selects them.
 
-#### Allowing Specific Pod to Pod Access
+#### Allowing specific pod to pod access
 
 In the following example we allow traffic to Pods labeled `role: backend` from Pods with the `role: frontend` label and only on TCP port 6379.
 
@@ -85,7 +85,7 @@ You need to apply this policy to the Namespace that the backend Pods live in.
 kubectl -n <namespace> apply -f backend-access.yaml
 ```
 
-#### Allowing Pod to Pod Access within a Namespace
+#### Allowing pod to pod access within a namespace
 
 In some cases you might want to allow all intra-namespace communication. For this you can use open Pod selectors that catch all Pods.
 
@@ -122,7 +122,7 @@ kubectl apply -f freeforall-namespace.yaml
 kubectl apply -f intra-namespace-policy.yaml
 ```
 
-#### Allowing Traffic from Outside the Cluster
+#### Allowing traffic from outside the cluster
 
 In the case that you have publicly exposed a Service through Ingress and you have a default-deny policy in place or just want to limit that traffic to a specific port, you need a Network Policy like the following.
 
@@ -143,7 +143,7 @@ spec:
 
 The above will allow any traffic (no matter if outside or inside your cluster) to the Pods on port 80.
 
-## Limiting Egress Traffic with Calico Policies
+## Limiting egress traffic with calico policies
 
 For creating Egress Policies we currently have to circumvent Kubernetes and talk directly to Calico [using `calicoctl`](https://docs.projectcalico.org/v2.2/getting-started/kubernetes/tutorials/using-calicoctl).
 
@@ -158,7 +158,7 @@ For this we need two policies:
 1. Deny Egress for the whole cluster
 2. Allow Egress for the trusted namespace
 
-### 1. Default Deny Egress
+### 1. Default deny egress
 
 Following Egress policy denies outgoing connections from all sources to our specified destination. With `order: 500` we ensure that this is applied before any Kubernetes policies.
 
@@ -182,7 +182,7 @@ We apply the policy with
 calicoctl create -f default-deny-egress.yaml
 ```
 
-### 2. Allow Egress for Trusted Namespace
+### 2. Allow egress for trusted namespace
 
 For this we create another policy, just selecting our `trusted` namespace. Again, the order of 400 will ensure this is applied before any Kubernetes policies.
 
@@ -209,7 +209,7 @@ calicoctl create -f trusted-namespace.yaml
 
 Now connections to `8.8.8.8` will only be possible from Pods living in the namespace called `trusted`. As with Ingress Policies all other connections from the Pods will be disallowed.
 
-## Further Reading
+## Further reading
 
 - [The Unoffical Guide to Kubernetes Network Policies](https://ahmet.im/blog/kubernetes-network-policy/)
 - [Network Policies](https://kubernetes.io/docs/concepts/services-networking/networkpolicies/)

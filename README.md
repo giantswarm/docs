@@ -2,7 +2,7 @@
 
 This is the main documentation repository for the documentation available at https://docs.giantswarm.io.
 
-## Repository Overview
+## Repository overview
 
 
 This repository named `docs` holds the main **content** of our documentation. The documentation

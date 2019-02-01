@@ -25,7 +25,7 @@ On cluster creation the ConfigMap is empty and below-mentioned defaults will be 
 
 __Warning:__ Please do not edit any of the other CoreDNS related resources. Only the user ConfigMap is safe to edit.
 
-## Cache Settings
+## Cache settings
 
 By default we set the cache TTL for CoreDNS to 30 seconds. You can customize the cache settings of CoreDNS by setting the value of the cache field in the user ConfigMap like following.
 
@@ -38,7 +38,7 @@ Above setting increases the TTL to 60 seconds.
 
 The cache plugin also supports much more detailed configuration which is documented in the [upstream documentation](https://coredns.io/plugins/cache/).
 
-## Additional Proxies
+## Additional proxies
 
 The default proxy entry we set in CoreDNS is
 

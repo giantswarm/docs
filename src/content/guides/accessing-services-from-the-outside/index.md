@@ -15,11 +15,11 @@ Once you have a Pod or Service running on your cluster, you might want to access
 - [Authenticated access to a Pod through `kubectl port-forward`](#port-forward): This gives you direct network access to a port of a Pod, for test purposes.
 - [Authenticated access to a Service through the API proxy](#api-access): This gives you access to a Kubernetes Service, for test purposes.
 
-## Setting up a Public Ingress {#public-ingress}
+## Setting up a public Ingress {#public-ingress}
 
 Before we explain how to set up Ingress for a Service, please read the next section carefully to make sure the guide matches your situation as a Giant Swarm user.
 
-### Knowing your Ingress Base Domain {#base-zone}
+### Knowing your Ingress base domain {#base-zone}
 
 Setting up Ingress means to make Services publicly available via DNS names. For an application facing the public, you will eventually want to set up names ending in your own domain.
 
@@ -139,7 +139,7 @@ kubectl port-forward -n NAMESPACE $POD <local-port>:<pod-port> &
 
 Now you can access your Pod locally via `localhost:<local-port>`.
 
-## Access any Service from through the API proxy {#api-access}
+## Access any service from through the API proxy {#api-access}
 
 The Kubernetes API comes with an inbuilt proxy, which you can use to access Services deployed on your cluster. The URL schema is
 

@@ -45,7 +45,7 @@ status:
 
 The above YAML would expose port 8080 of our helloworld Pods on the http port of the provisioned ELB.
 
-### Exposing on a non-http port and protocol
+### Exposing on a non-HTTP port and protocol
 
 You can change the port of the load balancer and protocol of the load balancer by changing the `targetPort`field and adding a `ports.protocol` field. This way you can expose TCP services directly without having to customize the Ingress Controller.
 
@@ -72,11 +72,11 @@ status:
     - hostname: a54cae28bd42b11e7b2c7020a3f15370-27798109.eu-central-1.elb.amazonaws.com
 ```
 
-### Customizing the External Load Balancer
+### Customizing the external load balancer
 
 This section will focus on the custom options you can set on AWS Load Balancers via a Service of type `LoadBalancer`, but when available will also explain the settings for Azure Load Balancers. You can configure these options by adding annotations to the service.
 
-#### Internal Load Balancers
+#### Internal load balancers
 
 If you want the AWS ELB to be available only within your VPC (can be extended to other VPC by VPC peering) use the following annotation:
 
@@ -95,7 +95,7 @@ metadata:
     service.beta.kubernetes.io/azure-load-balancer-internal: "true"
 ```
 
-#### SSL Termination on AWS
+#### SSL termination on AWS
 
 There are three annotations you can set to configure SSL termination.
 
@@ -129,7 +129,7 @@ metadata:
 
 In the above example, if the service contained three ports, `80`, `443`, and `8443`, then `443` and `8443` would use the SSL certificate, but `80` would just be proxied HTTP.
 
-#### Access Logs on AWS
+#### Access logs on AWS
 
 Writing access logs to an S3 bucket is a standard feature of ELBs. For `LoadBalancer` Services this can also be configured using following annotations.
 
@@ -144,7 +144,7 @@ metadata:
     service.beta.kubernetes.io/aws-load-balancer-access-log-s3-bucket-prefix: logs/prod
 ```
 
-#### Connection Draining on AWS
+#### Connection draining on AWS
 
 You can set classic ELBs to drain connections and configure a timeout (in seconds) for the draining like following.
 
@@ -156,7 +156,7 @@ metadata:
     service.beta.kubernetes.io/aws-load-balancer-connection-draining-timeout: "60"
 ```
 
-#### AWS Network Load Balancer
+#### AWS network load balancer
 
 AWS is in the process of replacing ELBs with NLBs (Network Load Balancers) and ALBs (Application Load 
 Balancers). NLBs have a number of benefits over "classic" ELBs including scaling to many more requests. 
@@ -169,7 +169,7 @@ metadata:
     service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
 ```
 
-#### Other AWS ELB Configuration Options
+#### Other AWS ELB configuration options
 
 There are more annotations to manage Classic ELBs that are described below.
 
@@ -202,7 +202,7 @@ metadata:
     # A list of additional security groups to be added to the ELB.
 ```
 
-## Using Multiple Ingress Controllers {#multiple-ingress}
+## Using multiple Ingress Controllers {#multiple-ingress}
 
 By default a cluster in Giant Swarm is bootstrapped with a default Ingress Controller based on NGINX. This Ingress Controller is registered with the default `nginx` Ingress Class.
 
@@ -216,13 +216,13 @@ Some use cases for this might be:
 
 __Note__ that if you are running multiple Ingress Controllers you need to annotate each Ingress with the appropriate class, e.g.
 
-```YAML
+```yaml
 kubernetes.io/ingress.class: "nginx"
 ```
 
 or 
 
-```YAML
+```yaml
 kubernetes.io/ingress.class: "nginx-internal"
 ```
 
@@ -230,7 +230,7 @@ Not specifying the annotation will lead to multiple ingress controllers claiming
 
 Further note that if you are running additional Ingress Controllers you might need to configure them so their Ingress Class does not collide with the class of our default NGINX Ingress Controller. For the community supported NGINX Ingress Controller this is described in the [official documentation](https://kubernetes.github.io/ingress-nginx/user-guide/multiple-ingress/).
 
-## Further Reading
+## Further reading
 
 - [Services of type LoadBalancer](https://kubernetes.io/docs/concepts/services-networking/service/#type-loadbalancer)
 - [Running Multiple Ingress Controllers](https://github.com/kubernetes/ingress-nginx#running-multiple-ingress-controllers)
