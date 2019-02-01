@@ -29,10 +29,13 @@ Technically, while you may be able to create and run smaller clusters successful
 ## Minimal worker node instance type
 
 Relying on autoscaling may have an effect on the instance type you should use for your cluster.
-To explain this more detail, it is helpful to explain how the autoscaler determines whether a node is needed or not.
+To illustrate this more detail, it is helpful to explain how the autoscaler determines whether a node is needed or not.
 
-The autoscaler periodically calculates the utilization of a node based on CPU and memory requests, compared to the node's total capacity.
-The utilization is compared to a configurable _utilization threshold_, which is {{% autoscaler_utilization_threshold %}} by default.
+The autoscaler periodically calculates the utilization of a node based on CPU and memory requests of all running pods, compared to the node's total capacity.
+
+**Note:** this means that your workloads need sensible CPU and memory requests in order to inform the autoscaler about the actual node utilization.
+
+The current utilization is compared to a configurable _utilization threshold_, which is {{% autoscaler_utilization_threshold %}} by default.
 If the utilization is below the threshold, the autoscaler decides to remove the node.
 If it's above, it will keep the node.
 
