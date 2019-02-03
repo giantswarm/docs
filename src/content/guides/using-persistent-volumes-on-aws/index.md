@@ -90,7 +90,7 @@ __Warning__: Expanding the filesystem is fully supported in Giant Swarm clusters
 
 __Warning__: Expanding EBS volumes is a time consuming operation. Also, there is a per-volume quota of one modification every 6 hours.
 
-## Resizing Filesystem For Kubernetes 1.9
+## Resizing filesystem for Kubernetes 1.9
 
 This procedure is only required for Kubernetes 1.9. Newer clusters support filesystem resizing "out-of-the-box".
 
@@ -156,7 +156,7 @@ By default the Reclaim Policy of Persistent Volumes in your cluster is set to `D
 
 Note that deleting an application that is using Persistent Volumes might not automatically also delete its storage, so in most cases you will have to manually delete the `PersistenVolumeClaim` resources to clean up.
 
-## Further Reading
+## Further reading
 
 - [AWS Storage Classes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#aws)
 - [Persistent Volumes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistent-volumes)

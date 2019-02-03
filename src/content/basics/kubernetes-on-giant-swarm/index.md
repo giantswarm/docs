@@ -30,7 +30,7 @@ There are some things not included in the cluster as managed by us:
 
 - Additional user-space services like Dashboard, Monitoring, Logging, Registry, etc. are not installed (getting them running is [really easy](/guides/), though),
 
-## High Availability and Resilience
+## High availability and resilience
 
 As mentioned above your cluster has a single running master. However, the cluster is set up in a way that your cluster keeps running even if the master is unavailable for a while (e.g. due to planned upgrades, failure, etc.), the only slight degradation you might notice is that while the master is down, you cannot change the state of your pods and other resources. As soon as the master is up again, you regain full control.
 

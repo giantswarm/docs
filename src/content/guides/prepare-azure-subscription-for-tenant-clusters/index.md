@@ -20,7 +20,7 @@ In order to run Giant Swarm tenant clusters, an Azure subscription needs the fol
 - Role definition: a set of permission to operate tenant clusters in the Azure subscription.
 - Service Principal: an identity (bound to the previously defined Role definition) to access the Azure subscription.
 
-## Create Azure Role definition and Service Principal
+## Create Azure role definition and Service Principal
 
 In order to perform necessary actions to deploy and maintain tenant clusters in your Azure subscription, `azure-operator` needs to access the subscription using a Service Principal.
 Here we describe all the steps to set it up.
@@ -59,7 +59,7 @@ $ az role definition create --role-definition @guest.json
 
 On success this command prints the created role definition.
 
-#### 3. Service Principal
+#### 3. Service principal
 
 Create the service principal using the Azure CLI:
 

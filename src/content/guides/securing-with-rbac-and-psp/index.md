@@ -11,13 +11,13 @@ tags = ["tutorial"]
 
 Two of the most central mechanisms to secure your cluster in Kubernetes are Role Based Access Control (RBAC) and Pod Security Policies (PSP). Together, these two allow you to create fine-grained roles and policies to manage access control for users and software running on your cluster. Both are enabled by default on Giant Swarm clusters.
 
-## Role Based Access Control
+## Role based access control
 
 The RBAC API defines both roles and bindings on either namespace or cluster level. Like any other Kubernetes API object, these can be defined by writing YAML (or JSON) manifests.
 
 __Note__ that to apply these manifests, you need a user with higher level access than the access you want to set up. When in doubt, use a Cluster Admin account to apply RBAC manifests.
 
-### The Role and ClusterRole Resource {#role-resources}
+### The Role and ClusterRole resource {#role-resources}
 
 The `Role` and `ClusterRole` allow a cluster administrator to define a reusable set of permissions. While a `Role` is used to grant permissions within a single namespace, a `ClusterRole` can grant the same permissions, but can be bound on a cluster-scope.
 
@@ -189,7 +189,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-#### Referring to Subjects
+#### Referring to subjects
 
 Bindings can refer to subjects that are either single users, groups, or service accounts. The latter are needed to grant API access (and with PSPs also Pod privileges) to certain Pods, e.g. for monitoring and logging agents.
 
@@ -278,11 +278,11 @@ You need to either bind the already existing `privileged-psp-user` role, or crea
 
 For details on PSPs we defer to the [official PSP documentation](https://kubernetes.io/docs/concepts/policy/pod-security-policy/).
 
-## User Management with Giant Swarm
+## User management with Giant Swarm
 
 If you are managing users through the Giant Swarm API or its clients, `gsctl` or the Web UI (happa), you can specify a Common Name Prefix and Organizations when you create key-pairs of kubeconfigs.
 
-### Using Common Name as Username in Kubernetes
+### Using common name as username in Kubernetes
 
 Setting a Common Name Prefix results in a username like the following:
 
@@ -294,7 +294,7 @@ where `<cn-prefix>` is a username of your choice and `<cluster-domain>` is your 
 
 When binding roles to a user you need to use the full username mentioned above.
 
-### Using Organizations as Groups in Kubernetes
+### Using organizations as groups in Kubernetes
 
 Organizations you set when creating key-pairs or kubeconfigs get mapped to groups inside Kubernetes.
 
@@ -308,7 +308,7 @@ There is only a single predefined user group inside Kubernetes. Members of the `
 
 The `<cn-prefix>` defaults to the email you sign in with at Giant Swarm. The default organization is empty. Thus, a user that is created without any additional CN Prefix and/or Organizations won't have any rights on the cluster unless you bind a role to their specific username.
 
-## Bootstrapping and Managing Access Rights
+## Bootstrapping and managing access rights
 
 For bootstrapping and managing access rights on your Kubernetes cluster you first need a user that already has all rights that you want to give out. The easiest way to get such a user is creating a user that is in the `system:masters` group and thus carries Cluster Admin rights.
 
@@ -324,7 +324,7 @@ With this user we can now start creating Roles and Bindings for our users and ap
 
 Note that in these examples we are assuming you are creating users through Giant Swarm's API.
 
-### Giving Admin Access to a Specific Namespace
+### Giving admin access to a specific namespace
 
 There is a default admin role defined inside Kubernetes. You can bind that role to a user or group of users for a specific namespace with a Role Binding similar to following.
 
@@ -363,7 +363,7 @@ $ gsctl create kubeconfig -c w6wn8 -d "Marc" --cn-prefix "marc" --certificate-or
 
 Note that even when we don't need a specific username for giving Marc Admin rights, we should still set a CN Prefix so we can identify Marc's actions on the cluster.
 
-### Giving Read Access to the Whole Cluster
+### Giving read access to the whole cluster
 
 There is a default view role defined inside Kubernetes. You can bind that role to a user or group of users for the whole cluster with a Cluster Role Binding similar to following.
 
@@ -397,13 +397,14 @@ $ gsctl create kubeconfig -c w6wn8 -d "Marc" --cn-prefix "marc" --certificate-or
 
 With the above Marc would now be part of both groups and thus be bound by both bindings.
 
-### Running Applications that need API Access
+### Running applications that need API access
 
 Applications running inside your cluster that need access to the Kubernetes API need the right permissions bound to them. For this the Pods need to use a Service Account.
 
 The typical process looks like following example:
 
-#### 1. Create a Service Account for your App
+#### 1. Create a Service Account for your app
+
 ```yaml
 apiVersion: v1
 kind: ServiceAccount
@@ -412,7 +413,7 @@ metadata:
   namespace: logging
 ```
 
-#### 2. Add the Service Account to your App
+#### 2. Add the Service Account to your app
 
 This is done by adding a line referncing the Service Account to the Pod spec of your Deployment or Daemonset. To be sure  you have the right place in the YAML you can put it right above the line `containers:` at the same intendation level. The section should look similar to following:
 
@@ -430,7 +431,7 @@ spec:
     [...]
 ```
 
-#### 3. Create a Role for your App
+#### 3. Create a Role for your app
 
 This role should be very specifc to the needs of your app and not allow anything more than what the app needs to work. In this example fluentd needs a Cluster Role that can get, watch, and list Pods and Namespaces in the whole cluster.
 ```yaml
@@ -463,13 +464,13 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-### Running Applications that need Privileged Access
+### Running applications that need privileged access
 
 Applications running inside your cluster that need to run in a privileged Security Context, e.g. as privileged containers, mounting host paths or exposing host ports, need the right permissions in the form of Pod Security Policies bound to them. For this the Pods again need to use a Service Account.
 
 The typical process looks like following example. If your app is already using a service account set up like the RBAC example above you can reuse that and skip steps 1, 2,and 5.
 
-#### 1. Create a Service Account for your App
+#### 1. Create a Service Account for your app
 
 ```yaml
 apiVersion: v1
@@ -479,7 +480,7 @@ metadata:
   namespace: logging
 ```
 
-#### 2. Add the Service Account to your App
+#### 2. Add the Service Account to your app
 
 This is done by adding a line referncing the Service Account to the Pod spec of your Deployment or Daemonset. To be sure you have the right place in the YAML you can put it right above the line `containers:` at the same intendation level. The section should look similar to following:
 
@@ -497,7 +498,7 @@ spec:
 [...]
 ```
 
-#### 3. Create a Pod Security Policy for your App
+#### 3. Create a Pod Security Policy for your app
 
 In Giant Swarm Kubernetes clusters there is a default Pod Security Policy (PSP) called `restricted` that applies when no specifc PSP is given. This PSP can help you create the specifc PSP needed for your app.
 
@@ -544,7 +545,7 @@ Note, how the above PSP allows the use volumes of type `configMap` and `hostPath
 
 We strongly recommend to create such specifc rules, so that no further privilege escalation can occur.
 
-#### 4. Create a Role for your App
+#### 4. Create a Role for your app
 
 Now that we have a PSP we need a role that is allowed to `use` that PSP.
 
@@ -606,13 +607,13 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-### Revoking Access
+### Revoking access
 
 You can revoke access from any user or group of users by either completely removing the binding(s) they are part of or, in case of bindings that bind to several subjects, removing them specifically from the list of subjects in that binding.
 
 Note that bindings that come with the cluster by default like `system:masters` cannot be removed as they are reconciliated. We highly recommend you only create short-lived users (i.e. certificates with a TTL of a day or less) for this kind of access.
 
-## Further Reading
+## Further reading
 
 - [Using RBAC Authorization](https://kubernetes.io/docs/admin/authorization/rbac/)
 - [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)

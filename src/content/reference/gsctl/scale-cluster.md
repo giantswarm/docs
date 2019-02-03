@@ -20,7 +20,7 @@ For AWS, the Auto Scaling Group's logic determines which workers are removed. We
 
 On Azure, the virtual machine scale set (VMSS) behaviour is responsible for the termination order. Here, VMs with the highest IDs are removed first.
 
-## Command Usage {#usage}
+## Command usage {#usage}
 
 To scale a cluster, use this command syntax:
 
@@ -34,7 +34,7 @@ When adding worker nodes, no confirmation is required.
 
 After the command execution is finished, it can take a couple of minutes until the new workers are available in your Kubernetes clusters.
 
-## Full Argument Reference {#arguments}
+## Full argument reference {#arguments}
 
 - `-w`, `--num-workers` (required): The desired amount of worker nodes after scaling.
 - `--force`: If set, no confirmation is required when reducing the number of workers. You should only use this argument in automations when you are sure that reducing the number of workers is desired.
