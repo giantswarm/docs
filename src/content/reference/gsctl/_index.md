@@ -36,7 +36,7 @@ Follow the links below for detailed documentation, where available. You can also
 | `version`                             | Print version number
 
 
-## Installing and Updating {#install}
+## Installing and updating {#install}
 
 `gsctl` comes as a self-contained binary for Mac, Linux, and Windows. Below you find installation instructions for different platforms. If you want to build `gsctl` from source, find everything you need in its [GitHub repository](https://github.com/giantswarm/gsctl).
 
@@ -99,7 +99,7 @@ The following environment variables can be used to affect some behaviour:
 
 In addition, [global command-line options](global-options/) are available.
 
-## Known Bugs and Limitations {#known-limitations}
+## Known bugs and limitations {#known-limitations}
 
 Check our [issues](https://github.com/giantswarm/gsctl/issues?q=is%3Aopen+is%3Aissue+label%3Akind%2Fbug) with label `kind/bug`.
 

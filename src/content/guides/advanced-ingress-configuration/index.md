@@ -14,7 +14,7 @@ The [NGINX-based Ingress Controller](https://github.com/kubernetes/ingress-nginx
 - [Per-Service options](#yaml) in each Ingress' YAML definition either directly or via [Annotations](https://kubernetes.io/docs/user-guide/annotations/).
 - [Global options](#configmap) that influence all Ingresses of a cluster via a ConfigMap.
 
-## Per-Service Options {#yaml}
+## Per-Service options {#yaml}
 
 ### Aggregating Ingresses
 
@@ -75,7 +75,7 @@ __Note:__ Your applications need to be capable of running on a non-root path eit
 
 If your cluster has TLS enabled, you can terminate TLS either in your application itself by enabling SSL passthrough or let the Ingress Controller terminate for you.
 
-#### SSL Passthrough
+#### SSL passthrough
 
 __Warning:__ This feature was disabled by default in Nginx ingress controller managed by Giant Swarm. Reason is a potential [crash](https://github.com/kubernetes/ingress-nginx/issues/2354) of internal TCP proxier. We recommend to [terminate TLS in ingress controller](#terminating-tls-in-ingress-controller) instead.
 
@@ -324,7 +324,7 @@ Make sure to use the exact annotation scheme `nginx.ingress.kubernetes.io/config
 
 Check out the [ingress-nginx repository](https://github.com/kubernetes/ingress-nginx/blob/master/docs/examples/customization/configuration-snippets/ingress.yaml) for more information.
 
-## Global (per Cluster) Options {#configmap}
+## Global (per cluster) options {#configmap}
 
 Your Giant Swarm installation comes with some global defaults for Ingress Controller configuration. However, you can override these defaults by setting your per cluster configuration in form of a ConfigMap named `nginx-ingress-controller-user-values` located in your `kube-system` namespace.
 

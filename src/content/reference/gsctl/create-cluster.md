@@ -19,7 +19,7 @@ You can make use of two different approaches:
 In fact, you can also mix the two approaches, as some command line arguments can be used to extend (or overwrite) the definition passed as a file.
 
 
-## Command Line Examples
+## Command line examples
 
 The shortest possible way to create a new cluster with default settings:
 
@@ -85,7 +85,7 @@ $ gsctl create cluster \
 In this case it doesn't matter if the definition file has an `owner`, `name`, or `release` attribute, as the command line arguments take precedence.
 
 
-## Full Argument Reference {#arguments}
+## Full argument reference {#arguments}
 
 Some arguments are specific to the provider used in the installation
 (KVM for bare metal clusters, or AWS as a cloud provider).

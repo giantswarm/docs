@@ -15,7 +15,7 @@ This reference gives you details on security-related measures in a Giant Swarm i
 
 ### Kubernetes {#k8s}
 
-#### Encryption of Secrets {#k8s-secrets}
+#### Encryption of secrets {#k8s-secrets}
 
 Secret encryption is ensured by running the Kubernetes `api-server` with the flag `--experimental-encryption-provider-config`. This means that all secrets are stored in Etcd in encrypted form and decrypted when accessed.
 
@@ -27,11 +27,11 @@ To learn more about secret encryption, look up [Encrypting data at rest](https:/
 
 This section applies to AWS-based installations only.
 
-#### Encryption of Local Storage {#local-storage}
+#### Encryption of local storage {#local-storage}
 
 Non-persistent volumes as well as docker images and logs are stored under `/var/lib/docker`. On AWS, `/var/lib/docker` is an Elastic Block Storage (EBS) volume. This volume is encrypted via AWS EBS Encryption. The key is created, stored and deleted using AWS Key Management Service (KMS).
 
-#### Encryption of Persistent Storage {#persistent-storage}
+#### Encryption of persistent storage {#persistent-storage}
 
 Persistent storage is managed by the `StorageClass` resource in Kubernetes. By default, the `StorageClass` resource is provided as an Elastic Block Storage (EBS) volumes. These volumes are encrypted via AWS EBS Encryption. The key is created, stored and deleted using AWS Key Management Service (KMS).
 

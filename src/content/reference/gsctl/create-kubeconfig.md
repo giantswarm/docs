@@ -75,7 +75,7 @@ $ gsctl create kubeconfig --cluster w6wn8 \
   --certificate-organizations system:masters
 ```
 
-## Argument Reference {#arguments}
+## Argument reference {#arguments}
 
 - `--cluster`, `-c`: Used to specify the cluster ID to create a key pair for.
 - `--ttl`: Allows to set the key pair expiry, in days. Defaults to 30 days.
@@ -95,7 +95,7 @@ $ gsctl create kubeconfig --cluster w6wn8 \
 - `--certificate-organizations`: A comma separated list of organizations for the
   issued certificate's 'O' fields.
 
-## Key Pair Expiry {#expiry}
+## Key pair expiry {#expiry}
 
 A key pair has a limited lifetime, which you can affect only on creation. In
 general, we suggest using short-lived key pairs for security reasons, since
@@ -129,7 +129,7 @@ the paths to certificates and the key in the user and cluster entry.
 
 Old certificates and keys are not removed when new key pairs are fetched.
 
-## Kubernetes RBAC and the Certificate's Subject Common Name and Organization fields {#rbac}
+## Kubernetes RBAC and the certificate's subject common name and organization fields {#rbac}
 
 Using the `--certificate-organizations` and `--cn-prefix` flags you can
 influence the common name (CN) and organization (O) fields of the issued

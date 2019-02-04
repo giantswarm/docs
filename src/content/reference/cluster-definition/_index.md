@@ -63,7 +63,7 @@ workers:
 
 **Note:** As of now, in AWS based clusters all worker nodes must be of the same instance type. Based on your installation, only certain instance types may be available. Please contact the support team to learn which instance types are supported on your installation.
 
-## Definition Keys {#keys}
+## Definition keys {#keys}
 
 ### Root level keys {#root-keys}
 

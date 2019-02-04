@@ -17,7 +17,7 @@ Keep in mind that Dashboard despite it 1.x version number is still an early-stag
 
 If you want to have some simple metrics (as shown in the screenshot above) integrated in your Dashboard, you can additionally [install Heapster](/guides/kubernetes-heapster/).
 
-## Deploying Dashboard
+## Deploying dashboard
 
 Deploying dashboard is easy and straight forward.
 
@@ -40,7 +40,7 @@ and then open your browser at http://localhost:8001/api/v1/namespaces/kube-syste
 
 You need to generate a Service Account token be have access to the dashboard.
 
-### Create a Cluster Admin service account
+### Create a cluster admin service account
 
 You can create a service account with `cluster-admin` role that will have access to all your resources.
 
@@ -53,9 +53,10 @@ $ kubectl create clusterrolebinding cluster-admin-dashboard-sa \
 
 Copy the token from the generated secret
 
-```
+```nohighlight
 $ kubectl get secret | grep cluster-admin-dashboard-sa
 cluster-admin-dashboard-sa-token-6xm8l   kubernetes.io/service-account-token   3         18m
+
 $ kubectl describe secret cluster-admin-dashboard-sa-token-6xm8l
 Name:         cluster-admin-dashboard-sa-token-6xm8l
 Namespace:    default
@@ -74,7 +75,7 @@ token:      eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZ
 
 Use this token to log into the dashboard.
 
-### Create Limited resources access service account
+### Create limited resources access service account
 
 You can restrict the cluster access by creating a limited clusterrole.
 
@@ -105,7 +106,7 @@ $ kubectl create clusterrolebinding pod-viewer-sa \
 
 Copy the token from the generated secret
 
-```
+```nohighlight
 $ kubectl get secret | grep pod-viewer
 pod-viewer-sa-token-2t2r9     kubernetes.io/service-account-token   3         2m
 kubectl describe secret pod-viewer-sa-token-2t2r9
@@ -128,7 +129,7 @@ After login, the user can only see `namespaces` and `pods`.
 
 ![Kubernetes Dashboard Limited user](/img/dashboard-pod-viewer.png)
 
-## Further Reading
+## Further reading
 
 - [Official User Guide](http://kubernetes.io/docs/user-guide/ui/)
 - [On Securing the Kubernetes Dashboard](https://blog.heptio.com/on-securing-the-kubernetes-dashboard-16b09b1b7aca)

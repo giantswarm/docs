@@ -12,7 +12,7 @@ Deleting a cluster means that all workloads running on the cluster are terminate
 
 __Caution:__ There is no way to undo the deletion of a cluster. All data stored on the nodes will be lost.
 
-## Command Usage
+## Command usage
 
 To delete a cluster, issue a command like below, applying the ID of the cluster you want to delete:
 

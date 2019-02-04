@@ -22,7 +22,7 @@ For AWS, the Auto Scaling Group's logic determines which workers are removed. We
 
 On Azure, the virtual machine scale set (VMSS) behaviour is responsible for the termination order. Here, VMs with the highest IDs are removed first.
 
-## Command Usage {#usage}
+## Command usage {#usage}
 
 To scale a cluster to a **specific number** of nodes, e. g. 5, use this syntax:
 
@@ -47,7 +47,7 @@ This prompt can be suppressed using the `--force` flag.
 
 When adding worker nodes, no such confirmation is required.
 
-## Full Argument Reference {#arguments}
+## Full argument reference {#arguments}
 
 - `-w`, `--num-workers` (required): The desired amount of worker nodes after scaling.
 - `--force`: If set, no confirmation is required when reducing the number of workers. You should only use this argument in automations when you are sure that reducing the number of workers is desired.

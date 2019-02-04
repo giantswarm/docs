@@ -13,7 +13,7 @@ A Giant Swarm installation can be configured to authenticate with Microsoft Azur
 
 On the user side, you can then authenticate using the Azure Auth Provider of `kubectl`. Your access to a cluster is decided by RBAC roles mapped to your user or group.
 
-## Setting up `kubectl` for Azure Auth
+## Setting up `kubectl` for Azure auth
 
 ### 1. Set up a user
 
@@ -59,7 +59,7 @@ This step needs to be done only once and will register your kubectl as an authen
 
 __Note__ that in some cases (depending on AD settings) the device authentication can only be done in a Browser running on a Windows machine.
 
-## Creating a `kubeconfig` for General Usage
+## Creating a `kubeconfig` for general usage
 
 If you are a Cluster Admin and want to create `kubeconfig` files to give out to your users you can use following template:
 
@@ -92,7 +92,7 @@ If you set all the above names to something generic, you can send the same file 
 
 Furthermore, to make the `kubeconfig` self-contained, you can replace `/path/to/ca.crt` with an inline representation of the file. For that you need to base64-encode the contents of `ca.crt` and paste them into the `kubeconfig`.
 
-## Binding Roles to Users and Groups coming from AAD
+## Binding roles to users and groups coming from AAD
 
 When authenticating with AAD your user identifies to Kubernetes with a username and the groups you are a member of in AAD. A Cluster Admin can bind roles to these to grant access on a specific cluster.
 
@@ -103,7 +103,7 @@ In the following examples we'll use one of the default cluster roles.
 
 __Note__ that you can only bind roles if your own role is wider defined than the role you want to bind for others. When in doubt use `cluster-admin` to apply bindings.
 
-### Binding a Single User
+### Binding a single user
 
 AAD prefixes usernames so that they look like the following:
 
@@ -130,7 +130,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-### Binding a Group of Users
+### Binding a group of users
 
 Unlike usernames, groups are not prefixed. You can identify them by the Object ID of the group in AAD.
 
@@ -151,11 +151,11 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-### Revoking Access
+### Revoking access
 
 Access is revoked as soon as the user has either been removed from a bound group or completely from the AAD tenant.
 
-## Further Reading
+## Further reading
 
 - [Securing your Cluster with RBAC and PSP
 ](https://docs.giantswarm.io/guides/securing-with-rbac-and-psp/)

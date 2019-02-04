@@ -68,7 +68,7 @@ curl \
   https://api.mycluster.k8s.gigantic.io/api/v1
 ```
 
-## Importing CA and Certificate {#importing}
+## Importing CA and certificate {#importing}
 
 Operating systems and HTTP clients have a variety of ways to manage CAs and certificates. Even on one platform there are often several ways to achieve the same thing. We focus here on the more popular combinations of operating system and client, and we opt for ways using command line utilities, as we think this will mostly suit the target audience of this tutorial.
 
@@ -86,7 +86,7 @@ Operating systems and HTTP clients have a variety of ways to manage CAs and cert
 
 ### Mac OS
 
-#### Mac OS Keychain {#mac-os-keychain}
+#### Mac OS keychain {#mac-os-keychain}
 
 On Mac OS, browsers like **Safari** and **Chrome** rely on the system keychain for CA information and certificates. Firefox is an exception and treated in a [separate section](#mac-os-firefox).
 

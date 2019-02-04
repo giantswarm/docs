@@ -11,7 +11,7 @@ categories = ["basics"]
 
 A Giant Swarm installation has several operational layers, which depict a separation of concerns both on an operational as well as on a security level. In the following we will define the layers and explain the intended operational model.
 
-## Operational Layers
+## Operational layers
 
 We will go through the operational layers one by one from the bottom (infrastructure) to the top (user space) and explain the intended opreational model by defining (typical) users and permission levels. The layers are:
 
@@ -28,7 +28,7 @@ This layer does not include the actual hardware and maintenance of the data cent
 
 Giant Swarm SREs on this layer have root level SSH access to everything that pertains to a Giant Swarm installation. This is facilitated by a Single Sign On (SSO) mechanism including MFA (multi-factor authentication). On the cloud they additionally have access to the cloud account/subscription through a role to set up and manage the cloud resources.
 
-### Giant Swarm Control Plane {#controlplane}
+### Giant Swarm control plane {#controlplane}
 
 The Giant Swarm Control Plane consists mainly of services running inside the Control Plane Kubernetes cluster.
 
@@ -52,7 +52,7 @@ This is the standard type of Giant Swarm API user that is given out to DevOps/Op
 
 Such users have access to all clusters in the organizations they belong to. They can create new clusters and organizations as well as manage or delete cluster and organization that they are part of. They can be considered multi-cluster admins.
 
-### User Space {#userspace}
+### User space {#userspace}
 
 The user space layer is defined as the layer pertaining to a single Tenant Cluster Kubernetes API. Tenant Cluster are the Kubernetes clusters that run your workloads.
 
@@ -62,7 +62,7 @@ However, a user with access to the Kubernetes API does not by default also gain 
 
 This enables the customer to individually set up their user management according to the needs of their organization. The configuration for this can be kept in version control and needs to be done by an initial cluster admin user, which can be created by the Giant Swarm API user mentioned above.
 
-## Further Reading
+## Further reading
 
 - [Securing your Cluster with RBAC and PSP](https://docs.giantswarm.io/guides/securing-with-rbac-and-psp/)
 - [Creating a kubeconfig with gsctl](https://docs.giantswarm.io/reference/gsctl/create-kubeconfig/)

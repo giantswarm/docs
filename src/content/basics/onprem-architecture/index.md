@@ -29,7 +29,7 @@ Via the Giant Swarm API, our [CLI](https://github.com/giantswarm/gsctl), or our 
 
 Access to the K8s API goes through the Control Plane. We can connect your Load Balancer for Ingress access. This Load Balancer can be either statically configured with healthchecks or controlled via API. Depending on the data center setup, there are different options that need to be evaluated.
 
-## Service Architecture
+## Service architecture
 
 ![Service Architecture](/img/architecture-aws-services.png)
 
