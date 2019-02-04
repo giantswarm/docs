@@ -33,7 +33,7 @@ To illustrate this more detail, it is helpful to explain how the autoscaler dete
 
 The autoscaler periodically calculates the utilization of a node based on CPU and memory requests of all running pods, compared to the node's total capacity.
 
-**Note:** this means that your workloads need sensible CPU and memory requests in order to inform the autoscaler about the actual node utilization.
+**Note:** this means that your pods need sensible CPU and memory requests in order to inform the autoscaler about the actual node utilization.
 
 The current utilization is compared to a configurable _utilization threshold_, which is {{% autoscaler_utilization_threshold %}} by default.
 If the utilization is below the threshold, the autoscaler decides to remove the node.
