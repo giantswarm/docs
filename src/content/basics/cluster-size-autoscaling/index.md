@@ -1,7 +1,7 @@
 +++
 title = "Cluster Size and Autoscaling"
 description = "This article explains options you have for defining the size of a Kubernetes cluster with Giant Swarm, and automatically scaling it"
-date = "2019-02-01"
+date = "2019-02-06"
 weight = 45
 type = "page"
 categories = ["basics"]
@@ -20,6 +20,20 @@ With the autoscaler taking control over the number of worker nodes, you only def
 
 To enforce an exact cluster size and **effectively disable the autoscaler**, simply set the minimum and maximum worker node count to the same value. This is also the recommended way in case you want to control the number of worker nodes through some external tooling via the Giant Swarm API.
 
+## How the autoscaler works
+
+When relying on the autoscaler to determine the number of worker nodes in your cluster, you'll benefit from a deeper understanding of how the autoscaler decides when to increase or decrease the number of worker nodes. We recommend to take a look a the [Kubernetes autoscaler FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md) for details. Here we only highlight a few important aspects.
+
+Whenever pods cannot be scheduled due to insufficient resources in the cluster, the autoscaler adds a worker node.
+
+To decide whether a cluster can be scaled down, the autoscaler periodically calculates the **utilization** of a node based on CPU and memory requests of all running pods, compared to the node's total capacity.
+
+**Note:** This means that your pods need sensible CPU and memory requests in order to inform the autoscaler about the actual node utilization.
+Pods without CPU and memory requests won't count towards the utilization as calculated by the autoscaler and won't trigger any scaling.
+
+The current utilization is compared to a configurable _utilization threshold_, which is set {{% autoscaler_utilization_threshold %}} by default.
+If the utilization is below the threshold, the autoscaler decides to remove the node.
+
 ## Minimal and default cluster size
 
 When creating a cluster without specifying the number of worker nodes, {{% default_cluster_size_worker_nodes %}} worker nodes will be created. This is also the minimal number supported by Giant Swarm. On AWS starting with release version {{% first_aws_autoscaling_version %}}, when not specified, the maximum number of worker nodes is also set to {{% default_cluster_size_worker_nodes %}}.
@@ -28,25 +42,22 @@ Technically, while you may be able to create and run smaller clusters successful
 
 ## Minimal worker node instance type
 
-Relying on autoscaling may have an effect on the instance type you should use for your cluster.
-To illustrate this more detail, it is helpful to explain how the autoscaler determines whether a node is needed or not.
-
-The autoscaler periodically calculates the utilization of a node based on CPU and memory requests of all running pods, compared to the node's total capacity.
-
-**Note:** this means that your pods need sensible CPU and memory requests in order to inform the autoscaler about the actual node utilization.
-
-The current utilization is compared to a configurable _utilization threshold_, which is {{% autoscaler_utilization_threshold %}} by default.
-If the utilization is below the threshold, the autoscaler decides to remove the node.
-If it's above, it will keep the node.
+Relying on autoscaling may have an effect on the instance type you should use for your cluster, due to the way the autoscaler decides when to remove a node, as described above.
 
 With the services required to run a cluster, like DNS, kube-proxy, ingress and others, each node has a baseline utilization, even before you start your first workloads.
-With small instance types, e. g. only 2 CPU cores, the utilization of an otherwise empty node can already be above {{% autoscaler_utilization_threshold %}}.
+With small instance types, e. g. only 1 CPU core, the utilization of an otherwise empty node can already be above {{% autoscaler_utilization_threshold %}}.
 Using such a small instance type with the default utilization threshold of {{% autoscaler_utilization_threshold %}} would result in a cluster that would never get scaled down, effectively running unused worker nodes.
 
-For down-scaling to work, utilization threshold and instance type have to fit together.
-You yourself can select an appropriate instance type when creating a cluster.
-We recommend to use types with at least 4 CPU cores for autoscaling clusters.
-In addition, the Giant Swarm support team can also customize the utilization threshold for you. Setting the value to e. g. 60% could cause the autoscaler to remove a node with higher utilization.
+For automatic down-scaling to work, utilization threshold and instance type have to fit together.
+The default worker nodes instance type for AWS (`{{% default_aws_instance_type %}}`) and the default utilization threshold ({{% autoscaler_utilization_threshold %}}) are adjusted so that down-scaling should work as expected.
+
+If you decide to run larger instance types, you may ask the Giant Swarm support team to adjust the utilization threshold of a particular cluster for you.
+
+## Ingress controller replicas
+
+Currently, the number of ingress controller replicas deployed to an cluster ...
+
+TODO
 
 ## Further restrictions
 
