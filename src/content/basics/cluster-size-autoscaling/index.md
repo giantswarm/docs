@@ -53,11 +53,20 @@ The default worker nodes instance type for AWS (`{{% default_aws_instance_type %
 
 If you decide to run larger instance types, you may ask the Giant Swarm support team to adjust the utilization threshold of a particular cluster for you.
 
-## Ingress controller replicas
+## Ingress controller replicas with autoscaling
 
-Currently, the number of ingress controller replicas deployed to an cluster ...
+With AWS and release {{% first_aws_autoscaling_version %}}, the amount of Ingress Controller (IC) replicas is fixed to the minimum number of worker nodes when creating the cluster. This can mean two things:
 
-TODO
+- When scaling up a cluster from an initially low minimum number of worker nodes, there might not be enough IC replicas to fullfill all your requests.
+
+- When scaling down a cluster from an initially high minimum number of workers, there may be several IC pods per worker node, using more resources than necessary.
+
+When in doubt, please run load tests against your autoscaling cluster, in order to make sure you have the proper amount of IC replicas running.
+Also feel free to contact the Giant Swarm support team to clarify any questions on this topic.
+
+We plan to improve this behaviour in an upcoming release by scaling the IC using the Horizontal Pod Autoscaler (HPA), to better adapt the number of ICs to the load.
+This would as a consequence lead to the worker node count being adapted to the demand for IC pods.
+In releases without autoscaling support, the number of Ingress Controller replicas scales linearly with the number of worker nodes.
 
 ## Further restrictions
 
