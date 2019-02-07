@@ -28,7 +28,7 @@ Whenever pods cannot be scheduled due to insufficient resources in the cluster, 
 
 To decide whether a cluster can be scaled down, the autoscaler periodically calculates the **utilization** of a node based on CPU and memory requests of all running pods, compared to the node's total capacity.
 
-**Note:** This means that your pods need sensible CPU and memory requests in order to inform the autoscaler about the actual node utilization.
+**Note:** This means that your pods MUST be configured with CPU and memory requests in order to inform the autoscaler about the actual node utilization.
 Pods without CPU and memory requests won't count towards the utilization as calculated by the autoscaler and won't trigger any scaling.
 
 The current utilization is compared to a configurable _utilization threshold_, which is set {{% autoscaler_utilization_threshold %}} by default.
