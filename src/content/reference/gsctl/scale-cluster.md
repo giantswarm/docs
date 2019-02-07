@@ -1,7 +1,7 @@
 +++
 title = "gsctl Command Reference: scale cluster"
 description = "The 'gsctl scale cluster' command allows to add or remove worker nodes to reach a desired number."
-date = "2019-01-31"
+date = "2019-02-07"
 type = "page"
 weight = 53
 +++
@@ -27,16 +27,24 @@ On Azure, the virtual machine scale set (VMSS) behaviour is responsible for the 
 To scale a cluster to a **specific number** of nodes, e. g. 5, use this syntax:
 
 ```nohighlight
-$ gsctl scale cluster <cluster-id> --workers-min 5 --workers-max 5
+$ gsctl scale cluster <cluster-id> --num-workers 5
 ```
 
-Where **autoscaling** is available, you can specify a range within which the autoscaler can scale the number of worker nodes. Example:
+Where **autoscaling** is available, you can specify a range within which the autoscaler can scale the number of worker nodes.
+
+Note that autoscaling is currently only available on AWS in release version 6.3.0 or newer.
+
+Example:
 
 ```nohighlight
 $ gsctl scale cluster <cluster-id> --workers-min 5 --workers-max 20
 ```
 
-Note that autoscaling is currently only available on AWS in release version 6.3.0 or newer.
+To adjust only one side of the autoscaling range, e. g. the upper one, and leave the minimum worker node count untouched, do this:
+
+```nohighlight
+$ gsctl scale cluster <cluster-id> --workers-max 20
+```
 
 After the command has been executed, it can take a couple of minutes until the worker node count has adapted to the new settings.
 
@@ -49,7 +57,8 @@ When adding worker nodes, no such confirmation is required.
 
 ## Full argument reference {#arguments}
 
-- `-w`, `--num-workers` (required): The desired amount of worker nodes after scaling.
+- `-w`, `--num-workers`: Shorthand to set `--workers-min` and `--workers-max` to the same value. Note that where autoscaling is available, this effectively disables autoscaling.
+- `--workers-min`, `--workers-max`: Minimum and maximum number of worker nodes. For autoscaling clusters (available on AWS since release 6.3.0) this specifies the range within the autoscaler can scale the number of worker nodes. For releases prior to 6.3.0, and to pin the number of worker nodes to a specific amount, and on non-AWS installations, both values must be set to the same number.
 - `--force`: If set, no confirmation is required when reducing the number of workers. You should only use this argument in automations when you are sure that reducing the number of workers is desired.
 
 Use `gsctl scale cluster --help` for a additional (global) arguments.

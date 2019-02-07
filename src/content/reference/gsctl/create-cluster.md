@@ -1,7 +1,7 @@
 +++
 title = "gsctl Command Reference: create cluster"
 description = "Detailed documentation on how to create a new cluster using the 'create cluster' command in gsctl."
-date = "2019-01-31"
+date = "2019-02-07"
 type = "page"
 weight = 20
 +++
@@ -41,13 +41,21 @@ To set a friendly name for your new cluster, pass the `--name` (or `-n`) argumen
 $ gsctl create cluster -o myorg --name "Test Cluster"
 ```
 
-To create a new cluster that auto-scales within a certain range, use the `--workers-min` and `--workers-max` argument:
+To create a cluster that [auto-scales](/basics/cluster-size-autoscaling/) within a certain range, use the `--workers-min` and `--workers-max` arguments.
+To set both minimum and maximum worker node count to the same value, use `--num-workers` as a shorthand.
+
+```nohighlight
+$ gsctl create cluster \
+  --owner myorg \
+  --name "Autoscaling Cluster" \
+  --workers-min 6 --workers-max 10
+```
 
 ```nohighlight
 $ gsctl create cluster \
   --owner myorg \
   --name "Dev cluster" \
-  --workers-min 6 --workers-max 10
+  --num-worker 10
 ```
 
 You can use further command line arguments to specify additional parameters of the worker nodes. Still, all worker nodes will have an identical configuration. Example *for bare-metal installations*:
@@ -93,6 +101,7 @@ Some arguments are specific to the provider used in the installation
 - `--owner`, `-o`: Name of the owner organization. Overwrites name given in definition file.
 - `--file`, `-f`: Definition file path. See [cluster defininition reference](../../cluster-definition/) for details.
 - `--name`: Name of the cluster. Overwrites name given in definition file.
+- `--num-workers`: Shorthand to set `--workers-min` and `--workers-max` to the same value.
 - `--workers-min`, `--workers-max`: Minimum and maximum number of worker nodes. For autoscaling clusters (available on AWS since release 6.3.0) this specifies the range within the autoscaler can scale the number of worker nodes. For releases prior to 6.3.0, and to pin the number of worker nodes to a specific amount, and on non-AWS installations, both values must be set to the same number.
 - `--num-workers` (*deprecated*): Shorthand to set both minimum and maximum number of worker nodes to the same value.
 - `--release`, `-r`: Specific release version number to use. Defaults to the latest active release. See [list releases](../list-releases/#definition) for details on releases.
