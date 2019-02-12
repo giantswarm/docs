@@ -31,7 +31,7 @@ creation of a new key pair in the cluster's public key infrastructure (PKI) and
 download it to the client. The PKI stores metadata about the issued key pairs,
 but not the key pairs themselves.
 
-## Usage and Output {#usage}
+## Usage and output {#usage}
 
 The command requires as an argument the ID of the cluster to list key pairs for.
 

@@ -25,7 +25,7 @@ to select a specific release when creating a cluster. In the near future it will
 also be possible to upgrade a cluster to a more recent release provided by the
 installation.
 
-## Usage and Output
+## Usage and output
 
 The command has no specific flags. Simply run it like this:
 

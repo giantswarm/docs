@@ -14,7 +14,7 @@ An endpoint is the Giant Swarm API URL for an installation you access using gsct
 If you have only one installation, you have only one endpoint.
 But if you are using, for example, one installation on-premises and one in the cloud, you have two endpoints.
 
-## Usage and Output
+## Usage and output
 
 The command has no specific flags. Simply run it like this:
 

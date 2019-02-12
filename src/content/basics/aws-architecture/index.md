@@ -11,7 +11,7 @@ categories = ["basics"]
 
 Giant Swarm's Architecture is split into two logical parts, one being the Control Plane and the other being multiple Tenant Clusters. Among other services (for details see Service Architecture below), the control plane runs our [AWS Operator](https://github.com/giantswarm/aws-operator), which handles the full lifecycle management of Tenant Clusters.
 
-## Giant Swarm Control Plane
+## Giant Swarm control plane
 
 ![Control Plane Architecture](/img/architecture-aws-control-plane.png)
 
@@ -23,7 +23,7 @@ The Giant Swarm API, Monitoring and Alerting frontends as well as our Web Manage
 
 Access to those interfaces can be configured to work with the customers' Identity Management System.
 
-## Giant Swarm Tenant Cluster
+## Giant Swarm tenant cluster
 
 ![Tenant Cluster Architecture](/img/architecture-aws-tenant-cluster.png)
 
@@ -35,7 +35,7 @@ One is the Kubernetes API that can be connected to your Identity Management Syst
 
 Networking within the cluster is handled through Calico. 
 
-## Service Architecture
+## Service architecture
 
 ![Service Architecture](/img/architecture-aws-services.png)
 

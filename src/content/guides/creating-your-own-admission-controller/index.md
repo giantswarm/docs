@@ -58,7 +58,7 @@ The second part specifies which rules the API will follow to decide if a request
 
 Since the scope of this guide is not teaching you how to build a PKI bundle, we have created a script, `gen_cert.sh`, in the [grumpy repository](https://github.com/giantswarm/grumpy) which generates a CA bundle and a key pair for our grumpy server. Also we need to provide the CA in the webhook displayed above, in order to allow the Kubernetes API to create a secure connection against our shiny controller.
 
-```bash
+```nohighlight
 // Clone repository in case you did not do it before
 $ git clone https://github.com/giantswarm/grumpy
 
@@ -183,55 +183,53 @@ In the example, we chosen to create the admission controller in Go just because 
 
 Let's start creating an HTTP server with the certs mounted from the secret. The server will listen to the path `validate` as we defined in the webhook.
 
-__Note:__ The code examples have been stripped out to make it easier to understand. For a more detailed look, browse the [repository](github.com/gianstwarm/grumpy).
+__Note:__ The code examples have been stripped out to make it easier to understand. For a more detailed look, browse the [repository](https://github.com/giantswarm/grumpy).
 
-```go
+```golang
+// Read the certs from the convined path and convert it to a X509 keypair
+flag.StringVar(&tlscert, "tlsCertFile", "/etc/certs/cert.pem", "x509 Certificate for HTTPS.")
+flag.StringVar(&tlskey, "tlsKeyFile", "/etc/certs/key.pem", "x509 private key to --tlsCertFile.")
+certs, _ := tls.LoadX509KeyPair(tlscert, tlskey)
 
-  // Read the certs from the convined path and convert it to a X509 keypair
-  flag.StringVar(&tlscert, "tlsCertFile", "/etc/certs/cert.pem", "x509 Certificate for HTTPS.")
-	flag.StringVar(&tlskey, "tlsKeyFile", "/etc/certs/key.pem", "x509 private key to --tlsCertFile.")
-  certs, _ := tls.LoadX509KeyPair(tlscert, tlskey)
+// Create a secure http server
+server := &http.Server{
+  Addr:      ":8080",
+  TLSConfig: &tls.Config{Certificates: []tls.Certificate{certs}},
+}
 
-  // Create a secure http server
-	server := &http.Server{
-		Addr:      ":8080",
-		TLSConfig: &tls.Config{Certificates: []tls.Certificate{certs}},
-	}
-
-	// Create a handler listening to the 'validate' path and start the server
-	gs := GrumpyServerHandler{}
-	mux.HandleFunc("/validate", gs.serve)
-	server.ListenAndServeTLS("", "")
-
+// Create a handler listening to the 'validate' path and start the server
+gs := GrumpyServerHandler{}
+mux.HandleFunc("/validate", gs.serve)
+server.ListenAndServeTLS("", "")
 ```
 
 Inside the grumpy package, we define a `serve` function which reads the request body, then it converts the data to a `Pod` data type and finally checks if the resource name is valid.
 
-```go
-	// Convert raw data in a Pod data type
-  raw := arRequest.Request.Object.Raw
-	pod := v1.Pod{}
-	json.Unmarshal(raw, &pod)
+```golang
+// Convert raw data in a Pod data type
+raw := arRequest.Request.Object.Raw
+pod := v1.Pod{}
+json.Unmarshal(raw, &pod)
 
-  // Actual validation logic
-	if pod.Name != "smooth-app" {
-		return
-	}
+// Actual validation logic
+if pod.Name != "smooth-app" {
+  return
+}
 ```
 
 In case the request name is not the expected one (`smooth-app`), our handler creates a response notifying of the rejection. Otherwise, it returns and the Kubernetes API server will follow the processing of the request.
 
-```go
-  // Create a response to return to the Kubernetes API
-  ar := v1beta1.AdmissionReview{
-		Response: &v1beta1.AdmissionResponse{
-			Allowed: false,
-			Result: &metav1.Status{
-				Message: "Keep calm and not add more crap in the cluster!",
-			},
-		},
-	}
-	resp, err := json.Marshal(ar)
+```golang
+// Create a response to return to the Kubernetes API
+ar := v1beta1.AdmissionReview{
+  Response: &v1beta1.AdmissionResponse{
+    Allowed: false,
+    Result: &metav1.Status{
+      Message: "Keep calm and not add more crap in the cluster!",
+    },
+  },
+}
+resp, err := json.Marshal(ar)
 ```
 
 # Conclusion

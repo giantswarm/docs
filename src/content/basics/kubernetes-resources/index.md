@@ -11,11 +11,11 @@ categories = ["basics"]
 
 As your Giant Swarm cluster offers you a fully-managed Kubernetes, the fundamentals you need are basically concluded by the userside documentation of Kubernetes. We have compiled a list of the best resources to get you started fast.
 
-## Official Kubernetes Documentation
+## Official kubernetes documentation
 
 The first and most important source to enquire should be the [official Kubernetes documentation](http://kubernetes.io/docs/). And as the administration side is mostly taken care of by Giant Swarm, we recommend focussing on the [User Guide](http://kubernetes.io/docs/user-guide/) including the [Kubernetes 101](http://kubernetes.io/docs/user-guide/walkthrough/) and [201](http://kubernetes.io/docs/user-guide/walkthrough/k8s201/).
 
-## Useful Primitives
+## Useful primitives
 
 ### Pods 
 
@@ -23,7 +23,7 @@ Pods are the smallest deployable units of computing that can be created and mana
 
 [Pods Reference](http://kubernetes.io/docs/user-guide/pods/)
 
-### Labels & Selectors
+### Labels and selectors
 
 Labels are key/value pairs that can be attached to objects, such as pods, but also any other object in Kubernetes, even nodes. They should be used to specify identifying attributes of objects that are meaningful and relevant to users. You can then use Selectors to select single or groups of objects.
 
@@ -79,7 +79,7 @@ Giant Swarm clusters come with KubeDNS installed by default. You can use DNS to 
 
 [DNS Documentation](http://releases.k8s.io/master/build/kube-dns/README.md)
 
-## Useful Tools and Content
+## Useful tools and content
 
 There are some useful tools and content out there that help you with get to know Kubernetes.
 
@@ -87,7 +87,7 @@ There are some useful tools and content out there that help you with get to know
 - [Kompose](https://github.com/kubernetes-incubator/kompose) is a tool to move from `docker-compose` to Kubernetes.
 - [Helm](https://github.com/kubernetes/helm/blob/master/docs/install.md) is a package manager for Kubernetes that helps you deploy common applications to your cluster.
 
-## Useful Blog Posts
+## Useful blog posts
 
 We have also written some more detailed out blog posts about the basic Kubernetes concepts and use cases for them.
 
@@ -98,6 +98,6 @@ We have also written some more detailed out blog posts about the basic Kubernete
 - [Understanding Basic Kubernetes Concepts V - Daemon Sets and Jobs](https://blog.giantswarm.io/understanding-basic-kubernetes-concepts-v-daemon-sets-and-jobs/)
 - [Getting Started With A Local Kubernetes Environment](https://blog.giantswarm.io/getting-started-with-a-local-kubernetes-environment/)
 
-## Extended Reading
+## Extended reading
 
 For more extensive and deeper information on Kubernetes you should check out the [Reference Documentation](http://kubernetes.io/docs/reference/), which includes among others the [API documentation](http://kubernetes.io/docs/api/), [CLI documentation](http://kubernetes.io/docs/user-guide/kubectl-overview/), and a Glossary with deeper explanations of all resources.

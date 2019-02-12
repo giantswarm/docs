@@ -13,7 +13,7 @@ Kubernetes provides resource Quality of Service (QoS) to Pods based on what reso
 
 The QoS is enforced automatically based on the constraints you set for your Pods in their specification.
 
-## Defining Resource Constraints for Pods
+## Defining resource constraints for Pods
 
 You can specify requests and limits for CPU and RAM usage for each container of a Pod by setting:
 
@@ -34,21 +34,21 @@ CPU resoures are measured in (v)Core equivalents. You can specify them in decima
 
 Memory resources are measured in bytes. You specify them as decimals with one of SI suffixes (E, P, T, G, M, K) or their power-of-two equivalents (Ei, Pi, Ti, Gi, Mi, Ki). For example, the following represent roughly the same value: 128974848, 129e6, 129M, 123Mi.
 
-## How Pods are Scheduled
+## How Pods are scheduled
 
-When a pod is created, the Kubernetes scheduler selects a node for the pod to run on. Each node has a maximum capacity for RAM and CPU. The scheduler ensures that, for each resource type, the sum of the resource requests (not limits!) of the containers scheduled to the node is less than the capacity of the node.
+When a pod is created, the Kubernetes scheduler selects a node for the Pod to run on. Each node has a maximum capacity for RAM and CPU. The scheduler ensures that, for each resource type, the sum of the resource requests (not limits!) of the containers scheduled to the node is less than the capacity of the node.
 
 Note that even when actual memory or CPU usage might be low, the scheduler will still refuse to place pods onto nodes if the capacity check fails. This protects against a resource shortage when resource usage increases, e.g. due to a daily peak or other kind of load increase.
 
-## Resource Guarantees
+## Resource guarantees
 
 Kubernetes differentiates between compressible and incompressible resources. Former currently supports CPU and latter currently only Memory.
 
 For compressible resources, Pods are guaranteed to get the amount they requested, they might or might not get additional resources. If Pods exceed their limits they will be throttled accordingly. If no limit is set they may use as much of the compressible resource as available.
 
-For incompressible resources, Pods are guaranteed to get the amount they requested. If they exceed their request they might get killed (e.g. when another pod requests more of the resource). If Pods use more than their limit, the process that is using the most amount of memory, inside one of the pod's containers, will be killed by the kernel.
+For incompressible resources, Pods are guaranteed to get the amount they requested. If they exceed their request they might get killed (e.g. when another pod requests more of the resource). If Pods use more than their limit, the process that is using the most amount of memory, inside one of the Pod's containers, will be killed by the kernel.
 
-## Quality of Service Classes
+## Quality of service classes
 
 There are three QoS classes for Pods: Guaranteed, Burstable, and Best-Effort.
 
@@ -58,7 +58,7 @@ If `requests` and optionally `limits` are set (not equal to `0`) for one or more
 
 If `requests` and `limits` are not set for all of the resources, across all containers, then the pod is classified as __Best-Effort__.
 
-## Further Reading
+## Further reading
 
 - [Managing Compute Resources](http://kubernetes.io/docs/user-guide/compute-resources/)
 - [Pod Quality of Service in Kubernetes](https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/)
