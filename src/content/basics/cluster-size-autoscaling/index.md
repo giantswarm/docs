@@ -51,6 +51,10 @@ Using such a small instance type with the default utilization threshold of {{% a
 For automatic down-scaling to work, utilization threshold and instance type have to fit together.
 The default worker nodes instance type for AWS (`{{% default_aws_instance_type %}}`) and the default utilization threshold ({{% autoscaler_utilization_threshold %}}) are adjusted so that down-scaling should work as expected.
 
+And similarly up-scaling is affected if you eg start a cluster with a minimum of one node. If one single node is too small for the baseline utilization of the cluster the autoscaler itself might not fit onto the node anymore and therefore the cluster won't ever get scaled.
+
+We've changed the default instance type on AWS to `{{% default_aws_instance_type %}}` and up/down-scaling will work. You can still choose `m?.large`. But there will be at least problems with scaling up a cluster since the nodes are too small.
+
 If you decide to run larger instance types, you may ask the Giant Swarm support team to adjust the utilization threshold of a particular cluster for you.
 
 ## Ingress controller replicas with autoscaling
