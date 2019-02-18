@@ -359,6 +359,8 @@ data:
   vts-default-filter-key: ""
 ```
 
+__Warning:__ We also allow setting `use-proxy-protocol: "true"/"false"`. This setting always applies globally for the `nginx-ingress-controller`. All applications providing services behind ingresses need to understand this protocol or they will fail. Furthermore, the load balancer in front of the ingress controller also needs to be set up correctly. So currently, customizing setting only makes sense on bare metal installations and will require a matching configuration on the load balancers.
+
 On cluster creation the ConfigMap is empty and above defaults will be applied to the final Ingress Controller deployment. To override any of the above values, you just need to add the respective line in the data field of the user ConfigMap.
 
 ## Further reading
