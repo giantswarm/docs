@@ -4,7 +4,6 @@ This is the main documentation repository for the documentation available at htt
 
 ## Repository overview
 
-
 This repository named `docs` holds the main **content** of our documentation. The documentation
 site is created using the static site generator [HUGO](http://gohugo.io/) based on Markdown files
 in the `src/content/` directory. Images are in the `src/static/img/` directory.
@@ -78,6 +77,12 @@ To control this behaviour, the anchor ID can be edited as a suffix to the markdo
 will result in a headline
 
     <h3 id="more">Another section with more content</h3>
+
+### Shortcodes
+
+We maintain some information, like configuration-specific details, in only one place using so-called shortcodes.
+
+See [shortcodes](https://github.com/giantswarm/docs/tree/master/src/layouts/shortcodes) for details.
 
 ### Previewing changes
 
