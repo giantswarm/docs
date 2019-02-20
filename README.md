@@ -86,6 +86,8 @@ configuration details.
 
 The goal here is to give users accurate, complete and up-to-date information.
 
+Shortcodes exist as one file each in the folder [src/layouts/shortcodes](https://github.com/giantswarm/docs/tree/master/src/layouts/shortcodes).
+
 #### Usage
 
 A shortcode can only be placed in *Markdown* text. The file name (without
