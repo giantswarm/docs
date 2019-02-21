@@ -92,7 +92,7 @@ data:
     }
 ```
 
-__Warning:__ Please make sure you test the final `Corefile`carefully. We do not take responsibility of wrong custom configuration that could break workload communication.
+__Warning:__ Please make sure you test the final `Corefile` carefully. We do not take responsibility of wrong custom configuration that could break workload communication.
 
 ## Further reading
 
