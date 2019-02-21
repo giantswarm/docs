@@ -1,7 +1,7 @@
 +++
 title = "Cluster Definition YAML Reference"
 description = "Complete documentation of the Giant Swarm cluster definition YAML format"
-date = "2019-01-31"
+date = "2019-02-21"
 layout = "subsection"
 weight = 100
 +++
@@ -11,19 +11,6 @@ weight = 100
 The [`gsctl create cluster`](../gsctl/create-cluster/) command can consume YAML files conforming to this specification to create new clusters.
 
 The YAML format corresponds directly with the Giant Swarm API v4 request body spec for [creating clusters](/api/#operation/addCluster).
-
-
-## General notes on YAML
-
-Chances are that you already work with YAML in various places. If not, here are some hints:
-
-- In YAML, whitespace is important. Indentation must be made using blanks (space), not tabs.
-
-- If in doubt, check your YAML in a linter. There are plenty online, e. g. [yamllint.com](http://www.yamllint.com/).
-
-- JSON is valid YAML. If you prefer JSON's notation, just use valid JSON.
-
-- You can add comments to YAML files by starting a line with the character `#`.
 
 ## Examples
 
@@ -81,6 +68,19 @@ workers:
 - `aws.instance_type`: The AWS EC2 instance type to use for worker nodes, e. g. `m5.large`.
 - `azure`: Settings specific to Azure based clusters
 - `azure.vm_size`: The Azure VM size to use for worker nodes
+
+## General notes on YAML
+
+Chances are that you already work with YAML in various places. If not, here are some hints:
+
+- In YAML, whitespace is important. Indentation must be made using blanks (space), not tabs.
+
+- If in doubt, check your YAML in a linter. There are plenty online, e. g. [yamllint.com](http://www.yamllint.com/).
+
+- JSON is valid YAML. If you prefer JSON's notation, just use valid JSON.
+
+- You can add comments to YAML files by starting a line with the character `#`.
+
 
 ## Related
 
