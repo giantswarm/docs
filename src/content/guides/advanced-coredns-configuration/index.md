@@ -76,6 +76,24 @@ This setting would proxy all requests within foo.com to 1.1.1.1 which is Cloudfl
 
 The proxy plugin also supports much more detailed configuration which is documented in the [upstream documentation](https://coredns.io/plugins/proxy/).
 
+## Advanced configuration
+
+In case you need to use an additional plugin or existing plugin but with special configuration, you can use the `custom` block in the configmap. It will be parsed directly to the Corefile.
+
+```yaml
+data:
+  custom: |
+    proxy foo.com 1.1.1.1 {
+      policy least_conn
+      spray
+    }
+    cache 200 {
+      denial 1024 10
+    }
+```
+
+__Warning:__ Please make sure you test the final `Corefile`carefully. We do not take responsibility of wrong custom configuration that could break workload communication.
+
 ## Further reading
 
 - [CoreDNS Website](https://coredns.io/)
