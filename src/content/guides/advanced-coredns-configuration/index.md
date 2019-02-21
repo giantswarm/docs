@@ -78,7 +78,7 @@ The proxy plugin also supports much more detailed configuration which is documen
 
 ## Advanced configuration
 
-In case you need to use an additional plugin or existing plugin but with special configuration, you can use the `custom` block in the configmap. It will be parsed directly to the Corefile.
+In case you need to use an additional plugin or an existing plugin but with a special configuration, you can use the `custom` block in the configmap. It will be parsed directly into the Corefile.
 
 ```yaml
 data:
@@ -92,7 +92,7 @@ data:
     }
 ```
 
-__Warning:__ Please make sure you test the final `Corefile` carefully. We do not take responsibility of wrong custom configuration that could break workload communication.
+__Warning:__ Please make sure you test the final `Corefile` carefully. We do not take responsibility for incorrect custom configuration that could break workload communication.
 
 ## Further reading
 
