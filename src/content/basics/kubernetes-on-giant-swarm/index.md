@@ -42,6 +42,8 @@ As we are taking care of your cluster, we need to run some agents (e.g. for moni
 
 Similarly, some parts of the DNS, Ingress Controller, and Calico setups are visible to you inside your cluster. To ensure that your cluster runs without problems, please refrain from manipulating the `kube-system` namespace as well as the pods and other resources running in them if they are not documented.
 
+We customized the audit policy file by introducing rules that make the `Kube-apiserver` less verbose. The main philosophy behind is to mute those rules which have low-risk and produce high-volume of logs.  Check the repository [giantswarm/k8scloudconfig](https://github.com/giantswarm/k8scloudconfig) for a file named `audit-policy.yaml` under the folder named `policies`.
+  
 ### Specifics on AWS
 
 On AWS all resources (besides minor resources on S3 and KMS) pertaining to a cluster carry the two following tags:
