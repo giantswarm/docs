@@ -1,7 +1,7 @@
 +++
 title = "The Giant Swarm AWS Architecture"
 description = "Architecture Overview showing how Giant Swarm is set up on Amazon Web Services"
-date = "2018-08-16"
+date = "2019-02-11"
 weight = 20
 type = "page"
 categories = ["basics"]
@@ -15,7 +15,7 @@ Giant Swarm's Architecture is split into two logical parts, one being the Contro
 
 ![Control Plane Architecture](/img/architecture-aws-control-plane.png)
 
-The above diagram shows our PoC setup and runs over two availability zones. We setup two Bastion hosts, one in each Availability Zone. All EC2 machines are in a private subnet and only accessible through the Bastion hosts.
+The above diagram shows our control plane setup running over three availability zones. We setup two bastion hosts in different availability zones. All instances are in a private subnet and only accessible through the bastion hosts. Bastions hosts are available via AWS VPN connection only.
 
 The cluster has several APIs and Interfaces. The Kubernetes API of the Control Plane is only available to Giant Swarm operations personel and only through the Bastion hosts. 
 
