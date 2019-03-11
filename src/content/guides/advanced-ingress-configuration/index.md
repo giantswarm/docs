@@ -366,7 +366,7 @@ On cluster creation the ConfigMap is empty and above defaults will be applied to
 
 ## Default certificate
 
-Once you want to have the default server on the nginx controller support TLS you need to provide a certificate. This is made thanks to the flag `--default-ssl-certificate`. Now you can provide this value in the `user-value` configmap to force the component to be restarted with the certificate provided. The value of the property should be the namespace and secret name which holds the certificate content.
+When you want to have the default server on the nginx controller support TLS you need to provide a certificate. This is configured using the flag `--default-ssl-certificate`. Now you can provide this value in the `user-value` configmap to force the component to be restarted with the provided certificate. The value of the property should be the namespace and secret name which holds the certificate content.
 
 ```yaml
 data:
@@ -375,7 +375,7 @@ data:
 
 ## Custom annotation prefix
 
-By default we use the default annotation prefix `nginx.ingress.kubernetes.io` in the ingress controller. In case the customer needs to have a especific one it can be done through the 'user-values' configmap. It is recommended when there is more than one ingress controller, so in the ingress resource the prefix can discriminate between controllers.
+By default we use the standard annotation prefix `nginx.ingress.kubernetes.io` in the ingress controller. In case the customer needs to have a specific one this can be done via the 'user-values' configmap. This is recommended when there is more than one ingress controller. So in the ingress resource the prefix can be used to distinguish between controllers.
 
 ```yaml
 data:
