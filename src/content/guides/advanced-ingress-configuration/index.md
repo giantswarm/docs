@@ -348,6 +348,7 @@ data:
   enable-vts-status: "true"
   error-log-level: "error"
   hsts: "false"
+  large-client-header-buffers: "4 8K"
   log-format-upstream: "$status $body_bytes_sent $http_referer"
   server-name-hash-bucket-size: "1024"
   server-name-hash-max-size: "1024"
@@ -362,6 +363,24 @@ data:
 __Warning:__ We also allow setting `use-proxy-protocol: "true"/"false"`. This setting always applies globally for the `nginx-ingress-controller`. All applications providing services behind ingresses need to understand this protocol or they will fail. Furthermore, the load balancer in front of the ingress controller also needs to be set up correctly. So currently, customizing setting only makes sense on bare metal installations and will require a matching configuration on the load balancers.
 
 On cluster creation the ConfigMap is empty and above defaults will be applied to the final Ingress Controller deployment. To override any of the above values, you just need to add the respective line in the data field of the user ConfigMap.
+
+## Default certificate
+
+Once you want to have the default server on the nginx controller support TLS you need to provide a certificate. This is made thanks to the flag `--default-ssl-certificate`. Now you can provide this value in the `user-value` configmap to force the component to be restarted with the certificate provided. The value of the property should be the namespace and secret name which holds the certificate content.
+
+```yaml
+data:
+  default-ssl-certificate: "default/foo-tls"
+```
+
+## Custom annotation prefix
+
+By default we use the default annotation prefix `nginx.ingress.kubernetes.io` in the ingress controller. In case the customer needs to have a especific one it can be done through the 'user-values' configmap. It is recommended when there is more than one ingress controller, so in the ingress resource the prefix can discriminate between controllers.
+
+```yaml
+data:
+  annotations-prefix: "custom.prefix.io"
+```
 
 ## Further reading
 
