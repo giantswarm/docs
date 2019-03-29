@@ -38,43 +38,43 @@ Above setting increases the TTL to 60 seconds.
 
 The cache plugin also supports much more detailed configuration which is documented in the [upstream documentation](https://coredns.io/plugins/cache/).
 
-## Additional proxies
+## Additional forwards (formerly known as proxy)
 
-The default proxy entry we set in CoreDNS is
+The default forward entry we set in CoreDNS is
 
 ```yaml
-proxy . /etc/resolv.conf
+forward . /etc/resolv.conf
 ```
 
-You can add additional proxy entries by adding a each as a line to the proxy field of the user ConfigMap.
+You can add additional forward entries by adding a each as a line to the foward field of the user ConfigMap.
 
 For a single entry you can use the same line.
 
 ```yaml
 data:
-  proxy: foo.com 1.1.1.1
+  foward: foo.com 1.1.1.1
 
 ```
 
-For multplie entries you add a string with a proxy entry per line.
+For multplie entries you add a string with a forward entry per line.
 
 ```yaml
 data:
-  proxy: |
+  forward: |
     foo.com 1.1.1.1
     bar.com 8.8.8.8
 ```
 
-Above example would result in following additional proxy entries in the CoreDNS configuration:
+Above example would result in following additional forward entries in the CoreDNS configuration:
 
 ```yaml
-proxy foo.com 1.1.1.1
-proxy bar.com 8.8.8.8
+forward foo.com 1.1.1.1
+forward bar.com 8.8.8.8
 ```
 
-This setting would proxy all requests within foo.com to 1.1.1.1 which is Cloudflare's DNS and all requests within bar.com to 8.8.8.8 which is Google Public DNS. All other requests will be resolved by the default DNS provider set for your cluster.
+This setting would forward all requests within foo.com to 1.1.1.1 which is Cloudflare's DNS and all requests within bar.com to 8.8.8.8 which is Google Public DNS. All other requests will be resolved by the default DNS provider set for your cluster.
 
-The proxy plugin also supports much more detailed configuration which is documented in the [upstream documentation](https://coredns.io/plugins/proxy/).
+The forward plugin also supports much more detailed configuration which is documented in the [upstream documentation](https://coredns.io/plugins/forward/).
 
 ## Advanced configuration
 
@@ -83,9 +83,9 @@ In case you need to use an additional plugin or an existing plugin but with a sp
 ```yaml
 data:
   custom: |
-    proxy foo.com 1.1.1.1 {
+    forward foo.com 1.1.1.1 {
       policy least_conn
-      spray
+      health_check 5s
     }
     cache 200 {
       denial 1024 10
@@ -98,4 +98,4 @@ __Warning:__ Please make sure you test the final `Corefile` carefully. We do not
 
 - [CoreDNS Website](https://coredns.io/)
 - [CoreDNS cache plugin](https://coredns.io/plugins/cache/)
-- [CoreDNS proxy plugin](https://coredns.io/plugins/proxy/)
+- [CoreDNS forward plugin](https://coredns.io/plugins/forward/)
