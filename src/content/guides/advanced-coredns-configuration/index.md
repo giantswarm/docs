@@ -40,57 +40,58 @@ The cache plugin also supports much more detailed configuration which is documen
 
 ## Additional forwards (formerly known as proxy)
 
+In CoreDNS version `1.4.0` the proxy plugin has been deprecated. The same behaviour can be achieved now with forward although syntax can be a bit different. The forward plugin indeed has better performance because it reuses opened upstream connections.
+
 The default forward entry we set in CoreDNS is
 
 ```yaml
 forward . /etc/resolv.conf
 ```
 
-You can add additional forward entries by adding a each as a line to the foward field of the user ConfigMap.
+You can add additional forward entries by adding a each as a line to the foward field of the user ConfigMap. They will be select by sequential order.
 
-For a single entry you can use the same line.
+You can use a simple line or multiple lines to define the upstreams of the default server block.
 
 ```yaml
 data:
-  foward: foo.com 1.1.1.1
-
+  foward: 1.1.1.1
 ```
 
-For multplie entries you add a string with a forward entry per line.
-
 ```yaml
 data:
-  forward: |
-    foo.com 1.1.1.1
-    bar.com 8.8.8.8
+  foward: |
+    1.1.1.1
+    8.8.8.8
 ```
 
 Above example would result in following additional forward entries in the CoreDNS configuration:
 
 ```yaml
-forward foo.com 1.1.1.1
-forward bar.com 8.8.8.8
+forward . 1.1.1.1 /etc/resolv.conf
 ```
 
-This setting would forward all requests within foo.com to 1.1.1.1 which is Cloudflare's DNS and all requests within bar.com to 8.8.8.8 which is Google Public DNS. All other requests will be resolved by the default DNS provider set for your cluster.
+```yaml
+forward . 1.1.1.1 8.8.8.8 /etc/resolv.conf
+```
+
+This setting would forward all requests to 1.1.1.1 which is Cloudflare's DNS. If the first upstream fails the second IP (8.8.8.8) will be used as resolver. In case it fails too, all requests will be resolved by the default DNS provider set for your cluster.
 
 The forward plugin also supports much more detailed configuration which is documented in the [upstream documentation](https://coredns.io/plugins/forward/).
 
 ## Advanced configuration
 
-In case you need to use an additional plugin or an existing plugin but with a special configuration, you can use the `custom` block in the configmap. It will be parsed directly into the Corefile.
+In case you need to have a finer granularity you can define custom server blocks with all configuration desired. They will be parsed after the catch-all block in the Corefile. As an example, let's define a block for a `example.com` with some custom configuration:
 
 ```yaml
 data:
   custom: |
-    forward foo.com 1.1.1.1 {
-      policy least_conn
-      health_check 5s
-    }
-    cache 200 {
-      denial 1024 10
+    example.com {
+      forward . 9.9.9.9
+      cache 2000
     }
 ```
+
+This custom configuration allows CoreDNS resolve all `example.com` requests to a different upstream DNS resolver (9.9.9.9) than generic one. At the same time we use a different cache TTL(2000) setting. 
 
 __Warning:__ Please make sure you test the final `Corefile` carefully. We do not take responsibility for incorrect custom configuration that could break workload communication.
 
