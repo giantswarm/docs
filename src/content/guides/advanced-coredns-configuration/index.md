@@ -38,7 +38,7 @@ Above setting increases the TTL to 60 seconds.
 
 The cache plugin also supports much more detailed configuration which is documented in the [upstream documentation](https://coredns.io/plugins/cache/).
 
-## Additional forwards (formerly known as proxy)
+## Additional forwards (formerly known as proxy) {#additional-forwards}
 
 In CoreDNS version `1.4.0` the proxy plugin has been deprecated. The same behaviour can be achieved now with forward although syntax can be a bit different. The forward plugin indeed has better performance because it reuses opened upstream connections.
 
