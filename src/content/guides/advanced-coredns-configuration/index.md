@@ -64,6 +64,8 @@ data:
     8.8.8.8
 ```
 
+__Warning:__ The number of forward upstreams is limited to 15.
+
 Above example would result in following additional forward entries in the CoreDNS configuration:
 
 ```yaml
