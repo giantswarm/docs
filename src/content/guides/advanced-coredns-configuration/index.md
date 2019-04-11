@@ -40,7 +40,7 @@ The cache plugin also supports much more detailed configuration which is documen
 
 ## Additional forwards (formerly known as proxy) {#additional-forwards}
 
-In CoreDNS version `1.4.0` the proxy plugin has been deprecated. The same behaviour can be achieved now with forward although syntax can be a bit different. The forward plugin indeed has better performance because it reuses opened upstream connections.
+In CoreDNS version `1.4.0` the proxy plugin has been deprecated. The same behaviour can be achieved now with forward although the syntax can be a bit different. The forward plugin has better performance because it reuses opened upstream connections.
 
 The default forward entry we set in CoreDNS is
 
@@ -48,25 +48,25 @@ The default forward entry we set in CoreDNS is
 forward . /etc/resolv.conf
 ```
 
-You can add additional forward entries by adding a each as a line to the foward field of the user ConfigMap. They will be select by sequential order.
+You can add additional forward entries by adding a each as a line to the forward field of the user ConfigMap. They will be selected in sequential order.
 
 You can use a simple line or multiple lines to define the upstreams of the default server block.
 
 ```yaml
 data:
-  foward: 1.1.1.1
+  forward: 1.1.1.1
 ```
 
 ```yaml
 data:
-  foward: |
+  forward: |
     1.1.1.1
     8.8.8.8
 ```
 
 __Warning:__ The number of forward upstreams is limited to 15.
 
-Above example would result in following additional forward entries in the CoreDNS configuration:
+Above example would result in the following additional forward entries in the CoreDNS configuration:
 
 ```yaml
 forward . 1.1.1.1 /etc/resolv.conf
@@ -82,7 +82,7 @@ The forward plugin also supports much more detailed configuration which is docum
 
 ## Advanced configuration
 
-In case you need to have a finer granularity you can define custom server blocks with all configuration desired. They will be parsed after the catch-all block in the Corefile. As an example, let's define a block for a `example.com` with some custom configuration:
+In case you need to have a finer granularity you can define custom server blocks with all desired configuration. They will be parsed after the catch-all block in the Corefile. As an example, let's define a block for a `example.com` with some custom configuration:
 
 ```yaml
 data:
