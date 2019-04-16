@@ -1,6 +1,6 @@
 +++
 title = "Giant Swarm Support"
-description = "Here we explain how our support service works."
+description = "An explanation of how our support service works."
 date = "2019-04-16"
 type = "page"
 weight = 20
@@ -9,41 +9,41 @@ categories = ["basics"]
 
 # Giant Swarm Support
 
-Our support service is one of the key differentiators from our competency. We have built a platform which lets our customer spin clusters up as they please. These clusters are then always in the same predictable state and becomes especially valuable once you need to run multiple clusters for different teams, different stages, different configurations or in different locations.
+Our support service is one of the key differentiators from our competitors. We have built a platform which lets our customer spin up as many clusters as they need. These clusters are then always in the same predictable state. This becomes especially valuable once you need to run multiple clusters for different teams, environments, configurations or in multiple locations.
 
-We are alwas at the side of our customer over the whole journey. For us, having a great platform is as important as having someone to nudge when problems occur. Following a brief description of our support process.
+We are always at the side of our customers during their whole journey. For us, having a great platform is as important as having someone to contact when problems occur. The following is a brief description of our support process.
 
 ## Customer Support
 
-Our customer support relies on close interactions via Slack, to get bi-directional feedback as quickly as possible. This our first contact line to customers, who can ask all kinds of questions, not only in relations to the platform itself, but many more around the Cloud Native journey.
+Our customer support relies on close interactions via Slack, to get bi-directional feedback as quickly as possible. This is our first line of contact to customers, who can ask all kinds of questions, not only in relations to the platform itself, but many more around their whole Cloud Native journey.
 
-Our support shifts go from 8:00 a.m. to 6 p.m. on weekdays, but often answer questions well out of those times. We have a rotating shift for support across the team, which is why we keep support focussed on those channels with clear internal handovers.
+Our support shifts go from 08:00 to 18:00 on weekdays, but we also often answer questions well outside those times. We have a rotating shift for support across the team, which is why we keep support focussed on those channels with clear internal handovers.
 
-Once there is a problem that the first line support cannot resolve, it is handed over the `ops duty` engineer, again a rotating 24 hour shift, who has a deeper knowledge of the platform.
+If there is a problem that the first line support cannot resolve, it is handed over the `ops duty` engineer, again a rotating 24 hour shift, who has a deeper knowledge of the platform.
 
-Additionally, each customer has a dedicated solution engineer as additional support and first fall back in case the person on first line support is overloaded, and for regular sync meetings. On top of that we have an SRE of the week that handles project level work (e.g. installations) and is the fall back for the ops duty engineer. 
+Additionally, each customer has a dedicated Solution Engineer as additional support and a first backup in case the person on first line support is overloaded, and for regular sync meetings. On top of that we also have an SRE of the week who handles project level work (e.g. installations) and is the backup for the Ops Duty engineer. 
 
-## Operation Support
+## Operational Support
 
-Giant Swarm platform comes with a monitoring and alert system that helps our operation team to maintain our SLAs through all customer clusters. This is the second duty for the ops duty engineer on call every day watching over all alerts coming from all different environments where our customers run their workloads. The operation shift last 24 hours/7 days per week, so we ensure nothing happens even when errors come up during night or weekends.
+The Giant Swarm platform comes with a monitoring and alert system that helps our operations team to maintain our SLAs through all customer clusters. This is the second duty for the ops duty engineer on call every day watching over all alerts coming in from all environments where our customers run their workloads. The Ops Duty shift is 24/7, so we ensure issues are handled even when they occur during the night or at weekends.
 
 The monitoring stack observes the underlying infrastructure of the platform, the networking layer, DNS resolution, Kubernetes main components and another set of targets that gives us a complete view of the health of the system.
 
-Today our mean acknowledge average is around two minutes and we usually resolved the incidents in less than two hours. Obviously, it does not mean all the alerts result in a downtime in customer environment as alerts are set to make sure we fix problems before they lead to real incidents.
+Today our mean time to acknowledge is around two minutes and we usually resolve incidents in less than two hours. Obviously, it does not mean all alerts result in downtime in a customer environment. As alerts are set to make sure we fix problems before they lead to real incidents.
 
-Additionally, customers have a special email to reach our ops duty engineer 24/7 in case the notice problems that have not been caught by our monitoring.
+Additionally, customers have a special email address to reach our ops duty engineer 24/7.  In case they notice problems that have not been caught by our monitoring.
 
 ## Postmortem process
 
-When an issue appears that cannot be fully resolved by the support team, meaning only a temporary fix was applied, and could potentially affect other environments or customer, the support or ops duty engineer creates a postmortem. The `postmortem` culture [was created by Google](https://landing.google.com/sre/sre-book/chapters/postmortem-culture/) was established in order to document the problem correctly, find the root cause and fix it across all installations permanently.
+Sometimes an issue occurs that cannot be fully resolved by the support team. Meaning only a temporary fix was applied, and could potentially affect other environments or customers. The support or ops duty engineer will create a postmortem. The `postmortem` culture [was created by Google](https://landing.google.com/sre/sre-book/chapters/postmortem-culture/) and was established in order to document the problem correctly, find the root cause and fix it across all installations permanently.
 
-The postmortems are created during the whole week. On Mondays, the product team meets and distribute the postmortems through the teams. Afterwards, each team plans the week sprint and assign the person who will work on the postmortem. The postmortem has priority over the feature development and engineer used to arrange at least a day to work on it.
+The postmortems are created during the whole week. On Mondays, the product team meets and distribute the postmortems through the teams. Afterwards, each team plans their weekly sprint and assign the person who will work on the postmortem. The postmortem has priority over feature development and engineers are used to spending at least a day a week to work on these problems.
 
-The postmortem is closed once the underlying issue is fixed and deployed to all affected environments. Additionally a postmortem comes with a new or tuned alert and ops recipe to share the knowledge through the operation team.
+The postmortem is closed once the underlying issue is fixed and deployed to all affected environments. Additionally postmortems often result in new or tuned alerts and ops recipes to share knowledge through the operations team.
 
 # Conclusion
 
-Our support process is subject to change as we exercise it and discover how to improve or policies the process and the tools, but the goals are clear and we are committed to serving a seamlessly support to our customers.
+Our support process is subject to change. As we continuously improve it as we discover how to improve our policies, process and tools, but the goals are clear and we are committed to seamlessly supporting our customers.
 
 ## Further reading
 
