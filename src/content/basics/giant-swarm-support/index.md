@@ -27,7 +27,7 @@ Additionally, each customer has a dedicated Solution Engineer as additional supp
 
 The Giant Swarm platform comes with a monitoring and alert system that helps our operations team to maintain our SLAs through all customer clusters. This is the second duty for the ops duty engineer on call every day watching over all alerts coming in from all environments where our customers run their workloads. The Ops Duty shift is 24/7, so we ensure issues are handled even when they occur during the night or at weekends.
 
-The monitoring stack observes the underlying infrastructure of the platform, the networking layer, DNS resolution, Kubernetes main components and another set of targets that gives us a complete view of the health of the system.
+The monitoring stack observes the underlying infrastructure of the platform, the networking layer, DNS resolution, Kubernetes core components and another set of targets that gives us a complete view of the health of the system.
 
 Today our mean time to acknowledge is around two minutes and we usually resolve incidents in less than two hours. Obviously, it does not mean all alerts result in downtime in a customer environment. As alerts are set to make sure we fix problems before they lead to real incidents.
 
