@@ -9,33 +9,37 @@ categories = ["basics"]
 
 # Giant Swarm Support
 
-Our support service is one of the key differentiators from our competency. We have built a platform which lets our customer spin clusters up as they please. But to be honest, installing a Kubernetes cluster today is not such a difficult endeavour anymore. The problems arrive in the two and three when customer run several production workloads with different requirements and configurations.
+Our support service is one of the key differentiators from our competency. We have built a platform which lets our customer spin clusters up as they please. These clusters are then always in the same predictable state and becomes especially valuable once you need to run multiple clusters for different teams, different stages, different configurations or in different locations.
 
-Our take is going along with the customer over the whole journey. For us, have a great platform is the same important as having someone to nudge when a problem comes. Here we will describe in a brief how our support process is defined.
+We are alwas at the side of our customer over the whole journey. For us, having a great platform is as important as having someone to nudge when problems occur. Following a brief description of our support process.
 
 ## Customer Support
 
-Our customer support relies on a close interaction channel, Slack, to get feedback from customer sort out as quick as possible. This our first contact line to the customer. Customer engineers usually ask question all types, not only problem with the platform itself but any question related to Cloud Native ecosystem. 
+Our customer support relies on close interactions via Slack, to get bi-directional feedback as quickly as possible. This our first contact line to customers, who can ask all kinds of questions, not only in relations to the platform itself, but many more around the Cloud Native journey.
 
-Our customer shifts go from 8:00 a.m. to 6 p.m. in weekly days, but as we have colleagues working around the world questions coming out of business hours are sort out most of the times.
+Our support shifts go from 8:00 a.m. to 6 p.m. on weekdays, but often answer questions well out of those times. We have a rotating shift for support across the team, which is why we keep support focussed on those channels with clear internal handovers.
 
-Once there is a problem that the first line support cannot resolve, it is handed over the `ops duty` engineer who has a deeper knowledge of the platform. At the same time there is an SRE every week to assist the support team in case something goes wrong (luckily it only happens on rare occassions).
+Once there is a problem that the first line support cannot resolve, it is handed over the `ops duty` engineer, again a rotating 24 hour shift, who has a deeper knowledge of the platform.
+
+Additionally, each customer has a dedicated solution engineer as additional support and first fall back in case the person on first line support is overloaded, and for regular sync meetings. On top of that we have an SRE of the week that handles project level work (e.g. installations) and is the fall back for the ops duty engineer. 
 
 ## Operation Support
 
-Giant Swarm platform comes with a monitoring and alert system that helps our operation team to maintain our SLAs on shape through all customer clusters. Together there is on-call engineer every day watching over all alerts come from all different environments where our customers run their workloads. The operation shift last 24 hours/7 days per week, so we ensure nothing happen even errors come during night or weekends.
+Giant Swarm platform comes with a monitoring and alert system that helps our operation team to maintain our SLAs through all customer clusters. This is the second duty for the ops duty engineer on call every day watching over all alerts coming from all different environments where our customers run their workloads. The operation shift last 24 hours/7 days per week, so we ensure nothing happens even when errors come up during night or weekends.
 
 The monitoring stack observes the underlying infrastructure of the platform, the networking layer, DNS resolution, Kubernetes main components and another set of targets that gives us a complete view of the health of the system.
 
-Today our mean acknowledge average is around two minutes and we usually resolved the incidents in less than two hours. Obviously, it does not mean all the alerts triggered mean downtime in customer environment as alert could cover from storage problems to overload nodes.
+Today our mean acknowledge average is around two minutes and we usually resolved the incidents in less than two hours. Obviously, it does not mean all the alerts result in a downtime in customer environment as alerts are set to make sure we fix problems before they lead to real incidents.
+
+Additionally, customers have a special email to reach our ops duty engineer 24/7 in case the notice problems that have not been caught by our monitoring.
 
 ## Postmortem process
 
-When appears an issue that cannot be resolved by the support team and it could potentially affect other environments or customer, the person on support creates a postmortem. The `postmortem` culture [was created by Google](https://landing.google.com/sre/sre-book/chapters/postmortem-culture/), in order to document the problem correctly and find lately a proven solution for the root cause. 
+When an issue appears that cannot be fully resolved by the support team, meaning only a temporary fix was applied, and could potentially affect other environments or customer, the support or ops duty engineer creates a postmortem. The `postmortem` culture [was created by Google](https://landing.google.com/sre/sre-book/chapters/postmortem-culture/) was established in order to document the problem correctly, find the root cause and fix it across all installations permanently.
 
-The postmortems could be created during the whole week but on Mondays, the product team meets and distribute the postmortems through the teams. Afterwards, each team plans the week sprint and assign the person who will work on the postmortem. The postmortem has priority over the feature development and engineer used to arrange at least a day to work on it.
+The postmortems are created during the whole week. On Mondays, the product team meets and distribute the postmortems through the teams. Afterwards, each team plans the week sprint and assign the person who will work on the postmortem. The postmortem has priority over the feature development and engineer used to arrange at least a day to work on it.
 
-The postmortem is closed once the back issue is fixed and deployed to all affected environments. But most of the times a postmortem comes with a new or tuned alert and ops recipe to share the knowledge through the operation team.
+The postmortem is closed once the underlying issue is fixed and deployed to all affected environments. Additionally a postmortem comes with a new or tuned alert and ops recipe to share the knowledge through the operation team.
 
 # Conclusion
 
