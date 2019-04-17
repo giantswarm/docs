@@ -47,5 +47,5 @@ Our support process is subject to change. As we continuously improve it as we di
 
 ## Further reading
 
-- [Giant Swarm Operation Layers](https://docs.giantswarm.io/guides/giant-swarm-operation-layers/)
+- [Giant Swarm Operation Layers](https://docs.giantswarm.io/basics/giant-swarm-operational-layers/)
 - [Giant Swarm Cluster Upgrades](https://docs.giantswarm.io/reference/cluster-upgrades/)
