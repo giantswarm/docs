@@ -17,9 +17,9 @@ We are always at the side of our customers during their whole journey. For us, h
 
 Our customer support relies on close interactions via Slack, to get bi-directional feedback as quickly as possible. This is our first line of contact to customers, who can ask all kinds of questions, not only in relations to the platform itself, but many more around their whole Cloud Native journey.
 
-Our support shifts go from 08:00 to 18:00 on weekdays, but we also often answer questions well outside those times. We have a rotating shift for support across the team, which is why we keep support focussed on those channels with clear internal handovers.
+Our support shifts go from 08:00 to 18:00 on weekdays, but we also often answer questions well outside those times. We have a rotating shift for support across the team, which is why we keep support focused on those channels with clear internal handovers.
 
-If there is a problem that the first line support cannot resolve, it is handed over the `ops duty` engineer, again a rotating 24 hour shift, who has a deeper knowledge of the platform.
+If there is a problem that the first line support cannot resolve, it is handed over to the `ops duty` engineer, again a rotating 24 hour shift, who has deeper knowledge of the platform.
 
 Additionally, each customer has a dedicated Solution Engineer as additional support and a first backup in case the person on first line support is overloaded, and for regular sync meetings. On top of that we also have an SRE of the week who handles project level work (e.g. installations) and is the backup for the Ops Duty engineer. 
 
@@ -37,7 +37,7 @@ Additionally, customers have a special email address to reach our ops duty engin
 
 Sometimes an issue occurs that cannot be fully resolved by the support team. Meaning only a temporary fix was applied, and could potentially affect other environments or customers. The support or ops duty engineer will create a postmortem. The `postmortem` culture [was created by Google](https://landing.google.com/sre/sre-book/chapters/postmortem-culture/) and was established in order to document the problem correctly, find the root cause and fix it across all installations permanently.
 
-The postmortems are created during the whole week. On Mondays, the product team meets and distribute the postmortems through the teams. Afterwards, each team plans their weekly sprint and assign the person who will work on the postmortem. The postmortem has priority over feature development and engineers are used to spending at least a day a week to work on these problems.
+The postmortems are created during the whole week. On Mondays, the product team meets and distributes the postmortems through the teams. Afterwards, each team plans their weekly sprint and assigns the person who will work on the postmortem. The postmortem has priority over feature development and engineers are used to spending at least a day a week to work on these problems.
 
 The postmortem is closed once the underlying issue is fixed and deployed to all affected environments. Additionally postmortems often result in new or tuned alerts and ops recipes to share knowledge through the operations team.
 
