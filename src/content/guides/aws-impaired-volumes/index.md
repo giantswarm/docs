@@ -31,7 +31,7 @@ workloads to be scheduled onto that node.
 
 Setting the following toleration:
 
-```
+```yaml
 - effect: "NoSchedule"
   key: "NodeWithImpairedVolumes"
   operator: "Exists"
