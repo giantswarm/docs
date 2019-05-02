@@ -7,7 +7,7 @@ weight = 100
 tags = ["tutorial"]
 +++
 # Handling Impaired EBS Volumes
-# What happens when EBS Volumes are impaired?
+## What happens when EBS Volumes are impaired?
 
 When an EBS Volume is stuck in an attaching state for more than 30 minutes,
 the node is marked as unscheduable with the following taint:
