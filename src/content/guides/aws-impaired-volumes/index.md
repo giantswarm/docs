@@ -12,7 +12,7 @@ tags = ["tutorial"]
 When an EBS Volume is stuck in an attaching state for more than 30 minutes,
 the node is marked as unscheduable with the following taint:
 
-```
+```yaml
 - effect: "NoSchedule"
   key: "NodeWithImpairedVolumes"
   value: "true"
