@@ -23,7 +23,7 @@ EBS Volumes not being able to be attached.
 
 Giant Swarm will take care to drain and terminate nodes with this taint.
 
-# What if my workloads don't need EBS Volumes?
+## What if my workloads don't need EBS Volumes?
 
 If your pods don't require EBS Volumes, it may be helpful to tolerate the above taint.
 This can be helpful in the case where a node is tainted, but you still wish for
