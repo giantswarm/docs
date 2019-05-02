@@ -6,7 +6,7 @@ type = "page"
 weight = 100
 tags = ["tutorial"]
 +++
-
+# Handling Impaired EBS Volumes
 # What happens when EBS Volumes are impaired?
 
 When an EBS Volume is stuck in an attaching state for more than 30 minutes,
