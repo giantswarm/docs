@@ -25,18 +25,15 @@ If you would like to know more on different parts of infrastructure you can view
 ## Admin Access
 
 Admin access is guarded by Virtual Private Network(VPN) that is managed via certificates (public/private keys) and secured connection between both VPNs.
-Certificates management is handled by one of Giant Swarm private components. 
-The general principle is that certificate is configured for each individual Giant Swarm staff member.
+Certificates management is handled by one of Giant Swarm private components. The general principle is that certificate is configured for each individual Giant Swarm staff member.
 
 VPN Secured access points:
 
-* *SSH* - SSH Admin access is based on the Github SSO. Only users residing in the Github Giant Swarm Organization are allowed to authenticate.  
-  Following process describes more in detail the procedure of SSH authentication:
+* *SSH* - SSH Admin access is based on the Github SSO. Only users residing in the Github Giant Swarm Organization are allowed to authenticate. Following process describes more in detail the procedure of SSH authentication:
   ![](./ssh_access_process.png)  
   SSH access to Control Plane allows Giant Swarm also to manage and connect to underlying Data Platforms of the Customer.
 
-* *Control Plane Kubernetes API* - Usage of Kuberentes API on Control Plane also follows the authentication principles of the SSH connection. 
-The Github SSO based on Giant Swarm Organization is used to grant access. 
+* *Control Plane Kubernetes API* - Usage of Kuberentes API on Control Plane also follows the authentication principles of the SSH connection.
 
 ***General VPN Connection Schema***
 
@@ -44,12 +41,12 @@ Following schema illustrates how the VPN connection looks in practice.
 
 ![](./site-to-site-vpn.png)
 
-Giant Swarm uses two different VPN providers in order to bring best and fastest support possible.
+Cluster can be accessed by connecting to Giant Swarm VPN server which establishes secure connection with jump host of the cluster.
+We use two different VPN providers in order to bring best and fastest support possible.
 
 ***Cloud Provider Access***
 
-At the current stage internal Giant Swarm operator components responsible for managing clusters lifecycle at Customer's Cloud 
-Provider are granted the admin rights by the customer to the given API.
+At the current stage internal Giant Swarm operator components responsible for managing clusters lifecycle at Customer's Cloud Provider are granted the admin rights by the customer to the given API.
 This point is under discussion and might be limited in the near future to limited permissions allowing management of the clusters only.
 
 The operator secret used for authentication with Cloud Provider is stored in Kubernetes API. 
@@ -70,11 +67,13 @@ User access is limited to the offered API's for interaction with your clusters.
 User Access is provided to you over Giant Swarm API. 
 Access to API itself is usually whitelisted to certain range of IP addresses but it can be a also configured to work over VPN. 
 Later case follows the security principles of General VPN Connection Schema which was explained in Admin Access case.   
+
 Principles and usage described more in details can be found [here](https://docs.giantswarm.io/basics/giant-swarm-operational-layers/#giant-swarm-api)
 
 ### Kubernetes API
 
 Kubernetes API of the Tenant Cluster are exposed to the customer. You have full control over the users that are created via Giant Swarm API. Additionally you can also manage users via external Identity Provider by connecting the API to it.  
+
 More details on the authentication and process of granting access to it can be found [here](https://docs.giantswarm.io/basics/giant-swarm-operational-layers/#userspace)
 
 
