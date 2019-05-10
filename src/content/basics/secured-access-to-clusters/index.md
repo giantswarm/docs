@@ -63,7 +63,7 @@ to which only personel in approriate Github Giant Swarm organization have access
 [GitHub Vault authentication](https://www.vaultproject.io/docs/auth/github.html)  
 [Vault SSH certificate](https://www.vaultproject.io/docs/secrets/ssh/signed-ssh-certificates.html)
 
-## User Access
+## User access
 
 User access is limited to the offered API's for interaction with your clusters. 
 
