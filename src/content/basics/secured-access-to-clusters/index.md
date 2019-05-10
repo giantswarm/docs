@@ -65,7 +65,7 @@ to which only personel in approriate Github Giant Swarm organization have access
 
 ## User access
 
-User access is limited to the offered API's for interaction with your clusters. 
+User access is limited to the offered APIs for interaction with your clusters. 
 
 ### Giant Swarm API
 
