@@ -29,7 +29,7 @@ Admin access is guarded by Virtual Private Network (VPN) that is managed via cer
 
 Certificates management is handled by one of Giant Swarm's private components. The general principle is that a certificate is configured for each individual Giant Swarm staff member.
 
-VPN Secured access points:
+VPN secured access points:
 
 * *SSH* - SSH Admin access is based on the Github SSO. Only users residing in the Github Giant Swarm Organization are allowed to authenticate. Following process describes more in detail the procedure of SSH authentication:
   ![](./ssh_access_process.png)  
