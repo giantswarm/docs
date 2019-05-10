@@ -1,4 +1,4 @@
-FROM nginx:1.14.1-alpine
+FROM nginx:1.15.12-alpine
 
 EXPOSE  80
 WORKDIR /
