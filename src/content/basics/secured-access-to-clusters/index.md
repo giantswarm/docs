@@ -49,7 +49,7 @@ Cluster can be accessed by connecting to Giant Swarm VPN server which establishe
 
 We use two different VPN providers in order to bring the best and fastest support possible.
 
-***Cloud Provider Access***
+### Cloud provider access
 
 At the current stage internal Giant Swarm operator components responsible for managing clusters lifecycle at Customer's Cloud Provider are granted the admin rights by the customer to the given API.
 This point is under discussion and might be limited in the near future to limited permissions allowing management of the clusters only.
