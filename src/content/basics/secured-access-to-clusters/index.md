@@ -32,7 +32,9 @@ Certificates management is handled by one of Giant Swarm's private components. T
 VPN secured access points:
 
 * **SSH** - SSH Admin access is based on the Github SSO. Only users residing in the Github Giant Swarm Organization are allowed to authenticate. Following process describes more in detail the procedure of SSH authentication:
-  ![](./ssh_access_process.png)  
+
+![](./ssh_access_process.png)  
+
   SSH access to Control Plane allows Giant Swarm also to manage and connect to underlying Data Platforms of the Customer.
 
 * *Control Plane Kubernetes API* - Usage of Kuberentes API on Control Plane also follows the authentication principles of the SSH connection.
