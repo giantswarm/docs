@@ -21,7 +21,7 @@ Access to Giant Swarm clusters can be split into two parts.
 
 2. User Access - designated for Giant Swarm customers to interact with the offered services.
 
-If you would like to know more on the different parts of the Giant Swarm infrastructure, please see our [operational layers article](https://docs.giantswarm.io/basics/giant-swarm-operational-layers/)
+If you would like to know more on the different parts of the Giant Swarm infrastructure, please see our [operational layers article](/basics/giant-swarm-operational-layers/)
 
 ## Admin access
 
@@ -54,14 +54,9 @@ We use two different VPN providers in order to bring the best and fastest suppor
 At the current stage internal Giant Swarm operator components responsible for managing clusters lifecycle at Customer's Cloud Provider are granted the admin rights by the customer to the given API.
 This point is under discussion and might be limited in the near future to limited permissions allowing management of the clusters only.
 
-The operator secret used for authentication with the cloud provider is stored in Kubernetes' etcd. 
-This means that actually etcd holds authentication credentials. 
-Access to etcd or Kubernetes API are secured based on certificates validated in Vault, 
+The operator secret used for authentication with the cloud provider is stored in Kubernetes' etcd.
+Access to etcd or Kubernetes API are secured based on certificates signed by Vault, 
 to which only personel in approriate Github Giant Swarm organization have access to.   
-
-***Reference docs***:  
-[GitHub Vault authentication](https://www.vaultproject.io/docs/auth/github.html)  
-[Vault SSH certificate](https://www.vaultproject.io/docs/secrets/ssh/signed-ssh-certificates.html)
 
 ## User access
 
@@ -73,12 +68,14 @@ User access is provided to you over the Giant Swarm API.
 Network access to the API endpoint is usually whitelisted to a certain range of IP addresses but it can also be  configured to work over VPN.
 Later case follows the security principles of the general VPN connection schema shown above under [admin access](#admin-access).
 
-Principles and usage described more in details can be found [here](https://docs.giantswarm.io/basics/giant-swarm-operational-layers/#giant-swarm-api)
-
 ### Kubernetes API
 
 Kubernetes API of the Tenant Cluster are exposed to the customer. You have full control over the users that are created via Giant Swarm API. Additionally you can also manage users via external Identity Provider by connecting the API to it.  
 
-More details on the authentication and process of granting access to it can be found [here](https://docs.giantswarm.io/basics/giant-swarm-operational-layers/#userspace)
+## Further reading
 
-
+- [GitHub Vault authentication](https://www.vaultproject.io/docs/auth/github.html) 
+- [Vault SSH certificate](https://www.vaultproject.io/docs/secrets/ssh/signed-ssh-certificates.html)
+- [Giant Swarm Operational Layers](/basics/giant-swarm-operational-layers/)
+- [Giant Swarm API](/basics/giant-swarm-operational-layers/#giant-swarm-api)
+- [Giant Swarm User Space](/basics/giant-swarm-operational-layers/#userspace): Tenant Cluster Kubernetes API
