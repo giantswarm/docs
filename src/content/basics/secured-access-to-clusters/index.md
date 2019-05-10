@@ -54,7 +54,7 @@ We use two different VPN providers in order to bring the best and fastest suppor
 At the current stage internal Giant Swarm operator components responsible for managing clusters lifecycle at Customer's Cloud Provider are granted the admin rights by the customer to the given API.
 This point is under discussion and might be limited in the near future to limited permissions allowing management of the clusters only.
 
-The operator secret used for authentication with Cloud Provider is stored in Kubernetes API. 
+The operator secret used for authentication with the cloud provider is stored in Kubernetes' etcd. 
 This means that actually etcd holds authentication credentials. 
 Access to etcd or Kubernetes API are secured based on certificates validated in Vault, 
 to which only personel in approriate Github Giant Swarm organization have access to.   
