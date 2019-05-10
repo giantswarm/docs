@@ -37,7 +37,7 @@ VPN secured access points:
 
   SSH access to Control Plane allows Giant Swarm also to manage and connect to underlying Data Platforms of the Customer.
 
-* *Control Plane Kubernetes API* - Usage of Kuberentes API on Control Plane also follows the authentication principles of the SSH connection.
+* **Control Plane Kubernetes API** - Usage of Kuberentes API on Control Plane also follows the authentication principles of the SSH connection.
 
 ### General VPN connection schema
 
