@@ -26,6 +26,7 @@ If you would like to know more on different parts of infrastructure you can view
 ## Admin Access
 
 Admin access is guarded by Virtual Private Network(VPN) that is managed via certificates (public/private keys) and secured connection between both VPNs.
+
 Certificates management is handled by one of Giant Swarm private components. The general principle is that certificate is configured for each individual Giant Swarm staff member.
 
 VPN Secured access points:
