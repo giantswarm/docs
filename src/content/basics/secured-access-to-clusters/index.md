@@ -23,7 +23,7 @@ Access to Giant Swarm clusters can be split into two parts.
 
 If you would like to know more on the different parts of the Giant Swarm infrastructure, please see our [operational layers article](https://docs.giantswarm.io/basics/giant-swarm-operational-layers/)
 
-## Admin Access
+## Admin access
 
 Admin access is guarded by Virtual Private Network (VPN) that is managed via certificates (public/private keys) and secured connection between both VPNs.
 
