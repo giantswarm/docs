@@ -21,7 +21,7 @@ Access to Giant Swarm clusters can be split into two parts.
 
 2. User Access - designated for Giant Swarm customers to interact with the offered services.
 
-If you would like to know more on different parts of infrastructure you can view the operational layer article [here](https://docs.giantswarm.io/basics/giant-swarm-operational-layers/)
+If you would like to know more on the different parts of the Giant Swarm infrastructure, please see our [operational layers article](https://docs.giantswarm.io/basics/giant-swarm-operational-layers/)
 
 ## Admin Access
 
