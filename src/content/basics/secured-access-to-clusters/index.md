@@ -71,7 +71,7 @@ User access is limited to the offered API's for interaction with your clusters.
 
 User Access is provided to you over Giant Swarm API. 
 Access to API itself is usually whitelisted to certain range of IP addresses but it can be a also configured to work over VPN. 
-Later case follows the security principles of General VPN Connection Schema which was explained in Admin Access case.   
+Later case follows the security principles of the general VPN connection schema shown above under [admin access](#admin-access).
 
 Principles and usage described more in details can be found [here](https://docs.giantswarm.io/basics/giant-swarm-operational-layers/#giant-swarm-api)
 
