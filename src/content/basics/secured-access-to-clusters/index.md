@@ -39,7 +39,7 @@ VPN secured access points:
 
 * *Control Plane Kubernetes API* - Usage of Kuberentes API on Control Plane also follows the authentication principles of the SSH connection.
 
-***General VPN Connection Schema***
+### General VPN connection schema
 
 Following schema illustrates how the VPN connection looks in practice. 
 
