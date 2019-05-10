@@ -9,7 +9,7 @@ categories = ["basics"]
 
 # Secured access to clusters for users and Giant Swarm support
 
-In order to provide best service possible besides you having access to your clusters, also Giant Swarm staff will be able to connect.
+In order to provide the best service possible besides you having access to your clusters, also Giant Swarm staff will be able to connect.
 
 Thus it should be explained how this access differs and what security measures are brought into place so that your data is saved with us. 
 
