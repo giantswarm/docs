@@ -60,7 +60,7 @@ Access to etcd or Kubernetes API are secured based on certificates validated in 
 to which only personel in approriate Github Giant Swarm organization have access to.   
 
 ***Reference docs***:  
-[Github Vault auth](https://www.vaultproject.io/docs/auth/github.html)  
+[GitHub Vault authentication](https://www.vaultproject.io/docs/auth/github.html)  
 [Vault SSH certificate](https://www.vaultproject.io/docs/secrets/ssh/signed-ssh-certificates.html)
 
 ## User Access
