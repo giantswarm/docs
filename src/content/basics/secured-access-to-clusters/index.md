@@ -43,7 +43,8 @@ Following schema illustrates how the VPN connection looks in practice.
 ![](./site-to-site-vpn.png)
 
 Cluster can be accessed by connecting to Giant Swarm VPN server which establishes secure connection with jump host of the cluster.
-We use two different VPN providers in order to bring best and fastest support possible.
+
+We use two different VPN providers in order to bring the best and fastest support possible.
 
 ***Cloud Provider Access***
 
