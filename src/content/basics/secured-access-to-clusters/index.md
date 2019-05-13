@@ -17,7 +17,7 @@ Thus it should be explained how this access differs and what security measures a
 
 Access to Giant Swarm clusters can be split into two parts. 
 
-1. Admin Access - designated for Giant Swarm staff for managing/development/support purposes.
+1. Admin Access - designated for Giant Swarm staff for management/development/support purposes.
 
 2. User Access - designated for Giant Swarm customers to interact with the offered services.
 
