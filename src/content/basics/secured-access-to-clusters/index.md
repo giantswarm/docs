@@ -51,7 +51,7 @@ We use two different VPN providers in order to bring the best and fastest suppor
 
 ### Cloud provider access
 
-At the current stage internal Giant Swarm operator components responsible for managing clusters lifecycle at Customer's Cloud Provider are granted the admin rights by the customer to the given API.
+Currently, Giant Swarm operators - which are responsible for managing clusters lifecycle - are granted admin rights by the customer to the given cloud provider.
 This point is under discussion and might be limited in the near future to limited permissions allowing management of the clusters only.
 
 The operator secret used for authentication with the cloud provider is stored in Kubernetes' etcd.
