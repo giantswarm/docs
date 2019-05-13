@@ -7,7 +7,7 @@ type = "page"
 categories = ["basics"]
 +++
 
-# Secured access to clusters for users and Giant Swarm support
+# Secure access to clusters for users and Giant Swarm support
 
 In order to provide the best service possible, Giant Swarm staff also have access to your clusters.
 
