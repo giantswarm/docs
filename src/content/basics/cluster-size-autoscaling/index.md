@@ -79,6 +79,7 @@ In releases without autoscaling support, the number of Ingress Controller replic
 
 ## See also
 
+- [Cluster Autoscaler advanced configuration](/guides/advanced-cluster-autoscaler-configuration/)
 - [Recommendations and Best Practices regarding cluster size](/guides/recommendations-and-best-practices/#cluster-sizing)
 - [`gsctl create cluster`](/reference/gsctl/create-cluster/): Creating a cluster
 - [`gsctl create cluster`](/reference/gsctl/scale-cluster/): Scaling a cluster
