@@ -7,13 +7,13 @@ weight = 40
 tags = ["tutorial"]
 +++
 
-# Cluster Autoscaler advanced configuration
+# Cluster Autoscaler Advanced Configuration
 
 The [Cluster Autoscaler addon](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler) running inside your cluster has additional configuration options and features that can be customized.
 
 You can customize two of these configuration options on a per cluster basis through a ConfigMap inside your clusters. The ConfigMap is named `cluster-autoscaler-user-values` and is located in the `kube-system` namespace.
 
-__Note:__ This feature is only available in more recent cluster versions. To check if your cluster version supports customization through the ConfigMap, you can check if the above-mentioned ConfigMap is present.
+__Note:__ This feature is only available in more recent cluster versions. To find out if your cluster version supports customization through the ConfigMap, you can check if the above-mentioned ConfigMap is present.
 
 ```nohighlight
 $ kubectl -n kube-system get cm cluster-autoscaler-user-values
@@ -36,7 +36,7 @@ data:
 
 Our default value is 65%, which means in order to scale down, one of the nodes has to have less utilization (CPU/memory) than this threshold.
 
-# Expander
+## Expander
 
 When there are several node groups managed by the Cluster Autoscaler we can influence which one will be selected to scale up the cluster when it is needed. Our default is `least-waste`. 
 
@@ -51,7 +51,7 @@ data:
   expander: "random"
 ```
 
-# Scan Interval
+## Scan interval
 
 Define what interval is taken to review the state for taking a decision to scale up/down. Our default value is 10 seconds.
 
@@ -60,18 +60,18 @@ data:
   scanInterval: "100s"
 ```
 
-# Skip system pods
+## Skip system pods
 
-By default the Cluster Autoscaler will never delete nodes which run pods of kube-system namespace (but daemonset or mirror ones). It can be modified by setting the property to `false`.
+By default the Cluster Autoscaler will never delete nodes which run pods of kube-system namespace (but daemonset or mirror ones). It can be modified by setting the property to `"false"`.
 
 ```yaml
 data:
   skipNodesWithSystemPods: "false"
 ```
 
-# Skip pods local storage
+## Skip pods with local storage
 
-The Cluster Autoscaler configuration by default deletes nodes with pods using local storage (`hostPath` or `emptyDir`)". In case you want to disable this action, you need to set the property to `true`.
+The Cluster Autoscaler configuration by default deletes nodes with pods using local storage (`hostPath` or `emptyDir`). In case you want to disable this action, you need to set the property to `"true"`.
 
 ```yaml
 data:
