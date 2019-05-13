@@ -56,7 +56,7 @@ This point is under discussion and might be limited in the near future to limite
 
 The operator secret used for authentication with the cloud provider is stored in Kubernetes' etcd.
 Access to etcd or Kubernetes API are secured based on certificates signed by Vault, 
-to which only personel in approriate Github Giant Swarm organization have access to.   
+to which only personnel in the GitHub Giant Swarm organization have access to.   
 
 ## User access
 
