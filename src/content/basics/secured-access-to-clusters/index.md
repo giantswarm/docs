@@ -70,7 +70,7 @@ Later case follows the security principles of the general VPN connection schema 
 
 ### Kubernetes API
 
-Kubernetes API of the Tenant Cluster are exposed to the customer. You have full control over the users that are created via Giant Swarm API. Additionally you can also manage users via external Identity Provider by connecting the API to it.  
+The Kubernetes API of the clusters are exposed to the customers. You have full control over the users that are created via the Giant Swarm API. Additionally, you can also manage users by connecting an external Identity Provider to the Kubernetes API.
 
 ## Further reading
 
