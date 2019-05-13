@@ -1,5 +1,5 @@
 +++
-title = "Secured access to clusters for users and Giant Swarm support"
+title = "Secure access to clusters for users and Giant Swarm support"
 description = "This documentation explains security measures for users and Giant Swarm support accessing offered services"
 date = "2019-05-09"
 weight = 45
