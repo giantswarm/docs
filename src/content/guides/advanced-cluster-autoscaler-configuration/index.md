@@ -36,21 +36,6 @@ data:
 
 Our default value is 65%, which means in order to scale down, one of the nodes has to have less utilization (CPU/memory) than this threshold.
 
-# Expander
-
-When there are several node groups managed by the Cluster Autoscaler we can influence which one will be selected to scale up the cluster when it is needed. Our default is `least-waste`. 
-
-- `random`: Select a random node group to scale up.
-- `most-pods`: Select the node group which is the best fit for all pods.
-- `least-waste`: Select the node group which leaves the least fraction of CPU and Memory).
-- `price`: Select the node group which is the most cost-effective.
-- `priority`: Select the node group based on an user-configured priorities assigned to group names.
-
-```yaml
-data:
-  expander: "random"
-```
-
 # Scan Interval
 
 Define what interval is taken to review the state for taking a decision to scale up/down. Our default value is 10 seconds.
