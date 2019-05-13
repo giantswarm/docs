@@ -31,7 +31,7 @@ Certificates management is handled by one of Giant Swarm's private components. T
 
 VPN secured access points:
 
-* **SSH** - SSH Admin access is based on the Github SSO. Only users residing in the Github Giant Swarm Organization are allowed to authenticate. Following process describes more in detail the procedure of SSH authentication:
+* **SSH** - SSH access is based on GitHub SSO. Only users in the GitHub Giant Swarm Organization are allowed to authenticate. The following diagram describes our SSH authentication in more detail:
 
 ![](./ssh_access_process.png)  
 
