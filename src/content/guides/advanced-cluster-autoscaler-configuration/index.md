@@ -47,7 +47,7 @@ data:
 
 ## Skip system pods
 
-By default the Cluster Autoscaler will never delete nodes which run pods of the `kube-system` namespace (except daemonset or mirror ones). It can be modified by setting following property to `"false"`.
+By default, the Cluster Autoscaler will never delete nodes which run pods of the `kube-system` namespace (except `daemonset` pods). It can be modified by setting following property to `"false"`.
 
 ```yaml
 data:
