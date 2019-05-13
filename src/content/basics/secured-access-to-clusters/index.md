@@ -25,9 +25,9 @@ If you would like to know more about the different parts of the Giant Swarm infr
 
 ## Admin access
 
-Admin access is guarded by Virtual Private Network (VPN) that is managed via certificates (public/private keys) and secured connection between both VPNs.
+Admin access is guarded by Virtual Private Network (VPN) that is managed via certificates (public/private keys).
 
-Certificates management is handled by one of Giant Swarm's private components. The general principle is that a certificate is configured for each individual Giant Swarm staff member.
+Certificates management is handled by combination of Vault and Giant Swarm Organization on Github. The general principle is that a certificate is configured for each individual Giant Swarm staff member.
 
 VPN secured access points:
 
@@ -35,7 +35,7 @@ VPN secured access points:
 
 ![](./ssh_access_process.png)  
 
-  SSH access to Control Plane allows Giant Swarm also to manage and connect to underlying Data Platforms of the Customer.
+  SSH access to Control Plane allows Giant Swarm also to manage and connect to underlying Tenant Clusters of the Customer.
 
 * **Control Plane Kubernetes API** - Usage of Kuberentes API on Control Plane also follows the authentication principles of the SSH connection.
 
@@ -47,12 +47,11 @@ Following schema illustrates how the VPN connection looks in practice.
 
 Cluster can be accessed by connecting to a Giant Swarm VPN server which establishes a secure connection with the jump host of the cluster.
 
-We use two different VPN providers in order to bring the best and fastest support possible.
+We use two different VPN providers to provide highly resilient and available support to our customers.
 
 ### Cloud provider access
 
 Currently, Giant Swarm operators - which are responsible for managing clusters lifecycle - are granted admin rights by the customer to the given cloud provider.
-This point is under discussion and might be limited in the near future to limited permissions allowing management of the clusters only.
 
 The operator secret used for authentication with the cloud provider is stored in Kubernetes' etcd.
 Access to etcd or Kubernetes API are secured based on certificates signed by Vault, 
@@ -66,7 +65,7 @@ User access is limited to the offered APIs for interaction with your clusters.
 
 User access is provided to you over the Giant Swarm API. 
 Network access to the API endpoint is usually whitelisted to a certain range of IP addresses but it can also be configured to work over VPN.
-Later case follows the security principles of the general VPN connection schema shown above under [admin access](#admin-access).
+Later case follows the security principles of the general VPN connection schema shown above under [admin access](#admin-access), where the connection to API residing in the cluster can be established only via your configured VPN.
 
 ### Kubernetes API
 
