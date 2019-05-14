@@ -151,13 +151,29 @@ The best way to contribute changes are pull requests. Please note the following 
 
 ## Style
 
+### Using acronyms
+
+Please avoid acronyms and abbreviations where possible, use them only where the acronym is easier to understand than the long form (example: `SSH` is self-explanatory, `secure shell` is not widely understood).
+
+When you want to use an acronym, please use the long form and the aronym form together at the first use on a page. Example:
+
+> The Ingress Controller (IC) manages incoming traffic to your services.
+
+After that, you can use the acronym without the long form.
+
+### Headline title case
+
 We use [Title Case](https://titlecase.com/) for the main article headline, but not for lower level headlines.
+
+### Code blocks and syntax highlighting
 
 For **code blocks**, we give language hints to ensure proper syntax highlighting. A YAML block, for example, is opened with triple backticks followed by `yaml`.
 
 However, shell commands and their output get the fake hint `nohighlight` to prevent any funky syntax highlighting.
 
 Shell commands in code blocks are prepended with a `$ ` (dollar sign and one blank character).
+
+### CLI commands
 
 We use long-form CLI flags and avoid the possible equal sign between flag name and value, for best readability.
 

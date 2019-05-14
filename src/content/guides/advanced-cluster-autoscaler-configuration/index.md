@@ -11,7 +11,7 @@ tags = ["tutorial"]
 
 The [Cluster Autoscaler addon](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler) running inside your cluster has additional configuration options and features that can be customized.
 
-You can customize two of these configuration options on a per cluster basis through a ConfigMap inside your clusters. The ConfigMap is named `cluster-autoscaler-user-values` and is located in the `kube-system` namespace.
+You can customize some of these configuration options on a per cluster basis through a ConfigMap inside your clusters. The ConfigMap is named `cluster-autoscaler-user-values` and is located in the `kube-system` namespace.
 
 __Note:__ This feature is only available in more recent cluster versions. To find out if your cluster version supports customization through the ConfigMap, you can check if the above-mentioned ConfigMap is present.
 
@@ -38,7 +38,7 @@ Our default value is 65%, which means in order to scale down, one of the nodes h
 
 # Scan Interval
 
-Define what interval is taken to review the state for taking a decision to scale up/down. Our default value is 10 seconds.
+Define what interval is used to review the state for taking a decision to scale up/down. Our default value is 10 seconds.
 
 ```yaml
 data:
@@ -47,7 +47,7 @@ data:
 
 ## Skip system pods
 
-By default the Cluster Autoscaler will never delete nodes which run pods of kube-system namespace (but daemonset or mirror ones). It can be modified by setting the property to `"false"`.
+By default, the Cluster Autoscaler will never delete nodes which run pods of the `kube-system` namespace (except `daemonset` pods). It can be modified by setting following property to `"false"`.
 
 ```yaml
 data:
@@ -56,7 +56,7 @@ data:
 
 ## Skip pods with local storage
 
-The Cluster Autoscaler configuration by default deletes nodes with pods using local storage (`hostPath` or `emptyDir`). In case you want to disable this action, you need to set the property to `"true"`.
+The Cluster Autoscaler configuration by default deletes nodes with pods using local storage (`hostPath` or `emptyDir`). In case you want to disable this action, you need to set the following property to `"true"`.
 
 ```yaml
 data:
