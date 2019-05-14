@@ -7,7 +7,7 @@ weight = 40
 tags = ["tutorial"]
 +++
 
-# Cluster Autoscaler Advanced Configuration
+# Advanced Cluster Autoscaler Configuration
 
 The [Cluster Autoscaler addon](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler) running inside your cluster has additional configuration options and features that can be customized.
 
@@ -27,11 +27,11 @@ __Warning:__ Please do not edit any of the other Cluster Autoscaler related reso
 
 ## Scale down utilization threshold
 
-The `scale-down-utilization-threshold` defines the proportion between requested resources and capacity, which under the value Cluster Autoscaler will trigger the scaling down action.
+The `scaleDownUtilizationThreshold` defines the proportion between requested resources and capacity, which under the value Cluster Autoscaler will trigger the scaling down action.
 
 ```yaml
 data:
-  scale-down-utilization-threshold: 0.65
+  scaleDownUtilizationThreshold: 0.65
 ```
 
 Our default value is 65%, which means in order to scale down, one of the nodes has to have less utilization (CPU/memory) than this threshold.
