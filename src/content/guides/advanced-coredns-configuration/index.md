@@ -27,7 +27,7 @@ __Warning:__ Please do not edit any of the other CoreDNS related resources. Only
 
 ## Cache settings
 
-By default we set the cache TTL for CoreDNS to 30 seconds. You can customize the cache settings of CoreDNS by setting the value of the cache field in the user ConfigMap like following.
+By default we set the cache TTL for CoreDNS to 30 seconds. You can customize the cache settings of CoreDNS by setting the value of the cache field in the user ConfigMap like following:
 
 ```yaml
 data:
@@ -37,6 +37,18 @@ data:
 Above setting increases the TTL to 60 seconds.
 
 The cache plugin also supports much more detailed configuration which is documented in the [upstream documentation](https://coredns.io/plugins/cache/).
+
+## Logs
+
+By default, we set the log level for CoreDNS to `denial` and `error`. You can tun these settings by adding a property `log` in the user ConfigMap like following:
+
+```yaml
+data:
+  log: 
+  - all
+```
+
+For knowing the exact details of each log level log plugin, please read the [upstream documentation](https://coredns.io/plugins/log/).
 
 ## Additional forwards (formerly known as proxy) {#additional-forwards}
 
