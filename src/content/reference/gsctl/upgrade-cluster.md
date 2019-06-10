@@ -1,0 +1,30 @@
++++
+title = "gsctl Command Reference: upgrade cluster"
+description = "Detailed documentation on how to upgrade a cluster using the 'upgrade cluster' command in gsctl."
+date = "2019-06-11"
+type = "page"
+weight = 30
++++
+
+# `gsctl upgrade cluster`
+
+In order to upgrade the cluster to the next suitable version, use this syntax:
+
+```nohighlight
+$ gsctl upgrade cluster <cluster-id>
+```
+
+There will appear a message showing the version to be upgraded and a list of changelogs for the components that will be upgraded. Before confirming the action ensure you know the [upgrade process](https://docs.giantswarm.io/reference/cluster-upgrades/)] and the impact it entails.
+
+To prevent the interactive confirmation, you can use the `--force` flag. This will simplify the use in a non-interactive scenario. Example:
+
+```nohighlight
+$  gsctl upgrade cluster <cluster-id> --force
+```
+
+## Related
+
+- [Upgrade cluster general documentation](/reference/cluster-upgrades/)
+- [`gsctl create cluster`](/reference/gsctl/create-cluster/): Reference for creating a cluster
+- [`gsctl delete cluster`](/reference/gsctl/delete-cluster/): Reference for deleting a cluster
+- [API: Upgrade cluster](/api/#operation/upgradeCluster)
