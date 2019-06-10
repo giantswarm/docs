@@ -8,13 +8,13 @@ weight = 30
 
 # `gsctl upgrade cluster`
 
-In order to upgrade the cluster to the next suitable version, use this syntax:
+In order to upgrade a cluster to the next suitable version, use this command:
 
 ```nohighlight
 $ gsctl upgrade cluster <cluster-id>
 ```
 
-There will appear a message showing the version to be upgraded and a list of changelogs for the components that will be upgraded. Before confirming the action ensure you know the [upgrade process](https://docs.giantswarm.io/reference/cluster-upgrades/)] and the impact it entails.
+A message will be output showing the version to be upgraded, and a list of changelogs for the components that will be upgraded. Before confirming this action ensure you know the [upgrade process](https://docs.giantswarm.io/reference/cluster-upgrades/)] and the impact it entails.
 
 To prevent the interactive confirmation, you can use the `--force` flag. This will simplify the use in a non-interactive scenario. Example:
 

@@ -64,7 +64,7 @@ Azure, AWS, and KVM based installations have independent versioning systems, as 
 
 ### Determining the release version and inspecting release details
 
-As a user with access to the Giant Swarm API and being a member of the organization owning the cluster, you can use both the web UI or the CLI to find out what release version your tenant cluster currently has.
+As a user with access to the Giant Swarm API, and being a member of the organization owning the cluster, you can use either the web UI or the CLI to find out the current release version of your tenant cluster.
 
 In the web UI, both the cluster overview and the cluster details page show the release version number. 
 In the cluster details page you can click the release version number to get more information about a release.
@@ -74,21 +74,21 @@ To get information on all available releases, use the [`gsctl list releases`](/r
 
 ### Upgrage a cluster
 
-As an authenticated user you can upgrade the cluster version using the web UI or the CLI. The web UI shows a yellow link next to the version information once there is an upgrade available. For the CLI you can use the command [`gsctl upgrade cluster`](/reference/gsctl/upgrade-cluster/) for the same purpose.
+As an authenticated user you can upgrade the cluster version using the web UI or the CLI. The web UI shows a yellow link next to the version information if there is an upgrade available. For the CLI you can use the command [`gsctl upgrade cluster`](/reference/gsctl/upgrade-cluster/) for the same purpose.
 
-When the upgrade process is managed by our tools the release version chosen it is selected by Giant Swarm according to good practices. It means there will not upgrade a cluster to more than one major version at once. In case you use the raw API to upgrade your cluster please test the process against non-production clusters first.
+When the upgrade process is managed by our tools the release version chose is selected by Giant Swarm according to best practices. It means it will not upgrade a cluster by more than one major version at a time. In case you use the raw API to upgrade your cluster please test the process against a non-production cluster first.
 
-#### Cluster Upgrade Checkup
+#### Cluster Upgrade Checklist
 
-Before triggering the upgrade there are some previous check we encourage you to take:
+Before triggering the upgrade, there are some checks we encourage you to perform:
 
-- Verify all your important pods are run correctly and there no deployments stuck because of failues.
+- Verify all your important pods are running correctly, and there no deployments stuck because of failures.
 
 ```nohighlight
 $ kubectl get pod --all-namespaces | grep -v "Running\|ContainerCreating"
 ```
 
-- In case there is a validation or mutation webhook configured there is a [timeout](https://github.com/kubernetes/kubernetes/issues/71508#issuecomment-470315405) configured properly to not break the entire upgrade. We recommend use low timeouts in the webhooks resources.
+- In case there is a validation or mutation webhook configured you should check there is a [timeout](https://github.com/kubernetes/kubernetes/issues/71508#issuecomment-470315405) configured correctly to not break the upgrade process. We recommend using low timeouts for the webhooks resources.
 
 ```yaml
 apiVersion: admissionregistration.k8s.io/v1beta1
@@ -101,7 +101,7 @@ webhooks:
   timeoutSeconds: 5
 ```
 
-__Warning:__ If your Kubernetes version is previous to `1.14.x` we advise to delete the validation or mutation webhooks instead of timeout configuration (it has been introduced in latest version).
+__Warning:__ If your Kubernetes version is prior to `1.14.x` we advise you to delete the validation or mutation webhooks instead of configuring a timeout (it was introduced in the latest version).
 
 At the same time we advise to read upfront these [recommendations](#recommendations).
 
