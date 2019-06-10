@@ -64,13 +64,46 @@ Azure, AWS, and KVM based installations have independent versioning systems, as 
 
 ### Determining the release version and inspecting release details
 
-As a user with access to the Giant Swarm API and being member of the organization owning the cluster, you can use both the web UI or the CLI to find out what release version your tenant cluster currently has.
+As a user with access to the Giant Swarm API and being a member of the organization owning the cluster, you can use both the web UI or the CLI to find out what release version your tenant cluster currently has.
 
 In the web UI, both the cluster overview and the cluster details page show the release version number. 
 In the cluster details page you can click the release version number to get more information about a release.
 
 Likewise in the CLI, commands like [`gsctl list clusters`](/reference/gsctl/list-clusters/) and [`gsctl show cluster`](/reference/gsctl/show-cluster/) reveal the release version number.
 To get information on all available releases, use the [`gsctl list releases`](/reference/gsctl/list-releases/) command.
+
+### Upgrage a cluster
+
+As an authenticated user you can upgrade the cluster version using the web UI or the CLI. The web UI shows a yellow link next to the version information once there is an upgrade available. For the CLI you can use the command [`gsctl upgrade cluster`](/reference/gsctl/upgrade-cluster/) for the same purpose.
+
+When the upgrade process is managed by our tools the release version chosen it is selected by Giant Swarm according to good practices. It means there will not upgrade a cluster to more than one major version at once. In case you use the raw API to upgrade your cluster please test the process against non-production clusters first.
+
+#### Cluster Upgrade Checkup
+
+Before triggering the upgrade there are some previous check we encourage you to take:
+
+- Verify all your important pods are run correctly and there no deployments stuck because of failues.
+
+```nohighlight
+$ kubectl get pod --all-namespaces | grep -v "Running\|ContainerCreating"
+```
+
+- In case there is a validation or mutation webhook configured there is a [timeout](https://github.com/kubernetes/kubernetes/issues/71508#issuecomment-470315405) configured properly to not break the entire upgrade. We recommend use low timeouts in the webhooks resources.
+
+```yaml
+apiVersion: admissionregistration.k8s.io/v1beta1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: <name of this configuration object>
+webhooks:
+- name: <webhook name>
+  ...
+  timeoutSeconds: 5
+```
+
+__Warning:__ If your Kubernetes version is previous to `1.14.x` we advise to delete the validation or mutation webhooks instead of timeout configuration (it has been introduced in latest version).
+
+At the same time we advise to read upfront these [recommendations](#recommendations).
 
 ### Release lifecycle
 
