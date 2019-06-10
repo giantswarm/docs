@@ -33,6 +33,7 @@ Follow the links below for detailed documentation, where available. You can also
 | `select endpoint`                     | [Select an endpoint](select-endpoint/)
 | `show cluster`                        | [Show cluster details](show-cluster/)
 | `update organization set-credentials` | [Set provider credentials for an organization](update-org-set-credentials/)
+| `upgrade cluster`                     | [Upgrade a cluster](upgrade-cluster/)
 | `version`                             | Print version number
 
 
