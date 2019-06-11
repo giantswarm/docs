@@ -82,7 +82,7 @@ When the upgrade process is managed by our tools the release version chose is se
 
 Before triggering the upgrade, there are some checks we encourage you to perform:
 
-- Verify all your important pods are running correctly, and there no deployments stuck because of failures.
+- Verify all your important pods are running correctly, and there are no deployments stuck because of failures.
 
 ```nohighlight
 $ kubectl get pod --all-namespaces | grep -v "Running\|ContainerCreating"
