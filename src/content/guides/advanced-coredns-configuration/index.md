@@ -44,8 +44,8 @@ By default, we set the log level for CoreDNS to `denial` and `error`. You can tu
 
 ```yaml
 data:
-  log: 
-  - all
+  log: |
+    all
 ```
 
 For knowing the exact details of each log level log plugin, please read the [upstream documentation](https://coredns.io/plugins/log/).
