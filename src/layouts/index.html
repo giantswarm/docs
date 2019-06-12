@@ -73,16 +73,6 @@
   </div>
   <div class="row">
     <div class="col-sm-6">
-      <h3>Recipes</h3>
-      <ul class="linklist linklist-compact">
-        {{ range .Data.Pages }}
-          {{ if in .Params.tags "recipe" }}
-            <li><a href="{{ .Permalink | relURL }}">{{ .Title }}</a></li>
-          {{ end }}
-        {{ end }}
-      </ul>
-    </div>
-    <div class="col-sm-6">
       <h3>Tutorials</h3>
       <ul class="linklist linklist-compact">
         {{ range .Data.Pages }}
@@ -91,6 +81,16 @@
           {{ end }}
         {{ end }}
       </ul>
+    </div>
+    <div class="col-sm-6">
+      <h3>Recipes</h3>
+      <ul class="linklist linklist-compact">
+        {{ range .Data.Pages }}
+          {{ if in .Params.tags "recipe" }}
+            <li><a href="{{ .Permalink | relURL }}">{{ .Title }}</a></li>
+          {{ end }}
+        {{ end }}
+      </ul>        
     </div>
   </div> <!-- row -->
 
