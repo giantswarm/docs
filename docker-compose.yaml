@@ -2,7 +2,7 @@ version: "2"
 services:
 
   content:
-    build: .
+    # to build this image locally, execute 'make'
     image: quay.io/giantswarm/docs:latest
 
   sitesearch:
