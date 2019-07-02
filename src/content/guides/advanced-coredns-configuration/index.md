@@ -99,7 +99,7 @@ In case you need to have a finer granularity you can define custom server blocks
 ```yaml
 data:
   custom: |
-    example.com {
+    example.com:1053 {
       forward . 9.9.9.9
       cache 2000
     }
@@ -107,7 +107,7 @@ data:
 
 This custom configuration allows CoreDNS resolve all `example.com` requests to a different upstream DNS resolver (9.9.9.9) than generic one. At the same time we use a different cache TTL(2000) setting. 
 
-__Warning:__ Please make sure you test the final `Corefile` carefully. We do not take responsibility for incorrect custom configuration that could break workload communication.
+__Warning:__ By default our clusters come with Pod Security Policies and Network Policies for managed components. This means the CodeDNS container doesn't use a privileged port and listens to `1053` instead. Please make sure you test the final `Corefile` carefully. We do not take responsibility for incorrect custom configuration that could break workload communication.
 
 ## Further reading
 
