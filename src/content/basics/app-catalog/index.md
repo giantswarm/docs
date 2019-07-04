@@ -23,7 +23,7 @@ So to clarify a bit: the _Giant Swarm App Catalog_ refers to the whole feature,
 and an _App Catalog_ is a collection of _Apps_.
 
 We'll provide some _App Catalogs_, but so will our partners, and you too can set
-up your own internal catalog for your whole company to use.
+up your own internal catalog(s) for your whole company to use.
 
 ### What makes up the Giant Swarm App Catalog?
 
@@ -44,7 +44,7 @@ SOME KIND OF USEFUL IMAGE SHOWING OPERATORS AND CRS AND SUCH.
 
 ### What are Managed Apps?
 
-Managed Apps are provided by Giant Swarm and have a SLA associated with
+Managed Apps are provided by Giant Swarm and have an SLA associated with
 them. When you install one of our Managed Apps, we make sure that it stays
 running and even get paged if something goes wrong.
 
@@ -67,7 +67,7 @@ Custom Resources installed on your Control Plane.
 
 Our intention is to eventually grant you full access to the control plane
 API, and all of these resources, so that you can interact with them using
-`kubectl`, and automate them just as you have been automating other parts of your
+`kubectl` (think `kubectl create app`), and automate them just as you have been automating other parts of your
 stack.
 
 
