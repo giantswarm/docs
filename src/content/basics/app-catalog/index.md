@@ -32,7 +32,7 @@ running on your Control Plane and tenant clusters. These operators watch various
 Custom Resources, some created by us, and others created by you, which make up
 the desired state of the Giant Swarm App Catalog.
 
-For example, the "App" Custom Resource indicates that you want an App installed
+For example, this "App" Custom Resource indicates that you want Instana installed
 on a specific tenant cluster.
 
 ```
@@ -74,29 +74,51 @@ contains our selection of Managed Apps.
 
 ### The Incubator App Catalog
 
+The Incubator App Catalog contains apps that we would like to provide as a
+Managed App at some point in the future. When you install an app from the
+Incubator App Catalog you are being brave and helping us get things right before
+we offer the SLA on that app.
+
+Feedback and collaboration are valued here! There is no guarantee or SLA on these
+apps.
+
 ### The Community App Catalog
+
+The Community App Catalog contains all the Apps you'd find in the upstream
+helm repository. There is no guarantee or SLA here. Install Apps from this
+catalog at your own risk.
 
 ### The Managed App Catalog and Managed Apps
 
-Managed Apps are provided by Giant Swarm and have a SLA associated with
+Managed Apps are provided by Giant Swarm and have an SLA associated with
 them. When you install one of our Managed Apps, we make sure that it stays
 running and even get paged if something goes wrong.
 
 Managed Apps can be found in the Managed _App Catalog_. In our web interface
 they are indicated by the orange "Managed" badge.
 
-MORE DETAILS ON THE SLA AND EXPECTATION MANAGEMENT
+Details on the SLA are still being discussed and fleshed out, however watch this
+space for a link to a more in depth explanation of our SLA on our Managed Apps.
 
 ### Installing your own App Catalog
 
-It's possible to install your own App Catalog. This is useful if you want to make
-a set of Apps available to your company.
+It's possible to create your own App Catalog. This is useful if you want to make
+a set of Apps available to your company. Currently there is no API endpoint
+or way to add the App Catalog yourself, but once you've created the necessary
+repo, we can add it to your installation upon request.
 
-- Explain that an App Catalog is a repo on Github
-- Explain some of the automation
-- Installing an App Catalog means creating an App Catalog CR
+### What are Helm Chart Repositories and how does it play a role here?
 
-Links to more detailed docs on custom App Catalog creation.
+The App Catalog CR is an abstraction, it's purpose is to point to _something_
+that contains a list of Apps and the storage location of where to get those Apps.
+
+Currently the only supported format for App Catalogs are Helm Chart Repositories,
+however in the future we might support other ways of offering your Apps to the
+Giant Swarm App Catalog.
+
+We've created some automation and best practices around hosting a
+Helm Chart Repository on Github, see github.com/giantswarm/sample-catalog
+for more information.
 
 ### How can I interact with the Giant Swarm App Catalog?
 
