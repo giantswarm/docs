@@ -1,12 +1,12 @@
 +++
 title = "Web Interface Reference"
-description = "Documentation on our web interface, a visual way to create and delete clusters, create key pairs and more."
+description = "Documentation on our web interface, a visual way to manage clusters, create key pairs and more."
 date = "2019-07-05"
 layout = "subsection"
 weight = 10
 +++
 
-# Giant Swarm's Web Interface
+# The Web Interface
 
 Hopefully, if we did our job well then our Web Interface is so intuitive and
 easy to use that this reference isn't necessary.
@@ -28,4 +28,4 @@ detailed information:
 
 ## Feedback {#feedback}
 
-We welcome your feedback our Web Interface. If you feel like sharing openly, use the GitHub repository and create an [issue](https://github.com/giantswarm/happa/issues), so other users can participate. Otherwise please use the common Giant Swarm support channels.
+We welcome your feedback on our Web Interface. If you feel like sharing openly, use the GitHub repository and create an [issue](https://github.com/giantswarm/happa/issues), so other users can participate. Otherwise please use the common Giant Swarm support channels.

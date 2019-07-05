@@ -1,25 +1,26 @@
 +++
-title = "Web Interface Reference: The Giant Swarm App Catalog"
+title = "The Giant Swarm App Catalog in The Web Interface"
 description = "What the Giant Swarm App Catalog looks like on our Web Interface and how to use it."
 date = "2019-07-05"
 layout = "subsection"
 weight = 10
 +++
 
-# Web Interface Reference: The Giant Swarm App Catalog
+# The Giant Swarm App Catalog in The Web Interface
 
 This page will give you an overview of how to do some common tasks related to the
 Giant Swarm App Catalog using our Web Interface.
 
-Go here for an [overview of The Giant Swarm App Catalog](/basics/app-catalog/) instead.
+Go here for an [overview of the Giant Swarm App Catalog](/basics/app-catalog/) instead.
 
 ### Viewing all App Catalogs
 
-Our web interface lets you browse the App Catalogs installed on your Control Plane. Click on "Apps" in the navigation menu. This will only be visible if your
+Our web interface lets you browse the App Catalogs installed on your Control Plane.
+Click on "Apps" in the navigation menu. This link will only be visible if your
 Control Plane has at least one App Catalog installed on it.
 
-The screenshot below shows this page when only the "Community" catalog has been
-installed:
+The screenshot below shows this page when only the "Helm Stable" and
+"Giant Swarm Incubator" catalogs have been installed:
 
 ![app-catalogs](../app-catalogs.png)
 
