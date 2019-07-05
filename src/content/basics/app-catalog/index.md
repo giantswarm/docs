@@ -35,12 +35,33 @@ the desired state of the Giant Swarm App Catalog.
 For example, the "App" Custom Resource indicates that you want an App installed
 on a specific tenant cluster.
 
-SNIPPET SHOWING A APP CR
+```
+apiVersion: application.giantswarm.io/v1alpha1
+kind: App
+metadata:
+  name: "instana-agent"
+  namespace: "x7jwz"
+  labels:
+    app-operator.giantswarm.io/version: "1.0.0"
+spec:
+  catalog: "community"
+  name: "instana-agent"
+  namespace: "instana-agent"
+  version: "1.0.6"
+  kubeConfig:
+    secret:
+      name: "x7jwz-kubeconfig"
+      namespace: "x7jwz"
+  userConfig:
+    configMap:
+      name: "instana-agent-user-values"
+      namespace: "x7jwz"
+```
 
 Below you can see a high level overview of the components and resources that work
 together to enable the features of the Giant Swarm App Catalog:
 
-SOME KIND OF USEFUL IMAGE SHOWING OPERATORS AND CRS AND SUCH.
+
 
 ### What kind of App Catalogs are there?
 
