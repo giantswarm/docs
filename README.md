@@ -125,10 +125,18 @@ autoscaling for AWS.
 - `minimal_supported_cluster_size_worker_nodes`: The minimum number of worker
 nodes a cluster must have in order to be supported by Giant Swarm.
 
+### Iterating on content locally
 
-### Previewing changes
+If you want to iterate quickly on some content you can use the `make dev`
+command.
 
-You can bring up the site using the following commands:
+You can access the server at http://localhost:8080/. The server can be stopped by hitting `Ctrl + C`.
+
+It will not include content from the external repositories.
+
+### Previewing changes including external repositories
+
+You can bring up the final site using the following commands:
 
 ```nohighlight
 make docker-build
