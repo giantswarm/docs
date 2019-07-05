@@ -61,6 +61,7 @@ spec:
 Below you can see a high level overview of the components and resources that work
 together to enable the features of the Giant Swarm App Catalog:
 
+![app-catalog-overview](app-catalog-overview.png)
 
 
 ### What kind of App Catalogs are there?
@@ -115,7 +116,7 @@ a set of Custom Resources on your Control Plane.
 
 Our intention is to eventually grant you full access to the Control Plane
 API, and all of these resources, so that you can interact with them using
-`kubectl`, and automate them just as you have been automating other parts of your
-stack.
+`kubectl` (think `kubectl create app`), and automate them just as you have been
+automating other parts of your stack.
 
 
