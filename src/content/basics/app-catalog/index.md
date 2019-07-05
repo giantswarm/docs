@@ -72,33 +72,33 @@ on your Control Planes.
 Some customers might also already have access to the Managed App Catalog, which
 contains our selection of Managed Apps.
 
-### The Incubator App Catalog
+### The Giant Swarm Incubator App Catalog
 
-The Incubator App Catalog contains apps that we would like to provide as a
-Managed App at some point in the future. When you install an app from the
-Incubator App Catalog you are being brave and helping us get things right before
-we offer the SLA on that app.
+The Giant Swarm Incubator App Catalog contains apps that we would like to provide as
+a Managed App at some point in the future. When you install an app from the
+Giant Swarm Incubator App Catalog you are being brave and helping us get things
+right before we offer the SLA on that app.
 
 Feedback and collaboration are valued here! There is no guarantee or SLA on these
-apps.
+apps, but we offer support on a best-effort basis.
 
-### The Community App Catalog
-
-The Community App Catalog contains all the Apps you'd find in the upstream
-helm repository. There is no guarantee or SLA here. Install Apps from this
-catalog at your own risk.
-
-### The Managed App Catalog and Managed Apps
+### The Giant Swarm Managed App Catalog and Managed Apps
 
 Managed Apps are provided by Giant Swarm and have an SLA associated with
 them. When you install one of our Managed Apps, we make sure that it stays
 running and even get paged if something goes wrong.
 
-Managed Apps can be found in the Managed _App Catalog_. In our web interface
-they are indicated by the orange "Managed" badge.
+Managed Apps can be found in the Giant Swarm Managed _App Catalog_. In our web
+interface they are indicated by the orange "Managed" badge.
 
 Details on the SLA are still being discussed and fleshed out, however watch this
 space for a link to a more in depth explanation of our SLA on our Managed Apps.
+
+### The Helm Stable App Catalog
+
+The Helm Stable App Catalog contains all the Apps you'd find in the upstream
+helm stable repository. There is no guarantee or SLA here. Install Apps from this
+catalog at your own risk.
 
 ### Installing your own App Catalog
 
@@ -107,12 +107,13 @@ a set of Apps available to your company. Currently there is no API endpoint
 or way to add the App Catalog yourself, but once you've created the necessary
 repo, we can add it to your installation upon request.
 
-### What are Helm Chart Repositories and how does it play a role here?
+### What are Helm Chart Repositories?
 
 The App Catalog CR is an abstraction, it's purpose is to point to _something_
 that contains a list of Apps and the storage location of where to get those Apps.
 
-Currently the only supported format for App Catalogs are Helm Chart Repositories,
+Currently the only supported format for App Catalogs are
+[Helm Chart Repositories](https://github.com/helm/helm/blob/master/docs/chart_repository.md),
 however in the future we might support other ways of offering your Apps to the
 Giant Swarm App Catalog.
 
