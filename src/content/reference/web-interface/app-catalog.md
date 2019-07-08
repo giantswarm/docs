@@ -6,7 +6,7 @@ layout = "subsection"
 weight = 10
 +++
 
-# The Giant Swarm App Catalog in The Web Interface
+# The Giant Swarm App Catalog in the Web Interface
 
 This page will give you an overview of how to do some common tasks related to the
 Giant Swarm App Catalog using our Web Interface.
@@ -16,19 +16,18 @@ Go here for an [overview of the Giant Swarm App Catalog](/basics/app-catalog/) i
 ### Viewing all App Catalogs
 
 Our web interface lets you browse the App Catalogs installed on your Control Plane.
-Click on "Apps" in the navigation menu. This link will only be visible if your
+Click on "Apps" in the navigation menu. The "Apps" link will only be visible if your
 Control Plane has at least one App Catalog installed on it.
 
-The screenshot below shows this page when only the "Helm Stable" and
-"Giant Swarm Incubator" catalogs have been installed:
+The screenshot below shows what the "Apps" page looks like with two app catalogs
+installed:
 
 ![app-catalogs](../app-catalogs.png)
 
 ### Installing an App
 
-Click on the catalog you'd like to install from. Catalogs have different SLA
-levels and guarantees, only apps in the Managed catalog will be monitored and
-managed by us.
+Click on the catalog you'd like to install from. Only apps in the Managed catalog
+will be monitored and managed by us.
 
 ![apps](../apps.png)
 
@@ -42,5 +41,5 @@ the app on, as well as some further steps allowing you to configure the app.
 
 ![install-modal](../install-modal.png)
 
-This is also where you can supply your values.yaml with custom configuration for
+This is also where you can provide your values.yaml with custom configuration for
 the app.

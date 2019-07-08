@@ -8,7 +8,7 @@ weight = 10
 
 # The Web Interface
 
-Hopefully, if we did our job well then our Web Interface is so intuitive and
+If we did our job well then our Web Interface is so intuitive and
 easy to use that this reference isn't necessary.
 
 However, for those of you interested in having an overview of what is possible
@@ -24,7 +24,7 @@ detailed information:
 - View and manage organizations
 - Manage your own account and password
 - Learn how to get started with your kubernetes clusters by following a guide
-- [Add, Remove and configure Apps on your clusters.](app-catalog/)
+- [Add, remove and configure Apps on your clusters.](app-catalog/)
 
 ## Feedback {#feedback}
 
