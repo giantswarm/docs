@@ -69,9 +69,6 @@ together to enable the features of the Giant Swarm App Catalog:
 By default you will have the Incubator and the Community App Catalogs installed
 on your Control Planes.
 
-Some customers might also already have access to the Managed App Catalog, which
-contains our selection of Managed Apps.
-
 ### The Giant Swarm Incubator App Catalog
 
 The Giant Swarm Incubator App Catalog contains apps that we would like to provide as
@@ -97,7 +94,8 @@ space for a link to a more in depth explanation of our SLA on our Managed Apps.
 ### The Helm Stable App Catalog
 
 The Helm Stable App Catalog contains all the Apps you'd find in the upstream
-helm stable repository. There is no guarantee or SLA here. Install Apps from this
+[helm stable repository](https://github.com/helm/charts/tree/master/stable). 
+There is no guarantee or SLA here. Install Apps from this
 catalog at your own risk.
 
 ### Installing your own App Catalog
