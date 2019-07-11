@@ -39,5 +39,4 @@ Once you know what app you'd like to install, click on that app, and then on
 That'll bring up a modal where you can choose what cluster you want to install
 the app on, as well as some further steps allowing you to configure the app.
 
-This is also where you can provide your values.yaml with custom configuration for
-the app.
+This is also where you can provide your [values.yaml](https://github.com/helm/helm/blob/master/docs/chart_template_guide/values_files.md) with custom configuration for the app.
