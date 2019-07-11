@@ -124,11 +124,8 @@ for more information.
 You can interact with the Giant Swarm App Catalog through our API and
 our web interface.
 
-See [this reference page] for more details on how to install and configure apps
-using our web interface.
-
-See [link to API docs] for details on API calls related to the Giant Swarm App
-Catalog.
+- [Web Interface Reference: The Giant Swarm App Catalog](/reference/web-interface/app-catalog/)
+- [Apps and App Configs in the API reference](https://docs.giantswarm.io/api/#tag/apps)
 
 Support for the App Catalog is coming to our CLI (gsctl) next.
 
@@ -139,5 +136,4 @@ Our intention is to eventually grant you full access to the Control Plane
 API, and all of these resources, so that you can interact with them using
 `kubectl` (think `kubectl create app`), and automate them just as you have been
 automating other parts of your stack.
-
 
