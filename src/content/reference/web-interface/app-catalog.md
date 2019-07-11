@@ -16,10 +16,10 @@ Go here for an [overview of the Giant Swarm App Catalog](/basics/app-catalog/) i
 ### Viewing all App Catalogs
 
 Our web interface lets you browse the App Catalogs installed on your Control Plane.
-Click on "Apps" in the navigation menu. The "Apps" link will only be visible if your
-Control Plane has at least one App Catalog installed on it.
+Click on "App Catalogs" in the navigation menu. The "App Catalogs" link will only
+be visible if your Control Plane has at least one App Catalog installed on it.
 
-The screenshot below shows what the "Apps" page looks like with two app catalogs
+The screenshot below shows what the "App Catalogs" page looks like with two app catalogs
 installed:
 
 ![app-catalogs](../app-catalogs.png)
@@ -38,8 +38,6 @@ Once you know what app you'd like to install, click on that app, and then on
 
 That'll bring up a modal where you can choose what cluster you want to install
 the app on, as well as some further steps allowing you to configure the app.
-
-![install-modal](../install-modal.png)
 
 This is also where you can provide your values.yaml with custom configuration for
 the app.
