@@ -7,7 +7,7 @@ type = "page"
 categories = ["basics"]
 +++
 
-# The Giant Swarm App Catalog
+![app-catalog-header](app-catalog-header.png)
 
 The _Giant Swarm App Catalog_ refers to a set of features and concepts that allow
 you to browse, install and manage the configurations of apps (such as prometheus)
@@ -94,7 +94,7 @@ space for a link to a more in depth explanation of our SLA on our Managed Apps.
 ### The Helm Stable App Catalog
 
 The Helm Stable App Catalog contains all the Apps you'd find in the upstream
-[helm stable repository](https://github.com/helm/charts/tree/master/stable). 
+[helm stable repository](https://github.com/helm/charts/tree/master/stable).
 There is no guarantee or SLA here. Install Apps from this
 catalog at your own risk.
 
