@@ -15,21 +15,21 @@ Giant Swarm's Architecture is split into two logical parts, one being the Contro
 
 ![Control Plane Architecture](/img/architecture-azure-control-plane.png)
 
-The above diagram shows our control plane setup running with two bastion hosts in different availability zones (???). All instances are in a private subnet and only accessible through the bastion hosts. Bastions hosts are available via Azure VPN connection only.
+The above diagram shows our control plane setup running with two bastion hosts in different availability zones. All instances are in a private subnet and only accessible through the bastion hosts. Bastions hosts are available via Azure VPN connection only.
 
-The cluster has several APIs and Interfaces. The Kubernetes API of the Control Plane is only available to Giant Swarm operations personel and only through the Bastion hosts. 
+The cluster has several APIs and Interfaces. The Kubernetes API of the Control Plane is only available to Giant Swarm operations personnel and only through the Bastion hosts. 
 
-The Giant Swarm API, Monitoring and Alerting frontends as well as our Web Management Interface, Happa, are exposed through the Control Plane Ingress Controller, which sits behind a public load balancer (???).
+The Giant Swarm API, Monitoring and Alerting frontends as well as our Web Management Interface, Happa, are exposed through the Control Plane Ingress Controller, which sits behind a public Load Balancer.
 
 ## Giant Swarm tenant cluster
 
 ![Tenant Cluster Architecture](/img/architecture-azure-tenant-cluster.png)
 
-Via the Giant Swarm API, our [CLI](https://github.com/giantswarm/gsctl), or our Happa interface, you can start Tenant Clusters of different sizes. There's a selection of recommended Azure instance types (???), which can be adjusted if needed. 
+Via the Giant Swarm API, our [CLI](https://github.com/giantswarm/gsctl), or our Happa interface, you can start Tenant Clusters of different sizes. There's a selection of recommended Azure instance types, which can be adjusted if needed. 
 
-Each cluster resides in its own VPC (WHAT IS IT IN AZURE?). All Azure machines are in their own private subnet ([Networking Deepdive](https://blog.giantswarm.io/deep-dive-into-kubernetes-networking-in-azure/)). There are two possible access routes into the cluster. 
+Each cluster resides in its own Virtual Network. All Azure machines are in their own private subnet ([Networking Deepdive](https://blog.giantswarm.io/deep-dive-into-kubernetes-networking-in-azure/)). There are two possible access routes into the cluster. 
 
-One is the Kubernetes API that can be connected to your Identity Management System using OIDC. The other is the Ingress Controller (exposed through a public load balancer (???)), with which you can expose services running inside your cluster publicly. The services will be mapped to domains handled through Route53 (WHAT IS THE AZURE EQUIVALENT?). For the final URL, you can point a CNAME to the Ingress URL. 
+One is the Kubernetes API that can be connected to your Identity Management System using OIDC. The other is the Ingress Controller (exposed through a public Load Balancer), with which you can expose services running inside your cluster publicly. The services will be mapped to domains handled through Azure DNS. For the final URL, you can point a CNAME to the Ingress URL. 
 
 ## Service architecture
 
