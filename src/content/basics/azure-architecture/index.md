@@ -33,7 +33,7 @@ One is the Kubernetes API that can be connected to your Identity Management Syst
 
 ## Service architecture
 
-![Service Architecture](/img/architecture-aws-services.png)
+![Service Architecture](/img/architecture-azure-services.png)
 
 To make your life easier, we have developed a lot of different services within our Control Plane that allow both our operations team and you as users of our API and interfaces to easily manage Kubernetes clusters. Most of these services should be self explanatory. 
 
