@@ -31,7 +31,7 @@ Access to the K8s API goes through the Control Plane. We can connect your Load B
 
 ## Service architecture
 
-![Service Architecture](/img/architecture-aws-services.png)
+![Service Architecture](/img/architecture-onprem-services.png)
 
 To make your life easier, we have developed a lot of different services within our Control Plane that allow both our operations team and you as users of our API and interfaces to easily manage Kubernetes clusters. Most of these services should be self explanatory.
 
