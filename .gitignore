@@ -8,3 +8,4 @@ sitesearch-volume-data
 /build/
 /vendor/
 kubernetes/secrets.yaml
+/.vscode

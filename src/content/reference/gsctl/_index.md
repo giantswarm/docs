@@ -1,7 +1,7 @@
 +++
 title = "gsctl Reference"
 description = "Documentation on gsctl, the Giant Swarm command line utility to create and delete clusters, create key pairs and more."
-date = "2018-09-11"
+date = "2019-07-23"
 layout = "subsection"
 weight = 10
 +++
@@ -16,6 +16,7 @@ Follow the links below for detailed documentation, where available. You can also
 
 | Command                               | Description
 |---------------------------------------|------------
+| `completion`                          | Create completion scripts for Bash and Zsh
 | `create cluster`                      | [Create a new cluster](create-cluster/)
 | `create keypair`                      | [Create and download new key pair](create-keypair/)
 | `create kubeconfig`                   | [Create/download new key pair and update `kubectl` configuration](create-kubeconfig/)
@@ -32,6 +33,7 @@ Follow the links below for detailed documentation, where available. You can also
 | `scale cluster`                       | [Add or remove worker nodes of a cluster](scale-cluster/)
 | `select endpoint`                     | [Select an endpoint](select-endpoint/)
 | `show cluster`                        | [Show cluster details](show-cluster/)
+| `show release`                        | Show details on a release
 | `update organization set-credentials` | [Set provider credentials for an organization](update-org-set-credentials/)
 | `upgrade cluster`                     | [Upgrade a cluster](upgrade-cluster/)
 | `version`                             | Print version number
