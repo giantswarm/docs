@@ -1,7 +1,7 @@
 +++
 title = "gsctl Command Reference: show cluster"
 description = "The 'gsctl show cluster' command displays details of a cluster."
-date = "2019-01-31"
+date = "2019-07-24"
 type = "page"
 weight = 52
 +++
@@ -44,7 +44,8 @@ Created:                       2018 Mar 06, 14:23 UTC
 Organization:                  acme
 Kubernetes API endpoint:       https://api.tjjm7.REDACTED.kvm.gigantic.io
 Release version:               2.2.1
-Workers:                       2
+Worker node scaling:           pinned to 2
+Worker nodes running:          2
 CPU cores in workers:          4
 RAM in worker nodes (GB):      4
 Storage in worker nodes (GB):  80
