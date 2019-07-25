@@ -31,37 +31,6 @@ jobs:
             CURL_OUTPUT=$(curl --no-buffer -s http://localhost:80)
             echo $CURL_OUTPUT | grep --quiet "Giant Swarm"
             docker kill docs
-
-      - run:
-          name: Run Lighthouse audits
-          command: |
-            IMAGE=quay.io/giantswarm/lighthouse:label-reports
-            docker pull $IMAGE
-            URL="http://docs/guides/securing-with-rbac-and-psp/"
-            
-            docker run -d --rm --name docs -p 80:80 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
-            sleep 2
-            docker run --rm \
-                -v $PWD:/out -v $PWD/dev-shm:/dev/shm --link docs:docs \
-                $IMAGE ci-run.sh $URL $CIRCLE_BRANCH
-            docker kill docs
-            
-            docker run -d --rm --name docs -p 80:80 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest
-            sleep 2
-            docker run --rm \
-                -v $PWD:/out -v $PWD/dev-shm:/dev/shm --link docs:docs \
-                $IMAGE ci-run.sh $URL master
-            docker kill docs
-
-      - run:
-          name: Compare lighthouse results
-          command: |
-            docker run --rm \
-              -v $PWD:/reports \
-              quay.io/giantswarm/lighthouse:label-reports \
-                lighthouse-keeper compare \
-                  -i /reports/master.json -l master \
-                  -i /reports/$CIRCLE_BRANCH.json -l $CIRCLE_BRANCH
       
       - run:
           name: Linkcheck
