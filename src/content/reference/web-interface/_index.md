@@ -1,7 +1,7 @@
 +++
 title = "Web Interface Reference"
 description = "Documentation on our web interface, a visual way to manage clusters, create key pairs and more."
-date = "2019-07-05"
+date = "2019-07-26"
 layout = "subsection"
 weight = 10
 +++
