@@ -1,7 +1,7 @@
 +++
 title = "gsctl Command Reference: create cluster"
 description = "Detailed documentation on how to create a new cluster using the 'create cluster' command in gsctl."
-date = "2019-02-07"
+date = "2019-09-04"
 type = "page"
 weight = 20
 +++
@@ -10,11 +10,11 @@ weight = 20
 
 With Giant Swarm, an organization can own any number of clusters. `gsctl create cluster` allows for creating a new Kubernetes cluster.
 
-You can make use of two different approaches:
+You can make use of two different approaches to specify the details of the cluster to be created, like name, size etc.:
 
-- Using **command line arguments**, you can quickly define a cluster name, how many nodes you need and how big these nodes should be.
+1. Using command line arguments as explained below.
 
-- For full control over every detail, you first create a **cluster definition file** describing your desired cluster in YAML, which you then submit using `gsctl`. You know this declarative approach well from Kubernetes, where you apply manifest files using `kubectl`. It is reproducible, self-documenting, and the definitions can be kept in version control repositories.
+2. Using a [cluster definition YAML file](/reference/cluster-definition/) describing your desired cluster in YAML, which you then submit using `gsctl`.
 
 In fact, you can also mix the two approaches, as some command line arguments can be used to extend (or overwrite) the definition passed as a file.
 
@@ -127,9 +127,29 @@ contact the Giant Swarm support team.
 Note that not all VM sizes might be allowed in your installation.
 You can find out which VM sizes are allows using the [`gsctl info`](/reference/gsctl/info/) command.
 
+## YAML definition examples {#yaml-definition-examples}
+
+Here we show quickly how to create a cluster based on a [cluster definition](/reference/cluster-definition/). You can either instruct gsctl to access a file, or pass the definition content directly via STDIN.
+
+Here is how to pass a file path:
+
+```nohighlight
+gsctl create cluster -f ./cluster.yaml
+```
+
+To read the content from standard input (STDIN), use the `-f` flag with the dash/minus (`-`) instead of an actual file path. The example below works with bash:
+
+```bash
+$ gsctl create cluster -f - <<EOF
+owner: acme
+name: Dev cluster
+release: 7.1.1
+EOF
+```
+
 ## Related
 
-- [Cluster defininition reference](/reference/cluster-definition/)
+- [Cluster definition reference](/reference/cluster-definition/)
 - [Basics: Cluster Size and Autoscaling](/basics/cluster-size-autoscaling/)
 - [`gsctl create kubeconfig`](/reference/gsctl/create-kubeconfig/): Obtaining a key pair and enabling `kubctl` to access a cluster
 - [`gsctl delete cluster`](/reference/gsctl/delete-cluster/): Reference for deleting a cluster
