@@ -1,7 +1,7 @@
 +++
 title = "Securing your Cluster with RBAC and PSP"
 description = "Introduction to using RBAC and PSP to secure your cluster and manage access control."
-date = "2018-05-11"
+date = "2019-09-11"
 type = "page"
 weight = 30
 tags = ["tutorial"]
@@ -264,13 +264,13 @@ yes
 
 A `PodSecurityPolicy` object defines a set of conditions that a pod must run with in order to be accepted into the system. It governs the ability to make requests on a Pod that affect the `SecurityContext` that will be applied to a Pod and container.
 
-By default, Giant Swarm clusters come with two PSPs defined - a `privileged` policy that allows almost any Security Context and a `restricted` policy that mainly restricts users from running privileged containers and mount host paths as volumes.
+By default, Giant Swarm clusters come with two PSPs defined - a `privileged` policy that allows almost any Security Context and a `restricted` policy that mainly restricts users from running privileged containers, run containers as root or mount host paths as volumes.
 
 Additionally, there are two respective cluster roles defined - `privileged-psp-user` and `restricted-psp-user`.
 
 By default all authenticated users have the `restricted-psp-user` role assigned.
 
-If you need to run privileged containers in a Pod, you need to either use a cluster admin user or bind the `privileged-psp-user` role to your desired user or group.
+If you need to run privileged or root containers in a Pod, you need to either use a cluster admin user or bind the `privileged-psp-user` role to your desired user or group.
 
 Note that your user's PSP only come into play when you directly create Pods. If you are using Deployments, Daemonsets, or other means to spawn Pods in your cluster, you need to make sure these have the right PSP by using [Service Accounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/).
 
