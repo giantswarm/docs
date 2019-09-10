@@ -264,7 +264,7 @@ yes
 
 A `PodSecurityPolicy` object defines a set of conditions that a pod must run with in order to be accepted into the system. It governs the ability to make requests on a Pod that affect the `SecurityContext` that will be applied to a Pod and container.
 
-By default, Giant Swarm clusters come with two PSPs defined - a `privileged` policy that allows almost any Security Context and a `restricted` policy that mainly restricts users from running privileged containers, run containers as root or mount host paths as volumes.
+By default, Giant Swarm clusters come with two PSPs defined - a [`privileged` policy](https://github.com/giantswarm/k8scloudconfig/blob/master/v_4_8_0/files/k8s-resource/psp_policies.yaml#L1-L27) that allows almost any Security Context and a [`restricted` policy](https://github.com/giantswarm/k8scloudconfig/blob/master/v_4_8_0/files/k8s-resource/psp_policies.yaml#L30-L57) that mainly restricts users from running privileged containers, run containers as root or mount host paths as volumes.
 
 Additionally, there are two respective cluster roles defined - `privileged-psp-user` and `restricted-psp-user`.
 
