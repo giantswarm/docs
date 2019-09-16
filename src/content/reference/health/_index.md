@@ -10,7 +10,7 @@ weight = 30
 
 Giant Swarm gives you a high-level assessment of the health of your tenant clusters. You can use this assessment to decide whether you should investigate a problem with the cluster, take any action (e. g. adding resources) or check back with the Giant Swarm support staff to collaborate on any issue mitigation.
 
-**Important note:** Cluster health is a recent addition and only takes into consideration a limited set of information. Some possible failure sources, like for example on the overlay networking layer, will not be taken into account. We are working on increasing the coverage and value your input regarding requirements and priorities.
+**Important note:** Cluster health is a recent addition and only takes into consideration a limited set of information. Some possible failure sources such as the overlay networking layer will not be taken into account. We are working on increasing the coverage and value your input regarding requirements and priorities.
 
 ## Health categories
 
@@ -18,7 +18,7 @@ We categorize cluster health in a system that comprises three levels:
 
 - <strong style="color: green">GOOD</strong>: The cluster should work as expected, is scalable and resilient.
 
-- <strong style="color: orange">PASSABLE</strong>: Some part of the cluster is in a state that is not considered ideal. Scalability or resilience may be impaired. However should not affect scheduled workloads and the cluster is considered functional in general.
+- <strong style="color: orange">PASSABLE</strong>: Some part of the cluster is in a state that is not considered ideal. Scalability or resilience may be impaired. This condition should not affect scheduled workloads, and the cluster is considered functional in general.
 
 - <strong style="color: red">BAD</strong>: Something is wrong with the cluster that likely needs fixing. Please contact the Giant Swarm support team to get more information regarding the investigation and mitigation.
 
@@ -28,7 +28,7 @@ While there are pure cluster-level state details that influence the health asses
 
 In clusters without node pools, aggregation of node health directly influences the cluster health assessment.
 
-For clusters with node pools, the node's health is aggregated on the node pools level. Then the cluster health is derived considering the health of all node pools in the cluster.
+For clusters with node pools, the node's health is aggregated on the node pools level. Then the cluster health is derived from the health of all node pools in the cluster.
 
 ```nohighlight
 TODO: image
@@ -68,20 +68,20 @@ When combining the outcome of different rules on a level, there is a simple prio
 
 - If the cluster's/node pool's AWS CloudFormation stack is in state `FAILED`, it will be reported as <strong style="color: red">BAD</strong>.
 
-- If a master node of the cluster/node pool is not GOOD:
+- If a master node of the cluster/node pool is not <strong style="color: green">GOOD</strong>:
   - If the cluster is in `Upgrading` state, then the cluster (or node pool) health is <strong style="color: orange">PASSABLE</strong>.
   - If the cluster is not in `Upgrading` state, then the cluster (or node pool) health is <strong style="color: red">BAD</strong>.
 
 - If the cluster (or node pool) state is neither `Creating` nor `Deleting`, then
   - If less than 75% of worker nodes are in state `Ready`, then cluster (or node pool) health is <strong style="color: orange">PASSABLE</strong>.
-  - If the cluster or node pool is supposed to have 20 or more workers and less than 50% of the worker nodes are in state `Ready`, then cluster (or node pool) health is <strong style="color: orange">RED</strong>.
-  - If less than three worker nodes are in a state other than `Ready`, the cluster (or node pool) health will be reported as <strong style="color: red">BAD</strong>.
+  - If the cluster or node pool is supposed to have 20 or more workers and less than 50% of the worker nodes are in state `Ready`, then cluster (or node pool) health is <strong style="color: red">BAD</strong>.
+  - Regardless of cluster size, if less than three worker nodes are in a state other than `Ready`, the cluster (or node pool) health will be reported as <strong style="color: red">BAD</strong>.
 
 #### Clusters with node pools
 
-- If any of the node pools is <strong style="color: orange">PASSABLE</strong>, the cluster health will be reported as <strong style="color: orange">PASSABLE</strong>.
+- If any of the node pools are <strong style="color: orange">PASSABLE</strong>, the cluster health will be reported as <strong style="color: orange">PASSABLE</strong>.
 
-- If any of the node pools is <strong style="color: red">BAD</strong>, the cluster health will be reported as <strong style="color: red">BAD</strong>.
+- If any of the node pools are <strong style="color: red">BAD</strong>, the cluster health will be reported as <strong style="color: red">BAD</strong>.
 
 
 ## Further reading
