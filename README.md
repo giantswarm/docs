@@ -44,14 +44,14 @@ Each documentation page consists of a Markdown file that starts with some metada
 
 ### Code blocks
 
-We support fenced code blocks wrapped by the triple backtick operator. It is recommended to
+We support fenced code blocks wrapped by the triple back-tick operator. It is recommended to
 also declare the language a code snippet uses, to prevent faulty guessing. Example:
 
     ```json
     {"message": "this is JSON"}
     ```
 
-Shell snippets (commands and their output) should in generall prevent highlighting like this:
+Shell snippets (commands and their output) should in general prevent highlighting like this:
 
     ```nohighlight
     $ ls
@@ -60,7 +60,7 @@ Shell snippets (commands and their output) should in generall prevent highlighti
 
 ### Table of contents and headline anchors
 
-The rendered documentation pages will have a table of contents on the top left and an achor for every intermediate headline. This anchor is normally generated from the headline's content. For example, a headline
+The rendered documentation pages will have a table of contents on the top left and an anchor for every intermediate headline. This anchor is normally generated from the headline's content. For example, a headline
 
     ### Another section with more content
 
@@ -68,9 +68,9 @@ will result in a headline
 
     <h3 id="another-section-with-more-content">Another section with more content</h3>
 
-This means that anchors and URLs can become quite long. It also means that when the healine text changes, all links to this headline also have to be updated.
+This means that anchors and URLs can become quite long. It also means that when the headline text changes, all links to this headline also have to be updated.
 
-To control this behaviour, the anchor ID can be edited as a suffix to the markdown headline, like in the following example:
+To control this behavior, the anchor ID can be edited as a suffix to the markdown headline, like in the following example:
 
     ### Another section with more content {#more}
 
@@ -78,23 +78,23 @@ will result in a headline
 
     <h3 id="more">Another section with more content</h3>
 
-### Shortcodes
+### Short-codes
 
-Shortcodes allow the use of a string in any number of places in the docs,
+Short-codes allow the use of a string in any number of places in the docs,
 while maintaining it only in one place. We use these to place, for example,
 configuration details.
 
 The goal here is to give users accurate, complete and up-to-date information.
 
-Shortcodes exist as one file each in the folder [src/layouts/shortcodes](https://github.com/giantswarm/docs/tree/master/src/layouts/shortcodes).
+Short-codes exist as one file each in the folder [src/layouts/shortcodes](https://github.com/giantswarm/docs/tree/master/src/layouts/shortcodes).
 
 #### Usage
 
-A shortcode can only be placed in *Markdown* text. The file name (without
+A short-code can only be placed in *Markdown* text. The file name (without
 `.html` suffix) is used as a placeholder, wrapped in a certain way, like
 `{{% placeholder %}}`.
 
-For example, to place the shortcode from `first_aws_autoscaling_version.html`,
+For example, to place the short-code from `first_aws_autoscaling_version.html`,
 the content would look like this
 
 ```markdown
@@ -107,7 +107,7 @@ and would get rendered like
 ... since version 6.3.0 ...
 ```
 
-#### List of shortcodes with explanation
+#### List of short-codes with explanation
 
 - `autoscaler_utilization_threshold`: Utilization threshold for the kubernetes
 autoscaler, including percent unit, as we configure it by default. Below this
