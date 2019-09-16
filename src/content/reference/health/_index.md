@@ -6,7 +6,7 @@ layout = "subsection"
 weight = 30
 +++
 
-# Cluster health
+# Cluster Health
 
 Giant Swarm gives you a high-level assessment of the health of your tenant clusters. You can use this assessment to decide whether you should investigate a problem with the cluster, take any action (e. g. adding resources) or check back with the Giant Swarm support staff to collaborate on any issue mitigation.
 
