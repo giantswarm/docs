@@ -73,7 +73,7 @@ $ gsctl create kubeconfig -c w6wn8 --self-contained kubeconfig.yaml \
   --tenant-internal=true
 ```
 
-Here , the file `kubeconfig.yaml` will be created and will container internal
+Here, the file `kubeconfig.yaml` will be created and it will contain an internal
 Kubernetes API fqdn reference in `server` field. Currently, only AWS supports
 internal Kubernetes API access.
 
