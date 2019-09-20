@@ -64,7 +64,7 @@ credentials data. If the file already exists, an interactive confirmation to
 overwrite this file will be required. The confirmation can be suppressed using
 `--force`.
 
-The next example shows creation of a self-contained configuratio file with
+The next example shows the creation of a self-contained configuration file with
 internal Kubernetes API endpoint.
 
 
