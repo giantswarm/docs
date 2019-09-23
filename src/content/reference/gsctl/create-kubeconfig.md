@@ -64,6 +64,19 @@ credentials data. If the file already exists, an interactive confirmation to
 overwrite this file will be required. The confirmation can be suppressed using
 `--force`.
 
+The next example shows the creation of a self-contained configuration file with
+an internal Kubernetes API endpoint.
+
+
+```nohighlight
+$ gsctl create kubeconfig -c w6wn8 --self-contained kubeconfig.yaml \
+  --tenant-internal=true
+```
+
+Here, the file `kubeconfig.yaml` will be created and it will contain an internal
+Kubernetes API endpoint (FQDN) reference in the `server` field. Currently, only AWS supports
+internal Kubernetes API access.
+
 To conclude the examples sections, here is a more complex example showing how
 to create admin access (valid for one day only) in a self-contained file:
 
@@ -86,6 +99,8 @@ $ gsctl create kubeconfig --cluster w6wn8 \
   config file. Credentials will be included. The file will contain only one
   user, one cluster, and one context. When this option is used, the default
   kubectl config file is not altered.
+- `--tenant-internal`: This option sets whether an internal endpoint should be used
+  to access Kubernetes API.
 - `--force`: Always overwrite existing files without prompt when using `--self-contained`.
 - `--context`: Allows to set the context name to be used in the config file.
   Defaults to `giantswarm-` plus the cluster ID. This name is used with the
