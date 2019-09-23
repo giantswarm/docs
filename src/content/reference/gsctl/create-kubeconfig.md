@@ -65,7 +65,7 @@ overwrite this file will be required. The confirmation can be suppressed using
 `--force`.
 
 The next example shows the creation of a self-contained configuration file with
-internal Kubernetes API endpoint.
+an internal Kubernetes API endpoint.
 
 
 ```nohighlight
