@@ -28,6 +28,46 @@ common configuration. You can combine any sort of node pool within one cluster. 
 A node pool is identified by a unique ID that is generated on creation and by a name that you can pick as a cluster
 administrator.
 
+### Lifecycle
+
+Node pools can be created when creating a cluster
+
+- via the Giant Swarm web interface ("happa")
+- via the CLI command [`gsctl create cluster`](/reference/gsctl/create-ckuster/)
+
+or any time after the cluster has been created
+
+- via the Giant Swarm web interface
+- via the CLI command [`gsctl add nodepool`](/reference/gsctl/add-nodepool/)
+
+These tools also support modification (renaming, changing scaling settings) of node pools
+and their deletion.
+
+Once a node pool has been created, as soon as the workers are available, they will
+join the cluster and appear in your `kubectl get nodes` listing. You can identify the
+nodes' node pool using the `TODO: add label` label.
+
+```nohighlight
+TODO: show 'kubectl get nodes' command and output showing the node pool ID,
+based on JSON field selectors.
+```
+
+### Node pool deletion
+
+When a node pool gets deleted,
+
+- nodes in the pool will be cordoned (marked as unschedulable) and drained, resulting in Pods being unassigned from the nodes and containers being stopped.
+- Then the actual nodes (EC2 instanced) will be removed.
+
+If you are deleting a node pool running critical workloads, we recommend to take some
+precautions:
+
+- Make sure there is at least one node pool providing enough nodes to pick
+up the workloads.
+- Double-check any taints and node selectors of your workloads to make sure they can land on different nodes.
+- For most control, cordon all of the node pool's nodes and then drain them manually, one by one.
+
+Then pay close attention to the workloads being rescheduled on other nodes once nodes are drained.
 
 ```
 Content outline:
