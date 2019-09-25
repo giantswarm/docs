@@ -1,20 +1,39 @@
-+++
-title = "Cluster Definition YAML Reference"
-description = "Complete documentation of the Giant Swarm cluster definition YAML format"
-date = "2019-02-21"
-layout = "subsection"
-weight = 100
-+++
+---
+title: Cluster Definition YAML Reference
+description: Complete documentation of the Giant Swarm cluster definition YAML format, compatible with API v4 and v5.
+date: 2019-09-25
+layout: subsection
+weight: 100
+---
 
 # Cluster Definition YAML Reference
 
-The [`gsctl create cluster`](../gsctl/create-cluster/) command can consume YAML files conforming to this specification to create new clusters.
+Giant Swarm's cluster definition YAML format allows to define the detailed specs for a cluster in a YAML
+format, which is then passed to [`gsctl create cluster`](/reference/gsctl/create-cluster/) in order to
+create that cluster.
 
-The YAML format corresponds directly with the Giant Swarm API v4 request body spec for [creating clusters](/api/#operation/addCluster).
+The cluster definition schema corresponds to a high degree with the Giant Swarm API schema for cluster
+creation. As it's the case within the API, the YAML definition comes in two different versions:
 
-## Examples
+- [**v4**](#v4): For a long time, this has been the only version around. As of now, this version is required
+to create clusters on **Azure** and on bare metal (**KVM**). It is also needed for cluster creation on
+AWS using a release prior to {{% first_aws_nodepools_version %}}, basically to create a cluster without
+support for node pools.
 
-The following example defines a cluster with three worker nodes:
+- [**v5**](#v5): This version has been introduced in October 2019 to support clusters with
+[node pools](/basics/nodepools/). The feature is available on AWS starting with release
+{{% first_aws_nodepools_version %}}.
+
+As it's the case with the Giant Swarm API, cluster creation using the YAML definition only requires you
+to specify the details you need to deviate from defaults. For every setting not contained in the
+definition, defaults will apply as explained below. For any missing information regarding defaults,
+please contact your Giant Swarm support team via Slack or at support@giantswarm.io.
+
+## v4 Definition {#v4}
+
+### Examples
+
+The following example defines a bare metal/KVM cluster with three worker nodes:
 
 ```yaml
 name: Example Cluster
@@ -31,10 +50,6 @@ workers:
       size_gb: 100
 ```
 
-As you can possibly see, the definition is quite sparse. Not all worker nodes need to have specifications for storage, CPU, and memory. Where details aren't specified, Giant Swarm will make use of defaults when creating the cluster.
-
-**Note:** To learn about our current default values, available Kubernetes version, and valid ranges for the specifications for clusters, please contact us at support@giantswarm.io. We plan to offer simpler ways to inform you about current default values in the future.
-
 In contrast to the example above, for AWS EC2 based clusters, worker nodes have to be specified by selecting an instance type. The following example shows how to select instance types for worker nodes instead. The keys `cpu`, `memory`, and `storage` are not applicable here.
 
 ```yaml
@@ -48,18 +63,18 @@ workers:
       instance_type: m3.large
 ```
 
-**Note:** As of now, in AWS based clusters all worker nodes must be of the same instance type. Based on your installation, only certain instance types may be available. Please contact the support team to learn which instance types are supported on your installation.
+**Note:** AWS clusters defined using a v4 definition (and consequently using a release prior to {{% first_aws_nodepools_version %}}) restrict you to all worker nodes being of the same instance type. With v5 and node pools, you gain the flexibility to create several node pools using different instance types.
 
-## Definition keys {#keys}
+### Schema {#v4-schema}
 
-### Root level keys {#root-keys}
+#### Root level keys {#root-keys}
 
 - `owner`: Name of the owner organization.
 - `name`: Friendly name of the cluster. If not specified, a name will be generated.
 - `workers`: Array of node definition objects describing each worker node. See below for possible keys. If not specified, the default number of worker nodes with default settings will be created.
-- `release`: Allows to select a specific release version. The value must be the semver version number of an active relaese. To get information on all available releases, use the [`gsctl list releases`](/reference/gsctl/list-releases/) command.
+- `release_version`: Allows to select a specific release version. The value must be the semver version number of an active release. To get information on all available releases, use the [`gsctl list releases`](/reference/gsctl/list-releases/) command.
 
-### Node definition keys {#node-keys}
+#### Node definition keys {#node-keys}
 
 - `memory`: The sub-key `size_gb` allows to specify the amount of RAM to provide in a node using an integer or float value. Only usable on KVM (on-premises/bare metal) installations.
 - `cpu`: The sub-key `cores` allows to require a number of CPU cores as integer. Only usable on KVM (on-premises/bare metal) installations.
@@ -69,21 +84,78 @@ workers:
 - `azure`: Settings specific to Azure based clusters
 - `azure.vm_size`: The Azure VM size to use for worker nodes
 
+## v5 Definition {#v5}
+
+Let's start with an example:
+
+```yaml
+api_version: "v5"
+release_version: "{{% first_aws_nodepools_version %}}"
+name: "Test cluster with two node pools"
+master:
+  availability_zone: "eu-central-1a"
+nodepools:
+- name: "Node pool with 2 random AZs using defaults"
+  availability_zones:
+    number: 2
+- name: "Node pool with 3 specific AZs A, B, C, m5.xlarge"
+  availability_zones:
+    zones:
+    - "eu-central-1a"
+    - "eu-central-1b"
+    - "eu-central-1c"
+  scaling:
+    min: 3
+    max: 10
+  node_spec:
+    aws:
+      instance_type: "m5.xlarge"
+```
+
+Coming from v4, you might want to understand how v5 is different from v4:
+
+- in v5, the key `api_version` is mandatory and the value must be `v5`.
+- Several settings that were specified on the cluster level in v4 (root level of the YAML definition) have been moved to the node pool level.
+- The key `master` has been added to influence master placement.
+
+### Schema {#v5-schema}
+
+#### Root level keys
+
+- `api_version`: Mandatory and must have the string value `v5`.
+- `owner`: Name of the owner organization.
+- `name`: Friendly name of the cluster. If not specified, a name will be generated.
+- `release_version`: Allows to select a specific release version. The value must be the semver version number of an active release. To get information on all available releases, use the [`gsctl list releases`](/reference/gsctl/list-releases/) command.
+- `master`:
+  - `availability_zone`: Name of the availability zone to use for the master node. If not set, one will be assigned randomly.
+- `nodepools`: Here you can list your node pool definitions as explained below. Note that this is not mandatory and you can also add node pools to a cluster after it has been created.
+
+#### Node pool definition keys
+
+- `name`: User-friendly name of the node pool, ideally indicating the purpose. Maximum of 100 characters allowed, must not contain control characters such as newline. If not set, a generic name will be assigned that can be changed later.
+- `availability_zones`: Allows to influence the availability zone placement of the worker nodes. Either use `zones` to select specific ones or `number` to set the number of zones to use, if you are fine with random selection. If neither is specified, all worker nodes of this pool will be in the same availability zone, selected randomly. Setting both `zones` and `number` will cause an error.
+  - `zones`: Array of availability zone names.
+  - `number`: Number of availability zones to use.
+- `node_spec`: Worker node specification details.
+  - `aws`: AWS specific details
+    - `instance_type`: EC2 instance type to use for all worker nodes in this pool.
+- `scaling`: Scaling or size range for the node pool. Setting `min` and `max` to the same value effectively disables autoscaling.
+  - `min`: Minimum number of worker nodes in the pool. In other words, the lower limit for the autoscaler. Default: 3.
+  - `max`: Maximum number of worker nodes in the pool or upper limit for the autoscaler. Default: 3.
+
 ## General notes on YAML
 
 Chances are that you already work with YAML in various places. If not, here are some hints:
 
 - In YAML, whitespace is important. Indentation must be made using blanks (space), not tabs.
-
 - If in doubt, check your YAML in a linter. There are plenty online, e. g. [yamllint.com](http://www.yamllint.com/).
-
 - JSON is valid YAML. If you prefer JSON's notation, just use valid JSON.
-
 - You can add comments to YAML files by starting a line with the character `#`.
 
 
 ## Related
 
 - [`gsctl create cluster`](/reference/gsctl/create-cluster/): Create a cluster based on flags or a definition file
+- [`gsctl add nodepool`](/reference/gsctl/add-nodepool/)
 - [`gsctl list releases`](/reference/gsctl/list-releases/): Listing available releases
 - [API: Create cluster](/api/#operation/addCluster)
