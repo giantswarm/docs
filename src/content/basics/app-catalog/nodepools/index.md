@@ -45,11 +45,11 @@ and their deletion.
 
 Once a node pool has been created, as soon as the workers are available, they will
 join the cluster and appear in your `kubectl get nodes` listing. You can identify the
-nodes' node pool using the `TODO: add label` label.
+nodes' node pool using the `giantswarm.io/machine-deployment` label.
 
 ```nohighlight
-TODO: show 'kubectl get nodes' command and output showing the node pool ID,
-based on JSON field selectors.
+kubectl get nodes \
+  -o=jsonpath='{range .items[*]}{.metadata.labels.giantswarm\.io/machine-deployment}{"\t"}{.metadata.name}{"\n"}{end}' | sort
 ```
 
 ### Node pool deletion
