@@ -11,6 +11,8 @@ categories: ["basics"]
 
 Node pools are a new concept introduced in October 2019 with release {{% first_aws_nodepools_version %}} for AWS.
 
+## Advantages
+
 Prior the introduction of node pools, a cluster could only comprise one type of worker node. The cluster would have
 to be scaled as a whole, and the availability zone distribution would apply to all worker nodes of a cluster. This
 would mean that every worker node would have to be big enough to run the largest possible workload, in terms of
@@ -28,7 +30,7 @@ common configuration. You can combine any sort of node pool within one cluster. 
 A node pool is identified by a unique ID that is generated on creation and by a name that you can pick as a cluster
 administrator.
 
-### Lifecycle
+## Lifecycle
 
 Node pools can be created when creating a cluster
 
@@ -40,8 +42,7 @@ or any time after the cluster has been created
 - via the Giant Swarm web interface
 - via the CLI command [`gsctl add nodepool`](/reference/gsctl/add-nodepool/)
 
-These tools also support modification (renaming, changing scaling settings) of node pools
-and their deletion.
+These tools also support modification of node pools and their deletion.
 
 Once a node pool has been created, as soon as the workers are available, they will
 join the cluster and appear in your `kubectl get nodes` listing. You can identify the
@@ -52,9 +53,35 @@ kubectl get nodes \
   -o=jsonpath='{range .items[*]}{.metadata.labels.giantswarm\.io/machine-deployment}{"\t"}{.metadata.name}{"\n"}{end}' | sort
 ```
 
-### Node pool deletion
+Some details of a node pool can be modified after creation:
 
-When a node pool gets deleted,
+- The node pool name
+- The scaling range (min(max)
+
+Settings like the instance type or the availability zone assignment cannot be change after creation.
+
+## Assigning workloads to node pools
+
+Knowing the node pool ID of the pool to use, you can use the `nodeSelector` method of assigning pods to the node pool.
+
+Assuming that the node pool ID is `a1b2c`, your `nodeSelector` should look like this (for example):
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+  nodeSelector:
+    giantswarm.io/machine-deployment: a1b2c
+```
+
+## Node pool deletion
+
+You can delete a node pool at any time using the Giant Swarm API and user interfaces. When a node pool gets deleted,
 
 - nodes in the pool will be cordoned (marked as unschedulable) and drained, resulting in Pods being unassigned from the nodes and containers being stopped.
 - Then the actual nodes (EC2 instanced) will be removed.
@@ -69,24 +96,38 @@ up the workloads.
 
 Then pay close attention to the workloads being rescheduled on other nodes once nodes are drained.
 
-```
-Content outline:
+## Node pools and the Giant Swarm API
 
-- Main purposes:
-    - Offer different types of worker nodes, suited to different types of needs
-    - Adjust scaling more flexibly
-    - Adjust AZ placement more flexibly
-- API changes (v5 instead of v5)
-- Cluster definition changes
-- Clusters can exist without any node pools and thus without any workloads.
-- How to schedule workloads to certain node pools:
-  - Use the unique node pool ID which is present as a node label as a selector
-  - Alternatively use other labels, e. g. the EC2 instance type.
-- Lifecycle:
-  - Deleting a node pool
-    - never affects the cluster owning the node pool.
-    - means that nodes will be cordoned, drained, removed.
-    - Whether workloads can be rescheduled depends on the remaining node pools and selectors.
-- Mininum size for support: 3 worker nodes
+Handling clusters with node pools requires an API schema different from the one used for clusters
+with homogeneous worker nodes. We introduced a new API version path `v5` for this reason.
+
+Using the v5 API endpoints, you can
+
+- Create a new cluster
+- Add a node pool to a cluster
+- Rename a cluster
+- Modify a node pool (for renaming or changing scaling settings)
+- Delete a node pool
+
+## Node pools and the cluster definition YAML format
+
+Just as the Giant Swarm API schema for v4 (without node pools) and v5 (with node pools) clusters are different, the [cluster definition format](/reference/cluster-definition/) is different for both versions.
+
+The new definition schema for v5 allows for defining cluster and node pool details in one file,
+to be submitted for creation via the [`gsctl create cluster`](/reference/gsctl/create-cluster/) command.
+
+## Support
+
+Please note that we do not monitor node pools with less than three worker nodes and do not provide any proactive support for those.
+
+Also please note that we do not monitor a cluster without any node pools.
+
+```
+TODO
+
 - Consequences for maximum cluster size (IP range)
 ```
+
+### Further reading
+
+- [Assigning Pods to Nodes](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/) from the official Kubernetes documentation
