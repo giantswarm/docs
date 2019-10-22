@@ -1,7 +1,7 @@
 +++
 title = "Advanced Ingress Configuration"
 description = "Here we describe how you can customize and enable specific features for the NGINX-based Ingress"
-date = "2018-09-28"
+date = "2019-10-23"
 type = "page"
 weight = 50
 tags = ["tutorial"]
@@ -272,13 +272,17 @@ __Note:__ Adding an annotation to an Ingress rule overrides any global restricti
 
 A 413 error will be returned to the client when the size in a request exceeds the maximum allowed size of the client request body. This size can be configured by the parameter [`client_max_body_size`](http://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size) and is set to `1m` (1 Megabyte) by default.
 
-To configure this setting globally for all Ingress rules, the `proxy-body-size` value may be set in the [NGINX ConfigMap](#configmap).
+To configure this setting globally for all Ingress rules, the `proxy-body-size` value may be set in the [NGINX ConfigMap](#configmap). 
 
 To use custom values in a specific Ingress add following annotation:
 
 ```
 nginx.ingress.kubernetes.io/proxy-body-size: 8m
 ```
+
+### Custom http2 max field size
+
+In case you are using http2 and you want to leverage on header compression you can set `http2-max-field-size` (default is `4K`).
 
 ### Session Affinity
 
@@ -324,6 +328,8 @@ Make sure to use the exact annotation scheme `nginx.ingress.kubernetes.io/config
 
 Check out the [ingress-nginx repository](https://github.com/kubernetes/ingress-nginx/blob/master/docs/examples/customization/configuration-snippets/ingress.yaml) for more information.
 
+In case you want to set up a general http snippet you can define it at [NGINX ConfigMap](#configmap) level.
+
 ## Global (per cluster) options {#configmap}
 
 Your Giant Swarm installation comes with some global defaults for Ingress Controller configuration. However, you can override these defaults by setting your per cluster configuration in form of a ConfigMap named `nginx-ingress-controller-user-values` located in your `kube-system` namespace.
@@ -348,6 +354,10 @@ data:
   enable-vts-status: "true"
   error-log-level: "error"
   hsts: "false"
+  http-snippet: |
+    server {
+      ...
+    }
   large-client-header-buffers: "4 8K"
   log-format-upstream: "$status $body_bytes_sent $http_referer"
   server-name-hash-bucket-size: "1024"
