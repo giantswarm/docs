@@ -280,10 +280,6 @@ To use custom values in a specific Ingress add following annotation:
 nginx.ingress.kubernetes.io/proxy-body-size: 8m
 ```
 
-### Custom http2 max field size
-
-In case you are using http2 and you want to leverage on header compression you can set `http2-max-field-size` (default is `4K`).
-
 ### Session Affinity
 
 The annotation `nginx.ingress.kubernetes.io/affinity` enables and sets the affinity type in all upstreams of an Ingress. This way, a request will always be directed to the same upstream server.
@@ -358,6 +354,7 @@ data:
     server {
       ...
     }
+  http2-max-field-size: "8K"
   large-client-header-buffers: "4 8K"
   log-format-upstream: "$status $body_bytes_sent $http_referer"
   server-name-hash-bucket-size: "1024"
