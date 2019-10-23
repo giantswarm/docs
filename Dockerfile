@@ -1,6 +1,7 @@
-FROM nginx:1.15.12-alpine
+FROM nginx-unprivileged:1.16-alpine
 
-EXPOSE  80
+EXPOSE  8080
+
 WORKDIR /
 ADD vendor/hugo/hugo /usr/bin/hugo
 RUN chmod u+x /usr/bin/hugo
