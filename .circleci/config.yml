@@ -27,7 +27,7 @@ jobs:
       - run:
           name: Launch container for tests
           command: |
-            docker run -d --rm --name docs -p 80:80 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
+            docker run -d --rm --name docs -p 8080:8080 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
             CURL_OUTPUT=$(curl --no-buffer -s http://localhost:80)
             echo $CURL_OUTPUT | grep --quiet "Giant Swarm"
             docker kill docs
@@ -35,7 +35,7 @@ jobs:
       - run:
           name: Linkcheck
           command: |
-            docker run -d --rm --name docs -p 80:80 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
+            docker run -d --rm --name docs -p 8080:8080 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
             docker run --rm -ti --name linkchecker \
                 --link docs:docs \
                 jare/linkchecker \
