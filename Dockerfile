@@ -1,4 +1,4 @@
-FROM nginx-unprivileged:1.16-alpine
+FROM nginxinc/nginx-unprivileged:1.16-alpine
 
 EXPOSE  8080
 
