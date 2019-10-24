@@ -44,14 +44,14 @@ Each documentation page consists of a Markdown file that starts with some metada
 
 ### Code blocks
 
-We support fenced code blocks wrapped by the triple backtick operator. It is recommended to
+We support fenced code blocks wrapped by the triple back-tick operator. It is recommended to
 also declare the language a code snippet uses, to prevent faulty guessing. Example:
 
     ```json
     {"message": "this is JSON"}
     ```
 
-Shell snippets (commands and their output) should in generall prevent highlighting like this:
+Shell snippets (commands and their output) should in general prevent highlighting like this:
 
     ```nohighlight
     $ ls
@@ -60,7 +60,7 @@ Shell snippets (commands and their output) should in generall prevent highlighti
 
 ### Table of contents and headline anchors
 
-The rendered documentation pages will have a table of contents on the top left and an achor for every intermediate headline. This anchor is normally generated from the headline's content. For example, a headline
+The rendered documentation pages will have a table of contents on the top left and an anchor for every intermediate headline. This anchor is normally generated from the headline's content. For example, a headline
 
     ### Another section with more content
 
@@ -68,9 +68,9 @@ will result in a headline
 
     <h3 id="another-section-with-more-content">Another section with more content</h3>
 
-This means that anchors and URLs can become quite long. It also means that when the healine text changes, all links to this headline also have to be updated.
+This means that anchors and URLs can become quite long. It also means that when the headline text changes, all links to this headline also have to be updated.
 
-To control this behaviour, the anchor ID can be edited as a suffix to the markdown headline, like in the following example:
+To control this behavior, the anchor ID can be edited as a suffix to the markdown headline, like in the following example:
 
     ### Another section with more content {#more}
 
@@ -163,7 +163,7 @@ The best way to contribute changes are pull requests. Please note the following 
 
 Please avoid acronyms and abbreviations where possible, use them only where the acronym is easier to understand than the long form (example: `SSH` is self-explanatory, `secure shell` is not widely understood).
 
-When you want to use an acronym, please use the long form and the aronym form together at the first use on a page. Example:
+When you want to use an acronym, please use the long form and the acronym form together at the first use on a page. Example:
 
 > The Ingress Controller (IC) manages incoming traffic to your services.
 
@@ -175,7 +175,7 @@ We use [Title Case](https://titlecase.com/) for the main article headline, but n
 
 ### Code blocks and syntax highlighting
 
-For **code blocks**, we give language hints to ensure proper syntax highlighting. A YAML block, for example, is opened with triple backticks followed by `yaml`.
+For **code blocks**, we give language hints to ensure proper syntax highlighting. A YAML block, for example, is opened with triple back-ticks followed by `yaml`.
 
 However, shell commands and their output get the fake hint `nohighlight` to prevent any funky syntax highlighting.
 

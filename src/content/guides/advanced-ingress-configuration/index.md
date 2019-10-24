@@ -1,7 +1,7 @@
 +++
 title = "Advanced Ingress Configuration"
 description = "Here we describe how you can customize and enable specific features for the NGINX-based Ingress"
-date = "2019-10-23"
+date = "2019-10-24"
 type = "page"
 weight = 50
 tags = ["tutorial"]
@@ -145,7 +145,7 @@ spec:
 
 __Warning:__ When enabling `TLS` with the NGINX Ingress Controller, some more configuration settings become important. Notably [`HSTS`](https://www.owasp.org/index.php/HTTP_Strict_Transport_Security_Cheat_Sheet) will be enabled [by default](https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/configmap.md#configuration-options) with a duration of six month for your specified domain. Once a browser retrieved these `HSTS` instructions it will refuse to read any unencrypted resource from that domain and un-setting `HSTS` on your server will not have any affect on that browser for half a year. So you might want to disable this at first to avoid [unwanted surprises](https://github.com/kubernetes/ingress-nginx/issues/549#issuecomment-291894246). Please contact our support team to find out details on how to disable HSTS in your cluster.
 
-__Tip:__ If you want to use [Let’s Encrypt](https://letsencrypt.org/) certificates with your domains you can automate their creation and renewal with the help of [cert-manager](http://cert-manager.readthedocs.io/en/release-0.4/). After configuring cert-manager there is only an annotation with your Ingresses needed and your web page will be secured by a valid `TLS` certificate.
+__Tip:__ If you want to use [Let’s Encrypt](https://letsencrypt.org/) certificates with your domains you can automate their creation and renewal with the help of [cert-manager](http://cert-manager.readthedocs.io/). After configuring cert-manager there is only an annotation with your Ingresses needed and your web page will be secured by a valid `TLS` certificate.
 
 ### Authentication
 

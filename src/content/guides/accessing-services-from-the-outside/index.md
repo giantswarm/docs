@@ -1,7 +1,7 @@
 +++
 title = "Accessing Pods and Services from the outside"
 description = "You can access Pods and services from outside your cluster either through the API proxy or through an Ingress."
-date = "2018-02-20"
+date = "2019-10-24"
 type = "page"
 weight = 50
 tags = ["tutorial"]
@@ -154,9 +154,9 @@ Access will only be granted to clients which
 - trust the API's server certificate, which means they trust the Certificate Authority (CA) that signed it and
 - provide a valid client certificate.
 
-The Giant Swarm [web user interface](https://happa.giantswarm.io/getting-started/configure) shows you how to obtain the certificate files.
+The Giant Swarm [web user interface](/reference/web-interface/) shows you how to obtain the certificate files.
 
-To make these certificates available to HTTP clients/browsers, see our guide [Establishing Trust to Your Cluster's CA and Importing Certificates](../importing-certificates/) which explains this for different clients on various platforms.
+To make these certificates available to HTTP clients/browsers, see our guide [Establishing Trust to Your Cluster's CA and Importing Certificates](/guides/importing-certificates/) which explains this for different clients on various platforms.
 
 ### Example
 
