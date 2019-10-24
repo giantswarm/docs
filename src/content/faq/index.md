@@ -1,7 +1,7 @@
 +++
 title = "FAQ"
 description = "Frequently Asked Questions"
-date = "2018-08-16"
+date = "2019-10-24"
 type = "page"
 +++
 
@@ -22,14 +22,6 @@ If your cluster is running on AWS using your own AWS account, you can use the [E
 Yes, for most databases there are ready built containers in the [Docker Hub](https://hub.docker.com/). If you can't find one for your database of choice, you should be able to easily build one. However, currently persistent volumes are only available on AWS. With a bare metal (KVM) based cluster, volumes are not persistent and won't survive rescheduling of their pods.
 
 Check out our guide on [using persistent volumes on AWS](https://docs.giantswarm.io/guides/using-persistent-volumes-on-aws/).
-
-## How do I make pods talk to each other?
-
-For pods to be available to other pods or to the outside you need to expose them through a service. See [Kubernetes Fundamentals](/basics/kubernetes-fundamentals/) for more details.
-
-## How can I provide environment variables for the containers?
-
-You can either define environment variables in your deployment or better use ConfigMaps and/or Secrets. See [Kubernetes Fundamentals](/basics/kubernetes-fundamentals/) for more details.
 
 ## Can I use TLS/HTTPS/SSL?
 
