@@ -42,7 +42,7 @@ build: vendor build-css
 
 	# Latest gsctl version
 	mkdir -p build/layouts/shortcodes
-	curl -s https://api.github.com/repos/giantswarm/gsctl/releases/latest | jq -r .tag_name | tr -d '\n' > build/layouts/shortcodes/gsctl_version.html
+	curl -s https://api.github.com/repos/giantswarm/gsctl/releases/latest | jq -j .tag_name > build/layouts/shortcodes/gsctl_version.html
 
 	# Tie in content from external repositories
 	./build-external-repositories.sh
