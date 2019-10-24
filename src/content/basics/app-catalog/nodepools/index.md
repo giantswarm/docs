@@ -1,7 +1,7 @@
 ---
 title: Node Pools
 description: A general description of the node pool concept, the benefits, and some details you should be aware of.
-date: 2019-09-25
+date: 2019-10-24
 weight: 15
 type: page
 categories: ["basics"]
@@ -126,6 +126,7 @@ Also please note that we do not monitor a cluster without any node pools.
 TODO
 
 - Consequences for maximum cluster size (IP range)
+- Master is re-created when adding/removing a node pool
 ```
 
 ### Further reading
