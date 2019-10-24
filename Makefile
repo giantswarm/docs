@@ -6,7 +6,9 @@ SHELL=bash
 default: docker-build
 
 build-css:
-	sass src/static/css/base.sass src/static/css/base.css
+	docker run -it \
+		-v ${PWD}/src/static/css:/sass \
+		ellerbrock/alpine-sass /sass/base.sass /sass/base.css -m auto
 
 vendor:
 	# Vendor hugo
