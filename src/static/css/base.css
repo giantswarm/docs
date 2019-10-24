@@ -1,14 +1,15 @@
 @charset "UTF-8";
 @import url(footer.css);
 @font-face {
-  font-family: "icomoon";
+  font-family: 'icomoon';
   src: url("https://s.giantswarm.io/giantswarmio_fonts/1/icomoon.eot?bsop34");
   src: url("https://s.giantswarm.io/giantswarmio_fonts/1/icomoon.eot?bsop34#iefix") format("embedded-opentype"), url("https://s.giantswarm.io/giantswarmio_fonts/1/icomoon.ttf?bsop34") format("truetype"), url("https://s.giantswarm.io/giantswarmio_fonts/1/icomoon.woff?bsop34") format("woff"), url("https://s.giantswarm.io/giantswarmio_fonts/1/icomoon.svg?bsop34#icomoon") format("svg");
   font-weight: normal;
   font-style: normal; }
+
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: "icomoon" !important;
+  font-family: 'icomoon' !important;
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -20,79 +21,79 @@
   -moz-osx-font-smoothing: grayscale; }
 
 .icon-envelope-o:before {
-  content: ""; }
+  content: "\f003"; }
 
 .icon-download:before {
-  content: ""; }
+  content: "\f019"; }
 
 .icon-book:before {
-  content: ""; }
+  content: "\f02d"; }
 
 .icon-map-marker:before {
-  content: ""; }
+  content: "\f041"; }
 
 .icon-chevron-left:before {
-  content: ""; }
+  content: "\f053"; }
 
 .icon-chevron-right:before {
-  content: ""; }
+  content: "\f054"; }
 
 .icon-exclamation-circle:before {
-  content: ""; }
+  content: "\f06a"; }
 
 .icon-calendar:before {
-  content: ""; }
+  content: "\f073"; }
 
 .icon-twitter-square:before {
-  content: ""; }
+  content: "\f081"; }
 
 .icon-facebook-square:before {
-  content: ""; }
+  content: "\f082"; }
 
 .icon-linkedin-square:before {
-  content: ""; }
+  content: "\f08c"; }
 
 .icon-github-square:before {
-  content: ""; }
+  content: "\f092"; }
 
 .icon-phone:before {
-  content: ""; }
+  content: "\f095"; }
 
 .icon-twitter:before {
-  content: ""; }
+  content: "\f099"; }
 
 .icon-github:before {
-  content: ""; }
+  content: "\f09b"; }
 
 .icon-square:before {
-  content: ""; }
+  content: "\f0c8"; }
 
 .icon-bars:before {
-  content: ""; }
+  content: "\f0c9"; }
 
 .icon-navicon:before {
-  content: ""; }
+  content: "\f0c9"; }
 
 .icon-reorder:before {
-  content: ""; }
+  content: "\f0c9"; }
 
 .icon-google-plus-square:before {
-  content: ""; }
+  content: "\f0d4"; }
 
 .icon-google-plus:before {
-  content: ""; }
+  content: "\f0d5"; }
 
 .icon-envelope:before {
-  content: ""; }
+  content: "\f0e0"; }
 
 .icon-linkedin:before {
-  content: ""; }
+  content: "\f0e1"; }
 
 .icon-github-alt:before {
-  content: ""; }
+  content: "\f113"; }
 
 .icon-angellist:before {
-  content: ""; }
+  content: "\f209"; }
 
 body.home_view > header {
   background-color: #2b85bc;
@@ -103,6 +104,7 @@ body.home_view > header {
     color: #eee; }
     body.home_view > header a:hover {
       color: white; }
+
 body > header {
   position: fixed;
   top: 0px;
@@ -183,9 +185,9 @@ body > header {
         top: -7px;
         margin-left: 14px;
         opacity: 0;
-        -webkit-transition: opacity 0.1s ease-in 0s;
-        -moz-transition: opacity 0.1s ease-in 0s;
-        transition: opacity 0.1s ease-in 0s; }
+        -webkit-transition: opacity .1s ease-in 0s;
+        -moz-transition: opacity .1s ease-in 0s;
+        transition: opacity .1s ease-in 0s; }
     body > header nav ul {
       margin: 0px;
       padding: 0px;
@@ -204,21 +206,25 @@ body > header {
     background-color: #226892; }
     body.home_view > header.open #contact_us_link {
       border-color: #fff; } }
+
 @media screen and (max-width: 768px) and (max-width: 768px) {
   body.home_view > header.open nav ul {
     background-color: #226892;
     display: block; }
     body.home_view > header.open nav ul a:hover {
       background-color: #2676a7; } }
+
 @media screen and (max-width: 768px) {
   body > header.open nav ul {
     background-color: #eee;
     display: block; }
     body > header.open nav ul a:hover {
       background-color: #ddd; } }
+
 @media screen and (max-width: 768px) {
   body > header nav:hover #logo span {
     opacity: 0; } }
+
 @media screen and (max-width: 853px) {
   body > header nav .branding {
     float: left;
@@ -227,6 +233,7 @@ body > header {
     width: 40%; }
     body > header nav .branding:last-child {
       margin-right: 0; } }
+
 @media screen and (max-width: 768px) {
   body > header nav .branding {
     float: left;
@@ -236,6 +243,7 @@ body > header {
     margin-right: 0; }
     body > header nav .branding:last-child {
       margin-right: 0; } }
+
 @media screen and (max-width: 480px) {
   body > header nav .branding {
     float: left;
@@ -245,6 +253,7 @@ body > header {
     margin-right: 0; }
     body > header nav .branding:last-child {
       margin-right: 0; } }
+
 @media screen and (max-width: 853px) {
   body > header nav .navigation {
     float: left;
@@ -253,6 +262,7 @@ body > header {
     width: 57.14286%; }
     body > header nav .navigation:last-child {
       margin-right: 0; } }
+
 @media screen and (max-width: 768px) {
   body > header nav .navigation {
     float: left;
@@ -261,15 +271,19 @@ body > header {
     width: 100%; }
     body > header nav .navigation:last-child {
       margin-right: 0; } }
+
 @media screen and (max-width: 768px) {
   body > header nav .navigation #navigation_toggle {
     display: block; } }
+
 @media screen and (min-width: 480px) and (max-width: 853px) {
   body > header nav .navigation #docs_link {
     display: none; } }
+
 @media screen and (min-width: 480px) and (max-width: 1104px) {
   body > header nav .navigation #request_invite_link {
     display: none; } }
+
 @media screen and (max-width: 768px) {
   body > header nav ul {
     height: auto;
@@ -282,11 +296,13 @@ body > header {
     margin-left: -15px;
     margin-right: -15px;
     display: none; } }
+
 @media screen and (max-width: 768px) {
   body > header nav li {
     display: block;
     text-align: left;
     margin-right: 0px; } }
+
 @media screen and (max-width: 768px) {
   body > header nav li a {
     display: block;
@@ -294,6 +310,7 @@ body > header {
     line-height: 10px; }
     body > header nav li a:hover {
       background-color: #2676a7; } }
+
 .button {
   font-size: 14px;
   text-decoration: none;
