@@ -22,7 +22,7 @@ As a user of a Giant Swarm Kubernetes cluster, when you access services on the c
 
 The CA that issued the server certificate is one created by Giant Swarm exclusively for your cluster, so it is unknown to your browser.
 
-Both the CA file for your cluster and a personal key pair, consisting of a client certificate and a private key, can be obtained using either our [web user interface](https://happa.giantswarm.io/getting-started/configure) or [gsctl](/reference/gsctl/).
+Both the CA file for your cluster and a personal key pair, consisting of a client certificate and a private key, can be obtained using either our [web user interface](/reference/web-interface/) or [gsctl](/reference/gsctl/).
 
 In the tutorial we assume that you have done this and obtained three files:
 
