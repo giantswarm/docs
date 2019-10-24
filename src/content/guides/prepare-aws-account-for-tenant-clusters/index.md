@@ -257,7 +257,7 @@ organization. These clusters' resources will be created in your AWS account.
 - [Basics and Concepts: Bring Your Own Cloud](/basics/byoc/)
 - [gsctl Reference: `update organization set-credentials`](/reference/gsctl/update-org-set-credentials/)
 - [API: Set credentials](https://docs.giantswarm.io/api/#operation/addCredentials)
-- [Giant Swarm Architecture](/reference/giantswarm-aws-architecture/)
+- [Giant Swarm Architecture](/basics/aws-architecture/)
 - [Giant Swarm API documentation](https://docs.giantswarm.io/api/)
 - [AWS Service Limits](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)
 - [AWS Support Center](https://console.aws.amazon.com/support/home)
