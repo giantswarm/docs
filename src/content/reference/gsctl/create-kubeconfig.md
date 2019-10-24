@@ -28,7 +28,7 @@ is the case with the [`gsctl create keypair`](/reference/gsctl/create-keypair/) 
 
 As a prerequisite, you need to be logged in to `gsctl` and you have to be
 a member of the organization owning the cluster. If you can find the cluster
-using [`gsctl list clusters`](../list-clusters/), this is the case.
+using [`gsctl list clusters`](/reference/gsctl/list-clusters/), this is the case.
 
 ## Command Line Examples {#example}
 
