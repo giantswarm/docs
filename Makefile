@@ -49,11 +49,11 @@ docker-build: build
 	docker build -t $(REGISTRY)/$(COMPANY)/$(PROJECT):latest .
 
 docker-run:
-	docker run --rm -ti -p 8080:80 $(REGISTRY)/$(COMPANY)/$(PROJECT):latest
+	docker run --rm -ti -p 8080:8080 $(REGISTRY)/$(COMPANY)/$(PROJECT):latest
 
 dev:
 	docker run --rm -ti \
-	-p 8080:80 \
+	-p 8080:8080 \
 	-v ${PWD}/src:/docs/build:z \
 	$(REGISTRY)/$(COMPANY)/$(PROJECT):latest /bin/sh -c "nginx; hugo -w --destination /usr/share/nginx/html"
 
@@ -64,11 +64,11 @@ clean:
 
 # Verify links.
 linkcheck:
-	docker run -d --rm --name server -P $(REGISTRY)/$(COMPANY)/$(PROJECT):latest
+	docker run -d --rm --name server -p 8080:8080 -P $(REGISTRY)/$(COMPANY)/$(PROJECT):latest
 	sleep 2
 	docker run --rm -ti --name linkchecker \
 		--link server:server \
 		jare/linkchecker \
-		http://server:80 \
+		http://server:8080 \
 		--check-extern -t 5 --ignore-url /api/
 	docker kill server
