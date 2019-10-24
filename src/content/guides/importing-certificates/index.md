@@ -45,7 +45,7 @@ openssl pkcs12 -export -clcerts \
   -name "Key pair for Giant Swarm cluster"
 ```
 
-The `-passout` argument sets a password to encrypt the bundle. In our examples here, we use the password `giantswarm`. Feel free to pick your own password when following the tutorial, but make sure to prepend the `pass:` prefix as shown above. If you prefer to enter a password via a prompt instead of passing it as a clear text argument, you can completely ommit the `-passout pass:<your-password>` part.
+The `-passout` argument sets a password to encrypt the bundle. In our examples here, we use the password `giantswarm`. Feel free to pick your own password when following the tutorial, but make sure to prepend the `pass:` prefix as shown above. If you prefer to enter a password via a prompt instead of passing it as a clear text argument, you can completely omit the `-passout pass:<your-password>` part.
 
 Also note that we give a freely chosen name for the bundle using the `-name` argument. You can pick whatever name suits you. However, most platforms don't display this name in any meaningful place, so don't put too much effort in coming up with a good name.
 
