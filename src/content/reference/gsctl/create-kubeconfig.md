@@ -24,7 +24,7 @@ modes:
   `--self-contained` and set it's value to the desired output file path.
 
 In both cases, a new key pair will be created in your installation, just as it
-is the case with the [`gsctl create keypair`](../cerate-keypair/) command.
+is the case with the [`gsctl create keypair`](/reference/gsctl/create-keypair/) command.
 
 As a prerequisite, you need to be logged in to `gsctl` and you have to be
 a member of the organization owning the cluster. If you can find the cluster
@@ -158,6 +158,6 @@ resources to your cluster.
 
 ## Related
 
-- [`gsctl create keypair`](../cerate-keypair/): Create and download a key pair
+- [`gsctl create keypair`](/reference/gsctl/create-keypair/): Create and download a key pair
 - [kubectl reference](https://kubernetes.io/docs/user-guide/kubectl-overview/)
 - [API: Create key pair](/api/#operation/addKeyPair)
