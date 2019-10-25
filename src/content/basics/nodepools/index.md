@@ -120,11 +120,15 @@ to be submitted for creation via the [`gsctl create cluster`](/reference/gsctl/c
 
 - Clusters can have at most 50 node pools. This is limited by the AWS service quota named "IPv4 CIDR blocks per VPC" in the [VPC section](https://docs.aws.amazon.com/vpc/latest/userguide/amazon-vpc-limits.html). The default here is 5, so make sure to request an increase of this limit via the AWS console.
 
+- Node pools can span a maximum of 4 different availability zones. This limit affects both the number of availability zones a single node pool can cover, as well as the number of different availability zones all node pools of a cluster can cover.
+
 - Clusters without worker nodes (= without node pools) cannot be considered fully functional. In order to have all required components scheduled, worker nodes are required. For that reason, we deactivate any monitoring and alerts for these clusters and don't provide any proactive support.
 
 - We also do not monitor node pools with less than three worker nodes and do not provide any proactive support for those.
 
 - When creating a new node pool, the master node of the cluster is re-created. This causes a downtime of the Kubernetes API of a couple of minutes.
+
+
 
 ```
 TODO
