@@ -1,7 +1,7 @@
 ---
 title: Node Pools
 description: A general description of the node pool concept, the benefits, and some details you should be aware of.
-date: 2019-10-24
+date: 2019-10-25
 weight: 15
 type: page
 categories: ["basics"]
@@ -21,7 +21,7 @@ availability zone distribution, even if some workloads wouldn't require the incr
 with using more availability zones.
 
 Node pools are independent groups of worker nodes belonging to a cluster, where all nodes within a pool share a
-common configuration. You can combine any sort of node pool within one cluster. Node pools can differ regarding
+common configuration. You can combine any sort of node pool within one cluster. Node pools can differ regarding:
 
 - EC 2 instance type
 - Availability zone distribution
@@ -83,7 +83,7 @@ spec:
 
 You can delete a node pool at any time using the Giant Swarm API and user interfaces. When a node pool gets deleted,
 
-- nodes in the pool will be cordoned (marked as unschedulable) and drained, resulting in Pods being unassigned from the nodes and containers being stopped.
+- nodes in the pool will be marked as unschedulable and then drained, resulting in Pods being unassigned from the nodes and containers being stopped.
 - Then the actual nodes (EC2 instanced) will be removed.
 
 If you are deleting a node pool running critical workloads, we recommend to take some
@@ -116,17 +116,20 @@ Just as the Giant Swarm API schema for v4 (without node pools) and v5 (with node
 The new definition schema for v5 allows for defining cluster and node pool details in one file,
 to be submitted for creation via the [`gsctl create cluster`](/reference/gsctl/create-cluster/) command.
 
-## Support
+## Limitations
 
-Please note that we do not monitor node pools with less than three worker nodes and do not provide any proactive support for those.
+- Clusters can have at most 50 node pools. This is limited by the AWS service quota named "IPv4 CIDR blocks per VPC" in the [VPC section](https://docs.aws.amazon.com/vpc/latest/userguide/amazon-vpc-limits.html). The default here is 5, so make sure to request an increase of this limit via the AWS console.
 
-Also please note that we do not monitor a cluster without any node pools.
+- Clusters without worker nodes (= without node pools) cannot be considered fully functional. In order to have all required components scheduled, worker nodes are required. For that reason, we deactivate any monitoring and alerts for these clusters and don't provide any proactive support.
+
+- We also do not monitor node pools with less than three worker nodes and do not provide any proactive support for those.
+
+- When creating a new node pool, the master node of the cluster is re-created. This causes a downtime of the Kubernetes API of a couple of minutes.
 
 ```
 TODO
 
 - Consequences for maximum cluster size (IP range)
-- Master is re-created when adding/removing a node pool
 ```
 
 ### Further reading
