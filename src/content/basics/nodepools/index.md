@@ -9,7 +9,9 @@ categories: ["basics"]
 
 # Node Pools
 
-Node pools are a new concept introduced in October 2019 with release {{% first_aws_nodepools_version %}} for AWS.
+<div class="well disclaimer">
+Node pools are a new concept to be introduced soon to Giant Swarm customers on AWS.
+</div>
 
 ## Advantages
 
