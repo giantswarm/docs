@@ -37,10 +37,10 @@ jobs:
           command: |
             docker run -d --rm --name docs -p 8080:8080 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
             docker run --rm -ti --name linkchecker \
-                --link docs:docs \
-                jare/linkchecker \
+              --link docs:docs \
+              linkchecker/linkchecker \
                 http://docs:8080 \
-                --check-extern -t 5 --ignore-url /api/
+                --check-extern -t 5 --ignore-url="^https://docs.giantswarm.io/.*" --ignore-url=/api/
 
       - deploy:
           name: Deploy (only if branch is "master")
