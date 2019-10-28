@@ -114,7 +114,8 @@ Using the v5 API endpoints, you can
 
 ## Node pools and the cluster definition YAML format
 
-Just as the Giant Swarm API schema for v4 (without node pools) and v5 (with node pools) clusters are different, the [cluster definition format](/reference/cluster-definition/) is different for both versions.
+Just as the Giant Swarm API schema for v4 (without node pools) and v5 (with node pools) clusters are different, the 
+[cluster definition format](/reference/cluster-definition/) is different for both versions.
 
 The new definition schema for v5 allows for defining cluster and node pool details in one file,
 to be submitted for creation via the [`gsctl create cluster`](/reference/gsctl/create-cluster/) command.
@@ -123,17 +124,32 @@ to be submitted for creation via the [`gsctl create cluster`](/reference/gsctl/c
 
 - A node pool can have a maximum of 99 worker nodes.
 
-- At times, the EC2 instance type required by a node pool can be unavailable in certain availability zones. This can result in node pools providing less than the desired number of nodes. The more availability zones a node pool spans, the less likely this problem is to occur.
+- At times, the EC2 instance type required by a node pool can be unavailable in certain availability zones. This can 
+  result in node pools providing less than the desired number of nodes. The more availability zones a node pool spans, 
+  the less likely this problem is to occur.
 
-- By default, clusters can have up to 5 node pools. This is limited by the AWS service quota named "IPv4 CIDR blocks per VPC" in the [VPC section](https://docs.aws.amazon.com/vpc/latest/userguide/amazon-vpc-limits.html). As the AWS account owner, you can request an increase of this limit via the AWS console.
+- By default, clusters can have up to 5 node pools. This is limited by the AWS service quota named "IPv4 CIDR blocks 
+  per VPC" in the [VPC section](https://docs.aws.amazon.com/vpc/latest/userguide/amazon-vpc-limits.html). As the AWS 
+  account owner, you can request an increase of this limit via the AWS console.
 
-- Node pools can span a maximum of 4 different availability zones. This limit affects both the number of availability zones a single node pool can cover, as well as the number of different availability zones all node pools of a cluster can cover.
+- Node pools can span a maximum of four availability zones. This limit affects both the number of availability zones 
+  a single node pool can cover, as well as the number of different availability zones all node pools of a cluster can 
+  cover. Once an availability zone has been assigned for use in a cluster, either for the master node or for worker 
+  nodes, it cannot be unassigned from that cluster. It will remain assigned even if there are no more node pools using
+  that availability zone.
 
-- Clusters without worker nodes (= without node pools) cannot be considered fully functional. In order to have all required components scheduled, worker nodes are required. For that reason, we deactivate any monitoring and alerts for these clusters and don't provide any proactive support.
+  - **Example:** The master node is in A. Node pool 1 uses B and C. Node pool 2 uses D. With A, B, C, and D, the limit 
+  of four availability zones assigned is reached. New node pools of this cluster can only use these four availability 
+  zones.
+  
+- Clusters without worker nodes (= without node pools) cannot be considered fully functional. In order to have all 
+  required components scheduled, worker nodes are required. For that reason, we deactivate any monitoring and alerts for 
+  these clusters and don't provide any proactive support.
 
 - We also do not monitor node pools with less than three worker nodes and do not provide any proactive support for those.
 
-- When creating a new node pool, the master node of the cluster is re-created. This causes a downtime of the Kubernetes API of a couple of minutes.
+- When creating a new node pool, the master node of the cluster is re-created. This causes a downtime of the Kubernetes 
+  API of a couple of minutes.
 
 
 
