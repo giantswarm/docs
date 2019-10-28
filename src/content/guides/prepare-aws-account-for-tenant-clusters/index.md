@@ -1,7 +1,7 @@
 +++
 title = "Prepare an AWS account to run Giant Swarm tenant clusters"
 description = "This guide will walk you through all necessary steps to set up an Amazon AWS account with appropriate IAM roles for operating Giant Swarm tenant clusters."
-date = "2019-10-24"
+date = "2019-10-25"
 type = "page"
 weight = 100
 tags = ["tutorial"]
@@ -53,6 +53,7 @@ These are the limit increases to be requested, grouped by limit type:
 - VPC
   - VPCs per region: **50**
   - NAT Gateway per Availability Zone per region: **50**
+  - IPv4 CIDR blocks per VPC: **50**
 - Elastic IP
   - New VPC Elastic IP Address Limit per region: **50**
 - Elastic Load Balancers
