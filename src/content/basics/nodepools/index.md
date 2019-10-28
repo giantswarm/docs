@@ -42,7 +42,7 @@ Node pools can be created when creating a cluster
 or any time after the cluster has been created
 
 - via the Giant Swarm web interface
-- via the CLI command [`gsctl add nodepool`](/reference/gsctl/add-nodepool/)
+- via the CLI command `gsctl create nodepool`
 
 These tools also support modification of node pools and their deletion.
 
