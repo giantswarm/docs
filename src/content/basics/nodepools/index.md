@@ -50,9 +50,14 @@ Once a node pool has been created, as soon as the workers are available, they wi
 join the cluster and appear in your `kubectl get nodes` listing. You can identify the
 nodes' node pool using the `giantswarm.io/machine-deployment` label.
 
+The example `kubectl` command below will list all nodes with role, node pool ID, and name.
+
 ```nohighlight
 kubectl get nodes \
-  -o=jsonpath='{range .items[*]}{.metadata.labels.giantswarm\.io/machine-deployment}{"\t"}{.metadata.name}{"\n"}{end}' | sort
+  -o=jsonpath='{range .items[*]}{.metadata.labels.kubernetes\.io/role}{"\t"}{.metadata.labels.giantswarm\.io/machine-deployment}{"\t"}{.metadata.name}{"\n"}{end}' | sort
+master         ip-10-1-5-55.eu-central-1.compute.internal
+worker  7zypn  ip-10-1-6-225.eu-central-1.compute.internal
+worker  7zypn  ip-10-1-6-67.eu-central-1.compute.internal
 ```
 
 Some details of a node pool can be modified after creation:
