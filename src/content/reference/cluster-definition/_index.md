@@ -1,14 +1,18 @@
 ---
-title: Cluster Definition YAML Reference
+title: Cluster Definition Reference
 description: Complete documentation of the Giant Swarm cluster definition YAML format, compatible with API v4 and v5.
-date: 2019-09-25
+date: 2019-10-28
 layout: subsection
 weight: 100
 ---
 
-# Cluster Definition YAML Reference
+# Cluster Definition Reference
 
-Giant Swarm's cluster definition YAML format allows to define the detailed specs for a cluster in a YAML
+<div class="well disclaimer">
+This page mentions <a href="/basics/nodepools/">Node pools</a> which are a new concept to be introduced soon to Giant Swarm customers on AWS.
+</div>
+
+Giant Swarm's cluster definition allows to define the detailed specs for a cluster in a YAML
 format, which is then passed to [`gsctl create cluster`](/reference/gsctl/create-cluster/) in order to
 create that cluster.
 
@@ -63,7 +67,7 @@ workers:
       instance_type: m3.large
 ```
 
-**Note:** AWS clusters defined using a v4 definition (and consequently using a release prior to {{% first_aws_nodepools_version %}}) restrict you to all worker nodes being of the same instance type. With v5 and node pools, you gain the flexibility to create several node pools using different instance types.
+**Note:** AWS clusters defined using a v4 definition (and consequently not using node pools) restrict you to all worker nodes being of the same instance type. With v5 and node pools, you gain the flexibility to create several node pools using different instance types.
 
 ### Schema {#v4-schema}
 
@@ -90,7 +94,7 @@ Let's start with an example:
 
 ```yaml
 api_version: "v5"
-release_version: "{{% first_aws_nodepools_version %}}"
+release_version: "11.0.0"
 name: "Test cluster with two node pools"
 master:
   availability_zone: "eu-central-1a"
@@ -115,8 +119,8 @@ nodepools:
 Coming from v4, you might want to understand how v5 is different from v4:
 
 - in v5, the key `api_version` is mandatory and the value must be `v5`.
-- Several settings that were specified on the cluster level in v4 (root level of the YAML definition) have been moved to the node pool level.
-- The key `master` has been added to influence master placement.
+- Several settings that were specified on the cluster level in v4 (root level of the definition) have been moved to the node pool level.
+- The key `master` has been added to allow influencing in which availability zone the master node will be placed.
 
 ### Schema {#v5-schema}
 
@@ -156,6 +160,8 @@ Chances are that you already work with YAML in various places. If not, here are 
 ## Related
 
 - [`gsctl create cluster`](/reference/gsctl/create-cluster/): Create a cluster based on flags or a definition file
-- [`gsctl add nodepool`](/reference/gsctl/add-nodepool/)
+- [`gsctl create nodepool`](/reference/gsctl/create-nodepool/)
 - [`gsctl list releases`](/reference/gsctl/list-releases/): Listing available releases
-- [API: Create cluster](/api/#operation/addCluster)
+- [API: Create cluster (v4)](/api/#operation/addCluster)
+- [API: Create cluster (v5)](/api/#operation/addClusterV5)
+- [API: Create node pool](/api/#operation/addNodePool)
