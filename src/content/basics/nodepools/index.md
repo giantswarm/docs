@@ -139,8 +139,8 @@ to be submitted for creation via the [`gsctl create cluster`](/reference/gsctl/c
   that availability zone.
 
   - **Example:** The master node is in A. Node pool 1 uses B and C. Node pool 2 uses D. With A, B, C, and D, the limit 
-  of four availability zones assigned is reached. New node pools of this cluster can only use these four availability 
-  zones.
+    of four availability zones assigned is reached. New node pools of this cluster can only use these four availability 
+    zones.
   
 - Clusters without worker nodes (= without node pools) cannot be considered fully functional. In order to have all 
   required components scheduled, worker nodes are required. For that reason, we deactivate any monitoring and alerts for 
