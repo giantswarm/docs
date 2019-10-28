@@ -31,7 +31,7 @@ By default we set the cache TTL for CoreDNS to 30 seconds. You can customize the
 
 ```yaml
 data:
-  cache: 60
+  cache: "60"
 ```
 
 Above setting increases the TTL to 60 seconds.

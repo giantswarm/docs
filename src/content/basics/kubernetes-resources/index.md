@@ -1,7 +1,7 @@
 +++
 title = "Kubernetes Resources"
 description = "Pointers to the best resources about Kubernetes to get you up to speed with Kubernetes fast"
-date = "2017-01-02"
+date = "2019-10-24"
 weight = 100
 type = "page"
 categories = ["basics"]
@@ -13,7 +13,7 @@ As your Giant Swarm cluster offers you a fully-managed Kubernetes, the fundament
 
 ## Official kubernetes documentation
 
-The first and most important source to enquire should be the [official Kubernetes documentation](http://kubernetes.io/docs/). And as the administration side is mostly taken care of by Giant Swarm, we recommend focussing on the [User Guide](http://kubernetes.io/docs/user-guide/) including the [Kubernetes 101](http://kubernetes.io/docs/user-guide/walkthrough/) and [201](http://kubernetes.io/docs/user-guide/walkthrough/k8s201/).
+The first and most important source to enquire should be the [official Kubernetes documentation](http://kubernetes.io/docs/). And as the administration side is mostly taken care of by Giant Swarm, we recommend focussing on the [task-specific tutorials](https://kubernetes.io/docs/tutorials/).
 
 ## Useful primitives
 
@@ -75,9 +75,9 @@ With namespaces you can split up your cluster into smaller separate environments
 
 ### DNS
 
-Giant Swarm clusters come with KubeDNS installed by default. You can use DNS to discover services and communicate between them.
+Giant Swarm clusters come with CoreDNS installed by default. You can use DNS to discover services and communicate between them.
 
-[DNS Documentation](http://releases.k8s.io/master/build/kube-dns/README.md)
+[CoreDNS documentation](https://coredns.io/manual/toc/)
 
 ## Useful tools and content
 
