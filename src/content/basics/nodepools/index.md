@@ -58,7 +58,7 @@ kubectl get nodes \
 Some details of a node pool can be modified after creation:
 
 - The node pool name
-- The scaling range (min(max)
+- The scaling range (min/max)
 
 Settings like the instance type or the availability zone assignment cannot be change after creation.
 
