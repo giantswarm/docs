@@ -68,9 +68,13 @@ clean:
 linkcheck:
 	docker run -d --rm --name server -p 8080:8080 -P $(REGISTRY)/$(COMPANY)/$(PROJECT):latest
 	sleep 2
+
+	# We ignore https://docs.giantswarm.io/.* because otherwise we could never add new pages,
+	# as checks for the "canonical" link would fail.
 	docker run --rm -ti --name linkchecker \
 		--link server:server \
-		jare/linkchecker \
+		linkchecker/linkchecker \
 		http://server:8080 \
-		--check-extern -t 5 --ignore-url /api/
+		--check-extern -t 5 --ignore-url="^https://docs.giantswarm.io/.*" --ignore-url=/api/
 	docker kill server
+	docker kill linkchecker
