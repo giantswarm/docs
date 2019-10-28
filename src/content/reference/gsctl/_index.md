@@ -92,7 +92,7 @@ brew install gsctl</code></pre>
 
 `gsctl` keeps it's own settings under `$HOME/.config/gsctl/`. There is a [configuration file](configuration-file) called `config.yaml`. Key pairs are stored in the `certs` subdirectory.
 
-The following environment variables can be used to affect some behaviour:
+The following environment variables can be used to affect some behavior:
 
 - `GSCTL_ENDPOINT`: This can be used to specify an API endpoint URL.
 - `GSCTL_CAFILE`: If your Giant Swarm API endpoint uses a certificate signed by an authority not known to your operating system, this variable can be set to the path of a custom CA (certification authority) bundle. A CA bundle is a text file containing one or more CA certificates in PEM format.
