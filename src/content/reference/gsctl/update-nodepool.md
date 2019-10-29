@@ -1,31 +1,37 @@
 +++
 title = "gsctl Command Reference: update nodepool"
-description = "The 'gsctl update nodepool' command allows renaming of a node pool."
-date = "2019-10-28"
+description = "The 'gsctl update nodepool' command allows renaming and scaling of a node pool."
+date = "2019-10-29"
 type = "page"
 weight = 44
 +++
 
-# `gsctl show nodepool`
+# `gsctl update nodepool`
 
 <div class="well disclaimer">
 <a href="/basics/nodepools/">Node pools</a> are a new concept to be introduced soon to Giant Swarm customers on AWS.
 </div>
 
-The `gsctl update nodepool` allows renaming of a node pool.
+The `gsctl update nodepool` allows modifying a node pool, such as editing the scaling range and the name.
 
 ## Usage
 
 The command is called with the cluster and node pool ID as a positional argument,
 separated by a slash. The `--name` flag is used to set a new name.
 
-Example:
+Example for renaming a node pool:
 
 ```nohighlight
 gsctl update nodepool f01r4/op1dl --name "New node pool name"
 ```
 
 Here, `f01r4` is the cluster ID and `op1dl` is the node pool ID.
+
+Example for adjusting the scaling limits:
+
+```nohighlight
+gsctl update nodepool f01r4/op1dl --nodes-min 3 --nodes-max 20
+```
 
 ## Related
 
