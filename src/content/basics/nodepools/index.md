@@ -1,7 +1,7 @@
 ---
 title: Node Pools
 description: A general description of node pools as a concept, it's benefits, and some details you should be aware of.
-date: 2019-10-28
+date: 2019-10-29
 weight: 15
 type: page
 categories: ["basics"]
@@ -42,7 +42,7 @@ Node pools can be created when creating a cluster
 or any time after the cluster has been created
 
 - via the Giant Swarm web interface
-- via the CLI command `gsctl create nodepool`
+- via the CLI command [`gsctl create nodepool`](/reference/gsctl/create-nodepool/)
 
 These tools also support modification of node pools and their deletion.
 
@@ -66,6 +66,8 @@ Some details of a node pool can be modified after creation:
 - The scaling range (min/max)
 
 Settings like the instance type or the availability zone assignment cannot be change after creation.
+
+See the [`gsctl update nodepool`](/reference/gsctl/update-nodepool/) reference for instructions how to scale and rename a node pool using the CLI.
 
 ## Assigning workloads to node pools
 
@@ -104,6 +106,8 @@ up the workloads.
 
 Then pay close attention to the workloads being rescheduled on other nodes once nodes are drained.
 
+See the [`gsctl delete nodepool`](/reference/gsctl/delete-nodepool/) reference for how to delete a node pool using the CLI.
+
 ## Node pools and the Giant Swarm API
 
 Handling clusters with node pools requires an API schema different from the one used for clusters
@@ -111,11 +115,12 @@ with homogeneous worker nodes. We introduced a new API version path `v5` for thi
 
 Using the v5 API endpoints, you can
 
-- Create a new cluster
-- Add a node pool to a cluster
-- Rename a cluster
-- Modify a node pool (for renaming or changing scaling settings)
-- Delete a node pool
+- [Create a new cluster supporting node pools](/api/#operation/addClusterV5)
+- [Get node pools of a cluster](/api/#operation/getNodePools)
+- [Create a new node pool](/api/#operation/addNodePool)
+- [Modify a cluster](/api/#operation/modifyClusterV5)
+- [Modify a node pool](/api/#operation/modifyNodePool)
+- [Delete a node pool](/api/#operation/deleteNodePool)
 
 ## Node pools and the cluster definition YAML format
 
