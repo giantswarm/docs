@@ -111,11 +111,12 @@ with homogeneous worker nodes. We introduced a new API version path `v5` for thi
 
 Using the v5 API endpoints, you can
 
-- Create a new cluster
-- Add a node pool to a cluster
-- Rename a cluster
-- Modify a node pool (for renaming or changing scaling settings)
-- Delete a node pool
+- [Create a new cluster supporting node pools](/api/#operation/addClusterV5)
+- [Get node pools of a cluster](/api/#operation/getNodePools)
+- [Create a new node pool](/api/#operation/addNodePool)
+- [Modify a cluster](/api/#operation/modifyClusterV5)
+- [Modify a node pool](/api/#operation/modifyNodePool)
+- [Delete a node pool](/api/#operation/deleteNodePool)
 
 ## Node pools and the cluster definition YAML format
 
