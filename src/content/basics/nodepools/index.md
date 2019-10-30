@@ -65,7 +65,7 @@ Some details of a node pool can be modified after creation:
 - The node pool name
 - The scaling range (min/max)
 
-Settings like the instance type or the availability zone assignment cannot be change after creation.
+Settings like the instance type or the availability zone assignment cannot be changed after creation.
 
 See the [`gsctl update nodepool`](/reference/gsctl/update-nodepool/) reference for instructions how to scale and rename a node pool using the CLI.
 
