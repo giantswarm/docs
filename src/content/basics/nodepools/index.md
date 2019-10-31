@@ -15,7 +15,7 @@ Node pools are a new concept to be introduced soon to Giant Swarm customers on A
 
 ## Advantages
 
-Prior the introduction of node pools, a cluster could only comprise one type of worker node. The cluster would have
+Prior to the introduction of node pools, a cluster could only comprise one type of worker node. The cluster would have
 to be scaled as a whole, and the availability zone distribution would apply to all worker nodes of a cluster. This
 would mean that every worker node would have to be big enough to run the largest possible workload, in terms of
 memory and CPU resources required. At the same time, all worker nodes in the cluster would have to use the same
@@ -25,7 +25,7 @@ with using more availability zones.
 Node pools are independent groups of worker nodes belonging to a cluster, where all nodes within a pool share a
 common configuration. You can combine any sort of node pool within one cluster. Node pools can differ regarding:
 
-- EC 2 instance type
+- EC2 instance type
 - Availability zone distribution
 - Scaling configuration (number of nodes)
 
