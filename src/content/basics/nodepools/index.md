@@ -132,7 +132,7 @@ to be submitted for creation via the [`gsctl create cluster`](/reference/gsctl/c
 
 ## Limitations
 
-- A node pool can have a maximum of 99 worker nodes.
+- A node pool can have a maximum of 250 worker nodes. The architectural reason for this is that each node pool gets a `/24` IPv4 subnet assigned. However 5 IP addresses per availability zone used are not usable for worker nodes, but are instead reserved for other AWS resources. Hence the limit depends on the number of availability zones used by a node pool. If the pool uses two zones, it's 245. With three zones, the limit is 240, and with four zones, it's 235.
 
 - At times, the EC2 instance type required by a node pool can be unavailable in certain availability zones. This can 
   result in node pools providing less than the desired number of nodes. The more availability zones a node pool spans, 
