@@ -163,6 +163,6 @@ to be submitted for creation via the [`gsctl create cluster`](/reference/gsctl/c
 
 
 
-### Further reading
+## Further reading
 
 - [Assigning Pods to Nodes](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/) from the official Kubernetes documentation
