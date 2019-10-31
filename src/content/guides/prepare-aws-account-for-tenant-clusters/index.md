@@ -30,6 +30,8 @@ Each Giant Swarm tenant cluster belongs to an organization within Giant Swarm.
 This organization will later be configured with information about the two
 IAM roles mentioned above.
 
+We created a terraform module to automate IAM role creation. You can check the code [here](https://github.com/giantswarm/giantswarm-aws-account-prerequisites). Otherwise you can still do it as it is explained in this guide.
+
 ## Increase service limits in AWS {#limits}
 
 A number of limits apply to an AWS account initially, which are described in the
