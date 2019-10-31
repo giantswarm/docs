@@ -9,7 +9,7 @@ weight = 20
 # `gsctl create cluster`
 
 <div class="well disclaimer">
-This page reflects the future-proof way to use the `gsctl create cluster` command, which applies to releases both before and after v0.18.0. Versions before v0.18.0 support additional command line flags to specify cluster details without using a definition file. Please check `gsctl create cluster --help` in your version to find out more.
+This page reflects the future-proof way to use the <code>gsctl create cluster</code> command, which applies to releases both before and after v0.18.0. Versions before v0.18.0 support additional command line flags to specify cluster details without using a definition file. Please check <code>gsctl create cluster --help</code> in your version to find out more.
 </div>
 
 The command `gsctl create cluster` allows to create new Kubernetes clusters.
