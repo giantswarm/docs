@@ -1,7 +1,7 @@
 +++
 title = "gsctl Command Reference: create kubeconfig"
 description = "The 'gsctl create kubeconfig' command creates a key pair and adds cluster, user, and context settings to your kubectl configuration."
-date = "2018-10-12"
+date = "2019-11-06"
 type = "page"
 weight = 30
 +++
@@ -20,7 +20,7 @@ modes:
 - Alternatively, a **self-contained kubectl configuration file can be created**.
   This is useful when you would like to keep things separate, or if you want to
   hand the file to someone. Here, certificate, key, and CA certificate are
-  stored inline in the file. To enable this behaviour, use the flag
+  stored inline in the file. To enable this behavior, use the flag
   `--self-contained` and set it's value to the desired output file path.
 
 In both cases, a new key pair will be created in your installation, just as it
@@ -106,7 +106,7 @@ $ gsctl create kubeconfig --cluster w6wn8 \
   Defaults to `giantswarm-` plus the cluster ID. This name is used with the
   `kubectl config use-context` command to select the context.
 - `--cn-prefix`: The common name prefix for the issued certificates 'CN' field.
-  Note that only the charactes `a-z`, `0-9` and `-` can be used.
+  Note that only the characters `a-z`, `0-9` and `-` can be used.
 - `--certificate-organizations`: A comma separated list of organizations for the
   issued certificate's 'O' fields.
 
@@ -153,7 +153,7 @@ certificate.
 Kubernetes will take these values and map them to the username and group
 memberships respectively. This will let you set up fine grained permissions for
 the certificates that you issue by applying
-[RBAC authorization](https://kubernetes.io/docs/admin/authorization/rbac/)
+[RBAC authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
 resources to your cluster.
 
 ## Related

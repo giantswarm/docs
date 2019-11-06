@@ -1,7 +1,7 @@
 +++
 title = "Recommendations and Best Practices"
 description = "Recommendations and best practices around cluster and node sizing as well as multi-tenant setups"
-date = "2019-01-17"
+date = "2019-11-06"
 type = "page"
 weight = 50
 tags = ["tutorial"]
@@ -17,7 +17,7 @@ Keep in mind that these recommendations are just basic rules-of-thumb that you s
 
 There are a few questions that you might want to answer to determine the right size for your cluster:
 
-1. What kind of environment are you targetting? (short test, development, QA, production)
+1. What kind of environment are you targeting? (short test, development, QA, production)
 2. What kind of workloads will be running in there and how much resources do they need?
 
 In general a cluster that will only be short-lived and for testing purposes only can be rather small and doesn't need much buffer.
@@ -76,7 +76,7 @@ However, with a lot of teams it might lead to a lot of wasted resources,
 In these cases it might be better to have a single (or few) production (and a staging) cluster for everyone.
 The classification of these clusters should be rather by workloads then by teams.
 Thus, you could for example have a separate cluster for services that handle
- sensitive data, and/or one that holds services that need to fullfill certain compliance requirements.
+ sensitive data, and/or one that holds services that need to fulfill certain compliance requirements.
 
 Each team can still have a test cluster for themselves to be working independently.
 
@@ -88,9 +88,9 @@ The downside to the multi-tenant single cluster approach is that it, as mentione
 
 ## Further reading
 
-- [Creating clusters with gsct](/reference/gsctl/create-cluster/)
+- [Creating clusters with gsctl](/reference/gsctl/create-cluster/)
 - [Cluster Size and Autoscaling](/basics/cluster-size-autoscaling/)
-- [Using RBAC Authorization](https://kubernetes.io/docs/admin/authorization/rbac/)
+- [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
 - [Network Policies](https://kubernetes.io/docs/concepts/services-networking/networkpolicies/)
 - [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)
 - [Resource Quotas](https://kubernetes.io/docs/concepts/policy/resource-quotas/)
