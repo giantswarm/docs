@@ -1,0 +1,368 @@
+/*! CSS Used from: https://www.giantswarm.io/hs-fs/hub/430224/hub_generated/template_assets/12789940861/1572426557783/Custom/page/mjfw/mjfw_styles.min.css */
+
+#sitefooter a {
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+    text-decoration: underline;
+    color: #387696;
+}
+
+#sitefooter a:active,
+#sitefooter a:hover {
+    outline-width: 0;
+}
+
+#sitefooter img {
+    border-style: none;
+}
+
+#sitefooter *,
+#sitefooter *:before,
+#sitefooter *:after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#sitefooter .site-footer__inner {
+    float: none!important;
+    margin: auto!important;
+}
+
+@media (max-width:767px) {
+    #sitefooter .site-footer__inner {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+@media (min-width:768px) {
+    #sitefooter .site-footer__inner {
+        padding-right: 30px;
+        padding-left: 30px;
+    }
+}
+
+#sitefooter .site-footer__inner {
+    max-width: 1200px;
+}
+
+#sitefooter p,
+#sitefooter ul {
+    margin-top: 0;
+    margin-bottom: 1em;
+    line-height: 1.6875;
+    font-size: 16px;
+    color: #4e6776;
+}
+
+#sitefooter ul li {
+    font-size: .9em;
+}
+
+#sitefooter .site-footer {
+    padding: 1.25em 0;
+    background-color: #123347;
+    clear: both;
+}
+
+#sitefooter .site-footer__inner {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding-top: 90px;
+    padding-bottom: 90px;
+}
+
+@media (max-width:767px) {
+    #sitefooter .site-footer__inner {
+        display: block;
+        padding-left: 1.5625em;
+        padding-right: 1.5625em;
+        padding-bottom: 2.1875em;
+    }
+}
+
+#sitefooter .site-footer__main-menu .hs-menu-depth-1 {
+    margin-right: 9.375em;
+}
+
+@media (max-width:1124px) {
+    #sitefooter .site-footer__main-menu .hs-menu-depth-1 {
+        margin-right: 4.375em;
+    }
+}
+
+@media (max-width:767px) {
+    #sitefooter .site-footer__main-menu .hs-menu-depth-1 {
+        margin-right: 0;
+        width: 30%;
+    }
+}
+
+#sitefooter .site-footer__main-menu .hs-menu-depth-1 a {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+#sitefooter .site-footer__main-menu .hs-menu-depth-1 li {
+    text-align: left;
+    color: #fff;
+}
+
+#sitefooter .site-footer__main-menu .hs-menu-depth-1 li a {
+    color: #fff;
+}
+
+#sitefooter .site-footer__main-menu .hs-menu-children-wrapper {
+    display: block;
+}
+
+#sitefooter .site-footer__main-menu ul {
+    text-align: left;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+#sitefooter .site-footer__main-menu ul .hs-menu-depth-2 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+#sitefooter .site-footer__main-menu ul .hs-menu-depth-2 a {
+    color: #b7b7b7;
+    margin-bottom: 0px;
+}
+
+#sitefooter .site-footer__main-menu ul .hs-menu-depth-2 a:hover {
+    color: #fff;
+}
+
+#sitefooter .site-footer__second-menu,
+#sitefooter .site-footer__third-menu {
+    display: none;
+}
+
+#sitefooter .site-footer__social-links-list {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+}
+
+#sitefooter .site-footer .twitter,
+#sitefooter .site-footer .instagram,
+#sitefooter .site-footer .facebook,
+#sitefooter .site-footer .github,
+#sitefooter .site-footer .youtube,
+#sitefooter .site-footer .linkedin {
+    display: none;
+}
+
+#sitefooter .site-footer .twitter:hover,
+#sitefooter .site-footer .instagram:hover,
+#sitefooter .site-footer .facebook:hover,
+#sitefooter .site-footer .github:hover,
+#sitefooter .site-footer .youtube:hover,
+#sitefooter .site-footer .linkedin:hover {
+    opacity: .5;
+}
+
+#sitefooter .site-footer__secondary-headline {
+    width: 40%;
+}
+
+@media (max-width:767px) {
+    #sitefooter .site-footer__secondary-headline {
+        width: 100%;
+        display: grid;
+    }
+}
+
+#sitefooter .site-footer__secondary-headline p {
+    color: #b7b7b7;
+    text-align: left;
+    margin-top: 50px;
+    font-size: 14px;
+}
+
+@media (max-width:767px) {
+    #sitefooter .site-footer__secondary-headline p {
+        margin-top: 0px;
+    }
+}
+
+#sitefooter .site-footer__secondary-headline-image {
+    height: 22px;
+    float: left;
+    margin-top: 10px;
+}
+
+@media (max-width:767px) {
+    #sitefooter .site-footer__secondary-headline-image {
+        margin-top: 50px;
+        margin-bottom: 20px;
+    }
+}
+
+#sitefooter .site-footer__copyright {
+    padding: .625em .625em;
+    color: #b7b7b7;
+}
+
+@media (max-width:767px) {
+    #sitefooter .site-footer__copyright {
+        text-align: left;
+        padding-left: 0;
+        padding-right: 1.5625em;
+        padding-bottom: 2.1875em;
+    }
+}
+
+#sitefooter .site-footer__copyright-holder {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    text-align: center;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+    margin: 30px auto;
+    font-size: 14px;
+    color: #b7b7b7;
+}
+
+@media (max-width:767px) {
+    #sitefooter .site-footer__copyright-holder {
+        margin: 30px 0px;
+        width: 100%;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        text-align: left;
+    }
+}
+
+#sitefooter .site-footer ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#sitefooter .site-footer ul li {
+    display: inline-block;
+}
+
+#sitefooter .site-footer a {
+    display: block;
+    padding: .25em;
+    text-decoration: none;
+    text-align: left;
+    color: #fff;
+}
+
+#sitefooter .site-footer__social-links {
+    margin-bottom: 40px;
+}
+
+@media (max-width:767px) {
+    #sitefooter .site-footer__social-links {
+        text-align: left;
+        padding-left: 1.5625em;
+        padding-right: 1.5625em;
+        padding-bottom: .625em;
+    }
+}
+
+#sitefooter .site-footer__social-links-holder {
+    margin-right: 7px;
+}
+
+#sitefooter .site-footer__social-links-holder:hover {
+    color: #b7b7b7;
+}
+
+#sitefooter .site-footer #instagram img {
+    width: 23px;
+}
+
+#sitefooter .social-link {
+    display: inline-block;
+}
+
+#sitefooter .social-link__icon {
+    display: block;
+    position: relative;
+    margin: .3125em;
+    background-color: #387696;
+    padding: 0;
+    font-weight: normal!important;
+}
+
+#sitefooter .social-link__icon span {
+    display: none;
+}
+
+#sitefooter .social-link__icon i {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    -webkit-transition: .3s;
+    -o-transition: .3s;
+    transition: .3s;
+    z-index: 1;
+    color: #ccc;
+    font-size: 18px!important;
+    -webkit-font-smoothing: antialiased;
+}
+
+#sitefooter .social-link__icon:hover,
+#sitefooter .social-link__icon:hover i {
+    color: #fff;
+}
+
+
+/*! CSS Used from: https://use.fontawesome.com/releases/v5.8.1/css/all.css */
+
+#sitefooter .fab {
+    font-family: "Font Awesome 5 Brands";
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
+
+#sitefooter .fa-facebook:before {
+    content: "\f09a";
+}
+
+#sitefooter .fa-instagram:before {
+    content: "\f16d";
+}
+
+#sitefooter .fa-linkedin-in:before {
+    content: "\f0e1";
+}
+
+#sitefooter .fa-twitter:before {
+    content: "\f099";
+}
+
+#sitefooter .fa-youtube:before {
+    content: "\f167";
+}
+
+@font-face {
+    font-family: "Font Awesome 5 Brands";
+    font-style: normal;
+    font-weight: normal;
+    font-display: auto;
+    src: url(https://use.fontawesome.com/releases/v5.8.1/webfonts/fa-brands-400.eot);
+    src: url(https://use.fontawesome.com/releases/v5.8.1/webfonts/fa-brands-400.eot#iefix) format("embedded-opentype"), url(https://use.fontawesome.com/releases/v5.8.1/webfonts/fa-brands-400.woff2) format("woff2"), url(https://use.fontawesome.com/releases/v5.8.1/webfonts/fa-brands-400.woff) format("woff"), url(https://use.fontawesome.com/releases/v5.8.1/webfonts/fa-brands-400.ttf) format("truetype"), url(https://use.fontawesome.com/releases/v5.8.1/webfonts/fa-brands-400.svg#fontawesome) format("svg");
+}
