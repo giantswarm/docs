@@ -193,7 +193,7 @@ roleRef:
 
 Bindings can refer to subjects that are either single users, groups, or service accounts. The latter are needed to grant API access (and with PSPs also Pod privileges) to certain Pods, e.g. for monitoring and logging agents.
 
-For a detailed explanation of how to refer to subjects in Bindings we defer to the [official RBAC documentation](https://kubernetes.io/docs/admin/authorization/rbac/#referring-to-subjects).
+For a detailed explanation of how to refer to subjects in Bindings we defer to the [official RBAC documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#referring-to-subjects).
 
 #### Default Roles and Role Bindings {#default-roles-bindings}
 
@@ -221,7 +221,7 @@ roleRef:
 
 One of the most important default Role Bindings is for the "cluster-admin" role, which depicts a super-user in the cluster. By default it is bound to the `system:masters` group. Thus, if you need cluster admin access to your Kubernetes cluster, you need to create user credentials (e.g. by [creating a key pair with gsctl](https://docs.giantswarm.io/reference/gsctl/create-keypair/) or Happa) that include that group.
 
-For a complete overview of default roles and bindings we defer to the [official RBAC documentation](https://kubernetes.io/docs/admin/authorization/rbac/#default-roles-and-role-bindings).
+For a complete overview of default roles and bindings we defer to the [official RBAC documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#default-roles-and-role-bindings).
 
 __Warning:__ Be careful assigning super-user as a default role. Giving `cluster-admin` role to every user means letting them perform any action in the cluster. As an analogy, it is like you giving root access to every user in a Linux system. Consequently think twice which role your users will have in the system. For Kubernetes, it translates in selecting a username and group name properly. In case you use authentication based on certs, [common name and organization would be those respectively](https://docs.giantswarm.io/reference/gsctl/create-keypair/#kubernetes-rbac-and-the-certificate-s-subject-common-name-and-organization-fields). If you are using an external authentication system then be sure it returns the correct user and group name to the Kubernetes API. 
 
