@@ -1,7 +1,7 @@
 +++
 title = "Securing your Cluster with RBAC and PSP"
 description = "Introduction to using RBAC and PSP to secure your cluster and manage access control."
-date = "2019-09-11"
+date = "2019-11-06"
 type = "page"
 weight = 30
 tags = ["tutorial"]
@@ -615,7 +615,7 @@ Note that bindings that come with the cluster by default like `system:masters` c
 
 ## Further reading
 
-- [Using RBAC Authorization](https://kubernetes.io/docs/admin/authorization/rbac/)
+- [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
 - [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)
 - [Configuring Service Accounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/)
 - [Creating a kubeconfig with gsctl](https://docs.giantswarm.io/reference/gsctl/create-kubeconfig/)
