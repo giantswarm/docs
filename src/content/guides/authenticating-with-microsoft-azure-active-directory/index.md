@@ -1,7 +1,7 @@
 +++
 title = "Authenticating with Microsoft Azure Active Directory"
 description = "Tutorial on how to setup Authentication with Microsoft Azure Active Directory in kubectl."
-date = "2018-07-05"
+date = "2019-11-06"
 type = "page"
 weight = 30
 tags = ["tutorial"]
@@ -159,5 +159,5 @@ Access is revoked as soon as the user has either been removed from a bound group
 
 - [Securing your Cluster with RBAC and PSP
 ](https://docs.giantswarm.io/guides/securing-with-rbac-and-psp/)
-- [Using RBAC Authorization](https://kubernetes.io/docs/admin/authorization/rbac/)
+- [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
 - [Azure Active Directory plugin for client authentication](https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/client-go/plugin/pkg/client/auth/azure/README.md)
