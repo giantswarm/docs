@@ -24,8 +24,9 @@ vendor:
 
 # Extract site footer from Giant Swarm website and store it as a partial
 footer:
-	curl -sS https://www.giantswarm.io/ | sed -n '/<!-- BEGIN SITE_FOOTER -->/,/<!-- END SITE_FOOTER -->/p' > src/layouts/partials/site_footer.html
-	sed -i '' 's|<!-- END SITE_FOOTER --></div>|<!-- END SITE_FOOTER -->|g' src/layouts/partials/site_footer.html
+	curl -sS https://www.giantswarm.io/ | awk '/<!-- BEGIN SITE_FOOTER -->/,/<!-- END SITE_FOOTER -->/' > src/layouts/partials/site_footer_temp.html
+	cat src/layouts/partials/site_footer_temp.html | awk '{sub(/<!-- END SITE_FOOTER --><\/div>/,"<!-- END SITE_FOOTER -->")}1' > src/layouts/partials/site_footer.html
+	rm -f src/layouts/partials/site_footer_temp.html
 
 build: vendor build-css footer
 	# check dependencies
