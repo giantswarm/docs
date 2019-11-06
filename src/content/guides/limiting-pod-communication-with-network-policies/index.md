@@ -1,7 +1,7 @@
 +++
 title = "Limiting Pod Communication with Network Policies"
 description = "Guide on how to limit Pod communication using Network Policies"
-date = "2017-11-10"
+date = "2019-11-12"
 type = "page"
 weight = 60
 tags = ["tutorial"]
@@ -11,15 +11,13 @@ tags = ["tutorial"]
 
 You can limit communication to Pods using the Network Policy API of Kubernetes.
 
-Currently the API only includes Ingress rules, i.e. you can only limit traffic to groups of Pods. Egress rules, limiting outgoing traffic from Pods, are coming to the API soon. Until then you have to use the Egress functionality of our Network Plugin, Calico, directly.
+The Network policy functionality is implemented by a network provider thanks to the CNI plugin. Nowadays there are some provides compatible (Calico, Cilium, Kube-router, ...). Giant Swarm uses Calico as a provider so out of the box users can make use of these policies.
 
 Here we give an overview and introduction of how to create and use these policies.
 
-## Ingress network policies
+## Network Policies Scope
 
-NetworkPolicy resources in Kubernetes use labels to select pods and define rules which specify what traffic is allowed to the selected pods.
-
-By default all Pods in a cluster are non-isolated and accept traffic from any source.
+By default, all Pods in a cluster are non-isolated and accept traffic from any source.
 
 As soon as you have a NetworkPolicy that selects a certain group of Pods, those Pods become isolated and reject any traffic that is not allowed by any NetworkPolicy.
 
@@ -27,9 +25,64 @@ Note that Network Policies are additive, so having two Network Policies that sel
 
 Keep in mind that a NetworkPolicy is applied to a particular Namespace and only selects Pods in that particular Namespace.
 
-### Default policies
+## Network Policy syntax
 
-You can create default policies for a Namespace by creating a NetworkPolicy that select all Pods:
+The Network Policy resource is part of the API group `networking.k8s.io`. Currently, it is in version `v1`. 
+
+The `spec` of the resource has mainly three parts:
+
+- `podSelector`: Use labels to select the group of pods to which the rules will be applied.
+
+- `policyTypes`: Which could be `Ingress`, `Egress` or both together. This field will determine if the rules will be applied to ingoing and/or outgoing traffic. If it is not defined, then `Ingress` will be enabled by default and `Egress` only when there are rules defined. 
+
+- `ingress`/`egress`: these sections allow a list of `from` (Ingress) or `to` (egress) and `ports` blocks. Each `from`/`to` block contains a range of IPs (`ipBlock`) and/or a list of namespaces selected by label (`namespaceSelector`) and/or a list of pods by label (`podSelector`). That select which IPs, namespaces or pods can talk to our target pod or to which IPs, namespaces or pod our target can talk to. The `ports` block defines which ports are affected by this the rule.
+
+An easy example to clarify the explained concepts
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: simple-policy
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: target-app-who-is-applied-the-policy
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - ipBlock:
+        cidr: 172.17.0.0/16
+    - namespaceSelector:
+        matchLabels:
+          name: namespace-that-can-talk-to-my-app
+    - podSelector:
+        matchLabels:
+          app: pod-that-can-talk-to-my-app
+    ports:
+    - protocol: TCP
+      port: 6379
+  egress:
+  - to:
+    - ipBlock:
+        cidr: 10.0.0.0/24
+    - namespaceSelector:
+        matchLabels:
+          name: namespace-my-app-can-talk-to
+    - podSelector:
+        matchLabels:
+          app: pod-my-app-can-talk-to
+    ports:
+    - protocol: TCP
+      port: 5978
+```
+
+## Default policies
+
+You can create default policies for a namespace by creating a NetworkPolicy that select all Pods as follows:
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -40,25 +93,48 @@ spec:
   podSelector: {}
   policyTypes:
   - Ingress
+  - Egress
 ```
 
-Applying the above policy with 
-
-```nohighlight
-kubectl -n <namespace> apply -f default-deny.yaml 
-```
-
-will result in all traffic to all Pods in the Namespace to be denied.
+__Warning__: By default Giant Swarm clusters, from version `11.0.0`, contains this default policy for sensitive namespaces like `giantswarm` and `kube-system`. To communicate with any pods in that namespace you need to explicitly create a Network Policy that allows it.
 
 Note that the namespace needs to exist before you apply the NetworkPolicy to it.
 
-### Creating selective network policies
+The default policy shown above will limit ingress and egress traffic in the namespace applied. You can restrict only for `egress` or `ingress` too. 
 
-No matter if you set default policies or not, you can limit access to certain Pods by creating a NetworkPolicy that selects them.
+## Applications 
 
-#### Allowing specific pod to pod access
+### Allowing specific system pod to talk with your pod
 
-In the following example we allow traffic to Pods labeled `role: backend` from Pods with the `role: frontend` label and only on TCP port 6379.
+As we mentioned before we harden the clusters restricting the communication with kube system and giantswarm pods. In case you need to allow that communication with a running pod in one of those namespaces you have to explicitly declare. For example:
+
+```yaml
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: ksm-can-be-accessed-by-my-app
+  namespace: kube-system
+spec:
+  podSelector:
+    matchLabels:
+      app: kube-state-metrics
+  ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            app: my-app-that-needs-access-to-ksm
+      ports:
+        - protocol: TCP
+          port: 10301
+```
+
+To make it more visual, this how it will look at the communication between namespaces.
+
+(PLACEHOLDER FOR IMAGE)
+
+### Allowing specific pod to pod access
+
+In the following example, we allow traffic to Pods labelled `role: backend` from Pods with the `role: frontend` label and only on TCP port 6379.
 
 ```yaml
 kind: NetworkPolicy
@@ -85,9 +161,9 @@ You need to apply this policy to the Namespace that the backend Pods live in.
 kubectl -n <namespace> apply -f backend-access.yaml
 ```
 
-#### Allowing pod to pod access within a namespace
+### Allowing pod to pod access within a namespace
 
-In some cases you might want to allow all intra-namespace communication. For this you can use open Pod selectors that catch all Pods.
+In some cases, you might want to allow all intra-namespace communication. For this, you can use open Pod selectors that catch all Pods.
 
 ```yaml
 kind: NetworkPolicy
@@ -104,7 +180,7 @@ spec:
             name: freeforall
 ```
 
-Note that the namespace you apply this policy to needs to carry a label `name:` similar to the actual name key in its metadata:
+Note that the namespace you apply this policy needs to carry a label `name:` similar to the actual name key in its metadata:
 
 ```yaml
 apiVersion: v1
@@ -122,7 +198,7 @@ kubectl apply -f freeforall-namespace.yaml
 kubectl apply -f intra-namespace-policy.yaml
 ```
 
-#### Allowing traffic from outside the cluster
+### Allowing traffic from outside the cluster
 
 In the case that you have publicly exposed a Service through Ingress and you have a default-deny policy in place or just want to limit that traffic to a specific port, you need a Network Policy like the following.
 
@@ -131,6 +207,7 @@ kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
 metadata:
   name: allow-external
+  namespace: default
 spec:
   podSelector:
     matchLabels:
@@ -143,75 +220,8 @@ spec:
 
 The above will allow any traffic (no matter if outside or inside your cluster) to the Pods on port 80.
 
-## Limiting egress traffic with calico policies
-
-For creating Egress Policies we currently have to circumvent Kubernetes and talk directly to Calico [using `calicoctl`](https://docs.projectcalico.org/v2.2/getting-started/kubernetes/tutorials/using-calicoctl).
-
-__Note__: Running and configuring `calicoctl` in your cluster requires privileged access to your nodes and etcd. Please do not do this without consulting Giant Swarm Support first, as these actions can pose significant risk to the health of your cluster.
-
-Let's take the following use case as an example:
-
-> We have a Kubernetes cluster that has a connection to a legacy backend in our data center. The legacy backend can be reached through certain IP (here 8.8.8.8 for testing purposes). Now, we want to have control over which Pods should be allowed to access that backend. As the backend does not live inside of our cluster we cannot work with Ingress rules. We decide to limit access to the backend to a specific trusted namespace.
-
-For this we need two policies:
-
-1. Deny Egress for the whole cluster
-2. Allow Egress for the trusted namespace
-
-### 1. Default deny egress
-
-Following Egress policy denies outgoing connections from all sources to our specified destination. With `order: 500` we ensure that this is applied before any Kubernetes policies.
-
-```yaml
-apiVersion: v1
-kind: policy
-metadata:
-  name: default-deny-egress
-spec:
-  order: 500
-  egress:
-  - action: deny
-    destination:
-      net: 8.8.8.8
-    source: {}
-```
-
-We apply the policy with
-
-```nohighlight
-calicoctl create -f default-deny-egress.yaml
-```
-
-### 2. Allow egress for trusted namespace
-
-For this we create another policy, just selecting our `trusted` namespace. Again, the order of 400 will ensure this is applied before any Kubernetes policies.
-
-```yaml
-apiVersion: v1
-kind: policy
-metadata:
-  name: trusted-namespace
-spec:
-  order: 400
-  egress:
-  - action: allow
-    destination:
-      net: 8.8.8.8
-    source:
-      selector: calico/k8s_ns == 'trusted'
-```
-
-and apply the policy with
-
-```nohighlight
-calicoctl create -f trusted-namespace.yaml
-```
-
-Now connections to `8.8.8.8` will only be possible from Pods living in the namespace called `trusted`. As with Ingress Policies all other connections from the Pods will be disallowed.
-
 ## Further reading
 
-- [The Unoffical Guide to Kubernetes Network Policies](https://ahmet.im/blog/kubernetes-network-policy/)
-- [Network Policies](https://kubernetes.io/docs/concepts/services-networking/networkpolicies/)
+- [The Unofficial Guide to Kubernetes Network Policies](https://ahmet.im/blog/kubernetes-network-policy/)
+- [Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/)
 - [Declare Network Policy](https://kubernetes.io/docs/tasks/administer-cluster/declare-network-policy/)
-- [Calico Getting Started](https://docs.projectcalico.org/v2.2/getting-started/)
