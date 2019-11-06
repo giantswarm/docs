@@ -22,7 +22,11 @@ vendor:
 	# Vendor other external repositories as defined in 'external-repositories.txt'
 	./vendorize-external-repositories.sh
 
-build: vendor build-css
+# Extract site footer from Giant Swarm website and store it as a partial
+footer:
+	curl -sS https://www.giantswarm.io/ | sed -n '/<!-- BEGIN SITE_FOOTER -->/,/<!-- END SITE_FOOTER -->/p' > src/layouts/partials/site_footer.html
+
+build: vendor build-css footer
 	# check dependencies
 	which jq || (echo "jq not found" && exit 1)
 	which curl || (echo "curl not found" && exit 1)
