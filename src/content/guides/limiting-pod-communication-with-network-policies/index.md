@@ -11,7 +11,7 @@ tags = ["tutorial"]
 
 You can limit communication to Pods using the Network Policy API of Kubernetes.
 
-The Network policy functionality is implemented by a network provider thanks to the CNI plugin. Nowadays there are some provides compatible (Calico, Cilium, Kube-router, ...). Giant Swarm uses Calico as a provider so out of the box users can make use of these policies.
+The Kubernetes Network Policy functionality is implemented by different network providers, like Calico, Cilium, Kube-router, etc. Most of these providers have some added functionalties that go above the main Kubernetes Network Policy API. Giant Swarm deploys Calico as a provider so users can make use of its functionality out of the box.
 
 Here we give an overview and introduction of how to create and use these policies.
 
