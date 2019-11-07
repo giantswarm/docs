@@ -130,7 +130,7 @@ spec:
 
 To make it more visual, this how it will look at the communication between namespaces.
 
-![](/img/giant-swarm-network-policies-diagram.png)
+![](giant-swarm-network-policies-diagram.png)
 
 ### Allowing specific pod to pod access
 
