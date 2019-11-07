@@ -1,7 +1,7 @@
 +++
 title = "gsctl Command Reference: create keypair"
 description = "The 'gsctl create keypair' command creates a key pair and stores the related files in your certificate folder."
-date = "2018-10-12"
+date = "2019-11-06"
 type = "page"
 weight = 32
 +++
@@ -43,7 +43,7 @@ Three files will be placed in the `certs` folder, which is a subfolder of your g
 
 - `--cluster`, `-c`: Used to specify the cluster ID to create a key pair for.
 - `--cn-prefix`: The common name prefix for the issued certificates 'CN' field.
-  Note that only the charactes `a-z`, `0-9` and `-` can be used.
+  Note that only the characters `a-z`, `0-9` and `-` can be used.
 - `--certificate-organizations`: A comma separated list of organizations for the issued certificate's 'O' fields.
 - `--description`, `-d`: Can be used to specify a description. If not given, a description like `Added by user email@example.com using 'gsctl create kubeconfig'` is set.
 - `--ttl`: Allows to set the key pair expiry, in days. Defaults to 30 days.
@@ -58,11 +58,11 @@ Depending on the installation, there might be a minimum and maximum key pair lif
 
 Using the `--certificate-organizations` and `--cn-prefix` flags you can influence the common name (CN) and organization (O) fields of the issued certificate.
 
-Kubernetes will take these values and map them to the username and group memberships respectively. This will let you set up fine grained permissions for the certificates that you issue by applying [RBAC authorization](https://kubernetes.io/docs/admin/authorization/rbac/) resources to your cluster.
+Kubernetes will take these values and map them to the username and group memberships respectively. This will let you set up fine grained permissions for the certificates that you issue by applying [RBAC authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) resources to your cluster.
 
 __Warning:__ Setting `system:masters` as an organization means the user who uses the issued keypair has `cluster-admin` rights in the selected cluster. It is a good practice to use finer grained roles, only giving the least privileges possible to the users ([PoLP](https://en.wikipedia.org/wiki/Principle_of_least_privilege)). Please consider using existing roles like `admin`, `edit` or `view` instead, or creating new custom roles with needed permission.
 
 ## Related
 
-- [`gsctl create kubeconfig`](../create-kubeconfig/): Create a key pair and prepare your kubectl configuration to access the cluster.
+- [`gsctl create kubeconfig`](/reference/gsctl/create-kubeconfig/): Create a key pair and prepare your kubectl configuration to access the cluster.
 - [API: Create key pair](/api/#operation/addKeyPair)
