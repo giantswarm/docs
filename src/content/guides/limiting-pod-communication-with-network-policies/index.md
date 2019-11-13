@@ -11,7 +11,7 @@ tags = ["tutorial"]
 
 You can limit communication to Pods using the Network Policy API of Kubernetes.
 
-The Kubernetes Network Policy functionality is implemented by different network providers, like Calico, Cilium, Kube-router, etc. Most of these providers have some added functionalties that go above the main Kubernetes Network Policy API. Giant Swarm deploys Calico as a provider so users can make use of its functionality out of the box.
+The Kubernetes Network Policy functionality is implemented by different network providers, like Calico, Cilium, Kube-router, etc. Most of these providers have some added functionality that extends the main Kubernetes Network Policy API. Giant Swarm deploys Calico as a provider so users can make use of its functionality out of the box.
 
 Here we give an overview and introduction of how to create and use these policies.
 
@@ -29,11 +29,11 @@ Keep in mind that a NetworkPolicy is applied to a particular Namespace and only 
 
 The Network Policy resource is part of the API group `networking.k8s.io`. Currently, it is in version `v1`. 
 
-The `spec` of the resource has mainly three parts:
+The `spec` of the resource mainly consists of three parts:
 
-- `podSelector`: Use labels to select the group of pods to which the rules will be applied.
+- `podSelector`: Use labels to select the group of pods for which the rules will be applied.
 
-- `policyTypes`: Which could be `Ingress`, `Egress` or both together. This field will determine if the rules will be applied to ingoing and/or outgoing traffic. If it is not defined, then `Ingress` will be enabled by default and `Egress` only when there are rules defined. 
+- `policyTypes`: Which could be `Ingress`, `Egress` or both. This field will determine if the rules will be applied to ingoing and/or outgoing traffic. If it is not defined, then `Ingress` will be enabled by default and `Egress` only when there are rules defined. 
 
 - `ingress`/`egress`: these sections allow a list of `from` (Ingress) or `to` (egress) and `ports` blocks. Each `from`/`to` block contains a range of IPs (`ipBlock`) and/or a list of namespaces selected by label (`namespaceSelector`) and/or a list of pods by label (`podSelector`). That select which IPs, namespaces or pods can talk to our target pod or to which IPs, namespaces or pod our target can talk to. The `ports` block defines which ports are affected by this the rule.
 
@@ -82,7 +82,7 @@ spec:
 
 ## Default policies
 
-You can create default policies for a namespace by creating a NetworkPolicy that select all Pods as follows:
+You can create default policies for a namespace by creating a NetworkPolicy that selects all Pods as follows:
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -106,7 +106,7 @@ The default policy shown above will limit ingress and egress traffic in the name
 
 ### Allowing specific system pod to talk with your pod
 
-As we mentioned before we harden the clusters restricting the communication with kube system and giantswarm pods. In case you need to allow that communication with a running pod in one of those namespaces you have to explicitly declare. For example:
+As we mentioned before we harden the clusters restricting the communication with `kube-system` and `giantswarm` pods. In case you need to allow that communication with a running pod in one of those namespaces you have to explicitly declare it. For example:
 
 ```yaml
 kind: NetworkPolicy
@@ -128,13 +128,13 @@ spec:
           port: 10301
 ```
 
-To make it more visual, this how it will look at the communication between namespaces.
+To make it more visual, this is what the communication between namespaces will look like.
 
 ![](giant-swarm-network-policies-diagram.png)
 
 ### Allowing specific pod to pod access
 
-In the following example, we allow traffic to Pods labelled `role: backend` from Pods with the `role: frontend` label and only on TCP port 6379.
+In the following example, we allow traffic to Pods labeled `role: backend` from Pods with the `role: frontend` label and only on TCP port 6379.
 
 ```yaml
 kind: NetworkPolicy
@@ -180,7 +180,7 @@ spec:
             name: freeforall
 ```
 
-Note that the namespace you apply this policy needs to carry a label `name:` similar to the actual name key in its metadata:
+Note that the namespace you apply this policy to needs to carry a label `name:` similar to the actual name key in its metadata:
 
 ```yaml
 apiVersion: v1
