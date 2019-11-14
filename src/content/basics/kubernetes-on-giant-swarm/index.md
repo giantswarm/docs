@@ -54,3 +54,5 @@ On AWS all resources (besides minor resources on S3 and KMS) pertaining to a clu
 - `giantswarm.io/cluster: <clusterid>`
 
 Especially latter enables you to set up reporting to monitor usage and cost.
+
+### Specifics on Azure
