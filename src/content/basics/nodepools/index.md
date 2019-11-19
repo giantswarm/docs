@@ -1,7 +1,7 @@
 ---
 title: Node Pools
 description: A general description of node pools as a concept, it's benefits, and some details you should be aware of.
-date: 2019-11-18
+date: 2019-11-19
 weight: 15
 type: page
 categories: ["basics"]
@@ -15,9 +15,8 @@ Node pools are a new concept to be introduced soon to Giant Swarm customers on A
 
 ## Definition
 
-A node pool is a group of nodes within a cluster that all have the same configuration. Node pools use a NodeConfig specification. Each
-node in the pool has a Kubernetes node label, which has the node pool's name as its value. A node pool can contain a single node or
-many nodes.
+A node pool is a group of nodes within a cluster that all have the same configuration. Each node in the pool has a Kubernetes 
+node label, which has the node pool's name as its value. A node pool can contain a single node or many nodes.
 
 ## Advantages
 
