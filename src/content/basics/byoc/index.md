@@ -2,7 +2,7 @@
 title = "Bring Your Own Cloud"
 description = "By default, all your tenant clusters run in the same cloud provider account. With BYOC (Bring Your Own Cloud) for AWS and Azure, you can define a specific cloud provider account to use per organization."
 date = "2018-11-16"
-weight = 50
+weight = 110
 type = "page"
 categories = ["basics"]
 +++
