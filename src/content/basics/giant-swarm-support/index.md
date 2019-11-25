@@ -11,17 +11,17 @@ categories = ["basics"]
 
 We built and run a platform which lets our customers spin up as many clusters as they need. We always keep these clusters in the same predictable state. This becomes especially valuable once you need to run multiple clusters for different teams, on different environments, with different configurations or in multiple locations.
 
-We accompany our customers throughout their journey. Having someone to contact when problems occur is as important to us as gaving a great product. It is actually the obvious complement to our product. The following is a brief description of our support process.
+We accompany our customers throughout their journey. Having someone to contact when problems occur is as important to us as providing a great product. It is actually the obvious complement to our product. The following is a brief description of our support process.
 
 ## Customer Support
 
-Our customer support relies on close interactions via Slack, to get bi-directional feedback as quickly as possible. This is our first line of contact to customers. This interaction channel is used also used to ask all kinds of questions. The conversations are not limited to the platform itself, but can go broader and include the whole Cloud Native journey.
+Our customer support relies on close interactions via Slack, to get bi-directional feedback as quickly as possible. This is our first line of contact to customers. This interaction channel is also used to ask all kinds of questions. The conversations are not limited to the platform itself, but can go broader and include the whole Cloud Native journey.
 
 Our support shifts go from 08:00 to 18:00 on weekdays, but we also often answer questions well outside those times. We rotate support shifts across the team, which is why focus on support channels with clear internal handovers.
 
 If there is a problem that the first line support cannot resolve, it is handed over to the `ops duty` engineer, who has deeper knowledge of the platform. This is a 24 hour rotating shift.
 
-Each customer has a dedicated Solution Engineer as who provides additional support and acts as a first backup in case the person on first line support is overloaded. Solution Engineers also hold regular sync meetings to discuss customer needs and issue.
+Each customer has a dedicated Solution Engineer who provides additional support and acts as a first backup in case the person on first line support is overloaded. Solution Engineers also hold regular sync meetings to discuss customer needs and issue.
 
 Project level work (e.g. installations) is handled by an SRE of the week. This person also serves as backup for the Ops Duty engineer. 
 
