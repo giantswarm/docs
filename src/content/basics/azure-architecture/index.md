@@ -5,7 +5,7 @@ date = "2019-11-21"
 weight = 20
 type = "page"
 categories = ["basics"]
-last review date = "2019-11-25"
+last_review_date = "2019-11-26"
 +++
 
 # The Giant Swarm Azure Architecture
