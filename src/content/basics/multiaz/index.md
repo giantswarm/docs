@@ -2,7 +2,7 @@
 title = "Clusters Over Multiple Availability Zones"
 description = "By default, cluster get started within a single availability zone. But you can define how many availability zones a cluster should have to get higher a availability for your clusters."
 date = "2018-11-22"
-weight = 50
+weight = 100
 type = "page"
 categories = ["basics"]
 +++

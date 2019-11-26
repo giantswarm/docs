@@ -2,7 +2,7 @@
 title = "The Giant Swarm On Premises Architecture"
 description = "Architecture overview showing how Giant Swarm is set up within a customer data center on bare metal or virtual machines."
 date = "2018-08-16"
-weight = 30
+weight = 70
 type = "page"
 categories = ["basics"]
 +++

@@ -2,7 +2,7 @@
 title = "The Giant Swarm App Catalog"
 description = "Overview of the Giant Swarm App Catalog, how it works and what to expect."
 date = "2019-02-11"
-weight = 15
+weight = 90
 type = "page"
 categories = ["basics"]
 +++
