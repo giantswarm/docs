@@ -2,7 +2,7 @@
 title = "Cluster Size and Autoscaling"
 description = "This article explains options you have for defining the size of a Kubernetes cluster with Giant Swarm, and automatically scaling it"
 date = "2019-11-14"
-weight = 45
+weight = 120
 type = "page"
 categories = ["basics"]
 +++

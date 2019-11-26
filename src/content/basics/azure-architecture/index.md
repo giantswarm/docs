@@ -2,7 +2,7 @@
 title = "The Giant Swarm Azure Architecture"
 description = "Architecture Overview showing how Giant Swarm is set up on Microsoft Azure"
 date = "2019-07-16"
-weight = 20
+weight = 60
 type = "page"
 categories = ["basics"]
 +++

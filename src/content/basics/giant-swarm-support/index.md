@@ -3,7 +3,7 @@ title = "Giant Swarm Support"
 description = "An explanation of how our support service works."
 date = "2019-11-24"
 type = "page"
-weight = 20
+weight = 30
 categories = ["basics"]
 +++
 

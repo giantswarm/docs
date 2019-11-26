@@ -2,7 +2,7 @@
 title = "Kubernetes Resources"
 description = "Pointers to the best resources about Kubernetes to get you up to speed with Kubernetes fast"
 date = "2019-10-24"
-weight = 100
+weight = 140
 type = "page"
 categories = ["basics"]
 +++
