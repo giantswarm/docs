@@ -5,7 +5,7 @@ date = "2019-11-18"
 weight = 10
 type = "page"
 categories = ["basics"]
-last review date = "2019-11-18"
+last_review_date = "2019-11-18"
 +++
 
 # Details on Kubernetes on Giant Swarm
