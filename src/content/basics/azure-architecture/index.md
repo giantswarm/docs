@@ -1,10 +1,11 @@
 +++
 title = "The Giant Swarm Azure Architecture"
 description = "Architecture Overview showing how Giant Swarm is set up on Microsoft Azure"
-date = "2019-07-16"
+date = "2019-11-21"
 weight = 60
 type = "page"
 categories = ["basics"]
+last_review_date = "2019-11-26"
 +++
 
 # The Giant Swarm Azure Architecture
@@ -19,13 +20,13 @@ The above diagram shows our control plane setup running with two bastion hosts i
 
 The cluster has several APIs and Interfaces. The Kubernetes API of the Control Plane is only available to Giant Swarm operations personnel and only through the Bastion hosts. 
 
-The Giant Swarm API, Monitoring and Alerting frontends as well as our Web Management Interface, Happa, are exposed through the Control Plane Ingress Controller, which sits behind a public Load Balancer.
+The Giant Swarm API, Monitoring and Alerting frontends as well as our Web User Interface, are exposed through the Control Plane Ingress Controller, which sits behind a public Load Balancer.
 
 ## Giant Swarm tenant cluster
 
 ![Tenant Cluster Architecture](/img/architecture-azure-tenant-cluster.png)
 
-Via the Giant Swarm API, our [CLI](https://github.com/giantswarm/gsctl), or our Happa interface, you can start Tenant Clusters of different sizes. There's a selection of recommended Azure instance types, which can be adjusted if needed. 
+Via the Giant Swarm API, our [CLI](https://github.com/giantswarm/gsctl), or our web interface, you can start Tenant Clusters of different sizes. There's a selection of recommended Azure instance types, which can be adjusted if needed. 
 
 Each cluster resides in its own Virtual Network. All Azure machines are in their own private subnet ([Networking Deepdive](https://blog.giantswarm.io/deep-dive-into-kubernetes-networking-in-azure/)). There are two possible access routes into the cluster. 
 
@@ -35,10 +36,12 @@ One is the Kubernetes API that can be connected to your Identity Management Syst
 
 ![Service Architecture](/img/architecture-azure-services.png)
 
-To make your life easier, we have developed a lot of different services within our Control Plane that allow both our operations team and you as users of our API and interfaces to easily manage Kubernetes clusters. Most of these services should be self explanatory. 
+To make your life easier, we have developed a lot of different services within our Control Plane that allow both our operations team and you as, users of our API and interfaces to easily manage Kubernetes clusters. Most of these services should be self explanatory, due to the level of granularity we maintain. 
 
 We have three main parts:
 
 * Core Infrastructure Services
 * Infrastructure Monitoring (used by Giant Swarm)
 * Tenant Clusters
+
+All of these are geared towards enabling you to run multiple projects independently and consistently across multiple Azure regions.
