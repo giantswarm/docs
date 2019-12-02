@@ -143,7 +143,7 @@ to be submitted for creation via the [`gsctl create cluster`](/reference/gsctl/c
 
 With node pools, you set the autoscaling range per node pool. The Kubernetes cluster autoscaler has to decide which node pool to scale under which circumstances.
 
-If you assign workloads to node pools as described [above](#assigning-workloads) and the autoscaler finds pods that are not assigned to any node, it will decide based on the node selectors which node pools to scale up.
+If you assign workloads to node pools as described [above](#assigning-workloads) and the autoscaler finds pods in `Pending` state, it will decide based on the node selectors which node pools to scale up.
 
 In case there are workloads not assiged to any node pools, the autoscaler may pick any node pool for scaling. For details on the decision logic, pelaase check the upstream [FAQ for AWS](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/README.md).
 
