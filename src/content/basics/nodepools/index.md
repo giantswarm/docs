@@ -1,7 +1,7 @@
 ---
 title: Node Pools
 description: A general description of node pools as a concept, it's benefits, and some details you should be aware of.
-date: 2019-11-19
+date: 2019-12-02
 weight: 130
 type: page
 categories: ["basics"]
@@ -73,7 +73,7 @@ Settings like the instance type or the availability zone assignment cannot be ch
 
 See the [`gsctl update nodepool`](/reference/gsctl/update-nodepool/) reference for instructions how to scale and rename a node pool using the CLI.
 
-## Assigning workloads to node pools
+## Assigning workloads to node pools {#assigning-workloads}
 
 Knowing the node pool ID of the pool to use, you can use the `nodeSelector` method of assigning pods to the node pool.
 
@@ -138,6 +138,14 @@ Just as the Giant Swarm API schema for v4 (without node pools) and v5 (with node
 
 The new definition schema for v5 allows for defining cluster and node pool details in one file,
 to be submitted for creation via the [`gsctl create cluster`](/reference/gsctl/create-cluster/) command.
+
+## Node pools and autoscaling {#autoscaling}
+
+With node pools, you set the autoscaling range per node pool. The Kubernetes cluster autoscaler has to decide which node pool to scale under which circumstances.
+
+If you assign workloads to node pools as described [above](#assigning-workloads) and the autoscaler finds pods in `Pending` state, it will decide based on the node selectors which node pools to scale up.
+
+In case there are workloads not assigned to any node pools, the autoscaler may pick any node pool for scaling. For details on the decision logic, please check the upstream [FAQ for AWS](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/README.md).
 
 ## Limitations
 
