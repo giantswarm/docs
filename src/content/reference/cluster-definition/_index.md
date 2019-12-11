@@ -1,7 +1,7 @@
 ---
 title: Cluster Definition Reference
 description: Complete documentation of the Giant Swarm cluster definition YAML format, compatible with API v4 and v5.
-date: 2019-10-28
+date: 2019-12-11
 layout: subsection
 weight: 100
 ---
@@ -55,6 +55,7 @@ workers:
 ```
 
 In contrast to the example above, for AWS EC2 based clusters, worker nodes have to be specified by selecting an instance type. The following example shows how to select instance types for worker nodes instead. The keys `cpu`, `memory`, and `storage` are not applicable here.
+Also, we use the `availability_zones` field to spread the worker nodes over two availability zones.
 
 ```yaml
 name: Example AWS Cluster
@@ -62,6 +63,7 @@ owner: myorg
 scaling:
   min: 3
   max: 3
+availability_zones: 2
 workers:
   - aws:
       instance_type: m3.large
@@ -75,8 +77,9 @@ workers:
 
 - `owner`: Name of the owner organization.
 - `name`: Friendly name of the cluster. If not specified, a name will be generated.
+- `release_version`: Allows to select a specific release version. The value must be the semantic version number (SemVer) of an active release. To get information on all available releases, use the [`gsctl list releases`](/reference/gsctl/list-releases/) command.
+- `availability_zones`: Number of availability zones to use for worker nodes (on AWS only). Both the default value and the maximum can be obtained via the [Info endpoint](https://docs.giantswarm.io/api/#operation/getInfo) of the Giant Swarm API.
 - `workers`: Array of node definition objects describing each worker node. See below for possible keys. If not specified, the default number of worker nodes with default settings will be created.
-- `release_version`: Allows to select a specific release version. The value must be the semver version number of an active release. To get information on all available releases, use the [`gsctl list releases`](/reference/gsctl/list-releases/) command.
 
 #### Node definition keys {#node-keys}
 
