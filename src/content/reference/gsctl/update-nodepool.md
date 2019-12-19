@@ -1,18 +1,14 @@
 +++
 title = "gsctl Command Reference: update nodepool"
 description = "The 'gsctl update nodepool' command allows renaming and scaling of a node pool."
-date = "2019-10-29"
+date = "2019-12-19"
 type = "page"
 weight = 44
 +++
 
 # `gsctl update nodepool`
 
-<div class="well disclaimer">
-<a href="/basics/nodepools/">Node pools</a> are a new concept to be introduced soon to Giant Swarm customers on AWS.
-</div>
-
-The `gsctl update nodepool` allows modifying a node pool, such as editing the scaling range and the name.
+The `gsctl update nodepool` allows modifying a [node pool](/basics/nodepools/), such as editing the scaling range and the name.
 
 ## Usage
 

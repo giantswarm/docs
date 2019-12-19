@@ -1,18 +1,14 @@
 +++
 title = "gsctl Command Reference: show nodepool"
 description = "The 'gsctl show nodepool' command shows details on a node pool."
-date = "2019-10-28"
+date = "2019-12-19"
 type = "page"
 weight = 44
 +++
 
 # `gsctl show nodepool`
 
-<div class="well disclaimer">
-<a href="/basics/nodepools/">Node pools</a> are a new concept to be introduced soon to Giant Swarm customers on AWS.
-</div>
-
-The `gsctl show nodepool` command shows details on a node pool.
+The `gsctl show nodepool` command shows details on a [node pool](/basics/nodepools/).
 
 ## Usage
 

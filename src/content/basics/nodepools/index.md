@@ -1,17 +1,13 @@
 ---
 title: Node Pools
 description: A general description of node pools as a concept, it's benefits, and some details you should be aware of.
-date: 2019-12-02
+date: 2019-12-19
 weight: 130
 type: page
 categories: ["basics"]
 ---
 
 # Node Pools on AWS
-
-<div class="well disclaimer">
-Node pools are a new concept to be introduced soon to Giant Swarm customers on AWS.
-</div>
 
 ## Definition
 
@@ -165,8 +161,8 @@ In case there are workloads not assigned to any node pools, the autoscaler may p
   nodes, it cannot be unassigned from that cluster. It will remain assigned even if there are no more node pools using
   that availability zone.
 
-  - **Example:** The master node is in availibility zone A. Node pool 1 uses availibility zones B and C. Node pool 2 uses 
-    availibility zone D. With A, B, C, and D, the limit of four availability zones assigned is reached. New node pools of this 
+  - **Example:** The master node is in availability zone A. Node pool 1 uses availability zones B and C. Node pool 2 uses 
+    availability zone D. With A, B, C, and D, the limit of four availability zones assigned is reached. New node pools of this 
     cluster can only use these four availability zones.
   
 - Clusters without worker nodes (= without node pools) cannot be considered fully functional. In order to have all 
