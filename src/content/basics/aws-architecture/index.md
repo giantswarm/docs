@@ -13,7 +13,7 @@ Giant Swarm's Architecture is split into two logical parts, one being the Contro
 
 ## Giant Swarm control plane
 
-![Control Plane Architecture](/img/architecture-aws-control-plane.png)
+![Control Plane Architecture](../../../static/img/architecture-aws-control-plane.png)
 
 The above diagram shows our control plane setup running over three availability zones. We setup two bastion hosts in different availability zones. All instances are in a private subnet and only accessible through the bastion hosts. Bastions hosts are available via AWS VPN connection only.
 
@@ -25,7 +25,7 @@ Access to those interfaces can be configured to work with the customers' Identit
 
 ## Giant Swarm tenant cluster
 
-![Tenant Cluster Architecture](/img/architecture-aws-tenant-cluster.png)
+![Tenant Cluster Architecture](../../../static/img/architecture-aws-tenant-cluster.png)
 
 Via the Giant Swarm API, our [CLI](https://github.com/giantswarm/gsctl), or our Happa interface, you can start Tenant Clusters of different sizes. There's a selection of recommended EC2 instance types, which can be adjusted if needed. 
 
@@ -37,7 +37,7 @@ Networking within the cluster is handled through Calico.
 
 ## Service architecture
 
-![Service Architecture](/img/architecture-aws-services.png)
+![Service Architecture](../../../static//img/architecture-aws-services.png)
 
 To make your life easier, we have developed a lot of different services within our Control Plane that allow both our operations team and you as users of our API and interfaces to easily manage Kubernetes clusters. Most of these services should be self explanatory. 
 
