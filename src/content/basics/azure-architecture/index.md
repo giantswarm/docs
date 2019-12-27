@@ -14,7 +14,7 @@ Giant Swarm's Architecture is split into two logical parts, one being the Contro
 
 ## Giant Swarm control plane
 
-![Control Plane Architecture](/img/architecture-azure-control-plane.png)
+![Control Plane Architecture](../../../static//img/architecture-azure-control-plane.png)
 
 The above diagram shows our control plane setup running with two bastion hosts in different availability zones. All instances are in a private subnet and only accessible through the bastion hosts. Bastions hosts are available via Azure VPN connection only.
 
@@ -24,7 +24,7 @@ The Giant Swarm API, Monitoring and Alerting frontends as well as our Web User I
 
 ## Giant Swarm tenant cluster
 
-![Tenant Cluster Architecture](/img/architecture-azure-tenant-cluster.png)
+![Tenant Cluster Architecture](../../../static//img/architecture-azure-tenant-cluster.png)
 
 Via the Giant Swarm API, our [CLI](https://github.com/giantswarm/gsctl), or our web interface, you can start Tenant Clusters of different sizes. There's a selection of recommended Azure instance types, which can be adjusted if needed. 
 
@@ -34,7 +34,7 @@ One is the Kubernetes API that can be connected to your Identity Management Syst
 
 ## Service architecture
 
-![Service Architecture](/img/architecture-azure-services.png)
+![Service Architecture](../../../static//img/architecture-azure-services.png)
 
 To make your life easier, we have developed a lot of different services within our Control Plane that allow both our operations team and you as, users of our API and interfaces to easily manage Kubernetes clusters. Most of these services should be self explanatory, due to the level of granularity we maintain. 
 
