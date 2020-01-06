@@ -1,16 +1,12 @@
 ---
 title: Cluster Definition Reference
 description: Complete documentation of the Giant Swarm cluster definition YAML format, compatible with API v4 and v5.
-date: 2019-12-11
+date: 2019-12-19
 layout: subsection
 weight: 100
 ---
 
 # Cluster Definition Reference
-
-<div class="well disclaimer">
-This page mentions <a href="/basics/nodepools/">Node pools</a> which are a new concept to be introduced soon to Giant Swarm customers on AWS.
-</div>
 
 Giant Swarm's cluster definition allows to define the detailed specs for a cluster in a YAML
 format, which is then passed to [`gsctl create cluster`](/reference/gsctl/create-cluster/) in order to
