@@ -25,7 +25,7 @@ We access all machines, as well as the Kubernetes API of the Control Plane, thro
 
 ![On Premises Tenant Cluster Architecture](architecture-onprem-tenant-cluster.png)
 
-Via the Giant Swarm API, our [CLI](https://github.com/giantswarm/gsctl), or our Web interface, you can start Tenant Clusters of different sizes. You choose the amount of vCores and RAM you want per Node of your Tenant Cluster and press “Create Cluster”. A few minutes later your cluster will be ready to use. It will be running on the Worker Nodes of the Control Plane, within KVM VMs networked together through a Flannel network. Each Tenant Cluster is separated from the other Tenant Clusters by a flannel VXLAN bridge. Inside of that bridge, the containers are networked with Calico BGP.
+Via the Giant Swarm API, our [CLI](https://github.com/giantswarm/gsctl), or our Web UI, you can start Tenant Clusters of different sizes. You choose the amount of vCores and RAM you want per Node of your Tenant Cluster and press “Create Cluster”. A few minutes later your cluster will be ready to use. It will be running on the Worker Nodes of the Control Plane, within KVM VMs networked together through a Flannel network. Each Tenant Cluster is separated from the other Tenant Clusters by a flannel VXLAN bridge. Inside of that bridge, the containers are networked with Calico BGP.
 
 Access to the K8s API goes through the Control Plane. We can connect your Load Balancer for Ingress access. This Load Balancer can be either statically configured with healthchecks or controlled via API. Depending on the data center setup, there are different options that need to be evaluated.
 

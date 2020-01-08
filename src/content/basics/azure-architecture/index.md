@@ -26,7 +26,7 @@ The Giant Swarm API, Monitoring and Alerting frontends as well as our Web User I
 
 ![Tenant Cluster Architecture](architecture-azure-tenant-cluster.png)
 
-Via the Giant Swarm API, our [CLI](https://github.com/giantswarm/gsctl), or our web interface, you can start Tenant Clusters of different sizes. There's a selection of recommended Azure instance types, which can be adjusted if needed.
+Via the Giant Swarm API, our [CLI](https://github.com/giantswarm/gsctl), or our Web UI, you can start Tenant Clusters of different sizes. There's a selection of recommended Azure instance types, which can be adjusted if needed.
 
 Each cluster resides in its own Virtual Network. All Azure machines are in their own private subnet ([Networking Deepdive](https://blog.giantswarm.io/deep-dive-into-kubernetes-networking-in-azure/)). There are two possible access routes into the cluster.
 
