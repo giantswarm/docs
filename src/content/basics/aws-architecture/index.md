@@ -15,11 +15,11 @@ Giant Swarm's Architecture is split into two logical parts, one being the Contro
 
 ![Control Plane Architecture](architecture-aws-control-plane.png)
 
-The above diagram shows our control plane setup running over three availability zones. We setup two bastion hosts in different availability zones. All instances are in a private subnet and only accessible through the bastion hosts. Bastions hosts are available via AWS VPN connection only.
+The above diagram shows our control plane setup running over three availability zones. We setup two bastion hosts in different availability zones. All instances are in a private subnet and only accessible through the bastion hosts. Bastion hosts are available via AWS VPN connection only.
 
 The cluster has several APIs and Interfaces. The Kubernetes API of the Control Plane is only available to Giant Swarm operations personnel and only through the Bastion hosts.
 
-The Giant Swarm API, Monitoring and Alerting frontends as well as our Web Management Interface, Happa, are exposed through the Control Plane Ingress Controller, which sits behind a public ELB.
+The Giant Swarm API, Monitoring and Alerting frontends as well as our Web User Interface, are exposed through the Control Plane Ingress Controller, which sits behind a public ELB.
 
 Access to those interfaces can be configured to work with the customers' Identity Management System.
 
@@ -27,7 +27,7 @@ Access to those interfaces can be configured to work with the customers' Identit
 
 ![Tenant Cluster Architecture](architecture-aws-tenant-cluster.png)
 
-Via the Giant Swarm API, our [CLI](https://github.com/giantswarm/gsctl), or our Happa interface, you can start Tenant Clusters of different sizes. There's a selection of recommended EC2 instance types, which can be adjusted if needed.
+Via the Giant Swarm API, our [CLI](https://github.com/giantswarm/gsctl), or our Web User Interface, you can start Tenant Clusters of different sizes. There's a selection of recommended EC2 instance types, which can be adjusted if needed.
 
 Each cluster resides in its own VPC. All EC2 machines are in their own private subnet. There are two possible access routes into the cluster.
 

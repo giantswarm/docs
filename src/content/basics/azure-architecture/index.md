@@ -16,7 +16,7 @@ Giant Swarm's Architecture is split into two logical parts, one being the Contro
 
 ![Control Plane Architecture](architecture-azure-control-plane.png)
 
-The above diagram shows our control plane setup running with two bastion hosts in different availability zones. All instances are in a private subnet and only accessible through the bastion hosts. Bastions hosts are available via Azure VPN connection only.
+The above diagram shows our control plane setup running with two bastion hosts in different availability zones. All instances are in a private subnet and only accessible through the bastion hosts. Bastion hosts are available via Azure VPN connection only.
 
 The cluster has several APIs and Interfaces. The Kubernetes API of the Control Plane is only available to Giant Swarm operations personnel and only through the Bastion hosts.
 
