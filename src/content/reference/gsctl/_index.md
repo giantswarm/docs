@@ -20,12 +20,15 @@ Follow the links below for detailed documentation, where available. You can also
 | `create cluster`                      | [Create a new cluster](create-cluster/)
 | `create keypair`                      | [Create and download new key pair](create-keypair/)
 | `create kubeconfig`                   | [Create/download new key pair and update `kubectl` configuration](create-kubeconfig/)
-| `delete cluster`                      | [Delete cluster](delete-cluster/)
+| `create nodepool`                     | [Create a new node pool](create-nodepool/)
+| `delete cluster`                      | [Delete a cluster](delete-cluster/)
+| `delete nodepool`                     | [Delete a node pool](delete-nodepool/)
 | `info`                                | [Print information on status, configuration, and the installation](info/)
 | `list endpoints`                      | [List endpoints](list-endpoints/)
 | `list clusters`                       | [List clusters](list-clusters/)
 | `list organizations`                  | List organizations
 | `list keypairs`                       | [List key pairs](list-keypairs/)
+| `list nodepools`                      | [List node pools](list-nodepools/)
 | `list releases`                       | [List releases](list-releases/)
 | `login`                               | [Sign in as a user](login/)
 | `logout`                              | Sign out
@@ -33,11 +36,12 @@ Follow the links below for detailed documentation, where available. You can also
 | `scale cluster`                       | [Add or remove worker nodes of a cluster](scale-cluster/)
 | `select endpoint`                     | [Select an endpoint](select-endpoint/)
 | `show cluster`                        | [Show cluster details](show-cluster/)
+| `show nodepool`                       | [Show node pool details](show-nodepool/)
 | `show release`                        | Show details on a release
+| `update nodepool`                     | [Modify (rename, scale) a node pool](update-nodepool/)
 | `update organization set-credentials` | [Set provider credentials for an organization](update-org-set-credentials/)
 | `upgrade cluster`                     | [Upgrade a cluster](upgrade-cluster/)
 | `version`                             | Print version number
-
 
 ## Installing and updating {#install}
 

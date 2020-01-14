@@ -1,18 +1,14 @@
 +++
 title = "gsctl Command Reference: create nodepool"
 description = "The 'gsctl create nodepool' command allows to create a new pool of worker nodes in cluster."
-date = "2019-10-28"
+date = "2019-12-19"
 type = "page"
 weight = 44
 +++
 
 # `gsctl create nodepool`
 
-<div class="well disclaimer">
-<a href="/basics/nodepools/">Node pools</a> are a new concept to be introduced soon to Giant Swarm customers on AWS.
-</div>
-
-The `gsctl create nodepool` command allows to create a new pool of worker nodes in cluster.
+The `gsctl create nodepool` command allows to create a new [node pool](/basics/nodepools/) in a cluster.
 
 ## Usage
 
