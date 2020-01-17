@@ -29,5 +29,3 @@ spec:
             limits:
               cpu: 0.5
               memory: 20M
-      imagePullSecrets:
-        - name: docs-pull-secret
