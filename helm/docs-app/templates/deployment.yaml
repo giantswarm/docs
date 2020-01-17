@@ -1,23 +1,23 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  namespace: docs
+  namespace: {{ .Release.Namespace }}
   name: content
   labels:
-    app: docs
+    app: {{ .Values.name }}
     component: content
 spec:
   replicas: 2
-  revisionHistoryLimit: 3
+  revisionHistoryLimit: 2
   template:
     metadata:
       name: content
       labels:
-        app: docs
+        app: {{ .Values.name }}
         component: content
     spec:
       containers:
-        - image: quay.io/giantswarm/docs:[[ .SHA ]]
+        - image: quay.io/giantswarm/{{ .Values.name }}:latest
           name: content
           imagePullPolicy: Always
           ports:
