@@ -54,7 +54,7 @@ workflows:
   package-and-push-chart-on-tag:
     jobs:
       - build:
-          filters:  # required since `rchitect/push-to-app-catalog` has tag filters AND requires `build`
+          filters:  # required since `architect/push-to-app-catalog` has tag filters AND requires `build`
             tags:
               only: /.*/
       - architect/push-to-app-catalog:
