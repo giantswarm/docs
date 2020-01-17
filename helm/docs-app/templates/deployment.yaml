@@ -19,6 +19,7 @@ spec:
       containers:
         - image: quay.io/giantswarm/docs:[[ .SHA ]]
           name: content
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
               name: http
