@@ -17,7 +17,7 @@ spec:
         component: content
     spec:
       containers:
-        - image: quay.io/giantswarm/{{ .Values.name }}:latest
+        - image: quay.io/giantswarm/{{ .Values.name }}:{{ .Values.image.tag }}
           name: content
           imagePullPolicy: Always
           ports:
