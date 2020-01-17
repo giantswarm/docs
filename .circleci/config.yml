@@ -1,4 +1,9 @@
-version: 2
+version: 2.1
+
+orbs:
+  architect: giantswarm/architect@0.4.3
+
+
 jobs:
   build:
     machine: true
