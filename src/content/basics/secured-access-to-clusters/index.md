@@ -51,7 +51,7 @@ VPN secured access points:
 
 Customer Tenant Clusters are accessible only via SSH access to the Giant Swarm Control Plane. This Control Plane contains Giant Swarm's cluster management and operations platform, and controls our access to the underlying Tenant Clusters for diagnostic and "day 2" operational reasons.
 
-* **Control Plane Kubernetes API** - Usage of Kuberentes API on the Control Plane also follows the authentication principles of the SSH connection.
+* **Control Plane Kubernetes API** - Usage of the Kubernetes API on the Control Plane is also secured with SSH.
 
 ### General VPN connection schema
 
