@@ -12,7 +12,7 @@ last-review-date = "2020-01-20"
 
 It goes without saying that our customers will have secure access to their own clusters. In order to provide the best service possible, Giant Swarm staff also needs access to them.
 
-In this document we will explain the essence of this access, and the security measures are in place to ensure adherence to the highest level of security.
+In this document we will explain the nature of this access and the security measures in place to ensure management of your clusters is conducted privately and responsibly.
 
 ## Intro
 
