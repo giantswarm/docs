@@ -35,7 +35,7 @@ Network access to the API endpoint is usually whitelisted to a certain range of 
 
 ### Kubernetes API
 
-The Kubernetes API of the clusters are exposed to customers. You have full control over the users that are created via the Giant Swarm API. Additionally, you can also manage users by connecting an external Identity Provider to the Kubernetes API.
+The Kubernetes API of each cluster is exposed to customers. You have full control over the users that are created via the Giant Swarm API. Additionally, you can also manage users by connecting an external Identity Provider to the Kubernetes API.
 
 ## Admin access
 
