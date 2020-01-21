@@ -1,11 +1,11 @@
 +++
 title = "Secure access to clusters - Users and Giant Swarm support"
 description = "This documentation explains security measures for users and Giant Swarm support to access your infrastructure"
-date = "2020-01-20"
+date = "2020-01-21"
 weight = 40
 type = "page"
 categories = ["basics"]
-last-review-date = "2020-01-20"
+last-review-date = "2020-01-21"
 +++
 
 # Secure access to clusters for users and Giant Swarm support
@@ -49,7 +49,7 @@ VPN secured access points:
 
 ![](./ssh_access_process.png)  
 
-Customer Tenant Clusters are accessible only via SSH access to the Giant Swarm Control Plane. This Control Plane contains Giant Swarm's cluster management and operations platform, and controls our access to the underlying Tenant Clusters for diagnostic and "day 2" operational reasons.
+Customer Tenant Clusters are accessible only via SSH access to the Giant Swarm Control Plane. This Control Plane contains Giant Swarm's cluster management and operations platform, and controls our access to the underlying Tenant Clusters for diagnostic and "Day 2" operational reasons.
 
 * **Control Plane Kubernetes API** - Usage of the Kubernetes API on the Control Plane is also secured with SSH.
 
