@@ -1,3 +1,7 @@
+apiVersion: v1
 name: docs-app
-version: 1.0.0-[[ .SHA ]]
-home: https://github.com/giantswarm/
+namespace: docs
+appVersion: 0.0.1
+description: Giant Swarm documentation published at https://docs.giantswarm.io/
+home: https://github.com/giantswarm/docs/
+version: "[[.Version]]"
