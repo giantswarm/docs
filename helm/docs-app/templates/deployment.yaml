@@ -4,24 +4,21 @@ metadata:
   namespace: {{ .Release.Namespace }}
   name: content
   labels:
-    app: {{ .Values.image.name }}
-    component: content
+    app: {{ .Values.name }}
 spec:
   replicas: 2
   revisionHistoryLimit: 2
   selector:
     matchLabels:
-      app: {{ .Values.image.name }}
-      component: content
+      app: {{ .Values.name }}
   template:
     metadata:
       name: content
       labels:
-        app: {{ .Values.image.name }}
-        component: content
+        app: {{ .Values.name }}
     spec:
       containers:
-        - name: content
+        - name: {{ .Values.image.name }}
           # Public image required
           image: quay.io/giantswarm/{{ .Values.image.name }}:{{ .Values.image.tag }}
           imagePullPolicy: Always
