@@ -17,6 +17,8 @@ spec:
       labels:
         app: {{ .Values.name }}
     spec:
+      securityContext:
+        runAsUser: 1000
       containers:
         - name: {{ .Values.image.name }}
           # Public image required
