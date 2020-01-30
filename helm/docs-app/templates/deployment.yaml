@@ -22,7 +22,7 @@ spec:
       containers:
         - name: {{ .Values.image.name }}
           # Public image required
-          image: quay.io/giantswarm/{{ .Values.image.name }}:{{ .Values.image.tag }}
+          image: quay.io/giantswarm/{{ .Values.image.name }}:{{ .Values.image.sha }}
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
