@@ -1,7 +1,14 @@
-version: 2
+version: 2.1
+
+orbs:
+  architect: giantswarm/architect@0.4.3
+
+
 jobs:
   build:
-    machine: true
+    machine:
+      image: "ubuntu-1604:201903-01"
+
     steps:
       - checkout
 
@@ -49,3 +56,22 @@ jobs:
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               ./architect deploy
             fi
+
+workflows:
+  package-and-push-chart-on-tag:
+    jobs:
+      - build:
+          filters:  # required since `architect/push-to-app-catalog` has tag filters AND requires `build`
+            tags:
+              only: /.*/
+      - architect/push-to-app-catalog:
+          name: "package and push docs"
+          app_catalog: "giantswarm-operations-platform-catalog"
+          app_catalog_test: "giantswarm-operations-platform-test-catalog"
+          chart: "docs-app"
+          # Trigger job on git tag.
+          filters:
+            tags:
+              only: /^v.*/
+          requires:
+            - build

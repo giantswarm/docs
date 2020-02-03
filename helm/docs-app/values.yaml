@@ -1,0 +1,6 @@
+name: docs-app
+namespace: docs
+image:
+  name: docs
+  tag: "[[.Version]]"
+  sha: "[[.SHA]]"

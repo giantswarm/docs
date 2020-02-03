@@ -1,0 +1,52 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  namespace: {{ .Release.Namespace }}
+  name: {{ .Values.name }}
+  labels:
+    app: {{ .Values.name }}
+spec:
+  replicas: 2
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  template:
+    metadata:
+      name: {{ .Values.name }}
+      labels:
+        app: {{ .Values.name }}
+    spec:
+      securityContext:
+        runAsUser: 1000
+      containers:
+        - name: {{ .Values.image.name }}
+          # Public image required
+          image: quay.io/giantswarm/{{ .Values.image.name }}:{{ .Values.image.sha }}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              name: http
+          resources:
+            requests:
+              cpu: 200m
+              memory: 10M
+            limits:
+              cpu: 500m
+              memory: 20M
+          volumeMounts:
+            - mountPath: /var/cache/nginx
+              name: cache-volume
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            timeoutSeconds: 2
+      volumes:
+        - name: cache-volume
+          emptyDir: {}
+      serviceAccount: {{ .Values.name }}
+      serviceAccountName: {{ .Values.name }}
