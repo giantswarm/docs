@@ -55,7 +55,7 @@ docker-run:
 
 dev:
 	docker run --rm -ti \
-	-p 8080:8080 \
+	-p 8080:80 \
 	-v ${PWD}/src:/docs/build:z \
 	$(REGISTRY)/$(COMPANY)/$(PROJECT):latest /bin/sh -c "nginx; hugo -w --destination /usr/share/nginx/html"
 
