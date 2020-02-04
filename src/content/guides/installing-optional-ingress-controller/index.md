@@ -16,7 +16,7 @@ Not all of our clusters come with an ingress controller pre-installed. We are
 currently in a shift where certain releases have a pre-installed ingress controller
 and certain releases require you to install one yourself.
 
-Eventually all releases will not ship with a built in ingress controller. That
+Eventually all releases will not ship with a built-in ingress controller. That
 allows you full control to choose what and how many ingress controllers you
 want to run on your cluster.
 
