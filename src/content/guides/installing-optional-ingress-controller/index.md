@@ -23,7 +23,7 @@ want to run on your cluster.
 ### Which releases do not ship with an ingress controller?
 
 Currently only clusters on our AWS installations that have a release version
-greater than 10.0.0 ship without an ingress controller by default.
+newer than 10.0.0 ship without an ingress controller by default.
 
 Clusters on Azure and KVM (On-premises) continue to include the nginx-ingress-controller
 as a default component.
