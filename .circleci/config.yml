@@ -38,7 +38,7 @@ jobs:
             CURL_OUTPUT=$(curl --no-buffer -s http://localhost:8080)
             echo $CURL_OUTPUT | grep --quiet "Giant Swarm"
             docker kill docs
-      
+
       - run:
           name: Linkcheck
           command: |
@@ -47,7 +47,7 @@ jobs:
               --link docs:docs \
               linkchecker/linkchecker \
                 http://docs:8080 \
-                --check-extern -t 5 --ignore-url="^https://docs.giantswarm.io/.*" --ignore-url=/api/
+                --check-extern -t 2 --ignore-url="^https://docs.giantswarm.io/.*" --ignore-url=/api/
 
       - deploy:
           name: Deploy (only if branch is "master")
