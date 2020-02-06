@@ -68,7 +68,7 @@ For additional configuration parameters see [documentation](https://github.com/k
 To install the provisioner you will need to follow this steps:
 - Access Happa and select the cluster you want to install the provisioner.
 - Open the "Helm Stable" catalog
-- Write "efs-provisioner" in the search-bar.
+- Write "efs-provisioner" in the search bar.
 - Select the "efs-provisioner" application and then click the Configure & Install button.
 - Upload the efs-provisioner.yaml file created in the previous step.
 - Finally, you can click the Install App button and it will be installed into your cluster.
