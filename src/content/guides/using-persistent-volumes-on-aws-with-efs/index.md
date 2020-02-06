@@ -18,7 +18,7 @@ The advantages of using EFS over EBS are:
 - EFS mount times are better than EBS.
 
 If you need to use EFS to provision volumes be careful with:
-- All Kubernetes Persistent Volumes will be stored in the same EFS instance. You can deploy multiple provisioners per cluster, each having it's own storage-class and EFS instance.
+- All Kubernetes Persistent Volumes will be stored in the same EFS instance. You can deploy multiple provisioners per cluster, each having its own storage-class and EFS instance.
 - [EFS throughtput](https://docs.aws.amazon.com/efs/latest/ug/performance.html) need to be setup accordingly in order not to have performance issues. We only recommend Provisioned Throughput and if you need high performance you will need EBS.
 - EFS backups are done with [AWS Backup](https://aws.amazon.com/backup/) and it does not have the snapshot feature of EBS.
 - You cannot limit the amount of data stored in an EFS volume. The requested value in kubernetes is ignored.
