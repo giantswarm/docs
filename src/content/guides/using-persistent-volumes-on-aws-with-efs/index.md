@@ -66,7 +66,8 @@ You will need to adjust the **efsFileSystemId** and **awsRegion** to match the c
 For additional configuration parameters see [documentation](https://github.com/kubernetes-incubator/external-storage/tree/master/aws/efs).
 
 ## Installing EFS Provisioner
-To install the provisioner you will need to follow this steps:
+
+To install the provisioner you will need to follow these steps:
 - Access Happa and select the cluster you want to install the provisioner.
 - Open the "Helm Stable" catalog
 - Write "efs-provisioner" in the search bar.
