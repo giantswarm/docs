@@ -73,6 +73,7 @@ To install the provisioner you will need to follow this steps:
 - Upload the efs-provisioner.yaml file created in the previous step.
 - Finally, you can click the Install App button and it will be installed into your cluster.
 
+
 ## Using EFS Volumes
 Your Kubernetes cluster will have a new Storage Class `efs` deployed, which you will have to reference when creating persistent volumes.
 
