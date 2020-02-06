@@ -22,7 +22,7 @@ If you need to use EFS to provision volumes be careful with:
 - [EFS throughtput](https://docs.aws.amazon.com/efs/latest/ug/performance.html) need to be set up accordingly in order not to have performance issues. We only recommend Provisioned Throughput and if you need high performance you will need EBS.
 - EFS backups are done with [AWS Backup](https://aws.amazon.com/backup/) and it does not have the snapshot feature of EBS.
 - You cannot limit the amount of data stored in an EFS volume. The requested value in kubernetes is ignored.
-- EFS mount target are limited to 1 subnet per AZ. Each NodePool will create a different subnet per AZ, plan accordingly. 
+- EFS mount targets are limited to 1 subnet per AZ. Each NodePool will create a different subnet per AZ, plan accordingly. 
 
 
 ## Provision an EFS instance on AWS
