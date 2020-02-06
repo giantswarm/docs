@@ -26,6 +26,7 @@ If you need to use EFS to provision volumes be careful with:
 
 
 ## Provision an EFS instance on AWS
+
 - Open the [AWS management](https://aws.amazon.com/console/) console in the account your cluster is located.
 - Select EFS from the services list.
 - Create a new EFS mount and select the VPC where your cluster is located.
