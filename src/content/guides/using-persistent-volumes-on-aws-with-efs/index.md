@@ -76,7 +76,7 @@ To install the provisioner you will need to follow this steps:
 ## Using EFS Volumes
 Your Kubernetes cluster will have a new Storage Class `efs` deployed, which you will have to reference when creating persistent volumes.
 
-In order to check that the stogare class exits you should see something similar to:
+In order to check that the storage class exits you should see something similar to:
 ```nohighlight
 $ kubectl get storageclass
 NAME            PROVISIONER             AGE
