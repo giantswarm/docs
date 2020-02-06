@@ -84,7 +84,7 @@ efs             giantswarm.io/aws-efs   23m
 gp2 (default)   kubernetes.io/aws-ebs   5h31m
 ```
 
-In the following example you can see the annotation volume.beta.kubernetes.io/storage-class matches the "efs" Storage Class:
+In the following example you can see the annotation `volume.beta.kubernetes.io/storage-class` matches the "efs" Storage Class:
 ```yaml
 kind: PersistentVolumeClaim
 apiVersion: v1
