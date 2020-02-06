@@ -30,7 +30,7 @@ If you need to use EFS to provision volumes be careful with:
 - Select EFS from the services list.
 - Create a new EFS mount and select the VPC where your cluster is located.
 - Select the AZ with the subnets where your instances are located and the security-groups of the workers.
-- Choose the thoughput and performance mode, no file system policy or access points are needed.
+- Choose the throughput and performance mode, no file system policy or access points are needed.
 - Create the instance and note down the EFS instance id.
 
 ## EFS Provisioner configuration file
