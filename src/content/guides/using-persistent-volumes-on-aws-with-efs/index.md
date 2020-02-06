@@ -101,6 +101,7 @@ spec:
 ```
 
 ## Testing the new storage class
+
 You can create a file with the example above in a file called pvc_claim.yaml and instantiate with the following command:
 ```nohighlight
 $ kubectl apply -f pvc_claim.yaml
