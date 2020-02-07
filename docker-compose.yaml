@@ -1,22 +1,22 @@
 version: "2"
 services:
 
-  content:
+  docs-app:
     # to build this image locally, execute 'make'
     image: quay.io/giantswarm/docs:latest
 
-  sitesearch:
+  sitesearch-app:
     image: quay.io/giantswarm/sitesearch:latest
 
-  api-spec:
+  api-spec-app:
     image: quay.io/giantswarm/api-spec:latest
 
   proxy:
     image: quay.io/giantswarm/docs-proxy:latest
     depends_on:
-      - sitesearch
-      - content
-      - api-spec
+      - sitesearch-app
+      - docs-app
+      - api-spec-app
     volumes:
       - ./test/certificate:/etc/nginx/certs
     ports:
@@ -26,13 +26,13 @@ services:
     image: quay.io/giantswarm/docs-indexer:latest
     restart: on-failure
     depends_on:
-      - sitesearch
+      - sitesearch-app
     environment:
       REPOSITORY_URL: https://github.com/giantswarm/docs.git
       REPOSITORY_BRANCH: master
       REPOSITORY_SUBFOLDER: src/content
       EXTERNAL_REPOSITORY_SUBFOLDER: docs
-      ELASTICSEARCH_ENDPOINT: http://admin:e4dfbjb3rohi8qpoadsffodin@sitesearch:9200
+      ELASTICSEARCH_ENDPOINT: http://admin:e4dfbjb3rohi8qpoadsffodin@sitesearch-app:9200
       APIDOCS_BASE_URI: https://docs.giantswarm.io/api/
       API_SPEC_FILES: yaml/spec.yaml,yaml/definitions.yaml,yaml/parameters.yaml,yaml/responses.yaml
       APIDOCS_BASE_PATH: /api/
