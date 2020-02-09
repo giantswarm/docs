@@ -35,3 +35,14 @@ Non-persistent volumes as well as docker images and logs are stored under `/var/
 
 Persistent storage is managed by the `StorageClass` resource in Kubernetes. By default, the `StorageClass` resource is provided as an Elastic Block Storage (EBS) volumes. These volumes are encrypted via AWS EBS Encryption. The key is created, stored and deleted using AWS Key Management Service (KMS).
 
+### Azure
+
+This section applies to Azure-based installations only.
+
+#### Encryption of local storage {#azure-local-storage}
+
+kubelet data is stored under `/var/lib/kubelet`, Docker images under `/var/lib/docker` and for master nodes etcd data is stored under `/var/lib/etcd`. On Azure, `/var/lib/kubelet`, `/var/lib/docker` and `/var/lib/etcd` are Azure Managed disks (Premium SSD). Azure managed disk automatically encrypts data by default with platform-managed keys (managed by Microsoft). See more details in [Azure managed disk documentation](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/disk-encryption).
+
+#### Encryption of persistent storage {#azure-persistent-storage}
+
+Persistent storage is managed by the `StorageClass` resource in Kubernetes. By default, storage class is provided by Azure Managed disks (Premium SSD). Azure managed disk automatically encrypts data by default with platform-managed keys (managed by Microsoft). See more details in [Azure managed disk documentation](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/disk-encryption).
