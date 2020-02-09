@@ -12,7 +12,7 @@ tags = ["tutorial"]
 If your cluster is running in the cloud on Amazon Web Services (AWS) the most common way to store data is using EBS volumes with the [dynamic provisioner](https://docs.giantswarm.io/guides/using-persistent-volumes-on-aws/). Sometimes EBS is not the optimal solution.
 
 The advantages of using EFS over EBS are:
-- EFS data can be accessed from all Availability Zone in the same region while EBS is tied to a single Availability Zone.
+- EFS data can be accessed from all Availability Zones in the same region while EBS is tied to a single Availability Zone.
 - EFS has the capability to mount the same Persistent Volume to multiple pods at the same time using the ReadWriteMany [access mode](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes).
 - EFS will not hit the [AWS Instance Volume Limit](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/volume_limits.html) as it is a software mount and will avoid the [Impaired EBS](https://docs.giantswarm.io/guides/aws-impaired-volumes/) issue.
 - EFS mount times are better than EBS.
@@ -30,9 +30,9 @@ If you need to use EFS to provision volumes, be advised:
 - Open the [AWS management](https://aws.amazon.com/console/) console in the account your cluster is located.
 - Select EFS from the services list.
 - Create a new EFS mount and select the VPC where your cluster is located.
-- Select the Availability Zone with the subnets where your instances are located and the security-groups of the workers.
+- Select the Availability Zone with the subnets your instances are located on and the security-groups of the workers.
 - Choose the throughput and performance mode, no file system policy or access points are needed.
-- Create the instance and note down the EFS instance id.
+- Create the instance and note the EFS instance id.
 
 ## EFS Provisioner configuration file
 Create a file on your local machine named "efs-provisioner.yaml" with the following content:
@@ -61,15 +61,15 @@ rbac:
 podSecurityPolicy:
   enabled: true
 ```
-You will need to adjust the **efsFileSystemId** and **awsRegion** to match the configured values of the EFS instance.
+You will need to populate the **efsFileSystemId** and **awsRegion** parameters to match the configured values of the EFS instance.
 
 For additional configuration parameters see [documentation](https://github.com/kubernetes-incubator/external-storage/tree/master/aws/efs).
 
 ## Installing EFS Provisioner
 
 To install the provisioner you will need to follow these steps:
-- Access Happa and select the cluster you want to install the provisioner.
-- Open the "Helm Stable" catalog
+- Access Giant Swarm web UI and select the cluster on which you want to install the provisioner.
+- Open the "Helm Stable"
 - Write "efs-provisioner" in the search bar.
 - Select the "efs-provisioner" application and then click the Configure & Install button.
 - Upload the efs-provisioner.yaml file created in the previous step.
