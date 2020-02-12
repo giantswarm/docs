@@ -26,16 +26,17 @@ If you need to use EFS to provision volumes, be advised:
 
 
 ## Provision an EFS instance on AWS
+Before installing the provicioner in Kubernetes we will need to create the EFS instance in the same AWS account:
 
-- Open the [AWS management](https://aws.amazon.com/console/) console in the account your cluster is located.
-- Select EFS from the services list.
-- Create a new EFS mount and select the VPC where your cluster is located.
-- Select the Availability Zone with the subnets your instances are located on and the security-groups of the workers.
-- Choose the throughput and performance mode, no file system policy or access points are needed.
-- Create the instance and note the EFS instance id.
+1. Open the [AWS management](https://aws.amazon.com/console/) console in the account your cluster is located.
+2. Select EFS from the services list.
+3. Create a new EFS mount and select the VPC where your cluster is located.
+4. Select the Availability Zone with the subnets your instances are located on and the security-groups of the workers.
+5. Choose the throughput and performance mode, no file system policy or access points are needed.
+6. Create the instance and note the EFS instance id.
 
 ## EFS Provisioner configuration file
-Create a file on your local machine named "efs-provisioner.yaml" with the following content:
+In order to configure the EFS provisioner, you will need to create a file on your local machine named "efs-provisioner.yaml" with the following content:
 ```yaml
 global:
   deployEnv: production
@@ -68,12 +69,12 @@ For additional configuration parameters see [documentation](https://github.com/k
 ## Installing EFS Provisioner
 
 To install the provisioner you will need to follow these steps:
-- Access Giant Swarm web UI and select the cluster on which you want to install the provisioner.
-- Open the "Helm Stable"
-- Write "efs-provisioner" in the search bar.
-- Select the "efs-provisioner" application and then click the Configure & Install button.
-- Upload the efs-provisioner.yaml file created in the previous step.
-- Finally, you can click the Install App button and it will be installed into your cluster.
+1. Access Giant Swarm web UI and select the cluster on which you want to install the provisioner.
+2. Open the "Helm Stable"
+3. Write "efs-provisioner" in the search bar.
+4. Select the "efs-provisioner" application and then click the Configure & Install button.
+5. Upload the efs-provisioner.yaml file created in the previous step.
+6. Finally, you can click the Install App button and it will be installed into your cluster.
 
 
 ## Using EFS Volumes
@@ -111,7 +112,7 @@ $ kubectl apply -f pvc_claim.yaml
 ```
 In order to check the status of the volume we can check the status of the PVC:
 ```nohighlight
-$ kubectl describe pvc test
+$ kubectl get pvc test
 NAME   STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
 test   Bound    pvc-0d7b988e-4eed-4cf7-918b-30964774fa13   100Mi        RWX            efs            5s
 ```
