@@ -64,7 +64,7 @@ These are the limit increases to be requested, grouped by limit type:
   - Auto Scaling Groups per region: **250**
   - Launch Configurations per region: **500**
 - EC2 Instances
-  - m3.large per region: **250**
+  - m4.xlarge per region: **250**
   - m4.2xlarge per region: **250**
   - m5.2xlarge per region: **250**
   - other instance types to be used as workers: increase accordingly

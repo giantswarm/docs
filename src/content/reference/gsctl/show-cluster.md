@@ -30,8 +30,8 @@ Release version:               6.3.0
 Worker node scaling:           autoscaling between 6 and 10
 Desired worker node count:     7
 Worker nodes running:          8
-Worker EC2 instance type:      m5.large
-CPU cores in workers:          14
+Worker EC2 instance type:      m5.xlarge
+CPU cores in workers:          28
 RAM in worker nodes (GB):      26.5
 ```
 
