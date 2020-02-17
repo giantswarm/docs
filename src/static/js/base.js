@@ -72,7 +72,7 @@ function doSearch(q) {
         "size": 1000,
         "sort": [{"_score": "desc"}],
         "_source": false,
-        "fields": ["uri", "title", "breadcrumb", "breadcrumb_1"],
+        "stored_fields": ["uri", "title", "breadcrumb"],
         "query": {
             "query_string": {
                 "default_field": "text",
