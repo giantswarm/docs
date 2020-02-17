@@ -1,7 +1,7 @@
 +++
 title = "Cluster Size and Autoscaling"
 description = "This article explains options you have for defining the size of a Kubernetes cluster with Giant Swarm, and automatically scaling it"
-date = "2019-11-14"
+date = "2020-02-17"
 weight = 120
 type = "page"
 categories = ["basics"]
@@ -44,16 +44,10 @@ Technically, while you may be able to create and run smaller clusters successful
 
 Relying on autoscaling may have an effect on the instance type you should use for your cluster, due to the way the autoscaler decides when to remove a node, as described above.
 
-With the services required to run a cluster, like DNS, kube-proxy, ingress and others, each node has a baseline utilization, even before you start your first workloads.
-With small instance types, e. g. only 1 CPU core, the utilization of an otherwise empty node can already be above {{% autoscaler_utilization_threshold %}}.
-Using such a small instance type with the default utilization threshold of {{% autoscaler_utilization_threshold %}} would result in a cluster that would never get scaled down, effectively running unused worker nodes.
+With the services required to run a cluster, like DNS, kube-proxy, ingress and others, each node has a baseline utilization, even before you start your first workloads. Hence the minimal worker node instance types on AWS are those with the `.xlarge` suffix, providing 4 CPU cores. The default instance type for worker nodes is `{{% default_aws_instance_type %}}`.
 
 For automatic down-scaling to work, utilization threshold and instance type have to fit together.
 The default worker nodes instance type for AWS (`{{% default_aws_instance_type %}}`) and the default utilization threshold ({{% autoscaler_utilization_threshold %}}) are adjusted so that down-scaling should work as expected.
-
-And similarly up-scaling is affected if you eg start a cluster with a minimum of one node. If one single node is too small for the baseline utilization of the cluster the autoscaler itself might not fit onto the node anymore and therefore the cluster won't ever get scaled.
-
-We've changed the default instance type on AWS to `{{% default_aws_instance_type %}}` and up/down-scaling will work. You can still choose `m?.large`. But there will be at least problems with scaling up a cluster since the nodes are too small.
 
 If you decide to run larger instance types, you may ask the Giant Swarm support team to adjust the utilization threshold of a particular cluster for you.
 
