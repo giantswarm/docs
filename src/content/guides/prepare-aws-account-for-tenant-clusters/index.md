@@ -69,6 +69,8 @@ These are the limit increases to be requested, grouped by limit type:
   - m5.2xlarge per region: **250**
   - other instance types to be used as workers: increase accordingly
 
+(Please extend the list of EC2 instance to also contain the types you need frequently.)
+
 When requesting a service limit increase, you will be asked for a description of your use case. You can use this text for the purpose:
 
 > We intend to run multiple Kubernetes clusters in this account, potentially used
