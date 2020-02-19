@@ -1,16 +1,12 @@
 +++
 title = "gsctl Command Reference: create cluster"
 description = "Detailed documentation on how to create a new cluster using the 'create cluster' command in gsctl."
-date = "2019-10-30"
+date = "2019-12-19"
 type = "page"
 weight = 20
 +++
 
 # `gsctl create cluster`
-
-<div class="well disclaimer">
-This page reflects the future-proof way to use the <code>gsctl create cluster</code> command, which applies to releases both before and after v0.18.0. Versions before v0.18.0 support additional command line flags to specify cluster details without using a definition file. Please check <code>gsctl create cluster --help</code> in your version to find out more.
-</div>
 
 The command `gsctl create cluster` allows to create new Kubernetes clusters.
 

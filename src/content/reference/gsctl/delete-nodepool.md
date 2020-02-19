@@ -1,18 +1,14 @@
 +++
 title = "gsctl Command Reference: delete nodepool"
 description = "The 'gsctl delete nodepool' command deletes a node pool."
-date = "2019-10-28"
+date = "2019-12-19"
 type = "page"
 weight = 44
 +++
 
 # `gsctl delete nodepool`
 
-<div class="well disclaimer">
-<a href="/basics/nodepools/">Node pools</a> are a new concept to be introduced soon to Giant Swarm customers on AWS.
-</div>
-
-The `gsctl delete nodepool` command deletes a node pool.
+The `gsctl delete nodepool` command deletes a [node pool](/basics/nodepools/).
 
 Deleting a node pool means that all worker nodes in the pool will be drained,
 cordoned and then terminated.

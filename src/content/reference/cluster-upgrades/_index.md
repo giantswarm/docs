@@ -66,13 +66,13 @@ Azure, AWS, and KVM based installations have independent versioning systems, as 
 
 As a user with access to the Giant Swarm API, and being a member of the organization owning the cluster, you can use either the web UI or the CLI to find out the current release version of your tenant cluster.
 
-In the web UI, both the cluster overview and the cluster details page show the release version number. 
+In the web UI, both the cluster overview and the cluster details page show the release version number.
 In the cluster details page you can click the release version number to get more information about a release.
 
 Likewise in the CLI, commands like [`gsctl list clusters`](/reference/gsctl/list-clusters/) and [`gsctl show cluster`](/reference/gsctl/show-cluster/) reveal the release version number.
 To get information on all available releases, use the [`gsctl list releases`](/reference/gsctl/list-releases/) command.
 
-### Upgrage a cluster
+### Upgrade a cluster
 
 As an authenticated user you can upgrade the cluster version using the web UI or the CLI. The web UI shows a yellow link next to the version information if there is an upgrade available. For the CLI you can use the command [`gsctl upgrade cluster`](/reference/gsctl/upgrade-cluster/) for the same purpose.
 
@@ -130,7 +130,7 @@ Your Kubernetes workloads should continue to work as expected (given they meet a
 In particular this means:
 
 - Nodes will be drained, then stopped, then recreated.
-- As a consequence of draining, Pods running on a node will be rescheduled to other nodes. 
+- As a consequence of draining, Pods running on a node will be rescheduled to other nodes.
 - Once the master node is taken down and recreated, the Kubernetes API will be unavailable for a short time.
 
 **Note**: Currently tenant clusters have one master node each. We have plans on our roadmap to allow for multiple master nodes, keeping the Kubernetes API accessible during an upgrade and increasing the resilience in case of a machine failure.

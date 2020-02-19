@@ -1,8 +1,8 @@
 +++
 title = "Cluster Size and Autoscaling"
 description = "This article explains options you have for defining the size of a Kubernetes cluster with Giant Swarm, and automatically scaling it"
-date = "2019-02-07"
-weight = 45
+date = "2019-11-14"
+weight = 120
 type = "page"
 categories = ["basics"]
 +++
@@ -36,9 +36,9 @@ If the utilization is below the threshold, the autoscaler decides to remove the 
 
 ## Minimal and default cluster size
 
-When creating a cluster without specifying the number of worker nodes, {{% default_cluster_size_worker_nodes %}} worker nodes will be created. This is also the minimal number supported by Giant Swarm. On AWS starting with release version {{% first_aws_autoscaling_version %}}, when not specified, the maximum number of worker nodes is also set to {{% default_cluster_size_worker_nodes %}}.
+When creating a cluster without specifying the number of worker nodes, {{% default_cluster_size_worker_nodes %}} worker nodes will be created. On AWS starting with release version {{% first_aws_autoscaling_version %}}, when not specified, the maximum number of worker nodes is also set to {{% default_cluster_size_worker_nodes %}}.
 
-Technically, while you may be able to create and run smaller clusters successfully, we don't encourage this due to reduced resilience. We explicitly deactivate all sorts of alerts for clusters with less than {{% minimal_supported_cluster_size_worker_nodes %}} worker nodes and won't get notified in case of any problems.
+Technically, while you may be able to create and run smaller clusters successfully, we don't encourage this due to reduced resilience.
 
 ## Minimal worker node instance type
 

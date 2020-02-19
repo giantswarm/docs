@@ -1,18 +1,14 @@
 +++
 title = "gsctl Command Reference: list nodepools"
 description = "The 'gsctl list nodepools' command shows all node pools of a cluster."
-date = "2019-10-28"
+date = "2019-12-19"
 type = "page"
 weight = 44
 +++
 
 # `gsctl list nodepools`
 
-<div class="well disclaimer">
-<a href="/basics/nodepools/">Node pools</a> are a new concept to be introduced soon to Giant Swarm customers on AWS.
-</div>
-
-The `gsctl list nodepools` command lists all node pools of a cluster.
+The `gsctl list nodepools` command lists all [node pools](/basics/nodepools/) of a cluster.
 
 ## Usage
 

@@ -9,10 +9,12 @@ tags = ["tutorial"]
 
 # Advanced Ingress Configuration
 
-The [NGINX-based Ingress Controller](https://github.com/kubernetes/ingress-nginx) running inside your cluster has additional configuration options and features that can be customized. The functionality is split into two categories:
+The [NGINX-based Ingress Controller](https://github.com/kubernetes/ingress-nginx) has additional configuration options and features that can be customized. The functionality is split into two categories:
 
 - [Per-Service options](#yaml) in each Ingress' YAML definition either directly or via [Annotations](https://kubernetes.io/docs/user-guide/annotations/).
 - [Global options](#configmap) that influence all Ingresses of a cluster via a ConfigMap.
+
+**Note**: Some Giant Swarm clusters do not come with an ingress controller pre-installed. See our [guide on how to install an ingress from the app catalog](/guides/installing-optional-ingress-controller/).
 
 ## Per-Service options {#yaml}
 
@@ -272,7 +274,7 @@ __Note:__ Adding an annotation to an Ingress rule overrides any global restricti
 
 A 413 error will be returned to the client when the size in a request exceeds the maximum allowed size of the client request body. This size can be configured by the parameter [`client_max_body_size`](http://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size) and is set to `1m` (1 Megabyte) by default.
 
-To configure this setting globally for all Ingress rules, the `proxy-body-size` value may be set in the [NGINX ConfigMap](#configmap). 
+To configure this setting globally for all Ingress rules, the `proxy-body-size` value may be set in the [NGINX ConfigMap](#configmap).
 
 To use custom values in a specific Ingress add following annotation:
 

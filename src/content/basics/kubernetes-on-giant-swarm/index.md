@@ -5,10 +5,10 @@ date = "2019-11-18"
 weight = 10
 type = "page"
 categories = ["basics"]
-last_review_date = "2019-11-18"
+last-review-date = "2020-01-19"
 +++
 
-# Details on Kubernetes on Giant Swarm
+# Running Kubernetes on Giant Swarm
 
 With Giant Swarm you get fully-managed Kubernetes clusters, which you can then use to deploy your containers as you see fit. You have full admin rights to your clusters through their API, so you can change anything that is accessible through the Kubernetes API. Changes that require configuration of the Kubernetes components themselves (e.g. starting the API server or kubelets with specific arguments) need to be set by the Giant Swarm Ops team. If you have specific needs or feedback, don't hesitate to [get in touch](mailto:support@giantswarm.io).
 
@@ -43,7 +43,7 @@ Furthermore, Kubernetes takes care of syncing your cluster with your desired sta
 
 ## Specifics of your cluster
 
-As part of managimg your clusers, we need to run some agents (e.g. for monitoring or storage) on them. Due to this fact some host ports might be already in use. Currently, this is limited to ports `10300` and `10301`, which are used by monitoring agents. If you run into issues, please [get in touch](mailto:support@giantswarm.io) and we will find a solution.
+As part of managing your clusers, we need to run some agents (e.g. for monitoring or storage) on them. Due to this fact some host ports might be already in use. Currently, this is limited to ports `10300` and `10301`, which are used by monitoring agents. If you run into issues, please [get in touch](mailto:support@giantswarm.io) and we will find a solution.
 
 Similarly, some parts of the DNS, Ingress Controller, and Calico setups are visible to you inside your cluster. To ensure optimal running clusters, please refrain from manipulating the `kube-system` namespace as well as the pods and other resources running in them if they are not documented.
 
@@ -60,8 +60,8 @@ The latter enables you to set up reporting to monitor usage and cost.
 
 ### Specifics on Azure
 
-On Azure...(Oshrat: needs to be completed)
+On Azure...(TODO Oshrat: needs to be completed)
 
 ### Specific on-pre
 
-(Oshrat: what is specific to on-prem?)
+(TODO Oshrat: what is specific to on-prem?)
