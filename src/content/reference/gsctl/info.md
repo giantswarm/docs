@@ -39,8 +39,8 @@ When logged in with an AWS installation, these additional details will appear:
 ```nohighlight
 ...
 Provider:                      aws
-Worker instance type options:  m3.large, m3.xlarge, m3.2xlarge, r3.large, r3.xlarge, r3.2xlarge, r3.4xlarge, r3.8xlarge, m4.large, m4.xlarge, m4.2xlarge, m4.4xlarge, m5.large, m5.xlarge, m5.2xlarge, m5.4xlarge, t2.large, t2.xlarge, t2.2xlarge, c5.2xlarge, i3.xlarge
-Default worker instance type:  m3.large
+Worker instance type options:  m3.xlarge, m3.2xlarge, r3.xlarge, r3.2xlarge, r3.4xlarge, r3.8xlarge, m4.xlarge, m4.2xlarge, m4.4xlarge, m5.xlarge, m5.2xlarge, m5.4xlarge, t2.xlarge, t2.2xlarge, c5.2xlarge, i3.xlarge
+Default worker instance type:  m4.xlarge
 Default workers per cluster:   3
 Maximum workers per cluster:   20
 ```

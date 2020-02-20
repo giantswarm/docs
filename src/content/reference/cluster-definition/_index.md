@@ -62,7 +62,7 @@ scaling:
 availability_zones: 2
 workers:
   - aws:
-      instance_type: m3.large
+      instance_type: m4.xlarge
 ```
 
 **Note:** AWS clusters defined using a v4 definition (and consequently not using node pools) restrict you to all worker nodes being of the same instance type. With v5 and node pools, you gain the flexibility to create several node pools using different instance types.
@@ -83,7 +83,7 @@ workers:
 - `cpu`: The sub-key `cores` allows to require a number of CPU cores as integer. Only usable on KVM (on-premises/bare metal) installations.
 - `storage`: The sub-key `size_gb` is used to specify the amount of local node storage in GB as an integer or decimal number. Only usable on KVM (on-premises/bare metal) installations.
 - `aws`: Settings specific to AWS based clusters
-- `aws.instance_type`: The AWS EC2 instance type to use for worker nodes, e. g. `m5.large`.
+- `aws.instance_type`: The AWS EC2 instance type to use for worker nodes, e. g. `m5.2xlarge`.
 - `azure`: Settings specific to Azure based clusters
 - `azure.vm_size`: The Azure VM size to use for worker nodes
 
