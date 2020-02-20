@@ -58,10 +58,8 @@ On AWS all resources (besides minor resources on S3 and KMS) pertaining to a clu
 
 The latter enables you to set up reporting to monitor usage and cost.
 
-### Specifics on Azure
-
-On Azure...(TODO Oshrat: needs to be completed)
-
-### Specific on-pre
-
-(TODO Oshrat: what is specific to on-prem?)
+<!--
+TODO:
+- Specifics on Azure
+- what is specific to on-prem?
+-->
