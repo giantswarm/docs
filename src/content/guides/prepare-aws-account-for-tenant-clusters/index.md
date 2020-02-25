@@ -155,6 +155,57 @@ us later.
 
 ![AWS IAM console: User secrets](/img/aws-user-secrets.png)
 
+### Create an IAM role for Giant Swarm staff {#gs-cp-iam-role}
+
+Next, we create an IAM role for Giant Swarm support staff to assume in order to
+access the Control Plane AWS account. This role must have Giant Swarm's account
+as a trusted entity, and we recommend that it enforces multi-factor authentication.
+
+#### 1. Basic role setup
+
+- Go to the [Roles](https://console.aws.amazon.com/iam/home#/roles)
+subsection of the AWS console and select **Create role**. When asked to
+**Select type of trusted entity** choose **Another AWS account**.
+
+- In **Account ID** enter the value `084190472784`.
+
+- **Do not** enable **Require external ID**.
+
+- We strongly recommended to check the option **Require MFA** (multi factor
+  authentication). This adds an extra authentication step for users to assume the
+  role, which increases security.
+
+#### 2. Permission setup
+
+Select **Create policy** to create another policy. Use the same JSON policy code
+as you used for the `aws-operator` user. This time, call the policy
+
+```nohighlight
+GiantSwarmAdminPolicy
+```
+
+#### 3. Attach policy to role
+
+Attach the new `GiantSwarmAdminPolicy` policy to the role you are creating.
+
+#### 4. Name the role
+
+Name this role:
+
+```nohighlight
+GiantSwarmAdmin
+```
+
+#### 5. Get the role's ARN
+
+From the conformation screen, copy the exact ARN. It should be in the form of:
+
+```nohighlight
+arn:aws:iam::<YOUR_ACCOUNT_ID>:role/GiantSwarmAdmin
+```
+
+This will need to be provided to us later.
+
 ## IAM setup for Tenant Cluster accounts
 
 The following steps must all take place in the Tenant Cluster AWS account.
