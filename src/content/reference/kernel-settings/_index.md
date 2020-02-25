@@ -1,0 +1,48 @@
+---
+title: Tuned kernel settings
+description: Complete list of the tuned CoreOS kernel settings for the Giant Swarm clusters.
+date: 2020-02-20
+layout: subsection
+weight: 100
+---
+
+# Kernel settings
+
+For the Giant Swarm tenant clusters and the applications running in it to run properly, some kernel settings need to be tuned at the OS level.
+
+## General Performance and Security settings
+| Setting                                | Value         | Description                                                 |
+| ---                                    | ---           | ---                                                         |
+| kernel.kptr_restrict    	             | 2             | Hide kernel pointers to mitigate the kernels attack surface |
+| kernel.sysrq   	                     | 0             | Reduce the kernel's attack surface                          | 
+| net.ipv4.conf.all.log_martians  	     | 1             |                                                             |  
+| net.ipv4.conf.all.send_redirects  	 | 0             |                                                             |
+| net.ipv4.conf.default.accept_redirects | 0             |                                                             |
+| net.ipv4.conf.default.log_martians     | 1             |                                                             |
+| net.ipv4.tcp_timestamps                | 0             | Do not add timestamps to use less CPU cycles                |
+| net.ipv6.conf.all.accept_redirects     | 0             |                                                             |
+| net.ipv6.conf.default.accept_redirects | 0             |                                                             |
+| net.ipv4.conf.all.rp_filter            | 1             | Harden SSH security                                         |
+| net.ipv4.conf.all.arp_ignore           | 1             | Harden SSH security                                         |
+| net.ipv4.conf.all.arp_announce         | 2             | Harden SSH security                                         |
+
+## Kubernetes specific tuning
+
+| Setting                                | Value         | Description                                                                 |
+| ---                                    | ---           | ---                                                                         |
+| net.ipv4.ip_local_reserved_ports   	 | 30000 - 32767 | Reserving for Node Ports allocations to avoid conflicts with kube-apiserver |
+
+## Docker specific tuning
+| Setting                                | Value         | Description                                                         |
+| ---                                    | ---           | ---                                                                 |
+| fs.inotify.max_user_watches            | 16384         | Increate the max number of opened file watches to avoid docker lock |
+| fs.inotify.max_user_instances          | 8192          | Increate the max number of file descriptors to avoid docker lock    |
+
+
+## Workload specific tuning
+| Setting                                | Value        | Description                                                                                                |
+| ---                                    | ---          | ---                                                                                                        |
+| net.core.somaxconn                     | 32768        | [Ingress controller performance improvements](https://github.com/kubernetes/ingress-nginx/issues/1939)     |
+| net.ipv4.ip_local_port_range           | 1024 - 65535 | [Ingress controller performance improvements](https://github.com/kubernetes/ingress-nginx/issues/1939)     |
+| vm.max_map_count                       | 262144       | Increased max_map_count because some applications, like Elasticsearch, need higher limit to start properly |
+
