@@ -1,21 +1,21 @@
 +++
 title = "Prepare an AWS account to run Giant Swarm tenant clusters"
-description = "This guide will walk you through all necessary steps to set up an Amazon AWS account with appropriate IAM roles for operating Giant Swarm tenant clusters."
+description = "This guide will walk you through all necessary steps to set up an Amazon AWS account with appropriate IAM roles for operating Giant Swarm clusters."
 date = "2019-10-25"
 type = "page"
 weight = 100
 tags = ["tutorial"]
 +++
 
-# Prepare an AWS account to run Giant Swarm tenant clusters
+# Prepare an AWS account to run Giant Swarm clusters
 
 As detailed in the [Architecture](/basics/aws-architecture/) docs,
 the tenant clusters (the clusters running your Kubernetes workloads) in a Giant
 Swarm installation are running in an AWS account separate from the control plane.
 This gives great flexibility depending on the requirements and the usage
 scenario. For example, it allows the control plane to be running in an AWS account
-owned by Giant Swarm, while tenant clusters operate in different AWS accounts
-each, depending on a customer's department using them.
+dedicated to it, whilst tenant clusters operate in separate AWS accounts, depending
+on a customer's department using them.
 
 ## Overview
 
