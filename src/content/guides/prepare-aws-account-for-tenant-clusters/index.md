@@ -93,7 +93,71 @@ for a short time during update, hence the 500 Launch Configurations.
 > The number of EC2 instances used as worker nodes is supposed to be scaled
 dynamically based on traffic, hence the high numbers of EC2 instances requested.
 
+## IAM setup for Control Plane accounts
 
+The following steps must all take place in the Control Plane AWS account.
+
+### Create an IAM user for aws-operator {#operator-iam-user}
+
+Giant Swarm's service creating and maintaining your Tenant Clusters is
+called [aws-operator](https://github.com/giantswarm/aws-operator). It is
+running in the Control Plane. In order to handle resources in your AWS Tenant
+Cluster account, it needs a prepared IAM user in your AWS Control Plane
+account. Here we explain all the required steps to set up this user.
+
+#### 1. Basic user setup
+
+First, log in to the AWS console for your AWS account. Then open the
+[IAM section](https://console.aws.amazon.com/iam/home) of the AWS console and
+go to the [Users](https://console.aws.amazon.com/iam/home#/users) subsection.
+
+Now hit the **Add user** button. Enter the user name as `aws-operator` and ensure
+only _Programmatic access_ is enabled.
+
+![AWS IAM console: Create user](/img/aws-user-create-user.png)
+
+#### 2. Permissions setup
+
+In the **Attach existing policies directly** section, hit the **Create policy** button.
+
+Paste the JSON code from [tenant_cluster.json](https://raw.githubusercontent.com/giantswarm/aws-operator/master/policies/tenant_cluster.json) into the JSON editor field and then hit the **Review policy** button.
+
+In the next step you have to assign a name to the policy. Please use the name:
+
+```nohighlight
+GiantSwarmAWSOperatorPolicy
+```
+
+Entering a description will also help distinguish the policy to other people.
+We suggest:
+
+> Policy required for the Giant Swarm AWS Operator.
+
+#### 3. Attach policy to user
+
+Once you created the policy, let's turn back to the point in the user creation
+called *Attach existing policies directly*. Here you can now hit the *Refresh*
+button to load all existing policies, then enter `GiantSwarmAWSOperatorPolicy`
+into the search field to select the policy you just created. Check the box in
+the row containing that policy.
+
+![AWS IAM console: Attach policy to user](/img/aws-user-attach-policy.png)
+
+Then proceed to the *Review* step.
+
+#### 4. Review and create user
+
+Please now review the user. Provided everything is correct, hit the *Create*
+button. On the following page, you will be presented with an *Access key ID* and
+a *Secret access key*. Click the 'show' link to display the access key secret,
+and then copy both the key ID and key secret; these will need to be provided to
+us later.
+
+![AWS IAM console: User secrets](/img/aws-user-secrets.png)
+
+## IAM setup for Tenant Cluster accounts
+
+The following steps must all take place in the Tenant Cluster AWS account.
 
 ## Create an IAM role for aws-operator {#operator-iam-role}
 
