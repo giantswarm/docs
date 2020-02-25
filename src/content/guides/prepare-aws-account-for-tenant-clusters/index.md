@@ -19,16 +19,20 @@ on a customer's department using them.
 
 ## Overview
 
-In order to run Giant Swarm tenant clusters, an AWS account needs to fulfill
+In order to run Giant Swarm clusters, an AWS account needs to fulfill
 these requirements:
 
-- Service limits set according to requirements
-- IAM role to be assumed by our aws-operator software
-- IAM role to be assumed by Giant Swarm staff
+- Control Plane account:
+  - IAM _user_ to be used by our `aws-operator` software.
+  - IAM role to be assumed by Giant Swarm staff.
+- Tenant Cluster account:
+  - Service limits set according to requirements.
+  - IAM _role_ to be assumed by our `aws-operator` software.
+  - IAM role to be assumed by Giant Swarm staff.
 
 Each Giant Swarm tenant cluster belongs to an organization within Giant Swarm.
 This organization will later be configured with information about the two
-IAM roles mentioned above.
+Tenant Cluster IAM roles mentioned above.
 
 We have created a Terraform module to automate the IAM role creation. You can check the code [here](https://github.com/giantswarm/giantswarm-aws-account-prerequisites). Otherwise you can still use the steps as described in this guide.
 
@@ -132,7 +136,7 @@ In the **Attach permissions policies** section, hit the **Create policy** button
 
 Paste the JSON code from [tenant_cluster.json](https://raw.githubusercontent.com/giantswarm/aws-operator/master/policies/tenant_cluster.json) into the JSON editor field and then hit the **Review policy** button.
 
-In the next step you have to assign a name to the policy. Please use the name 
+In the next step you have to assign a name to the policy. Please use the name
 
 ```nohighlight
 GiantSwarmAWSOperatorPolicy
@@ -221,7 +225,7 @@ Name this role
 ```nohighlight
 GiantSwarmAdmin
 ```
-    
+
 accordingly.
 
 ### 5. Get the role's ARN
