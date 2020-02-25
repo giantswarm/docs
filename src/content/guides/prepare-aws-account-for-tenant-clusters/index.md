@@ -198,7 +198,7 @@ GiantSwarmAdmin
 
 #### 5. Get the role's ARN
 
-From the conformation screen, copy the exact ARN. It should be in the form of:
+From the confirmation screen, copy the exact ARN. It should be in the form of:
 
 ```nohighlight
 arn:aws:iam::<YOUR_ACCOUNT_ID>:role/GiantSwarmAdmin
