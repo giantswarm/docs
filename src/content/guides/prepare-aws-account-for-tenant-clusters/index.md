@@ -19,7 +19,7 @@ on a customer's department using them.
 
 ## Overview
 
-In order to run Giant Swarm clusters, an AWS account needs to fulfill
+In order to run Giant Swarm clusters, the AWS account(s) need to fulfill
 these requirements:
 
 - Control Plane account:
