@@ -36,7 +36,7 @@ Tenant Cluster IAM roles mentioned above.
 
 We have created a Terraform module to automate the IAM role creation. You can check the code [here](https://github.com/giantswarm/giantswarm-aws-account-prerequisites). Otherwise you can still use the steps as described in this guide.
 
-## Increase service limits in AWS {#limits}
+## Increase service limits in an AWS Tenant Cluster account {#limits}
 
 A number of limits apply to an AWS account initially, which are described in the
 [AWS Service Limits documentation](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html).
