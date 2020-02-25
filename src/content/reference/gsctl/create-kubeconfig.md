@@ -83,7 +83,7 @@ to create admin access (valid for one day only) in a self-contained file:
 ```nohighlight
 $ gsctl create kubeconfig --cluster w6wn8 \
   --description "Admin certificate for Jane" \
-  --ttl 1 \
+  --ttl 1d \
   --self-contained kubeconfig-w6wn8-jane.yaml \
   --certificate-organizations system:masters
 ```
