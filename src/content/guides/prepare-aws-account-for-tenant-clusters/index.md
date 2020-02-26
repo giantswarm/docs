@@ -155,57 +155,6 @@ us later.
 
 ![AWS IAM console: User secrets](/img/aws-user-secrets.png)
 
-### Create an IAM role for Giant Swarm staff {#gs-control-plane-iam-role}
-
-Next, we create an IAM role for Giant Swarm support staff to assume in order to
-access the control plane AWS account. This role must have Giant Swarm's account
-as a trusted entity, and we recommend that it enforces multi-factor authentication.
-
-#### 1. Basic role setup
-
-- Go to the [Roles](https://console.aws.amazon.com/iam/home#/roles)
-subsection of the AWS console and select **Create role**. When asked to
-**Select type of trusted entity** choose **Another AWS account**.
-
-- In **Account ID** enter the value `084190472784`.
-
-- **Do not** enable **Require external ID**.
-
-- We strongly recommended to check the option **Require MFA** (multi factor
-  authentication). This adds an extra authentication step for users to assume the
-  role, which increases security.
-
-#### 2. Permission setup
-
-Select **Create policy** to create another policy. Use the same JSON policy code
-as you used for the `aws-operator` user. This time, call the policy
-
-```nohighlight
-GiantSwarmAdminPolicy
-```
-
-#### 3. Attach policy to role
-
-Attach the new `GiantSwarmAdminPolicy` policy to the role you are creating.
-
-#### 4. Name the role
-
-Name this role:
-
-```nohighlight
-GiantSwarmAdmin
-```
-
-#### 5. Get the role's ARN
-
-From the confirmation screen, copy the exact ARN. It should be in the form of:
-
-```nohighlight
-arn:aws:iam::<YOUR_ACCOUNT_ID>:role/GiantSwarmAdmin
-```
-
-This will need to be provided to us later.
-
 ## IAM setup for tenant cluster accounts
 
 The following steps must all take place in the tenant cluster AWS account.
@@ -293,61 +242,59 @@ arn:aws:iam::<YOUR_ACCOUNT_ID>:role/GiantSwarmAWSOperator
 Please copy the exact ARN from the screen, as you will have to provide it to us
 later.
 
-## Create an IAM role for Giant Swarm staff {#operator-iam-role}
+### Create an IAM role for Giant Swarm staff {#gs-staff-iam-role}
 
-The second IAM role to be created is similar to the one before, but in this case
-it is used by Giant Swarm support staff. The main differences will be that this
-role must have Giant Swarm's account as a trusted entity, instead of the account
-running the control plane, and it can have multi-factor authentication enabled.
+Finally, we create an IAM role for Giant Swarm support staff to assume in order to
+access the control plane AWS account. This role must have Giant Swarm's account
+as a trusted entity, and we recommend that it enforces multi-factor authentication.
 
-### 1. Basic role setup
+Giant Swarm staff require access to **all** accounts, so **the following steps must
+be duplicated in both the control plane and tenant cluster accounts**.
 
-- Like above, go to the [Roles](https://console.aws.amazon.com/iam/home#/roles)
+#### 1. Basic role setup
+
+- Go to the [Roles](https://console.aws.amazon.com/iam/home#/roles)
 subsection of the AWS console and select **Create role**. When asked to
-**Select type of trusted entity** chose **Another AWS account**.
+**Select type of trusted entity** choose **Another AWS account**.
 
 - In **Account ID** enter the value `084190472784`.
 
-- As above, **do not** enable **Require external ID**.
+- **Do not** enable **Require external ID**.
 
-- Different from above, instead, we strongly recommended to check the option
-  **Require MFA** (multi factor authorization). This adds an extra
-  authentication step for users to assume the role, which increases security.
+- We strongly recommended to check the option **Require MFA** (multi factor
+  authentication). This adds an extra authentication step for users to assume the
+  role, which increases security.
 
-### 2. Permission setup
+#### 2. Permission setup
 
 Select **Create policy** to create another policy. Use the same JSON policy code
-as before. This time, call the policy
+as you used for the `aws-operator` user. This time, call the policy
 
 ```nohighlight
 GiantSwarmAdminPolicy
 ```
 
-**Background**: We ask you to create two distinct, but identical, IAM roles at
-this point. This enables you to later adjust permissions independently if the
-need arises.
-
-### 3. Attach policy to role
+#### 3. Attach policy to role
 
 Attach the new `GiantSwarmAdminPolicy` policy to the role you are creating.
 
-### 4. Name the role
+#### 4. Name the role
 
-Name this role
+Name this role:
 
 ```nohighlight
 GiantSwarmAdmin
 ```
 
-accordingly.
+#### 5. Get the role's ARN
 
-### 5. Get the role's ARN
-
-From the conformation screen, copy the exact ARN again. It should be in the form of
+From the confirmation screen, copy the exact ARN. It should be in the form of:
 
 ```nohighlight
 arn:aws:iam::<YOUR_ACCOUNT_ID>:role/GiantSwarmAdmin
 ```
+
+This will need to be provided to us later.
 
 ## Configure the Giant Swarm organization {#configure-org}
 
