@@ -10,6 +10,7 @@ build-css:
 		-v ${PWD}/src/static/css:/sass \
 		ellerbrock/alpine-sass /sass/base.sass /sass/base.css -m auto
 
+
 vendor:
 	# Vendor hugo
 	mkdir -p vendor
@@ -21,6 +22,7 @@ vendor:
 
 	# Vendor other external repositories as defined in 'external-repositories.txt'
 	./vendorize-external-repositories.sh
+
 
 build: vendor build-css
 	# check dependencies
@@ -46,6 +48,11 @@ build: vendor build-css
 
 	# Tie in content from external repositories
 	./build-external-repositories.sh
+
+	# Generate the Control Plane K8s API reference documentation.
+	docker run \
+		-v ${PWD}/build/content/reference/cp-k8s-api:/opt/crd-docs-generator/output \
+		quay.io/giantswarm/crd-docs-generator
 
 docker-build: build
 	docker build -t $(REGISTRY)/$(COMPANY)/$(PROJECT):latest .

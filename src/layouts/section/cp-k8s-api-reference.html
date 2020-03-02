@@ -1,0 +1,26 @@
+{{ partial "header.html" . }}
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <h1 id="title">Control Plane Kubernets API Reference</h1>
+
+    <p>This is a preview of our Control Plane Kubernetes API documentation, focusing on Custom Resource (CR)/Custom Resource Definition (CRD) schema.</p>
+
+    <p>Watch this space in the upcoming weeks to find improvements and more documented details. And feel free to give us any <strong>feedback</strong> and let us know how we could do better!</p>
+
+    <ul class="linklist">
+
+      {{ range .Data.Pages.ByWeight }}
+      <li>
+          <a href="{{ .Permalink | relURL }}">{{ .LinkTitle }}</a>
+      </li>
+      {{ end }}
+
+    </ul>
+
+    {{ partial "feedback_reference.html" . }}
+
+  </div>
+</div>
+
+{{ partial "footer.html" . }}
