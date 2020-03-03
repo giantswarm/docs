@@ -8,11 +8,18 @@
 
     <p>Watch this space in the upcoming weeks to find improvements and more documented details. And feel free to give us any <strong>feedback</strong> and let us know how we could do better!</p>
 
-    <ul class="linklist">
+    <hr />
+
+    <h2>Custom Resource Definitions</h2>
+
+    <p>Select the CR/CRD name to get information on the custom resource schema.</p>
+
+    <ul class="linklist" style="margin-top: 2em; margin-bottom: 2em;">
 
       {{ range .Data.Pages.ByWeight }}
       <li>
           <a href="{{ .Permalink | relURL }}">{{ .LinkTitle }}</a>
+          <div class="meta">{{ .Params.technical_name }}</div>
       </li>
       {{ end }}
 

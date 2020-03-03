@@ -22,6 +22,15 @@ dl.crd-meta {
   border-top: 1px solid #999;
 }
 
+.crd-meta a.version {
+  font-family: Inconsolata;
+  margin-right: 10px;
+}
+
+.crd-schema-version {
+  border-top: 1px solid #ccc;
+}
+
 .property {
   margin-bottom: 1em;
 }
@@ -53,3 +62,4 @@ dl.crd-meta {
   padding: 3px 6px;
   text-transform: uppercase;
 }
+
