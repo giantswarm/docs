@@ -1,7 +1,7 @@
 +++
 title = "gsctl Reference"
 description = "Documentation on gsctl, the Giant Swarm command line utility to create and delete clusters, create key pairs and more."
-date = "2019-07-23"
+date = "2020-03-05"
 layout = "subsection"
 weight = 10
 +++
@@ -71,7 +71,13 @@ brew install gsctl</code></pre>
 </div>
 <div class="tab-pane" id="install-linux">
 
-  <p>Download the latest release <a href="https://github.com/giantswarm/gsctl/releases">from GitHub</a>, unpack the binary and move it to a location covered by your `PATH` environment variable.</p>
+  <h3>Arch Linux</h3>
+
+  <p><code>gsctl</code> can be installed using an AUR helper, such as <code>yay</code> or <code>pacaur</code>:
+
+  <pre><code class="language-nohighlight">yay -S gsctl-bin</code></pre>
+
+  <p>For other distributions, download the latest release <a href="https://github.com/giantswarm/gsctl/releases">from GitHub</a>, unpack the binary and move it to a location covered by your `PATH` environment variable.</p>
 
 </div>
 <div class="tab-pane" id="install-win">
