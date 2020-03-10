@@ -61,7 +61,7 @@ dl.crd-meta {
 }
 
 .property-required {
-  background-color: rgb(245, 191, 191);
+  background-color: #f5bfbf;
   font-size: 14px;
   line-height: 22px;
   padding: 3px 6px;
