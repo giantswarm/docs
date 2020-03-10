@@ -2,9 +2,11 @@
 
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
-    <h1 id="title">Control Plane Kubernets API Reference</h1>
+    <h1 id="title">Control Plane Kubernetes API Reference</h1>
 
-    <p>This is a preview of our Control Plane Kubernetes API documentation, focusing on Custom Resource (CR)/Custom Resource Definition (CRD) schema.</p>
+    <p>The Control Plane Kubernetes API gives you access to the custom resources (CR) defining your tenant clusters in your Giant Swarm installation’s control plane. Here you find schema descriptions for the custom resources in use.</p>
+
+    <p>This is an early preview of our Control Plane Kubernetes API documentation, focusing on Custom Resource (CR)/Custom Resource Definition (CRD) schema.</p>
 
     <p>Watch this space in the upcoming weeks to find improvements and more documented details. And feel free to give us any <strong>feedback</strong> and let us know how we could do better!</p>
 
@@ -19,7 +21,7 @@
       {{ range .Data.Pages.ByWeight }}
       <li>
           <a href="{{ .Permalink | relURL }}">{{ .LinkTitle }}</a>
-          <div class="meta">{{ .Params.technical_name }}</div>
+          <div class="meta">{{ .Description }}</div>
       </li>
       {{ end }}
 
