@@ -82,6 +82,6 @@ linkcheck:
 		--link server:server \
 		linkchecker/linkchecker \
 		http://server:8080 \
-		--check-extern -t 5 --ignore-url="^https://docs.giantswarm.io/.*" --ignore-url=/api/
+		--check-extern -t 5 --ignore-url="^https://docs.giantswarm.io/.*" --ignore-url=/api/ --ignore-url="^https://.+.example.com/.*"
 	docker ps --filter name=server && docker kill server
 	docker ps --filter name=linkchecker && docker kill linkchecker
