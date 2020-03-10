@@ -1,5 +1,10 @@
 /* Styles for the CRD schema reference documentation */
 
+ul.crd-index {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
 dl.crd-meta {
 	display: flex;
   flex-flow: row wrap;
