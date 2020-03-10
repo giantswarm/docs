@@ -6,7 +6,7 @@ ul.crd-index {
 }
 
 dl.crd-meta {
-	display: flex;
+  display: flex;
   flex-flow: row wrap;
   border-bottom: 1px solid #999;
 }
@@ -61,10 +61,9 @@ dl.crd-meta {
 }
 
 .property-required {
-  background-color: rgb(245, 191, 191);
+  background-color: #f5bfbf;
   font-size: 14px;
   line-height: 22px;
   padding: 3px 6px;
   text-transform: uppercase;
 }
-
