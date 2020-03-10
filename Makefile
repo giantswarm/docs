@@ -52,7 +52,7 @@ build: vendor build-css
 	# Generate the Control Plane K8s API reference documentation.
 	docker run \
 		-v ${PWD}/build/content/reference/cp-k8s-api:/opt/crd-docs-generator/output \
-		quay.io/giantswarm/crd-docs-generator:1c23ac7c5dabec1aa70288c91d06a5c9d3863095
+		quay.io/giantswarm/crd-docs-generator:latest
 
 docker-build: build
 	docker build -t $(REGISTRY)/$(COMPANY)/$(PROJECT):latest .
