@@ -6,7 +6,7 @@ ul.crd-index {
 }
 
 dl.crd-meta {
-	display: flex;
+  display: flex;
   flex-flow: row wrap;
   border-bottom: 1px solid #999;
 }
@@ -67,4 +67,3 @@ dl.crd-meta {
   padding: 3px 6px;
   text-transform: uppercase;
 }
-
