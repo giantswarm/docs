@@ -28,7 +28,7 @@ $ gsctl create nodepool f01r4 \
 You can also use the cluster's name for identifying the cluster:
 
 ```nohighlight
-gsctl create nodepool "Cluster name" \
+$ gsctl create nodepool "Cluster name" \
     --name "General purpose m4.2xlarge 3AZ autoscaling" \
     --aws-instance-type m4.2xlarge \
     --num-availability-zones 3 \
