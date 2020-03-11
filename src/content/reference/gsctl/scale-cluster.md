@@ -1,7 +1,7 @@
 +++
 title = "gsctl Command Reference: scale cluster"
 description = "The 'gsctl scale cluster' command allows to add or remove worker nodes to reach a desired number."
-date = "2019-02-07"
+date = "2020-03-11"
 type = "page"
 weight = 53
 +++
@@ -27,7 +27,13 @@ On Azure, the virtual machine scale set (VMSS) behaviour is responsible for the 
 To scale a cluster to a **specific number** of nodes, e. g. 5, use this syntax:
 
 ```nohighlight
-$ gsctl scale cluster <cluster-id> --num-workers 5
+$ gsctl scale cluster f0r14 --num-workers 5
+```
+
+You can also use the cluster's name for identifying the cluster:
+
+```nohighlight
+$ gsctl scale cluster "Cluster name" --num-workers 5
 ```
 
 Where **autoscaling** is available, you can specify a range within which the autoscaler can scale the number of worker nodes.
@@ -37,13 +43,13 @@ Note that autoscaling is currently only available on AWS in release version 6.3.
 Example:
 
 ```nohighlight
-$ gsctl scale cluster <cluster-id> --workers-min 5 --workers-max 20
+$ gsctl scale cluster f01r4 --workers-min 5 --workers-max 20
 ```
 
 To adjust only one side of the autoscaling range, e. g. the upper one, and leave the minimum worker node count untouched, do this:
 
 ```nohighlight
-$ gsctl scale cluster <cluster-id> --workers-max 20
+$ gsctl scale cluster f01r4 --workers-max 20
 ```
 
 After the command has been executed, it can take a couple of minutes until the worker node count has adapted to the new settings.

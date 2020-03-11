@@ -1,7 +1,7 @@
 +++
 title = "gsctl Command Reference: show nodepool"
 description = "The 'gsctl show nodepool' command shows details on a node pool."
-date = "2019-12-19"
+date = "2020-03-11"
 type = "page"
 weight = 44
 +++
@@ -18,10 +18,16 @@ separated by a slash.
 Example:
 
 ```nohighlight
-gsctl show nodepool f01r4/op1dl
+$ gsctl show nodepool f01r4/op1dl
 ```
 
 Here, `f01r4` is the cluster ID and `op1dl` is the node pool ID.
+
+You can also use the cluster's name for identifying the cluster:
+
+```nohighlight
+$ gsctl show nodepool "Cluster name"/op1dl
+```
 
 ## Output
 
