@@ -20,6 +20,12 @@ Given you have a cluster with the ID `w6wn8`, this command would create a new ke
 $ gsctl create keypair --cluster w6wn8
 ```
 
+You can also use the cluster's name for identifying the cluster:
+
+```nohighlight
+$ gsctl create keypair --cluster "Cluster name"
+```
+
 The output will look similar to the one below:
 
 ```nohighlight
@@ -41,7 +47,7 @@ Three files will be placed in the `certs` folder, which is a subfolder of your g
 
 ## Full argument reference {#arguments}
 
-- `--cluster`, `-c`: Used to specify the cluster ID to create a key pair for.
+- `--cluster`, `-c`: Used to specify the cluster name or ID to create a key pair for.
 - `--cn-prefix`: The common name prefix for the issued certificates 'CN' field.
   Note that only the characters `a-z`, `0-9` and `-` can be used.
 - `--certificate-organizations`: A comma separated list of organizations for the issued certificate's 'O' fields.
