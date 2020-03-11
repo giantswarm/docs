@@ -1,7 +1,7 @@
 +++
 title = "gsctl Command Reference: show cluster"
 description = "The 'gsctl show cluster' command displays details of a cluster."
-date = "2019-07-24"
+date = "2020-03-11"
 type = "page"
 weight = 52
 +++
@@ -13,7 +13,13 @@ The `gsctl show cluster` command displays details on a cluster.
 ## Usage
 
 ```nohighlight
-gsctl show cluster <cluster-id>
+$ gsctl show cluster f0r14
+```
+
+You can also use the cluster's name for identifying the cluster:
+
+```nohighlight
+$ gsctl show cluster "Cluster name"
 ```
 
 ## Output details
@@ -30,8 +36,8 @@ Release version:               6.3.0
 Worker node scaling:           autoscaling between 6 and 10
 Desired worker node count:     7
 Worker nodes running:          8
-Worker EC2 instance type:      m5.large
-CPU cores in workers:          14
+Worker EC2 instance type:      m5.xlarge
+CPU cores in workers:          28
 RAM in worker nodes (GB):      26.5
 ```
 

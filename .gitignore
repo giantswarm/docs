@@ -2,11 +2,8 @@
 .sass-cache
 *.map
 *.pyc
+/.idea
 /.vscode
 /build/
 /vendor/
 /volumes
-kubernetes/secrets.yaml
-linklinttest
-sitesearch-volume-data
-venv*

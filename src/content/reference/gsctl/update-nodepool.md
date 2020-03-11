@@ -1,7 +1,7 @@
 +++
 title = "gsctl Command Reference: update nodepool"
 description = "The 'gsctl update nodepool' command allows renaming and scaling of a node pool."
-date = "2019-12-19"
+date = "2020-03-11"
 type = "page"
 weight = 44
 +++
@@ -18,15 +18,21 @@ separated by a slash. The `--name` flag is used to set a new name.
 Example for renaming a node pool:
 
 ```nohighlight
-gsctl update nodepool f01r4/op1dl --name "New node pool name"
+$ gsctl update nodepool f01r4/op1dl --name "New node pool name"
 ```
 
 Here, `f01r4` is the cluster ID and `op1dl` is the node pool ID.
 
+You can also use the cluster's name for identifying the cluster:
+
+```nohighlight
+$ gsctl update nodepool "Cluster name"/opdl --name "New node pool name"
+```
+
 Example for adjusting the scaling limits:
 
 ```nohighlight
-gsctl update nodepool f01r4/op1dl --nodes-min 3 --nodes-max 20
+$ gsctl update nodepool f01r4/op1dl --nodes-min 3 --nodes-max 20
 ```
 
 ## Related
