@@ -75,7 +75,7 @@ an internal Kubernetes API endpoint.
 
 
 ```nohighlight
-$ gsctl create kubeconfig -c w6wn8 --self-contained kubeconfig.yaml \
+$ gsctl create kubeconfig --cluster w6wn8 --self-contained kubeconfig.yaml \
   --tenant-internal=true
 ```
 
