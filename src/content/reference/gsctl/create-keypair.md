@@ -1,7 +1,7 @@
 +++
 title = "gsctl Command Reference: create keypair"
 description = "The 'gsctl create keypair' command creates a key pair and stores the related files in your certificate folder."
-date = "2019-11-06"
+date = "2019-03-11"
 type = "page"
 weight = 32
 +++
