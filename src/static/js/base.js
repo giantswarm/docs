@@ -74,8 +74,8 @@ function doSearch(q) {
         "_source": false,
         "stored_fields": ["uri", "title", "breadcrumb"],
         "query": {
-            "query_string": {
-                "default_field": "text",
+            "simple_query_string": {
+                "fields": ["title^10", "text"],
                 "default_operator": "AND",
                 "query": q
             }
