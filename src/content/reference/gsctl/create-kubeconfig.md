@@ -1,7 +1,7 @@
 +++
 title = "gsctl Command Reference: create kubeconfig"
 description = "The 'gsctl create kubeconfig' command creates a key pair and adds cluster, user, and context settings to your kubectl configuration."
-date = "2019-03-11"
+date = "2020-03-11"
 type = "page"
 weight = 30
 +++
