@@ -1,11 +1,11 @@
 +++
 title = "Security"
 description = "Documentation of the Giant Swarm cluster security"
-date = "2017-10-12"
+date = "2020-03-12"
 type = "page"
 weight = 20
 categories = ["basics"]
-last-review-date = "2020-01-19"
+last-review-date = "2020-03-12"
 +++
 
 # Security
