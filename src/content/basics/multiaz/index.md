@@ -9,9 +9,7 @@ categories = ["basics"]
 
 # Clusters Over Multiple Availability Zones
 
-*This is currently only available with Giant Swarm 6.1.0 on AWS*
-
-With Giant Swarm you can easily launch cluster across multiple availability zones (AZs). This will lower the risk that your cluster will get unavailable due to an incident in a particular AWS data center.
+With Giant Swarm you can easily launch cluster across multiple availability zones (AZs). This will lower the risk that your cluster will get unavailable due to an incident in a particular AWS or Azure data center.
 
 ## What availability zones are good for {#benefits}
 
@@ -31,7 +29,7 @@ This enables use cases such as
 
 ## Details you should know about {#details}
 
-- On AWS availability zones are randomized across accounts and there is no way to determine which AZ you are really in, based on the name. E.g. the zone `eu-central-1a` in the account of the cluster is not necessarily the same `eu-central-1a` in your account.
+- On both AWS and Azure availability zones are randomized across accounts and there is no way to determine which AZ you are really in, based on the name. E.g. the zone `eu-central-1a` in the account of the cluster is not necessarily the same `eu-central-1a` in your account.
 
 - Availability zones get selected randomly by the Giant Swarm control plane. You only need to specify the number of availability zones. 
 
@@ -56,3 +54,4 @@ When inspecting details of such a cluster, or using the [`gsctl show cluster`](/
 ## Further reading
 
 - [The Giant Swarm AWS Architecture](/basics/aws-architecture/) explains in more detail the setup of Giant Swarm on AWS.
+- [The Giant Swarm Azure Architecture](/basics/azure-architecture/) explains in more detail the setup of Giant Swarm on Azure.
