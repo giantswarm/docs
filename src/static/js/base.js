@@ -70,12 +70,13 @@ function doSearch(q) {
     var postData = {
         "from": 0,
         "size": 1000,
-        "sort": [{"_score": "desc"}],
-        "_source": false,
-        "stored_fields": ["uri", "title", "breadcrumb"],
+        "sort": ["_score"],
+        "_source": {
+            "excludes": ["text", "body"]
+        },
         "query": {
             "simple_query_string": {
-                "fields": ["title^10", "text"],
+                "fields": ["title^5", "uri^5", "text"],
                 "default_operator": "AND",
                 "query": q
             }
@@ -83,11 +84,13 @@ function doSearch(q) {
         "highlight" : {
             "fields" : {
                 "body" : {
+                    "type": "unified",
                     "fragment_size" : 150,
                     "number_of_fragments" : 3,
                     "no_match_size": 200
                 },
                 "title": {
+                    "type": "plain",
                     "number_of_fragments" : 0
                 }
             }
@@ -107,7 +110,10 @@ function doSearch(q) {
                 // no results
                 $("h1").text("No results for '" + q + "', sorry.");
                 $("#searchinstructions").show();
-                ga('send', 'event', 'search', 'zerohits', q, 0);
+
+                if (typeof ga !== 'undefined') {
+                    ga('send', 'event', 'search', 'zerohits', q, 0);
+                }
             } else {
                 $("#searchinstructions").hide();
                 if (data.hits.total === 1) {
@@ -118,7 +124,10 @@ function doSearch(q) {
                 $.each(data.hits.hits, function(index, hit){
                     $(".result").append(renderSerpEntry(index, hit));
                 });
-                ga('send', 'event', 'search', 'hits', q, data.hits.total);
+                
+                if (typeof ga !== 'undefined') {
+                    ga('send', 'event', 'search', 'hits', q, data.hits.total);
+                }
             }
         }
     });
@@ -131,14 +140,14 @@ function doSearch(q) {
  * @param data   Object  Result hit item as returned by elasticsearch
  */
 function renderSerpEntry(index, hit) {
-    d = $("<a class='item'></>").attr("href", hit.fields.uri);
+    d = $("<a class='item'></>").attr("href", hit._source.uri);
     if (typeof(hit.highlight) !== "undefined" && typeof(hit.highlight.title) !== "undefined") {
         d.append($("<h4></h4>").html((index + 1) + ". " + hit.highlight.title));
     } else {
-        d.append($("<h4></h4>").html((index + 1) + ". " + hit.fields.title));
+        d.append($("<h4></h4>").html((index + 1) + ". " + hit._source.title));
     }
-    if (typeof(hit.fields.breadcrumb) !== "undefined" && hit.fields.breadcrumb.length > 0) {
-        d.append($("<p class='sbreadcrumb'></p>").html("/" + hit.fields.breadcrumb.join("/") + "/"));
+    if (typeof(hit._source.breadcrumb) !== "undefined" && hit._source.breadcrumb.length > 0) {
+        d.append($("<p class='sbreadcrumb'></p>").html("/" + hit._source.breadcrumb.join("/") + "/"));
     }
     if (typeof(hit.highlight) !== "undefined" && typeof(hit.highlight.body) !== "undefined" && hit.highlight.body.length > 0) {
         d.append($("<p class='snippet'></p>").html(hit.highlight.body.join(' <span class="hellip">[...]</span> ')));
@@ -166,7 +175,7 @@ $(document).ready(function(){
         q = q.slice(0, -1);
     }
 
-    if (typeof(q) === "undefined" || q == null || q === "") {
+    if (typeof(q) === "undefined" || q == null || q === "") {
         $(".feedback").hide();
         return;
     }
