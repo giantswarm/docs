@@ -245,8 +245,8 @@ later.
 ### Create an IAM role for Giant Swarm staff {#gs-staff-iam-role}
 
 Finally, we create an IAM role for Giant Swarm support staff to assume in order to
-access the control plane AWS account. This role must have Giant Swarm's account
-as a trusted entity, and we recommend that it enforces multi-factor authentication.
+access both AWS accounts. This role must have Giant Swarm's account as a trusted
+entity, and we recommend that it enforces multi-factor authentication.
 
 Giant Swarm staff require access to **all** accounts, so **the following steps must
 be duplicated in both the control plane and tenant cluster accounts**.

@@ -1,7 +1,7 @@
 +++
 title = "gsctl Command Reference: create nodepool"
 description = "The 'gsctl create nodepool' command allows to create a new pool of worker nodes in cluster."
-date = "2019-12-19"
+date = "2020-03-11"
 type = "page"
 weight = 44
 +++
@@ -17,7 +17,18 @@ Execute the command giving the cluster ID as a positional argument. Further opti
 Example:
 
 ```nohighlight
-gsctl create nodepool f01r4 \
+$ gsctl create nodepool f01r4 \
+    --name "General purpose m4.2xlarge 3AZ autoscaling" \
+    --aws-instance-type m4.2xlarge \
+    --num-availability-zones 3 \
+    --nodes-min 3 \
+    --nodes-max 20
+```
+
+You can also use the cluster's name for identifying the cluster:
+
+```nohighlight
+$ gsctl create nodepool "Cluster name" \
     --name "General purpose m4.2xlarge 3AZ autoscaling" \
     --aws-instance-type m4.2xlarge \
     --num-availability-zones 3 \

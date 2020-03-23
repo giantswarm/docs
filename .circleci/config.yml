@@ -18,7 +18,12 @@ jobs:
               --link docs:docs \
               linkchecker/linkchecker \
                 http://docs:8080 \
-                --check-extern -t 2 --ignore-url="^https://docs.giantswarm.io/.*" --ignore-url=/api/
+                --check-extern -t 2 \
+                --ignore-url="^https://docs.giantswarm.io/.*" \
+                --ignore-url=/api/ \
+                --ignore-url="^https://.+.example.com/.*" \
+                --ignore-url="^https://my-org.github.com/.*" \
+                --ignore-url=".*gigantic\.io.*"
 
   build:
     machine:

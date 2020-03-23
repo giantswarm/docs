@@ -12,12 +12,14 @@ tags = ["tutorial"]
 If your cluster is running in the cloud on Amazon Web Services (AWS) the most common way to store data is using EBS volumes with the [dynamic provisioner](https://docs.giantswarm.io/guides/using-persistent-volumes-on-aws/). Sometimes EBS is not the optimal solution.
 
 The advantages of using EFS over EBS are:
+
 - EFS data can be accessed from all Availability Zones in the same region while EBS is tied to a single Availability Zone.
 - EFS has the capability to mount the same Persistent Volume to multiple pods at the same time using the ReadWriteMany [access mode](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes).
 - EFS will not hit the [AWS Instance Volume Limit](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/volume_limits.html) as it is a software mount and will avoid the [Impaired EBS](https://docs.giantswarm.io/guides/aws-impaired-volumes/) issue.
 - EFS mount times are better than EBS.
 
 If you need to use EFS to provision volumes, be advised:
+
 - All Kubernetes Persistent Volumes will be stored in the same EFS instance. You can deploy multiple provisioners per cluster, each having its own storage-class and EFS instance.
 - [EFS throughtput](https://docs.aws.amazon.com/efs/latest/ug/performance.html) need to be set up accordingly in order to not have performance issues. We only recommend Provisioned Throughput, and if you need high performance you will need EBS.
 - EFS backups are done with [AWS Backup](https://aws.amazon.com/backup/) and it does not have the snapshot feature of EBS.
@@ -69,6 +71,7 @@ For additional configuration parameters see [documentation](https://github.com/k
 ## Installing EFS Provisioner
 
 To install the provisioner you will need to follow these steps:
+
 1. Access Giant Swarm web UI and select the cluster on which you want to install the provisioner.
 2. Open the "Helm Stable"
 3. Write "efs-provisioner" in the search bar.

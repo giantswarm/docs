@@ -1,10 +1,11 @@
 +++
 title = "Security"
 description = "Documentation of the Giant Swarm cluster security"
-date = "2017-10-12"
+date = "2020-03-12"
 type = "page"
 weight = 20
 categories = ["basics"]
+last-review-date = "2020-03-12"
 +++
 
 # Security
@@ -17,7 +18,7 @@ This reference gives you details on security-related measures in a Giant Swarm i
 
 #### Encryption of secrets {#k8s-secrets}
 
-Secret encryption is ensured by running the Kubernetes `api-server` with the flag `--experimental-encryption-provider-config`. This means that all secrets are stored in Etcd in encrypted form and decrypted when accessed.
+Secret encryption is ensured by running the Kubernetes `api-server` with the flag `--encryption-provider-config`. This means that all secrets are stored in Etcd in encrypted form and decrypted when accessed.
 
 The `AES-CDC` 32 Byte encryption key used is created by a custom management service (`kubernetesd`) during cluster creation. The operator component that creates the cluster retrieves this encryption key and provides it to the `EncryptionConfig` resource for `api-server`..
 

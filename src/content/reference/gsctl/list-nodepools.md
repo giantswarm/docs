@@ -1,7 +1,7 @@
 +++
 title = "gsctl Command Reference: list nodepools"
 description = "The 'gsctl list nodepools' command shows all node pools of a cluster."
-date = "2019-12-19"
+date = "2020-03-11"
 type = "page"
 weight = 44
 +++
@@ -15,7 +15,13 @@ The `gsctl list nodepools` command lists all [node pools](/basics/nodepools/) of
 Execute the command with the cluster ID as the only argument. Example:
 
 ```nohighlight
-gsctl list nodepools 3if4
+$ gsctl list nodepools 3if4
+```
+
+You can also use the cluster's name for identifying the cluster:
+
+```nohighlight
+$ gsctl list nodepools "Cluster name"
 ```
 
 ## Output
