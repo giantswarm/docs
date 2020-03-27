@@ -115,22 +115,22 @@ See the [`gsctl delete nodepool`](/reference/gsctl/delete-nodepool/) reference f
 
 ## Instance distribution
 
-Node pools can contain a mix of [On-Demand](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-on-demand-instances.html) and [Spot Instances](https://aws.amazon.com/ec2/spot/) that will allow you to save money. 
+Node pools can contain a mix of [on-demand](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-on-demand-instances.html) and [spot instances](https://aws.amazon.com/ec2/spot/) that will allow you to optimize your cost. 
 
-There are 2 paramenters that will allow you to configure which instances are going to be used:
+There are two paramenters that will allow you to configure which instances are going to be used:
 
-- *On-Demand base capacity*: Controls how much of the initial capacity is made up of On-Demand Instances. Keeping this set to 0 indicates that I prefer to launch On-Demand Instances as a percentage of the total group capacity that is running at any given time.
+- *On-Demand base capacity*: Controls how much of the initial capacity is made up of on-demand Instances.
 
-- *Spot Instance Percentage Above Base Capacity*: Controls the percentage of the add-on to the initial group that is made up of Spot Instances versus the percentage that is made up of On-Demand Instances.
+- *Spot Instance Percentage Above Base Capacity*: Controls the percentage of spot instances to be used for worker nodes beyond the number of on-demand base capacity.
 
 ### Configuration examples
 
-| Configuration                               | Total Instances  | On-Demand | Spot 
-|---------------------------------------------|------------------|-----------|------
-| On-Demand Base: 0<br>Spot Instance %: 0     | 20               | 20        | 0    
-| On-Demand Base: 10<br>Spot Instance %: 50   | 20               | 15        | 5    
-| On-Demand Base: 5<br>Spot Instance %: 100   | 20               | 5         | 15   
-| On-Demand Base: 0<br>Spot Instance %: 100   | 20               | 0         | 20   
+| Configuration                                        | Total Instances  | On-Demand | Spot 
+|------------------------------------------------------|------------------|-----------|------
+| On-demand base capacity: 0<br>Spot instance percentage: 0     | 20               | 20        | 0    
+| On-demand base capacity: 10<br>Spot instance percentage: 50   | 20               | 15        | 5    
+| On-demand base capacity: 5<br>Spot instance percentage: 100   | 20               | 5         | 15   
+| On-demand base capacity: 0<br>Spot instance percentage: 100   | 20               | 0         | 20   
 
 ## Alike instance types
 
