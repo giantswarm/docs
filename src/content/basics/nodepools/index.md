@@ -132,9 +132,15 @@ There are two paramenters that will allow you to configure which instances are g
 | On-demand base capacity: 5<br>Spot instance percentage: 100   | 20               | 5         | 15   
 | On-demand base capacity: 0<br>Spot instance percentage: 100   | 20               | 0         | 20   
 
-## Alike instance types
+## Using similar instance types
 
-A node pool has a primary instance type but enabling the similar instance type in your node pool. This list is maintained by Giant Swarm at the moment. Eg if you select m5.xlarge then the node pool can fall back on m4.xlarge too.
+Using multiple instance types in a node pool has some benefits for on-demand and spot instances:
+- Using multiple instance type allows better price optimization. Popular instance types tend to have more price adjustments. Picking older-generation instance types that are less popular tends to result in lower costs and fewer interruptions.
+- AWS has a limited number of instances per Availavility Zone and could be that your selected instance are temporarily out of stock, allowing the node pool to use multiple instance types would decrease the probability of this happening to your node pools.
+
+Instances that contain the same acmount of CPU and RAM are considered similar, for example if you select `m5.xlarge` then the node pool can fall back on `m4.xlarge` too if needed.
+
+You can check the instance that are considered to be similar in the [aws-operator](https://github.com/giantswarm/aws-operator/blob/master/service/controller/key/machine_deployment.go#L15).
 
 ## Node pools and the Giant Swarm API
 
