@@ -111,7 +111,7 @@ The App Catalog CR is an abstraction, it's purpose is to point to _something_
 that contains a list of Apps and the storage location of where to get those Apps.
 
 Currently the only supported format for App Catalogs are
-[Helm Chart Repositories](https://github.com/helm/helm/blob/master/docs/chart_repository.md),
+[Helm Chart Repositories](https://helm.sh/docs/topics/chart_repository/),
 however in the future we might support other ways of offering your Apps to the
 Giant Swarm App Catalog.
 
