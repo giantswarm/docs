@@ -115,7 +115,7 @@ See the [`gsctl delete nodepool`](/reference/gsctl/delete-nodepool/) reference f
 
 ## Instance distribution
 
-Node Pools can contain a mix of [On-Demand](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-on-demand-instances.html) and [Spot Instances](https://aws.amazon.com/ec2/spot/) that will allow you to save money. 
+Node pools can contain a mix of [On-Demand](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-on-demand-instances.html) and [Spot Instances](https://aws.amazon.com/ec2/spot/) that will allow you to save money. 
 
 There are 2 paramenters that will allow you to configure which instances are going to be used:
 
@@ -123,7 +123,18 @@ There are 2 paramenters that will allow you to configure which instances are goi
 
 - *Spot Instance Percentage Above Base Capacity*: Controls the percentage of the add-on to the initial group that is made up of Spot Instances versus the percentage that is made up of On-Demand Instances.
 
-// Add examples from https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-purchase-options.html
+### Configuration examples
+
+| Configuration                               | Total Instances  | On-Demand | Spot 
+|---------------------------------------------|------------------|-----------|------
+| On-Demand Base: 0<br>Spot Instance %: 0     | 20               | 20        | 0    
+| On-Demand Base: 10<br>Spot Instance %: 50   | 20               | 15        | 5    
+| On-Demand Base: 5<br>Spot Instance %: 100   | 20               | 5         | 15   
+| On-Demand Base: 0<br>Spot Instance %: 100   | 20               | 0         | 20   
+
+## Alike instance types
+
+A node pool has a primary instance type but enabling the similar instance type in your node pool. This list is maintained by Giant Swarm at the moment. Eg if you select m5.xlarge then the node pool can fall back on m4.xlarge too.
 
 ## Node pools and the Giant Swarm API
 
