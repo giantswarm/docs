@@ -113,6 +113,18 @@ Pay close attention to the workloads being rescheduled on other nodes once nodes
 
 See the [`gsctl delete nodepool`](/reference/gsctl/delete-nodepool/) reference for how to delete a node pool using the CLI.
 
+## Instance distribution
+
+Node Pools can contain a mix of [On-Demand](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-on-demand-instances.html) and [Spot Instances](https://aws.amazon.com/ec2/spot/) that will allow you to save money. 
+
+There are 2 paramenters that will allow you to configure which instances are going to be used:
+
+- *On-Demand base capacity*: Controls how much of the initial capacity is made up of On-Demand Instances. Keeping this set to 0 indicates that I prefer to launch On-Demand Instances as a percentage of the total group capacity that is running at any given time.
+
+- *Spot Instance Percentage Above Base Capacity*: Controls the percentage of the add-on to the initial group that is made up of Spot Instances versus the percentage that is made up of On-Demand Instances.
+
+// Add examples from https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-purchase-options.html
+
 ## Node pools and the Giant Swarm API
 
 Handling clusters with node pools requires an API schema different from the one used for clusters
