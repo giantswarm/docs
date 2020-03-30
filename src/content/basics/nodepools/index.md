@@ -119,7 +119,7 @@ Node pools can contain a mix of [on-demand](https://docs.aws.amazon.com/AWSEC2/l
 
 There are two parameters that will allow you to configure which instances are going to be used:
 
-- *On-Demand base capacity*: Controls how much of the initial capacity is made up of on-demand Instances.
+- *On-demand base capacity*: controls how much of the initial capacity is made up of on-demand instances.
 
 - *Spot Instance Percentage Above Base Capacity*: Controls the percentage of spot instances to be used for worker nodes beyond the number of on-demand base capacity.
 
