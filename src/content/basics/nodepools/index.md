@@ -136,11 +136,11 @@ There are two parameters that will allow you to configure which instances are go
 
 Using multiple instance types in a node pool has some benefits for on-demand and spot instances:
 - Using multiple instance type allows better price optimization. Popular instance types tend to have more price adjustments. Picking older-generation instance types that are less popular tends to result in lower costs and fewer interruptions.
-- AWS has a limited number of instances per Availavility Zone and could be that your selected instance are temporarily out of stock, allowing the node pool to use multiple instance types would decrease the probability of this happening to your node pools.
+- AWS has a limited number of instances per Availavility Zone and could be that your selected instance are temporarily out of stock, allowing the node pool to use multiple instance types would decrease the probability of not being able to scale up.
 
-Instances that contain the same acmount of CPU and RAM are considered similar, for example if you select `m5.xlarge` then the node pool can fall back on `m4.xlarge` too if needed.
+Instances that contain the same amount of CPU and RAM are considered similar, for example if you select `m5.xlarge` then the node pool can fall back on `m4.xlarge` too if needed.
 
-You can check the instance that are considered to be similar in the [aws-operator](https://github.com/giantswarm/aws-operator/blob/master/service/controller/key/machine_deployment.go#L15).
+You can check the instance types that are considered to be similar in the [aws-operator](https://github.com/giantswarm/aws-operator/blob/master/service/controller/key/machine_deployment.go#L15).
 
 ## Node pools and the Giant Swarm API
 
