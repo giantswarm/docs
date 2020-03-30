@@ -35,7 +35,7 @@ Example
 
 ```nohighlight
 ID:                                            op1dl
-Name:                                          First test node pool
+Name:                                          General purpose node pool
 Node instance type:                            m4.xlarge - 16 GB RAM, 4 CPUs each
 Alike instances types:                         true
 Availability zones:                            A

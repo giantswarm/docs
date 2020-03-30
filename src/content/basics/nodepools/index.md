@@ -117,9 +117,9 @@ See the [`gsctl delete nodepool`](/reference/gsctl/delete-nodepool/) reference f
 
 Node pools can contain a mix of [on-demand](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-on-demand-instances.html) and [spot instances](https://aws.amazon.com/ec2/spot/) that will allow you to optimize your cost. 
 
-There are two paramenters that will allow you to configure which instances are going to be used:
+There are two parameters that will allow you to configure which instances are going to be used:
 
-- *On-Demand base capacity*: Controls how much of the initial capacity is made up of on-demand Instances.
+- *On-demand base capacity*: controls how much of the initial capacity is made up of on-demand instances.
 
 - *Spot Instance Percentage Above Base Capacity*: Controls the percentage of spot instances to be used for worker nodes beyond the number of on-demand base capacity.
 
