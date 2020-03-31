@@ -41,7 +41,7 @@ Alike instances types:                         true
 Availability zones:                            A
 On-demand base capacity:                       0
 Spot percentage above base capacity:           40
-Node scaling:                                  Pinned to 2
+Node scaling:                                  Autoscaling between 2 and 10
 Nodes desired:                                 3
 Nodes in state Ready:                          3
 Spot instances:                                1
@@ -61,7 +61,7 @@ Description of output rows:
 - **Node scaling**:                        Current scaling setting of the node pool. When the lower and upper end of the scaling range are the same number, the pool size is "Pinned" at  certain number of worker nodes. Otherwise the node pool uses the Kubernetes autoscaler to set the amount of worker nodes within the configured range.
 - **Nodes desired**:                       The expected number of nodes. With auto-scaling active, this is the number determined by the autoscaler.
 - **Nodes in state Ready**:                The current number of worker nodes which are in state `Ready`.
-- **Spot instances**:                      The current number of spot instances in this node pool.
+- **Spot instances**:                      The current number of worker nodes using spot instances.
 - **CPUs**:                                The total number of CPU cores in this node pool.
 - **RAM**:                                 The total amount of memory in this node pool.
 
