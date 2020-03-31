@@ -147,6 +147,15 @@ You can access the server at http://localhost:8080/. The server can be stopped b
 
 To run the site locally together with search (sitesearch) and API docs (api-spec), you can use the docker-compose setup provided in the file `docker-compose.yaml`.
 
+### Content from external sources
+
+The build process of this repo (see the `build` target in the `Makefile`) ties in content from several sources:
+
+- Guides or recipes from external repositories
+- Custom Resource Definitions from [apiextensions](https://github.com/giantswarm/apiextensions)
+
+To trigger the build and fetching external content locally, run `make`.
+
 ## Contributing
 
 This repository is public to facilitate content quality and encourage contributions. We appreciate all contributions, including corrections and suggestions for improvement.

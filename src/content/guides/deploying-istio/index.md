@@ -1,7 +1,7 @@
 +++
 title = "How to deploy Istio in your cluster"
 description = "Tutorial on how to deploy Istio on a Giant Swarm Kubernetes cluster."
-date = "2018-09-27"
+date = "2020-03-10"
 type = "page"
 weight = 60
 tags = ["tutorial"]
@@ -149,7 +149,7 @@ Istio is a complex system composed by several pieces, which by default, the inst
 - Mutual TLS
 - Certmanager
 
-With exception of Mutual TLS and Certmanager, all of those are installed. As mentioned above, mutual TLS can impact ongoing traffic and read the [upstream docs](https://istio.io/docs/tasks/security/mutual-tls/) before enabling it. You can configure the components tweaking the values passed to Helm. Run `helm inspect install/kubernetes/helm/istio` to display the different options available.
+With exception of Mutual TLS and Certmanager, all of those are installed. As mentioned above, mutual TLS can impact ongoing traffic and read the [upstream docs](https://istio.io/docs/tasks/security/authentication/authn-policy/#auto-mutual-tls) before enabling it. You can configure the components tweaking the values passed to Helm. Run `helm inspect install/kubernetes/helm/istio` to display the different options available.
 
 Although Istio can run in almost every Kubernetes cluster regardless of the underlying infrastructure, there are some quirks to consider depending on where the service mesh is deployed.
 

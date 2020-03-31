@@ -1,18 +1,21 @@
-+++
-title = "Advanced Ingress Configuration"
-description = "Here we describe how you can customize and enable specific features for the NGINX-based Ingress"
-date = "2019-10-24"
-type = "page"
-weight = 50
-tags = ["tutorial"]
-+++
+---
+title: Advanced Ingress Configuration
+description: Here we describe how you can customize and enable specific features for the NGINX-based Ingress
+date: 2020-03-11
+type: page
+weight: 50
+tags:
+  - tutorial
+---
 
 # Advanced Ingress Configuration
 
-The [NGINX-based Ingress Controller](https://github.com/kubernetes/ingress-nginx) running inside your cluster has additional configuration options and features that can be customized. The functionality is split into two categories:
+The [NGINX-based Ingress Controller](https://github.com/kubernetes/ingress-nginx) has additional configuration options and features that can be customized. The functionality is split into two categories:
 
 - [Per-Service options](#yaml) in each Ingress' YAML definition either directly or via [Annotations](https://kubernetes.io/docs/user-guide/annotations/).
 - [Global options](#configmap) that influence all Ingresses of a cluster via a ConfigMap.
+
+**Note**: Some Giant Swarm clusters do not come with an ingress controller pre-installed. See our [guide on how to install an ingress from the app catalog](/guides/installing-optional-ingress-controller/).
 
 ## Per-Service options {#yaml}
 
@@ -143,9 +146,9 @@ spec:
           servicePort: <service-port>
 ```
 
-__Warning:__ When enabling `TLS` with the NGINX Ingress Controller, some more configuration settings become important. Notably [`HSTS`](https://www.owasp.org/index.php/HTTP_Strict_Transport_Security_Cheat_Sheet) will be enabled [by default](https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/configmap.md#configuration-options) with a duration of six month for your specified domain. Once a browser retrieved these `HSTS` instructions it will refuse to read any unencrypted resource from that domain and un-setting `HSTS` on your server will not have any affect on that browser for half a year. So you might want to disable this at first to avoid [unwanted surprises](https://github.com/kubernetes/ingress-nginx/issues/549#issuecomment-291894246). Please contact our support team to find out details on how to disable HSTS in your cluster.
+__Warning:__ When enabling `TLS` with the NGINX Ingress Controller, some more configuration settings become important. Notably [`HSTS`](https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html) will be enabled [by default](https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/configmap.md#configuration-options) with a duration of six month for your specified domain. Once a browser retrieved these `HSTS` instructions it will refuse to read any unencrypted resource from that domain and un-setting `HSTS` on your server will not have any affect on that browser for half a year. So you might want to disable this at first to avoid [unwanted surprises](https://github.com/kubernetes/ingress-nginx/issues/549#issuecomment-291894246). Please contact our support team to find out details on how to disable HSTS in your cluster.
 
-__Tip:__ If you want to use [Let’s Encrypt](https://letsencrypt.org/) certificates with your domains you can automate their creation and renewal with the help of [cert-manager](http://cert-manager.readthedocs.io/). After configuring cert-manager there is only an annotation with your Ingresses needed and your web page will be secured by a valid `TLS` certificate.
+__Tip:__ If you want to use [Let’s Encrypt](https://letsencrypt.org/) certificates with your domains you can automate their creation and renewal with the help of [cert-manager](https://cert-manager.io/docs/). After configuring cert-manager there is only an annotation with your Ingresses needed and your web page will be secured by a valid `TLS` certificate.
 
 ### Authentication
 
@@ -272,7 +275,7 @@ __Note:__ Adding an annotation to an Ingress rule overrides any global restricti
 
 A 413 error will be returned to the client when the size in a request exceeds the maximum allowed size of the client request body. This size can be configured by the parameter [`client_max_body_size`](http://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size) and is set to `1m` (1 Megabyte) by default.
 
-To configure this setting globally for all Ingress rules, the `proxy-body-size` value may be set in the [NGINX ConfigMap](#configmap). 
+To configure this setting globally for all Ingress rules, the `proxy-body-size` value may be set in the [NGINX ConfigMap](#configmap).
 
 To use custom values in a specific Ingress add following annotation:
 

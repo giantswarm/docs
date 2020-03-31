@@ -5,7 +5,7 @@ date = "2020-01-28"
 weight = 50
 type = "page"
 categories = ["basics"]
-last-review-date = "2020-01-28"
+last-review-date = "2020-03-17"
 +++
 
 # The Giant Swarm AWS Architecture

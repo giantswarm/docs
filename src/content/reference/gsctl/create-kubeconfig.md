@@ -1,7 +1,7 @@
 +++
 title = "gsctl Command Reference: create kubeconfig"
 description = "The 'gsctl create kubeconfig' command creates a key pair and adds cluster, user, and context settings to your kubectl configuration."
-date = "2019-11-06"
+date = "2020-03-11"
 type = "page"
 weight = 30
 +++
@@ -40,6 +40,12 @@ an example for a cluster ID):
 $ gsctl create kubeconfig --cluster w6wn8
 ```
 
+You can also use the cluster's name for identifying the cluster:
+
+```nohighlight
+$ gsctl create kubeconfg --cluster "Cluster name"
+```
+
 The output of the command gives details on what exactly happens.
 
 - A new key pair is created and downloaded to files. This consists of a client
@@ -69,7 +75,7 @@ an internal Kubernetes API endpoint.
 
 
 ```nohighlight
-$ gsctl create kubeconfig -c w6wn8 --self-contained kubeconfig.yaml \
+$ gsctl create kubeconfig --cluster w6wn8 --self-contained kubeconfig.yaml \
   --tenant-internal=true
 ```
 
@@ -83,14 +89,14 @@ to create admin access (valid for one day only) in a self-contained file:
 ```nohighlight
 $ gsctl create kubeconfig --cluster w6wn8 \
   --description "Admin certificate for Jane" \
-  --ttl 1 \
+  --ttl 1d \
   --self-contained kubeconfig-w6wn8-jane.yaml \
   --certificate-organizations system:masters
 ```
 
 ## Argument reference {#arguments}
 
-- `--cluster`, `-c`: Used to specify the cluster ID to create a key pair for.
+- `--cluster`, `-c`: Used to specify the cluster name or ID to create a key pair for.
 - `--ttl`: Allows to set the key pair expiry, in days. Defaults to 30 days.
 - `--description`, `-d`: Can be used to specify a description. If not given, a
   description like `Added by user email@example.com using 'gsctl create

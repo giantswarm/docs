@@ -1,7 +1,34 @@
-version: 2
+version: 2.1
+
+orbs:
+  architect: giantswarm/architect@0.4.3
+
+
 jobs:
+  linkcheck:
+    machine:
+      image: "ubuntu-1604:201903-01"
+
+    steps:
+      - run:
+          name: Link check
+          command: |
+            docker run -d --rm --name docs -p 8080:8080 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
+            docker run --rm -ti --name linkchecker \
+              --link docs:docs \
+              linkchecker/linkchecker \
+                http://docs:8080 \
+                --check-extern -t 2 \
+                --ignore-url="^https://docs.giantswarm.io/.*" \
+                --ignore-url=/api/ \
+                --ignore-url="^https://.+.example.com/.*" \
+                --ignore-url="^https://my-org.github.com/.*" \
+                --ignore-url=".*gigantic\.io.*"
+
   build:
-    machine: true
+    machine:
+      image: "ubuntu-1604:201903-01"
+
     steps:
       - checkout
 
@@ -31,16 +58,6 @@ jobs:
             CURL_OUTPUT=$(curl --no-buffer -s http://localhost:8080)
             echo $CURL_OUTPUT | grep --quiet "Giant Swarm"
             docker kill docs
-      
-      - run:
-          name: Linkcheck
-          command: |
-            docker run -d --rm --name docs -p 8080:8080 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
-            docker run --rm -ti --name linkchecker \
-              --link docs:docs \
-              linkchecker/linkchecker \
-                http://docs:8080 \
-                --check-extern -t 5 --ignore-url="^https://docs.giantswarm.io/.*" --ignore-url=/api/
 
       - deploy:
           name: Deploy (only if branch is "master")
@@ -49,3 +66,31 @@ jobs:
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               ./architect deploy
             fi
+
+workflows:
+  version: 2
+
+  build-and-linkcheck:
+    jobs:
+      - build
+      - linkcheck:
+          requires:
+            - build
+
+  package-and-push-chart-on-tag:
+    jobs:
+      - build:
+          filters:  # required since `architect/push-to-app-catalog` has tag filters AND requires `build`
+            tags:
+              only: /.*/
+      - architect/push-to-app-catalog:
+          name: "package and push docs"
+          app_catalog: "giantswarm-operations-platform-catalog"
+          app_catalog_test: "giantswarm-operations-platform-test-catalog"
+          chart: "docs-app"
+          # Trigger job on git tag.
+          filters:
+            tags:
+              only: /^v.*/
+          requires:
+            - build

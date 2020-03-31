@@ -9,3 +9,5 @@ sitesearch-volume-data
 /vendor/
 kubernetes/secrets.yaml
 /.vscode
+/volumes
+/.idea

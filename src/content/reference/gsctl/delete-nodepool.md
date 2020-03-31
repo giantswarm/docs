@@ -1,7 +1,7 @@
 +++
 title = "gsctl Command Reference: delete nodepool"
 description = "The 'gsctl delete nodepool' command deletes a node pool."
-date = "2019-12-19"
+date = "2020-03-11"
 type = "page"
 weight = 44
 +++
@@ -36,6 +36,12 @@ gsctl delete nodepool f01r4/op1dl
 ```
 
 Here, `f01r4` is the cluster ID and `op1dl` is the node pool ID.
+
+You can also use the cluster's name for identifying the cluster:
+
+```nohighlight
+$ gsctl delete nodepool "Cluster name"/op1dl
+```
 
 A confirmation will be required to finally delete the node pool. To suppress this
 confirmation, add the `--force` option.

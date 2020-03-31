@@ -1,7 +1,7 @@
 ---
 title: Cluster Definition Reference
 description: Complete documentation of the Giant Swarm cluster definition YAML format, compatible with API v4 and v5.
-date: 2019-12-19
+date: 2020-02-20
 layout: subsection
 weight: 100
 ---
@@ -62,7 +62,7 @@ scaling:
 availability_zones: 2
 workers:
   - aws:
-      instance_type: m3.large
+      instance_type: m4.xlarge
 ```
 
 **Note:** AWS clusters defined using a v4 definition (and consequently not using node pools) restrict you to all worker nodes being of the same instance type. With v5 and node pools, you gain the flexibility to create several node pools using different instance types.
@@ -74,7 +74,7 @@ workers:
 - `owner`: Name of the owner organization.
 - `name`: Friendly name of the cluster. If not specified, a name will be generated.
 - `release_version`: Allows to select a specific release version. The value must be the semantic version number (SemVer) of an active release. To get information on all available releases, use the [`gsctl list releases`](/reference/gsctl/list-releases/) command.
-- `availability_zones`: Number of availability zones to use for worker nodes (on AWS only). Both the default value and the maximum can be obtained via the [Info endpoint](https://docs.giantswarm.io/api/#operation/getInfo) of the Giant Swarm API.
+- `availability_zones`: Number of availability zones to use for worker nodes (on AWS and Azure only). Both the default value and the maximum can be obtained via the [Info endpoint](https://docs.giantswarm.io/api/#operation/getInfo) of the Giant Swarm API.
 - `workers`: Array of node definition objects describing each worker node. See below for possible keys. If not specified, the default number of worker nodes with default settings will be created.
 
 #### Node definition keys {#node-keys}
@@ -83,7 +83,7 @@ workers:
 - `cpu`: The sub-key `cores` allows to require a number of CPU cores as integer. Only usable on KVM (on-premises/bare metal) installations.
 - `storage`: The sub-key `size_gb` is used to specify the amount of local node storage in GB as an integer or decimal number. Only usable on KVM (on-premises/bare metal) installations.
 - `aws`: Settings specific to AWS based clusters
-- `aws.instance_type`: The AWS EC2 instance type to use for worker nodes, e. g. `m5.large`.
+- `aws.instance_type`: The AWS EC2 instance type to use for worker nodes, e. g. `m5.2xlarge`.
 - `azure`: Settings specific to Azure based clusters
 - `azure.vm_size`: The Azure VM size to use for worker nodes
 

@@ -1,7 +1,7 @@
 +++
 title = "gsctl Command Reference: list keypairs"
 description = "The 'gsctl list keypairs' lists key pairs for a cluster."
-date = "2018-04-25"
+date = "2020-03-11"
 type = "page"
 weight = 40
 +++
@@ -36,7 +36,13 @@ but not the key pairs themselves.
 The command requires as an argument the ID of the cluster to list key pairs for.
 
 ```nohighlight
-$ gsctl list keypairs -c <cluster-id>
+$ gsctl list keypairs --cluster f01r4
+```
+
+You can also use the cluster's name for identifying the cluster:
+
+```nohighlight
+$ gsctl list keypairs --cluster "Cluster name"
 ```
 
 The resulting output is a table containing the following columns:
