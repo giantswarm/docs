@@ -38,6 +38,7 @@ The result will be a table of all node pools of a specific cluster with the foll
 - `NODES MIN/MAX`:   The minimum and maximum number of worker nodes in this pool
 - `NODES DESIRED`:   Current desired number of nodes as determined by the autoscaler
 - `NODES READY`:     Number of nodes that are in the Ready state in kubernetes
+- `SPOT INSTANCES`:  Number of spot instances in the node pool
 - `CPUS`:            Sum of CPU cores in nodes that are in state Ready
 - `RAM (GB)`:        Sum of memory in GB of all nodes that are in state Ready
 

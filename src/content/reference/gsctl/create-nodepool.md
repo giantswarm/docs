@@ -46,7 +46,7 @@ $ gsctl create nodepool "Cluster name" \
     --nodes-min 3 \
     --nodes-max 20 \
     --aws-on-demand-base-capacity 3 \
-    --aws-spot-instance-percentage-above-base-capacity 50
+    --aws-spot-percentage 50
 ```
 
 ### Options
@@ -56,7 +56,7 @@ $ gsctl create nodepool "Cluster name" \
 - `--availability-zones`: Comma-separated list of availability zones to use, instead of setting a number. Use this option if you care about the exact zones to use.
 - `--aws-instance-type`: EC2 instance type to use for workers, e. g. `m5.2xlarge`.
 - `--aws-on-demand-base-capacity`: Number of on-demand instances that this node pool needs to have until spot instances are used. Defaults to `0`.
-- `--aws-spot-instance-percentage-above-base-capacity`: Percentage of spot instances used once the on-demand base capacity is fullfilled. A number of 40 would mean that 60% will be on-demand and 40% will be spot instances. Defaults to `0`.
+- `--aws-spot-percentage`: Percentage of spot instances used once the on-demand base capacity is fullfilled. A number of 40 would mean that 60% will be on-demand and 40% will be spot instances. Defaults to `0`.
 - `--aws-use-alike-instance-types`: Use similar instance type in your node pool. This list is maintained by Giant Swarm at the moment. Eg if you select m5.xlarge then the node pool can fall back on m4.xlarge too.
 - `--nodes-min`: Minimum number of worker nodes for the node pool. Defaults to `10`.
 - `--nodes-max`: Maximum number of worker nodes for the node pool. Defaults to `3`.
