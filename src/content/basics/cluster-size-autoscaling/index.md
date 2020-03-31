@@ -5,6 +5,7 @@ date = "2020-02-17"
 weight = 120
 type = "page"
 categories = ["basics"]
+last-review-date = "2020-03-31"
 +++
 
 # Cluster Size and Autoscaling
@@ -18,11 +19,11 @@ On Giant Swarm installations on Azure, on bare-metal, and on AWS prior to versio
 
 With the autoscaler taking control over the number of worker nodes, you only define the bounds or limits in which the cluster size can vary. This is possible both during cluster creation as well as after creation.
 
-To enforce an exact cluster size and **effectively disable the autoscaler**, simply set the minimum and maximum worker node count to the same value. This is also the recommended way in case you want to control the number of worker nodes through some external tooling via the Giant Swarm API.
+To enforce an exact cluster size and **effectively disable the autoscaler**, simply set the minimum and maximum worker node count to the same value. This is also the recommended way to control the number of worker nodes through external tooling via the Giant Swarm API.
 
 ## How the autoscaler works
 
-When relying on the autoscaler to determine the number of worker nodes in your cluster, you'll benefit from a deeper understanding of how the autoscaler decides when to increase or decrease the number of worker nodes. We recommend to take a look a the [Kubernetes autoscaler FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md) for details. Here we only highlight a few important aspects.
+When relying on the autoscaler to determine the number of worker nodes in your cluster, you may benefit from a deeper understanding of how the autoscaler decides when to increase or decrease the number of worker nodes. We recommend reading the [Kubernetes autoscaler FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md) for details. This document only highlights a few important aspects.
 
 Whenever pods cannot be scheduled due to insufficient resources in the cluster, the autoscaler adds a worker node.
 
@@ -42,7 +43,7 @@ Technically, while you may be able to create and run smaller clusters successful
 
 ## Minimal worker node instance type
 
-Relying on autoscaling may have an effect on the instance type you should use for your cluster, due to the way the autoscaler decides when to remove a node, as described above.
+Relying on autoscaling may have an effect on the instance type you should use for your cluster. This is the result of the way the autoscaler decides when to remove a node, as described above.
 
 With the services required to run a cluster, like DNS, kube-proxy, ingress and others, each node has a baseline utilization, even before you start your first workloads. Hence the minimal worker node instance types on AWS are those with the `.xlarge` suffix, providing 4 CPU cores. The default instance type for worker nodes is `{{% default_aws_instance_type %}}`.
 
