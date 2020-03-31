@@ -5,15 +5,16 @@ date = "2020-02-03"
 weight = 140
 type = "page"
 categories = ["basics"]
+last-review-date "2020-03-31"
 +++
 
 # Kubernetes Resources
 
-As your Giant Swarm cluster offers you a fully-managed Kubernetes, the fundamentals you need are basically concluded by the userside documentation of Kubernetes. We have compiled a list of the best resources to get you started fast.
+As your Giant Swarm cluster offers you fully-managed Kubernetes, the fundamentals you need are basically summarized by the userside documentation of Kubernetes. We have compiled a list of the best resources to get you started fast.
 
 ## Official kubernetes documentation
 
-The first and most important source to enquire should be the [official Kubernetes documentation](http://kubernetes.io/docs/). And as the administration side is mostly taken care of by Giant Swarm, we recommend focussing on the [task-specific tutorials](https://kubernetes.io/docs/tutorials/).
+The first and most important source to read is the [official Kubernetes documentation](http://kubernetes.io/docs/). Since the administrative side is mostly taken care of by Giant Swarm, we recommend focussing on the [task-specific tutorials](https://kubernetes.io/docs/tutorials/).
 
 ## Useful primitives
 
@@ -57,7 +58,7 @@ There are two primitives for keeping configuration out of your containers. The f
 
 ### Jobs
 
-Unlike the typical pod that you use for long-running processes, jobs let you manage pods that are supposed to terminate and not be restarted. A job creates one or more pods and ensures a specified number of them terminate with success.
+Unlike the typical pod that you use for long-running processes, jobs let you manage pods that are supposed to terminate and not be restarted. A job creates one or more pods and ensures their termination after a specified number of successful completions.
 
 [Jobs Reference](https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/)
 
@@ -69,7 +70,7 @@ A daemon set ensures that an instance of a specific pod is running on all (or a 
 
 ### Namespaces
 
-With namespaces you can split up your cluster into smaller separate environments. These environments are separate in terms of Kubernetes objects that they contain, but by default do not completely isolate from the rest of the cluster.
+With namespaces you can split up your cluster into smaller separate environments. These environments are separate in terms of Kubernetes objects that they contain. They do not completely isolate from the rest of the cluster by default.
 
 [Namespaces Reference](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)
 
