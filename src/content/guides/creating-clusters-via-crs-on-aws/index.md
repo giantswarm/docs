@@ -1,3 +1,11 @@
++++
+title = "Creating tenant clusters on AWS via Control Plane Kubernetes API"
+description = "This guide will walk you through the process of tenant cluster creation via Control Plane Kubernetes."
+date = "2020-04-01"
+type = "page"
+weight = 100
+tags = ["tutorial"]
++++
 # Creating tenant clusters directly via Control Plane Kubernetes API
 
 Starting from version 10.0.0, Giant Swarm introduced [node pools](https://docs.giantswarm.io/basics/nodepools/) feature for AWS platform.
@@ -110,7 +118,7 @@ spec:
       metadata: {}
 ```
 
-As with *Cluster* CR, *MachineDeployment* has the reference to infrastructure object. In this case, it is *AWSMachineDeployment*, which represents actual Cluster API implementation of node pool for AWS platform.
+As with *Cluster* CR, *MachineDeployment* has the reference to infrastructure object. In this case, it is *AWSMachineDeployment*, which represents the Giant Swarm Cluster API implementation of node pool for the AWS platform.
 
 *AWSMachineDeployment* CR object example:
 
