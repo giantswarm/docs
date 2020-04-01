@@ -38,17 +38,17 @@ Giant Swarm SREs and operations personnel have cluster admin access to the Contr
 
 A customer has *tenant admin* and *view* access via OpenID Connect (OIDC), configured towards the supported Identity Provider. 
 
-#### Customer's Control Plane Kubernetes SSO authentication
+#### Control Plane Kubernetes API Access for Customers
 
-Every Control Plane Kubernetes has [dex](https://github.com/dexidp/dex) installed as OIDC issuer. Dex is configured with the selected by customer Identity Provider. List of supported providers can be found in the [dex github repository](https://github.com/dexidp/dex/tree/master/connector).
-Alongside with *dex* installed [dex-k8s-authenticator](https://github.com/mintel/dex-k8s-authenticator) - OIDC client for JWT token retrieval automation.
+The kubernetes API on every Control has [dex](https://github.com/dexidp/dex) installed as an OIDC issuer. Dex is configured with an Identity Provider chosen by the customer. A list of supported providers can be found in the [dex github repository](https://github.com/dexidp/dex/tree/master/connector).
+[dex-k8s-authenticator](https://github.com/mintel/dex-k8s-authenticator) is also installed, it is a web app that helps in the JWT token retrieval and kubectl configuration```
 
-#### Customer's Control Plane Kubernetes SSO authorization
+##### Authorization
 
-With the *jwt* token, received from its Identity Provider, customer can two levels of access:
+With a valid *jwt* token, received from your chosen Identity Provider, customers can have two levels of access:
   - *view* 
-    - *get*/*list*/*watch* access to all resources in Control Plane Kubernetes, except `configmaps` and `secrets`. 
-    - *get*/*list*/*watch* access to all resources (including `configmaps` and `secrets`) in tenant cluster namespace.
+    - *get*/*list*/*watch* access to all resources in the Control Plane, except for `configmaps` and `secrets`. 
+    - *get*/*list*/*watch* access to all resources (including `configmaps` and `secrets`) in tenant cluster namespaces.
   - *admin*
     - full access, to the `cluster`, `node pool`, `appcatalogs` and `apps` resources of Control Plane Kubernetes.
     - includes *view* level access.
