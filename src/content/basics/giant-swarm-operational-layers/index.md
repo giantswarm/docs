@@ -32,8 +32,27 @@ Giant Swarm SREs on this layer have root level SSH access to everything that per
 
 The Giant Swarm Control Plane consists mainly of services running inside the Control Plane Kubernetes cluster.
 
-Just like the former layer, this layer is accessed through VPN and bastion hosts. Giant Swarm SREs and operations personell have cluster admin access to the Control Plane Kubernetes API through a tunnel, which is again facilitated by SSO with MFA.
+Control Plane Kubernetes API network access is allowed only thorugh Giant Swarm VPN and customer VPN.
 
+Giant Swarm SREs and operations personnel have cluster admin access to the Control Plane Kubernetes API through a tunnel, which is again facilitated by SSO with MFA.
+
+A customer has *tenant admin* and *view* access via OpenID Connect (OIDC), configured towards the supported Identity Provider. 
+
+#### Control Plane Kubernetes API Access for Customers
+
+The kubernetes API on every Control has [dex](https://github.com/dexidp/dex) installed as an OIDC issuer. Dex is configured with an Identity Provider chosen by the customer. A list of supported providers can be found in the [dex github repository](https://github.com/dexidp/dex/tree/master/connector).
+[dex-k8s-authenticator](https://github.com/mintel/dex-k8s-authenticator) is also installed, it is a web app that helps in the JWT token retrieval and kubectl configuration
+
+##### Authorization
+
+With a valid *jwt* token, received from your chosen Identity Provider, customers can have two levels of access:
+  - *view* 
+    - *get*/*list*/*watch* access to all resources in the Control Plane, except for `configmaps` and `secrets`. 
+    - *get*/*list*/*watch* access to all resources (including `configmaps` and `secrets`) in tenant cluster namespaces.
+  - *admin*
+    - full access, to the `cluster`, `node pool`, `appcatalogs` and `apps` resources of Control Plane Kubernetes.
+    - includes *view* level access.
+  
 ### Giant Swarm API {#giant-swarm-api}
 
 The [Giant Swarm API](https://docs.giantswarm.io/api/) is a customer facing API that is usually whitelisted for only a certain IP range within the customer's network. This layer covers the API itself, but also its client manifestations in form of the Happa Web UI and `gsctl` CLI.
