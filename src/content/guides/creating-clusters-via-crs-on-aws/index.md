@@ -13,8 +13,8 @@ All the tenant clusters, created with release version 10.x.x+, are managed as [c
 That means, when you're creating a new cluster via [v5](https://docs.giantswarm.io/api/#operation/addClusterV5) API, what *API* service does, it uses [Cluster API](https://github.com/kubernetes-sigs/cluster-api) to create tenant Kubernetes control-plane CR and optional node pools CRs.
 The Cluster API is a Kubernetes project to bring declarative, Kubernetes-style APIs to cluster creation, configuration, and management. It provides optional, additive functionality on top of core Kubernetes.
 
-On high-level Cluster API is used two manage two types of CR kinds:
-  -  Cluster
+On high-level Cluster API is used to manage two types of CR kinds:
+  - Cluster
   - MachineDeployment
 
 ## Cluster CRs
@@ -43,7 +43,7 @@ spec:
     namespace: default
 ```
 
-*Cluster* references *AWSCluster* CR, which represents actual Cluster API implementation of the cluster for AWS platform.
+*Cluster* references *AWSCluster* CR, which represents the Giant Swarm Cluster API implementation of the cluster for the AWS platform.
 
 *AWSCluster* CR object example:
 
