@@ -34,9 +34,9 @@ The Giant Swarm Control Plane consists mainly of services running inside the Con
 
 Control Plane Kubernetes API network access is allowed only thorugh Giant Swarm VPN and customer VPN.
 
-Giant Swarm SREs and operations personell have cluster admin access to the Control Plane Kubernetes API through a tunnel, which is again facilitated by SSO with MFA.
+Giant Swarm SREs and operations personnel have cluster admin access to the Control Plane Kubernetes API through a tunnel, which is again facilitated by SSO with MFA.
 
-A customer has *tenant admin* and *view* access via OpenID Connect(OIDC), configured towards supported Identity Provider. 
+A customer has *tenant admin* and *view* access via OpenID Connect (OIDC), configured towards the supported Identity Provider. 
 
 #### Customer's Control Plane Kubernetes SSO authentication
 
