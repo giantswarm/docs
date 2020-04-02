@@ -22,21 +22,32 @@ be visible if your Control Plane has at least one App Catalog installed on it.
 The screenshot below shows what the "App Catalogs" page looks like with two app catalogs
 installed:
 
-![app-catalogs](../app-catalogs.png)
+![A screenshot of our web interface, showing a list of available app catalogs](../app-catalogs.png)
 
 ### Installing an App
 
 Click on the catalog you'd like to install from. Only apps in the Managed catalog
 will be monitored and managed by us.
 
-![apps](../apps.png)
+![A screenshot of our web interface, showing a list of apps in an app catalog](../apps.png)
 
 Once you know what app you'd like to install, click on that app, and then on
 "Configure & Install"
 
-![app-detail-page](../app-detail-page.png)
+![A screenshot of our web interface, showing the detail page for a specific app, in this case grafana](../app-detail-page.png)
 
 That'll bring up a modal where you can choose what cluster you want to install
-the app on, as well as some further steps allowing you to configure the app.
+the app on, the version you want install, as well as some further steps allowing you to configure the app.
 
-This is also where you can provide your [values.yaml](https://helm.sh/docs/chart_template_guide/values_files/) with custom configuration for the app.
+![A screenshot of the configuration screen when install an app using our web interface](../app-configuration-modal.png#width-60)
+
+Configuration consists of two optional YAML files, one with plaintext values and the other with
+base64 encoded secrets.
+
+Configuration values exist at three levels: `catalog`, `app`, and `user`, but the
+web interface only allows you to upload configuration files for the final (`user`) configuration level.
+
+The values are merged with values from previous configuration levels and override them
+when they contain the same key.
+
+See our [app configuration reference page](/reference/app-configuration) for more details and examples on how this works.
