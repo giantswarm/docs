@@ -277,4 +277,4 @@ the scope of this resource page.
 But the simplest would probably be to `kubectl apply` a file directly to the cluster.
 
 _Note: Depending on your installation you might not have access to the Control Plane API yet.
-Please contact your SRE if you would like more information about that._
+Please contact your SE if you would like more information about that._
