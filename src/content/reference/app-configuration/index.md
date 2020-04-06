@@ -235,7 +235,7 @@ calls to create a ConfigMap or Secret and will wire it up correctly in the `App 
 for you.
 
 The previous hello-world-app examples could be configured by the following
-yaml files using the Web Interface. Notice that no ConfigMap or Secret metadata
+YAML files using the Web Interface. Notice that no ConfigMap or Secret metadata
 is required. You only have to supply the `values` part as a valid yaml file, with
 no encoding.
 
