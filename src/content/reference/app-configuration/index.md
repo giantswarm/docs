@@ -120,8 +120,7 @@ colors:
 ```
 
 As you can see, we made an override for the background color, changing it from
-`black` to `red`, and set the `secretColor` to the base64 encoded string for `blue`
-using values from the Secret.
+`black` to `red`, and set the `secretColor` to `blue` using values from the Secret.
 
 And you can use these values throughout your chart using the normal templating of
 Helm charts:
