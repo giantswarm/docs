@@ -34,9 +34,15 @@ Values are merged in the following order:
 
 If no value is provided then the default in the Chart's `values.yaml` is used.
 
-As a user of the App Catalog you will most likely not come into contact with
-the `catalog` and `cluster` level of configuration. Our interfaces make it
-easiest to set `user` level configuration values.
+As a user of the App Catalog you will not come into contact with
+the `catalog` and `cluster` level of configuration.
+
+You will only override values using the `user` level configurations values.
+
+Attempting to change configuration at any other level is risky because your changes
+might get lost in an update.
+
+That is why our web-interface is only able to set `user` level configuration values.
 
 ## Example of Values merging
 
