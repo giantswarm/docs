@@ -227,7 +227,7 @@ There are 3 ways to provide configuration values.
 ### Through the Web Interface
 
 Our web interface allows you to upload configuration and secret values for the
-`user` configuration level. You can do this by uploading a yaml file consisting
+`user` configuration level. You can do this by uploading a YAML file consisting
 of just the keys and values you would like to set.
 
 The web interface currently talks to the Giant Swarm API and will do the right
