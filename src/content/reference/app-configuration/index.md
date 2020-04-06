@@ -52,7 +52,7 @@ colors:
   secretColor: ""
 ```
 
-And you create an `App CR` that references a `user` level ConfigMap and a `user`
+If you create an `App CR` that references a `user` level ConfigMap and a `user`
 level Secret:
 
 ```
