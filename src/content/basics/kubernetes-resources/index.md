@@ -5,7 +5,7 @@ date = "2020-02-03"
 weight = 140
 type = "page"
 categories = ["basics"]
-last-review-date "2020-03-31"
+last-review-date = "2020-03-31"
 +++
 
 # Kubernetes Resources
