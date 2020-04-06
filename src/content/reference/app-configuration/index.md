@@ -14,7 +14,7 @@ are deployed.
 
 There are three levels of configuration:
 
-`catalog`, `app`, and `user`.
+`catalog`, `cluster`, and `user`.
 
 Each level of configuration has two types of values that you can provide:
 
@@ -27,15 +27,15 @@ Values are merged in the following order:
 
 1. `catalog-config-values`
 2. `catalog-secret-values`
-3. `app-config-values`
-4. `app-secret-values`
+3. `cluster-config-values`
+4. `cluster-secret-values`
 5. `user-config-values`
 6. `user-secret-values`
 
 If no value is provided then the default in the Chart's `values.yaml` is used.
 
 As a user of the App Catalog you will most likely not come into contact with
-the `catalog` and `app` level of configuration. Our interfaces make it
+the `catalog` and `cluster` level of configuration. Our interfaces make it
 easiest to set `user` level configuration values.
 
 ## Example of Values merging

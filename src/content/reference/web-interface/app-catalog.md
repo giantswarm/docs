@@ -47,7 +47,7 @@ for secret values.
 Configuration is split into values and secrets so that you are able to manage values that are shareable from values
 that requires more care in handling.
 
-Configuration values exist at three levels: `catalog`, `app`, and `user`, but the
+Configuration values exist at three levels: `catalog`, `cluster`, and `user`, but the
 web interface only allows you to upload files for the final (`user`) level.
 
 The values are merged with values from previous configuration levels and override them
