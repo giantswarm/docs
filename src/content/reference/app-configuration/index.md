@@ -236,7 +236,7 @@ for you.
 
 The previous hello-world-app examples could be configured by the following
 YAML files using the Web Interface. Notice that no ConfigMap or Secret metadata
-is required. You only have to supply the `values` part as a valid yaml file, with
+is required. You only have to supply the `values` part as a valid YAML file, with
 no encoding.
 
 #### hello-world user values example:
