@@ -14,7 +14,7 @@ The _Giant Swarm App Platform_ refers to a set of features and concepts that all
 you to browse, install and manage the configurations of apps (such as Prometheus)
 from a single place; the Control Plane.
 
-Using this platform we will provide a collection of curated _Apps_. These _Apps_ are grouped into _App Catalogs_, which is browesable through our web interface.
+Using this platform we will provide a collection of curated _Apps_. These _Apps_ are grouped into _App Catalogs_, which are browsable through our web interface.
 
 In short: the _Giant Swarm App Platform_ refers to the whole feature, and an _App Catalog_ is a collection of _Apps_.
 
