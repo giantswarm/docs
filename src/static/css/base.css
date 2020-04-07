@@ -803,6 +803,10 @@ a.item .hellip {
   margin-top: 20px;
   margin-bottom: 20px; }
 
+img[src$='#width-60'] {
+  max-width: 60%
+}
+
 ul.links {
   list-style-type: none;
   padding-left: 0; }
