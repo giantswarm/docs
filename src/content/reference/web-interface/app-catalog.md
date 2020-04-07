@@ -1,7 +1,7 @@
 +++
 title = "The Giant Swarm App Catalog in The Web Interface"
 description = "What the Giant Swarm App Catalog looks like on our Web Interface and how to use it."
-date = "2019-07-05"
+date = "2019-04-07"
 layout = "subsection"
 weight = 10
 +++
@@ -11,7 +11,7 @@ weight = 10
 This page will give you an overview of how to do some common tasks related to the
 Giant Swarm App Catalog using our Web Interface.
 
-Go here for an [overview of the Giant Swarm App Catalog](/basics/app-catalog/) instead.
+Go here for an [overview of the Giant Swarm App Platform](/basics/app-catalog/) instead.
 
 ### Viewing all App Catalogs
 
