@@ -17,17 +17,22 @@ Following this movement strategy, Giant Swarm API is going to be deprecated in t
 
 ## How does cluster creation works now?
 
-All the tenant clusters, created with release version 10.x.x+, are managed as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) in Control Plane Kubernetes.
-That means, when you're creating a new cluster via [v5](https://docs.giantswarm.io/api/#operation/addClusterV5) API, what *API* service does, it uses [Cluster API](https://github.com/kubernetes-sigs/cluster-api) to create tenant Kubernetes control-plane CR and optional node pools CRs.
+All the tenant clusters, created with release version 10.x.x+, are managed as [Cluster API](https://github.com/kubernetes-sigs/cluster-api) [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) in Control Plane Kubernetes.
 The Cluster API is a Kubernetes project to bring declarative, Kubernetes-style APIs to cluster creation, configuration, and management. It provides optional, additive functionality on top of core Kubernetes.
 
+That means, when you're creating a new cluster via [v5](https://docs.giantswarm.io/api/#operation/addClusterV5) API, *Giant Swarm API* service creates 
+ *Cluster* and *AWSCluster* CRs in Control-Plane Kubernetes.
+
 On high-level Cluster API is used to manage two types of CR kinds:
-  - Cluster
-  - MachineDeployment
+  - `Cluster` - represents generic Kubernetes control plane.
+  - `MachineDeployment` -  represents generic node pool.
+
+Mentioned CRs reference provider specific implementations, which in Giant Swarm case for AWS platform are:
+  - `AWSCluster` - represents tenant cluster Kubernetes control plane.
+  - `AWSMachineDeployment` -  represents tenant cluster node pool.
+
 
 ## Cluster CRs
-
-*Cluster* CR represents tenant cluster Kubernetes control plane.
 
 *Cluster* CR object example :
 
@@ -50,8 +55,6 @@ spec:
     name: nzr5z
     namespace: default
 ```
-
-*Cluster* references *AWSCluster* CR, which represents the Giant Swarm Cluster API implementation of the cluster for the AWS platform.
 
 *AWSCluster* CR object example:
 
@@ -83,12 +86,7 @@ spec:
       instanceType: m4.xlarge
 ```
 
-So, when the release 10.x.x+ in AWS installation is used, *Giant Swarm API* service creates *Cluster* and *AWSCluster* CRs in Control-Plane Kubernetes.
-
-
 ## MachineDeployment CRs
-
-The same approach applies to node pools management, where high level *MachineDeployment* CR represents Cluster API generic node pool implementation. 
 
 *MachineDeployment* CR object example:
 
@@ -117,8 +115,6 @@ spec:
         namespace: default
       metadata: {}
 ```
-
-As with *Cluster* CR, *MachineDeployment* has the reference to infrastructure object. In this case, it is *AWSMachineDeployment*, which represents the Giant Swarm Cluster API implementation of node pool for the AWS platform.
 
 *AWSMachineDeployment* CR object example:
 
