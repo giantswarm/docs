@@ -150,7 +150,7 @@ spec:
 
 All the CRs, mentioned above, have the strict spec and important requirements to be considered valid. 
 There is no cluster/node pool CRs validation available in Control Plane Kubernetes of Giant Swarm for now. 
-Therefore, if you create CR with wrong field values, that can result in a broken tenant cluster, which then causes unwanted alerts in Giant Swarm monitoring system.
+Therefore, if you create CR with wrong field values, that can result in a broken tenant cluster.
 That's why we've developed a simple [kubectl gs plugin](https://github.com/giantswarm/kubectl-gs), which helps to template valid CRs.
 
 Plugin supports rendering CRs:
