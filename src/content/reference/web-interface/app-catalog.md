@@ -61,3 +61,14 @@ and sets the `userConfig` values in the App CR to reference the configmap or sec
 that was just created.
 
 See our [app configuration reference page](/reference/app-configuration) for more details and examples.
+
+### Editing the version of an App
+
+Once an app is installed, it is also possible to change the version.
+
+Go to cluster that the app is on, click on the "Apps" tab, and then click on the
+app you would like to edit.
+
+Once there you should see a dropdown that you can use to pick a different version.
+
+![A screenshot showing where you can edit the app's version](../app-version-picker.png#width-60)
