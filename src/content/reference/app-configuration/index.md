@@ -187,7 +187,7 @@ When setting user level configuration using the Giant Swarm API or our [web inte
 the fields in the App CR are edited automatically for you while creating
 the `ConfigMap` or `Secret`.
 
-## Encoding values in ConfigMap and Secret {#encoding}
+## Format of values in ConfigMap and Secret {#values-format}
 
 The `ConfigMap` and `Secret` must contain a `.data.values` key, under which all configuration
 values are kept, as a String of valid YAML. For Secrets, the string must be
