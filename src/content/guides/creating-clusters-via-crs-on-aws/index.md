@@ -6,16 +6,16 @@ type = "page"
 weight = 100
 tags = ["tutorial"]
 +++
-# Creating tenant clusters directly via Control Plane Kubernetes API
+# Creating tenant clusters via the Control Plane Kubernetes API
 
-Starting from version 10.0.0, Giant Swarm introduced [node pools](https://docs.giantswarm.io/basics/nodepools/) feature for AWS platform.
+Starting from version 10.0.0, Giant Swarm introduced a feature to create multiple [node pools](https://docs.giantswarm.io/basics/nodepools/) on AWS.
 Alongside node pools support, a new API version for cluster management was released. 
 Therefore, [v5](https://docs.giantswarm.io/api/#operation/addClusterV5) API is used now within happa and [gsctl](https://docs.giantswarm.io/reference/gsctl/create-cluster/).
 
-As for now, Giant Swarm is moving towards replacing its own API with the direct cluster management via [Control Plane Kubernetes API](https://docs.giantswarm.io/basics/aws-architecture/#giant-swarm-control-plane).
-Following this movement strategy, Giant Swarm API is going to be deprecated in the near feature. You can find related roadmap issue [here](https://github.com/giantswarm/roadmap/issues/90).
+As for now, Giant Swarm is replacing its own REST API for cluster management with the [Control Plane](https://docs.giantswarm.io/basics/aws-architecture/#giant-swarm-control-plane) Kubernetes API based on the upstream [Cluster API](https://cluster-api.sigs.k8s.io/).
+Following this strategy, the Giant Swarm API is going to be deprecated in the near feature. You can find the related roadmap issue [here](https://github.com/giantswarm/roadmap/issues/90).
 
-## How does cluster creation works now?
+## How does cluster creation work now?
 
 All the tenant clusters, created with release version 10.x.x+, are managed as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) in Control Plane Kubernetes.
 That means, when you're creating a new cluster via [v5](https://docs.giantswarm.io/api/#operation/addClusterV5) API, what *API* service does, it uses [Cluster API](https://github.com/kubernetes-sigs/cluster-api) to create tenant Kubernetes control-plane CR and optional node pools CRs.
@@ -168,8 +168,8 @@ Plugin supports rendering CRs:
   - `App`
 
 The installation procedure is described in [README](https://github.com/giantswarm/kubectl-gs#how-to-install-plugin).
-There is also [document](https://github.com/giantswarm/kubectl-gs/blob/master/docs/template-cluster-cr.md), describing the templating process in details.
+There is also a [document](https://github.com/giantswarm/kubectl-gs/blob/master/docs/template-cluster-cr.md), describing the templating process in detail.
 
-As a result of running CRs rendering([sample](https://github.com/giantswarm/kubectl-gs/blob/master/docs/template-cluster-cr.md#example)), user gets *yaml* file with the valid Cluster/Node pool definitions. 
-Now tenant cluster control-plane and node pool can be created just by applying those CRs to the Giant Swarm Kubernetes Control Plane, .e.g. `kubectl create -f <CRs definition file>.yaml`. 
+As a result of rendering the CRs ([sample](https://github.com/giantswarm/kubectl-gs/blob/master/docs/template-cluster-cr.md#example)), a user will get a *yaml* file with a valid Cluster/Node pools definition. 
+The tenant cluster can be created by applying the cluster manifest file to the Giant Swarm Kubernetes Control Plane, .e.g. `kubectl create -f <cluster manifest file>.yaml`. 
 Of course, that requires the user to be authorized towards Kubernetes Control Plane API. 
