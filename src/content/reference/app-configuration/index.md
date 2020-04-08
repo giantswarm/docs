@@ -1,7 +1,7 @@
 ---
 title: App Configuration
 description: Documentation on the various levels of App configuration and how they get merged into a final Values object.
-date: 2020-04-07
+date: 2020-04-08
 type: subsection
 ---
 
@@ -44,7 +44,7 @@ If no value is provided then the default in the chart's values file (`values.yam
 **Note:** Attempting to change configuration at any other level is risky because your changes
 might be overwritten by an operator. That is why our web interface is only able to set user level configuration values.
 
-## Example of Values merging
+## Example of values merging
 
 Given a chart with a `values.yaml` that contains the following content:
 
@@ -222,7 +222,7 @@ data:
 
 ## Setting configuration values
 
-There are three ways to provide configuration values.
+There are three ways to provide configuration values:
 
 - via the web interface
 - via the Giant Swarm (Rest) API
