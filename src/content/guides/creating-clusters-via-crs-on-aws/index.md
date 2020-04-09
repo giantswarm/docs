@@ -24,19 +24,19 @@ That means, when you're creating a new cluster via [v5](https://docs.giantswarm.
  *Cluster* and *AWSCluster* CRs in Control-Plane Kubernetes.
 
 At a high-level, the Cluster API is used to manage two types of CRs:
-  - `Cluster` - represents a Kubernetes control plane.
-  - `MachineDeployment` -  represents a node pool.
+  - [Cluster](/reference/cp-k8s-api/clusters.cluster.x-k8s.io/) - represents a Kubernetes control plane.
+  - [MachineDeployment](/reference/cp-k8s-api/machinedeployments.cluster.x-k8s.io/) -  represents a node pool.
 
 The CRs above then reference provider specific implementations. In our case, for clusters on AWS, they are:
-  - `AWSCluster` - represents a tenant cluster's Kubernetes control plane.
-  - `AWSMachineDeployment` -  represents tenant cluster node pools.
+  - [AWSCluster](/reference/cp-k8s-api/awsclusters.infrastructure.giantswarm.io/) - represents a tenant cluster's Kubernetes control plane.
+  - [AWSMachineDeployment](/reference/cp-k8s-api/awsmachinedeployments.infrastructure.giantswarm.io/) -  represents tenant cluster node pools.
 
 
 ## Cluster CRs
 
-*Cluster* CR object example :
+*Cluster* CR object example:
 
-```
+```yaml
 apiVersion: cluster.x-k8s.io/v1alpha2
 kind: Cluster
 metadata:
@@ -58,7 +58,7 @@ spec:
 
 *AWSCluster* CR object example:
 
-```
+```yaml
 apiVersion: infrastructure.giantswarm.io/v1alpha2
 kind: AWSMachineDeployment
 metadata:
@@ -90,7 +90,7 @@ spec:
 
 *MachineDeployment* CR object example:
 
-```
+```yaml
 apiVersion: cluster.x-k8s.io/v1alpha2
 kind: MachineDeployment
 metadata:
@@ -118,7 +118,7 @@ spec:
 
 *AWSMachineDeployment* CR object example:
 
-```
+```yaml
 apiVersion: infrastructure.giantswarm.io/v1alpha2
 kind: AWSMachineDeployment
 metadata:
