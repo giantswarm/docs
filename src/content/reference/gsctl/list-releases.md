@@ -1,10 +1,10 @@
-+++
-title = "gsctl Command Reference: list releases"
-description = "The 'gsctl list releases' command shows all releases available in an installation."
-date = "2018-07-31"
-type = "page"
-weight = 45
-+++
+---
+title: "gsctl Command Reference: list releases"
+description: "The 'gsctl list releases' command shows all releases available in an installation."
+date: "2018-07-31"
+type: page
+weight: 45
+---
 
 # `gsctl list releases`
 

@@ -1,11 +1,11 @@
-+++
-title = "Prepare an AWS account to run Giant Swarm clusters"
-description = "This guide will walk you through all necessary steps to set up an Amazon AWS account with appropriate IAM roles for operating Giant Swarm clusters."
-date = "2019-10-25"
-type = "page"
-weight = 100
-tags = ["tutorial"]
-+++
+---
+title: "Prepare an AWS account to run Giant Swarm clusters"
+description: "This guide will walk you through all necessary steps to set up an Amazon AWS account with appropriate IAM roles for operating Giant Swarm clusters."
+date: "2019-10-25"
+type: page
+weight: 100
+tags: ["tutorial"]
+---
 
 # Prepare an AWS account to run Giant Swarm clusters
 

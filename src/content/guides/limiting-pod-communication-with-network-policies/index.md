@@ -1,11 +1,11 @@
-+++
-title = "Limiting Pod Communication with Network Policies"
-description = "Guide on how to limit Pod communication using Network Policies"
-date = "2019-11-07"
-type = "page"
-weight = 60
-tags = ["tutorial"]
-+++
+---
+title: "Limiting Pod Communication with Network Policies"
+description: "Guide on how to limit Pod communication using Network Policies"
+date: "2019-11-07"
+type: "page"
+weight: 60
+tags: ["tutorial"]
+---
 
 # Limiting Pod Communication with Network Policies
 

@@ -1,10 +1,10 @@
-+++
-title = "gsctl Command Reference: list endpoints"
-description = "The 'gsctl list endpoints' command shows all endpoints you have logged in to so far and tells you which one is currently selected."
-date = "2018-01-26"
-type = "page"
-weight = 41
-+++
+---
+title: "gsctl Command Reference: list endpoints"
+description: "The 'gsctl list endpoints' command shows all endpoints you have logged in to so far and tells you which one is currently selected."
+date: "2018-01-26"
+type: page
+weight: 41
+---
 
 # `gsctl list endpoints`
 

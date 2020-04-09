@@ -1,10 +1,10 @@
-+++
-title = "gsctl Reference"
-description = "Documentation on gsctl, the Giant Swarm command line utility to create and delete clusters, create key pairs and more."
-date = "2020-03-05"
-layout = "subsection"
-weight = 10
-+++
+---
+title: "gsctl Reference"
+description: "Documentation on gsctl, the Giant Swarm command line utility to create and delete clusters, create key pairs and more."
+date: "2020-03-05"
+layout: "subsection"
+weight: 10
+---
 
 # `gsctl` Reference
 
