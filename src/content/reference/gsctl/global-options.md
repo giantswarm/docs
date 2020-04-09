@@ -1,9 +1,9 @@
 ---
-title = "Global command line options in gsctl"
-description = "Documentation for gsctl options that can be passed on the command line for almost all commands. Plus some tips on how you can use them to switch environments."
-date = "2018-01-26"
-type = "page"
-weight = 20
+title: "Global command line options in gsctl"
+description: "Documentation for gsctl options that can be passed on the command line for almost all commands. Plus some tips on how you can use them to switch environments."
+date: "2018-01-26"
+type: page
+weight: 20
 ---
 
 # Global Command Line Options

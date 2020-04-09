@@ -1,9 +1,9 @@
 ---
-title = "gsctl Command Reference: select endpoint"
-description = "The 'gsctl select endpoint' command selects an endpoint for usage in subsequent command executions."
-date = "2018-01-26"
-type = "page"
-weight = 41
+title: "gsctl Command Reference: select endpoint"
+description: "The 'gsctl select endpoint' command selects an endpoint for usage in subsequent command executions."
+date: "2018-01-26"
+type: page
+weight: 41
 ---
 
 # `gsctl select endpoint`

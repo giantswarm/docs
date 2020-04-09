@@ -1,9 +1,9 @@
 ---
-title = "gsctl Reference: Configuration file"
-description = "Documentation of the configuration file format of gsctl"
-date = "2018-01-26"
-type = "page"
-weight = 1000
+title: "gsctl Reference: Configuration file"
+description: "Documentation of the configuration file format of gsctl"
+date: "2018-01-26"
+type: page
+weight: 1000
 ---
 
 # Configuration file

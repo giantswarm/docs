@@ -1,9 +1,9 @@
 ---
-title = "gsctl Command Reference: create cluster"
-description = "Detailed documentation on how to create a new cluster using the 'create cluster' command in gsctl."
-date = "2019-12-19"
-type = "page"
-weight = 20
+title: "gsctl Command Reference: create cluster"
+description: "Detailed documentation on how to create a new cluster using the 'create cluster' command in gsctl."
+date: "2019-12-19"
+type: page
+weight: 20
 ---
 
 # `gsctl create cluster`

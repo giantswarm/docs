@@ -1,9 +1,9 @@
 ---
-title = "gsctl Command Reference: list keypairs"
-description = "The 'gsctl list keypairs' lists key pairs for a cluster."
-date = "2020-03-11"
-type = "page"
-weight = 40
+title: "gsctl Command Reference: list keypairs"
+description: "The 'gsctl list keypairs' lists key pairs for a cluster."
+date: "2020-03-11"
+type: page
+weight: 40
 ---
 
 # `gsctl list keypairs`

@@ -1,9 +1,9 @@
 ---
-title = "gsctl Command Reference: create keypair"
-description = "The 'gsctl create keypair' command creates a key pair and stores the related files in your certificate folder."
-date = "2020-03-11"
-type = "page"
-weight = 32
+title: "gsctl Command Reference: create keypair"
+description: "The 'gsctl create keypair' command creates a key pair and stores the related files in your certificate folder."
+date: "2020-03-11"
+type: page
+weight: 32
 ---
 
 # `gsctl create keypair`
