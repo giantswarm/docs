@@ -8,20 +8,18 @@ tags = ["tutorial"]
 +++
 # Creating tenant clusters via the Control Plane Kubernetes API
 
-Starting from version 10.0.0, Giant Swarm introduced a feature to create multiple [node pools](https://docs.giantswarm.io/basics/nodepools/) on AWS.
-Alongside node pools support, a new API version for cluster management was released. 
-Therefore, [v5](https://docs.giantswarm.io/api/#operation/addClusterV5) API is used now within happa and [gsctl](https://docs.giantswarm.io/reference/gsctl/create-cluster/).
-
-As for now, Giant Swarm is replacing its own REST API for cluster management with the [Control Plane](https://docs.giantswarm.io/basics/aws-architecture/#giant-swarm-control-plane) Kubernetes API based on the upstream [Cluster API](https://cluster-api.sigs.k8s.io/).
+This guide will show you how to create tenant clusters by creating and applying CRs directly to the control plane.
+Previously you might have used our REST API to create clusters, however, Giant Swarm is replacing its own REST API for cluster management with the [Control Plane](https://docs.giantswarm.io/basics/aws-architecture/#giant-swarm-control-plane) Kubernetes API based on the upstream [Cluster API](https://cluster-api.sigs.k8s.io/).
 Following this strategy, the Giant Swarm API is going to be deprecated in the near feature. You can find the related roadmap issue [here](https://github.com/giantswarm/roadmap/issues/90).
+
 
 ## How does cluster creation work now?
 
+Starting from version 10.0.0, Giant Swarm introduced a feature to create multiple [node pools](https://docs.giantswarm.io/basics/nodepools/) on AWS.
+Alongside node pools support, a new API version for cluster management was released. 
+
 All the tenant clusters, created with release version 10.x.x+, are managed as [Cluster API](https://github.com/kubernetes-sigs/cluster-api) [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) in the Control Plane.
 The Cluster API is a Kubernetes project to bring declarative, Kubernetes-style APIs to cluster creation, configuration, and management. It provides optional, additive functionality on top of core Kubernetes.
-
-That means, when you're creating a new cluster via [v5](https://docs.giantswarm.io/api/#operation/addClusterV5) API, *Giant Swarm API* service creates 
- *Cluster* and *AWSCluster* CRs in Control-Plane Kubernetes.
 
 At a high-level, the Cluster API is used to manage two types of CRs:
   - [Cluster](/reference/cp-k8s-api/clusters.cluster.x-k8s.io/) - represents a Kubernetes control plane.
