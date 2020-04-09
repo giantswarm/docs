@@ -1,11 +1,11 @@
-+++
+---
 title = "Recommendations and Best Practices"
 description = "Recommendations and best practices around cluster and node sizing as well as multi-tenant setups"
 date = "2019-11-06"
 type = "page"
 weight = 50
 tags = ["tutorial"]
-+++
+---
 
 # Recommendations and Best Practices
 

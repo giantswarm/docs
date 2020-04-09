@@ -1,12 +1,12 @@
-+++
-title = "Kubernetes Resources"
-description = "Pointers to the best resources about Kubernetes to get you up to speed with Kubernetes fast"
-date = "2020-02-03"
-weight = 140
-type = "page"
-categories = ["basics"]
-last-review-date = "2020-03-31"
-+++
+---
+title: Kubernetes Resources
+description: Pointers to the best resources about Kubernetes to get you up to speed with Kubernetes fast
+date: 2020-02-03
+weight: 140
+type: page
+categories: ["basics"]
+last-review-date: 2020-03-31
+---
 
 # Kubernetes Resources
 

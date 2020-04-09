@@ -1,12 +1,12 @@
-+++
-title = "Clusters Over Multiple Availability Zones"
-description = "By default, cluster get started within a single availability zone. But you can define how many availability zones a cluster should have to get higher a availability for your clusters."
-date = "2020-03-18"
-weight = 100
-type = "page"
-categories = ["basics"]
-last-review-date = "2020-03-31"
-+++
+---
+title: Clusters Over Multiple Availability Zones
+description: By default, cluster get started within a single availability zone. But you can define how many availability zones a cluster should have to get higher a availability for your clusters.
+date: 2020-04-09
+weight: 100
+type: page
+categories: ["basics"]
+last-review-date: 2020-04-09
+---
 
 # Clusters Over Multiple Availability Zones
 
@@ -46,9 +46,9 @@ This enables use cases such as:
 
 You can create clusters in several ways:
 
-- In `gsctl` using the [`create cluster --availability-zones`](/reference/gsctl/create-cluster/) command
-- Via the [Giant Swarm API](/api/#operation/addCluster)
-- In happa (multiple availability zones are not yet supported)
+- In the [web interface](/reference/web-interface/).
+- In `gsctl` using the [`create cluster`](/reference/gsctl/create-cluster/) command with the appropriate details set in a [cluster definition](/reference/cluster-definition/).
+- Via the [Giant Swarm API](/api/#operation/addCluster).
 
 When inspecting details of such a cluster, or using the [`gsctl show cluster`](/reference/gsctl/show-cluster/) command, we display the list of availability zones used by the cluster.
 

@@ -1,10 +1,10 @@
-+++
+---
 title = "gsctl Command Reference: list nodepools"
 description = "The 'gsctl list nodepools' command shows all node pools of a cluster."
 date = "2020-03-11"
 type = "page"
 weight = 44
-+++
+---
 
 # `gsctl list nodepools`
 

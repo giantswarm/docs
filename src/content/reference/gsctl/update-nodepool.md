@@ -1,10 +1,10 @@
-+++
-title = "gsctl Command Reference: update nodepool"
-description = "The 'gsctl update nodepool' command allows renaming and scaling of a node pool."
-date = "2020-03-11"
-type = "page"
-weight = 44
-+++
+---
+title: "gsctl Command Reference: update nodepool"
+description: The 'gsctl update nodepool' command allows renaming and scaling of a node pool.
+date: 2020-03-11
+type: page
+weight: 44
+---
 
 # `gsctl update nodepool`
 

@@ -1,12 +1,12 @@
-+++
-title = "The Giant Swarm On Premises Architecture"
-description = "Architecture overview showing how Giant Swarm is set up within a customer data center on bare metal or virtual machines."
-date = "2020-01-28"
-weight = 70
-type = "page"
-categories = ["basics"]
-last-review-date = "2020-01-28"
-+++
+---
+title: The Giant Swarm On Premises Architecture
+description: Architecture overview showing how Giant Swarm is set up within a customer data center on bare metal or virtual machines.
+date: 2020-01-28
+weight: 70
+type: page
+categories: ["basics"]
+last-review-date: 2020-01-28
+---
 
 # The Giant Swarm On Premises Architecture
 

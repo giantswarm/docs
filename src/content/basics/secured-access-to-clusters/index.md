@@ -1,12 +1,12 @@
-+++
-title = "Secure access to clusters - Users and Giant Swarm support"
-description = "This documentation explains security measures for users and Giant Swarm support to access your infrastructure"
-date = "2020-01-21"
-weight = 40
-type = "page"
-categories = ["basics"]
-last-review-date = "2020-01-21"
-+++
+---
+title: Secure access to clusters - Users and Giant Swarm support
+description: This documentation explains security measures for users and Giant Swarm support to access your infrastructure
+date: 2020-01-21
+weight: 40
+type: page
+categories: ["basics"]
+last-review-date: 2020-01-21
+---
 
 # Secure access to clusters for users and Giant Swarm support
 

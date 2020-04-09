@@ -1,12 +1,12 @@
-+++
-title = "The Giant Swarm AWS Architecture"
-description = "Architecture Overview showing how Giant Swarm is set up on Amazon Web Services"
-date = "2020-01-28"
-weight = 50
-type = "page"
-categories = ["basics"]
-last-review-date = "2020-03-17"
-+++
+---
+title: The Giant Swarm AWS Architecture
+description: Architecture Overview showing how Giant Swarm is set up on Amazon Web Services
+date: 2020-01-28
+weight: 50
+type: page
+categories: ["basics"]
+last-review-date: 2020-03-17
+---
 
 # The Giant Swarm AWS Architecture
 

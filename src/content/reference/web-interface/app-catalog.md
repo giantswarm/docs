@@ -1,10 +1,10 @@
-+++
-title = "The Giant Swarm App Catalog in The Web Interface"
-description = "What the Giant Swarm App Catalog looks like on our Web Interface and how to use it."
-date = "2019-07-05"
-layout = "subsection"
-weight = 10
-+++
+---
+title: The Giant Swarm App Catalog in The Web Interface
+description: What the Giant Swarm App Catalog looks like on our Web Interface and how to use it.
+date: 2019-07-05
+layout: subsection
+weight: 10
+---
 
 # The Giant Swarm App Catalog in the Web Interface
 

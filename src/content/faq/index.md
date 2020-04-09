@@ -1,9 +1,9 @@
-+++
-title = "FAQ"
-description = "Frequently Asked Questions"
-date = "2019-10-24"
-type = "page"
-+++
+---
+title: FAQ
+description: Frequently Asked Questions
+date: 2019-10-24
+type: page
+---
 
 # FAQ
 
