@@ -77,7 +77,9 @@ brew install gsctl</code></pre>
 
   <pre><code class="language-nohighlight">yay -S gsctl-bin</code></pre>
 
-  <p>For other distributions, download the latest release <a href="https://github.com/giantswarm/gsctl/releases">from GitHub</a>, unpack the binary and move it to a location covered by your `PATH` environment variable.</p>
+  <h3>Other Distributions</h3>
+
+  <p>Download the latest release <a href="https://github.com/giantswarm/gsctl/releases">from GitHub</a>, unpack the binary and move it to a location covered by your `PATH` environment variable.</p>
 
 </div>
 <div class="tab-pane" id="install-win">
