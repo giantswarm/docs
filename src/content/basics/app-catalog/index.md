@@ -30,7 +30,7 @@ the desired state of the App Platform.
 For example, this "App" Custom Resource indicates that you want Kong installed
 on a specific tenant cluster.
 
-```
+```yaml
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
