@@ -79,12 +79,12 @@ brew install gsctl</code></pre>
 
   <h3>Other Distributions</h3>
 
-  <p>Download the latest release <a href="https://github.com/giantswarm/gsctl/releases">from GitHub</a>, unpack the binary and move it to a location covered by your `PATH` environment variable.</p>
+  <p>Download the latest release <a href="https://github.com/giantswarm/gsctl/releases" target="_blank" rel="noreferrer noopener">from GitHub</a>, unpack the binary and move it to a location covered by your `PATH` environment variable.</p>
 
 </div>
 <div class="tab-pane" id="install-win">
 
-  <p><a href="http://scoop.sh/" target="_blank">scoop</a> enables convenient installs and updates for Windows PowerShell users. Before you can install <code>gsctl</code> for the first time, execute this:</p>
+  <p><a href="http://scoop.sh/" target="_blank" rel="noreferrer noopener">scoop</a> enables convenient installs and updates for Windows PowerShell users. Before you can install <code>gsctl</code> for the first time, execute this:</p>
 
   <pre><code class="language-nohighlight">scoop bucket add giantswarm https://github.com/giantswarm/scoop-bucket.git</code></pre>
 
@@ -96,7 +96,7 @@ brew install gsctl</code></pre>
 
   <pre><code class="language-nohighlight">scoop update gsctl</code></pre>
 
-  <p>To install without scoop, download the latest release <a href="https://github.com/giantswarm/gsctl/releases">from GitHub</a>, unpack the binary and move it to a location covered by your `PATH` environment variable.</p>
+  <p>To install without scoop, download the latest release <a href="https://github.com/giantswarm/gsctl/releases" target="_blank" rel="noreferrer noopener">from GitHub</a>, unpack the binary and move it to a location covered by your `PATH` environment variable.</p>
 </div>
 </div>
 
