@@ -1,12 +1,12 @@
-+++
-title = "The Giant Swarm App Catalog"
-description = "Overview of the Giant Swarm App Catalog, how it works and what to expect."
-date = "2020-04-07"
-weight = 90
-type = "page"
-categories = ["basics"]
-last-review-date = "2020-04-07"
-+++
+---
+title: The Giant Swarm App Catalog
+description: Overview of the Giant Swarm App Catalog, how it works and what to expect.
+date: 2020-04-07
+weight: 90
+type: page
+categories: ["basics"]
+last-review-date: "2020-04-07"
+---
 
 ![app-catalog-header](app-catalog-header.png)
 

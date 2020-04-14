@@ -1,11 +1,11 @@
-+++
-title = "Accessing Pods and Services from the outside"
-description = "You can access Pods and services from outside your cluster either through the API proxy or through an Ingress."
-date = "2019-10-24"
-type = "page"
-weight = 50
-tags = ["tutorial"]
-+++
+---
+title: Accessing Pods and Services from the outside
+description: You can access Pods and services from outside your cluster either through the API proxy or through an Ingress.
+date: 2019-10-24
+type: page
+weight: 50
+tags: ["tutorial"]
+---
 
 # Accessing Pods and Services from the Outside
 

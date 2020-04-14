@@ -1,12 +1,12 @@
-+++
-title = "Secure access to clusters - Users and Giant Swarm support"
-description = "This documentation explains security measures for users and Giant Swarm support to access your infrastructure"
-date = "2020-01-21"
-weight = 40
-type = "page"
-categories = ["basics"]
-last-review-date = "2020-01-21"
-+++
+---
+title: Secure access to clusters - Users and Giant Swarm support
+description: This documentation explains security measures for users and Giant Swarm support to access your infrastructure
+date: 2020-01-21
+weight: 40
+type: page
+categories: ["basics"]
+last-review-date: 2020-01-21
+---
 
 # Secure access to clusters for users and Giant Swarm support
 
@@ -16,7 +16,7 @@ In this document we will explain the nature of this access and the security meas
 
 ## Intro
 
-Access to Giant Swarm clusters can be split into two parts. 
+Access to Giant Swarm clusters can be split into two parts.
 
 1. User Access - designated for Giant Swarm customers to interact with the offered services.
 
@@ -26,7 +26,7 @@ If you would like to know more about the different parts of the Giant Swarm infr
 
 ## User access
 
-User access is limited to the offered APIs for interaction with your clusters. 
+User access is limited to the offered APIs for interaction with your clusters.
 
 ### Giant Swarm API
 
@@ -47,7 +47,7 @@ VPN secured access points:
 
 * **SSH** - SSH access is based on GitHub SSO. Only users in the GitHub Giant Swarm Organization are allowed to authenticate. The following diagram describes our SSH authentication in more detail:
 
-![](./ssh_access_process.png)  
+![](./ssh_access_process.png)
 
 Customer Tenant Clusters are accessible only via SSH access to the Giant Swarm Control Plane. This Control Plane contains Giant Swarm's cluster management and operations platform, and controls our access to the underlying Tenant Clusters for diagnostic and "Day 2" operational reasons.
 
@@ -55,7 +55,7 @@ Customer Tenant Clusters are accessible only via SSH access to the Giant Swarm C
 
 ### General VPN connection schema
 
-The following schema illustrates what the VPN connection looks like in practice. 
+The following schema illustrates what the VPN connection looks like in practice.
 
 ![](./site-to-site-vpn.png)
 
@@ -72,8 +72,8 @@ Access to etcd or the Kubernetes API is secured based on certificates signed by 
 
 ## Further reading
 
-- [GitHub Vault authentication](https://www.vaultproject.io/docs/auth/github.html) 
-- [Vault SSH certificate](https://www.vaultproject.io/docs/secrets/ssh/signed-ssh-certificates.html)
+- [GitHub Vault authentication](https://www.vaultproject.io/docs/auth/github/)
+- [Vault SSH certificate](https://www.vaultproject.io/docs/secrets/ssh/signed-ssh-certificates/)
 - [Giant Swarm Operational Layers](/basics/giant-swarm-operational-layers/)
 - [Giant Swarm API](/basics/giant-swarm-operational-layers/#giant-swarm-api)
 - [Giant Swarm User Space](/basics/giant-swarm-operational-layers/#userspace): Tenant Cluster Kubernetes API

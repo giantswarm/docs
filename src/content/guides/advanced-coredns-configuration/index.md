@@ -1,11 +1,11 @@
-+++
-title = "Advanced CoreDNS Configuration"
-description = "Here we describe how you can customize the configuration of the managed CoreDNS service in your clusters"
-date = "2018-10-30"
-type = "page"
-weight = 50
-tags = ["tutorial"]
-+++
+---
+title: Advanced CoreDNS Configuration
+description: Here we describe how you can customize the configuration of the managed CoreDNS service in your clusters
+date: 2018-10-30
+type: page
+weight: 50
+tags: ["tutorial"]
+---
 
 # Advanced CoreDNS Configuration
 
