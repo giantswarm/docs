@@ -15,7 +15,7 @@ Following this strategy, the Giant Swarm API is going to be deprecated in the ne
 
 ## How does cluster creation work now?
 
-Starting from version 10.0.0, Giant Swarm introduced a feature to create multiple [node pools](https://docs.giantswarm.io/basics/nodepools/) on AWS.
+Starting from version 10.0.0 on AWS, Giant Swarm introduced a feature to create multiple [node pools](https://docs.giantswarm.io/basics/nodepools/) on AWS.
 Alongside node pools support, a new API version for cluster management was released. 
 
 All the tenant clusters, created with release version 10.x.x+, are managed as [Cluster API](https://github.com/kubernetes-sigs/cluster-api) [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) in the Control Plane.
@@ -144,9 +144,9 @@ spec:
       instanceType: m4.xlarge
 ```
 
-## How to create the cluster omitting Giant Swarm API?
+## How to create a cluster using Cluster API?
 
-All the CRs, mentioned above, have the strict spec and important requirements to be considered valid. 
+All the CRs, mentioned above, have strict spec and important requirements to be considered valid. 
 There is no cluster or node pool CR validation available in the Control Plane for now. 
 Therefore, if you create a CR with wrong field values, that can result in a broken tenant cluster.
 That's why we've developed a simple [kubectl gs plugin](https://github.com/giantswarm/kubectl-gs), which helps to template valid CRs.
