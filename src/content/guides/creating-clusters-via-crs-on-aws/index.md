@@ -1,11 +1,11 @@
-+++
-title = "Creating tenant clusters on AWS via Control Plane Kubernetes API"
-description = "This guide will walk you through the process of tenant cluster creation via Control Plane Kubernetes."
-date = "2020-04-01"
-type = "page"
-weight = 100
-tags = ["tutorial"]
-+++
+---
+title: Creating tenant clusters on AWS via Control Plane Kubernetes API
+description: This guide will walk you through the process of tenant cluster creation via Control Plane Kubernetes.
+date: 2020-04-01
+type: page
+weight: 100
+tags: ["tutorial"]
+---
 # Creating tenant clusters via the Control Plane Kubernetes API
 
 This guide will show you how to create tenant clusters by creating and applying CRs directly to the control plane.
