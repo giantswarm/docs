@@ -153,7 +153,7 @@ That's why we've developed a simple [kubectl gs plugin](https://github.com/giant
 
 Plugin supports rendering CRs:
 
-- Tenat control-plane (AWS only):
+- Tenant control-plane (AWS only):
 
     - `Cluster` (API version `cluster.x-k8s.io/v1alpha2`)
 
