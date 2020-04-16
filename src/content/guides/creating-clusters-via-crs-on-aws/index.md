@@ -152,14 +152,14 @@ Therefore, if you create a CR with wrong field values, that can result in a brok
 That's why we've developed a simple [kubectl gs plugin](https://github.com/giantswarm/kubectl-gs), which helps to template valid CRs.
 
 Plugin supports rendering CRs:
-  - Tenat control-plane (AWS only):
+- Tenat control-plane (AWS only):
     - `Cluster` (API version `cluster.x-k8s.io/v1alpha2`)
     - `AWSCluster` (API version `infrastructure.giantswarm.io/v1alpha2`)
-  - Nodepool (AWS only):
+- Nodepool (AWS only):
     - `MachineDeployment` (API version `cluster.x-k8s.io/v1alpha2`)
     - `AWSMachineDeployment` (API version `infrastructure.giantswarm.io/v1alpha2`)
-  - `AppCatalog`
-  - `App`
+- `AppCatalog`
+- `App`
 
 The installation procedure is described in [README](https://github.com/giantswarm/kubectl-gs#how-to-install-plugin).
 There is also a [document](https://github.com/giantswarm/kubectl-gs/blob/master/docs/template-cluster-cr.md), describing the templating process in detail.
