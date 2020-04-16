@@ -29,7 +29,7 @@ $ gsctl create keypair --cluster "Cluster name"
 The output will look similar to the one below:
 
 ```nohighlight
-New key pair created with ID 114e2de892b2dcfdf96c92f3c69f39e564ecec1e and expiry of 1 day
+New key pair created with ID 114e2de89... and expiry of 1 day
 CA certificate stored in: /Users/myself/.config/gsctl/certs/pmb9q-ca.crt
 Client certificate stored in: /Users/myself/.config/gsctl/certs/pmb9q-114e2de892-client.crt
 Client private key stored in: /Users/myself/.config/gsctl/certs/pmb9q-114e2de892-client.key
