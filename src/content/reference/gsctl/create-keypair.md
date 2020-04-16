@@ -1,7 +1,7 @@
 ---
 title: "gsctl Command Reference: create keypair"
 description: "The 'gsctl create keypair' command creates a key pair and stores the related files in your certificate folder."
-date: "2020-03-11"
+date: "2020-04-16"
 type: page
 weight: 32
 ---
@@ -29,13 +29,13 @@ $ gsctl create keypair --cluster "Cluster name"
 The output will look similar to the one below:
 
 ```nohighlight
-New key pair created with ID 114e2de892b2dcfdf96c92f3c69f39e564ecec1e and expiry of 30 days
+New key pair created with ID 114e2de892b2dcfdf96c92f3c69f39e564ecec1e and expiry of 1 day
 CA certificate stored in: /Users/myself/.config/gsctl/certs/pmb9q-ca.crt
 Client certificate stored in: /Users/myself/.config/gsctl/certs/pmb9q-114e2de892-client.crt
 Client private key stored in: /Users/myself/.config/gsctl/certs/pmb9q-114e2de892-client.key
 ```
 
-This informs you that a new key pair has been created. It will expire after a default time of 30 days.
+This informs you that a new key pair has been created. It will expire after a default time of 1 day.
 
 Three files will be placed in the `certs` folder, which is a subfolder of your gsctl configuration folder:
 
@@ -52,7 +52,7 @@ Three files will be placed in the `certs` folder, which is a subfolder of your g
   Note that only the characters `a-z`, `0-9` and `-` can be used.
 - `--certificate-organizations`: A comma separated list of organizations for the issued certificate's 'O' fields.
 - `--description`, `-d`: Can be used to specify a description. If not given, a description like `Added by user email@example.com using 'gsctl create kubeconfig'` is set.
-- `--ttl`: Allows to set the key pair expiry, in days. Defaults to 30 days.
+- `--ttl`: Allows to set the key pair expiry, in days. Defaults to 1 day.
 
 ## Key pair expiry {#expiry}
 
