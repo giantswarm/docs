@@ -1,7 +1,7 @@
 ---
 title: How to deploy Istio in your cluster
 description: Tutorial on how to deploy Istio on a Giant Swarm Kubernetes cluster.
-date: 2020-03-10
+date: 2020-04-17
 type: page
 weight: 60
 tags: ["tutorial"]
@@ -9,9 +9,9 @@ tags: ["tutorial"]
 
 # How to deploy Istio in your Cluster
 
-After microservices have conquered the world, another dimension of concerns has arisen. The technology has allowed us to build distributed architectures thanks to tools like Kubernetes. Although the orchestrator helps us with the deployment and maintenance of our services, there are a bunch of other concerns we have to deal with. For example, most people use an insecure protocol to communicate their services. For that and many other reasons, the service meshes have appeared with the goal of helping to manage these distributed scenarios.
+After microservices have conquered the world, another dimension of concerns has arisen. The technology has allowed us to build distributed architectures thanks to tools like Kubernetes. Although the orchestrator helps us with the deployment and maintenance of our services, there are a bunch of other concerns we have to deal with. For example, most people use an insecure protocol to communicate their services. For that and many other reasons, service meshes have appeared with the goal of helping to manage these distributed scenarios.
 
-Istio is one of the main players and it stands out because of the project maturity and the ease of adoption. Described below is how it can be deployed in your cluster, emphasizing how to avoid common mistakes.
+Istio is one of the main players in the arena of service meshes. It stands out because of the project maturity and the ease of adoption. Below we describe how it can be deployed in your cluster, emphasizing how to avoid common mistakes.
 
 ## Preparation
 
@@ -103,15 +103,15 @@ subjects:
   namespace: <NAMESPACE>
 ```
 
-Remember replace the `NAMESPACE` placeholder with the value desired. As an example, when you set `default` it implies all application running in the `default` namespace would have bound the `istio` pod security policy.
+Remember to replace the `NAMESPACE` placeholder with the desired value. As an example, when you set `default` it implies all applications running in the `default` namespace would have bound the `istio` pod security policy.
 
 ## Recommendations 
 
-The deployment is made up of a different number of components. Some of them, as pilot, have a large impact in terms of memory and CPU, so it is recommended to have around 8GB of memory and 4 CPUs free in your cluster. Obviously, all components have `requested resources` defined, so if you don't have enough capacity you will see pods not starting.
+The deployment is made up of a different number of components. Some of them, like `Pilot`, have a large impact in terms of memory and CPU. As a result, we recommended to have around 8GB of memory and 4 CPUs free in your cluster. Obviously, all components have `requested resources` defined, so if you don't have enough capacity you will see pods not starting.
 
-A followed convention, not only within the Istio community but Kubernetes too, is to define in all your app deployments the label `app` and `version` as metadata. Both labels help the tracing and metrics systems to have richer meta information. 
+A followed convention, not only within the Istio community but in Kubernetes too, is to define in all your app deployments the label `app` and `version` as metadata. Both labels help the tracing and metrics systems to have richer meta information. 
 
-Another good practice is to name the service ports. Istio uses the name to discover the protocol used by the end service container. Thus you have to prefix the port name with the protocol desired. The different supported protocols (`http`, `http2`, `grpc`, `mongo`, or `redis`) leverage Istio to route traffic more intelligently. Otherwise, it will use plain TCP routing. Read more [in the official docs](https://istio.io/docs/setup/kubernetes/spec-requirements/).
+Another good practice is to name the service ports. Istio uses the name to discover the protocol used by the end service container. Thus, you have to prefix the port name with the protocol desired. The different supported protocols (`http`, `http2`, `grpc`, `mongo`, or `redis`) leverage Istio to route traffic more intelligently. Otherwise, it will use plain TCP routing. Read more [in the official docs](https://istio.io/docs/setup/kubernetes/spec-requirements/).
 
 ```yaml
 apiVersion: v1
@@ -124,18 +124,18 @@ spec:
     port: 80
 ```
 
-Finally you may be interested in how you can integrate Istio within your existing workloads. By default mutual TLS is not configured, mainly for avoiding the downtime issues that it can provoke. But recently, a new option where you can set the TLS policy as `permissive` and let the proxy accept both encrypted and unencrypted traffic has been integrated. So, to be on the safe side, you can start with this policy and slowly move your services to a `strict` mode TLS if it is required.
+Finally, you may be interested in how you can integrate Istio within your existing workloads. By default mutual TLS is not configured, mainly to avoid the downtime issues that it can cause. But recently, a new option where you can set the TLS policy as `permissive` and let the proxy accept both encrypted and unencrypted traffic has been integrated. So, to be on the safe side, you can start with this policy and slowly move your services to a `strict` mode TLS if it is required.
 
 ## Installation
 
-Regardless of the provider, the first step to install Istio is to create all cluster role definitions. The service mesh uses different Kubernetes resources to manage the variety of entities in which it relies on. For example, it defines the `gateway` resource for control on how the mesh is exposed to Internet.
+Regardless of provider, the first step to install Istio is to create all cluster role definitions. The service mesh uses different Kubernetes resources to manage the variety of entities in which it relies on. For example, it defines the `gateway` resource for control on how the mesh is exposed to Internet.
 
 ```nohighlight
 # Post all resources to the Kubernetes API
 $ kubectl apply -f install/kubernetes/helm/istio/templates/crds.yaml
 ```
 
-Istio is a complex system composed by several pieces, which by default, the installation will release all components to the cluster. However, the mesh can be created with different flavors. For instance, you can only deploy `Pilot`, which will give you the ability to enforce service policies. Let's enumerate the different main components:
+Istio is a complex system composed by several pieces. All these pieces are released to the cluster, by deafault, upon installation. However, the mesh can be created with different flavors. For instance, you can only deploy `Pilot`, which will give you the ability to enforce service policies. Let's outline the main components:
 
 - Ingress / Egress gateways 
 - Sidecar injector webhook
@@ -149,7 +149,7 @@ Istio is a complex system composed by several pieces, which by default, the inst
 - Mutual TLS
 - Certmanager
 
-With exception of Mutual TLS and Certmanager, all of those are installed. As mentioned above, mutual TLS can impact ongoing traffic and read the [upstream docs](https://istio.io/docs/tasks/security/authentication/authn-policy/#auto-mutual-tls) before enabling it. You can configure the components tweaking the values passed to Helm. Run `helm inspect install/kubernetes/helm/istio` to display the different options available.
+With exception of Mutual TLS and Certmanager, all of these are installed. As mentioned above, Mutual TLS can impact ongoing traffic. We suggest reading the [upstream docs](https://istio.io/docs/tasks/security/authentication/authn-policy/#auto-mutual-tls) before enabling it. You can configure the components by tweaking the values passed to Helm. Run `helm inspect install/kubernetes/helm/istio` to display the different options available.
 
 Although Istio can run in almost every Kubernetes cluster regardless of the underlying infrastructure, there are some quirks to consider depending on where the service mesh is deployed.
 
@@ -163,7 +163,7 @@ $ helm install install/kubernetes/helm/istio --name istio --namespace istio-syst
 
 ### On premises (KVM)
 
-The main difference with clouds is the ingress gateway service must be type `NodePort`. Since there is no automatic mechainism to provide an endpoint, the service is exposed in the host underlaying VM. Further down, we explain how to redirect the traffic from the control plane to a second tenant cluster ingress controller.
+The main difference from the clouds is the ingress gateway service must be type `NodePort`. Since there is no automatic mechainism to provide an endpoint, the service is exposed in the host of the underlying VM. Below, we will explain how to redirect the traffic from the control plane to a second tenant cluster ingress controller.
 
 ```nohighlight
 $ helm install install/kubernetes/helm/istio --name istio --namespace istio-system \
@@ -189,7 +189,7 @@ $ kubectl get pod <API_SERVER> -n kube-system -o yaml | grep admission
 --enable-admission-plugins=NamespaceLifecycle,LimitRanger,ServiceAccount,DefaultStorageClass,DefaultTolerationSeconds,MutatingAdmissionWebhook,ValidatingAdmissionWebhook,ResourceQuota
 ```
 
-__Node:__ Contact with Giant Swarm support team in case it is disabled 
+__Note:__ Contact with Giant Swarm support team in case it is disabled 
 
 First of all, we need to label the namespace to make the sidecar injection effective.
 
@@ -197,7 +197,7 @@ First of all, we need to label the namespace to make the sidecar injection effec
 $ kubectl label namespace default istio-injection=enabled
 ```
 
-__Warning:__ Avoid to label the namespaces `kube-system` or `giantswarm` otherwise the entire cluster could end shattered
+__Warning:__ Avoid labeling the namespaces `kube-system` or `giantswarm` otherwise the entire cluster could end up shattered
 
 And now we can install the chart containing the example app.
 
@@ -221,7 +221,7 @@ For AWS and Azure, transform the Helm templates into Kubernetes resources relyin
 $ helm template /tmp/liveness/giantswarm_liveness-chart_XXX/liveness-chart /tmp/liveness.yaml
 ```
 
-For on premise installation pass the ingress port which your ingress controller will listen. Remember it will be provided by the Giant Swarm support team. If you replace the main ingress controller it will be `30010`.
+For an on premises installation, pass the ingress port which your ingress controller will listen. Remember it will be provided by the Giant Swarm support team. If you replace the main ingress controller it will be `30010`.
 
 ```nohighlight
 $ helm template /tmp/liveness/giantswarm_liveness-chart_XXX/liveness-chart /tmp/liveness.yaml --set ingress.port=30010
@@ -259,7 +259,7 @@ Get the ingress controller IP assigned by Azure.
 $ kubectl get svc istio-ingressgateway -n istio-system -o jsonpath="{.status.loadBalancer.ingress[0].ip}"
 ```
 
-And it will return the URL which the deployed app should reply to. Same as AWS, the wildcard `*` set as the hostname in the virtual service will send all traffic from `/healthz` path to the liveness service.
+And it will return the URL which the deployed app should reply to.As we have set wildcard `*` in the hostname of the virtual service all `/healthz` traffic will be forwarded to the service..
 
 Running this curl command should give you a `200` response.
 
@@ -267,9 +267,9 @@ Running this curl command should give you a `200` response.
 $ curl http://<IP>/healthz -I
 ```
 
-### On Premise (KVM) Verification
+### On Premises (KVM) Verification
 
-As you may already know, in our [`on premise installations`](https://docs.giantswarm.io/basics/onprem-architecture/) the tenant pods live inside the control plane pods. This means Giant Swarm creates a forward between the external ingress service to the ingress placed inside the tenant cluster. By default, the tenant clusters has an nginx ingress controller allocated out-of-the-box. But, in case you want to use Istio ingress controller you need to ask our team to allocate a new redirection from the parent endpoint to the Istio controller. With the latter, you will have the two ingress controllers exposed to Internet.
+As you may already know, in our [`on premises installations`](https://docs.giantswarm.io/basics/onprem-architecture/) the tenant pods live inside the control plane pods. This means Giant Swarm creates a forward between the external ingress service to the ingress placed inside the tenant cluster. By default, the tenant clusters has an nginx ingress controller allocated out-of-the-box. But, in case you want to use Istio ingress controller you need to ask our team to allocate a new redirection from the parent endpoint to the Istio controller. With the latter, you will have the two ingress controllers exposed to Internet.
 
 After obtaining the ports, modify the ingress gateway to set the correct configuration.
 
@@ -300,7 +300,7 @@ $ curl http://<LOAD_BALANCER_IP>:<PORT_TENANT_CLUSTER>/healthz -I
 
 ---
 
-__Disclaimer:__ While we do not discourage installing and using istio and even document it here, we currently do not support it managed by us. That means that if you run into issues with or because of istio, this lies in your responsibility. Furthermore, as the complexity increases with istio, debugging and fixing even not directly related issue will take longer.
+__Disclaimer:__ While we do not discourage installing and using Istio and are even providing atutorial here, we currently do not support it managed by us. That means that if you run into issues with or because of Istio, this is your resbonsibility. Furthermore, as the complexity increases with Istio, debugging and fixing even not directly related issue will take longer.
 
 ## Troubleshooting
 
@@ -321,13 +321,13 @@ It means the pod security policy is not bound to the service account used by the
 
 ### Requests are not routed to the ingress gateway
 
-In some cases, the default gateway is not configured properly. If istio has just been deployed, try to delete it and check the status again using the command below.
+In some cases, the default gateway is not configured properly. If Istio has just been deployed, try to delete it and check the status again using the command below.
 
 ```nohighlight
 $ kubectl delete gateways.networking.istio.io istio-autogenerated-k8s-ingress -n istio-system
 ```
 
-### Trafic load balancing is not working at layer seven
+### Traffic load balancing is not working at layer seven
 
 Ensure you don't have multiple services using different protocols (service port names) for the same pods. Remember Istio discovers the protocol getting the prefix of the port name set in the service resources.
 
