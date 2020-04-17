@@ -1,14 +1,17 @@
 ---
-title: The Giant Swarm App Catalog
-description: Overview of the Giant Swarm App Catalog, how it works and what to expect.
+title: The Giant Swarm App Platform
+description: Overview of the Giant Swarm App Platform, how it works and what to expect.
 date: 2020-04-07
 weight: 90
 type: page
 categories: ["basics"]
 last-review-date: "2020-04-07"
+aliases: [
+    "/basics/app-catalog/",
+]
 ---
 
-![app-catalog-header](app-catalog-header.png)
+![A large image with the words "The Giant Swarm App Platform" prominently visible over a screenshot of a list of apps](app-platform-header.png)
 
 The _Giant Swarm App Platform_ refers to a set of features and concepts that allow
 you to browse, install and manage the configurations of apps (such as Prometheus)
@@ -63,7 +66,7 @@ spec:
 Below you can see a high level overview of the components and resources that work
 together to enable the features of the Giant Swarm App Platform:
 
-![app-catalog-overview](app-catalog-overview.png)
+![A diagram showing an overview of various components and concepts that make up the Giant Swarm App Platform](app-platform-overview.png)
 
 
 ### What kind of App Catalogs are there?
