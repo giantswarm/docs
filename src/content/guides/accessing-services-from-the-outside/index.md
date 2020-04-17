@@ -1,7 +1,7 @@
 ---
 title: Accessing Pods and Services from the outside
 description: You can access Pods and services from outside your cluster either through the API proxy or through an Ingress.
-date: 2019-10-24
+date: 2020-04-16
 type: page
 weight: 50
 tags: ["tutorial"]
@@ -9,7 +9,7 @@ tags: ["tutorial"]
 
 # Accessing Pods and Services from the Outside
 
-Once you have a Pod or Service running on your cluster, you might want to access it from outside your cluster. There's currently three ways to do that:
+Once you have a Pod or Service running on your cluster, you might want to access it from outside your cluster. There are currently three ways to do that:
 
 - [Public access to a Service through Ingress](#public-ingress): This is the right method to publish an application, defined through a Service in Kubernetes, for access by everybody.
 - [Authenticated access to a Pod through `kubectl port-forward`](#port-forward): This gives you direct network access to a port of a Pod, for test purposes.
@@ -53,7 +53,11 @@ To make the rest of the tutorial match your situation, please set your Ingress B
 
 ### Setting up Ingress {#setting-up-ingress}
 
-Your Giant Swarm cluster comes with an Ingress Controller based on [NGINX](https://github.com/kubernetes/ingress/blob/master/controllers/nginx/), which we run for you in your clusters. You can expose Services publicly by setting up a simple Ingress. You can do this with an ingress manifest.
+Your Giant Swarm cluster typically comes with an Ingress Controller based on [NGINX](https://github.com/kubernetes/ingress/blob/master/controllers/nginx/), which we run for you in your clusters. 
+
+**Note:** If you are running on an AWS installation using release > 10.0.0, you will need to first install an Ingress Controller on your cluster.
+
+You can expose Services publicly by setting up a simple Ingress. You can do this with an ingress manifest.
 
 Let's look at the following YAML, which you can use as a template for your Ingress manifest:
 
