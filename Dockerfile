@@ -12,4 +12,4 @@ ADD ./build /docs/build
 RUN /usr/bin/hugo version
 RUN /usr/bin/hugo --destination /usr/share/nginx/html
 
-USER 0
+USER 101
