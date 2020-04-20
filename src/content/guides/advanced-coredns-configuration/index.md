@@ -1,7 +1,7 @@
 ---
 title: Advanced CoreDNS Configuration
 description: Here we describe how you can customize the configuration of the managed CoreDNS service in your clusters
-date: 2020-04-17
+date: 2020-04-20
 type: page
 weight: 50
 tags: ["tutorial"]
@@ -51,8 +51,6 @@ data:
 To learn more about the exact details of each log level log plugin, please read the [upstream documentation](https://coredns.io/plugins/log/).
 
 ## Additional forwards (formerly known as proxy) {#additional-forwards}
-
-In CoreDNS version `1.4.0` the proxy plugin was deprecated. The same behaviour can be achieved now with forward although the syntax is a bit different. The forward plugin has better performance because it reuses opened upstream connections.
 
 The default forward entry we set in CoreDNS is
 
