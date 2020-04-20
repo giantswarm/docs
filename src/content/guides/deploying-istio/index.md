@@ -300,7 +300,7 @@ $ curl http://<LOAD_BALANCER_IP>:<PORT_TENANT_CLUSTER>/healthz -I
 
 ---
 
-__Disclaimer:__ While we do not discourage installing and using Istio and are even providing atutorial here, we currently do not support it managed by us. That means that if you run into issues with or because of Istio, this is your resbonsibility. Furthermore, as the complexity increases with Istio, debugging and fixing even not directly related issue will take longer.
+__Disclaimer:__ While we do not discourage installing and using Istio and are even providing a tutorial here, we currently do not support it managed by us. That means that if you run into issues with or because of Istio, this is your responsibility. Furthermore, as the complexity increases with Istio, debugging and fixing even not directly related issue will take longer.
 
 ## Troubleshooting
 
