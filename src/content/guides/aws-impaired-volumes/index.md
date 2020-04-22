@@ -1,12 +1,14 @@
-+++
-title = "Handling Impaired EBS Volumes"
-description = "This guide will walk you through what happens to a node with impaired EBS volumes, and how to improve your workloads to handle them."
-date = "2019-05-01"
-type = "page"
-weight = 100
-tags = ["tutorial"]
-+++
+---
+title: Handling Impaired EBS Volumes
+description: This guide will walk you through what happens to a node with impaired EBS volumes, and how to improve your workloads to handle them.
+date: 2019-05-01
+type: page
+weight: 100
+tags: ["tutorial"]
+---
+
 # Handling Impaired EBS Volumes
+
 ## What happens when EBS Volumes are impaired?
 
 When an EBS Volume is stuck in an attaching state for more than 30 minutes,

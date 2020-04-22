@@ -1,10 +1,10 @@
-+++
-title = "gsctl Command Reference: list clusters"
-description = "The 'gsctl list clusters' command shows all clusters you have access to with a few details like cluster ID, name, creation date, and owner organization."
-date = "2019-11-25"
-type = "page"
-weight = 51
-+++
+---
+title: "gsctl Command Reference: list clusters"
+description: "The 'gsctl list clusters' command shows all clusters you have access to with a few details like cluster ID, name, creation date, and owner organization."
+date: "2019-11-25"
+type: page
+weight: 51
+---
 
 # `gsctl list clusters`
 

@@ -1,11 +1,11 @@
-+++
-title = "How to deploy Istio in your cluster"
-description = "Tutorial on how to deploy Istio on a Giant Swarm Kubernetes cluster."
-date = "2020-03-10"
-type = "page"
-weight = 60
-tags = ["tutorial"]
-+++
+---
+title: How to deploy Istio in your cluster
+description: Tutorial on how to deploy Istio on a Giant Swarm Kubernetes cluster.
+date: 2020-03-10
+type: page
+weight: 60
+tags: ["tutorial"]
+---
 
 # How to deploy Istio in your Cluster
 

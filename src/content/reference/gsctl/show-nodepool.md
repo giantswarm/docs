@@ -1,10 +1,10 @@
-+++
-title = "gsctl Command Reference: show nodepool"
-description = "The 'gsctl show nodepool' command shows details on a node pool."
-date = "2020-03-11"
-type = "page"
-weight = 44
-+++
+---
+title: "gsctl Command Reference: show nodepool"
+description: The 'gsctl show nodepool' command shows details on a node pool.
+date: 2020-03-11
+type: page
+weight: 44
+---
 
 # `gsctl show nodepool`
 

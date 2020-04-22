@@ -52,7 +52,7 @@ build: vendor build-css
 	# Generate the Control Plane K8s API reference documentation.
 	docker run \
 		-v ${PWD}/build/content/reference/cp-k8s-api:/opt/crd-docs-generator/output \
-		quay.io/giantswarm/crd-docs-generator:latest
+		quay.io/giantswarm/crd-docs-generator:latest --apiextensions-commit-ref v0.2.6
 
 docker-build: build
 	docker build -t $(REGISTRY)/$(COMPANY)/$(PROJECT):latest .
@@ -62,7 +62,7 @@ docker-run:
 
 dev:
 	docker run --rm -ti \
-	-p 8080:80 \
+	-p 8080:8080 \
 	-v ${PWD}/src:/docs/build:z \
 	$(REGISTRY)/$(COMPANY)/$(PROJECT):latest /bin/sh -c "nginx; hugo -w --destination /usr/share/nginx/html"
 
