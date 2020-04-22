@@ -1,5 +1,5 @@
 ---
-title: Similar AWS EC2 instance types
+title: Similar AWS EC2 instance types reference
 description: Here you find our reference regarding what is considered a "similar" instance type.
 date: 2020-04-22
 layout: subsection
