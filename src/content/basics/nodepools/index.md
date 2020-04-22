@@ -1,7 +1,7 @@
 ---
 title: Node Pools
 description: A general description of node pools as a concept, it's benefits, and some details you should be aware of.
-date: 2020-03-30
+date: 2020-04-22
 weight: 130
 type: page
 categories: ["basics"]
@@ -132,17 +132,17 @@ There are two parameters that will allow you to configure which instances are go
 | On-demand base capacity: 5<br>Spot instance percentage: 100   | 20               | 5         | 15
 | On-demand base capacity: 0<br>Spot instance percentage: 100   | 20               | 0         | 20
 
-## Using similar instance types
+## Using similar instance types {#similar-instance-types}
 
-Using multiple instance types in a node pool has some benefits for on-demand and spot instances:
+Starting with release v11.2.0 on AWS you can activate the use of similar instance types per node pool. With this setting active, your node pool can use instance types that are nearly identical to the one you selected. For example, if you select `m5.xlarge`, the node pool can also use `m4.xlarge`.
 
-- Using multiple instance type allows better price optimization. Popular instance types tend to have more price adjustments. Picking older-generation instance types that are less popular tends to result in lower costs and fewer interruptions.
+Using multiple instance types in a node pool has some benefits:
 
-- AWS has a limited number of instances per Availability Zone and could be that your selected instance are temporarily out of stock, allowing the node pool to use multiple instance types would decrease the probability of not being able to scale up.
+- Together with spot instances, using multiple instance type allows better price optimization. Popular instance types tend to have more price adjustments. Allowing older-generation instance types that are less popular tends to result in lower costs and fewer interruptions.
 
-Instances that contain the same amount of CPU and RAM are considered similar, for example if you select `m5.xlarge` then the node pool can fall back on `m4.xlarge` too if needed.
+- Even without spot instances, AWS has a limited number of instances per type in each Availability Zone. I can happen that your selected instance type is temporarily out of stock just in the moment you are in demand of more worker nodes. Allowing the node pool to use multiple instance types reduces this risk and increases the likelihood that your node pool can grow when in need.
 
-You can check the instance types that are considered to be similar in the [aws-operator](https://github.com/giantswarm/aws-operator/blob/master/service/controller/key/machine_deployment.go#L15).
+Instances that contain the same amount of CPU and RAM are considered similar. We provide more information regarding which instance types are considered similar in our [reference](/reference/similar-ec2-instance-types/).
 
 ## Node pools and the Giant Swarm API {#restapi}
 
