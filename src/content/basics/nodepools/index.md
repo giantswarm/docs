@@ -11,7 +11,7 @@ categories: ["basics"]
 
 ## Definition
 
-A node pool is a group of nodes within a cluster that all have the same configuration. Each node in the pool has a Kubernetes 
+A node pool is a group of nodes within a cluster that all have the same configuration. Each node in the pool has a Kubernetes
 node label, which has the node pool's name as its value. A node pool can contain a single node or many nodes.
 
 ## Advantages
@@ -88,7 +88,7 @@ spec:
     giantswarm.io/machine-deployment: a1b2c
 ```
 
-You can assign workloads to node pools in a more indirect way too. This is achieved by using other node attributes which are 
+You can assign workloads to node pools in a more indirect way too. This is achieved by using other node attributes which are
 specified via the node pool and which are exposed as node labels.
 
 For example: In a case where you have node pools with one instance type. Using a `nodeSelector` with the label `beta.kubernetes.io/instance-type` you can assign workloads to matching nodes only.
@@ -115,7 +115,7 @@ See the [`gsctl delete nodepool`](/reference/gsctl/delete-nodepool/) reference f
 
 ## Instance distribution
 
-Node pools can contain a mix of [on-demand](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-on-demand-instances.html) and [spot instances](https://aws.amazon.com/ec2/spot/) that will allow you to optimize your cost. 
+Node pools can contain a mix of [on-demand](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-on-demand-instances.html) and [spot instances](https://aws.amazon.com/ec2/spot/) that will allow you to optimize your cost.
 
 There are two parameters that will allow you to configure which instances are going to be used:
 
@@ -125,24 +125,26 @@ There are two parameters that will allow you to configure which instances are go
 
 ### Configuration examples
 
-| Configuration                                        | Total Instances  | On-Demand | Spot 
+| Configuration                                        | Total Instances  | On-Demand | Spot
 |------------------------------------------------------|------------------|-----------|------
-| On-demand base capacity: 0<br>Spot instance percentage: 0     | 20               | 20        | 0    
-| On-demand base capacity: 10<br>Spot instance percentage: 50   | 20               | 15        | 5    
-| On-demand base capacity: 5<br>Spot instance percentage: 100   | 20               | 5         | 15   
-| On-demand base capacity: 0<br>Spot instance percentage: 100   | 20               | 0         | 20   
+| On-demand base capacity: 0<br>Spot instance percentage: 0     | 20               | 20        | 0
+| On-demand base capacity: 10<br>Spot instance percentage: 50   | 20               | 15        | 5
+| On-demand base capacity: 5<br>Spot instance percentage: 100   | 20               | 5         | 15
+| On-demand base capacity: 0<br>Spot instance percentage: 100   | 20               | 0         | 20
 
 ## Using similar instance types
 
 Using multiple instance types in a node pool has some benefits for on-demand and spot instances:
+
 - Using multiple instance type allows better price optimization. Popular instance types tend to have more price adjustments. Picking older-generation instance types that are less popular tends to result in lower costs and fewer interruptions.
-- AWS has a limited number of instances per Availavility Zone and could be that your selected instance are temporarily out of stock, allowing the node pool to use multiple instance types would decrease the probability of not being able to scale up.
+
+- AWS has a limited number of instances per Availability Zone and could be that your selected instance are temporarily out of stock, allowing the node pool to use multiple instance types would decrease the probability of not being able to scale up.
 
 Instances that contain the same amount of CPU and RAM are considered similar, for example if you select `m5.xlarge` then the node pool can fall back on `m4.xlarge` too if needed.
 
 You can check the instance types that are considered to be similar in the [aws-operator](https://github.com/giantswarm/aws-operator/blob/master/service/controller/key/machine_deployment.go#L15).
 
-## Node pools and the Giant Swarm API
+## Node pools and the Giant Swarm API {#restapi}
 
 Handling clusters with node pools requires an API schema different from the one used for clusters
 with homogeneous worker nodes. To account for this need, we introduced a new API version path `v5`.
@@ -158,7 +160,7 @@ Using the v5 API endpoints, you can
 
 ## Node pools and the cluster definition YAML format
 
-Just as the Giant Swarm API schema for v4 (without node pools) and v5 (with node pools) clusters are different, the 
+Just as the Giant Swarm API schema for v4 (without node pools) and v5 (with node pools) clusters are different, the
 [cluster definition format](/reference/cluster-definition/) is different between the two versions.
 
 The new definition schema for v5 allows for defining cluster and node pool details in one file,
@@ -176,34 +178,32 @@ In case there are workloads not assigned to any node pools, the autoscaler may p
 
 - A node pool can have a maximum of 250 worker nodes. The architectural reason for this is that each node pool gets a `/24` IPv4 subnet assigned. However 5 IP addresses per availability zone used are not usable for worker nodes, as they are reserved for other AWS resources. Hence the limit depends on the number of availability zones used by a node pool. If the pool uses two zones, it's 245. With three zones, the limit is 240, and with four zones, it's 235.
 
-- At times, the EC2 instance type required by a node pool can be unavailable in certain availability zones. This can 
-  result in node pools providing less than the desired number of nodes. The more availability zones a node pool spans, 
-  the less likely this problem is to occur.
+- At times, the EC2 instance type required by a node pool can be unavailable in certain availability zones. This can
+result in node pools providing less than the desired number of nodes. The more availability zones a node pool spans,
+the less likely this problem is to occur.
 
-- By default, clusters can have up to 5 node pools. This is limited by the AWS service quota named "IPv4 CIDR blocks 
-  per VPC" in the [VPC section](https://docs.aws.amazon.com/vpc/latest/userguide/amazon-vpc-limits.html). As the AWS 
-  account owner, you can request an increase of this limit via the AWS console.
+- By default, clusters can have up to 5 node pools. This is limited by the AWS service quota named "IPv4 CIDR blocks
+per VPC" in the [VPC section](https://docs.aws.amazon.com/vpc/latest/userguide/amazon-vpc-limits.html). As the AWS
+account owner, you can request an increase of this limit via the AWS console.
 
-- Node pools can span a maximum of four availability zones. This limit affects both the number of availability zones 
-  a single node pool can cover, as well as the number of different availability zones all node pools of a cluster can 
-  cover. Once an availability zone has been assigned for use in a cluster, either for the master node or for worker 
-  nodes, it cannot be unassigned from that cluster. It will remain assigned even if there are no more node pools using
-  that availability zone.
+- Node pools can span a maximum of four availability zones. This limit affects both the number of availability zones
+a single node pool can cover, as well as the number of different availability zones all node pools of a cluster can
+cover. Once an availability zone has been assigned for use in a cluster, either for the master node or for worker
+nodes, it cannot be unassigned from that cluster. It will remain assigned even if there are no more node pools using
+that availability zone.
 
-  - **Example:** The master node is in availability zone A. Node pool 1 uses availability zones B and C. Node pool 2 uses 
-    availability zone D. With A, B, C, and D, the limit of four availability zones assigned is reached. New node pools of this 
-    cluster can only use these four availability zones.
+  - **Example:** The master node is in availability zone A. Node pool 1 uses availability zones B and C. Node pool 2 uses
+  availability zone D. With A, B, C, and D, the limit of four availability zones assigned is reached. New node pools of this
+  cluster can only use these four availability zones.
   
-- Clusters without worker nodes (= without node pools) cannot be considered fully functional. In order to have all 
-  required components scheduled, worker nodes are required. For that reason, we deactivate any monitoring and alerts for 
-  these clusters and don't provide any proactive support.
+- Clusters without worker nodes (= without node pools) cannot be considered fully functional. In order to have all
+required components scheduled, worker nodes are required. For that reason, we deactivate any monitoring and alerts for
+these clusters and don't provide any proactive support.
 
 - We also do not monitor node pools with less than three worker nodes and do not provide any proactive support for those.
 
-- When creating a new node pool, the master node of the cluster is re-created. This causes a downtime of the Kubernetes 
-  API of a couple of minutes.
-
-
+- When creating a new node pool, the master node of the cluster is re-created. This causes a downtime of the Kubernetes
+API of a couple of minutes.
 
 ## Further reading
 
