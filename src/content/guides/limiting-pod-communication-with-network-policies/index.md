@@ -1,11 +1,11 @@
-+++
-title = "Limiting Pod Communication with Network Policies"
-description = "Guide on how to limit Pod communication using Network Policies"
-date = "2019-11-07"
-type = "page"
-weight = 60
-tags = ["tutorial"]
-+++
+---
+title: "Limiting Pod Communication with Network Policies"
+description: "Guide on how to limit Pod communication using Network Policies"
+date: "2020-04-17"
+type: "page"
+weight: 60
+tags: ["tutorial"]
+---
 
 # Limiting Pod Communication with Network Policies
 
@@ -13,7 +13,7 @@ You can limit communication to Pods using the Network Policy API of Kubernetes.
 
 The Kubernetes Network Policy functionality is implemented by different network providers, like Calico, Cilium, Kube-router, etc. Most of these providers have some added functionality that extends the main Kubernetes Network Policy API. Giant Swarm deploys Calico as a provider so users can make use of its functionality out of the box.
 
-Here we give an overview and introduction of how to create and use these policies.
+In this guide we give an overview and introduction of how to create and use these policies.
 
 ## Network Policies Scope
 
@@ -33,9 +33,9 @@ The `spec` of the resource mainly consists of three parts:
 
 - `podSelector`: Use labels to select the group of pods for which the rules will be applied.
 
-- `policyTypes`: Which could be `Ingress`, `Egress` or both. This field will determine if the rules will be applied to ingoing and/or outgoing traffic. If it is not defined, then `Ingress` will be enabled by default and `Egress` only when there are rules defined. 
+- `policyTypes`: Which could be `Ingress`, `Egress` or both. This field will determine if the rules will be applied to incoming and/or outgoing traffic. If it is not defined, then `Ingress` will be enabled by default and `Egress` only when there are rules defined. 
 
-- `ingress`/`egress`: these sections allow a list of `from` (Ingress) or `to` (egress) and `ports` blocks. Each `from`/`to` block contains a range of IPs (`ipBlock`) and/or a list of namespaces selected by label (`namespaceSelector`) and/or a list of pods by label (`podSelector`). That select which IPs, namespaces or pods can talk to our target pod or to which IPs, namespaces or pod our target can talk to. The `ports` block defines which ports are affected by this the rule.
+- `ingress`/`egress`: these sections allow a list of `from` (Ingress) or `to` (Egress) and `ports` blocks. Each `from`/`to` block contains a range of IPs (`ipBlock`) and/or a list of namespaces selected by label (`namespaceSelector`) and/or a list of pods by label (`podSelector`). That select which IPs, namespaces or pods can talk to our target pod or to which IPs, namespaces or pod our target can talk to. The `ports` block defines which ports are affected by this the rule.
 
 An easy example to clarify the explained concepts
 
@@ -100,7 +100,7 @@ __Warning__: By default Giant Swarm clusters, from version `11.0.0`, contains th
 
 Note that the namespace needs to exist before you apply the NetworkPolicy to it.
 
-The default policy shown above will limit ingress and egress traffic in the namespace applied. You can restrict only for `egress` or `ingress` too. 
+The default policy shown above will limit ingress and egress traffic in the namespace applied. You can also restrict only for `egress` or `ingress`. 
 
 ## Applications 
 
@@ -163,7 +163,7 @@ kubectl -n <namespace> apply -f backend-access.yaml
 
 ### Allowing pod to pod access within a namespace
 
-In some cases, you might want to allow all intra-namespace communication. For this, you can use open Pod selectors that catch all Pods.
+In some cases, you may want to allow all intra-namespace communication. For this, you can use open Pod selectors that catch all Pods.
 
 ```yaml
 kind: NetworkPolicy
@@ -200,7 +200,7 @@ kubectl apply -f intra-namespace-policy.yaml
 
 ### Allowing traffic from outside the cluster
 
-In the case that you have publicly exposed a Service through Ingress and you have a default-deny policy in place or just want to limit that traffic to a specific port, you need a Network Policy like the following.
+In case you have publicly exposed a Service through Ingress and you have a default-deny policy in place or just want to limit that traffic to a specific port, you need a Network Policy like the following.
 
 ```yaml
 kind: NetworkPolicy
@@ -219,6 +219,8 @@ spec:
 ```
 
 The above will allow any traffic (no matter if outside or inside your cluster) to the Pods on port 80.
+
+In this guide we discussed different use-cases of limiting Pod communication with network policies, based on our best practices.
 
 ## Further reading
 

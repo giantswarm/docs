@@ -1,15 +1,15 @@
-+++
-title = "Securing your Cluster with RBAC and PSP"
-description = "Introduction to using RBAC and PSP to secure your cluster and manage access control."
-date = "2019-11-06"
-type = "page"
-weight = 30
-tags = ["tutorial"]
-+++
+---
+title: "Securing your Cluster with RBAC and PSP"
+description: "Introduction to using RBAC and PSP to secure your cluster and manage access control."
+date: "2020-04-16"
+type: page
+weight: 30
+tags: ["tutorial"]
+---
 
 # Securing your Cluster with RBAC and PSP
 
-Two of the most central mechanisms to secure your cluster in Kubernetes are Role Based Access Control (RBAC) and Pod Security Policies (PSP). Together, these two allow you to create fine-grained roles and policies to manage access control for users and software running on your cluster. Both are enabled by default on Giant Swarm clusters.
+Two of the most central mechanisms to secure your cluster in Kubernetes are Role Based Access Control (RBAC) and Pod Security Policies (PSP). Together, they allow you to create fine-grained roles and policies to manage access control for users and software running on your cluster. Both are enabled by default on Giant Swarm clusters.
 
 ## Role based access control
 
@@ -96,7 +96,7 @@ rules:
   verbs: ["get", "list", "watch"]
 ```
 
-You can further use this feature to extend already existing ClusterRoles, if you feel some existing role is too restrictive or want to include access to new custom resources. The default ClusterRoles (`admin`, `edit`, `view`) are already prepared to be extended through aggregation rules.
+You can further use this feature to extend already existing ClusterRoles, if you feel an existing role is too restrictive or want to include access to new custom resources. The default ClusterRoles (`admin`, `edit`, `view`) are already prepared to be extended through aggregation rules.
 
 For example we could extend the `admin` ClusterRole to include access to some custom PodSecurityPolicy we created:
 
@@ -197,7 +197,7 @@ For a detailed explanation of how to refer to subjects in Bindings we defer to t
 
 #### Default Roles and Role Bindings {#default-roles-bindings}
 
-Your Kubernetes cluster comes by default with a set of Roles and Cluster Roles as well as some default Bindings. These are automatically reconcilliated and thus cannot be changed or deleted.
+Your Kubernetes cluster comes by default with a set of Roles and Cluster Roles as well as some default Bindings. These are automatically reconciled and thus cannot be changed or deleted.
 
 You can use the `Role` and `ClusterRole` resources to create bindings for your users. Following example would grant all users in the group `mynamespace-admin` full permissions to resources in the `mynamespace` namespace. See how it references a `ClusterRole` named "admin", which comes with Kubernetes by default.
 
@@ -219,7 +219,7 @@ roleRef:
 
 ##### A super-user role binding
 
-One of the most important default Role Bindings is for the "cluster-admin" role, which depicts a super-user in the cluster. By default it is bound to the `system:masters` group. Thus, if you need cluster admin access to your Kubernetes cluster, you need to create user credentials (e.g. by [creating a key pair with gsctl](https://docs.giantswarm.io/reference/gsctl/create-keypair/) or Happa) that include that group.
+One of the most important default Role Bindings is for the "cluster-admin" role, which depicts a super-user in the cluster. By default it is bound to the `system:masters` group. Thus, if you need cluster admin access to your Kubernetes cluster, you need to create user credentials (e.g. by [creating a key pair with gsctl](https://docs.giantswarm.io/reference/gsctl/create-keypair/) or the Giant Swarm Web UI) that include that group.
 
 For a complete overview of default roles and bindings we defer to the [official RBAC documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#default-roles-and-role-bindings).
 
@@ -280,7 +280,7 @@ For details on PSPs we defer to the [official PSP documentation](https://kuberne
 
 ## User management with Giant Swarm
 
-If you are managing users through the Giant Swarm API or its clients, `gsctl` or the Web UI (happa), you can specify a Common Name Prefix and Organizations when you create key-pairs of kubeconfigs.
+If you are managing users through the Giant Swarm API or its clients, `gsctl` or the Web UI, you can specify a Common Name Prefix and Organizations when you create key-pairs of kubeconfigs.
 
 ### Using common name as username in Kubernetes
 
@@ -347,7 +347,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-Above YAML gives admin rights to the `development` namespace to both the user with CN Prefix `jane` and all users within the `dev-admin` group.
+The above YAML gives admin rights to the `development` namespace to both the user with CN Prefix `jane` and all users within the `dev-admin` group.
 
 You could create kubeconfigs for such users like following.
 
@@ -586,7 +586,7 @@ rules:
   - use
 ```
 
-In latter case we already have bound that role to our Service Account and are done. In former case we still need step 5.
+In the latter case we already have bound that role to our Service Account and are done. In the former case we still need step 5.
 
 #### 5. Bind the Role to the Service Account
 

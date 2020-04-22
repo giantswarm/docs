@@ -1,0 +1,38 @@
+{{ partial "header.html" . }}
+
+<div class="row">
+  <div class="col-xs-12">
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4 col-lg-3 hidden-sm hidden-xs toc-sidebar">
+    <div>
+      <div class="toc">
+        {{ .TableOfContents }}
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-8 col-lg-8 col-lg-offset-1">
+
+    {{ partial "breadcrumb.html" . }}
+
+    <div class="content">
+      <p class="lastmod">Last generated {{ .Date.Format "January 2, 2006" }}</p>
+
+      {{ .Content }}
+
+      <hr />
+
+      <p>This documentation page shows information based on <a href="{{ $.Param "source_repository" }}/tree/{{ $.Param "source_repository_ref" }}" target="_blank" rel="noopener noreferrer">apiextensions {{ $.Param "source_repository_ref" }}</a>.
+
+      <div class="feedback well">
+        <h5><i class="fa fa-help-outline"></i> Need help with the Control Plane Kubernetes API?</h5>
+        <p>We listen in your Slack support channel. And of course, we welcome your <a title="open this page in GitHub" href="{{ $.Param "source_repository" }}" target="_blank" rel="noopener noreferrer">pull requests</a> to improve these docs!</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{{ partial "footer.html" . }}

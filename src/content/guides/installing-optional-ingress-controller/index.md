@@ -1,12 +1,11 @@
-+++
-title = "Installing an Ingress Controller"
-description = "How to install the nginx-ingress-controller using our Web UI"
-date = "2020-02-04"
-type = "page"
-weight = 50
-tags = ["tutorial"]
-+++
-
+---
+title: Installing an Ingress Controller
+description: How to install the nginx-ingress-controller using our Web UI
+date: 2020-02-04
+type: page
+weight: 50
+tags: ["tutorial"]
+---
 
 # Installing an Ingress Controller
 
@@ -30,7 +29,7 @@ as a default component.
 
 ### How do I Install my own Ingress Controller?
 
-Using our Web UI you can install an nginx ingress controller using our App Catalog.
+Using our Web UI you can install an NGINX ingress controller using our App Catalog.
 
 1. Click "Install App" from the "Apps" tab when viewing your cluster
   ![Cluster detail screen showing install app button](cluster-detail.png)

@@ -1,12 +1,12 @@
-+++
-title = "Giant Swarm Support"
-description = "An explanation of how our support service works."
-date = "2020-01-20"
-type = "page"
-weight = 30
-categories = ["basics"]
-last-review-date = "2020-01-20"
-+++
+---
+title: Giant Swarm Support
+description: An explanation of how our support service works.
+date: 2020-01-20
+type: page
+weight: 30
+categories: ["basics"]
+last-review-date: 2020-01-20
+---
 
 # Giant Swarm Support
 
