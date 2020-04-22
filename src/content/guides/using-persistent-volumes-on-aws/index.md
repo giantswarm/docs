@@ -1,7 +1,7 @@
 ---
 title: "Using Persistent Volumes on AWS"
 description: Tutorial on how to use dynamically provisioned Persistent Volumes on a cluster running on Amazon Web Services"
-date: "2018-07-09"
+date: "2020-04-16"
 type: page
 weight: 50
 tags: ["tutorial"]
@@ -86,69 +86,7 @@ Starting with Kubernetes v1.9 Persistent Volume Claims can be expanded by simply
 
 In case the volume to be expanded contains a file system, the resizing is only performed when a new Pod is started using the Persistent Volume Claim in `ReadWrite` mode. In other words, if a volume being expanded is used in a Pod or Deployment, you will need to delete and recreate the pod for file system resizing to take place. File system resizing is only supported for XFS, Ext3, and Ext4.
 
-__Warning__: Expanding the filesystem is fully supported in Giant Swarm clusters starting from Kubernetes 1.10. Clusters with 1.9 have an issue with the `lsblk` utility that is used by Kubernetes to detect filesystem type. See below how to resize filesystem manually in that case.
-
 __Warning__: Expanding EBS volumes is a time consuming operation. Also, there is a per-volume quota of one modification every 6 hours.
-
-## Resizing filesystem for Kubernetes 1.9
-
-This procedure is only required for Kubernetes 1.9. Newer clusters support filesystem resizing "out-of-the-box".
-
-Make sure that the EBS volume was successfully resized and the PVC has been detached from other pods.
-
-Create priviliged pod for filesystem resizing. Replace `namespace` and `claimName` with proper values.
-```yaml
-kind: Pod
-apiVersion: v1
-metadata:
-  name: resize-pvc-pod
-  namespace: <claim namespace>
-spec:
-  containers:
-    - name: resize-pvc-pod
-      image: ubuntu:xenial
-      command:
-        - sleep
-        - "3600"
-      volumeMounts:
-      - mountPath: "/data"
-        name: claim
-      - mountPath: "/dev"
-        name: dev
-      securityContext:
-        privileged: true
-  volumes:
-    - name: claim
-      persistentVolumeClaim:
-        claimName: <claim name here>
-    - name: dev
-      hostPath:
-        path: /dev
-```
-
-Then `exec` inside the pod:
-
-```nohighlight
-$ kubectl exec -ti resize-pvc-pod -n <claim namespace> bash
-```
-
-Determine the attached PV block device:
-
-```nohighlight
-$ df -h | grep '/data' | awk '{print $1}'
-```
-
-Finally resize the filsystem:
-
-```nohighlight
-$ resize2fs /dev/<disk>
-```
-
-Delete the pod.
-
-```nohighlight
-$ kubectl delete pod resize-pvc-pod -n <claim namespace>
-```
 
 ## Deleting Persistent Volumes
 
