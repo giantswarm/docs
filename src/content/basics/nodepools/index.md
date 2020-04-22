@@ -136,7 +136,7 @@ The following table shows four examples to illustrate how different settings of 
 
 ## Using similar instance types {#similar-instance-types}
 
-Starting with release v11.2.0 on AWS you can activate the use of similar instance types per node pool. With this setting active, your node pool can use instance types that are nearly identical to the one you selected. For example, if you select `m5.xlarge`, the node pool can also use `m4.xlarge`.
+Starting with release v{{% first_aws_spotinstances_version %}} on AWS you can activate the use of similar instance types per node pool. With this setting active, your node pool can use instance types that are nearly identical to the one you selected. For example, if you select `m5.xlarge`, the node pool can also use `m4.xlarge`.
 
 Using multiple instance types in a node pool has some benefits:
 

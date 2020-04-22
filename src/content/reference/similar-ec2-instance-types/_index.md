@@ -10,7 +10,7 @@ weight: 500
 
 ## Introduction
 
-Handling of similar instance types is done in [aws-operator](https://github.com/giantswarm/aws-operator) since version 8.3.1, which has been introduced with Giant Swarm release v11.2.0.
+Handling of similar instance types is done in [aws-operator](https://github.com/giantswarm/aws-operator) since version 8.3.1, which has been introduced with Giant Swarm release v{{% first_aws_spotinstances_version %}}.
 
 Read more about the use of similar instance types in our general article about [node pools](/basics/nodepools/#similar-instance-types).
 
