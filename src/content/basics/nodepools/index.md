@@ -123,14 +123,16 @@ There are two parameters that will allow you to configure which instances are go
 
 - *Spot instance percentage above base capacity*: controls the percentage of spot instances to be used for worker nodes beyond the number of *on-demand base capacity*.
 
-### Configuration examples
+### Examples
 
-| Configuration                                        | Total Instances  | On-Demand | Spot
-|------------------------------------------------------|------------------|-----------|------
-| On-demand base capacity: 0<br>Spot instance percentage: 0     | 20               | 20        | 0
-| On-demand base capacity: 10<br>Spot instance percentage: 50   | 20               | 15        | 5
-| On-demand base capacity: 5<br>Spot instance percentage: 100   | 20               | 5         | 15
-| On-demand base capacity: 0<br>Spot instance percentage: 100   | 20               | 0         | 20
+The following table shows four examples to illustrate how different settings of spot instance percentage and on-demand base capacity influence the outcome.
+
+| On-demand base capacity | Spot instance percentage | Total Instances  | On-Demand Instances| Spot Instances
+|:-:|:-:|:-:|:-:|:-:|
+| 0 | 0 % | 50 | 50 | 0
+| 0 | 100 % | 50 | 0 | 50
+| 10 | 50 % | 50 | 30 | 20
+| 10 | 100 % | 50 | 10 | 40
 
 ## Using similar instance types {#similar-instance-types}
 
