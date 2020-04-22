@@ -101,7 +101,7 @@ nodepools:
 - name: "Node pool with 2 random AZs using defaults"
   availability_zones:
     number: 2
-- name: "Node pool with 3 specific AZs A, B, C, m5.xlarge"
+- name: "Node pool with 3 specific AZs A, B, C, m5.xlarge spot"
   availability_zones:
     zones:
     - "eu-central-1a"
@@ -112,7 +112,11 @@ nodepools:
     max: 10
   node_spec:
     aws:
+      instance_distribution:
+        on_demand_base_capacity: 3
+        on_demand_percentage_above_base_capacity: 0
       instance_type: "m5.xlarge"
+      use_alike_instance_types: true
 ```
 
 Coming from v4, you might want to understand how v5 is different from v4:
