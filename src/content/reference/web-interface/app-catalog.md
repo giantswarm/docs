@@ -1,7 +1,8 @@
 ---
 title: The Giant Swarm App Catalog in The Web Interface
 description: What the Giant Swarm App Catalog looks like on our Web Interface and how to use it.
-date: 2019-07-05
+date: 2020-04-22
+last-review-date: 2020-04-22
 layout: subsection
 weight: 10
 ---
@@ -11,7 +12,7 @@ weight: 10
 This page will give you an overview of how to do some common tasks related to the
 Giant Swarm App Catalog using our Web Interface.
 
-Go here for an [overview of the Giant Swarm App Catalog](/basics/app-catalog/) instead.
+Go here for an [overview of the Giant Swarm App Platform](/basics/app-catalog/) instead.
 
 ### Viewing all App Catalogs
 
@@ -38,6 +39,8 @@ Once you know what app you'd like to install, click on that app, and then on
 
 That'll bring up a modal where you can choose what cluster you want to install
 the app on, the version you want install, as well as some further steps allowing you to configure the app.
+
+This is also where you can provide your [values.yaml](https://helm.sh/docs/chart_template_guide/values_files/) with custom configuration for the app.
 
 ![A screenshot of the configuration screen when install an app using our web interface](../app-configuration-modal.png#width-60)
 
