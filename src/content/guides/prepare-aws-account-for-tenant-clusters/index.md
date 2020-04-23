@@ -1,7 +1,7 @@
 ---
 title: "Prepare an AWS account to run Giant Swarm clusters"
 description: "This guide will walk you through all necessary steps to set up an Amazon AWS account with appropriate IAM roles for operating Giant Swarm clusters."
-date: "2019-10-25"
+date: 2020-04-23
 type: page
 weight: 100
 tags: ["tutorial"]
@@ -72,6 +72,8 @@ These are the limit increases to be requested, grouped by limit type:
   - m4.2xlarge per region: **250**
   - m5.2xlarge per region: **250**
   - other instance types to be used as workers: increase accordingly
+- EC2 Spot Instances
+  - For every primary instance type you tend to use spot instances with, set the limit according to your needs.
 
 (Please extend the list of EC2 instance to also contain the types you need frequently.)
 
