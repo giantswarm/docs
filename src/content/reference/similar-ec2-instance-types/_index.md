@@ -35,7 +35,7 @@ aws-operator creates an Auto Scaling Group (ASG) for every node pool. If the cre
 | r5 | `r5.4xlarge` | `(r4|r5).4xlarge` |
 | r5 | `r5.8xlarge` | `(r4|r5).8xlarge` |
 
-If the type you are using for your node pool is not contained in the list above, activating the use of similar instance has no effect.
+If the type you are using for your node pool is not contained in the list above, activating the use of similar instance types has no effect.
 
 ## Further reading
 
