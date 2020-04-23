@@ -91,7 +91,7 @@ This is our go-to place to create and try out things. Mainly, this contains apps
 
 Bear in mind that we do NOT support these apps and they won’t be worked on with priority. These apps might not ever make it into the Giant Swarm Catalog. What you will get, is an app at a basic maturity level at a specific point in time.
 
-We encourage you to try out the app catalog and the different apps offered there. As always, feedback is welcome.
+We encourage you to try out this playground catalog and the different apps offered there. As always, feedback is welcome.
 
 
 ### Installing your own App Catalog
@@ -110,7 +110,7 @@ It’s possible to create your own App Catalog. This is useful if you want to cr
 You can interact with the Giant Swarm App Platform through our API and
 our web interface.
 
-- [Web Interface Reference: The Giant Swarm App Catalog](/reference/web-interface/app-catalog/)
+- [Web Interface Reference: The Giant Swarm App Platform](/reference/web-interface/app-platform/)
 - [Apps and App Configs in the API reference](https://docs.giantswarm.io/api/#tag/apps)
 
 Lastly, at the end of the day, what our interfaces do, is create (or update)

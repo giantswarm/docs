@@ -7,7 +7,7 @@ type: subsection
 
 # App Configuration Reference
 
-Giant Swarm's [App Catalog](/basics/app-catalog/) allows you to easily install Apps across your entire
+Giant Swarm's [App Platform](/basics/app-platform/) allows you to easily install Apps across your entire
 fleet of clusters.
 
 Apps are packaged as Helm charts. Helm charts rely on _values_ to be set in order to fill in placeholders in _templates_. By configuring your App you set the values that become available to the templates when they are deployed.
@@ -20,7 +20,7 @@ There are three levels of configuration:
 2. **Cluster**: Configuration provided by the cluster admin.
 3. **User**: Configuration provided by the user installing an App.
 
-Each level can overrides the previous one. As a user of the App Catalog you are not expected to edit configuration at the `catalog` or `cluster` level. However user level configuration can override both catalog and cluster level configuration.
+Each level can overrides the previous one. As a user you are not expected to edit configuration at the `catalog` or `cluster` level. However user level configuration can override both catalog and cluster level configuration.
 
 Each level of configuration has two types of values that you can provide:
 
@@ -164,7 +164,7 @@ Configuration for Apps are stored as ConfigMaps and Secrets, which are
 referenced by `name` and `namespace` in various `spec` fields of the [App](/reference/cp-k8s-api/apps.application.giantswarm.io/) and [AppCatalog](/reference/cp-k8s-api/appcatalogs.application.giantswarm.io/) Custom Resource (CR).
 
 Our operators act on those resources to ensure the actual state ends up
-looking like the desired state. More information is available in our [general overview of the App Catalog](/basics/app-catalog/).
+looking like the desired state. More information is available in our [general overview of the App Platform](/basics/app-platform/).
 
 |Configuration Level|Where to set it|Fields to set|
 |---|---|---|

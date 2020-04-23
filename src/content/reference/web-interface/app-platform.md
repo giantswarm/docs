@@ -5,6 +5,9 @@ date: 2020-04-22
 last-review-date: 2020-04-22
 layout: subsection
 weight: 10
+aliases: [
+    "/reference/web-interface/app-catalog/",
+]
 ---
 
 # The Giant Swarm App Catalog in the Web Interface
@@ -12,7 +15,7 @@ weight: 10
 This page will give you an overview of how to do some common tasks related to the
 Giant Swarm App Catalog using our Web Interface.
 
-Go here for an [overview of the Giant Swarm App Platform](/basics/app-catalog/) instead.
+Go here for an [overview of the Giant Swarm App Platform](/basics/app-platform/) instead.
 
 ### Viewing all App Catalogs
 
