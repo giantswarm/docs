@@ -20,7 +20,7 @@ There are three levels of configuration:
 2. **Cluster**: Configuration provided by the cluster admin.
 3. **User**: Configuration provided by the user installing an App.
 
-Each level can overrides the previous one. As a user you are not expected to edit configuration at the `catalog` or `cluster` level. However user level configuration can override both catalog and cluster level configuration.
+Each level can override the previous one. As a user you are not expected to edit configuration at the `catalog` or `cluster` level. However user level configuration can override both catalog and cluster level configuration.
 
 Each level of configuration has two types of values that you can provide:
 
