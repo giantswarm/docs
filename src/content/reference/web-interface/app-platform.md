@@ -1,18 +1,22 @@
 ---
-title: The Giant Swarm App Catalog in The Web Interface
-description: What the Giant Swarm App Catalog looks like on our Web Interface and how to use it.
+title: The Giant Swarm App Platform in The Web Interface
+description: What the Giant Swarm App Platform looks like on our Web Interface and how to use it.
 date: 2020-04-22
 last-review-date: 2020-04-22
 layout: subsection
 weight: 10
+aliases: [
+    "/reference/web-interface/app-catalog/",
+]
 ---
 
-# The Giant Swarm App Catalog in the Web Interface
+# The Giant Swarm App Platform in the Web Interface
 
-This page will give you an overview of how to do some common tasks related to the
-Giant Swarm App Catalog using our Web Interface.
+This page will give you an overview of what parts of the Giant Swarm App Platform
+are managable using our web interface.
 
-Go here for an [overview of the Giant Swarm App Platform](/basics/app-catalog/) instead.
+If you'd like to know more about the App Platform in general, go here for an
+[overview of the Giant Swarm App Platform](/basics/app-platform/) instead.
 
 ### Viewing all App Catalogs
 

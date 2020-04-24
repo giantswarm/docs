@@ -32,7 +32,7 @@ detailed information:
 - View and manage organizations
 - Manage your own account and password
 - Learn how to get started with your Kubernetes clusters by following a guide
-- [Add, remove and configure Apps on your clusters.](app-catalog/)
+- [Add, remove and configure Apps on your clusters.](app-platform/)
 
 ## Source code
 
