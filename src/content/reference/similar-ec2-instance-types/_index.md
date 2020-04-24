@@ -18,22 +18,22 @@ aws-operator creates an Auto Scaling Group (ASG) for every node pool. If the cre
 
 ## Type mapping
 
-| Series | Selected type | Enabled types     |
-|--------|---------------|-------------------|
-| m4     | `m4.xlarge`   | `(m4|m5).xlarge`  |
-| m4     | `m4.2xlarge`  | `(m4|m5).2xlarge` |
-| m4     | `m4.4xlarge`  | `(m4|m5).4xlarge` |
-| m5     | `m5.xlarge`   | `(m4|m5).xlarge`  |
-| m5     | `m5.2xlarge`  | `(m4|m5).2xlarge` |
-| m5     | `m5.4xlarge`  | `(m4|m5).4xlarge` |
-| r4     | `r4.xlarge`   | `(r4|r5).xlarge`  |
-| r4     | `r4.2xlarge`  | `(r4|r5).2xlarge` |
-| r4     | `r4.4xlarge`  | `(r4|r5).4xlarge` |
-| r4     | `r4.8xlarge`  | `(r4|r5).8xlarge` |
-| r5     | `r5.xlarge`   | `(r4|r5).xlarge`  |
-| r5     | `r5.2xlarge`  | `(r4|r5).2xlarge` |
-| r5     | `r5.4xlarge`  | `(r4|r5).4xlarge` |
-| r5     | `r5.8xlarge`  | `(r4|r5).8xlarge` |
+| Series | Selected type | Enabled types              |
+|--------|---------------|----------------------------|
+| m4     | `m4.xlarge`   | `m4.xlarge`, `m5.xlarge`   |
+| m4     | `m4.2xlarge`  | `m4.2xlarge`, `m5.2xlarge` |
+| m4     | `m4.4xlarge`  | `m4.4xlarge`, `m5.4xlarge` |
+| m5     | `m5.xlarge`   | `m4.xlarge` , `m5.xlarge`  |
+| m5     | `m5.2xlarge`  | `m4.2xlarge`, `m5.2xlarge` |
+| m5     | `m5.4xlarge`  | `m4.4xlarge`, `m5.4xlarge` |
+| r4     | `r4.xlarge`   | `r4.xlarge`, `r5.xlarge`   |
+| r4     | `r4.2xlarge`  | `r4.2xlarge`, `r5.2xlarge` |
+| r4     | `r4.4xlarge`  | `r4.4xlarge`, `r5.4xlarge` |
+| r4     | `r4.8xlarge`  | `r4.8xlarge`, `r5.8xlarge` |
+| r5     | `r5.xlarge`   | `r4.xlarge`, `r5.xlarge`   |
+| r5     | `r5.2xlarge`  | `r4.2xlarge`, `r5.2xlarge` |
+| r5     | `r5.4xlarge`  | `r4.4xlarge`, `r5.4xlarge` |
+| r5     | `r5.8xlarge`  | `r4.8xlarge`, `r5.8xlarge` |
 
 If the type you are using for your node pool is not contained in the list above, activating the use of similar instance types has no effect.
 
