@@ -112,14 +112,14 @@ All means of modifying cluster resouces can be used to modify labels of a `clust
 
 Interactively, cluster labels can be modifed using `kubectl edit`. Just edit the `metadata.labels` property.
 
-```bash
+```nohighlight
 $ kubectl edit clusters.cluster.x-k8s.io/7g4di
 ```
 
 It is also possible to modify tenant cluster labels with `kubectl patch`.
 More information about `kubectl patch` is available on the [Update API Objects in Place Using kubectl patch] page.
 
-```bash
+```nohighlight
 $ kubectl patch clusters.cluster.x-k8s.io/7g4di --type merge -p '{"metadata":{"labels":{"your-org/team":"upstate"}}}'
 ```
 
@@ -127,7 +127,7 @@ $ kubectl patch clusters.cluster.x-k8s.io/7g4di --type merge -p '{"metadata":{"l
 
 Labels of all tenant clusters:
 
-```bash
+```nohighlight
 $ kubectl get --show-labels=true clusters.cluster.x-k8s.io
 NAME    AGE   LABELS
 7g4di   60m   cluster-operator.giantswarm.io/version=2.1.9,giantswarm.io/cluster=7g4di,giantswarm.io/organization=my-org,release.giantswarm.io/version=11.2.0,your-org/team=upstate,your-org/environment=testing
@@ -136,7 +136,7 @@ q84ct   63m   cluster-operator.giantswarm.io/version=2.1.9,giantswarm.io/cluster
 
 Labels of a single tenant cluster:
 
-```bash
+```nohighlight
 $ kubectl get --show-labels=true clusters.cluster.x-k8s.io/7g4di
 ```
 
@@ -144,8 +144,8 @@ $ kubectl get --show-labels=true clusters.cluster.x-k8s.io/7g4di
 
 Many `kubectl` commands support the `-l, --selector` flag, which allows to limit the selected resources based on given [Kubernetes Label selectors].
 
-```bash
-kubectl get clusters.cluster.x-k8s.io -l 'your-org/team=upstate'
+```nohighlight
+$ kubectl get clusters.cluster.x-k8s.io -l 'your-org/team=upstate'
 ```
 
 
