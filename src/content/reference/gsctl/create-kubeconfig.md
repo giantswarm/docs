@@ -1,10 +1,10 @@
-+++
-title = "gsctl Command Reference: create kubeconfig"
-description = "The 'gsctl create kubeconfig' command creates a key pair and adds cluster, user, and context settings to your kubectl configuration."
-date = "2020-03-11"
-type = "page"
-weight = 30
-+++
+---
+title: "gsctl Command Reference: create kubeconfig"
+description: "The 'gsctl create kubeconfig' command creates a key pair and adds cluster, user, and context settings to your kubectl configuration."
+date: "2020-04-16"
+type: page
+weight: 30
+---
 
 # `gsctl create kubeconfig`
 
@@ -97,7 +97,7 @@ $ gsctl create kubeconfig --cluster w6wn8 \
 ## Argument reference {#arguments}
 
 - `--cluster`, `-c`: Used to specify the cluster name or ID to create a key pair for.
-- `--ttl`: Allows to set the key pair expiry, in days. Defaults to 30 days.
+- `--ttl`: Allows to set the key pair expiry, in days. Defaults to 1 day.
 - `--description`, `-d`: Can be used to specify a description. If not given, a
   description like `Added by user email@example.com using 'gsctl create
   kubeconfig'` is set.

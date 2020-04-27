@@ -5,6 +5,26 @@ orbs:
 
 
 jobs:
+  linkcheck:
+    machine:
+      image: "ubuntu-1604:201903-01"
+
+    steps:
+      - run:
+          name: Link check
+          command: |
+            docker run -d --rm --name docs -p 8080:8080 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
+            docker run --rm -ti --name linkchecker \
+              --link docs:docs \
+              linkchecker/linkchecker \
+                http://docs:8080 \
+                --check-extern -t 2 \
+                --ignore-url="^https://docs.giantswarm.io/.*" \
+                --ignore-url=/api/ \
+                --ignore-url="^https://.+.example.com/.*" \
+                --ignore-url="^https://my-org.github.com/.*" \
+                --ignore-url=".*gigantic\.io.*"
+
   build:
     machine:
       image: "ubuntu-1604:201903-01"
@@ -23,7 +43,7 @@ jobs:
       - run:
           name: Install architect
           command: |
-            wget -q $(curl -sS -H "Authorization: token $RELEASE_TOKEN" https://api.github.com/repos/giantswarm/architect/releases/latest | grep browser_download_url | head -n 1 | cut -d '"' -f 4)
+            wget -q $(curl -sS -H "Authorization: token $RELEASE_TOKEN" https://api.github.com/repos/giantswarm/architect/releases/tags/v1.0.0 | grep browser_download_url | head -n 1 | cut -d '"' -f 4)
             chmod +x ./architect
             ./architect version
 
@@ -39,20 +59,6 @@ jobs:
             echo $CURL_OUTPUT | grep --quiet "Giant Swarm"
             docker kill docs
 
-      - run:
-          name: Linkcheck
-          command: |
-            docker run -d --rm --name docs -p 8080:8080 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
-            docker run --rm -ti --name linkchecker \
-              --link docs:docs \
-              linkchecker/linkchecker \
-                http://docs:8080 \
-                --check-extern -t 2 \
-                --ignore-url="^https://docs.giantswarm.io/.*" \
-                --ignore-url=/api/ \
-                --ignore-url="^https://.+.example.com/.*" \
-                --ignore-url="^https://my-org.github.com/.*"
-
       - deploy:
           name: Deploy (only if branch is "master")
           command: |
@@ -62,6 +68,15 @@ jobs:
             fi
 
 workflows:
+  version: 2
+
+  build-and-linkcheck:
+    jobs:
+      - build
+      - linkcheck:
+          requires:
+            - build
+
   package-and-push-chart-on-tag:
     jobs:
       - build:

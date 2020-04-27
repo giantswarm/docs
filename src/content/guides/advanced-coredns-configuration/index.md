@@ -1,11 +1,11 @@
-+++
-title = "Advanced CoreDNS Configuration"
-description = "Here we describe how you can customize the configuration of the managed CoreDNS service in your clusters"
-date = "2018-10-30"
-type = "page"
-weight = 50
-tags = ["tutorial"]
-+++
+---
+title: Advanced CoreDNS Configuration
+description: Here we describe how you can customize the configuration of the managed CoreDNS service in your clusters
+date: 2020-04-20
+type: page
+weight: 50
+tags: ["tutorial"]
+---
 
 # Advanced CoreDNS Configuration
 
@@ -40,7 +40,7 @@ The cache plugin also supports much more detailed configuration which is documen
 
 ## Logs
 
-By default, we set the log level for CoreDNS to `denial` and `error`. You can tun these settings by adding a property `log` in the user ConfigMap like this:
+By default, we set the log level for CoreDNS to `denial` and `error`. You can tune these settings by adding a property `log` in the user ConfigMap like this:
 
 ```yaml
 data:
@@ -48,11 +48,9 @@ data:
     all
 ```
 
-To know the exact details of each log level log plugin, please read the [upstream documentation](https://coredns.io/plugins/log/).
+To learn more about the exact details of each log level log plugin, please read the [upstream documentation](https://coredns.io/plugins/log/).
 
 ## Additional forwards (formerly known as proxy) {#additional-forwards}
-
-In CoreDNS version `1.4.0` the proxy plugin has been deprecated. The same behaviour can be achieved now with forward although the syntax can be a bit different. The forward plugin has better performance because it reuses opened upstream connections.
 
 The default forward entry we set in CoreDNS is
 
@@ -78,7 +76,7 @@ data:
 
 __Warning:__ The number of forward upstreams is limited to 15.
 
-Above example would result in the following additional forward entries in the CoreDNS configuration:
+The example above results in the following additional forward entries in the CoreDNS configuration:
 
 ```yaml
 forward . 1.1.1.1 /etc/resolv.conf
@@ -94,7 +92,7 @@ The forward plugin also supports much more detailed configuration which is docum
 
 ## Advanced configuration
 
-In case you need to have a finer granularity you can define custom server blocks with all desired configuration. They will be parsed after the catch-all block in the Corefile. As an example, let's define a block for a `example.com` with some custom configuration:
+In case you need to have a finer granularity you can define custom server blocks with all desired configurations. They will be parsed after the catch-all block in the Corefile. As an example, let's define a block for a `example.com` with a custom configuration:
 
 ```yaml
 data:
@@ -105,7 +103,7 @@ data:
     }
 ```
 
-This custom configuration allows CoreDNS resolve all `example.com` requests to a different upstream DNS resolver (9.9.9.9) than generic one. At the same time we use a different cache TTL(2000) setting. 
+This custom configuration allows CoreDNS to resolve all `example.com` requests to a different upstream DNS resolver (9.9.9.9) than the generic one. At the same time we use a different cache TTL(2000) setting. 
 
 __Warning:__ By default our clusters come with Pod Security Policies and Network Policies for managed components. This means the CoreDNS container doesn't use a privileged port and listens to `1053` instead. Please make sure you test the final `Corefile` carefully. We do not take responsibility for incorrect custom configuration that could break workload communication.
 

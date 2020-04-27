@@ -1,10 +1,10 @@
-+++
-title = "Web Interface Reference"
-description = "Documentation on our web interface, a visual way to manage clusters, create key pairs and more."
-date = "2019-07-26"
-layout = "subsection"
-weight = 10
-+++
+---
+title: Web Interface Reference
+description: Documentation on our web interface, a visual way to manage clusters, create key pairs and more.
+date: 2019-07-26
+layout: subsection
+weight: 10
+---
 
 # The Web Interface
 
@@ -32,7 +32,7 @@ detailed information:
 - View and manage organizations
 - Manage your own account and password
 - Learn how to get started with your Kubernetes clusters by following a guide
-- [Add, remove and configure Apps on your clusters.](app-catalog/)
+- [Add, remove and configure Apps on your clusters.](app-platform/)
 
 ## Source code
 

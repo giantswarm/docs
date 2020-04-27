@@ -1,12 +1,12 @@
-+++
-title = "Details on Kubernetes on Giant Swarm"
-description = "Here you learn how we set up things for you and what we manage, so you don't have to."
-date = "2019-11-18"
-weight = 10
-type = "page"
-categories = ["basics"]
-last-review-date = "2020-01-19"
-+++
+---
+title: Details on Kubernetes on Giant Swarm
+description: Here you learn how we set up things for you and what we manage, so you don't have to.
+date: 2019-11-18
+weight: 10
+type: page
+categories: ["basics"]
+last-review-date: 2020-03-17
+---
 
 # Running Kubernetes on Giant Swarm
 
@@ -24,10 +24,10 @@ Your clusters comes out-of-the-box as follows:
 - CoreDNS installed
 - All resources and feature gates (incl. alpha) enabled
 - NGINX Ingress Controller (running inside your cluster)
-- Monitoring (Oshrat: What do we monitor and why is this different than the monitoring mentioned below?)
-- Storage (Oshrat: Same question as above)
+- Monitoring <!-- (Oshrat: What do we monitor and why is this different than the monitoring mentioned below?) -->
+- Storage <!-- (Oshrat: Same question as above) -->
 
-TO-DO: Add the extent of the managed service so that the next paragraph is understood better in terms of why the add-ons are needed
+<!-- TO-DO: Add the extent of the managed service so that the next paragraph is understood better in terms of why the add-ons are needed -->
 
 ## What is not included
 

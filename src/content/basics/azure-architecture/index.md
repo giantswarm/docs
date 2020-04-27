@@ -1,12 +1,12 @@
-+++
-title = "The Giant Swarm Azure Architecture"
-description = "Architecture Overview showing how Giant Swarm is set up on Microsoft Azure"
-date = "2020-01-28"
-weight = 60
-type = "page"
-categories = ["basics"]
-last_review_date = "2020-01-28"
-+++
+---
+title: The Giant Swarm Azure Architecture
+description: Architecture Overview showing how Giant Swarm is set up on Microsoft Azure
+date: 2020-01-28
+weight: 60
+type: page
+categories: ["basics"]
+last_review_date: 2020-01-28
+---
 
 # The Giant Swarm Azure Architecture
 

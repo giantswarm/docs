@@ -1,15 +1,16 @@
-+++
-title = "The Giant Swarm AWS Architecture"
-description = "Architecture Overview showing how Giant Swarm is set up on Amazon Web Services"
-date = "2019-02-11"
-weight = 50
-type = "page"
-categories = ["basics"]
-+++
+---
+title: The Giant Swarm AWS Architecture
+description: Architecture Overview showing how Giant Swarm is set up on Amazon Web Services
+date: 2020-01-28
+weight: 50
+type: page
+categories: ["basics"]
+last-review-date: 2020-03-17
+---
 
 # The Giant Swarm AWS Architecture
 
-Giant Swarm's Architecture is split into two logical parts, one being the Control Plane and the other being multiple Tenant Clusters. Among other services (for details see Service Architecture below), the control plane runs our [AWS Operator](https://github.com/giantswarm/aws-operator), which handles the full lifecycle management of Tenant Clusters.
+Giant Swarm's Architecture is split into two logical parts. One describes the Control Plane and the other describes one or more Tenant Clusters. Among other services (for details see Service Architecture below), the control plane runs our [AWS Operator](https://github.com/giantswarm/aws-operator), which handles the full lifecycle management of Tenant Clusters.
 
 ## Giant Swarm control plane
 
@@ -46,3 +47,5 @@ We have three main parts:
 * Core Infrastructure Services
 * Infrastructure Monitoring (used by Giant Swarm)
 * Tenant Clusters
+
+All of these are geared towards enabling you to run multiple projects independently and consistently across multiple AWS regions.
