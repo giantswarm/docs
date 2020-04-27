@@ -24,6 +24,7 @@ More information about Kubernetes Labels can be found in the [Kubernetes Labels 
 
 Tenant cluster labels of clusters with release version 10.0.0 and above on AWS are returned by executing a [getClusters] request.
 The field `labels` of suitable tenant clusters contains the labels currently attached to the cluster.
+Labels of a single tenant cluster can be retrieved using the [getClusterLabels](/api/#operation/getClusterLabels) endpoint.
 
 Selecting tenant clusters based on a set of labels can be achieved through the [getV5ClustersByLabel](/api/#operation/getV5ClustersByLabel) operation.
 The operation accepts label selectors in the same way that `kubectl get -l` does ([Kubernetes Label selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors)) for listing clusters based on their labels.
