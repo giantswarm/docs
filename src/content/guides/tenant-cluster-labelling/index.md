@@ -12,24 +12,25 @@ tags: ["recipe"]
 It is possible to assign *key value labels* to Giant Swarm tenant clusters on AWS with release version 10.0.0 and above.
 
 Labels are a mechanism to assign short pieces of additional information to your Giant Swarm tenant clusters.
-Under the hood, tenant cluster labels are Kubernetes labels attached to [`Cluster`] (`clusters.cluster.x-k8s.io`) resources.
-Therefore, all means of listing tenant cluster labels will return all Kubernetes labels attached to [`Cluster`] resources requested.
+Under the hood, tenant cluster labels are Kubernetes labels attached to [`Cluster`](https://github.com/kubernetes-sigs/cluster-api/blob/master/config/crd/bases/cluster.x-k8s.io_clusters.yaml) (`clusters.cluster.x-k8s.io`) resources.
+Therefore, all means of listing tenant cluster labels will return all Kubernetes labels attached to [`Cluster`](https://github.com/kubernetes-sigs/cluster-api/blob/master/config/crd/bases/cluster.x-k8s.io_clusters.yaml) resources requested.
 Label keys and values are freely modifiable except labels with keys containing `giantswarm.io`.
 
 Working with tenant cluster labels works likewise as working with Kubernetes labels.
-More information about Kubernetes Labels can be found in the [Kubernetes Labels and Selectors] documentation.
+More information about Kubernetes Labels can be found in the [Kubernetes Labels and Selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+[getClusters](/api/#operation/getClusters) documentation.
 
 ## Working with tenant cluster labels using the Giant Swarm API
 
 Tenant cluster labels of clusters with release version 10.0.0 and above are returned by executing a [getClusters] request.
 The field `labels` of suitable tenant clusters contains the labels currently attached to the cluster.
 
-Selecting tenant clusters based on a set of labels can be achieved through the [getV5ClustersByLabel] operation.
-The operation accepts label selectors in the same way that `kubectl get -l` does ([Kubernetes Label selectors]) for listing clusters based on their labels.
+Selecting tenant clusters based on a set of labels can be achieved through the [getV5ClustersByLabel](/api/#operation/getV5ClustersByLabel) operation.
+The operation accepts label selectors in the same way that `kubectl get -l` does ([Kubernetes Label selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors)) for listing clusters based on their labels.
 
-The labels of a tenant cluster can be modified by issuing a [setClusterLabels] request to the API.
-Keys and labels should adhere to [Kubernetes labels syntax and character set].
-Label changes should be written as a [JSON Merge Patch, RFC 7386].
+The labels of a tenant cluster can be modified by issuing a [setClusterLabels](/api/#operation/setClusterLabels) request to the API.
+Keys and labels should adhere to [Kubernetes labels syntax and character set](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#syntax-and-character-set).
+Label changes should be written as a [JSON Merge Patch, RFC 7386](https://tools.ietf.org/html/rfc7386).
 Changes to labels with keys containing `giantswarm.io` is forbidden, changes to label `release.giantswarm.io/version` will be validated against available Giant Swarm releases.
 
 ### Example
@@ -99,12 +100,13 @@ POST /v5/clusters/by_label/
 
 Will return all clusters managed by the upstate office team regardless of other label values.
 
-The full documentation about label selectors can be found on the [Kubernetes Labels and Selectors] page.
+The full documentation about label selectors can be found on the [Kubernetes Labels and Selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+[getClusters](/api/#operation/getClusters) page.
 
 ## Working with tenant cluster labels using `kubectl`
 
 With access to the control plane, you are able to use `kubectl` to manage tenant cluster labels.
-The underlying resource to operate on is `clusters.cluster.x-k8s.io` from the upstream [cluster-api] project.
+The underlying resource to operate on is `clusters.cluster.x-k8s.io` from the upstream [cluster-api](https://cluster-api.sigs.k8s.io/) project.
 
 ### Modify tenant cluster labels
 
@@ -117,7 +119,7 @@ $ kubectl edit clusters.cluster.x-k8s.io/7g4di
 ```
 
 It is also possible to modify tenant cluster labels with `kubectl patch`.
-More information about `kubectl patch` is available on the [Update API Objects in Place Using kubectl patch] page.
+More information about `kubectl patch` is available on the [Update API Objects in Place Using kubectl patch](https://kubernetes.io/docs/tasks/run-application/update-api-object-kubectl-patch/) page.
 
 ```nohighlight
 $ kubectl patch clusters.cluster.x-k8s.io/7g4di --type merge -p '{"metadata":{"labels":{"your-org/team":"upstate"}}}'
@@ -142,20 +144,8 @@ $ kubectl get --show-labels=true clusters.cluster.x-k8s.io/7g4di
 
 ### Select tenant clusters by label selector
 
-Many `kubectl` commands support the `-l, --selector` flag, which allows to limit the selected resources based on given [Kubernetes Label selectors].
+Many `kubectl` commands support the `-l, --selector` flag, which allows to limit the selected resources based on given [Kubernetes Label selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors).
 
 ```nohighlight
 $ kubectl get clusters.cluster.x-k8s.io -l 'your-org/team=upstate'
 ```
-
-
-[`Cluster`]: https://github.com/kubernetes-sigs/cluster-api/blob/master/config/crd/bases/cluster.x-k8s.io_clusters.yaml
-[Kubernetes Label selectors]: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
-[Kubernetes Labels and Selectors]: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
-[getClusters]: /api/#operation/getClusters
-[getV5ClustersByLabel]: /api/#operation/getV5ClustersByLabel
-[setClusterLabels]: /api/#operation/setClusterLabels
-[Kubernetes labels syntax and character set]: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#syntax-and-character-set
-[JSON Merge Patch, RFC 7386]: https://tools.ietf.org/html/rfc7386
-[cluster-api]: https://cluster-api.sigs.k8s.io/
-[Update API Objects in Place Using kubectl patch]: https://kubernetes.io/docs/tasks/run-application/update-api-object-kubectl-patch/
