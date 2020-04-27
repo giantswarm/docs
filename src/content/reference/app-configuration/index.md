@@ -8,7 +8,7 @@ type: subsection
 # App Configuration Reference
 
 Giant Swarm's [App Platform](/basics/app-platform/) allows you to easily install Apps across your entire
-fleet of clusters. We fully support Helm as a general tool to deploy your applications as well as for our general app catalogue, which you can of course also use for your own applications by creating a new catalogue.
+fleet of clusters. We fully support Helm as a general tool to deploy your applications as well as for our general app catalog, which you can of course also use for your own applications by creating a new catalog.
 
 Apps are packaged as Helm charts. Helm charts rely on _values_ to be set in order to fill in placeholders in _templates_. By configuring your App you set the values that become available to the templates when they are deployed.
 
