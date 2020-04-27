@@ -27,7 +27,7 @@ The field `labels` of suitable tenant clusters contains the labels currently att
 Selecting tenant clusters based on a set of labels can be achieved through the [getV5ClustersByLabel] operation.
 The operation accepts label selectors in the same way that `kubectl get -l` does ([Kubernetes Label selectors]) for listing clusters based on their labels.
 
-The labels of a tenant clusters can be modified by issuing a [setClusterLabels] request to the API.
+The labels of a tenant cluster can be modified by issuing a [setClusterLabels] request to the API.
 Keys and labels should adhere to [Kubernetes labels syntax and character set].
 Label changes should be written as a [JSON Merge Patch, RFC 7386].
 Changes to labels with keys containing `giantswarm.io` is forbidden, changes to label `release.giantswarm.io/version` will be validated against available Giant Swarm releases.
