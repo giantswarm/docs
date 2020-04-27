@@ -41,11 +41,11 @@ For brevity authentication and unrelated parts of requests and responses are lef
 After creation, a tenant cluster will already have some labels containing information about release and operator.
 
 ```json
-GET /v5/clusters/48i43
+GET /v5/clusters/7g4di
 {
   "api_endpoint": "...",
   "create_date": "...",
-  "id": "48i43",
+  "id": "7g4di",
   "master": {...},
   "name": "...",
   "owner": "your-org",
@@ -53,7 +53,7 @@ GET /v5/clusters/48i43
   "conditions": [...],
   "labels": {
     "cluster-operator.giantswarm.io/version": "2.1.9",
-    "giantswarm.io/cluster": "48i43",
+    "giantswarm.io/cluster": "7g4di",
     "giantswarm.io/organization": "your-org",
     "release.giantswarm.io/version": "11.2.0"
   }
@@ -67,7 +67,7 @@ The newly created cluster will be managed by your team in your upstate office an
 You've decided on using label keys `your-org/team` and `your-org/environment` to specify the clusters designation.
 
 ```json
-PUT /v5/clusters/48i43/labels/
+PUT /v5/clusters/7g4di/labels/
 {
   "labels": {
     "your-org/team": "upstate",
@@ -113,14 +113,14 @@ All means of modifying cluster resouces can be used to modify labels of a `clust
 Interactively, cluster labels can be modifed using `kubectl edit`. Just edit the `metadata.labels` property.
 
 ```bash
-$ kubectl edit clusters.cluster.x-k8s.io/48i43
+$ kubectl edit clusters.cluster.x-k8s.io/7g4di
 ```
 
 It is also possible to modify tenant cluster labels with `kubectl patch`.
 More information about `kubectl patch` is available on the [Update API Objects in Place Using kubectl patch] page.
 
 ```bash
-$ kubectl patch clusters.cluster.x-k8s.io/48i43 --type merge -p '{"metadata":{"labels":{"your-org/team":"upstate"}}}'
+$ kubectl patch clusters.cluster.x-k8s.io/7g4di --type merge -p '{"metadata":{"labels":{"your-org/team":"upstate"}}}'
 ```
 
 ### Show tenant cluster labels
@@ -130,14 +130,14 @@ Labels of all tenant clusters:
 ```bash
 $ kubectl get --show-labels=true clusters.cluster.x-k8s.io
 NAME    AGE   LABELS
-48i43   60m   cluster-operator.giantswarm.io/version=2.1.9,giantswarm.io/cluster=48i43,giantswarm.io/organization=my-org,release.giantswarm.io/version=11.2.0,your-org/team=upstate,your-org/environment=testing
+7g4di   60m   cluster-operator.giantswarm.io/version=2.1.9,giantswarm.io/cluster=7g4di,giantswarm.io/organization=my-org,release.giantswarm.io/version=11.2.0,your-org/team=upstate,your-org/environment=testing
 q84ct   63m   cluster-operator.giantswarm.io/version=2.1.9,giantswarm.io/cluster=q84ct,giantswarm.io/organization=my-org,release.giantswarm.io/version=11.3.0,your-org/team=upstate,your-org/environment=production
 ```
 
 Labels of a single tenant cluster:
 
 ```bash
-$ kubectl get --show-labels=true clusters.cluster.x-k8s.io/48i43
+$ kubectl get --show-labels=true clusters.cluster.x-k8s.io/7g4di
 ```
 
 ### Select tenant clusters by label selector
