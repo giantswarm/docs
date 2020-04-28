@@ -11,7 +11,7 @@ categories: ["basics"]
 
 ## Definition
 
-A node pool is a set of one or more nodes within a Kubernetes cluster that share a same configuration (instance type, CIDR range, etc.). Each node in the pool is labeled by the node pool's name
+A node pool is a set of nodes within a Kubernetes cluster that share a same configuration (instance type, CIDR range, etc.). Each node in the pool is labeled by the node pool's name
 
 ## Advantages
 
