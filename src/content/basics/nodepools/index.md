@@ -1,7 +1,7 @@
 ---
 title: Node Pools
 description: A general description of node pools as a concept, it's benefits, and some details you should be aware of.
-date: 2020-04-22
+date: 2020-04-28
 weight: 130
 type: page
 categories: ["basics"]
@@ -11,8 +11,7 @@ categories: ["basics"]
 
 ## Definition
 
-A node pool is a group of nodes within a cluster that all have the same configuration. Each node in the pool has a Kubernetes
-node label, which has the node pool's name as its value. A node pool can contain a single node or many nodes.
+A node pool is a set of nodes within a Kubernetes cluster that share a same configuration (instance type, CIDR range, etc.). Each node in the pool is labeled by the node pool's name
 
 ## Advantages
 
