@@ -121,7 +121,7 @@ There are two parameters that will allow you to configure which instances are go
 
 - *On-demand base capacity*: controls how much of the initial capacity is made up of on-demand instances.
 
-- *Spot instance percentage above base capacity*: controls the percentage of spot instances to be used for worker nodes beyond the number of *on-demand base capacity*.
+- *Spot instance percentage above base capacity*: controls the percentage of spot instances to be used for worker nodes beyond the number of *on-demand base capacity*. Spot instance max bidding price is configured to be equal to the On-demand price to ensure availability of nodes.
 
 ### Examples
 
