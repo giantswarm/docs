@@ -72,7 +72,7 @@ function doSearch(q) {
         "size": 1000,
         "sort": ["_score"],
         "_source": {
-            "excludes": ["text", "body"]
+            "excludes": ["text", "breadcrumb_*"]
         },
         "query": {
             "simple_query_string": {
@@ -85,13 +85,13 @@ function doSearch(q) {
             "fields" : {
                 "body" : {
                     "type": "unified",
-                    "fragment_size" : 150,
-                    "number_of_fragments" : 3,
-                    "no_match_size": 200
+                    "number_of_fragments" : 1,
+                    "no_match_size": 200,
+                    "fragment_size" : 150
                 },
                 "title": {
-                    "type": "plain",
-                    "number_of_fragments" : 0
+                    "type": "unified",
+                    "number_of_fragments" : 1
                 }
             }
         }
