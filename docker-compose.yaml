@@ -13,11 +13,13 @@ services:
       - discovery.type=single-node
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms256m -Xmx256m"
+      - "ES_HOME=/usr/share/elasticsearch"
     ports:
       - 9200:9200
     restart: always
     volumes:
-      - $PWD/volumes/elasticsearch:/usr/share/elasticsearch/data
+      - $PWD/volumes/elasticsearch-logs:/usr/share/elasticsearch/data
+      - $PWD/volumes/elasticsearch-data:/usr/share/elasticsearch/logs
 
   api-spec-app:
     image: quay.io/giantswarm/api-spec:latest
