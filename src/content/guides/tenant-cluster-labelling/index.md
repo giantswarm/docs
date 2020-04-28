@@ -12,8 +12,8 @@ tags: ["recipe"]
 It is possible to assign *key value labels* to Giant Swarm tenant clusters with release version 10.0.0 and above on AWS.
 
 Labels are a mechanism to assign short pieces of additional information to your Giant Swarm tenant clusters.
-Under the hood, tenant cluster labels are Kubernetes labels attached to [`Cluster`](https://github.com/kubernetes-sigs/cluster-api/blob/master/config/crd/bases/cluster.x-k8s.io_clusters.yaml) (`clusters.cluster.x-k8s.io`) resources.
-Therefore, all means of listing tenant cluster labels will return all Kubernetes labels attached to [`Cluster`](https://github.com/kubernetes-sigs/cluster-api/blob/master/config/crd/bases/cluster.x-k8s.io_clusters.yaml) resources requested.
+Under the hood, tenant cluster labels are Kubernetes labels attached to [`Cluster`](/reference/cp-k8s-api/clusters.cluster.x-k8s.io/) (`clusters.cluster.x-k8s.io`) resources.
+Therefore, all means of listing tenant cluster labels will return all Kubernetes labels attached to [`Cluster`](/reference/cp-k8s-api/clusters.cluster.x-k8s.io/) resources requested.
 Label keys and values are freely modifiable except labels with keys containing `giantswarm.io`.
 
 Working with tenant cluster labels works likewise as working with Kubernetes labels.
