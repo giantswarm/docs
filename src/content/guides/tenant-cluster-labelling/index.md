@@ -17,8 +17,7 @@ Therefore, all means of listing tenant cluster labels will return all Kubernetes
 Label keys and values are freely modifiable except labels with keys containing `giantswarm.io`.
 
 Working with tenant cluster labels works likewise as working with Kubernetes labels.
-More information about Kubernetes Labels can be found in the [Kubernetes Labels and Selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
-[getClusters](/api/#operation/getClusters) documentation.
+More information about Kubernetes Labels can be found in the [Kubernetes Labels and Selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/) and our [getClusters](/api/#operation/getClusters) documentation.
 
 ## Working with tenant cluster labels using the Giant Swarm API
 
