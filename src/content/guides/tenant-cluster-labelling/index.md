@@ -98,15 +98,15 @@ POST /v5/clusters/by_label/
 }
 ```
 
-Will return all clusters managed by the upstate office team regardless of other label values.
+will return all clusters managed by the upstate office team regardless of other label values.
 
-The full documentation about label selectors can be found on the [Kubernetes Labels and Selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
-[getClusters](/api/#operation/getClusters) page.
+The full documentation about label selectors can be found on the [Kubernetes Labels and Selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)
+page.
 
 ## Working with tenant cluster labels using `kubectl`
 
 With access to the control plane, you are able to use `kubectl` to manage tenant cluster labels.
-The underlying resource to operate on is `clusters.cluster.x-k8s.io` from the upstream [cluster-api](https://cluster-api.sigs.k8s.io/) project.
+The underlying resource to operate on is [`clusters.cluster.x-k8s.io`](/reference/cp-k8s-api/clusters.cluster.x-k8s.io/) from the upstream [cluster-api](https://cluster-api.sigs.k8s.io/) project.
 
 ### Modify tenant cluster labels
 
