@@ -28,13 +28,13 @@
               {{ with index $.Site.Data.crd_metadata $crdName }}
                 {{ $crdMetaData := . }}
                   {{ with index $crdMetaData "provider" }}
-                    &mdash; Provider:
+                    &mdash; Provider
                     {{ range . }}
                       <span class="tag tag-provider tag-provider-{{ . }}">{{ . }}</span>
                     {{ end }}
                   {{ end }}
                   {{ with index $crdMetaData "topics" }}
-                    &mdash; Topic:
+                    &mdash; Topic
                     {{ range . }}
                       <span class="tag tag-topic tag-topic-{{ . }}">{{ . }}</span>
                     {{ end }}
