@@ -17,12 +17,11 @@ Therefore, all means of listing tenant cluster labels will return all Kubernetes
 Label keys and values are freely modifiable except labels with keys containing `giantswarm.io`.
 
 Working with tenant cluster labels works likewise as working with Kubernetes labels.
-More information about Kubernetes Labels can be found in the [Kubernetes Labels and Selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
-[getClusters](/api/#operation/getClusters) documentation.
+More information about Kubernetes Labels can be found in the [Kubernetes Labels and Selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/) and our [cluster labels API documentation](/api/#tag/cluster-labels).
 
 ## Working with tenant cluster labels using the Giant Swarm API
 
-Tenant cluster labels of clusters with release version 10.0.0 and above on AWS are returned by executing a [getClusters] request.
+Tenant cluster labels of clusters with release version 10.0.0 and above on AWS are returned by executing a [getClusters](/api/#operation/getClusters) request.
 The field `labels` of suitable tenant clusters contains the labels currently attached to the cluster.
 Labels of a single tenant cluster can be retrieved using the [getClusterLabels](/api/#operation/getClusterLabels) endpoint.
 
@@ -99,15 +98,15 @@ POST /v5/clusters/by_label/
 }
 ```
 
-Will return all clusters managed by the upstate office team regardless of other label values.
+will return all clusters managed by the upstate office team regardless of other label values.
 
-The full documentation about label selectors can be found on the [Kubernetes Labels and Selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
-[getClusters](/api/#operation/getClusters) page.
+The full documentation about label selectors can be found on the [Kubernetes Labels and Selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)
+page.
 
 ## Working with tenant cluster labels using `kubectl`
 
 With access to the control plane, you are able to use `kubectl` to manage tenant cluster labels.
-The underlying resource to operate on is `clusters.cluster.x-k8s.io` from the upstream [cluster-api](https://cluster-api.sigs.k8s.io/) project.
+The underlying resource to operate on is [`clusters.cluster.x-k8s.io`](/reference/cp-k8s-api/clusters.cluster.x-k8s.io/) from the upstream [cluster-api](https://cluster-api.sigs.k8s.io/) project.
 
 ### Modify tenant cluster labels
 
