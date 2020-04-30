@@ -43,12 +43,12 @@ Furthermore, Kubernetes takes care of syncing your cluster with your desired sta
 
 ## Specifics of your cluster
 
-As part of managing your clusers, we need to run some agents (e.g. for monitoring or storage) on them. Due to this fact some host ports might be already in use. Currently, this is limited to ports `10300` and `10301`, which are used by monitoring agents. If you run into issues, please [get in touch](mailto:support@giantswarm.io) and we will find a solution.
+As part of managing your clusters, we need to run some agents (e.g. for monitoring or storage) on them. Due to this fact some host ports might be already in use. Currently, this is limited to ports `10300` and `10301`, which are used by monitoring agents. If you run into issues, please [get in touch](mailto:support@giantswarm.io) and we will find a solution.
 
 Similarly, some parts of the DNS, Ingress Controller, and Calico setups are visible to you inside your cluster. To ensure optimal running clusters, please refrain from manipulating the `kube-system` namespace as well as the pods and other resources running in them if they are not documented.
 
 We customize the audit policy file to eliminate rules which are both low-risk and produce a high volume of log entries. For full details, check the manifest `audit-policy.yaml` in the repository [giantswarm/k8scloudconfig](https://github.com/giantswarm/k8scloudconfig) under `v_X_Y_Z/files/policies`.
-  
+
 ### Specifics on AWS
 
 On AWS all resources (besides minor resources on S3 and KMS) pertaining to a cluster carry the two following tags:
