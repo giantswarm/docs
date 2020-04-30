@@ -1,13 +1,9 @@
-*.pyc
-venv*
 .DS_Store
-linklinttest
-sitesearch-volume-data
-*.map
 .sass-cache
+*.map
+*.pyc
+/.idea
+/.vscode
 /build/
 /vendor/
-kubernetes/secrets.yaml
-/.vscode
 /volumes
-/.idea
