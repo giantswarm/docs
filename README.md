@@ -221,5 +221,16 @@ and link, if possible, to https://giantswarm.io
 
 ## Deploying
 
-With every push to `master`, the latest content is automatically published. See `.circleci/config.yml` and `helm/` for details.
+To publish the content in this repository:
 
+1. Create a new [release](https://github.com/giantswarm/docs/releases). When in doubt, bump the patch version. This will trigger the creation of a new version of the `docs-app` via CI.
+2. Watch the appearance of the new release of `docs-app` in the [giantswarm-operations-platform-catalog](https://github.com/giantswarm/giantswarm-operations-platform-catalog/commits/master) catalog.
+3. Update the version of App `docs-app` in `gollum` in namespace `c68pn`. You can use this command:
+
+```nohighlight
+kubectl --context giantswarm-gollum -n c68pn patch app docs-app --type merge -p '{"spec": {"version": "X.Y.Z"}}'
+```
+
+Here, `giantswarm-gollum` is the kubeconfig context created by `opsctl create kubeconfig -i gollum`. `X.Y.Z` is to be replaced by the new version number of the app, without `v` prefix.
+
+Latest content should be visible after a short period. When checking, make sure to circumvent any browser cache. For example, do this by keeping the Shift key pressed while hitting the reload button of your browser.
