@@ -13,7 +13,7 @@ jobs:
       - run:
           name: Link check
           command: |
-            docker pull -q linkchecker/linkchecker
+            docker pull linkchecker/linkchecker > /dev/null
             docker run -d --rm --name docs -p 8080:8080 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
             docker run --rm -ti --name linkchecker \
               --link docs:docs \
