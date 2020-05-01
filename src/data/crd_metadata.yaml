@@ -1,0 +1,103 @@
+# This data file holds meta data for CRDs
+# with the purpose of providing context and filtering capabilities for end users
+# of our CRD docs.
+#
+# Schema:
+# .topics: array of strings. Possible values: "apps", "controlplane", "tenantcluster"
+# .provider: array of strings.
+appcatalogs.application.giantswarm.io:
+  topics:
+    - apps
+apps.application.giantswarm.io:
+  topics:
+    - apps
+awsclusterconfigs.core.giantswarm.io:
+  provider:
+    - aws
+  topics:
+    - tenantcluster
+awsclusters.infrastructure.giantswarm.io:
+  provider:
+    - aws
+  topics:
+    - tenantcluster
+awsconfigs.provider.giantswarm.io:
+  provider:
+    - aws
+  topics:
+    - tenantcluster
+awscontrolplanes.infrastructure.giantswarm.io:
+  provider:
+    - aws
+  topics:
+    - tenantcluster
+awsmachinedeployments.infrastructure.giantswarm.io:
+  provider:
+    - aws
+  topics:
+    - tenantcluster
+azureclusterconfigs.core.giantswarm.io:
+  provider:
+    - azure
+  topics:
+    - tenantcluster
+azureconfigs.provider.giantswarm.io:
+  provider:
+    - azure
+  topics:
+    - tenantcluster
+certconfigs.core.giantswarm.io:
+  topics:
+    - controlplane
+    - tenantcluster
+charts.application.giantswarm.io:
+  topics:
+    - apps
+clusters.cluster.x-k8s.io:
+  provider:
+    - aws
+  topics:
+    - tenantcluster
+drainerconfigs.core.giantswarm.io:
+  topics:
+    - tenantcluster
+etcdbackups.backup.giantswarm.io:
+  topics:
+    - controlplane
+    - tenantcluster
+flannelconfigs.core.giantswarm.io:
+  provider:
+    - kvm
+  topics:
+    - tenantcluster
+g8scontrolplanes.infrastructure.giantswarm.io:
+  provider:
+    - aws
+  topics:
+    - tenantcluster
+ignitions.core.giantswarm.io:
+  topics:
+    - controlplane
+    - tenantcluster
+kvmclusterconfigs.core.giantswarm.io:
+  provider:
+    - kvm
+  topics:
+    - tenantcluster
+kvmconfigs.provider.giantswarm.io:
+  provider:
+    - kvm
+  topics:
+    - tenantcluster
+machinedeployments.cluster.x-k8s.io:
+  provider:
+    - aws
+  topics:
+    - tenantcluster
+releases.release.giantswarm.io:
+  topics:
+    - controlplane
+    - tenantcluster
+storageconfigs.core.giantswarm.io:
+  topics:
+    - controlplane

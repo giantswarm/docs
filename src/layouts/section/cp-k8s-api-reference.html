@@ -18,10 +18,32 @@
 
     <ul class="linklist crd-index">
 
-      {{ range .Data.Pages.ByWeight }}
+      {{ range .Pages.ByWeight }}
       <li>
           <a href="{{ .Permalink | relURL }}">{{ .LinkTitle }}</a>
-          <div class="meta">{{ .Description }}</div>
+          <div class="meta">
+            {{ with .Params.technical_name }}
+              {{ $crdName := . }}
+              <p><code>{{ $crdName }}</code>
+              {{ with index $.Site.Data.crd_metadata $crdName }}
+                {{ $crdMetaData := . }}
+                  {{ with index $crdMetaData "provider" }}
+                    &mdash; Provider
+                    {{ range . }}
+                      <span class="tag tag-provider tag-provider-{{ . }}">{{ . }}</span>
+                    {{ end }}
+                  {{ end }}
+                  {{ with index $crdMetaData "topics" }}
+                    &mdash; Topic
+                    {{ range . }}
+                      <span class="tag tag-topic tag-topic-{{ . }}">{{ . }}</span>
+                    {{ end }}
+                  {{ end }}
+              {{ end }}
+              </p>
+            {{ end }}
+            <p>{{ .Description }}</p>
+          </div>
       </li>
       {{ end }}
 

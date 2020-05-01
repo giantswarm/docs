@@ -5,6 +5,28 @@ ul.crd-index {
   margin-bottom: 2em;
 }
 
+.crd-index .tag {
+  background-color: #ccc;
+  padding: 2px 7px;
+  font-size: 14px;
+  border-radius: 3px;
+}
+.crd-index .tag-provider {
+  text-transform: uppercase;
+}
+.crd-index .tag-provider-aws {
+  background-color: #ed9235;
+  color: #232f3b;
+}
+.crd-index .tag-provider-azure {
+  background-color: #1773bd;
+  color: #fff;
+}
+.crd-index .tag-topic {
+  background-color: #5eaebb;
+  color: #fff;
+}
+
 dl.crd-meta {
   display: flex;
   flex-flow: row wrap;
