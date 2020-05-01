@@ -13,6 +13,7 @@ jobs:
       - run:
           name: Link check
           command: |
+            docker pull linkchecker/linkchecker > /dev/null
             docker run -d --rm --name docs -p 8080:8080 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
             docker run --rm -ti --name linkchecker \
               --link docs:docs \
@@ -21,7 +22,7 @@ jobs:
                 --check-extern -t 2 \
                 --ignore-url="^https://docs.giantswarm.io/.*" \
                 --ignore-url=/api/ \
-                --ignore-url="^https://.+.example.com/.*" \
+                --ignore-url="^https://.*example.com/.*" \
                 --ignore-url="^https://my-org.github.com/.*" \
                 --ignore-url=".*gigantic\.io.*"
 
@@ -70,7 +71,7 @@ jobs:
 workflows:
   version: 2
 
-  build-and-linkcheck:
+  build-andcheck:
     jobs:
       - build
       - linkcheck:
