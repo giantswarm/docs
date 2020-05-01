@@ -53,7 +53,7 @@ build: vendor build-css
 	docker run \
 		-v ${PWD}/build/content/reference/cp-k8s-api:/opt/crd-docs-generator/output \
 		quay.io/giantswarm/crd-docs-generator:45a4eebf2dd3340dcce091b3f5d0ebe3dc83cd21 \
-		  --apiextensions-commit-ref v0.3.3 \
+		  --apiextensions-commit-ref v0.3.4 \
 		  --skip-crd chartconfigs.core.giantswarm.io \
 		  --skip-crd clusters.core.giantswarm.io \
 		  --skip-crd draughtsmanconfigs.core.giantswarm.io \
