@@ -38,6 +38,7 @@ Follow the links below for detailed documentation, where available. You can also
 | `show cluster`                        | [Show cluster details](show-cluster/)
 | `show nodepool`                       | [Show node pool details](show-nodepool/)
 | `show release`                        | Show details on a release
+| `update cluster`                      | [Modify cluster labels](update-cluster/)
 | `update nodepool`                     | [Modify (rename, scale) a node pool](update-nodepool/)
 | `update organization set-credentials` | [Set provider credentials for an organization](update-org-set-credentials/)
 | `upgrade cluster`                     | [Upgrade a cluster](upgrade-cluster/)
