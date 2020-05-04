@@ -49,13 +49,13 @@ GET /v5/clusters/7g4di
   "id": "7g4di",
   "master": {...},
   "name": "...",
-  "owner": "your-org",
+  "owner": "my-org",
   "release_version": "11.2.0",
   "conditions": [...],
   "labels": {
     "cluster-operator.giantswarm.io/version": "2.1.9",
     "giantswarm.io/cluster": "7g4di",
-    "giantswarm.io/organization": "your-org",
+    "giantswarm.io/organization": "my-org",
     "release.giantswarm.io/version": "11.2.0"
   }
 }
@@ -65,14 +65,14 @@ In our example, the cluster `7g4di` already has four labels (`cluster-operator.g
 
 The newly created cluster will be managed by your team in your upstate office and is planned to be used for testing purposes.
 
-You've decided on using label keys `your-org/team` and `your-org/environment` to specify the clusters designation.
+You've decided on using label keys `my-org/team` and `my-org/environment` to specify the clusters designation.
 
 ```json
 PUT /v5/clusters/7g4di/labels/
 {
   "labels": {
-    "your-org/team": "upstate",
-    "your-org/environment": "testing"
+    "my-org/team": "upstate",
+    "my-org/environment": "testing"
   }
 }
 ```
@@ -83,8 +83,8 @@ Another cluster from earlier is also managed by your team in the upstate office 
 PUT /v5/clusters/g8s2o/labels/
 {
   "labels": {
-    "your-org/team": "upstate",
-    "your-org/environment": "production"
+    "my-org/team": "upstate",
+    "my-org/environment": "production"
   }
 }
 ```
@@ -94,7 +94,7 @@ From this point on it is possible to select the clusters by label values or labe
 ```json
 POST /v5/clusters/by_label/
 {
-  "labels": "your-org/team=upstate"
+  "labels": "my-org/team=upstate"
 }
 ```
 
@@ -107,6 +107,8 @@ page.
 
 With access to the control plane, you are able to use `kubectl` to manage tenant cluster labels.
 The underlying resource to operate on is [`clusters.cluster.x-k8s.io`](/reference/cp-k8s-api/clusters.cluster.x-k8s.io/) from the upstream [cluster-api](https://cluster-api.sigs.k8s.io/) project.
+
+Detailed documentation and examples of `kubectl label` and other commands used here can be found in the [Kubectl Reference Docs](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands).
 
 ### Modify tenant cluster labels
 
@@ -122,7 +124,13 @@ It is also possible to modify tenant cluster labels with `kubectl patch`.
 More information about `kubectl patch` is available on the [Update API Objects in Place Using kubectl patch](https://kubernetes.io/docs/tasks/run-application/update-api-object-kubectl-patch/) page.
 
 ```nohighlight
-$ kubectl patch clusters.cluster.x-k8s.io/7g4di --type merge -p '{"metadata":{"labels":{"your-org/team":"upstate"}}}'
+$ kubectl patch clusters.cluster.x-k8s.io/7g4di --type merge -p '{"metadata":{"labels":{"my-org/team":"upstate"}}}'
+```
+
+Additionally, [`kubectl label`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#label) can be used to modify tenant cluster labels.
+
+```nohighlight
+$ kubectl label clusters.cluster.x-k8s.io/7g4di my-org/team=upstate
 ```
 
 ### Show tenant cluster labels
@@ -130,16 +138,33 @@ $ kubectl patch clusters.cluster.x-k8s.io/7g4di --type merge -p '{"metadata":{"l
 Labels of all tenant clusters:
 
 ```nohighlight
-$ kubectl get --show-labels=true clusters.cluster.x-k8s.io
-NAME    AGE   LABELS
-7g4di   60m   cluster-operator.giantswarm.io/version=2.1.9,giantswarm.io/cluster=7g4di,giantswarm.io/organization=my-org,release.giantswarm.io/version=11.2.0,your-org/team=upstate,your-org/environment=testing
-q84ct   63m   cluster-operator.giantswarm.io/version=2.1.9,giantswarm.io/cluster=q84ct,giantswarm.io/organization=my-org,release.giantswarm.io/version=11.3.0,your-org/team=upstate,your-org/environment=production
+$ kubectl labels --list --all clusters.cluster.x-k8s.io
+Listing labels for Cluster.cluster.x-k8s.io/7g4di:
+ giantswarm.io/cluster=7g4di
+ giantswarm.io/organization=my-org
+ release.giantswarm.io/version=11.2.0
+ cluster-operator.giantswarm.io/version=2.1.9
+ my-org/team=upstate
+ my-org/environment=testing
+Listing labels for Cluster.cluster.x-k8s.io/zv86a:
+ cluster-operator.giantswarm.io/version=2.1.9
+ giantswarm.io/cluster=q84ct
+ giantswarm.io/organization=my-org
+ release.giantswarm.io/version=11.3.0
+ my-org/team=upstate
+ my-org/environment=production
 ```
 
 Labels of a single tenant cluster:
 
 ```nohighlight
-$ kubectl get --show-labels=true clusters.cluster.x-k8s.io/7g4di
+$ kubectl labels --list clusters.cluster.x-k8s.io/7g4di
+giantswarm.io/cluster=7g4di
+giantswarm.io/organization=my-org
+release.giantswarm.io/version=11.2.0
+cluster-operator.giantswarm.io/version=2.1.9
+my-org/team=upstate
+my-org/environment=testing
 ```
 
 ### Select tenant clusters by label selector
@@ -147,5 +172,5 @@ $ kubectl get --show-labels=true clusters.cluster.x-k8s.io/7g4di
 Many `kubectl` commands support the `-l, --selector` flag, which allows to limit the selected resources based on given [Kubernetes Label selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors).
 
 ```nohighlight
-$ kubectl get clusters.cluster.x-k8s.io -l 'your-org/team=upstate'
+$ kubectl get clusters.cluster.x-k8s.io -l 'my-org/team=upstate'
 ```
