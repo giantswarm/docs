@@ -60,5 +60,5 @@ If `requests` and `limits` are not set for all of the resources, across all cont
 
 ## Further reading
 
-- [Managing Compute Resources](http://kubernetes.io/docs/user-guide/compute-resources/)
+- [Managing Resources for Containers](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
 - [Pod Quality of Service in Kubernetes](https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/)
