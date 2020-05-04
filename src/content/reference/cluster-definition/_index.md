@@ -95,6 +95,9 @@ Let's start with an example:
 api_version: "v5"
 release_version: "11.0.0"
 name: "Test cluster with two node pools"
+labels:
+  locked: "false"
+  environment: "testing"
 master:
   availability_zone: "eu-central-1a"
 nodepools:
@@ -136,6 +139,7 @@ Coming from v4, you might want to understand how v5 is different from v4:
 - `master`:
   - `availability_zone`: Name of the availability zone to use for the master node. If not set, one will be assigned randomly.
 - `nodepools`: Here you can list your node pool definitions as explained below. Note that this is not mandatory and you can also add node pools to a cluster after it has been created.
+- `labels`: Labels to be attached to this cluster.
 
 #### Node pool definition keys
 
