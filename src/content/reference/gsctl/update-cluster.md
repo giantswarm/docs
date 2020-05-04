@@ -41,3 +41,5 @@ Use `key-` to delete the label with key `key`.
 
 - [`gsctl create cluster`](/reference/gsctl/create-cluster/) - Add a node pool to a cluster
 - [`gsctl list clusters`](/reference/gsctl/list-clusters/) - List all node pools of a cluster
+- [API: Update cluster labels](/api/#operation/setClusterLabels)
+- [Labelling tennant clusters](/guides/tenant-cluster-labelling/)
