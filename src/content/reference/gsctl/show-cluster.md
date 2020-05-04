@@ -81,7 +81,7 @@ The output lines in detail:
 - **AWS account:** (_only on AWS_) If the cluster is running using non-default provider credentials, here we show the AWS account ID
 - **Azure subscription:** (_only on Azure_) If the cluster is running using non-default provider credentials, here we show the subscription ID
 - **Azure tenant:** (_only on Azure_) If the cluster is running using non-default provider credentials, here we show the tenant ID
-- **Labels** (_only on AWS_) user defined labels. Only available for clusters with node pools
+- **Labels** (_only on AWS_) user defined labels. Only available for clusters with release version 10.0.0 and above on AWS
 
 Note that some dynamic pieces of information, like the current number of workers, and the desired worker count, may take up to five minutes to be updated.
 
