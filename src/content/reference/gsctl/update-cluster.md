@@ -8,7 +8,7 @@ weight: 44
 
 # `gsctl update cluster`
 
-The `gsctl update cluster` allows the modification of cluster labels.
+The `gsctl update cluster` allows the modification of cluster labels. This feature is only available for clusters with node pools on AWS.
 
 ## Usage
 
