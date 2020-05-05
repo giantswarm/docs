@@ -9,7 +9,7 @@ weight: 44
 # `gsctl update cluster`
 
 The `gsctl update cluster` allows the modification of the name of a cluster and its labels.
-Cluster labelling is only available for clusters with release version 10.0.0 and above on AWS.
+Cluster labelling is only available for clusters with release version {{% first_aws_nodepools_version %}} and above on AWS.
 
 ## Usage
 
