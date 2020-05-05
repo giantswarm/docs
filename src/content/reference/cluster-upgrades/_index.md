@@ -22,7 +22,7 @@ In this article, we explain how upgrades work in detail and how you should provi
 
 Among the third party components building a tenant cluster stack are
 
-- [CoreOS Container Linux](https://coreos.com/os/docs/latest/) as the node's operating system
+- [Flatcar Container Linux](https://docs.flatcar-linux.org/) as the node's operating system
 - [Docker](https://docs.docker.com/engine/) as a container runtime environment
 - [etcd](https://coreos.com/etcd/) as distributed storage for Kubernetes and Vault
 - [Kubernetes](https://kubernetes.io/) with its many sub-components
