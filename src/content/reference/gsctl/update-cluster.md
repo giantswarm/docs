@@ -15,8 +15,8 @@ Cluster labelling is only available for clusters with release version {{% first_
 
 The command is called with the cluster ID or name as a positional argument.
 The desired new name can be specified with the `--name` or `-n` flag.
-The `--label` flag is used to modify labels.
-It can receive either a JSON formatted [JSON Merge Patch, RFC 7386](https://tools.ietf.org/html/rfc7386) or a string specifying label changes.
+The `--label` flag is used to modify a single label change.
+It can be specified multiple times in order to change multiple labels at once.
 
 ### Name modification example
 
@@ -24,18 +24,10 @@ It can receive either a JSON formatted [JSON Merge Patch, RFC 7386](https://tool
 $ gsctl update cluster f01r4 --name "Precious Production Cluster"
 ```
 
-### Labels modification JSON Merge Patch example
-
-```nohighlight
-$ gsctl update cluster vxvc7 --labels '{"environment": "testing", "locked": null}'
-```
-
-will update the labels of cluster `vxvc7`. It will add (or update depending on prior existence) label `environment=testing` and delete the label with key `locked`.
-
 ### Labels modification key=value example
 
 ```nohighlight
-$ gsctl update cluster vxvc7 --labels 'environment=testing locked-'
+$ gsctl update cluster vxvc7 --label environment=testing --label locked=
 ```
 
 will update the labels of cluster `vxvc7`. It will add (or update depending on prior existence) label `environment=testing` and delete the label with key `locked`.
@@ -43,8 +35,9 @@ will update the labels of cluster `vxvc7`. It will add (or update depending on p
 ## Full argument reference {#arguments}
 
 - `--name` or `-n`: The new cluster name.
-- `--labels`: Specify label updates. Allows to specify label updates either as a [JSON Merge Patch, RFC 7386](https://tools.ietf.org/html/rfc7386) or in form of `'key=value anotherkey=anothervalue'`.
-Use `key-` to delete the label with key `key`.
+- `--label`: Specify a single label update.
+Allowed multiple times.
+To remove a label, set its key to an empty string (`labeltodelete=`).
 
 ## Related
 
