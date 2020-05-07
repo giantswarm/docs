@@ -92,7 +92,7 @@ This setting would forward all requests to 1.1.1.1 which is Cloudflare's DNS. If
 
 The forward plugin also supports much more detailed configuration which is documented in the [upstream documentation](https://coredns.io/plugins/forward/).
 
-__Notes:__ For releases using the CoreDNS chart in versions 1.1.3 and below, the upstreams must not include . and /etc/resolv.conf as they are rendered by the chart. They can be configured using simple or multiple lines:
+__Notes:__ For releases using the CoreDNS chart in versions 1.1.3 and below, the upstreams must not include `.` and `/etc/resolv.conf` as they are rendered by the chart. They can be configured using simple or multiple lines:
 
 ```yaml
 data:
