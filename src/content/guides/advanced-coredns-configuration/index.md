@@ -58,20 +58,22 @@ The default forward entry we set in CoreDNS is
 forward . /etc/resolv.conf
 ```
 
-You can add additional forward entries by adding a each as a line to the forward field of the user ConfigMap. They will be selected in sequential order.
+You can add additional forward entries by adding a each as a line to the forward field of the user ConfigMap. They will be selected in random order.
 
 You can use a simple line or multiple lines to define the upstreams of the default server block.
 
 ```yaml
 data:
-  forward: 1.1.1.1
+  forward: . 1.1.1.1 /etc/resolv.conf
 ```
 
 ```yaml
 data:
   forward: |
+    .
     1.1.1.1
     8.8.8.8
+    /etc/resolv.conf
 ```
 
 __Warning:__ The number of forward upstreams is limited to 15.
@@ -89,6 +91,20 @@ forward . 1.1.1.1 8.8.8.8 /etc/resolv.conf
 This setting would forward all requests to 1.1.1.1 which is Cloudflare's DNS. If the first upstream fails the second IP (8.8.8.8) will be used as resolver. In case it fails too, all requests will be resolved by the default DNS provider set for your cluster.
 
 The forward plugin also supports much more detailed configuration which is documented in the [upstream documentation](https://coredns.io/plugins/forward/).
+
+__Notes:__ For releases using the CoreDNS chart in versions 1.1.3 and below, the upstreams must not include . and /etc/resolv.conf as they are rendered by the chart. They can be configured using simple or multiple lines:
+
+```yaml
+data:
+  forward: 1.1.1.1 8.8.8.8
+```
+
+```yaml
+data:
+  forward: |
+    1.1.1.1
+    8.8.8.8
+```
 
 ## Advanced configuration
 
