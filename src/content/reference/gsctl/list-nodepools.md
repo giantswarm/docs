@@ -44,7 +44,7 @@ The result will be a table of all node pools of a specific cluster with the foll
 
 ## Argument reference
 
-- `--output` or `-o`: Using this flag with the value `json`, the output can be printed in JSON format. This is convenient for use in automation. The default output format is `table`, which results in an output like shown above.
+- `--output` or `-o`: Using this flag with the value `json`, the output can be printed in JSON format. This is convenient for use in automation. The default output format is `table`.
 
 ## Related
 
