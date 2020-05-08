@@ -42,6 +42,10 @@ The result will be a table of all node pools of a specific cluster with the foll
 - `CPUS`:            Sum of CPU cores in nodes that are in state Ready
 - `RAM (GB)`:        Sum of memory in GB of all nodes that are in state Ready
 
+## Argument reference
+
+- `--output` or `-o`: Using this flag with the value `json`, the output can be printed in JSON format. This is convenient for use in automation. The default output format is `table`, which results in an output like shown above.
+
 ## Related
 
 - [`gsctl create nodepool`](/reference/gsctl/create-nodepool/) - Add a node pool to a cluster
