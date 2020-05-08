@@ -31,7 +31,7 @@ The details displayed are:
 ## Argument reference
 
 - `--output` or `-o`: Using this flag with the value `json`, the output can be printed in JSON format. This is convenient for use in automation. The default output format is `table`, which results in an output like shown above.
-- `--show-deleting`: Set this flag to also list clusters that are currently being deleted and add a `DELETING SINCE` column. Has no effect with `--output json`, as JSON output contains all clusters, deleted or not.
+- `--show-deleting`: Set this flag to also list clusters that are currently being deleted and add a `DELETING SINCE` column.
 
 ## Related
 
