@@ -1,7 +1,7 @@
 ---
 title: Cluster Definition Reference
 description: Complete documentation of the Giant Swarm cluster definition YAML format, compatible with API v4 and v5.
-date: 2020-04-22
+date: 2020-05-11
 layout: subsection
 weight: 100
 ---
@@ -95,8 +95,8 @@ Let's start with an example:
 api_version: "v5"
 release_version: "11.0.0"
 name: "Test cluster with two node pools"
-master:
-  availability_zone: "eu-central-1a"
+master_nodes:
+  high_availability: true
 nodepools:
 - name: "Node pool with 2 random AZs using defaults"
   availability_zones:
@@ -133,9 +133,11 @@ Coming from v4, you might want to understand how v5 is different from v4:
 - `owner`: Name of the owner organization.
 - `name`: Friendly name of the cluster. If not specified, a name will be generated.
 - `release_version`: Allows to select a specific release version. The value must be the semver version number of an active release. To get information on all available releases, use the [`gsctl list releases`](/reference/gsctl/list-releases/) command.
-- `master`:
-  - `availability_zone`: Name of the availability zone to use for the master node. If not set, one will be assigned randomly.
+- `master_nodes`: Settings regarding the Kubernetes master nodes.
+  - `high_availability`: The value `true` (default) creates three master nodes, placed in separate availability zones. `false` results in one master node only.
 - `nodepools`: Here you can list your node pool definitions as explained below. Note that this is not mandatory and you can also add node pools to a cluster after it has been created.
+- `master` (deprecated):
+  - `availability_zone`: Name of the availability zone to use for the master node. If not set, one will be assigned randomly.
 
 #### Node pool definition keys
 
