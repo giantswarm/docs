@@ -123,7 +123,7 @@ Coming from v4, you might want to understand how v5 is different from v4:
 
 - in v5, the key `api_version` is mandatory and the value must be `v5`.
 - Several settings that were specified on the cluster level in v4 (root level of the definition) have been moved to the node pool level.
-- The key `master` has been added to allow influencing in which availability zone the master node will be placed.
+- The key `master_nodes` has been added to allow influencing master nodes.
 
 ### Schema {#v5-schema}
 
@@ -134,10 +134,12 @@ Coming from v4, you might want to understand how v5 is different from v4:
 - `name`: Friendly name of the cluster. If not specified, a name will be generated.
 - `release_version`: Allows to select a specific release version. The value must be the semver version number of an active release. To get information on all available releases, use the [`gsctl list releases`](/reference/gsctl/list-releases/) command.
 - `master_nodes`: Settings regarding the Kubernetes master nodes.
-  - `high_availability`: The value `true` (default) creates three master nodes, placed in separate availability zones. `false` results in one master node only.
+  - `high_availability`: Where supported, this is `true` by default, which means that the cluster will have three master nodes. Supported on AWS since release v{{% first_aws_ha_masters_version %}}. Set this to `false` to have only one master node in the cluster (not recommended for production clusters).
 - `nodepools`: Here you can list your node pool definitions as explained below. Note that this is not mandatory and you can also add node pools to a cluster after it has been created.
 - `master` (deprecated):
   - `availability_zone`: Name of the availability zone to use for the master node. If not set, one will be assigned randomly.
+
+**Note:** The `master_nodes` and `master` attribute must not be used in the same request/command, otherwise an HTTP error with status code 400 will be triggered.
 
 #### Node pool definition keys
 
