@@ -1,7 +1,7 @@
 ---
 title: "gsctl Command Reference: show cluster"
 description: "The 'gsctl show cluster' command displays details of a cluster."
-date: "2020-03-11"
+date: 2020-05-11
 type: page
 weight: 52
 ---
@@ -24,21 +24,21 @@ $ gsctl show cluster "Cluster name"
 
 ## Output details
 
-Example output for an AWS based cluster:
+Example output for an AWS based cluster featuring node pools:
 
 ```nohighlight
-ID:                            vxvc7
-Name:                          Staging cluster for Frontend
-Created:                       2019 Jan 30, 09:26 UTC
-Organization:                  acme
-Kubernetes API endpoint:       https://api.vxvc7.REDACTED.aws.gigantic.io
-Release version:               6.3.0
-Worker node scaling:           autoscaling between 6 and 10
-Desired worker node count:     7
-Worker nodes running:          8
-Worker EC2 instance type:      m5.xlarge
-CPU cores in workers:          28
-RAM in worker nodes (GB):      26.5
+ID:                        vxvc7
+Name:                      Staging cluster for Frontend
+Created:                   2020 May 11, 09:26 UTC
+Organization:              acme
+Kubernetes API endpoint:   https://api.vxvc7.acme.aws.gigantic.io
+Masters:                   1
+Master availability zones: eu-central-1b
+Release version:           11.5.0
+Web UI:                    https://happa.g8s.acme.eu-central-1.aws.gigantic.io/organizations/acme/clusters/vxvc7
+Size:                      7 nodes in 1 node pool
+CPUs in nodes:             28
+RAM in nodes (GB):         112
 ```
 
 Example output for a KVM based cluster:
@@ -66,6 +66,8 @@ The output lines in detail:
 - **Created:** date and time of cluster creation
 - **Organization:** organization owning the cluster
 - **Kubernetes API endpoint:** URL of the Kubernetes API for this cluster
+- **Masters:** (_only for AWS_) Number of master nodes in the cluster
+- **Master availability zones:** (_only for AWS_) Availability zone(s) of the master node(s)
 - **Release version:** Version number of the release used in this cluster
 - **Worker node scaling**: Scaling limits. Shows either `autoscaling between <min> and <max>` for an autoscaling cluster, or `pinned to <num>` where autoscaling is disabled or where it's not available.
 - **Desired worker node count**: Only shown for autoscaling clusters. The number of worker nodes the autoscaler intends to have running.
