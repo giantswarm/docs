@@ -17,6 +17,19 @@ function GSAside(asideSelector, contentSelector, topOffset) {
   this.topOffset = topOffset || 0;
 }
 
+GSAside.prototype.throttle = function(func, limit) {
+  var inThrottle
+  return function() {
+    var args = arguments
+    var context = this
+    if (!inThrottle) {
+      func.apply(context, args)
+      inThrottle = true
+      setTimeout(() => inThrottle = false, limit)
+    }
+  }
+};
+
 GSAside.prototype.init = function() {
   this.elements.aside = document.querySelector(this.selectors.aside);
   if (!this.elements.aside) {
@@ -41,9 +54,15 @@ GSAside.prototype.init = function() {
   }
 
   this.updateAsideHeight();
+  this.registerEventListeners();
 };
 
 GSAside.prototype.updateAsideHeight = function() {
   var targetHeight = this.elements.content.clientHeight;
   this.elements.aside.style.height = targetHeight + 'px';
+};
+
+GSAside.prototype.registerEventListeners = function() {
+  var updateAsideHeight = this.throttle(this.updateAsideHeight.bind(this), 150);
+  window.addEventListener('resize', updateAsideHeight);
 };
