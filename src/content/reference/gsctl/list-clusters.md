@@ -41,8 +41,8 @@ More information about possible queries can be found in the [Kubernetes Labels a
 
 ## Argument reference
 
-- `--output` or `-o`: Using this flag with the value `json`, the output can be printed in JSON format. This is convenient for use in automation. JSON representation additionally contains user defined cluster labels for clusters with release version {{% first_aws_nodepools_version %}} and above on AWS. The default output format is `table`, which results in an output like shown above.
-- `--show-deleting`: Set this flag to also list clusters that are currently being deleted and add a `DELETING SINCE` column. Has no effect with `--output json`, as JSON output contains all clusters, deleted or not.
+- `--output` or `-o`: Using this flag with the value `json`, the output can be printed in JSON format. This is convenient for use in automation. The default output format is `table`, which results in an output like shown above.
+- `--show-deleting`: Set this flag to also list clusters that are currently being deleted and add a `DELETING SINCE` column.
 - `--selector` or `-l`: Label selector query to filter clusters on.
 Accepts a single string containing multiple selector requirements which are comma-separated.
 In the case of multiple requirements, all must be satisfied so the comma separator acts as a logical AND (&&) operator.

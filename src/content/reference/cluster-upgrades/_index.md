@@ -1,7 +1,7 @@
 ---
 title: "Cluster Upgrades with Giant Swarm"
 description: "A detailed explanation how Kubernetes and other components are upgraded in a Giant Swarm installation"
-date: "2019-06-11"
+date: 2020-05-05
 weight: 30
 layout: "subsection"
 ---
@@ -22,11 +22,11 @@ In this article, we explain how upgrades work in detail and how you should provi
 
 Among the third party components building a tenant cluster stack are
 
-- [CoreOS Container Linux](https://coreos.com/os/docs/latest/) as the node's operating system
+- [Kubernetes](https://kubernetes.io/) with its many sub-components
+- [Flatcar Container Linux](https://docs.flatcar-linux.org/) as the node's operating system
 - [Docker](https://docs.docker.com/engine/) as a container runtime environment
 - [etcd](https://coreos.com/etcd/) as distributed storage for Kubernetes and Vault
-- [Kubernetes](https://kubernetes.io/) with its many sub-components
-- [Project Calico](https://www.projectcalico.org/) for virtual networking
+- [Project Calico](https://www.projectcalico.org/) and [AWS CNI](https://github.com/aws/amazon-vpc-cni-k8s)/[Azure CNI](https://github.com/Azure/azure-container-networking)/[Flannel](https://github.com/coreos/flannel) for virtual networking
 - [CoreDNS](https://coredns.io/) for cluster-internal name resolution
 - [Prometheus node exporter](https://github.com/prometheus/node_exporter) for hardware and OS metrics
 - [NGINX Ingress Controller](https://github.com/kubernetes/ingress-nginx) for connecting services with load balancers
