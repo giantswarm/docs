@@ -28,10 +28,25 @@ The details displayed are:
 - `RELEASE`: The version number of the release used by the cluster. For older clusters, this may be `n/a`.
 - `CREATED`: The date and time when the cluster has been created (UTC).
 
+The `--selector` flag can be used to filter the output based on a set of requirements.
+
+```nohighlight
+$ gsctl list clusters --selector environment=testing
+ID     ORGANIZATION  NAME        RELEASE  CREATED
+z63so  testteam      Dan's Test  2.7.2    2017 Jun 19, 09:12 UTC
+```
+
+In this example, cluster `z63so` is the only cluster with label `environment=testing`.
+More information about possible queries can be found in the [Kubernetes Labels and Selectors documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
+
 ## Argument reference
 
 - `--output` or `-o`: Using this flag with the value `json`, the output can be printed in JSON format. This is convenient for use in automation. The default output format is `table`, which results in an output like shown above.
 - `--show-deleting`: Set this flag to also list clusters that are currently being deleted and add a `DELETING SINCE` column.
+- `--selector` or `-l`: Label selector query to filter clusters on.
+Accepts a single string containing multiple selector requirements which are comma-separated.
+In the case of multiple requirements, all must be satisfied so the comma separator acts as a logical AND (&&) operator.
+This feature is only available for clusters with release version {{% first_aws_nodepools_version %}} and above on AWS.
 
 ## Related
 
