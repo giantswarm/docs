@@ -310,7 +310,7 @@ $(document).ready(function() {
 
 });
 
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('load', function() {
   if (!window.GSAside) return;
 
   var g = new GSAside('.toc-sidebar', '.base-content', 60);
