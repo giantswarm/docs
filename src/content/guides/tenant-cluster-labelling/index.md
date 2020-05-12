@@ -36,7 +36,7 @@ my-org/team=upstate
 Once clusters are labelled, the output of [`gsctl list clusters`](/reference/gsctl/list-clusters/) can be augmented by setting flag `--selector` (or `-l`)
 It takes a [Kubernetes Label selector](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors) to specify requirments on cluster labels to select.
 
-The output of [`gsctl show cluster`](/reference/gsctl/show-cluster/`) will contain all labels currently attached to the selected cluster.
+The output of [`gsctl show cluster`](/reference/gsctl/show-cluster/) will contain all labels currently attached to the selected cluster.
 
 ## Working with tenant cluster labels using the Giant Swarm API
 
