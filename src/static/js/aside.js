@@ -19,6 +19,7 @@ function GSAside(asideSelector, contentSelector, topOffset) {
   this.topOffset = topOffset || 0;
   this.observer = null;
   this.activeLink = null;
+  this.activeClassName = 'active';
 }
 
 GSAside.prototype.throttle = function(func, limit) {
@@ -124,14 +125,12 @@ GSAside.prototype.handleScrollObserver = function(entries, observer) {
 };
 
 GSAside.prototype.activateLink = function(link) {
-  var activeClassName = 'active';
-
   if (this.activeLink) {
-    this.activeLink.classList.remove(activeClassName);
+    this.activeLink.classList.remove(this.activeClassName);
   }
 
   if (link) {
-    link.classList.add(activeClassName);
+    link.classList.add(this.activeClassName);
     this.activeLink = link;
   }
 }
