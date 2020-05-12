@@ -103,7 +103,7 @@ GSAside.prototype.registerScrollObserver = function() {
   }
 };
 
-GSAside.prototype.handleScrollObserver = function(entries, observer) {
+GSAside.prototype.handleScrollObserver = function(entries) {
   for (var i = 0; i < entries.length; i++) {
     var entry = entries[i];
     var href = '#' + entry.target.getAttribute('id');
@@ -118,10 +118,8 @@ GSAside.prototype.handleScrollObserver = function(entries, observer) {
       }
     }
 
-    if (entry.isIntersecting && entry.intersectionRatio >= 1) {
+    if (entry.isIntersecting) {
       this.activateLink(correspondingLink);
-    } else {
-      this.activateLink(null);
     }
   }
 };
