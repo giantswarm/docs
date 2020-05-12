@@ -313,6 +313,6 @@ $(document).ready(function() {
 window.addEventListener('DOMContentLoaded', function() {
   if (!window.GSAside) return;
 
-  var g = new GSAside('.toc-sidebar', '.col-sm-12.col-md-8.col-lg-8', 60);
+  var g = new GSAside('.toc-sidebar', '.base-content', 60);
   g.init();
 });
