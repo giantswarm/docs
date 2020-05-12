@@ -64,7 +64,7 @@ GSAside.prototype.init = function() {
 };
 
 GSAside.prototype.updateAsideHeight = function() {
-  var targetHeight = this.elements.content.clientHeight;
+  var targetHeight = this.elements.content.scrollHeight;
   this.elements.aside.style.height = targetHeight + 'px';
 };
 
