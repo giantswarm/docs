@@ -89,10 +89,11 @@ GSAside.prototype.gatherLinksAndHeaders = function() {
 GSAside.prototype.registerScrollObserver = function() {
   var options = {
     rootMargin: '0px',
-    threshold: 0,
+    threshold: 1.0,
   };
 
-  this.observer = new IntersectionObserver(this.handleScrollObserver.bind(this), options);
+  this.observer = new IntersectionObserver(this.handleScrollObserver.bind(this),
+      options);
 
   for (var i = 0; i < this.elements.headers.length; i++) {
     var heading = this.elements.headers[i];
@@ -117,21 +118,29 @@ GSAside.prototype.handleScrollObserver = function(entries, observer) {
       }
     }
 
-    if (entry.isIntersecting) {
+    if (entry.isIntersecting && entry.intersectionRatio >= 1) {
       this.activateLink(correspondingLink);
-      break;
+    } else {
+      this.activateLink(null);
     }
   }
 };
 
 GSAside.prototype.activateLink = function(link) {
-  if (this.activeLink) {
-    this.activeLink.classList.remove(this.activeClassName);
+  for (var j = 0; j < this.elements.links.length; j++) {
+    var currentLink = this.elements.links[j];
+
+    if (currentLink === this.activeLink) continue;
+
+    currentLink.classList.remove(this.activeClassName);
   }
 
   if (link) {
+    if (this.activeLink) {
+      this.activeLink.classList.remove(this.activeClassName);
+    }
     link.classList.add(this.activeClassName);
     this.activeLink = link;
   }
-}
+};
 
