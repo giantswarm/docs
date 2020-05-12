@@ -17,6 +17,8 @@ function GSAside(asideSelector, contentSelector, topOffset) {
   };
 
   this.topOffset = topOffset || 0;
+  this.observer = null;
+  this.activeLink = null;
 }
 
 GSAside.prototype.throttle = function(func, limit) {
@@ -58,6 +60,7 @@ GSAside.prototype.init = function() {
   this.updateAsideHeight();
   this.gatherLinksAndHeaders();
   this.registerEventListeners();
+  this.registerScrollObserver();
 };
 
 GSAside.prototype.updateAsideHeight = function() {
@@ -71,13 +74,67 @@ GSAside.prototype.registerEventListeners = function() {
 };
 
 GSAside.prototype.gatherLinksAndHeaders = function() {
-  this.elements.links = [].slice.call(this.elements.asideChild.querySelectorAll('a'), 0);
+  this.elements.links = [].slice.call(
+      this.elements.asideChild.querySelectorAll('a'), 0);
 
   this.elements.headers = new Array(this.elements.links.length);
 
-  var selector = '';
   for (var i = 0; i < this.elements.links.length; i++) {
-    selector = this.elements.links[i].href.split('#')[1];
+    var selector = this.elements.links[i].href.split('#')[1];
     this.elements.headers[i] = document.getElementById(selector);
   }
 };
+
+GSAside.prototype.registerScrollObserver = function() {
+  var options = {
+    rootMargin: '0px',
+    threshold: 0,
+  };
+
+  this.observer = new IntersectionObserver(this.handleScrollObserver.bind(this), options);
+
+  for (var i = 0; i < this.elements.headers.length; i++) {
+    var heading = this.elements.headers[i];
+    if (!heading) continue;
+
+    this.observer.observe(heading);
+  }
+};
+
+GSAside.prototype.handleScrollObserver = function(entries, observer) {
+  for (var i = 0; i < entries.length; i++) {
+    var entry = entries[i];
+    var href = '#' + entry.target.getAttribute('id');
+
+    var correspondingLink = null;
+    for (var j = 0; j < this.elements.links.length; j++) {
+      var link = this.elements.links[j];
+      if (link.href.indexOf(href) > -1) {
+        correspondingLink = link;
+
+        break;
+      }
+    }
+
+    if (entry.isIntersecting) {
+      this.activateLink(correspondingLink);
+      break;
+    }
+  }
+};
+
+GSAside.prototype.activateLink = function(link) {
+  var activeClassName = 'active';
+
+  console.log(link);
+
+  if (this.activeLink) {
+    this.activeLink.classList.remove(activeClassName);
+  }
+
+  if (link) {
+    link.classList.add(activeClassName);
+    this.activeLink = link;
+  }
+}
+
