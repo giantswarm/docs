@@ -723,6 +723,10 @@ ul.notype li {
   display: block;
   border-left: 2px solid #fff; }
 
+#TableOfContents li a.active {
+  background-color: #ddd;
+  border-left-color: #234a61; }
+
 #TableOfContents ul ul a {
   padding-left: 32px; }
 

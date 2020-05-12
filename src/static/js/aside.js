@@ -12,22 +12,24 @@ function GSAside(asideSelector, contentSelector, topOffset) {
     aside: null,
     asideChild: null,
     content: null,
+    links: [],
+    headers: [],
   };
 
   this.topOffset = topOffset || 0;
 }
 
 GSAside.prototype.throttle = function(func, limit) {
-  var inThrottle
+  var inThrottle;
   return function() {
-    var args = arguments
-    var context = this
+    var args = arguments;
+    var context = this;
     if (!inThrottle) {
-      func.apply(context, args)
-      inThrottle = true
-      setTimeout(() => inThrottle = false, limit)
+      func.apply(context, args);
+      inThrottle = true;
+      setTimeout(() => inThrottle = false, limit);
     }
-  }
+  };
 };
 
 GSAside.prototype.init = function() {
@@ -54,6 +56,7 @@ GSAside.prototype.init = function() {
   }
 
   this.updateAsideHeight();
+  this.gatherLinksAndHeaders();
   this.registerEventListeners();
 };
 
@@ -65,4 +68,16 @@ GSAside.prototype.updateAsideHeight = function() {
 GSAside.prototype.registerEventListeners = function() {
   var updateAsideHeight = this.throttle(this.updateAsideHeight.bind(this), 150);
   window.addEventListener('resize', updateAsideHeight);
+};
+
+GSAside.prototype.gatherLinksAndHeaders = function() {
+  this.elements.links = [].slice.call(this.elements.asideChild.querySelectorAll('a'), 0);
+
+  this.elements.headers = new Array(this.elements.links.length);
+
+  var selector = '';
+  for (var i = 0; i < this.elements.links.length; i++) {
+    selector = this.elements.links[i].href.split('#')[1];
+    this.elements.headers[i] = document.getElementById(selector);
+  }
 };
