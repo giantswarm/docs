@@ -126,8 +126,6 @@ GSAside.prototype.handleScrollObserver = function(entries, observer) {
 GSAside.prototype.activateLink = function(link) {
   var activeClassName = 'active';
 
-  console.log(link);
-
   if (this.activeLink) {
     this.activeLink.classList.remove(activeClassName);
   }
