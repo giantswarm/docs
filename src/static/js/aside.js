@@ -157,8 +157,8 @@
     this.elements.headers = new Array(this.elements.links.length);
 
     for (i = 0; i < this.elements.links.length; i++) {
-      var selector = this.elements.links[i].href.split("#")[1];
-      this.elements.headers[i] = document.getElementById(selector);
+      var elemSelector = this.elements.links[i].href.split("#")[1];
+      this.elements.headers[i] = document.getElementById(elemSelector);
     }
   };
 
