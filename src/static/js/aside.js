@@ -118,8 +118,8 @@
 
   GSAside.prototype.registerScrollObserver = function() {
     var options = {
-      rootMargin: '0px',
-      threshold: 0,
+      rootMargin: '0px 0px -90%',
+      threshold: 0.5,
     };
 
     this.observer = new IntersectionObserver(
@@ -184,4 +184,3 @@
 
   window.GSAside = GSAside;
 })();
-
