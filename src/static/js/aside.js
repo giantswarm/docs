@@ -33,7 +33,9 @@
       if (!inThrottle) {
         func.apply(context, args);
         inThrottle = true;
-        setTimeout(function(){ inThrottle = false }, limit);
+        setTimeout(function() {
+          inThrottle = false;
+        }, limit);
       }
     };
   };
@@ -67,7 +69,7 @@
     this.registerScrollObserver();
 
     if (!this.activeLink) {
-      this.activateLinks(this.getInitiallyActiveElement());
+      this.activateLinks([this.getInitiallyActiveElement()]);
     }
   };
 
@@ -80,6 +82,10 @@
     }
 
     activeLink = this.getLinkWithHref(hash);
+    if (!activeLink) {
+      activeLink = this.getClosestRegisteredParentLink(hash);
+    }
+
     if (!activeLink) {
       return this.elements.links[0];
     }
@@ -101,17 +107,22 @@
 
   GSAside.prototype.handleHashChange = function() {
     var href = location.hash;
+    if (href === "") return;
+
     var linkWithHref = this.getLinkWithHref(href);
 
-    if (linkWithHref === null) return;
+    if (!linkWithHref) {
+      linkWithHref = this.getClosestRegisteredParentLink(href);
+      if (!linkWithHref) return;
+    }
 
     this.activateLinks([linkWithHref]);
   };
 
   GSAside.prototype.getLinkWithHref = function(href) {
     var newHref = href;
-    if (newHref.charAt(0) === '#') {
-      newHref  = newHref.slice(1);
+    if (newHref.charAt(0) === "#") {
+      newHref = newHref.slice(1);
     }
 
     for (var i = 0; i < this.elements.links.length; i++) {
@@ -122,6 +133,24 @@
     }
 
     return null;
+  };
+
+  GSAside.prototype.getClosestRegisteredParentLink = function(href) {
+    var foundElement = null;
+
+    var element = document.querySelector("[href='" + href + "']");
+    var validLinkSelector = this.generateLinksSelector().split(', ');
+
+    if (validLinkSelector.length === 0) return null;
+
+    var selector = validLinkSelector[validLinkSelector.length - 1].split(' > a')[0];
+    foundElement = element.closest(selector);
+    if (!foundElement) return null;
+
+    foundElement = foundElement.querySelector('a');
+    if (foundElement === element) return null;
+
+    return foundElement;
   };
 
   GSAside.prototype.generateLinksSelector = function() {
