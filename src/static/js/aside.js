@@ -85,7 +85,7 @@
     }
 
     return activeLink;
-  }
+  };
 
   GSAside.prototype.updateAsideHeight = function() {
     var targetHeight = this.elements.content.scrollHeight;
@@ -106,7 +106,7 @@
     if (linkWithHref === null) return;
 
     this.activateLinks([linkWithHref]);
-  }
+  };
 
   GSAside.prototype.getLinkWithHref = function(href) {
     var newHref = href;
@@ -122,7 +122,7 @@
     }
 
     return null;
-  }
+  };
 
   GSAside.prototype.generateLinksSelector = function() {
     var selector = "";
