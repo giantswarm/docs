@@ -23,6 +23,7 @@ Follow the links below for detailed documentation, where available. You can also
 | `create nodepool`                     | [Create a new node pool](create-nodepool/)
 | `delete cluster`                      | [Delete a cluster](delete-cluster/)
 | `delete nodepool`                     | [Delete a node pool](delete-nodepool/)
+| `delete endpoint`                     | [Delete endpoint](delete-endpoint/)
 | `info`                                | [Print information on status, configuration, and the installation](info/)
 | `list endpoints`                      | [List endpoints](list-endpoints/)
 | `list clusters`                       | [List clusters](list-clusters/)
