@@ -33,7 +33,7 @@
       if (!inThrottle) {
         func.apply(context, args);
         inThrottle = true;
-        setTimeout(() => inThrottle = false, limit);
+        setTimeout(function(){ inThrottle = false }, limit);
       }
     };
   };
