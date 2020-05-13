@@ -123,6 +123,8 @@
 
       if (entry.isIntersecting) {
         this.activateLink(correspondingLink);
+
+        break;
       }
     }
   };
