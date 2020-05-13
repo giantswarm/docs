@@ -1,7 +1,7 @@
 ---
 title: Advanced Cluster Autoscaler Configuration
 description: Here we describe how you can customize the configuration of the managed Cluster Autoscaler service in your clusters
-date: 2019-05-09
+date: 2020-05-13
 type: page
 weight: 40
 tags: ["tutorial"]
