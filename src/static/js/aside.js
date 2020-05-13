@@ -119,7 +119,7 @@
   GSAside.prototype.registerScrollObserver = function() {
     var options = {
       rootMargin: '0px',
-      threshold: 1.0,
+      threshold: 0,
     };
 
     this.observer = new IntersectionObserver(
@@ -135,6 +135,8 @@
   };
 
   GSAside.prototype.handleScrollObserver = function(entries) {
+    var visibleEntries = [];
+
     for (var i = 0; i < entries.length; i++) {
       var entry = entries[i];
       var href = '#' + entry.target.getAttribute('id');
@@ -150,14 +152,19 @@
       }
 
       if (entry.isIntersecting) {
-        this.activateLink(correspondingLink);
-
-        break;
+        visibleEntries.push(correspondingLink);
       }
     }
+
+    this.activateLinks(visibleEntries);
   };
 
-  GSAside.prototype.activateLink = function(link) {
+  GSAside.prototype.activateLinks = function(links) {
+    var selectedLink = null;
+    if (links.length > 0) {
+      selectedLink = links[links.length - 1];
+    }
+
     for (var j = 0; j < this.elements.links.length; j++) {
       var currentLink = this.elements.links[j];
 
@@ -166,12 +173,12 @@
       currentLink.classList.remove(this.activeClassName);
     }
 
-    if (link) {
+    if (selectedLink) {
       if (this.activeLink) {
         this.activeLink.classList.remove(this.activeClassName);
       }
-      link.classList.add(this.activeClassName);
-      this.activeLink = link;
+      selectedLink.classList.add(this.activeClassName);
+      this.activeLink = selectedLink;
     }
   };
 
