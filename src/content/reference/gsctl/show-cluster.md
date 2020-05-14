@@ -41,6 +41,33 @@ CPUs in nodes:             28
 RAM in nodes (GB):         112
 ```
 
+Example output for an AWS based cluster with release version {{% first_aws_nodepools_version %}} and above:
+
+```nohighlight
+Cluster ID:                ggf8v
+Name:                      Testing - Team upstate
+Created:                   2020 May 04, 16:54 UTC
+Organization:              acme
+Kubernetes API endpoint:   https://api.ggf8v.REDACTED.aws.gigantic.io
+Master availability zone:  region-region-1a
+Release version:           11.2.1
+Labels:                    usage=testing
+                           team=upstate
+                           locked=false
+Web UI:                    https://happa.ggf8v.REDACTED.aws.gigantic.io/organizations/acme/clusters/ggf8v
+Size:                      3 nodes in 1 node pool
+CPUs in nodes:             12
+RAM in nodes (GB):         48
+
+This cluster has node pools. For details, use
+
+    gsctl list nodepools ggf8v
+
+For details on a specific node pool, use
+
+    gsctl show nodepool ggf8v/<nodepool-id>
+```
+
 Example output for a KVM based cluster:
 
 ```nohighlight
@@ -81,6 +108,7 @@ The output lines in detail:
 - **AWS account:** (_only on AWS_) If the cluster is running using non-default provider credentials, here we show the AWS account ID
 - **Azure subscription:** (_only on Azure_) If the cluster is running using non-default provider credentials, here we show the subscription ID
 - **Azure tenant:** (_only on Azure_) If the cluster is running using non-default provider credentials, here we show the tenant ID
+- **Labels** (_only on AWS_) user defined labels. Only available for clusters with release version {{% first_aws_nodepools_version %}} and above on AWS
 
 Note that some dynamic pieces of information, like the current number of workers, and the desired worker count, may take up to five minutes to be updated.
 

@@ -50,3 +50,9 @@ $ gsctl list clusters -e cloud
 $ gsctl list clusters -e onprem
 ...
 ```
+
+If you no longer need an endpoint, you can delete it using the `delete endpoint` command.
+
+```nohighlight
+$ gsctl delete endpoint <endpoint-url-or-alias>
+```

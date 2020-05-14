@@ -1,17 +1,17 @@
 ---
 title: "gsctl Reference: Configuration file"
 description: "Documentation of the configuration file format of gsctl"
-date: "2018-01-26"
+date: "2020-05-14"
 type: page
 weight: 1000
 ---
 
 # Configuration file
 
-gsctl by default stores it's configuration in a YAML file located at
+gsctl by default stores its configuration in a YAML file located at
 `$HOME/.config/gsctl/config.yaml`.
 
-**Warning:** gsctl frequently overwrites is's configuration file. If you
+**Warning:** gsctl frequently overwrites its configuration file. If you
 manually edit the file, some edits unknown to gsctl, like comments for example,
 will get lost.
 
@@ -47,5 +47,5 @@ updated: 2018-01-26T09:17:24+01:00
   - `token`: Authentication token used with this endpoint.
 - `selected_endpoint`: The currently selected endpoint URL. Can be empty.
 - `last_version_check`: Date and time gsctl has last checked for a newer
-  gsctl version (when calling `gsctl version`).
+  gsctl version (when calling `gsctl --version`).
 - `updated`: Date and time when the configuration file has been modified.

@@ -63,8 +63,8 @@ when they contain the same key.
 Communication between the web interface and the api that processes these files is protected by SSL/TLS.
 Data stored in etcd is encrypted at rest.
 
-When you upload a file the API creates a configmap or a secret respectively
-and sets the `userConfig` values in the App CR to reference the configmap or secret
+When you upload a file the API creates a ConfigMap or a secret respectively
+and sets the `userConfig` values in the App CR to reference the ConfigMap or secret
 that was just created.
 
 See our [app configuration reference page](/reference/app-configuration) for more details and examples.

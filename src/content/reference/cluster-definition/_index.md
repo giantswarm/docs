@@ -1,7 +1,7 @@
 ---
 title: Cluster Definition Reference
 description: Complete documentation of the Giant Swarm cluster definition YAML format, compatible with API v4 and v5.
-date: 2020-05-11
+date: 2020-05-14
 layout: subsection
 weight: 100
 ---
@@ -97,6 +97,9 @@ release_version: "11.0.0"
 name: "Test cluster with two node pools"
 master_nodes:
   high_availability: true
+labels:
+  locked: "false"
+  environment: "testing"
 nodepools:
 - name: "Node pool with 2 random AZs using defaults"
   availability_zones:
@@ -138,6 +141,7 @@ Coming from v4, you might want to understand how v5 is different from v4:
 - `nodepools`: Here you can list your node pool definitions as explained below. Note that this is not mandatory and you can also add node pools to a cluster after it has been created.
 - `master` (deprecated):
   - `availability_zone`: Name of the availability zone to use for the master node. If not set, one will be assigned randomly.
+- `labels`: Labels to be attached to this cluster.
 
 **Note:** The `master_nodes` and `master` attribute must not be used in the same request/command, otherwise an HTTP error with status code 400 will be triggered.
 
