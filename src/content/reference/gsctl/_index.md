@@ -12,7 +12,7 @@ gsctl is the command line utility to manage your Giant Swarm clusters.
 
 ## Commands {#commands}
 
-Follow the links below for detailed documentation, where available. You can also always use `gsctl <command> --help`.
+Follow the links below for a detailed documentation, where available. You can also always use `gsctl <command> --help`.
 
 | Command                               | Description
 |---------------------------------------|------------
@@ -43,7 +43,8 @@ Follow the links below for detailed documentation, where available. You can also
 | `update nodepool`                     | [Modify (rename, scale) a node pool](update-nodepool/)
 | `update organization set-credentials` | [Set provider credentials for an organization](update-org-set-credentials/)
 | `upgrade cluster`                     | [Upgrade a cluster](upgrade-cluster/)
-| `version`                             | Print version number
+
+For finding out which version of `gsctl` you currently have installed, and other useful information about the build, use the `gsctl --version` command.
 
 ## Installing and updating {#install}
 
@@ -104,7 +105,7 @@ brew install gsctl</code></pre>
 
 ## Configuration {#configuration}
 
-`gsctl` keeps it's own settings under `$HOME/.config/gsctl/`. There is a [configuration file](configuration-file) called `config.yaml`. Key pairs are stored in the `certs` subdirectory.
+`gsctl` keeps its own settings under `$HOME/.config/gsctl/`. There is a [configuration file](configuration-file) called `config.yaml`. Key pairs are stored in the `certs` subdirectory.
 
 The following environment variables can be used to affect some behavior:
 
@@ -112,7 +113,7 @@ The following environment variables can be used to affect some behavior:
 - `GSCTL_CAFILE`: If your Giant Swarm API endpoint uses a certificate signed by an authority not known to your operating system, this variable can be set to the path of a custom CA (certification authority) bundle. A CA bundle is a text file containing one or more CA certificates in PEM format.
 - `GSCTL_CAPATH`: Similar to `GSCTL_CAFILE`, but `GSCTL_CAPATH` is expected to point to a directory containing one or more PEM files.
 - `GSCTL_DISABLE_COLORS`: When this variable is set to any non-empty string, all terminal output will be monochrome.
-- `GSCTL_DISABLE_CMDLINE_TRACKING`: When this variable is set to any non-empty string, command lines won't be submitted to the API. Otherwise command lines are submitted to learn about the tool's usage and find ways to improve.
+- `GSCTL_DISABLE_CMDLINE_TRACKING`: When this variable is set to any non-empty string, command lines won't be submitted to the API. Otherwise, command lines are submitted to learn about the tool's usage and find ways to improve.
 
 In addition, [global command-line options](global-options/) are available.
 
@@ -126,4 +127,4 @@ You'll find info on changes in the [release description](https://github.com/gian
 
 ## Feedback {#feedback}
 
-We welcome your feedback on `gsctl`. If you feel like sharing openly, use the GitHub repository and create an [issue](https://github.com/giantswarm/gsctl/issues), so other users can participate. Otherwise please use the common Giant Swarm support channels.
+We welcome your feedback on `gsctl`. If you feel like sharing openly, use the GitHub repository and create an [issue](https://github.com/giantswarm/gsctl/issues), so other users can participate. Otherwise, please use the common Giant Swarm support channels.
