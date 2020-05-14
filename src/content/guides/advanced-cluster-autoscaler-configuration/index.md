@@ -15,9 +15,10 @@ You can override these defaults in a ConfigMap named `cluster-autoscaler-user-va
 
 ## Where is the user values ConfigMap?
 
-Given the cluster you are trying to configure has id: `123ab`
+The location of the user values ConfigMap depends on the cluster's release version.
+The following examples assume the cluster you are trying to configure has an id of `123ab`
 
-**Release Version 9.0.1 and greater:**
+### Release version 9.0.1 and greater:
 
 If your cluster is on release version `9.0.1` or greater then you will find the `cluster-autoscaler-user-values` ConfigMap on the Control Plane in the `123ab` namespace:
 
@@ -30,7 +31,7 @@ cluster-autoscaler-user-values         0         11m
 Upgrading from `9.0.0` to a higher release will automatically migrate these user values from the Tenant Cluster to the
 Control Plane for you. If you have any automation or existing workflows you should keep this location change in mind.
 
-**Release Version 9.0.0 and below:**
+### Release version 9.0.0 and below:
 
 If the cluster has a release version equal to `9.0.0` or lower, then you will find the `cluster-autoscaler-user-values` ConfigMap on the Tenant Cluster itself in the `kube-system` namespace:
 
@@ -54,9 +55,9 @@ On cluster creation the user values ConfigMap is empty (or might not exist yet) 
 
 ## How to set configuration options using the user values ConfigMap
 
-### 9.0.1 and greater
+### Release version 9.0.1 and greater
 
-On the Control Plane, create or edit a configmap named `cluster-autoscaler-user-values`
+On the Control Plane, create or edit a ConfigMap named `cluster-autoscaler-user-values`
 in the Tenant Cluster namespace:
 
 ```yaml
@@ -75,10 +76,10 @@ data:
       scaleDownUtilizationThreshold: 0.30
 ```
 
-### 9.0.0 and below
+### Release version 9.0.0 and below
 
 On the Tenant Cluster for which you are trying to configure cluster-autoscaler,
-create or edit a configmap named `cluster-autoscaler-user-values` in the `kube-system`
+create or edit a ConfigMap named `cluster-autoscaler-user-values` in the `kube-system`
 namespace:
 
 ```yaml
@@ -97,6 +98,13 @@ data:
 
 ## Configuration Reference
 
+The following sections explain some of the configuration options and what their
+defaults are. They show only the 'data' field of the ConfigMap for brevity.
+
+
+The most recent source of truth for these values can be found in
+the [values.yaml](https://github.com/giantswarm/cluster-autoscaler-app/blob/v1.1.4/helm/cluster-autoscaler-app/values.yaml) file of the cluster-autoscaler-app
+
 ### Scale down utilization threshold
 
 The `scaleDownUtilizationThreshold` defines the proportion between requested resources and capacity, which under the value Cluster Autoscaler will trigger the scaling down action.
@@ -104,15 +112,15 @@ The `scaleDownUtilizationThreshold` defines the proportion between requested res
 Our default value is 65%, which means in order to scale down, one of the nodes has to have less utilization (CPU/memory) than this threshold.
 
 ```yaml
-# 9.0.0 and below
-data:
-  scaleDownUtilizationThreshold: 0.65
-
 # 9.0.1 and greater
 data:
   values: |
     configmap:
       scaleDownUtilizationThreshold: 0.65
+
+# 9.0.0 and below
+data:
+  scaleDownUtilizationThreshold: 0.65
 ```
 
 ### Scan Interval
@@ -120,15 +128,15 @@ data:
 Define what interval is used to review the state for taking a decision to scale up/down. Our default value is 10 seconds.
 
 ```yaml
-# 9.0.0 and below
-data:
-  scanInterval: "100s"
-
 # 9.0.1 and greater
 data:
   values: |
     configmap:
       scanInterval: "100s"
+
+# 9.0.0 and below
+data:
+  scanInterval: "100s"
 ```
 
 ### Skip system pods
@@ -136,15 +144,15 @@ data:
 By default, the Cluster Autoscaler will never delete nodes which run pods of the `kube-system` namespace (except `daemonset` pods). It can be modified by setting following property to `"false"`.
 
 ```yaml
-# 9.0.0 and below
-data:
-  skipNodesWithSystemPods: "false"
-
 # 9.0.1 and greater
 data:
   values: |
     configmap:
       skipNodesWithSystemPods: "false"
+
+# 9.0.0 and below
+data:
+  skipNodesWithSystemPods: "false"
 ```
 
 ### Skip pods with local storage
@@ -152,15 +160,15 @@ data:
 The Cluster Autoscaler configuration by default deletes nodes with pods using local storage (`hostPath` or `emptyDir`). In case you want to disable this action, you need to set the following property to `"true"`.
 
 ```yaml
-# 9.0.0 and below
-data:
-  skipNodesWithLocalStorage: "true"
-
 # 9.0.1 and greater
 data:
   values: |
     configmap:
       skipNodesWithLocalStorage: "true"
+
+# 9.0.0 and below
+data:
+  skipNodesWithLocalStorage: "true"
 ```
 
 ## Further reading

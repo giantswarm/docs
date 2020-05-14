@@ -56,7 +56,7 @@ Only the user values ConfigMap is safe to edit.
 
 ### 9.0.1 and greater
 
-On the Control Plane, create or edit a configmap named `coredns-user-values`
+On the Control Plane, create or edit a ConfigMap named `coredns-user-values`
 in the Tenant Cluster namespace:
 
 ```yaml
@@ -78,7 +78,7 @@ data:
 ### 9.0.0 and below
 
 On the Tenant Cluster for which you are trying to configure coredns,
-create or edit a configmap named `coredns-user-values` in the `kube-system`
+create or edit a ConfigMap named `coredns-user-values` in the `kube-system`
 namespace:
 
 ```yaml
