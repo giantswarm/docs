@@ -1,11 +1,11 @@
 ---
 title: Details on Kubernetes on Giant Swarm
 description: Here you learn how we set up things for you and what we manage, so you don't have to.
-date: 2019-11-18
+date: 2020-05-18
 weight: 10
 type: page
 categories: ["basics"]
-last-review-date: 2020-03-17
+last-review-date: 2020-05-18
 ---
 
 # Running Kubernetes on Giant Swarm
@@ -23,11 +23,11 @@ Your clusters comes out-of-the-box as follows:
 - Calico networking plugin installed (supports Network Policy API)
 - CoreDNS installed
 - All resources and feature gates (incl. alpha) enabled
-- NGINX Ingress Controller (running inside your cluster)
-- Monitoring <!-- (Oshrat: What do we monitor and why is this different than the monitoring mentioned below?) -->
-- Storage <!-- (Oshrat: Same question as above) -->
+- NGINX Ingress Controller - running inside your cluster (now optional)
+- Monitoring
+- Storage
 
-<!-- TO-DO: Add the extent of the managed service so that the next paragraph is understood better in terms of why the add-ons are needed -->
+
 
 ## What is not included
 
@@ -58,8 +58,3 @@ On AWS all resources (besides minor resources on S3 and KMS) pertaining to a clu
 
 The latter enables you to set up reporting to monitor usage and cost.
 
-<!--
-TODO:
-- Specifics on Azure
-- what is specific to on-prem?
--->
