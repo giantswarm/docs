@@ -1,16 +1,16 @@
 ---
 title: "gsctl Command Reference: update organization set-credentials"
 description: The 'gsctl update organization set-credentials' command allows to set cloud provider credentials for an organization.
-date: 2018-09-12
+date: 2020-05-19
 type: page
 weight: 55
 ---
 
 # `update organization set-credentials`
 
-Giant Swarm allows you to run clusters in your own cloud provider account/subscription. We call this by the catchy term [Bring Your Own Cloud](/basics/byoc/) (BYOC). As a prerequisite, the organizaiton that should own the clusters has to be prepared with cloud provider credentials.
+Giant Swarm allows you to run clusters in your own cloud provider account/subscription. We refer to this as [Multi Account functionality](/basics/byoc/), renamed from Bring Your Own Cloud (BYOC). As a prerequisite, the organizaiton that should own the clusters has to be prepared with cloud provider credentials.
 
-Please refer to our detailed guides on how to prepare roles and credentials inside your AWS account or Azure subscription:
+Please refer to our detailed guides on how to prepare roles and credentials in your AWS account or Azure subscription:
 
 - [Prepare an AWS account to run Giant Swarm tenant clusters](/guides/prepare-aws-account-for-tenant-clusters/)
 - [Prepare an Azure subscription to run Giant Swarm tenant clusters](/guides/prepare-azure-subscription-for-tenant-clusters/)
@@ -49,7 +49,7 @@ gsctl update organization set-credentials \
 
 ### For Azure {#azure}
 
-For Azure we require you to pass four credential details. Here is the general syntax:
+For Azure you provide four credential details. Here is the general syntax:
 
 ```nohighlight
 gsctl update organization set-credentials \
@@ -69,7 +69,7 @@ The flags mean:
 
 ## Related
 
-- [Basics and Concepts: Bring Your Own Cloud](/basics/byoc/)
+- [Basics and Concepts: Multi-Account Support](/basics/multi-account/)
 - [Guides: Prepare an AWS account to run Giant Swarm tenant clusters](/guides/prepare-aws-account-for-tenant-clusters/)
 - [Guides: Prepare an Azure subscription to run Giant Swarm tenant clusters](/guides/prepare-azure-subscription-for-tenant-clusters/)
 - [API: Set credentials](https://docs.giantswarm.io/api/#operation/addCredentials)
