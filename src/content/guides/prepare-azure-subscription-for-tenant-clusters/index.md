@@ -1,7 +1,7 @@
 ---
 title: "Prepare an Azure subscription to run Giant Swarm tenant clusters"
 description: "This guide will walk you through all necessary steps to set up an Azure subscription with approriate Role definition and Service Principal for operating Giant Swarm tenant clusters."
-date: "2018-09-12"
+date: "2020-05-19"
 type: page
 weight: 100
 tags: ["tutorial"]
@@ -9,7 +9,7 @@ tags: ["tutorial"]
 
 # Prepare an Azure subscription to run Giant Swarm tenant clusters
 
-In a Giant Swarm installation the tenant clusters (the clusters running your Kubernetes workloads) can run in a separate Azure subscription from the control plane. This gives greater flexibility depending on the requirements and the use case. For example, it allows the control plane to be running in one Azure subscription, while tenant clusters operate in different Azure subscriptions, depending on a customer’s department using them.
+In a Giant Swarm installation the tenant clusters (the clusters running your Kubernetes workloads) can run in a separate Azure subscription from the control plane. This gives greater flexibility depending on the requirements and the use case. For example, it allows the control plane to be running in one Azure subscription, while tenant clusters operate in different Azure subscriptions, depending on the customer entities using them.
 
 Giant Swarm operates tenant clusters using a service called `azure-operator` which runs on the control plane.
 
@@ -23,7 +23,7 @@ In order to run Giant Swarm tenant clusters, an Azure subscription needs the fol
 ## Create Azure role definition and Service Principal
 
 In order to perform necessary actions to deploy and maintain tenant clusters in your Azure subscription, `azure-operator` needs to access the subscription using a Service Principal.
-Here we describe all the steps to set it up.
+Below we detail the steps necessary to set it up.
 
 #### 1. Prerequisites
 
@@ -42,7 +42,7 @@ To find out your subscription ID you can use [the Azure portal](https://portal.a
 
 ![Azure Subscriptions list](/img/azure-subscriptions-list.png)
 
-Alternatively you can use the Azure CLI like so:
+Alternatively you can use the Azure CLI as follows:
 
 ```nohighlight
 $ az account list --output table
@@ -77,7 +77,7 @@ $ az ad sp create-for-rbac --name "azure-operator-sp" --role "azure-operator" --
 
 In the previous section, we explained how to create the Service Principal in the Azure subscription in order to run Giant Swarm tenant clusters.
 
-Giant Swarm tenant clusters are owned by organizations, which allows you to control access to clusters, since only members of the owner organization have access to the management functions of a cluster.
+Giant Swarm tenant clusters are owned by organizations. This allows you to control access to clusters, since only members of the owner organization have access to the management functions of a cluster.
 
 In order to run a tenant cluster in your Azure subscription, the organization owning your cluster has to know about the Service Principal you just created.
 
@@ -86,7 +86,7 @@ your organization with our [gsctl](/reference/gsctl/) CLI. Look for the
 [`update organization set-credentials`](/reference/gsctl/update-org-set-credentials/#azure)
 command. You will need your Azure subscription ID and the output from step 3 as arguments.
 
-In case you work with a Giant Swarm partner, it might be that you don’t have access to the Giant Swarm API. In that case, please hand over your Azure subscription ID and the output from step 3 to your partner contact.
+In case you are working with a Giant Swarm partner, you might not have access to the Giant Swarm API. In that case, please provide your Azure subscription ID and the output from step 3 to your partner contact.
 
 After the organization's credentials are set, you can create clusters owned by that
 organization. These clusters' resources will be created in your Azure subscription.
