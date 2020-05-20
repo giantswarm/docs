@@ -8,7 +8,7 @@ weight: 55
 
 # `update organization set-credentials`
 
-Giant Swarm allows you to run clusters in your own cloud provider account/subscription. We refer to this as [Multi Account functionality](/basics/byoc/), renamed from Bring Your Own Cloud (BYOC). As a prerequisite, the organizaiton that should own the clusters has to be prepared with cloud provider credentials.
+Giant Swarm allows you to run clusters in your own cloud provider account/subscription. We refer to this as [Multi Account functionality](/basics/multi-account/), renamed from Bring Your Own Cloud (BYOC). As a prerequisite, the organization that should own the clusters has to be prepared with cloud provider credentials.
 
 Please refer to our detailed guides on how to prepare roles and credentials in your AWS account or Azure subscription:
 
