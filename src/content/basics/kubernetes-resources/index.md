@@ -1,7 +1,7 @@
 ---
 title: Kubernetes Resources
 description: Pointers to the best resources about Kubernetes to get you up to speed with Kubernetes fast
-date: 2020-02-03
+date: 2020-05-20
 weight: 140
 type: page
 categories: ["basics"]
@@ -86,7 +86,7 @@ There are some useful tools and content out there that help you with get to know
 
 - The [Kubernetes Blog](https://kubernetes.io/blog/) is a good resource for reading up on new features, examples, and user stories around Kubernetes.
 - [Kompose](https://github.com/kubernetes-incubator/kompose) is a tool to move from `docker-compose` to Kubernetes.
-- [Helm](https://github.com/kubernetes/helm/blob/master/docs/install.md) is a package manager for Kubernetes that helps you deploy common applications to your cluster.
+- [Helm](https://helm.sh/) is a package manager for Kubernetes that helps you deploy common applications to your cluster.
 
 ## Useful blog posts
 
