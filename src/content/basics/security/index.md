@@ -1,18 +1,22 @@
 ---
 title: Security
 description: Documentation of the Giant Swarm cluster security
-date: 2020-03-12
+date: 2020-05-18
 type: page
 weight: 20
 categories: ["basics"]
-last-review-date: 2020-03-12
+last-review-date: 2020-05-18
 ---
 
 # Security
 
-This reference gives you details on security-related measures in a Giant Swarm installation.
+Regardless of provider, clusters start with restrictive settings already in place. All internal and external network traffic is denied by default, role-based access control prevents unauthorized access to Kubernetes resources, and Pod security policies are in place to prevent Pods from running with root users, risky volume configurations, or additional privileges. All of these can be adapted by the customer to fit their needs. 
 
-## Encryption
+We regularly test our configurations against the CIS Kubernetes Benchmark as well as other CIS and industry benchmarks for Docker, Linux, and cloud providers to ensure our platform remains compliant with industry best-practices.
+
+Additionally, each cluster is completely isolated, running inside its own VPC (AWS) or Virtual Network (Azure) within your account. They can be further isolated by keeping clusters in different accounts. On-premises we achieve similar isolation by running the nodes in hypervisors (KVM, VMWare) and isolating clusters' networks within separate VXLAN bridges. We encourage separation of workloads over several clusters to limit the blast radius of incidents.
+
+## Encryption at Rest
 
 ### Kubernetes {#k8s}
 
