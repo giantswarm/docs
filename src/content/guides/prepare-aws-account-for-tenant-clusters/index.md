@@ -15,7 +15,7 @@ Swarm installation run in an AWS account separate from the control plane.
 This gives great flexibility depending on requirements and usage
 scenarios. For example, it allows the control plane to be running in an AWS account
 dedicated to it, whilst tenant clusters operate in separate AWS accounts, depending
-on the customer organization department using them.
+on the customer organization using them.
 
 ## Overview
 
