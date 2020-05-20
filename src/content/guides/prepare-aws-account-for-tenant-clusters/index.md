@@ -123,7 +123,7 @@ In the **Attach existing policies directly** section, hit the **Create policy** 
 
 Paste the JSON code from [tenant_cluster.json](https://raw.githubusercontent.com/giantswarm/aws-operator/master/policies/tenant_cluster.json) into the JSON editor field and then hit the **Review policy** button.
 
-In the next step you nned to assign a name to the policy. Please use the name:
+In the next step you need to assign a name to the policy. Please use the name:
 
 ```nohighlight
 GiantSwarmAWSOperatorPolicy
