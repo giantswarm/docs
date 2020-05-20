@@ -23,7 +23,7 @@ In order to run Giant Swarm tenant clusters, an Azure subscription needs the fol
 ## Create Azure role definition and Service Principal
 
 In order to perform necessary actions to deploy and maintain tenant clusters in your Azure subscription, `azure-operator` needs to access the subscription using a Service Principal.
-Below we details the steps necessary to set it up.
+Below we detail the steps necessary to set it up.
 
 #### 1. Prerequisites
 
