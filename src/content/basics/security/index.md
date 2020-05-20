@@ -14,7 +14,7 @@ Regardless of provider, clusters start with restrictive settings already in plac
 
 We regularly test our configurations against the CIS Kubernetes Benchmark as well as other CIS and industry benchmarks for Docker, Linux, and cloud providers to ensure our platform remains compliant with industry best-practices.
 
-Additionally, each cluster is completely isolated, running inside its own VPC (AWS) or Virtual Network (Azure) within your account. This limits the blast radius to a single cluster in the event that a workload becomes compromised. Other managed Kubernetes offerings offer only soft isolation using namespaces within a single cluster.
+Additionally, each cluster is completely isolated, running inside its own VPC (AWS) or Virtual Network (Azure) within your account. They can be further isolated by keeping clusters in different accounts. On-premises we achieve similar isolation by running the nodes in hypervisors (KVM, VMWare) and isolating clusters' networks within separate VXLAN bridges. We encourage separation of workloads over several clusters to limit the blast radius of incidents.
 
 ## Encryption at Rest
 
