@@ -61,7 +61,7 @@ To prepare your credentials, either as AWS account roles or as an Azure service 
 
 You can then assign the credentials to your organization in several ways:
 
-- In the Ginat Swarm web UI via the organization details page
+- In the Giant Swarm web UI via the organization details page
 - In `gsctl` using the [`update organization set-credentials`](/reference/gsctl/update-org-set-credentials/) command
 - Via the [Giant Swarm API](/api/#operation/addCredentials)
 
