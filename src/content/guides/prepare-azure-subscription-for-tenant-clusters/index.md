@@ -93,6 +93,6 @@ organization. These clusters' resources will be created in your Azure subscripti
 
 ## Further reading
 
-- [Basics and Concepts: Bring Your Own Cloud](/basics/byoc/)
+- [Basics and Concepts: Multi-Account Support](/basics/multi-account/)
 - [gsctl Reference: `update organization set-credentials`](/reference/gsctl/update-org-set-credentials/)
 - [API: Set credentials](https://docs.giantswarm.io/api/#operation/addCredentials)
