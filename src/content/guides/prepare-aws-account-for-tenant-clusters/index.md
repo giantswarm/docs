@@ -1,7 +1,7 @@
 ---
 title: "Prepare an AWS account to run Giant Swarm clusters"
 description: "This guide will walk you through all necessary steps to set up an Amazon AWS account with appropriate IAM roles for operating Giant Swarm clusters."
-date: 2020-04-23
+date: 2020-05-19
 type: page
 weight: 100
 tags: ["tutorial"]
@@ -11,11 +11,11 @@ tags: ["tutorial"]
 
 As detailed in the [Architecture](/basics/aws-architecture/) docs,
 the tenant clusters (the clusters running your Kubernetes workloads) in a Giant
-Swarm installation are running in an AWS account separate from the control plane.
-This gives great flexibility depending on the requirements and the usage
-scenario. For example, it allows the control plane to be running in an AWS account
+Swarm installation run in an AWS account separate from the control plane.
+This gives great flexibility depending on requirements and usage
+scenarios. For example, it allows the control plane to be running in an AWS account
 dedicated to it, whilst tenant clusters operate in separate AWS accounts, depending
-on a customer's department using them.
+on the customer organization using them.
 
 ## Overview
 
@@ -34,7 +34,7 @@ Each Giant Swarm tenant cluster belongs to an organization within Giant Swarm.
 This organization will later be configured with information about the two
 tenant cluster IAM roles mentioned above.
 
-We have created a Terraform module to automate the IAM role creation. You can check the code [here](https://github.com/giantswarm/giantswarm-aws-account-prerequisites). Otherwise you can still use the steps as described in this guide.
+We have created a Terraform module to automate the IAM role creation. You can view the code [here](https://github.com/giantswarm/giantswarm-aws-account-prerequisites). You can also use the steps as described in this guide.
 
 ## Increase service limits in an AWS tenant cluster account {#limits}
 
@@ -87,9 +87,9 @@ clusters frequently.
 Elastic IP address for the NAT gateway.
 
 > Each cluster has at least 1 Auto Scaling Group, but can contain multiple ASGs if
-multiple instance types are requested as cluster nodes. If we count with 50
-clusters with up to 5 EC2 instances as worker nodes each, we need up to 250
-ASGs. For updating the ASGs in a rolling manner we need to duplicate the ASGs
+multiple instance types are requested as cluster nodes. If we count 50
+clusters with up to 5 EC2 instances each, as worker nodes, we need up to 250
+ASGs. To update the ASGs in a rolling manner we need to duplicate the ASGs
 for a short time during update, hence the 500 Launch Configurations.
 
 > The number of EC2 instances used as worker nodes is supposed to be scaled
@@ -102,10 +102,9 @@ The following steps must all take place in the control plane AWS account.
 ### Create an IAM user for aws-operator {#operator-iam-user}
 
 Giant Swarm's service creating and maintaining your tenant clusters is
-called [aws-operator](https://github.com/giantswarm/aws-operator). It is
-running in the control plane. In order to handle resources in your AWS Tenant
+called [aws-operator](https://github.com/giantswarm/aws-operator). It runs in the control plane. In order to handle resources in your AWS Tenant
 Cluster account, it needs a prepared IAM user in your AWS control plane
-account. Here we explain all the required steps to set up this user.
+account. Details of all the required steps to set up this user are explained below:
 
 #### 1. Basic user setup
 
@@ -124,7 +123,7 @@ In the **Attach existing policies directly** section, hit the **Create policy** 
 
 Paste the JSON code from [tenant_cluster.json](https://raw.githubusercontent.com/giantswarm/aws-operator/master/policies/tenant_cluster.json) into the JSON editor field and then hit the **Review policy** button.
 
-In the next step you have to assign a name to the policy. Please use the name:
+In the next step you need to assign a name to the policy. Please use the name:
 
 ```nohighlight
 GiantSwarmAWSOperatorPolicy
@@ -137,7 +136,7 @@ We suggest:
 
 #### 3. Attach policy to user
 
-Once you created the policy, let's turn back to the point in the user creation
+Once you created the policy, let's return to the point in the user creation
 called *Attach existing policies directly*. Here you can now hit the *Refresh*
 button to load all existing policies, then enter `GiantSwarmAWSOperatorPolicy`
 into the search field to select the policy you just created. Check the box in
@@ -149,7 +148,7 @@ Then proceed to the *Review* step.
 
 #### 4. Review and create user
 
-Please now review the user. Provided everything is correct, hit the *Create*
+You should now review the user. Provided everything is correct, hit the *Create*
 button. On the following page, you will be presented with an *Access key ID* and
 a *Secret access key*. Click the 'show' link to display the access key secret,
 and then copy both the key ID and key secret; these will need to be provided to
@@ -164,8 +163,7 @@ The following steps must all take place in the tenant cluster AWS account.
 ### Create an IAM role for aws-operator {#operator-iam-role}
 
 As `aws-operator` runs in the control plane account, it requires a role to assume
-in the tenant cluster account in order to manage tenant cluster resources. Here we
-explain the steps required to set up this role.
+in the tenant cluster account in order to manage tenant cluster resources. Below are the steps required to set up this role.
 
 #### 1. Determine the control plane's AWS account ID
 
@@ -200,7 +198,7 @@ In the **Attach permissions policies** section, hit the **Create policy** button
 
 Paste the JSON code from [tenant_cluster.json](https://raw.githubusercontent.com/giantswarm/aws-operator/master/policies/tenant_cluster.json) into the JSON editor field and then hit the **Review policy** button.
 
-In the next step you have to assign a name to the policy. Please use the name
+In the next step you need to assign a name to the policy. Please use the name
 
 ```nohighlight
 GiantSwarmAWSOperatorPolicy
@@ -208,7 +206,7 @@ GiantSwarmAWSOperatorPolicy
 
 #### 4. Attach policy to role
 
-Once you created the policy, let's turn back to the point in role creation called
+Once you created the policy, let's return to the point in role creation called
 *Attach permissions policies*. Here you can now hit the *Refresh* button to load
 all existing policies, then enter `GiantSwarmAWSOperatorPolicy` into the search
 field to select the policy you just created. Check the box in the row containing
@@ -304,7 +302,7 @@ In the previous sections, we explained how to create two IAM roles in the
 AWS account that's going to run the Giant Swarm tenant clusters.
 
 Giant Swarm tenant clusters are owned by _organizations_, which allows you to control
-access to clusters, since only members of the owner organization have access to
+access to clusters. Only members of the owner organization have access to
 the management functions of a cluster.
 
 In order to run a tenant cluster in your AWS account, the organization owning
@@ -315,8 +313,8 @@ your organization with our CLI [gsctl](/reference/gsctl/). Look for the
 [`update organization set-credentials`](/reference/gsctl/update-org-set-credentials/#aws)
 command.
 
-In case you work with a Giant Swarm partner, it might be that you don't have
-access to the Giant Swarm API. In that case, please hand over the role ARNs for
+In case you are working with a Giant Swarm partner, you might not have
+access to the Giant Swarm API. In that case, please provide the role ARNs for
 the `GiantSwarmAWSOperator` role and the `GiantSwarmAdmin` role to your partner
 contact.
 
@@ -325,7 +323,7 @@ organization. These clusters' resources will be created in your AWS account.
 
 ## Further reading
 
-- [Basics and Concepts: Multi-Account Support](/basics/multi-account/)
+- [Basics and Concepts: Multi Account Support](/basics/multi-account/)
 - [gsctl Reference: `update organization set-credentials`](/reference/gsctl/update-org-set-credentials/)
 - [API: Set credentials](https://docs.giantswarm.io/api/#operation/addCredentials)
 - [Giant Swarm Architecture](/basics/aws-architecture/)
