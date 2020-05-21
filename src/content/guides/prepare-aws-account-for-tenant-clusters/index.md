@@ -80,7 +80,7 @@ These are the limit increases to be requested, grouped by limit type:
 When requesting a service limit increase, you will be asked for a description of your use case. You can use this text for the purpose:
 
 > We intend to run multiple Kubernetes clusters in this account, potentially used
-by various roles within globally distributed teams. We will be creating and deleting new
+by various globally distributed teams. We will be creating and deleting new
 clusters frequently.
 
 > Each cluster needs its own VPC for security/isolation reasons and its own
