@@ -1,7 +1,7 @@
 ---
 title: "Prepare an Azure subscription to run Giant Swarm tenant clusters"
 description: "This guide will walk you through all necessary steps to set up an Azure subscription for operating Giant Swarm tenant clusters."
-date: "2020-05-14"
+date: "2020-05-22"
 type: page
 weight: 100
 tags: ["tutorial"]
@@ -34,12 +34,12 @@ Here we describe all the steps to set it up.
 
 You will need:
 
-- An account with [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner) or [User Access Administrator](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#user-access-administrator) role.
+- An account in your Active Directory with [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner) or [User Access Administrator](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#user-access-administrator) role.
 - (Optional) [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) installed.
 
 #### 2. Service Principal
 
-Your subscription must be linked with a Tenant AD which has the GiantSwarm Service Principal.
+Your subscription must be linked with a Tenant Active Directory (AD) which has the GiantSwarm Service Principal in it.
 
 If the subscription where you want to run the tenant cluster is linked to the same Tenant AD than the subscription running the control plane,
 you don't need to do anything else.
