@@ -30,7 +30,7 @@ The control plane is a Kubernetes cluster. Your tenant clusters and other associ
 
 ### How to gain access
 
-To access the CP-K8s-API, Giant Swarm configures access to the API via OIDC. Please contact Solution Engineer (SE) to sort out the details.
+Access to the Giant Swarm Control Plane API is secured using OIDC. Please contact your Solution Engineer (SE) to sort out the details.
 
 Currently we normally provide read-only access by default. As we are currently working on a fine-grained way to control permissions to resources, having write access right now means fully unrestricted access and should only be granted to select individuals.
 
