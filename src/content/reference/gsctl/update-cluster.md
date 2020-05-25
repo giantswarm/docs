@@ -40,13 +40,13 @@ gsctl update cluster vxvc7 \
 
 will update the labels of cluster `vxvc7`. It will add (or update depending on prior existence) label `environment=testing` and delete the label with key `locked`.
 
-### Switching to high availability of master nodes {#ex-master-high-availability}
+### Switching to high availability of master nodes {#ex-master-ha}
 
 Starting with release v{{% first_aws_ha_masters_version %}}, a single master node cluster can be converted into using multiple master nodes in multiple availability zones using a command like the following:
 
 ```nohighlight
 gsctl update cluster vxvc7 \
-  --master-high-availability=true
+  --master-ha=true
 ```
 
 Note that it is not possible to change from multiple master nodes to a single master.
@@ -58,7 +58,7 @@ Note that it is not possible to change from multiple master nodes to a single ma
 Allowed multiple times.
 Available on AWS starting at release {{% first_aws_nodepools_version %}}.
 To remove a label, set its key to an empty string (`labeltodelete=`).
-- `--master-high-availability`: When set to `true`, the cluster should be modified to use multiple master nodes. Available on AWS starting at release v{{% first_aws_ha_masters_version %}}.
+- `--master-ha`: When set to `true`, the cluster should be modified to use multiple master nodes. Available on AWS starting at release v{{% first_aws_ha_masters_version %}}.
 
 ## Related
 
