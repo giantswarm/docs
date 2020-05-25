@@ -27,34 +27,19 @@ $ gsctl show cluster "Cluster name"
 Example output for an AWS based cluster featuring node pools:
 
 ```nohighlight
-ID:                        vxvc7
-Name:                      Staging cluster for Frontend
-Created:                   2020 May 11, 09:26 UTC
-Organization:              acme
-Kubernetes API endpoint:   https://api.vxvc7.acme.aws.gigantic.io
-Masters:                   1
-Master availability zones: eu-central-1b
-Release version:           11.5.0
-Web UI:                    https://happa.g8s.acme.eu-central-1.aws.gigantic.io/organizations/acme/clusters/vxvc7
-Size:                      7 nodes in 1 node pool
-CPUs in nodes:             28
-RAM in nodes (GB):         112
-```
-
-Example output for an AWS based cluster with release version {{% first_aws_nodepools_version %}} and above:
-
-```nohighlight
 Cluster ID:                ggf8v
 Name:                      Testing - Team upstate
 Created:                   2020 May 04, 16:54 UTC
 Organization:              acme
 Kubernetes API endpoint:   https://api.ggf8v.REDACTED.aws.gigantic.io
-Master availability zone:  region-region-1a
 Release version:           11.2.1
 Labels:                    usage=testing
                            team=upstate
                            locked=false
 Web UI:                    https://happa.ggf8v.REDACTED.aws.gigantic.io/organizations/acme/clusters/ggf8v
+Master availability zones: eu-central-1b
+Masters:                   1
+Masters ready:             1
 Size:                      3 nodes in 1 node pool
 CPUs in nodes:             12
 RAM in nodes (GB):         48
