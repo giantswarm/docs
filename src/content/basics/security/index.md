@@ -10,12 +10,6 @@ last-review-date: 2020-05-18
 
 # Security
 
-Regardless of provider, clusters start with restrictive settings already in place. All internal and external network traffic is denied by default, role-based access control prevents unauthorized access to Kubernetes resources, and Pod security policies are in place to prevent Pods from running with root users, risky volume configurations, or additional privileges. All of these can be adapted by the customer to fit their needs. 
-
-We regularly test our configurations against the CIS Kubernetes Benchmark as well as other CIS and industry benchmarks for Docker, Linux, and cloud providers to ensure our platform remains compliant with industry best-practices.
-
-Additionally, each cluster is completely isolated, running inside its own VPC (AWS) or Virtual Network (Azure) within your account. They can be further isolated by keeping clusters in different accounts. On-premises we achieve similar isolation by running the nodes in hypervisors (KVM, VMWare) and isolating clusters' networks within separate VXLAN bridges. We encourage separation of workloads over several clusters to limit the blast radius of incidents.
-
 ## Encryption at Rest
 
 ### Kubernetes {#k8s}
@@ -51,3 +45,50 @@ kubelet data is stored under `/var/lib/kubelet`, Docker images under `/var/lib/d
 #### Encryption of persistent storage {#azure-persistent-storage}
 
 Persistent storage is managed by the `StorageClass` resource in Kubernetes. By default, storage class is provided by Azure Managed disks (Premium SSD). Azure managed disk automatically encrypts data by default with platform-managed keys (managed by Microsoft). See more details in [Azure managed disk documentation](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/disk-encryption).
+
+## Infrastructure and network security
+
+### Physical security
+
+#### Public cloud providers
+
+Our customers running on public cloud enjoy the thorough acion taken by their provide in order to ensure the physical security of their data-centers. This includes: perimiter security, vetted staff and biometric access control.
+for more details you can go to:
+[AWS](https://aws.amazon.com/compliance/data-center/controls)
+[Azure](https://docs.microsoft.com/en-us/azure/security/fundamentals/physical-security)
+
+#### Private cloud
+
+Customers may run the Giant Swarm platform within their own datacenters, which they have hardened to their satisfaction.
+
+### Security testing
+
+#### Penetration testing
+
+Giant Swarm customers regularly run penetration tests on their applications, running on our platform. Findings from these tests are used to improve the overall platform security. In this way all customers benefit from testing that we are associated with.
+
+#### Compliance audits
+
+[AWS](https://aws.amazon.com/compliance/soc-faqs) and [Azure](https://docs.microsoft.com/en-us/microsoft-365/compliance/offering-soc?view=o365-worldwide) are compliant with SOC 1,2,3 as well as PCI DSS, GDPR and other compliance frameworks. See the provider pages for details.
+
+#### Kubernetes security
+
+#### Network security
+
+Regardless of provider, clusters start with restrictive settings already in place. All internal and external network traffic is denied by default, role-based access control prevents unauthorized access to Kubernetes resources, and Pod security policies are in place to prevent Pods from running with root users, risky volume configurations, or additional privileges. All of these can be adapted by the customer to fit their needs. 
+
+We regularly test our configurations against the CIS Kubernetes Benchmark as well as other CIS and industry benchmarks for Docker, Linux, and cloud providers to ensure our platform remains compliant with industry best-practices.
+
+Additionally, each cluster is completely isolated, running inside its own VPC (AWS) or Virtual Network (Azure) within your account. They can be further isolated by keeping clusters in different accounts. On-premises we achieve similar isolation by running the nodes in hypervisors (KVM, VMWare) and isolating clusters' networks within separate VXLAN bridges. We encourage separation of workloads over several clusters to limit the blast radius of incidents.
+
+## Authentication
+
+### VPN Setup
+
+For more details please visit the [Secure access to clusters - Users and Giant Swarm support](../secured-access-to-clusters)
+
+### OIDC support and active directory
+
+
+## Vulnerability disclosure
+Please see our [dedictated disclosure page](https://www.giantswarm.io/responsible-disclosure)
