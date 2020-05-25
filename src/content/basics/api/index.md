@@ -46,7 +46,7 @@ This is quickly explained: we create one namespace for each tenant cluster, wher
 
 ### Which custom resources we use for what purpose
 
-For this, we provide some resources that should help you:
+Following are some resources that should help you:
 
 - The guide [Creating tenant clusters via the Control Plane Kubernetes API](/guides/creating-clusters-via-crs-on-aws/) explains step by step how you can create a cluster and node pools via the CP-K8s-API. Here you learn about all the custom resources a cluster comprises.
 - The [App Platform](/basics/app-platform/) introduction outlines the several custom resources involved when managing app catalogs and apps.
