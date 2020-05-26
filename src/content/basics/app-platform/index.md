@@ -1,11 +1,11 @@
 ---
 title: The Giant Swarm App Platform
 description: Overview of the Giant Swarm App Platform, how it works and what to expect.
-date: 2020-04-07
+date: 2020-05-26
 weight: 90
 type: page
 categories: ["basics"]
-last-review-date: "2020-04-07"
+last-review-date: "2020-05-26"
 aliases: [
     "/basics/app-catalog/",
 ]
@@ -21,7 +21,7 @@ Using this platform we will provide a collection of curated _Apps_. These _Apps_
 
 In short: the _Giant Swarm App Platform_ refers to the whole feature, and an _App Catalog_ is a collection of _Apps_.
 
-We provide two _App Catalogs_. You will be able to set up you own additional catalog(s) to provide for any needs you have at the enterprise level.
+We provide two _App Catalogs_. You will be able to set up your own additional catalog(s) to provide for any needs you have at the enterprise level.
 
 ### What makes up the Giant Swarm App Platform?
 
