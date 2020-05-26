@@ -46,8 +46,6 @@ Access to the Giant Swarm Control Plane API is secured using OIDC. Please contac
 
 Currently we provide read-only access by default. As we are currently working on a fine-grained way to control permissions to resources, and validation and defaulting are not implemented to the extend we want to, having write access right now means fully unrestricted access and should only be granted to select individuals.
 
-TODO: Explain how setting up write is different from read and what else it requires.
-
 ### How to use
 
 We recommend using `kubectl` to navigate the resources present on the Control Plane Kubernetes API. Besides general Kubernetes know-how this will require only a bit of structural knowledge:
