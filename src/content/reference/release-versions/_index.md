@@ -6,7 +6,7 @@ layout: subsection
 weight: 500
 ---
 
-# Giant Swarm Releases Versions
+# Giant Swarm Release Versions
 
 When you create a tenant cluster at Giant Swarm you also get to choose which
 release version you would like the cluster to have.
