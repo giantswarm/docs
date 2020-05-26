@@ -94,9 +94,9 @@ Bear in mind that we do NOT support these apps and they won’t be worked on wit
 We encourage you to try out this playground catalog and the different apps offered there. As always, feedback is welcome.
 
 
-### Installing the default Helm Stable Repository as a App Catalog
+### The Helm Stable Catalog
 
-The Helm Stable App Catalog contains all the Apps you'd find in the upstream
+The Helm Stable Catalog contains all the Apps you'd find in the upstream
 [helm stable repository](https://github.com/helm/charts/tree/master/stable).
 There is no guarantee or SLA here. Install Apps from this
 catalog at your own risk.
