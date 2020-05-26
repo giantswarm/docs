@@ -52,14 +52,9 @@ build: vendor build-css
 	# Generate the Control Plane K8s API reference documentation.
 	docker run \
 		-v ${PWD}/build/content/reference/cp-k8s-api:/opt/crd-docs-generator/output \
-		quay.io/giantswarm/crd-docs-generator:45a4eebf2dd3340dcce091b3f5d0ebe3dc83cd21 \
-		  --apiextensions-commit-ref v0.3.4 \
-		  --skip-crd chartconfigs.core.giantswarm.io \
-		  --skip-crd clusters.core.giantswarm.io \
-		  --skip-crd draughtsmanconfigs.core.giantswarm.io \
-		  --skip-crd ingressconfigs.core.giantswarm.io \
-		  --skip-crd memcachedconfigs.example.giantswarm.io \
-		  --skip-crd releasecycles.release.giantswarm.io
+		-v ${PWD}:/opt/crd-docs-generator/config \
+		quay.io/giantswarm/crd-docs-generator:0.0.0-cce07b5b225bd1b7ad576a0e1f5ebb773397915c \
+		  --config /opt/crd-docs-generator/config/crd-docs-generator-config.yaml
 
 
 docker-build: build

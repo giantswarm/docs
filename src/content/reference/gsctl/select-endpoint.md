@@ -1,7 +1,7 @@
 ---
 title: "gsctl Command Reference: select endpoint"
 description: "The 'gsctl select endpoint' command selects an endpoint for usage in subsequent command executions."
-date: "2018-01-26"
+date: "2020-05-13"
 type: page
 weight: 41
 ---
@@ -83,3 +83,4 @@ gsctl select endpoint myalias
 
 - [`gsctl login`](../login/)
 - [`gsctl list endpoints`](../list-endpoints/)
+- [`gsctl delete endpoint`](../delete-endpoint/)

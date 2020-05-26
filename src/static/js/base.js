@@ -14,23 +14,23 @@ $('body').scrollspy({
 
 /* Prevent disabled links from causing a page reload */
 $("li.disabled a").click(function() {
-    event.preventDefault();
+  event.preventDefault();
 });
 
 /* Adjust the scroll height of anchors to compensate for the fixed navbar */
 window.disableShift = false;
 var shiftWindow = function() {
-    if (window.disableShift) {
-        window.disableShift = false;
-    } else {
-        /* If we're at the bottom of the page, don't erronously scroll up */
-        var scrolledToBottomOfPage = (
-            (window.innerHeight + window.scrollY) >= document.body.offsetHeight
-        );
-        if (!scrolledToBottomOfPage) {
-            scrollBy(0, -60);
-        };
+  if (window.disableShift) {
+    window.disableShift = false;
+  } else {
+    /* If we're at the bottom of the page, don't erronously scroll up */
+    var scrolledToBottomOfPage = (
+        (window.innerHeight + window.scrollY) >= document.body.offsetHeight
+    );
+    if (!scrolledToBottomOfPage) {
+      scrollBy(0, -60);
     };
+  };
 };
 if (location.hash) {shiftWindow();}
 window.addEventListener("hashchange", shiftWindow);
@@ -38,24 +38,24 @@ window.addEventListener("hashchange", shiftWindow);
 
 /* Deal with clicks on nav links that do not change the current anchor link. */
 $("ul.nav a" ).click(function() {
-    var href = this.href;
-    var suffix = location.hash;
-    var matchesCurrentHash = (href.indexOf(suffix, href.length - suffix.length) !== -1);
-    if (location.hash && matchesCurrentHash) {
-        /* Force a single 'hashchange' event to occur after the click event */
-        window.disableShift = true;
-        location.hash='';
-    };
+  var href = this.href;
+  var suffix = location.hash;
+  var matchesCurrentHash = (href.indexOf(suffix, href.length - suffix.length) !== -1);
+  if (location.hash && matchesCurrentHash) {
+    /* Force a single 'hashchange' event to occur after the click event */
+    window.disableShift = true;
+    location.hash='';
+  };
 });
 
 /**
  * Returns the value of a URL parameter
  */
 function getParameterByName(name) {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-        results = regex.exec(location.search);
-    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+      results = regex.exec(location.search);
+  return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
 /**
@@ -64,73 +64,73 @@ function getParameterByName(name) {
  * @param q  String     The user's search query
  */
 function doSearch(q) {
-    //console.debug("Searched for", q);
-    $("#qinput").val(q);
-    // assemble the big query object for ElasticSearch
-    var postData = {
-        "from": 0,
-        "size": 1000,
-        "sort": ["_score"],
-        "_source": {
-            "excludes": ["text", "breadcrumb_*"]
+  //console.debug("Searched for", q);
+  $("#qinput").val(q);
+  // assemble the big query object for ElasticSearch
+  var postData = {
+    "from": 0,
+    "size": 1000,
+    "sort": ["_score"],
+    "_source": {
+      "excludes": ["text", "breadcrumb_*"]
+    },
+    "query": {
+      "simple_query_string": {
+        "fields": ["title^5", "uri^5", "text"],
+        "default_operator": "AND",
+        "query": q
+      }
+    },
+    "highlight" : {
+      "fields" : {
+        "body" : {
+          "type": "unified",
+          "number_of_fragments" : 1,
+          "no_match_size": 200,
+          "fragment_size" : 150
         },
-        "query": {
-            "simple_query_string": {
-                "fields": ["title^5", "uri^5", "text"],
-                "default_operator": "AND",
-                "query": q
-            }
-        },
-        "highlight" : {
-            "fields" : {
-                "body" : {
-                    "type": "unified",
-                    "number_of_fragments" : 1,
-                    "no_match_size": 200,
-                    "fragment_size" : 150
-                },
-                "title": {
-                    "type": "unified",
-                    "number_of_fragments" : 1
-                }
-            }
+        "title": {
+          "type": "unified",
+          "number_of_fragments" : 1
         }
-    };
-    $.ajax("/searchapi/", {
-        type: "POST",
-        data: JSON.stringify(postData),
-        contentType: "application/json",
-        dataType: "json",
-        error: function(jqXHR, textStatus, errorThrown){
-            console.warn("Error in ajax call to /searchapi/:", textStatus, errorThrown);
-        },
-        success: function(data){
-            $(".result").empty();
-            if (data.hits.total == 0) {
-                // no results
-                $("h1").text("No results for '" + q + "', sorry.");
-                $("#searchinstructions").show();
+      }
+    }
+  };
+  $.ajax("/searchapi/", {
+    type: "POST",
+    data: JSON.stringify(postData),
+    contentType: "application/json",
+    dataType: "json",
+    error: function(jqXHR, textStatus, errorThrown){
+      console.warn("Error in ajax call to /searchapi/:", textStatus, errorThrown);
+    },
+    success: function(data){
+      $(".result").empty();
+      if (data.hits.total == 0) {
+        // no results
+        $("h1").text("No results for '" + q + "', sorry.");
+        $("#searchinstructions").show();
 
-                if (typeof ga !== 'undefined') {
-                    ga('send', 'event', 'search', 'zerohits', q, 0);
-                }
-            } else {
-                $("#searchinstructions").hide();
-                if (data.hits.total === 1) {
-                    $("h1").text("1 hit for '" + q + "'");
-                } else {
-                    $("h1").text(data.hits.total + " hits for '" + q + "'");
-                }
-                $.each(data.hits.hits, function(index, hit){
-                    $(".result").append(renderSerpEntry(index, hit));
-                });
-                
-                if (typeof ga !== 'undefined') {
-                    ga('send', 'event', 'search', 'hits', q, data.hits.total);
-                }
-            }
+        if (typeof ga !== 'undefined') {
+          ga('send', 'event', 'search', 'zerohits', q, 0);
         }
-    });
+      } else {
+        $("#searchinstructions").hide();
+        if (data.hits.total === 1) {
+          $("h1").text("1 hit for '" + q + "'");
+        } else {
+          $("h1").text(data.hits.total + " hits for '" + q + "'");
+        }
+        $.each(data.hits.hits, function(index, hit){
+          $(".result").append(renderSerpEntry(index, hit));
+        });
+
+        if (typeof ga !== 'undefined') {
+          ga('send', 'event', 'search', 'hits', q, data.hits.total);
+        }
+      }
+    }
+  });
 }
 
 /**
@@ -140,90 +140,90 @@ function doSearch(q) {
  * @param data   Object  Result hit item as returned by elasticsearch
  */
 function renderSerpEntry(index, hit) {
-    d = $("<a class='item'></>").attr("href", hit._source.uri);
-    if (typeof(hit.highlight) !== "undefined" && typeof(hit.highlight.title) !== "undefined") {
-        d.append($("<h4></h4>").html((index + 1) + ". " + hit.highlight.title));
-    } else {
-        d.append($("<h4></h4>").html((index + 1) + ". " + hit._source.title));
-    }
-    if (typeof(hit._source.breadcrumb) !== "undefined" && hit._source.breadcrumb.length > 0) {
-        d.append($("<p class='sbreadcrumb'></p>").html("/" + hit._source.breadcrumb.join("/") + "/"));
-    }
-    if (typeof(hit.highlight) !== "undefined" && typeof(hit.highlight.body) !== "undefined" && hit.highlight.body.length > 0) {
-        d.append($("<p class='snippet'></p>").html(hit.highlight.body.join(' <span class="hellip">[...]</span> ')));
-    }
-    return d;
+  d = $("<a class='item'></>").attr("href", hit._source.uri);
+  if (typeof(hit.highlight) !== "undefined" && typeof(hit.highlight.title) !== "undefined") {
+    d.append($("<h4></h4>").html((index + 1) + ". " + hit.highlight.title));
+  } else {
+    d.append($("<h4></h4>").html((index + 1) + ". " + hit._source.title));
+  }
+  if (typeof(hit._source.breadcrumb) !== "undefined" && hit._source.breadcrumb.length > 0) {
+    d.append($("<p class='sbreadcrumb'></p>").html("/" + hit._source.breadcrumb.join("/") + "/"));
+  }
+  if (typeof(hit.highlight) !== "undefined" && typeof(hit.highlight.body) !== "undefined" && hit.highlight.body.length > 0) {
+    d.append($("<p class='snippet'></p>").html(hit.highlight.body.join(' <span class="hellip">[...]</span> ')));
+  }
+  return d;
 }
 
 /* handle search */
 $(document).ready(function(){
 
-    // click handler for search button
-    $("#searchsubmit").click(function(evt){
-        evt.preventDefault();
-        $("form.search").submit();
-    });
+  // click handler for search button
+  $("#searchsubmit").click(function(evt){
+    evt.preventDefault();
+    $("form.search").submit();
+  });
 
-    if (document.location.pathname !== "/search/") {
-        return;
-    }
+  if (document.location.pathname !== "/search/") {
+    return;
+  }
 
-    var q = getParameterByName("q");
+  var q = getParameterByName("q");
 
-    // sanitize query string by eleminating trailing / (PHP SimpleHTTPServer problem)
-    if (q.substr(q.length - 1) === "/") {
-        q = q.slice(0, -1);
-    }
+  // sanitize query string by eleminating trailing / (PHP SimpleHTTPServer problem)
+  if (q.substr(q.length - 1) === "/") {
+    q = q.slice(0, -1);
+  }
 
-    if (typeof(q) === "undefined" || q == null || q === "") {
-        $(".feedback").hide();
-        return;
-    }
-    doSearch(q);
+  if (typeof(q) === "undefined" || q == null || q === "") {
+    $(".feedback").hide();
+    return;
+  }
+  doSearch(q);
 });
 
 /** Re-format the table of contents **/
 
 var toc = $('#TableOfContents');
 if (toc.length !== 0) {
-    var innerToc = toc.find("ul:first-child > li:first-child > ul").html();
-    if (typeof innerToc !== "undefined") {
-        toc.html("<ul>" + innerToc + "</ul>");
-    } else {
-        $('#TableOfContents').remove();
-    }
+  var innerToc = toc.find("ul:first-child > li:first-child > ul").html();
+  if (typeof innerToc !== "undefined") {
+    toc.html("<ul>" + innerToc + "</ul>");
+  } else {
+    $('#TableOfContents').remove();
+  }
 }
 
 /** Adapt username in quickstart **/
 var username = getParameterByName("username");
 if (typeof username !== "undefined" && username !== "") {
-    $(".username").text(username);
-    $(".welcome-alert").show();
-    $(".helloworldlink").html('Then open your running application at <a href="http://helloworld-' + username + '.gigantic.io/" target="_blank">helloworld-' + username + '.gigantic.io</a>')
+  $(".username").text(username);
+  $(".welcome-alert").show();
+  $(".helloworldlink").html('Then open your running application at <a href="http://helloworld-' + username + '.gigantic.io/" target="_blank">helloworld-' + username + '.gigantic.io</a>')
 }
 
 /** Adapt docs menu **/
 if (document.location.pathname == "/") {
-    $("#homelink").addClass("active");
+  $("#homelink").addClass("active");
 } else {
-    $(".docsnav .nav li").each(function(index, item){
-        var link = $(item).find("a").attr("href");
-        if (link !== "/" && document.location.pathname.indexOf(link) == 0) {
-            $(item).addClass("active");
-            return;
-        }
-    });
+  $(".docsnav .nav li").each(function(index, item){
+    var link = $(item).find("a").attr("href");
+    if (link !== "/" && document.location.pathname.indexOf(link) == 0) {
+      $(item).addClass("active");
+      return;
+    }
+  });
 }
 
 // make all tables bootstrappy
 $("table").addClass("table");
 
 $(".search-cta input").on("change keypress keyup", function(evt){
-    if ($(".search-cta input").val() === "") {
-        $(".search-cta button").animate({"opacity": 0.0});
-    } else {
-        $(".search-cta button").animate({"opacity": 1.0});
-    }
+  if ($(".search-cta input").val() === "") {
+    $(".search-cta button").animate({"opacity": 0.0});
+  } else {
+    $(".search-cta button").animate({"opacity": 1.0});
+  }
 });
 
 // link headlines
@@ -264,7 +264,7 @@ $(document).ready(function(){
     }
   });
 
-  var replaceBaseDomainPlaceholder = function(value) {
+  var replaceBaseDomainPlaceholder = function(value) {
     if (value.substr(0, 1) !== '.') {
       value = '.' + value;
     }
@@ -288,4 +288,11 @@ $(document).ready(function(){
   }
 
 
+});
+
+window.addEventListener("load", function() {
+  if (!window.GSAside) return;
+
+  var g = new GSAside(".toc-sidebar", ".base-content", 60);
+  g.init();
 });
