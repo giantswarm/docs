@@ -14,7 +14,7 @@ release version you would like the cluster to have.
 The release version of a cluster helps you identify additional information like
 what Kubernetes version the cluster will have.
 
-Besdies Kubernetes, other components come into play as well, for example Calico,
+Besides Kubernetes, other components come into play as well, for example Calico,
 Flannel, Docker, and our own services and operators.
 
 Together, all these components define the capabilities of a tenant cluster.
