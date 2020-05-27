@@ -237,11 +237,12 @@ In case you need to have a finer granularity you can define custom server blocks
 # 9.0.1 and greater
 data:
   values: |
-    custom: |
-      example.com:1053 {
-        forward . 9.9.9.9
-        cache 2000
-      }
+    configmap:
+      custom: |
+        example.com:1053 {
+          forward . 9.9.9.9
+          cache 2000
+        }
 
 # 9.0.0 and below
 data:
