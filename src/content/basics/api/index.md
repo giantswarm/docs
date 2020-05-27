@@ -3,7 +3,7 @@ title: API Access to Giant Swarm Resources
 description: An overview of the APIs that provide you with programmatic access to
   resources like your tenant cluster in a Giant Swarm installation. Namely the Rest
   API and the Control Plane Kubernetes API.
-date: 2020-05-26
+date: 2020-05-27
 weight: 75
 type: page
 categories: ["basics"]
@@ -34,7 +34,7 @@ As of now, there is no termination date for the Rest API. As it might provide th
 
 ## The Control Plane Kubernetes API (CP-K8s-API) {#cp-k8s-api}
 
-## What it is
+### What it is
 
 At Giant Swarm, when we say "control plane", we talk about the Kubernetes Cluster that runs all the operational and monitoring workloads which are needed to create and manage the "tenant clusters". These are the clusters you create to run your actual workloads. This is not to be confused with how the Kubernetes project uses the same term. In that case, it simply refers to the master nodes of a Kubernetes cluster.
 
@@ -54,7 +54,7 @@ We recommend using `kubectl` to navigate the resources present on the Control Pl
 
 We create one namespace for each tenant cluster, where the namespace name is equal to the tenant cluster ID. All cluster specific resources reside in the namespace of that tenant cluster.
 
-### Which custom resources are used for what purpose
+#### Which custom resources are used for what purpose
 
 Following are some resources that should help you:
 
