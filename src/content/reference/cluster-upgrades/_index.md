@@ -62,6 +62,9 @@ This can include minor upgrades of third party components, with the exception of
 **Note:** The release version number is provider-specific.
 Azure, AWS, and KVM based installations have independent versioning systems, as their stacks are also slightly different.
 
+We have a [reference page with an overview of our release versions](/reference/release-versions/), which can give you an idea of what
+release versions are currently available and what notable features they support.
+
 ### Determining the release version and inspecting release details
 
 As a user with access to the Giant Swarm API, and being a member of the organization owning the cluster, you can use either the web UI or the CLI to find out the current release version of your tenant cluster.
