@@ -67,4 +67,4 @@ To remove a label, set its key to an empty string (`labeltodelete=`).
 - [API: Modify cluster (v4)](/api/#operation/modifyCluster)
 - [API: Modify cluster (v5)](/api/#operation/modifyClusterV5)
 - [API: Update cluster labels](/api/#operation/setClusterLabels)
-- [Labelling tennant clusters](/guides/tenant-cluster-labelling/)
+- [Labelling tenant clusters](/guides/tenant-cluster-labelling/)

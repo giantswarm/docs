@@ -122,6 +122,12 @@ use when a cluster is created without specifying a number.
 - `first_aws_autoscaling_version`: The release version that introduced
 autoscaling for AWS.
 
+- `first_awsnodepools_version`: The release version that introduced
+nodepools for AWS.
+
+- `first_spotinstances_version`: The release version that introduced
+spotinstances for AWS.
+
 - `minimal_supported_cluster_size_worker_nodes`: The minimum number of worker
 nodes a cluster must have in order to be supported by Giant Swarm.
 

@@ -53,7 +53,7 @@ To make the rest of the tutorial match your situation, please set your Ingress B
 
 ### Setting up Ingress {#setting-up-ingress}
 
-Your Giant Swarm cluster typically comes with an Ingress Controller based on [NGINX](https://github.com/kubernetes/ingress/blob/master/controllers/nginx/), which we run for you in your clusters. 
+Your Giant Swarm cluster typically comes with an Ingress Controller based on [NGINX](https://nginx.org/), which we run for you in your clusters.
 
 **Note:** If you are running on an AWS installation using release > 10.0.0, you will need to first install an Ingress Controller on your cluster.
 
