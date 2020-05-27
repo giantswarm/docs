@@ -1,7 +1,7 @@
 ---
 title: API Access to Giant Swarm Resources
 description: An overview of the APIs that provide you with programmatic access to
-  resources like your tenant cluster in a Giant Swarm installation. Namely the Rest
+  resources like your tenant clusters in a Giant Swarm installation. Namely the Rest
   API and the Control Plane Kubernetes API.
 date: 2020-05-27
 weight: 75
