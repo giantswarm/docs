@@ -114,6 +114,7 @@ The following environment variables can be used to affect some behavior:
 - `GSCTL_CAPATH`: Similar to `GSCTL_CAFILE`, but `GSCTL_CAPATH` is expected to point to a directory containing one or more PEM files.
 - `GSCTL_DISABLE_COLORS`: When this variable is set to any non-empty string, all terminal output will be monochrome.
 - `GSCTL_DISABLE_CMDLINE_TRACKING`: When this variable is set to any non-empty string, command lines won't be submitted to the API. Otherwise, command lines are submitted to learn about the tool's usage and find ways to improve.
+- `HTTP_PROXY`, `HTTPS_PROXY` and `NO_PROXY` can be used to define proxy server usage as detailed in the [Go net/http ProxyFromEnvironment docs](https://golang.org/pkg/net/http/#ProxyFromEnvironment).
 
 In addition, [global command-line options](global-options/) are available.
 
