@@ -48,7 +48,12 @@ Currently we provide read-only access by default. As we are currently working on
 
 ### How to use
 
-We recommend using `kubectl` to navigate the resources present on the Control Plane Kubernetes API. Besides general Kubernetes know-how this will require only a bit of structural knowledge:
+We recommend using `kubectl` to navigate the resources present on the Control Plane Kubernetes API.
+
+To facilitate this we've been working on a proof of concept kubectl plugin called [`kubectl-gs`](https://github.com/giantswarm/kubectl-gs).
+Our goal is to have the same great user experience you've become accustomed from `gsctl` and `happa`.
+
+Besides general Kubernetes know-how this will require only a bit of structural knowledge:
 
 #### How we organize resources in namespaces
 
