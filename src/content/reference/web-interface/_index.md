@@ -33,6 +33,7 @@ detailed information:
 - Manage your own account and password
 - Learn how to get started with your Kubernetes clusters by following a guide
 - [Add, remove and configure Apps on your clusters.](app-platform/)
+- [View and manage tenant cluster labels](tenant-cluster-labelling/)
 
 ## Source code
 
