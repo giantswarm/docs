@@ -84,3 +84,52 @@ Look for the latest patch version.
 ||||
 |-----------|------------|-|
 |**v11.3.x** | Kubernetes 1.16.x | Flatcar Container Linux|
+
+## Versions that use the App Platform
+
+Any version greater than 9.0.0 uses the App Platform to manage the apps that get
+installed on tenant clusters. When upgrading from `9.0.0` to `9.0.x` or any higher
+version there are some notable changes to be aware of:
+
+You must modify existing automation or processes that manage the configuration of
+`coredns`, `nginx-ingress-controller`, or `cluster-autoscaler` to work with the
+changed location and format of the `*-user-values` configmaps.
+
+1. The `*-user-values` configmaps have moved from `kube-system` on the tenant cluster to a namespace on the control plane.
+2. The format of the `*-user-values` configmaps has changed as well. (Configuration is now nested in `data.values.configmap`)
+
+**Before:**
+```
+# On the Tenant Cluster, in the kube-system namespace
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app: coredns
+    name: coredns-user-values
+    namespace: kube-system
+data:
+  cache: "60"
+```
+
+**After:**
+```
+# On the Control Plane, in the abc12 namespace
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app: coredns
+    name: coredns-user-values
+    namespace: abc12
+data:
+  values: |
+    configmap:
+      cache: "60"
+```
+
+The guides below show before and after examples for each case:
+
+Nginx: https://docs.giantswarm.io/guides/advanced-ingress-configuration/
+CoreDNS:  https://docs.giantswarm.io/guides/advanced-coredns-configuration/
+Cluster Autoscaler: https://docs.giantswarm.io/guides/advanced-cluster-autoscaler-configuration/
