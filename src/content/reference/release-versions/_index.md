@@ -33,7 +33,7 @@ We generally try to increment our Major version only when there is a new Kuberne
 
 
 ||||
-|-----------|------------|-|
+|-----------|------------|-----|
 |**v9.0.x** | Kubernetes 1.15.x ||
 |**v11.x.x** | Kubernetes 1.16.x ||
 |**v12.x.x** | Kubernetes 1.17.x | not yet available|
@@ -68,21 +68,34 @@ the operating system.
 
 Look for the latest patch version.
 
+-------------
+
 **AWS**
+
 ||||
-|-----------|------------|-|
+|-----------|------------|-----|
 |**v9.3.0** | Kubernetes 1.16.x | Flatcar Container Linux|
 |**v11.3.0** | Kubernetes 1.16.x | Flatcar Container Linux with Nodepools|
 
+
+----------
+
 **KVM**
-||||
-|-----------|------------|-|
-|**v9.0.3** | Kubernetes 1.15.x | Flatcar Container Linux|
-|**v11.3.x** | Kubernetes 1.16.x | Flatcar Container Linux|
+
+|            |                    |                        |
+|------------|--------------------|------------------------|
+|**v9.0.3**  | Kubernetes 1.15.x  | Flatcar Container Linux|
+|**v11.3.x** | Kubernetes 1.16.x  | Flatcar Container Linux|
+
+
+
+----------
+
 
 **Azure**
+
 ||||
-|-----------|------------|-|
+|-----------|------------|-----|
 |**v11.3.x** | Kubernetes 1.16.x | Flatcar Container Linux|
 
 ## Versions that use the App Platform
@@ -130,6 +143,11 @@ data:
 
 The guides below show before and after examples for each case:
 
-Nginx: https://docs.giantswarm.io/guides/advanced-ingress-configuration/
-CoreDNS:  https://docs.giantswarm.io/guides/advanced-coredns-configuration/
-Cluster Autoscaler: https://docs.giantswarm.io/guides/advanced-cluster-autoscaler-configuration/
+**Nginx Ingress Controller:**
+https://docs.giantswarm.io/guides/advanced-ingress-configuration/
+
+**CoreDNS:**
+https://docs.giantswarm.io/guides/advanced-coredns-configuration/
+
+**Cluster Autoscaler:**
+https://docs.giantswarm.io/guides/advanced-cluster-autoscaler-configuration/
