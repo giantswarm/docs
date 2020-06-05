@@ -476,6 +476,7 @@ a code {
   padding-bottom: 8px; }
 
 .feedback h5 {
+  margin-top: 15px;
   font-weight: 700; }
 
 .quickstart, .docs-video {
