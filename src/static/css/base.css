@@ -411,6 +411,10 @@ h5 {
 p {
   line-height: 1.65em; }
 
+li {
+  line-height: 1.65em;
+  margin-bottom: 10px; }
+
 pre {
   background-color: #002b36;
   padding: 4;
