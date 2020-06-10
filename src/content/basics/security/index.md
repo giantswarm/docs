@@ -76,7 +76,7 @@ Giant Swarm customers regularly run penetration tests on their applications, run
 
 #### Compliance Audits
 
-[AWS](https://aws.amazon.com/compliance/soc-faqs) and [Azure](https://docs.microsoft.com/en-us/microsoft-365/compliance/offering-soc?view=o365-worldwide) are compliant with SOC 1,2,3 as well as PCI DSS, GDPR and other compliance frameworks. See the provider pages for details.
+[AWS](https://aws.amazon.com/compliance/soc-faqs/) and [Azure](https://docs.microsoft.com/en-us/microsoft-365/compliance/offering-soc?view=o365-worldwide) are compliant with SOC 1,2,3 as well as PCI DSS, GDPR and other compliance frameworks. See the provider pages for details.
 
 ### Kubernetes Security
 
