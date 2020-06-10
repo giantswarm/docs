@@ -56,7 +56,7 @@ Our customers running on a public cloud enjoy the hardening offered by their pro
 This typically includes perimeter security, CCTV, vetted security staff, and logged biometric access control, among others.
 For more details, visit the providers' websites:
 
-[AWS](https://aws.amazon.com/compliance/data-center/controls)
+[AWS](https://aws.amazon.com/compliance/data-center/controls/)
 
 [Azure](https://docs.microsoft.com/en-us/azure/security/fundamentals/physical-security)
 
