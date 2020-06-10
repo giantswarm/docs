@@ -1,7 +1,7 @@
 ---
 title: Security
 description: Documentation of the Giant Swarm cluster security
-date: 2020-05-18
+date: 2020-06-10
 type: page
 weight: 20
 categories: ["basics"]
@@ -56,7 +56,7 @@ Our customers running on a public cloud enjoy the hardening offered by their pro
 This typically includes perimeter security, CCTV, vetted security staff, and logged biometric access control, among others.
 For more details, visit the providers' websites:
 
-[AWS](https://aws.amazon.com/compliance/data-center/controls/)
+[AWS](https://aws.amazon.com/compliance/data-center/controls)
 
 [Azure](https://docs.microsoft.com/en-us/azure/security/fundamentals/physical-security)
 
@@ -76,7 +76,7 @@ Giant Swarm customers regularly run penetration tests on their applications, run
 
 #### Compliance Audits
 
-[AWS](https://aws.amazon.com/compliance/soc-faqs/) and [Azure](https://docs.microsoft.com/en-us/microsoft-365/compliance/offering-soc?view=o365-worldwide) are compliant with SOC 1,2,3 as well as PCI DSS, GDPR and other compliance frameworks. See the provider pages for details.
+[AWS](https://aws.amazon.com/compliance/soc-faqs) and [Azure](https://docs.microsoft.com/en-us/microsoft-365/compliance/offering-soc?view=o365-worldwide) are compliant with SOC 1,2,3 as well as PCI DSS, GDPR and other compliance frameworks. See the provider pages for details.
 
 ### Kubernetes Security
 
@@ -92,7 +92,7 @@ On-premises we achieve similar isolation by running the nodes in hypervisors (KV
 
 ### Management Access
 
-Giant Swarm needs access to your clusters in order to provide day 2 support. For details on how we protect this access please visit the [Secure access to clusters - Users and Giant Swarm support](/basics/secured-access-to-clusters/) page.
+Giant Swarm needs access to your clusters in order to provide day 2 support. For details on how we protect this access please visit the [Secure access to clusters - Users and Giant Swarm support](../secured-access-to-clusters/index.md) page.
 
 ### User Management
 
