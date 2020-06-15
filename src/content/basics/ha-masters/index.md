@@ -54,6 +54,11 @@ When upgrading a cluster to release v11.4.0, it will keep the single master node
 
 - Why three master nodes?
 
+At Giantswarm we operate stacked HA clusters where etcd is stacked on top of our master nodes. 
+Each master node runs control-plane and a local etcd member. Enabling HA master needs to have a quorum 
+(majority of nodes) meaning running at least 3 master nodes. By enabling HA a master node can be down 
+in case of a failing instance or a AZ outage without affecting cluster operations.
+
 ## Limitations
 
 - Currently not supported on Azure and KVM.
