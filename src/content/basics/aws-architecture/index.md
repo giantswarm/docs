@@ -1,12 +1,14 @@
 ---
 title: The Giant Swarm AWS Platform
 description: Description of the Giant Swarm platform, how it looks like and which features offers
-date: 2020-05-20
+date: 2020-06-15
 weight: 50
 type: page
 categories: ["basics"]
 last-review-date: 2020-05-18
 ---
+
+# The Giant Swarm AWS Platform
 
 The Giant Swarm Platform consists of various components. They can be categorized into three areas: infrastructure, operations, and applications.
 
