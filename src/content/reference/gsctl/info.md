@@ -56,7 +56,6 @@ Default workers per cluster:  3
 Maximum workers per cluster:  20
 ```
 
-
 ## Output details
 
 - `gsctl version`: The gsctl version you are using.

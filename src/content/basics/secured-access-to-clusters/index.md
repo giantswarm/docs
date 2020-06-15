@@ -45,19 +45,19 @@ Certificates management is handled by a combination of Vault and the Giant Swarm
 
 VPN secured access points:
 
-* **SSH** - SSH access is based on GitHub SSO. Only users in the GitHub Giant Swarm Organization are allowed to authenticate. The following diagram describes our SSH authentication in more detail:
+- **SSH** - SSH access is based on GitHub SSO. Only users in the GitHub Giant Swarm Organization are allowed to authenticate. The following diagram describes our SSH authentication in more detail:
 
-![](./ssh_access_process.png)
+![SSH access process diagram](./ssh_access_process.png)
 
 Customer Tenant Clusters are accessible only via SSH access to the Giant Swarm Control Plane. This Control Plane contains Giant Swarm's cluster management and operations platform, and controls our access to the underlying Tenant Clusters for diagnostic and "Day 2" operational reasons.
 
-* **Control Plane Kubernetes API** - Usage of the Kubernetes API on the Control Plane is also secured with SSH.
+- **Control Plane Kubernetes API** - Usage of the Kubernetes API on the Control Plane is also secured with SSH.
 
 ### General VPN connection schema
 
 The following schema illustrates what the VPN connection looks like in practice.
 
-![](./site-to-site-vpn.png)
+![VPN diagram](./site-to-site-vpn.png)
 
 A cluster can be accessed by connecting to a Giant Swarm VPN server which establishes a secure connection with the jump host of the cluster.
 

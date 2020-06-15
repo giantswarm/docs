@@ -20,7 +20,8 @@ The NFS share must be accessible from all bare metal machines.
 
 Let's say we have a nfs export at `nfs.storageserver.internal:/k8s-storage`.
 Firstly we create folders on the NFS share so we have a directory structure that looks like this:
-```
+
+```nohighlight
 /k8s-storage/pv0001
 /k8s-storage/pv0002
 /k8s-storage/pv0003
@@ -28,12 +29,13 @@ Firstly we create folders on the NFS share so we have a directory structure that
 ...
 /k8s-storage/pv00xy
 ```
+
 Obviously you can use any naming scheme you want.
 Usually you don't know the exact number of volumes you'll need, so it's a good idea to pre-provison a lot.
 
 Once the folder structure is ready, we can create a Persistent Volume for each folder in the k8s cluster.
 
-```
+```yaml
 apiVersion: v1
 kind: PersistentVolume
 metadata:

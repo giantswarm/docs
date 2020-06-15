@@ -19,13 +19,13 @@ In order to configure all details of the cluster according to your requirements,
 The first and rather trivial example shows how to create a cluster for organization `myorg` and specifying the cluster name, while leaving all other settings to defaults:
 
 ```nohighlight
-$ gsctl create cluster --owner myorg --name "Test cluster"
+gsctl create cluster --owner myorg --name "Test cluster"
 ```
 
 The second example shows how to create a cluster where most or even all configurable details are specified, using a definition file:
 
 ```nohighlight
-$ gsctl create cluster --file prod_cluster_definition.yaml
+gsctl create cluster --file prod_cluster_definition.yaml
 ```
 
 Note that command line flags take precedence over values in the definition. This way you can, for example, define a default cluster name in the definition, but set a specific one via the `--name` flag when applying the same definition several times.

@@ -13,7 +13,7 @@ Your Giant Swarm installation comes with a default configuration for the [CoreDN
 
 You can override these defaults in a ConfigMap named `coredns-user-values`.
 
-## Where is the user values ConfigMap?
+## Where is the user values ConfigMap
 
 Given the cluster you are trying to configure has id: `123ab`
 
@@ -42,15 +42,15 @@ coredns-user-values         0         11m
 Upgrading from `9.0.0` to a higher release will automatically migrate these user values from the Tenant Cluster to the
 Control Plane for you. If you have any automation or existing workflows you should keep this location change in mind.
 
-------
+-----
 
 __Warning:__
 
-Please do not edit any other coredns related ConfigMaps.
+Please do not edit any other CoreDNS related ConfigMaps.
 
 Only the user values ConfigMap is safe to edit.
 
-------
+-----
 
 ## How to set configuration options using the user values ConfigMap
 
@@ -77,7 +77,7 @@ data:
 
 ### 9.0.0 and below
 
-On the Tenant Cluster for which you are trying to configure coredns,
+On the Tenant Cluster for which you are trying to configure CoreDNS,
 create or edit a ConfigMap named `coredns-user-values` in the `kube-system`
 namespace:
 
@@ -149,6 +149,7 @@ You can add additional forward entries by adding each as a line to the forward f
 You can use a simple line or multiple lines to define the upstreams of the default server block.
 
 **Simple line:**
+
 ```yaml
 # 9.0.1 and greater
 data:
@@ -162,6 +163,7 @@ data:
 ```
 
 **Multiple lines:**
+
 ```yaml
 # 9.0.1 and greater
 data:
@@ -200,6 +202,7 @@ The forward plugin also supports much more detailed configuration which is docum
 __Notes:__ For releases using the CoreDNS chart in versions 1.1.3 and below, the upstreams must not include `.` and `/etc/resolv.conf` as they are rendered by the chart. They can be configured using simple or multiple lines:
 
 **Simple lines:**
+
 ```yaml
 # 9.0.1 and greater
 data:
@@ -213,6 +216,7 @@ data:
 ```
 
 **Multiple lines:**
+
 ```yaml
 # 9.0.1 and greater
 data:

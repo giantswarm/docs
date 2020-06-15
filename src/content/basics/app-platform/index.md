@@ -23,7 +23,7 @@ In short: the _Giant Swarm App Platform_ refers to the whole feature, and an _Ap
 
 We provide two _App Catalogs_. You will be able to set up your own additional catalog(s) to provide for any needs you have at the enterprise level.
 
-### What makes up the Giant Swarm App Platform?
+### What makes up the Giant Swarm App Platform
 
 Technically the App Platform is implemented as a set of operators
 running on your Control Plane and tenant clusters. These operators watch various
@@ -68,10 +68,9 @@ together to enable the features of the Giant Swarm App Platform:
 
 ![A diagram showing an overview of various components and concepts that make up the Giant Swarm App Platform](app-platform-overview.png)
 
+### What kind of App Catalogs are there
 
-### What kind of App Catalogs are there?
-
-By default you will have the Giant Swarm Catalog and the Giant Swarm Playgrond installed
+By default you will have the Giant Swarm Catalog and the Giant Swarm Playground installed
 on your Control Planes.
 
 ### The Giant Swarm Catalog
@@ -84,7 +83,6 @@ Maturity levels of apps in this catalog are expressed through semantic versionin
 - Version with `-rc*` suffix - the application is at a preview maturity level. This allows customers to preview a new release of an application and evaluate new features. It is supported on a best effort basis.
 - version >= `v1.0.0` with no suffix - the specified version of the application is at a stable maturity level. It is available to our customers as a managed offering with support and SLA.
 
-
 ### The Giant Swarm Playground
 
 This is our go-to place to create and try out things. Mainly, this contains apps that we have added in order help you with a certain issue. Additionally, you will find some apps that we created for non-commercial purposes (e.g. for a blog post or a workshop).
@@ -92,7 +90,6 @@ This is our go-to place to create and try out things. Mainly, this contains apps
 Bear in mind that we do NOT support these apps and they won’t be worked on with priority. These apps might not ever make it into the Giant Swarm Catalog. What you will get, is an app at a basic maturity level at a specific point in time.
 
 We encourage you to try out this playground catalog and the different apps offered there. As always, feedback is welcome.
-
 
 ### The Helm Stable Catalog
 
@@ -105,7 +102,7 @@ catalog at your own risk.
 
 It’s possible to create your own App Catalog. This is useful if you want to create a set of apps available to your company. Currently, this functionality is only available through direct access to the Giant Swarm Control Plane Kubernetes API. You can request access from your Solution Engineer. Prerequisite for this is a standard Helm chart repository. It should be served through HTTP and accessible to the Control Plane and your Tenant Clusters.
 
-### How can I interact with the Giant Swarm App Platform?
+### How can I interact with the Giant Swarm App Platform
 
 You can interact with the Giant Swarm App Platform through our API and
 our web interface.

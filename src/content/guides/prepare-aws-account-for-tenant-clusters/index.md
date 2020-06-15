@@ -82,16 +82,16 @@ When requesting a service limit increase, you will be asked for a description of
 > We intend to run multiple Kubernetes clusters in this account, potentially used
 by various globally distributed teams. We will be creating and deleting new
 clusters frequently.
-
+>
 > Each cluster needs its own VPC for security/isolation reasons and its own
 Elastic IP address for the NAT gateway.
-
+>
 > Each cluster has at least 1 Auto Scaling Group, but can contain multiple ASGs if
 multiple instance types are requested as cluster nodes. If we count 50
 clusters with up to 5 EC2 instances each, as worker nodes, we need up to 250
 ASGs. To update the ASGs in a rolling manner we need to duplicate the ASGs
 for a short time during update, hence the 500 Launch Configurations.
-
+>
 > The number of EC2 instances used as worker nodes is supposed to be scaled
 dynamically based on traffic, hence the high numbers of EC2 instances requested.
 

@@ -36,13 +36,13 @@ but not the key pairs themselves.
 The command requires as an argument the ID of the cluster to list key pairs for.
 
 ```nohighlight
-$ gsctl list keypairs --cluster f01r4
+gsctl list keypairs --cluster f01r4
 ```
 
 You can also use the cluster's name for identifying the cluster:
 
 ```nohighlight
-$ gsctl list keypairs --cluster "Cluster name"
+gsctl list keypairs --cluster "Cluster name"
 ```
 
 The resulting output is a table containing the following columns:

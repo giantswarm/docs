@@ -25,14 +25,14 @@ In order to run Giant Swarm tenant clusters, an Azure subscription needs the fol
 In order to perform necessary actions to deploy and maintain tenant clusters in your Azure subscription, `azure-operator` needs to access the subscription using a Service Principal.
 Below we detail the steps necessary to set it up.
 
-#### 1. Prerequisites
+### 1. Prerequisites
 
 To create a Service Principal you need:
 
 - An account with [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner) or [User Access Administrator](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#user-access-administrator) role.
 - [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) installed.
 
-#### 2. Role definition
+### 2. Role definition
 
 Download our [Role definition template](https://raw.githubusercontent.com/giantswarm/azure-operator/master/policies/tenant.tmpl.json).
 
@@ -54,12 +54,12 @@ Example  AzureCloud   6ec148b8-8bea-4dd3-82bc-1787c8260e4a  Enabled  True
 With the edited role definition in the file `guest.json`, create the role definition using the Azure CLI:
 
 ```nohighlight
-$ az role definition create --role-definition @guest.json
+az role definition create --role-definition @guest.json
 ```
 
 On success this command prints the created role definition.
 
-#### 3. Service principal
+### 3. Service principal
 
 Create the service principal using the Azure CLI:
 

@@ -19,7 +19,7 @@ But if you are using, for example, one installation on-premises and one in the c
 The command has no specific flags. Simply run it like this:
 
 ```nohighlight
-$ gsctl list endpoints
+gsctl list endpoints
 ```
 
 If you have ever logged in to an endpoint before, you will get a table like the one below as a result:
