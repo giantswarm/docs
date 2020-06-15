@@ -337,7 +337,6 @@ You can override these defaults by setting your per cluster configuration in the
 
 Depending on the release version of your Tenant Cluster, this ConfigMap is located either in the Tenant Cluster or in the Control Plane.
 
-
 ### Where is the user values ConfigMap
 
 Given the cluster you are trying to configure has id: `123ab`
@@ -366,7 +365,6 @@ $ kubectl -n kube-system get cm nginx-ingress-controller-user-values --context=t
 NAME                                   DATA      AGE
 nginx-ingress-controller-user-values   0         11m
 ```
-
 
 ---
 
@@ -408,7 +406,6 @@ Any defaults that we override are visible in the following `values.yaml` file, u
 
 Do make sure you look at the right tag of that repository, when reading this file check that the tag
 corresponds to the version of the nginx-ingress-controller-app running on your cluster.
-
 
 #### 9.0.0 and below
 
