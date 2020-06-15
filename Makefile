@@ -60,7 +60,9 @@ lint:
 	docker run \
 	  -v ${PWD}:/workdir \
 	  -w /workdir \
-	  markdownlint/markdownlint:latest -i ./src
+	  markdownlint/markdownlint:latest \
+	    --ignore-front-matter \
+		./src
 
 docker-build: build
 	docker build -t $(REGISTRY)/$(COMPANY)/$(PROJECT):latest .
