@@ -9,13 +9,25 @@ categories: ["basics"]
 
 # High availability Kubernetes masters
 
-Intro:
-- since version v11.4.0 on AWS it's the default
-- HA means three
+## Synopsis
+
+Kubernetes master nodes are the nodes that run the Kubernetes API of a tenant cluster,
+as well as some other important components. In the case of Giant Swarm, the master nodes
+also host the [etcd](https://etcd.io/) database that keeps all the state that configures
+the cluster, the workloads and other resources.
+
+Clusters can run in a fully functional way with one master node, however this renders the
+Kubernetes API unavailable in certain cases like a cluster upgrade or even an outage of
+the underlying infrastructure.
+
+With AWS release v{{% first_aws_ha_masters_version %}} new tenant clusters are launched
+with three master nodes in different availability zones by default, increasing the API
+availability during upgrades and cluster changes drastically and making the cluster more
+resilient against data center failure.
 
 ## Benefits
 
-- Less/short downtimes during upgrades and updates/changes
+- Less/shorter downtimes during upgrades and updates/changes
 - Resilience in case of datacenter outages
 - Load balancing of K8s API requests (except for writes) should lead to lower latency
 - Clusters can be created with only 1 master, later converted to high availability
@@ -44,6 +56,7 @@ When upgrading a cluster to release v11.4.0, it will keep the single master node
 
 ## Limitations
 
+- Currently not supported on Azure and KVM.
 - API downtimes possible
   - switch from 1 to 3
   - rolling master nodes, e. g. to switch the instance type
