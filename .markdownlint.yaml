@@ -4,6 +4,10 @@ default: true
 MD004:
   style: consistent
 
+# Ignore front matter in headline linting.
+MD025:
+  front_matter_title: ""
+
 # Allow for intuitive numbered lists
 MD029:
   style: ordered
@@ -16,6 +20,3 @@ MD033: false
 
 # Line length
 MD013: false
-
-# Trailing spaces
-MD012: false
