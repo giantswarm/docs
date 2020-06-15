@@ -60,9 +60,9 @@ lint:
 	docker run \
 	  -v ${PWD}:/workdir \
 	  -w /workdir \
-	  markdownlint/markdownlint:latest \
-	    --style .circleci/markdownlint.rb \
-	    --ignore-front-matter \
+	  06kellyjac/markdownlint-cli:latest \
+	    --config .markdownlint.yaml \
+	    --ignore README.md \
 		./src
 
 docker-build: build

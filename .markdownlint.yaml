@@ -1,0 +1,21 @@
+default: true
+
+# Consistent bullets
+MD004:
+  style: consistent
+
+# Allow for intuitive numbered lists
+MD029:
+  style: ordered
+
+# Ignore inline HTML. We need this in certain places.
+MD033: false
+
+# Enforcing the rules below will require big changes in the entire repo.
+# So we exclude them for now.
+
+# Line length
+MD013: false
+
+# Trailing spaces
+MD012: false
