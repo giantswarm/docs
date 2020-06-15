@@ -61,6 +61,7 @@ lint:
 	  -v ${PWD}:/workdir \
 	  -w /workdir \
 	  markdownlint/markdownlint:latest \
+	    --style .circleci/markdownlint.rb \
 	    --ignore-front-matter \
 		./src
 
