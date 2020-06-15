@@ -27,10 +27,20 @@ resilient against data center failure.
 
 ## Benefits
 
-- Less/shorter downtimes during upgrades and updates/changes
-- Resilience in case of datacenter outages
-- Load balancing of K8s API requests (except for writes) should lead to lower latency
-- Clusters can be created with only 1 master, later converted to high availability
+Multiple master nodes in different availability zones has several benefits:
+
+- **API downtimes during upgrades are reduced to a minimum**. With a single master node,
+  upgrading the cluster requires the only master to be terminated and rebooted with new configuration, resulting in several minutes of downtime. With multiple master nodes, the nodes get update one at a time. The API can only become unreachable in the event that a new etcd leader has to be elected. This usually takes only a few seconds.
+- **Resilience in case of infrastructure outages**. In the case of a failure of a single
+  master node's EC2 instance, the two remaining master nodes take over and a replacement
+  master node will be launched automatically. Since multiple master nodes of a cluster are running in different availability zones (AZ), this setting also protects against the risk of losing control over the cluster in the case of a single AZ downtime.
+- **Load balancing of API requests.** Read-only requests to the Kubernetes API are performed
+  by all three master nodes, so that latencies stay lower overall compared to a single master
+  node which can suffer from high loads temporarily.
+
+We recommend that all productions clusters on AWS are run with high availability of master nodes, hence this is the default setting starting with release v{{% first_aws_ha_masters_version %}}.
+
+Since these benefits come at the cost of additional EC2 instances and additional network traffic across availability zones, it is still possible to create clusters with a single master node. This setting is viable for test purposes or clusters which don't need the high availability and resilience.
 
 ## Use of availability zones
 
