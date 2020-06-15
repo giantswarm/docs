@@ -15,13 +15,13 @@ The `gsctl list nodepools` command lists all [node pools](/basics/nodepools/) of
 Execute the command with the cluster ID as the only argument. Example:
 
 ```nohighlight
-$ gsctl list nodepools 3if4
+gsctl list nodepools 3if4
 ```
 
 You can also use the cluster's name for identifying the cluster:
 
 ```nohighlight
-$ gsctl list nodepools "Cluster name"
+gsctl list nodepools "Cluster name"
 ```
 
 ## Output

@@ -164,7 +164,7 @@ To make these certificates available to HTTP clients/browsers, see our guide [Es
 
 ### Example
 
-Assuming you have a service `elasticsearch` with a port named `es` in the `logging` namespace, you could 
+Assuming you have a service `elasticsearch` with a port named `es` in the `logging` namespace, you could
 access the Elasticsearch index stats API like this:
 
 ```nohighlight

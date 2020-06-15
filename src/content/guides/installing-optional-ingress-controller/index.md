@@ -19,7 +19,7 @@ Eventually all releases will ship without a built-in ingress controller. That
 allows you full control to choose which and how many ingress controllers you
 want to run on your cluster.
 
-### Which releases do not ship with an ingress controller?
+## Which releases do not ship with an ingress controller
 
 Currently only clusters on our AWS installations that have a release version
 newer than `10.0.0` ship by default without an ingress controller.
@@ -27,7 +27,7 @@ newer than `10.0.0` ship by default without an ingress controller.
 Clusters on Azure and KVM (On-premises) continue to include `nginx-ingress-controller`
 as a default component.
 
-### How do I Install my own Ingress Controller?
+## How do I Install my own Ingress Controller
 
 Using our Web UI you can install an NGINX ingress controller using our App Catalog.
 
@@ -45,4 +45,4 @@ Using our Web UI you can install an NGINX ingress controller using our App Catal
 5. Click "Install App" (In case you want any special configuration, this is where you can also provide a 'values.yaml' with your customized settings)
   ![App installation modal](install-app-modal.png)
 
-After a few moments the nginx ingress controller should be running on your cluster.
+After a few moments, the NGINX ingress controller should be running on your cluster.

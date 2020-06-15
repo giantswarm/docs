@@ -21,13 +21,13 @@ It can be specified multiple times in order to change multiple labels at once.
 ### Name modification example
 
 ```nohighlight
-$ gsctl update cluster f01r4 --name "Precious Production Cluster"
+gsctl update cluster f01r4 --name "Precious Production Cluster"
 ```
 
 ### Labels modification key=value example
 
 ```nohighlight
-$ gsctl update cluster vxvc7 --label environment=testing --label locked=
+gsctl update cluster vxvc7 --label environment=testing --label locked=
 ```
 
 will update the labels of cluster `vxvc7`. It will add (or update depending on prior existence) label `environment=testing` and delete the label with key `locked`.

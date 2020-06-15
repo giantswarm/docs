@@ -29,8 +29,8 @@ We've had to break these conventions in some cases, but we're trying to re-align
 things as time goes on and customers no longer use older versions.
 
 ### Major versions increment on Kubernetes releases
-We generally try to increment our Major version only when there is a new Kubernetes release.
 
+We generally try to increment our Major version only when there is a new Kubernetes release.
 
 ||||
 |-----------|------------|-----|
@@ -39,17 +39,16 @@ We generally try to increment our Major version only when there is a new Kuberne
 |**v12.x.x** | Kubernetes 1.17.x | not yet available|
 |**v13.x.x** | Kubernetes 1.18.x | not yet available|
 
-
 #### Exceptions
 
 On AWS, **v9.2.0** and up contains **Kubernetes 1.16.x**
 
 ## Versions that support node pools
 
-Currently only AWS **v11.x.x** and up support nodepools.
+Currently only AWS **v11.x.x** and up support node pools.
 
 While it is still a work in progress, on Azure, **v12.1.0** and above will
-be the releases that support nodepools.
+be the releases that support node pools.
 
 ## Versions with an optional ingress controller
 
@@ -70,29 +69,25 @@ Look for the latest patch version.
 
 -------------
 
-**AWS**
+### AWS
 
 ||||
 |-----------|------------|-----|
 |**v9.3.0** | Kubernetes 1.16.x | Flatcar Container Linux|
 |**v11.3.0** | Kubernetes 1.16.x | Flatcar Container Linux with Nodepools|
 
+-------------
 
-----------
-
-**KVM**
+### KVM
 
 |            |                    |                        |
 |------------|--------------------|------------------------|
 |**v9.0.3**  | Kubernetes 1.15.x  | Flatcar Container Linux|
 |**v11.3.x** | Kubernetes 1.16.x  | Flatcar Container Linux|
 
+-------------
 
-
-----------
-
-
-**Azure**
+### Azure
 
 ||||
 |-----------|------------|-----|
@@ -112,7 +107,8 @@ changed location and format of the `*-user-values` configmaps.
 2. The format of the `*-user-values` configmaps has changed as well. (Configuration is now nested in `data.values.configmap`)
 
 **Before:**
-```
+
+```yaml
 # On the Tenant Cluster, in the kube-system namespace
 apiVersion: v1
 kind: ConfigMap
@@ -126,7 +122,8 @@ data:
 ```
 
 **After:**
-```
+
+```yaml
 # On the Control Plane, in the abc12 namespace
 apiVersion: v1
 kind: ConfigMap
@@ -143,11 +140,6 @@ data:
 
 The guides below show before and after examples for each case:
 
-**Nginx Ingress Controller:**
-https://docs.giantswarm.io/guides/advanced-ingress-configuration/
-
-**CoreDNS:**
-https://docs.giantswarm.io/guides/advanced-coredns-configuration/
-
-**Cluster Autoscaler:**
-https://docs.giantswarm.io/guides/advanced-cluster-autoscaler-configuration/
+- [NGINX Ingress Controller](/guides/advanced-ingress-configuration/)
+- [CoreDNS](/guides/advanced-coredns-configuration/)
+- [Cluster Autoscaler](/guides/advanced-cluster-autoscaler-configuration/)

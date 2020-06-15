@@ -18,7 +18,7 @@ The first and most important source to read is the [official Kubernetes document
 
 ## Useful primitives
 
-### Pods 
+### Pods
 
 Pods are the smallest deployable units of computing that can be created and managed in Kubernetes. They contain one or more containers that run inside the pod as if they were running on a single host.
 
@@ -44,7 +44,7 @@ Services work by defining a logical set of pods and a policy by which to access 
 
 ### Ingress
 
-An Ingress is a collection of rules that allow inbound connections from outside the cluster to reach the cluster services. It can be configured to give services externally-reachable URLs, load balance traffic, terminate SSL, offer name based virtual hosting etc. 
+An Ingress is a collection of rules that allow inbound connections from outside the cluster to reach the cluster services. It can be configured to give services externally-reachable URLs, load balance traffic, terminate SSL, offer name based virtual hosting etc.
 
 [Ingress Reference](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 

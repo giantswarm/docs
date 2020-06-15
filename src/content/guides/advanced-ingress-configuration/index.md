@@ -279,7 +279,7 @@ To configure this setting globally for all Ingress rules, the `proxy-body-size` 
 
 To use custom values in a specific Ingress add following annotation:
 
-```
+```yaml
 nginx.ingress.kubernetes.io/proxy-body-size: 8m
 ```
 
@@ -337,8 +337,7 @@ You can override these defaults by setting your per cluster configuration in the
 
 Depending on the release version of your Tenant Cluster, this ConfigMap is located either in the Tenant Cluster or in the Control Plane.
 
-
-### Where is the user values ConfigMap?
+### Where is the user values ConfigMap
 
 Given the cluster you are trying to configure has id: `123ab`
 
@@ -367,16 +366,15 @@ NAME                                   DATA      AGE
 nginx-ingress-controller-user-values   0         11m
 ```
 
-
------
+---
 
 __Warning:__
 
-Please do not edit any of the other nginx ingress related ConfigMaps.
+Please do not edit any of the other NGINX ingress related ConfigMaps.
 
 Only the user ConfigMap is safe to edit.
 
-------
+---
 
 ### How to set configuration options using the user values ConfigMap
 
@@ -404,11 +402,10 @@ data:
       log-format-upstream: "MY EDITED LOG FORMAT - $status $body_bytes_sent $http_referer"
 ```
 
-Any defaults that we override are visible in the following `values.yaml` file, under the `configmap` key: https://github.com/giantswarm/nginx-ingress-controller-app/blob/v1.6.10/helm/nginx-ingress-controller-app/values.yaml
+Any defaults that we override are visible in the following `values.yaml` file, under the `configmap` key. [Check this values.yaml file in v1.6.10](https://github.com/giantswarm/nginx-ingress-controller-app/blob/v1.6.10/helm/nginx-ingress-controller-app/values.yaml) as an example.
 
 Do make sure you look at the right tag of that repository, when reading this file check that the tag
 corresponds to the version of the nginx-ingress-controller-app running on your cluster.
-
 
 #### 9.0.0 and below
 
@@ -464,7 +461,6 @@ __Warning:__
 We also allow setting `use-proxy-protocol: "true"/"false"`. This setting always applies globally for the `nginx-ingress-controller`. All applications providing services behind ingresses need to understand this protocol or they will fail. Furthermore, the load balancer in front of the ingress controller also needs to be set up correctly. So currently, customizing this setting only makes sense on bare metal installations and will require a matching configuration on the load balancers.
 
 ---
-
 
 ##### Default certificate
 

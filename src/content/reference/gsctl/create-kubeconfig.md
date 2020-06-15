@@ -37,13 +37,13 @@ configuration, you can execute the command like here (where `w6wn8` is
 an example for a cluster ID):
 
 ```nohighlight
-$ gsctl create kubeconfig --cluster w6wn8
+gsctl create kubeconfig --cluster w6wn8
 ```
 
 You can also use the cluster's name for identifying the cluster:
 
 ```nohighlight
-$ gsctl create kubeconfg --cluster "Cluster name"
+gsctl create kubeconfg --cluster "Cluster name"
 ```
 
 The output of the command gives details on what exactly happens.
@@ -62,7 +62,7 @@ The output of the command gives details on what exactly happens.
 The next example shows creation of a self-contained configuration file:
 
 ```nohighlight
-$ gsctl create kubeconfig -c w6wn8 --self-contained kubeconfig.yaml
+gsctl create kubeconfig -c w6wn8 --self-contained kubeconfig.yaml
 ```
 
 Here, the file `kubeconfig.yaml` will be created and it will contain the
@@ -73,9 +73,8 @@ overwrite this file will be required. The confirmation can be suppressed using
 The next example shows the creation of a self-contained configuration file with
 an internal Kubernetes API endpoint.
 
-
 ```nohighlight
-$ gsctl create kubeconfig --cluster w6wn8 --self-contained kubeconfig.yaml \
+gsctl create kubeconfig --cluster w6wn8 --self-contained kubeconfig.yaml \
   --tenant-internal=true
 ```
 
@@ -87,7 +86,7 @@ To conclude the examples sections, here is a more complex example showing how
 to create admin access (valid for one day only) in a self-contained file:
 
 ```nohighlight
-$ gsctl create kubeconfig --cluster w6wn8 \
+gsctl create kubeconfig --cluster w6wn8 \
   --description "Admin certificate for Jane" \
   --ttl 1d \
   --self-contained kubeconfig-w6wn8-jane.yaml \
