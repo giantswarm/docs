@@ -32,7 +32,7 @@ Multiple master nodes in different availability zones has several benefits:
 - **API downtimes during upgrades are reduced to a minimum**. With a single master node,
   upgrading the cluster requires the only master to be terminated and rebooted with new
   configuration, resulting in several minutes of downtime. With multiple master nodes,
-  the nodes get update one at a time. The API can only become unreachable in the event
+  the nodes get updated one at a time. The API can only become unreachable in the event
   that a new etcd leader has to be elected. This usually takes only a few seconds.
 - **Resilience in case of infrastructure outages**. In the case of a failure of a single
   master node's EC2 instance, the two remaining master nodes take over and a replacement
