@@ -91,8 +91,33 @@ In case you are working with a Giant Swarm partner, you might not have access to
 After the organization's credentials are set, you can create clusters owned by that
 organization. These clusters' resources will be created in your Azure subscription.
 
+### 4. Configure Subscription to allow Giant Swarm Support actions
+
+Last step while configuring your Subscription is to grant access for Giant Swarm Ops/Support to your subscription in order to provide 24/7 support. Access to the portal is important part of the provided support, where in some cases manual interventions have to take place.
+    
+Easies way is to use the Azure Lighthouse service, that allows to delegate the management of resources to third parties.
+
+We require a built in role `Contributor` to access the resources that Giant Swarm is deploying and it can be used by default from the [Azure RBAC](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles).
+
+You can also create your own role assignment with restrictions to access specific Resource Groups, however it needs to be remembered to refresh the role with every newly created cluster so we can provide full support starting from the clusters creation.
+
+When all is set you can simply run this command:
+```
+az deployment create --name <deploymentName (unique by subscription)> \
+                     --location <AzureRegion> \
+                     --template-file delegatedResourceManagement.txt \
+                     --parameters delegatedResourceManagement.parameters.txt \
+                     --verbose
+```
+
+The template file can be downloaded from [here]()
+
+Parameters file is available [here]()
+Remember to change the `roleDefinitionId` in case you would like to use your custom role definition.
+
 ## Further reading
 
 - [Basics and Concepts: Multi-Account Support](/basics/multi-account/)
 - [gsctl Reference: `update organization set-credentials`](/reference/gsctl/update-org-set-credentials/)
 - [API: Set credentials](https://docs.giantswarm.io/api/#operation/addCredentials)
+- [Azure Lighthouse](https://docs.microsoft.com/en-us/azure/lighthouse/how-to/onboard-customer)
