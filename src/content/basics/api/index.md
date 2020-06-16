@@ -32,7 +32,7 @@ With this realization, we made the decision to phase out the development of the 
 
 As of now, there is no termination date for the Rest API. As it might provide the much simpler and more accessible starting point, feel free to explore the [documentation](/api/), knowing that one day you may have to switch to the Control Plane Kubernetes API.
 
-## The Control Plane Kubernetes API (CP-K8s-API) {#cp-k8s-api}
+## The Control Plane Kubernetes API (Preview) {#cp-k8s-api}
 
 ### What it is
 
@@ -48,7 +48,12 @@ Currently we provide read-only access by default. As we are currently working on
 
 ### How to use
 
-We recommend using `kubectl` to navigate the resources present on the Control Plane Kubernetes API. Besides general Kubernetes know-how this will require only a bit of structural knowledge:
+We recommend using `kubectl` to navigate the resources present on the Control Plane Kubernetes API.
+
+To facilitate this we've been working on a proof of concept kubectl plugin called [`kubectl-gs`](https://github.com/giantswarm/kubectl-gs).
+Our goal is to have the same great user experience you've become accustomed from `gsctl` and `happa`.
+
+Besides general Kubernetes know-how this will require only a bit of structural knowledge:
 
 #### How we organize resources in namespaces
 
@@ -64,6 +69,6 @@ Following are some resources that should help you:
 
 ### Feedback is welcome
 
-We are keen to learn from you about your experience with accessing the Control Plane Kubernetes API, with navigating the custom resources via the API, with our reference documentation and the user guides we provide. This helps us provide more and better material and improve to make the journey more seamless, more satisfactory for you.
+We are keen to learn from you about your experience with using the Control Plane Kubernetes API, with navigating the custom resources via the API, with our reference documentation and the user guides we provide. This helps us provide more and better material and improve to make the journey more seamless, more satisfactory for you.
 
 So please, don't hesitate to give your feedback in your Slack channel.

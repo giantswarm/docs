@@ -40,7 +40,7 @@ Here, `f01r4` is the cluster ID and `op1dl` is the node pool ID.
 You can also use the cluster's name for identifying the cluster:
 
 ```nohighlight
-$ gsctl delete nodepool "Cluster name"/op1dl
+gsctl delete nodepool "Cluster name"/op1dl
 ```
 
 A confirmation will be required to finally delete the node pool. To suppress this

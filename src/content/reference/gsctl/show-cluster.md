@@ -13,13 +13,13 @@ The `gsctl show cluster` command displays details on a cluster.
 ## Usage
 
 ```nohighlight
-$ gsctl show cluster f0r14
+gsctl show cluster f0r14
 ```
 
 You can also use the cluster's name for identifying the cluster:
 
 ```nohighlight
-$ gsctl show cluster "Cluster name"
+gsctl show cluster "Cluster name"
 ```
 
 ## Output details

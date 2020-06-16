@@ -11,14 +11,13 @@ tags: ["tutorial"]
 
 The Kubernetes API is amazing territory. Thanks to being built around the REST model, it gives us the possibility to manage all our workloads using HTTP requests. Tools like `kubectl` or `Kubernetes dashboard` take advantage of this, helping to manage the different resources. But the Kubernetes API is far more. Let's take a deeper look at how it is composed:
 
-![](/img/api_components.png)
+![API components](/img/api_components.png)
 
-The picture highlights the different components living inside the API component. The request starts the API journey communicating with the authentication controller. Once the request is authenticated, the authorization module dictates if the request issuer may perform the operation. After the request is properly authorized, the admission magic comes into play. 
+The picture highlights the different components living inside the API component. The request starts the API journey communicating with the authentication controller. Once the request is authenticated, the authorization module dictates if the request issuer may perform the operation. After the request is properly authorized, the admission magic comes into play.
 
 There are two types of admission controllers in Kubernetes. They work slightly differently. The first type, is the **validating admission controller**, which proxies the requests to the subscribed webhooks. The Kubernetes API registers the webhooks based on the resource type and the request method. Every webhook runs some logic to validate the incoming resource and it replies with a verdict to the API. In case the validation webhook rejects the request, the Kubernetes API returns a failed HTTP response to the user. Otherwise, it continues with the next admission.
 
 The second type, is a **mutating admission controller** which modifies the resource submitted by the user, so you can create defaults or validate the schema. The cluster admins can attach mutation webhooks to the API to be run in the same way as validation. Indeed mutation logic runs before the validation.
-
 
 ## Goal
 
@@ -52,7 +51,7 @@ webhooks:
 
 You can see there are two main parts to be considered. In the first one, `clientConfig`, we define where our service can be found (it can be an external URL), and the `path` which our validation server will listen on. Also, you notice there is a `CA` to be defined. Since security is always important, adding the cert authority will tell the Kubernetes API to use HTTPS and validate our server using the passed asset. In the next section, you will find an explanation on how to generate all the certs needed.
 
-The second part specifies which rules the API will follow to decide if a request should be forwarded for validation to `grumpy` or not. Here it is configured that only requests with method equal to `CREATE` and resource type `pod` will be forwarded. 
+The second part specifies which rules the API will follow to decide if a request should be forwarded for validation to `grumpy` or not. Here it is configured that only requests with method equal to `CREATE` and resource type `pod` will be forwarded.
 
 ## Generate the certificates and the CA
 
@@ -60,11 +59,11 @@ Teaching you how to build a PKI bundle is beyond the scope of this guide. So, we
 
 ```nohighlight
 // Clone repository in case you did not do it before
-$ git clone https://github.com/giantswarm/grumpy
+git clone https://github.com/giantswarm/grumpy
 
 // Run the command to generate the certs under 'certs' folder
-$ cd grumpy
-$ ./gen_cert.sh
+cd grumpy
+./gen_cert.sh
 ```
 
 __Note:__ In case you are interested in what happened under the hood, the script above includes comments explaining the commands executed.
@@ -72,15 +71,15 @@ __Note:__ In case you are interested in what happened under the hood, the script
 For the purpose of this tutorial, our validation webhook configuration must contain an encoded certificate authority. Besides creating the certificates and the CA, the script later injects it into the manifest used to deploy our server.
 
 ```bash
-$ cat manifest.yaml | grep caBundle
+cat manifest.yaml | grep caBundle
 ```
 
 In the next step, we need to create a secret to place the certificates. After we apply the manifest, the pod will be able to store the secret files into a directory.
 
 ```bash
-$ kubectl create secret generic grumpy -n default \
-        --from-file=key.pem=certs/grumpy-key.pem \
-        --from-file=cert.pem=certs/grumpy-crt.pem
+kubectl create secret generic grumpy -n default \
+  --from-file=key.pem=certs/grumpy-key.pem \
+  --from-file=cert.pem=certs/grumpy-crt.pem
 ```
 
 ## Deploy validation controller
@@ -109,7 +108,7 @@ spec:
         - name: webhook-certs
           secret:
             secretName: grumpy
---- 
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -126,7 +125,7 @@ spec:
 Applying the manifest should be enough. It also contains the webhook commented before.
 
 ```bash
-$ kubectl apply -f manifest.yaml
+kubectl apply -f manifest.yaml
 ```
 
 Now the server should be running and ready to validate the creation of new pods.
@@ -146,7 +145,7 @@ spec:
     name: non-smooth-app
 ```
 
-Now let's try to apply the pod resource yaml. 
+Now let's try to apply the pod resource yaml.
 
 ```bash
 $ kubectl apply -f non-smooth-app.yaml
@@ -173,7 +172,7 @@ And in this case the Kubernetes API let us create the pod.
 ```bash
 $ kubectl apply -f smooth-app.yaml
 pod/smooth-app created
-$ kubectl get pod   
+$ kubectl get pod
 smooth-app                    0/1     Completed   0          6s
 ```
 
@@ -232,9 +231,9 @@ ar := v1beta1.AdmissionReview{
 resp, err := json.Marshal(ar)
 ```
 
-# Conclusion
+## Conclusion
 
-As you can see from this tutorial, it is quite easy to implement a simple admission controller. Obviously, there are plenty of possibilities to make your cluster more secure and harden it (accept known registries, forbid latest tags, ...). 
+As you can see from this tutorial, it is quite easy to implement a simple admission controller. Obviously, there are plenty of possibilities to make your cluster more secure and harden it (accept known registries, forbid latest tags, ...).
 
 At the same time, it holds great power, since it can influence the key components running in the cluster. As an example, you could block the CNI plugin from running in case you commit an error which may lead to the entire cluster being borked. So be careful and try to scope the admission logic to a namespace or a minor set of actions.
 

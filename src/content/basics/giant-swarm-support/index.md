@@ -46,7 +46,7 @@ Postmortems are created during the whole week. On Mondays, the product team meet
 
 The postmortem is closed only once the underlying issue is fixed and deployed to all affected environments. Additionally postmortems often result in new or tuned alerts and ops recipes to share knowledge through the operations team.
 
-# Conclusion
+## Conclusion
 
 Our support process is subject to change. As we continuously improve it we discover how to improve our policies, process and tools. But the goals are clear and unchanging. We are committed to seamlessly supporting our customers.
 

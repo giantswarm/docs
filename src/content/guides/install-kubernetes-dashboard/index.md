@@ -22,19 +22,25 @@ If you want to have some simple metrics (as shown in the screenshot above) integ
 Deploying dashboard is easy and straight forward.
 
 ```nohighlight
-$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
+kubectl apply \
+  -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
 ```
 
 Once the pod is running you can open Dashboard at `https://api.<cluster-id>.k8s.gigantic.io/ui`.
 
-*Note*: The above URL uses your K8s API to proxy to the service. As the K8s API is guarded with your credentials, you need to [set them up in your system](/guides/accessing-services-from-the-outside/) (and/or browser). We do not recommend to set up an Ingress for the Dashboard at this time, as opening up the dashboard to public would create a non-official workaround to access K8s api. Pleae validate this with your security department and check the Heptio blog post [On Securing the Kubernetes Dashboard](https://blog.heptio.com/on-securing-the-kubernetes-dashboard-16b09b1b7aca)
+*Note*: The above URL uses your K8s API to proxy to the service. As the K8s API is guarded with your credentials, you need to [set them up in your system](/guides/accessing-services-from-the-outside/) (and/or browser). We do not recommend to set up an Ingress for the Dashboard at this time, as opening up the dashboard to public would create a non-official workaround to access K8s api. Please validate this with your security department and check the Heptio blog post [On Securing the Kubernetes Dashboard](https://blog.heptio.com/on-securing-the-kubernetes-dashboard-16b09b1b7aca)
 
 Alternatively, you can run
 
 ```nohighlight
-$ kubectl proxy
+kubectl proxy
 ```
-and then open your browser at http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/. You should see the authentication page for your dashboard, it is securely exposed.
+
+and then open your browser at this URL:
+
+`http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/`
+
+You should see the authentication page for your dashboard, it is securely exposed.
 
 ![Kubernetes Dashboard Authentication](/img/dashboard-authentication.png)
 
@@ -45,8 +51,8 @@ You need to generate a Service Account token be have access to the dashboard.
 You can create a service account with `cluster-admin` role that will have access to all your resources.
 
 ```nohighlight
-$ kubectl create serviceaccount cluster-admin-dashboard-sa
-$ kubectl create clusterrolebinding cluster-admin-dashboard-sa \
+kubectl create serviceaccount cluster-admin-dashboard-sa
+kubectl create clusterrolebinding cluster-admin-dashboard-sa \
   --clusterrole=cluster-admin \
   --serviceaccount=default:cluster-admin-dashboard-sa
 ```
@@ -97,9 +103,9 @@ rules:
 Create the service account associated with this role:
 
 ```nohighlight
-$ kubectl create serviceaccount pod-viewer
-$ kubectl apply -f pod-viewer-role.yaml
-$ kubectl create clusterrolebinding pod-viewer-sa \
+kubectl create serviceaccount pod-viewer
+kubectl apply -f pod-viewer-role.yaml
+kubectl create clusterrolebinding pod-viewer-sa \
   --clusterrole=pod-viewer \
   --serviceaccount=default:pod-viewer-sa
 ```

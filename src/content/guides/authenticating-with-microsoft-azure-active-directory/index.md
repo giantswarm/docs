@@ -18,43 +18,51 @@ On the user side, you can then authenticate using the Azure Auth Provider of `ku
 ### 1. Set up a user
 
 ```nohighlight
-kubectl config set-credentials "<username>" --auth-provider=azure \
+kubectl config \
+  set-credentials "<username>" \
+  --auth-provider=azure \
   --auth-provider-arg=environment=AzurePublicCloud \
   --auth-provider-arg=client-id=<kubectl-app-id> \
   --auth-provider-arg=tenant-id=<tenant-id> \
   --auth-provider-arg=apiserver-id=<apiserver-app-id>
 ```
-	
+
 - `username` can be freely chosen, but must be unique within your local `kubeconfig`.
 - The 3 IDs are global settings that are set by your company. You should be able to obtain those internally.
-	
+
 ### 2. Set up a cluster
 
 ```nohighlight
-kubectl config set-cluster <clustername> --server=https://<api-server-endpoint> --certificate-authority=/path/to/ca.crt
+kubectl config \
+  set-cluster <clustername> \
+  --server=https://<api-server-endpoint> \
+  --certificate-authority=/path/to/ca.crt
 ```
-	
+
 - `clustername` can be freely chosen, but must be unique within your local `kubeconfig`.
 - Kubernetes API Server endpoint and CA you can get from the web UI (Happa) or using `gsctl`.
-	
+
 ### 3. Set up a context
 
 ```nohighlight
-kubectl config set-context <contextname> --cluster=<clustername> --user=<username>
+kubectl config \
+  set-context <contextname> \
+  --cluster=<clustername> \
+  --user=<username>
 ```
-	
+
 - `contextname` can be freely chosen, but must be unique within your local `kubeconfig`.
 - `clustername` and `username` are the names chosen in step 1 and 2.
 
 ### 4. Authenticate on your first command
 
 When you run your first `kubectl` command you will see something like the following:
-	
+
 ```nohighlight
 $ kubectl get node
 To sign in, use a web browser to open the page https://aka.ms/devicelogin and enter the code DEHTRY693 to authenticate.
 ```
-	
+
 This step needs to be done only once and will register your kubectl as an authenticated device. From then on you can freely run commands against the cluster (limited only by the roles given to you on said cluster).
 
 __Note__ that in some cases (depending on AD settings) the device authentication can only be done in a Browser running on a Windows machine.
@@ -97,7 +105,7 @@ Furthermore, to make the `kubeconfig` self-contained, you can replace `/path/to/
 When authenticating with AAD your user identifies to Kubernetes with a username and the groups you are a member of in AAD. A Cluster Admin can bind roles to these to grant access on a specific cluster.
 
 As explained in [Securing your Cluster with RBAC and PSP
-](https://docs.giantswarm.io/guides/securing-with-rbac-and-psp/) you can either use the default roles or define custom `Role` or `ClusterRole` resources to bind to subjects. 
+](https://docs.giantswarm.io/guides/securing-with-rbac-and-psp/) you can either use the default roles or define custom `Role` or `ClusterRole` resources to bind to subjects.
 
 In the following examples we'll use one of the default cluster roles.
 

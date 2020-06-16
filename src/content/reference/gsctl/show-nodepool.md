@@ -18,7 +18,7 @@ separated by a slash.
 Example:
 
 ```nohighlight
-$ gsctl show nodepool f01r4/op1dl
+gsctl show nodepool f01r4/op1dl
 ```
 
 Here, `f01r4` is the cluster ID and `op1dl` is the node pool ID.
@@ -26,7 +26,7 @@ Here, `f01r4` is the cluster ID and `op1dl` is the node pool ID.
 You can also use the cluster's name for identifying the cluster:
 
 ```nohighlight
-$ gsctl show nodepool "Cluster name"/op1dl
+gsctl show nodepool "Cluster name"/op1dl
 ```
 
 ## Output

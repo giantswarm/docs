@@ -1,7 +1,7 @@
 ---
 title: Cluster Definition Reference
 description: Complete documentation of the Giant Swarm cluster definition YAML format, compatible with API v4 and v5.
-date: 2020-05-27
+date: 2020-06-16
 layout: subsection
 weight: 100
 ---
@@ -19,7 +19,6 @@ creation. As it's the case within the API, the YAML definition comes in two diff
 to create clusters on **Azure** and on bare metal (**KVM**). It is also needed for cluster creation on
 AWS using a release prior to {{% first_aws_nodepools_version %}}, basically to create a cluster without
 support for node pools.
-
 - [**v5**](#v5): This version has been introduced in October 2019 to support clusters with
 [node pools](/basics/nodepools/). The feature is available on AWS starting with release
 {{% first_aws_nodepools_version %}}.
@@ -67,9 +66,9 @@ workers:
 
 **Note:** AWS clusters defined using a v4 definition (and consequently not using node pools) restrict you to all worker nodes being of the same instance type. With v5 and node pools, you gain the flexibility to create several node pools using different instance types.
 
-### Schema {#v4-schema}
+### v4 Schema {#v4-schema}
 
-#### Root level keys {#root-keys}
+#### v4 root level keys {#root-keys}
 
 - `owner`: Name of the owner organization.
 - `name`: Friendly name of the cluster. If not specified, a name will be generated.
@@ -128,9 +127,9 @@ Coming from v4, you might want to understand how v5 is different from v4:
 - Several settings that were specified on the cluster level in v4 (root level of the definition) have been moved to the node pool level.
 - The key `master_nodes` has been added to allow influencing master nodes.
 
-### Schema {#v5-schema}
+### v5 Schema {#v5-schema}
 
-#### Root level keys
+#### v5 root level keys {#v5-root-keys}
 
 - `api_version`: Mandatory and must have the string value `v5`.
 - `owner`: Name of the owner organization.
@@ -145,7 +144,7 @@ Coming from v4, you might want to understand how v5 is different from v4:
 
 **Note:** The `master_nodes` and `master` attribute must not be used in the same request/command, otherwise an HTTP error with status code 400 will be triggered.
 
-#### Node pool definition keys
+#### Node pool definition keys {#v5-nodepool-keys}
 
 - `name`: User-friendly name of the node pool, ideally indicating the purpose. Maximum of 100 characters allowed, must not contain control characters such as newline. If not set, a generic name will be assigned that can be changed later.
 - `availability_zones`: Allows to influence the availability zone placement of the worker nodes. Either use `zones` to select specific ones or `number` to set the number of zones to use, if you are fine with random selection. If neither is specified, all worker nodes of this pool will be in the same availability zone, selected randomly. Setting both `zones` and `number` will cause an error.
@@ -170,7 +169,6 @@ Chances are that you already work with YAML in various places. If not, here are 
 - If in doubt, check your YAML in a linter. There are plenty online, e. g. [yamllint.com](http://www.yamllint.com/).
 - JSON is valid YAML. If you prefer JSON's notation, just use valid JSON.
 - You can add comments to YAML files by starting a line with the character `#`.
-
 
 ## Related
 
