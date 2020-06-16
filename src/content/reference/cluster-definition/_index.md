@@ -91,19 +91,20 @@ workers:
 Let's start with an example:
 
 ```yaml
-api_version: "v5"
-release_version: "11.0.0"
-name: "Test cluster with two node pools"
+api_version: v5
+owner: myorg
+release_version: 11.0.0
+name: Test cluster with two node pools
 master_nodes:
   high_availability: true
 labels:
   locked: "false"
   environment: "testing"
 nodepools:
-- name: "Node pool with 2 random AZs using defaults"
+- name: Node pool with 2 random AZs using defaults
   availability_zones:
     number: 2
-- name: "Node pool with 3 specific AZs A, B, C, m5.xlarge spot"
+- name: Node pool with 3 specific AZs A, B, C, m5.xlarge spot
   availability_zones:
     zones:
     - "eu-central-1a"
@@ -117,7 +118,7 @@ nodepools:
       instance_distribution:
         on_demand_base_capacity: 3
         on_demand_percentage_above_base_capacity: 0
-      instance_type: "m5.xlarge"
+      instance_type: m5.xlarge
       use_alike_instance_types: true
 ```
 
