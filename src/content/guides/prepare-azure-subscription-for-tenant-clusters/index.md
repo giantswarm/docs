@@ -91,7 +91,7 @@ In case you are working with a Giant Swarm partner, you might not have access to
 After the organization's credentials are set, you can create clusters owned by that
 organization. These clusters' resources will be created in your Azure subscription.
 
-### 4. Configure Subscription to allow Giant Swarm Support actions
+## Configure Subscription to allow access for Giant Swarm Support
 
 Last step while configuring your Subscription is to grant access for Giant Swarm Ops/Support to your subscription in order to provide 24/7 support. Access to the portal is important part of the provided support, where in some cases manual interventions have to take place.
     
