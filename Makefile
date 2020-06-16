@@ -56,6 +56,14 @@ build: vendor build-css
 		quay.io/giantswarm/crd-docs-generator:0.0.0-cce07b5b225bd1b7ad576a0e1f5ebb773397915c \
 		  --config /opt/crd-docs-generator/config/crd-docs-generator-config.yaml
 
+lint:
+	docker run \
+	  -v ${PWD}:/workdir \
+	  -w /workdir \
+	  06kellyjac/markdownlint-cli:0.21.0 \
+	    --config .markdownlint.yaml \
+	    --ignore README.md \
+		./src
 
 docker-build: build
 	docker build -t $(REGISTRY)/$(COMPANY)/$(PROJECT):latest .

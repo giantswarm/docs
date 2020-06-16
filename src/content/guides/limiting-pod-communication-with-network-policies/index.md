@@ -27,13 +27,13 @@ Keep in mind that a NetworkPolicy is applied to a particular Namespace and only 
 
 ## Network Policy syntax
 
-The Network Policy resource is part of the API group `networking.k8s.io`. Currently, it is in version `v1`. 
+The Network Policy resource is part of the API group `networking.k8s.io`. Currently, it is in version `v1`.
 
 The `spec` of the resource mainly consists of three parts:
 
 - `podSelector`: Use labels to select the group of pods for which the rules will be applied.
 
-- `policyTypes`: Which could be `Ingress`, `Egress` or both. This field will determine if the rules will be applied to incoming and/or outgoing traffic. If it is not defined, then `Ingress` will be enabled by default and `Egress` only when there are rules defined. 
+- `policyTypes`: Which could be `Ingress`, `Egress` or both. This field will determine if the rules will be applied to incoming and/or outgoing traffic. If it is not defined, then `Ingress` will be enabled by default and `Egress` only when there are rules defined.
 
 - `ingress`/`egress`: these sections allow a list of `from` (Ingress) or `to` (Egress) and `ports` blocks. Each `from`/`to` block contains a range of IPs (`ipBlock`) and/or a list of namespaces selected by label (`namespaceSelector`) and/or a list of pods by label (`podSelector`). That select which IPs, namespaces or pods can talk to our target pod or to which IPs, namespaces or pod our target can talk to. The `ports` block defines which ports are affected by this the rule.
 
@@ -100,9 +100,9 @@ __Warning__: By default Giant Swarm clusters, from version `11.0.0`, contains th
 
 Note that the namespace needs to exist before you apply the NetworkPolicy to it.
 
-The default policy shown above will limit ingress and egress traffic in the namespace applied. You can also restrict only for `egress` or `ingress`. 
+The default policy shown above will limit ingress and egress traffic in the namespace applied. You can also restrict only for `egress` or `ingress`.
 
-## Applications 
+## Applications
 
 ### Allowing specific system pod to talk with your pod
 
@@ -130,7 +130,7 @@ spec:
 
 To make it more visual, this is what the communication between namespaces will look like.
 
-![](giant-swarm-network-policies-diagram.png)
+![Network policies diagram](giant-swarm-network-policies-diagram.png)
 
 ### Allowing specific pod to pod access
 

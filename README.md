@@ -203,16 +203,34 @@ We use long-form CLI flags and avoid the possible equal sign between flag name a
 Right:
 
 ```nohighlight
-$ gsctl create cluster --owner acme
+gsctl create cluster --owner acme
 ```
 
 Wrong:
 
 ```nohighlight
-$ gsctl create cluster --owner=acme
-$ gsctl create cluster -o=acme
-$ gsctl create cluster -o acme
+gsctl create cluster --owner=acme
+gsctl create cluster -o=acme
+gsctl create cluster -o acme
 ```
+
+Also we break a command into multiple lines once it becomes longer than ~ 60 characters,
+using the backslash character. Example:
+
+```nohighlight
+gsctl create cluster \
+  --owner acme \
+  --create-default-nodepool false
+```
+
+### Linting
+
+Many style rules are checked automatically in CI. You can also execute the check locally
+before pushing commits using the `make lint` command.
+
+For a reference of all rules please check the [DavidAnson/markdownlint documentation](https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md).
+
+There is a project specific configuration in place via the `.markdownlint.yaml` file.
 
 ## License
 

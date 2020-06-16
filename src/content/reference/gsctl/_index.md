@@ -50,7 +50,9 @@ For finding out which version of `gsctl` you currently have installed, and other
 
 `gsctl` comes as a self-contained binary for Mac, Linux, and Windows. Below you find installation instructions for different platforms. If you want to build `gsctl` from source, find everything you need in its [GitHub repository](https://github.com/giantswarm/gsctl).
 
+<!-- markdownlint-disable no-bare-urls -->
 The current `gsctl` version is **{{% gsctl_version %}}**. Find details in the [release notes](https://github.com/giantswarm/gsctl/releases/tag/{{% gsctl_version %}}).
+<!-- markdownlint-enable no-bare-urls -->
 
 <ul class="nav nav-tabs">
   <li role="presentation" class="active"><a href="#install-mac" data-toggle="tab">Mac OS</a></li>

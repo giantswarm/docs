@@ -10,7 +10,7 @@ last-review-date: 2020-05-18
 
 # Security
 
-Regardless of provider, clusters start with restrictive settings already in place. All internal and external network traffic is denied by default, role-based access control prevents unauthorized access to Kubernetes resources, and Pod security policies are in place to prevent Pods from running with root users, risky volume configurations, or additional privileges. All of these can be adapted by the customer to fit their needs. 
+Regardless of provider, clusters start with restrictive settings already in place. All internal and external network traffic is denied by default, role-based access control prevents unauthorized access to Kubernetes resources, and Pod security policies are in place to prevent Pods from running with root users, risky volume configurations, or additional privileges. All of these can be adapted by the customer to fit their needs.
 
 We regularly test our configurations against the CIS Kubernetes Benchmark as well as other CIS and industry benchmarks for Docker, Linux, and cloud providers to ensure our platform remains compliant with industry best-practices.
 

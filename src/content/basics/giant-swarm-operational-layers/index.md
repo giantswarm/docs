@@ -36,7 +36,7 @@ Control Plane Kubernetes API network access is allowed only through Giant Swarm 
 
 Giant Swarm SREs and operations personnel have cluster admin access to the Control Plane Kubernetes API through a tunnel. It is facilitated by SSO with MFA, as described above.
 
-A customer has *tenant admin* and *view* access via OpenID Connect (OIDC), configured towards the supported Identity Provider. 
+A customer has *tenant admin* and *view* access via OpenID Connect (OIDC), configured towards the supported Identity Provider.
 
 #### Control Plane Kubernetes API Access for Customers
 
@@ -46,12 +46,13 @@ The kubernetes API on every Control has [dex](https://github.com/dexidp/dex) ins
 ##### Authorization
 
 With a valid *jwt* token, received from your chosen Identity Provider, customers can have two levels of access:
-  - *view* 
-    - *get*/*list*/*watch* access to all resources in the Control Plane, except for `configmaps` and `secrets`. 
-    - *get*/*list*/*watch* access to all resources (including `configmaps` and `secrets`) in tenant cluster namespaces.
-  - *admin*
-    - full access, to the `cluster`, `node pool`, `appcatalogs` and `apps` resources of Control Plane Kubernetes.
-    - includes *view* level access.
+
+- *view*
+  - *get*/*list*/*watch* access to all resources in the Control Plane, except for `configmaps` and `secrets`.
+  - *get*/*list*/*watch* access to all resources (including `configmaps` and `secrets`) in tenant cluster namespaces.
+- *admin*
+  - full access, to the `cluster`, `node pool`, `appcatalogs` and `apps` resources of Control Plane Kubernetes.
+  - includes *view* level access.
   
 ### Giant Swarm API {#giant-swarm-api}
 

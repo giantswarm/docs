@@ -15,7 +15,7 @@ The `gsctl list clusters` command shows all clusters you have access to with a f
 ```nohighlight
 $ gsctl list clusters
 ID     ORGANIZATION  NAME        RELEASE  CREATED
-feogv  acme          Staging     3.0.2    2018 Feb 01, 13:59 UTC    
+feogv  acme          Staging     3.0.2    2018 Feb 01, 13:59 UTC
 pmb9q  acme          Production  3.0.2    2018 Feb 01, 11:12 UTC
 z63so  testteam      Dan's Test  2.7.2    2017 Jun 19, 09:12 UTC  
 ```

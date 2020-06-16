@@ -34,6 +34,10 @@ jobs:
       - checkout
 
       - run:
+          name: Check Markdown structure
+          command: make lint
+
+      - run:
           name: Install SASS
           command: gem install sass
 

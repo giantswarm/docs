@@ -24,7 +24,7 @@ This enables use cases such as:
 
 - Running stateless services balanced over multiple AZs
 
-- Grouping certain services that communicate with each other often and make sure they always run together within the same availability zone. 
+- Grouping certain services that communicate with each other often and make sure they always run together within the same availability zone.
 
 - Setup replication of your data across multiple AZs by keeping each instance of your StatefulSet in a different AZ.
 
@@ -32,7 +32,7 @@ This enables use cases such as:
 
 - On both AWS and Azure availability zones are randomized across accounts. There is no way to determine which AZ you are really in, based on the name. E.g. the zone `eu-central-1a` in the account of the cluster is not necessarily the same `eu-central-1a` in your account.
 
-- Availability zones get selected randomly by the Giant Swarm control plane. You only need to specify the required number of availability zones. 
+- Availability zones get selected randomly by the Giant Swarm control plane. You only need to specify the required number of availability zones.
 
 - Nodes will get distributed evenly across availability zones. There is currently no way to determine which or how many nodes should be started in a particular availability zone. But the nodes will have a label `failure-domain.beta.kubernetes.io/zone` that indicates which availability zone the node is running in.
 

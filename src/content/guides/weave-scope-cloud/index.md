@@ -35,7 +35,7 @@ For an overview of what Weave Scope can do and how to use it check out the [Weav
 
 ## Weave Cloud
 
-If you want to use the hosted cloud version of this UI you can sign up for an account at https://cloud.weave.works and obtain a service-token. Using this service token you then start Weave Scope with the following command (instead of the one above):
+If you want to use the hosted cloud version of this UI you can sign up for an account at [the Weave website](https://cloud.weave.works) and obtain a service-token. Using this service token you then start Weave Scope with the following command (instead of the one above):
 
 ```bash
 kubectl apply --namespace kube-system -f "https://cloud.weave.works/k8s/scope.yaml?service-token=<token>&k8s-version=$(kubectl version | base64 | tr -d '\n')"

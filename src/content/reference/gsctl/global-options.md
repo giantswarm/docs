@@ -32,7 +32,7 @@ be in fact logged in with all your endpoints at the same time. All you have to
 do to switch between them is run the `select endpoint` command.
 
 ```nohighlight
-$ gsctl select endpoint <endpoint-url-or-alias>
+gsctl select endpoint <endpoint-url-or-alias>
 ```
 
 This requires the API URL or an endpoint alias to be given as argument.
@@ -45,14 +45,14 @@ another one with `onprem`, this allows you to list clusters on both without
 permanently selecting an endpoint:
 
 ```nohighlight
-$ gsctl list clusters -e cloud
+gsctl list clusters -e cloud
 ...
-$ gsctl list clusters -e onprem
+gsctl list clusters -e onprem
 ...
 ```
 
 If you no longer need an endpoint, you can delete it using the `delete endpoint` command.
 
 ```nohighlight
-$ gsctl delete endpoint <endpoint-url-or-alias>
+gsctl delete endpoint <endpoint-url-or-alias>
 ```

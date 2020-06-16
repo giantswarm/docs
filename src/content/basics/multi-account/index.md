@@ -25,7 +25,6 @@ The following two schemas illustrate the difference:
 
 ![same-account](separate-accounts.png)
 
-
 This enables use cases such as
 
 - Several teams, business units, or profit centers sharing an installation, where many or all of them run tenant clusters in their own cloud provider account, separate from each other.

@@ -23,7 +23,7 @@ You can do this with any Service within your cluster, including Services that ex
 
 The actual creation of the load balancer happens asynchronously, and information about the provisioned balancer will be published in the Service’s `status.loadBalancer` field, like following:
 
-```YAML
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -51,7 +51,7 @@ You can change the port of the load balancer and protocol of the load balancer b
 
 Following example would set the ELB to TCP and port `8888`:
 
-```YAML
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -80,15 +80,16 @@ This section will focus on the custom options you can set on AWS Load Balancers 
 
 If you want the AWS ELB to be available only within your VPC (can be extended to other VPC by VPC peering) use the following annotation:
 
-```YAML
+```yaml
 metadata:
   name: my-service
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-internal: 0.0.0.0/0
 ```
+
 On Azure you can configure internal Load Balancers like this.
 
-```YAML
+```yaml
 metadata:
   name: my-service
   annotations:
@@ -99,7 +100,7 @@ metadata:
 
 There are three annotations you can set to configure SSL termination.
 
-```YAML
+```yaml
 metadata:
   name: my-service
   annotations:
@@ -108,7 +109,7 @@ metadata:
 
 The first one depicts the ARN of the certificate you want to use. You can either upload the certificate to IAM or create it within AWS Certificate Manager.
 
-```YAML
+```yaml
 service.beta.kubernetes.io/aws-load-balancer-backend-protocol: (https|http|ssl|tcp)
 ```
 
@@ -119,7 +120,7 @@ HTTP and HTTPS will select layer 7 proxying: the ELB will terminate the connecti
 TCP and SSL will select layer 4 proxying: the ELB will forward traffic without modifying the headers.
 In a mixed-use environment where some ports are secured and others are left unencrypted, the following annotations may be used:
 
-```YAML
+```yaml
 metadata:
   name: my-service
   annotations:
@@ -158,9 +159,9 @@ metadata:
 
 #### AWS network load balancer
 
-AWS is in the process of replacing ELBs with NLBs (Network Load Balancers) and ALBs (Application Load 
-Balancers). NLBs have a number of benefits over "classic" ELBs including scaling to many more requests. 
-Alpha support for NLBs was added in Kubernetes 1.9. As it's an alpha feature it's not yet recommended 
+AWS is in the process of replacing ELBs with NLBs (Network Load Balancers) and ALBs (Application Load
+Balancers). NLBs have a number of benefits over "classic" ELBs including scaling to many more requests.
+Alpha support for NLBs was added in Kubernetes 1.9. As it's an alpha feature it's not yet recommended
 for production workloads but you can start trying it out.
 
 ```yaml
@@ -178,7 +179,7 @@ metadata:
   name: my-service
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout: "60"
-    # The time, in seconds, that the connection is allowed to be idle (no data has 
+    # The time, in seconds, that the connection is allowed to be idle (no data has
     # been sent over connection) before it is closed by the load balancer.
     service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
     # Specifies whether cross-zone load balancing is enabled for the load balancer.
@@ -220,7 +221,7 @@ __Note__ that if you are running multiple Ingress Controllers you need to annota
 kubernetes.io/ingress.class: "nginx"
 ```
 
-or 
+or
 
 ```yaml
 kubernetes.io/ingress.class: "nginx-internal"

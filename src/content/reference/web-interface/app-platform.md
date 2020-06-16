@@ -18,7 +18,7 @@ are managable using our web interface.
 If you'd like to know more about the App Platform in general, go here for an
 [overview of the Giant Swarm App Platform](/basics/app-platform/) instead.
 
-### Viewing all App Catalogs
+## Viewing all App Catalogs
 
 Our web interface lets you browse the App Catalogs installed on your Control Plane.
 Click on "App Catalogs" in the navigation menu. The "App Catalogs" link will only
@@ -29,7 +29,7 @@ installed:
 
 ![A screenshot of our web interface, showing a list of available app catalogs](/img/app-catalogs.png)
 
-### Installing an App
+## Installing an App
 
 Click on the catalog you'd like to install from. Only apps in the Managed catalog
 will be monitored and managed by us.
@@ -69,7 +69,7 @@ that was just created.
 
 See our [app configuration reference page](/reference/app-configuration) for more details and examples.
 
-### Editing the version of an App
+## Editing the version of an App
 
 Once an app is installed, it is also possible to change the version.
 
