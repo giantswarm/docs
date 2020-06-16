@@ -35,7 +35,7 @@ administrator.
 
 Node pools can be created when creating a cluster
 
-* via the Giant Swarm web interface
+- via the Giant Swarm web interface
 - via the CLI command [`gsctl create cluster`](/reference/gsctl/create-cluster/)
 
 or any time after the cluster has been created
