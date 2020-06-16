@@ -144,9 +144,9 @@ run. This is `1` for a single master cluster and needs to be modified to `3`.
 
 - Why three master nodes?
 
-At Giantswarm we operate stacked HA clusters where etcd is stacked on top of our master nodes. 
-Each master node runs control-plane and a local etcd member. Enabling HA master needs to have a quorum 
-(majority of nodes) meaning running at least 3 master nodes. By enabling HA a master node can be down 
+At Giantswarm we operate stacked HA clusters where etcd is stacked on top of our master nodes.
+Each master node runs control-plane and a local etcd member. Enabling HA master needs to have a quorum
+(majority of nodes) meaning running at least 3 master nodes. By enabling HA a master node can be down
 in case of a failing instance or a AZ outage without affecting cluster operations.
 
 ## Limitations
