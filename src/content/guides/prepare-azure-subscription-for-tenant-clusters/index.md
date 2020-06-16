@@ -116,6 +116,8 @@ Parameters file is available [here]()
 Remember to change the `roleDefinitionId` in case you would like to use your custom role definition.
 Ask your Solution Engineer so he can provide you the `GiantSwarmPrincipalID` and `GiantSwarmTenantID`
 
+This command should be run for all subscriptions that are used for Giant Swarm Tenant Clusters as well as the Control Plane that orchestrates it all.  
+
 ## Further reading
 
 - [Basics and Concepts: Multi-Account Support](/basics/multi-account/)
