@@ -62,7 +62,7 @@ The output of the command gives details on what exactly happens.
 The next example shows creation of a self-contained configuration file:
 
 ```nohighlight
-gsctl create kubeconfig -c w6wn8 --self-contained kubeconfig.yaml
+gsctl create kubeconfig --cluster w6wn8 --self-contained kubeconfig.yaml
 ```
 
 Here, the file `kubeconfig.yaml` will be created and it will contain the
