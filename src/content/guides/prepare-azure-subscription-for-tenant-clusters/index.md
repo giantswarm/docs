@@ -102,7 +102,8 @@ We require a built in role `Contributor` to access the resources that Giant Swar
 You can also create your own role assignment with restrictions to access specific Resource Groups, however it needs to be remembered to refresh the role with every newly created cluster so we can provide full support starting from the clusters creation.
 
 When all is set you can simply run this command:
-```
+
+```nohighlight
 az deployment create --name <deploymentName (unique by subscription)> \
                      --location <AzureRegion> \
                      --template-file delegatedResourceManagement.txt \
