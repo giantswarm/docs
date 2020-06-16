@@ -44,7 +44,7 @@ Multiple master nodes in different availability zones has several benefits:
   by all three master nodes, so that latencies stay lower overall compared to a single master
   node which can suffer from high loads temporarily.
 
-We recommend that all productions clusters on AWS are run with high
+We recommend that all production clusters on AWS are run with high
 availability of master nodes, hence this is the default setting starting with
 release v{{% first_aws_ha_masters_version %}}.
 
