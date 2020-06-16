@@ -110,11 +110,10 @@ az deployment create --name <deploymentName (unique by subscription)> \
                      --verbose
 ```
 
-The template file can be downloaded from [here](https://raw.githubusercontent.com/giantswarm/azure-operator/master/docs/delegatedResourceManagement.json)
+You will have to supply a general Delegated Resource Management [template file](https://raw.githubusercontent.com/giantswarm/azure-operator/master/docs/delegatedResourceManagement.json)
 
-Parameters file is available [here](https://raw.githubusercontent.com/giantswarm/azure-operator/master/docs/delegatedResourceManagement.parameters.json)
-Remember to change the `roleDefinitionId` in case you would like to use your custom role definition.
-Ask your Solution Engineer so he can provide you the `GiantSwarmPrincipalID` and `GiantSwarmTenantID`
+The Delegated Resource Management template uses [parameters file](https://raw.githubusercontent.com/giantswarm/azure-operator/master/docs/delegatedResourceManagement.parameters.json) to supply the needed variables for configuration.
+Please remember to change the `roleDefinitionId` in case you would like to use your custom role definition. Moreover ask your Solution Engineer so he can provide you the `GiantSwarmPrincipalID` and `GiantSwarmTenantID`
 
 This command should be run for all subscriptions that are used for Giant Swarm Tenant Clusters as well as the Control Plane that orchestrates it all.  
 
