@@ -1,6 +1,6 @@
 ---
 title: High availability Kubernetes masters
-description: A general description of node pools as a concept, it's benefits, and some details you should be aware of.
+description: A general description of high availability of masters as a concept, it's benefits, and some details you should be aware of.
 date: 2020-05-16
 weight: 120
 type: page
