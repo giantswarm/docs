@@ -30,10 +30,16 @@ resilient against data center failure.
 Multiple master nodes in different availability zones has several benefits:
 
 - **API downtimes during upgrades are reduced to a minimum**. With a single master node,
-  upgrading the cluster requires the only master to be terminated and rebooted with new configuration, resulting in several minutes of downtime. With multiple master nodes, the nodes get update one at a time. The API can only become unreachable in the event that a new etcd leader has to be elected. This usually takes only a few seconds.
+  upgrading the cluster requires the only master to be terminated and rebooted with new
+  configuration, resulting in several minutes of downtime. With multiple master nodes,
+  the nodes get update one at a time. The API can only become unreachable in the event
+  that a new etcd leader has to be elected. This usually takes only a few seconds.
 - **Resilience in case of infrastructure outages**. In the case of a failure of a single
   master node's EC2 instance, the two remaining master nodes take over and a replacement
-  master node will be launched automatically. Since multiple master nodes of a cluster are running in different availability zones (AZ), this setting also protects against the risk of losing control over the cluster in the case of a single AZ downtime. Read [below](#use-of-az) for details.
+  master node will be launched automatically. Since multiple master nodes of a cluster
+  are running in different availability zones (AZ), this setting also protects against
+  the risk of losing control over the cluster in the case of a single AZ downtime. Read
+  [below](#use-of-az) for details.
 - **Load balancing of API requests.** Read-only requests to the Kubernetes API are performed
   by all three master nodes, so that latencies stay lower overall compared to a single master
   node which can suffer from high loads temporarily.
@@ -67,8 +73,8 @@ When upgrading a cluster to release v11.4.0, the cluster will remain a single
 master cluster during and after the upgrade. The API unavailability during the
 upgrade that is typical for single master clusters will apply for this upgrade.
 
-A conversion to high availability can be triggered manually after the upgrade
-is finished.
+A conversion to high availability can be triggered after the upgrade is
+finished.
 
 ## Conversion from single master to high availability {#conversion-to-ha}
 
@@ -162,8 +168,10 @@ is not currently supported with Giant Swarm tenant clusters.
 ## Limitations
 
 - Currently only supported AWS, not on Azure and KVM.
-- API downtimes are still possible during cluster modifications, especially when the leader of the
+- Short API downtimes are still possible during cluster modifications, especially when the leader of the
   etcd cluster (the member that handles write requests) changes. This happens when the node that
-  hosts the leader has to be modified. Typical cases for this would be an upgrade to a newer
-  release or the conversion from a single to multiple master nodes.
-- Conversion from high availability (three masters) to a single master node is not possible.
+  hosts the etcd leader has to be modified. Typical cases for this would be an upgrade to a newer
+  release or the conversion from a single to multiple master nodes. These downtimes are expected to
+  last only for a few seconds.
+- Conversion of a cluster from high availability (three masters) to a single master node is not
+  possible.
