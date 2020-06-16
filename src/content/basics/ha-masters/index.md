@@ -61,7 +61,7 @@ the AZ used by the master node before is re-used. Additional AZs are assigned
 by applying the logic described above. Here, the AZ assignment of existing
 worker [node pools](/basic/nodepools/) is taken into account.
 
-## Upgrades from earlier releases {#upgrades}
+## Upgrades from previous releases {#upgrades}
 
 When upgrading a cluster to release v11.4.0, the cluster will remain a single
 master cluster during and after the upgrade. The API unavailability during the
@@ -138,22 +138,32 @@ The [`G8sControlPlane`](/reference/cp-k8s-api/g8scontrolplanes.infrastructure.gi
 has a `.spec.replicas` attribute which indicates the number of master nodes to
 run. This is `1` for a single master cluster and needs to be modified to `3`.
 
-**CAUTION:** TODO - explain that this has to happen after AWSControlPlane modification, otherwise the AZs will be assigned automatically.
+**Note:** Modifying the `G8sControlPlane` resource must happen _after_ the `AWSControlPlane`
+modification in order to have full control over AZ usage. Otherwise the `AWSControlPlane` will
+be modified automatically and AZs will be added by our automation. This may or may not
+be your desired way.
 
 ## Technical details
 
-- Why three master nodes?
+### Why three master nodes
 
-At Giantswarm we operate stacked HA clusters where etcd is stacked on top of our master nodes.
-Each master node runs control-plane and a local etcd member. Enabling HA master needs to have a quorum
-(majority of nodes) meaning running at least 3 master nodes. By enabling HA a master node can be down
-in case of a failing instance or a AZ outage without affecting cluster operations.
+At Giant Swarm we operate "stacked" clusters where etcd nodes are running on the same machines
+as the Kubernetes master nodes. Each master node runs control plane components and a member of
+an etcd cluster.
+
+In order to achieve high availability in an etcd cluster, a quorum (majority of members) is
+needed. With three members, one member is allowed to become dysfunctional at any time, e. g.
+through a machine failure or availability zone outage.
+
+The number of three masters running three etcd members is a good balance between resilience
+and cost. While it would be technically possible to run five or more master nodes, this
+is not currently supported with Giant Swarm tenant clusters.
 
 ## Limitations
 
-- Currently not supported on Azure and KVM.
-- API downtimes possible
-  - switch from 1 to 3
-  - rolling master nodes, e. g. to switch the instance type
-  - etcd leader change (to be confirmed)
-- Conversion from high availability (3 masters) to a single master node is not possible.
+- Currently only supported AWS, not on Azure and KVM.
+- API downtimes are still possible during cluster modifications, especially when the leader of the
+  etcd cluster (the member that handles write requests) changes. This happens when the node that
+  hosts the leader has to be modified. Typical cases for this would be an upgrade to a newer
+  release or the conversion from a single to multiple master nodes.
+- Conversion from high availability (three masters) to a single master node is not possible.
