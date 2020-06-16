@@ -60,7 +60,7 @@ lint:
 	docker run \
 	  -v ${PWD}:/workdir \
 	  -w /workdir \
-	  06kellyjac/markdownlint-cli:latest \
+	  06kellyjac/markdownlint-cli:0:21:0 \
 	    --config .markdownlint.yaml \
 	    --ignore README.md \
 		./src
