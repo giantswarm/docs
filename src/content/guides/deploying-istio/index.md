@@ -132,7 +132,7 @@ Regardless of provider, the first step to install Istio is to create all cluster
 
 ```nohighlight
 # Post all resources to the Kubernetes API
-$ kubectl apply -f install/kubernetes/helm/istio/templates/crds.yaml
+kubectl apply -f install/kubernetes/helm/istio/templates/crds.yaml
 ```
 
 Istio is a complex system composed by several pieces. All these pieces are released to the cluster, by deafault, upon installation. However, the mesh can be created with different flavors. For instance, you can only deploy `Pilot`, which will give you the ability to enforce service policies. Let's outline the main components:

@@ -59,11 +59,11 @@ Teaching you how to build a PKI bundle is beyond the scope of this guide. So, we
 
 ```nohighlight
 // Clone repository in case you did not do it before
-$ git clone https://github.com/giantswarm/grumpy
+git clone https://github.com/giantswarm/grumpy
 
 // Run the command to generate the certs under 'certs' folder
-$ cd grumpy
-$ ./gen_cert.sh
+cd grumpy
+./gen_cert.sh
 ```
 
 __Note:__ In case you are interested in what happened under the hood, the script above includes comments explaining the commands executed.
@@ -77,9 +77,9 @@ cat manifest.yaml | grep caBundle
 In the next step, we need to create a secret to place the certificates. After we apply the manifest, the pod will be able to store the secret files into a directory.
 
 ```bash
-$ kubectl create secret generic grumpy -n default \
-        --from-file=key.pem=certs/grumpy-key.pem \
-        --from-file=cert.pem=certs/grumpy-crt.pem
+kubectl create secret generic grumpy -n default \
+  --from-file=key.pem=certs/grumpy-key.pem \
+  --from-file=cert.pem=certs/grumpy-crt.pem
 ```
 
 ## Deploy validation controller
