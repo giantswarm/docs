@@ -105,8 +105,8 @@ When all is set you can simply run this command:
 ```nohighlight
 az deployment create --name <deploymentName (unique by subscription)> \
                      --location <AzureRegion> \
-                     --template-file delegatedResourceManagement.txt \
-                     --parameters delegatedResourceManagement.parameters.txt \
+                     --template-file delegatedResourceManagement.json \
+                     --parameters delegatedResourceManagement.parameters.json \
                      --verbose
 ```
 
