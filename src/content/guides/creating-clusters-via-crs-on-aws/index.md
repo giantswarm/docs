@@ -23,7 +23,7 @@ The Cluster API is a Kubernetes project to bring declarative, Kubernetes-style A
 At a high-level, the Cluster API is used to manage two types of CRs:
 
 - [Cluster](/reference/cp-k8s-api/clusters.cluster.x-k8s.io/) - represents a Kubernetes control plane.
-- [MachineDeployment](/reference/cp-k8s-api/machinedeployments.cluster.x-k8s.io/) -  represents a node pool.
+- [MachineDeployment](/reference/cp-k8s-api/machinedeployments.cluster.x-k8s.io/) - represents a node pool.
 
 The CRs above then reference provider specific implementations. In our case, for clusters on AWS, they are:
 
