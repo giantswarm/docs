@@ -2,6 +2,7 @@ PROJECT=docs
 COMPANY=giantswarm
 REGISTRY=quay.io
 SHELL=bash
+MARKDOWNLINT_IMAGE=06kellyjac/markdownlint-cli:0.21.0
 
 default: docker-build
 
@@ -57,10 +58,11 @@ build: vendor build-css
 		  --config /opt/crd-docs-generator/config/crd-docs-generator-config.yaml
 
 lint:
-	docker run \
+	@docker pull --quiet $(MARKDOWNLINT_IMAGE) > /dev/null
+	@docker run \
 	  -v ${PWD}:/workdir \
 	  -w /workdir \
-	  06kellyjac/markdownlint-cli:0.21.0 \
+	  $(MARKDOWNLINT_IMAGE) \
 	    --config .markdownlint.yaml \
 	    --ignore README.md \
 		./src
