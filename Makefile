@@ -58,7 +58,7 @@ build: vendor build-css
 		  --config /opt/crd-docs-generator/config/crd-docs-generator-config.yaml
 
 lint:
-	@docker pull --quiet $(MARKDOWNLINT_IMAGE) > /dev/null
+	@docker pull $(MARKDOWNLINT_IMAGE) > /dev/null
 	@docker run \
 	  -v ${PWD}:/workdir \
 	  -w /workdir \
