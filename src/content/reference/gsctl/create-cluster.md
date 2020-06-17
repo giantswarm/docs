@@ -1,7 +1,7 @@
 ---
 title: "gsctl Command Reference: create cluster"
 description: "Detailed documentation on how to create a new cluster using the 'create cluster' command in gsctl."
-date: "2019-12-19"
+date: 2020-05-27
 type: page
 weight: 20
 ---
@@ -36,6 +36,8 @@ Note that command line flags take precedence over values in the definition. This
 - `--owner`, `-o`: Name of the owner organization. Overwrites a name given per definition file.
 - `--name`: Name of the cluster. Overwrites name given in definition file.
 - `--release`, `-r`: Specific release version number to use. Defaults to the latest active release. See [list releases](/reference/gsctl/list-releases/) for details on releases.
+- `--create-default-nodepool`: Where node pools are supported (AWS since release v{{% first_aws_nodepools_version %}}), setting this to `false` allows to suppress the creation of a default node pool. A default node pools would otherwise be created automatically if no cluster definition is given specifying any node pools details, to get you started quickly.
+- `--masters-ha`: Where supported, this is `true` by default, which means that the cluster will have three master nodes. Available on AWS since release v{{% first_aws_ha_masters_version %}}. Set this to `false` to have only one master node in the cluster (recommended only for test clusters).
 
 ## Passing the cluster definition via standard input {#stdin}
 

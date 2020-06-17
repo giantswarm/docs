@@ -1,7 +1,7 @@
 ---
 title: "gsctl Command Reference: show cluster"
 description: "The 'gsctl show cluster' command displays details of a cluster."
-date: "2020-03-11"
+date: 2020-05-11
 type: page
 weight: 52
 ---
@@ -24,24 +24,7 @@ gsctl show cluster "Cluster name"
 
 ## Output details
 
-Example output for an AWS based cluster:
-
-```nohighlight
-ID:                            vxvc7
-Name:                          Staging cluster for Frontend
-Created:                       2019 Jan 30, 09:26 UTC
-Organization:                  acme
-Kubernetes API endpoint:       https://api.vxvc7.REDACTED.aws.gigantic.io
-Release version:               6.3.0
-Worker node scaling:           autoscaling between 6 and 10
-Desired worker node count:     7
-Worker nodes running:          8
-Worker EC2 instance type:      m5.xlarge
-CPU cores in workers:          28
-RAM in worker nodes (GB):      26.5
-```
-
-Example output for an AWS based cluster with release version {{% first_aws_nodepools_version %}} and above:
+Example output for an AWS based cluster featuring node pools:
 
 ```nohighlight
 Cluster ID:                ggf8v
@@ -49,12 +32,14 @@ Name:                      Testing - Team upstate
 Created:                   2020 May 04, 16:54 UTC
 Organization:              acme
 Kubernetes API endpoint:   https://api.ggf8v.REDACTED.aws.gigantic.io
-Master availability zone:  region-region-1a
 Release version:           11.2.1
 Labels:                    usage=testing
                            team=upstate
                            locked=false
 Web UI:                    https://happa.ggf8v.REDACTED.aws.gigantic.io/organizations/acme/clusters/ggf8v
+Master availability zones: eu-central-1b
+Masters:                   1
+Masters ready:             1
 Size:                      3 nodes in 1 node pool
 CPUs in nodes:             12
 RAM in nodes (GB):         48
@@ -93,6 +78,8 @@ The output lines in detail:
 - **Created:** date and time of cluster creation
 - **Organization:** organization owning the cluster
 - **Kubernetes API endpoint:** URL of the Kubernetes API for this cluster
+- **Masters:** (_only for AWS_) Number of master nodes in the cluster
+- **Master availability zones:** (_only for AWS_) Availability zone(s) of the master node(s)
 - **Release version:** Version number of the release used in this cluster
 - **Worker node scaling**: Scaling limits. Shows either `autoscaling between <min> and <max>` for an autoscaling cluster, or `pinned to <num>` where autoscaling is disabled or where it's not available.
 - **Desired worker node count**: Only shown for autoscaling clusters. The number of worker nodes the autoscaler intends to have running.
