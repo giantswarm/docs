@@ -99,55 +99,36 @@ Check the [v5 cluster modification API reference](/api/#operation/modifyClusterV
 
 ## Via the Control Plane K8s API {#cp-k8s-api}
 
-Two resources have to be changed in order to convert a single master cluster
-to high availability.
+In order to convert a single master cluster to high availability, the cluster's
+[`G8sControlPlane`](/reference/cp-k8s-api/g8scontrolplanes.infrastructure.giantswarm.io/)
+has to be modified. First you have to find the resource for your cluster ID. The
+following command helps with that:
 
-1. `AWSControlPlane`
-2. `G8sControlPlane`
-
-### `AWSControlPlane`
-
-The cluster's [`AWSControlPlane`](/reference/cp-k8s-api/awscontrolplanes.infrastructure.giantswarm.io/)
-has a `.spec.availabilityZones` array which, in case of a single master
-cluster, has only one item. This item is the availability zone assigned to the
-only master node.
-
-To convert the cluster to high availability, this array has to be extended
-to have three items. Each item specifies the availability zone for one master
-node after the conversion.
-
-**CAUTION:** Order is important here. The first item must be left untouched. Or, in other words, what was the only array item before must be the first of three item after the change.
-
-Example for a cluster in region `eu-central-1`:
-
-The `AWSControlPlane` shows this spec (shortened):
-
-```yaml
-spec:
-  availabilityZones:
-  - eu-central-1c
+```nohighlight
+kubectl get g8scontrolplanes.infrastructure.giantswarm.io \
+  -l giantswarm.io/cluster=<CLUSTER_ID>
 ```
 
-The resource gets changed to this:
+As a result, you should find one `G8sControlPlane` with the name showing in the
+first output column. Use that name in the `kubectl edit` command, or a
+`kubectl patch` command alternatively. For interactive editing:
 
-```yaml
-spec:
-  availabilityZones:
-  - eu-central-1c
-  - eu-central-1a
-  - eu-central-1b
+```nohighlight
+kubectl edit g8scontrolplanes.infrastructure.giantswarm.io <NAME>
 ```
 
-### `G8sControlPlane`
+The `.spec.replicas` attribute, which specifies the number of master nodes to
+run, must be changed from 1 to 3.
 
-The [`G8sControlPlane`](/reference/cp-k8s-api/g8scontrolplanes.infrastructure.giantswarm.io/)
-has a `.spec.replicas` attribute which indicates the number of master nodes to
-run. This is `1` for a single master cluster and needs to be modified to `3`.
+For non-interactive patching:
 
-**Note:** Modifying the `G8sControlPlane` resource must happen _after_ the `AWSControlPlane`
-modification in order to have full control over AZ usage. Otherwise the `AWSControlPlane` will
-be modified automatically and AZs will be added by our automation. This may or may not
-be your desired way.
+```nohighlight
+kubectl patch g8scontrolplanes.infrastructure.giantswarm.io <NAME> \
+  --type merge -p '{"spec": {"replicas": 3}}
+```
+
+Once that is done, the operators will reconcile the desired state and create the
+additional master nodes.
 
 ## Technical details
 
