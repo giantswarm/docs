@@ -59,8 +59,10 @@ When high availability master nodes is activated for a cluster, the three
 master nodes are spread over different availability zones (AZ). Depending on
 the number of AZ in the region, the logic is:
 
-- With **three or more AZs** in the region, each master node is assigned to a different AZ, selected randomly.
-- With **two AZs** in the region (as is the case in `cn-north-1`), both AZs get used. Two master nodes will share the same AZ.
+- With **three or more AZs** in the region, each master node is assigned to a different
+  AZ, selected randomly.
+- With **two AZs** in the region (as is the case in `cn-north-1`), both AZs get used.
+  Two master nodes will share the same AZ.
 
 When [converting a single master cluster to high availability](#conversion-to-ha),
 the AZ used by the master node before is re-used. Additional AZs are assigned
@@ -91,11 +93,14 @@ the instructions in the web UI.
 
 ## Via the CLI (`gsctl`) {#gsctl}
 
-The `gsctl` CLI as of v0.23.1 provides the [gsctl update cluster](/reference/gsctl/update-cluster/) to change cluster details. Check the reference for the `--master-ha` flag.
+The `gsctl` CLI as of v0.23.1 provides the
+[gsctl update cluster](/reference/gsctl/update-cluster/) to change cluster details.
+Check the reference for the `--master-ha` flag.
 
 ## Via the Rest API {#rest-api}
 
-Check the [v5 cluster modification API reference](/api/#operation/modifyClusterV5) to find out how to convert a cluster programmatically using the Rest API.
+Check the [v5 cluster modification API reference](/api/#operation/modifyClusterV5)
+to find out how to convert a cluster programmatically using the Rest API.
 
 ## Via the Control Plane K8s API {#cp-k8s-api}
 
