@@ -47,6 +47,9 @@ More information about possible queries can be found in the [Kubernetes Labels a
 Accepts a single string containing multiple selector requirements which are comma-separated.
 In the case of multiple requirements, all must be satisfied so the comma separator acts as a logical AND (&&) operator.
 This feature is only available for clusters with release version {{% first_aws_nodepools_version %}} and above on AWS.
+- `--sort` or `-s`: Sort clusters by one of the columns, in ascending order. The default value is `id`.
+Accepted values: `id`, `created`, `name`, `organization`, `release`, `deleting-since`.
+Providing a small part of the value is also accepted: `d`/`del`/`deleting` are all valid for the `deleting-since` value.
 
 ## Related
 
