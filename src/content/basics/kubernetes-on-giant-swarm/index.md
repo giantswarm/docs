@@ -23,7 +23,7 @@ Your clusters comes out-of-the-box as follows:
 - Calico networking plugin installed (supports Network Policy API)
 - CoreDNS installed
 - All resources and feature gates (incl. alpha) enabled
-- NGINX Ingress Controller - running inside your cluster (now optional)
+- NGINX Ingress Controller - running inside your cluster (optional)
 - Monitoring
 - Storage
 
@@ -57,4 +57,3 @@ On AWS all resources (besides minor resources on S3 and KMS) pertaining to a clu
 - `giantswarm.io/cluster: <clusterid>`
 
 The latter enables you to set up reporting to monitor usage and cost.
-
