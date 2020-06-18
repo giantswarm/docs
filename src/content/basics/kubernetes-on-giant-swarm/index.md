@@ -27,8 +27,6 @@ Your clusters comes out-of-the-box as follows:
 - Monitoring
 - Storage
 
-
-
 ## What is not included
 
 There are some things not included in the cluster as managed by us:
