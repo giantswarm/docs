@@ -1,7 +1,7 @@
 ---
 title: Creating tenant clusters on AWS via Control Plane Kubernetes API
 description: This guide will walk you through the process of tenant cluster creation via Control Plane Kubernetes.
-date: 2020-04-01
+date: 2020-06-19
 type: page
 weight: 100
 tags: ["tutorial"]
