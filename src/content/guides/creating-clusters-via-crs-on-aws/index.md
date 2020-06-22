@@ -84,9 +84,6 @@ spec:
     credentialSecret:
       name: credential-default
       namespace: giantswarm
-    master:
-      availabilityZone: ""
-      instanceType: ""
     pods:
       cidrBlock: 10.7.0.0/16
     region: eu-central-1
