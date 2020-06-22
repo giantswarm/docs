@@ -45,7 +45,7 @@ Having multiple master nodes in different availability zones has several benefit
   node which can suffer from high loads temporarily.
 
 We recommend that all production clusters on AWS are run with high
-availability of master nodes. As aresult, this is the default setting starting with
+availability of master nodes. As a result, this is the default setting starting with
 release v{{% first_aws_ha_masters_version %}}.
 
 Since these benefits come at the cost of additional EC2 instances and
