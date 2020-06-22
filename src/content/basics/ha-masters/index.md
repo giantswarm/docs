@@ -20,10 +20,7 @@ Clusters can run in a fully functional way with one master node. However this re
 Kubernetes API unavailable in certain cases like a cluster upgrade or even an outage of
 the underlying infrastructure.
 
-With AWS release v{{% first_aws_ha_masters_version %}} new tenant clusters are launched
-with three master nodes in different availability zones by default. Thus, increasing the API
-availability during upgrades and drastic changes to the cluster. It also makes the cluster more
-resilient against data center failure.
+As of AWS release v{{% first_aws_ha_masters_version %}}, new tenant clusters are launched with three master nodes by default, spread over multiple availability zones. This results in much higher availability of the API during upgrades or other changes to the cluster configuration, plus enhanced resilience against any data center or hardware failures.
 
 ## Benefits
 
