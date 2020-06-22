@@ -84,25 +84,25 @@ Single master clusters using release v{{% first_aws_ha_masters_version %}} or
 above on AWS can be converted to master node high availability in the user
 interfaces and via the APIs.
 
-## Via the web UI {#web-ui}
+### Via the web UI {#web-ui}
 
 The web UI presents information on the master node in the cluster details page.
 Next to these details you find a button _Switch to high availability…_, unless
 the cluster is currently undergoing an upgrade. Click this button and follow
 the instructions in the web UI.
 
-## Via the CLI (`gsctl`) {#gsctl}
+### Via the CLI (`gsctl`) {#gsctl}
 
 The `gsctl` CLI as of v0.23.1 provides the
 [gsctl update cluster](/reference/gsctl/update-cluster/) to change cluster details.
 Check the reference for the `--master-ha` flag.
 
-## Via the Rest API {#rest-api}
+### Via the Rest API {#rest-api}
 
 Check the [v5 cluster modification API reference](/api/#operation/modifyClusterV5)
 to find out how to convert a cluster programmatically using the Rest API.
 
-## Via the Control Plane K8s API {#cp-k8s-api}
+### Via the Control Plane K8s API {#cp-k8s-api}
 
 In order to convert a single master cluster to high availability, the cluster's
 [`G8sControlPlane`](/reference/cp-k8s-api/g8scontrolplanes.infrastructure.giantswarm.io/)
