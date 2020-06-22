@@ -41,7 +41,7 @@ Having multiple master nodes in different availability zones has several benefit
   the risk of losing control of the cluster in case of a single AZ downtime. Refer to
   [below](#use-of-az) for details.
 - **Load balancing of API requests.** Read-only requests to the Kubernetes API are performed
-  by all three master nodes, so that latencies stay lowein comparison to a single master
+  by all three master nodes, so that latencies stay low in comparison to a single master
   node which can suffer from high loads temporarily.
 
 We recommend that all production clusters on AWS are run with high
