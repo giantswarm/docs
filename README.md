@@ -223,7 +223,7 @@ gsctl create cluster \
   --create-default-nodepool false
 ```
 
-### Linting
+### Linting and validation
 
 Many style rules are checked automatically in CI. You can also execute the check locally
 before pushing commits using the `make lint` command.
@@ -231,6 +231,10 @@ before pushing commits using the `make lint` command.
 For a reference of all rules please check the [DavidAnson/markdownlint documentation](https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md).
 
 There is a project specific configuration in place via the `.markdownlint.yaml` file.
+
+To check locally whether all internal links are correct, use `make linkcheck`.
+
+To check both internal and external links, use `make linkcheck-external`.
 
 ## License
 
