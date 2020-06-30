@@ -11,21 +11,24 @@ jobs:
 
     steps:
       - run:
-          name: Link check
+          name: Link check including external
           command: |
             docker pull linkchecker/linkchecker > /dev/null
-            docker run -d --rm --name docs -p 8080:8080 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
+            docker run -d --rm --name docs2 -p 8082:8080 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
             docker run --rm -ti --name linkchecker \
-              --link docs:docs \
+              --link docs2:docs2 \
               linkchecker/linkchecker \
-                http://docs:8080 \
-                --check-extern -t 2 \
+                http://docs2:8082 \
+                --check-extern \
+                -t 2 \
                 --ignore-url="^https://docs\.giantswarm\.io/.*" \
                 --ignore-url=/api/ \
-                --ignore-url="^https://.*example.com/.*" \
+                --ignore-url="^https://.*example\.com/.*" \
                 --ignore-url="^https://my-org\.github\.com/.*" \
                 --ignore-url=".*gigantic\.io.*" \
                 --ignore-url="^https://github\.com/giantswarm/giantswarm/.*"
+            docker kill docs2 || echo "Container 'docs2' not running"
+
 
   build:
     machine:
@@ -63,7 +66,19 @@ jobs:
             docker run -d --rm --name docs -p 8080:8080 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
             CURL_OUTPUT=$(curl --no-buffer -s http://localhost:8080)
             echo $CURL_OUTPUT | grep --quiet "Giant Swarm"
-            docker kill docs
+      
+      - run:
+          name: Internal link check
+          command: |
+            docker pull linkchecker/linkchecker > /dev/null
+            docker run --rm -ti --name linkchecker \
+              --link docs:docs \
+              linkchecker/linkchecker \
+                http://docs:8080 \
+                -t 4 \
+                --ignore-url="^https://docs\.giantswarm\.io/.*" \
+                --ignore-url=/api/
+            docker kill docs || echo "Container 'docs' not running"
 
       - deploy:
           name: Deploy (only if branch is "master")
@@ -76,10 +91,11 @@ jobs:
 workflows:
   version: 2
 
-  build-andcheck:
+  build-and-check:
     jobs:
       - build
-      - linkcheck:
+      - linkcheck-external:
+          type: approval
           requires:
             - build
 
