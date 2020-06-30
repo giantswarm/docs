@@ -19,7 +19,6 @@ jobs:
               --link docs:docs \
               linkchecker/linkchecker \
                 http://docs:8081 \
-                --no-status \
                 -t 4 \
                 --ignore-url="^https://docs\.giantswarm\.io/.*" \
                 --ignore-url=/api/
@@ -39,7 +38,6 @@ jobs:
               --link docs:docs \
               linkchecker/linkchecker \
                 http://docs:8082 \
-                --no-status \
                 --check-extern \
                 -t 2 \
                 --ignore-url="^https://docs\.giantswarm\.io/.*" \
