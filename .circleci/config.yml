@@ -5,25 +5,6 @@ orbs:
 
 
 jobs:
-  linkcheck-internal:
-    machine:
-      image: "ubuntu-1604:201903-01"
-
-    steps:
-      - run:
-          name: Internal link check
-          command: |
-            docker pull linkchecker/linkchecker > /dev/null
-            docker run -d --rm --name docs1 -p 8080:8080 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
-            docker run --rm -ti --name linkchecker \
-              --link docs1:docs1 \
-              linkchecker/linkchecker \
-                http://docs1:8080 \
-                -t 4 \
-                --ignore-url="^https://docs\.giantswarm\.io/.*" \
-                --ignore-url=/api/
-            docker kill docs1 || echo "Container 'docs1' not running"
-
   linkcheck:
     machine:
       image: "ubuntu-1604:201903-01"
@@ -85,7 +66,19 @@ jobs:
             docker run -d --rm --name docs -p 8080:8080 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
             CURL_OUTPUT=$(curl --no-buffer -s http://localhost:8080)
             echo $CURL_OUTPUT | grep --quiet "Giant Swarm"
-            docker kill docs
+      
+      - run:
+          name: Internal link check
+          command: |
+            docker pull linkchecker/linkchecker > /dev/null
+            docker run --rm -ti --name linkchecker \
+              --link docs:docs \
+              linkchecker/linkchecker \
+                http://docs:8080 \
+                -t 4 \
+                --ignore-url="^https://docs\.giantswarm\.io/.*" \
+                --ignore-url=/api/
+            docker kill docs || echo "Container 'docs' not running"
 
       - deploy:
           name: Deploy (only if branch is "master")
