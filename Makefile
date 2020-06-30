@@ -3,6 +3,7 @@ COMPANY=giantswarm
 REGISTRY=quay.io
 SHELL=bash
 MARKDOWNLINT_IMAGE=06kellyjac/markdownlint-cli:0.21.0
+CRD_DOCS_GENERATOR_VERSION=0.1.1
 
 default: docker-build
 
@@ -54,7 +55,7 @@ build: vendor build-css
 	docker run \
 		-v ${PWD}/build/content/reference/cp-k8s-api:/opt/crd-docs-generator/output \
 		-v ${PWD}:/opt/crd-docs-generator/config \
-		quay.io/giantswarm/crd-docs-generator:0.0.0-cce07b5b225bd1b7ad576a0e1f5ebb773397915c \
+		quay.io/giantswarm/crd-docs-generator:$(CRD_DOCS_GENERATOR_VERSION) \
 		  --config /opt/crd-docs-generator/config/crd-docs-generator-config.yaml
 
 lint:
