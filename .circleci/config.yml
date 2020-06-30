@@ -14,15 +14,16 @@ jobs:
           name: Internal link check
           command: |
             docker pull linkchecker/linkchecker > /dev/null
-            docker run -d --rm --name docs -p 8080:8080 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
+            docker run -d --rm --name docs1 -p 8081:8080 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
             docker run --rm -ti --name linkchecker \
               --link docs:docs \
               linkchecker/linkchecker \
-                http://docs:8080 \
+                http://docs:8081 \
                 --no-status \
                 -t 4 \
                 --ignore-url="^https://docs\.giantswarm\.io/.*" \
                 --ignore-url=/api/
+            docker kill docs1 || echo "Container 'docs1' not running"
 
   linkcheck:
     machine:
@@ -33,11 +34,11 @@ jobs:
           name: Link check including external
           command: |
             docker pull linkchecker/linkchecker > /dev/null
-            docker run -d --rm --name docs -p 8080:8080 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
+            docker run -d --rm --name docs2 -p 8082:8080 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
             docker run --rm -ti --name linkchecker \
               --link docs:docs \
               linkchecker/linkchecker \
-                http://docs:8080 \
+                http://docs:8082 \
                 --no-status \
                 --check-extern \
                 -t 2 \
@@ -47,6 +48,7 @@ jobs:
                 --ignore-url="^https://my-org\.github\.com/.*" \
                 --ignore-url=".*gigantic\.io.*" \
                 --ignore-url="^https://github\.com/giantswarm/giantswarm/.*"
+            docker kill docs2 || echo "Container 'docs2' not running"
 
 
   build:
