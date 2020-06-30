@@ -39,6 +39,7 @@ jobs:
               linkchecker/linkchecker \
                 http://docs:8080 \
                 --no-status \
+                --check-extern \
                 -t 2 \
                 --ignore-url="^https://docs\.giantswarm\.io/.*" \
                 --ignore-url=/api/ \
