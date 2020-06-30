@@ -496,6 +496,6 @@ data:
 
 ## Further reading
 
-- [Official Kubernetes documentation for the Ingress Resource](http://kubernetes.io/docs/user-guide/ingress/)
+- [Official Kubernetes documentation for the Ingress Resource](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 - [Configuration documentation for the NGINX Ingress Controller](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)
 - [Official ingress-nginx configuration snippets example](https://github.com/kubernetes/ingress-nginx/tree/master/docs/examples/customization/configuration-snippets)
