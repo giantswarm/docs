@@ -106,7 +106,7 @@ workflows:
             - build
       - linkcheck-external:
           type: approval
-          requites:
+          requires:
             - build
 
   package-and-push-chart-on-tag:
