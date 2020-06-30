@@ -16,9 +16,9 @@ jobs:
             docker pull linkchecker/linkchecker > /dev/null
             docker run -d --rm --name docs1 -p 8081:8080 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
             docker run --rm -ti --name linkchecker \
-              --link docs1:docs \
+              --link docs1:docs1 \
               linkchecker/linkchecker \
-                http://docs:8081 \
+                http://docs1:8081 \
                 -t 4 \
                 --ignore-url="^https://docs\.giantswarm\.io/.*" \
                 --ignore-url=/api/
@@ -35,9 +35,9 @@ jobs:
             docker pull linkchecker/linkchecker > /dev/null
             docker run -d --rm --name docs2 -p 8082:8080 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
             docker run --rm -ti --name linkchecker \
-              --link docs2:docs \
+              --link docs2:docs2 \
               linkchecker/linkchecker \
-                http://docs:8082 \
+                http://docs2:8082 \
                 --check-extern \
                 -t 2 \
                 --ignore-url="^https://docs\.giantswarm\.io/.*" \
