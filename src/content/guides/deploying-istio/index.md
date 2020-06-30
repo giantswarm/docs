@@ -364,5 +364,5 @@ spec:                      spec:
 ## Further reading
 
 - [Istio official docs](https://istio.io/docs/)
-- [Istio community chat](https://istio.rocket.chat/)
+- [Istio community chat](https://slack.istio.io/)
 - [Istio GitHub project](https://github.com/istio/istio)
