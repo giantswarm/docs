@@ -5,13 +5,13 @@ orbs:
 
 
 jobs:
-  linkcheck:
+  linkcheck-internal:
     machine:
       image: "ubuntu-1604:201903-01"
 
     steps:
       - run:
-          name: Link check
+          name: Internal link check
           command: |
             docker pull linkchecker/linkchecker > /dev/null
             docker run -d --rm --name docs -p 8080:8080 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
@@ -19,12 +19,33 @@ jobs:
               --link docs:docs \
               linkchecker/linkchecker \
                 http://docs:8080 \
-                --check-extern -t 2 \
-                --ignore-url="^https://docs.giantswarm.io/.*" \
+                --no-status \
+                -t 4 \
+                --ignore-url="^https://docs\.giantswarm\.io/.*" \
+                --ignore-url=/api/
+
+  linkcheck:
+    machine:
+      image: "ubuntu-1604:201903-01"
+
+    steps:
+      - run:
+          name: Link check including external
+          command: |
+            docker pull linkchecker/linkchecker > /dev/null
+            docker run -d --rm --name docs -p 8080:8080 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
+            docker run --rm -ti --name linkchecker \
+              --link docs:docs \
+              linkchecker/linkchecker \
+                http://docs:8080 \
+                --no-status \
+                -t 2 \
+                --ignore-url="^https://docs\.giantswarm\.io/.*" \
                 --ignore-url=/api/ \
-                --ignore-url="^https://.*example.com/.*" \
-                --ignore-url="^https://my-org.github.com/.*" \
+                --ignore-url="^https://.*example\.com/.*" \
+                --ignore-url="^https://my-org\.github\.com/.*" \
                 --ignore-url=".*gigantic\.io.*"
+
 
   build:
     machine:
@@ -78,8 +99,12 @@ workflows:
   build-andcheck:
     jobs:
       - build
-      - linkcheck:
+      - linkcheck-internal:
           requires:
+            - build
+      - linkcheck-external:
+          type: approval
+          requites:
             - build
 
   package-and-push-chart-on-tag:
