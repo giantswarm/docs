@@ -94,9 +94,6 @@ workflows:
   build-and-check:
     jobs:
       - build
-      - linkcheck-internal:
-          requires:
-            - build
       - linkcheck-external:
           type: approval
           requires:
