@@ -3,7 +3,7 @@ COMPANY=giantswarm
 REGISTRY=quay.io
 SHELL=bash
 MARKDOWNLINT_IMAGE=06kellyjac/markdownlint-cli:0.21.0
-CRD_DOCS_GENERATOR_VERSION=0.1.0-7008fd99c501c1bf4a3f94afdb34e4d008142579
+CRD_DOCS_GENERATOR_VERSION=0.1.1
 
 default: docker-build
 
