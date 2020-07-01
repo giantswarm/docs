@@ -1,7 +1,7 @@
 ---
 title: Node Pools
 description: A general description of node pools as a concept, it's benefits, and some details you should be aware of.
-date: 2020-04-28
+date: 2020-07-01
 weight: 130
 type: page
 categories: ["basics"]
@@ -112,17 +112,27 @@ Pay close attention to the workloads being rescheduled on other nodes once nodes
 
 See the [`gsctl delete nodepool`](/reference/gsctl/delete-nodepool/) reference for how to delete a node pool using the CLI.
 
-## Instance distribution
+## On-demand and spot instances {#on-demand-spot}
 
-Node pools can contain a mix of [on-demand](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-on-demand-instances.html) and [spot instances](https://aws.amazon.com/ec2/spot/) that will allow you to optimize your cost.
+As of release v{{% first_aws_spotinstances_version %}} on AWS, node pools can contain a mix of [on-demand](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-on-demand-instances.html) and [spot instances](https://aws.amazon.com/ec2/spot/) that will allow you to optimize your cost.
 
-There are two parameters that will allow you to configure which instances are going to be used:
+The main differences between spot and on-demand instances are that spot instances can be terminated any time by AWS. They are also more frequently unavailable.
 
-- *On-demand base capacity*: controls how much of the initial capacity is made up of on-demand instances.
+The hourly price for a spot instance is determined by AWS through a bidding system. The resulting price varies over time and is usually much lower than the cost of the same instance type when booked as on-demand instance. To maximize the likelihood of getting a spot instance when needed, the configuration for Giant Swarm is set to bid up to the price of an on-demand instance with the same type, but not more.
 
-- *Spot instance percentage above base capacity*: controls the percentage of spot instances to be used for worker nodes beyond the number of *on-demand base capacity*.
+There are two parameters on the node pool level that will allow you to configure which instances are going to be used:
 
-**Note:** Spot instance max bidding price is configured to be equal to the On-demand price to ensure availability of nodes.
+- **On-demand base capacity**: controls how much of the initial capacity is made up of on-demand instances. Note that this capacity is static and does not automatically replace any unavailable spot instances.
+
+- **Spot instance percentage above base capacity**: controls the percentage of spot instances to be used for worker nodes beyond the number of *on-demand base capacity*.
+
+### Notes on using spot instances
+
+Since the availability of spot instances is volatile, there are a few things you can consider:
+
+- The more availability zones you cover with your node pool, the higher the likelihood that spot instances are available when required.
+- Activating the [use of similar instance types](#similar-instance-types) also increases the likelihood of getting spot instances when using common instance types. Read more about this below.
+- When no spot instances are unavailable, missing spot instances are _not_ replaced by on-demand instances. The affected node pool will instead have less nodes than desired, probably leaving some pods unscheduled.
 
 ### Examples
 
