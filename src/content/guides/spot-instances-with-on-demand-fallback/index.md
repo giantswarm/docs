@@ -158,7 +158,7 @@ I0701 11:10:16.028394       1 auto_scaling_groups.go:138] Registering ASG cluste
 When the deployment has been scaled up, some line like this should appear:
 
 ```nohighlight
-I0701 11:16:47.077234       1 priority.go:167] priority expander: cluster-cp983-tcnp-sp0ti-NodePoolAutoScalingGroup-139WETDOF86WA chosen as the highest available
+I0701 11:16:47.077234       1 priority.go:167] priority expander: cluster-abc12-tcnp-sp0ti-NodePoolAutoScalingGroup-139WETDOF86WA chosen as the highest available
 ```
 
 ## Final notes
