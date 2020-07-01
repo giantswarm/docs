@@ -148,7 +148,7 @@ Once you apply this to the tenant cluster, watch the autoscaler logs using this 
 kubectl -n kube-system logs -l app=cluster-autoscaler -f
 ```
 
-The logs should show that cluster-autoscaler is registering the two Auto scaling Groups (ASGs) belonging to our node pools, similar to this:
+The logs should show that cluster-autoscaler is registering the two Auto Scaling Groups (ASGs) belonging to our node pools, similar to this:
 
 ```nohighlight
 I0701 11:10:16.028372       1 auto_scaling_groups.go:138] Registering ASG cluster-cp983-tcnp-sp0ti-NodePoolAutoScalingGroup-139WETDOF86WA
