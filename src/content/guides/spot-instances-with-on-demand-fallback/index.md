@@ -151,8 +151,8 @@ kubectl -n kube-system logs -l app=cluster-autoscaler -f
 The logs should show that cluster-autoscaler is registering the two Auto Scaling Groups (ASGs) belonging to our node pools, similar to this:
 
 ```nohighlight
-I0701 11:10:16.028372       1 auto_scaling_groups.go:138] Registering ASG cluster-cp983-tcnp-sp0ti-NodePoolAutoScalingGroup-139WETDOF86WA
-I0701 11:10:16.028394       1 auto_scaling_groups.go:138] Registering ASG cluster-cp983-tcnp-0ndmd-NodePoolAutoScalingGroup-1B8IU42LTSOYU
+I0701 11:10:16.028372       1 auto_scaling_groups.go:138] Registering ASG cluster-abc12-tcnp-sp0ti-NodePoolAutoScalingGroup-139WETDOF86WA
+I0701 11:10:16.028394       1 auto_scaling_groups.go:138] Registering ASG cluster-abc12-tcnp-0ndmd-NodePoolAutoScalingGroup-1B8IU42LTSOYU
 ```
 
 When the deployment has been scaled up, some line like this should appear:
