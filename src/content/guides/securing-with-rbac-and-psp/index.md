@@ -262,11 +262,9 @@ yes
 
 ## Pod Security Policies
 
-<!-- TODO: review/update this section, as the links to PSP policies don't work any more. Probably the info also needs updating. -->
-
 A `PodSecurityPolicy` object defines a set of conditions that a pod must run with in order to be accepted into the system. It governs the ability to make requests on a Pod that affect the `SecurityContext` that will be applied to a Pod and container.
 
-By default, Giant Swarm clusters come with two PSPs defined - a [`privileged` policy](https://github.com/giantswarm/k8scloudconfig/blob/master/v_4_8_0/files/k8s-resource/psp_policies.yaml#L1-L27) that allows almost any Security Context and a [`restricted` policy](https://github.com/giantswarm/k8scloudconfig/blob/master/v_4_8_0/files/k8s-resource/psp_policies.yaml#L30-L57) that mainly restricts users from running privileged containers, running containers as root, or mounting host paths as volumes.
+By default, Giant Swarm clusters come with two PSPs defined - a `privileged` policy that allows almost any Security Context and a `restricted` policy that mainly restricts users from running privileged containers, running containers as root, or mounting host paths as volumes.
 
 Additionally, there are two respective cluster roles defined - `privileged-psp-user` and `restricted-psp-user`.
 
@@ -274,7 +272,7 @@ By default all authenticated users have the `restricted-psp-user` role assigned.
 
 If you need to run privileged or root containers in a Pod, you need to either use a cluster admin user or bind the `privileged-psp-user` role to your desired user or group.
 
-Note that your user's PSP only come into play when you directly create Pods. If you are using Deployments, Daemonsets, or other means to spawn Pods in your cluster, you need to make sure these have the right PSP by using [Service Accounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/).
+Note that your user's PSP only comes into play when you directly create Pods. If you are using Deployments, Daemonsets, or other means to spawn Pods in your cluster, you need to make sure these have the right PSP by using [Service Accounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/).
 
 You need to either bind the already existing `privileged-psp-user` role, or create a PSP that caters specifically to your desired Security Context. Keep in mind that after creating a PSP you also need to have a role that is allowed to `use` that specific PSP and bind that to the Service Account you're using. For an example see [Running Applications that need Privileged Access](#running-applications-that-need-privileged-access).
 
