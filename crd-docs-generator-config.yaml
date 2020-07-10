@@ -3,7 +3,7 @@ source_repository:
   url: https://github.com/giantswarm/apiextensions
   organization: giantswarm
   short_name: apiextensions
-  commit_reference: v0.4.8
+  commit_reference: v0.4.12
 skip_crds:
   - chartconfigs.core.giantswarm.io
   - clusters.core.giantswarm.io
