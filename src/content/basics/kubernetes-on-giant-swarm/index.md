@@ -58,4 +58,4 @@ On AWS all resources (besides minor resources on S3 and KMS) pertaining to a clu
 - `kubernetes.io/cluster/<clusterid>: owned`
 - `giantswarm.io/cluster: <clusterid>`
 
-Here, `<clusterid>` stands for the unique identifier of the clsuter. This enables you to set up reporting to monitor usage and cost.
+Here, `<clusterid>` stands for the unique identifier of the cluster. This enables you to set up reporting to monitor usage and cost.
