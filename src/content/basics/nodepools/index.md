@@ -1,7 +1,7 @@
 ---
 title: Node Pools
 description: A general description of node pools as a concept, it's benefits, and some details you should be aware of.
-date: 2020-07-01
+date: 2020-07-31
 weight: 130
 type: page
 categories: ["basics"]
@@ -90,9 +90,9 @@ spec:
 You can assign workloads to node pools in a more indirect way too. This is achieved by using other node attributes which are
 specified via the node pool and which are exposed as node labels.
 
-For example: In a case where you have node pools with one instance type. Using a `nodeSelector` with the label `beta.kubernetes.io/instance-type` you can assign workloads to matching nodes only.
+For example: In a case where you have node pools with one instance type. Using a `nodeSelector` with the label `node.kubernetes.io/instance-type` (or in Kubernetes before v1.17: `beta.kubernetes.io/instance-type`) you can assign workloads to matching nodes only.
 
-Another example: In a case where you have different node pools using different availability zones. With a `nodeSelector` using the label `failure-domain.beta.kubernetes.io/zone` you can assign your workload to the nodes in a particular availability zone.
+Another example: In a case where you have different node pools using different availability zones. With a `nodeSelector` using the label `topology.kubernetes.io/zone` (or in Kubernetes before v1.17: `failure-domain.beta.kubernetes.io/zone`) you can assign your workload to the nodes in a particular availability zone.
 
 ## Node pool deletion
 

@@ -1,7 +1,7 @@
 ---
 title: Clusters Over Multiple Availability Zones
 description: Using multiple availability zones both for worker and for master nodes increases the resilience for clusters. Here we explain some details regarding support on different cloud providers and in different releases. And we give basic information on how to configure workloads to leverage multiple availability zones.
-date: 2020-06-17
+date: 2020-07-31
 weight: 100
 type: page
 categories: ["basics"]
@@ -36,7 +36,7 @@ This enables use cases such as:
 
 - Availability zones get selected randomly by the Giant Swarm control plane. You only need to specify the required number of availability zones.
 
-- Nodes will get distributed evenly across availability zones. There is currently no way to determine which or how many nodes should be started in a particular availability zone. But the nodes will have a label `failure-domain.beta.kubernetes.io/zone` that indicates which availability zone the node is running in.
+- Nodes will get distributed evenly across availability zones. There is currently no way to determine which or how many nodes should be started in a particular availability zone. But the nodes will have a label `topology.kubernetes.io/zone` (or in Kubernetes before 1.17: `failure-domain.beta.kubernetes.io/zone`) that indicates which availability zone the node is running in.
 
 - Single availability zone clusters start in a random availability zone too. This is a means to minimize the risk of all your clusters becoming unavailable due to a failure in one particular AZ.
 
