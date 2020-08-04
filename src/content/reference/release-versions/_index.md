@@ -1,7 +1,7 @@
 ---
 title: Release Versions
 description: Here you find our reference regarding our release versions
-date: 2020-05-14
+date: 2020-08-03
 layout: subsection
 weight: 500
 ---
@@ -14,8 +14,7 @@ release version you would like the cluster to have.
 The release version of a cluster helps you identify additional information like
 what Kubernetes version the cluster will have.
 
-Besides Kubernetes, other components come into play as well, for example Calico,
-Flannel, Docker, and our own services and operators.
+Besides Kubernetes, other components come into play as well, for example Calico, Docker, CoreDNS, and our own services and operators.
 
 Together, all these components define the capabilities of a tenant cluster.
 
@@ -36,7 +35,7 @@ We generally try to increment our Major version only when there is a new Kuberne
 |-----------|------------|-----|
 |**v9.0.x** | Kubernetes 1.15.x ||
 |**v11.x.x** | Kubernetes 1.16.x ||
-|**v12.x.x** | Kubernetes 1.17.x | not yet available|
+|**v12.x.x** | Kubernetes 1.17.x ||
 |**v13.x.x** | Kubernetes 1.18.x | not yet available|
 
 #### Exceptions
@@ -45,7 +44,7 @@ On AWS, **v9.2.0** and up contains **Kubernetes 1.16.x**
 
 ## Versions that support node pools
 
-Currently only AWS **v11.x.x** and up support node pools.
+Currently only AWS **{{% first_aws_nodepools_version %}}** and up support node pools.
 
 While it is still a work in progress, on Azure, **v12.1.0** and above will
 be the releases that support node pools.
@@ -143,3 +142,7 @@ The guides below show before and after examples for each case:
 - [NGINX Ingress Controller](/guides/advanced-ingress-configuration/)
 - [CoreDNS](/guides/advanced-coredns-configuration/)
 - [Cluster Autoscaler](/guides/advanced-cluster-autoscaler-configuration/)
+
+## Latest release information
+
+Check the [giantswarm/releases](https://github.com/giantswarm/releases) GitHub repository for full information on all releases.
