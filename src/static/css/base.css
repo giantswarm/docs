@@ -381,6 +381,32 @@ body > header {
 .button.button-secondary:hover {
   background-color: #f5f5f5; }
 
+body {
+  margin-top: 120px; }
+
+.site-header {
+  top: 0px;
+  line-height: 16px;
+  padding-top: 2px !important; }
+  .site-header li {
+    margin-bottom: 0px;
+    line-height: inherit; }
+
+.site-header .caret {
+  display: none; }
+
+.site-header .cta-btn--secondary, .cta-btn--secondary-fill {
+  background-color: #2b6587;
+  border: 3px solid #2b6587;
+  color: #fff;
+  border-radius: 6px;
+  font-weight: 500;
+  -webkit-transition: background-color .25s ease;
+  -o-transition: background-color .25s ease;
+  transition: background-color .25s ease;
+  font-size: 16px;
+  padding: .57143em 1.42857em; }
+
 h1, h2, h3, h4, h5, h6 {
   text-align: left;
   line-height: 1.3em;
@@ -439,13 +465,17 @@ a code {
 .docsnav {
   margin-bottom: 40px; }
 
+.docsnav nav {
+  display: flex; }
+
 .docsnav .nav > li > a {
   font-size: 14px;
   padding: 6px 9px; }
 
 .docsnav form {
   margin: 0;
-  font-size: 14px; }
+  font-size: 14px;
+  margin-left: auto; }
 
 .docsnav input {
   font-size: 14px;
