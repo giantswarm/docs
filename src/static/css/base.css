@@ -424,11 +424,13 @@ h2 {
 
 h3 {
   font-size: 26px;
-  margin-top: 45px; }
+  margin-top: 45px;
+  font-weight: 300; }
 
 h4 {
   font-size: 20px;
-  margin-top: 45px; }
+  margin-top: 45px;
+  font-weight: 300; }
 
 h5 {
   font-weight: 700;
