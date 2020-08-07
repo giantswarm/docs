@@ -113,8 +113,10 @@ At the same time we advise to read upfront these [recommendations](#recommendati
 Whenever a new Kubernetes minor version is released by the Kubernetes project, we aim to make that version available in a new major release of our stack within 30 days from the Kubernetes release.
 
 Once we publish a new major release, we deprecate the oldest major release.
-This means that no new clusters can be created using that old release version.
+This means that new clusters with deprecated releases can only be created using `gsctl`.
 Existing clusters, however, are not affected.
+
+Creating clusters with deprecated releases is generally not recommended. A valid use case for doing so would be testing upgrades in a separate cluster.
 
 **Both patch and minor upgrades** can be rolled out at any time by Giant Swarm without your interaction. Currently, this happens in coordination with your administrators and with a notice to your developers.
 
