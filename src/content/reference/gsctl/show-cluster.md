@@ -8,7 +8,7 @@ weight: 52
 
 # `gsctl show cluster`
 
-The `gsctl show cluster` command displays details on a cluster.
+The `gsctl show cluster` command displays details of a cluster.
 
 ## Usage
 
