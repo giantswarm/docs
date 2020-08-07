@@ -69,7 +69,7 @@ Output details:
 - **Version:** semantic version number identifying the release
 - **Created:** Date/time the release has been created
 - **Active:** `true` if the release is usable for new cluster or upgrades.
-  `false` will indicate releases that are no longer usable for new clusters or
+  `false` will indicate deprecated releases that are not recommended for cluster creation or
   upgrades, but which may still be running on older clusters.
 - **Components:** List of components provided by the release, each with their
   version number
