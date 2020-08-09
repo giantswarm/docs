@@ -74,6 +74,18 @@ a { text-decoration: underline; color: rgb(56, 118, 150); }
 
 <!-- Manual overrides / additions -->
 <style>
-	li:hover .hs-menu-children-wrapper-container { display: block; }
+  /* Make the the mega header drop downs work. */
+  li:hover .hs-menu-children-wrapper-container { display: block; }
+
+  /* Make the social links show up correctly in the footer. I think some javascript enabes them in real site. */
+  .site-footer .twitter, .site-footer .instagram, .site-footer .facebook, .site-footer .github, .site-footer .youtube, .site-footer .linkedin {
+    display: block;
+  }
+
+  .site-footer__social-links {
+    text-align: center;
+  }
+
+  /* Avoid making all links be underlined. */
 	a { text-decoration: none }
 </style>
