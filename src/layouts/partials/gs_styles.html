@@ -87,5 +87,21 @@ a { text-decoration: underline; color: rgb(56, 118, 150); }
   }
 
   /* Avoid making all links be underlined. */
-	a { text-decoration: none }
+  a { text-decoration: none }
+
+  /* Make sure the site header appears in the right place. */
+  .site-header {
+    top: 0px;
+    line-height: 16px;
+    padding-top: 2px !important;
+  }
+
+  .site-footer li {
+    margin-bottom: 0px;
+    line-height: inherit;
+  }
+
+  .site-header .caret {
+    display: none;
+  }
 </style>
