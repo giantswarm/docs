@@ -8,7 +8,7 @@ tags: ["tutorial"]
 
 # Multi-NGINX ingress controller support
 
-NGINX ingress controller handles Ingress resources, routing the traffic from outside of the Kubernetes cluster to services within the cluster. Starting with App version 1.8.0 one can install multiple NGINX ingress controllers in same Kubernetes cluster. Here we cover common cases where having multiple NGINX ingress controllers can be useful.
+NGINX ingress controller handles [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) resources, routing the traffic from outside of the Kubernetes cluster to services within the cluster. Starting with App version 1.8.0 one can install multiple NGINX ingress controllers in same Kubernetes cluster. Here we cover common cases where having multiple NGINX ingress controllers can be useful.
 
 Most of the NGINX configuration options have NGINX wide defaults but can also be overriden on per Ingress resource level. In each of the covered multi-NGINX use cases, one essentially installs second NGINX with different NGINX global-only configuration, i.e. configuration that applies to all Ingress resources managed by that NGINX installation which cannot be customized on per-Ingress resource level.
 
@@ -75,3 +75,7 @@ Here is how this can be achieved:
   ```
 
 For the second NGINX IC App installation ingress class and host name subdomain are customized for uniqueness. Additionally, default SSL ciphers are overriden to include weak ciphers for legacy clients.
+
+## Further reading
+
+- [Official ingress-nginx multi-nginx documentation](https://kubernetes.github.io/ingress-nginx/user-guide/multiple-ingress/)
