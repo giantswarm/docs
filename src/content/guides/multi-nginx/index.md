@@ -76,6 +76,8 @@ Here is how this can be achieved:
 
 For the second NGINX IC App installation ingress class and host name subdomain are customized for uniqueness. Additionally, default SSL ciphers are overriden to include weak ciphers for legacy clients.
 
-## Further reading
+## Additional resources
 
-- [Official ingress-nginx multi-nginx documentation](https://kubernetes.github.io/ingress-nginx/user-guide/multiple-ingress/)
+- [NGINX IC App configuration options](https://github.com/giantswarm/nginx-ingress-controller-app/blob/master/helm/nginx-ingress-controller-app/values.yaml)
+- [Upstream ingress-nginx configuration documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)
+- [Upstream ingress-nginx multi-nginx documentation](https://kubernetes.github.io/ingress-nginx/user-guide/multiple-ingress/)
