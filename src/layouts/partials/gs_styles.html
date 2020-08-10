@@ -106,6 +106,42 @@ a { text-decoration: underline; color: rgb(56, 118, 150); }
     top: 0px;
   }
 
+  /* Fix hover styles */
+  .site-header__main-menu--mega .hs-menu-item.hs-menu-depth-1:hover>a {
+    color: #009fff;
+    text-decoration: none;
+  }
+
+  /* Fix missing lines in mega menu */
+  .site-header__main-menu--mega .hs-menu-children-wrapper-container-inner>.hs-menu-children-wrapper>.hs-menu-item.hs-menu-depth-2:after {
+    content: '';
+    width: 1px;
+    height: 100%;
+    background-color: #e8eaea;
+    display: block;
+    right: 0;
+    top: 0;
+    position: absolute;
+  }
+
+  .site-header__main-menu--mega .hs-menu-children-wrapper-container-inner>.hs-menu-children-wrapper>.hs-menu-item.hs-menu-depth-2:last-child:after, .site-header__main-menu--mega .hs-menu-children-wrapper-container-inner>.hs-menu-children-wrapper>.hs-menu-item.hs-menu-depth-2:nth-child(4):after {
+    display: none;
+  }
+
+  /* Fix cta-btn hover style */
+  .site-header .cta-btn:hover, .mobile-menu .cta-btn:hover {
+    text-decoration: none;
+    background-color: #27546b;
+    border-color: #27546b;
+    color: #fff;
+  }
+
+  /* Fix footer link hover style */
+  .site-footer ul li a:hover {
+    color:#fff;
+    text-decoration: none;
+  }
+
   .site-header li, .mobile-menu li {
     margin-bottom: 0px;
   }
