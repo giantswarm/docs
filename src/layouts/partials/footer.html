@@ -14,5 +14,14 @@
     <script type="text/javascript" src="/js/aside.js?{{ partial "cachebreaker_js.html" . }}"></script>
     <script type="text/javascript" src="/js/base.js?{{ partial "cachebreaker_js.html" . }}"></script>
 
+    <script>
+      let mobileMenuTrigger = document.getElementsByClassName('menu-trigger__container')[0];
+      let mobileMenu = document.getElementsByClassName('mobile-menu ')[0];
+      mobileMenuTrigger.addEventListener('click', () => {
+        mobileMenuTrigger.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+      });
+    </script>
+
 </body>
 </html>

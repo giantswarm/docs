@@ -1,3 +1,6 @@
+<!-- fontawesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
 <!-- .site-header -->
 <style>
 	*, ::before, ::after { box-sizing: border-box; } body * { font-family: Roboto, sans-serif; } .site-header { position: fixed; background-color: rgb(255, 255, 255); padding: 10px 0px; width: 100%; z-index: 12; height: 70px; transition: background-color 0.25s linear 0s; } .site-header__on_dark { background: 0px center; } @media (min-width: 992px) {
@@ -103,7 +106,7 @@ a { text-decoration: underline; color: rgb(56, 118, 150); }
     top: 0px;
   }
 
-  .site-header li {
+  .site-header li, .mobile-menu li {
     margin-bottom: 0px;
   }
 
@@ -120,7 +123,37 @@ a { text-decoration: underline; color: rgb(56, 118, 150); }
     line-height: inherit;
   }
 
-  .site-header .caret {
+  .site-header .caret, .mobile-menu .caret {
     display: none;
+  }
+
+  .menu-trigger__icon:before {
+    top: -5px;
+  }
+
+  .menu-trigger__icon:after {
+    top: 5px;
+  }
+
+  .menu-trigger__icon:before, .menu-trigger__icon:after {
+    position: absolute;
+    content: '';
+    left: 0;
+  }
+
+  .open .menu-trigger__icon:before {
+    -webkit-transform: translateY(5px) rotate(45deg);
+    -ms-transform: translateY(5px) rotate(45deg);
+    transform: translateY(5px) rotate(45deg);
+  }
+
+  .open .menu-trigger__icon:after {
+    -webkit-transform: translateY(-5px) rotate(-45deg);
+    -ms-transform: translateY(-5px) rotate(-45deg);
+    transform: translateY(-5px) rotate(-45deg);
+  }
+
+  .open .menu-trigger__icon {
+    background-color: transparent;
   }
 </style>
