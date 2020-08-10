@@ -6,7 +6,7 @@ type: page
 tags: ["tutorial"]
 ---
 
-# Multi-NGINX ingress controller support
+# Running Multiple NGINX Ingress Controllers
 
 NGINX ingress controller handles [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) resources, routing the traffic from outside of the Kubernetes cluster to services within the cluster. Starting with App version 1.8.0 one can install multiple NGINX ingress controllers in same Kubernetes cluster. Here we cover common cases where having multiple NGINX ingress controllers can be useful.
 
