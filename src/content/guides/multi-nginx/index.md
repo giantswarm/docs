@@ -58,7 +58,7 @@ In NGINX IC App v1.2.0 upgrade to ingress-nginx 0.27.1 was included. Among other
 
 With single NGINX one had option of restoring weak SSL ciphers configuration, to support few services with older clients until the clients get upgraded. Problem with this approach, since SSL ciphers are global settings, was that changing default SSL ciphers back by restoring weak ciphers would apply to all Ingresses and service behind them, not just the one with old clients.
 
-With multiple NGINX ingress controller support, one can have separate NGINX installations with different SSL ciphers configuration, to localize but still make accessible services used by the legacy clients.
+With multiple NGINX ingress controller support, one can have separate NGINX installations with different SSL ciphers configuration, to localize but still make services used by legacy clients accessible.
 
 Here is how this can be achieved:
 
