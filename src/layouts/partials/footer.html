@@ -15,12 +15,37 @@
     <script type="text/javascript" src="/js/base.js?{{ partial "cachebreaker_js.html" . }}"></script>
 
     <script>
+      // Recreate open/close behaviour of the mobile menu.
       var mobileMenuTrigger = document.querySelector('.menu-trigger__container');
       var mobileMenu = document.querySelector('.mobile-menu');
       mobileMenuTrigger.addEventListener('click', () => {
         mobileMenuTrigger.classList.toggle('open');
         mobileMenu.classList.toggle('open');
       });
+
+      // Recreate open/close behaviour of individual menu items in the mobile menu.
+      var mobileMenuLinks = document.querySelectorAll('.mobile-menu .hs-menu-depth-1 > a');
+      for (let i = 0; i < mobileMenuLinks.length; i++) {
+        let link = mobileMenuLinks[i];
+
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          let ex = link.getAttribute('aria-expanded');
+          if (ex === 'true') {
+            link.setAttribute('aria-expanded', 'false')
+          } else {
+            link.setAttribute('aria-expanded', 'true')
+          }
+
+          let itemContainer = link.nextElementSibling.querySelector('.hs-menu-children-wrapper');
+          if (itemContainer.style.display === 'none') {
+            itemContainer.style.display = 'block';
+          } else {
+            itemContainer.style.display = 'none';
+          }
+        });
+      }
+
     </script>
 
 </body>
