@@ -15,8 +15,8 @@
     <script type="text/javascript" src="/js/base.js?{{ partial "cachebreaker_js.html" . }}"></script>
 
     <script>
-      let mobileMenuTrigger = document.getElementsByClassName('menu-trigger__container')[0];
-      let mobileMenu = document.getElementsByClassName('mobile-menu ')[0];
+      var mobileMenuTrigger = document.querySelector('.menu-trigger__container');
+      var mobileMenu = document.querySelector('.mobile-menu');
       mobileMenuTrigger.addEventListener('click', () => {
         mobileMenuTrigger.classList.toggle('open');
         mobileMenu.classList.toggle('open');
