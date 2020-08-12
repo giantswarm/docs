@@ -23,27 +23,32 @@
         mobileMenu.classList.toggle('open');
       });
 
-      // Recreate open/close behaviour of individual menu items in the mobile menu.
-      var mobileMenuLinks = document.querySelectorAll('.mobile-menu .hs-menu-depth-1 > a');
-      for (let i = 0; i < mobileMenuLinks.length; i++) {
-        let link = mobileMenuLinks[i];
-
-        link.addEventListener('click', (e) => {
+      function clickHandler(link) {
+        var l = link;
+        return (e) => {
           e.preventDefault();
-          let ex = link.getAttribute('aria-expanded');
+          var ex = l.getAttribute('aria-expanded');
           if (ex === 'true') {
-            link.setAttribute('aria-expanded', 'false')
+            l.setAttribute('aria-expanded', 'false')
           } else {
-            link.setAttribute('aria-expanded', 'true')
+            l.setAttribute('aria-expanded', 'true')
           }
 
-          let itemContainer = link.nextElementSibling.querySelector('.hs-menu-children-wrapper');
+          var itemContainer = l.nextElementSibling.querySelector('.hs-menu-children-wrapper');
           if (itemContainer.style.display === 'none') {
             itemContainer.style.display = 'block';
           } else {
             itemContainer.style.display = 'none';
           }
-        });
+        }
+      }
+
+      // Recreate open/close behaviour of individual menu items in the mobile menu.
+      var mobileMenuLinks = document.querySelectorAll('.mobile-menu .hs-menu-depth-1 > a');
+      for (var i = 0; i < mobileMenuLinks.length; i++) {
+        var link = mobileMenuLinks[i];
+
+        link.addEventListener('click', clickHandler(link));
       }
 
     </script>
