@@ -5,7 +5,7 @@ orbs:
 
 
 jobs:
-  linkcheck:
+  linkcheck-external:
     machine:
       image: "ubuntu-1604:201903-01"
 
