@@ -21,6 +21,7 @@ jobs:
                 http://docs:8080 \
                 --check-extern \
                 -t 2 \
+                --ignore-url="^https://github.com/giantswarm/docs/.*" \
                 --ignore-url="^https://docs\.giantswarm\.io/.*" \
                 --ignore-url=/api/ \
                 --ignore-url="^https://.*example\.com/.*" \
@@ -106,8 +107,11 @@ workflows:
     jobs:
       - build:
           filters:  # required since `architect/push-to-app-catalog` has tag filters AND requires `build`
+            # Ignore all commits, but run when tagging a release.
+            branches:
+              ignore: /.*/
             tags:
-              only: /.*/
+              only: /^v.*/
       - architect/push-to-app-catalog:
           name: "package and push docs"
           app_catalog: "giantswarm-operations-platform-catalog"
