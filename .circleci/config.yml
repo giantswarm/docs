@@ -95,10 +95,10 @@ workflows:
     jobs:
       - build
       - approve_check_external_links:
+          type: approval
           requires:
             - build
       - check_external_links:
-          type: approval
           requires:
             - approve_check_external_links
 
