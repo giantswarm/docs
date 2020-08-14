@@ -5,7 +5,7 @@ orbs:
 
 
 jobs:
-  linkcheck:
+  check_external_links:
     machine:
       image: "ubuntu-1604:201903-01"
 
@@ -14,20 +14,21 @@ jobs:
           name: Link check including external
           command: |
             docker pull linkchecker/linkchecker > /dev/null
-            docker run -d --rm --name docs2 -p 8082:8080 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
+            docker run -d --rm --name docs -p 8080:8080 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
             docker run --rm -ti --name linkchecker \
-              --link docs2:docs2 \
+              --link docs:docs \
               linkchecker/linkchecker \
-                http://docs2:8082 \
+                http://docs:8080 \
                 --check-extern \
                 -t 2 \
+                --ignore-url="^https://github.com/giantswarm/docs/.*" \
                 --ignore-url="^https://docs\.giantswarm\.io/.*" \
                 --ignore-url=/api/ \
                 --ignore-url="^https://.*example\.com/.*" \
                 --ignore-url="^https://my-org\.github\.com/.*" \
                 --ignore-url=".*gigantic\.io.*" \
                 --ignore-url="^https://github\.com/giantswarm/giantswarm/.*"
-            docker kill docs2 || echo "Container 'docs2' not running"
+            docker kill docs || echo "Container 'docs' not running"
 
 
   build:
@@ -94,17 +95,23 @@ workflows:
   build-and-check:
     jobs:
       - build
-      - linkcheck-external:
+      - approve_check_external_links:
           type: approval
           requires:
             - build
+      - check_external_links:
+          requires:
+            - approve_check_external_links
 
   package-and-push-chart-on-tag:
     jobs:
       - build:
           filters:  # required since `architect/push-to-app-catalog` has tag filters AND requires `build`
+            # Ignore all commits, but run when tagging a release.
+            branches:
+              ignore: /.*/
             tags:
-              only: /.*/
+              only: /^v.*/
       - architect/push-to-app-catalog:
           name: "package and push docs"
           app_catalog: "giantswarm-operations-platform-catalog"
