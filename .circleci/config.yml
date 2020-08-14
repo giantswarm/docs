@@ -5,7 +5,7 @@ orbs:
 
 
 jobs:
-  linkcheck-external:
+  check_external_links:
     machine:
       image: "ubuntu-1604:201903-01"
 
@@ -94,7 +94,7 @@ workflows:
   build-and-check:
     jobs:
       - build
-      - linkcheck-external:
+      - check_external_links:
           type: approval
           requires:
             - build
