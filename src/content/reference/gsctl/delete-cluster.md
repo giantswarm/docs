@@ -34,6 +34,41 @@ To prevent the interactive confirmation, you can use the `--force` flag. This wi
 gsctl delete cluster --force --cluster f01r4
 ```
 
+## Argument reference {#arguments}
+
+- `--force`: Disable any confirmations.
+- `--output`: By specifying this flag with value `json`, the output can be printed in JSON format. Disables any confirmations. This is convenient for use in automation. See [JSON output](#json-output) for examples.
+
+## JSON output {#json-output}
+
+Passing flag `--output` with value `json` to `gsctl create kubeconfig` changes the printed output to be formatted as a JSON object.
+
+**Example success output:**
+```nohighlight
+{
+  "result": "deletion scheduled",
+  "id": "f01r4"
+}
+```
+
+**Example error output:**
+```nohighlight
+{
+  "result": "error",
+  "id": "",
+  "error": {
+    "kind": "CouldNotDeleteClusterError",
+    "annotation": "Unauthorized",
+    "stack": [
+      {
+        "file": "/go/src/giantswarm/gsctl/commands/delete/cluster/command.go",
+        "line": 295
+      }
+    ]
+  }
+}
+```
+
 ## Related
 
 - [`gsctl scale cluster`](../scale-cluster/)
