@@ -44,6 +44,7 @@ gsctl delete cluster --force --cluster f01r4
 Passing flag `--output` with value `json` to `gsctl delete cluster` changes the printed output to be formatted as a JSON object.
 
 **Example success output:**
+
 ```nohighlight
 {
   "result": "deletion scheduled",
@@ -52,6 +53,7 @@ Passing flag `--output` with value `json` to `gsctl delete cluster` changes the 
 ```
 
 **Example error output:**
+
 ```nohighlight
 {
   "result": "error",

@@ -167,6 +167,7 @@ resources to your cluster.
 Passing flag `--output` with value `json` to `gsctl create kubeconfig` changes the printed output to be formatted as a JSON object.
 
 **Example success output:**
+
 ```nohighlight
 {
   "result": "ok",
@@ -175,6 +176,7 @@ Passing flag `--output` with value `json` to `gsctl create kubeconfig` changes t
 ```
 
 **Example error output:**
+
 ```nohighlight
 {
   "result": "error",

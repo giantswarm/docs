@@ -65,6 +65,7 @@ EOF
 Passing flag `--output` with value `json` to `gsctl create cluster` changes the printed output to be formatted as a JSON object.
 
 **Example success output:**
+
 ```nohighlight
 {
   "result": "created",
@@ -75,6 +76,7 @@ Passing flag `--output` with value `json` to `gsctl create cluster` changes the 
 When requesting cluster creation with release version {{% first_aws_nodepools_version %}} on AWS, it is possible to recieve `created-with-errors` as value for the `result` key. This indicates some problem with either node pool creation or label attachment.
 
 **Example error output:**
+
 ```nohighlight
 {
   "result": "error",
