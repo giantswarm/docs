@@ -41,7 +41,7 @@ gsctl delete cluster --force --cluster f01r4
 
 ## JSON output {#json-output}
 
-Passing flag `--output` with value `json` to `gsctl create kubeconfig` changes the printed output to be formatted as a JSON object.
+Passing flag `--output` with value `json` to `gsctl delete cluster` changes the printed output to be formatted as a JSON object.
 
 **Example success output:**
 ```nohighlight
