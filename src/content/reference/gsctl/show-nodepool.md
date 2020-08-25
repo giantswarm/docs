@@ -54,6 +54,7 @@ Description of output rows:
 - **ID**:                                  The node pool ID.
 - **Name**:                                Name assigned to the node pool.
 - **Node instance type**:                  The AWS EC2 instance type used for each worker node, plus the memory and CPU amount per node.
+- **VM Size**:                             The Azure VM size used for each worker node, plus the memory and CPU amount per node.
 - **Alike instance types**:                Whether similar instance types are used within this node pool (eg if m5.xlarge is defined also m4.xlarge is possible)
 - **Availability zones**:                  The availability zone(s) assigned to this node pool, abbreviated to one letter. Note that it is not guaranteed that all shown availability zones have worker nodes at all times.
 - **On-demand base capacity**:             Number of on-demand instances that this node pool needs to have until spot instances are used
