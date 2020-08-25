@@ -31,9 +31,16 @@ gsctl update nodepool "Cluster name"/opdl --name "New node pool name"
 
 Example for adjusting the scaling limits:
 
+* Autoscaling enabled (AWS only)
 ```nohighlight
 gsctl update nodepool f01r4/op1dl --nodes-min 3 --nodes-max 20
 ```
+
+* No Autoscaling
+```nohighlight
+gsctl update nodepool f01r4/op1dl --nodes-min 6 --nodes-max 6
+```
+
 
 ## Related
 
