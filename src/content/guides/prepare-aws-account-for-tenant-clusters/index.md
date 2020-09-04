@@ -123,7 +123,7 @@ only _Programmatic access_ is enabled.
 In the **Attach existing policies directly** section, hit the **Create policy** button.
 
 Copy the JSON code with all instances of `<YOUR_ACCOUNT_ID>` replaced from
-[aws-operator.json] into the JSON editor field and then hit the **Review
+[iam-policy.json] into the JSON editor field and then hit the **Review
 policy** button.
 
 In the next step you need to assign a name to the policy. Please use the name:
@@ -255,7 +255,7 @@ Proceed to the next step to set up permissions.
 In the **Attach permissions policies** section, hit the **Create policy** button.
 
 Copy the JSON code with all instances of `<YOUR_ACCOUNT_ID>` replaced from
-[aws-operator.json] into the JSON editor field and then hit the **Review
+[iam-policy.json] into the JSON editor field and then hit the **Review
 policy** button.
 
 In the next step you need to assign a name to the policy. Please use the name
@@ -391,4 +391,4 @@ organization. These clusters' resources will be created in your AWS account.
 - [AWS Service Limits](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)
 - [AWS Support Center](https://console.aws.amazon.com/support/home)
 
-[aws-operator.json](https://raw.githubusercontent.com/giantswarm/aws-operator/master/policies/aws-operator.json)
+[iam-policy.json](https://raw.githubusercontent.com/giantswarm/giantswarm-aws-account-prerequisites/master/aws-operator-role/iam-policy.json)
