@@ -214,7 +214,7 @@ us later.
 
 The following steps must all take place in the tenant cluster AWS account.
 
-### Create an IAM role for aws-operator in Tenant Cluster account {#tc-iam-operator-role}
+### Create an IAM role for aws-operator {#tc-iam-operator-role}
 
 As `aws-operator` runs in the control plane account, it requires a role to assume
 in the tenant cluster account in order to manage tenant cluster resources. Below are the steps required to set up this role.
