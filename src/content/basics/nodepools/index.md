@@ -93,7 +93,8 @@ specified via the node pool and which are exposed as node labels.
 *For example: In a case where you have node pools with one instance type. Using a `nodeSelector` with the label `node.kubernetes.io/instance-type` (or in Kubernetes before v1.17: `beta.kubernetes.io/instance-type`) you can assign workloads to matching nodes only.*
 
 *Another example: In a case where you have different node pools using different availability zones. With a `nodeSelector` using the label `topology.kubernetes.io/zone` (or in Kubernetes before v1.17: `failure-domain.beta.kubernetes.io/zone`) you can assign your workload to the nodes in a particular availability zone.*
-** Is this correct for Azure as well? **
+
+**Is this correct for Azure as well?**
 
 ## Node pool deletion
 
@@ -163,6 +164,17 @@ In case there are workloads not assigned to any node pools, the autoscaler may p
 
 ## Limitations
 
+- Clusters without worker nodes (= without node pools) cannot be considered fully functional. In order to have all
+required components scheduled, worker nodes are required. For that reason, we deactivate any monitoring and alerts for
+these clusters and don't provide any proactive support.
+
+- We also do not monitor node pools with less than three worker nodes and do not provide any proactive support for those.
+
+- When creating a new node pool, the master node of the cluster is re-created. This causes a downtime of the Kubernetes
+API of a couple of minutes.
+
+### AWS specific
+
 - A node pool can have a maximum of 250 worker nodes. The architectural reason for this is that each node pool gets a `/24` IPv4 subnet assigned. However 5 IP addresses per availability zone used are not usable for worker nodes, as they are reserved for other AWS resources. Hence the limit depends on the number of availability zones used by a node pool. If the pool uses two zones, it's 245. With three zones, the limit is 240, and with four zones, it's 235.
 
 - At times, the EC2 instance type required by a node pool can be unavailable in certain availability zones. This can
@@ -182,15 +194,9 @@ that availability zone.
   - **Example:** The master node is in availability zone A. Node pool 1 uses availability zones B and C. Node pool 2 uses
   availability zone D. With A, B, C, and D, the limit of four availability zones assigned is reached. New node pools of this
   cluster can only use these four availability zones.
-  
-- Clusters without worker nodes (= without node pools) cannot be considered fully functional. In order to have all
-required components scheduled, worker nodes are required. For that reason, we deactivate any monitoring and alerts for
-these clusters and don't provide any proactive support.
 
-- We also do not monitor node pools with less than three worker nodes and do not provide any proactive support for those.
-
-- When creating a new node pool, the master node of the cluster is re-created. This causes a downtime of the Kubernetes
-API of a couple of minutes.
+## Azure specific
+- 
 
 ## Further reading
 
