@@ -264,3 +264,4 @@ kubectl --context giantswarm-gollum -n c68pn patch app docs-app --type merge -p 
 Here, `giantswarm-gollum` is the kubeconfig context created by `opsctl create kubeconfig -i gollum`. `X.Y.Z` is to be replaced by the new version number of the app, without `v` prefix.
 
 Latest content should be visible after a short period. When checking, make sure to circumvent any browser cache. For example, do this by keeping the Shift key pressed while hitting the reload button of your browser.
+
