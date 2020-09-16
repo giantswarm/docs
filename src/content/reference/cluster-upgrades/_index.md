@@ -31,7 +31,6 @@ Among the third party components building a tenant cluster stack are
 - [Prometheus node exporter](https://github.com/prometheus/node_exporter) for hardware and OS metrics
 - [NGINX Ingress Controller](https://github.com/kubernetes/ingress-nginx) for connecting services with load balancers
 
-
 as well as many operators and controllers created and maintained by Giant Swarm.
 
 ### Releases
@@ -57,12 +56,13 @@ This can include any sort of patch upgrades of third party components.
 - *Minor*: A minor upgrade occurs when we add functionality, while maintaining the functionality of the stack as it was in the previous version.
 This can include minor upgrades of third party components, with the exception of Kubernetes.
 
-- *Major*: A major upgrade occurs when (A) a minor Kubernetes version upgrade is picked up (e. g. from 1.10.* to 1.11.*) or (B) we remove functionality or change functionality that might require changes in workloads, in automation working with the cluster or in administrator's interactions.
+- *Major*: A major upgrade occurs when (A) a minor Kubernetes version upgrade is picked up (e. g. from 1.10.x to 1.11.x) or (B) we remove functionality or change functionality that might require changes in workloads, in automation working with the cluster or in administrator's interactions.
 
 **Note:** The release version number is provider-specific.
 Azure, AWS, and KVM based installations have independent versioning systems, as their stacks are also slightly different.
 
 We have a [reference page with an overview of our release versions](/reference/release-versions/), which can give you an idea of what release versions are currently available and what notable features they support.
+
 ### Determining the release version and inspecting release details
 
 As a user with access to the Giant Swarm API, and being a member of the organization owning the cluster, you can use either the web UI or the CLI to find out the current release version of your tenant cluster.
@@ -86,7 +86,7 @@ Before triggering the upgrade, there are some checks we encourage you to perform
 - Verify all your important pods are running correctly, and there are no deployments stuck because of failures.
 
 ```nohighlight
-$ kubectl get pod --all-namespaces | grep -v "Running\|ContainerCreating"
+kubectl get pod --all-namespaces | grep -v "Running\|ContainerCreating"
 ```
 
 - In case there is a validation or mutation webhook configured you should check there is a [timeout](https://github.com/kubernetes/kubernetes/issues/71508#issuecomment-470315405) configured correctly to not break the upgrade process. We recommend using low timeouts for the webhooks resources.

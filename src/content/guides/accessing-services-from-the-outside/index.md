@@ -164,7 +164,7 @@ To make these certificates available to HTTP clients/browsers, see our guide [Es
 
 ### Example
 
-Assuming you have a service `elasticsearch` with a port named `es` in the `logging` namespace, you could 
+Assuming you have a service `elasticsearch` with a port named `es` in the `logging` namespace, you could
 access the Elasticsearch index stats API like this:
 
 ```nohighlight
@@ -178,6 +178,6 @@ curl -v -u username:password \
 ## Further reading
 
 - [Establishing Trust to Your Cluster's CA and Importing Certificates](../importing-certificates/)
-- [Official Kubernetes documentation for the Ingress Resource](http://kubernetes.io/docs/user-guide/ingress/)
-- [Official Kubernetes documentation for the kubectl port-forward](http://kubernetes.io/docs/user-guide/kubectl/kubectl_port-forward/)
+- [Official Kubernetes documentation for the Ingress Resource](https://kubernetes.io/docs/concepts/services-networking/ingress/)
+- [Official Kubernetes documentation for the kubectl port-forward](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#port-forward/)
 - [Official Kubernetes documentation for accessing services running on the cluster](https://kubernetes.io/docs/tasks/access-application-cluster/access-cluster/#accessing-services-running-on-the-cluster)

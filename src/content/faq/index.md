@@ -7,6 +7,8 @@ type: page
 
 # FAQ
 
+<!-- markdownlint-disable no-trailing-punctuation -->
+
 ## In what data centers does Giant Swarm run clusters?
 
 Giant Swarm runs on AWS, Microsoft Azure, and on bare metal or virtualized hardware using KVM.
@@ -43,7 +45,7 @@ The [Cron Job](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jo
 
 ## Which IP Block do I need to reserve for my full Giant Swarm installation on AWS?
 
-There are different answers to this, and some depend on your requirements. We advise that you think about where you want to go with your Giant Swarm Platform in light of the limits you might impose based on a smaller IP Block. The following is a hopefully well argued possible solution. 
+There are different answers to this, and some depend on your requirements. We advise that you think about where you want to go with your Giant Swarm Platform in light of the limits you might impose based on a smaller IP Block. The following is a hopefully well argued possible solution.
 
 First we need IP space for our control plane and tenant clusters, meaning the underlying EC2 machines. We currently suggest taking a Class C IP Block per tenant cluster, as this would allow some 240 machines or 120 if spread over two Availability Zones. While taking a full Class B IP Block would mean you can start well over 200 clusters, or e.g. 80 in three different Amazon Locations, you might be ok with using a smaller IP Range. These IPs, in case you somehow want IP to IP connections to those machines, need to be routable inside your old environment. Normally these can run over a NAT but still, the IPs should not be used inside your existing network in case systems inside the cluster need to talk to some of your old IPs, e.g. a database.
 

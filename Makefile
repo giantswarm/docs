@@ -2,6 +2,8 @@ PROJECT=docs
 COMPANY=giantswarm
 REGISTRY=quay.io
 SHELL=bash
+MARKDOWNLINT_IMAGE=06kellyjac/markdownlint-cli:0.21.0
+CRD_DOCS_GENERATOR_VERSION=0.1.1
 
 default: docker-build
 
@@ -53,9 +55,18 @@ build: vendor build-css
 	docker run \
 		-v ${PWD}/build/content/reference/cp-k8s-api:/opt/crd-docs-generator/output \
 		-v ${PWD}:/opt/crd-docs-generator/config \
-		quay.io/giantswarm/crd-docs-generator:0.0.0-cce07b5b225bd1b7ad576a0e1f5ebb773397915c \
+		quay.io/giantswarm/crd-docs-generator:$(CRD_DOCS_GENERATOR_VERSION) \
 		  --config /opt/crd-docs-generator/config/crd-docs-generator-config.yaml
 
+lint:
+	@docker pull $(MARKDOWNLINT_IMAGE) > /dev/null
+	@docker run \
+	  -v ${PWD}:/workdir \
+	  -w /workdir \
+	  $(MARKDOWNLINT_IMAGE) \
+	    --config .markdownlint.yaml \
+	    --ignore README.md \
+		./src
 
 docker-build: build
 	docker build -t $(REGISTRY)/$(COMPANY)/$(PROJECT):latest .
@@ -74,8 +85,9 @@ clean:
 	rm -rf vendor
 	rm -rf .sass-cache
 
-# Verify links.
-linkcheck:
+# Verify internal links
+linkcheck-external:
+	@echo "Checking internal links only\n"
 	docker run -d --rm --name server -p 8080:8080 -P $(REGISTRY)/$(COMPANY)/$(PROJECT):latest
 	sleep 2
 
@@ -85,6 +97,32 @@ linkcheck:
 		--link server:server \
 		linkchecker/linkchecker \
 		http://server:8080 \
-		--check-extern -t 5 --ignore-url="^https://docs.giantswarm.io/.*" --ignore-url=/api/ --ignore-url="^https://.+.example.com/.*"
-	docker ps --filter name=server && docker kill server
-	docker ps --filter name=linkchecker && docker kill linkchecker
+		-t 5 \
+		--no-status \
+		--ignore-url="^https://docs\.giantswarm\.io/.*" \
+		--ignore-url=/api/
+	docker kill server
+	docker kill linkchecker
+
+# Verify internal and external links
+linkcheck:
+	@echo "Checking all links\n"
+	docker run -d --rm --name server -p 8080:8080 -P $(REGISTRY)/$(COMPANY)/$(PROJECT):latest
+	sleep 2
+
+	docker run --rm -ti --name linkchecker \
+		--link server:server \
+		linkchecker/linkchecker \
+		http://server:8080 \
+		-t 2 \
+		--check-extern \
+		--no-status \
+		--ignore-url="^https://docs.giantswarm.io/.*" \
+		--ignore-url=/api/ \
+		--ignore-url="^https://.+.example.com/.*" \
+		--ignore-url=".*gigantic\.io.*" \
+		--ignore-url="^https://my-org\.github\.com/.*" \
+		--ignore-url="^https://github\.com/giantswarm/giantswarm/.*"
+
+	docker kill server
+	docker kill linkchecker

@@ -408,8 +408,15 @@ h5 {
   font-size: 16px;
   margin-top: 45px; }
 
+.well h5:first-child {
+  margin-top: 18px; }
+
 p {
   line-height: 1.65em; }
+
+li {
+  line-height: 1.65em;
+  margin-bottom: 11px; }
 
 pre {
   background-color: #002b36;

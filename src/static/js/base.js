@@ -293,6 +293,9 @@ $(document).ready(function(){
 window.addEventListener("load", function() {
   if (!window.GSAside) return;
 
-  var g = new GSAside(".toc-sidebar", ".base-content", 60);
+  var asideSelector = ".toc-sidebar";
+  if (!document.querySelector(asideSelector)) return;
+
+  var g = new GSAside(asideSelector, ".base-content", 60);
   g.init();
 });

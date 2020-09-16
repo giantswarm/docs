@@ -279,7 +279,7 @@ To configure this setting globally for all Ingress rules, the `proxy-body-size` 
 
 To use custom values in a specific Ingress add following annotation:
 
-```
+```yaml
 nginx.ingress.kubernetes.io/proxy-body-size: 8m
 ```
 
@@ -337,8 +337,7 @@ You can override these defaults by setting your per cluster configuration in the
 
 Depending on the release version of your Tenant Cluster, this ConfigMap is located either in the Tenant Cluster or in the Control Plane.
 
-
-### Where is the user values ConfigMap?
+### Where is the user values ConfigMap
 
 Given the cluster you are trying to configure has id: `123ab`
 
@@ -367,16 +366,15 @@ NAME                                   DATA      AGE
 nginx-ingress-controller-user-values   0         11m
 ```
 
-
------
+---
 
 __Warning:__
 
-Please do not edit any of the other nginx ingress related ConfigMaps.
+Please do not edit any of the other NGINX ingress related ConfigMaps.
 
 Only the user ConfigMap is safe to edit.
 
-------
+---
 
 ### How to set configuration options using the user values ConfigMap
 
@@ -404,11 +402,10 @@ data:
       log-format-upstream: "MY EDITED LOG FORMAT - $status $body_bytes_sent $http_referer"
 ```
 
-Any defaults that we override are visible in the following `values.yaml` file, under the `configmap` key: https://github.com/giantswarm/nginx-ingress-controller-app/blob/v1.6.10/helm/nginx-ingress-controller-app/values.yaml
+Any defaults that we override are visible in the following `values.yaml` file, under the `configmap` key. [Check this values.yaml file in v1.6.10](https://github.com/giantswarm/nginx-ingress-controller-app/blob/v1.6.10/helm/nginx-ingress-controller-app/values.yaml) as an example.
 
 Do make sure you look at the right tag of that repository, when reading this file check that the tag
 corresponds to the version of the nginx-ingress-controller-app running on your cluster.
-
 
 #### 9.0.0 and below
 
@@ -465,7 +462,6 @@ We also allow setting `use-proxy-protocol: "true"/"false"`. This setting always 
 
 ---
 
-
 ##### Default certificate
 
 When you want to have the default server on the nginx controller support TLS you need to provide a certificate. This is configured using the flag `--default-ssl-certificate`. Now you can provide this value in the user values ConfigMap to force the component to be restarted with the provided certificate. The value of the property should be the namespace and secret name which holds the certificate content.
@@ -500,6 +496,6 @@ data:
 
 ## Further reading
 
-- [Official Kubernetes documentation for the Ingress Resource](http://kubernetes.io/docs/user-guide/ingress/)
+- [Official Kubernetes documentation for the Ingress Resource](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 - [Configuration documentation for the NGINX Ingress Controller](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)
 - [Official ingress-nginx configuration snippets example](https://github.com/kubernetes/ingress-nginx/tree/master/docs/examples/customization/configuration-snippets)

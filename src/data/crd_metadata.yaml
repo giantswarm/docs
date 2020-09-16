@@ -36,6 +36,11 @@ awsmachinedeployments.infrastructure.giantswarm.io:
     - aws
   topics:
     - tenantcluster
+azureclusters.infrastructure.cluster.x-k8s.io:
+  provider:
+    - azure
+  topics:
+    - tenantcluster
 azureclusterconfigs.core.giantswarm.io:
   provider:
     - azure
@@ -46,6 +51,19 @@ azureconfigs.provider.giantswarm.io:
     - azure
   topics:
     - tenantcluster
+azuremachinepools.exp.infrastructure.cluster.x-k8s.io:
+  provider:
+    - azure
+  topics:
+    - tenantcluster
+azuremachines.infrastructure.cluster.x-k8s.io:
+  provider:
+    - azure
+  topics:
+    - tenantcluster
+azuretools.tooling.giantswarm.io:
+  provider:
+    - azure
 certconfigs.core.giantswarm.io:
   topics:
     - controlplane
@@ -56,6 +74,7 @@ charts.application.giantswarm.io:
 clusters.cluster.x-k8s.io:
   provider:
     - aws
+    - azure
   topics:
     - tenantcluster
 drainerconfigs.core.giantswarm.io:
@@ -92,6 +111,11 @@ kvmconfigs.provider.giantswarm.io:
 machinedeployments.cluster.x-k8s.io:
   provider:
     - aws
+  topics:
+    - tenantcluster
+machinepools.exp.cluster.x-k8s.io:
+  provider:
+    - azure
   topics:
     - tenantcluster
 releases.release.giantswarm.io:

@@ -1,7 +1,7 @@
 ---
 title: "gsctl Command Reference: create cluster"
 description: "Detailed documentation on how to create a new cluster using the 'create cluster' command in gsctl."
-date: "2019-12-19"
+date: 2020-08-25
 type: page
 weight: 20
 ---
@@ -19,13 +19,13 @@ In order to configure all details of the cluster according to your requirements,
 The first and rather trivial example shows how to create a cluster for organization `myorg` and specifying the cluster name, while leaving all other settings to defaults:
 
 ```nohighlight
-$ gsctl create cluster --owner myorg --name "Test cluster"
+gsctl create cluster --owner myorg --name "Test cluster"
 ```
 
 The second example shows how to create a cluster where most or even all configurable details are specified, using a definition file:
 
 ```nohighlight
-$ gsctl create cluster --file prod_cluster_definition.yaml
+gsctl create cluster --file prod_cluster_definition.yaml
 ```
 
 Note that command line flags take precedence over values in the definition. This way you can, for example, define a default cluster name in the definition, but set a specific one via the `--name` flag when applying the same definition several times.
@@ -36,6 +36,9 @@ Note that command line flags take precedence over values in the definition. This
 - `--owner`, `-o`: Name of the owner organization. Overwrites a name given per definition file.
 - `--name`: Name of the cluster. Overwrites name given in definition file.
 - `--release`, `-r`: Specific release version number to use. Defaults to the latest active release. See [list releases](/reference/gsctl/list-releases/) for details on releases.
+- `--create-default-nodepool`: Where node pools are supported (AWS since release v{{% first_aws_nodepools_version %}} and Azure since release v{{% first_azure_nodepools_version %}}), setting this to `false` allows to suppress the creation of a default node pool. A default node pools would otherwise be created automatically if no cluster definition is given specifying any node pools details, to get you started quickly.
+- `--masters-ha`: Where supported, this is `true` by default, which means that the cluster will have three master nodes. Available on AWS since release v{{% first_aws_ha_masters_version %}}. Set this to `false` to have only one master node in the cluster (recommended only for test clusters).
+- `--output`: By specifying this flag with value `json`, the output can be printed in JSON format. This is convenient for use in automation. See [JSON output](#json-output) for examples.
 
 ## Passing the cluster definition via standard input {#stdin}
 
@@ -55,6 +58,43 @@ owner: acme
 name: Dev cluster
 release: 7.1.1
 EOF
+```
+
+## JSON output {#json-output}
+
+Passing flag `--output` with value `json` to `gsctl create cluster` changes the printed output to be formatted as a JSON object.
+
+**Example success output:**
+
+```nohighlight
+{
+  "result": "created",
+  "id": "f01r4"
+}
+```
+
+When requesting cluster creation with release version {{% first_aws_nodepools_version %}} on AWS, or {{% first_azure_nodepools_version %}} on Azure,  it is possible to recieve `created-with-errors` as value for the `result` key. This indicates some problem with either node pool creation or label attachment.
+
+**Example error output:**
+
+```nohighlight
+{
+  "result": "error",
+  "error": {
+    "kind": "unknown",
+    "annotation": "Unauthorized",
+    "stack": [
+      {
+        "file": "/go/src/giantswarm/gsctl/commands/create/cluster/v5.go",
+        "line": 140
+      },
+      {
+        "file": "/go/src/giantswarm/gsctl/commands/create/cluster/command.go",
+        "line": 632
+      }
+    ]
+  }
+}
 ```
 
 ## Related

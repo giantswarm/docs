@@ -1,7 +1,7 @@
 ---
 title: "gsctl Command Reference: show nodepool"
 description: The 'gsctl show nodepool' command shows details on a node pool.
-date: 2020-03-11
+date: 2020-08-25
 type: page
 weight: 44
 ---
@@ -18,7 +18,7 @@ separated by a slash.
 Example:
 
 ```nohighlight
-$ gsctl show nodepool f01r4/op1dl
+gsctl show nodepool f01r4/op1dl
 ```
 
 Here, `f01r4` is the cluster ID and `op1dl` is the node pool ID.
@@ -26,7 +26,7 @@ Here, `f01r4` is the cluster ID and `op1dl` is the node pool ID.
 You can also use the cluster's name for identifying the cluster:
 
 ```nohighlight
-$ gsctl show nodepool "Cluster name"/op1dl
+gsctl show nodepool "Cluster name"/op1dl
 ```
 
 ## Output
@@ -54,6 +54,7 @@ Description of output rows:
 - **ID**:                                  The node pool ID.
 - **Name**:                                Name assigned to the node pool.
 - **Node instance type**:                  The AWS EC2 instance type used for each worker node, plus the memory and CPU amount per node.
+- **VM Size**:                             The Azure VM size used for each worker node, plus the memory and CPU amount per node.
 - **Alike instance types**:                Whether similar instance types are used within this node pool (eg if m5.xlarge is defined also m4.xlarge is possible)
 - **Availability zones**:                  The availability zone(s) assigned to this node pool, abbreviated to one letter. Note that it is not guaranteed that all shown availability zones have worker nodes at all times.
 - **On-demand base capacity**:             Number of on-demand instances that this node pool needs to have until spot instances are used

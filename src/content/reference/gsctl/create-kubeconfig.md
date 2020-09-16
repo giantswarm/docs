@@ -37,13 +37,13 @@ configuration, you can execute the command like here (where `w6wn8` is
 an example for a cluster ID):
 
 ```nohighlight
-$ gsctl create kubeconfig --cluster w6wn8
+gsctl create kubeconfig --cluster w6wn8
 ```
 
 You can also use the cluster's name for identifying the cluster:
 
 ```nohighlight
-$ gsctl create kubeconfg --cluster "Cluster name"
+gsctl create kubeconfg --cluster "Cluster name"
 ```
 
 The output of the command gives details on what exactly happens.
@@ -62,7 +62,7 @@ The output of the command gives details on what exactly happens.
 The next example shows creation of a self-contained configuration file:
 
 ```nohighlight
-$ gsctl create kubeconfig -c w6wn8 --self-contained kubeconfig.yaml
+gsctl create kubeconfig --cluster w6wn8 --self-contained kubeconfig.yaml
 ```
 
 Here, the file `kubeconfig.yaml` will be created and it will contain the
@@ -73,9 +73,8 @@ overwrite this file will be required. The confirmation can be suppressed using
 The next example shows the creation of a self-contained configuration file with
 an internal Kubernetes API endpoint.
 
-
 ```nohighlight
-$ gsctl create kubeconfig --cluster w6wn8 --self-contained kubeconfig.yaml \
+gsctl create kubeconfig --cluster w6wn8 --self-contained kubeconfig.yaml \
   --tenant-internal=true
 ```
 
@@ -87,7 +86,7 @@ To conclude the examples sections, here is a more complex example showing how
 to create admin access (valid for one day only) in a self-contained file:
 
 ```nohighlight
-$ gsctl create kubeconfig --cluster w6wn8 \
+gsctl create kubeconfig --cluster w6wn8 \
   --description "Admin certificate for Jane" \
   --ttl 1d \
   --self-contained kubeconfig-w6wn8-jane.yaml \
@@ -115,6 +114,7 @@ $ gsctl create kubeconfig --cluster w6wn8 \
   Note that only the characters `a-z`, `0-9` and `-` can be used.
 - `--certificate-organizations`: A comma separated list of organizations for the
   issued certificate's 'O' fields.
+- `--output`: By specifying this flag with value `json`, the output can be printed in JSON format. This is convenient for use in automation. See [JSON output](#json-output) for examples.
 
 ## Key pair expiry {#expiry}
 
@@ -161,6 +161,41 @@ memberships respectively. This will let you set up fine grained permissions for
 the certificates that you issue by applying
 [RBAC authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
 resources to your cluster.
+
+## JSON output {#json-output}
+
+Passing flag `--output` with value `json` to `gsctl create kubeconfig` changes the printed output to be formatted as a JSON object.
+
+**Example success output:**
+
+```nohighlight
+{
+  "result": "ok",
+  "kubeconfig": "apiVersion: v1\nkind: Config\nclusters:\n- name: giantswarm-f01r4\n  cluster: ..."
+}
+```
+
+**Example error output:**
+
+```nohighlight
+{
+  "result": "error",
+  "error": {
+    "kind": "unknown",
+    "annotation": "Unauthorized",
+    "stack": [
+      {
+        "file": "/go/src/giantswarm/gsctl/commands/create/kubeconfig/command.go",
+        "line": 466
+      },
+      {
+        "file": "/go/src/giantswarm/gsctl/commands/create/kubeconfig/command.go",
+        "line": 489
+      }
+    ]
+  }
+}
+```
 
 ## Related
 

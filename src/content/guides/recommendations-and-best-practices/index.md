@@ -55,7 +55,7 @@ The complexity of using a single cluster in a multi-tenant setup depends on the 
 If trust is high, namespaces alone can be enough. However, if you want real isolation between those namespaces, you need to use them together with strictly set up RBAC, network policies, service accounts, and other minor security mechanisms, to make sure there is no escalation of privileges
  as well as no interference between the tenants.
 
-### How many clusters?
+### How many clusters
 
 In most cases, you will need several clusters at some point.
 This opens up the question as to how many clusters should be created.

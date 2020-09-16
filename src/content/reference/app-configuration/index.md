@@ -92,7 +92,7 @@ metadata:
   namespace: i5h93
 data:
   values: |
-    color:
+    colors:
       background: "red"
 ```
 
@@ -111,7 +111,7 @@ data:
 **Note:** when Base64-decoding the string `.data.values` field in the secret, you'll get this:
 
 ```nohighlight
-color:
+colors:
   secretColor: "blue"
 ```
 
@@ -204,7 +204,7 @@ metadata:
   namespace: i5h93
 data:
   values: |
-    color:
+    colors:
       background: "red"
 ```
 
@@ -246,14 +246,14 @@ no encoding.
 #### hello-world user values example
 
 ```yaml
-color:
+colors:
    background: "red"
 ```
 
 #### hello-world user secrets example
 
 ```yaml
-color:
+colors:
    secretColor: "blue"
 ```
 

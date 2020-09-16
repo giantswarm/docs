@@ -1,7 +1,7 @@
 ---
 title: Cluster Definition Reference
 description: Complete documentation of the Giant Swarm cluster definition YAML format, compatible with API v4 and v5.
-date: 2020-04-22
+date: 2020-06-16
 layout: subsection
 weight: 100
 ---
@@ -19,7 +19,6 @@ creation. As it's the case within the API, the YAML definition comes in two diff
 to create clusters on **Azure** and on bare metal (**KVM**). It is also needed for cluster creation on
 AWS using a release prior to {{% first_aws_nodepools_version %}}, basically to create a cluster without
 support for node pools.
-
 - [**v5**](#v5): This version has been introduced in October 2019 to support clusters with
 [node pools](/basics/nodepools/). The feature is available on AWS starting with release
 {{% first_aws_nodepools_version %}}.
@@ -67,9 +66,9 @@ workers:
 
 **Note:** AWS clusters defined using a v4 definition (and consequently not using node pools) restrict you to all worker nodes being of the same instance type. With v5 and node pools, you gain the flexibility to create several node pools using different instance types.
 
-### Schema {#v4-schema}
+### v4 Schema {#v4-schema}
 
-#### Root level keys {#root-keys}
+#### v4 root level keys {#root-keys}
 
 - `owner`: Name of the owner organization.
 - `name`: Friendly name of the cluster. If not specified, a name will be generated.
@@ -92,19 +91,20 @@ workers:
 Let's start with an example:
 
 ```yaml
-api_version: "v5"
-release_version: "11.0.0"
-name: "Test cluster with two node pools"
+api_version: v5
+owner: myorg
+release_version: 11.0.0
+name: Test cluster with two node pools
+master_nodes:
+  high_availability: true
 labels:
   locked: "false"
   environment: "testing"
-master:
-  availability_zone: "eu-central-1a"
 nodepools:
-- name: "Node pool with 2 random AZs using defaults"
+- name: Node pool with 2 random AZs using defaults
   availability_zones:
     number: 2
-- name: "Node pool with 3 specific AZs A, B, C, m5.xlarge spot"
+- name: Node pool with 3 specific AZs A, B, C, m5.xlarge spot
   availability_zones:
     zones:
     - "eu-central-1a"
@@ -118,7 +118,7 @@ nodepools:
       instance_distribution:
         on_demand_base_capacity: 3
         on_demand_percentage_above_base_capacity: 0
-      instance_type: "m5.xlarge"
+      instance_type: m5.xlarge
       use_alike_instance_types: true
 ```
 
@@ -126,22 +126,26 @@ Coming from v4, you might want to understand how v5 is different from v4:
 
 - in v5, the key `api_version` is mandatory and the value must be `v5`.
 - Several settings that were specified on the cluster level in v4 (root level of the definition) have been moved to the node pool level.
-- The key `master` has been added to allow influencing in which availability zone the master node will be placed.
+- The key `master_nodes` has been added to allow influencing master nodes.
 
-### Schema {#v5-schema}
+### v5 Schema {#v5-schema}
 
-#### Root level keys
+#### v5 root level keys {#v5-root-keys}
 
 - `api_version`: Mandatory and must have the string value `v5`.
 - `owner`: Name of the owner organization.
 - `name`: Friendly name of the cluster. If not specified, a name will be generated.
 - `release_version`: Allows to select a specific release version. The value must be the semver version number of an active release. To get information on all available releases, use the [`gsctl list releases`](/reference/gsctl/list-releases/) command.
-- `master`:
-  - `availability_zone`: Name of the availability zone to use for the master node. If not set, one will be assigned randomly.
+- `master_nodes`: Settings regarding the Kubernetes master nodes.
+  - `high_availability`: Where supported, this is `true` by default, which means that the cluster will have three master nodes. Supported on AWS since release v{{% first_aws_ha_masters_version %}}. Set this to `false` to have only one master node in the cluster (recommended only for test clusters).
 - `nodepools`: Here you can list your node pool definitions as explained below. Note that this is not mandatory and you can also add node pools to a cluster after it has been created.
+- `master` (deprecated):
+  - `availability_zone`: Name of the availability zone to use for the master node. If not set, one will be assigned randomly.
 - `labels`: Labels to be attached to this cluster.
 
-#### Node pool definition keys
+**Note:** The `master_nodes` and `master` attribute must not be used in the same request/command, otherwise an HTTP error with status code 400 will be triggered.
+
+#### Node pool definition keys {#v5-nodepool-keys}
 
 - `name`: User-friendly name of the node pool, ideally indicating the purpose. Maximum of 100 characters allowed, must not contain control characters such as newline. If not set, a generic name will be assigned that can be changed later.
 - `availability_zones`: Allows to influence the availability zone placement of the worker nodes. Either use `zones` to select specific ones or `number` to set the number of zones to use, if you are fine with random selection. If neither is specified, all worker nodes of this pool will be in the same availability zone, selected randomly. Setting both `zones` and `number` will cause an error.
@@ -166,7 +170,6 @@ Chances are that you already work with YAML in various places. If not, here are 
 - If in doubt, check your YAML in a linter. There are plenty online, e. g. [yamllint.com](http://www.yamllint.com/).
 - JSON is valid YAML. If you prefer JSON's notation, just use valid JSON.
 - You can add comments to YAML files by starting a line with the character `#`.
-
 
 ## Related
 

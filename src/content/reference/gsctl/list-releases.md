@@ -30,7 +30,7 @@ installation.
 The command has no specific flags. Simply run it like this:
 
 ```nohighlight
-$ gsctl list releases
+gsctl list releases
 ```
 
 The resulting output is a list of all releases, like in the following example

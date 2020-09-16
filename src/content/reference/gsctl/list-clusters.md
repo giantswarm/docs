@@ -15,7 +15,7 @@ The `gsctl list clusters` command shows all clusters you have access to with a f
 ```nohighlight
 $ gsctl list clusters
 ID     ORGANIZATION  NAME        RELEASE  CREATED
-feogv  acme          Staging     3.0.2    2018 Feb 01, 13:59 UTC    
+feogv  acme          Staging     3.0.2    2018 Feb 01, 13:59 UTC
 pmb9q  acme          Production  3.0.2    2018 Feb 01, 11:12 UTC
 z63so  testteam      Dan's Test  2.7.2    2017 Jun 19, 09:12 UTC  
 ```
@@ -47,6 +47,9 @@ More information about possible queries can be found in the [Kubernetes Labels a
 Accepts a single string containing multiple selector requirements which are comma-separated.
 In the case of multiple requirements, all must be satisfied so the comma separator acts as a logical AND (&&) operator.
 This feature is only available for clusters with release version {{% first_aws_nodepools_version %}} and above on AWS.
+- `--sort` or `-s`: Sort clusters by one of the columns, in ascending order. The default value is `id`.
+Accepted values: `id`, `created`, `name`, `organization`, `release`, `deleting-since`.
+Providing a small part of the column name is also accepted: `d`/`del`/`deleting` are all valid for the `deleting-since` value.
 
 ## Related
 

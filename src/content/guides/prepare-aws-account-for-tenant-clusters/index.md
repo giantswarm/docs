@@ -24,6 +24,7 @@ these requirements:
 
 - Control plane account:
   - IAM _user_ to be used by our `aws-operator` software.
+  - IAM _role_ to be assumed by our `aws-operator` software.
   - IAM role to be assumed by Giant Swarm staff.
 - Tenant cluster account:
   - Service limits set according to requirements.
@@ -82,121 +83,53 @@ When requesting a service limit increase, you will be asked for a description of
 > We intend to run multiple Kubernetes clusters in this account, potentially used
 by various globally distributed teams. We will be creating and deleting new
 clusters frequently.
-
+>
 > Each cluster needs its own VPC for security/isolation reasons and its own
 Elastic IP address for the NAT gateway.
-
+>
 > Each cluster has at least 1 Auto Scaling Group, but can contain multiple ASGs if
 multiple instance types are requested as cluster nodes. If we count 50
 clusters with up to 5 EC2 instances each, as worker nodes, we need up to 250
 ASGs. To update the ASGs in a rolling manner we need to duplicate the ASGs
 for a short time during update, hence the 500 Launch Configurations.
-
+>
 > The number of EC2 instances used as worker nodes is supposed to be scaled
 dynamically based on traffic, hence the high numbers of EC2 instances requested.
 
-## IAM setup for control plane accounts
+## IAM setup for control plane accounts {#cp-iam}
 
 The following steps must all take place in the control plane AWS account.
 
-### Create an IAM user for aws-operator {#operator-iam-user}
+### Create an IAM role for aws-operator {#cp-iam-operator-role}
 
-Giant Swarm's service creating and maintaining your tenant clusters is
-called [aws-operator](https://github.com/giantswarm/aws-operator). It runs in the control plane. In order to handle resources in your AWS Tenant
-Cluster account, it needs a prepared IAM user in your AWS control plane
-account. Details of all the required steps to set up this user are explained below:
+Newer versions of `aws-operator` assume role in the control plane AWS account for compatibility with the Tenant Cluster account setup.
 
-#### 1. Basic user setup
+#### 1. Basic role setup {#cp-iam-operator-role-basic}
 
-First, log in to the AWS console for your AWS account. Then open the
-[IAM section](https://console.aws.amazon.com/iam/home) of the AWS console and
-go to the [Users](https://console.aws.amazon.com/iam/home#/users) subsection.
-
-Now hit the **Add user** button. Enter the user name as `aws-operator` and ensure
-only _Programmatic access_ is enabled.
-
-![AWS IAM console: Create user](/img/aws-user-create-user.png)
-
-#### 2. Permissions setup
-
-In the **Attach existing policies directly** section, hit the **Create policy** button.
-
-Paste the JSON code from [tenant_cluster.json](https://raw.githubusercontent.com/giantswarm/aws-operator/master/policies/tenant_cluster.json) into the JSON editor field and then hit the **Review policy** button.
-
-In the next step you need to assign a name to the policy. Please use the name:
-
-```nohighlight
-GiantSwarmAWSOperatorPolicy
-```
-
-Entering a description will also help distinguish the policy to other people.
-We suggest:
-
-> Policy required for the Giant Swarm AWS Operator.
-
-#### 3. Attach policy to user
-
-Once you created the policy, let's return to the point in the user creation
-called *Attach existing policies directly*. Here you can now hit the *Refresh*
-button to load all existing policies, then enter `GiantSwarmAWSOperatorPolicy`
-into the search field to select the policy you just created. Check the box in
-the row containing that policy.
-
-![AWS IAM console: Attach policy to user](/img/aws-user-attach-policy.png)
-
-Then proceed to the *Review* step.
-
-#### 4. Review and create user
-
-You should now review the user. Provided everything is correct, hit the *Create*
-button. On the following page, you will be presented with an *Access key ID* and
-a *Secret access key*. Click the 'show' link to display the access key secret,
-and then copy both the key ID and key secret; these will need to be provided to
-us later.
-
-![AWS IAM console: User secrets](/img/aws-user-secrets.png)
-
-## IAM setup for tenant cluster accounts
-
-The following steps must all take place in the tenant cluster AWS account.
-
-### Create an IAM role for aws-operator {#operator-iam-role}
-
-As `aws-operator` runs in the control plane account, it requires a role to assume
-in the tenant cluster account in order to manage tenant cluster resources. Below are the steps required to set up this role.
-
-#### 1. Determine the control plane's AWS account ID
-
-First you need to know in which AWS account the Giant Swarm control plane is
-(or will be) running. As Giant Swarm's customer you might have already decided
-this yourself. Normally you yourself own this account.
-
-Please have the ID of the account selected to run the control plane at hand, as
-you will need it in step 2.
-
-#### 2. Basic role setup
-
-First, log in to the AWS console for your AWS account. Then open the
-[IAM section](https://console.aws.amazon.com/iam/home) of the AWS console and
-go to the [Roles](https://console.aws.amazon.com/iam/home#/roles) subsection.
+Open the [IAM section](https://console.aws.amazon.com/iam/home) of the AWS
+console and go to the [Roles](https://console.aws.amazon.com/iam/home#/roles)
+subsection.
 
 Now hit the **Create role** button. In the following screen, when asked to
 _Select type of trusted entity_ chose _Another AWS account_.
 
 ![AWS IAM console: Create role](/img/aws-roles-create-role.png)
 
-The **Account ID** you enter is the ID of the AWS account as determined in step 1.
+The **Account ID** you enter is the ID of the same AWS account as the role is
+created in (Control Plane AWS account).
 
 It is important that the **Require external ID** and **Require MFA** options
 remain unchecked!
 
-Proceed to the next step to set up permissions.
+Then proceed to the next step.
 
-#### 3. Permissions setup
+#### 2. Permissions setup {#cp-iam-operator-role-permissions}
 
 In the **Attach permissions policies** section, hit the **Create policy** button.
 
-Paste the JSON code from [tenant_cluster.json](https://raw.githubusercontent.com/giantswarm/aws-operator/master/policies/tenant_cluster.json) into the JSON editor field and then hit the **Review policy** button.
+Copy the JSON code with all instances of `<YOUR_ACCOUNT_ID>` replaced from
+[iam-policy.json] into the JSON editor field and then hit the **Review
+policy** button.
 
 In the next step you need to assign a name to the policy. Please use the name
 
@@ -204,19 +137,16 @@ In the next step you need to assign a name to the policy. Please use the name
 GiantSwarmAWSOperatorPolicy
 ```
 
-#### 4. Attach policy to role
+#### 3. Attach policy to role {#cp-iam-operator-role-policy}
 
-Once you created the policy, let's return to the point in role creation called
-*Attach permissions policies*. Here you can now hit the *Refresh* button to load
-all existing policies, then enter `GiantSwarmAWSOperatorPolicy` into the search
-field to select the policy you just created. Check the box in the row containing
-that policy.
+Enter `GiantSwarmAWSOperatorPolicy` into the search field to select the policy
+you created before. Check the box in the row containing that policy.
 
 ![AWS IAM console: Attach policy](/img/aws-roles-attach-policy.png)
 
 Then proceed to the next step.
 
-#### 5. Name the role
+#### 4. Name the role {#cp-iam-operator-role-name}
 
 The last step of role creation requires you to set a name for the role. Please
 set the name to `GiantSwarmAWSOperator`.
@@ -227,7 +157,7 @@ You may also set a description for team members to better understand the reasons
 for the existence of this role. It could be helpful to also paste a link to this
 guide into the field for reference.
 
-#### 6. Get the role's ARN
+#### 5. Get the role's ARN {#cp-iam-operator-role-arn}
 
 After creating the new role, you should have a list of all IAM roles in front of
 you. From that list, open the `GiantSwarmAWSOperator` role you just created.
@@ -242,7 +172,134 @@ arn:aws:iam::<YOUR_ACCOUNT_ID>:role/GiantSwarmAWSOperator
 Please copy the exact ARN from the screen, as you will have to provide it to us
 later.
 
-### Create an IAM role for Giant Swarm staff {#gs-staff-iam-role}
+### Create an IAM user for aws-operator {#cp-iam-operator-user}
+
+Giant Swarm's service creating and maintaining your tenant clusters is
+called [aws-operator](https://github.com/giantswarm/aws-operator). It runs in the control plane. In order to handle resources in your AWS Tenant
+Cluster account, it needs a prepared IAM user in your AWS control plane
+account. Details of all the required steps to set up this user are explained below:
+
+#### 1. Basic user setup {#cp-iam-operator-user-basic}
+
+First, log in to the AWS console for your AWS account. Then open the
+[IAM section](https://console.aws.amazon.com/iam/home) of the AWS console and
+go to the [Users](https://console.aws.amazon.com/iam/home#/users) subsection.
+
+Now hit the **Add user** button. Enter the user name as `aws-operator` and ensure
+only _Programmatic access_ is enabled.
+
+![AWS IAM console: Create user](/img/aws-user-create-user.png)
+
+#### 2. Attach policy to user {#cp-iam-operator-user-policy}
+
+Hit *Attach existing policies directly* and enter `GiantSwarmAWSOperatorPolicy`
+into the search field to select the policy you created for
+`GiantSwarmAWSOperator` role. Check the box in the row containing that policy.
+
+![AWS IAM console: Attach policy to user](/img/aws-user-attach-policy.png)
+
+Then proceed to the *Review* step.
+
+#### 3. Review and create user {#cp-iam-operator-user-review}
+
+You should now review the user. Provided everything is correct, hit the *Create*
+button. On the following page, you will be presented with an *Access key ID* and
+a *Secret access key*. Click the 'show' link to display the access key secret,
+and then copy both the key ID and key secret; these will need to be provided to
+us later.
+
+![AWS IAM console: User secrets](/img/aws-user-secrets.png)
+
+## IAM setup for tenant cluster accounts {#tc-iam}
+
+The following steps must all take place in the tenant cluster AWS account.
+
+### Create an IAM role for aws-operator {#tc-iam-operator-role}
+
+As `aws-operator` runs in the control plane account, it requires a role to assume
+in the tenant cluster account in order to manage tenant cluster resources. Below are the steps required to set up this role.
+
+#### 1. Determine the control plane's AWS account ID {#tc-iam-operator-role-account-id}
+
+First you need to know in which AWS account the Giant Swarm control plane is
+(or will be) running. As Giant Swarm's customer you might have already decided
+this yourself. Normally you yourself own this account.
+
+Please have the ID of the account selected to run the control plane at hand, as
+you will need it in step 2.
+
+#### 2. Basic role setup {#tc-iam-operator-role-basic}
+
+First, log in to the AWS console for your AWS account. Then open the [IAM
+section](https://console.aws.amazon.com/iam/home) of the AWS console and go to
+the [Roles](https://console.aws.amazon.com/iam/home#/roles) subsection.
+go to the [Roles](https://console.aws.amazon.com/iam/home#/roles) subsection.
+
+Now hit the **Create role** button. In the following screen, when asked to
+_Select type of trusted entity_ chose _Another AWS account_.
+
+![AWS IAM console: Create role](/img/aws-roles-create-role.png)
+
+The **Account ID** you enter is the ID of the AWS account as determined in step 1.
+
+It is important that the **Require external ID** and **Require MFA** options
+remain unchecked!
+
+Proceed to the next step to set up permissions.
+
+#### 3. Permissions setup {#tc-iam-operator-role-permissions}
+
+In the **Attach permissions policies** section, hit the **Create policy** button.
+
+Copy the JSON code with all instances of `<YOUR_ACCOUNT_ID>` replaced from
+[iam-policy.json] into the JSON editor field and then hit the **Review
+policy** button.
+
+In the next step you need to assign a name to the policy. Please use the name
+
+```nohighlight
+GiantSwarmAWSOperatorPolicy
+```
+
+#### 4. Attach policy to role {#tc-iam-operator-role-policy}
+
+Once you created the policy, let's return to the point in role creation called
+*Attach permissions policies*. Here you can now hit the *Refresh* button to load
+all existing policies, then enter `GiantSwarmAWSOperatorPolicy` into the search
+field to select the policy you just created. Check the box in the row containing
+that policy.
+
+![AWS IAM console: Attach policy](/img/aws-roles-attach-policy.png)
+
+Then proceed to the next step.
+
+#### 5. Name the role {#tc-iam-operator-role-name}
+
+The last step of role creation requires you to set a name for the role. Please
+set the name to `GiantSwarmAWSOperator`.
+
+![AWS IAM console: Review](/img/aws-roles-review.png)
+
+You may also set a description for team members to better understand the reasons
+for the existence of this role. It could be helpful to also paste a link to this
+guide into the field for reference.
+
+#### 6. Get the role's ARN {#tc-iam-operator-role-arn}
+
+After creating the new role, you should have a list of all IAM roles in front of
+you. From that list, open the `GiantSwarmAWSOperator` role you just created.
+
+The role details screen shows the _Role ARN_, which is a unique identifier for
+the role. It should look like
+
+```nohighlight
+arn:aws:iam::<YOUR_ACCOUNT_ID>:role/GiantSwarmAWSOperator
+```
+
+Please copy the exact ARN from the screen, as you will have to provide it to us
+later.
+
+### Create an IAM role for Giant Swarm staff {#tc-iam-staff-role}
 
 Finally, we create an IAM role for Giant Swarm support staff to assume in order to
 access both AWS accounts. This role must have Giant Swarm's account as a trusted
@@ -251,7 +308,7 @@ entity, and we recommend that it enforces multi-factor authentication.
 Giant Swarm staff require access to **all** accounts, so **the following steps must
 be duplicated in both the control plane and tenant cluster accounts**.
 
-#### 1. Basic role setup
+#### 1. Basic role setup {#tc-iam-staff-role-basic}
 
 - Go to the [Roles](https://console.aws.amazon.com/iam/home#/roles)
 subsection of the AWS console and select **Create role**. When asked to
@@ -265,7 +322,7 @@ subsection of the AWS console and select **Create role**. When asked to
   authentication). This adds an extra authentication step for users to assume the
   role, which increases security.
 
-#### 2. Permission setup
+#### 2. Permission setup {#tc-iam-staff-role-permissions}
 
 Select **Create policy** to create another policy. Use the same JSON policy code
 as you used for the `aws-operator` user. This time, call the policy
@@ -274,11 +331,11 @@ as you used for the `aws-operator` user. This time, call the policy
 GiantSwarmAdminPolicy
 ```
 
-#### 3. Attach policy to role
+#### 3. Attach policy to role {#tc-iam-staff-role-policy}
 
 Attach the new `GiantSwarmAdminPolicy` policy to the role you are creating.
 
-#### 4. Name the role
+#### 4. Name the role {#tc-iam-staff-role-name}
 
 Name this role:
 
@@ -286,7 +343,7 @@ Name this role:
 GiantSwarmAdmin
 ```
 
-#### 5. Get the role's ARN
+#### 5. Get the role's ARN {#tc-iam-staff-role-arn}
 
 From the confirmation screen, copy the exact ARN. It should be in the form of:
 
@@ -330,3 +387,5 @@ organization. These clusters' resources will be created in your AWS account.
 - [Giant Swarm API documentation](https://docs.giantswarm.io/api/)
 - [AWS Service Limits](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)
 - [AWS Support Center](https://console.aws.amazon.com/support/home)
+
+[iam-policy.json]: https://raw.githubusercontent.com/giantswarm/giantswarm-aws-account-prerequisites/master/aws-operator-role/iam-policy.json

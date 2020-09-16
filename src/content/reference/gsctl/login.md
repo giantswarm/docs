@@ -16,7 +16,7 @@ stay authenticated until you use `gsctl logout`.
 The standard form of executing a login against an endpoint:
 
 ```nohighlight
-$ gsctl login <email> [-e|--endpoint <endpoint>]
+gsctl login <email> [-e|--endpoint <endpoint>]
 ```
 
 Example:
@@ -38,9 +38,8 @@ For usage in a script or any other type of information, the password can be
 provided as a command line argument using the `-p` or `--password` option. The
 syntax is as follows:
 
-
 ```nohighlight
-$ gsctl login <email> -e <endpoint> -p <password>
+gsctl login <email> -e <endpoint> -p <password>
 ```
 
 ## Related
