@@ -62,7 +62,7 @@ You can expose Services publicly by setting up a simple Ingress. You can do this
 Let's look at the following YAML, which you can use as a template for your Ingress manifest:
 
 ```yaml
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: INGRESS_NAME
