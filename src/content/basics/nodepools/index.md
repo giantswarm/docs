@@ -115,7 +115,7 @@ Another example: In a case where you have different node pools using different a
 You can delete a node pool at any time using the Giant Swarm API and user interfaces. When a node pool gets deleted the following things will happen:
 
 - nodes in the pool will be marked as unschedulable and then drained, resulting in Pods being unassigned from the nodes
-and containers being stopped.
+and containers being stopped (only on AWS clusters).
 - Then the actual nodes will be removed.
 
 If you are deleting a node pool running critical workloads, we recommend taking the following precautions:
