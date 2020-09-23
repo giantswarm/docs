@@ -35,7 +35,7 @@ The Volume and its data will persist as long as the corresponding PV resource ex
 
 Once you have a Persistent Volume Claim you can [claim it as a Volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#claims-as-volumes) in your Pods.
 
-Note that an `Azure Disk` volumes can only be used by a single Pod at the same time. Thus, the access mode of your PVC can only be `ReadWriteOnce`.
+Note that an `Azure Disk` volumes can only be used by a single Pod at a time. Thus, the access mode of your PVC can only be `ReadWriteOnce`.
 
 This limitation doesn't apply to `Azure File Share` volumes, that can be attached with the `ReadWriteMany` policy.
 
