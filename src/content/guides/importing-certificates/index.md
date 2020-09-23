@@ -75,14 +75,14 @@ Operating systems and HTTP clients have a variety of ways to manage CAs and cert
 ### Shortcut by client
 
 - Mac OS
-  - Safari and Chrome use the [Mac OS Keychain](#mac-os-keychain)
-  - [Firefox](#mac-os-firefox)
+    - Safari and Chrome use the [Mac OS Keychain](#mac-os-keychain)
+    - [Firefox](#mac-os-firefox)
 - Linux
-  - [Chrome, Chromium](#linux-chromium)
-  - [Firefox](#linux-firefox)
+    - [Chrome, Chromium](#linux-chromium)
+    - [Firefox](#linux-firefox)
 - Windows
-  - Edge, IE, Chrome, and Chromium use the [certificate store](#win-cert-store) provided by the operating system
-  - [Firefox](#win-firefox)
+    - Edge, IE, Chrome, and Chromium use the [certificate store](#win-cert-store) provided by the operating system
+    - [Firefox](#win-firefox)
 
 ### Mac OS
 
