@@ -1,7 +1,7 @@
 ---
 title: "gsctl Command Reference: update nodepool"
 description: The 'gsctl update nodepool' command allows renaming and scaling of a node pool.
-date: 2020-08-25
+date: 2020-09-23
 type: page
 weight: 44
 ---
@@ -31,7 +31,7 @@ gsctl update nodepool "Cluster name"/opdl --name "New node pool name"
 
 Example for adjusting the scaling limits:
 
-* Autoscaling enabled (AWS only)
+* Autoscaling enabled (AWS and Azure {{% first_azure_autoscaling_version %}} or newer)
 
 ```nohighlight
 gsctl update nodepool f01r4/op1dl --nodes-min 3 --nodes-max 20
