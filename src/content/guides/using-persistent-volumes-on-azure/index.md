@@ -23,7 +23,7 @@ The default `Storage Classes` are:
 ## Creating Persistent Volumes
 
 The most straight forward way to create a Persistent Volume is to create a [Persistent Volume Claim object](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims).
-Please ensure to specify the right `Storage class` to have the desired type of volume automatically provisioned for you.
+Please ensure to specify the right `Storage Class` to have the desired type of volume automatically provisioned for you.
 
 Alternatively, to be able to set more specific parameters on your PV you can first create a [Persistent Volume object](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistent-volumes) and then claim that PV using a Persistent Volume Claim (PVC).
 
