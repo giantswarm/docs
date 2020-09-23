@@ -1,6 +1,6 @@
-FROM nginxinc/nginx-unprivileged:1.16-alpine
+FROM nginxinc/nginx-unprivileged:1.18-alpine
 
-EXPOSE  8080
+EXPOSE 8080
 
 USER 0
 
