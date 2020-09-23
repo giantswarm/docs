@@ -48,11 +48,11 @@ The kubernetes API on every Control has [dex](https://github.com/dexidp/dex) ins
 With a valid *jwt* token, received from your chosen Identity Provider, customers can have two levels of access:
 
 - *view*
-  - *get*/*list*/*watch* access to all resources in the Control Plane, except for `configmaps` and `secrets`.
-  - *get*/*list*/*watch* access to all resources (including `configmaps` and `secrets`) in tenant cluster namespaces.
+    - *get*/*list*/*watch* access to all resources in the Control Plane, except for `configmaps` and `secrets`.
+    - *get*/*list*/*watch* access to all resources (including `configmaps` and `secrets`) in tenant cluster namespaces.
 - *admin*
-  - full access, to the `cluster`, `node pool`, `appcatalogs` and `apps` resources of Control Plane Kubernetes.
-  - includes *view* level access.
+    - full access, to the `cluster`, `node pool`, `appcatalogs` and `apps` resources of Control Plane Kubernetes.
+    - includes *view* level access.
   
 ### Giant Swarm API {#giant-swarm-api}
 
