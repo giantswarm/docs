@@ -15,10 +15,10 @@ If your cluster is running in the cloud on Azure, it comes with four dynamic sto
 
 The default `Storage Classes` are:
 
-- managed-premium (the default one): Provisions a `Premium LRS` [`Managed disk`](https://docs.microsoft.com/en-us/azure/virtual-machines/managed-disks-overview) and thus can be used only on kubernetes nodes that run on supported VM types (those with an `s` in their name).
-- managed-standard: Provisions a `Standard LRS` [`Managed disk`](https://docs.microsoft.com/en-us/azure/virtual-machines/managed-disks-overview) and can be used on any VM instance type.
-- af-premium: Provisions a volume backed by the [`Azure File Share`](https://azure.microsoft.com/en-us/services/storage/files/) service within a `Premium LRS` storage account. 
-- af-standard: Provisions a volume backed by the [`Azure File Share`](https://azure.microsoft.com/en-us/services/storage/files/) service within a `Standard LRS` storage account.
+- **managed-premium** (the default one): Provisions a `Premium LRS` [`Managed disk`](https://docs.microsoft.com/en-us/azure/virtual-machines/managed-disks-overview) and thus can be used only on kubernetes nodes that run on supported VM types (those with an `s` in their name).
+- **managed-standard**: Provisions a `Standard LRS` [`Managed disk`](https://docs.microsoft.com/en-us/azure/virtual-machines/managed-disks-overview) and can be used on any VM instance type.
+- **af-premium**: Provisions a volume backed by the [`Azure File Share`](https://azure.microsoft.com/en-us/services/storage/files/) service within a `Premium LRS` storage account. 
+- **af-standard**: Provisions a volume backed by the [`Azure File Share`](https://azure.microsoft.com/en-us/services/storage/files/) service within a `Standard LRS` storage account.
 
 ## Creating Persistent Volumes
 
@@ -80,10 +80,10 @@ Now we have an NGINX Pod which serves the contents of our Azure Managed Disk Vol
 
 ## Expanding Persistent Volume Claims
 
-Starting with Giantswarm release 12.2.0 Persistent Volume Claims can be expanded by simply editing the claim and requesting a larger size.
+Starting with volumes created on Giantswarm release 12.2.0 clusters, `Persistent Volume Claims` can be expanded by simply editing the claim and requesting a larger size.
 It will trigger an update in the underlying Persistent Volume and Azure Volume (Kubernetes always uses the existing one).
 
-Please note that for `Managed Disk`-based volumes, it is mandatory to release the PVC (i.e. stop all the Pods that are using it) before the resize operation begins.
+Please note that for `Managed Disk`-based volumes, it is mandatory to release the PVC (i.e. stop the Pod that is mounting it) before the resize operation begins.
 This is a limitation of Azure Cloud that does not apply to `Azure File Share`-based volumes.
 
 ## Deleting Persistent Volumes
