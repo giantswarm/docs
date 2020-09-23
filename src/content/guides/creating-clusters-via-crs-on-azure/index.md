@@ -166,12 +166,12 @@ That's why we've developed a simple [CLI utility](https://github.com/giantswarm/
 The utility supports rendering CRs:
 
 - Tenant clusters:
-  - `Cluster` (API version `cluster.x-k8s.io/v1alpha3`)
-  - `AzureCluster` (API version `infrastructure.cluster.x-k8s.io/v1alpha3`)
+    - `Cluster` (API version `cluster.x-k8s.io/v1alpha3`)
+    - `AzureCluster` (API version `infrastructure.cluster.x-k8s.io/v1alpha3`)
 - Node pool:
-  - `MachinePool` (API version `exp.cluster.x-k8s.io/v1alpha3`)
-  - `AzureMachinePool` (API version `exp.infrastructure.cluster.x-k8s.io/v1alpha3`)
-  - `Spark` (API version `core.giantswarm.io/v1alpha1`)
+    - `MachinePool` (API version `exp.cluster.x-k8s.io/v1alpha3`)
+    - `AzureMachinePool` (API version `exp.infrastructure.cluster.x-k8s.io/v1alpha3`)
+    - `Spark` (API version `core.giantswarm.io/v1alpha1`)
 - `AppCatalog`
 - `App`
 
