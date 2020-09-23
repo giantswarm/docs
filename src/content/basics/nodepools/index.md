@@ -24,7 +24,7 @@ availability zone distribution, even if some workloads wouldn't require the incr
 Node pools are independent groups of worker nodes belonging to a cluster, where all nodes within a pool share a
 common configuration. You can combine any type of node pool within one cluster. Node pools can differ regarding:
 
-- Instance type
+- Machine type
 - Availability zone distribution
 - Scaling configuration (number of nodes)
 
