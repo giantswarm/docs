@@ -175,6 +175,7 @@ The utility supports rendering CRs:
 - Tenant clusters:
     - `Cluster` (API version `cluster.x-k8s.io/v1alpha3`)
     - `AzureCluster` (API version `infrastructure.cluster.x-k8s.io/v1alpha3`)
+    - `AzureMachine` (API version `infrastructure.cluster.x-k8s.io/v1alpha3`)
 - Node pool:
     - `MachinePool` (API version `exp.cluster.x-k8s.io/v1alpha3`)
     - `AzureMachinePool` (API version `exp.infrastructure.cluster.x-k8s.io/v1alpha3`)
