@@ -63,7 +63,7 @@ We create one namespace for each tenant cluster, where the namespace name is equ
 
 Following are some resources that should help you:
 
-- The guide [Creating tenant clusters via the Control Plane Kubernetes API](/guides/creating-clusters-via-crs-on-aws/) explains step by step how you can create a cluster and node pools via the Control Plane Kubernetes API. Here you learn about all the custom resources a cluster comprises.
+- The guide [Creating tenant clusters via the Control Plane Kubernetes API](/guides/creating-clusters-via-crs/) explains step by step how you can create a cluster and node pools via the Control Plane Kubernetes API. Here you learn about all the custom resources a cluster comprises.
 - The [App Platform](/basics/app-platform/) introduction outlines the several custom resources involved when managing app catalogs and apps.
 - Our [Control Plane Kubernetes API Reference](https://docs.giantswarm.io/reference/cp-k8s-api/) provides detailed documentation on all the custom resources we use with the various providers and their versions and schema.
 
