@@ -13,6 +13,9 @@ default: true
 MD004:
   style: consistent
 
+MD007:
+  indent: 4
+
 # Ignore front matter in headline linting
 MD025:
   front_matter_title: ""
