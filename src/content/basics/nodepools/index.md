@@ -184,9 +184,6 @@ these clusters and don't provide any proactive support.
 
 - We also do not monitor node pools with less than three worker nodes and do not provide any proactive support for those.
 
-- When creating a new node pool, the master node of the cluster is re-created. This causes a downtime of the Kubernetes
-API of a couple of minutes.
-
 ### AWS specific
 
 - A node pool can have a maximum of 250 worker nodes. The architectural reason for this is that each node pool gets a `/24` IPv4 subnet assigned. However 5 IP addresses per availability zone used are not usable for worker nodes, as they are reserved for other AWS resources. Hence the limit depends on the number of availability zones used by a node pool. If the pool uses two zones, it's 245. With three zones, the limit is 240, and with four zones, it's 235.
