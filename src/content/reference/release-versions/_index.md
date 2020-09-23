@@ -44,20 +44,15 @@ On AWS, **v9.2.0** and up contains **Kubernetes 1.16.x**
 
 ## Versions that support node pools
 
-Currently only AWS **{{% first_aws_nodepools_version %}}** and up support node pools.
+- AWS **{{% first_aws_nodepools_version %}}** and up.
 
-While it is still a work in progress, on Azure, **v12.1.0** and above will
-be the releases that support node pools.
+- Azure **{{% first_azure_nodepools_version %}}** and up.
 
 ## Versions with an optional ingress controller
 
-As of **v11.0.0** on AWS installations, the ingress controller has been
+As of **v11.0.0** on AWS installations, **v12.0.0** on Azure, and **12.2.0** on KVM the ingress controller has been
 made optional. That means it is not installed by default when you create your
 cluster.
-
-On Azure and KVM the ingress controller is still automatically installed, though
-a release is planned for Azure that will make the ingress controller optional
-Most likely that will be **v11.4.0**
 
 ## Versions with Flatcar Container Linux
 
