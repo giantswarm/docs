@@ -195,7 +195,10 @@ that availability zone.
   cluster can only use these four availability zones.
 
 ## Azure specific
-- 
+
+- Every node pool is mapped with a `Virtual Machine Scale Set`. That means that there is an upper bound of 100 nodes for each node pool.
+
+- The maximum number of Node Pools for each Cluster is 200.
 
 ## Further reading
 
