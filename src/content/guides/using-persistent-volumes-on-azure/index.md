@@ -17,7 +17,7 @@ The default `Storage Classes` are:
 
 - **managed-premium** (the default one): Provisions a `Premium LRS` [`Managed disk`](https://docs.microsoft.com/en-us/azure/virtual-machines/managed-disks-overview) and thus can be used only on kubernetes nodes that run on supported VM types (those with an `s` in their name).
 - **managed-standard**: Provisions a `Standard LRS` [`Managed disk`](https://docs.microsoft.com/en-us/azure/virtual-machines/managed-disks-overview) and can be used on any VM instance type.
-- **af-premium**: Provisions a volume backed by the [`Azure File Share`](https://azure.microsoft.com/en-us/services/storage/files/) service within a `Premium LRS` storage account. 
+- **af-premium**: Provisions a volume backed by the [`Azure File Share`](https://azure.microsoft.com/en-us/services/storage/files/) service within a `Premium LRS` storage account.
 - **af-standard**: Provisions a volume backed by the [`Azure File Share`](https://azure.microsoft.com/en-us/services/storage/files/) service within a `Standard LRS` storage account.
 
 ## Creating Persistent Volumes
@@ -56,6 +56,7 @@ spec:
       storage: 6Gi
   storageClassName: managed-standard
 ```
+
 Now we can create a Pod that uses our PVC:
 
 ```yaml
