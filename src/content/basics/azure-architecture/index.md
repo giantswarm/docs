@@ -18,7 +18,7 @@ When it comes to planning and designing your cluster architecture and its adapti
 
 As we are fully convinced of Kubernetes as a platform for building platforms, we built all our Control Plane based on a Kubernetes cluster. The initial deployment entails the creation of that Control Plane cluster in a defined cloud provider region. After the Control Plane cluster is ready we deploy all our automation taking advantage of Kubernetes primitives and using the same philosophy we advocate to our customers.
 
-Giant Swarm leverages the concept of [“Operators"](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) to control all resources that clusters need as [“Custom Resources”](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/). At the same time customers can also use the Kubernetes Control Plane API to [manage their clusters](https://docs.giantswarm.io/guides/creating-clusters-via-crs-on-aws/) and/or [applications](https://docs.giantswarm.io/basics/app-catalog/).
+Giant Swarm leverages the concept of [“Operators"](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) to control all resources that clusters need as [“Custom Resources”](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/). At the same time customers can also use the Kubernetes Control Plane API to [manage their clusters](https://docs.giantswarm.io/guides/creating-clusters-via-crs/) and/or [applications](https://docs.giantswarm.io/basics/app-catalog/).
 
 ![Control Plane Architecture](architecture-azure-control-plane.png)
 
