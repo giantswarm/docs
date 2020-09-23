@@ -5,7 +5,7 @@ date: 2020-06-10
 weight: 50
 type: page
 categories: ["basics"]
-last_review_date: 2020-06-10
+last_review_date: 2020-09-23
 ---
 
 The Giant Swarm Platform consists of various components. They can be categorized into three areas: infrastructure, operations, and applications.
