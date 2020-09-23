@@ -122,8 +122,10 @@ use when a cluster is created without specifying a number.
 - `first_aws_autoscaling_version`: The release version that introduced
 autoscaling for AWS.
 
-- `first_awsnodepools_version`: The release version that introduced
+- `first_aws_nodepools_version`: The release version that introduced
 nodepools for AWS.
+
+- `first_azure_nodepools_version`: The release version that introduced nodepools for Azure.
 
 - `first_spotinstances_version`: The release version that introduced
 spotinstances for AWS.

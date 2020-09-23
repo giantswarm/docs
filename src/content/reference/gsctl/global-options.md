@@ -18,6 +18,7 @@ weight: 20
 - `--auth-token`: Can be used to pass an authentication token for the use in single command, as an alternative to a permanent login in via `gsctl login`.
 - `--config-dir`: This option allows to override the directory path to use for storing your configuration file and key pairs. By default, they get stored in `$HOME/.config/gsctl`.
 - `--verbose`, `-v`: Print more detailed output
+- `--silence-http-endpoint-warning`: **Insecure!** Allows to silence warnings when using endpoints with non-HTTPS URLs. This should only used in scenarios where users specifically want `gsctl` to communicate with endpoints only supporting unencrypted HTTP traffic. This can be neccessary when `gsctl` output is being parsed.
 
 ## Easily switching between environments {#switching-environments}
 
