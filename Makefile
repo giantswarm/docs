@@ -74,12 +74,6 @@ docker-build: build
 docker-run:
 	docker run --rm -ti -p 8080:8080 $(REGISTRY)/$(COMPANY)/$(PROJECT):latest
 
-dev:
-	docker run --rm -ti \
-	-p 8080:8080 \
-	-v ${PWD}/src:/docs/build:z \
-	$(REGISTRY)/$(COMPANY)/$(PROJECT):latest /bin/sh -c "nginx; hugo -w --destination /usr/share/nginx/html"
-
 clean:
 	rm -rf build
 	rm -rf vendor

@@ -1,15 +1,17 @@
+FROM cimg/base:stable-18.04 as build
+
+USER 0
+
+WORKDIR /docs
+
+COPY vendor/hugo/hugo /usr/bin/hugo
+
+COPY build .
+
+RUN hugo --verbose --gc --minify --cleanDestinationDir --destination /public
+
 FROM nginxinc/nginx-unprivileged:1.18-alpine
 
 EXPOSE 8080
 
-USER 0
-
-WORKDIR /
-ADD vendor/hugo/hugo /usr/bin/hugo
-RUN chmod u+x /usr/bin/hugo
-WORKDIR /docs/build
-ADD ./build /docs/build
-RUN /usr/bin/hugo version
-RUN /usr/bin/hugo --destination /usr/share/nginx/html
-
-USER 101
+COPY --from=build --chown=101 /public /usr/share/nginx/html
