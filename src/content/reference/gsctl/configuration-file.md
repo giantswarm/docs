@@ -41,10 +41,10 @@ updated: 2018-01-26T09:17:24+01:00
 - `endpoints`: All API endpoint known to gsctl are sub-entries of this key.
   Each entry has the canonical endpoint URL as a key. The following attributes
   are allowed per endpoint entry:
-  - `alias`: Shorthand for selecting the endpoint. This must be unique within
+    - `alias`: Shorthand for selecting the endpoint. This must be unique within
     the configuration.
-  - `email`: Email used for authentication with this endpoint.
-  - `token`: Authentication token used with this endpoint.
+    - `email`: Email used for authentication with this endpoint.
+    - `token`: Authentication token used with this endpoint.
 - `selected_endpoint`: The currently selected endpoint URL. Can be empty.
 - `last_version_check`: Date and time gsctl has last checked for a newer
   gsctl version (when calling `gsctl --version`).
