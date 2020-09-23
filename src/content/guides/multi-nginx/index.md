@@ -19,7 +19,7 @@ Having some components in multi-tierd architecture or back-office applications n
 - Deploy one NGINX IC App using default settings, for making selected cluster services accessible via the public internet
 - Deploy second internal NGINX IC App using following user configuration overrides
 
-  - on AWS and Azure
+    - on AWS and Azure
 
     ```yaml
     controller:
@@ -29,7 +29,7 @@ Having some components in multi-tierd architecture or back-office applications n
         subdomain: "ingress-internal"
     ```
 
-  - on KVM
+    - on KVM
 
     ```yaml
     controller:
