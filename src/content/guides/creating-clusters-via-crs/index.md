@@ -18,5 +18,5 @@ Following this strategy, the Giant Swarm Rest API is going to be deprecated at s
 
 ## How does cluster creation work now
 
-- [On AWS](/guides/creating-clusters-via-crs/aws.md).
-- [On Azure](/guides/creating-clusters-via-crs/azure.md).
+- [On AWS](/guides/creating-clusters-via-crs-on-aws/).
+- [On Azure](/guides/creating-clusters-via-crs-on-azure/).
