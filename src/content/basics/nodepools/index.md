@@ -11,7 +11,7 @@ categories: ["basics"]
 
 ## Definition
 
-A node pool is a set of nodes within a Kubernetes cluster that share a same configuration (instance type, CIDR range, etc.). Each node in the pool is labeled by the node pool's name
+A node pool is a set of nodes within a Kubernetes cluster that share the same configuration (instance type, CIDR range, etc.). Each node in the pool is labeled by the node pool's name
 
 ## Advantages
 
@@ -47,9 +47,9 @@ These tools also support modification of node pools and their deletion.
 
 Once a node pool has been created, as soon as the workers are available, they will
 join the cluster and appear in your `kubectl get nodes` listing. You can identify the
-nodes' node pool using the `giantswarm.io/machine-deployment` label.
+nodes' node pool using the `giantswarm.io/machine-deployment` label on AWS clusters and `giantswarm.io/machine-pool` label on Azure clusters.
 
-The example `kubectl` command below will list all nodes with role, node pool ID, and name.
+The example `kubectl` command below will list all nodes with role, node pool ID, and name for an AWS cluster.
 
 ```nohighlight
 kubectl get nodes \
@@ -72,7 +72,7 @@ See the [`gsctl update nodepool`](/reference/gsctl/update-nodepool/) reference f
 
 Knowing the node pool ID of the pool to use, you can use the `nodeSelector` method of assigning pods to the node pool.
 
-Assuming that the node pool ID is `a1b2c`, your `nodeSelector` should look like this (for example):
+Assuming that the node pool ID is `a1b2c`, your `nodeSelector` could for example look like this (for an AWS cluster):
 
 ```yaml
 apiVersion: v1
@@ -85,6 +85,21 @@ spec:
     image: nginx
   nodeSelector:
     giantswarm.io/machine-deployment: a1b2c
+```
+
+A similar example for an Azure cluster:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+  nodeSelector:
+    giantswarm.io/machine-pool: a1b2c
 ```
 
 You can assign workloads to node pools in a more indirect way too. This is achieved by using other node attributes which are
@@ -159,7 +174,7 @@ With node pools, you set the autoscaling range per node pool. The Kubernetes clu
 
 If you assign workloads to node pools as described [above](#assigning-workloads) and the autoscaler finds pods in `Pending` state, it will decide based on the node selectors which node pools to scale up.
 
-In case there are workloads not assigned to any node pools, the autoscaler may pick any node pool for scaling. For details on the decision logic, please check the upstream [FAQ for AWS](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/README.md).
+In case there are workloads not assigned to any node pools, the autoscaler may pick any node pool for scaling. For details on the decision logic, please check the upstream FAQ for [AWS](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/README.md) and [Azure](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/azure/README.md).
 
 ## Limitations
 
