@@ -14,19 +14,11 @@ build-css:
 
 
 vendor:
-	# Vendor hugo
-	mkdir -p vendor
-	mkdir -p vendor/hugo
-	cd vendor/hugo && \
-		wget -O hugo.tar.gz -q https://github.com/gohugoio/hugo/releases/download/v0.75.1/hugo_extended_0.75.1_Linux-64bit.tar.gz && \
-		tar -xvf hugo.tar.gz && \
-		rm hugo.tar.gz
-
 	# Vendor other external repositories as defined in 'external-repositories.txt'
 	./vendorize-external-repositories.sh
 
 
-build: vendor build-css
+build: vendor # build-css
 	# check dependencies
 	which jq || (echo "jq not found" && exit 1)
 	which curl || (echo "curl not found" && exit 1)

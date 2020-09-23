@@ -1,16 +1,12 @@
-FROM cimg/base:stable-18.04 as build
-
-USER 0
+FROM quay.io/giantswarm/hugo:v0.75.1 AS build
 
 WORKDIR /docs
-
-COPY vendor/hugo/hugo /usr/bin/hugo
 
 COPY build .
 
 RUN hugo --verbose --gc --minify --cleanDestinationDir --destination /public
 
-FROM nginxinc/nginx-unprivileged:1.18-alpine
+FROM quay.io/giantswarm/nginx:1.18-alpine
 
 EXPOSE 8080
 
