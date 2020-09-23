@@ -24,7 +24,7 @@ The [NGINX-based Ingress Controller](https://github.com/kubernetes/ingress-nginx
 You can aggregate several Ingress rules into a single Ingress definition like following:
 
 ```yaml
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: <ingress-name>
@@ -53,7 +53,7 @@ __Note:__ If you are using TLS you also need each of the hosts in the `tls` sect
 You can route an Ingress to different Services based on the path:
 
 ```yaml
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: <ingress-name>
@@ -85,7 +85,7 @@ __Warning:__ This feature was disabled by default in Nginx ingress controller ma
 For SSL passthrough you need to set an annotation and enable TLS for the host:
 
 ```yaml
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: <ingress-name>
@@ -127,7 +127,7 @@ __Note:__ the data keys must be named `tls.crt` and `tls.key`!
 Referencing this secret in an Ingress will tell the Ingress Controller to secure the channel from the client to the loadbalancer using TLS:
 
 ```yaml
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: <ingress-name>
@@ -189,7 +189,7 @@ data:
 Last, we create the Ingress with the according annotations:
 
 ```yaml
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: <ingress-name>
@@ -228,7 +228,7 @@ In some scenarios the exposed URL in the backend service differs from the specif
 This can for example be used together with path based routing, when the application expects to be on `/`:
 
 ```yaml
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: <ingress-name>
@@ -304,7 +304,7 @@ The NGINX Ingress Controller creates an NGINX configuration file. You can direct
 Here is an example adding an `Expires` header to every response:
 
 ```yaml
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: myingress
