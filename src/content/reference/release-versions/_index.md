@@ -1,7 +1,7 @@
 ---
 title: Release Versions
 description: Here you find our reference regarding our release versions
-date: 2020-08-03
+date: 2020-09-23
 layout: subsection
 weight: 500
 ---
