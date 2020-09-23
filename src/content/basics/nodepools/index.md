@@ -109,7 +109,6 @@ For example: In a case where you have node pools with one instance type. Using a
 
 Another example: In a case where you have different node pools using different availability zones. With a `nodeSelector` using the label `topology.kubernetes.io/zone` (or in Kubernetes before v1.17: `failure-domain.beta.kubernetes.io/zone`) you can assign your workload to the nodes in a particular availability zone.
 
-
 ## Node pool deletion
 
 You can delete a node pool at any time using the Giant Swarm API and user interfaces. When a node pool gets deleted the following things will happen:
