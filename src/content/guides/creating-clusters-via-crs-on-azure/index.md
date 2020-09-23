@@ -46,6 +46,9 @@ spec:
     kind: AzureCluster
     namespace: default
     name: nzr5z
+  controlPlaneEndpoint:
+    host: api.nzr5z.k8s.ghost.westeurope.azure.gigantic.io
+    port: 443
 ```
 
 ### `AzureCluster`
@@ -73,6 +76,9 @@ spec:
     subnets: [ ]
   location: westeurope
   resourceGroup: nzr5z
+  controlPlaneEndpoint:
+    host: api.nzr5z.k8s.ghost.westeurope.azure.gigantic.io
+    port: 443
 ```
 
 ### `MachinePool`
@@ -98,6 +104,7 @@ spec:
     - "3"
   template:
     spec:
+      bootstrap: {}
       clusterName: nzr5z
       infrastructureRef:
         apiVersion: exp.infrastructure.cluster.x-k8s.io/v1alpha3
@@ -153,7 +160,7 @@ metadata:
     azure-operator.giantswarm.io/version: 5.0.0
     release.giantswarm.io/version: 12.2.0
     giantswarm.io/organization: giantswarm
-spec: null
+spec: {}
 ```
 
 ## How to create a cluster using Cluster API
