@@ -23,12 +23,12 @@ In order to run Giant Swarm clusters, the AWS account(s) need to fulfill
 these requirements:
 
 - Control plane account:
-  - IAM _user_ to be used by our `aws-operator` software.
-  - IAM role to be assumed by Giant Swarm staff.
+    - IAM _user_ to be used by our `aws-operator` software.
+    - IAM role to be assumed by Giant Swarm staff.
 - Tenant cluster account:
-  - Service limits set according to requirements.
-  - IAM _role_ to be assumed by our `aws-operator` software.
-  - IAM role to be assumed by Giant Swarm staff.
+    - Service limits set according to requirements.
+    - IAM _role_ to be assumed by our `aws-operator` software.
+    - IAM role to be assumed by Giant Swarm staff.
 
 Each Giant Swarm tenant cluster belongs to an organization within Giant Swarm.
 This organization will later be configured with information about the two
@@ -57,23 +57,23 @@ The screenshot below shows the entry form.
 These are the limit increases to be requested, grouped by limit type:
 
 - VPC
-  - VPCs per region: **50**
-  - NAT Gateway per Availability Zone per region: **50**
-  - IPv4 CIDR blocks per VPC: **50**
+    - VPCs per region: **50**
+    - NAT Gateway per Availability Zone per region: **50**
+    - IPv4 CIDR blocks per VPC: **50**
 - Elastic IP
-  - New VPC Elastic IP Address Limit per region: **50**
+    - New VPC Elastic IP Address Limit per region: **50**
 - Elastic Load Balancers
-  - Application and Classic Load Balancers per region: **100**
+    - Application and Classic Load Balancers per region: **100**
 - Auto Scaling
-  - Auto Scaling Groups per region: **250**
-  - Launch Configurations per region: **500**
+    - Auto Scaling Groups per region: **250**
+    - Launch Configurations per region: **500**
 - EC2 Instances
-  - m4.xlarge per region: **250**
-  - m4.2xlarge per region: **250**
-  - m5.2xlarge per region: **250**
-  - other instance types to be used as workers: increase accordingly
+    - m4.xlarge per region: **250**
+    - m4.2xlarge per region: **250**
+    - m5.2xlarge per region: **250**
+    - other instance types to be used as workers: increase accordingly
 - EC2 Spot Instances
-  - For every primary instance type you tend to use spot instances with, set the limit according to your needs.
+    - For every primary instance type you tend to use spot instances with, set the limit according to your needs.
 
 (Please extend the list of EC2 instance to also contain the types you need frequently.)
 
