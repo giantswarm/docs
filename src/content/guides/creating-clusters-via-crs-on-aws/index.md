@@ -212,13 +212,13 @@ That's why we've developed a simple [CLI utility](https://github.com/giantswarm/
 The utility supports rendering CRs:
 
 - Tenant clusters (AWS only):
-  - `Cluster` (API version `cluster.x-k8s.io/v1alpha2`)
-  - `AWSCluster` (API version `infrastructure.giantswarm.io/v1alpha2`)
-  - `G8sControlPlane` (API version `infrastructure.giantswarm.io/v1alpha2`)
-  - `AWSControlPlane` (API version `infrastructure.giantswarm.io/v1alpha2`)
+    - `Cluster` (API version `cluster.x-k8s.io/v1alpha2`)
+    - `AWSCluster` (API version `infrastructure.giantswarm.io/v1alpha2`)
+    - `G8sControlPlane` (API version `infrastructure.giantswarm.io/v1alpha2`)
+    - `AWSControlPlane` (API version `infrastructure.giantswarm.io/v1alpha2`)
 - Node pool (AWS only):
-  - `MachineDeployment` (API version `cluster.x-k8s.io/v1alpha2`)
-  - `AWSMachineDeployment` (API version `infrastructure.giantswarm.io/v1alpha2`)
+    - `MachineDeployment` (API version `cluster.x-k8s.io/v1alpha2`)
+    - `AWSMachineDeployment` (API version `infrastructure.giantswarm.io/v1alpha2`)
 - `AppCatalog`
 - `App`
 

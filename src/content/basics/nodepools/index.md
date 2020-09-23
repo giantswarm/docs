@@ -205,7 +205,7 @@ cover. Once an availability zone has been assigned for use in a cluster, either 
 nodes, it cannot be unassigned from that cluster. It will remain assigned even if there are no more node pools using
 that availability zone.
 
-  - **Example:** The master node is in availability zone A. Node pool 1 uses availability zones B and C. Node pool 2 uses
+    - **Example:** The master node is in availability zone A. Node pool 1 uses availability zones B and C. Node pool 2 uses
   availability zone D. With A, B, C, and D, the limit of four availability zones assigned is reached. New node pools of this
   cluster can only use these four availability zones.
 
