@@ -173,7 +173,7 @@ We recommend to always use soft anti-affinity to avoid exclusivity of nodes. How
 
 For such rescheduling or rebalancing you should have a look at the incubation project called [descheduler](https://github.com/kubernetes-sigs/descheduler) and evaluate its use in your clusters. It has settings for avoiding affinities, but also for rebalancing clusters with under-utilized nodes.
 
-### Use liveness and readiness probes {checklist-liveness-readiness}
+### Use liveness and readiness probes {#checklist-liveness-readiness}
 
 Have well implemented [liveness and readiness probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/).
 
