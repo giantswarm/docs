@@ -57,6 +57,13 @@ docker-build: build
 docker-run:
 	docker run --rm -ti -p 8080:8080 $(REGISTRY)/$(COMPANY)/$(PROJECT):latest
 
+dev:
+	docker build -t $(REGISTRY)/$(COMPANY)/$(PROJECT):dev --target=build .
+	docker run --rm -ti \
+	-p 1313:1313 \
+	-v ${PWD}/build:/docs:z \
+	$(REGISTRY)/$(COMPANY)/$(PROJECT):dev serve --bind 0.0.0.0 -w -s /docs
+
 clean:
 	rm -rf build
 	rm -rf vendor

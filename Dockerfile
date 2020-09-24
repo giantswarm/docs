@@ -6,7 +6,7 @@ WORKDIR /docs
 
 COPY build .
 
-RUN hugo --verbose --gc --minify --cleanDestinationDir --destination /public
+RUN hugo --verbose --gc --minify --cleanDestinationDir --path-warnings --destination /public
 
 RUN find /public \
   -type f -regextype posix-extended \
