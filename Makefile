@@ -7,18 +7,13 @@ CRD_DOCS_GENERATOR_VERSION=0.1.1
 
 default: docker-build
 
-build-css:
-	docker run -it \
-		-v ${PWD}/src/static/css:/sass \
-		ellerbrock/alpine-sass /sass/base.sass /sass/base.css -m auto
-
 
 vendor:
 	# Vendor other external repositories as defined in 'external-repositories.txt'
 	./vendorize-external-repositories.sh
 
 
-build: vendor # build-css
+build: vendor
 	# check dependencies
 	which jq || (echo "jq not found" && exit 1)
 	which curl || (echo "curl not found" && exit 1)
