@@ -53,7 +53,7 @@ Having said that, there is no general rule to split workloads between Azure subs
 
 ### Architecture
 
-Our Azure Operator creates a single Virtual Network per cluster and a subnet (in fact its two subnets: one public and private) for all node pools defined in the configuration. There is no overlay network thanks to Azure CNI in place, so that pods run in the same IP range as nodes. For each private subnet there is a NAT Gateway, which is in charge of routing traffic from nodes or pods to the Internet. Once a workload is exposed to the Internet, an Load Balancer is placed in the public subnet to balance the request over the different backends.
+Our Azure Operator creates a single Virtual Network per cluster and one subnet for each of the node pools defined in the configuration. There is no overlay network thanks to Azure CNI in place, so that pods run in the same IP range as nodes. For each subnet there is a NAT Gateway, which is in charge of routing traffic from nodes or pods to the Internet. Once a workload is exposed to the Internet, a Load Balancer is placed in the public subnet to balance the request over the different backends.
 
 ![Tenant Cluster Architecture](architecture-azure-tenant-cluster.png)
 
