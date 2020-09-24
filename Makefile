@@ -27,10 +27,6 @@ build: vendor
 	# Copy src to build directory
 	cp -r src/. build/
 
-	# Cache breaker
-	echo -n `git hash-object ./build/static/css/base.css|head -c 9` > build/layouts/partials/cachebreaker_css.html
-	echo -n `git hash-object ./build/static/js/base.js|head -c 9` > build/layouts/partials/cachebreaker_js.html
-
 	# Latest gsctl version
 	mkdir -p build/layouts/shortcodes
 	curl -s https://api.github.com/repos/giantswarm/gsctl/releases/latest | jq -j .tag_name > build/layouts/shortcodes/gsctl_version.html
