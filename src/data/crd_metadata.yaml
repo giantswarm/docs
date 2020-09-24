@@ -118,6 +118,11 @@ machinepools.exp.cluster.x-k8s.io:
     - azure
   topics:
     - tenantcluster
+networkpools.infrastructure.giantswarm.io:
+  provider:
+    - aws
+  topics:
+    - tenantcluster
 releases.release.giantswarm.io:
   topics:
     - controlplane
