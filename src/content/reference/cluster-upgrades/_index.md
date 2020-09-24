@@ -151,6 +151,7 @@ We recommend to work through the following list of checks and best practices bef
 - [Handle termination signals in Pods](#checklist-termination-signals)
 - [Manage disruption budgets](#checklist-disruption-budgets)
 - [Set scheduling priorities](#checklist-scheduling-priorities)
+- [Consider high-availability masters](#checklist-ha-masters)
 - [Avoid ephemeral resources](#checklist-avoid-ephemeral-resources)
 - [Configure webhook timeouts](#checklist-webhook-timeouts)
 - [Verify that all your pods are running](#checklist-verify-pods-running)
@@ -197,6 +198,14 @@ Consider using Pod priority to ensure that higher priority Pods are scheduled fa
 We recommend reading the upstream documentation about [priority classes and pod preemption](https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/) to get a better understanding of how the scheduler works with these.
 
 To help the scheduler further with being able to correctly (re-)schedule your Pods, you should [set resource request and limits](https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/). This also sets the Quality of Service of a Pod, which again has influence on scheduling priorities.
+
+### Consider high-availability masters {#checklist-ha-masters}
+
+Some, but not all, cluster upgrades require nodes to be upgraded. With single master clusters, this causes a downtime of the Kubernetes API that can last a few minutes.
+
+If you are running Giant Swarm on AWS, since release v{{% first_aws_ha_masters_version %}} you have the option to use [high-availability masters](/basics/ha-masters/) instead. This will keep the Kubernetes API available even during an upgrade where nodes are rolled.
+
+Consider this option before performing an upgrade. However, keep in mind that a cluster cannot be converted back from high-availability masters to a single master cluster.
 
 ### Avoid ephemeral resources {#checklist-avoid-ephemeral-resources}
 
