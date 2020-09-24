@@ -10,7 +10,7 @@ last_review_date: 2020-09-23
 
 The Giant Swarm Platform consists of various components. They can be categorized into three areas: infrastructure, operations, and applications.
 
-For managing all the infrastructure we run a control plane Kubernetes cluster per cloud and region where you want run your workloads. From that control plane you can spin up as many individual Kubernetes clusters as you want. Our operations team works to keep all cluster components healthy, while we release new versions with new features and patches. On top of that Giant Swarm offers a curated catalog with common Cloud Native tools that helps with monitoring, security or API management. Customers can leverage those while we carry the burden of maintain and keep them up to date.
+For managing all the infrastructure we run a control plane Kubernetes cluster per cloud and region where you want to run your workloads. From that control plane you can spin up as many individual Kubernetes clusters as you want. Our operations team works to keep all cluster components healthy, while we release new versions with new features and patches. On top of that Giant Swarm offers a curated catalog with common Cloud Native tools that helps with monitoring, security, or API management. Customers can leverage those while we carry the burden of maintaining and keep them up to date.
 
 When it comes to planning and designing your cluster architecture and its adaption to our infrastructure requirements, there are many moving parts to consider. Based on our experience with various customers over the last 6 years, we have gathered best practices and general advice to help with some of the initial critical decisions.
 
