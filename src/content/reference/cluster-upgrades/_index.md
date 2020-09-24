@@ -173,7 +173,7 @@ We recommend to always use soft anti-affinity to avoid exclusivity of nodes. How
 
 For such rescheduling or rebalancing you should have a look at the incubation project called [descheduler](https://github.com/kubernetes-sigs/descheduler) and evaluate its use in your clusters. It has settings for avoiding affinities, but also for rebalancing clusters with under-utilized nodes.
 
-### Use liveness and readiness probes {checklist-liveness-readiness}
+### Use liveness and readiness probes {#checklist-liveness-readiness}
 
 Have well implemented [liveness and readiness probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/).
 
@@ -215,7 +215,7 @@ For example a Pod by itself, i.e. without a Deployment, DaemonSet, StatefulSet, 
 
 Furthermore, local storage in form of `emptyDir` is also ephemeral, and should not be used to persist data. It should only be used as a cache or temporary storage that you can live without in case of failure or rescheduling. In most cases this is also true of `hostPath` as the local storage of a new node might not be the same as the one of the old node.
 
-#### Configure webhook timeouts {#checklist-webhook-timeouts}
+### Configure webhook timeouts {#checklist-webhook-timeouts}
 
 - In case there is a validation or mutation webhook configured you should check there is a [timeout](https://github.com/kubernetes/kubernetes/issues/71508#issuecomment-470315405) configured correctly to not break the upgrade process. We recommend using low timeouts for the webhooks resources.
 
@@ -230,7 +230,7 @@ webhooks:
   timeoutSeconds: 5
 ```
 
-#### Verify that all your pods are running {#checklist-verify-pods-running}
+### Verify that all your pods are running {#checklist-verify-pods-running}
 
 Verify all your important pods are running correctly, and there are no deployments stuck because of failures. Here is a `kubectl` command you can use for the purpose:
 
