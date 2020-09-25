@@ -283,7 +283,7 @@ curl http://<IP>/healthz -I
 
 ### On Premises (KVM) Verification
 
-As you may already know, in our [`on premises installations`](https://docs.giantswarm.io/basics/onprem-architecture/) the tenant pods live inside the control plane pods. This means Giant Swarm creates a forward between the external ingress service to the ingress placed inside the tenant cluster. By default, the tenant clusters has an NGINX ingress controller allocated out-of-the-box. But, in case you want to use Istio ingress controller you need to ask our team to allocate a new redirection from the parent endpoint to the Istio controller. With the latter, you will have the two ingress controllers exposed to Internet.
+As you may already know, in our [`on premises installations`](/basics/onprem-architecture/) the tenant pods live inside the control plane pods. This means Giant Swarm creates a forward between the external ingress service to the ingress placed inside the tenant cluster. By default, the tenant clusters has an NGINX ingress controller allocated out-of-the-box. But, in case you want to use Istio ingress controller you need to ask our team to allocate a new redirection from the parent endpoint to the Istio controller. With the latter, you will have the two ingress controllers exposed to Internet.
 
 After obtaining the ports, modify the ingress gateway to set the correct configuration.
 
