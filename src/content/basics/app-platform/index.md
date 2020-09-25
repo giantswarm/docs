@@ -108,7 +108,7 @@ You can interact with the Giant Swarm App Platform through our API and
 our web interface.
 
 - [Web Interface Reference: The Giant Swarm App Platform](/reference/web-interface/app-platform/)
-- [Apps and App Configs in the API reference](https://docs.giantswarm.io/api/#tag/apps)
+- [Apps and App Configs in the API reference](/api/#tag/apps)
 
 Lastly, at the end of the day, what our interfaces do, is create (or update)
 a set of Custom Resources on your Control Plane Kubernetes.

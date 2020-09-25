@@ -73,7 +73,7 @@ workers:
 - `owner`: Name of the owner organization.
 - `name`: Friendly name of the cluster. If not specified, a name will be generated.
 - `release_version`: Allows to select a specific release version. The value must be the semantic version number (SemVer) of an active release. To get information on all available releases, use the [`gsctl list releases`](/reference/gsctl/list-releases/) command.
-- `availability_zones`: Number of availability zones to use for worker nodes (on AWS and Azure only). Both the default value and the maximum can be obtained via the [Info endpoint](https://docs.giantswarm.io/api/#operation/getInfo) of the Giant Swarm API.
+- `availability_zones`: Number of availability zones to use for worker nodes (on AWS and Azure only). Both the default value and the maximum can be obtained via the [Info endpoint](/api/#operation/getInfo) of the Giant Swarm API.
 - `workers`: Array of node definition objects describing each worker node. See below for possible keys. If not specified, the default number of worker nodes with default settings will be created.
 
 #### Node definition keys {#node-keys}

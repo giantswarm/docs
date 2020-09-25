@@ -23,11 +23,11 @@ If your cluster is running on AWS using your own AWS account, you can use the [E
 
 Yes, for most databases there are ready built containers in the [Docker Hub](https://hub.docker.com/). If you can't find one for your database of choice, you should be able to easily build one. However, currently persistent volumes are only available on AWS. With a bare metal (KVM) based cluster, volumes are not persistent and won't survive rescheduling of their pods.
 
-Check out our guide on [using persistent volumes on AWS](https://docs.giantswarm.io/guides/using-persistent-volumes-on-aws/).
+Check out our guide on [using persistent volumes on AWS](/guides/using-persistent-volumes-on-aws/).
 
 ## Can I use TLS/HTTPS/SSL?
 
-Yes. Take a look at our [advanced ingress guide](https://docs.giantswarm.io/guides/advanced-ingress-configuration/#tls).
+Yes. Take a look at our [advanced ingress guide](/guides/advanced-ingress-configuration/#tls).
 
 ## Can I use websockets?
 
