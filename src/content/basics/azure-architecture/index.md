@@ -95,7 +95,7 @@ Our on-call engineers will be paged in case anything happens to the cluster or i
 
 ## App Platform
 
-Giant Swarm [has designed a system](https://www.giantswarm.io/app-catalog) to ease the use of some common Cloud Native apps. The amount of components available in the landscape is huge, and [we have decided to include some of the projects in our catalog](https://www.giantswarm.io/blog/announcing-the-giant-swarm-app-platform) for our customers to rely on. 
+Giant Swarm [has designed a system](https://www.giantswarm.io/app-catalog) to ease the use of some common Cloud Native apps. The amount of components available in the landscape is huge, and [we have decided to include some of the projects in our catalog](https://www.giantswarm.io/blog/announcing-the-giant-swarm-app-platform) for our customers to rely on.
 
 Right now we have several managed apps to control the Ingress traffic ([NGINX Ingress Controller](https://github.com/giantswarm/nginx-ingress-controller-app) and [Kong](https://github.com/giantswarm/kong-app)), secure the AWS API and map roles ([kiam](https://github.com/giantswarm/kiam-app)), collect and process logs ([EFK](https://github.com/giantswarm/efk-stack-app)) or automate the DNS setup ([external DNS](https://github.com/giantswarm/external-dns-app)).
 
