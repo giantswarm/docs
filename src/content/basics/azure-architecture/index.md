@@ -59,7 +59,7 @@ Our Azure Operator creates a single Virtual Network per cluster and one subnet f
 
 In Azure the [node pool](https://docs.giantswarm.io/basics/nodepools/) concept is mapped to an Virtual Machine Scale Set, which defines a launch configuration and scaling properties of the worker nodes located in it.
 
-In order to communicate with your on-premises data center or with other Virtual Networks (other cluster or existing infrastructure) you can leverage a VPN/Direct Connect or a Transit Gateway/peering respectively. 
+In order to communicate with your on-premises data center or with other Virtual Networks (other cluster or existing infrastructure) you can leverage a VPN/Direct Connect or a Transit Gateway/peering respectively.
 
 ### Worker node size
 
