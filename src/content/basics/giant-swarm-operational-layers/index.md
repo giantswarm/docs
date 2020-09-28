@@ -56,7 +56,7 @@ With a valid *jwt* token, received from your chosen Identity Provider, customers
   
 ### Giant Swarm API {#giant-swarm-api}
 
-The [Giant Swarm API](https://docs.giantswarm.io/api/) is a customer facing API that is usually whitelisted for only a certain IP range within the customer's network. This layer covers the API itself, and its client manifestations in the form of the Giant Swarm Web UI and `gsctl` CLI.
+The [Giant Swarm API](/api/) is a customer facing API that is usually whitelisted for only a certain IP range within the customer's network. This layer covers the API itself, and its client manifestations in the form of the Giant Swarm Web UI and `gsctl` CLI.
 
 On this layer there are two levels of access:
 
@@ -76,7 +76,7 @@ Such users have access to all clusters in the organizations they belong to. They
 
 The user space layer is defined as the layer pertaining to a single Tenant Cluster Kubernetes API. Tenant Cluster are the Kubernetes clusters that run your workloads.
 
-Users on this level are either created by a Giant Swarm API user (in form of key pairs) or managed in an external Identity Provider (IdP), like [Azure AD](https://docs.giantswarm.io/guides/authenticating-with-microsoft-azure-active-directory/) or any other OIDC compliant IdP.
+Users on this level are either created by a Giant Swarm API user (in form of key pairs) or managed in an external Identity Provider (IdP), like [Azure AD](/guides/authenticating-with-microsoft-azure-active-directory/) or any other OIDC compliant IdP.
 
 However, a user with access to the Kubernetes API does not gain any permisssions by default, as the clusters are locked down by RBAC. To provide access, a cluster admin first needs to create roles and bindings for the users. These roles can be defined as narrowly or broadly as needed for the specific Tenant Kubernetes cluster. They can be bound to either single users or groups of them.
 
@@ -84,6 +84,6 @@ This enables the customer to individually set up their user management according
 
 ## Further reading
 
-- [Securing your Cluster with RBAC and PSP](https://docs.giantswarm.io/guides/securing-with-rbac-and-psp/)
-- [Creating a kubeconfig with gsctl](https://docs.giantswarm.io/reference/gsctl/create-kubeconfig/)
-- [Creating a key pair with gsctl](https://docs.giantswarm.io/reference/gsctl/create-keypair/)
+- [Securing your Cluster with RBAC and PSP](/guides/securing-with-rbac-and-psp/)
+- [Creating a kubeconfig with gsctl](/reference/gsctl/create-kubeconfig/)
+- [Creating a key pair with gsctl](/reference/gsctl/create-keypair/)
