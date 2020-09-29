@@ -134,12 +134,12 @@ policy** button.
 In the next step you need to assign a name to the policy. Please use the name
 
 ```nohighlight
-GiantSwarmAWSOperatorPolicy
+GiantSwarmAWSOperator
 ```
 
 #### 3. Attach policy to role {#cp-iam-operator-role-policy}
 
-Enter `GiantSwarmAWSOperatorPolicy` into the search field to select the policy
+Enter `GiantSwarmAWSOperator` into the search field to select the policy
 you created before. Check the box in the row containing that policy.
 
 ![AWS IAM console: Attach policy](/img/aws-roles-attach-policy.png)
@@ -156,21 +156,6 @@ set the name to `GiantSwarmAWSOperator`.
 You may also set a description for team members to better understand the reasons
 for the existence of this role. It could be helpful to also paste a link to this
 guide into the field for reference.
-
-#### 5. Get the role's ARN {#cp-iam-operator-role-arn}
-
-After creating the new role, you should have a list of all IAM roles in front of
-you. From that list, open the `GiantSwarmAWSOperator` role you just created.
-
-The role details screen shows the _Role ARN_, which is a unique identifier for
-the role. It should look like
-
-```nohighlight
-arn:aws:iam::<YOUR_ACCOUNT_ID>:role/GiantSwarmAWSOperator
-```
-
-Please copy the exact ARN from the screen, as you will have to provide it to us
-later.
 
 ### Create an IAM user for aws-operator {#cp-iam-operator-user}
 
@@ -192,7 +177,7 @@ only _Programmatic access_ is enabled.
 
 #### 2. Attach policy to user {#cp-iam-operator-user-policy}
 
-Hit *Attach existing policies directly* and enter `GiantSwarmAWSOperatorPolicy`
+Hit *Attach existing policies directly* and enter `GiantSwarmAWSOperator`
 into the search field to select the policy you created for
 `GiantSwarmAWSOperator` role. Check the box in the row containing that policy.
 
@@ -258,14 +243,14 @@ policy** button.
 In the next step you need to assign a name to the policy. Please use the name
 
 ```nohighlight
-GiantSwarmAWSOperatorPolicy
+GiantSwarmAWSOperator
 ```
 
 #### 4. Attach policy to role {#tc-iam-operator-role-policy}
 
 Once you created the policy, let's return to the point in role creation called
 *Attach permissions policies*. Here you can now hit the *Refresh* button to load
-all existing policies, then enter `GiantSwarmAWSOperatorPolicy` into the search
+all existing policies, then enter `GiantSwarmAWSOperator` into the search
 field to select the policy you just created. Check the box in the row containing
 that policy.
 
@@ -283,21 +268,6 @@ set the name to `GiantSwarmAWSOperator`.
 You may also set a description for team members to better understand the reasons
 for the existence of this role. It could be helpful to also paste a link to this
 guide into the field for reference.
-
-#### 6. Get the role's ARN {#tc-iam-operator-role-arn}
-
-After creating the new role, you should have a list of all IAM roles in front of
-you. From that list, open the `GiantSwarmAWSOperator` role you just created.
-
-The role details screen shows the _Role ARN_, which is a unique identifier for
-the role. It should look like
-
-```nohighlight
-arn:aws:iam::<YOUR_ACCOUNT_ID>:role/GiantSwarmAWSOperator
-```
-
-Please copy the exact ARN from the screen, as you will have to provide it to us
-later.
 
 ### Create an IAM role for Giant Swarm staff {#tc-iam-staff-role}
 
@@ -328,12 +298,12 @@ Select **Create policy** to create another policy. Use the same JSON policy code
 as you used for the `aws-operator` user. This time, call the policy
 
 ```nohighlight
-GiantSwarmAdminPolicy
+GiantSwarmAdmin
 ```
 
 #### 3. Attach policy to role {#tc-iam-staff-role-policy}
 
-Attach the new `GiantSwarmAdminPolicy` policy to the role you are creating.
+Attach the new `GiantSwarmAdmin` policy to the role you are creating.
 
 #### 4. Name the role {#tc-iam-staff-role-name}
 
@@ -342,16 +312,6 @@ Name this role:
 ```nohighlight
 GiantSwarmAdmin
 ```
-
-#### 5. Get the role's ARN {#tc-iam-staff-role-arn}
-
-From the confirmation screen, copy the exact ARN. It should be in the form of:
-
-```nohighlight
-arn:aws:iam::<YOUR_ACCOUNT_ID>:role/GiantSwarmAdmin
-```
-
-This will need to be provided to us later.
 
 ## Configure the Giant Swarm organization {#configure-org}
 
