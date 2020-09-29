@@ -38,7 +38,7 @@ metadata:
     giantswarm.io/cluster: nzr5z
     cluster.x-k8s.io/cluster-name: nzr5z
     azure-operator.giantswarm.io/version: 5.0.0
-    release.giantswarm.io/version: 12.2.0
+    release.giantswarm.io/version: 13.0.0
     cluster-operator.giantswarm.io/version: 0.23.10
     giantswarm.io/organization: acme
 spec:
@@ -63,7 +63,7 @@ metadata:
     giantswarm.io/cluster: nzr5z
     cluster.x-k8s.io/cluster-name: nzr5z
     azure-operator.giantswarm.io/version: 5.0.0
-    release.giantswarm.io/version: 12.2.0
+    release.giantswarm.io/version: 13.0.0
     giantswarm.io/organization: giantswarm
 spec:
   networkSpec:
@@ -94,7 +94,7 @@ metadata:
     giantswarm.io/machine-pool: nopo1
     cluster.x-k8s.io/cluster-name: nzr5z
     azure-operator.giantswarm.io/version: 5.0.0
-    release.giantswarm.io/version: 12.2.0
+    release.giantswarm.io/version: 13.0.0
     giantswarm.io/organization: giantswarm
 spec:
   clusterName: nzr5z
@@ -125,7 +125,7 @@ metadata:
     giantswarm.io/machine-pool: nopo1
     cluster.x-k8s.io/cluster-name: nzr5z
     azure-operator.giantswarm.io/version: 5.0.0
-    release.giantswarm.io/version: 12.2.0
+    release.giantswarm.io/version: 13.0.0
     giantswarm.io/organization: giantswarm
 spec:
   location: westeurope
@@ -158,7 +158,7 @@ metadata:
     giantswarm.io/cluster: nzr5z
     cluster.x-k8s.io/cluster-name: nzr5z
     azure-operator.giantswarm.io/version: 5.0.0
-    release.giantswarm.io/version: 12.2.0
+    release.giantswarm.io/version: 13.0.0
     giantswarm.io/organization: giantswarm
 spec: {}
 ```
