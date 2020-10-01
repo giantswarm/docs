@@ -34,7 +34,23 @@ To create a Service Principal you need:
 
 ### 2. Role definition
 
-Download our [Role definition template](https://raw.githubusercontent.com/giantswarm/azure-operator/master/policies/tenant.tmpl.json).
+Download our Role definition template:
+
+```json
+{
+  "Name": "azure-operator",
+  "Description": "Role for github.com/giantswarm/azure-operator",
+  "Actions": [
+    "*"
+  ],
+  "NotActions": [
+    "Microsoft.Authorization/elevateAccess/Action"
+  ],
+  "AssignableScopes": [
+    "/subscriptions/${SUBSCRIPTION_ID}"
+  ]
+}
+```
 
 Open it and replace `${SUBSCRIPTION_ID}` with your subscription id.
 
