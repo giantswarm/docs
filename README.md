@@ -42,6 +42,22 @@ Each documentation page consists of a Markdown file that starts with some metada
 
 - Please double-check whether the page description is still up-to-date or could be improved.
 
+### Hyperlinks
+
+In order to link to other docs pages, please use this format only:
+
+```markdown
+... see the [gsctl reference](/reference/gsctl/) for details. ...
+```
+
+Note that
+
+- Hyperlinks URLs must start with `/`
+- Must usually end with `/`
+- Must not contain `https://` or the host name `docs.giantswarm.io`.
+
+This is important to support automation when links have to change, or when checking links.
+
 ### Code blocks
 
 We support fenced code blocks wrapped by the triple back-tick operator. It is recommended to

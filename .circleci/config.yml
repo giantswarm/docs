@@ -27,7 +27,8 @@ jobs:
                 --ignore-url="^https://.*example\.com/.*" \
                 --ignore-url="^https://my-org\.github\.com/.*" \
                 --ignore-url=".*gigantic\.io.*" \
-                --ignore-url="^https://github\.com/giantswarm/giantswarm/.*"
+                --ignore-url="^https://github\.com/giantswarm/giantswarm/.*" \
+                --ignore-url="^https://sysdig\.com/.*"
             docker kill docs || echo "Container 'docs' not running"
 
 

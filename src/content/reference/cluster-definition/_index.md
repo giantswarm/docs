@@ -127,7 +127,7 @@ Or an Azure example:
 ```yaml
 api_version: v5
 owner: myorg
-release_version: 12.2.0
+release_version: 13.0.0
 name: Test cluster with two node pools
 master_nodes:
   high_availability: false
