@@ -36,13 +36,11 @@ kgs
 
 Find out more details in our [installation docs](/reference/kubectl-gs/installation/).
 
-## Configuration {#configuration}
-
-TODO
-
 ## Contributing
 
-See the [GitHub project](https://github.com/giantswarm/kubectl-gs).
+See the [GitHub project](https://github.com/giantswarm/kubectl-gs) for source code, issues and pull requests.
+
+As a Giant Swarm customer, feel free to use your Slack channel to give feedback, ask questions and suggest improvements for `kubectl gs`.
 
 [1]: /reference/kubectl-gs/login/
 [2]: /reference/kubectl-gs/get-clusters/

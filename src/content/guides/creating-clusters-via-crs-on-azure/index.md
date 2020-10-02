@@ -1,7 +1,7 @@
 ---
 title: Creating tenant clusters on Azure via Control Plane Kubernetes API
 description: This guide will walk you through the process of tenant cluster creation via Control Plane Kubernetes on Azure.
-date: 2020-09-23
+date: 2020-10-02
 type: page
 weight: 100
 tags: ["tutorial"]
@@ -168,7 +168,7 @@ spec: {}
 All the CRs, mentioned above, have strict spec and important requirements to be considered valid.
 There is very limited CR validation available in the Control Plane for now.
 Therefore, if you create a CR with wrong field values, that can result in a broken tenant cluster.
-That's why we've developed a simple [CLI utility](https://github.com/giantswarm/kubectl-gs), which helps to template valid CRs.
+That's why we offer a [kubectl plugin](/reference/kubectl-gs/), which helps to template valid CRs.
 
 The utility supports rendering CRs:
 
@@ -183,9 +183,9 @@ The utility supports rendering CRs:
 - `AppCatalog`
 - `App`
 
-The installation procedure is described in [README](https://github.com/giantswarm/kubectl-gs#how-to-install-plugin).
-There is also a [document](https://github.com/giantswarm/kubectl-gs/blob/master/docs/template-cluster-cr.md) describing the templating process in detail.
+The installation procedure is described in the [`kubectl gs` reference](/reference/kubectl-gs/#install).
+There are also specific reference pages for [cluster templating](/reference/kubectl-gs/template-cluster/) and [node pool templating](/reference/kubectl-gs/template-nodepool/).
 
-As a result of rendering the CRs ([sample](https://github.com/giantswarm/kubectl-gs/blob/master/docs/template-cluster-cr.md#example)), a user will get YAML manifests containing valid CRs that can create a tenant cluster and its node pools.
+As a result of rendering the CRs ([sample](/reference/kubectl-gs/template-cluster/#example)), a user will get YAML manifests containing valid CRs that can create a tenant cluster and its node pools.
 The resources can then be created by applying the manifest files to the Control Plane, e.g. `kubectl create -f <cluster manifest file>.yaml`.
 Of course, that requires the user to be authorized towards Kubernetes Control Plane API.

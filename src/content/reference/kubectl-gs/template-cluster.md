@@ -66,7 +66,7 @@ It supports the following flags:
 Example command for an AWS cluster:
 
 ```nohighlight
-kubectl gs template cluster \
+kgs template cluster \
   --provider aws
   --master-az eu-central-1a \
   --domain gauss.eu-central-1.aws.gigantic.io \
