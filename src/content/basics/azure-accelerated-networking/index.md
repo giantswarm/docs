@@ -45,3 +45,8 @@ After that point, it is not possible to change the `AN` setting any more.
 This means that if you create a Node Pool with an instance type that does not support accelerated networking, 
 changing the instance type of that node pool to one that does will not enable `AN` on that node pool.
 Alternatively, you can create a new node pool and delete the old one.
+
+## Further reading
+
+[Maximize your VM’s Performance with Accelerated Networking – now generally available for both Windows and Linux](https://azure.microsoft.com/en-us/blog/maximize-your-vm-s-performance-with-accelerated-networking-now-generally-available-for-both-windows-and-linux/)
+[https://docs.microsoft.com/en-us/azure/virtual-network/create-vm-accelerated-networking-cli](https://docs.microsoft.com/en-us/azure/virtual-network/create-vm-accelerated-networking-cli)
