@@ -36,13 +36,13 @@ As of release v{{% first_azure_accelerated_networking_version %}}, `Accelerated 
 on all `Node Pools` that have a Virtual Machine type that support the feature, so there is nothing you need to do
 in order to leverage the benefits of `AN`.
 
-# Caveats
+## Caveats
 
 Please note that, once the node pool gets created for the first time, the `AN` feature is either enabled or disabled
 according to the Virtual Machine type.
 After that point, it is not possible to change the `AN` setting any more.
 
-This means that if you create a Node Pool with an instance type that does not support accelerated networking, 
+This means that if you create a Node Pool with an instance type that does not support accelerated networking,
 changing the instance type of that node pool to one that does will not enable `AN` on that node pool.
 Alternatively, you can create a new node pool and delete the old one.
 
