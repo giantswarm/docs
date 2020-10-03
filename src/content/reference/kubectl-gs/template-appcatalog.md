@@ -24,7 +24,7 @@ It supports the following flags:
 - `--description` - Description of the purpose of the catalog.
 - `--url` - URL where the helm repository lives.
 - `--owner` - organization, owning tenant cluster. Must be configured with existing organization in installation.
-- `--logo` - tenant cluster AWS region. Must be configured with installation region.
+- `--logo` - URL of the catalog logo image.
 
 Example command:
 
