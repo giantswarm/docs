@@ -59,7 +59,7 @@ The standard tabular output format features these columns:
 
 ## Flags {#flags}
 
-Here we document the flags that have a particular meaning for the `get clusters` command. Use `kgs get clusters -h` for a full list.
+Here we document the flags that have a particular meaning for the `get clusters` command. Use `kgs get clusters --help` for a full list.
 
 ### `--output/-o` {#flags-output}
 
