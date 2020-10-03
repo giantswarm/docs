@@ -7,3 +7,5 @@
 /build/
 /vendor/
 /volumes
+/src/resources
+/src/public

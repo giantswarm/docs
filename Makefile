@@ -7,26 +7,13 @@ CRD_DOCS_GENERATOR_VERSION=0.1.1
 
 default: docker-build
 
-build-css:
-	docker run -it \
-		-v ${PWD}/src/static/css:/sass \
-		ellerbrock/alpine-sass /sass/base.sass /sass/base.css -m auto
-
 
 vendor:
-	# Vendor hugo
-	mkdir -p vendor
-	mkdir -p vendor/hugo
-	cd vendor/hugo && \
-		wget -q https://github.com/gohugoio/hugo/releases/download/v0.49.2/hugo_0.49.2_Linux-64bit.tar.gz && \
-		tar -xvf hugo_0.49.2_Linux-64bit.tar.gz && \
-		rm hugo_0.49.2_Linux-64bit.tar.gz
-
 	# Vendor other external repositories as defined in 'external-repositories.txt'
 	./vendorize-external-repositories.sh
 
 
-build: vendor build-css
+build: vendor
 	# check dependencies
 	which jq || (echo "jq not found" && exit 1)
 	which curl || (echo "curl not found" && exit 1)
@@ -39,10 +26,6 @@ build: vendor build-css
 
 	# Copy src to build directory
 	cp -r src/. build/
-
-	# Cache breaker
-	echo -n `git hash-object ./build/static/css/base.css|head -c 9` > build/layouts/partials/cachebreaker_css.html
-	echo -n `git hash-object ./build/static/js/base.js|head -c 9` > build/layouts/partials/cachebreaker_js.html
 
 	# Latest gsctl version
 	mkdir -p build/layouts/shortcodes
@@ -75,10 +58,11 @@ docker-run:
 	docker run --rm -ti -p 8080:8080 $(REGISTRY)/$(COMPANY)/$(PROJECT):latest
 
 dev:
+	docker build -t $(REGISTRY)/$(COMPANY)/$(PROJECT):dev --target=build .
 	docker run --rm -ti \
-	-p 8080:8080 \
-	-v ${PWD}/src:/docs/build:z \
-	$(REGISTRY)/$(COMPANY)/$(PROJECT):latest /bin/sh -c "nginx; hugo -w --destination /usr/share/nginx/html"
+	-p 1313:1313 \
+	-v ${PWD}/build:/docs:z \
+	$(REGISTRY)/$(COMPANY)/$(PROJECT):dev serve --bind 0.0.0.0 -w -s /docs
 
 clean:
 	rm -rf build
