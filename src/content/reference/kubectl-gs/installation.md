@@ -41,7 +41,7 @@ You should see information regarding the commands available.
 To upgrade to the latest version of the plug-in, use this command:
 
 ```nohighlight
-krew upgrade gs
+kubectl krew upgrade gs
 ```
 
 ## Without Krew
