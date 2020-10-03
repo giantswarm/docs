@@ -35,8 +35,8 @@ kubectl gs template nodepool
 
 Here are the supported flags:
 
-- `--provider` - The infrastructure provider (e.g *aws* or *azure*)
-- `--availability-zones` - list of availability zones to use, instead of setting a number. Use comma to separate values. (e.g. `eu-central-1a,eu-central-1b`)
+- `--provider` - The infrastructure provider, either `aws` or `azure`.
+- `--availability-zones` - list of availability zones to use, instead of setting a number. Use comma to separate values. (e. g. `eu-central-1a,eu-central-1b`)
 - `--cluster-id` - ID of the cluster the node pool should be added to.
 - `--nodepool-name` - node pool name or purpose description of the node pool. (default *Unnamed node pool*)
 - `--nodex-max` - maximum number of worker nodes for the node pool. (default 10)
