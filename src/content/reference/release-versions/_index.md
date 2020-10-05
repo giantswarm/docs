@@ -38,7 +38,6 @@ We generally try to increment our Major version only when there is a new Kuberne
 | **12.x.x** | 1.17.x | Available |
 | **13.x.x** | 1.18.x | Available soon |
 
-
 \*) On AWS, **v9.2.0** and **v9.3.x** and up includes **Kubernetes 1.16.x**.
 
 ## Versions that support node pools
