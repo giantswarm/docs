@@ -9,6 +9,9 @@ pluralizeListTitles = false
     endLevel = 5
     startLevel = 1
 
+[markup.goldmark.renderer]
+  unsafe = true
+
 [[menu.main]]
     name = "Basics and Concepts"
     url = "/basics/"
