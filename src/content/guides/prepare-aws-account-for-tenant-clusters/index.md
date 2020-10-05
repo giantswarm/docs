@@ -191,6 +191,7 @@ You may also set a description for team members to better understand the reasons
 for the existence of this role. It could be helpful to also paste a link to this
 guide into the field for reference.
 
+
 ### Create an IAM role for Giant Swarm staff {#iam-staff-role}
 
 Finally, we create an IAM role for Giant Swarm support staff to assume in order to
