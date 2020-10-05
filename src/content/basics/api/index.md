@@ -3,7 +3,7 @@ title: API Access to Giant Swarm Resources
 description: An overview of the APIs that provide you with programmatic access to
   resources like your tenant clusters in a Giant Swarm installation. Namely the Rest
   API and the Control Plane Kubernetes API.
-date: 2020-05-27
+date: 2020-10-02
 weight: 75
 type: page
 categories: ["basics"]
@@ -50,7 +50,7 @@ Currently we provide read-only access by default. As we are currently working on
 
 We recommend using `kubectl` to navigate the resources present on the Control Plane Kubernetes API.
 
-To facilitate this we've been working on a proof of concept kubectl plugin called [`kubectl-gs`](https://github.com/giantswarm/kubectl-gs).
+To facilitate this we provide a kubectl plugin called [`kubectl gs`](/reference/kubectl-gs/).
 Our goal is to have the same great user experience you've become accustomed from `gsctl` and `happa`.
 
 Besides general Kubernetes know-how this will require only a bit of structural knowledge:

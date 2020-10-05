@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  architect: giantswarm/architect@0.10.0
+  architect: giantswarm/architect@0.11.0
 
 
 jobs:
@@ -27,7 +27,8 @@ jobs:
                 --ignore-url="^https://.*example\.com/.*" \
                 --ignore-url="^https://my-org\.github\.com/.*" \
                 --ignore-url=".*gigantic\.io.*" \
-                --ignore-url="^https://github\.com/giantswarm/giantswarm/.*"
+                --ignore-url="^https://github\.com/giantswarm/giantswarm/.*" \
+                --ignore-url="^https://sysdig\.com/.*"
             docker kill docs || echo "Container 'docs' not running"
 
 
@@ -41,10 +42,6 @@ jobs:
       - run:
           name: Check Markdown structure
           command: make lint
-
-      - run:
-          name: Install SASS
-          command: gem install sass
 
       - run:
           name: Build
@@ -67,7 +64,7 @@ jobs:
             docker run -d --rm --name docs -p 8080:8080 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
             CURL_OUTPUT=$(curl --no-buffer -s http://localhost:8080)
             echo $CURL_OUTPUT | grep --quiet "Giant Swarm"
-      
+
       - run:
           name: Internal link check
           command: |
