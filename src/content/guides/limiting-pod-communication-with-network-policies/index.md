@@ -106,7 +106,7 @@ The default policy shown above will limit ingress and egress traffic in the name
 
 ### Allowing specific system pod to talk with your pod
 
-As we mentioned before, we harden the clusters restricting the communication with `kube-system` and `giantswarm` pods. In case you need to allow that communication with a running pod in one of those namespaces you have to explicitly declare it. For example:
+As we mentioned before, we harden the clusters restricting the communication with pods in `kube-system` and `giantswarm`. In case you need to allow communication with a running pod in one of those namespaces you have to explicitly declare it. For example:
 
 ```yaml
 kind: NetworkPolicy
