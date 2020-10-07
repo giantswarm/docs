@@ -218,7 +218,7 @@ spec:
     - port: 80
 ```
 
-The `allow-external` policy, described above, will allow any traffic (no matter if outside or inside your cluster) to the Pods on port 80.
+The `allow-external` policy, described above, will allow any traffic (no matter if its outside or inside your cluster) to the Pods on port 80.
 
 In this guide we discussed different use-cases of limiting Pod communication with network policies, based on our best practices.
 
