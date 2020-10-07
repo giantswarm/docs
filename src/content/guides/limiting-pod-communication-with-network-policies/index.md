@@ -96,7 +96,7 @@ spec:
   - Egress
 ```
 
-__Warning__: By default Giant Swarm clusters, from version `11.0.0`, contains `default-deny` policy for sensitive namespaces like `giantswarm` and `kube-system`. To communicate with any pods in that namespace you need to explicitly create a Network Policy that allows it.
+__Warning__: By default Giant Swarm clusters, from version `11.0.0`, contain a `default-deny` policy for sensitive namespaces like `giantswarm` and `kube-system`. To communicate with any pods in that namespace you need to explicitly create a Network Policy that allows it.
 
 Note that the namespace needs to exist before you apply the NetworkPolicy to it.
 
