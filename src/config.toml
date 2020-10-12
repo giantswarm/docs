@@ -9,8 +9,12 @@ pluralizeListTitles = false
     endLevel = 5
     startLevel = 1
 
-[markup.goldmark.renderer]
-  unsafe = true
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+  [markup.highlight]
+    codeFences = false  # Disable Hugo's code highlighter, as we use highlight.js
 
 [[menu.main]]
     name = "Basics and Concepts"
