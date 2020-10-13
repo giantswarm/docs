@@ -35,7 +35,6 @@ tenant cluster IAM roles mentioned above.
 
 We have created a Terraform module to automate the IAM role creation. You can view the code [here](https://github.com/giantswarm/giantswarm-aws-account-prerequisites). You can also use the steps as described in this guide.
 
-
 ## IAM user for aws-operator {#iam-aws-operator-user}
 
 Giant Swarm's service creating and maintaining your tenant clusters is
@@ -190,7 +189,6 @@ set the name to `GiantSwarmAWSOperator`.
 You may also set a description for team members to better understand the reasons
 for the existence of this role. It could be helpful to also paste a link to this
 guide into the field for reference.
-
 
 ### Create an IAM role for Giant Swarm staff {#iam-staff-role}
 
