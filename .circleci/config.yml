@@ -1,17 +1,17 @@
 version: 2.1
 
 orbs:
-  architect: giantswarm/architect@0.4.3
+  architect: giantswarm/architect@0.11.0
 
 
 jobs:
-  linkcheck:
+  check_external_links:
     machine:
       image: "ubuntu-1604:201903-01"
 
     steps:
       - run:
-          name: Link check
+          name: Link check including external
           command: |
             docker pull linkchecker/linkchecker > /dev/null
             docker run -d --rm --name docs -p 8080:8080 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
@@ -19,12 +19,18 @@ jobs:
               --link docs:docs \
               linkchecker/linkchecker \
                 http://docs:8080 \
-                --check-extern -t 2 \
-                --ignore-url="^https://docs.giantswarm.io/.*" \
+                --check-extern \
+                -t 2 \
+                --ignore-url="^https://github.com/giantswarm/docs/.*" \
+                --ignore-url="^https://docs\.giantswarm\.io/.*" \
                 --ignore-url=/api/ \
-                --ignore-url="^https://.*example.com/.*" \
-                --ignore-url="^https://my-org.github.com/.*" \
-                --ignore-url=".*gigantic\.io.*"
+                --ignore-url="^https://.*example\.com/.*" \
+                --ignore-url="^https://my-org\.github\.com/.*" \
+                --ignore-url=".*gigantic\.io.*" \
+                --ignore-url="^https://github\.com/giantswarm/giantswarm/.*" \
+                --ignore-url="^https://sysdig\.com/.*"
+            docker kill docs || echo "Container 'docs' not running"
+
 
   build:
     machine:
@@ -34,8 +40,8 @@ jobs:
       - checkout
 
       - run:
-          name: Install SASS
-          command: gem install sass
+          name: Check Markdown structure
+          command: make lint
 
       - run:
           name: Build
@@ -58,7 +64,19 @@ jobs:
             docker run -d --rm --name docs -p 8080:8080 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
             CURL_OUTPUT=$(curl --no-buffer -s http://localhost:8080)
             echo $CURL_OUTPUT | grep --quiet "Giant Swarm"
-            docker kill docs
+
+      - run:
+          name: Internal link check
+          command: |
+            docker pull linkchecker/linkchecker > /dev/null
+            docker run --rm -ti --name linkchecker \
+              --link docs:docs \
+              linkchecker/linkchecker \
+                http://docs:8080 \
+                -t 4 \
+                --ignore-url="^https://docs\.giantswarm\.io/.*" \
+                --ignore-url=/api/
+            docker kill docs || echo "Container 'docs' not running"
 
       - deploy:
           name: Deploy (only if branch is "master")
@@ -71,19 +89,26 @@ jobs:
 workflows:
   version: 2
 
-  build-andcheck:
+  build-and-check:
     jobs:
       - build
-      - linkcheck:
+      - approve_check_external_links:
+          type: approval
           requires:
             - build
+      - check_external_links:
+          requires:
+            - approve_check_external_links
 
   package-and-push-chart-on-tag:
     jobs:
       - build:
           filters:  # required since `architect/push-to-app-catalog` has tag filters AND requires `build`
+            # Ignore all commits, but run when tagging a release.
+            branches:
+              ignore: /.*/
             tags:
-              only: /.*/
+              only: /^v.*/
       - architect/push-to-app-catalog:
           name: "package and push docs"
           app_catalog: "giantswarm-operations-platform-catalog"

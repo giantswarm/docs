@@ -50,7 +50,9 @@ For finding out which version of `gsctl` you currently have installed, and other
 
 `gsctl` comes as a self-contained binary for Mac, Linux, and Windows. Below you find installation instructions for different platforms. If you want to build `gsctl` from source, find everything you need in its [GitHub repository](https://github.com/giantswarm/gsctl).
 
+<!-- markdownlint-disable no-bare-urls -->
 The current `gsctl` version is **{{% gsctl_version %}}**. Find details in the [release notes](https://github.com/giantswarm/gsctl/releases/tag/{{% gsctl_version %}}).
+<!-- markdownlint-enable no-bare-urls -->
 
 <ul class="nav nav-tabs">
   <li role="presentation" class="active"><a href="#install-mac" data-toggle="tab">Mac OS</a></li>
@@ -110,10 +112,12 @@ brew install gsctl</code></pre>
 The following environment variables can be used to affect some behavior:
 
 - `GSCTL_ENDPOINT`: This can be used to specify an API endpoint URL.
+- `GSCTL_AUTH_TOKEN`: This can be used to specify an authentication token.
 - `GSCTL_CAFILE`: If your Giant Swarm API endpoint uses a certificate signed by an authority not known to your operating system, this variable can be set to the path of a custom CA (certification authority) bundle. A CA bundle is a text file containing one or more CA certificates in PEM format.
 - `GSCTL_CAPATH`: Similar to `GSCTL_CAFILE`, but `GSCTL_CAPATH` is expected to point to a directory containing one or more PEM files.
 - `GSCTL_DISABLE_COLORS`: When this variable is set to any non-empty string, all terminal output will be monochrome.
 - `GSCTL_DISABLE_CMDLINE_TRACKING`: When this variable is set to any non-empty string, command lines won't be submitted to the API. Otherwise, command lines are submitted to learn about the tool's usage and find ways to improve.
+- `HTTP_PROXY`, `HTTPS_PROXY` and `NO_PROXY` can be used to define proxy server usage as detailed in the [Go net/http ProxyFromEnvironment docs](https://golang.org/pkg/net/http/#ProxyFromEnvironment).
 
 In addition, [global command-line options](global-options/) are available.
 

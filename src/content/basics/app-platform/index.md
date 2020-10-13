@@ -1,11 +1,11 @@
 ---
 title: The Giant Swarm App Platform
 description: Overview of the Giant Swarm App Platform, how it works and what to expect.
-date: 2020-04-07
+date: 2020-05-26
 weight: 90
 type: page
 categories: ["basics"]
-last-review-date: "2020-04-07"
+last-review-date: "2020-05-26"
 aliases: [
     "/basics/app-catalog/",
 ]
@@ -21,9 +21,9 @@ Using this platform we will provide a collection of curated _Apps_. These _Apps_
 
 In short: the _Giant Swarm App Platform_ refers to the whole feature, and an _App Catalog_ is a collection of _Apps_.
 
-We provide two _App Catalogs_. You will be able to set up you own additional catalog(s) to provide for any needs you have at the enterprise level.
+We provide two _App Catalogs_. You will be able to set up your own additional catalog(s) to provide for any needs you have at the enterprise level.
 
-### What makes up the Giant Swarm App Platform?
+### What makes up the Giant Swarm App Platform
 
 Technically the App Platform is implemented as a set of operators
 running on your Control Plane and tenant clusters. These operators watch various
@@ -68,10 +68,9 @@ together to enable the features of the Giant Swarm App Platform:
 
 ![A diagram showing an overview of various components and concepts that make up the Giant Swarm App Platform](app-platform-overview.png)
 
+### What kind of App Catalogs are there
 
-### What kind of App Catalogs are there?
-
-By default you will have the Giant Swarm Catalog and the Giant Swarm Playgrond installed
+By default you will have the Giant Swarm Catalog and the Giant Swarm Playground installed
 on your Control Planes.
 
 ### The Giant Swarm Catalog
@@ -84,7 +83,6 @@ Maturity levels of apps in this catalog are expressed through semantic versionin
 - Version with `-rc*` suffix - the application is at a preview maturity level. This allows customers to preview a new release of an application and evaluate new features. It is supported on a best effort basis.
 - version >= `v1.0.0` with no suffix - the specified version of the application is at a stable maturity level. It is available to our customers as a managed offering with support and SLA.
 
-
 ### The Giant Swarm Playground
 
 This is our go-to place to create and try out things. Mainly, this contains apps that we have added in order help you with a certain issue. Additionally, you will find some apps that we created for non-commercial purposes (e.g. for a blog post or a workshop).
@@ -93,10 +91,9 @@ Bear in mind that we do NOT support these apps and they won’t be worked on wit
 
 We encourage you to try out this playground catalog and the different apps offered there. As always, feedback is welcome.
 
+### The Helm Stable Catalog
 
-### Installing your own App Catalog
-
-The Helm Stable App Catalog contains all the Apps you'd find in the upstream
+The Helm Stable Catalog contains all the Apps you'd find in the upstream
 [helm stable repository](https://github.com/helm/charts/tree/master/stable).
 There is no guarantee or SLA here. Install Apps from this
 catalog at your own risk.
@@ -105,13 +102,13 @@ catalog at your own risk.
 
 It’s possible to create your own App Catalog. This is useful if you want to create a set of apps available to your company. Currently, this functionality is only available through direct access to the Giant Swarm Control Plane Kubernetes API. You can request access from your Solution Engineer. Prerequisite for this is a standard Helm chart repository. It should be served through HTTP and accessible to the Control Plane and your Tenant Clusters.
 
-### How can I interact with the Giant Swarm App Platform?
+### How can I interact with the Giant Swarm App Platform
 
 You can interact with the Giant Swarm App Platform through our API and
 our web interface.
 
 - [Web Interface Reference: The Giant Swarm App Platform](/reference/web-interface/app-platform/)
-- [Apps and App Configs in the API reference](https://docs.giantswarm.io/api/#tag/apps)
+- [Apps and App Configs in the API reference](/api/#tag/apps)
 
 Lastly, at the end of the day, what our interfaces do, is create (or update)
 a set of Custom Resources on your Control Plane Kubernetes.

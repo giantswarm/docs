@@ -34,7 +34,7 @@ my-org/team=upstate
 ```
 
 Once clusters are labelled, the output of [`gsctl list clusters`](/reference/gsctl/list-clusters/) can be augmented by setting flag `--selector` (or `-l`)
-It takes a [Kubernetes Label selector](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors) to specify requirments on cluster labels to select.
+It takes a [Kubernetes Label selector](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors) to specify requirements on cluster labels to select.
 
 The output of [`gsctl show cluster`](/reference/gsctl/show-cluster/) will contain all labels currently attached to the selected cluster.
 
@@ -133,25 +133,25 @@ Detailed documentation and examples of `kubectl label` and other commands used h
 
 ### Modify tenant cluster labels
 
-All means of modifying cluster resouces can be used to modify labels of a `clusters.cluster.x-k8s.io` resource.
+All means of modifying cluster resources can be used to modify labels of a `clusters.cluster.x-k8s.io` resource.
 
-Interactively, cluster labels can be modifed using `kubectl edit`. Just edit the `metadata.labels` property.
+Interactively, cluster labels can be modified using `kubectl edit`. Just edit the `metadata.labels` property.
 
 ```nohighlight
-$ kubectl edit clusters.cluster.x-k8s.io/7g4di
+kubectl edit clusters.cluster.x-k8s.io/7g4di
 ```
 
 It is also possible to modify tenant cluster labels with `kubectl patch`.
 More information about `kubectl patch` is available on the [Update API Objects in Place Using kubectl patch](https://kubernetes.io/docs/tasks/run-application/update-api-object-kubectl-patch/) page.
 
 ```nohighlight
-$ kubectl patch clusters.cluster.x-k8s.io/7g4di --type merge -p '{"metadata":{"labels":{"my-org/team":"upstate"}}}'
+kubectl patch clusters.cluster.x-k8s.io/7g4di --type merge -p '{"metadata":{"labels":{"my-org/team":"upstate"}}}'
 ```
 
 Additionally, [`kubectl label`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#label) can be used to modify tenant cluster labels.
 
 ```nohighlight
-$ kubectl label clusters.cluster.x-k8s.io/7g4di my-org/team=upstate
+kubectl label clusters.cluster.x-k8s.io/7g4di my-org/team=upstate
 ```
 
 ### Show tenant cluster labels
@@ -195,5 +195,5 @@ my-org/environment=testing
 Many `kubectl` commands support the `-l, --selector` flag, which allows to limit the selected resources based on given [Kubernetes Label selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors).
 
 ```nohighlight
-$ kubectl get clusters.cluster.x-k8s.io -l 'my-org/team=upstate'
+kubectl get clusters.cluster.x-k8s.io -l 'my-org/team=upstate'
 ```

@@ -9,10 +9,10 @@ tags: ["tutorial"]
 
 # Handling Impaired EBS Volumes
 
-## What happens when EBS Volumes are impaired?
+## What happens when EBS Volumes are impaired
 
 When an EBS Volume is stuck in an attaching state for more than 30 minutes,
-the node is marked as unscheduable with the following taint:
+the node is marked as unschedulable with the following taint:
 
 ```yaml
 - effect: "NoSchedule"
@@ -25,7 +25,7 @@ EBS Volumes not being able to be attached.
 
 Giant Swarm will take care to drain and terminate nodes with this taint.
 
-## What if my workloads don't need EBS Volumes?
+## What if my workloads don't need EBS Volumes
 
 If your pods don't require EBS Volumes, it may be helpful to tolerate the above taint.
 This can be helpful in the case where a node is tainted, but you still wish for

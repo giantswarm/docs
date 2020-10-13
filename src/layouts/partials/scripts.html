@@ -1,0 +1,11 @@
+{{ $aside := resources.Get "scripts/aside.js" }}
+{{ $base := resources.Get "scripts/base.js" }}
+{{ $js := slice $aside $base | resources.Concat "js/docs.js" | resources.Minify | fingerprint }}
+{{ $secureJS := $js | resources.Fingerprint "sha256" }}
+
+<script type="text/javascript" src="https://s.giantswarm.io/jquery/3.3.1/1/jquery.min.js"></script>
+<script type="text/javascript" src="https://s.giantswarm.io/privacy/7/privacy.js"></script>
+<script type="text/javascript" src="https://s.giantswarm.io/giantswarmio/0.10.18/1/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://s.giantswarm.io/highlightjs/9.16.2/1/highlight.min.js"></script>
+<script type="text/javascript" src="/js/polyfill/IntersectionObserver.js"></script>
+<script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ htmlUnescape $secureJS.Data.Integrity }}"></script>

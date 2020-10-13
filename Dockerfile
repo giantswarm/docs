@@ -1,15 +1,30 @@
-FROM nginxinc/nginx-unprivileged:1.16-alpine
+FROM quay.io/giantswarm/hugo:v0.75.1 AS build
 
-EXPOSE  8080
+RUN apk --no-cache add findutils gzip
 
-USER 0
+WORKDIR /docs
 
-WORKDIR /
-ADD vendor/hugo/hugo /usr/bin/hugo
-RUN chmod u+x /usr/bin/hugo
-WORKDIR /docs/build
-ADD ./build /docs/build
-RUN /usr/bin/hugo version
-RUN /usr/bin/hugo --destination /usr/share/nginx/html
+COPY build .
 
-USER 101
+RUN hugo --verbose --gc --minify --cleanDestinationDir --path-warnings --destination /public
+
+# Compress static files above 512 bytes using gzip
+RUN find /public \
+  -type f -regextype posix-extended \
+  -size +512c \
+  -iregex '.*\.(css|csv|html?|js|svg|txt|xml|json|webmanifest|ttf)' \
+  -exec gzip -9 -k '{}' \;
+
+FROM quay.io/giantswarm/nginx:1.18-alpine
+
+COPY nginx.conf /etc/nginx/nginx.conf
+
+RUN rm /docker-entrypoint.d/* && \
+  sed -i \
+    -e 's|listen       80;|listen 8080;|' \
+    -e 's|listen  [::]:80;||' \
+    /etc/nginx/conf.d/default.conf
+
+EXPOSE 8080
+
+COPY --from=build --chown=101 /public /usr/share/nginx/html

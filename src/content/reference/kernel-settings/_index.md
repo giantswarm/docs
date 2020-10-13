@@ -8,7 +8,7 @@ weight: 100
 
 # Kernel settings
 
-To run our Giant on a Giant Swarm cluster properly, some kernel settings need to be tuned at the OS level.
+We adjust some kernel settings of machines used as Kubernetes nodes to non-standard values. Here is a complete reference.
 
 ## General Performance and Security settings
 
@@ -39,7 +39,6 @@ To run our Giant on a Giant Swarm cluster properly, some kernel settings need to
 | ---                             | ---           | ---                                                                 |
 | `fs.inotify.max_user_watches`   | 16384         | Increase the max number of opened file watches to avoid docker lock |
 | `fs.inotify.max_user_instances` | 8192          | Increase the max number of file descriptors to avoid docker lock    |
-
 
 ## Workload specific tuning
 

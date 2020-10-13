@@ -17,13 +17,13 @@ If you intend to use the created key pair with the `kubectl` program, we recomme
 Given you have a cluster with the ID `w6wn8`, this command would create a new key pair for that cluster:
 
 ```nohighlight
-$ gsctl create keypair --cluster w6wn8
+gsctl create keypair --cluster w6wn8
 ```
 
 You can also use the cluster's name for identifying the cluster:
 
 ```nohighlight
-$ gsctl create keypair --cluster "Cluster name"
+gsctl create keypair --cluster "Cluster name"
 ```
 
 The output will look similar to the one below:
@@ -60,7 +60,7 @@ Each key pair has a limited lifetime, which you can affect only on creation. In 
 
 Depending on the installation, there might be a minimum and maximum key pair lifetime configured, to enforce security policies. If you'd like to find out about effective limits of your installation, please ask our support team.
 
-## Kubernetes RBAC and the certificate's subject common name and organization fields.
+## Kubernetes RBAC and the certificate's subject common name and organization fields {#rbac-cn-org}
 
 Using the `--certificate-organizations` and `--cn-prefix` flags you can influence the common name (CN) and organization (O) fields of the issued certificate.
 

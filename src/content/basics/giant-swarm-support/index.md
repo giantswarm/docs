@@ -16,9 +16,9 @@ We accompany our customers throughout their cloud-native journey. Having someone
 
 ## Customer Support
 
-Our customer support relies on close interactions via Slack, to ensure bi-directional feedback as quickly as possible. This is our first line of contact to customers. This interaction channel is also used to answer a variety of of questions. The conversations are not limited to the platform itself, but can go broader and include the anything cloud-native.
+Our customer support relies on close interactions via Slack, to ensure bi-directional feedback as quickly as possible. This is our first line of contact to customers. This interaction channel is also used to answer a variety of questions. The conversations are not limited to the platform itself, but can go broader and include the anything cloud-native.
 
-Our support shifts run from 08:00 to 18:00 (CET) on Monday-Friday. While production support oes without saying, we  often answer questions well outside those times. We rotate support shifts across our team, which is why we focus on support channels with clear internal handovers.
+Our support shifts run from 08:00 to 18:00 (CET) on Monday-Friday. While production support goes without saying, we  often answer questions well outside those times. We rotate support shifts across our team, which is why we focus on support channels with clear internal handovers.
 
 If there is a problem that the first line support cannot resolve, it is handed over to the Ops Duty engineer, who has deeper knowledge of the platform. This is a 24 hour rotating shift.
 
@@ -46,11 +46,11 @@ Postmortems are created during the whole week. On Mondays, the product team meet
 
 The postmortem is closed only once the underlying issue is fixed and deployed to all affected environments. Additionally postmortems often result in new or tuned alerts and ops recipes to share knowledge through the operations team.
 
-# Conclusion
+## Conclusion
 
 Our support process is subject to change. As we continuously improve it we discover how to improve our policies, process and tools. But the goals are clear and unchanging. We are committed to seamlessly supporting our customers.
 
 ## Further reading
 
-- [Giant Swarm Operation Layers](https://docs.giantswarm.io/basics/giant-swarm-operational-layers/)
-- [Giant Swarm Cluster Upgrades](https://docs.giantswarm.io/reference/cluster-upgrades/)
+- [Giant Swarm Operation Layers](/basics/giant-swarm-operational-layers/)
+- [Giant Swarm Cluster Upgrades](/reference/cluster-upgrades/)

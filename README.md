@@ -42,6 +42,22 @@ Each documentation page consists of a Markdown file that starts with some metada
 
 - Please double-check whether the page description is still up-to-date or could be improved.
 
+### Hyperlinks
+
+In order to link to other docs pages, please use this format only:
+
+```markdown
+... see the [gsctl reference](/reference/gsctl/) for details. ...
+```
+
+Note that
+
+- Hyperlinks URLs must start with `/`
+- Must usually end with `/`
+- Must not contain `https://` or the host name `docs.giantswarm.io`.
+
+This is important to support automation when links have to change, or when checking links.
+
 ### Code blocks
 
 We support fenced code blocks wrapped by the triple back-tick operator. It is recommended to
@@ -122,6 +138,14 @@ use when a cluster is created without specifying a number.
 - `first_aws_autoscaling_version`: The release version that introduced
 autoscaling for AWS.
 
+- `first_aws_nodepools_version`: The release version that introduced
+nodepools for AWS.
+
+- `first_azure_nodepools_version`: The release version that introduced nodepools for Azure.
+
+- `first_spotinstances_version`: The release version that introduced
+spotinstances for AWS.
+
 - `minimal_supported_cluster_size_worker_nodes`: The minimum number of worker
 nodes a cluster must have in order to be supported by Giant Swarm.
 
@@ -130,7 +154,7 @@ nodes a cluster must have in order to be supported by Giant Swarm.
 If you want to iterate quickly on some content you can use the `make dev`
 command.
 
-You can access the server at http://localhost:8080/. The server can be stopped by hitting `Ctrl + C`.
+You can access the server at http://localhost:1313/. The server can be stopped by hitting `Ctrl + C`.
 
 It will not include content from the external repositories.
 
@@ -197,16 +221,38 @@ We use long-form CLI flags and avoid the possible equal sign between flag name a
 Right:
 
 ```nohighlight
-$ gsctl create cluster --owner acme
+gsctl create cluster --owner acme
 ```
 
 Wrong:
 
 ```nohighlight
-$ gsctl create cluster --owner=acme
-$ gsctl create cluster -o=acme
-$ gsctl create cluster -o acme
+gsctl create cluster --owner=acme
+gsctl create cluster -o=acme
+gsctl create cluster -o acme
 ```
+
+Also we break a command into multiple lines once it becomes longer than ~ 60 characters,
+using the backslash character. Example:
+
+```nohighlight
+gsctl create cluster \
+  --owner acme \
+  --create-default-nodepool false
+```
+
+### Linting and validation
+
+Many style rules are checked automatically in CI. You can also execute the check locally
+before pushing commits using the `make lint` command.
+
+For a reference of all rules please check the [DavidAnson/markdownlint documentation](https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md).
+
+There is a project specific configuration in place via the `.markdownlint.yaml` file.
+
+To check locally whether all internal links are correct, use `make linkcheck`.
+
+To check both internal and external links, use `make linkcheck-external`.
 
 ## License
 

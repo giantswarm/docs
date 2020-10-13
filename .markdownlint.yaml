@@ -1,0 +1,34 @@
+# This is a configuration file for markdownlint or
+# rather markdownlint-cli. See
+#
+#   https://github.com/DavidAnson/markdownlint
+#
+# for details.
+
+
+# Enable all default rules (to later override/adjust).
+default: true
+
+# Consistent bullets
+MD004:
+  style: consistent
+
+MD007:
+  indent: 4
+
+# Ignore front matter in headline linting
+MD025:
+  front_matter_title: ""
+
+# Allow for intuitive numbered lists
+MD029:
+  style: ordered
+
+# Ignore inline HTML. We need this in certain places
+MD033: false
+
+# Enforcing the rules below will require big changes in the entire repo.
+# So we exclude them for now.
+
+# Don't lint for line length
+MD013: false

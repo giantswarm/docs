@@ -1,4 +1,4 @@
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: {{ .Release.Namespace }}
@@ -34,9 +34,6 @@ spec:
             limits:
               cpu: 500m
               memory: 20M
-          volumeMounts:
-            - mountPath: /var/cache/nginx
-              name: cache-volume
           livenessProbe:
             httpGet:
               path: /
@@ -45,8 +42,5 @@ spec:
             initialDelaySeconds: 10
             periodSeconds: 30
             timeoutSeconds: 2
-      volumes:
-        - name: cache-volume
-          emptyDir: {}
       serviceAccount: {{ .Values.name }}
       serviceAccountName: {{ .Values.name }}

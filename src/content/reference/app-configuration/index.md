@@ -92,7 +92,7 @@ metadata:
   namespace: i5h93
 data:
   values: |
-    color:
+    colors:
       background: "red"
 ```
 
@@ -111,7 +111,7 @@ data:
 **Note:** when Base64-decoding the string `.data.values` field in the secret, you'll get this:
 
 ```nohighlight
-color:
+colors:
   secretColor: "blue"
 ```
 
@@ -204,7 +204,7 @@ metadata:
   namespace: i5h93
 data:
   values: |
-    color:
+    colors:
       background: "red"
 ```
 
@@ -246,14 +246,14 @@ no encoding.
 #### hello-world user values example
 
 ```yaml
-color:
+colors:
    background: "red"
 ```
 
 #### hello-world user secrets example
 
 ```yaml
-color:
+colors:
    secretColor: "blue"
 ```
 
@@ -270,8 +270,8 @@ However for the time being, our Web Interface makes use of the Giant Swarm API.
 By supplying a JSON body with the values you would like to set, the Giant Swarm API will
 create a ConfigMap or Secret in the right format and wire it up correctly for you.
 
-- [Giant Swarm API App Configs reference](https://docs.giantswarm.io/api/#tag/app-configs) for adding configuration values
-- [Giant Swarm API App Secrets reference](https://docs.giantswarm.io/api/#tag/app-secrets) for adding secret values
+- [Giant Swarm API App Configs reference](/api/#tag/app-configs) for adding configuration values
+- [Giant Swarm API App Secrets reference](/api/#tag/app-secrets) for adding secret values
 
 ### Using the Control Plane Kubernetes API {#cp-k8s-api}
 

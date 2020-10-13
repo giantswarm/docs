@@ -1,17 +1,17 @@
 ---
 title: Node Pools
 description: A general description of node pools as a concept, it's benefits, and some details you should be aware of.
-date: 2020-04-28
+date: 2020-09-31
 weight: 130
 type: page
 categories: ["basics"]
 ---
 
-# Node Pools on AWS
+# Node Pools
 
 ## Definition
 
-A node pool is a set of nodes within a Kubernetes cluster that share a same configuration (instance type, CIDR range, etc.). Each node in the pool is labeled by the node pool's name
+A node pool is a set of nodes within a Kubernetes cluster that share the same configuration (machine type, CIDR range, etc.). Each node in the pool is labeled by the node pool's name
 
 ## Advantages
 
@@ -24,7 +24,7 @@ availability zone distribution, even if some workloads wouldn't require the incr
 Node pools are independent groups of worker nodes belonging to a cluster, where all nodes within a pool share a
 common configuration. You can combine any type of node pool within one cluster. Node pools can differ regarding:
 
-- EC2 instance type
+- Machine type
 - Availability zone distribution
 - Scaling configuration (number of nodes)
 
@@ -47,9 +47,9 @@ These tools also support modification of node pools and their deletion.
 
 Once a node pool has been created, as soon as the workers are available, they will
 join the cluster and appear in your `kubectl get nodes` listing. You can identify the
-nodes' node pool using the `giantswarm.io/machine-deployment` label.
+nodes' node pool using the `giantswarm.io/machine-deployment` label on AWS clusters and `giantswarm.io/machine-pool` label on Azure clusters.
 
-The example `kubectl` command below will list all nodes with role, node pool ID, and name.
+The example `kubectl` command below will list all nodes with role, node pool ID, and name for an AWS cluster.
 
 ```nohighlight
 kubectl get nodes \
@@ -72,7 +72,7 @@ See the [`gsctl update nodepool`](/reference/gsctl/update-nodepool/) reference f
 
 Knowing the node pool ID of the pool to use, you can use the `nodeSelector` method of assigning pods to the node pool.
 
-Assuming that the node pool ID is `a1b2c`, your `nodeSelector` should look like this (for example):
+Assuming that the node pool ID is `a1b2c`, your `nodeSelector` could for example look like this (for an AWS cluster):
 
 ```yaml
 apiVersion: v1
@@ -87,20 +87,35 @@ spec:
     giantswarm.io/machine-deployment: a1b2c
 ```
 
+A similar example for an Azure cluster:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+  nodeSelector:
+    giantswarm.io/machine-pool: a1b2c
+```
+
 You can assign workloads to node pools in a more indirect way too. This is achieved by using other node attributes which are
 specified via the node pool and which are exposed as node labels.
 
-For example: In a case where you have node pools with one instance type. Using a `nodeSelector` with the label `beta.kubernetes.io/instance-type` you can assign workloads to matching nodes only.
+For example: In a case where you have node pools with one instance type. Using a `nodeSelector` with the label `node.kubernetes.io/instance-type` (or in Kubernetes before v1.17: `beta.kubernetes.io/instance-type`) you can assign workloads to matching nodes only.
 
-Another example: In a case where you have different node pools using different availability zones. With a `nodeSelector` using the label `failure-domain.beta.kubernetes.io/zone` you can assign your workload to the nodes in a particular availability zone.
+Another example: In a case where you have different node pools using different availability zones. With a `nodeSelector` using the label `topology.kubernetes.io/zone` (or in Kubernetes before v1.17: `failure-domain.beta.kubernetes.io/zone`) you can assign your workload to the nodes in a particular availability zone.
 
 ## Node pool deletion
 
 You can delete a node pool at any time using the Giant Swarm API and user interfaces. When a node pool gets deleted the following things will happen:
 
 - nodes in the pool will be marked as unschedulable and then drained, resulting in Pods being unassigned from the nodes
-and containers being stopped.
-- Then the actual nodes (EC2 instanced) will be removed.
+and containers being stopped (only on AWS clusters).
+- Then the actual nodes will be removed.
 
 If you are deleting a node pool running critical workloads, we recommend taking the following precautions:
 
@@ -112,28 +127,11 @@ Pay close attention to the workloads being rescheduled on other nodes once nodes
 
 See the [`gsctl delete nodepool`](/reference/gsctl/delete-nodepool/) reference for how to delete a node pool using the CLI.
 
-## Instance distribution
+## On-demand and spot instances {#on-demand-spot}
 
-Node pools can contain a mix of [on-demand](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-on-demand-instances.html) and [spot instances](https://aws.amazon.com/ec2/spot/) that will allow you to optimize your cost.
+As of release v{{% first_aws_spotinstances_version %}} on AWS, node pools can contain a mix of [on-demand](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-on-demand-instances.html) and [spot instances](https://aws.amazon.com/ec2/spot/) that will allow you to optimize your cost.
 
-There are two parameters that will allow you to configure which instances are going to be used:
-
-- *On-demand base capacity*: controls how much of the initial capacity is made up of on-demand instances.
-
-- *Spot instance percentage above base capacity*: controls the percentage of spot instances to be used for worker nodes beyond the number of *on-demand base capacity*.
-
-**Note:** Spot instance max bidding price is configured to be equal to the On-demand price to ensure availability of nodes.
-
-### Examples
-
-The following table shows four examples to illustrate how different settings of spot instance percentage and on-demand base capacity influence the outcome.
-
-| On-demand base capacity | Spot instance percentage | Total Instances  | On-Demand Instances| Spot Instances
-|:-:|:-:|:-:|:-:|:-:|
-| 0 | 0 % | 50 | 50 | 0
-| 0 | 100 % | 50 | 0 | 50
-| 10 | 50 % | 50 | 30 | 20
-| 10 | 100 % | 50 | 10 | 40
+[Here](/basics/spot-instances) you can find more detailed information on using Spot Instances in AWS clusters.
 
 ## Using similar instance types {#similar-instance-types}
 
@@ -175,9 +173,17 @@ With node pools, you set the autoscaling range per node pool. The Kubernetes clu
 
 If you assign workloads to node pools as described [above](#assigning-workloads) and the autoscaler finds pods in `Pending` state, it will decide based on the node selectors which node pools to scale up.
 
-In case there are workloads not assigned to any node pools, the autoscaler may pick any node pool for scaling. For details on the decision logic, please check the upstream [FAQ for AWS](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/README.md).
+In case there are workloads not assigned to any node pools, the autoscaler may pick any node pool for scaling. For details on the decision logic, please check the upstream FAQ for [AWS](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/README.md) and [Azure](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/azure/README.md).
 
 ## Limitations
+
+- Clusters without worker nodes (= without node pools) cannot be considered fully functional. In order to have all
+required components scheduled, worker nodes are required. For that reason, we deactivate any monitoring and alerts for
+these clusters and don't provide any proactive support.
+
+- We also do not monitor node pools with less than three worker nodes and do not provide any proactive support for those.
+
+### AWS specific
 
 - A node pool can have a maximum of 250 worker nodes. The architectural reason for this is that each node pool gets a `/24` IPv4 subnet assigned. However 5 IP addresses per availability zone used are not usable for worker nodes, as they are reserved for other AWS resources. Hence the limit depends on the number of availability zones used by a node pool. If the pool uses two zones, it's 245. With three zones, the limit is 240, and with four zones, it's 235.
 
@@ -195,18 +201,15 @@ cover. Once an availability zone has been assigned for use in a cluster, either 
 nodes, it cannot be unassigned from that cluster. It will remain assigned even if there are no more node pools using
 that availability zone.
 
-  - **Example:** The master node is in availability zone A. Node pool 1 uses availability zones B and C. Node pool 2 uses
+    - **Example:** The master node is in availability zone A. Node pool 1 uses availability zones B and C. Node pool 2 uses
   availability zone D. With A, B, C, and D, the limit of four availability zones assigned is reached. New node pools of this
   cluster can only use these four availability zones.
-  
-- Clusters without worker nodes (= without node pools) cannot be considered fully functional. In order to have all
-required components scheduled, worker nodes are required. For that reason, we deactivate any monitoring and alerts for
-these clusters and don't provide any proactive support.
 
-- We also do not monitor node pools with less than three worker nodes and do not provide any proactive support for those.
+## Azure specific
 
-- When creating a new node pool, the master node of the cluster is re-created. This causes a downtime of the Kubernetes
-API of a couple of minutes.
+- Every node pool is mapped with a `Virtual Machine Scale Set`. That means that there is an upper bound of 100 nodes for each node pool.
+
+- The maximum number of Node Pools for each Cluster is 200.
 
 ## Further reading
 

@@ -219,11 +219,11 @@ roleRef:
 
 ##### A super-user role binding
 
-One of the most important default Role Bindings is for the "cluster-admin" role, which depicts a super-user in the cluster. By default it is bound to the `system:masters` group. Thus, if you need cluster admin access to your Kubernetes cluster, you need to create user credentials (e.g. by [creating a key pair with gsctl](https://docs.giantswarm.io/reference/gsctl/create-keypair/) or the Giant Swarm Web UI) that include that group.
+One of the most important default Role Bindings is for the "cluster-admin" role, which depicts a super-user in the cluster. By default it is bound to the `system:masters` group. Thus, if you need cluster admin access to your Kubernetes cluster, you need to create user credentials (e.g. by [creating a key pair with gsctl](/reference/gsctl/create-keypair/) or the Giant Swarm Web UI) that include that group.
 
 For a complete overview of default roles and bindings we defer to the [official RBAC documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#default-roles-and-role-bindings).
 
-__Warning:__ Be careful assigning super-user as a default role. Giving `cluster-admin` role to every user means letting them perform any action in the cluster. As an analogy, it is like you giving root access to every user in a Linux system. Consequently think twice which role your users will have in the system. For Kubernetes, it translates in selecting a username and group name properly. In case you use authentication based on certs, [common name and organization would be those respectively](https://docs.giantswarm.io/reference/gsctl/create-keypair/#kubernetes-rbac-and-the-certificate-s-subject-common-name-and-organization-fields). If you are using an external authentication system then be sure it returns the correct user and group name to the Kubernetes API. 
+__Warning:__ Be careful assigning super-user as a default role. Giving `cluster-admin` role to every user means letting them perform any action in the cluster. As an analogy, it is like you giving root access to every user in a Linux system. Consequently think twice which role your users will have in the system. For Kubernetes, it translates in selecting a username and group name properly. In case you use authentication based on certs, [common name and organization would be those respectively](/reference/gsctl/create-keypair/#kubernetes-rbac-and-the-certificate-s-subject-common-name-and-organization-fields). If you are using an external authentication system then be sure it returns the correct user and group name to the Kubernetes API.
 
 ### Verifying if you Have Access
 
@@ -262,11 +262,9 @@ yes
 
 ## Pod Security Policies
 
-<!-- TODO: review/update this section, as the links to PSP policies don't work any more. Probably the info also needs updating. -->
-
 A `PodSecurityPolicy` object defines a set of conditions that a pod must run with in order to be accepted into the system. It governs the ability to make requests on a Pod that affect the `SecurityContext` that will be applied to a Pod and container.
 
-By default, Giant Swarm clusters come with two PSPs defined - a [`privileged` policy](https://github.com/giantswarm/k8scloudconfig/blob/master/v_4_8_0/files/k8s-resource/psp_policies.yaml#L1-L27) that allows almost any Security Context and a [`restricted` policy](https://github.com/giantswarm/k8scloudconfig/blob/master/v_4_8_0/files/k8s-resource/psp_policies.yaml#L30-L57) that mainly restricts users from running privileged containers, running containers as root, or mounting host paths as volumes.
+By default, Giant Swarm clusters come with two PSPs defined - a `privileged` policy that allows almost any Security Context and a `restricted` policy that mainly restricts users from running privileged containers, running containers as root, or mounting host paths as volumes.
 
 Additionally, there are two respective cluster roles defined - `privileged-psp-user` and `restricted-psp-user`.
 
@@ -274,7 +272,7 @@ By default all authenticated users have the `restricted-psp-user` role assigned.
 
 If you need to run privileged or root containers in a Pod, you need to either use a cluster admin user or bind the `privileged-psp-user` role to your desired user or group.
 
-Note that your user's PSP only come into play when you directly create Pods. If you are using Deployments, Daemonsets, or other means to spawn Pods in your cluster, you need to make sure these have the right PSP by using [Service Accounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/).
+Note that your user's PSP only comes into play when you directly create Pods. If you are using Deployments, Daemonsets, or other means to spawn Pods in your cluster, you need to make sure these have the right PSP by using [Service Accounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/).
 
 You need to either bind the already existing `privileged-psp-user` role, or create a PSP that caters specifically to your desired Security Context. Keep in mind that after creating a PSP you also need to have a role that is allowed to `use` that specific PSP and bind that to the Service Account you're using. For an example see [Running Applications that need Privileged Access](#running-applications-that-need-privileged-access).
 
@@ -317,7 +315,11 @@ For bootstrapping and managing access rights on your Kubernetes cluster you firs
 To create such a user with `gsctl` for a cluster with id `w6wn8` just run following command:
 
 ```nohighlight
-$ gsctl create kubeconfig -c w6wn8 -d "Access Management" --ttl 1 --certificate-organizations "system:masters"
+gsctl create kubeconfig \
+  -c w6wn8 \
+  -d "Access Management" \
+  --ttl 1d \
+  --certificate-organizations "system:masters"
 ```
 
 This will create a kubeconfig with a Cluster Admin user that is valid for a day (as we don't want to yield that power for too long).
@@ -354,13 +356,13 @@ The above YAML gives admin rights to the `development` namespace to both the use
 You could create kubeconfigs for such users like following.
 
 ```nohighlight
-$ gsctl create kubeconfig -c w6wn8 -d "Jane" --cn-prefix "jane"
+gsctl create kubeconfig -c w6wn8 -d "Jane" --cn-prefix "jane"
 ```
 
 or
 
 ```nohighlight
-$ gsctl create kubeconfig -c w6wn8 -d "Marc" --cn-prefix "marc" --certificate-organizations "dev-admin"
+gsctl create kubeconfig -c w6wn8 -d "Marc" --cn-prefix "marc" --certificate-organizations "dev-admin"
 ```
 
 Note that even when we don't need a specific username for giving Marc Admin rights, we should still set a CN Prefix so we can identify Marc's actions on the cluster.
@@ -394,7 +396,11 @@ Let's assume we already created both users from the example above. As Jane's use
 However, Marc is only part of the `dev-admin` group, so if we want to give him view access to the cluster we need to give him new credentials.
 
 ```nohighlight
-$ gsctl create kubeconfig -c w6wn8 -d "Marc" --cn-prefix "marc" --certificate-organizations "dev-admin, cluster-view"
+gsctl create kubeconfig \
+  -c w6wn8 \
+  -d "Marc" \
+  --cn-prefix "marc" \
+  --certificate-organizations "dev-admin, cluster-view"
 ```
 
 With the above Marc would now be part of both groups and thus be bound by both bindings.
@@ -405,7 +411,7 @@ Applications running inside your cluster that need access to the Kubernetes API 
 
 The typical process looks like following example:
 
-#### 1. Create a Service Account for your app
+#### 1. Create a Service Account for your app {#app-api-create-sa}
 
 ```yaml
 apiVersion: v1
@@ -415,7 +421,7 @@ metadata:
   namespace: logging
 ```
 
-#### 2. Add the Service Account to your app
+#### 2. Add the Service Account to your app {#app-api-add-sa}
 
 This is done by adding a line referncing the Service Account to the Pod spec of your Deployment or Daemonset. To be sure  you have the right place in the YAML you can put it right above the line `containers:` at the same intendation level. The section should look similar to following:
 
@@ -433,9 +439,10 @@ spec:
     [...]
 ```
 
-#### 3. Create a Role for your app
+#### 3. Create a Role for your app {#app-api-create-role}
 
-This role should be very specifc to the needs of your app and not allow anything more than what the app needs to work. In this example fluentd needs a Cluster Role that can get, watch, and list Pods and Namespaces in the whole cluster.
+This role should be very specific to the needs of your app and not allow anything more than what the app needs to work. In this example fluentd needs a Cluster Role that can get, watch, and list Pods and Namespaces in the whole cluster.
+
 ```yaml
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
@@ -447,7 +454,7 @@ rules:
   verbs: ["get", "watch", "list"]
 ```
 
-#### 4. Bind the Role to the Service Account
+#### 4. Bind the Role to the Service Account {#app-api-bind-role-sa}
 
 Now we bind the role we created above to the Service Account we're using.
 
@@ -472,7 +479,7 @@ Applications running inside your cluster that need to run in a privileged Securi
 
 The typical process looks like following example. If your app is already using a service account set up like the RBAC example above you can reuse that and skip steps 1, 2,and 5.
 
-#### 1. Create a Service Account for your app
+#### 1. Create a Service Account for your app {#app-privileged-create-sa}
 
 ```yaml
 apiVersion: v1
@@ -482,9 +489,9 @@ metadata:
   namespace: logging
 ```
 
-#### 2. Add the Service Account to your app
+#### 2. Add the Service Account to your app {#app-privileged-add-sa}
 
-This is done by adding a line referncing the Service Account to the Pod spec of your Deployment or Daemonset. To be sure you have the right place in the YAML you can put it right above the line `containers:` at the same intendation level. The section should look similar to following:
+This is done by adding a line referencing the Service Account to the Pod spec of your Deployment or DaemonSet. To be sure you have the right place in the YAML you can put it right above the line `containers:` at the same indentation level. The section should look similar to following:
 
 ```yaml
 [...]
@@ -500,7 +507,7 @@ spec:
 [...]
 ```
 
-#### 3. Create a Pod Security Policy for your app
+#### 3. Create a Pod Security Policy for your app {#app-privileged-create-psp}
 
 In Giant Swarm Kubernetes clusters there is a default Pod Security Policy (PSP) called `restricted` that applies when no specifc PSP is given. This PSP can help you create the specifc PSP needed for your app.
 
@@ -509,7 +516,7 @@ This is done by adding a line referencing the Service Account to the Pod spec of
 You can get the YAML for this PSP by running:
 
 ```nohighlight
-$ kubectl get psp restricted -o yaml --export
+kubectl get psp restricted -o yaml --export
 ```
 
 In this example we assume that fluentd needs to expose a host port (it doesn't, but just for this example's sake) and mount host paths (it actually does). Our PSP object based on the `restricted` PSP should look like following after editing.
@@ -547,7 +554,7 @@ Note, how the above PSP allows the use volumes of type `configMap` and `hostPath
 
 We strongly recommend to create such specifc rules, so that no further privilege escalation can occur.
 
-#### 4. Create a Role for your app
+#### 4. Create a Role for your app {#app-privileged-create-role}
 
 Now that we have a PSP we need a role that is allowed to `use` that PSP.
 
@@ -590,7 +597,7 @@ rules:
 
 In the latter case we already have bound that role to our Service Account and are done. In the former case we still need step 5.
 
-#### 5. Bind the Role to the Service Account
+#### 5. Bind the Role to the Service Account {#app-privileged-bind-role-sa}
 
 Now we bind the role we created above to the Service Account we're using.
 
@@ -613,12 +620,12 @@ roleRef:
 
 You can revoke access from any user or group of users by either completely removing the binding(s) they are part of or, in case of bindings that bind to several subjects, removing them specifically from the list of subjects in that binding.
 
-Note that bindings that come with the cluster by default like `system:masters` cannot be removed as they are reconciliated. We highly recommend you only create short-lived users (i.e. certificates with a TTL of a day or less) for this kind of access.
+Note that bindings that come with the cluster by default like `system:masters` cannot be removed as they are reconciled. We highly recommend you only create short-lived users (i.e. certificates with a TTL of a day or less) for this kind of access.
 
 ## Further reading
 
 - [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/)
 - [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)
 - [Configuring Service Accounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/)
-- [Creating a kubeconfig with gsctl](https://docs.giantswarm.io/reference/gsctl/create-kubeconfig/)
-- [Creating a key pair with gsctl](https://docs.giantswarm.io/reference/gsctl/create-keypair/)
+- [Creating a kubeconfig with gsctl](/reference/gsctl/create-kubeconfig/)
+- [Creating a key pair with gsctl](/reference/gsctl/create-keypair/)

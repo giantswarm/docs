@@ -72,17 +72,17 @@ curl \
 
 Operating systems and HTTP clients have a variety of ways to manage CAs and certificates. Even on one platform there are often several ways to achieve the same thing. We focus here on the more popular combinations of operating system and client, and we opt for ways using command line utilities, as we think this will mostly suit the target audience of this tutorial.
 
-**Shortcut by client**
+### Shortcut by client
 
 - Mac OS
-  - Safari and Chrome use the [Mac OS Keychain](#mac-os-keychain)
-  - [Firefox](#mac-os-firefox)
+    - Safari and Chrome use the [Mac OS Keychain](#mac-os-keychain)
+    - [Firefox](#mac-os-firefox)
 - Linux
-  - [Chrome, Chromium](#linux-chromium)
-  - [Firefox](#linux-firefox)
+    - [Chrome, Chromium](#linux-chromium)
+    - [Firefox](#linux-firefox)
 - Windows
-  - Edge, IE, Chrome, and Chromium use the [certificate store](#win-cert-store) provided by the operating system
-  - [Firefox](#win-firefox)
+    - Edge, IE, Chrome, and Chromium use the [certificate store](#win-cert-store) provided by the operating system
+    - [Firefox](#win-firefox)
 
 ### Mac OS
 
