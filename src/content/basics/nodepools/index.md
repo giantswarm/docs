@@ -8,7 +8,7 @@ categories: ["basics"]
 user_questions:
   - What is a node pool?
   - What are node pools?
-  - Which providers support node pools?
+  - In which cloud environments are node pools supported?
   - Which releases introduced node pools?
 ---
 

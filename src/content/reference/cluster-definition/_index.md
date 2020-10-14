@@ -5,13 +5,13 @@ date: 2020-06-16
 layout: subsection
 weight: 100
 user_questions:
-  - What are additional fields I need to fill out for Node Pool clusters
+  - What are additional fields I need to fill out for node pool clusters
   - What are node definition keys I need to specify for a non-node pool cluster definition?
   - What are root level keys I need to specify for a node pool cluster definition?
   - What are root level keys I need to specify for a non-node pool cluster definition?
   - What are the node pool definition keys I need to specify for a cluster definition? 
   - What goes into the 'masters' key of a cluster definition?
-  - Will my cluster definition change if I use Node Pools?
+  - Will my cluster definition change if I use node pools?
 ---
 
 # Cluster Definition Reference
