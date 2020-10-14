@@ -9,9 +9,6 @@ user_questions:
   - Where can I find the AWS account ID to use for running a installation?
   - Where I can find the AWS account ID to run tenant clusters?
   - What are the recommended service limit/quotas for AWS accounts used with Giant Swarm?
-  - How to see this in AWS console itself for the existing installation?
-  - How to gather this data in China?
-  - How can I enable the new network services account on the Control Plane?
 ---
 
 # Prepare an AWS account to run Giant Swarm clusters
