@@ -7,7 +7,9 @@ layout: "subsection"
 user_questions:
   - How do cluster upgrades work?
   - How can I prepare my workloads to tolerate a cluster upgrade?
-  - What's the meaning of a major, minor and patch release?
+  - What is a major release?
+  - What is a minor release?
+  - What is a patch release?
 ---
 
 # Cluster Upgrades with Giant Swarm
