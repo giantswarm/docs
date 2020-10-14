@@ -4,6 +4,8 @@ description: Complete list of the tuned CoreOS kernel settings for Giant Swarm c
 date: 2020-02-26
 layout: subsection
 weight: 100
+user_questions:
+  - How is the Linux kernel of cluster nodes configured?
 ---
 
 # Kernel settings

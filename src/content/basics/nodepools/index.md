@@ -5,6 +5,11 @@ date: 2020-09-31
 weight: 130
 type: page
 categories: ["basics"]
+user_questions:
+  - What is a node pool?
+  - What are node pools?
+  - Which providers support node pools?
+  - Which releases introduced node pools?
 ---
 
 # Node Pools

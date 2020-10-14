@@ -6,6 +6,15 @@ weight: 40
 type: page
 categories: ["basics"]
 last-review-date: 2020-01-21
+user_questions:
+  - How does Giant Swarm access my account with the cloud provider?
+  - How is admin access safeguarded?
+  - What is admin access to a cluster?
+  - What is the difference between user access to clusters and admin access to clusters?
+  - What is user access to a cluster?
+  - Which APIs enable user access to the clusters?
+  - Who has access to my clusters?
+  - Why does Giant Swarm personnel need access to my clusters?
 ---
 
 # Secure access to clusters for users and Giant Swarm support

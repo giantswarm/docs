@@ -5,6 +5,9 @@ date: "2020-05-19"
 type: page
 weight: 100
 tags: ["tutorial"]
+user_questions:
+  - How do I prepare my Azure subscription for use with Giant Swarm?
+  - What do I need to configure in Azure in order to run Giant Swarm clusters?
 ---
 
 # Prepare an Azure subscription to run Giant Swarm tenant clusters

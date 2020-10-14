@@ -5,6 +5,12 @@ date: 2020-04-16
 type: page
 weight: 50
 tags: ["tutorial"]
+user_questions:
+  - How can I connect to a Pod running in the cluster?
+  - How can I expose a TCP port of a Pod to the internet?
+  - How can I expose a service to the internet?
+  - How to configure the host name in Ingress?
+  - What is the right URL format for the Kubernetes API proxy?
 ---
 
 # Accessing Pods and Services from the Outside
