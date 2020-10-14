@@ -12,9 +12,12 @@ pluralizeListTitles = false
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
-
-  [markup.highlight]
-    codeFences = false  # Disable Hugo's code highlighter, as we use highlight.js
+    [markup.highlight]
+      codeFences = true
+      style = "solarized-dark"
+      guessSyntax = false
+      tabWidth = 4
+      lineNos = false
 
 [[menu.main]]
     name = "Basics and Concepts"
