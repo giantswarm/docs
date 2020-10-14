@@ -1,6 +1,3 @@
-
-hljs.initHighlightingOnLoad();
-
 /* Scrollspy */
 //var navHeight = $('#TableOfContents').outerHeight(true) + 10
 
