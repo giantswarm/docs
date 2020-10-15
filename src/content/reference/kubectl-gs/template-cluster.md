@@ -57,10 +57,6 @@ It supports the following flags:
 - `--external-snat` - AWS CNI configuration to disable (is enabled by default) the [external source network address translation](https://docs.aws.amazon.com/eks/latest/userguide/external-snat.html). Only versions *11.3.1+ support this feature.
 - `--region` - tenant cluster AWS region. Must be configured with installation region.
 
-### Azure specific
-
-- `--azure-public-ssh-key` - Azure master machines Base64-encoded public key used for SSH.
-
 ## Example
 
 Example command for an AWS cluster:
