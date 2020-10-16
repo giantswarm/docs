@@ -5,6 +5,11 @@ date: 2020-09-31
 weight: 130
 type: page
 categories: ["basics"]
+user_questions:
+  - What is a node pool?
+  - What are node pools?
+  - In which cloud environments are node pools supported?
+  - Which releases introduced node pools?
 ---
 
 # Node Pools

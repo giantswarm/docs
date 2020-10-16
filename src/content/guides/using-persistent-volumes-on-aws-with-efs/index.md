@@ -5,6 +5,12 @@ date: "2020-02-06"
 type: page
 weight: 50
 tags: ["tutorial"]
+user_questions:
+  - How do I install the EFS provisioner?
+  - How do I provision an EFS instance on AWS?
+  - How do I test the efs storage class?
+  - How do I use EFS Volumes?
+  - What auto-provisioner for AWS do you recommend? EFS? EBS?
 ---
 
 # Using Persistent Volumes on AWS with EFS

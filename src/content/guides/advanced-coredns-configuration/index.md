@@ -5,6 +5,9 @@ date: 2020-05-13
 type: page
 weight: 50
 tags: ["tutorial"]
+user_questions:
+  - How can I override the default CoreDNS configuration?
+  - How can I customize the CoreDNS configuration?
 ---
 
 # Advanced CoreDNS Configuration

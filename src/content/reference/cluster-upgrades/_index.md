@@ -4,6 +4,12 @@ description: "How Kubernetes and other components are upgraded in a Giant Swarm 
 date: 2020-09-24
 weight: 30
 layout: "subsection"
+user_questions:
+  - How do cluster upgrades work?
+  - How can I prepare my workloads to tolerate a cluster upgrade?
+  - What is a major release?
+  - What is a minor release?
+  - What is a patch release?
 ---
 
 # Cluster Upgrades with Giant Swarm

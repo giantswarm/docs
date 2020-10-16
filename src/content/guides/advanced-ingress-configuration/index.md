@@ -6,6 +6,21 @@ type: page
 weight: 50
 tags:
   - tutorial
+user_questions:
+  - How can I allow only certain IPs for Ingress access?
+  - How can I assign requests to different services, based on the URL path?
+  - How can I configure Ingress to use HTTPS when connecting to my internal service?
+  - How can I configure basic authentication in an Ingress resource?
+  - How can I configure ingress to prevent DDoS attacks?
+  - How can I configure request URL rewrites in the Ingress resource?
+  - How can I configure session affinity in Ingress, so that all requests for one session land in the same backend?
+  - How can I connect several services in one Ingress, based on the URL path?
+  - How can I define several ingresses in one Ingress resource?
+  - How can I disable the redirect to HTTPS in the Ingress configuration?
+  - How can I enable CORS headers in the Ingress resource?
+  - How can I enable TLS passthrough in Ingress?
+  - How can I let the Ingress Controller do TLS termination?
+  - How can I rate-limit Ingress requests?
 ---
 
 # Advanced Ingress Configuration
