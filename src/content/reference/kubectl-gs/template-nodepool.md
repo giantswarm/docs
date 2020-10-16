@@ -55,7 +55,6 @@ Can be retrieved with `gsctl list releases` for your installation. Only versions
 ### Azure specific
 
 - `--azure-vm-size` - Azure VM size to use for workers (e.g. *Standard_D4s_v3*).
-- `--azure-public-ssh-key` - Azure master machines Base64-encoded public key used for SSH.
 
 ## Example
 
