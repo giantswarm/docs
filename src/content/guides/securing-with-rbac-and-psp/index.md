@@ -5,6 +5,14 @@ date: 2020-05-20
 type: page
 weight: 30
 tags: ["tutorial"]
+user_questions:
+  - How can I add permissions to a service account?
+  - How can I give my container permission to access a persistent volume?
+  - How can I run a container as a certain user?
+  - How can I run a container as privileged?
+  - How can I specify which permissions a user will have when using a certain key pair?
+  - Why are my containers failing to access some resources?
+  - Why is my container lacking permission to use a persistent volume?
 ---
 
 # Securing your Cluster with RBAC and PSP

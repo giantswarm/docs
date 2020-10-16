@@ -4,6 +4,10 @@ description: "Detailed documentation on how to create a new cluster using the 'c
 date: 2020-08-25
 type: page
 weight: 20
+user_questions:
+  - What options are available for creating clusters through gsctl?
+  - What are the defaults for the 'gsctl create cluster' flags?
+  - How does an example call of 'gsctl create cluster' look like?
 ---
 
 # `gsctl create cluster`

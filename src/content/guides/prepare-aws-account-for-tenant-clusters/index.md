@@ -5,6 +5,10 @@ date: 2020-05-19
 type: page
 weight: 100
 tags: ["tutorial"]
+user_questions:
+  - Where can I find the AWS account ID to use for running a installation?
+  - Where I can find the AWS account ID to run tenant clusters?
+  - What are the recommended service limit/quotas for AWS accounts used with Giant Swarm?
 ---
 
 # Prepare an AWS account to run Giant Swarm clusters

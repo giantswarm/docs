@@ -4,6 +4,9 @@ description: "The 'gsctl create kubeconfig' command creates a key pair and adds 
 date: "2020-04-16"
 type: page
 weight: 30
+user_questions:
+  - How can I add a cluster key pair to my kubectl config file?
+  - How to gain access to a cluster using gsctl?
 ---
 
 # `gsctl create kubeconfig`

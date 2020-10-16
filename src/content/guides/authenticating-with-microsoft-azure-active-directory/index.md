@@ -5,6 +5,9 @@ date: 2019-11-06
 type: page
 weight: 30
 tags: ["tutorial"]
+user_questions:
+  - How can I use Azure Active Directory to authenticate cluster access?
+  - How to use OIDC for cluster authentication?
 ---
 
 # Authenticating with Microsoft Azure Active Directory

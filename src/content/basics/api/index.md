@@ -8,6 +8,9 @@ weight: 75
 type: page
 categories: ["basics"]
 last-review-date:
+user_questions:
+  - How can I manage Giant Swarm resources programmatically?
+  - How can I manage clusters via an API?
 ---
 
 # API Access to Giant Swarm Resources

@@ -5,6 +5,8 @@ date: "2020-07-01"
 type: page
 weight: 120
 tags: ["tutorial"]
+user_questions:
+  - How can I use EC2 spot instances and fall back to on-demand if no spot instances are available?
 ---
 
 # Using on-demand instances as fall-back when spot instances are unavailable

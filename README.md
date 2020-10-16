@@ -37,10 +37,13 @@ Edit existing content in the `src/content` folder or in the external repositorie
 Each documentation page consists of a Markdown file that starts with some metadata called [front matter](https://gohugo.io/content-management/front-matter/). Some hints:
 
 - Please look at the other pages to get an idea of what the front matter is good for.
+- Please always update the last modification date (`date` field)  of the page when you change content.
+- Please double-check whether the `description` is still up-to-date or could be improved. It will often show up Google search results.
 
-- Please always update the last modification date of the page when you change content.
+Special front matter fields we use:
 
-- Please double-check whether the page description is still up-to-date or could be improved.
+- `last_review_date`: Date of the last time somebody checked the entire page for validity.
+- `user_questions`: List of questions this article answers. Written from a user's perspective. E. g. _How do I ..._.
 
 ### Hyperlinks
 
