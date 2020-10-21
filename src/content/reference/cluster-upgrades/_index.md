@@ -103,7 +103,7 @@ Your Kubernetes workloads should continue to work as expected (given they meet a
 
 In particular this means:
 
-- Nodes will be drained, then stopped, then recreated.
+- Nodes are drained and recreated at the same time.
 - As a consequence of draining, Pods running on a node will be rescheduled to other nodes.
 - Once the master node is taken down and recreated, the Kubernetes API will be unavailable for a short time.
 
@@ -120,7 +120,7 @@ After recreation, worker nodes are **not expected to have the same names** they 
 In process of the worker node recreation, any data stored in worker node's local storage, i. e. outside of EBS volumes, is lost.
 
 **Note:** We are in the process of making upgrades on AWS less disruptive.
-One goal is to make new nodes available first, then drain and remove old nodes. Also we are aware that for larger clusters, one thirds of worker nodes becoming unavailable at the same time is often too much.
+For example, we are aware that for larger clusters, one thirds of worker nodes becoming unavailable at the same time is often too much.
 
 ### Provider-specific details for Azure
 
