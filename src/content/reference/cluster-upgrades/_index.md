@@ -103,7 +103,7 @@ Your Kubernetes workloads should continue to work as expected (given they meet a
 
 In particular this means:
 
-Nodes will be drained, then stopped, then recreated.
+- Nodes will be drained, then stopped, then recreated.
 - As a consequence of draining, Pods running on a node will be rescheduled to other nodes.
 - Once the master node is taken down and recreated, the Kubernetes API will be unavailable for a short time.
 
