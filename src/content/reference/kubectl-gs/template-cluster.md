@@ -36,7 +36,6 @@ The command to execute is `kubectl gs template cluster`.
 It supports the following flags:
 
 - `--provider` - The infrastructure provider (either `aws` or `azure`)
-- `--domain` - base domain of your installation. Customer solution engineer can provide this value.
 - `--name` - cluster name.
 - `--pods-cidr` - CIDR applied to the pods. If you don't set any, the installation default will be applied. Only versions *11.1.4+ support this feature.
 - `--owner` - organization, owning tenant cluster. Must be configured with existing organization in installation.
@@ -48,6 +47,7 @@ It supports the following flags:
 
 ### AWS specific
 
+- `--domain` - base domain of your installation. Customer solution engineer can provide this value.
 - `--master-az` - AWS availability zone(s) of master instance.
   Must be configured with AZ of the installation region. E.g. for region *eu-central-1* valid value is *eu-central-1a*.
   Use the flag once with a single value to create a cluster with one master node. For master node high availability,
