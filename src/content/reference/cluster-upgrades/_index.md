@@ -107,7 +107,7 @@ In particular this means:
 - As a consequence of draining, Pods running on a node will be rescheduled to other nodes.
 - Once the master node is taken down and recreated, the Kubernetes API will be unavailable for a short time.
 
-**Note**: Currently tenant clusters have one master node each. We have plans on our roadmap to allow for multiple master nodes, keeping the Kubernetes API accessible during an upgrade and increasing the resilience in case of a machine failure.
+**Note**: By default, tenant clusters have one master node each. [Consider using a High Availability masters setup](#checklist-ha-masters) to avoid API downtime during upgrades.
 
 ### Provider-specific details for AWS
 
@@ -120,7 +120,7 @@ After recreation, worker nodes are **not expected to have the same names** they 
 In process of the worker node recreation, any data stored in worker node's local storage, i. e. outside of EBS volumes, is lost.
 
 **Note:** We are in the process of making upgrades on AWS less disruptive.
-One goal is to make new nodes available first, then drain and remove old nodes. Also we are aware that for larger clusters, one thirds of worker nodes becoming unavailable at the same time is often too much.
+For example, we are aware that for larger clusters, one thirds of worker nodes becoming unavailable at the same time is often too much.
 
 ### Provider-specific details for Azure
 
