@@ -107,7 +107,7 @@ In particular this means:
 - As a consequence of draining, Pods running on a node will be rescheduled to other nodes.
 - Once the master node is taken down and recreated, the Kubernetes API will be unavailable for a short time.
 
-**Note**: By default, tenant clusters have one master node each. Consider using High Availability masters setup to avoid API downtime during upgrades. (See: [High availability Kubernetes masters](https://docs.giantswarm.io/basics/ha-masters/))
+**Note**: By default, tenant clusters have one master node each. [Consider using a High Availability masters setup](#checklist-ha-masters) to avoid API downtime during upgrades.
 
 ### Provider-specific details for AWS
 
