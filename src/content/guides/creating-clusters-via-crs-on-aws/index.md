@@ -222,7 +222,6 @@ As a result of rendering the CRs ([sample](/reference/kubectl-gs/template-cluste
 The resources can then be created by applying the manifest files to the Control Plane, e.g. `kubectl create -f <cluster manifest file>.yaml`.
 Of course, that requires the user to be authorized towards Kubernetes Control Plane API.
 
-
 ## How to delete a cluster using Cluster API
 
 In order to delete a cluster succesfully all the resources belonging to this instance need to be marked for deletion, this includes:
