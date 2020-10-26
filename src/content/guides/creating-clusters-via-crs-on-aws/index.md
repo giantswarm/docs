@@ -221,3 +221,21 @@ There are also specific reference pages for [cluster templating](/reference/kube
 As a result of rendering the CRs ([sample](/reference/kubectl-gs/template-cluster/#example)), a user will get YAML manifests containing valid CRs that can create a tenant cluster and its node pools.
 The resources can then be created by applying the manifest files to the Control Plane, e.g. `kubectl create -f <cluster manifest file>.yaml`.
 Of course, that requires the user to be authorized towards Kubernetes Control Plane API.
+
+
+## How to delete a cluster using Cluster API
+
+In order to delete a cluster succesfully all the resources belonging to this instance need to be marked for deletion, this includes:
+
+- `Cluster` (API version `cluster.x-k8s.io/v1alpha2`)
+- `AWSCluster` (API version `infrastructure.giantswarm.io/v1alpha2`)
+- `G8sControlPlane` (API version `infrastructure.giantswarm.io/v1alpha2`)
+- `AWSControlPlane` (API version `infrastructure.giantswarm.io/v1alpha2`)
+- `MachineDeployment` (API version `cluster.x-k8s.io/v1alpha2`)
+- `AWSMachineDeployment` (API version `infrastructure.giantswarm.io/v1alpha2`)
+
+This resources will not be deleted immediately, our operators will start the deletion process of the CloudFormation Stacks on AWS and remove the Kubernetes finalizer.
+
+In order to review if a resource has been marked for deletion you can check if the resource has the attribute `deletionTimestamp` in the `metadata` field.
+
+The whole deletion process can take up to 1 hour.
