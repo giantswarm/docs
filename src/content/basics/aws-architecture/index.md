@@ -5,7 +5,24 @@ date: 2020-06-15
 weight: 50
 type: page
 categories: ["basics"]
-last-review-date: 2020-05-18
+last-review-date: 2020-10-28
+user_questions:
+  - What areas are covered in the Giant Swarm AWS platform?
+  - Do I need a control plane per AWS region?
+  - What does Giant Swarm use operators for?
+  - How does Ginat Swarm Manage Custom Resources (CRs)?
+  - How can users of Giant Swarm manage their clsuters?
+  - How can users of Giant Swarm manage their applications?
+  - How does Giant Swarm operate in the AWS landscape?
+  - Why does Giant Swarm need access to my AWS account?
+  - What isolation layers are available when using Giant Swarm on AWS?
+  - What are best practices for workload segregation on AWS?
+  - How would Node Pools look on tenant clusters in AWS?
+  - What are best practices around the size of worker nodes?
+  - How do you control resource assignment on AWS?
+  - Will my AWS clusters autoscale?
+  - How are workloads secured on AWS clusters?
+  - Why does Giant Swarm run a monitoring stack on my AWS control planes?
 ---
 
 # The Giant Swarm AWS Platform
@@ -96,14 +113,6 @@ In addition to the security policies, Network Policies define the communication 
 Since we provide a **managed** Kubernetes platform, Giant Swarm has to be aware of state and unexpected events regarding the platform. For that reason our Control Planes run a [monitoring stack](https://www.giantswarm.io/blog/monitoring-on-demand-kubernetes-clusters-with-prometheus) to watch all tenant clusters and ensure all managed components are healthy. In each tenant cluster there are several [exporters](https://prometheus.io/docs/instrumenting/exporters/) that gather and forward the metrics for each component.
 
 Our on-call engineers will be paged in case anything happens to the cluster or its base components and they will respond to the incident based on the run-books we have created based on years of operating Cloud Native systems. In case there is an improvement to be made, a post mortem is created and a solution will be implemented before long. Any patch or fix added to the platform will be released to all customers.
-
-## App Platform
-
-Giant Swarm [has designed a system](https://www.giantswarm.io/app-catalog) to ease the use of some common Cloud Native apps. The amount of components available in the landscape is huge, and [we have decided to include some of the projects in our catalog](https://www.giantswarm.io/blog/announcing-the-giant-swarm-app-platform) for our customers to rely on.
-
-Right now we have several managed apps to control the Ingress traffic ([NGINX Ingress Controller](https://github.com/giantswarm/nginx-ingress-controller-app) and [Kong](https://github.com/giantswarm/kong-app)), secure the AWS API and map roles ([kiam](https://github.com/giantswarm/kiam-app)), collect and process logs ([EFK](https://github.com/giantswarm/efk-stack-app)) or automate the DNS setup ([external DNS](https://github.com/giantswarm/external-dns-app)).
-
-But at the same time we open the catalog to our customers and employees to use for their own apps. That is why we are running a proof of concept for AWS App Mesh, the AWS implementation of Service Mesh pattern, or Loki, the “coolest” log collector. If you trust in a Cloud Native app and operating it does not add any value to your business, talk to us and we might take over its management for you, too.
 
 Please note, while this document went into extensive details with regards to how Giant Swarm runs Kubernetes on AWS, we support [Azure](/basics/azure-architecture/) as well as [Bare Metal](/basics/onprem-architecture/). For more details, please [contact us](https://www.giantswarm.io/contact).
 
