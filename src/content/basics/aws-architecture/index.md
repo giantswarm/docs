@@ -10,7 +10,7 @@ user_questions:
   - What areas are covered in the Giant Swarm AWS platform?
   - Do I need a control plane per AWS region?
   - What does Giant Swarm use operators for?
-  - How does Ginat Swarm Manage Custom Resources (CRs)?
+  - How does Giant Swarm manage Custom Resources (CRs)?
   - How can users of Giant Swarm manage their clsuters?
   - How can users of Giant Swarm manage their applications?
   - How does Giant Swarm operate in the AWS landscape?
