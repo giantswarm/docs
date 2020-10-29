@@ -11,8 +11,6 @@ user_questions:
   - Do I need a control plane per AWS region?
   - What does Giant Swarm use operators for?
   - How does Giant Swarm manage Custom Resources (CRs)?
-  - How can users of Giant Swarm manage their clusters?
-  - How can users of Giant Swarm manage their applications?
   - How does Giant Swarm operate in the AWS landscape?
   - Why does Giant Swarm need access to my AWS account?
   - What isolation layers are available when using Giant Swarm on AWS?
@@ -120,4 +118,4 @@ Please note, while this document went into extensive details with regards to how
 
 - [Giant Swarm support model](/basics/giant-swarm-support/)
 - [Giant Swarm operational layers](/basics/giant-swarm-operational-layers/)
-- [Giant Swarm App Catalog](/basics/app-catalog/)
+
