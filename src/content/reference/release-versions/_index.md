@@ -26,17 +26,17 @@ Throughout the lifecycle of a cluster, you first have the option to select a rel
 
 Each release bundles a stack of components with their specific versions. The release itself is distinguished by the provider it is made for (AWS, Azure, or KVM) and the version number, which follows the [Semver](https://semver.org/) standard.
 
-Releases are tested as a whole. In order to upgrade a component that is part of a release to a newer version, the entire cluster is upgrade to a new release. This is our best way to ensure that all components in the cluster, in their respective versions and with their configuration, interoperate well.
+We test releases as a whole. To upgrade a component to a newer version, the entire cluster is upgrade to a new release. This is our best way to ensure that all components in the cluster interoperate well.
 
 ## Conventions around release versioning {#versioning-conventions}
 
 The Semver standard specifies version numbers in the form of `Major.Minor.Patch`.
 
-Each new release implicitly defines a set of changes with regard to exactly one previous release. The nature or impact of the changes influence the version number of the new release.
+Each new release defines a set of changes with regard to exactly one previous release. The nature or impact of the changes influence the version number of the new release.
 
 ### Major version {#major}
 
-With the Kubernetes project providing the most important component of our tenant clusters, we align our release versioning with the Kubernetes releases.
+The Kubernetes project providing the most important component of our tenant clusters. So we align our release versioning with the Kubernetes releases.
 
 **Convention**: For each new _minor_ Kubernetes release we provide a new _major_ release.
 
@@ -52,18 +52,18 @@ The following table shows which of our major version contain which Kubernetes re
 
 \*) As an exception from the convention, on AWS, releases v9.2.0 and v9.3.x include Kubernetes v1.16.x.
 
-Every new minor Kubernetes release, which comes with a major Giant Swarm release, is tested for conformance using the CNCF [conformance test suite](https://github.com/cncf/k8s-conformance).
-In addition, every release, from patch to major, undergoes automated integration testing.
+We test every new major release, bringing a new Kubernetes minor release, against the CNCF [conformance test suite](https://github.com/cncf/k8s-conformance).
+Every release, from patch to major, also undergoes automated integration testing.
 
-A new major release may contain additional important changes, apart from a new Kubernetes release. See below for more information regarding when certain features have been introduced on various providers.
+A major release may contain more important changes, apart from a new Kubernetes release. Check the [Details about releases and features](#release-details) section for more information.
 
 ### Minor version {#minor}
 
-We increase (bump) the minor version number when a new release adds functionality, while maintaining the functionality of the stack as it was in the previous version. This can include minor upgrades of third party components, with the exception of Kubernetes.
+We increase (bump) the minor version number when a release adds new functionality, while maintaining the functionality of the stack as it was in the previous version. This can include minor upgrades of third party components, except for Kubernetes.
 
 ### Patch version {#patch}
 
-A new patch release is made to publish bug-fixes, security fixes, or make changes to the observability while maintaining the given functionality of the stack. This can include any sort of patch upgrades of third party components.
+We use patch releases to publish bug fixes, security fixes, or to make changes to the observability while maintaining the given functionality of the stack. This can include any sort of patch upgrades of third party components.
 
 ### Release lifecycle {#lifecycle}
 
@@ -96,7 +96,7 @@ You have several options to inspect release details:
 
 - The [Rest API](/basics/api/#rest-api) provides an endpoint to list all releases with their details.
 
-## Details about releases and features
+## Details about releases and features {#release-details}
 
 ### Node pools {#nodepools}
 
