@@ -15,6 +15,5 @@ Here we explain how to create clusters using the [Control Plane Kuebernetes API]
 
 ## Select your cloud provider
 
-
 - [Amazon Web Servics (AWS)](/guides/creating-clusters-via-crs-on-aws/)
 - [Azure](/guides/creating-clusters-via-crs-on-azure/)
