@@ -16,7 +16,6 @@ user_questions:
   - What isolation layers are available when using Giant Swarm on AWS?
   - What are best practices for workload segregation on AWS?
   - How would Node Pools look on tenant clusters in AWS?
-  - What are best practices around the size of worker nodes?
   - How do you control resource assignment on AWS?
   - Will my AWS clusters autoscale?
   - How are workloads secured on AWS clusters?
