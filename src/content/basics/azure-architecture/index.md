@@ -18,13 +18,13 @@ When it comes to planning and designing your cluster architecture and its adapti
 
 As we are fully convinced of Kubernetes as a platform for building platforms, we built all our Control Plane based on a Kubernetes cluster. The initial deployment entails the creation of that Control Plane cluster in a defined cloud provider region. After the Control Plane cluster is ready we deploy all our automation taking advantage of Kubernetes primitives and using the same philosophy we advocate to our customers.
 
-Giant Swarm leverages the concept of [“Operators"](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) to control all resources that clusters need as [“Custom Resources”](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/). At the same time customers can also use the Kubernetes Control Plane API to [manage their clusters](https://docs.giantswarm.io/guides/creating-clusters-via-crs/) and/or [applications](https://docs.giantswarm.io/basics/app-catalog/).
+Giant Swarm leverages the concept of [“Operators"](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) to control all resources that clusters need as [“Custom Resources”](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/). At the same time customers can also use the Kubernetes Control Plane API to [manage their clusters](https://docs.giantswarm.io/guides/creating-clusters-via-crs/) and/or [applications](/basics/app-catalog/).
 
 ![Control Plane Architecture](architecture-azure-control-plane.png)
 
 ## Azure Landscape
 
-Giant Swarm's Azure operator is the product of years of work and we continue to apply our learnings and new functionality to it, as they become available. It is in charge of the provisioning and configuration of all resources needed to make a Kubernetes cluster functional on Azure. This operator runs in the Control Plane cluster, conveniently in separate subscription, and needs to reach the Azure API within subscription where you want to deploy your clusters. Thanks to our [Multi-Account](https://docs.giantswarm.io/basics/byoc/) support, customers can add different Azure subscriptions to our platform and our operator will assume an Service Principle to operate the resources accordingly and spawn clusters into these subscriptions respectively.
+Giant Swarm's Azure operator is the product of years of work and we continue to apply our learnings and new functionality to it, as they become available. It is in charge of the provisioning and configuration of all resources needed to make a Kubernetes cluster functional on Azure. This operator runs in the Control Plane cluster, conveniently in separate subscription, and needs to reach the Azure API within subscription where you want to deploy your clusters. Thanks to our [Multi-Account](/basics/multi-account/) support, customers can add different Azure subscriptions to our platform and our operator will assume an Service Principle to operate the resources accordingly and spawn clusters into these subscriptions respectively.
 
 In order to help Customers getting started with our platform, we have crafted an [introductory guide](https://docs.giantswarm.io/guides/prepare-azure-subscription-for-tenant-clusters/) on how to configure your Azure subscription. It is important to review and request Resources Quotas and Service Limits on Azure Subscription level in order to be able to spawn machines [Azure quotas](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits) when creating clusters through our platform. Additionally, we continuously monitor the relevant limits when you are running our platform. We will notify you if a cluster approaches one of these limits, so you can focus on building your applications.
 
@@ -57,7 +57,7 @@ Our Azure Operator creates a single Virtual Network per cluster and one subnet f
 
 ![Tenant Cluster Architecture](architecture-azure-tenant-cluster.png)
 
-In Azure the [node pool](https://docs.giantswarm.io/basics/nodepools/) concept is mapped to an Virtual Machine Scale Set, which defines a launch configuration and scaling properties of the worker nodes located in it.
+In Azure the [node pool](/basics/nodepools/) concept is mapped to an Virtual Machine Scale Set, which defines a launch configuration and scaling properties of the worker nodes located in it.
 
 In order to communicate with your on-premises data center or with other Virtual Networks (other cluster or existing infrastructure) you can leverage a VPN/Direct Connect or a Transit Gateway/peering respectively.
 
@@ -75,7 +75,7 @@ Further, to enforce the definition of resources, [Limit Ranges](https://kubernet
 
 ### Cluster scalability
 
-Our clusters are crafted with the [cluster autoscaling component](https://docs.giantswarm.io/basics/cluster-size-autoscaling/) included as a managed app. This means that a users can define the size of the cluster by defining a minimum and maximum number of nodes per node pool. The cluster autoscaling component will scale the node pools up and down based on the capacity needed. Although we manage the component, we also allow for some customization in order to adapt the autoscaling behaviour to your needs.
+Our clusters are crafted with the [cluster autoscaling component](/basics/cluster-size-autoscaling/) included as a managed app. This means that a users can define the size of the cluster by defining a minimum and maximum number of nodes per node pool. The cluster autoscaling component will scale the node pools up and down based on the capacity needed. Although we manage the component, we also allow for some customization in order to adapt the autoscaling behaviour to your needs.
 
 ### Cluster authentication
 
@@ -101,10 +101,10 @@ Right now we have several managed apps to control the Ingress traffic ([NGINX In
 
 But at the same time we open the catalog to our customers and employees to use for their own apps. That is why we are running a proof of concept for AWS App Mesh, the AWS implementation of Service Mesh pattern, or Loki, the “coolest” log collector. If you trust in a Cloud Native app and operating it does not add any value to your business, talk to us and we might take over its management for you, too.
 
-Please note, while this document went into extensive details with regards to how Giant Swarm runs Kubernetes on AWS, we support [Azure](https://docs.giantswarm.io/basics/azure-architecture/) as well as [Bare Metal](https://docs.giantswarm.io/basics/onprem-architecture/). For more details, please [contact us](https://www.giantswarm.io/contact).
+Please note, while this document went into extensive details with regards to how Giant Swarm runs Kubernetes on AWS, we support [Azure](/basics/azure-architecture/) as well as [Bare Metal](/basics/onprem-architecture/). For more details, please [contact us](https://www.giantswarm.io/contact).
 
 ## Further reading
 
-- [Giant Swarm support model](https://docs.giantswarm.io/basics/giant-swarm-support/)
-- [Giant Swarm operational layers](https://docs.giantswarm.io/basics/giant-swarm-operational-layers/)
-- [Giant Swarm App Catalog](https://docs.giantswarm.io/basics/app-catalog/)
+- [Giant Swarm support model](/basics/giant-swarm-support/)
+- [Giant Swarm operational layers](/basics/giant-swarm-operational-layers/)
+- [Giant Swarm App Catalog](/basics/app-catalog/)
