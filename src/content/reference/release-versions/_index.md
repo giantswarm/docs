@@ -129,4 +129,4 @@ This table shows which releases first introduces Flatcar Container Linux on vari
 
 ## Further reading
 
-- [Cluster Upgrades with Giant Swarm](/reference/cluter-upgrades/) explains how upgrades work and suggests some best practices to keep a cluster ready to upgrade.
+- [Cluster Upgrades with Giant Swarm](/reference/cluster-upgrades/) explains how upgrades work and suggests some best practices to keep a cluster ready to upgrade.
