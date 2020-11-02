@@ -137,5 +137,5 @@ After login, the user can only see `namespaces` and `pods`.
 
 ## Further reading
 
-- [Official User Guide](http://kubernetes.io/docs/user-guide/ui/)
+- [Official User Guide](https://kubernetes.io/docs/home/user-guide/ui/)
 - [On Securing the Kubernetes Dashboard](https://blog.heptio.com/on-securing-the-kubernetes-dashboard-16b09b1b7aca)

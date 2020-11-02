@@ -18,7 +18,7 @@ So any nodes added to the cluster will be of the same kind as the existing ones.
 
 When reducing the worker node count, either manually or via the autoscaler, you have no influence in which exact order worker nodes are removed. Your workloads have to be configured in a way that single pods can be removed any time. See our [Recommendations and Best Practices](/guides/recommendations-and-best-practices/) article for details on how to achieve that.
 
-For AWS, the Auto Scaling Group's logic determines which workers are removed. We use the [default termination policy](http://docs.aws.amazon.com/autoscaling/latest/userguide/as-instance-termination.html#default-termination-policy). In brief, this policy will remove the oldest workers first. If all workers have the same age, the workers to be removed will be selected at random.
+For AWS, the Auto Scaling Group's logic determines which workers are removed. We use the [default termination policy](https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-termination.html#default-termination-policy). In brief, this policy will remove the oldest workers first. If all workers have the same age, the workers to be removed will be selected at random.
 
 On Azure, the virtual machine scale set (VMSS) behaviour is responsible for the termination order. Here, VMs with the highest IDs are removed first.
 

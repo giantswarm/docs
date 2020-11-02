@@ -17,7 +17,7 @@ Giant Swarm runs on AWS, Microsoft Azure, and on bare metal or virtualized hardw
 
 We currently don't provide this as a service. You have to take care of it yourself. You can use S3 or other storage solutions.
 
-If your cluster is running on AWS using your own AWS account, you can use the [EBS Snapshot](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html) function.
+If your cluster is running on AWS using your own AWS account, you can use the [EBS Snapshot](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html) function.
 
 ## Can I run a database?
 
@@ -35,7 +35,7 @@ Currently not, but we are working on it.
 
 ## Can I use a third party private registry?
 
-Yes, you just need to set up an [ImagePullSecret](http://kubernetes.io/docs/user-guide/images/#specifying-imagepullsecrets-on-a-pod) for your pod.
+Yes, you just need to set up an [ImagePullSecret](https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod) for your pod.
 
 For AWS-based clusters, using the [AWS EC2 Container Registry](https://aws.amazon.com/ecr/) (ECR) requires specific configuration of the worker nodes. The EC2 instance policies need specific permissions, which are listed in the [Kubernetes documentation](https://kubernetes.io/docs/concepts/containers/images/#using-aws-ec2-container-registry).
 

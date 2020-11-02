@@ -81,8 +81,8 @@ Access to etcd or the Kubernetes API is secured based on certificates signed by 
 
 ## Further reading
 
-- [GitHub Vault authentication](https://www.vaultproject.io/docs/auth/github/)
-- [Vault SSH certificate](https://www.vaultproject.io/docs/secrets/ssh/signed-ssh-certificates/)
+- [GitHub Vault authentication](https://www.vaultproject.io/docs/auth/github)
+- [Vault SSH certificate](https://www.vaultproject.io/docs/secrets/ssh/signed-ssh-certificates)
 - [Giant Swarm Operational Layers](/basics/giant-swarm-operational-layers/)
 - [Giant Swarm API](/basics/giant-swarm-operational-layers/#giant-swarm-api)
 - [Giant Swarm User Space](/basics/giant-swarm-operational-layers/#userspace): Tenant Cluster Kubernetes API

@@ -31,7 +31,7 @@ Among the third party components building a tenant cluster stack are
 - [Kubernetes](https://kubernetes.io/) with its many sub-components
 - [Flatcar Container Linux](https://docs.flatcar-linux.org/) as the node's operating system
 - [Docker](https://docs.docker.com/engine/) as a container runtime environment
-- [etcd](https://coreos.com/etcd/) as distributed storage for Kubernetes and Vault
+- [etcd](https://etcd.io/) as distributed storage for Kubernetes and Vault
 - [Project Calico](https://www.projectcalico.org/) and [AWS CNI](https://github.com/aws/amazon-vpc-cni-k8s)/[Azure CNI](https://github.com/Azure/azure-container-networking)/[Flannel](https://github.com/coreos/flannel) for virtual networking
 - [CoreDNS](https://coredns.io/) for cluster-internal name resolution
 - [Prometheus node exporter](https://github.com/prometheus/node_exporter) for hardware and OS metrics
