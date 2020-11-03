@@ -224,14 +224,13 @@ Of course, that requires the user to be authorized towards Kubernetes Control Pl
 
 ## How to delete a cluster using Cluster API
 
-In order to delete a cluster succesfully all the resources belonging to this instance need to be marked for deletion, this includes:
+Triggering a delete on the `Cluster` resource  will have a cascading effect on all other resources belonging to the cluster:
 
-- `Cluster` (API version `cluster.x-k8s.io/v1alpha2`)
-- `AWSCluster` (API version `infrastructure.giantswarm.io/v1alpha2`)
-- `G8sControlPlane` (API version `infrastructure.giantswarm.io/v1alpha2`)
-- `AWSControlPlane` (API version `infrastructure.giantswarm.io/v1alpha2`)
-- `MachineDeployment` (API version `cluster.x-k8s.io/v1alpha2`)
-- `AWSMachineDeployment` (API version `infrastructure.giantswarm.io/v1alpha2`)
+- `AWSCluster`
+- `G8sControlPlane`
+- `AWSControlPlane`
+- `MachineDeployment`
+- `AWSMachineDeployment`
 
 This resources will not be deleted immediately, our operators will start the deletion process of the CloudFormation Stacks on AWS and remove the Kubernetes finalizer.
 
