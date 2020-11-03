@@ -221,3 +221,19 @@ There are also specific reference pages for [cluster templating](/reference/kube
 As a result of rendering the CRs ([sample](/reference/kubectl-gs/template-cluster/#example)), a user will get YAML manifests containing valid CRs that can create a tenant cluster and its node pools.
 The resources can then be created by applying the manifest files to the Control Plane, e.g. `kubectl create -f <cluster manifest file>.yaml`.
 Of course, that requires the user to be authorized towards Kubernetes Control Plane API.
+
+## How to delete a cluster using Cluster API
+
+Triggering a delete on the `Cluster` resource  will have a cascading effect on all other resources belonging to the cluster:
+
+- `AWSCluster`
+- `G8sControlPlane`
+- `AWSControlPlane`
+- `MachineDeployment`
+- `AWSMachineDeployment`
+
+This resources will not be deleted immediately, our operators will start the deletion process of the CloudFormation Stacks on AWS and remove the Kubernetes finalizer.
+
+In order to review if a resource has been marked for deletion you can check if the resource has the attribute `deletionTimestamp` in the `metadata` field.
+
+The whole deletion process can take up to 1 hour.
