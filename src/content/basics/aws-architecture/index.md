@@ -117,4 +117,3 @@ Please note, while this document went into extensive details with regards to how
 
 - [Giant Swarm support model](/basics/giant-swarm-support/)
 - [Giant Swarm operational layers](/basics/giant-swarm-operational-layers/)
-
