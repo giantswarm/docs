@@ -1,7 +1,7 @@
 ---
 title: Creating tenant clusters on AWS via Control Plane Kubernetes API
 description: This guide will walk you through the process of tenant cluster creation via Control Plane Kubernetes on AWS.
-date: 2020-10-02
+date: 2020-11-03
 type: page
 weight: 100
 tags: ["tutorial"]
@@ -9,14 +9,14 @@ tags: ["tutorial"]
 
 # Creating tenant clusters on AWS via the Control Plane Kubernetes API
 
-## How does cluster creation work
+## How cluster creation works
 
 Starting from version {{% first_aws_nodepools_version %}} on AWS, Giant Swarm introduced a feature to create multiple [node pools](https://docs.giantswarm.io/basics/nodepools/) on AWS.
 Alongside node pools support, a new API version for cluster management was released.
 
 All the tenant clusters, created with release version {{% first_aws_nodepools_version %}} and newer, are managed as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) in the Control Plane.
 
-At a high-level, the Control Plane Kubernetes API is used to manage the following CRs:
+At a high-level, the Control Plane Kubernetes API is used to manage the following custom resources (CRs):
 
 - [Cluster](/reference/cp-k8s-api/clusters.cluster.x-k8s.io/) - represents a Kubernetes cluster excluding worker nodes.
 - [G8sControlPlane](/reference/cp-k8s-api/g8scontrolplanes.infrastructure.giantswarm.io/) - hold configuration about the master node(s) of a cluster.
@@ -195,7 +195,7 @@ spec:
       instanceType: m4.xlarge
 ```
 
-## How to create a cluster using Cluster API
+## Creating a cluster {#creating}
 
 All the CRs, mentioned above, have strict spec and important requirements to be considered valid.
 There is very limited CR validation available in the Control Plane for now.
@@ -221,3 +221,19 @@ There are also specific reference pages for [cluster templating](/reference/kube
 As a result of rendering the CRs ([sample](/reference/kubectl-gs/template-cluster/#example)), a user will get YAML manifests containing valid CRs that can create a tenant cluster and its node pools.
 The resources can then be created by applying the manifest files to the Control Plane, e.g. `kubectl create -f <cluster manifest file>.yaml`.
 Of course, that requires the user to be authorized towards Kubernetes Control Plane API.
+
+## Deleting a cluster {#deleting}
+
+Triggering a delete on the `Cluster` resource  will have a cascading effect on all other resources belonging to the cluster:
+
+- `AWSCluster`
+- `G8sControlPlane`
+- `AWSControlPlane`
+- `MachineDeployment`
+- `AWSMachineDeployment`
+
+This resources will not be deleted immediately, our operators will start the deletion process of the CloudFormation Stacks on AWS and remove the Kubernetes finalizer.
+
+In order to review if a resource has been marked for deletion you can check if the resource has the attribute `deletionTimestamp` in the `metadata` field.
+
+The whole deletion process can take up to one hour.

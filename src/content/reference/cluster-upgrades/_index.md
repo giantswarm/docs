@@ -1,15 +1,15 @@
 ---
 title: "Cluster Upgrades with Giant Swarm"
 description: "How Kubernetes and other components are upgraded in a Giant Swarm installation, and how to prepare your cluster and workloads to facilitate robust upgrades."
-date: 2020-09-24
+date: 2020-10-30
 weight: 30
 layout: "subsection"
 user_questions:
   - How do cluster upgrades work?
   - How can I prepare my workloads to tolerate a cluster upgrade?
-  - What is a major release?
-  - What is a minor release?
-  - What is a patch release?
+  - What is a major upgrade?
+  - What is a minor upgrade?
+  - What is a patch upgrade?
 ---
 
 # Cluster Upgrades with Giant Swarm
@@ -39,11 +39,8 @@ Among the third party components building a tenant cluster stack are
 
 as well as many operators and controllers created and maintained by Giant Swarm.
 
-### Releases
-
 All of the items in the list above are released independent of each other by their vendors.
-At Giant Swarm we bundle specific versions of these components of the tenant cluster stack into a **release**.
-A release is identified by a [semantic version number](https://semver.org/).
+At Giant Swarm we bundle specific versions of these components of the tenant cluster stack into a **release**. A release is specific for a provider (AWS, Azure, or KVM) and identified by a version number. To learn more about releases and our versioning, check the [release reference](/reference/release-versions/).
 
 Once deployed, the tenant cluster stack is **immutable**.
 All components are deployed based on images, either of virtual machines or of Docker containers.
@@ -52,49 +49,29 @@ This ensures that the stack running in your environment is the exact stack we ha
 
 As a consequence, the only way to change the stack is to perform an upgrade, to switch to a new release.
 
-#### Release upgrade semantics
+### Release upgrade semantics {#semantics}
 
-As the semantic versioning system defines, an upgrade from one version to another is either one of these:
+According to our release versioning, three different levels of upgrades can occur:
 
-- *Patch*: The smallest type of upgrade occurs when we publish bug-fixes, security fixes, or make changes to the observability while maintaining the given functionality of the stack.
-This can include any sort of patch upgrades of third party components.
+- *Patch upgrade*: Only the patch version number is increased.
 
-- *Minor*: A minor upgrade occurs when we add functionality, while maintaining the functionality of the stack as it was in the previous version.
-This can include minor upgrades of third party components, with the exception of Kubernetes.
+- *Minor upgrade*: The minor version number is increased, while the Major version number stays the same.
 
-- *Major*: A major upgrade occurs when (A) a minor Kubernetes version upgrade is picked up (e. g. from 1.10.x to 1.11.x) or (B) we remove functionality or change functionality that might require changes in workloads, in automation working with the cluster or in administrator's interactions.
-
-**Note:** The release version number is provider-specific.
-Azure, AWS, and KVM based installations have independent versioning systems, as their stacks are also slightly different.
-
-We have a [reference page with an overview of our release versions](/reference/release-versions/), which can give you an idea of what release versions are currently available and what notable features they support.
-
-### Determining the release version and inspecting release details
-
-As a user with access to the Giant Swarm API, and being a member of the organization owning the cluster, you can use either the web UI or the CLI to find out the current release version of your tenant cluster.
-
-In the web UI, both the cluster overview and the cluster details page show the release version number.
-In the cluster details page you can click the release version number to get more information about a release.
-
-Likewise in the CLI, commands like [`gsctl list clusters`](/reference/gsctl/list-clusters/) and [`gsctl show cluster`](/reference/gsctl/show-cluster/) reveal the release version number.
-To get information on all available releases, use the [`gsctl list releases`](/reference/gsctl/list-releases/) command.
-
-### Release lifecycle
-
-**We hold two different major releases** available at any time to chose from when creating a new cluster, which means that you have two different Kubernetes minor versions to chose from.
-
-Whenever a new Kubernetes minor version is released by the Kubernetes project, we aim to make that version available in a new major release of our stack within 30 days from the Kubernetes release.
-
-Once we publish a new major release, we deprecate the oldest major release.
-This means that no new clusters can be created using that old release version.
-Existing clusters, however, are not affected.
+- *Major upgrade*: The Major version number is increased.
 
 **Both patch and minor upgrades** can be rolled out at any time by Giant Swarm without your interaction. Currently, this happens in coordination with your administrators and with a notice to your developers.
 
 When a **new major Giant Swarm release** becomes available, we inform you, but leave scheduling of the upgrade to you. This gives you the control to decide if and when it is time for you to upgrade, potentially updating workloads first. These upgrades are also accompanied or even triggered by Giant Swarm staff, to ensure we have a close eye on the upgrade process and the uptime of your workloads.
 
-Every new minor Kubernetes release, which comes with a major Giant Swarm release, is tested for conformance using the CNCF [conformance test suite](https://github.com/cncf/k8s-conformance).
-In addition, every release, from patch to major, undergoes automated integration testing.
+### Skipping releases
+
+We **don't support omitting any Major version** when upgrading from one release to another.
+
+Example: Going from v11.x.x directly to v13.x.x is not supported. An upgrade to v12.x.x would be required as an intermediate step.
+
+On the Minor and Patch level, you can skip any number of releases if desired.
+
+Note that our user interfaces only allow upgrading to the next active release. In order to skip a release version, you'll have to use the [Rest API](https://docs.giantswarm.io/api/#operation/modifyClusterV5) or the [Control Plane Kubernetes API](/basics/api/#cp-k8s-api) to trigger the upgrade. Please talk to your solution engineer in case you have any questions regarding this.
 
 ## How upgrades work
 
@@ -251,3 +228,7 @@ There's additional general container hygiene recommendations that will help smoo
 As container images might not be already available on the new node that the Pod gets rescheduled to, you should make sure that all container images (and tags) that you are using are available in the registry that is configured for the Pods.
 
 Furthermore, you should make your containers are as lightweight (in terms of size) as possible to make the image pulling and the rescheduling process faster.
+
+## Further reading
+
+- [Giant Swarm Releases](/reference/release-versions/) explains the semantics of releases.
