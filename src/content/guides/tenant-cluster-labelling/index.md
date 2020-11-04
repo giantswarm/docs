@@ -142,7 +142,7 @@ kubectl edit clusters.cluster.x-k8s.io/7g4di
 ```
 
 It is also possible to modify tenant cluster labels with `kubectl patch`.
-More information about `kubectl patch` is available on the [Update API Objects in Place Using kubectl patch](https://kubernetes.io/docs/tasks/run-application/update-api-object-kubectl-patch/) page.
+More information about `kubectl patch` is available on the [Update API Objects in Place Using kubectl patch](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/) page.
 
 ```nohighlight
 kubectl patch clusters.cluster.x-k8s.io/7g4di --type merge -p '{"metadata":{"labels":{"my-org/team":"upstate"}}}'
