@@ -100,7 +100,7 @@ spec:
 
 ```
 
-Set value to `PT5M` on `AWSMachineDeployment` to pause for 5 minutes between each batch only for this NodePool.
+In this other example, we set the value to `PT5M` on `AWSMachineDeployment` to pause for 5 minutes between each batch only for this NodePool.
 
 ```yaml
 
