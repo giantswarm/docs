@@ -28,7 +28,7 @@ The default value is `0.3` which implies 30% of instances will be rolled in each
 
 ### MaxBatchSize examples
 
-Set value to static value `10` to roll maximum 10 instances per single batch.
+In this example, we set value to static value `10` to roll maximum of 10 instances per single batch.
 
 ```yaml
 
