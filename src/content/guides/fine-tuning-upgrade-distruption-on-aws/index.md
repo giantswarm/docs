@@ -15,7 +15,7 @@ The configuration is done via annotations on `AWSCluster` or `AWSMachineDeployme
 
 ## Max Batch Size
 
-`MaxBatchSize` specifies the maximum number of instances that AWS CloudFormation updates.
+The property `MaxBatchSize` specifies the maximum number of instances that AWS CloudFormation updates.
 
 This value can be set via annotation `alpha.aws.giantswarm.io/update-max-batch-size` on `AWSCluster` CR or `AWSMachineDeploymentCR`. Value set on `AWSCluster` will be used for a whole cluster. Value set on `AWSMachineDeploymentCR` will be only used for that specific NodePool and will override  value from `AWSCluster` (if set).
 
