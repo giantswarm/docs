@@ -1,6 +1,6 @@
 ---
 title: "Fine-tuning upgrade distruption on AWS"
-description: "How configure and tune tenant clusters update granuality."
+description: "How configure and tune tenant clusters upgrade granuality."
 date: "2020-11-5"
 type: page
 weight: 130
