@@ -70,7 +70,7 @@ spec:
 
 ## Pause Time
 
-The amount of time that AWS CloudFormation pauses after making a change to a batch of instances to give those instances time to start software applications.
+This parameter defines the amount of time that AWS CloudFormation pauses after making a change to a batch of instances to give those instances time to start software applications.
 
 This value can be set via annotation `alpha.aws.giantswarm.io/update-pause-time` on `AWSCluster` CR or `AWSMachineDeploymentCR`. The value set on `AWSCluster` will be used for a whole cluster. The value set on `AWSMachineDeploymentCR` will be only used for that specific NodePool and will override the value from `AWSCluster` in case it is defined.
 
