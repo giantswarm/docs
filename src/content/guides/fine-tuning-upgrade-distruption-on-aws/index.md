@@ -21,7 +21,7 @@ This value can be set via annotation `alpha.aws.giantswarm.io/update-max-batch-s
 
 There are two valid formats for the `MaxBatchSize`:
 
-* a integer number bigger than zero, which specifies static amount of nodes, e.g "5"
+* An integer number bigger than zero, which specifies the static amount of nodes, e.g "5"
 * a decimal number in a range `0 < x <= 1.0` which defines a percentage of nodes that can be rolled in single batch, e. g. "0.25" which represents 25% of all nodes
 
 The default value is `0.3` which implies 30% of instances will be rolled in each batch.
