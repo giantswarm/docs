@@ -21,7 +21,7 @@ This is an `alpha` feature avaiable on theese providers:
 
 The node's health status is used to determine if a node needs to be terminated. A node reporting a Ready status is considered healthy. If a node reports consecutive unhealthy status reports for a given time threshold. An unhealthy status can mean:
 
-*    A node reports a NotReady status on consecutive checks over the given time threshold (approximately 15 minutes).
+* A node reports a NotReady status on consecutive checks over the given time threshold (approximately 15 minutes).
 
 ## Enabling terminate-unhealthy-nodes feature
 
