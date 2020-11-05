@@ -80,7 +80,7 @@ The default value is `PT15M` (15 minutes).
 
 ### PauseTime examples
 
-Set value to `PT1M30S` to pause for 1 minute and 30 seconds between each batch.
+In this example, we set the value to `PT1M30S` to pause for 1 minute and 30 seconds between each batch.
 
 ```yaml
 
