@@ -48,7 +48,7 @@ spec:
 
 ```
 
-Set value to `0.10` to roll maximum of 10% of nodes per single batch.
+In this other example, we set value to `0.10` to roll a maximum of 10% of nodes per single batch.
 
 ```yaml
 
