@@ -26,7 +26,7 @@ There are two valid formats for the `MaxBatchSize`:
 
 The default value is `0.3` which implies 30% of instances will be rolled in each batch.
 
-### examples
+### MaxBatchSize examples
 
 Set value to static value `10` to roll maximum 10 instances per single batch.
 
@@ -78,7 +78,7 @@ This value can be set via annotation `alpha.aws.giantswarm.io/update-pause-time`
 
 The default value is `PT15M` (15 minutes).
 
-### examples
+### PauseTime examples
 
 Set value to `PT1M30S` to pause for 1 minute and 30 seconds between each batch.
 
@@ -121,4 +121,3 @@ spec:
  ...
 
 ```
-
