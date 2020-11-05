@@ -92,7 +92,7 @@ AWS resources are managed by the [aws-operator](https://github.com/giantswarm/aw
 
 The master node re-creation is started first. Meanwhile, the recreation of worker nodes starts, where all worker nodes are recreated in batches. During the upgrade, **up to 33 percent of the worker nodes can be unavailable**.
 
-From release `12.7.0` some fo the parameters of the upgrade be configured. Check [Fine-tuning upgrade distruption on AWS](https://docs.giantswarm.io/guides/fine-tuning-upgrade-distruption-on-aws/) guide for more details.
+From release `12.7.0` some of the parameters of the upgrade can be configured. Check [Fine-tuning upgrade distruption on AWS](https://docs.giantswarm.io/guides/fine-tuning-upgrade-distruption-on-aws/) guide for more details.
 
 After recreation, worker nodes are **not expected to have the same names** they had before.
 
