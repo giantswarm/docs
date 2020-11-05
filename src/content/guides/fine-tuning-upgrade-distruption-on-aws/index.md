@@ -11,7 +11,7 @@ tags: ["recipe"]
 
 Giant Swarm release `12.7.0` allows a configuration of [AWS CloudFormation UpdatePolicy](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-updatepolicy.html) parameters to have better control over the updates of a tenant cluster. This feature is currently in an `alpha` state.
 
-The configurion is done via nnotations on `AWSCluster` or `AWSMachineDeployment`. They can be added either at creation time or they can be added on already created CRs.
+The configuration is done via annotations on `AWSCluster` or `AWSMachineDeployment`. They can be added either at creation time or they can be added on already created CRs.
 
 ## Max Batch Size
 
