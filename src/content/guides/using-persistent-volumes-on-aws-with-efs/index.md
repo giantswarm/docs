@@ -75,7 +75,7 @@ podSecurityPolicy:
 
 You will need to populate the `efsFileSystemId` and `awsRegion` parameters to match the configured values of the EFS instance.
 
-For additional configuration parameters see the [upstream documentation](https://github.com/kubernetes-incubator/external-storage/tree/master/aws/efs).
+For additional configuration parameters see the [upstream documentation](https://github.com/kubernetes-retired/external-storage/tree/master/aws/efs).
 
 ## Installing EFS Provisioner
 

@@ -203,5 +203,5 @@ Passing flag `--output` with value `json` to `gsctl create kubeconfig` changes t
 ## Related
 
 - [`gsctl create keypair`](/reference/gsctl/create-keypair/): Create and download a key pair
-- [kubectl reference](https://kubernetes.io/docs/user-guide/kubectl-overview/)
+- [kubectl reference](https://kubernetes.io/docs/reference/kubectl/overview/)
 - [API: Create key pair](/api/#operation/addKeyPair)
