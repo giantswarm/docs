@@ -1,5 +1,5 @@
 ---
-title: "Fine-tuning upgrade distruption on AWS"
+title: "Fine-tuning upgrade disruption on AWS"
 description: "How configure and tune tenant clusters upgrade granuality."
 date: "2020-11-5"
 type: page
@@ -7,7 +7,7 @@ weight: 130
 tags: ["recipe"]
 ---
 
-# Fine-tuning upgrade distruption on AWS
+# Fine-tuning upgrade disruption on AWS
 
 Giant Swarm release `12.7.0` allows a configuration of [AWS CloudFormation UpdatePolicy](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-updatepolicy.html) parameters to have better control over the updates of a tenant cluster. This feature is currently in an `alpha` state.
 
