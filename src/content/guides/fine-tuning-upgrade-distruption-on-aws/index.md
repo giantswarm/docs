@@ -74,7 +74,7 @@ The amount of time that AWS CloudFormation pauses after making a change to a bat
 
 This value can be set via annotation `alpha.aws.giantswarm.io/update-pause-time` on `AWSCluster` CR or `AWSMachineDeploymentCR`. The value set on `AWSCluster` will be used for a whole cluster. The value set on `AWSMachineDeploymentCR` will be only used for that specific NodePool and will override the value from `AWSCluster` in case it is defined.
 
-`PauseTime` needs to be in ISO 8601 duration format, e. g. "PT10M" for 10 minutes or "PT15S" for 15 seconds.
+The `PauseTime` value needs to be in ISO 8601 duration format, e. g. "PT10M" for 10 minutes or "PT15S" for 15 seconds.
 
 The default value is `PT15M` (15 minutes).
 
