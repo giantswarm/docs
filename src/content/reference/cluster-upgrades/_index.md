@@ -92,6 +92,8 @@ AWS resources are managed by the [aws-operator](https://github.com/giantswarm/aw
 
 The master node re-creation is started first. Meanwhile, the recreation of worker nodes starts, where all worker nodes are recreated in batches. During the upgrade, **up to 33 percent of the worker nodes can be unavailable**.
 
+From release `12.7.0` some of the parameters of the upgrade can be configured. Check [Fine-tuning upgrade disruption on AWS](/guides/fine-tuning-upgrade-disruption-on-aws/) guide for more details.
+
 After recreation, worker nodes are **not expected to have the same names** they had before.
 
 In process of the worker node recreation, any data stored in worker node's local storage, i. e. outside of EBS volumes, is lost.
