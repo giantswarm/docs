@@ -9,8 +9,6 @@ categories: ["basics"]
 
 # Automatic termination of unhealthy nodes
 
-## Overview
-
 Degraded nodes in a Kubernetes cluster should be a rare issue, however when it occurs, it can have severe consequences for the workloads scheduled to the affected nodes. The goal should be to detect bad nodes early and remove them from the cluster, replacing them with healthy ones.
 
 Starting with release v12.6.0 for AWS, you now have the option to automate the detection and termination of bad nodes. When enabled, all nodes in your cluster are periodically checked. If a node fails consecutive health checks over an extended time period, it will be drained and terminated.
