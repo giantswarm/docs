@@ -1,6 +1,6 @@
 ---
 title: Automatic termination of unhealthy nodes
-description: When cluster nodes get into a state where they do not respond to health checks, workload reliability can be impaired and resources can be wasted. Here we explain how you can activate automatic termination of such nodes.
+description: Unhealthy cluster nodes can lead to impaired workload reliability and wasted cluster resources. Here we explain how you can activate automatic termination of such nodes.
 date: 2020-11-06
 weight: 120
 type: page
