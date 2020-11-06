@@ -105,7 +105,7 @@ The maximum pause time is one hour (`PT1H`).
 
 ### Examples {#pause-time-examples}
 
-In the first example, we set the value to `PT1M30S` to pause for one minute and 30 seconds between each batch.
+In the first example, we set the value to `PT1M30S` to pause for one and a half minute between each batch.
 
 ```yaml
 apiVersion: infrastructure.giantswarm.io/v1alpha2
