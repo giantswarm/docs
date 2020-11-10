@@ -1,0 +1,28 @@
+# Schema:
+#
+# .repositories is a map with one entry per repository to scrape. Key is the repository
+#   name in the form <org>/<repo>.
+# .repositories.*.source: Either 'GITHUB_RELEASES', 'CHANGELOG_FILE' or `RELEASES_REPO`.
+#   GITHUB_RELEASES means that the releases in this repository are used as source.
+#   CHANGELOG_FILE means to use the /CHANGELOG.md file instead.
+repositories:
+  giantswarm/releases:
+    # The repo 'giantswarm/releases' gets special treatment, so no
+    # config ne
+  giantswarm/happa:
+    source: GITHUB_RELEASES
+    tag: Web UI
+    slug: web-ui
+  giantswarm/docs:
+    source: GITHUB_RELEASES
+    tag: Documentation
+    slug: docs
+  giantswarm/apiextensions:
+    source: CHANGELOG_FILE
+    tag: CRDs
+    slug: crds
+  giantswarm/api-spec:
+    source: GITHUB_RELEASES
+    tag: Rest API
+    slug: rest-api
+

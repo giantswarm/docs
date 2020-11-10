@@ -1,5 +1,6 @@
 .DS_Store
 .sass-cache
+.github-token
 *.map
 *.pyc
 /.idea
