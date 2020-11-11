@@ -1,28 +1,56 @@
-# Schema:
-#
-# .repositories is a map with one entry per repository to scrape. Key is the repository
-#   name in the form <org>/<repo>.
-# .repositories.*.source: Either 'GITHUB_RELEASES', 'CHANGELOG_FILE' or `RELEASES_REPO`.
-#   GITHUB_RELEASES means that the releases in this repository are used as source.
-#   CHANGELOG_FILE means to use the /CHANGELOG.md file instead.
+
 repositories:
   giantswarm/releases:
     # The repo 'giantswarm/releases' gets special treatment, so no
-    # config ne
-  giantswarm/happa:
-    source: GITHUB_RELEASES
-    tag: Web UI
-    slug: web-ui
-  giantswarm/docs:
-    source: GITHUB_RELEASES
-    tag: Documentation
-    slug: docs
-  giantswarm/apiextensions:
-    source: CHANGELOG_FILE
-    tag: CRDs
-    slug: crds
-  giantswarm/api-spec:
-    source: GITHUB_RELEASES
-    tag: Rest API
-    slug: rest-api
+    # config needed
 
+  giantswarm/happa:
+    tag: Web UI
+
+  giantswarm/docs:
+    tag: Documentation
+
+  giantswarm/apiextensions:
+    tag: Control Plane K8s API
+
+  giantswarm/api-spec:
+    tag: Rest API
+
+  giantswarm/gsctl:
+    tag: gsctl
+
+  giantswarm/kubectl-gs:
+    tag: kubectl gs
+
+  giantswarm/cert-manager-app:
+    tag: Managed App
+
+  giantswarm/metrics-server-app:
+    tag: Managed App
+
+  giantswarm/coredns-app:
+    tag: Managed App
+
+  giantswarm/external-dns-app:
+    tag: Managed App
+
+  giantswarm/cert-exporter:
+    tag: Managed App
+
+  giantswarm/chart-operator:
+    tag: Managed App
+
+  giantswarm/kube-state-metrics-app:
+    tag: Managed App
+
+  giantswarm/net-exporter:
+    tag: Managed App
+
+  giantswarm/node-exporter-app:
+    tag: Managed App
+
+  giantswarm/cluster-autoscaler-app:
+    tag: Managed App
+
+  giantswarm/aqua-app:
+    tag: Managed App
