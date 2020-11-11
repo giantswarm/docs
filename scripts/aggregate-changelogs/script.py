@@ -3,7 +3,9 @@ from datetime import datetime
 from pprint import pprint
 from yaml import load, dump, CLoader, CDumper
 from github import Github
+from github.GithubException import UnknownObjectException
 from os import path, makedirs
+import re
 
 print("script.py arguments: %s" % sys.argv)
 
@@ -21,7 +23,7 @@ def get_releases(client, repo_shortname):
     """
     Yields all Github releases in the given repository
     """
-    repo = client.get_repo(repo_short)
+    repo = client.get_repo(repo_shortname)
 
     for release in repo.get_releases():
         # skip unpublished releases
@@ -29,12 +31,56 @@ def get_releases(client, repo_shortname):
             continue
 
         yield {
-            'repository': repo_short,
+            'repository': repo_shortname,
             'version_tag': release.tag_name,
             'date': release.published_at,
             'description': release.body,
             'url': release.html_url,
         }
+
+def get_changelog_file(client, repo_shortname):
+    repo = client.get_repo(repo_shortname)
+    try:
+        remote_file = repo.get_contents('CHANGELOG.md')
+        return remote_file.decoded_content.decode('utf-8')
+    except UnknownObjectException:
+        return None
+
+def parse_changelog(body, repo_shortname):
+    # Cut off the link reference at the end
+    (good, bad) = body.split("[Unreleased]: ", maxsplit=1)
+    
+    # Create chunks based on level 2 headlines
+    chunks = re.split(r'\n##\s+', good, flags=re.M)
+
+    # Get rid of some bad chunks
+    for chunk in chunks:
+        lines = re.split(r'\n+', chunk, flags=re.M)
+        
+        if len(lines) < 2:
+            continue
+        if lines[0].startswith('[Unreleased]'):
+            continue
+        if not lines[0].startswith('['):
+            continue
+        
+        # First line must start with semantic version number in square brackets
+        match = re.match(r'^\[([^\.]+)\.([^\.]+)\.([^\]]+)\]', lines[0])
+        if match is None:
+            continue
+        version = f'{match.group(1)}.{match.group(2)}.{match.group(3)}'
+
+        anchor = lines[0].replace(' ', '-').replace('.', '').replace('[', '').replace(']', '')
+
+        url = f'https://github.com/{repo_shortname}/blob/master/CHANGELOG.md#{anchor}'
+
+        release = {
+            'description': '\n'.join(lines[1:]).strip(),
+            'url': url,
+        }
+
+        yield (version, release)
+
 
 def normalize_version(v):
     """
@@ -44,22 +90,23 @@ def normalize_version(v):
         return v[1:]
     return v
 
-def generate_release_file(repo_config, release):
+def generate_release_file(repo_shortname, repo_config, release):
     """
     Write a release file with YAML front matter and Markdown body
     """
-    filepath = path.join(CONTENT_PATH, repo_config['slug'], release['version_tag'] + ".md")
-    print(filepath)
+    org, slug = repo_shortname.split("/", maxsplit=1)
+    filepath = path.join(CONTENT_PATH, slug, release['version_tag'] + ".md")
 
     version = normalize_version(release['version_tag'])
 
     frontmatter = {
         'date': release['date'].isoformat(),
+        'title': f'{slug} Release v{version}',
         'description': f'Changelog entry for {release["repository"]} version {version}, published on {release["date"].strftime("%d %B %Y, %H:%M")}',
         'changelog_entry': {
             'repository': release['repository'],
             'version_tag': release['version_tag'],
-            'version': normalize_version(release['version_tag']),
+            'version': version,
             'url': release['url'],
         },
         'tags': [repo_config['tag']],
@@ -72,7 +119,6 @@ def generate_release_file(repo_config, release):
     content += release['description']
     content += "\n"
 
-    # Ensure directory
     makedirs(path.dirname(filepath), exist_ok=True)
     with open(filepath, 'w') as outfile:
         outfile.write(content)
@@ -89,26 +135,42 @@ if __name__ == "__main__":
     g = Github(GITHUB_TOKEN)
     
     for repo_short in conf['repositories']:
-        #repo = expand_repo_url(repo_short)
-        print(repo_short)
         repo_conf = conf['repositories'][repo_short]
-        pprint(repo_conf)
 
         releases = None
+
         if repo_short == RELEASES_REPO:
             # TODO: special treatment for releases repo
+            print("Special treatment for releases repo %s (TODO)" % repo_short)
             pass
-        elif repo_conf['source'] == 'CHANGELOG_FILE':
-            print("TODO: get CHANGELOG.md for %s" % repo_short)
-        elif repo_conf['source'] == 'GITHUB_RELEASES':
-            print("TODO: get releases from %s" % repo_short)
-            releases = get_releases(g, repo_short)
+
         else:
-            print("ERROR: Invalid source attribute for repo %s" % repo_short)
-            sys.exit(1)
+            # Attempt to get GitHub releases (based on tags in the repo).
+            releases = list(get_releases(g, repo_short))
+
+            # Attempt to get releas einfo from CHANGELOG.md.
+            changelog = get_changelog_file(g, repo_short)
+            
+            # Match release tags and changelog versions and
+            # enhance release data with descriptions from CHANGELOG.md.
+            if changelog is None:
+                print(f'INFO: repository {repo_short} has no CHANGELOG.md file.')
+            else:
+                changelog_entries = {}
+                for (version, release) in parse_changelog(changelog, repo_short):
+                    v = normalize_version(version)
+                    changelog_entries[v] = release
+                
+                for n in range(len(releases)):
+                    v = normalize_version(releases[n]['version_tag'])
+                    if v in changelog_entries:
+                        releases[n]['description'] = changelog_entries[v]['description']
+                        releases[n]['url'] = changelog_entries[v]['url']
+                    else:
+                        print("WARNING: %s version %s not found in changelog" % (repo_short, v))
 
         if releases is None:
             continue
 
-        for r in releases:
-            generate_release_file(repo_conf, r)
+        for release in releases:
+            generate_release_file(repo_short, repo_conf, release)
