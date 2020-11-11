@@ -273,9 +273,21 @@ $(document).ready(function(){
     $('#ingressBaseDomainInput').val(baseDomain);
   }
 
+  // Color changelog tags dynamically
+  var ch = new ColorHash({lightness: 0.7});
+  var colorHashes = {};
+  $('.changelog .tag').each(function(idx, i){
+    var text = i.innerHTML;
+    if (!colorHashes[text]) {
+      colorHashes[text] = ch.hex(text);
+    }
+    $(i).css({'background-color': colorHashes[text]});
+  });
 
+  // end of jQuery $(document).ready
 });
 
+// Add TOC sidebar behaviour
 window.addEventListener("load", function() {
   if (!window.GSAside) return;
 
