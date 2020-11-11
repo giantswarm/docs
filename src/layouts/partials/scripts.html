@@ -1,6 +1,7 @@
 {{ $aside := resources.Get "scripts/aside.js" }}
 {{ $base := resources.Get "scripts/base.js" }}
-{{ $js := slice $aside $base | resources.Concat "js/docs.js" | resources.Minify | fingerprint }}
+{{ $colorhash := resources.Get "scripts/colorhash.js" }}
+{{ $js := slice $colorhash $aside $base | resources.Concat "js/docs.js" | resources.Minify | fingerprint }}
 {{ $secureJS := $js | resources.Fingerprint "sha256" }}
 
 <script type="text/javascript" src="https://s.giantswarm.io/jquery/3.3.1/1/jquery.min.js"></script>
