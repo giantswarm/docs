@@ -125,7 +125,7 @@ config:
     authz: {}
 ```
 
-3. Check if secret was created correctly:
+- Check if secret was created correctly:
 
 ```bash=
 kubectl get secret -n efk-stack-app opendistro-security-config -o yaml
@@ -163,7 +163,7 @@ It requires hashed passwords. Use `https://bcrypt-generator.com/` or refer to th
 
 (Note: You will use these hashes as the admin password to be defined in the last section: "Configure OIDC backend for Kibana")
 
-2. Generate and deploy the secret to the efk-stack-app namespace:
+- Generate and deploy the secret to the efk-stack-app namespace:
 
 ```bash=
 kubectl create secret generic -n efk-stack-app opendistro-internal-users --from-file=./internal_users.yml
@@ -194,7 +194,7 @@ logstash:
   description: "Demo logstash user"
 ```
 
-3. Check if the secret was created correctly:
+- Check if the secret was created correctly:
 
 ```bash=
 kubectl get secret -n efk-stack-app opendistro-internal-users -o yaml
@@ -309,7 +309,7 @@ kibana_server:
   and_backend_roles: []
 ```
 
-3. Check if the secret was created correctly:
+- Check if the secret was created correctly:
 
 ```bash=
 kubectl get secret -n efk-stack-app opendistro-roles-mapping -o yaml
