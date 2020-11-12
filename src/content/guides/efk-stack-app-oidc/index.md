@@ -75,11 +75,6 @@ kubectl create namespace efk-stack-app
 ### Create configSecret
 
 1. Save the .yaml lines below to a file called `config.yml`. Point `openid_connect_url` to the correct URL.
-2. On the cluster run:
-
-```bash=
-kubectl create secret generic -n efk-stack-app opendistro-security-config --from-file=./config.yml
-```
 
 ```yaml=config.yml
 ---
@@ -123,7 +118,6 @@ config:
         authentication_backend:
           type: noop
     authz: {}
-```
 
 - Check if secret was created correctly:
 
