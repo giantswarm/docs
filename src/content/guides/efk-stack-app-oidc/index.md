@@ -1,15 +1,3 @@
-What is missing?
-- [ ] Finish opendistro-security plugin
-    - [ ] Add overview
-    - [ ] Add explanation to `roles_key: groups` - this is what Kibana will use... 
-    - [ ] Identify other things that need explanation
-    - [ ] Explain them
-
-- [x] Add Configure internal-users database
-- [x] Add Configure roles-mapping to control users permission
-- [x] Add configuration of jwt token to send users group IDs
-- [x] Add explanation how azure AD roles are mapped to kibana roles
-
 ---
 title: Configure oidc for efk-stack-app
 description: Configure authentication with kibana and the efk-stack-app through OIDC
@@ -18,61 +6,68 @@ type: page
 weight: 50
 tags: ["recipe"]
 ---
-# Setup OIDC to authenticate with kibana and the efk-stack-app
+# Setup OIDC to authenticate with kibana and efk-stack-app
 
-To leverage your companies existing user and group directories to manage access to the efk-stack-app the opendistro security plugin provides integration with different authentication backends.
-In this guid we will explain how to configure the efk-stack-app with Azure AD through the OpenID Connect (OIDC) standard. This configuration should be portable to any other authentication backend, that provides the OIDC standard.
+To manage access to the efk-stack-app using your company's user and group directories, the opendistro security plugin provides integration with different authentication backends.
+
+Here, we configure the efk-stack-app with Azure AD through the OpenID Connect (OIDC) standard.
+
+It should be portable to other authentication backends that provide the OIDC standard.
 
 ## Overview
 
-- Register app on azure portal and configure jwt token
-- Configure OIDC backend for Kibana
-- Configure opendistro-security plugin
-- Configure internal-users database
-- Configure roles-mapping to control users permission
+- Step 1: Register app on Azure portal and configure JWT token
+- Step 2: Configure opendistro-security plugin
+- Step 3: Configure internal-users database
+- Step 4: Configure roles-mapping to control users permission
+- Step 5: Configure OIDC backend for Kibana
 
-## Register app on azure portal and configure jwt token
+## Step 1: Register app on Azure portal and configure JWT token
 ### Limitation
-As of writing opendistro security does not support mapping nested values in the jwt-token to roles. Currently it's only possible to specify the key, which contains the values that identify the specific users role identifier.
+As of writing: Opendistro security cannot map nested values in the JWT-token to roles. It's only possible to specify the key containing values that identify the user's role identifier.
 
-### Register app on azure portal
-This step can differ depending on the backend provider. Generally there should be a mechanism to define an object that represents the app with attributes to control who has which permissions on it.
-In Azure, this is called an "App registration"
+### Register app on Azure portal
 
-To setup a new "App registration" refer to the [official guide](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app).
+To setup a new "App registration" refer to the [official guide](https://docs.microsoft.com/en-us/Azure/active-directory/develop/quickstart-register-app).
 
-For the **redirect URI** the pattern is as follows:
+The **redirect URI** pattern is:
 https://<your.kibana.url>/auth/openid/login
-*This can be changed later on*
 
-#### Configure jwt token
-The goal is to map a users group ID in Azure to a role that defines the users permissions in Kibana. For example, if the user is member of the Azure AD group "kibana-admins", the user obtains the role "admin" in Kibana.
-For this to work, the jwt token issued by Azure need to contain the group IDs of the user. This is done by adding an optional claim to the app-registrations token configuration.
+*This can be changed later.*
 
-1. In Azure platform navigate to the app-registration create in the previous section
-2. In the sidebar click on "Token configuration"
-3. Click on "+Add groups claim"
-4. Select the group types to include in the token (usually Security groups)
-5. In the "Customize token properties by type" select "Group ID" for every type
+(Note: Depends on the backend provider. Generally, there should be a mechanism that defines an object that represents the app with attributes to control who has which permissions. In Azure, this is "App registration".)
+
+### Configure JWT token
+The goal is to map a user's group ID in Azure to that user's permissions in Kibana. For example, if the user is a member of the Azure AD group "kibana-admins", the user obtains the role "admin" in Kibana.
+
+Azure's JWT token needs to contain the group IDs of the user. Do this by adding an optional claim to the app-registration's token configuration.
+
+1. In Azure platform, navigate to the app-registration created in the previous section
+2. In the sidebar, click "Token configuration"
+3. Click "+Add groups claim"
+4. Select group types to include in the token (usually Security groups)
+5. In "Customize token properties by type", select "Group ID" for every type
 6. Click "Save"
 
-For further reference on how to define groups optional claims, please refer to [microsofts official documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-optional-claims#configuring-groups-optional-claims) on the topic.
+For reference on how to define groups' optional claims, see [Microsoft's official documentation](https://docs.microsoft.com/en-us/Azure/active-directory/develop/active-directory-optional-claims#configuring-groups-optional-claims).
 
-How to define and manage the required groups, as well as how to obtain the group IDs of those groups is out of scope for this guide. Check [microsofts documentation on Azure AD](https://docs.microsoft.com/en-us/azure/devops/server/admin/setup-ad-groups?toc=%2Fazure%2Fdevops%2Forganizations%2Ftoc.json&bc=%2Fazure%2Fdevops%2Forganizations%2Fbreadcrumb%2Ftoc.json&view=azure-devops-2020&viewFallbackFrom=azure-devops)
+How to define and manage the required groups, as well as how to obtain the group IDs of those groups is out of scope for this guide. Check [Microsoft's documentation on Azure AD](https://docs.microsoft.com/en-us/Azure/devops/server/admin/setup-ad-groups?toc=%2FAzure%2Fdevops%2Forganizations%2Ftoc.json&bc=%2FAzure%2Fdevops%2Forganizations%2Fbreadcrumb%2Ftoc.json&view=Azure-devops-2020&viewFallbackFrom=Azure-devops)
 
-### Configure opendistro-security plugin
-Opendistro-security can be configured through secrets. These secrets need to be present in the apps namespace for the above EFK configuration to successfully deploy. In this section we will setup the target namespace and deploy the `configSecret` named `opendistro-security-config`.
+## Step 2: Configure opendistro-security plugin
+Opendistro-security is configured through secrets. These secrets need to be present in the app's namespace for the EFK configuration to deploy.
+
+In this section, we create the target namespace and deploy the `configSecret` named `opendistro-security-config`.
 
 Default namespace for the efk-stack-app is "efk-stack-app".
 
-#### Create namespace
-On the cluster run:
+### Create namespace
+To create the namespace on the tenant cluster, run:
 ```bash=
 kubectl create namespace efk-stack-app
 ```
 
-#### Create configSecret
-1. Save the .yaml lines below to a file called `config.yml`. Make sure to modify the `openid_connect_url` to point to the correct URL.
+### Create configSecret
+1. Save the .yaml lines below to a file called `config.yml`. Point `openid_connect_url` to the correct URL.
 2. On the cluster run:
 ```bash=
 kubectl create secret generic -n efk-stack-app opendistro-security-config --from-file=./config.yml
@@ -122,11 +117,11 @@ config:
     authz: {}
 ```
 
-3. Check if the secret was create correctly:
+3. Check if secret was created correctly:
 ```bash=
 kubectl get secret -n efk-stack-app opendistro-security-config -o yaml
 ```
-The results should look similar to this:
+Results should look like:
 ```yaml=
 apiVersion: v1
 data:
@@ -143,19 +138,19 @@ type: Opaque
 ```
 
 **Note**
-The parameter `roles_key` in `config.yml` defines what key from the OIDC token is used to identify the users roles on kibana. Here it is setup to use the users group IDs. How to configure azure to send the users group IDs in the OIDC token is covered in the section **Register app on azure portal and configure jwt token**
+`roles_key` in `config.yml` defines what key from the OIDC token is used to identify the user's roles in Kibana. Here, it uses the user's group IDs. How to configure Azure to send the user's group IDs in the OIDC token is covered in the prev. section: **Register app on Azure portal and configure JWT token**
 
-### Configure internal-users database
-The internal-users secret can be used to add initial users to the opendistro security plugins internal user database.
+## Step 3: Configure internal-users database
 
-The file format requires hashed passwords. Use https://bcrypt-generator.com/ or refer to the [opendistro-security guide](https://opendistro.github.io/for-elasticsearch-docs/docs/security/configuration/yaml/#internal_usersyml).
+Similar to the previous section, we use a secret to add to opendistro-security plugin's internal user database. This secret also needs to be present in the target namespace for efk-stack-app to deploy successfully.
 
-Similar to the previous section, initial users to add to the opendistro-security plugins internal user database are provided through a secret. This secret also need to be present in the target namespace for efk-stack-app to deploy successfully.
+### Create internalUsersSecret
+1. Save the .yaml lines below to a file called `internal_users.yml`. Modify the `password hashes`.
 
-**Make sure the admin-password matches with the admin password defined in the values.yaml as configured in "Configure OIDC backend for Kibana"**
+It requires hashed passwords. Use https://bcrypt-generator.com/ or refer to the [opendistro-security guide](https://opendistro.github.io/for-elasticsearch-docs/docs/security/configuration/yaml/#internal_usersyml).
 
-#### Create internalUsersSecret
-1. Save the .yaml lines below to a file called `internal_users.yml`. Make sure to modify the `password hashes` as mentioned above.
+(Note: You will use these hashes as the admin password to be defined in the last section: "Configure OIDC backend for Kibana")
+
 2. Generate and deploy the secret to the efk-stack-app namespace:
 ```bash=
 kubectl create secret generic -n efk-stack-app opendistro-internal-users --from-file=./internal_users.yml
@@ -186,9 +181,9 @@ logstash:
   description: "Demo logstash user"
 ```
 
-3. Check if the secret was create correctly:
+3. Check if the secret was created correctly:
 ```bash=
-kubectl get secret -n efk-stack-app opendistro-security-config -o yaml
+kubectl get secret -n efk-stack-app opendistro-internal-users -o yaml
 ```
 The results should look similar to this:
 ```yaml=
@@ -206,14 +201,13 @@ metadata:
 type: Opaque
 ```
 
-### Configure roles-mapping to control users permission
+## Step 4: Configure roles-mapping to control users permission
 The `rolesMappingSecret` is used to configure initial role mappings to the opendistro-security plugin.
 
-In this example the Azure AD group ID for group "kibana-admin" is mapped to the role "all_access" and the Azure AD group ID for group "kibana-user" is mapped to the role "kibana_user"
+Here, the Azure AD group ID for group "kibana-admin" is mapped to the role "all_access". The Azure AD group ID for group "kibana-user" is mapped to the role "kibana_user"
 
-#### Create roleMappingSecret
+### Create roleMappingSecret
 1. Save the .yaml lines below to a file called `roles_mapping.yml`. Make sure to add the group ID of the Azure AD group to the backend_roles section of the corresponding role.
-
 2. Generate and deploy the secret to the efk-stack-app namespace:
 ```bash=
 kubectl create secret generic -n efk-stack-app opendistro-roles-mapping --from-file=./roles_mapping.yml
@@ -296,7 +290,7 @@ kibana_server:
   and_backend_roles: []
 ```
 
-3. Check if the secret was create correctly:
+3. Check if the secret was created correctly:
 ```bash=
 kubectl get secret -n efk-stack-app opendistro-roles-mapping -o yaml
 ```
@@ -316,11 +310,14 @@ metadata:
 type: Opaque
 ```
 
-### Configure OIDC backend for Kibana
-Now that all the required preparations to deploy the app are done, the efk-stack-app can be deployed to the tenant cluster.
-This is the minimal required `values.yaml` needed to configure EFK at time of installation. Currently it's not supported to reload configuration from configMaps so make sure to finish this guide before deploying the app.
+## Step 5: Configure OIDC backend for Kibana
+Now that the requirements to deploy the app are done, the efk-stack-app can be deployed to the tenant cluster.
 
-The required values to complete filling out the following template can all be found in microsofts [official guide](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app) for setting up an app-registration on azure portal.
+Below is the minimal required `values.yaml` needed to configure EFK at time of installation. Currently, it's not supported to reload configuration from configMaps so make sure to finish this guide before deploying the app.
+
+The required values to fill the template below can be found in Microsoft's [official guide](https://docs.microsoft.com/en-us/Azure/active-directory/develop/quickstart-register-app) for setting up an app-registration on Azure portal.
+
+**Finally, ensure admin password matches with password hashes defined in "Step 3: Configure internal-users database".**
 
 ```yaml
 opendistro-es:
@@ -338,7 +335,7 @@ opendistro-es:
     password: <kibana-admin-password> 
 
     config:
-      opendistro_security.openid.base_redirect_url: https://<your.kibana.url>
+      opendistro_security.openid.base_redirect_url: <your.kibana.url>
       opendistro_security.auth.type: openid
       opendistro_security.openid.client_id: <your client ID>
       opendistro_security.openid.client_secret: <your client secret>
@@ -362,4 +359,4 @@ opendistro-es:
         enabled: false
 ```
 
-Once Kibana is done deploying, users should be able to access kibana with their microsoft credentials and with the permissions mapped to their specific groups.
+Once Kibana is deployed, users should be able to access Kibana with their Microsoft credentials and with permissions mapped to their groups.
