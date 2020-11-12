@@ -5,7 +5,21 @@ date: 2020-06-15
 weight: 50
 type: page
 categories: ["basics"]
-last-review-date: 2020-05-18
+last-review-date: 2020-10-28
+user_questions:
+  - What areas are covered in the Giant Swarm AWS platform?
+  - Do I need a control plane per AWS region?
+  - What does Giant Swarm use operators for?
+  - How does Giant Swarm manage Custom Resources (CRs)?
+  - How does Giant Swarm operate in the AWS landscape?
+  - Why does Giant Swarm need access to my AWS account?
+  - What isolation layers are available when using Giant Swarm on AWS?
+  - What are best practices for workload segregation on AWS?
+  - How would Node Pools look on tenant clusters in AWS?
+  - How do you control resource assignment on AWS?
+  - Will my AWS clusters autoscale?
+  - How are workloads secured on AWS clusters?
+  - Why does Giant Swarm run a monitoring stack on my AWS control planes?
 ---
 
 # The Giant Swarm AWS Platform
@@ -73,7 +87,7 @@ To determine the right sizing in terms of cores and RAM, you need to know what k
 
 ### Control resource assignment
 
-One of the golden rules of Kubernetes is proper resource assignment. This is hard to do, especially for developers which are not used to profiling their applications under different scenarios. But the resource definition is a [key configuration](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/) part that allows Kubernetes to schedule, limit, control and scale the applications. So our recommendation [is to define resources](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) for most of your applications running in the clusters. That said, there is some controversy about defining CPU limits due to how Kernels manage the CPU quota assigned to the containers. There have been some fixes in the latest Kernel versions which improve the situation. To learn more, we encourage you to [check this Kubecon video](https://www.youtube.com/watch?v=UE7QX98-kO0) or talk to your Solution Engineer.
+One of the golden rules of Kubernetes is proper resource assignment. This is hard to do, especially for developers which are not used to profiling their applications under different scenarios. But the resource definition is a [key configuration](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) part that allows Kubernetes to schedule, limit, control and scale the applications. So our recommendation [is to define resources](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) for most of your applications running in the clusters. That said, there is some controversy about defining CPU limits due to how Kernels manage the CPU quota assigned to the containers. There have been some fixes in the latest Kernel versions which improve the situation. To learn more, we encourage you to [check this Kubecon video](https://www.youtube.com/watch?v=UE7QX98-kO0) or talk to your Solution Engineer.
 
 Further, to enforce the definition of resources, [Limit Ranges](https://kubernetes.io/docs/concepts/policy/limit-range/) helps to set the defaults once a user forgets to add those. At the same time, [Resource Quotas](https://kubernetes.io/docs/concepts/policy/resource-quotas/) enables cluster operators to assign a predetermined amount of resources to each namespace. Thus, protecting other workloads.
 
@@ -97,18 +111,9 @@ Since we provide a **managed** Kubernetes platform, Giant Swarm has to be aware 
 
 Our on-call engineers will be paged in case anything happens to the cluster or its base components and they will respond to the incident based on the run-books we have created based on years of operating Cloud Native systems. In case there is an improvement to be made, a post mortem is created and a solution will be implemented before long. Any patch or fix added to the platform will be released to all customers.
 
-## App Platform
-
-Giant Swarm [has designed a system](https://www.giantswarm.io/app-catalog) to ease the use of some common Cloud Native apps. The amount of components available in the landscape is huge, and [we have decided to include some of the projects in our catalog](https://www.giantswarm.io/blog/announcing-the-giant-swarm-app-platform) for our customers to rely on.
-
-Right now we have several managed apps to control the Ingress traffic ([NGINX Ingress Controller](https://github.com/giantswarm/nginx-ingress-controller-app) and [Kong](https://github.com/giantswarm/kong-app)), secure the AWS API and map roles ([kiam](https://github.com/giantswarm/kiam-app)), collect and process logs ([EFK](https://github.com/giantswarm/efk-stack-app)) or automate the DNS setup ([external DNS](https://github.com/giantswarm/external-dns-app)).
-
-But at the same time we open the catalog to our customers and employees to use for their own apps. That is why we are running a proof of concept for AWS App Mesh, the AWS implementation of Service Mesh pattern, or Loki, the “coolest” log collector. If you trust in a Cloud Native app and operating it does not add any value to your business, talk to us and we might take over its management for you, too.
-
 Please note, while this document went into extensive details with regards to how Giant Swarm runs Kubernetes on AWS, we support [Azure](/basics/azure-architecture/) as well as [Bare Metal](/basics/onprem-architecture/). For more details, please [contact us](https://www.giantswarm.io/contact).
 
 ## Further reading
 
 - [Giant Swarm support model](/basics/giant-swarm-support/)
 - [Giant Swarm operational layers](/basics/giant-swarm-operational-layers/)
-- [Giant Swarm App Catalog](/basics/app-catalog/)

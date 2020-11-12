@@ -31,7 +31,7 @@ Among the third party components building a tenant cluster stack are
 - [Kubernetes](https://kubernetes.io/) with its many sub-components
 - [Flatcar Container Linux](https://docs.flatcar-linux.org/) as the node's operating system
 - [Docker](https://docs.docker.com/engine/) as a container runtime environment
-- [etcd](https://coreos.com/etcd/) as distributed storage for Kubernetes and Vault
+- [etcd](https://etcd.io/) as distributed storage for Kubernetes and Vault
 - [Project Calico](https://www.projectcalico.org/) and [AWS CNI](https://github.com/aws/amazon-vpc-cni-k8s)/[Azure CNI](https://github.com/Azure/azure-container-networking)/[Flannel](https://github.com/coreos/flannel) for virtual networking
 - [CoreDNS](https://coredns.io/) for cluster-internal name resolution
 - [Prometheus node exporter](https://github.com/prometheus/node_exporter) for hardware and OS metrics
@@ -91,6 +91,8 @@ In particular this means:
 AWS resources are managed by the [aws-operator](https://github.com/giantswarm/aws-operator) component through a nested CloudFormation stack. For a tenant cluster upgrade, the CloudFormation stacks are updated, in several steps.
 
 The master node re-creation is started first. Meanwhile, the recreation of worker nodes starts, where all worker nodes are recreated in batches. During the upgrade, **up to 33 percent of the worker nodes can be unavailable**.
+
+From release `12.7.0` some of the parameters of the upgrade can be configured. Check [Fine-tuning upgrade disruption on AWS](/guides/fine-tuning-upgrade-disruption-on-aws/) guide for more details.
 
 After recreation, worker nodes are **not expected to have the same names** they had before.
 
