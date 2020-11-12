@@ -220,7 +220,6 @@ Here, the Azure AD group ID for group "kibana-admin" is mapped to the role "all_
 ### Create roleMappingSecret
 
 1. Save the .yaml lines below to a file called `roles_mapping.yml`. Make sure to add the group ID of the Azure AD group to the backend_roles section of the corresponding role.
-2. Generate and deploy the secret to the efk-stack-app namespace:
 
 ```bash=
 kubectl create secret generic -n efk-stack-app opendistro-roles-mapping --from-file=./roles_mapping.yml
@@ -303,6 +302,7 @@ kibana_server:
   and_backend_roles: []
 ```
 
+- Generate and deploy the secret to the efk-stack-app namespace:
 - Check if the secret was created correctly:
 
 ```bash=
