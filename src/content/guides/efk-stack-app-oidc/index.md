@@ -159,7 +159,7 @@ Similar to the previous section, we use a secret to add to opendistro-security p
 
 1. Save the .yaml lines below to a file called `internal_users.yml`. Modify the `password hashes`.
 
-It requires hashed passwords. Use https://bcrypt-generator.com/ or refer to the [opendistro-security guide](https://opendistro.github.io/for-elasticsearch-docs/docs/security/configuration/yaml/#internal_usersyml).
+It requires hashed passwords. Use `https://bcrypt-generator.com/` or refer to the [opendistro-security guide](https://opendistro.github.io/for-elasticsearch-docs/docs/security/configuration/yaml/#internal_usersyml).
 
 (Note: You will use these hashes as the admin password to be defined in the last section: "Configure OIDC backend for Kibana")
 
@@ -355,7 +355,7 @@ opendistro-es:
 
   kibana:
     username: admin
-    password: <kibana-admin-password> 
+    password: <kibana-admin-password>
 
     config:
       opendistro_security.openid.base_redirect_url: <your.kibana.url>
