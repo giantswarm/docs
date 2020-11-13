@@ -5,7 +5,7 @@ name: Automation Test
 # Trigger by cronjob
 on:
   schedule:
-    - cron: "43 16 13 11 *"
+    - cron: "50 16 13 11 *"
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
