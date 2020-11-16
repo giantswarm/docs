@@ -194,8 +194,8 @@ def generate_release_file(repo_shortname, repo_config, release):
         provider_label = release['provider'].upper()
         if provider_label == 'AZURE':
             provider_label = 'Azure'
-        categories = [f'{provider_label} Releases']
-        title = f'{provider_label} Release v{version}'
+        categories = [f'Tenant Cluster Releases for {provider_label}']
+        title = f'Tenant Cluster Release v{version} for {provider_label}'
         description = f'Release notes for {provider_label} release v{version}, published on {release["date"].strftime("%d %B %Y, %H:%M")}'
     else:
         categories = [repo_config['category']]
