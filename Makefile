@@ -5,8 +5,6 @@ SHELL=bash
 MARKDOWNLINT_IMAGE=06kellyjac/markdownlint-cli:0.21.0
 CRD_DOCS_GENERATOR_VERSION=0.1.2
 
-TOKEN := $(shell cat .github-token)
-
 default: docker-build
 
 
@@ -16,14 +14,16 @@ vendor:
 
 # Aggregate changelog entries from various repositories into our Changes section.
 changes:
-	@test -f .github-token || (echo "Please place a GitHub token in path .github-token" && exit 1)
+	@if [ -z "${GITHUB_TOKEN}" ]; then echo "Please set the GITHUB_TOKEN environment variable"; exit 1; fi
+
 	docker build scripts/aggregate-changelogs -t aggregate-changelogs
 	docker run --rm \
 	  --volume=${PWD}/scripts/aggregate-changelogs:/workdir:ro \
 	  --volume=${PWD}/src/content/changes:/output:rw \
 	  -w /workdir \
+	  --env GITHUB_TOKEN \
 	  aggregate-changelogs \
-	  /workdir/script.py /workdir/config.yaml /output ${TOKEN}
+	  /workdir/script.py /workdir/config.yaml /output
 
 build: vendor
 	# check dependencies

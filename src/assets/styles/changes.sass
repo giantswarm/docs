@@ -9,9 +9,12 @@
         color: #585858
         padding-right: 5px
     
+    .fa-rss
+        padding-left: 3px
     
     .feed
         height: 50px
+        margin-top: 30px
     
     .tagsfilter
         max-width: 320px
@@ -73,21 +76,23 @@ ul.changelog
 
     .content
         font-size: 14px
-        max-height: 200px
-        overflow: hidden
-        text-overflow: ellipsis
-        content: ""
-        position: relative
+        // max-height: 200px
+        // overflow: hidden
+        // text-overflow: ellipsis
+        // content: ""
+        // position: relative
+        
 
-        &:before
-            content: ""
-            width: 100%
-            height: 100%
-            position: absolute
-            left: 0
-            top: 0
-            background: linear-gradient(transparent 150px, white)
-            pointer-events: none
+
+        // &:before
+        //     content: ""
+        //     width: 100%
+        //     height: 100%
+        //     position: absolute
+        //     left: 0
+        //     top: 0
+        //     background: linear-gradient(transparent 150px, white)
+        //     pointer-events: none
 
         ul
             padding-inline-start: 30px
@@ -96,12 +101,31 @@ ul.changelog
                 margin: 0px 0px
                 margin-bottom: 0px !important
         
-        h1, h2, h3, h4, h5, h6
+        // Changelogs should not have H1 headlines left, but if the do,
+        // we don't want to display them in the list view.
+        h1
+            display: none
+        
+        h2
+            font-size: 16px
+            font-weight: 700
+            margin-top: 8px
+            margin-bottom: 6px
+            color: #666
+        
+        h3
             font-size: 14px
             font-weight: 700
-            margin-top: 6px
-            margin-bottom: 4px
-            color: #444
+            margin-top: 8px
+            margin-bottom: 6px
+            color: #888
+        
+        h4, h5, h6
+            font-size: 14px
+            font-weight: 300
+            margin-top: 8px
+            margin-bottom: 6px
+            color: #000
 
 li.changelog
     margin: 0px 0px

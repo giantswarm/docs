@@ -19,7 +19,7 @@ CONFIG_PATH = sys.argv[1]
 # Target path for generated content
 CONTENT_PATH = sys.argv[2]
 
-GITHUB_TOKEN = sys.argv[3]
+GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 
 
 RELEASES_REPO = 'giantswarm/releases'
@@ -232,7 +232,7 @@ if __name__ == "__main__":
         conf = load(configfile, Loader=CLoader)
     
     if GITHUB_TOKEN == "":
-        print("ERROR: GitHub token must be given as 3rd argument")
+        print("ERROR: environment variable GITHUB_TOKEN is empty.")
         sys.exit(1)
 
     g = Github(GITHUB_TOKEN)
