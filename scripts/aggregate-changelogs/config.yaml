@@ -1,47 +1,54 @@
-
+# Changes and Releases automation config
+#
+# Under '.repositories', each key represents a Github repository
+# which we want to fetch release info from.
+#
+# The 'category' property determines the changes category the
+# entries from the repo land in.
+#
 repositories:
   giantswarm/releases:
     # The repo 'giantswarm/releases' gets special treatment, so no
     # config needed
-  giantswarm/happa:
-    category: Web UI
-  giantswarm/docs:
-    category: Documentation
-  giantswarm/apiextensions:
-    category: Control Plane Kubernetes API
   giantswarm/api-spec:
     category: Rest API
-  giantswarm/gsctl:
-    category: gsctl
-  giantswarm/kubectl-gs:
-    category: kubectl gs
-  giantswarm/cert-manager-app:
-    category: Managed Apps
-  giantswarm/metrics-server-app:
-    category: Managed Apps
-  giantswarm/coredns-app:
-    category: Managed Apps
-  giantswarm/external-dns-app:
+  giantswarm/apiextensions:
+    category: Control Plane Kubernetes API
+  giantswarm/aqua-app:
     category: Managed Apps
   giantswarm/cert-exporter:
     category: Managed Apps
+  giantswarm/cert-manager-app:
+    category: Managed Apps
   giantswarm/chart-operator:
     category: Managed Apps
+  giantswarm/cluster-autoscaler-app:
+    category: Managed Apps
+  giantswarm/coredns-app:
+    category: Managed Apps
+  giantswarm/docs:
+    category: Documentation
+  giantswarm/efk-stack-app:
+    category: Managed Apps
+  giantswarm/external-dns-app:
+    category: Managed Apps
+  giantswarm/gsctl:
+    category: gsctl
+  giantswarm/happa:
+    category: Web UI
+  giantswarm/kong-app:
+    category: Managed Apps
   giantswarm/kube-state-metrics-app:
+    category: Managed Apps
+  giantswarm/kubectl-gs:
+    category: kubectl gs
+  giantswarm/metrics-server-app:
+    category: Managed Apps
+  giantswarm/nginx-ingress-controller-app:
     category: Managed Apps
   giantswarm/net-exporter:
     category: Managed Apps
   giantswarm/node-exporter-app:
-    category: Managed Apps
-  giantswarm/cluster-autoscaler-app:
-    category: Managed Apps
-  giantswarm/aqua-app:
-    category: Managed Apps
-  giantswarm/efk-stack-app:
-    category: Managed Apps
-  giantswarm/kong-app:
-    category: Managed Apps
-  giantswarm/nginx-ingress-controller-app:
     category: Managed Apps
   giantswarm/prometheus-operator-app:
     category: Managed Apps

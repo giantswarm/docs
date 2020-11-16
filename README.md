@@ -178,6 +178,7 @@ To run the site locally together with search (sitesearch) and API docs (api-spec
 
 The build process of this repo (see the `build` target in the `Makefile`) ties in content from several sources:
 
+- Changes and Releases (see scritps/aggregate-changelogs)
 - Guides or recipes from external repositories
 - Custom Resource Definitions from [apiextensions](https://github.com/giantswarm/apiextensions)
 

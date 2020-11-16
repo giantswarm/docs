@@ -281,11 +281,11 @@ $(document).ready(function(){
     var text = el.text().trim();
     if (!colorHashes[text]) {
       console.log(text);
-      if (text === 'AWS Releases') {
+      if (text === 'Tenant Cluster Releases for AWS') {
         colorHashes[text] = '#ff9900';
-      } else if (text === 'Azure Releases') {
+      } else if (text === 'Tenant Cluster Releases for Azure') {
         colorHashes[text] = '#1773bd';
-      } else if (text === 'KVM Releases') {
+      } else if (text === 'Tenant Cluster Releases for KVM') {
         colorHashes[text] = '#cccccc';
       } else {
         colorHashes[text] = ch.hex(text);
