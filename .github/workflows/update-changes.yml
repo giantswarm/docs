@@ -5,7 +5,7 @@ name: Update Changes and Releases
 # Trigger by cronjob
 on:
   schedule:
-    - cron: "*/5 * 16 11 *"
+    - cron: "22 7,9,11,13,15,17,19 * 11 *"
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
