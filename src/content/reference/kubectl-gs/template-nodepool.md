@@ -50,7 +50,6 @@ Can be retrieved with `gsctl list releases` for your installation. Only versions
 ### AWS specific
 
 - `--aws-instance-type`- EC2 instance type to use for workers, e. g. *m5.2xlarge*. (default *m5.xlarge*)
-- `--region` - tenant cluster AWS region. Must be configured with installation region.
 
 ### Azure specific
 
@@ -63,7 +62,6 @@ kgs template nodepool \
   --provider aws \
   --cluster-id a1b2c \
   --nodepool-name "General purpose" \
-  --region eu-central1 \
   --availability-zones eu-central-1b \
   --owner acme \
   --aws-instance-type m5.4xlarge \
