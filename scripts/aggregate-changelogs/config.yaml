@@ -1,4 +1,11 @@
-
+# Changes and Releases automation config
+#
+# Under '.repositories', each key represents a Github repository
+# which we want to fetch release info from.
+#
+# The 'category' property determines the changes category the
+# entries from the repo land in.
+#
 repositories:
   giantswarm/releases:
     # The repo 'giantswarm/releases' gets special treatment, so no
