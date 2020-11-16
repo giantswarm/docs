@@ -25,7 +25,7 @@ changes:
 	  aggregate-changelogs \
 	  /workdir/script.py /workdir/config.yaml /output
 
-build: vendor
+build: vendor changes
 	# check dependencies
 	which jq || (echo "jq not found" && exit 1)
 	which curl || (echo "curl not found" && exit 1)
