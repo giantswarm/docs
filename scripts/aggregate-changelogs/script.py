@@ -21,7 +21,6 @@ CONTENT_PATH = sys.argv[2]
 
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 
-
 RELEASES_REPO = 'giantswarm/releases'
 
 def get_releases(client, repo_shortname):
