@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-md-4 hidden-sm hidden-xs changelog">
+    <div class="feed">
+      {{- with .OutputFormats.Get "rss" -}}
+          {{ printf `<a rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .RelPermalink $.Site.Title | safeHTML }}<i class="fa fa-rss"></i>RSS Feed</a>
+      {{- end }}
+    </div>
+    <div class="tagsfilter">
+      <h3>By Category</h3>
+      {{- if .Data.Term }}
+        {{- $cat := urlize .Data.Term }}
+        <div class="tags">
+        <span class="tag"><a href="/changes/{{ $cat }}/">{{ .Data.Term }}</a></span>
+        </div>
+        <a class="reset" href="/changes/"><i class="fa fa-close-circle"></i>Back to all categories</a>
+      {{- else }}
+        <div>
+        {{- range .Site.Taxonomies.changes_categories }}
+          <span class="tag"><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></span>
+        {{- end }}
+        </div>
+      {{- end }}
+      <div>
+      
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-8 base-content">
+    <ol class="breadcrumb">
+      <li class="prefix">Back to:</li>
+      <li class="item"><a href="/" class="crumb">Docs</a></li>
+      {{ if .Paginator }}
+        {{- if .Data.Term }}
+        <li class="item"><a href="/changes/">Changes and Releases</a></li>
+        {{- end }}
+      {{- else }}
+        <li class="item"><a href="/changes/">Changes and Releases</a></li>
+        {{- with .Params.changes_categories }}
+          {{- range . }}
+            {{- $cat := urlize . }}
+            <li class="item"><a href="/changes/{{ $cat }}/">{{ . }}</a></li>
+        {{- end }}
+        {{- end }}
+      {{- end }}
+    </ol>
+    
+    {{ if .Paginator }}
+    {{ partial "changes/list.html" . }}
+    {{ else }}
+    {{ partial "changes/single.html" . }}
+    {{ end }}
+
+  </div>
+</div>

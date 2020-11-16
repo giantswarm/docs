@@ -1,11 +1,16 @@
-import sys
 from datetime import datetime
+from os import path, makedirs
 from pprint import pprint
-from yaml import load, dump, CLoader, CDumper
+import os
+import re
+import sys
+import tempfile
+
+from dateutil.parser import parse
+import git
 from github import Github
 from github.GithubException import UnknownObjectException
-from os import path, makedirs
-import re
+from yaml import load, dump, CLoader, CDumper
 
 print("script.py arguments: %s" % sys.argv)
 
@@ -34,7 +39,7 @@ def get_releases(client, repo_shortname):
             'repository': repo_shortname,
             'version_tag': release.tag_name,
             'date': release.published_at,
-            'description': release.body,
+            'body': release.body,
             'url': release.html_url,
         }
 
@@ -75,12 +80,95 @@ def parse_changelog(body, repo_shortname):
         url = f'https://github.com/{repo_shortname}/blob/master/CHANGELOG.md#{anchor}'
 
         release = {
-            'description': '\n'.join(lines[1:]).strip(),
+            'body': '\n'.join(lines[1:]).strip(),
             'url': url,
         }
 
         yield (version, release)
 
+
+def parse_release_yaml(data, repo_shortname, provider, relative_path):
+    if 'apiVersion' not in data:
+        raise Exception('Unexpected release data format. No ".apiVersion" attribute found.')
+    if data['apiVersion'] != 'release.giantswarm.io/v1alpha1':
+        raise Exception('Unexpected release data apiVersion "%s".' % data['apiVersion'])
+    if 'kind' not in data:
+        raise Exception('Unexpected release data format. No ".kind" attribute found.')
+    if data['kind'] != 'Release':
+        raise Exception('Unexpected release data kind "%s".' % data['kind'])
+    if 'metadata' not in data:
+        raise Exception('Unexpected release data format. No ".metadata" attribute found.')
+    if 'name' not in data['metadata']:
+        raise Exception('Unexpected release data format. No ".metadata.name" attribute found.')
+    if 'spec' not in data:
+        raise Exception('Unexpected release data format. No ".spec" attribute found.')
+    if 'date' not in data['spec']:
+        raise Exception('Unexpected release data format. No ".spec.date" attribute found.')
+    
+    creation = data['spec']['date']
+    if type(creation) == str:
+        creation = parse(creation)
+
+    return {
+        'date': creation,
+        'version_tag': data['metadata']['name'],
+        'provider': provider,
+        'url': f'https://github.com/{repo_shortname}/tree/master{relative_path}',
+        'repository': RELEASES_REPO,
+    }
+
+def get_cluster_releases(repo_shortname):
+    """
+    Clones the releases repo, parses the data from it,
+    and emits releases.
+    """
+    with tempfile.TemporaryDirectory() as tmpdir:
+        print(f'Cloning to temporary directory {tmpdir}')
+        git.Git(tmpdir).clone(f"git://github.com/{repo_shortname}.git", depth=1)
+
+        (org, repo) = repo_shortname.split("/", maxsplit=1)
+
+        provider = None
+        for root, _, files in os.walk(tmpdir):
+            if os.path.basename(root) in ('aws', 'azure', 'kvm'):
+                provider = os.path.basename(root)
+            
+            relative_dir_path = root[len(tmpdir + "/" + repo):]
+
+            for fname in files:
+                if fname != "release.yaml":
+                    continue
+
+                fpath = path.join(root, fname)
+            
+                release = {}
+                data = None
+
+                # Get structured data
+                with open(fpath, 'r') as releasefile:
+                    data = load(releasefile, Loader=CLoader)
+                
+                    try:
+                        release = parse_release_yaml(data, repo_shortname, provider, relative_dir_path)
+                    except Exception as e:
+                        print(f'WARNING: {e}')
+                
+                # Add release notes
+                release_notes_path = os.path.join(root, "README.md")
+                if os.path.exists(release_notes_path):
+                    with open(release_notes_path, 'r') as release_notes_file:
+                        release_notes = release_notes_file.read().strip()
+                        
+                        # Strip first headline
+                        lines = release_notes.split("\n")
+                        if len(lines) > 0:
+                            if lines[0].startswith('#'):
+                                lines = lines[1:]
+                        
+                        release['body'] = "\n".join(lines).strip()
+                
+                yield release
+                    
 
 def normalize_version(v):
     """
@@ -95,28 +183,43 @@ def generate_release_file(repo_shortname, repo_config, release):
     Write a release file with YAML front matter and Markdown body
     """
     org, slug = repo_shortname.split("/", maxsplit=1)
-    filepath = path.join(CONTENT_PATH, slug, release['version_tag'] + ".md")
+
+    filepath = path.join(CONTENT_PATH, slug, f"{release['version_tag']}.md")
+    if repo_shortname == RELEASES_REPO:
+        filepath = path.join(CONTENT_PATH, slug, f"{release['provider']}-{release['version_tag']}.md")
 
     version = normalize_version(release['version_tag'])
+    
+    if repo_shortname == RELEASES_REPO:
+        provider_label = release['provider'].upper()
+        if provider_label == 'AZURE':
+            provider_label = 'Azure'
+        categories = [f'{provider_label} Releases']
+        title = f'{provider_label} Release v{version}'
+        description = f'Release notes for {provider_label} release v{version}, published on {release["date"].strftime("%d %B %Y, %H:%M")}'
+    else:
+        categories = [repo_config['category']]
+        title = f'{slug} Release v{version}'
+        description = f'Changelog entry for {release["repository"]} version {version}, published on {release["date"].strftime("%d %B %Y, %H:%M")}'
 
     frontmatter = {
         'date': release['date'].isoformat(),
-        'title': f'{slug} Release v{version}',
-        'description': f'Changelog entry for {release["repository"]} version {version}, published on {release["date"].strftime("%d %B %Y, %H:%M")}',
-        'changelog_entry': {
+        'title': title,
+        'description': description,
+        'changes_entry': {
             'repository': release['repository'],
             'version_tag': release['version_tag'],
             'version': version,
             'url': release['url'],
         },
-        'tags': [repo_config['tag']],
+        'changes_categories': categories,
     }
 
     content = "---\n"
     content += "# Generated by scripts/aggregate-changelogs. WARNING: Manual edits to this files will be overwritten.\n"
     content += dump(frontmatter, Dumper=CDumper)
     content += "---\n\n"
-    content += release['description']
+    content += release['body']
     content += "\n"
 
     makedirs(path.dirname(filepath), exist_ok=True)
@@ -137,12 +240,11 @@ if __name__ == "__main__":
     for repo_short in conf['repositories']:
         repo_conf = conf['repositories'][repo_short]
 
-        releases = None
+        releases = []
 
         if repo_short == RELEASES_REPO:
-            # TODO: special treatment for releases repo
-            print("Special treatment for releases repo %s (TODO)" % repo_short)
-            pass
+            for release in get_cluster_releases(repo_short):
+                releases.append(release)
 
         else:
             # Attempt to get GitHub releases (based on tags in the repo).
@@ -164,13 +266,10 @@ if __name__ == "__main__":
                 for n in range(len(releases)):
                     v = normalize_version(releases[n]['version_tag'])
                     if v in changelog_entries:
-                        releases[n]['description'] = changelog_entries[v]['description']
+                        releases[n]['body'] = changelog_entries[v]['body']
                         releases[n]['url'] = changelog_entries[v]['url']
                     else:
                         print("WARNING: %s version %s not found in changelog" % (repo_short, v))
-
-        if releases is None:
-            continue
 
         for release in releases:
             generate_release_file(repo_short, repo_conf, release)

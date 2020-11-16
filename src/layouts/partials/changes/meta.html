@@ -1,0 +1,11 @@
+<div class="meta">
+    <a class="permalink" href="{{ .RelPermalink }}" title="Permalink"><i class="fa fa-link"></i>{{ .Date.Format "Jan 2, 2006 at 15:04" }}</a>
+    {{- with .Params.changes_categories }}
+        {{- range . }}
+            {{- $cat := urlize . }}
+            <span class="tag"><a href="/changes/{{ $cat }}/">{{ . }}</a></span>
+        {{- end }}
+    {{- end }}
+    <a class="repo" href="https://github.com/{{ .Params.changes_entry.repository }}" target="_blank" rel="noopener noreferer" title="Link to the source repository"><i class="fa fa-github"></i>{{  replace .Params.changes_entry.repository "giantswarm/" "" }}</a>
+    <a class="release" href="{{ .Params.changes_entry.url }}" target="_blank" rel="noopener noreferer" title="Details on this release"><i class="fa fa-version-tag"></i>{{ .Params.changes_entry.version_tag }}</a>
+</div>

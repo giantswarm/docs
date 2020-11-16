@@ -277,11 +277,21 @@ $(document).ready(function(){
   var ch = new ColorHash({lightness: 0.7});
   var colorHashes = {};
   $('.changelog .tag').each(function(idx, i){
-    var text = i.innerHTML;
+    var el = $(i);
+    var text = el.text().trim();
     if (!colorHashes[text]) {
-      colorHashes[text] = ch.hex(text);
+      console.log(text);
+      if (text === 'AWS Releases') {
+        colorHashes[text] = '#ff9900';
+      } else if (text === 'Azure Releases') {
+        colorHashes[text] = '#1773bd';
+      } else if (text === 'KVM Releases') {
+        colorHashes[text] = '#cccccc';
+      } else {
+        colorHashes[text] = ch.hex(text);
+      }
     }
-    $(i).css({'background-color': colorHashes[text]});
+    el.css({'background-color': colorHashes[text]});
   });
 
   // end of jQuery $(document).ready

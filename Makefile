@@ -14,7 +14,8 @@ vendor:
 	# Vendor other external repositories as defined in 'external-repositories.txt'
 	./vendorize-external-repositories.sh
 
-changelog:
+# Aggregate changelog entries from various repositories into our Changes section.
+changes:
 	@test -f .github-token || (echo "Please place a GitHub token in path .github-token" && exit 1)
 	docker build scripts/aggregate-changelogs -t aggregate-changelogs
 	docker run --rm \

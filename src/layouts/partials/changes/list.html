@@ -1,0 +1,17 @@
+<h1 id="title">{{ .Title }}</h1>
+{{- with .Description }}
+<p class="intro">{{ . }}</p>
+{{- end }}
+
+<ul class="changelog">
+    {{- range .Paginator.Pages }}
+    <li class="changelog">
+        {{ partial "changes/meta.html" . }}
+        {{- with .Content }}
+        <div class="content">{{ . }}</div>
+        {{- end }}
+    </li>
+    {{ end }}
+</ul>
+
+{{ template "_internal/pagination.html" . }}

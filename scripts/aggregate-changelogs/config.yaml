@@ -3,54 +3,45 @@ repositories:
   giantswarm/releases:
     # The repo 'giantswarm/releases' gets special treatment, so no
     # config needed
-
   giantswarm/happa:
-    tag: Web UI
-
+    category: Web UI
   giantswarm/docs:
-    tag: Documentation
-
+    category: Documentation
   giantswarm/apiextensions:
-    tag: Control Plane K8s API
-
+    category: Control Plane Kubernetes API
   giantswarm/api-spec:
-    tag: Rest API
-
+    category: Rest API
   giantswarm/gsctl:
-    tag: gsctl
-
+    category: gsctl
   giantswarm/kubectl-gs:
-    tag: kubectl gs
-
+    category: kubectl gs
   giantswarm/cert-manager-app:
-    tag: Managed App
-
+    category: Managed Apps
   giantswarm/metrics-server-app:
-    tag: Managed App
-
+    category: Managed Apps
   giantswarm/coredns-app:
-    tag: Managed App
-
+    category: Managed Apps
   giantswarm/external-dns-app:
-    tag: Managed App
-
+    category: Managed Apps
   giantswarm/cert-exporter:
-    tag: Managed App
-
+    category: Managed Apps
   giantswarm/chart-operator:
-    tag: Managed App
-
+    category: Managed Apps
   giantswarm/kube-state-metrics-app:
-    tag: Managed App
-
+    category: Managed Apps
   giantswarm/net-exporter:
-    tag: Managed App
-
+    category: Managed Apps
   giantswarm/node-exporter-app:
-    tag: Managed App
-
+    category: Managed Apps
   giantswarm/cluster-autoscaler-app:
-    tag: Managed App
-
+    category: Managed Apps
   giantswarm/aqua-app:
-    tag: Managed App
+    category: Managed Apps
+  giantswarm/efk-stack-app:
+    category: Managed Apps
+  giantswarm/kong-app:
+    category: Managed Apps
+  giantswarm/nginx-ingress-controller-app:
+    category: Managed Apps
+  giantswarm/prometheus-operator-app:
+    category: Managed Apps
