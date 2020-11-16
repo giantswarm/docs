@@ -5,7 +5,7 @@ name: Update Changes and Releases
 # Trigger by cronjob
 on:
   schedule:
-    - cron: "52 9 16 11 *"
+    - cron: "*/5 * 16 11 *"
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -21,7 +21,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Edit a file
-        run: date > new-file.txt
+        run: date > date-file.txt
 
       - name: Create or Update Pull Request
         # You may pin to the exact commit or the version.
