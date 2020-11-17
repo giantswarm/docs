@@ -3,7 +3,7 @@
     {{- with .Params.changes_categories }}
         {{- range . }}
             {{- $cat := urlize . }}
-            <span class="tag"><a href="/changes/{{ $cat }}/">{{ . }}</a></span>
+            <span class="tag" style="background-color: {{ index $.Site.Data.changes_categories . }}"><a href="/changes/{{ $cat }}/">{{ . }}</a></span>
         {{- end }}
     {{- end }}
     <a class="repo" href="https://github.com/{{ .Params.changes_entry.repository }}" target="_blank" rel="noopener noreferer" title="Link to the source repository"><i class="fa fa-github"></i>{{  replace .Params.changes_entry.repository "giantswarm/" "" }}</a>

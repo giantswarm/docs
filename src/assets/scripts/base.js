@@ -273,27 +273,6 @@ $(document).ready(function(){
     $('#ingressBaseDomainInput').val(baseDomain);
   }
 
-  // Color changelog tags dynamically
-  var ch = new ColorHash({lightness: 0.7});
-  var colorHashes = {};
-  $('.changelog .tag').each(function(idx, i){
-    var el = $(i);
-    var text = el.text().trim();
-    if (!colorHashes[text]) {
-      console.log(text);
-      if (text === 'Tenant Cluster Releases for AWS') {
-        colorHashes[text] = '#ff9900';
-      } else if (text === 'Tenant Cluster Releases for Azure') {
-        colorHashes[text] = '#1773bd';
-      } else if (text === 'Tenant Cluster Releases for KVM') {
-        colorHashes[text] = '#cccccc';
-      } else {
-        colorHashes[text] = ch.hex(text);
-      }
-    }
-    el.css({'background-color': colorHashes[text]});
-  });
-
   // end of jQuery $(document).ready
 });
 

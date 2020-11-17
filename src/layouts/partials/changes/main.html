@@ -11,7 +11,7 @@
       {{- else }}
         <div>
         {{- range .Site.Taxonomies.changes_categories }}
-          <span class="tag"><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></span>
+          <span class="tag" style="background-color: {{ index $.Site.Data.changes_categories .Page.Title }}"><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></span>
         {{- end }}
         </div>
       {{- end }}
