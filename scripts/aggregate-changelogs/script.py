@@ -281,11 +281,17 @@ if __name__ == "__main__":
                 
                 for n in range(len(releases)):
                     v = normalize_version(releases[n]['version_tag'])
-                    if v in changelog_entries:
+
+                    if v not in changelog_entries:
+                        print("WARNING: %s version %s not found in CHANGELOG.md" % (repo_short, v))
+                        continue
+                    
+                    releases[n]['url'] = changelog_entries[v]['url']
+
+                    if changelog_entries[v]['body'].strip() != "":
                         releases[n]['body'] = changelog_entries[v]['body']
-                        releases[n]['url'] = changelog_entries[v]['url']
                     else:
-                        print("WARNING: %s version %s not found in changelog" % (repo_short, v))
+                        print("WARNING: %s version %s entry in CHANGELOG.md is empty" % (repo_short, v))
 
         for release in releases:
             generate_release_file(repo_short, repo_conf, release)
