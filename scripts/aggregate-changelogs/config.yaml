@@ -16,6 +16,10 @@ repositories:
     category: Control Plane Kubernetes API
   giantswarm/aqua-app:
     category: Managed Apps
+  giantswarm/aws-admission-controller:
+    category: Control Plane Kubernetes API
+  giantswarm/azure-admission-controller:
+    category: Control Plane Kubernetes API
   giantswarm/cert-exporter:
     category: Managed Apps
   giantswarm/cert-manager-app:
