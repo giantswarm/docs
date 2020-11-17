@@ -20,10 +20,11 @@ changes:
 	docker run --rm \
 	  --volume=${PWD}/scripts/aggregate-changelogs:/workdir:ro \
 	  --volume=${PWD}/src/content/changes:/output:rw \
+	  --volume=${PWD}/src/data:/data:rw \
 	  -w /workdir \
 	  --env GITHUB_TOKEN \
 	  aggregate-changelogs \
-	  /workdir/script.py /workdir/config.yaml /output
+	  /workdir/script.py /workdir/config.yaml /output /data
 
 build: vendor
 	# check dependencies
