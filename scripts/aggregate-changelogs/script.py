@@ -185,13 +185,9 @@ def generate_release_file(repo_shortname, repo_config, release):
     """
     Write a release file with YAML front matter and Markdown body
     """
-    org, slug = repo_shortname.split("/", maxsplit=1)
-
-    filepath = path.join(CONTENT_PATH, slug, f"{release['version_tag']}.md")
-    if repo_shortname == RELEASES_REPO:
-        filepath = path.join(CONTENT_PATH, slug, f"{release['provider']}-{release['version_tag']}.md")
-
     version = normalize_version(release['version_tag'])
+
+    org, repo_id = repo_shortname.split("/", maxsplit=1)
     
     if repo_shortname == RELEASES_REPO:
         provider_label = release['provider'].upper()
@@ -200,10 +196,18 @@ def generate_release_file(repo_shortname, repo_config, release):
         categories = [f'Tenant Cluster Releases for {provider_label}']
         title = f'Tenant Cluster Release v{version} for {provider_label}'
         description = f'Release notes for {provider_label} release v{version}, published on {release["date"].strftime("%d %B %Y, %H:%M")}'
+        filename = f"{release['provider']}-{release['version_tag']}.md"
+        category_path = f"tenant-cluster-releases-{provider_label.lower()}"
     else:
         categories = [repo_config['category']]
-        title = f'{slug} Release v{version}'
+        title = f'{repo_id} Release v{version}'
         description = f'Changelog entry for {release["repository"]} version {version}, published on {release["date"].strftime("%d %B %Y, %H:%M")}'
+        filename = f"{release['version_tag']}.md"
+        category_path = repo_config['category'].lower().replace(" ", "-")
+    
+    filepath = path.join(CONTENT_PATH, category_path, repo_id, filename)
+
+
 
     frontmatter = {
         'date': release['date'].isoformat(),
