@@ -62,6 +62,7 @@ lint:
 	  $(MARKDOWNLINT_IMAGE) \
 	    --config .markdownlint.yaml \
 	    --ignore README.md \
+		--ignore ./src/content/changes \
 		./src
 
 docker-build: build
