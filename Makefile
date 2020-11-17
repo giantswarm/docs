@@ -12,6 +12,19 @@ vendor:
 	# Vendor other external repositories as defined in 'external-repositories.txt'
 	./vendorize-external-repositories.sh
 
+# Aggregate changelog entries from various repositories into our Changes section.
+changes:
+	@if [ -z "${GITHUB_TOKEN}" ]; then echo "Please set the GITHUB_TOKEN environment variable"; exit 1; fi
+
+	docker build scripts/aggregate-changelogs -t aggregate-changelogs
+	docker run --rm \
+	  --volume=${PWD}/scripts/aggregate-changelogs:/workdir:ro \
+	  --volume=${PWD}/src/content/changes:/output:rw \
+	  --volume=${PWD}/src/data:/data:rw \
+	  -w /workdir \
+	  --env GITHUB_TOKEN \
+	  aggregate-changelogs \
+	  /workdir/script.py /workdir/config.yaml /output /data
 
 build: vendor
 	# check dependencies
@@ -49,6 +62,7 @@ lint:
 	  $(MARKDOWNLINT_IMAGE) \
 	    --config .markdownlint.yaml \
 	    --ignore README.md \
+		--ignore ./src/content/changes \
 		./src
 
 docker-build: build

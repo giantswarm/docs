@@ -273,9 +273,10 @@ $(document).ready(function(){
     $('#ingressBaseDomainInput').val(baseDomain);
   }
 
-
+  // end of jQuery $(document).ready
 });
 
+// Add TOC sidebar behaviour
 window.addEventListener("load", function() {
   if (!window.GSAside) return;
 
