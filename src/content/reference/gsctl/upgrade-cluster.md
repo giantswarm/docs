@@ -28,9 +28,18 @@ To prevent the interactive confirmation, you can use the `--force` flag. This wi
 gsctl upgrade cluster f01r4 --force
 ```
 
+If you want to upgrade to a specific version, you can use the `--release` flag:
+
+```nohighlight
+gsctl upgrade cluster f01r4 --release 13.0.0
+```
+
+You can list available releases with `gsctl list releases`.
+
 ## Related
 
 - [Upgrade cluster general documentation](/reference/cluster-upgrades/)
 - [`gsctl create cluster`](/reference/gsctl/create-cluster/): Reference for creating a cluster
 - [`gsctl delete cluster`](/reference/gsctl/delete-cluster/): Reference for deleting a cluster
+- [`gsctl list releases`](/reference/gsctl/list-releases/): Reference for listing available releases
 - [API: Upgrade cluster](/api/#operation/upgradeCluster)
