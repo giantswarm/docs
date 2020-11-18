@@ -191,7 +191,7 @@ def link_pull_requests(mkdwn, repo_shortname):
         result = f'{match.group(1)}[{match.group(2)}](https://github.com/{repo_shortname}/pull/{match.group(3)})'
         return result
     
-    result = re.sub(r'([^\[])(#([0-9]+))', replace_func, mkdwn)
+    result = re.sub(r'([^\[a-z0-9])(#([0-9]+))', replace_func, mkdwn)
     return result
 
 def generate_release_file(repo_shortname, repo_config, release):
