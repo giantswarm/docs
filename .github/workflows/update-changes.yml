@@ -1,0 +1,43 @@
+# This workflow, when done, is supposed to automatically update the
+# Changes and Releases section (/changes/).
+name: Update Changes and Releases
+
+# Trigger by cronjob
+on:
+  schedule:
+    # Every 20 minutes on Monday to Friday, between 7:00 and 18:00 UTC
+    - cron: "13,33,53 7-18 * * MON-FRI"
+
+jobs:
+  update-changes:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Aggregate releases
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        run: make changes
+
+      - name: Create or update pull request
+        uses: gr2m/create-or-update-pull-request-action@v1.3.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        with:
+          # Pull Request title
+          title: Automated update of Changes and Releases
+          # Pull Request body
+          body: |
+            This PR has been created automatically by the 'Update Changes and Releases' Github workflow.
+
+            If you see relevant additions in the 'Files' tab, feel free to merge it into master any time
+            without review and then create a docs release.
+
+            Non-relevant additions would be, for example, a docs release that only updates the Changelog
+            section.
+          branch: "automated-update-for-changes"
+

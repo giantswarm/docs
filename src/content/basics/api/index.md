@@ -3,11 +3,14 @@ title: API Access to Giant Swarm Resources
 description: An overview of the APIs that provide you with programmatic access to
   resources like your tenant clusters in a Giant Swarm installation. Namely the Rest
   API and the Control Plane Kubernetes API.
-date: 2020-05-27
+date: 2020-10-02
 weight: 75
 type: page
 categories: ["basics"]
 last-review-date:
+user_questions:
+  - How can I manage Giant Swarm resources programmatically?
+  - How can I manage clusters via an API?
 ---
 
 # API Access to Giant Swarm Resources
@@ -50,7 +53,7 @@ Currently we provide read-only access by default. As we are currently working on
 
 We recommend using `kubectl` to navigate the resources present on the Control Plane Kubernetes API.
 
-To facilitate this we've been working on a proof of concept kubectl plugin called [`kubectl-gs`](https://github.com/giantswarm/kubectl-gs).
+To facilitate this we provide a kubectl plugin called [`kubectl gs`](/reference/kubectl-gs/).
 Our goal is to have the same great user experience you've become accustomed from `gsctl` and `happa`.
 
 Besides general Kubernetes know-how this will require only a bit of structural knowledge:
@@ -63,9 +66,9 @@ We create one namespace for each tenant cluster, where the namespace name is equ
 
 Following are some resources that should help you:
 
-- The guide [Creating tenant clusters via the Control Plane Kubernetes API](/guides/creating-clusters-via-crs-on-aws/) explains step by step how you can create a cluster and node pools via the Control Plane Kubernetes API. Here you learn about all the custom resources a cluster comprises.
+- The guide [Creating tenant clusters via the Control Plane Kubernetes API](/guides/creating-clusters-via-crs/) explains step by step how you can create a cluster and node pools via the Control Plane Kubernetes API. Here you learn about all the custom resources a cluster comprises.
 - The [App Platform](/basics/app-platform/) introduction outlines the several custom resources involved when managing app catalogs and apps.
-- Our [Control Plane Kubernetes API Reference](https://docs.giantswarm.io/reference/cp-k8s-api/) provides detailed documentation on all the custom resources we use with the various providers and their versions and schema.
+- Our [Control Plane Kubernetes API Reference](/reference/cp-k8s-api/) provides detailed documentation on all the custom resources we use with the various providers and their versions and schema.
 
 ### Feedback is welcome
 

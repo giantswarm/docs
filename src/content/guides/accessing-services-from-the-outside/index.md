@@ -5,6 +5,12 @@ date: 2020-04-16
 type: page
 weight: 50
 tags: ["tutorial"]
+user_questions:
+  - How can I connect to a Pod running in a cluster?
+  - How can I expose a TCP port of a Pod to the internet?
+  - How can I expose a service to the internet?
+  - How to configure the host name in Ingress?
+  - What is the right URL format for the Kubernetes API proxy?
 ---
 
 # Accessing Pods and Services from the Outside
@@ -62,7 +68,7 @@ You can expose Services publicly by setting up a simple Ingress. You can do this
 Let's look at the following YAML, which you can use as a template for your Ingress manifest:
 
 ```yaml
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: INGRESS_NAME

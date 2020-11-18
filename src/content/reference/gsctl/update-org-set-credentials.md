@@ -72,4 +72,4 @@ The flags mean:
 - [Basics and Concepts: Multi-Account Support](/basics/multi-account/)
 - [Guides: Prepare an AWS account to run Giant Swarm tenant clusters](/guides/prepare-aws-account-for-tenant-clusters/)
 - [Guides: Prepare an Azure subscription to run Giant Swarm tenant clusters](/guides/prepare-azure-subscription-for-tenant-clusters/)
-- [API: Set credentials](https://docs.giantswarm.io/api/#operation/addCredentials)
+- [API: Set credentials](/api/#operation/addCredentials)

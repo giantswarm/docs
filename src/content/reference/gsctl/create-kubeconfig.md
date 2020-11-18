@@ -4,6 +4,9 @@ description: "The 'gsctl create kubeconfig' command creates a key pair and adds 
 date: "2020-04-16"
 type: page
 weight: 30
+user_questions:
+  - How can I add a cluster key pair to my kubectl config file?
+  - How to gain access to a cluster using gsctl?
 ---
 
 # `gsctl create kubeconfig`
@@ -114,6 +117,7 @@ gsctl create kubeconfig --cluster w6wn8 \
   Note that only the characters `a-z`, `0-9` and `-` can be used.
 - `--certificate-organizations`: A comma separated list of organizations for the
   issued certificate's 'O' fields.
+- `--output`: By specifying this flag with value `json`, the output can be printed in JSON format. This is convenient for use in automation. See [JSON output](#json-output) for examples.
 
 ## Key pair expiry {#expiry}
 
@@ -161,8 +165,43 @@ the certificates that you issue by applying
 [RBAC authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
 resources to your cluster.
 
+## JSON output {#json-output}
+
+Passing flag `--output` with value `json` to `gsctl create kubeconfig` changes the printed output to be formatted as a JSON object.
+
+**Example success output:**
+
+```nohighlight
+{
+  "result": "ok",
+  "kubeconfig": "apiVersion: v1\nkind: Config\nclusters:\n- name: giantswarm-f01r4\n  cluster: ..."
+}
+```
+
+**Example error output:**
+
+```nohighlight
+{
+  "result": "error",
+  "error": {
+    "kind": "unknown",
+    "annotation": "Unauthorized",
+    "stack": [
+      {
+        "file": "/go/src/giantswarm/gsctl/commands/create/kubeconfig/command.go",
+        "line": 466
+      },
+      {
+        "file": "/go/src/giantswarm/gsctl/commands/create/kubeconfig/command.go",
+        "line": 489
+      }
+    ]
+  }
+}
+```
+
 ## Related
 
 - [`gsctl create keypair`](/reference/gsctl/create-keypair/): Create and download a key pair
-- [kubectl reference](https://kubernetes.io/docs/user-guide/kubectl-overview/)
+- [kubectl reference](https://kubernetes.io/docs/reference/kubectl/overview/)
 - [API: Create key pair](/api/#operation/addKeyPair)

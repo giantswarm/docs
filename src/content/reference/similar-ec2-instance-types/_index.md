@@ -4,6 +4,8 @@ description: Here you find our reference regarding what is considered a similar 
 date: 2020-04-24
 layout: subsection
 weight: 500
+user_questions:
+  - Which EC2 instance types are used when I activate the use of similar instance types for a node pool?
 ---
 
 # Similar EC2 Instance Types
