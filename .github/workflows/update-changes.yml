@@ -24,7 +24,7 @@ jobs:
         run: make changes
 
       - name: Create or update pull request
-        uses: gr2m/create-or-update-pull-request-action@v1.3.0
+        uses: gr2m/create-or-update-pull-request-action@v1.3.1
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
