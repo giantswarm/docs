@@ -63,6 +63,12 @@ According to our release versioning, three different levels of upgrades can occu
 
 When a **new major Giant Swarm release** becomes available, we inform you, but leave scheduling of the upgrade to you. This gives you the control to decide if and when it is time for you to upgrade, potentially updating workloads first. These upgrades are also accompanied or even triggered by Giant Swarm staff, to ensure we have a close eye on the upgrade process and the uptime of your workloads.
 
+Once we publish a new major release, we deprecate the oldest major release.
+This means that new clusters with deprecated releases can only be created using `gsctl`.
+Existing clusters, however, are not affected.
+
+Creating clusters with deprecated releases is generally not recommended. Testing tenant cluster upgrades in a separate cluster should be the only use case.
+
 ### Skipping releases
 
 We **don't support omitting any Major version** when upgrading from one release to another.
