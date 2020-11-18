@@ -11,8 +11,6 @@ from github import Github
 from github.GithubException import UnknownObjectException
 from yaml import load, dump, CLoader, CDumper
 
-print("script.py arguments: %s" % sys.argv)
-
 CONFIG_PATH = sys.argv[1]
 
 # Target path for generated content
@@ -42,7 +40,7 @@ def get_releases(client, repo_shortname):
             'repository': repo_shortname,
             'version_tag': release.tag_name,
             'date': release.published_at,
-            'body': release.body,
+            'body': link_pull_requests(release.body, repo_shortname),
             'url': release.html_url,
         }
 
@@ -79,11 +77,13 @@ def parse_changelog(body, repo_shortname):
         version = f'{match.group(1)}.{match.group(2)}.{match.group(3)}'
 
         anchor = lines[0].replace(' ', '-').replace('.', '').replace('[', '').replace(']', '')
-
         url = f'https://github.com/{repo_shortname}/blob/master/CHANGELOG.md#{anchor}'
 
+        # Omit first line and sanitize
+        body = '\n'.join(lines[1:]).strip()
+
         release = {
-            'body': '\n'.join(lines[1:]).strip(),
+            'body': body,
             'url': url,
         }
 
@@ -180,6 +180,19 @@ def normalize_version(v):
     if v.startswith('v'):
         return v[1:]
     return v
+
+def link_pull_requests(mkdwn, repo_shortname):
+    """
+    Links pull request mentions like #123 in a markdown string
+
+    repo_shortname is the repository in org/repo format.
+    """
+    def replace_func(match):
+        result = f'{match.group(1)}[{match.group(2)}](https://github.com/{repo_shortname}/pull/{match.group(3)})'
+        return result
+    
+    result = re.sub(r'([^\[])(#([0-9]+))', replace_func, mkdwn)
+    return result
 
 def generate_release_file(repo_shortname, repo_config, release):
     """
