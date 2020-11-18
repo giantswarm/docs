@@ -76,7 +76,7 @@ Keep an eye on API versions of kubernetes resources. Examples and references sho
 - if possible, use the latest API versions supported by kubernetes
 - if different kubernetes versions require different API versions, we differentiate which kubernetes version requires which API version by examples.
 
-An example for this would be the deprecation of the deprecation of the API version of Ingress resources from `networking.k8s.io/v1beta1` to `networking.k8s.io/v1` in kubernetes 1.19
+An example for this would be the deprecation of the API version of Ingress resources from `networking.k8s.io/v1beta1` to `networking.k8s.io/v1` in kubernetes 1.19
 
 ## Editing content
 
