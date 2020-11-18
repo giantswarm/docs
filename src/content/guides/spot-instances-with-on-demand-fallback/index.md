@@ -1,7 +1,7 @@
 ---
 title: Using on-demand instances as fall-back when spot instances are unavailable on AWS
 description: When using spot instances in a node pool on AWS, it can happen that the node pool cannot be scaled up as not enough spot instances are available. This guide shows you how to configure cluster-autoscaler in a way to provide on-demand instances as a back-up automatically.
-date: "2020-07-01"
+date: 2020-11-18
 type: page
 weight: 120
 tags: ["tutorial"]
@@ -11,7 +11,7 @@ user_questions:
 
 # Using on-demand instances as fall-back when spot instances are unavailable
 
-As of release v{{% first_aws_spotinstances_version %}} on AWS, node pools can use [spot instances](/basics/nodepools/#on-demand-spot). Users can select for each node pool which percentage of nodes should be covered by spot instances and by on-demand instances respectively. And users can define a base amount of on-demand instances that will be used, to ensure at least a certain amount of worker nodes are available at any time.
+As of tenant cluster release v{{% first_aws_spotinstances_version %}} for AWS, node pools can use [spot instances](/basics/nodepools/#on-demand-spot). Users can select for each node pool which percentage of nodes should be covered by spot instances and by on-demand instances respectively. And users can define a base amount of on-demand instances that will be used, to ensure at least a certain amount of worker nodes are available at any time.
 
 However, it is still possible that the node pool is in need of more worker nodes and there are just no spot instances available matching the request, based on the availability zone and the instance type(s). In this case the node pool cannot be scaled up. As a result, workloads will likely remain unscheduled.
 
@@ -22,7 +22,7 @@ To ensure enough capacity in a cluster, this guide presents a solution where
 
 Credit where credit is due: this solution has been proposed [in a blog post by Nir Forer](https://blog.doit-intl.com/running-eks-workloads-on-spot-instances-with-on-demand-instances-fallback-14bef39ce689). We adapt it here to match exactly the situation of Giant Swarm tenant clusters on AWS.
 
-**Note:** This guide has been written for release v11.4.0 with [cluster-autoscaler](https://github.com/kubernetes/autoscaler) v1.16.5, provided via our [cluster-autoscaler-app](https://github.com/giantswarm/cluster-autoscaler-app) version [v1.16.0](https://github.com/giantswarm/cluster-autoscaler-app/releases/tag/v1.16.0).
+**Note:** This guide has been written for tenant cluster release v11.4.0 with [cluster-autoscaler](https://github.com/kubernetes/autoscaler) v1.16.5, provided via our [cluster-autoscaler-app](https://github.com/giantswarm/cluster-autoscaler-app) version [v1.16.0](https://github.com/giantswarm/cluster-autoscaler-app/releases/tag/v1.16.0).
 
 ## Cluster set-up
 

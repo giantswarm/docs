@@ -1,7 +1,7 @@
 ---
 title: Cluster Definition Reference
 description: Complete documentation of the Giant Swarm cluster definition YAML format, compatible with API v4 and v5.
-date: 2020-06-16
+date: 2020-11-18
 layout: subsection
 weight: 100
 user_questions:
@@ -25,11 +25,11 @@ creation. As it's the case within the API, the YAML definition comes in two diff
 
 - [**v4**](#v4): For a long time, this has been the only version around. As of now, this version is required
 to create clusters on bare metal (**KVM**). It is also needed for cluster creation on
-AWS using a release prior to {{% first_aws_nodepools_version %}}, or on Azure using a release prior to {{% first_azure_nodepools_version %}}, basically to create a cluster without
+AWS using a tenant cluster release prior to v{{% first_aws_nodepools_version %}}, or on Azure using a tenant cluster release prior to v{{% first_azure_nodepools_version %}}, basically to create a cluster without
 support for node pools.
 - [**v5**](#v5): This version has been introduced in October 2019 to support clusters with
-[node pools](/basics/nodepools/). The feature is available on AWS starting with release
-{{% first_aws_nodepools_version %}}, or on Azure starting with release {{% first_azure_nodepools_version %}};
+[node pools](/basics/nodepools/). The feature is available on AWS starting with tenant cluster release
+v{{% first_aws_nodepools_version %}}, or on Azure starting with tenant cluster release v{{% first_azure_nodepools_version %}};
 
 As it's the case with the Giant Swarm API, cluster creation using the YAML definition only requires you
 to specify the details you need to deviate from defaults. For every setting not contained in the
