@@ -5,7 +5,7 @@
       {{- if .Data.Term }}
         {{- $cat := urlize .Data.Term }}
         <div class="tags">
-        <span class="tag"><a href="/changes/{{ $cat }}/">{{ .Data.Term }}</a></span>
+        <span class="tag" style="background-color: {{ index $.Site.Data.changes_categories .Page.Title }}"><a href="/changes/{{ $cat }}/">{{ .Data.Term }}</a></span>
         </div>
         <a class="reset" href="/changes/"><i class="fa fa-close-circle"></i>Back to all categories</a>
       {{- else }}
