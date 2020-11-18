@@ -29,7 +29,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
           # Pull Request title
-          title: Testing automated PRs
+          title: Automated update of Changes and Releases
           # Pull Request body
           body: |
             This PR has been created automatically by the 'Update Changes and Releases' Github workflow.
