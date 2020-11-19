@@ -11,9 +11,11 @@ jobs:
   merge-pr:
     runs-on: ubuntu-latest
     steps:
+
       - name: Find that the PR has been approved
         if: github.event.review.state == 'approved'
         run: echo "PR approved!"
+
       - name: Merge PR
         uses: KeisukeYamashita/auto-pull-request-merge@v1.0.1
         with:
@@ -24,3 +26,8 @@ jobs:
           intervalSeconds: 2
           timeoutSeconds: 60
           token: ${{ secrets.TOKEN }}
+
+      - name: Delete branch
+        uses: dawidd6/action-delete-branch@v3.0.2
+        branches: "automated-update-for-changes"
+        github_token: ${{ secrets.TOKEN }}
