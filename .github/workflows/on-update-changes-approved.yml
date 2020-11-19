@@ -15,12 +15,12 @@ jobs:
         if: github.event.review.state == 'approved'
         run: echo "PR approved!"
       - name: Merge PR
-        uses: KeisukeYamashita/auto-pull-request-merge@v1
+        uses: KeisukeYamashita/auto-pull-request-merge@v1.0.1
         with:
           checkStatus: true
-          comment: "Autoamtically merged after approval"
+          comment: "Automatically merging after approval"
           failStep: true
-          strategy: squash
+          strategy: "squash"
           intervalSeconds: 2
           timeoutSeconds: 60
           token: ${{ secrets.TOKEN }}
