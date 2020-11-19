@@ -9,11 +9,8 @@ jobs:
   check-links:
     runs-on: ubuntu-latest
     steps:
-      - name: Install docker
-        run: sudo apt-get update && sudo apt-get install moby-engine moby-cli
-
       - name: Pull images
-        run: docker pull linkchecker/linkchecker > /dev/null
+        run: docker pull linkchecker/linkchecker
 
       - name: Check links
         run: |
@@ -21,7 +18,7 @@ jobs:
             linkchecker/linkchecker \
               https://docs.giantswarm.io/ \
               --check-extern \
-              -t 2 \
+              -t 1 \
               --ignore-url="^https://github.com/giantswarm/docs/.*" \
               --ignore-url="^https://.*example\.com/.*" \
               --ignore-url="^https://my-org\.github\.com/.*" \
