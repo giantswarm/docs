@@ -188,15 +188,15 @@ worker nodes.
 - `default_cluster_size_worker_nodes`: The default number of worker nodes we
 use when a cluster is created without specifying a number.
 
-- `first_aws_autoscaling_version`: The release version that introduced
+- `first_aws_autoscaling_version`: The tenant cluster release version that introduced
 autoscaling for AWS.
 
-- `first_aws_nodepools_version`: The release version that introduced
+- `first_aws_nodepools_version`: The tenant cluster release version that introduced
 nodepools for AWS.
 
-- `first_azure_nodepools_version`: The release version that introduced nodepools for Azure.
+- `first_azure_nodepools_version`: The tenant cluster release version that introduced nodepools for Azure.
 
-- `first_spotinstances_version`: The release version that introduced
+- `first_spotinstances_version`: The tenant cluster release version that introduced
 spotinstances for AWS.
 
 - `minimal_supported_cluster_size_worker_nodes`: The minimum number of worker
