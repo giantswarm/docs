@@ -99,7 +99,7 @@ However, a user with access to the Kubernetes API does not gain any permisssions
 
 This enables the customer to individually set up their user management according to the needs of their organization. The configuration for this can be kept in version control and needs to be done by an initial cluster admin user, which can be created by the Giant Swarm API user mentioned above.
 
-The Giant Swarm opertaional layers are the means which we use to keep a separation of concerns between different users of the Giant Swarm platform. This reducess burden from an operational perspective as well as enhancing security.
+The Giant Swarm operational layers are the means which we use to keep a separation of concerns between different users of the Giant Swarm platform. This reduces burden from an operational perspective as well as enhancing security.
 
 ## Further reading
 
