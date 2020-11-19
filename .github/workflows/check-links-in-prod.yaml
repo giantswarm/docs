@@ -9,13 +9,15 @@ jobs:
   check-links:
     runs-on: ubuntu-latest
     steps:
+      - name: Install docker
+        run: sudo apt-get install docker-ce
 
       - name: Pull images
         run: docker pull linkchecker/linkchecker > /dev/null
 
       - name: Check links
         run: |
-          docker run --rm -ti --name linkchecker \
+          docker run --rm --name linkchecker \
             linkchecker/linkchecker \
               https://docs.giantswarm.io/ \
               --check-extern \
