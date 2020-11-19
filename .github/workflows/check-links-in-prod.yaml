@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install docker
-        run: sudo apt-get install docker-ce
+        run: sudo apt-get update && sudo apt-get install moby-engine moby-cli
 
       - name: Pull images
         run: docker pull linkchecker/linkchecker > /dev/null
