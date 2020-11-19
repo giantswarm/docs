@@ -1,0 +1,26 @@
+# This workflow verifies hyperlinks using the deployed
+# docs site. It has to be triggered manually.
+name: Check links
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Pull images
+        run: docker pull linkchecker/linkchecker > /dev/null
+
+      - name: Check links
+        run: |
+          docker run --rm -ti --name linkchecker \
+            linkchecker/linkchecker \
+              https://docs.giantswarm.io/ \
+              --check-extern \
+              -t 2 \
+              --ignore-url="^https://github.com/giantswarm/docs/.*" \
+              --ignore-url="^https://.*example\.com/.*" \
+              --ignore-url="^https://my-org\.github\.com/.*" \
+              --ignore-url=".*gigantic\.io.*"
