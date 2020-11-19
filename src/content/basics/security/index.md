@@ -1,11 +1,10 @@
 ---
 title: Security
 description: Documentation of the Giant Swarm cluster security
-date: 2020-10-13
 type: page
 weight: 20
 categories: ["basics"]
-last-review-date: 2020-05-18
+last_review_date: 2020-05-18
 ---
 
 # Security

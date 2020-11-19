@@ -1,7 +1,6 @@
 ---
 title: "gsctl Command Reference: create keypair"
 description: "The 'gsctl create keypair' command creates a key pair and stores the related files in your certificate folder."
-date: "2020-04-16"
 type: page
 weight: 32
 ---

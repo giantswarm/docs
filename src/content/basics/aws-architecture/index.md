@@ -1,11 +1,10 @@
 ---
 title: The Giant Swarm AWS Platform
 description: Description of the Giant Swarm platform, how it looks like and which features offers
-date: 2020-06-15
 weight: 50
 type: page
 categories: ["basics"]
-last-review-date: 2020-10-28
+last_review_date: 2020-10-28
 user_questions:
   - What areas are covered in the Giant Swarm AWS platform?
   - Do I need a control plane per AWS region?

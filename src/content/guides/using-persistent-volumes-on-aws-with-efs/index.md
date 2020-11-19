@@ -1,7 +1,6 @@
 ---
 title: "Using Persistent Volumes on AWS with EFS"
 description: "Tutorial on how to use dynamically provisioned Persistent Volumes on a cluster running on Amazon Web Services with EFS"
-date: "2020-02-06"
 type: page
 weight: 50
 tags: ["tutorial"]

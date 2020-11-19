@@ -1,7 +1,6 @@
 ---
 title: Tuned kernel settings
 description: Complete list of the tuned CoreOS kernel settings for Giant Swarm clusters.
-date: 2020-02-26
 layout: subsection
 weight: 100
 user_questions:

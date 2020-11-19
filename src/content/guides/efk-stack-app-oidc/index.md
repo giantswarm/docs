@@ -1,7 +1,6 @@
 ---
 title: Configure oidc for efk-stack-app
 description: Configure authentication with kibana and the efk-stack-app through OIDC
-date: 2020-10-30
 type: page
 weight: 50
 tags: ["recipe"]

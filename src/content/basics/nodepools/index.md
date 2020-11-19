@@ -1,7 +1,6 @@
 ---
 title: Node Pools
 description: A general description of node pools as a concept, it's benefits, and some details you should be aware of.
-date: 2020-11-18
 weight: 130
 type: page
 categories: ["basics"]

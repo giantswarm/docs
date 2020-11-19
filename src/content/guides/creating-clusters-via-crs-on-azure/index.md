@@ -1,7 +1,6 @@
 ---
 title: Creating tenant clusters on Azure via Control Plane Kubernetes API
 description: This guide will walk you through the process of tenant cluster creation via Control Plane Kubernetes on Azure.
-date: 2020-11-18
 type: page
 weight: 100
 tags: ["tutorial"]

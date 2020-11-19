@@ -1,7 +1,6 @@
 ---
 title: "gsctl Command Reference: update cluster"
 description: The 'gsctl update cluster' command allows the modification of the name of a cluster and its labels.
-date: 2020-11-18
 weight: 44
 ---
 
