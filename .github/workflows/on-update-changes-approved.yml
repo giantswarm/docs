@@ -1,15 +1,24 @@
-name: Merge Update Changes and Releases pull request
+name: Merge Update Changes and Releases PR
 
 on:
   pull_request_review:
-    types: [submitted]
-    branches: ['automated-update-for-changes']
+    types:
+      - submitted
+    branches:
+      - "automated-update-for-changes"
 
 jobs:
   merge-pr:
     runs-on: ubuntu-latest
     steps:
-      #- uses: actions/checkout@v2
       - name: Find that the PR has been approved
         if: github.event.review.state == 'approved'
         run: echo "PR approved!"
+      - name: PR Merge Bot
+        uses: squalrus/merge-bot@v0.4.2
+        with:
+          labels: false
+          reviewers: true
+          checks_enabled: true
+          method: squash
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
