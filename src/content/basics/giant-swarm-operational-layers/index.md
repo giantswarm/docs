@@ -5,7 +5,7 @@ date: 2020-11-18
 type: page
 weight: 80
 categories: ["basics"]
-last-review-date: 2020-11-18
+last_review_date: 2020-11-18
 user_questions:
   - What are the Giant Swarm operational layers?
   - Why does Giant Swarm use several operational layers?
