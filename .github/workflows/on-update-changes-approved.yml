@@ -1,0 +1,15 @@
+name: Merge Update Changes and Releases pull request
+
+on:
+  pull_request_review:
+    types: [submitted]
+    branches: ['automated-update-for-changes']
+
+jobs:
+  merge-pr:
+    runs-on: ubuntu-latest
+    steps:
+      #- uses: actions/checkout@v2
+      - name: Find that the PR has been approved
+        if: github.event.review.state == 'approved'
+        run: echo "PR approved!"
