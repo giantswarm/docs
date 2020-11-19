@@ -102,6 +102,8 @@ categories:
     color: "#8081b2"
   - name: Managed Apps
     color: "#7ac271"
+  - name: Playground Apps
+    color: "#bfffb8"
   - name: Rest API
     color: "#919ea1"
   - name: Tenant Cluster Releases for AWS
