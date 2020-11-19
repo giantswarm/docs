@@ -17,7 +17,8 @@ jobs:
       - name: PR Merge Bot
         uses: squalrus/merge-bot@v0.4.2
         with:
-          labels: false
+          labels:
+          blocking_labels:
           reviewers: true
           checks_enabled: true
           method: squash
