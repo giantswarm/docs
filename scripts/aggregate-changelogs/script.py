@@ -35,12 +35,16 @@ def get_releases(client, repo_shortname):
         # skip unpublished releases
         if release.published_at is None:
             continue
+        
+        body = ""
+        if release.body is not None:
+            body = link_pull_requests(release.body, repo_shortname)
 
         yield {
             'repository': repo_shortname,
             'version_tag': release.tag_name,
             'date': release.published_at,
-            'body': link_pull_requests(release.body, repo_shortname),
+            'body': body,
             'url': release.html_url,
         }
 
@@ -54,7 +58,11 @@ def get_changelog_file(client, repo_shortname):
 
 def parse_changelog(body, repo_shortname):
     # Cut off the link reference at the end
-    (good, bad) = body.split("[Unreleased]: ", maxsplit=1)
+    try:
+        (good, bad) = body.split("[Unreleased]: ", maxsplit=1)
+    except ValueError as e:
+        print(f"INFO: snippet '[Unreleased]: ' not found in CHANGELOG.md of {repo_shortname}")
+        good = body
     
     # Create chunks based on level 2 headlines
     chunks = re.split(r'\n##\s+', good, flags=re.M)
