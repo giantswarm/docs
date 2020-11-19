@@ -17,7 +17,7 @@ CoreOS has gone [end-of-life](https://coreos.com/os/eol/) and is being rapidly p
 Flatcar is a compatible fork of CoreOS which receives ongoing support.
 To continue receiving security updates and to minimize the effort needed to migrate in the future, we recommend upgrading to this release.
 
-**Note to SEs when upgrading from 8.5.0 or 9.0.0:** Existing customer automation or processes that manage the configuration of coredns, nginx-ingress-controller, or cluster-autoscaler must be modified in order to work with the changed location and format of the *-user-values configmaps. Please see our docs on [Giant Swarm Release Versions: Versions that use the App Platform](https://docs.giantswarm.io/reference/release-versions/#versions-that-use-the-app-platform) for more details.
+**Note to SEs when upgrading from 8.5.0 or 9.0.0:** Existing customer automation or processes that manage the configuration of coredns, nginx-ingress-controller, or cluster-autoscaler must be modified in order to work with the changed location and format of the *-user-values configmaps. Please see our docs on [Tenant Cluster Release Versions: Versions that use the App Platform](https://docs.giantswarm.io/reference/release-versions/#versions-that-use-the-app-platform) for more details.
 
 **Note for future 9.0.x releases:** Please include this note and the one above in all future 9.0.x releases.
 
