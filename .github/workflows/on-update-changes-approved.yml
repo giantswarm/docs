@@ -14,12 +14,13 @@ jobs:
       - name: Find that the PR has been approved
         if: github.event.review.state == 'approved'
         run: echo "PR approved!"
-      - name: PR Merge Bot
-        uses: squalrus/merge-bot@v0.4.2
+      - name: Merge PR
+        uses: KeisukeYamashita/auto-pull-request-merge@v1
         with:
-          labels:
-          blocking_labels:
-          reviewers: true
-          checks_enabled: true
-          method: squash
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          checkStatus: true
+          comment: "Autoamtically merged after approval"
+          failStep: true
+          strategy: squash
+          intervalSeconds: 2
+          timeoutSeconds: 60
+          token: ${{ secrets.TOKEN }}
