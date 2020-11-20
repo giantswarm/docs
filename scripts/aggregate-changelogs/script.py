@@ -39,6 +39,7 @@ def get_releases(client, repo_shortname):
         body = ""
         if release.body is not None:
             body = link_pull_requests(release.body, repo_shortname)
+            body = link_commit_hashes(body, repo_shortname)
 
         yield {
             'repository': repo_shortname,
@@ -200,6 +201,17 @@ def link_pull_requests(mkdwn, repo_shortname):
         return result
     
     result = re.sub(r'([^\[a-z0-9])(#([0-9]+))', replace_func, mkdwn)
+    return result
+
+def link_commit_hashes(mkdwn, repo_shortname):
+    """
+    Links commit hashes like 9bbbd0ef498474b922830bd2bfaa6a1caf382660
+    """
+    def replace_hash(match):
+        result = f'[{match.group(1)[0:7]}](https://github.com/{repo_shortname}/commit/{match.group(1)})'
+        return result
+    
+    result = re.sub(r'\b([a-f0-9]{40})\b', replace_hash, mkdwn)
     return result
 
 def generate_release_file(repo_shortname, repo_config, release):
