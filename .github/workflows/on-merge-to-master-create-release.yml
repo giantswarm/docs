@@ -13,5 +13,7 @@ jobs:
       - name: Create Release
         id: create_release
         uses: zendesk/action-create-release@v1
+        with:
+          tag_schema: semantic
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
