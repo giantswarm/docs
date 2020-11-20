@@ -9,7 +9,13 @@ jobs:
   merge-pr:
     runs-on: ubuntu-latest
     steps:
-
+      - name: Debugging
+        run: |
+          branch_name=${GITHUB_REF##*/}
+          short_sha=${GITHUB_SHA:0:7}
+          echo "branch name: ${branch_name}"
+          echo "GITHUB_REF: ${GITHUB_REF}"
+          
       - name: Merge PR
         if: github.event.review.state == 'approved' && contains('automated-update-for-changes', github.ref)
         uses: KeisukeYamashita/auto-pull-request-merge@v1.0.1
