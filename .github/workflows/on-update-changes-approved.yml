@@ -29,5 +29,6 @@ jobs:
 
       - name: Delete branch
         uses: dawidd6/action-delete-branch@v3.0.2
-        branches: "automated-update-for-changes"
-        github_token: ${{ secrets.TOKEN }}
+        with:
+          branches: "automated-update-for-changes"
+          github_token: ${{ secrets.TOKEN }}
