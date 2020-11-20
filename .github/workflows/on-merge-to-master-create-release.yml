@@ -9,6 +9,7 @@ jobs:
   build:
     name: Create Release
     runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'do not release')"
     steps:
       - name: Create Release
         id: create_release
