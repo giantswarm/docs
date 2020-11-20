@@ -15,7 +15,7 @@ title: Tenant Cluster Release v13.0.0-alpha4 for Azure
 
 ## Change details
 
-### azure-operator [5.0.0-alpha4](https://github.com/giantswarm/aws-operator/releases/tag/v5.0.0-alpha4)
+### azure-operator [5.0.0-alpha4](https://github.com/giantswarm/azure-operator/releases/tag/v5.0.0-alpha4)
 
 ### kubernetes [1.18.10](https://github.com/kubernetes/kubernetes/releases/tag/v1.18.10)
 
