@@ -4,23 +4,18 @@ on:
   pull_request_review:
     types:
       - submitted
-    branches:
-      - "automated-update-for-changes"
 
 jobs:
   merge-pr:
     runs-on: ubuntu-latest
     steps:
 
-      - name: Find that the PR has been approved
-        if: github.event.review.state == 'approved'
-        run: echo "PR approved!"
-
       - name: Merge PR
+        if: github.event.review.state == 'approved' && contains('automated-update-for-changes', github.ref)
         uses: KeisukeYamashita/auto-pull-request-merge@v1.0.1
         with:
           checkStatus: true
-          comment: "Automatically merging after approval"
+          comment: "Automatic merge after approval"
           failStep: true
           strategy: "squash"
           intervalSeconds: 2
