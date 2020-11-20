@@ -30,7 +30,7 @@ This is the first Giant Swarm release which includes Kubernetes v1.16. In additi
 - Hardened 'restricted' PodSecurityPolicy (added UID range).
 
 ### Kubernetes v1.16.3
-- Updated from v1.15.5 - [changelog](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.16.md#kubernetes-v1160-release-notes).
+- Updated from v1.15.5 - [changelog](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.16.md).
 - **Custom resources**: Custom Resource Definitions (CRDs) are in widespread use as a way to extend Kubernetes to persist and serve new resource types, and have been available in beta since the 1.7 release. The 1.16 release marks the graduation of CRDs to general availability (GA).
 - **Admission webhooks**: Admission webhooks are in widespread use as a Kubernetes extensibility mechanism and have been available in beta since the 1.9 release. The 1.16 release marks the graduation of admission webhooks to general availability (GA).
 - **Overhauled metrics**: Kubernetes has previously made extensive use of a global metrics registry to register metrics to be exposed. By implementing a metrics registry, metrics are registered in more transparent means. Previously, Kubernetes metrics have been excluded from any kind of stability requirements.
