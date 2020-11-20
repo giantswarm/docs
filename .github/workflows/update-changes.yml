@@ -18,13 +18,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
       
       - name: Rebase
-        uses: cirrus-actions/rebase@1.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        uses: Label305/AutoRebase@v0.1
+        with:
+          github_token: ${{ secrets.TOKEN }}
 
       - name: Aggregate releases
         env:
