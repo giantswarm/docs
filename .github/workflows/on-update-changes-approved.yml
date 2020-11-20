@@ -11,13 +11,12 @@ jobs:
     steps:
       - name: Debugging
         run: |
-          branch_name=${GITHUB_REF##*/}
-          short_sha=${GITHUB_SHA:0:7}
-          echo "branch name: ${branch_name}"
-          echo "GITHUB_REF: ${GITHUB_REF}"
+          echo "github.event.pull_request.head.ref: ${{ github.event.pull_request.head.ref }}"
+          echo "github.ref: ${{ github.ref }}"
+          echo "github.event.review.state: ${{ github.event.review.state }}"
           
       - name: Merge PR
-        if: github.event.review.state == 'approved' && contains('automated-update-for-changes', github.ref)
+        if: github.event.review.state == 'approved' && contains('automated-update-for-changes', github.event.pull_request.head.ref)
         uses: KeisukeYamashita/auto-pull-request-merge@v1.0.1
         with:
           checkStatus: true
