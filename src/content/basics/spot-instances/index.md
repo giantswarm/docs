@@ -1,13 +1,13 @@
 ---
 title: Spot Instances on AWS
 description: A general description of spot instances, it's benefits, usage and differences from on-demand instance types.
-date: 2020-09-31
+date: 2020-11-18
 weight: 130
 type: page
 categories: ["basics"]
 ---
 
-As of release v{{% first_aws_spotinstances_version %}} on AWS, it is possible to use spot instances in clusters that will allow you to optimize your cost.
+As of tenant cluster release v{{% first_aws_spotinstances_version %}} for AWS, it is possible to use spot instances in clusters that will allow you to optimize your cost.
 
 The main differences between spot and on-demand instances are that spot instances can be terminated any time by AWS. They are also more frequently unavailable.
 

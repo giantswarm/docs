@@ -12,7 +12,7 @@ description: Release notes for AWS release v11.4.1, published on 08 July 2020, 1
 title: Tenant Cluster Release v11.4.1 for AWS
 ---
 
-This release re-activates the recent AWS [release of high-availability (HA) masters](https://github.com/giantswarm/releases/tree/master/aws/v11.4.0), fixing OIDC configurations issues.
+This release re-activates the recent AWS [release of high-availability (HA) masters](https://docs.giantswarm.io/changes/tenant-cluster-releases-aws/releases/aws-v11.4.0/), fixing OIDC configurations issues.
 
 
 **Note for Solution Engineers:** This release contains an external-dns fix introduced in

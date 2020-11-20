@@ -24,7 +24,7 @@ If you intend to use spot instances, be aware that an AWS service limit called `
 - Add mixed instance support for worker node Auto Scaling Groups (ASG).
 - Place master node in Auto Scaling Group (ASG) as preparation to run multiple master nodes in the future.
 
-## cluster-operator [v2.9.1](https://github.com/giantswarm/cluster-operator/releases/tag/v2.9.1)
+## cluster-operator [v2.1.9](https://github.com/giantswarm/cluster-operator/blob/master/CHANGELOG.md#219-2020-04-23)
 
 - Once a cluster creation has been completed, we set `.status.infrastructureReady` in the `Cluster` resource to `true`.
 - Fixed RBAC rules for the reconciliation of the Control Plane resources.
