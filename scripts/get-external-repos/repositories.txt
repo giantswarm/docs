@@ -1,3 +1,0 @@
-https://github.com/giantswarm/kubernetes-elastic-stack.git src/content/guides/kubernetes-elastic-stack
-https://github.com/giantswarm/twitter-hot-urls-example.git src/content/guides/twitter-hot-urls-example
-https://github.com/giantswarm/kubernetes-gpu.git src/content/guides/kubernetes-gpu
