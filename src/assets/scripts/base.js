@@ -9,30 +9,11 @@ var shiftWindow = function() {
   if (window.disableShift) {
     window.disableShift = false;
   } else {
-    /* If we're at the bottom of the page, don't erronously scroll up */
-    var scrolledToBottomOfPage = (
-        (window.innerHeight + window.scrollY) >= document.body.offsetHeight
-    );
-    if (!scrolledToBottomOfPage) {
-      scrollBy(0, -60);
-    };
+    scrollBy(0, -100);
   };
 };
 if (location.hash) {shiftWindow();}
 window.addEventListener("hashchange", shiftWindow);
-
-
-/* Deal with clicks on nav links that do not change the current anchor link. */
-$("ul.nav a" ).click(function() {
-  var href = this.href;
-  var suffix = location.hash;
-  var matchesCurrentHash = (href.indexOf(suffix, href.length - suffix.length) !== -1);
-  if (location.hash && matchesCurrentHash) {
-    /* Force a single 'hashchange' event to occur after the click event */
-    window.disableShift = true;
-    location.hash='';
-  };
-});
 
 /**
  * Returns the value of a URL parameter
@@ -283,6 +264,19 @@ window.addEventListener("load", function() {
   var asideSelector = ".toc-sidebar";
   if (!document.querySelector(asideSelector)) return;
 
-  var g = new GSAside(asideSelector, ".base-content", 60);
+  var g = new GSAside(asideSelector, ".base-content", 100);
   g.init();
+});
+
+
+/* Deal with clicks on nav links that do not change the current anchor link. */
+$("a" ).click(function() {
+  var href = this.href;
+  var suffix = location.hash;
+  var matchesCurrentHash = (href.indexOf(suffix, href.length - suffix.length) !== -1);
+  if (location.hash && matchesCurrentHash) {
+    /* Force a single 'hashchange' event to occur after the click event */
+    window.disableShift = true;
+    location.hash='';
+  };
 });
