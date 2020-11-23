@@ -38,7 +38,7 @@ apiVersion: infrastructure.giantswarm.io/v1alpha2
 kind: AWSCluster
 metadata:
   annotations:
-    alpha.node.giantswarm.io/terminate-unhealthy: absolutely
+    alpha.node.giantswarm.io/terminate-unhealthy: "true"
   labels:
     giantswarm.io/cluster: jni9x
     giantswarm.io/organization: giantswarm
