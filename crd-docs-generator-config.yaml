@@ -8,6 +8,7 @@ skip_crds:
   - chartconfigs.core.giantswarm.io
   - clusters.core.giantswarm.io
   - draughtsmanconfigs.core.giantswarm.io
+  - flannelconfigs.core.giantswarm.io
   - ingressconfigs.core.giantswarm.io
   - memcachedconfigs.example.giantswarm.io
   - releasecycles.release.giantswarm.io
