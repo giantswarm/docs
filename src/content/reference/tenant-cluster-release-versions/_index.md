@@ -14,7 +14,7 @@ user_questions:
   - How long are tenant cluster releases supported?
   - What does it mean when a tenant cluster release is deprecated?
   - How soon does Giant Swarm provide new Kubernetes versions?
-alias:
+aliases:
   - /reference/release-versions/
 ---
 
