@@ -1,11 +1,12 @@
-+++
-title = "Microservices & Custom Metrics Example"
-description = "Here we show how to build microservices and offer Prometheus custom metrics in your application."
-date = "2019-10-24"
-type = "page"
-weight = 100
-tags = ["tutorial"]
-+++
+---
+title: Microservices & Custom Metrics Example
+description: Here we show how to build microservices and offer Prometheus custom metrics in your application.
+date: 2020-11-23
+type: page
+weight: 100
+tags:
+  - tutorial
+---
 
 # Microservices & Custom Metrics Example
 
@@ -67,10 +68,12 @@ To access the [streaming API](https://dev.twitter.com/streaming/overview/connect
 
 For example:
 
-    Name: thux
-    Description: Tracks URLs mentioned on Twitter and creates a ranked list
-    Website: https://github.com/giantswarm/twitter-hot-urls-example
-    Callback URL: <leave this field blank>
+```nohighlight
+Name: thux
+Description: Tracks URLs mentioned on Twitter and creates a ranked list
+Website: https://github.com/giantswarm/twitter-hot-urls-example
+Callback URL: <leave this field blank>
+```
 
 After that also create an Access Token under "Keys and Access Tokens". Edit `secrets/twitter-api-secret.yaml` and fill all four data fields with the corresponding [`base64` encoded values](http://kubernetes.io/docs/user-guide/secrets/#creating-a-secret-manually).
 
