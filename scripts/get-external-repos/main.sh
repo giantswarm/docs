@@ -1,29 +1,31 @@
 #!/bin/bash
 
 # Here we pull in content from external repositories. While doing so we do
-# - copy images (png, jpg)to a special folder
+# - copy images (png, jpg) to a special folder
 # - copy markdown content to another folder
 # - Rewrite image references in the markdown
 # - add a link to the recipe repository for collaboration
 #
 # This assumes:
-# - list of repository URLs in src/external-repositories.txt
+# - list of repository URLs in repositories.txt
 # - recipe repositories have a "docs" subfolder
 # - In the "docs" folder is an "index.md" file
 # - This index.md file has HUGO frontmatter
 # - There may be additional markdown files in that folder
 # - There may be PNG and/or JPG images in that folder
 
-mkdir -p vendor
+mytmpdir=$(mktemp -d 2>/dev/null || mktemp -d -t 'mytmpdir')
+echo "Temp dir: $mytmpdir"
 
-cat ./src/external-repositories.txt | while read repoline
+cat ./scripts/get-external-repos/repositories.txt | while read repoline
 do
 
   # split line into repository URL, target path
   parts=(${repoline// / })
   repourl=${parts[0]}
+  targetpath=${parts[1]}
 
-  echo "\Vendorizing ${repourl}"
+  echo "Copying repo ${repourl} to ${targetpath}"
 
   # derive reponame from repourl
   filename=$(basename ${repourl})
@@ -34,8 +36,16 @@ do
   rm -rf ${reponame}
 
   # Clone the repository from github
-  git clone --depth 1 https://github.com/giantswarm/${reponame}.git vendor/${reponame}
+  git clone --depth 1 https://github.com/giantswarm/${reponame}.git $mytmpdir/${reponame}
 
   # Delete .git folder so that git doesn't commit this as a subproject, but as actual files in the repo
-  rm -rf vendor/${reponame}/.git
+  #rm -rf $mytmpdir/${reponame}/.git
+
+  # Copy content into src tree
+  if [ -d "$mytmpdir/${reponame}/docs" ]; then
+    mkdir -p ${targetpath}
+    cp $mytmpdir/${reponame}/docs/*.md ${targetpath}/ || echo "WARN: no Markdown files"
+    cp $mytmpdir/${reponame}/docs/*.png ${targetpath}/ || echo "INFO: no PNG files"
+    cp $mytmpdir/${reponame}/docs/*.jpg ${targetpath}/ || echo "INFO: no JPG files"
+  fi
 done

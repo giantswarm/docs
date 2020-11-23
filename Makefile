@@ -3,14 +3,12 @@ COMPANY=giantswarm
 REGISTRY=quay.io
 SHELL=bash
 MARKDOWNLINT_IMAGE=06kellyjac/markdownlint-cli:0.23.0-alpine
-CRD_DOCS_GENERATOR_VERSION=0.1.2
 
 default: docker-build
 
-
-vendor:
-	# Vendor other external repositories as defined in 'external-repositories.txt'
-	./vendorize-external-repositories.sh
+# Update content from external repositories that gets copied in here.
+fetch-external-repos:
+	./scripts/fetch-external-repos/main.sh
 
 # Aggregate changelog entries from various repositories into our Changes section.
 changes:
@@ -33,15 +31,18 @@ changes-test:
 	  aggregate-changelogs \
 	  /workdir/test_script.py foo bar baz
 
-build: vendor
+# Generate the reference documentation for the custom resource
+# definitions (CRD) used in the Control Plane K8s API.
+update-crd-reference:
+	scripts/update-crd-reference/main.sh
+
+build:
 	# check dependencies
 	which jq || (echo "jq not found" && exit 1)
 	which curl || (echo "curl not found" && exit 1)
 
-	# Clean
-	rm -rf build
-
 	# Create build directory
+	rm -rf build
 	mkdir build
 
 	# Copy src to build directory
@@ -50,16 +51,6 @@ build: vendor
 	# Latest gsctl version
 	mkdir -p build/layouts/shortcodes
 	curl -s https://api.github.com/repos/giantswarm/gsctl/releases/latest | jq -j .tag_name > build/layouts/shortcodes/gsctl_version.html
-
-	# Tie in content from external repositories
-	./build-external-repositories.sh
-
-	# Generate the Control Plane K8s API reference documentation.
-	docker run \
-		-v ${PWD}/build/content/reference/cp-k8s-api:/opt/crd-docs-generator/output \
-		-v ${PWD}:/opt/crd-docs-generator/config \
-		quay.io/giantswarm/crd-docs-generator:$(CRD_DOCS_GENERATOR_VERSION) \
-		  --config /opt/crd-docs-generator/config/crd-docs-generator-config.yaml
 
 lint:
 	@docker pull $(MARKDOWNLINT_IMAGE) > /dev/null
