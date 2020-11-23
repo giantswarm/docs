@@ -61,6 +61,7 @@ lint:
 	    --config .markdownlint.yaml \
 	    --ignore README.md \
 		--ignore ./src/content/changes \
+		--ignore ./src/content/reference/cp-k8s-api \
 		./src
 
 docker-build: build
