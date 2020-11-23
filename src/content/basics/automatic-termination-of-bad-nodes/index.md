@@ -13,7 +13,7 @@ Degraded nodes in a Kubernetes cluster should be a rare issue, however when it o
 
 Starting with tenant cluster release v12.6.0 for AWS and v13.1.0 for Azure, you now have the option to automate the detection and termination of bad nodes. When enabled, all nodes in your cluster are periodically checked. If a node fails consecutive health checks over an extended time period, it will be drained and terminated.
 
-This function is currently available on AWS and Azure only. Support on KVM provider will follow.
+This function is currently available on AWS and Azure only.
 
 ## Technical details
 
