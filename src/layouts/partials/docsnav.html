@@ -1,8 +1,8 @@
 <div class="row docsnav">
   <div class="col-xs-12">
     <nav class="navbar">
-      <div class="container-fluid">
-        <ul class="nav navbar-nav nav-pills">
+
+        <ul class="nav nav-pills">
           <li role="presentation" id="homelink"><a href="/">Docs Home</a>
           {{ range .Site.Menus.main }}
           <li role="presentation"><a href="{{ .URL }}">{{ .Name }}</a></li>
@@ -13,7 +13,7 @@
             <input type="search" name="q" class="form-control" placeholder="Search" />
           </div>
         </form>
-      </div>
+
     </nav>
   </div>
   <div class="col-xs-12 visible-xs-block">
