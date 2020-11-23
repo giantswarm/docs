@@ -25,7 +25,7 @@ An unhealthy status means the `kubelet` on a given node has reported `NotReady` 
 
 Automatic termination of unhealthy nodes is **disabled by default**. You can enable it for each individual cluster.
 
-This paragraph explains how you can enable the feature for each supported provider.
+This section explains how you can enable the feature for each supported provider.
 
 ### AWS
 
