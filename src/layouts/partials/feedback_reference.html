@@ -1,4 +1,6 @@
+{{ with .File }}
 <div class="feedback well">
-  <h5><i class="fa fa-question-circle"></i> Anything missing here?</h5>
-  <p>We welcome your <a title="open this page in GitHub" href="https://github.com/giantswarm/docs/blob/master/src/content/{{ .File.Path }}" target="_blank" rel="noopener noreferrer">pull requests</a>, feedback and all sorts of questions. You can also send us an email to <a href="mailto:support@giantswarm.io">support@giantswarm.io</a>.</p>
+  <h5><i class="fa fa-help-outline"></i> Anything missing here?</h5>
+  <p>We welcome your <a title="open this page in GitHub" href="https://github.com/giantswarm/docs/blob/master/src/content/{{ .Path }}" target="_blank" rel="noopener noreferrer">pull requests</a>, feedback and all sorts of questions. You can also send us an email to <a href="mailto:support@giantswarm.io">support@giantswarm.io</a>.</p>
 </div>
+{{ end }}

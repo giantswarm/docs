@@ -1,7 +1,7 @@
 ---
 title: Clusters Over Multiple Availability Zones
-description: Using multiple availability zones both for worker and for master nodes increases the resilience for clusters. Here we explain some details regarding support on different cloud providers and in different releases. And we give basic information on how to configure workloads to leverage multiple availability zones.
-date: 2020-07-31
+description: Using multiple availability zones both for worker and for master nodes increases the resilience for clusters. Here we explain some details regarding support on different cloud providers and in different tenant cluster releases. And we give basic information on how to configure workloads to leverage multiple availability zones.
+date: 2020-11-18
 weight: 100
 type: page
 categories: ["basics"]
@@ -12,7 +12,7 @@ last-review-date: 2020-04-09
 
 With Giant Swarm on AWS and Azure you can easily launch clusters with worker nodes spread across multiple availability zones (AZs). This will lower the risk that your cluster will become unavailable due to an incident in a particular AWS or Azure data center.
 
-On AWS, starting with release {{% first_aws_ha_masters_version %}}, master nodes of a cluster are spread over different availability zones by default, for high availability of the Kubernetes API. You can chose however to run only a single master node. Read [High availability Kubernetes masters](/basics/ha-masters/) for more information.
+On AWS, starting with tenant cluster release {{% first_aws_ha_masters_version %}}, master nodes of a cluster are spread over different availability zones by default, for high availability of the Kubernetes API. You can chose however to run only a single master node. Read [High availability Kubernetes masters](/basics/ha-masters/) for more information.
 
 ## What availability zones are good for {#benefits}
 
@@ -20,7 +20,7 @@ Both AWS and Azure support AZs within their regions. These zones still have good
 
 Your cluster nodes have labels that indicate which availability zone they are running in. You can influence the scheduling of your pods via node affinity and/or inter-pod affinity or anti-affinity.
 
-- [Affinity and anti-affinity](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity)
+- [Affinity and anti-affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity)
 
 This enables use cases such as:
 
@@ -44,9 +44,7 @@ This enables use cases such as:
 
 - To make sure your pods and volumes end up on the same nodes, we recommend to specify `WaitForFirstConsumer` as `volumeBindingMode` in your storage classes. Your clusters come with a default storage class that contains this setting already. See the [Volume Binding Mode](https://kubernetes.io/docs/concepts/storage/storage-classes/#volume-binding-mode) section in the Kubernetes storage documentation for more information.
 
-## AWS specific details
-
-Spreading worker nodes over multiple availability zones can be configured per [node pool](/basics/nodepools/) and independent of the choice of a single master node vs. using multiple master nodes.
+Spreading worker nodes over multiple availability zones can be configured per [node pool](/basics/nodepools/) and independent of the choice of a single master node vs. using multiple master nodes (currently multiple master nodes are only supported on AWS).
 
 ## Get started
 
@@ -58,7 +56,7 @@ You can create clusters in several ways:
 
 When inspecting details of such a cluster, or using the [`gsctl show cluster`](/reference/gsctl/show-cluster/) command, we display the list of availability zones used by the cluster.
 
-Where worker nodes are organized in node pools (currently only on AWS), the availability zone distribution must be configured when creating a node pool. This is supported both in the web UI as well as the CLI with the [`gsctl create nodepool`](/reference/gsctl/create-nodepool/) command. For inspection, both the [`gsctl list nodepools`](/reference/gsctl/list-nodepools/) and [`gsctl show nodepool`](/reference/gsctl/show-nodepool/) commands provide AZ information.
+Where worker nodes are organized in node pools, the availability zone distribution must be configured when creating a node pool. This is supported both in the web UI as well as the CLI with the [`gsctl create nodepool`](/reference/gsctl/create-nodepool/) command. For inspection, both the [`gsctl list nodepools`](/reference/gsctl/list-nodepools/) and [`gsctl show nodepool`](/reference/gsctl/show-nodepool/) commands provide AZ information.
 
 Also exclusively on AWS, for master nodes, the choice to use high availability (three master nodes, placed in one AZ each) is made on cluster creation. It is also possible to switch from a single master node to high availability after cluster creation, but not vice versa.
 

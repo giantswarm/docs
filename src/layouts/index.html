@@ -85,23 +85,11 @@
   <div class="row">
     <div class="col-sm-6">
       <h3>Tutorials</h3>
-      <ul class="linklist linklist-compact">
-        {{ range .Data.Pages }}
-          {{ if in .Params.tags "tutorial" }}
-            <li><a href="{{ .Permalink | relURL }}">{{ .Title }}</a></li>
-          {{ end }}
-        {{ end }}
-      </ul>
+      {{ partial "frontpage_linklist" "tutorial" }}
     </div>
     <div class="col-sm-6">
       <h3>Recipes</h3>
-      <ul class="linklist linklist-compact">
-        {{ range .Data.Pages }}
-          {{ if in .Params.tags "recipe" }}
-            <li><a href="{{ .Permalink | relURL }}">{{ .Title }}</a></li>
-          {{ end }}
-        {{ end }}
-      </ul>
+      {{ partial "frontpage_linklist" "recipe" }}
     </div>
   </div> <!-- row -->
 
@@ -115,12 +103,13 @@
     <div class="col-sm-12">
       <h2>Reference Documentation</h2>
       <ul class="linklist linklist-compact">
-        <li><a href="/reference/gsctl/">gsctl - The Giant Swarm command line utility</a></li>
+        <li><a href="/reference/gsctl/">gsctl &ndash; The Giant Swarm command line utility</a></li>
+        <li><a href="/reference/kubectl-gs/">kubectl gs &ndash; The Giant Swarm kubectl plugin</a></li>
         <li><a href="/reference/cluster-definition/">Cluster definition YAML reference</a></li>
         <li><a href="/reference/cluster-upgrades/">Cluster upgrades</a></li>
         <li><a href="/api/">The Giant Swarm API</a></li>
-        <li><a href="https://kubernetes.io/docs/user-guide/kubectl-overview/">kubectl reference <i class="fa fa-external-link-alt" aria-hidden="true"></i></a></li>
-        <li><a href="https://kubernetes.io/docs/concepts/overview/kubernetes-api/">Kubernetes API reference <i class="fa fa-external-link-alt" aria-hidden="true"></i></a></li>
+        <li><a href="https://kubernetes.io/docs/reference/kubectl/overview/">kubectl reference <i class="fa fa-open-in-new" aria-hidden="true"></i></a></li>
+        <li><a href="https://kubernetes.io/docs/concepts/overview/kubernetes-api/">Kubernetes API reference <i class="fa fa-open-in-new" aria-hidden="true"></i></a></li>
       </ul>
     </div>
   </div>

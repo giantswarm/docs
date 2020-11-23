@@ -237,11 +237,11 @@ As you can see from this tutorial, it is quite easy to implement a simple admiss
 
 At the same time, it holds great power, since it can influence the key components running in the cluster. As an example, you could block the CNI plugin from running in case you commit an error which may lead to the entire cluster being borked. So be careful and try to scope the admission logic to a namespace or a minor set of actions.
 
-Also, it is good to mention there are already some projects which leverage this pattern to enable higher level functionality. As an example [kubernetes-policy-controller](https://github.com/open-policy-agent/kubernetes-policy-controller) uses admission webhooks to implement a policy engine ([OPA](https://www.openpolicyagent.org/)) to enforce policies over Cloud Native environments.
+Also, it is good to mention there are already some projects which leverage this pattern to enable higher level functionality. As an example [gatekeeper](https://github.com/open-policy-agent/gatekeeper) uses admission webhooks to implement a policy engine ([OPA](https://www.openpolicyagent.org/)) to enforce policies over Cloud Native environments.
 
 ## Further reading
 
 - [Official documentation](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/)
 - [Go framework to create mutation/validation controllers](https://github.com/slok/kubewebhook/)
 - [Mutation controller Tutorial](https://github.com/morvencao/kube-mutating-webhook-tutorial/)
-- [Mutation and validation controller implementing OPA framework](https://github.com/open-policy-agent/kubernetes-policy-controller)
+- [Mutation and validation controller implementing OPA framework](https://github.com/open-policy-agent/gatekeeper)

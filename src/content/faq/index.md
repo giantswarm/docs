@@ -17,17 +17,17 @@ Giant Swarm runs on AWS, Microsoft Azure, and on bare metal or virtualized hardw
 
 We currently don't provide this as a service. You have to take care of it yourself. You can use S3 or other storage solutions.
 
-If your cluster is running on AWS using your own AWS account, you can use the [EBS Snapshot](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html) function.
+If your cluster is running on AWS using your own AWS account, you can use the [EBS Snapshot](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html) function.
 
 ## Can I run a database?
 
 Yes, for most databases there are ready built containers in the [Docker Hub](https://hub.docker.com/). If you can't find one for your database of choice, you should be able to easily build one. However, currently persistent volumes are only available on AWS. With a bare metal (KVM) based cluster, volumes are not persistent and won't survive rescheduling of their pods.
 
-Check out our guide on [using persistent volumes on AWS](https://docs.giantswarm.io/guides/using-persistent-volumes-on-aws/).
+Check out our guide on [using persistent volumes on AWS](/guides/using-persistent-volumes-on-aws/).
 
 ## Can I use TLS/HTTPS/SSL?
 
-Yes. Take a look at our [advanced ingress guide](https://docs.giantswarm.io/guides/advanced-ingress-configuration/#tls).
+Yes. Take a look at our [advanced ingress guide](/guides/advanced-ingress-configuration/#tls).
 
 ## Can I use websockets?
 
@@ -35,7 +35,7 @@ Currently not, but we are working on it.
 
 ## Can I use a third party private registry?
 
-Yes, you just need to set up an [ImagePullSecret](http://kubernetes.io/docs/user-guide/images/#specifying-imagepullsecrets-on-a-pod) for your pod.
+Yes, you just need to set up an [ImagePullSecret](https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod) for your pod.
 
 For AWS-based clusters, using the [AWS EC2 Container Registry](https://aws.amazon.com/ecr/) (ECR) requires specific configuration of the worker nodes. The EC2 instance policies need specific permissions, which are listed in the [Kubernetes documentation](https://kubernetes.io/docs/concepts/containers/images/#using-aws-ec2-container-registry).
 

@@ -1,18 +1,33 @@
 ---
 title: Advanced Ingress Configuration
 description: Here we describe how you can customize and enable specific features for the NGINX-based Ingress
-date: 2020-05-20
+date: 2020-11-18
 type: page
 weight: 50
 tags:
   - tutorial
+user_questions:
+  - How can I allow only certain IPs for Ingress access?
+  - How can I assign requests to different services, based on the URL path?
+  - How can I configure Ingress to use HTTPS when connecting to my internal service?
+  - How can I configure basic authentication in an Ingress resource?
+  - How can I configure ingress to prevent DDoS attacks?
+  - How can I configure request URL rewrites in the Ingress resource?
+  - How can I configure session affinity in Ingress, so that all requests for one session land in the same backend?
+  - How can I connect several services in one Ingress, based on the URL path?
+  - How can I define several ingresses in one Ingress resource?
+  - How can I disable the redirect to HTTPS in the Ingress configuration?
+  - How can I enable CORS headers in the Ingress resource?
+  - How can I enable TLS passthrough in Ingress?
+  - How can I let the Ingress Controller do TLS termination?
+  - How can I rate-limit Ingress requests?
 ---
 
 # Advanced Ingress Configuration
 
 The [NGINX-based Ingress Controller](https://github.com/kubernetes/ingress-nginx) has additional configuration options and features that can be customized. The functionality is split into two categories:
 
-- [Per-Service options](#yaml) in each Ingress' YAML definition either directly or via [Annotations](https://kubernetes.io/docs/user-guide/annotations/).
+- [Per-Service options](#yaml) in each Ingress' YAML definition either directly or via [Annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
 - [Global options](#configmap) that influence all Ingresses of a cluster via a ConfigMap.
 
 **Note**: Some Giant Swarm clusters do not come with an ingress controller pre-installed. See our [guide on how to install an ingress from the Giant Swarm Catalog](/guides/installing-optional-ingress-controller/).
@@ -24,7 +39,7 @@ The [NGINX-based Ingress Controller](https://github.com/kubernetes/ingress-nginx
 You can aggregate several Ingress rules into a single Ingress definition like following:
 
 ```yaml
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: <ingress-name>
@@ -53,7 +68,7 @@ __Note:__ If you are using TLS you also need each of the hosts in the `tls` sect
 You can route an Ingress to different Services based on the path:
 
 ```yaml
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: <ingress-name>
@@ -85,7 +100,7 @@ __Warning:__ This feature was disabled by default in Nginx ingress controller ma
 For SSL passthrough you need to set an annotation and enable TLS for the host:
 
 ```yaml
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: <ingress-name>
@@ -127,7 +142,7 @@ __Note:__ the data keys must be named `tls.crt` and `tls.key`!
 Referencing this secret in an Ingress will tell the Ingress Controller to secure the channel from the client to the loadbalancer using TLS:
 
 ```yaml
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: <ingress-name>
@@ -189,7 +204,7 @@ data:
 Last, we create the Ingress with the according annotations:
 
 ```yaml
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: <ingress-name>
@@ -228,7 +243,7 @@ In some scenarios the exposed URL in the backend service differs from the specif
 This can for example be used together with path based routing, when the application expects to be on `/`:
 
 ```yaml
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: <ingress-name>
@@ -245,7 +260,7 @@ spec:
           servicePort: <service1port>
 ```
 
-If the application contains relative links it is possible to add an additional annotation `ingress.kubernetes.io/add-base-url` that will prepend a [`base` tag](https://developer.mozilla.org/en/docs/Web/HTML/Element/base) in the header of the returned HTML from the backend.
+If the application contains relative links it is possible to add an additional annotation `ingress.kubernetes.io/add-base-url` that will prepend a [`base` tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base) in the header of the returned HTML from the backend.
 
 ### Rate limiting
 
@@ -259,7 +274,7 @@ If you specify both annotations in a single Ingress rule, `limit-rps` takes prec
 
 ### Secure backends
 
-By default NGINX uses `http` to reach the services. Adding the annotation `nginx.ingress.kubernetes.io/secure-backends: "true"` in the Ingress rule changes the protocol to `https`.
+By default NGINX uses `http` to reach the services. Adding the annotation `nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"` in the Ingress rule changes the protocol to `https`.
 
 ### Server-side HTTPS enforcement through redirect
 
@@ -304,7 +319,7 @@ The NGINX Ingress Controller creates an NGINX configuration file. You can direct
 Here is an example adding an `Expires` header to every response:
 
 ```yaml
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: myingress
@@ -335,15 +350,15 @@ Your Giant Swarm installation comes with a default configuration for the Ingress
 
 You can override these defaults by setting your per cluster configuration in the form of a ConfigMap named `nginx-ingress-controller-user-values`.
 
-Depending on the release version of your Tenant Cluster, this ConfigMap is located either in the Tenant Cluster or in the Control Plane.
+Depending on the tenant cluster release version, this ConfigMap is located either in the tenant cluster or in the control plane.
 
 ### Where is the user values ConfigMap
 
 Given the cluster you are trying to configure has id: `123ab`
 
-**Release Version 9.0.1 and greater:**
+**Tenant cluster release v9.0.1 and greater:**
 
-If your cluster is on release version `9.0.1` or greater then you will find the `nginx-ingress-controller-user-values` ConfigMap on the Control Plane in the `123ab` namespace:
+If your cluster is on tenant cluster release version v9.0.1 or greater then you will find the `nginx-ingress-controller-user-values` ConfigMap on the Control Plane in the `123ab` namespace:
 
 ```nohighlight
 $ kubectl -n 123ab get cm nginx-ingress-controller-user-values --context=control-plane
@@ -351,14 +366,14 @@ NAME                                   DATA      AGE
 nginx-ingress-controller-user-values   0         11m
 ```
 
-Upgrading from `9.0.0` to a higher release will automatically migrate these user values from the Tenant Cluster to the
+Upgrading from v9.0.0v to a higher tenant cluster release will automatically migrate these user values from the Tenant Cluster to the
 Control Plane for you. If you have any automation or existing workflows you should keep this location change in mind.
 
 ---
 
-**Release Version 9.0.0 and below:**
+**Tenant cluster release v9.0.0 and below:**
 
-If the cluster has a release version equal to `9.0.0` or lower, then you will find the `nginx-ingress-controller-user-values` ConfigMap on the Tenant Cluster itself in the `kube-system` namespace:
+If the cluster has a tenant cluster release version equal to v9.0.0 or lower, then you will find the `nginx-ingress-controller-user-values` ConfigMap on the Tenant Cluster itself in the `kube-system` namespace:
 
 ```nohighlight
 $ kubectl -n kube-system get cm nginx-ingress-controller-user-values --context=tenant-cluster
@@ -378,11 +393,11 @@ Only the user ConfigMap is safe to edit.
 
 ### How to set configuration options using the user values ConfigMap
 
-The values that you are allowed to configure will depend on the release version of your cluster.
-As of 9.0.1 and above, you have much more freedom to configure any option available, however keep in mind
+The values that you are allowed to configure will depend on the tenant cluster release version.
+As of v9.0.1 and above, you have much more freedom to configure any option available, however keep in mind
 that with great power comes great responsibility.
 
-#### 9.0.1 and greater
+#### Tenant cluster release v9.0.1 and greater
 
 On release version `9.0.1` and greater you are able to set any value from the [upstream documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/) by including them in the user values ConfigMap under the `data.values` field like so:
 
@@ -407,7 +422,7 @@ Any defaults that we override are visible in the following `values.yaml` file, u
 Do make sure you look at the right tag of that repository, when reading this file check that the tag
 corresponds to the version of the nginx-ingress-controller-app running on your cluster.
 
-#### 9.0.0 and below
+#### Tenant cluster release v9.0.0 and below
 
 On release version `9.0.0` and below you can only configure a specific subset of the [standard nginx configuration options](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/), which we default as follows. If you need any other upstream documented option added to this list, please contact support.
 

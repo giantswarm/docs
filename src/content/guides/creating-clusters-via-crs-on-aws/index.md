@@ -1,29 +1,22 @@
 ---
 title: Creating tenant clusters on AWS via Control Plane Kubernetes API
-description: This guide will walk you through the process of tenant cluster creation via Control Plane Kubernetes.
-date: 2020-06-19
+description: This guide will walk you through the process of tenant cluster creation via Control Plane Kubernetes on AWS.
+date: 2020-11-18
 type: page
 weight: 100
 tags: ["tutorial"]
 ---
 
-# Creating tenant clusters via the Control Plane Kubernetes API
+# Creating tenant clusters on AWS via the Control Plane Kubernetes API
 
-This guide will show you how to create tenant clusters by creating and applying custom resources (CRs) directly to the control plane.
+## How cluster creation works
 
-Previously you might have used our Rest API to create clusters, however, Giant Swarm is replacing its own REST API for cluster management with the [Control Plane Kubernetes API](/api/#cp-k8s-api)  based on the upstream [Cluster API](https://cluster-api.sigs.k8s.io/).
-The Cluster API is a Kubernetes project to bring declarative, Kubernetes-style APIs to cluster creation, configuration, and management. It provides optional, additive functionality on top of core Kubernetes.
-
-Following this strategy, the Giant Swarm Rest API is going to be deprecated at some point. Subscribe to our related [roadmap issue](https://github.com/giantswarm/roadmap/issues/90) to stay informed about the deprecation.
-
-## How does cluster creation work now
-
-Starting from version {{% first_aws_nodepools_version %}} on AWS, Giant Swarm introduced a feature to create multiple [node pools](https://docs.giantswarm.io/basics/nodepools/) on AWS.
+Starting from version {{% first_aws_nodepools_version %}} on AWS, Giant Swarm introduced a feature to create multiple [node pools](/basics/nodepools/) on AWS.
 Alongside node pools support, a new API version for cluster management was released.
 
-All the tenant clusters, created with release version {{% first_aws_nodepools_version %}} and newer, are managed as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) in the Control Plane.
+All the tenant clusters, created with tenant cluster release v{{% first_aws_nodepools_version %}} and newer, are managed as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) in the Control Plane.
 
-At a high-level, the Control Plane API is used to manage the following CRs:
+At a high-level, the Control Plane Kubernetes API is used to manage the following custom resources (CRs):
 
 - [Cluster](/reference/cp-k8s-api/clusters.cluster.x-k8s.io/) - represents a Kubernetes cluster excluding worker nodes.
 - [G8sControlPlane](/reference/cp-k8s-api/g8scontrolplanes.infrastructure.giantswarm.io/) - hold configuration about the master node(s) of a cluster.
@@ -202,29 +195,45 @@ spec:
       instanceType: m4.xlarge
 ```
 
-## How to create a cluster using Cluster API
+## Creating a cluster {#creating}
 
 All the CRs, mentioned above, have strict spec and important requirements to be considered valid.
 There is very limited CR validation available in the Control Plane for now.
 Therefore, if you create a CR with wrong field values, that can result in a broken tenant cluster.
-That's why we've developed a simple [CLI utility](https://github.com/giantswarm/kubectl-gs), which helps to template valid CRs.
+That's why we offer a [kubectl plugin](/reference/kubectl-gs/), which helps to template valid CRs.
 
 The utility supports rendering CRs:
 
-- Tenant clusters (AWS only):
-  - `Cluster` (API version `cluster.x-k8s.io/v1alpha2`)
-  - `AWSCluster` (API version `infrastructure.giantswarm.io/v1alpha2`)
-  - `G8sControlPlane` (API version `infrastructure.giantswarm.io/v1alpha2`)
-  - `AWSControlPlane` (API version `infrastructure.giantswarm.io/v1alpha2`)
-- Node pool (AWS only):
-  - `MachineDeployment` (API version `cluster.x-k8s.io/v1alpha2`)
-  - `AWSMachineDeployment` (API version `infrastructure.giantswarm.io/v1alpha2`)
+- Tenant cluster:
+    - `Cluster` (API version `cluster.x-k8s.io/v1alpha2`)
+    - `AWSCluster` (API version `infrastructure.giantswarm.io/v1alpha2`)
+    - `G8sControlPlane` (API version `infrastructure.giantswarm.io/v1alpha2`)
+    - `AWSControlPlane` (API version `infrastructure.giantswarm.io/v1alpha2`)
+- Node pool:
+    - `MachineDeployment` (API version `cluster.x-k8s.io/v1alpha2`)
+    - `AWSMachineDeployment` (API version `infrastructure.giantswarm.io/v1alpha2`)
 - `AppCatalog`
 - `App`
 
-The installation procedure is described in [README](https://github.com/giantswarm/kubectl-gs#how-to-install-plugin).
-There is also a [document](https://github.com/giantswarm/kubectl-gs/blob/master/docs/template-cluster-cr.md) describing the templating process in detail.
+The installation procedure is described in the [`kubectl gs` reference](/reference/kubectl-gs/#install).
+There are also specific reference pages for [cluster templating](/reference/kubectl-gs/template-cluster/) and [node pool templating](/reference/kubectl-gs/template-nodepool/).
 
-As a result of rendering the CRs ([sample](https://github.com/giantswarm/kubectl-gs/blob/master/docs/template-cluster-cr.md#example)), a user will get YAML manifests containing valid CRs that can create a tenant cluster and its node pools.
+As a result of rendering the CRs ([sample](/reference/kubectl-gs/template-cluster/#example)), a user will get YAML manifests containing valid CRs that can create a tenant cluster and its node pools.
 The resources can then be created by applying the manifest files to the Control Plane, e.g. `kubectl create -f <cluster manifest file>.yaml`.
 Of course, that requires the user to be authorized towards Kubernetes Control Plane API.
+
+## Deleting a cluster {#deleting}
+
+Triggering a delete on the `Cluster` resource  will have a cascading effect on all other resources belonging to the cluster:
+
+- `AWSCluster`
+- `G8sControlPlane`
+- `AWSControlPlane`
+- `MachineDeployment`
+- `AWSMachineDeployment`
+
+This resources will not be deleted immediately, our operators will start the deletion process of the CloudFormation Stacks on AWS and remove the Kubernetes finalizer.
+
+In order to review if a resource has been marked for deletion you can check if the resource has the attribute `deletionTimestamp` in the `metadata` field.
+
+The whole deletion process can take up to one hour.

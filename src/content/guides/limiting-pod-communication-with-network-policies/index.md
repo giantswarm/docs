@@ -1,7 +1,7 @@
 ---
 title: "Limiting Pod Communication with Network Policies"
 description: "Guide on how to limit Pod communication using Network Policies"
-date: "2020-04-17"
+date: "2020-10-06"
 type: "page"
 weight: 60
 tags: ["tutorial"]
@@ -96,7 +96,7 @@ spec:
   - Egress
 ```
 
-__Warning__: By default Giant Swarm clusters, from version `11.0.0`, contains this default policy for sensitive namespaces like `giantswarm` and `kube-system`. To communicate with any pods in that namespace you need to explicitly create a Network Policy that allows it.
+__Warning__: By default Giant Swarm clusters, from version `11.0.0`, contain a `default-deny` policy for sensitive namespaces like `giantswarm` and `kube-system`. To communicate with any pods in that namespace you need to explicitly create a Network Policy that allows it.
 
 Note that the namespace needs to exist before you apply the NetworkPolicy to it.
 
@@ -106,7 +106,7 @@ The default policy shown above will limit ingress and egress traffic in the name
 
 ### Allowing specific system pod to talk with your pod
 
-As we mentioned before we harden the clusters restricting the communication with `kube-system` and `giantswarm` pods. In case you need to allow that communication with a running pod in one of those namespaces you have to explicitly declare it. For example:
+As we mentioned before, we harden the clusters restricting the communication with pods in `kube-system` and `giantswarm`. In case you need to allow communication with a running pod in one of those namespaces you have to explicitly declare it. For example:
 
 ```yaml
 kind: NetworkPolicy
@@ -218,7 +218,7 @@ spec:
     - port: 80
 ```
 
-The above will allow any traffic (no matter if outside or inside your cluster) to the Pods on port 80.
+The `allow-external` policy, described above, will allow any traffic (no matter if it's outside or inside your cluster) to the Pods on port 80.
 
 In this guide we discussed different use-cases of limiting Pod communication with network policies, based on our best practices.
 

@@ -1,7 +1,7 @@
 ---
 title: "gsctl Reference"
 description: "Documentation on gsctl, the Giant Swarm command line utility to create and delete clusters, create key pairs and more."
-date: "2020-05-14"
+date: 2020-11-18
 layout: "subsection"
 weight: 10
 ---
@@ -30,7 +30,7 @@ Follow the links below for a detailed documentation, where available. You can al
 | `list organizations`                  | List organizations
 | `list keypairs`                       | [List key pairs](list-keypairs/)
 | `list nodepools`                      | [List node pools](list-nodepools/)
-| `list releases`                       | [List releases](list-releases/)
+| `list releases`                       | [List tenant cluster releases](list-releases/)
 | `login`                               | [Sign in as a user](login/)
 | `logout`                              | Sign out
 | `ping`                                | Check API connection
@@ -38,7 +38,7 @@ Follow the links below for a detailed documentation, where available. You can al
 | `select endpoint`                     | [Select an endpoint](select-endpoint/)
 | `show cluster`                        | [Show cluster details](show-cluster/)
 | `show nodepool`                       | [Show node pool details](show-nodepool/)
-| `show release`                        | Show details on a release
+| `show release`                        | Show details on a tenant cluster release
 | `update cluster`                      | [Modify cluster details (name, labels)](update-cluster/)
 | `update nodepool`                     | [Modify (rename, scale) a node pool](update-nodepool/)
 | `update organization set-credentials` | [Set provider credentials for an organization](update-org-set-credentials/)
@@ -89,7 +89,7 @@ brew install gsctl</code></pre>
 </div>
 <div class="tab-pane" id="install-win">
 
-  <p><a href="http://scoop.sh/" target="_blank" rel="noreferrer noopener">scoop</a> enables convenient installs and updates for Windows PowerShell users. Before you can install <code>gsctl</code> for the first time, execute this:</p>
+  <p><a href="https://scoop.sh/" target="_blank" rel="noreferrer noopener">scoop</a> enables convenient installs and updates for Windows PowerShell users. Before you can install <code>gsctl</code> for the first time, execute this:</p>
 
   <pre><code class="language-nohighlight">scoop bucket add giantswarm https://github.com/giantswarm/scoop-bucket.git</code></pre>
 
@@ -107,7 +107,7 @@ brew install gsctl</code></pre>
 
 ## Configuration {#configuration}
 
-`gsctl` keeps its own settings under `$HOME/.config/gsctl/`. There is a [configuration file](configuration-file) called `config.yaml`. Key pairs are stored in the `certs` subdirectory.
+`gsctl` keeps its own settings under `$HOME/.config/gsctl/`. There is a [configuration file](/reference/gsctl/configuration-file/) called `config.yaml`. Key pairs are stored in the `certs` subdirectory.
 
 The following environment variables can be used to affect some behavior:
 

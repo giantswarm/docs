@@ -5,17 +5,23 @@ date: "2020-02-06"
 type: page
 weight: 50
 tags: ["tutorial"]
+user_questions:
+  - How do I install the EFS provisioner?
+  - How do I provision an EFS instance on AWS?
+  - How do I test the efs storage class?
+  - How do I use EFS Volumes?
+  - What auto-provisioner for AWS do you recommend? EFS? EBS?
 ---
 
 # Using Persistent Volumes on AWS with EFS
 
-If your cluster is running in the cloud on Amazon Web Services (AWS) the most common way to store data is using EBS volumes with the [dynamic provisioner](https://docs.giantswarm.io/guides/using-persistent-volumes-on-aws/). Sometimes EBS is not the optimal solution.
+If your cluster is running in the cloud on Amazon Web Services (AWS) the most common way to store data is using EBS volumes with the [dynamic provisioner](/guides/using-persistent-volumes-on-aws/). Sometimes EBS is not the optimal solution.
 
 The advantages of using EFS over EBS are:
 
 - EFS data can be accessed from all Availability Zones in the same region while EBS is tied to a single Availability Zone.
 - EFS has the capability to mount the same Persistent Volume to multiple pods at the same time using the ReadWriteMany [access mode](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes).
-- EFS will not hit the [AWS Instance Volume Limit](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/volume_limits.html) as it is a software mount and will avoid the [Impaired EBS](https://docs.giantswarm.io/guides/aws-impaired-volumes/) issue.
+- EFS will not hit the [AWS Instance Volume Limit](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/volume_limits.html) as it is a software mount and will avoid the [Impaired EBS](/guides/aws-impaired-volumes/) issue.
 - EFS mount times are better than EBS.
 
 If you need to use EFS to provision volumes, be advised:
@@ -69,7 +75,7 @@ podSecurityPolicy:
 
 You will need to populate the `efsFileSystemId` and `awsRegion` parameters to match the configured values of the EFS instance.
 
-For additional configuration parameters see the [upstream documentation](https://github.com/kubernetes-incubator/external-storage/tree/master/aws/efs).
+For additional configuration parameters see the [upstream documentation](https://github.com/kubernetes-retired/external-storage/tree/master/aws/efs).
 
 ## Installing EFS Provisioner
 

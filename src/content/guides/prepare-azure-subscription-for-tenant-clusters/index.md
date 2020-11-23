@@ -5,6 +5,9 @@ date: "2020-05-19"
 type: page
 weight: 100
 tags: ["tutorial"]
+user_questions:
+  - How do I prepare my Azure subscription for use with Giant Swarm?
+  - What do I need to configure in Azure in order to run Giant Swarm clusters?
 ---
 
 # Prepare an Azure subscription to run Giant Swarm tenant clusters
@@ -34,7 +37,23 @@ To create a Service Principal you need:
 
 ### 2. Role definition
 
-Download our [Role definition template](https://raw.githubusercontent.com/giantswarm/azure-operator/master/policies/tenant.tmpl.json).
+Download our Role definition template:
+
+```json
+{
+  "Name": "azure-operator",
+  "Description": "Role for github.com/giantswarm/azure-operator",
+  "Actions": [
+    "*"
+  ],
+  "NotActions": [
+    "Microsoft.Authorization/elevateAccess/Action"
+  ],
+  "AssignableScopes": [
+    "/subscriptions/${SUBSCRIPTION_ID}"
+  ]
+}
+```
 
 Open it and replace `${SUBSCRIPTION_ID}` with your subscription id.
 
@@ -121,5 +140,5 @@ This command should be run for all subscriptions that are used for Giant Swarm t
 
 - [Basics and Concepts: Multi-Account Support](/basics/multi-account/)
 - [gsctl Reference: `update organization set-credentials`](/reference/gsctl/update-org-set-credentials/)
-- [API: Set credentials](https://docs.giantswarm.io/api/#operation/addCredentials)
+- [API: Set credentials](/api/#operation/addCredentials)
 - [Azure Lighthouse](https://docs.microsoft.com/en-us/azure/lighthouse/how-to/onboard-customer)

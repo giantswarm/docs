@@ -270,8 +270,8 @@ However for the time being, our Web Interface makes use of the Giant Swarm API.
 By supplying a JSON body with the values you would like to set, the Giant Swarm API will
 create a ConfigMap or Secret in the right format and wire it up correctly for you.
 
-- [Giant Swarm API App Configs reference](https://docs.giantswarm.io/api/#tag/app-configs) for adding configuration values
-- [Giant Swarm API App Secrets reference](https://docs.giantswarm.io/api/#tag/app-secrets) for adding secret values
+- [Giant Swarm API App Configs reference](/api/#tag/app-configs) for adding configuration values
+- [Giant Swarm API App Secrets reference](/api/#tag/app-secrets) for adding secret values
 
 ### Using the Control Plane Kubernetes API {#cp-k8s-api}
 

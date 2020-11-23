@@ -5,6 +5,14 @@ date: 2020-05-20
 type: page
 weight: 30
 tags: ["tutorial"]
+user_questions:
+  - How can I add permissions to a service account?
+  - How can I give my container permission to access a persistent volume?
+  - How can I run a container as a certain user?
+  - How can I run a container as privileged?
+  - How can I specify which permissions a user will have when using a certain key pair?
+  - Why are my containers failing to access some resources?
+  - Why is my container lacking permission to use a persistent volume?
 ---
 
 # Securing your Cluster with RBAC and PSP
@@ -219,11 +227,11 @@ roleRef:
 
 ##### A super-user role binding
 
-One of the most important default Role Bindings is for the "cluster-admin" role, which depicts a super-user in the cluster. By default it is bound to the `system:masters` group. Thus, if you need cluster admin access to your Kubernetes cluster, you need to create user credentials (e.g. by [creating a key pair with gsctl](https://docs.giantswarm.io/reference/gsctl/create-keypair/) or the Giant Swarm Web UI) that include that group.
+One of the most important default Role Bindings is for the "cluster-admin" role, which depicts a super-user in the cluster. By default it is bound to the `system:masters` group. Thus, if you need cluster admin access to your Kubernetes cluster, you need to create user credentials (e.g. by [creating a key pair with gsctl](/reference/gsctl/create-keypair/) or the Giant Swarm Web UI) that include that group.
 
 For a complete overview of default roles and bindings we defer to the [official RBAC documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#default-roles-and-role-bindings).
 
-__Warning:__ Be careful assigning super-user as a default role. Giving `cluster-admin` role to every user means letting them perform any action in the cluster. As an analogy, it is like you giving root access to every user in a Linux system. Consequently think twice which role your users will have in the system. For Kubernetes, it translates in selecting a username and group name properly. In case you use authentication based on certs, [common name and organization would be those respectively](https://docs.giantswarm.io/reference/gsctl/create-keypair/#kubernetes-rbac-and-the-certificate-s-subject-common-name-and-organization-fields). If you are using an external authentication system then be sure it returns the correct user and group name to the Kubernetes API.
+__Warning:__ Be careful assigning super-user as a default role. Giving `cluster-admin` role to every user means letting them perform any action in the cluster. As an analogy, it is like you giving root access to every user in a Linux system. Consequently think twice which role your users will have in the system. For Kubernetes, it translates in selecting a username and group name properly. In case you use authentication based on certs, [common name and organization would be those respectively](/reference/gsctl/create-keypair/#kubernetes-rbac-and-the-certificate-s-subject-common-name-and-organization-fields). If you are using an external authentication system then be sure it returns the correct user and group name to the Kubernetes API.
 
 ### Verifying if you Have Access
 
@@ -627,5 +635,5 @@ Note that bindings that come with the cluster by default like `system:masters` c
 - [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/)
 - [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)
 - [Configuring Service Accounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/)
-- [Creating a kubeconfig with gsctl](https://docs.giantswarm.io/reference/gsctl/create-kubeconfig/)
-- [Creating a key pair with gsctl](https://docs.giantswarm.io/reference/gsctl/create-keypair/)
+- [Creating a kubeconfig with gsctl](/reference/gsctl/create-kubeconfig/)
+- [Creating a key pair with gsctl](/reference/gsctl/create-keypair/)

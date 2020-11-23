@@ -5,7 +5,21 @@ date: 2020-06-15
 weight: 50
 type: page
 categories: ["basics"]
-last-review-date: 2020-05-18
+last-review-date: 2020-10-28
+user_questions:
+  - What areas are covered in the Giant Swarm AWS platform?
+  - Do I need a control plane per AWS region?
+  - What does Giant Swarm use operators for?
+  - How does Giant Swarm manage Custom Resources (CRs)?
+  - How does Giant Swarm operate in the AWS landscape?
+  - Why does Giant Swarm need access to my AWS account?
+  - What isolation layers are available when using Giant Swarm on AWS?
+  - What are best practices for workload segregation on AWS?
+  - How would Node Pools look on tenant clusters in AWS?
+  - How do you control resource assignment on AWS?
+  - Will my AWS clusters autoscale?
+  - How are workloads secured on AWS clusters?
+  - Why does Giant Swarm run a monitoring stack on my AWS control planes?
 ---
 
 # The Giant Swarm AWS Platform
@@ -20,15 +34,15 @@ When it comes to planning and designing your cluster architecture and its adapti
 
 As we are fully convinced of Kubernetes as a platform for building platforms, we built all our Control Plane based on a Kubernetes cluster. The initial deployment entails the creation of that Control Plane cluster in a defined cloud provider region. After the Control Plane cluster is ready we deploy all our automation taking advantage of Kubernetes primitives and using the same philosophy we advocate to our customers.
 
-Giant Swarm leverages the concept of [“Operators"](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) to control all resources that clusters need as [“Custom Resources”](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/). At the same time customers can also use the Kubernetes Control Plane API to [manage their clusters](https://docs.giantswarm.io/guides/creating-clusters-via-crs-on-aws/) and/or [applications](https://docs.giantswarm.io/basics/app-catalog/).
+Giant Swarm leverages the concept of [“Operators"](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) to control all resources that clusters need as [“Custom Resources”](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/). At the same time customers can also use the Kubernetes Control Plane API to [manage their clusters](/guides/creating-clusters-via-crs-on-aws/) and/or [applications](/basics/app-catalog/).
 
 ![AWS Control Plane Architecture](aws-cp-cluster-architecture.png)
 
 ## AWS Landscape
 
-Giant Swarm's AWS operator is the product of years of work and we continue to apply our learnings and new functionality to it, as they become available. It is in charge of the provisioning and configuration of all resources needed to make a Kubernetes cluster functional on AWS. This operator runs in the Control Plane cluster, conveniently in separate accounts, and needs to reach the AWS API where you want to deploy your clusters. Thanks to our [Multi-Account](https://docs.giantswarm.io/basics/byoc/) support, customers can add different AWS accounts to our platform and our operator will assume an IAM Role to operate the resources accordingly and spawn clusters into these accounts respectively.
+Giant Swarm's AWS operator is the product of years of work and we continue to apply our learnings and new functionality to it, as they become available. It is in charge of the provisioning and configuration of all resources needed to make a Kubernetes cluster functional on AWS. This operator runs in the Control Plane cluster, conveniently in separate accounts, and needs to reach the AWS API where you want to deploy your clusters. Thanks to our [Multi-Account](/basics/multi-account/) support, customers can add different AWS accounts to our platform and our operator will assume an IAM Role to operate the resources accordingly and spawn clusters into these accounts respectively.
 
-Most of our customers rely on additional AWS services like Control Tower, Organizations or Config to help them with the landing, configuration, and audit of their applications on cloud provider resources. Based on our experience, we have crafted an [introductory guide](https://docs.giantswarm.io/guides/prepare-aws-account-for-tenant-clusters/) on how to configure your AWS accounts, to prepare them for our platform. These include good defaults, which will prevent you from hitting [AWS limits (service quotas)](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) when creating clusters through our platform. Additionally, we continuously monitor the relevant limits. We will notify you, if a cluster approaches one of these limits, so you can focus on building your applications.
+Most of our customers rely on additional AWS services like Control Tower, Organizations or Config to help them with the landing, configuration, and audit of their applications on cloud provider resources. Based on our experience, we have crafted an [introductory guide](/guides/prepare-aws-account-for-tenant-clusters/) on how to configure your AWS accounts, to prepare them for our platform. These include good defaults, which will prevent you from hitting [AWS limits (service quotas)](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) when creating clusters through our platform. Additionally, we continuously monitor the relevant limits. We will notify you, if a cluster approaches one of these limits, so you can focus on building your applications.
 
 Following the principle of least privilege, we continuously refine the permissions needed for our automation to manage the AWS resources and the permissions given to our support engineers to assist when there is a problem. This is an ongoing process, as this is subject to change. We are constantly tweaking this based on our experience and changes introduced in AWS APIs as well as upstream changes in Kubernetes and other community projects. That being said, as infrastructure providers, we need a certain level of access to the cloud providers’ APIs in order to ensure the smooth operation and support of our platform. In some cases, we recommend creating accounts solely for Giant Swarm related resources and keeping other resources in separate accounts. These accounts are only accessed on demand.
 
@@ -61,7 +75,7 @@ Our [AWS operator](https://www.giantswarm.io/blog/aws-operator-2-0-creating-kube
 
 ![AWS Tenant Cluster Architecture](aws-tenant-cluster-architecture.png)
 
-In AWS the [node pool](https://docs.giantswarm.io/basics/nodepools/) concept is mapped to an Autoscaling Group, which defines a launch configuration and scaling properties of the worker nodes located in it.
+In AWS the [node pool](/basics/nodepools/) concept is mapped to an Autoscaling Group, which defines a launch configuration and scaling properties of the worker nodes located in it.
 
 In order to communicate with your on-premises data center or with other VPCs (other cluster or existing infrastructure) you can leverage a VPN/Direct Connect or a Transit Gateway/peering respectively.
 
@@ -73,23 +87,23 @@ To determine the right sizing in terms of cores and RAM, you need to know what k
 
 ### Control resource assignment
 
-One of the golden rules of Kubernetes is proper resource assignment. This is hard to do, especially for developers which are not used to profiling their applications under different scenarios. But the resource definition is a [key configuration](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/) part that allows Kubernetes to schedule, limit, control and scale the applications. So our recommendation [is to define resources](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) for most of your applications running in the clusters. That said, there is some controversy about defining CPU limits due to how Kernels manage the CPU quota assigned to the containers. There have been some fixes in the latest Kernel versions which improve the situation. To learn more, we encourage you to [check this Kubecon video](https://www.youtube.com/watch?v=UE7QX98-kO0) or talk to your Solution Engineer.
+One of the golden rules of Kubernetes is proper resource assignment. This is hard to do, especially for developers which are not used to profiling their applications under different scenarios. But the resource definition is a [key configuration](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) part that allows Kubernetes to schedule, limit, control and scale the applications. So our recommendation [is to define resources](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) for most of your applications running in the clusters. That said, there is some controversy about defining CPU limits due to how Kernels manage the CPU quota assigned to the containers. There have been some fixes in the latest Kernel versions which improve the situation. To learn more, we encourage you to [check this Kubecon video](https://www.youtube.com/watch?v=UE7QX98-kO0) or talk to your Solution Engineer.
 
 Further, to enforce the definition of resources, [Limit Ranges](https://kubernetes.io/docs/concepts/policy/limit-range/) helps to set the defaults once a user forgets to add those. At the same time, [Resource Quotas](https://kubernetes.io/docs/concepts/policy/resource-quotas/) enables cluster operators to assign a predetermined amount of resources to each namespace. Thus, protecting other workloads.
 
 ### Cluster scalability
 
-Our clusters are crafted with the [cluster autoscaling component](https://docs.giantswarm.io/basics/cluster-size-autoscaling/) included as a managed app. This means that a users can define the size of the cluster by defining a minimum and maximum number of nodes per node pool. The cluster autoscaling component will scale the node pools up and down based on the capacity needed. Although we manage the component, we also allow for some customization in order to adapt the autoscaling behaviour to your needs.
+Our clusters are crafted with the [cluster autoscaling component](/basics/cluster-size-autoscaling/) included as a managed app. This means that a users can define the size of the cluster by defining a minimum and maximum number of nodes per node pool. The cluster autoscaling component will scale the node pools up and down based on the capacity needed. Although we manage the component, we also allow for some customization in order to adapt the autoscaling behaviour to your needs.
 
 ### Cluster authentication
 
-Giant Swarm configures the clusters in a secure way. [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) is enabled by default and our customers can create their own roles or use the ones predefined in the cluster to gain access to manage their workloads. The concept of authenticating users and groups does not exist in Kubernetes, so it relies on an external solution to authenticate the users (e.g. via X.509 certificates or [OIDC](https://en.wikipedia.org/wiki/OpenID_Connect)). Although our platform allows users to access the cluster using certificates, we recommend using an OIDC compliant Identity Provider, such as Active Directory, to provide authentication. There are several advantages to using an OIDC provider, such as short lived tokens or taking advantage of existing user and group information. Once authentication is sorted out, the authorization part is handled with RBAC. RBAC, along with namespaces, lets users define granular permissions for each user or group (given by OIDC or certs). This [guide](https://docs.giantswarm.io/guides/securing-with-rbac-and-psp/) will walk you through it.
+Giant Swarm configures the clusters in a secure way. [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) is enabled by default and our customers can create their own roles or use the ones predefined in the cluster to gain access to manage their workloads. The concept of authenticating users and groups does not exist in Kubernetes, so it relies on an external solution to authenticate the users (e.g. via X.509 certificates or [OIDC](https://en.wikipedia.org/wiki/OpenID_Connect)). Although our platform allows users to access the cluster using certificates, we recommend using an OIDC compliant Identity Provider, such as Active Directory, to provide authentication. There are several advantages to using an OIDC provider, such as short lived tokens or taking advantage of existing user and group information. Once authentication is sorted out, the authorization part is handled with RBAC. RBAC, along with namespaces, lets users define granular permissions for each user or group (given by OIDC or certs). This [guide](/guides/securing-with-rbac-and-psp/) will walk you through it.
 
 ### Secure your workloads
 
-Within the cluster, Giant Swarm has set up a secure baseline using [Pod Security Policies (PSPs)](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) and [Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/). Pod Security Policies are the Kubernetes resource that configures the sensitive aspects of your applications. By default, users and workloads running in Giant Swarm clusters, are assigned a restrictive policy that disallows running containers as root or mounting host path volumes (these are just two examples). Cluster operators must enable applications to have higher security privileges on a case by case basis. In the aforementioned [guide](https://docs.giantswarm.io/guides/securing-with-rbac-and-psp/#pod-security-policies) we also explain how to configure tailored PSPs for you applications.
+Within the cluster, Giant Swarm has set up a secure baseline using [Pod Security Policies (PSPs)](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) and [Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/). Pod Security Policies are the Kubernetes resource that configures the sensitive aspects of your applications. By default, users and workloads running in Giant Swarm clusters, are assigned a restrictive policy that disallows running containers as root or mounting host path volumes (these are just two examples). Cluster operators must enable applications to have higher security privileges on a case by case basis. In the aforementioned [guide](/guides/securing-with-rbac-and-psp/#pod-security-policies) we also explain how to configure tailored PSPs for you applications.
 
-In addition to the security policies, Network Policies define the communication policies to and from the applications in each namespace. All components to run a cluster provided by Giant Swarm come with strict policies by default. Our managed namespaces (“kube-system” and “giantswarm”) block all traffic in general, so only expected and specifically configured routes and ports are enabled. Customers can follow this approach and deny all communications by default in their application namespaces forcing each workload to define which communications are allowed. This [guide](https://docs.giantswarm.io/guides/limiting-pod-communication-with-network-policies/) helps to understand how such a dynamic firewall works.
+In addition to the security policies, Network Policies define the communication policies to and from the applications in each namespace. All components to run a cluster provided by Giant Swarm come with strict policies by default. Our managed namespaces (“kube-system” and “giantswarm”) block all traffic in general, so only expected and specifically configured routes and ports are enabled. Customers can follow this approach and deny all communications by default in their application namespaces forcing each workload to define which communications are allowed. This [guide](/guides/limiting-pod-communication-with-network-policies/) helps to understand how such a dynamic firewall works.
 
 ## Observability
 
@@ -97,18 +111,9 @@ Since we provide a **managed** Kubernetes platform, Giant Swarm has to be aware 
 
 Our on-call engineers will be paged in case anything happens to the cluster or its base components and they will respond to the incident based on the run-books we have created based on years of operating Cloud Native systems. In case there is an improvement to be made, a post mortem is created and a solution will be implemented before long. Any patch or fix added to the platform will be released to all customers.
 
-## App Platform
-
-Giant Swarm [has designed a system](https://www.giantswarm.io/app-catalog) to ease the use of some common Cloud Native apps. The amount of components available in the landscape is huge, and [we have decided to include some of the projects in our catalog](https://www.giantswarm.io/blog/announcing-the-giant-swarm-app-platform) for our customers to rely on.
-
-Right now we have several managed apps to control the Ingress traffic ([NGINX Ingress Controller](https://github.com/giantswarm/nginx-ingress-controller-app) and [Kong](https://github.com/giantswarm/kong-app)), secure the AWS API and map roles ([kiam](https://github.com/giantswarm/kiam-app)), collect and process logs ([EFK](https://github.com/giantswarm/efk-stack-app)) or automate the DNS setup ([external DNS](https://github.com/giantswarm/external-dns-app)).
-
-But at the same time we open the catalog to our customers and employees to use for their own apps. That is why we are running a proof of concept for AWS App Mesh, the AWS implementation of Service Mesh pattern, or Loki, the “coolest” log collector. If you trust in a Cloud Native app and operating it does not add any value to your business, talk to us and we might take over its management for you, too.
-
-Please note, while this document went into extensive details with regards to how Giant Swarm runs Kubernetes on AWS, we support [Azure](https://docs.giantswarm.io/basics/azure-architecture/) as well as [Bare Metal](https://docs.giantswarm.io/basics/onprem-architecture/). For more details, please [contact us](https://www.giantswarm.io/contact).
+Please note, while this document went into extensive details with regards to how Giant Swarm runs Kubernetes on AWS, we support [Azure](/basics/azure-architecture/) as well as [Bare Metal](/basics/onprem-architecture/). For more details, please [contact us](https://www.giantswarm.io/contact).
 
 ## Further reading
 
-- [Giant Swarm support model](https://docs.giantswarm.io/basics/giant-swarm-support/)
-- [Giant Swarm operational layers](https://docs.giantswarm.io/basics/giant-swarm-operational-layers/)
-- [Giant Swarm App Catalog](https://docs.giantswarm.io/basics/app-catalog/)
+- [Giant Swarm support model](/basics/giant-swarm-support/)
+- [Giant Swarm operational layers](/basics/giant-swarm-operational-layers/)

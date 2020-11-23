@@ -5,6 +5,9 @@ date: 2019-11-06
 type: page
 weight: 30
 tags: ["tutorial"]
+user_questions:
+  - How can I use Azure Active Directory to authenticate cluster access?
+  - How to use OIDC for cluster authentication?
 ---
 
 # Authenticating with Microsoft Azure Active Directory
@@ -105,7 +108,7 @@ Furthermore, to make the `kubeconfig` self-contained, you can replace `/path/to/
 When authenticating with AAD your user identifies to Kubernetes with a username and the groups you are a member of in AAD. A Cluster Admin can bind roles to these to grant access on a specific cluster.
 
 As explained in [Securing your Cluster with RBAC and PSP
-](https://docs.giantswarm.io/guides/securing-with-rbac-and-psp/) you can either use the default roles or define custom `Role` or `ClusterRole` resources to bind to subjects.
+](/guides/securing-with-rbac-and-psp/) you can either use the default roles or define custom `Role` or `ClusterRole` resources to bind to subjects.
 
 In the following examples we'll use one of the default cluster roles.
 
@@ -166,6 +169,6 @@ Access is revoked as soon as the user has either been removed from a bound group
 ## Further reading
 
 - [Securing your Cluster with RBAC and PSP
-](https://docs.giantswarm.io/guides/securing-with-rbac-and-psp/)
+](/guides/securing-with-rbac-and-psp/)
 - [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
 - [Azure Active Directory plugin for client authentication](https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/client-go/plugin/pkg/client/auth/azure/README.md)
