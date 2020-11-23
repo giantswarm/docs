@@ -4,7 +4,7 @@ description: Details on the tenant cluster release offered by Giant Swarm and wa
 date: 2020-11-18
 last_review_date: 2020-10-30
 layout: subsection
-weight: 500
+weight: 50
 user_questions:
   - What is a tenant cluster release?
   - Where can I find details about tenant cluster releases?
