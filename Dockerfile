@@ -25,7 +25,8 @@ RUN rm /docker-entrypoint.d/* && \
     -e 's|listen  [::]:80;||' \
     /etc/nginx/conf.d/default.conf
 
-RUN nginx -t -c /etc/nginx/nginx.conf
+RUN nginx -t -c /etc/nginx/nginx.conf && \
+    rm -rf /tmp/nginx.pid
 
 EXPOSE 8080
 
