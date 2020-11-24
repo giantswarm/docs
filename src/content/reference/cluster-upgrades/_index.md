@@ -2,7 +2,7 @@
 title: "Cluster Upgrades with Giant Swarm"
 description: "How Kubernetes and other components are upgraded in a Giant Swarm installation, and how to prepare your cluster and workloads to facilitate robust upgrades."
 date: 2020-11-18
-weight: 30
+weight: 60
 layout: "subsection"
 user_questions:
   - How do cluster upgrades work?
