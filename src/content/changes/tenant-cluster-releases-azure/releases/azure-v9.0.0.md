@@ -20,7 +20,7 @@ This release contains Kubernetes `1.15.5` as well as a change to the default wor
 - Add new rule to the public load balancer for outgoing UDP traffic from the master nodes to allow communication with NTP time servers.
 
 ### Kubernetes v1.15.5
-- Updated from v1.14.6 - [changelog](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.15.md#kubernetes-v115-release-notes)
+- Updated from v1.14.6 - [changelog](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.15.md)
 - Includes a fix for CVE-2019-11253 related to json/yaml decoding where large or malformed documents could consume excessive server resources. Request bodies for normal API requests (create/delete/update/patch operations of regular resources) are now limited to 3MB.
 
 ### Calico v3.9.1

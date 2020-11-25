@@ -1,7 +1,7 @@
 ---
 title: Automatic termination of unhealthy nodes
 description: Unhealthy cluster nodes can lead to impaired workload reliability and wasted cluster resources. Here we explain how you can activate automatic termination of such nodes.
-date: 2020-11-06
+date: 2020-11-23
 weight: 120
 type: page
 categories: ["basics"]
@@ -11,9 +11,9 @@ categories: ["basics"]
 
 Degraded nodes in a Kubernetes cluster should be a rare issue, however when it occurs, it can have severe consequences for the workloads scheduled to the affected nodes. The goal should be to detect bad nodes early and remove them from the cluster, replacing them with healthy ones.
 
-Starting with release v12.6.0 for AWS, you now have the option to automate the detection and termination of bad nodes. When enabled, all nodes in your cluster are periodically checked. If a node fails consecutive health checks over an extended time period, it will be drained and terminated.
+Starting with tenant cluster release v12.6.0 for AWS and v13.1.0 for Azure, you now have the option to automate the detection and termination of bad nodes. When enabled, all nodes in your cluster are periodically checked. If a node fails consecutive health checks over an extended time period, it will be drained and terminated.
 
-This function is available on AWS only currently. Support on other providers will follow.
+This function is currently available on AWS and Azure only.
 
 ## Technical details
 
@@ -25,6 +25,10 @@ An unhealthy status means the `kubelet` on a given node has reported `NotReady` 
 
 Automatic termination of unhealthy nodes is **disabled by default**. You can enable it for each individual cluster.
 
+This section explains how you can enable the feature for each supported provider.
+
+### AWS
+
 To enable it, you have to edit the [`AWSCluster`](/reference/cp-k8s-api/awsclusters.infrastructure.giantswarm.io/) resource of your cluster using the [Control Plane Kubernetes API](/basics/api/#cp-k8s-api).
 
 Make sure the resource has the `alpha.node.giantswarm.io/terminate-unhealthy` annotation. The value can be anything you like, as only the presence of that annotation is checked. Here is an example:
@@ -34,7 +38,7 @@ apiVersion: infrastructure.giantswarm.io/v1alpha2
 kind: AWSCluster
 metadata:
   annotations:
-    alpha.node.giantswarm.io/terminate-unhealthy: absolutely
+    alpha.node.giantswarm.io/terminate-unhealthy: "true"
   labels:
     giantswarm.io/cluster: jni9x
     giantswarm.io/organization: giantswarm
@@ -46,3 +50,23 @@ spec:
 ```
 
 If you want to disable the feature you must remove the annotation from the [`AWSCluster`](/reference/cp-k8s-api/awsclusters.infrastructure.giantswarm.io/) custom resource.
+
+### Azure
+
+To enable it, you have to edit the [`Cluster`](/reference/cp-k8s-api/clusters.cluster.x-k8s.io/) resource of your cluster using the [Control Plane Kubernetes API](/basics/api/#cp-k8s-api).
+
+Make sure the resource has the `alpha.node.giantswarm.io/terminate-unhealthy` annotation. The value can be anything you like, as only the presence of that annotation is checked. Here is an example:
+
+```yaml
+apiVersion: cluster.x-k8s.io/v1alpha3
+kind: Cluster
+metadata:
+  annotations:
+    alpha.node.giantswarm.io/terminate-unhealthy: "true"
+  name: fn7t8
+  namespace: org-giantswarm
+spec:
+  ...
+```
+
+If you want to disable the feature you must remove the annotation from the [`Cluster`](/reference/cp-k8s-api/clusters.cluster.x-k8s.io/) custom resource.

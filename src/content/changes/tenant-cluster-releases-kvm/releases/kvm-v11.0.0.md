@@ -23,12 +23,12 @@ This is the first Giant Swarm release which includes Kubernetes v1.16. In additi
 ---
 
 ### Kubernetes v1.16.3
-- Updated from v1.15.5 - [changelog](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.16.md#kubernetes-v1160-release-notes).
+- Updated from v1.15.5 - [changelog](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.16.md).
 - **Custom resources**: CRDs are in widespread use as a way to extend Kubernetes to persist and serve new resource types, and have been available in beta since the 1.7 release. The 1.16 release marks the graduation of CRDs to general availability (GA).
 - **Admission webhooks**: Admission webhooks are in widespread use as a Kubernetes extensibility mechanism and have been available in beta since the 1.9 release. The 1.16 release marks the graduation of admission webhooks to general availability (GA).
 - **Overhauled metrics**: Kubernetes has previously made extensive use of a global metrics registry to register metrics to be exposed. By implementing a metrics registry, metrics are registered in more transparent means. Previously, Kubernetes metrics have been excluded from any kind of stability requirements.
 - **Volume Extension**: There are quite a few enhancements in this release that pertain to volumes and volume modifications. Volume resizing support in CSI specs is moving to beta which allows for any CSI spec volume plugin to be resizable.
-- **Node labels** beta.kubernetes.io/metadata-proxy-ready, beta.kubernetes.io/metadata-proxy-ready and beta.kubernetes.io/kube-proxy-ds-ready are no longer added on new nodes.
+- **Node labels** `beta.kubernetes.io/metadata-proxy-ready`, `beta.kubernetes.io/metadata-proxy-ready` and `beta.kubernetes.io/kube-proxy-ds-ready` are no longer added on new nodes.
 - **Network Policies**: Giantswarm added a `deny-all` network policy by default. This policy is applied to all pods in sensitive namespaces such as `giantswarm` or `kube-system`. To communicate with any pods in these namespaces you need to explicitly create a Network Policy that allows it.
 - As previously communicated, resources under `apps/v1beta1` and `apps/v1beta2` groups have been moved to `apps/v1` instead. Similarly, `daemonsets`, `deployments`, `replicasets` resources under `extensions/v1beta1` have been moved to `apps/v1`, `networkpolicies` under `extensions/v1beta1` to `networking.k8s.io/v1`, and `podsecuritypolicies` under `extensions/v1beta1` to `policy/v1beta1`.
 

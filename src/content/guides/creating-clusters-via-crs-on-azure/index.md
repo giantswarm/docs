@@ -1,7 +1,7 @@
 ---
 title: Creating tenant clusters on Azure via Control Plane Kubernetes API
 description: This guide will walk you through the process of tenant cluster creation via Control Plane Kubernetes on Azure.
-date: 2020-10-02
+date: 2020-11-18
 type: page
 weight: 100
 tags: ["tutorial"]
@@ -12,7 +12,7 @@ tags: ["tutorial"]
 Starting from version {{% first_azure_nodepools_version %}} on Azure, Giant Swarm introduced a feature to create multiple [node pools](/basics/nodepools/) on Azure.
 Alongside node pools support, a new API version for cluster management was released.
 
-All the tenant clusters, created with release version {{% first_azure_nodepools_version %}} and newer, are managed as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) in the Control Plane.
+All the tenant clusters, created with tenant cluster release v{{% first_azure_nodepools_version %}} and newer, are managed as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) in the Control Plane.
 
 At a high-level, the Control Plane API is used to manage the following CRs:
 

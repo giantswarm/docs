@@ -1,7 +1,7 @@
 ---
 title: kubectl gs template nodepool
 description: Reference documentation on how to create a manifest for a node pool using 'kubectl gs'.
-date: 2020-10-02
+date: 2020-11-18
 type: page
 weight: 10
 ---
@@ -43,9 +43,9 @@ Here are the supported flags:
 - `--nodex-min` - minimum number of worker nodes for the node pool. (default 3)
 - `--num-availability-zones` - number of availability zones to use. (default 1)
 - `--owner` - organization, owning tenant cluster. Must be configured with existing organization in installation.
-- `--release` - valid release version.
+- `--release` - valid tenant cluster release version.
 Can be retrieved with `gsctl list releases` for your installation. Only versions *10.x.x*+ support cluster CRs.
-- `--release-branch` (optional) - The Giant Swarm [releases repository](https://github.com/giantswarm/releases) branch to use to look up the release set via the `--release` flag (default: `master`).
+- `--release-branch` (optional) - The Giant Swarm [releases repository](https://github.com/giantswarm/releases) branch to use to look up the tenant cluster release set via the `--release` flag (default: `master`).
 
 ### AWS specific
 
