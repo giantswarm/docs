@@ -4,7 +4,7 @@ changes_categories:
 - Tenant Cluster Releases for AWS
 changes_entry:
   repository: giantswarm/releases
-  url: https://github.com/giantswarm/releases/tree/master/aws/v11.3.3
+  url: https://github.com/giantswarm/releases/tree/master/aws/archived/v11.3.3
   version: 11.3.3
   version_tag: v11.3.3
 date: '2020-06-05T15:00:00+00:00'
