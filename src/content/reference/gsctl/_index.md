@@ -3,7 +3,7 @@ title: "gsctl Reference"
 description: "Documentation on gsctl, the Giant Swarm command line utility to create and delete clusters, create key pairs and more."
 date: 2020-11-18
 layout: "subsection"
-weight: 10
+weight: 20
 ---
 
 # `gsctl` Reference

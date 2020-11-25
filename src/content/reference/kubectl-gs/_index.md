@@ -3,7 +3,7 @@ title: kubectl gs Reference
 description: User manual for kubectl-gs (also known as kgs), the Giant Swarm kubectl plugin.
 date: 2020-11-18
 layout: subsection
-weight: 100
+weight: 40
 ---
 
 # `kubectl gs` Reference
