@@ -25,6 +25,9 @@ RUN rm /docker-entrypoint.d/* && \
     -e 's|listen  [::]:80;||' \
     /etc/nginx/conf.d/default.conf
 
+RUN nginx -t -c /etc/nginx/nginx.conf && \
+    rm -rf /tmp/nginx.pid
+
 EXPOSE 8080
 
 COPY --from=build --chown=101 /public /usr/share/nginx/html

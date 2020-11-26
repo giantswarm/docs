@@ -16,7 +16,8 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
       - name: Aggregate releases
         env:
@@ -24,20 +25,18 @@ jobs:
         run: make changes
 
       - name: Create or update pull request
-        uses: gr2m/create-or-update-pull-request-action@v1.3.0
+        uses: gr2m/create-or-update-pull-request-action@v1.3.1
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
-          # Pull Request title
           title: Automated update of Changes and Releases
-          # Pull Request body
+          branch: "automated-update-for-changes"
           body: |
             This PR has been created automatically by the 'Update Changes and Releases' Github workflow.
 
-            If you see relevant additions in the 'Files' tab, feel free to merge it into master any time
-            without review and then create a docs release.
-
-            Non-relevant additions would be, for example, a docs release that only updates the Changelog
-            section.
-          branch: "automated-update-for-changes"
-
+            If you see relevant additions in the 'Files' tab, feel free to **Approve** this PR.
+            (Non-relevant additions would be, for example, a docs release that only updates the Changelog
+            section.)
+            
+            Otherwise, leave the PR open. It will be updated periodically as new entries arrive in the
+            Changes and Releases section.

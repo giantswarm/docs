@@ -12,17 +12,17 @@ tags: ["tutorial"]
 An ingress controller helps you expose your services to the outside world.
 
 Not all of our clusters come with an ingress controller pre-installed. We are
-currently in a shift where certain releases have a pre-installed ingress controller
-and certain releases require you to install one yourself.
+currently in a shift where certain tenant cluster releases have a pre-installed
+ingress controller others require you to install one yourself.
 
-Eventually all releases will ship without a built-in ingress controller. That
+Eventually all tenant cluster releases will ship without a built-in ingress controller. That
 allows you full control to choose which and how many ingress controllers you
 want to run on your cluster.
 
-## Which releases do not ship with an ingress controller
+## Which tenant cluster releases do not ship with an ingress controller
 
-Currently only clusters on our AWS installations that have a release version
-newer than `10.0.0` ship by default without an ingress controller.
+Currently only clusters on our AWS installations that have a tenant cluster release version
+newer than `10.0.0` ship without an ingress controller by default.
 
 Clusters on Azure and KVM (On-premises) continue to include `nginx-ingress-controller`
 as a default component.

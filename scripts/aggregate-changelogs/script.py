@@ -35,12 +35,17 @@ def get_releases(client, repo_shortname):
         # skip unpublished releases
         if release.published_at is None:
             continue
+        
+        body = ""
+        if release.body is not None:
+            body = link_pull_requests(release.body, repo_shortname)
+            body = link_commit_hashes(body, repo_shortname)
 
         yield {
             'repository': repo_shortname,
             'version_tag': release.tag_name,
             'date': release.published_at,
-            'body': link_pull_requests(release.body, repo_shortname),
+            'body': body,
             'url': release.html_url,
         }
 
@@ -54,7 +59,11 @@ def get_changelog_file(client, repo_shortname):
 
 def parse_changelog(body, repo_shortname):
     # Cut off the link reference at the end
-    (good, bad) = body.split("[Unreleased]: ", maxsplit=1)
+    try:
+        (good, bad) = body.split("[Unreleased]: ", maxsplit=1)
+    except ValueError as e:
+        print(f"INFO: snippet '[Unreleased]: ' not found in CHANGELOG.md of {repo_shortname}")
+        good = body
     
     # Create chunks based on level 2 headlines
     chunks = re.split(r'\n##\s+', good, flags=re.M)
@@ -191,7 +200,18 @@ def link_pull_requests(mkdwn, repo_shortname):
         result = f'{match.group(1)}[{match.group(2)}](https://github.com/{repo_shortname}/pull/{match.group(3)})'
         return result
     
-    result = re.sub(r'([^\[])(#([0-9]+))', replace_func, mkdwn)
+    result = re.sub(r'([^\[a-z0-9])(#([0-9]+))', replace_func, mkdwn)
+    return result
+
+def link_commit_hashes(mkdwn, repo_shortname):
+    """
+    Links commit hashes like 9bbbd0ef498474b922830bd2bfaa6a1caf382660
+    """
+    def replace_hash(match):
+        result = f'[{match.group(1)[0:7]}](https://github.com/{repo_shortname}/commit/{match.group(1)})'
+        return result
+    
+    result = re.sub(r'\b([a-f0-9]{40})\b', replace_hash, mkdwn)
     return result
 
 def generate_release_file(repo_shortname, repo_config, release):
