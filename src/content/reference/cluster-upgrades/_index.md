@@ -1,8 +1,8 @@
 ---
 title: "Cluster Upgrades with Giant Swarm"
 description: "How Kubernetes and other components are upgraded in a Giant Swarm installation, and how to prepare your cluster and workloads to facilitate robust upgrades."
-date: 2020-11-18
-weight: 30
+date: 2020-11-25
+weight: 60
 layout: "subsection"
 user_questions:
   - How do cluster upgrades work?
@@ -62,6 +62,12 @@ According to our tenant cluster release versioning, three different levels of up
 **Both patch and minor upgrades** can be rolled out at any time by Giant Swarm without your interaction. Currently, this happens in coordination with your administrators and with a notice to your developers.
 
 When a tenant cluster release with a **new major version** becomes available, we inform you, but leave scheduling of the upgrade to you. This gives you the control to decide if and when it is time for you to upgrade, potentially updating workloads first. These upgrades are also accompanied or even triggered by Giant Swarm staff, to ensure we have a close eye on the upgrade process and the uptime of your workloads.
+
+Once we publish a new major release, we deprecate the oldest major release.
+This means that new clusters with deprecated releases can only be created using `gsctl`.
+Existing clusters, however, are not affected.
+
+Creating clusters with deprecated releases is generally not recommended. Testing tenant cluster upgrades in a separate cluster should be the only use case.
 
 ### Skipping tenant cluster release
 

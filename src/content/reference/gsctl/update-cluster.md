@@ -11,7 +11,7 @@ The `gsctl update cluster` command allows the modification of some cluster attri
 
 Changing the cluster name is possible on all providers and in all tenant cluster release versions.
 
-Cluster labelling is only available for clusters with tenant cluster release v{{% first_aws_nodepools_version %}} and above for AWS. High availability of master nodes is available on AWS starting at tenant cluster release v{{% first_aws_ha_masters_version %}}.
+Cluster labelling is only available for clusters with tenant cluster release v{{% first_aws_nodepools_version %}} and above for AWS, or v{{% first_azure_nodepools_version %}} and above for Azure. High availability of master nodes is available on AWS starting at tenant cluster release v{{% first_aws_ha_masters_version %}}.
 
 ## Usage
 

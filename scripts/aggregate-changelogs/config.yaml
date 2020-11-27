@@ -57,6 +57,39 @@ repositories:
   giantswarm/prometheus-operator-app:
     category: Managed Apps
 
+  giantswarm/app-mesh-app:
+    category: Playground Apps
+  giantswarm/azure-ad-pod-identity-app:
+    category: Playground Apps
+  giantswarm/eventrouter-app:
+    category: Playground Apps
+  giantswarm/fluent-logshipping-app:
+    category: Playground Apps
+  giantswarm/gatling-app:
+    category: Playground Apps
+  giantswarm/giantswarm-todo-app:
+    category: Playground Apps
+  inlets/inlets:
+    category: Playground Apps
+  giantswarm/istio-operator:
+    category: Playground Apps
+  giantswarm/jaeger-operator-app:
+    category: Playground Apps
+  giantswarm/k8s-initiator-app:
+    category: Playground Apps
+  giantswarm/kibana-oss-app:
+    category: Playground Apps
+  giantswarm/kubernetes-gpu:
+    category: Playground Apps
+  giantswarm/linkerd2-app:
+    category: Playground Apps
+  giantswarm/loki-stack-app:
+    category: Playground Apps
+  giantswarm/opencensus-collector-app:
+    category: Playground Apps
+  giantswarm/strimzi-kafka-operator-app:
+    category: Playground Apps
+
 # Here we define the colors for categories.
 categories:
   - name: Control Plane Kubernetes API
@@ -69,6 +102,8 @@ categories:
     color: "#8081b2"
   - name: Managed Apps
     color: "#7ac271"
+  - name: Playground Apps
+    color: "#bfffb8"
   - name: Rest API
     color: "#919ea1"
   - name: Tenant Cluster Releases for AWS

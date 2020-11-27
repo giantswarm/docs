@@ -1,9 +1,9 @@
 ---
 title: "gsctl Reference"
 description: "Documentation on gsctl, the Giant Swarm command line utility to create and delete clusters, create key pairs and more."
-date: 2020-11-18
+date: 2020-11-25
 layout: "subsection"
-weight: 10
+weight: 20
 ---
 
 # `gsctl` Reference
@@ -38,7 +38,7 @@ Follow the links below for a detailed documentation, where available. You can al
 | `select endpoint`                     | [Select an endpoint](select-endpoint/)
 | `show cluster`                        | [Show cluster details](show-cluster/)
 | `show nodepool`                       | [Show node pool details](show-nodepool/)
-| `show release`                        | Show details on a tenant cluster release
+| `show release`                        | [Show details on a tenant cluster release](show-release/)
 | `update cluster`                      | [Modify cluster details (name, labels)](update-cluster/)
 | `update nodepool`                     | [Modify (rename, scale) a node pool](update-nodepool/)
 | `update organization set-credentials` | [Set provider credentials for an organization](update-org-set-credentials/)

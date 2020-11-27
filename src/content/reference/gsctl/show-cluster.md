@@ -1,14 +1,14 @@
 ---
 title: "gsctl Command Reference: show cluster"
 description: "The 'gsctl show cluster' command displays details of a cluster."
-date: 2020-11-18
+date: 2020-11-25
 type: page
 weight: 52
 ---
 
 # `gsctl show cluster`
 
-The `gsctl show cluster` command displays details on a cluster.
+The `gsctl show cluster` command displays details of a cluster.
 
 ## Usage
 
