@@ -7,8 +7,8 @@ MARKDOWNLINT_IMAGE=06kellyjac/markdownlint-cli:0.23.0-alpine
 default: docker-build
 
 # Update content from external repositories that gets copied in here.
-fetch-external-repos:
-	./scripts/fetch-external-repos/main.sh
+update-external-repos:
+	./scripts/update-external-repos/main.sh
 
 # Aggregate changelog entries from various repositories into our Changes section.
 changes:
@@ -36,21 +36,11 @@ changes-test:
 update-crd-reference:
 	scripts/update-crd-reference/main.sh
 
-build:
-	# check dependencies
+# Ensure that the CLI version mention in docs is actually the latest
+update-latest-versions:
 	which jq || (echo "jq not found" && exit 1)
 	which curl || (echo "curl not found" && exit 1)
-
-	# Create build directory
-	rm -rf build
-	mkdir build
-
-	# Copy src to build directory
-	cp -r src/. build/
-
-	# Latest gsctl version
-	mkdir -p build/layouts/shortcodes
-	curl -s https://api.github.com/repos/giantswarm/gsctl/releases/latest | jq -j .tag_name > build/layouts/shortcodes/gsctl_version.html
+	curl -s https://api.github.com/repos/giantswarm/gsctl/releases/latest | jq -j .tag_name > src/layouts/shortcodes/gsctl_version.html
 
 lint:
 	@docker pull $(MARKDOWNLINT_IMAGE) > /dev/null
@@ -64,7 +54,7 @@ lint:
 		--ignore ./src/content/reference/cp-k8s-api \
 		./src
 
-docker-build: build
+docker-build: update-latest-versions
 	docker build -t $(REGISTRY)/$(COMPANY)/$(PROJECT):latest .
 
 docker-run:
