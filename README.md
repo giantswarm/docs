@@ -32,7 +32,7 @@ There are several additional repositories which provide additional functionality
 
 - [indexer](https://github.com/giantswarm/docs-indexer/): Indexing tool that pushes new content to the `sitesearch` index periodically, to keep the search engine up-to-date.
 
-## Contriibuting
+## Contributing
 
 **We welcome any contributions on content to this repository in the form of pull requests!**
 
