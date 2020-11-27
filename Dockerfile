@@ -4,7 +4,7 @@ RUN apk --no-cache add findutils gzip
 
 WORKDIR /docs
 
-COPY build .
+COPY src .
 
 RUN hugo --verbose --gc --minify --cleanDestinationDir --path-warnings --destination /public
 
