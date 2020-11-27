@@ -194,7 +194,7 @@ Of course, that requires the user to be authorized towards Kubernetes Control Pl
 
 Starting from version {{% first_azure_nodepools_version %}} on Azure we have enabled the possibility to configure the OIDC per cluster at the cluster creation stage. This feature only includes configuration of the OIDC in the `Cluster` CR before it is applied on the Control Plane.
 
-In order to configure your new cluster with OIDC, you will have to add adjusted to your needs annotations to the Cluster CR:
+In order to configure your new cluster with OIDC, you will have to add annotations to the Cluster CR as following:
 
 ```yaml
 apiVersion: cluster.x-k8s.io/v1alpha3
