@@ -208,7 +208,7 @@ metadata:
 ```
 
 This will result in setting up the OIDC config per cluster in the K8S API manifest.
-Currently changing/adding config to already existing cluster is not fully supported at Giant Swarm. Please talk to your SE if there is any need to change those settings. 
+Currently changing/adding config to already existing cluster is not fully supported at Giant Swarm. Please talk to your SE if there is any need to change those settings.
 
 ## How to delete cluster via Control Plane API
 
