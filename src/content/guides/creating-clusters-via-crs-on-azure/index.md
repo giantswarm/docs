@@ -195,6 +195,7 @@ Of course, that requires the user to be authorized towards Kubernetes Control Pl
 Starting from version {{% first_azure_nodepools_version %}} on Azure we have enabled the possibility to configure the OIDC per cluster at the cluster creation stage. This feature only includes configuration of the OIDC in the `Cluster` CR before it is applied on the Control Plane.
 
 In order to configure your new cluster with OIDC, you will have to add adjusted to your needs annotations to the Cluster CR:
+
 ```yaml
 apiVersion: cluster.x-k8s.io/v1alpha3
 kind: Cluster
@@ -207,9 +208,8 @@ metadata:
 ```
 
 This will result in setting up the OIDC config per cluster in the K8S API manifest.
-
 Currently changing/adding config to already existing cluster is not fully supported at Giant Swarm. Please talk to your SE if there is any need to change those settings. 
 
 ## How to delete cluster via Control Plane API
-In order to delete your cluster created via the Cluster API on the Control Plane, simply delete the `Cluster` CR corresponding to the given cluster. This will result in starting the process of cluster deletion and clean up of all cluster CRs on the Control Plane.
 
+In order to delete your cluster created via the Cluster API on the Control Plane, simply delete the `Cluster` CR corresponding to the given cluster. This will result in starting the process of cluster deletion and clean up of all cluster CRs on the Control Plane.
