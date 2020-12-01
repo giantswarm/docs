@@ -13,7 +13,7 @@ function toggleMenu(e) {
 
   var wrapperContainer = e.currentTarget.querySelector('.hs-menu-children-wrapper-container');
 
-  if (wrapperContainer.style.display === "none" || ! wrapperContainer.style.display) {
+  if (wrapperContainer.style.display === "none" || !wrapperContainer.style.display) {
     closeAllMenus();
     wrapperContainer.style.display = "block";
   } else {
@@ -23,7 +23,7 @@ function toggleMenu(e) {
 
 function closeAllMenus() {
   for (var i = 0; i < headerLinks.length; i++) {
-    var wrapperContainer = headerLinks[i].getElementsByClassName('hs-menu-children-wrapper-container')[0];
+    var wrapperContainer = headerLinks[i].querySelector('.hs-menu-children-wrapper-container');
 
     if (wrapperContainer) {
       wrapperContainer.style.display = "none";
@@ -41,7 +41,7 @@ mobileMenuTrigger.addEventListener('click', function() {
 
 function clickHandler(link) {
   var l = link;
-  return (e) => {
+  return function(e) {
     e.preventDefault();
     var ex = l.getAttribute('aria-expanded');
     if (ex === 'true') {
