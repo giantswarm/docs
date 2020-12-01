@@ -109,6 +109,10 @@ linkcheck-external:
 	docker kill server
 	docker kill linkchecker
 
+grab-main-site-header-footer:
+	curl -s https://www.giantswarm.io/why-giant-swarm | sed -n '/^<!-- BEGIN SITE_HEADER -->/,/^<!-- END SITE_HEADER -->/p;/^<!-- END SITE_HEADER -->/q' | sed '1d;$d' > src/layouts/partials/gs_header.html
+	curl -s https://www.giantswarm.io/why-giant-swarm | sed -n '/^<!-- BEGIN SITE_FOOTER -->/,/^<!-- END SITE_FOOTER -->/p;/^<!-- END SITE_FOOTER -->/q' | sed '1d;$d' > src/layouts/partials/gs_footer.html
+
 # Verify internal and external links
 linkcheck:
 	@echo "Checking all links\n"
