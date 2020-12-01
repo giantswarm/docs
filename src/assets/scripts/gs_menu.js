@@ -9,7 +9,7 @@ for (var i = 0; i < headerLinks.length; i++) {
 function toggleMenu(e) {
   e.preventDefault();
 
-  e.currentTarget.classList.toggle("menu-expanded")
+  e.currentTarget.classList.toggle("menu-expanded");
 
   var wrapperContainer = e.currentTarget.getElementsByClassName('hs-menu-children-wrapper-container')[0]
 
