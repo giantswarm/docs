@@ -11,7 +11,7 @@ function toggleMenu(e) {
 
   e.currentTarget.classList.toggle("menu-expanded");
 
-  var wrapperContainer = e.currentTarget.getElementsByClassName('hs-menu-children-wrapper-container')[0]
+  var wrapperContainer = e.currentTarget.querySelector('.hs-menu-children-wrapper-container');
 
   if (wrapperContainer.style.display === "none" || ! wrapperContainer.style.display) {
     closeAllMenus();
