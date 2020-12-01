@@ -43,9 +43,6 @@ Here are the supported flags:
 - `--nodex-min` - minimum number of worker nodes for the node pool. (default 3)
 - `--num-availability-zones` - number of availability zones to use. (default 1)
 - `--owner` - organization, owning tenant cluster. Must be configured with existing organization in installation.
-- `--release` - valid tenant cluster release version.
-Can be retrieved with `gsctl list releases` for your installation. Only versions *10.x.x*+ support cluster CRs.
-- `--release-branch` (optional) - The Giant Swarm [releases repository](https://github.com/giantswarm/releases) branch to use to look up the tenant cluster release set via the `--release` flag (default: `master`).
 
 ### AWS specific
 
@@ -62,10 +59,9 @@ kgs template nodepool \
   --provider aws \
   --cluster-id a1b2c \
   --nodepool-name "General purpose" \
-  --availability-zones eu-central-1b \
+  --availability-zones eu-central-1a \
   --owner acme \
   --aws-instance-type m5.4xlarge \
-  --release 11.2.1
 ```
 
 ## Output
@@ -78,11 +74,9 @@ kind: MachineDeployment
 metadata:
   creationTimestamp: null
   labels:
-    cluster-operator.giantswarm.io/version: 2.1.10
     giantswarm.io/cluster: o4omf
     giantswarm.io/machine-deployment: fo2xh
     giantswarm.io/organization: giantswarm
-    release.giantswarm.io/version: 11.2.1
   name: fo2xh
   namespace: default
 spec:
@@ -104,11 +98,9 @@ kind: AWSMachineDeployment
 metadata:
   creationTimestamp: null
   labels:
-    aws-operator.giantswarm.io/version: 8.4.0
     giantswarm.io/cluster: o4omf
     giantswarm.io/machine-deployment: fo2xh
     giantswarm.io/organization: giantswarm
-    release.giantswarm.io/version: 11.2.1
   name: fo2xh
   namespace: default
 spec:
