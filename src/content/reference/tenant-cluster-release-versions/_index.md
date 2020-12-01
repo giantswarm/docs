@@ -108,11 +108,20 @@ You have several options to inspect tenant cluster release details:
 
 - Azure: **{{% first_azure_nodepools_version %}}**.
 
-### Optional ingress controller {#optional-ic}
+### Preinstalled and Optional Apps {#apps}
 
-As of **v11.0.0** on AWS installations, **v12.0.0** on Azure, and **12.2.0** on KVM the ingress controller has been
-made optional. That means it is not installed by default when you create your
-cluster.
+Depending on your provider (AWS, Azure, or KVM), the apps NGINX IC, External DNS, and Cert Manager may be preinstalled, optional, or not available (n/a).
+
+Preinstalled apps are installed by default upon cluster creation. Optional apps can be installed from App Catalogs. In releases where they are not preinstalled, n/a apps (e.g. External DNS in certain releases) are currently not available to be installed as an optional app.
+
+| Tenant cluster release version | NGINX IC      | External DNS  | Cert Manager |
+|:------------------------------:|:-------------:|:-------------:|:------------:|
+| **AWS v10.x.x+**               | optional      | preinstalled  | preinstalled |
+| **AWS legacy**                 | preinstalled  | n/a           | optional     |
+| **Azure v12.x.x+**             | optional      | preinstalled  | optional     |
+| **Azure legacy**               | preinstalled  | preinstalled  | optional     |
+| **KVM 12.2.x+**                | optional      | n/a           | optional     |
+| **KVM legacy**                 | preinstalled  | n/a           | optional     |
 
 ### Flatcar Container Linux {#flatcar}
 
