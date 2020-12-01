@@ -4,10 +4,10 @@ linktitle: CertConfig
 technical_name: certconfigs.core.giantswarm.io
 description: Custom Resource/Custom Resource Definition schema reference page for the CertConfig resource (certconfigs.core.giantswarm.io), as part of the Giant Swarm Control Plane Kubernetes API documentation.
 
-date: 2020-11-23
+date: 2020-12-01
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.2.0
+source_repository_ref: v3.10.0
 layout: "crd"
 ---
 

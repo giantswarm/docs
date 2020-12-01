@@ -1,9 +1,8 @@
 ---
-title: ETCDBackup CRD Schema Reference
-linktitle: ETCDBackup
-technical_name: etcdbackups.backup.giantswarm.io
-description: Custom Resource/Custom Resource Definition schema reference page for the ETCDBackup resource (etcdbackups.backup.giantswarm.io), as part of the Giant Swarm Control Plane Kubernetes API documentation.
-
+title: Silence CRD Schema Reference
+linktitle: Silence
+technical_name: silences.monitoring.giantswarm.io
+description:   Silence represents schema for managed silences in Alertmanager. Reconciled by silence-operator.
 date: 2020-12-01
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
@@ -11,17 +10,19 @@ source_repository_ref: v3.10.0
 layout: "crd"
 ---
 
-# ETCDBackup
+# Silence
 
+
+<p class="crd-description">Silence represents schema for managed silences in Alertmanager. Reconciled by silence-operator.</p>
 <dl class="crd-meta">
 <dt class="fullname">Full name:</dt>
-<dd class="fullname">etcdbackups.backup.giantswarm.io</dd>
+<dd class="fullname">silences.monitoring.giantswarm.io</dd>
 <dt class="groupname">Group:</dt>
-<dd class="groupname">backup.giantswarm.io</dd>
+<dd class="groupname">monitoring.giantswarm.io</dd>
 <dt class="singularname">Singular name:</dt>
-<dd class="singularname">etcdbackup</dd>
+<dd class="singularname">silence</dd>
 <dt class="pluralname">Plural name:</dt>
-<dd class="pluralname">etcdbackups</dd>
+<dd class="pluralname">silences</dd>
 <dt class="scope">Scope:</dt>
 <dd class="scope">Cluster</dd>
 <dt class="versions">Versions:</dt>
@@ -102,7 +103,33 @@ layout: "crd"
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.guestBackup">.spec.guestBackup</h3>
+<h3 class="property-path" id="v1alpha1-.spec.matchers">.spec.matchers</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+<span class="property-required">Required</span>
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.matchers[*]">.spec.matchers[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.matchers[*].isRegex">.spec.matchers[*].isRegex</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -110,84 +137,12 @@ layout: "crd"
 <span class="property-required">Required</span>
 </div>
 
-<div class="property-description">
-<p>GuestBackup is a boolean indicating if the tenant clusters have to be backupped</p>
-
-</div>
-
 </div>
 </div>
 
-<div class="property depth-0">
+<div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha1-.status">.status</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.status.finishedTimestamp">.status.finishedTimestamp</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>Timestamp when the last (final) attempt was made (when the Phase became either &lsquo;Completed&rsquo; or &lsquo;Failed&rsquo;</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.status.instances">.status.instances</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>map containing the state of the backup for all instances</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.status.startedTimestamp">.status.startedTimestamp</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>Timestamp when the first attempt was made</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.status.status">.status.status</h3>
+<h3 class="property-path" id="v1alpha1-.spec.matchers[*].name">.spec.matchers[*].name</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -195,9 +150,69 @@ layout: "crd"
 <span class="property-required">Required</span>
 </div>
 
-<div class="property-description">
-<p>Status of the whole backup job (can be &lsquo;Pending&rsquo;, &lsquo;Running&rsquo;. &lsquo;Completed&rsquo;, &lsquo;Failed&rsquo;)</p>
+</div>
+</div>
 
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.matchers[*].value">.spec.matchers[*].value</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.targetTags">.spec.targetTags</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+<span class="property-required">Required</span>
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.targetTags[*]">.spec.targetTags[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.targetTags[*].name">.spec.targetTags[*].name</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.targetTags[*].value">.spec.targetTags[*].value</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
 </div>
 
 </div>

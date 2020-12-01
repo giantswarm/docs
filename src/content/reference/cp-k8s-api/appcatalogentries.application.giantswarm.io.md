@@ -3,10 +3,10 @@ title: AppCatalogEntry CRD Schema Reference
 linktitle: AppCatalogEntry
 technical_name: appcatalogentries.application.giantswarm.io
 description:   AppCatalogEntry represents an entry of an app in a catalog of managed apps.
-date: 2020-11-23
+date: 2020-12-01
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.2.0
+source_repository_ref: v3.10.0
 layout: "crd"
 ---
 
@@ -275,6 +275,96 @@ layout: "crd"
 
 <div class="property-description">
 <p>DateUpdated is when this entry was last updated. e.g. 2020-09-02T09:40:39.223638219Z</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.restrictions">.spec.restrictions</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Restrictions is metadata from Chart.yaml for this app and is used to validate app CRs.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.restrictions.clusterSingleton">.spec.restrictions.clusterSingleton</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>ClusterSingleton is a flag for whether this app can be installed at most once per cluster. Default is false.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.restrictions.fixedNamespace">.spec.restrictions.fixedNamespace</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>FixedNamespace is the namespace which this app must be installed in.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.restrictions.gpuInstances">.spec.restrictions.gpuInstances</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>GpuInstances is a flag for whether this app requires GPU instances to run. Default is false.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.restrictions.namespaceSingleton">.spec.restrictions.namespaceSingleton</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>NamespaceSingleton is a flag for whether this app can be installed at most once per namespace. Default is false.</p>
 
 </div>
 

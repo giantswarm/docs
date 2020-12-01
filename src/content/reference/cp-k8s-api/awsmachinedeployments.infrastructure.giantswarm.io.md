@@ -3,10 +3,10 @@ title: AWSMachineDeployment CRD Schema Reference
 linktitle: AWSMachineDeployment
 technical_name: awsmachinedeployments.infrastructure.giantswarm.io
 description:   AWSMachineDeployment is the infrastructure provider referenced in Kubernetes Cluster API MachineDeployment resources. It contains provider-specific specification and status for a node pool. In use on AWS since Giant Swarm release v10.x.x and reconciled by aws-operator.
-date: 2020-11-23
+date: 2020-12-01
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.2.0
+source_repository_ref: v3.10.0
 layout: "crd"
 ---
 
@@ -312,7 +312,7 @@ spec:
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">array</span>
-<span class="property-required">Required</span>
+
 </div>
 
 <div class="property-description">

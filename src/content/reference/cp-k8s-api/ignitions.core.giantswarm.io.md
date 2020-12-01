@@ -4,10 +4,10 @@ linktitle: Ignition
 technical_name: ignitions.core.giantswarm.io
 description:   Ignition is a Kubernetes resource (CR) which is based on the Ignition CRD defined above. 
    An example Ignition resource can be viewed here https://github.com/giantswarm/apiextensions/blob/master/docs/cr/core.giantswarm.io_v1alpha1_ignition.yaml
-date: 2020-11-23
+date: 2020-12-01
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.2.0
+source_repository_ref: v3.10.0
 layout: "crd"
 ---
 

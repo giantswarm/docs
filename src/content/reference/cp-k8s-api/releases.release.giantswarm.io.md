@@ -3,10 +3,10 @@ title: Release CRD Schema Reference
 linktitle: Release
 technical_name: releases.release.giantswarm.io
 description:   Release is a Kubernetes resource (CR) representing a Giant Swarm tenant cluster release.
-date: 2020-11-23
+date: 2020-12-01
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.2.0
+source_repository_ref: v3.10.0
 layout: "crd"
 ---
 
@@ -198,6 +198,24 @@ spec:
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">object</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.apps[*].catalog">.spec.apps[*].catalog</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Catalog specifies the name of the app catalog that this app belongs to.</p>
 
 </div>
 
@@ -453,7 +471,7 @@ spec:
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">boolean</span>
-<span class="property-required">Required</span>
+
 </div>
 
 <div class="property-description">
@@ -471,7 +489,7 @@ spec:
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">boolean</span>
-<span class="property-required">Required</span>
+
 </div>
 
 <div class="property-description">
