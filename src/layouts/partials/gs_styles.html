@@ -143,6 +143,11 @@ a { text-decoration: underline; color: rgb(56, 118, 150); }
     transform: rotate(180deg);
   }
 
+  /* Don't underline links in the main nav menu */
+  .hs-menu-item a:focus {
+    text-decoration: none;
+  }
+
   /* Make sure the burger menu icon animates into an X in the same way */
   .open .menu-trigger__icon:before {
     -webkit-transform: translateY(5px) rotate(45deg);
@@ -163,5 +168,10 @@ a { text-decoration: underline; color: rgb(56, 118, 150); }
   /* Create some space between the footer and the end of the content */
   .site-footer {
     margin-top: 100px;
+  }
+
+  /* Fix Chevron Icon in the Mobile Menu */
+  .hs-menu-item .fa-chevron-down:before {
+    content: "\f078";
   }
 </style>
