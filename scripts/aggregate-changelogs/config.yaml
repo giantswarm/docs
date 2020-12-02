@@ -56,6 +56,8 @@ repositories:
     category: Managed Apps
   giantswarm/prometheus-operator-app:
     category: Managed Apps
+  giantswarm/grafana-app:
+    category: Managed Apps
 
   giantswarm/app-mesh-app:
     category: Playground Apps
