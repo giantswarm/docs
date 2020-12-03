@@ -1,7 +1,6 @@
 ---
 title: Tenant Cluster Release Versions
 description: Details on the tenant cluster release offered by Giant Swarm and ways to look up even more details.
-date: 2020-11-18
 last_review_date: 2020-10-30
 layout: subsection
 weight: 50

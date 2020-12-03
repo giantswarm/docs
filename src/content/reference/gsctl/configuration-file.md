@@ -1,7 +1,6 @@
 ---
 title: "gsctl Reference: Configuration file"
 description: "Documentation of the configuration file format of gsctl"
-date: "2020-05-14"
 type: page
 weight: 1000
 ---

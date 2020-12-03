@@ -1,7 +1,6 @@
 ---
 title: kubectl gs template cluster
 description: Reference documentation on how to create a manifest for a Cluster using 'kubectl gs'.
-date: 2020-11-18
 type: page
 weight: 10
 ---

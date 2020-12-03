@@ -1,7 +1,6 @@
 ---
 title: Advanced Ingress Configuration
 description: Here we describe how you can customize and enable specific features for the NGINX-based Ingress
-date: 2020-11-18
 type: page
 weight: 50
 tags:

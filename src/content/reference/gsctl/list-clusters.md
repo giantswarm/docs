@@ -1,7 +1,6 @@
 ---
 title: "gsctl Command Reference: list clusters"
 description: "The 'gsctl list clusters' command shows all clusters you have access to with a few details like cluster ID, name, creation date, and owner organization."
-date: 2020-11-18
 type: page
 weight: 51
 ---

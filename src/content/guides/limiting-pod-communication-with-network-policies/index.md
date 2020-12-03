@@ -1,7 +1,6 @@
 ---
 title: "Limiting Pod Communication with Network Policies"
 description: "Guide on how to limit Pod communication using Network Policies"
-date: "2020-10-06"
 type: "page"
 weight: 60
 tags: ["tutorial"]

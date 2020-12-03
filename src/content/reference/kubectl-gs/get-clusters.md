@@ -1,7 +1,6 @@
 ---
 title: kubectl gs get clusters
 description: Reference documentation on how to list clusters and get details for a single cluster using 'kubectl gs'.
-date: 2020-10-02
 type: page
 weight: 10
 ---

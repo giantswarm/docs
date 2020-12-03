@@ -1,7 +1,6 @@
 ---
 title: Details on Kubernetes on Giant Swarm
 description: Here you learn how we set up things for you and what we manage, so you don't have to.
-date: 2020-11-18
 weight: 10
 type: page
 categories: ["basics"]

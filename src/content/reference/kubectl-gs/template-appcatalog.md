@@ -1,7 +1,6 @@
 ---
 title: kubectl gs template appcatalog
 description: Reference documentation on how to create a manifest for an AppCatalog using 'kubectl gs'.
-date: 2020-10-02
 type: page
 weight: 10
 ---

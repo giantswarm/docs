@@ -1,7 +1,6 @@
 ---
 title: High availability Kubernetes masters
 description: A general description of high availability of masters as a concept, it's benefits, and some details you should be aware of.
-date: 2020-11-18
 weight: 120
 type: page
 categories: ["basics"]

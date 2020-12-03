@@ -1,7 +1,6 @@
 ---
 title: Web Interface Reference
 description: Documentation on our web interface, a visual way to manage clusters, create key pairs and more.
-date: 2020-09-25
 layout: subsection
 weight: 10
 ---
