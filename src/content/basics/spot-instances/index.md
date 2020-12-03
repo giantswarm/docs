@@ -1,7 +1,6 @@
 ---
 title: Spot Instances on AWS
 description: A general description of spot instances, it's benefits, usage and differences from on-demand instance types.
-date: 2020-11-18
 weight: 130
 type: page
 categories: ["basics"]

@@ -1,7 +1,6 @@
 ---
 title: "gsctl Command Reference: upgrade cluster"
 description: Detailed documentation on how to upgrade a cluster using the 'upgrade cluster' command in gsctl.
-date: 2020-11-18
 type: page
 weight: 30
 ---

@@ -1,7 +1,6 @@
 ---
 title: "gsctl Command Reference: select endpoint"
 description: "The 'gsctl select endpoint' command selects an endpoint for usage in subsequent command executions."
-date: "2020-05-13"
 type: page
 weight: 41
 ---

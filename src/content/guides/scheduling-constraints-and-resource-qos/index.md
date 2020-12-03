@@ -1,7 +1,6 @@
 ---
 title: "Scheduling Constraints and Resource Quality of Service"
 description: "How you can constrain resource usage and define Quality of Service classes in Kubernetes"
-date: "2017-01-24"
 type: page
 weight: 70
 tags: ["tutorial"]
