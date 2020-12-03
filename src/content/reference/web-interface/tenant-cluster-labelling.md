@@ -5,9 +5,6 @@ date: 2020-11-18
 last_review_date: 2020-05-29
 layout: subsection
 weight: 20
-aliases: [
-    "/reference/web-interface/tenant-cluster-labelling/",
-]
 ---
 
 # Giant Swarm Tenant Cluster Labelling in The Web Interface
