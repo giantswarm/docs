@@ -36,7 +36,7 @@ function doSearch(q) {
   // assemble the big query object for ElasticSearch
   var postData = {
     "from": 0,
-    "size": 1000,
+    "size": 100,
     "sort": ["_score"],
     "_source": {
       "excludes": ["text", "breadcrumb_*"]
@@ -87,6 +87,11 @@ function doSearch(q) {
           $("h1").text("1 hit for '" + q + "'");
         } else {
           $("h1").text(data.hits.total + " hits for '" + q + "'");
+          if (data.hits.total > 100) {
+            $('#result-is-limited').show();
+          } else {
+            $('#result-is-limited').hide();
+          }
         }
         $.each(data.hits.hits, function(index, hit){
           $(".result").append(renderSerpEntry(index, hit));
