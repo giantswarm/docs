@@ -3,10 +3,9 @@ title: Silence CRD Schema Reference
 linktitle: Silence
 technical_name: silences.monitoring.giantswarm.io
 description:   Silence represents schema for managed silences in Alertmanager. Reconciled by silence-operator.
-date: 2020-12-01
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.10.0
+source_repository_ref: v3.12.0
 layout: "crd"
 ---
 
