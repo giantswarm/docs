@@ -1,7 +1,6 @@
 ---
 title: "gsctl Command Reference: show release"
 description: "The 'gsctl show release' command displays details of a tenant cluster release."
-date: 2020-11-25
 type: page
 weight: 52
 ---

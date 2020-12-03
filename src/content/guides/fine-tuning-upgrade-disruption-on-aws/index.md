@@ -1,7 +1,6 @@
 ---
 title: Fine-tuning upgrade disruption on AWS
 description: The level of disruption caused by cluster upgrades can be influenced per cluster. This article explains how to adjust the number of nodes that is updated simlutaneously, and the wait time between batches of nodes.
-date: 2020-11-18
 type: page
 weight: 130
 tags: ["recipe"]

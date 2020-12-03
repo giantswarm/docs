@@ -1,7 +1,6 @@
 ---
 title: Installing the Kubernetes Dashboard
 description: The Dashboard is a general-purpose administrative web UI for Kubernetes, running in Kubernetes itself. It's easy to install.
-date: 2018-04-10
 type: page
 weight: 50
 tags: ["recipe"]

@@ -8,13 +8,19 @@ This repository named `docs` holds the main **content** of our documentation. Th
 site is created using the static site generator [HUGO](http://gohugo.io/) based on Markdown files
 in the `src/content/` directory. Images are in the `src/static/img/` directory.
 
-Additional content repositories are tied in through the file `src/external-repositories.txt`.
+Additional content is tied in through the scripts
 
-The `src/` directory also contains HTML templates and the HUGO site configuration.
+- `scripts/aggregate-changelogs`: Aggregates changelog entries into the `src/content/changes` destination.
+- `scripts/update-crd-reference`: Generates reference pages for our custom resource definitions in the `src/content/reference/cp-k8s-api` destination.
+- `scripts/update-external-repos`: Tutorials that need their own code repository. They must have a `docs` subfolder with the Markdown content and optionally some images. Configuration is found in `scripts/update-external-repos/repositories.txt`.
 
-The build process here in the `Makefile` and the `Dockerfile` pull together the content
-from this and the external repositories, and create a Docker container serving a the
-documentation website.
+To update these external content types, the `Makefile` provides specific targets:
+
+- `make changes`
+- `make update-external-repos`
+- `make update-crd-reference`
+
+## Related repositories and components
 
 There are several additional repositories which provide additional functionality:
 
@@ -26,6 +32,7 @@ There are several additional repositories which provide additional functionality
 
 - [indexer](https://github.com/giantswarm/docs-indexer/): Indexing tool that pushes new content to the `sitesearch` index periodically, to keep the search engine up-to-date.
 
+## Contributing
 
 **We welcome any contributions on content to this repository in the form of pull requests!**
 
@@ -40,15 +47,13 @@ For attribution, please use either:
 - Giant Swarm
 - giantswarm.io
 
-and link, if possible, to https://giantswarm.io
+and link, if possible, to https://www.giantswarm.io/
 
 ## Deploying
 
-To publish the content in this repository:
+To publish the content in this repository, a release is needed. Releases are created automatically for every push to the `master` branch, so normally whenever a pull request gets merged.
 
-1. Create a new [release](https://github.com/giantswarm/docs/releases). When in doubt, bump the patch version. This will trigger the creation of a new version of the `docs-app` via CI.
-2. Watch the appearance of the new release of `docs-app` in the [giantswarm-operations-platform-catalog](https://github.com/giantswarm/giantswarm-operations-platform-catalog/commits/master) catalog.
-3. Update the version of App `docs-app` in `gollum` in namespace `c68pn`. You can use this command:
+To publish the release, update the version of App `docs-app` in `gollum` in namespace `c68pn`. You can use this command:
 
 ```nohighlight
 kubectl --context giantswarm-gollum -n c68pn patch app docs-app --type merge -p '{"spec": {"version": "X.Y.Z"}}'
@@ -57,6 +62,8 @@ kubectl --context giantswarm-gollum -n c68pn patch app docs-app --type merge -p 
 Here, `giantswarm-gollum` is the kubeconfig context created by `opsctl create kubeconfig -i gollum`. `X.Y.Z` is to be replaced by the new version number of the app, without `v` prefix.
 
 Latest content should be visible after a short period. When checking, make sure to circumvent any browser cache. For example, do this by keeping the Shift key pressed while hitting the reload button of your browser.
+
+TODO: update this section as soon as app-updater is working.
 
 ## About the Header and Footer
 
@@ -87,3 +94,7 @@ and behave correctly.
 
 `scripts/gs_menu.js`      - Hand written javascript that recreates the interactive
                             functionality of the navigation menus.
+
+
+
+

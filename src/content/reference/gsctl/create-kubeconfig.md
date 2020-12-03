@@ -1,7 +1,6 @@
 ---
 title: "gsctl Command Reference: create kubeconfig"
 description: "The 'gsctl create kubeconfig' command creates a key pair and adds cluster, user, and context settings to your kubectl configuration."
-date: "2020-04-16"
 type: page
 weight: 30
 user_questions:

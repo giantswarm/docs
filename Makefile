@@ -3,14 +3,12 @@ COMPANY=giantswarm
 REGISTRY=quay.io
 SHELL=bash
 MARKDOWNLINT_IMAGE=06kellyjac/markdownlint-cli:0.23.0-alpine
-CRD_DOCS_GENERATOR_VERSION=0.1.2
 
 default: docker-build
 
-
-vendor:
-	# Vendor other external repositories as defined in 'external-repositories.txt'
-	./vendorize-external-repositories.sh
+# Update content from external repositories that gets copied in here.
+update-external-repos:
+	./scripts/update-external-repos/main.sh
 
 # Aggregate changelog entries from various repositories into our Changes section.
 changes:
@@ -33,33 +31,16 @@ changes-test:
 	  aggregate-changelogs \
 	  /workdir/test_script.py foo bar baz
 
-build: vendor
-	# check dependencies
+# Generate the reference documentation for the custom resource
+# definitions (CRD) used in the Control Plane K8s API.
+update-crd-reference:
+	scripts/update-crd-reference/main.sh
+
+# Ensure that the CLI version mention in docs is actually the latest
+update-latest-versions:
 	which jq || (echo "jq not found" && exit 1)
 	which curl || (echo "curl not found" && exit 1)
-
-	# Clean
-	rm -rf build
-
-	# Create build directory
-	mkdir build
-
-	# Copy src to build directory
-	cp -r src/. build/
-
-	# Latest gsctl version
-	mkdir -p build/layouts/shortcodes
-	curl -s https://api.github.com/repos/giantswarm/gsctl/releases/latest | jq -j .tag_name > build/layouts/shortcodes/gsctl_version.html
-
-	# Tie in content from external repositories
-	./build-external-repositories.sh
-
-	# Generate the Control Plane K8s API reference documentation.
-	docker run \
-		-v ${PWD}/build/content/reference/cp-k8s-api:/opt/crd-docs-generator/output \
-		-v ${PWD}:/opt/crd-docs-generator/config \
-		quay.io/giantswarm/crd-docs-generator:$(CRD_DOCS_GENERATOR_VERSION) \
-		  --config /opt/crd-docs-generator/config/crd-docs-generator-config.yaml
+	curl -s https://api.github.com/repos/giantswarm/gsctl/releases/latest | jq -j .tag_name > src/layouts/shortcodes/gsctl_version.html
 
 lint:
 	@docker pull $(MARKDOWNLINT_IMAGE) > /dev/null
@@ -70,9 +51,10 @@ lint:
 	    --config .markdownlint.yaml \
 	    --ignore README.md \
 		--ignore ./src/content/changes \
+		--ignore ./src/content/reference/cp-k8s-api \
 		./src
 
-docker-build: build
+docker-build: update-latest-versions
 	docker build -t $(REGISTRY)/$(COMPANY)/$(PROJECT):latest .
 
 docker-run:

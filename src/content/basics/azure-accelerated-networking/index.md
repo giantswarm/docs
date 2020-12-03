@@ -1,7 +1,6 @@
 ---
 title: Accelerated Networking on Azure
 description: A general description of the Accelerated Networking for Azure VMs feature and how it works on Giant Swarm clusters.
-date: 2020-11-18
 weight: 120
 type: page
 categories: ["basics"]

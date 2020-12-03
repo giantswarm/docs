@@ -1,7 +1,6 @@
 ---
 title: Kubernetes Resources
 description: Pointers to the best resources about Kubernetes to get you up to speed with Kubernetes fast
-date: 2020-05-20
 weight: 140
 type: page
 categories: ["basics"]
