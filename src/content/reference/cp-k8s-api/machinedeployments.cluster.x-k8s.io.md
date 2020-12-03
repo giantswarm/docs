@@ -3,10 +3,9 @@ title: MachineDeployment CRD Schema Reference
 linktitle: MachineDeployment
 technical_name: machinedeployments.cluster.x-k8s.io
 description:   MachineDeployment is the Schema for the machinedeployments API
-date: 2020-12-01
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.10.0
+source_repository_ref: v3.12.0
 layout: "crd"
 ---
 

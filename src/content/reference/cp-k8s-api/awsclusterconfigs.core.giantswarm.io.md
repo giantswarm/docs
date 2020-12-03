@@ -3,10 +3,9 @@ title: AWSClusterConfig CRD Schema Reference
 linktitle: AWSClusterConfig
 technical_name: awsclusterconfigs.core.giantswarm.io
 description:   AWSClusterConfig used to represent tenant cluster configuration in earlier releases. Deprecated.
-date: 2020-12-01
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.10.0
+source_repository_ref: v3.12.0
 layout: "crd"
 ---
 

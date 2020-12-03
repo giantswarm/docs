@@ -3,10 +3,9 @@ title: Cluster CRD Schema Reference
 linktitle: Cluster
 technical_name: clusters.cluster.x-k8s.io
 description:   Cluster is the Schema for the clusters API
-date: 2020-12-01
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.10.0
+source_repository_ref: v3.12.0
 layout: "crd"
 ---
 
