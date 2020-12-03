@@ -31,12 +31,12 @@ function getParameterByName(name) {
  * @param q  String     The user's search query
  */
 function doSearch(q) {
-  //console.debug("Searched for", q);
+  var limit = 100;
   $("#qinput").val(q);
   // assemble the big query object for ElasticSearch
   var postData = {
     "from": 0,
-    "size": 100,
+    "size": limit,
     "sort": ["_score"],
     "_source": {
       "excludes": ["text", "breadcrumb_*"]
@@ -87,8 +87,8 @@ function doSearch(q) {
           $("h1").text("1 hit for '" + q + "'");
         } else {
           $("h1").text(data.hits.total + " hits for '" + q + "'");
-          if (data.hits.total > 100) {
-            $('#result-is-limited').show();
+          if (data.hits.total > limit) {
+            $('#result-is-limited').text('Showing the first '+ limit +' items only').show();
           } else {
             $('#result-is-limited').hide();
           }
