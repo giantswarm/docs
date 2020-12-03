@@ -1,7 +1,6 @@
 ---
 title: Installing an Ingress Controller
 description: How to install the nginx-ingress-controller using our Web UI
-date: 2020-02-04
 type: page
 weight: 50
 tags: ["tutorial"]

@@ -1,7 +1,6 @@
 ---
 title: kubectl gs template app
 description: Reference documentation on how to create a manifest for an App using 'kubectl gs'.
-date: 2020-10-02
 type: page
 weight: 10
 ---

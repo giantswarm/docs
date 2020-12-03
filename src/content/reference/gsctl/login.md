@@ -1,7 +1,6 @@
 ---
 title: "gsctl Command Reference: login"
 description: "The 'gsctl login' command starts an authenticated session."
-date: "2017-10-16"
 type: page
 weight: 41
 ---

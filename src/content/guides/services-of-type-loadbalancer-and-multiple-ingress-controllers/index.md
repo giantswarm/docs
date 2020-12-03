@@ -1,7 +1,6 @@
 ---
 title: "Services of type LoadBalancer and Multiple Ingress Controllers"
 description: "Learn how to expose services directly on cloud providers and run multiple Ingress Controllers at the same time."
-date: "2018-07-05"
 type: page
 weight: 35
 tags: ["tutorial"]
