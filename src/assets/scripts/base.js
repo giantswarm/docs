@@ -42,10 +42,24 @@ function doSearch(q) {
       "excludes": ["text", "breadcrumb_*"]
     },
     "query": {
-      "simple_query_string": {
-        "fields": ["title^5", "uri^5", "text"],
-        "default_operator": "AND",
-        "query": q
+      "function_score": {
+        "query": {
+          "simple_query_string": {
+            "fields": ["title^5", "uri^5", "text"],
+            "default_operator": "AND",
+            "query": q
+          }
+        },
+        "functions": [
+          {
+            "filter": {"term": {"breadcrumb_1": "changes"}},
+            "weight": 0.1
+          },
+          {
+            "filter": {"term": {"breadcrumb_1": "api"}},
+            "weight": 0.3
+          }
+        ]
       }
     },
     "highlight" : {
