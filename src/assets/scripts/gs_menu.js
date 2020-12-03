@@ -1,17 +1,18 @@
 // This recreates the behaviour of the Giant Swarm menu without copying over all
 // of that site's javascript.
 
-var headerLinks = document.getElementsByClassName("hs-menu-depth-1");
+var headerLinks = document.querySelectorAll(".hs-menu-depth-1 > a");
 for (var i = 0; i < headerLinks.length; i++) {
+  console.log(headerLinks[i]);
   headerLinks[i].addEventListener('click', toggleMenu, false);
 }
 
 function toggleMenu(e) {
   e.preventDefault();
 
-  e.currentTarget.classList.toggle("menu-expanded");
+  e.currentTarget.parentElement.classList.toggle("menu-expanded");
 
-  var wrapperContainer = e.currentTarget.querySelector('.hs-menu-children-wrapper-container');
+  var wrapperContainer = e.currentTarget.parentElement.querySelector('.hs-menu-children-wrapper-container');
 
   if (wrapperContainer.style.display === "none" || !wrapperContainer.style.display) {
     closeAllMenus();
@@ -23,7 +24,7 @@ function toggleMenu(e) {
 
 function closeAllMenus() {
   for (var i = 0; i < headerLinks.length; i++) {
-    var wrapperContainer = headerLinks[i].querySelector('.hs-menu-children-wrapper-container');
+    var wrapperContainer = headerLinks[i].parentElement.querySelector('.hs-menu-children-wrapper-container');
 
     if (wrapperContainer) {
       wrapperContainer.style.display = "none";
