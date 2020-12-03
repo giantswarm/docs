@@ -1,7 +1,6 @@
 ---
 title: Microservices & Custom Metrics Example
 description: Here we show how to build microservices and offer Prometheus custom metrics in your application.
-date: 2020-11-23
 type: page
 weight: 100
 tags:

@@ -1,7 +1,6 @@
 ---
 title: "gsctl Command Reference: scale cluster"
 description: "The 'gsctl scale cluster' command allows to add or remove worker nodes to reach a desired number."
-date: 2020-11-18
 type: page
 weight: 53
 ---

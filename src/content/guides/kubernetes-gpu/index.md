@@ -1,7 +1,6 @@
 ---
 title: Preparing a Kubernetes cluster for the use of GPUs
 description: Here we explain how to make the GPU driver for CoreOS available so that workloads can use GPUs.
-date: 2020-11-18
 type: page
 weight: 150
 tags: ["recipe"]

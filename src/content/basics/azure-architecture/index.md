@@ -1,7 +1,6 @@
 ---
 title: The Giant Swarm Azure Architecture
 description: Description of the Azure Giant Swarm platform, how it looks like and which features offers
-date: 2020-06-10
 weight: 50
 type: page
 categories: ["basics"]

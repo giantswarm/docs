@@ -1,7 +1,6 @@
 ---
 title: Advanced CoreDNS Configuration
 description: Here we describe how you can customize the configuration of the managed CoreDNS service in your clusters
-date: 2020-11-18
 type: page
 weight: 50
 tags: ["tutorial"]

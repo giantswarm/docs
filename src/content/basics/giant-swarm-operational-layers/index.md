@@ -1,7 +1,6 @@
 ---
 title: Giant Swarm Operational Layers
 description: Here you learn how the operational layers of Giant Swarm are defined and what the intended operational model is.
-date: 2020-11-22
 type: page
 weight: 80
 categories: ["basics"]

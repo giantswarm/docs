@@ -1,7 +1,6 @@
 ---
 title: The Giant Swarm App Platform
 description: Overview of the Giant Swarm App Platform, how it works and what to expect.
-date: 2020-05-26
 weight: 90
 type: page
 categories: ["basics"]
