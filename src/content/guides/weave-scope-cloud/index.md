@@ -1,7 +1,6 @@
 ---
 title: "Setting up Weave Scope or Weave Cloud"
 description: "Recipe to spin up the Weave Scope UI or Weave Cloud on Kubernetes."
-date: "2017-09-04"
 type: page
 weight: 120
 tags: ["recipe"]

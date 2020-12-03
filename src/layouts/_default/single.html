@@ -19,7 +19,7 @@
     {{ partial "breadcrumb.html" . }}
 
     <div class="content">
-      <p class="lastmod">Last modified {{ .Date.Format "January 2, 2006" }}</p>
+      <p class="lastmod">Last modified {{ .Lastmod.Format "January 2, 2006" }}</p>
 
       {{ .Content }}
 

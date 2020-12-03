@@ -1,7 +1,6 @@
 ---
 title: Accessing Pods and Services from the outside
 description: You can access Pods and services from outside your cluster either through the API proxy or through an Ingress.
-date: 2020-11-18
 type: page
 weight: 50
 tags: ["tutorial"]

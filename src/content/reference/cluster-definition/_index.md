@@ -1,7 +1,6 @@
 ---
 title: Cluster Definition Reference
 description: Complete documentation of the Giant Swarm cluster definition YAML format, compatible with API v4 and v5.
-date: 2020-11-18
 layout: subsection
 weight: 40
 user_questions:
