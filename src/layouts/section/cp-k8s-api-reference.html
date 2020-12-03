@@ -16,7 +16,7 @@
 
     <ul class="linklist crd-index">
 
-      {{ range .Pages.ByWeight }}
+      {{ range .Pages.ByTitle }}
       <li>
           <a href="{{ .Permalink | relURL }}">{{ .LinkTitle }}</a>
           <div class="meta">

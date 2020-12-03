@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CRD_DOCS_GENERATOR_VERSION=0.1.2
+CRD_DOCS_GENERATOR_VERSION=0.2.0
 
 DESTINATION=src/content/reference/cp-k8s-api
 

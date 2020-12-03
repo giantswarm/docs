@@ -8,6 +8,9 @@
 appcatalogs.application.giantswarm.io:
   topics:
     - apps
+appcatalogentries.application.giantswarm.io:
+  topics:
+    - apps
 apps.application.giantswarm.io:
   topics:
     - apps
@@ -123,10 +126,16 @@ networkpools.infrastructure.giantswarm.io:
     - aws
   topics:
     - tenantcluster
+organizations.security.giantswarm.io:
+  topics:
+    - controlplane
 releases.release.giantswarm.io:
   topics:
     - controlplane
     - tenantcluster
+silences.monitoring.giantswarm.io:
+  topics:
+    - controlplane
 storageconfigs.core.giantswarm.io:
   topics:
     - controlplane
