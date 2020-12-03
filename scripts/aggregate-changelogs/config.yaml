@@ -20,13 +20,7 @@ repositories:
     category: Control Plane Kubernetes API
   giantswarm/azure-admission-controller:
     category: Control Plane Kubernetes API
-  giantswarm/cert-exporter:
-    category: Managed Apps
   giantswarm/cert-manager-app:
-    category: Managed Apps
-  giantswarm/chart-operator:
-    category: Managed Apps
-  giantswarm/cluster-autoscaler-app:
     category: Managed Apps
   giantswarm/coredns-app:
     category: Managed Apps
@@ -34,15 +28,11 @@ repositories:
     category: Documentation
   giantswarm/efk-stack-app:
     category: Managed Apps
-  giantswarm/external-dns-app:
-    category: Managed Apps
   giantswarm/gsctl:
     category: gsctl
   giantswarm/happa:
     category: Web UI
   giantswarm/kong-app:
-    category: Managed Apps
-  giantswarm/kube-state-metrics-app:
     category: Managed Apps
   giantswarm/kubectl-gs:
     category: kubectl gs
@@ -51,8 +41,6 @@ repositories:
   giantswarm/nginx-ingress-controller-app:
     category: Managed Apps
   giantswarm/net-exporter:
-    category: Managed Apps
-  giantswarm/node-exporter-app:
     category: Managed Apps
   giantswarm/prometheus-operator-app:
     category: Managed Apps
