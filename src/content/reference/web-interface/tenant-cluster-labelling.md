@@ -4,6 +4,8 @@ description: How to manage tenant cluster labels in our Web Interface.
 last_review_date: 2020-05-29
 layout: subsection
 weight: 20
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---
 
 # Giant Swarm Tenant Cluster Labelling in The Web Interface

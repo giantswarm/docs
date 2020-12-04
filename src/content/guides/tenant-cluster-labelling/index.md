@@ -1,9 +1,11 @@
 ---
-title: "Labelling tenant clusters"
-description: "Introduction to labelling tenant clusters"
+title: Labelling tenant clusters
+description: Introduction to labelling tenant clusters
 type: page
 weight: 130
 tags: ["recipe"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---
 
 # Labelling tenant clusters

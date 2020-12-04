@@ -4,6 +4,8 @@ description: "Guide on how to limit Pod communication using Network Policies"
 type: "page"
 weight: 60
 tags: ["tutorial"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---
 
 # Limiting Pod Communication with Network Policies

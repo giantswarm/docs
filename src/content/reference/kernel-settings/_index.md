@@ -5,6 +5,8 @@ layout: subsection
 weight: 300
 user_questions:
   - How is the Linux kernel of cluster nodes configured?
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---
 
 # Kernel settings
