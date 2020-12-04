@@ -3,6 +3,8 @@ title: "gsctl Command Reference: scale cluster"
 description: "The 'gsctl scale cluster' command allows to add or remove worker nodes to reach a desired number."
 type: page
 weight: 53
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
 # `gsctl scale cluster`

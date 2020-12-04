@@ -3,6 +3,8 @@ title: kubectl gs template cluster
 description: Reference documentation on how to create a manifest for a Cluster using 'kubectl gs'.
 type: page
 weight: 10
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
 # `kubectl gs template cluster`

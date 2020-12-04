@@ -3,6 +3,8 @@ title: kubectl gs get clusters
 description: Reference documentation on how to list clusters and get details for a single cluster using 'kubectl gs'.
 type: page
 weight: 10
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
 # `kubectl gs get clusters`

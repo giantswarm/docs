@@ -3,6 +3,8 @@ title: "gsctl Command Reference: list nodepools"
 description: "The 'gsctl list nodepools' command shows all node pools of a cluster."
 type: page
 weight: 44
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
 # `gsctl list nodepools`
