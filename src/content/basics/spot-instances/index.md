@@ -4,6 +4,8 @@ description: A general description of spot instances, it's benefits, usage and d
 weight: 130
 type: page
 categories: ["basics"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
 
 As of tenant cluster release v{{% first_aws_spotinstances_version %}} for AWS, it is possible to use spot instances in clusters that will allow you to optimize your cost.

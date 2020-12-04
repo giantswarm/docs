@@ -5,6 +5,8 @@ type: page
 weight: 40
 tags: ["tutorial"]
 last-review-date: 2020-09-23
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
 
 # Advanced Cluster Autoscaler Configuration

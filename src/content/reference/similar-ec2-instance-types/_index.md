@@ -5,6 +5,8 @@ layout: subsection
 weight: 500
 user_questions:
   - Which EC2 instance types are used when I activate the use of similar instance types for a node pool?
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
 
 # Similar EC2 Instance Types
