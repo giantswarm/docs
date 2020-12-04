@@ -22,7 +22,7 @@ Example:
 
 > The Ingress Controller (IC) manages incoming traffic to your services.
 
-After that, you can use the acronym without the long form and without parantheses.
+After that, you can use the acronym without the long form and without parentheses.
 
 ### Headline title case
 
@@ -38,7 +38,7 @@ A YAML block, for example, is opened with triple back-ticks followed by `yaml`:
     foo: bar
     ```
 
-**Guideline:** shell commands and their output get the fake hint `nohighlight` to prevent any funky syntax highlighting.
+**Guideline:** Shell commands and their output get the fake hint `nohighlight` to prevent any funky syntax highlighting.
 
 Shell commands in code blocks are prepended with a `$ ` (dollar sign and one blank character).
 
@@ -53,9 +53,9 @@ Example:
 
 ### CLI commands
 
-**Guideline:** Were a CLI provides both long and short form flags, we use the long form for clarity.
+**Guideline:** Where a CLI provides both long and short form flags, we use the long form for clarity.
 
-**Guideline:** We avoid the equal sign between flag name and value where possible.
+**Guideline:** We avoid the equals sign between flag name and value where possible.
 
 Good example:
 
@@ -71,7 +71,7 @@ gsctl create cluster -o=acme
 gsctl create cluster -o acme
 ```
 
-**Guideline:** We break a command into multiple lines once it becomes longer than ~ 60 characters,
+**Guideline:** We break a command into multiple lines once it becomes longer than ~60 characters,
 using the backslash character. This makes it easier to read.
 
 Example:
@@ -233,7 +233,7 @@ You can access the server at http://localhost:1313/. The server can be stopped b
 
 It will not include content from the external repositories.
 
-### Previewing changes {#previewing}
+### Previewing changes
 
 You can bring up the final site using the following commands:
 
