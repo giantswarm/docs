@@ -22,8 +22,6 @@ repositories:
     category: Control Plane Kubernetes API
   giantswarm/cert-manager-app:
     category: Managed Apps
-  giantswarm/coredns-app:
-    category: Managed Apps
   giantswarm/docs:
     category: Documentation
   giantswarm/efk-stack-app:
@@ -39,8 +37,6 @@ repositories:
   giantswarm/metrics-server-app:
     category: Managed Apps
   giantswarm/nginx-ingress-controller-app:
-    category: Managed Apps
-  giantswarm/net-exporter:
     category: Managed Apps
   giantswarm/prometheus-operator-app:
     category: Managed Apps
