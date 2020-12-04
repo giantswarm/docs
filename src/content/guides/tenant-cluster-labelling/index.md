@@ -1,7 +1,6 @@
 ---
 title: "Labelling tenant clusters"
 description: "Introduction to labelling tenant clusters"
-date: "2020-04-27"
 type: page
 weight: 130
 tags: ["recipe"]
@@ -9,7 +8,7 @@ tags: ["recipe"]
 
 # Labelling tenant clusters
 
-It is possible to assign *key value labels* to Giant Swarm tenant clusters with release version {{% first_aws_nodepools_version %}} and above on AWS.
+It is possible to assign *key value labels* to Giant Swarm tenant clusters with tenant cluster release v{{% first_aws_nodepools_version %}} and above on AWS.
 
 Labels are a mechanism to assign short pieces of additional information to your Giant Swarm tenant clusters.
 Under the hood, tenant cluster labels are Kubernetes labels attached to [`Cluster`](/reference/cp-k8s-api/clusters.cluster.x-k8s.io/) (`clusters.cluster.x-k8s.io`) resources.
@@ -40,7 +39,7 @@ The output of [`gsctl show cluster`](/reference/gsctl/show-cluster/) will contai
 
 ## Working with tenant cluster labels using the Giant Swarm API
 
-Tenant cluster labels of clusters with release version {{% first_aws_nodepools_version %}} and above on AWS are returned by executing a [getClusters](/api/#operation/getClusters) request.
+Tenant cluster labels of clusters with tenant cluster release v{{% first_aws_nodepools_version %}} and above for AWS are returned by executing a [getClusters](/api/#operation/getClusters) request.
 The field `labels` of suitable tenant clusters contains the labels currently attached to the cluster.
 Labels of a single tenant cluster can be retrieved using the [getClusterLabels](/api/#operation/getClusterLabels) endpoint.
 
@@ -50,7 +49,7 @@ The operation accepts label selectors in the same way that `kubectl get -l` does
 The labels of a tenant cluster can be modified by issuing a [setClusterLabels](/api/#operation/setClusterLabels) request to the API.
 Keys and labels should adhere to [Kubernetes labels syntax and character set](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#syntax-and-character-set).
 Label changes should be written as a [JSON Merge Patch, RFC 7386](https://tools.ietf.org/html/rfc7386).
-Changes to labels with keys containing `giantswarm.io` is forbidden, changes to label `release.giantswarm.io/version` will be validated against available Giant Swarm releases.
+Changes to labels with keys containing `giantswarm.io` is forbidden, changes to label `release.giantswarm.io/version` will be validated against available tenant cluster releases.
 
 Differing from `gsctl`, listing tenant cluster labels with the API will show management labels required for operation.
 These usually contain `giantswarm.io` in its label keys and cannot be changed.
@@ -61,7 +60,7 @@ Let's play through a simple workflow of assigning labels to a newly created tena
 
 For brevity authentication and unrelated parts of requests and responses are left out.
 
-After creation, a tenant cluster will already have some labels containing information about release and operator.
+After creation, a tenant cluster will already have some labels containing information about the tenant cluster release and operator version.
 
 ```json
 GET /v5/clusters/7g4di

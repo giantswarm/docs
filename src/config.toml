@@ -3,6 +3,7 @@ languageCode = "en"
 title = "Giant Swarm Documentation"
 pluralizeListTitles = false
 rssLimit = 50
+enableGitInfo = true
 
 [markup]
   defaultMarkdownHandler = "goldmark"

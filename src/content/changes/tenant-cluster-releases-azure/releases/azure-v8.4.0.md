@@ -16,7 +16,7 @@ title: Tenant Cluster Release v8.4.0 for Azure
 This release contains Kubernetes 1.14.6 and therefore fixes for CVE-2019-9512 and CVE-2019-9514.
 
 ### Kubernetes v1.14.6
-- Updated from v1.14.5 - [changelog](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.14.md#v1146)
+- Updated from v1.14.5 - [changelog](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.14.md#v1146)
 - Includes CVE-2019-9512, CVE-2019-9514
 
 ### kube-state-metrics v1.7.2 ([GS v0.4.0](https://github.com/giantswarm/kube-state-metrics-app/blob/master/CHANGELOG.md#v040))

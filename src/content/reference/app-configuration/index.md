@@ -1,8 +1,8 @@
 ---
 title: App Configuration
 description: Documentation on the various levels of App configuration and how they get merged into a final Values object.
-date: 2020-04-27
 type: subsection
+weight: 100
 ---
 
 # App Configuration Reference

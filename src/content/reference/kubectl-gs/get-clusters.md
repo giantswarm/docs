@@ -1,7 +1,6 @@
 ---
 title: kubectl gs get clusters
 description: Reference documentation on how to list clusters and get details for a single cluster using 'kubectl gs'.
-date: 2020-10-02
 type: page
 weight: 10
 ---
@@ -53,7 +52,7 @@ The standard tabular output format features these columns:
     - `UPDATING`: The cluster is currently being updated, e. g. during an upgrade.
     - `UPDATED`: The cluster update is finished.
     - `DELETING`: The cluster is being deleted.
-- `RELEASE`: Release version of the cluster.
+- `RELEASE`: Tenant cluster release version of the cluster.
 - `ORGANIZATION`: Organization owning the cluster.
 - `DESCRIPTION`: User friendly description for the cluster.
 

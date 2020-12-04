@@ -1,7 +1,6 @@
 ---
 title: Creating tenant clusters on AWS via Control Plane Kubernetes API
 description: This guide will walk you through the process of tenant cluster creation via Control Plane Kubernetes on AWS.
-date: 2020-11-03
 type: page
 weight: 100
 tags: ["tutorial"]
@@ -14,7 +13,7 @@ tags: ["tutorial"]
 Starting from version {{% first_aws_nodepools_version %}} on AWS, Giant Swarm introduced a feature to create multiple [node pools](/basics/nodepools/) on AWS.
 Alongside node pools support, a new API version for cluster management was released.
 
-All the tenant clusters, created with release version {{% first_aws_nodepools_version %}} and newer, are managed as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) in the Control Plane.
+All the tenant clusters, created with tenant cluster release v{{% first_aws_nodepools_version %}} and newer, are managed as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) in the Control Plane.
 
 At a high-level, the Control Plane Kubernetes API is used to manage the following custom resources (CRs):
 

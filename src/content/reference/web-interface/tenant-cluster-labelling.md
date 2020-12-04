@@ -1,13 +1,9 @@
 ---
 title: Giant Swarm Tenant Cluster Labelling in The Web Interface
 description: How to manage tenant cluster labels in our Web Interface.
-date: 2020-05-29
-last-review-date: 2020-05-29
+last_review_date: 2020-05-29
 layout: subsection
 weight: 20
-aliases: [
-    "/reference/web-interface/tenant-cluster-labelling/",
-]
 ---
 
 # Giant Swarm Tenant Cluster Labelling in The Web Interface
@@ -17,7 +13,7 @@ For more information about this feature, check out the [Labelling tenant cluster
 
 ## Viewing tenant cluster labels
 
-The cluster detail page shows the labels currently attached to the current cluster in the "General" tab below release information.
+The cluster details page shows the labels currently attached to the current cluster in the "General" tab below the tenant cluster release information.
 
 ![A screenshot of our web interface, showing cluster details with list of cluster labels](/img/cluster-labelling-detail.png)
 

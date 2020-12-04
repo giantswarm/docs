@@ -1,7 +1,6 @@
 ---
 title: High availability Kubernetes masters
 description: A general description of high availability of masters as a concept, it's benefits, and some details you should be aware of.
-date: 2020-06-17
 weight: 120
 type: page
 categories: ["basics"]
@@ -20,7 +19,7 @@ Clusters can run in a fully functional way with one master node. However this re
 Kubernetes API unavailable in certain cases like a cluster upgrade or even an outage of
 the underlying infrastructure.
 
-As of AWS release v{{% first_aws_ha_masters_version %}}, new tenant clusters are launched with three master nodes by default, spread over multiple availability zones. This results in much higher availability of the API during upgrades or other changes to the cluster configuration, plus enhanced resilience against any data center or hardware failures.
+As of tenant cluster release v{{% first_aws_ha_masters_version %}} for AWS, new tenant clusters are launched with three master nodes by default, spread over multiple availability zones. This results in much higher availability of the API during upgrades or other changes to the cluster configuration, plus enhanced resilience against any data center or hardware failures.
 
 ## Benefits
 
@@ -43,7 +42,7 @@ Having multiple master nodes in different availability zones has several benefit
 
 We recommend that all production clusters on AWS are run with high
 availability of master nodes. As a result, this is the default setting starting with
-release v{{% first_aws_ha_masters_version %}}.
+tenant cluster release v{{% first_aws_ha_masters_version %}}.
 
 Since these benefits come at the cost of additional EC2 instances and
 additional network traffic across availability zones, it is still possible to
@@ -68,7 +67,7 @@ worker [node pools](/basics/nodepools/) is taken into account.
 
 ## Upgrades from previous releases {#upgrades}
 
-When upgrading a cluster to Giant Swarm release v11.4.0, the cluster will remain a single
+When upgrading a cluster to tenant cluster release v11.4.0, the cluster will remain a single
 master cluster during and after the upgrade. The API unavailability during the
 upgrade that is typical for single master clusters will apply for this upgrade.
 
@@ -77,7 +76,7 @@ complete.
 
 ## Conversion from single master to high availability {#conversion-to-ha}
 
-Single master clusters using release v{{% first_aws_ha_masters_version %}} or
+Single master clusters using tenant cluster release v{{% first_aws_ha_masters_version %}} or
 above on AWS can be converted to master node high availability in the user
 interfaces and via the APIs.
 
@@ -154,7 +153,7 @@ is not currently supported with Giant Swarm tenant clusters.
 - Short API downtimes are still possible during cluster modifications, especially when the leader of the
   etcd cluster (the member that handles write requests) changes. This happens when the node that
   hosts the etcd leader has to be modified. Typical cases for this would be an upgrade to a newer
-  release or the conversion from a single to multiple master nodes. These downtimes are expected to
+  tenant cluster release or the conversion from a single to multiple master nodes. These downtimes are expected to
   last only a few seconds.
 - Conversion of a cluster from high availability (three masters) to a single master node is not
   possible.

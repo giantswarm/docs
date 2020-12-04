@@ -9,30 +9,11 @@ var shiftWindow = function() {
   if (window.disableShift) {
     window.disableShift = false;
   } else {
-    /* If we're at the bottom of the page, don't erronously scroll up */
-    var scrolledToBottomOfPage = (
-        (window.innerHeight + window.scrollY) >= document.body.offsetHeight
-    );
-    if (!scrolledToBottomOfPage) {
-      scrollBy(0, -60);
-    };
+    scrollBy(0, -100);
   };
 };
 if (location.hash) {shiftWindow();}
 window.addEventListener("hashchange", shiftWindow);
-
-
-/* Deal with clicks on nav links that do not change the current anchor link. */
-$("ul.nav a" ).click(function() {
-  var href = this.href;
-  var suffix = location.hash;
-  var matchesCurrentHash = (href.indexOf(suffix, href.length - suffix.length) !== -1);
-  if (location.hash && matchesCurrentHash) {
-    /* Force a single 'hashchange' event to occur after the click event */
-    window.disableShift = true;
-    location.hash='';
-  };
-});
 
 /**
  * Returns the value of a URL parameter
@@ -50,21 +31,35 @@ function getParameterByName(name) {
  * @param q  String     The user's search query
  */
 function doSearch(q) {
-  //console.debug("Searched for", q);
+  var limit = 100;
   $("#qinput").val(q);
   // assemble the big query object for ElasticSearch
   var postData = {
     "from": 0,
-    "size": 1000,
+    "size": limit,
     "sort": ["_score"],
     "_source": {
       "excludes": ["text", "breadcrumb_*"]
     },
     "query": {
-      "simple_query_string": {
-        "fields": ["title^5", "uri^5", "text"],
-        "default_operator": "AND",
-        "query": q
+      "function_score": {
+        "query": {
+          "simple_query_string": {
+            "fields": ["title^5", "uri^5", "text"],
+            "default_operator": "AND",
+            "query": q
+          }
+        },
+        "functions": [
+          {
+            "filter": {"term": {"breadcrumb_1": "changes"}},
+            "weight": 0.1
+          },
+          {
+            "filter": {"term": {"breadcrumb_1": "api"}},
+            "weight": 0.3
+          }
+        ]
       }
     },
     "highlight" : {
@@ -106,6 +101,11 @@ function doSearch(q) {
           $("h1").text("1 hit for '" + q + "'");
         } else {
           $("h1").text(data.hits.total + " hits for '" + q + "'");
+          if (data.hits.total > limit) {
+            $('#result-is-limited').text('Showing the first '+ limit +' items only').show();
+          } else {
+            $('#result-is-limited').hide();
+          }
         }
         $.each(data.hits.hits, function(index, hit){
           $(".result").append(renderSerpEntry(index, hit));
@@ -283,6 +283,19 @@ window.addEventListener("load", function() {
   var asideSelector = ".toc-sidebar";
   if (!document.querySelector(asideSelector)) return;
 
-  var g = new GSAside(asideSelector, ".base-content", 60);
+  var g = new GSAside(asideSelector, ".base-content", 100);
   g.init();
+});
+
+
+/* Deal with clicks on nav links that do not change the current anchor link. */
+$("a" ).click(function() {
+  var href = this.href;
+  var suffix = location.hash;
+  var matchesCurrentHash = (href.indexOf(suffix, href.length - suffix.length) !== -1);
+  if (location.hash && matchesCurrentHash) {
+    /* Force a single 'hashchange' event to occur after the click event */
+    window.disableShift = true;
+    location.hash='';
+  };
 });

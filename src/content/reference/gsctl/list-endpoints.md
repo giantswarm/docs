@@ -1,7 +1,6 @@
 ---
 title: "gsctl Command Reference: list endpoints"
 description: "The 'gsctl list endpoints' command shows all endpoints you have logged in to so far and tells you which one is currently selected."
-date: "2020-05-13"
 type: page
 weight: 41
 ---

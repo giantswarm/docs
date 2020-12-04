@@ -1,7 +1,6 @@
 ---
 title: Accelerated Networking on Azure
 description: A general description of the Accelerated Networking for Azure VMs feature and how it works on Giant Swarm clusters.
-date: 2020-10-02
 weight: 120
 type: page
 categories: ["basics"]
@@ -12,7 +11,7 @@ categories: ["basics"]
 ## Synopsis
 
 `Accelerated Networking` (or `AN` for short) is a feature provided by the `Azure Cloud` that allows for
-«ultra-low network latency» thanks to Azure's in-house programmable hardware and technologies like [SR-IOV](https://docs.microsoft.com/en-us/windows-hardware/drivers/network/overview-of-single-root-i-o-virtualization--sr-iov-).
+"ultra-low network latency" thanks to Azure's in-house programmable hardware and technologies like [SR-IOV](https://docs.microsoft.com/en-us/windows-hardware/drivers/network/overview-of-single-root-i-o-virtualization--sr-iov-).
 
 ![Accelerated Networking](/img/accelerated-networking.png)
 
@@ -32,7 +31,7 @@ Furthermore, accelerated networking feature is available free of charge for many
 
 ## Support in Giant Swarm Clusters
 
-As of release v{{% first_azure_accelerated_networking_version %}}, `Accelerated Networking` is enabled by default
+As of tenant cluster release v{{% first_azure_accelerated_networking_version %}}, `Accelerated Networking` is enabled by default
 on all `Node Pools` that have a [Virtual Machine type that supports the feature](https://docs.microsoft.com/en-us/azure/virtual-network/create-vm-accelerated-networking-powershell#supported-vm-instances), so there is nothing you need to do
 in order to leverage the benefits of `AN`.
 

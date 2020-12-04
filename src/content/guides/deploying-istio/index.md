@@ -1,7 +1,6 @@
 ---
 title: How to deploy Istio in your cluster
 description: Tutorial on how to deploy Istio on a Giant Swarm Kubernetes cluster.
-date: 2020-04-17
 type: page
 weight: 60
 tags: ["tutorial"]
@@ -51,7 +50,7 @@ initContainers:
       privileged: true
 ```
 
-As a consequence, the pod now must have the right security policies configured to run in the cluster. An easy way to solve this problem is to [create a pod security policy that contains the correct capabilities](/guides/securing-with-rbac-and-psp#pod-security-policies). Then, define a RBAC role and a role binding for wiring it together against the default service account for the namespace(s) where your apps are running.
+As a consequence, the pod now must have the right security policies configured to run in the cluster. An easy way to solve this problem is to [create a pod security policy that contains the correct capabilities](/guides/securing-with-rbac-and-psp/#pod-security-policies). Then, define a RBAC role and a role binding for wiring it together against the default service account for the namespace(s) where your apps are running.
 
 __Warning:__ If your apps are using a custom service account then you need to create the binding for each of them.
 

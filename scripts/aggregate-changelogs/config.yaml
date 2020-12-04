@@ -20,21 +20,11 @@ repositories:
     category: Control Plane Kubernetes API
   giantswarm/azure-admission-controller:
     category: Control Plane Kubernetes API
-  giantswarm/cert-exporter:
-    category: Managed Apps
   giantswarm/cert-manager-app:
-    category: Managed Apps
-  giantswarm/chart-operator:
-    category: Managed Apps
-  giantswarm/cluster-autoscaler-app:
-    category: Managed Apps
-  giantswarm/coredns-app:
     category: Managed Apps
   giantswarm/docs:
     category: Documentation
   giantswarm/efk-stack-app:
-    category: Managed Apps
-  giantswarm/external-dns-app:
     category: Managed Apps
   giantswarm/gsctl:
     category: gsctl
@@ -42,20 +32,49 @@ repositories:
     category: Web UI
   giantswarm/kong-app:
     category: Managed Apps
-  giantswarm/kube-state-metrics-app:
-    category: Managed Apps
   giantswarm/kubectl-gs:
     category: kubectl gs
   giantswarm/metrics-server-app:
     category: Managed Apps
   giantswarm/nginx-ingress-controller-app:
     category: Managed Apps
-  giantswarm/net-exporter:
-    category: Managed Apps
-  giantswarm/node-exporter-app:
-    category: Managed Apps
   giantswarm/prometheus-operator-app:
     category: Managed Apps
+  giantswarm/grafana-app:
+    category: Managed Apps
+
+  giantswarm/app-mesh-app:
+    category: Playground Apps
+  giantswarm/azure-ad-pod-identity-app:
+    category: Playground Apps
+  giantswarm/eventrouter-app:
+    category: Playground Apps
+  giantswarm/fluent-logshipping-app:
+    category: Playground Apps
+  giantswarm/gatling-app:
+    category: Playground Apps
+  giantswarm/giantswarm-todo-app:
+    category: Playground Apps
+  inlets/inlets:
+    category: Playground Apps
+  giantswarm/istio-operator:
+    category: Playground Apps
+  giantswarm/jaeger-operator-app:
+    category: Playground Apps
+  giantswarm/k8s-initiator-app:
+    category: Playground Apps
+  giantswarm/kibana-oss-app:
+    category: Playground Apps
+  giantswarm/kubernetes-gpu:
+    category: Playground Apps
+  giantswarm/linkerd2-app:
+    category: Playground Apps
+  giantswarm/loki-stack-app:
+    category: Playground Apps
+  giantswarm/opencensus-collector-app:
+    category: Playground Apps
+  giantswarm/strimzi-kafka-operator-app:
+    category: Playground Apps
 
 # Here we define the colors for categories.
 categories:
@@ -69,6 +88,8 @@ categories:
     color: "#8081b2"
   - name: Managed Apps
     color: "#7ac271"
+  - name: Playground Apps
+    color: "#bfffb8"
   - name: Rest API
     color: "#919ea1"
   - name: Tenant Cluster Releases for AWS

@@ -1,7 +1,6 @@
 ---
 title: "gsctl Command Reference: delete endpoint"
 description: "The 'gsctl delete endpoint' command deletes an endpoint that you previously used from the configuration."
-date: "2020-05-13"
 type: page
 weight: 41
 ---

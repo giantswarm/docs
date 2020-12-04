@@ -1,29 +1,26 @@
 ---
 title: "gsctl Command Reference: list releases"
-description: "The 'gsctl list releases' command shows all releases available in an installation."
-date: "2018-07-31"
+description: The 'gsctl list releases' command shows all tenant cluster releases available in an installation.
 type: page
 weight: 45
 ---
 
 # `gsctl list releases`
 
-The `gsctl list releases` command shows all releases available in an installation.
+The `gsctl list releases` command shows all tenant cluster releases available in an installation.
 
-## Releases {#definition}
+## Tenant cluster releases {#definition}
 
-A release is a software bundle that constitutes a cluster. Releases are
-identified by their semantic version number in the `MAJOR.MINOR.PATCH` format.
+Tenant cluster releases are software bundles that constitute the software running in a cluster.
+They are identified by their semantic version number in the `MAJOR.MINOR.PATCH` format.
+Check our detailed explanation of [tenant cluster releases](/reference/tenant-cluster-release-versions/) to learn more.
 
-A release provides _components_, of which Kubernetes is an important one.
-For each release the contained components are listed with their specific
-version. Additionally, changes in components are detailed in the release's
-_changelog_.
+A tenant cluster release provides _components_, of which Kubernetes is an important one.
+For each tenant cluster release the contained components are listed with their specific
+version.
 
-An installation may support several releases at the same time, which allows
-to select a specific release when creating a cluster. In the near future it will
-also be possible to upgrade a cluster to a more recent release provided by the
-installation.
+An installation usually supports several tenant cluster releases at the same time, which allows
+to select a specific tenant cluster release when creating a cluster.
 
 ## Usage and output
 
@@ -33,7 +30,7 @@ The command has no specific flags. Simply run it like this:
 gsctl list releases
 ```
 
-The resulting output is a list of all releases, like in the following example
+The resulting output is a list of all tenant cluster releases, like in the following example
 (in this case showing one item only):
 
 ```yaml
@@ -67,14 +64,14 @@ machine-readable output of hierarchical information.
 Output details:
 
 - **Version:** semantic version number identifying the release
-- **Created:** Date/time the release has been created
-- **Active:** `true` if the release is usable for new cluster or upgrades.
-  `false` will indicate releases that are no longer usable for new clusters or
+- **Created:** Date/time the tenant cluster release has been created
+- **Active:** `true` if the tenant cluster release is usable for new cluster or upgrades.
+  `false` will indicate tenant cluster releases that are no longer usable for new clusters or
   upgrades, but which may still be running on older clusters.
 - **Components:** List of components provided by the release, each with their
   version number
 - **Changelog:** List of changes in components compared to the previous
-  release. Note that only a subset of all components may have changed.
+  tenant cluster release. Note that only a subset of all components may have changed.
 
 ## Related
 

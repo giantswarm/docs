@@ -1,4 +1,4 @@
-# Giant Swarm docs contriubtion guidelines
+# Giant Swarm docs contribution guidelines
 
 **We welcome any contributions on content to this repository in the form of pull requests!**
 
@@ -6,39 +6,64 @@ Please review these contribution guidelines to ease getting your changes into th
 
 ## Style
 
-### Using acronyms
+Some general guidelines to know about when editing or reviewing content.
 
-Please avoid acronyms and abbreviations where possible, use them only where the acronym is easier to understand than the long form (example: `SSH` is self-explanatory, `secure shell` is not widely understood).
+### Acronyms and abbreviations
 
-When you want to use an acronym, please use the long form and the acronym form together at the first use on a page. Example:
+**Guideline:** Avoid acronyms and abbreviations where possible.
+
+Use them only where the acronym is easier to understand than the long form.
+
+Example: `SSH` is very common, `secure shell` is not widely understood and ambiguous.
+
+**Guideline:** When using an acronym/abbreviation, please use the long form first and then the acronym form in parantheses, to introduce the acronym.
+
+Example:
 
 > The Ingress Controller (IC) manages incoming traffic to your services.
 
-After that, you can use the acronym without the long form.
+After that, you can use the acronym without the long form and without parentheses.
 
 ### Headline title case
 
-We use [Title Case](https://titlecase.com/) for the main article headline, but not for lower level headlines.
+We use [Title Case](https://titlecase.com/) only for the main article headline, but not for lower level headlines.
 
 ### Code blocks and syntax highlighting
 
-For **code blocks**, we give language hints to ensure proper syntax highlighting. A YAML block, for example, is opened with triple back-ticks followed by `yaml`.
+**Guideline:** For code blocks, we give language hints to ensure proper syntax highlighting.
 
-However, shell commands and their output get the fake hint `nohighlight` to prevent any funky syntax highlighting.
+A YAML block, for example, is opened with triple back-ticks followed by `yaml`:
+
+    ```yaml
+    foo: bar
+    ```
+
+**Guideline:** Shell commands and their output get the fake hint `nohighlight` to prevent any funky syntax highlighting.
 
 Shell commands in code blocks are prepended with a `$ ` (dollar sign and one blank character).
 
+Example:
+
+    ```nohighlight
+    $ gsctl --version
+    Version:      0.26.0 - https://github.com/giantswarm/gsctl/releases/tag/0.26.0
+    Build date:   2020-11-18T08:48:37Z
+    Commit hash:  5c7820239fc68fc9552eb2751ca3c3ceda47001c - https://github.com...
+    ```
+
 ### CLI commands
 
-We use long-form CLI flags and avoid the possible equal sign between flag name and value, for best readability.
+**Guideline:** Where a CLI provides both long and short form flags, we use the long form for clarity.
 
-Right:
+**Guideline:** We avoid the equals sign between flag name and value where possible.
+
+Good example:
 
 ```nohighlight
 gsctl create cluster --owner acme
 ```
 
-Wrong:
+Bad examples:
 
 ```nohighlight
 gsctl create cluster --owner=acme
@@ -46,8 +71,10 @@ gsctl create cluster -o=acme
 gsctl create cluster -o acme
 ```
 
-Also we break a command into multiple lines once it becomes longer than ~ 60 characters,
-using the backslash character. Example:
+**Guideline:** We break a command into multiple lines once it becomes longer than ~60 characters,
+using the backslash character. This makes it easier to read.
+
+Example:
 
 ```nohighlight
 gsctl create cluster \
@@ -68,26 +95,29 @@ To check locally whether all internal links are correct, use `make linkcheck`.
 
 To check both internal and external links, use `make linkcheck-external`.
 
+## Solutions for specific problems
+
 ### Kubernetes API versions
 
-Keep an eye on API versions of kubernetes resources. Examples and references should
+Keep an eye on API versions of Kubernetes resources.
 
-- cover all possible API versions of kubernetes versions we provide to our customers
-- if possible, use the latest API versions supported by kubernetes
-- if different kubernetes versions require different API versions, we differentiate which kubernetes version requires which API version by examples.
+**Guideline:** Examples and references should cover all possible API versions of Kubernetes versions we provide to our customers.
 
-An example for this would be the deprecation of the API version of Ingress resources from `networking.k8s.io/v1beta1` to `networking.k8s.io/v1` in kubernetes 1.19
+**Guideline:** If possible, use the latest API version supported by Kubernetes.
+
+**Guideline:** If different Kubernetes versions require different API versions, we offer multiple examples and explain which Kubernetes version requires which API version.
+
+An example for this would be the deprecation of the API version of Ingress resources from `networking.k8s.io/v1beta1` to `networking.k8s.io/v1` in Kubernetes 1.19.
 
 ## Editing content
 
-Edit existing content in the `src/content` folder or in the external repositories (see `src/external-repositories.txt`).
+Edit existing content in the `src/content` folder.
 
 ### Front matter
 
 Each documentation page consists of a Markdown file that starts with some metadata called [front matter](https://gohugo.io/content-management/front-matter/). Some hints:
 
 - Please look at the other pages to get an idea of what the front matter is good for.
-- Please always update the last modification date (`date` field)  of the page when you change content.
 - Please double-check whether the `description` is still up-to-date or could be improved. It will often show up Google search results.
 
 Special front matter fields we use:
@@ -111,41 +141,33 @@ Note that
 
 This is important to support automation when links have to change, or when checking links.
 
-### Code blocks
-
-We support fenced code blocks wrapped by the triple back-tick operator. It is recommended to
-also declare the language a code snippet uses, to prevent faulty guessing. Example:
-
-    ```json
-    {"message": "this is JSON"}
-    ```
-
-Shell snippets (commands and their output) should in general prevent highlighting like this:
-
-    ```nohighlight
-    $ ls
-    bar    foo
-    ```
-
 ### Table of contents and headline anchors
 
-The rendered documentation pages will have a table of contents on the top left and an anchor for every intermediate headline. This anchor is normally generated from the headline's content. For example, a headline
+The rendered documentation pages will have a table of contents on the left hand side and an anchor for every intermediate headline. This anchor is normally generated from the headline's content. For example, a headline
 
-    ### Another section with more content
+```markdown
+### Another section with more content
+```
 
 will result in a headline
 
-    <h3 id="another-section-with-more-content">Another section with more content</h3>
+```html
+<h3 id="another-section-with-more-content">Another section with more content</h3>
+```
 
 This means that anchors and URLs can become quite long. It also means that when the headline text changes, all links to this headline also have to be updated.
 
 To control this behavior, the anchor ID can be edited as a suffix to the markdown headline, like in the following example:
 
-    ### Another section with more content {#more}
+```markdown
+### Another section with more content {#more}
+```
 
 will result in a headline
 
-    <h3 id="more">Another section with more content</h3>
+```html
+<h3 id="more">Another section with more content</h3>
+```
 
 ### Shortcodes
 
@@ -188,15 +210,15 @@ worker nodes.
 - `default_cluster_size_worker_nodes`: The default number of worker nodes we
 use when a cluster is created without specifying a number.
 
-- `first_aws_autoscaling_version`: The release version that introduced
+- `first_aws_autoscaling_version`: The tenant cluster release version that introduced
 autoscaling for AWS.
 
-- `first_aws_nodepools_version`: The release version that introduced
+- `first_aws_nodepools_version`: The tenant cluster release version that introduced
 nodepools for AWS.
 
-- `first_azure_nodepools_version`: The release version that introduced nodepools for Azure.
+- `first_azure_nodepools_version`: The tenant cluster release version that introduced nodepools for Azure.
 
-- `first_spotinstances_version`: The release version that introduced
+- `first_spotinstances_version`: The tenant cluster release version that introduced
 spotinstances for AWS.
 
 - `minimal_supported_cluster_size_worker_nodes`: The minimum number of worker
@@ -211,18 +233,16 @@ You can access the server at http://localhost:1313/. The server can be stopped b
 
 It will not include content from the external repositories.
 
-### Previewing changes including external repositories
+### Previewing changes
 
 You can bring up the final site using the following commands:
 
 ```nohighlight
 make docker-build
-make docker-run
+docker-compose up
 ```
 
 You can access the server at http://localhost:8080/. The server can be stopped by hitting `Ctrl + C`.
-
-To run the site locally together with search (sitesearch) and API docs (api-spec), you can use the docker-compose setup provided in the file `docker-compose.yaml`.
 
 ### Content from external sources
 

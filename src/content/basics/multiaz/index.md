@@ -1,7 +1,6 @@
 ---
 title: Clusters Over Multiple Availability Zones
-description: Using multiple availability zones both for worker and for master nodes increases the resilience for clusters. Here we explain some details regarding support on different cloud providers and in different releases. And we give basic information on how to configure workloads to leverage multiple availability zones.
-date: 2020-07-31
+description: Using multiple availability zones both for worker and for master nodes increases the resilience for clusters. Here we explain some details regarding support on different cloud providers and in different tenant cluster releases. And we give basic information on how to configure workloads to leverage multiple availability zones.
 weight: 100
 type: page
 categories: ["basics"]
@@ -12,7 +11,7 @@ last-review-date: 2020-04-09
 
 With Giant Swarm on AWS and Azure you can easily launch clusters with worker nodes spread across multiple availability zones (AZs). This will lower the risk that your cluster will become unavailable due to an incident in a particular AWS or Azure data center.
 
-On AWS, starting with release {{% first_aws_ha_masters_version %}}, master nodes of a cluster are spread over different availability zones by default, for high availability of the Kubernetes API. You can chose however to run only a single master node. Read [High availability Kubernetes masters](/basics/ha-masters/) for more information.
+On AWS, starting with tenant cluster release {{% first_aws_ha_masters_version %}}, master nodes of a cluster are spread over different availability zones by default, for high availability of the Kubernetes API. You can chose however to run only a single master node. Read [High availability Kubernetes masters](/basics/ha-masters/) for more information.
 
 ## What availability zones are good for {#benefits}
 

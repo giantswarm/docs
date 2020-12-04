@@ -1,7 +1,6 @@
 ---
 title: "gsctl Command Reference: upgrade cluster"
 description: Detailed documentation on how to upgrade a cluster using the 'upgrade cluster' command in gsctl.
-date: 2020-03-11
 type: page
 weight: 30
 ---
@@ -34,12 +33,12 @@ If you want to upgrade to a specific version, you can use the `--release` flag:
 gsctl upgrade cluster f01r4 --release 13.0.0
 ```
 
-You can list available releases with `gsctl list releases`.
+You can list available tenant cluster releases with `gsctl list releases`.
 
 ## Related
 
 - [Upgrade cluster general documentation](/reference/cluster-upgrades/)
 - [`gsctl create cluster`](/reference/gsctl/create-cluster/): Reference for creating a cluster
 - [`gsctl delete cluster`](/reference/gsctl/delete-cluster/): Reference for deleting a cluster
-- [`gsctl list releases`](/reference/gsctl/list-releases/): Reference for listing available releases
+- [`gsctl list releases`](/reference/gsctl/list-releases/): Reference for listing available tenant cluster releases
 - [API: Upgrade cluster](/api/#operation/upgradeCluster)

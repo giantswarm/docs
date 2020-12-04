@@ -1,15 +1,31 @@
 ---
 title: Giant Swarm Operational Layers
 description: Here you learn how the operational layers of Giant Swarm are defined and what the intended operational model is.
-date: 2020-05-18
 type: page
 weight: 80
 categories: ["basics"]
+last_review_date: 2020-11-22
+user_questions:
+  - What are the Giant Swarm operational layers?
+  - Why does Giant Swarm use several operational layers?
+  - What is the Giant Swarm infrastructure layer?
+  - Who has access to the infrastructure layer?
+  - What is the Giant Swarm control plane?
+  - Who has access to the Giant Swarm control plane?
+  - What is the Giant Swarm API?
+  - Who has access to the Giant Swarm API?
+  - What is the Giant Swarm user space?
+  - Who has access to the Giant Swarm user space?
+  - How is the Giant Swarm infrastructure layer accessed?
+  - What are the security safegaurds around access to the Giant Swarm infrastructure layer?
+  - What are the security safegaurds around access to the Giant Swarm control plane?
+  - How is access to the control plane authorized?
+  - How do users access tenant clusters?
 ---
 
 # Giant Swarm Operational Layers
 
-A Giant Swarm installation has several operational layers. This represents a separation of concerns both on an operational as well as on a security level. In this document we will define the layers and explain the operational model.
+A Giant Swarm installation has several operational layers. At Giant Swarm we use the term operational layeres in order to indicate the different layers of code that may require access by different users for different activities. Operational layers in this context are in effect a representation of a separation of concerns both on an operational and on a security level. In this document we will define the layers and explain the operational model.
 
 ## Operational layers
 
@@ -32,7 +48,7 @@ On this layer, Giant Swarm SREs have root level SSH access to everything that pe
 
 The Giant Swarm Control Plane consists mainly of services running inside the Control Plane Kubernetes cluster.
 
-Control Plane Kubernetes API network access is allowed only through Giant Swarm VPN and customer VPN.
+Network access to the Control Plane Kubernetes API is allowed only through Giant Swarm VPN and customer VPN.
 
 Giant Swarm SREs and operations personnel have cluster admin access to the Control Plane Kubernetes API through a tunnel. It is facilitated by SSO with MFA, as described above.
 
@@ -74,13 +90,15 @@ Such users have access to all clusters in the organizations they belong to. They
 
 ### User space {#userspace}
 
-The user space layer is defined as the layer pertaining to a single Tenant Cluster Kubernetes API. Tenant Cluster are the Kubernetes clusters that run your workloads.
+The user space layer is defined as the layer pertaining to a single Tenant Cluster Kubernetes API. Tenant Clusters are the Kubernetes clusters that run your workloads.
 
 Users on this level are either created by a Giant Swarm API user (in form of key pairs) or managed in an external Identity Provider (IdP), like [Azure AD](/guides/authenticating-with-microsoft-azure-active-directory/) or any other OIDC compliant IdP.
 
-However, a user with access to the Kubernetes API does not gain any permisssions by default, as the clusters are locked down by RBAC. To provide access, a cluster admin first needs to create roles and bindings for the users. These roles can be defined as narrowly or broadly as needed for the specific Tenant Kubernetes cluster. They can be bound to either single users or groups of them.
+However, a user with access to the Kubernetes API does not gain any permisssions by default, as the clusters are locked down by RBAC. To provide access, a cluster admin first needs to create roles and bindings for the users. These roles can be defined as narrowly or broadly as needed for the specific Tenant Kubernetes Cluster. They can be bound to either single users or groups of them.
 
 This enables the customer to individually set up their user management according to the needs of their organization. The configuration for this can be kept in version control and needs to be done by an initial cluster admin user, which can be created by the Giant Swarm API user mentioned above.
+
+Giant Swarm operational layers are the means which we use to keep a separation of concerns between different users of the Giant Swarm platform. This reduces burden from an operational perspective as well as enhancing security.
 
 ## Further reading
 
