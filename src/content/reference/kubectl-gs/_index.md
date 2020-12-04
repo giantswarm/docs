@@ -3,6 +3,8 @@ title: kubectl gs Reference
 description: User manual for kubectl-gs (also known as kgs), the Giant Swarm kubectl plugin.
 layout: subsection
 weight: 40
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
 # `kubectl gs` Reference

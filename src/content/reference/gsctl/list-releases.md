@@ -3,6 +3,8 @@ title: "gsctl Command Reference: list releases"
 description: The 'gsctl list releases' command shows all tenant cluster releases available in an installation.
 type: page
 weight: 45
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
 # `gsctl list releases`

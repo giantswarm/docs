@@ -2,6 +2,8 @@
 title: "gsctl Command Reference: update cluster"
 description: The 'gsctl update cluster' command allows the modification of the name of a cluster and its labels.
 weight: 44
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
 # `gsctl update cluster`

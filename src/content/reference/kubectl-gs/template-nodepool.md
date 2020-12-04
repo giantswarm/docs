@@ -3,6 +3,8 @@ title: kubectl gs template nodepool
 description: Reference documentation on how to create a manifest for a node pool using 'kubectl gs'.
 type: page
 weight: 10
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
 # `kubectl gs template nodepool`
