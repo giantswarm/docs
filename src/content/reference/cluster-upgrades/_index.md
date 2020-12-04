@@ -9,6 +9,8 @@ user_questions:
   - What is a major upgrade?
   - What is a minor upgrade?
   - What is a patch upgrade?
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
 ---
 
 # Cluster Upgrades with Giant Swarm

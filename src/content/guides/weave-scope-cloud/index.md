@@ -4,6 +4,8 @@ description: "Recipe to spin up the Weave Scope UI or Weave Cloud on Kubernetes.
 type: page
 weight: 120
 tags: ["recipe"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
 ---
 
 # Setting up Weave Scope or Weave Cloud
