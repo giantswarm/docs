@@ -21,6 +21,8 @@ user_questions:
   - What are the security safegaurds around access to the Giant Swarm control plane?
   - How is access to the control plane authorized?
   - How do users access tenant clusters?
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-horizon
 ---
 
 # Giant Swarm Operational Layers
