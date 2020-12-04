@@ -75,6 +75,8 @@ repositories:
     category: Playground Apps
   giantswarm/strimzi-kafka-operator-app:
     category: Playground Apps
+  giantswarm/vertical-pod-autoscaler-app:
+    category: Playground Apps
 
 # Here we define the colors for categories.
 categories:
