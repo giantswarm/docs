@@ -2,6 +2,8 @@
 title: FAQ
 description: Frequently Asked Questions
 type: page
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-horizon
 ---
 
 # FAQ
