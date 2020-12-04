@@ -4,6 +4,8 @@ description: A general description of the Accelerated Networking for Azure VMs f
 weight: 120
 type: page
 categories: ["basics"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-celestial
 ---
 
 # Accelerated Networking on Azure

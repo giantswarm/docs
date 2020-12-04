@@ -5,6 +5,8 @@ weight: 100
 type: page
 categories: ["basics"]
 last-review-date: 2020-04-09
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-celestial
 ---
 
 # Clusters Over Multiple Availability Zones
