@@ -10,7 +10,7 @@ Some general guidelines to know about when editing or reviewing content.
 
 ### Acronyms and abbreviations
 
-**Guideline:** avoid acronyms and abbreviations where possible.
+**Guideline:** Avoid acronyms and abbreviations where possible.
 
 Use them only where the acronym is easier to understand than the long form.
 
