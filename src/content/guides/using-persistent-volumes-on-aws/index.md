@@ -1,7 +1,6 @@
 ---
 title: "Using Persistent Volumes on AWS"
 description: Tutorial on how to use dynamically provisioned Persistent Volumes on a cluster running on Amazon Web Services"
-date: "2020-04-16"
 type: page
 weight: 50
 tags: ["tutorial"]

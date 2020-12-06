@@ -3,10 +3,9 @@ title: StorageConfig CRD Schema Reference
 linktitle: StorageConfig
 technical_name: storageconfigs.core.giantswarm.io
 description:   StorageConfig used to provide storage for Giant Swarm API microservices. Deprecated.
-date: 2020-12-01
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.10.0
+source_repository_ref: v3.12.0
 layout: "crd"
 ---
 

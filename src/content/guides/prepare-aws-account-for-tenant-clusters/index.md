@@ -1,7 +1,6 @@
 ---
 title: "Prepare an AWS account to run Giant Swarm clusters"
 description: "This guide will walk you through all necessary steps to set up an Amazon AWS account with appropriate IAM roles for operating Giant Swarm clusters."
-date: 2020-05-19
 type: page
 weight: 100
 tags: ["tutorial"]

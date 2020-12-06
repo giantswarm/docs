@@ -1,7 +1,6 @@
 ---
 title: The Giant Swarm AWS Platform
 description: Description of the Giant Swarm platform, how it looks like and which features offers
-date: 2020-06-15
 weight: 50
 type: page
 categories: ["basics"]

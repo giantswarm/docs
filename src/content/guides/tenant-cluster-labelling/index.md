@@ -1,7 +1,6 @@
 ---
 title: "Labelling tenant clusters"
 description: "Introduction to labelling tenant clusters"
-date: 2020-11-18
 type: page
 weight: 130
 tags: ["recipe"]

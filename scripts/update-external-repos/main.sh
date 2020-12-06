@@ -17,7 +17,7 @@
 mytmpdir=$(mktemp -d 2>/dev/null || mktemp -d -t 'mytmpdir')
 echo "Temp dir: $mytmpdir"
 
-cat ./scripts/fetch-external-repos/repositories.txt | while read repoline
+cat ./scripts/update-external-repos/repositories.txt | while read repoline
 do
 
   # split line into repository URL, target path

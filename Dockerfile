@@ -4,9 +4,16 @@ RUN apk --no-cache add findutils gzip
 
 WORKDIR /docs
 
-COPY src .
+COPY . /docs
 
-RUN hugo --verbose --gc --minify --cleanDestinationDir --path-warnings --destination /public
+RUN hugo \
+      --verbose \
+      --gc \
+      --minify \
+      --source src \
+      --path-warnings \
+      --destination /public \
+      --cleanDestinationDir
 
 # Compress static files above 512 bytes using gzip
 RUN find /public \

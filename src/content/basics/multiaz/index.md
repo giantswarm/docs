@@ -1,7 +1,6 @@
 ---
 title: Clusters Over Multiple Availability Zones
 description: Using multiple availability zones both for worker and for master nodes increases the resilience for clusters. Here we explain some details regarding support on different cloud providers and in different tenant cluster releases. And we give basic information on how to configure workloads to leverage multiple availability zones.
-date: 2020-11-18
 weight: 100
 type: page
 categories: ["basics"]

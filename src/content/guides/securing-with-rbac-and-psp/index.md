@@ -1,7 +1,6 @@
 ---
 title: "Securing your Cluster with RBAC and PSP"
 description: "Introduction to using RBAC and PSP to secure your cluster and manage access control."
-date: 2020-05-20
 type: page
 weight: 30
 tags: ["tutorial"]

@@ -1,7 +1,6 @@
 ---
 title: Giant Swarm Tenant Cluster Labelling in The Web Interface
 description: How to manage tenant cluster labels in our Web Interface.
-date: 2020-11-18
 last_review_date: 2020-05-29
 layout: subsection
 weight: 20

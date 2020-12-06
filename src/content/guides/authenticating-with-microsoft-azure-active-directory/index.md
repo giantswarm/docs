@@ -1,7 +1,6 @@
 ---
 title: Authenticating with Microsoft Azure Active Directory
 description: Tutorial on how to setup Authentication with Microsoft Azure Active Directory in kubectl.
-date: 2019-11-06
 type: page
 weight: 30
 tags: ["tutorial"]
