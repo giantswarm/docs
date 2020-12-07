@@ -4,7 +4,7 @@ description: This documentation explains security measures for users and Giant S
 weight: 40
 type: page
 categories: ["basics"]
-last-review-date: 2020-01-21
+last_review_date: 2020-01-21
 user_questions:
   - How does Giant Swarm access my account with the cloud provider?
   - How is admin access safeguarded?
