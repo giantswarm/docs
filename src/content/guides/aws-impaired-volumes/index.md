@@ -4,6 +4,8 @@ description: This guide will walk you through what happens to a node with impair
 type: page
 weight: 100
 tags: ["tutorial"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
 
 # Handling Impaired EBS Volumes

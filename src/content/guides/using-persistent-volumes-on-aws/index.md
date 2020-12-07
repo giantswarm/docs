@@ -4,6 +4,8 @@ description: Tutorial on how to use dynamically provisioned Persistent Volumes o
 type: page
 weight: 50
 tags: ["tutorial"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
 
 # Using Persistent Volumes on AWS
