@@ -4,7 +4,10 @@ description: Configure authentication with kibana and the efk-stack-app through 
 type: page
 weight: 50
 tags: ["recipe"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-halo
 ---
+
 # Setup OIDC to authenticate with Kibana and EFK Stack App
 
 To manage access to the efk-stack-app using your company's user and group directories, the opendistro security plugin provides integration with different authentication backends.
