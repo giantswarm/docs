@@ -46,7 +46,7 @@ or any time after the cluster has been created
 
 - via the Giant Swarm web interface
 - via the CLI command [`gsctl create nodepool`](/reference/gsctl/create-nodepool/)
-- via `kubectl` with the help of [`kubectl-gs`](/reference/kubectl-gs/template-nodepool/) plugin 
+- via `kubectl` with the help of the [`gs` plugin](/reference/kubectl-gs/template-nodepool/)
 
 Node pools can be modified and deleted using `gsctl` or the web interface.
 
