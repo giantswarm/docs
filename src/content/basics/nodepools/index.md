@@ -68,7 +68,7 @@ Some details of a node pool can be modified after creation:
 
 - The node pool name
 - The scaling range (min/max) on AWS or fixed size on Azure.
-- Instance type (supported on Azure clusters only)
+- VM size (only on Azure)
 
 Other settings like the availability zone assignment cannot be changed after creation.
 
