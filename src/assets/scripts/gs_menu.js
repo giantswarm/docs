@@ -3,7 +3,6 @@
 
 var headerLinks = document.querySelectorAll(".hs-menu-depth-1 > a");
 for (var i = 0; i < headerLinks.length; i++) {
-  console.log(headerLinks[i]);
   headerLinks[i].addEventListener('click', toggleMenu, false);
 }
 
