@@ -4,7 +4,7 @@ description: Using multiple availability zones both for worker and for master no
 weight: 100
 type: page
 categories: ["basics"]
-last-review-date: 2020-04-09
+last_review_date: 2020-04-09
 ---
 
 # Clusters Over Multiple Availability Zones
