@@ -10,6 +10,8 @@ user_questions:
   - How can I expose a service to the internet?
   - How to configure the host name in Ingress?
   - What is the right URL format for the Kubernetes API proxy?
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---
 
 # Accessing Pods and Services from the Outside

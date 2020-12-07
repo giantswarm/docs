@@ -5,6 +5,8 @@ weight: 140
 type: page
 categories: ["basics"]
 last-review-date: 2020-03-31
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---
 
 # Kubernetes Resources
