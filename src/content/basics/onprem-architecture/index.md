@@ -5,6 +5,8 @@ weight: 70
 type: page
 categories: ["basics"]
 last-review-date: 2020-01-28
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-rocket
 ---
 
 # The Giant Swarm On Premises Architecture
