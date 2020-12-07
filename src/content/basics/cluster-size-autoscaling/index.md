@@ -4,7 +4,7 @@ description: This article explains options you have for defining the size of a K
 weight: 120
 type: page
 categories: ["basics"]
-last-review-date: 2020-10-07
+last_review_date: 2020-10-07
 ---
 
 # Cluster Size and Autoscaling

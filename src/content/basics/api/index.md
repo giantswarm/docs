@@ -6,7 +6,6 @@ description: An overview of the APIs that provide you with programmatic access t
 weight: 75
 type: page
 categories: ["basics"]
-last-review-date:
 user_questions:
   - How can I manage Giant Swarm resources programmatically?
   - How can I manage clusters via an API?

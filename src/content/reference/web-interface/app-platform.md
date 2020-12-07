@@ -1,7 +1,7 @@
 ---
 title: The Giant Swarm App Platform in The Web Interface
 description: What the Giant Swarm App Platform looks like on our Web Interface and how to use it.
-last-review-date: 2020-04-22
+last_review_date: 2020-04-22
 layout: subsection
 weight: 10
 aliases: [

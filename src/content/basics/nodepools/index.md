@@ -46,8 +46,9 @@ or any time after the cluster has been created
 
 - via the Giant Swarm web interface
 - via the CLI command [`gsctl create nodepool`](/reference/gsctl/create-nodepool/)
+- via `kubectl` with the help of the [`gs` plugin](/reference/kubectl-gs/template-nodepool/)
 
-These tools also support modification of node pools and their deletion.
+Node pools can be modified and deleted using `gsctl` or the web interface.
 
 Once a node pool has been created, as soon as the workers are available, they will
 join the cluster and appear in your `kubectl get nodes` listing. You can identify the
@@ -66,9 +67,10 @@ worker  7zypn  ip-10-1-6-67.eu-central-1.compute.internal
 Some details of a node pool can be modified after creation:
 
 - The node pool name
-- The scaling range (min/max)
+- The scaling range (min/max) on AWS or fixed size on Azure.
+- VM size (only on Azure)
 
-Settings like the instance type or the availability zone assignment cannot be changed after creation.
+Other settings like the availability zone assignment cannot be changed after creation.
 
 See the [`gsctl update nodepool`](/reference/gsctl/update-nodepool/) reference for instructions how to scale and rename a node pool using the CLI.
 
@@ -173,11 +175,11 @@ to be submitted for creation via the [`gsctl create cluster`](/reference/gsctl/c
 
 ## Node pools and autoscaling {#autoscaling}
 
-With node pools, you set the autoscaling range per node pool. The Kubernetes cluster autoscaler has to decide which node pool to scale under which circumstances.
+With node pools, you set the autoscaling range per node pool (suppported on AWS clusters only). The Kubernetes cluster autoscaler has to decide which node pool to scale under which circumstances.
 
 If you assign workloads to node pools as described [above](#assigning-workloads) and the autoscaler finds pods in `Pending` state, it will decide based on the node selectors which node pools to scale up.
 
-In case there are workloads not assigned to any node pools, the autoscaler may pick any node pool for scaling. For details on the decision logic, please check the upstream FAQ for [AWS](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/README.md) and [Azure](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/azure/README.md).
+In case there are workloads not assigned to any node pools, the autoscaler may pick any node pool for scaling. For details on the decision logic, please check the upstream FAQ for [AWS](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/README.md).
 
 ## Limitations
 

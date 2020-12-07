@@ -4,7 +4,7 @@ description: Here you learn how we set up things for you and what we manage, so 
 weight: 10
 type: page
 categories: ["basics"]
-last-review-date: 2020-06-17
+last_review_date: 2020-06-17
 ---
 
 # Running Kubernetes on Giant Swarm
