@@ -89,26 +89,37 @@ The screenshot below shows the entry form.
 
 ![Screenshot](/img/aws-service-limits.png)
 
-These are the limit increases to be requested, grouped by limit type:
+These are the limit increases to be requested in the control-plane account:
 
 - VPC
-    - VPCs per region: **50**
-    - NAT Gateway per Availability Zone per region: **50**
-    - IPv4 CIDR blocks per VPC: **50**
-- Elastic IP
-    - New VPC Elastic IP Address Limit per region: **50**
-- Elastic Load Balancers
-    - Application and Classic Load Balancers per region: **100**
-- Auto Scaling
-    - Auto Scaling Groups per region: **250**
-    - Launch Configurations per region: **500**
-- EC2 Instances
-    - m4.xlarge per region: **250**
-    - m4.2xlarge per region: **250**
-    - m5.2xlarge per region: **250**
-    - other instance types to be used as workers: increase accordingly
-- EC2 Spot Instances
-    - For every primary instance type you tend to use spot instances with, set the limit according to your needs.
+    - 
+Routes per route table
+
+
+These are the limit increases to be requested, grouped by limit type:
+
+- Control Plane account:
+    - VPC
+        - Routes per route table: **200**
+- Tenant Cluster account:
+    - VPC
+        - VPCs per region: **50**
+        - NAT Gateway per Availability Zone per region: **50**
+        - IPv4 CIDR blocks per VPC: **50**
+    - Elastic IP
+        - New VPC Elastic IP Address Limit per region: **50**
+    - Elastic Load Balancers
+        - Application and Classic Load Balancers per region: **100**
+    - Auto Scaling
+        - Auto Scaling Groups per region: **250**
+        - Launch Configurations per region: **500**
+    - EC2 Instances
+        - m4.xlarge per region: **250**
+        - m4.2xlarge per region: **250**
+        - m5.2xlarge per region: **250**
+        - other instance types to be used as workers: increase accordingly
+    - EC2 Spot Instances
+        - For every primary instance type you tend to use spot instances with, set the limit according to your needs.
 
 (Please extend the list of EC2 instance to also contain the types you need frequently.)
 
