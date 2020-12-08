@@ -1,4 +1,4 @@
-FROM quay.io/giantswarm/hugo:v0.78.1 AS build
+FROM quay.io/giantswarm/hugo:v0.79.0 AS build
 
 RUN apk --no-cache add findutils gzip
 
