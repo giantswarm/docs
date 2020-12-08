@@ -9,6 +9,8 @@ user_questions:
   - What are node pools?
   - In which cloud environments are node pools supported?
   - Which tenant cluster releases introduced node pools?
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
 
 # Node Pools

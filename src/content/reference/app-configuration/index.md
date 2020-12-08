@@ -3,7 +3,9 @@ title: App Configuration
 description: Documentation on the various levels of App configuration and how they get merged into a final Values object.
 type: subsection
 weight: 100
-user-questions:
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-batman
+user_questions:
  - What tool is used to deploy applications?
  - What configurations are required on an App in order to make it ready to deploy?
  - What app configuration levels exist?

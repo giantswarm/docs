@@ -3,6 +3,8 @@ title: kubectl gs template appcatalog
 description: Reference documentation on how to create a manifest for an AppCatalog using 'kubectl gs'.
 type: page
 weight: 10
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-batman
 ---
 
 # `kubectl gs template appcatalog`

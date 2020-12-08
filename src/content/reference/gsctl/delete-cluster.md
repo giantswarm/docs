@@ -1,8 +1,10 @@
 ---
 title: "gsctl command Reference: delete cluster"
-description: "Detailed documentation on how to delete a cluster using the 'delete cluster' command in gsctl."
+description: Detailed documentation on how to delete a cluster using the 'delete cluster' command in gsctl.
 type: page
 weight: 50
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
 # Delete a Cluster using `gsctl`

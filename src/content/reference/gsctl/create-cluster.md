@@ -1,12 +1,14 @@
 ---
 title: "gsctl Command Reference: create cluster"
-description: "Detailed documentation on how to create a new cluster using the 'create cluster' command in gsctl."
+description: Detailed documentation on how to create a new cluster using the 'create cluster' command in gsctl.
 type: page
 weight: 20
 user_questions:
   - What options are available for creating clusters through gsctl?
   - What are the defaults for the 'gsctl create cluster' flags?
   - How does an example call of 'gsctl create cluster' look like?
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
 # `gsctl create cluster`

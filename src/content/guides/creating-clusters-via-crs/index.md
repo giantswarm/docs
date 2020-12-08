@@ -4,6 +4,8 @@ description: This guide will walk you through the process of tenant cluster crea
 type: page
 weight: 100
 tags: ["tutorial"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-docs
 ---
 
 # Creating tenant clusters via the Control Plane Kubernetes API

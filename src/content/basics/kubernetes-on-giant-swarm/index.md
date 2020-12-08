@@ -5,6 +5,8 @@ weight: 10
 type: page
 categories: ["basics"]
 last_review_date: 2020-06-17
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---
 
 # Running Kubernetes on Giant Swarm

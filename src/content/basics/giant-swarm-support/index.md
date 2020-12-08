@@ -5,6 +5,8 @@ type: page
 weight: 30
 categories: ["basics"]
 last_review_date: 2020-01-20
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
 ---
 
 # Giant Swarm Support

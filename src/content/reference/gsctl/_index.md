@@ -1,8 +1,10 @@
 ---
-title: "gsctl Reference"
-description: "Documentation on gsctl, the Giant Swarm command line utility to create and delete clusters, create key pairs and more."
-layout: "subsection"
+title: gsctl Reference
+description: Documentation on gsctl, the Giant Swarm command line utility to create and delete clusters, create key pairs and more.
+layout: subsection
 weight: 20
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
 # `gsctl` Reference
