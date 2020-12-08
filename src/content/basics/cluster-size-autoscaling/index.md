@@ -5,6 +5,8 @@ weight: 120
 type: page
 categories: ["basics"]
 last-review-date: 2020-10-07
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
 ---
 
 # Cluster Size and Autoscaling

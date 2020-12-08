@@ -4,6 +4,8 @@ description: Recipe to enable a core metrics solution running on your Kubernetes
 type: page
 weight: 140
 tags: ["recipe"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
 ---
 
 # Metrics in Kubernetes

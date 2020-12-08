@@ -4,6 +4,8 @@ description: The Dashboard is a general-purpose administrative web UI for Kubern
 type: page
 weight: 50
 tags: ["recipe"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
 ---
 
 # Installing the Kubernetes Dashboard
