@@ -4,6 +4,8 @@ description: "Tutorial on how to use pre-created Persistent Volumes on a cluster
 type: page
 weight: 50
 tags: ["tutorial"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-rocket
 ---
 
 # Using Persistent Volumes on your on-premise bare metal clusters

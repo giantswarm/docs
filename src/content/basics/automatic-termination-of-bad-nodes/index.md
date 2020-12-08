@@ -4,6 +4,8 @@ description: Unhealthy cluster nodes can lead to impaired workload reliability a
 weight: 120
 type: page
 categories: ["basics"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
 
 # Automatic termination of unhealthy nodes

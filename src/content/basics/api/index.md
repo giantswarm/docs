@@ -9,6 +9,8 @@ categories: ["basics"]
 user_questions:
   - How can I manage Giant Swarm resources programmatically?
   - How can I manage clusters via an API?
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
 # API Access to Giant Swarm Resources

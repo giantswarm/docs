@@ -4,6 +4,8 @@ description: The level of disruption caused by cluster upgrades can be influence
 type: page
 weight: 130
 tags: ["recipe"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
 
 # Fine-tuning upgrade disruption on AWS

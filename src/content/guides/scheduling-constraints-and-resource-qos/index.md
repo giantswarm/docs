@@ -4,6 +4,8 @@ description: "How you can constrain resource usage and define Quality of Service
 type: page
 weight: 70
 tags: ["tutorial"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---
 
 # Scheduling Constraints and Resource Quality of Service

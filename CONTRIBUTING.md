@@ -123,6 +123,7 @@ Each documentation page consists of a Markdown file that starts with some metada
 Special front matter fields we use:
 
 - `last_review_date`: Date of the last time somebody checked the entire page for validity.
+- `owner`: List of GitHub team URLs for the team(s) or SIG(s) owning the page. The owning team/SIG is the one responsible for keeping the content up-to-date and useful.
 - `user_questions`: List of questions this article answers. Written from a user's perspective. E. g. _How do I ..._.
 
 ### Hyperlinks

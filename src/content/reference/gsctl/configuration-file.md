@@ -1,8 +1,10 @@
 ---
 title: "gsctl Reference: Configuration file"
-description: "Documentation of the configuration file format of gsctl"
+description: Documentation of the configuration file format of gsctl
 type: page
 weight: 1000
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
 # Configuration file

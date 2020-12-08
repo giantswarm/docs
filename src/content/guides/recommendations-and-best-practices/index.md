@@ -1,9 +1,11 @@
 ---
-title: "Recommendations and Best Practices"
-description: "Recommendations and best practices around cluster and node sizing as well as multi-tenant setups"
+title: Recommendations and Best Practices
+description: Recommendations and best practices around cluster and node sizing as well as multi-tenant setups
 type: page
 weight: 50
 tags: ["tutorial"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
 ---
 
 # Recommendations and Best Practices

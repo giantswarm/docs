@@ -64,3 +64,37 @@ Here, `giantswarm-gollum` is the kubeconfig context created by `opsctl create ku
 Latest content should be visible after a short period. When checking, make sure to circumvent any browser cache. For example, do this by keeping the Shift key pressed while hitting the reload button of your browser.
 
 TODO: update this section as soon as app-updater is working.
+
+## About the Header and Footer
+
+The header and footer are to be kept in sync with www.giantswarm.io
+In order to do this we copy the HTML and CSS specific to those parts of the page.
+
+Fully automating this is a goal, but for now check out the Makefile target
+called `grab-main-site-header-footer` for one idea of how to grab the header and
+footer using curl.
+
+Copying just the CSS styles that apply to the header and footer is a bit trickier.
+Oliver Ponder has some loosely arranged scripts that can be used to help automate this
+in the future.
+
+Files starting with `gs_` are involved in making the header and footer appear
+and behave correctly.
+
+`partials/gs_header.html` - The unedited html of the header at www.giantswarm.io
+
+`partials/gs_mobile_menu.html` - The unedited html of the mobile navigation menu at www.giantswarm.io
+
+`partials/gs_footer.html` - The unedited html of the footer at www.giantswarm.io
+
+`partials/gs_styles.html` - Automatically extracted styles which apply to
+                            elements found in the header and footer, as well
+                            as hand written override styles to make it play nicely
+                            with CSS already present in docs.
+
+`scripts/gs_menu.js`      - Hand written javascript that recreates the interactive
+                            functionality of the navigation menus.
+
+
+
+
