@@ -114,7 +114,7 @@ These are the limit increases to be requested, grouped by limit type:
     - EC2 Spot Instances
         - For every primary instance type you tend to use spot instances with, set the limit according to your needs.
 
-(Please extend the list of EC2 instance to also contain the types you need frequently.)
+(Please extend the list of EC2 instances to also contain the types you need frequently.)
 
 When requesting a service limit increase, you will be asked for a description of your use case. You can use this text for the purpose:
 
