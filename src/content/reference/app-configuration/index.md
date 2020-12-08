@@ -5,12 +5,24 @@ type: subsection
 weight: 100
 owner:
   - https://github.com/orgs/giantswarm/teams/team-batman
+user_questions:
+ - What tool is used to deploy applications?
+ - What configurations are required on an App in order to make it ready to deploy?
+ - What app configuration levels exist?
+ - Why are there multiple app configuration levels?
+ - What are the configuration values that I can change for Apps?
+ - What is the logic behind setting the final configuration of an App?
+ - What happens if I don't customize configurations?
+ - What is the correct App configuration level to use?
+ - What are the limitations around uploading secrets when configuring them for an App?
+ - How are configuration values stored and referenced in the Control Plane?
+ - How can I provide configuration values for apps?
 ---
 
 # App Configuration Reference
 
 Giant Swarm's [App Platform](/basics/app-platform/) allows you to easily install Apps across your entire
-fleet of clusters. We fully support Helm as a general tool to deploy your applications as well as for our general app catalogue, which you can of course also use for your own applications by creating a new catalogue.
+fleet of clusters. We fully support Helm as a general tool to deploy your applications as well as for our general app catalog, which you can of course also use for your own applications by creating a new catalog.
 
 Apps are packaged as Helm charts. Helm charts rely on _values_ to be set in order to fill in placeholders in _templates_. By configuring your App you set the values that become available to the templates when they are deployed.
 
@@ -22,7 +34,7 @@ There are three levels of configuration:
 2. **Cluster**: Configuration provided by the cluster admin.
 3. **User**: Configuration provided by the user installing an App.
 
-Each level can override the previous one. As a user you are not expected to edit configuration at the `catalog` or `cluster` level. However user level configuration can override both catalog and cluster level configuration.
+Each level overrides the previous one. As a user you are not expected to edit configuration at the `catalog` or `cluster` level. However user level configuration can override both catalog and cluster level configuration.
 
 Each level of configuration has two types of values that you can provide:
 

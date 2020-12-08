@@ -45,7 +45,7 @@ jobs:
                 -t 4 \
                 --ignore-url="^https://docs\.giantswarm\.io/.*" \
                 --ignore-url=/api/ \
-                --ignore-url=/changes/ \
+                --ignore-url=/changes/
             docker kill docs || echo "Container 'docs' not running"
 
       - deploy:

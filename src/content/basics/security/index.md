@@ -4,7 +4,7 @@ description: Documentation of the Giant Swarm cluster security
 type: page
 weight: 20
 categories: ["basics"]
-last-review-date: 2020-05-18
+last_review_date: 2020-05-18
 owner:
   - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---

@@ -20,6 +20,8 @@ Label keys and values are freely modifiable except labels with keys containing `
 Working with tenant cluster labels works likewise as working with Kubernetes labels.
 More information about Kubernetes Labels can be found in the [Kubernetes Labels and Selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/) and our [cluster labels API documentation](/api/#tag/cluster-labels).
 
+Note: You can also [manage cluster labels directly through `happa`](/reference/web-interface/tenant-cluster-labelling/), our web user interface.
+
 ## Working with tenant cluster labels using `gsctl`
 
 With `gsctl`, our [CLI](https://github.com/giantswarm/gsctl), cluster labels can be modified by executing [`gsctl update cluster`](/reference/gsctl/update-cluster/) by setting label changes using one or multiple `--label` flag.

@@ -4,7 +4,7 @@ description: Pointers to the best resources about Kubernetes to get you up to sp
 weight: 140
 type: page
 categories: ["basics"]
-last-review-date: 2020-03-31
+last_review_date: 2020-03-31
 owner:
   - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---
