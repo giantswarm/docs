@@ -15,6 +15,8 @@ user_questions:
   - How soon does Giant Swarm provide new Kubernetes versions?
 aliases:
   - /reference/release-versions/
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-product
 ---
 
 # Tenant Cluster Releases

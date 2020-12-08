@@ -4,9 +4,10 @@ description: What the Giant Swarm App Platform looks like on our Web Interface a
 last_review_date: 2020-04-22
 layout: subsection
 weight: 10
-aliases: [
-    "/reference/web-interface/app-catalog/",
-]
+aliases:
+  - /reference/web-interface/app-catalog/
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-batman
 ---
 
 # The Giant Swarm App Platform in the Web Interface

@@ -3,6 +3,8 @@ title: "gsctl Command Reference: show cluster"
 description: "The 'gsctl show cluster' command displays details of a cluster."
 type: page
 weight: 52
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
 # `gsctl show cluster`

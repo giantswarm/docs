@@ -4,6 +4,8 @@ description: This guide will walk you through the process of tenant cluster crea
 type: page
 weight: 100
 tags: ["tutorial"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
 
 # Creating tenant clusters on AWS via the Control Plane Kubernetes API

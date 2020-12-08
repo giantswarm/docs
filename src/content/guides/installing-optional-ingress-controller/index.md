@@ -4,6 +4,8 @@ description: How to install the nginx-ingress-controller using our Web UI
 type: page
 weight: 50
 tags: ["tutorial"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-halo
 ---
 
 # Installing an Ingress Controller

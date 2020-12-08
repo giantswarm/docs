@@ -4,6 +4,8 @@ description: By default, all your tenant clusters run in the same cloud provider
 weight: 110
 type: page
 categories: ["basics"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-celestial
 ---
 
 # Multi-Account Support

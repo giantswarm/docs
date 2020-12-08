@@ -5,6 +5,8 @@ type: page
 weight: 20
 categories: ["basics"]
 last_review_date: 2020-05-18
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---
 
 # Security

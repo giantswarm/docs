@@ -5,6 +5,8 @@ weight: 50
 type: page
 categories: ["basics"]
 last_review_date: 2020-09-23
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-celestial
 ---
 
 The Giant Swarm Platform consists of various components. They can be categorized into three areas: infrastructure, operations, and applications.

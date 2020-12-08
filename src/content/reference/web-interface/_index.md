@@ -3,6 +3,8 @@ title: Web Interface Reference
 description: Documentation on our web interface, a visual way to manage clusters, create key pairs and more.
 layout: subsection
 weight: 10
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
 # The Web Interface

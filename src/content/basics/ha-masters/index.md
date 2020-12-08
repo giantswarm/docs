@@ -4,6 +4,8 @@ description: A general description of high availability of masters as a concept,
 weight: 120
 type: page
 categories: ["basics"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
 
 # High availability Kubernetes masters

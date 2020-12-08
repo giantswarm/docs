@@ -7,6 +7,8 @@ tags: ["tutorial"]
 user_questions:
   - How can I override the default CoreDNS configuration?
   - How can I customize the CoreDNS configuration?
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---
 
 # Advanced CoreDNS Configuration
