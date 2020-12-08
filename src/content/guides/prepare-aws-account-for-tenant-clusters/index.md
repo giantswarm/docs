@@ -89,13 +89,6 @@ The screenshot below shows the entry form.
 
 ![Screenshot](/img/aws-service-limits.png)
 
-These are the limit increases to be requested in the control-plane account:
-
-- VPC
-    - 
-Routes per route table
-
-
 These are the limit increases to be requested, grouped by limit type:
 
 - Control Plane account:
