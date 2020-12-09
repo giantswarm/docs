@@ -109,8 +109,9 @@ function doSearch(q) {
     success: function(data){
       // Display suggestions
       var hasSuggestion = false;
-      if (data.suggest["phrase-suggester"] && data.suggest["phrase-suggester"].length > 0 && data.suggest["phrase-suggester"][0].options.length > 0) {
-        $(".suggestion").find("a").attr("href", "./?q=" + encodeURI(data.suggest["phrase-suggester"][0].options[0].text)).text(data.suggest["phrase-suggester"][0].options[0].text);
+      var suggester = data.suggest["phrase-suggester"];
+      if (suggester && suggester.length > 0 && suggester[0].options.length > 0) {
+        $(".suggestion").find("a").attr("href", "./?q=" + encodeURI(suggester[0].options[0].text)).text(suggester[0].options[0].text);
         $(".suggestion").show();
         hasSuggestion = true;
       }
