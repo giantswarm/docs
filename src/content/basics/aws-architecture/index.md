@@ -1,5 +1,5 @@
 ---
-title: The Giant Swarm AWS Platform
+title: The Giant Swarm AWS platform
 description: Description of the Giant Swarm platform, how it looks like and which features offers
 weight: 50
 type: page
@@ -23,7 +23,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
 
-# The Giant Swarm AWS Platform
+# The Giant Swarm AWS platform
 
 The Giant Swarm Platform consists of various components. They can be categorized into three areas: infrastructure, operations, and applications.
 
@@ -39,7 +39,7 @@ Giant Swarm leverages the concept of [“Operators"](https://kubernetes.io/docs/
 
 ![AWS Control Plane Architecture](aws-cp-cluster-architecture.png)
 
-## AWS Landscape
+## AWS landscape
 
 Giant Swarm's AWS operator is the product of years of work and we continue to apply our learnings and new functionality to it, as they become available. It is in charge of the provisioning and configuration of all resources needed to make a Kubernetes cluster functional on AWS. This operator runs in the Control Plane cluster, conveniently in separate accounts, and needs to reach the AWS API where you want to deploy your clusters. Thanks to our [Multi-Account](/basics/multi-account/) support, customers can add different AWS accounts to our platform and our operator will assume an IAM Role to operate the resources accordingly and spawn clusters into these accounts respectively.
 
@@ -47,7 +47,7 @@ Most of our customers rely on additional AWS services like Control Tower, Organi
 
 Following the principle of least privilege, we continuously refine the permissions needed for our automation to manage the AWS resources and the permissions given to our support engineers to assist when there is a problem. This is an ongoing process, as this is subject to change. We are constantly tweaking this based on our experience and changes introduced in AWS APIs as well as upstream changes in Kubernetes and other community projects. That being said, as infrastructure providers, we need a certain level of access to the cloud providers’ APIs in order to ensure the smooth operation and support of our platform. In some cases, we recommend creating accounts solely for Giant Swarm related resources and keeping other resources in separate accounts. These accounts are only accessed on demand.
 
-## Workload segregation and Account model
+## Workload segregation and account model
 
 When starting out with our platform many of our customers are at the beginning of their journey to a distributed and highly resilient micro-service architecture. This is often a radically different approach to organizing and managing computing resources. This is mostly about abstracting the complexity of cluster creation and management. It opens up new possibilities on how to isolate applications and access to the infrastructure. The two most common reasons for customers to segregate applications over different clusters and/or accounts are security and separation of concerns.
 
