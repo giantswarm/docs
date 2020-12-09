@@ -110,7 +110,6 @@ function doSearch(q) {
       // Display suggestions
       var hasSuggestion = false;
       if (data.suggest["phrase-suggester"] && data.suggest["phrase-suggester"].length > 0 && data.suggest["phrase-suggester"][0].options.length > 0) {
-        console.log("Suggestion:", data.suggest);
         $(".suggestion").find("a").attr("href", "./?q=" + encodeURI(data.suggest["phrase-suggester"][0].options[0].text)).text(data.suggest["phrase-suggester"][0].options[0].text);
         $(".suggestion").show();
         hasSuggestion = true;
