@@ -72,7 +72,7 @@ spec:
 
 Note that the Access Mode while being fixed with EBS still needs to be defined as `ReadWriteOnce` in the manifest.
 
-Further, we need to define the Storage Class `ebs-csi` because it is not the default storage class (default `gp2`) the Kubernetes cluster will just take the default storage class (here `gp2`).
+Further, we need to define the Storage Class `ebs-csi` because it is not the default storage class (default `gp2`).
 
 Now we can create a Pod that uses our PVC:
 
