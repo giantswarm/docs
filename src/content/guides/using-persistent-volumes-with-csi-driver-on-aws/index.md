@@ -30,7 +30,7 @@ To install the EBS CSI driver you will need to follow these steps:
 
 ## Storage Classes
 
-Your Kubernetes cluster will have a Storage Class `ebs-csi` deployed, once you installed the `aws-ebs-csi-driver` from _Giant Swarm Playground_ catalog.
+Your Kubernetes cluster will have a Storage Class `ebs-csi` deployed, once you installed the `aws-ebs-csi-driver-app` from _Giant Swarm Playground_ catalog.
 
 The storage class supports volume encryption and resizing by default.
 
