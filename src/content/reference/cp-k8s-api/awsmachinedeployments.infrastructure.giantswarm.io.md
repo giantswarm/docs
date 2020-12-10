@@ -5,7 +5,7 @@ technical_name: awsmachinedeployments.infrastructure.giantswarm.io
 description:   AWSMachineDeployment is the infrastructure provider referenced in Kubernetes Cluster API MachineDeployment resources. It contains provider-specific specification and status for a node pool. In use on AWS since Giant Swarm release v10.x.x and reconciled by aws-operator.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.12.0
+source_repository_ref: v3.13.0
 layout: "crd"
 ---
 

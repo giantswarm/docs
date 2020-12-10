@@ -5,7 +5,7 @@ technical_name: awsconfigs.provider.giantswarm.io
 description:   AWSConfig used to represent tenant cluster configuration in earlier releases. Deprecated.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.12.0
+source_repository_ref: v3.13.0
 layout: "crd"
 ---
 

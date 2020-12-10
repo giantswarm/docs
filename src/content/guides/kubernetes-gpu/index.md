@@ -4,6 +4,8 @@ description: Here we explain how to make the GPU driver for CoreOS available so 
 type: page
 weight: 150
 tags: ["recipe"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
 ---
 
 # Preparing a Kubernetes cluster for the use of GPUs

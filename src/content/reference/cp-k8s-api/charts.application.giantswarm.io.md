@@ -5,7 +5,7 @@ technical_name: charts.application.giantswarm.io
 description:   Chart represents a Helm Chart deployed as a Helm Release.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.12.0
+source_repository_ref: v3.13.0
 layout: "crd"
 ---
 
