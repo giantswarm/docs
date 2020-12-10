@@ -67,7 +67,7 @@ spec:
   storageClassName: ebs-csi
   resources:
     requests:
-      storage: 7Gi
+      storage: 5Gi
 ```
 
 Note that the Access Mode while being fixed with EBS still needs to be defined as `ReadWriteOnce` in the manifest.
