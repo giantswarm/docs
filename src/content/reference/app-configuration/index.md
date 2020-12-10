@@ -244,7 +244,7 @@ There are three ways to provide configuration values:
 
 ### Through the web interface
 
-Our [web interface](/reference/web-ui/) allows you to upload configuration and secret values for the
+Our [web interface](/reference/web-interface/) allows you to upload configuration and secret values for the
 user configuration level. You can do this by uploading a YAML file consisting
 of just the keys and values you would like to set.
 
