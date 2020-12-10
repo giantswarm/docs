@@ -1,5 +1,5 @@
 ---
-title: "gsctl Reference: Configuration file"
+title: gsctl configuration file reference
 description: Documentation of the configuration file format of gsctl
 type: page
 weight: 1000

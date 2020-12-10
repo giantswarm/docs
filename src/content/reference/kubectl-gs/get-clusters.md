@@ -1,5 +1,5 @@
 ---
-title: kubectl gs get clusters
+title: "'kubectl gs get clusters' command reference"
 description: Reference documentation on how to list clusters and get details for a single cluster using 'kubectl gs'.
 type: page
 weight: 10

@@ -1,5 +1,5 @@
 ---
-title: "gsctl Command Reference: create nodepool"
+title: "'gsctl create nodepool' command reference"
 description: The 'gsctl create nodepool' command allows to create a new pool of worker nodes in cluster.
 type: page
 weight: 44

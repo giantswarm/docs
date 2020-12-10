@@ -1,5 +1,5 @@
 ---
-title: "gsctl Command Reference: delete endpoint"
+title: "'gsctl delete endpoint' command reference"
 description: The 'gsctl delete endpoint' command deletes an endpoint that you previously used from the configuration.
 type: page
 weight: 41

@@ -1,5 +1,5 @@
 ---
-title: "gsctl Command Reference: delete nodepool"
+title: "'gsctl delete nodepool' command reference"
 description: The 'gsctl delete nodepool' command deletes a node pool.
 type: page
 weight: 44

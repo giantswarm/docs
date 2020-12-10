@@ -1,5 +1,5 @@
 ---
-title: "gsctl Command Reference: list releases"
+title: "'gsctl list releases' command reference"
 description: The 'gsctl list releases' command shows all tenant cluster releases available in an installation.
 type: page
 weight: 45

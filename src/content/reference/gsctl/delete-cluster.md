@@ -1,5 +1,5 @@
 ---
-title: "gsctl command Reference: delete cluster"
+title: "'gsctl delete cluster' command reference"
 description: Detailed documentation on how to delete a cluster using the 'delete cluster' command in gsctl.
 type: page
 weight: 50

@@ -1,6 +1,6 @@
 ---
-title: "gsctl Command Reference: update cluster"
-description: The 'gsctl update cluster' command allows the modification of the name of a cluster and its labels.
+title: "'gsctl update cluster' command reference"
+description: The 'gsctl update cluster' command allows the modification of the cluster name, its labels, and converting it to provide high-availability Kubernetes masters.
 weight: 44
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
@@ -40,7 +40,7 @@ gsctl update cluster vxvc7 \
 
 will update the labels of cluster `vxvc7`. It will add (or update depending on prior existence) label `environment=testing` and delete the label with key `locked`.
 
-### Switching to high availability of master nodes {#ex-master-ha}
+### Switching to high-availability of master nodes {#ex-master-ha}
 
 Starting with tenant cluster release v{{% first_aws_ha_masters_version %}} for AWS, a single master node cluster can be converted into using multiple master nodes in multiple availability zones using a command like the following:
 

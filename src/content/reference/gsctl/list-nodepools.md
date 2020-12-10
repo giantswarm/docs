@@ -1,5 +1,5 @@
 ---
-title: "gsctl Command Reference: list nodepools"
+title: "'gsctl list nodepools' command reference"
 description: "The 'gsctl list nodepools' command shows all node pools of a cluster."
 type: page
 weight: 44

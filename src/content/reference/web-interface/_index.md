@@ -1,5 +1,5 @@
 ---
-title: Web Interface Reference
+title: Web interface reference
 description: Documentation on our web interface, a visual way to manage clusters, create key pairs and more.
 layout: subsection
 weight: 10
@@ -7,15 +7,15 @@ owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
-# The Web Interface
+# The web interface
 
-If we did our job well then our Web Interface is so intuitive and
+If we did our job well then our web interface is so intuitive and
 easy to use that this reference isn't necessary.
 
 However, for those of you interested in having an overview of what is possible
-with our Web Interface, and how to access it, read on!
+with our web interface, and how to access it, read on!
 
-## Where can I find the Web Interface
+## Where can I find the web interface
 
 The URL to your installation's web interface is handed to you once Giant Swarm
 staff finishes the initial setup.
@@ -23,9 +23,9 @@ staff finishes the initial setup.
 The hostname in the URL usually starts with `happa`, which is our nickname for
 the application.
 
-## What can I do with the Web Interface
+## What can I do with the web interface
 
-Our Web Interface let's you do the following things. Some topics link to more
+Our web interface let's you do the following things. Some topics link to more
 detailed information:
 
 - View and manage clusters
@@ -33,7 +33,7 @@ detailed information:
 - View and manage organizations
 - Manage your own account and password
 - Learn how to get started with your Kubernetes clusters by following a guide
-- [Add, remove and configure Apps on your clusters.](/reference/web-interface/app-platform/)
+- [Add, remove and configure Apps on your clusters](/reference/web-interface/app-platform/)
 - [View and manage tenant cluster labels](/reference/web-interface/tenant-cluster-labelling/)
 
 ## Usage data recording
@@ -42,8 +42,8 @@ Learn [what data is recorded for what purpose](/reference/web-interface/usage-da
 
 ## Source code
 
-Our Web Interface is Open Source software. Find the code repository on [GitHub](https://github.com/giantswarm/happa).
+Our web interface is Open Source software. Find the code repository on [GitHub](https://github.com/giantswarm/happa).
 
 ## Feedback {#feedback}
 
-We welcome your feedback on our Web Interface. If you feel like sharing openly, use the GitHub repository and create an [issue](https://github.com/giantswarm/happa/issues), so other users can participate. Otherwise please use the common Giant Swarm support channels.
+We welcome your feedback on our web interface. If you feel like sharing openly, use the GitHub repository and create an [issue](https://github.com/giantswarm/happa/issues), so other users can participate. Otherwise please use the common Giant Swarm support channels.

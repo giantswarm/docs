@@ -1,6 +1,6 @@
 ---
-title: "gsctl Command Reference: show release"
-description: "The 'gsctl show release' command displays details of a tenant cluster release."
+title: "'gsctl show release' command reference"
+description: The 'gsctl show release' command displays details of a tenant cluster release.
 type: page
 weight: 52
 owner:

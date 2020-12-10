@@ -1,5 +1,5 @@
 ---
-title: "gsctl Command Reference: login"
+title: "'gsctl login' command reference"
 description: "The 'gsctl login' command starts an authenticated session."
 type: page
 weight: 41
