@@ -1,5 +1,5 @@
 ---
-title: kubectl gs login
+title: "'kubectl gs login' command reference"
 description: Reference documentation on how to ensure an authenticated kubectl context for a Giant Swarm control plane, using 'kubectl gs'.
 type: page
 weight: 10

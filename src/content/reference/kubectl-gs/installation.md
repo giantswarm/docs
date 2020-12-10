@@ -7,7 +7,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
-# Installation
+# Installing the kubcetl gs plugin
 
 `kubectl-gs` is the Giant Swarm plug-in for `kubectl` with the official plug-in name `gs`.
 
