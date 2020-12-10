@@ -1,5 +1,5 @@
 ---
-title: Cluster Size and Autoscaling
+title: Cluster size and autoscaling
 description: This article explains options you have for defining the size of a Kubernetes cluster with Giant Swarm, and automatically scaling it
 weight: 120
 type: page
@@ -9,7 +9,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
 ---
 
-# Cluster Size and Autoscaling
+# Cluster size and autoscaling
 
 Starting with tenant cluster release version {{% first_aws_autoscaling_version %}} for AWS you can leverage the benefits of the [Kubernetes autoscaler](https://github.com/kubernetes/autoscaler) to define the number of worker nodes in a cluster based on demand.
 
