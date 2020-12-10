@@ -5,7 +5,7 @@ technical_name: apps.application.giantswarm.io
 description:   App represents a managed app.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.12.0
+source_repository_ref: v3.13.0
 layout: "crd"
 ---
 

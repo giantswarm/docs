@@ -5,7 +5,7 @@ technical_name: g8scontrolplanes.infrastructure.giantswarm.io
 description:   The G8sControlPlane resource defines the Control Plane nodes (Kubernetes master nodes) of a Giant Swarm tenant cluster. It is reconciled by cluster-operator.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.12.0
+source_repository_ref: v3.13.0
 layout: "crd"
 ---
 

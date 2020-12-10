@@ -5,7 +5,7 @@ technical_name: awscontrolplanes.infrastructure.giantswarm.io
 description:   AWSControlPlane is the infrastructure provider referenced in ControlPlane CRs. Represents the master nodes (also called Control Plane) of a tenant cluster on AWS. Reconciled by aws-operator.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.12.0
+source_repository_ref: v3.13.0
 layout: "crd"
 ---
 

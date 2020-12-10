@@ -5,7 +5,7 @@ technical_name: appcatalogs.application.giantswarm.io
 description:   AppCatalog represents a catalog of managed apps.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.12.0
+source_repository_ref: v3.13.0
 layout: "crd"
 ---
 
