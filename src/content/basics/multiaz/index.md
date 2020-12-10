@@ -1,5 +1,5 @@
 ---
-title: Clusters Over Multiple Availability Zones
+title: Clusters over multiple availability zones
 description: Using multiple availability zones both for worker and for master nodes increases the resilience for clusters. Here we explain some details regarding support on different cloud providers and in different tenant cluster releases. And we give basic information on how to configure workloads to leverage multiple availability zones.
 weight: 100
 type: page
@@ -9,15 +9,15 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-celestial
 ---
 
-# Clusters Over Multiple Availability Zones
+# Clusters over multiple availability zones
 
-With Giant Swarm on AWS and Azure you can easily launch clusters with worker nodes spread across multiple availability zones (AZs). This will lower the risk that your cluster will become unavailable due to an incident in a particular AWS or Azure data center.
+With Giant Swarm on AWS and Azure you can easily launch clusters with worker nodes spread across multiple availability zones (AZ). This will lower the risk that your cluster will become unavailable due to an incident in a particular AWS or Azure data center.
 
 On AWS, starting with tenant cluster release {{% first_aws_ha_masters_version %}}, master nodes of a cluster are spread over different availability zones by default, for high availability of the Kubernetes API. You can chose however to run only a single master node. Read [High availability Kubernetes masters](/basics/ha-masters/) for more information.
 
 ## What availability zones are good for {#benefits}
 
-Both AWS and Azure support AZs within their regions. These zones still have good interconnectivity but are separated from each other to isolate failures within one zone from the others. As a result, it is more likely that one AZ goes down than the whole region. If your clusters are running within multiple AZs then Kubernetes can easily shift your workloads from one AZ to another.
+Both AWS and Azure support AZ within their regions. These zones still have good interconnectivity but are separated from each other to isolate failures within one zone from the others. As a result, it is more likely that one AZ goes down than the whole region. If your clusters are running within multiple AZ then Kubernetes can easily shift your workloads from one AZ to another.
 
 Your cluster nodes have labels that indicate which availability zone they are running in. You can influence the scheduling of your pods via node affinity and/or inter-pod affinity or anti-affinity.
 
@@ -25,11 +25,11 @@ Your cluster nodes have labels that indicate which availability zone they are ru
 
 This enables use cases such as:
 
-- Running stateless services balanced over multiple AZs
+- Running stateless services balanced over multiple AZ
 
 - Grouping certain services that communicate with each other often and make sure they always run together within the same availability zone.
 
-- Setup replication of your data across multiple AZs by keeping each instance of your StatefulSet in a different AZ.
+- Setup replication of your data across multiple AZ by keeping each instance of your StatefulSet in a different AZ.
 
 ## Details you should know about {#details}
 
@@ -41,7 +41,7 @@ This enables use cases such as:
 
 - Single availability zone clusters start in a random availability zone too. This is a means to minimize the risk of all your clusters becoming unavailable due to a failure in one particular AZ.
 
-- Standard volumes can not be moved across availability zones. You need to take this into account when designing for high availability. If the AZ with your volume goes down, there will be no way to reschedule the pod to another availability zone. You either need to create a new volume from a snapshot or you will have to replicate your data across AZs. On AWS, you can also consider using [EFS](/guides/using-persistent-volumes-on-aws-with-efs/) as a storage provider to be able to access volumes from several availability zones.
+- Standard volumes can not be moved across availability zones. You need to take this into account when designing for high availability. If the AZ with your volume goes down, there will be no way to reschedule the pod to another availability zone. You either need to create a new volume from a snapshot or you will have to replicate your data across AZ. On AWS, you can also consider using [EFS](/guides/using-persistent-volumes-on-aws-with-efs/) as a storage provider to be able to access volumes from several availability zones.
 
 - To make sure your pods and volumes end up on the same nodes, we recommend to specify `WaitForFirstConsumer` as `volumeBindingMode` in your storage classes. Your clusters come with a default storage class that contains this setting already. See the [Volume Binding Mode](https://kubernetes.io/docs/concepts/storage/storage-classes/#volume-binding-mode) section in the Kubernetes storage documentation for more information.
 

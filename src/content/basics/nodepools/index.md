@@ -1,5 +1,5 @@
 ---
-title: Node Pools
+title: Node pools
 description: A general description of node pools as a concept, it's benefits, and some details you should be aware of.
 weight: 130
 type: page
@@ -13,7 +13,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
 
-# Node Pools
+# Node pools
 
 ## Definition
 
@@ -217,7 +217,7 @@ that availability zone.
 
 - Every node pool is mapped with a `Virtual Machine Scale Set`. That means that there is an upper bound of 100 nodes for each node pool.
 
-- The maximum number of Node Pools for each Cluster is 200.
+- The maximum number of node pools for each tenant cluster is 200.
 
 ## Further reading
 
