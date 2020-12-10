@@ -50,8 +50,8 @@ The following table shows which of our major releases contain which Kubernetes r
 | **9.x.x**                   | 1.15.x\*           | Available    |
 | **11.x.x**                  | 1.16.x             | Available    |
 | **12.x.x**                  | 1.17.x             | Available    |
-| **13.x.x**                  | 1.18.x             | ETA November 2020 |
-| **14.x.x**                  | 1.19.x             | ETA December 2020 |
+| **13.x.x**                  | 1.18.x             | Available    |
+| **14.x.x**                  | 1.19.x             | ETA January 2021|
 
 \*) As an exception from the convention, on AWS, tenant cluster releases v9.2.0 and v9.3.x include Kubernetes v1.16.x.
 
