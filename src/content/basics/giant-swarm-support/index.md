@@ -1,5 +1,5 @@
 ---
-title: Giant Swarm Support
+title: Giant Swarm support
 description: An explanation of how our support service works.
 type: page
 weight: 30
@@ -9,13 +9,13 @@ owner:
   - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
 ---
 
-# Giant Swarm Support
+# Giant Swarm support
 
 We build and run a platform which lets our customers spin up as many clusters as they need. We ensure these clusters stay in the same predictable state. This becomes especially important once you need to run multiple clusters for different teams, on different environments, with different configurations or in multiple locations.
 
 We accompany our customers throughout their cloud-native journey. Having someone to contact when problems occur is as important to us as providing a great product. Regardless of where you are in the journey. To us, it is actually the obvious complement to our product. The following is a brief description of our support process.
 
-## Customer Support
+## Customer support
 
 Our customer support relies on close interactions via Slack, to ensure bi-directional feedback as quickly as possible. This is our first line of contact to customers. This interaction channel is also used to answer a variety of questions. The conversations are not limited to the platform itself, but can go broader and include the anything cloud-native.
 
@@ -29,7 +29,7 @@ Project level work (e.g. installations) is handled by an SRE of the week. This p
 
 In short, you have three layers of support, at your fingertips. Without the hassle of help-desk tickets and rigid escalation processes.
 
-## Operational Support
+## Operational support
 
 The Giant Swarm platform comes with a monitoring and alerting system that helps our operations team maintain our SLAs across all customer clusters. This is an additional aspect of the role of Ops Duty engineer. When on call, this person watches over all alerts coming in from all environments where our customers run workloads. An Ops Duty engineer is available 24/7. Thus, ensuring that issues are handled promptly, even on nights and weekends.
 
