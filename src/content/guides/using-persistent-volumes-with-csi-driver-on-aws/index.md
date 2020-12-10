@@ -17,7 +17,7 @@ owner:
 
 CSI has been promoted to GA in Kubernetes v1.13 and is becoming the standard to replace the current Kubernetes `in-tree` storage plugin to handle Volumes for different provider.
 
-The `aws-ebs-csi-driver` provides a CSI interface to manage the lifecycle of Amazon EBS Volumes.
+The `aws-ebs-csi-driver-app` provides a CSI interface to manage the lifecycle of Amazon EBS Volumes.
 
 ## Installing EBS CSI driver
 
