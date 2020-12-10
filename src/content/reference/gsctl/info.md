@@ -1,5 +1,5 @@
 ---
-title: "gsctl Command Reference: info"
+title: "'gsctl info' command reference"
 description: The 'gsctl info' command lets you display information on your current status and configuration.
 type: page
 weight: 41

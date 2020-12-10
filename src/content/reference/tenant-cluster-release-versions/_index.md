@@ -1,5 +1,5 @@
 ---
-title: Tenant Cluster Release Versions
+title: Tenant Cluster release versions
 description: Details on the tenant cluster release offered by Giant Swarm and ways to look up even more details.
 last_review_date: 2020-10-30
 layout: subsection
@@ -19,9 +19,9 @@ owner:
   - https://github.com/orgs/giantswarm/teams/sig-product
 ---
 
-# Tenant Cluster Releases
+# Tenant Cluster release versions
 
-Our tenant cluster releases define the capabilities of the clusters you create in your installations. Here we explain the semantics of our versioning and give details on tenant cluster release on certain providers.
+Our Tenant Cluster releases define the capabilities of the clusters you create in your installations. Here we explain the semantics of our versioning and give details on tenant cluster release on certain providers.
 
 ## Introduction
 
@@ -31,7 +31,7 @@ Each tenant cluster release bundles a stack of components with their specific ve
 
 We test tenant cluster releases as a whole. To upgrade a component to a newer version, the entire cluster is upgrade to a new tenant cluster release. This is our best way to ensure that all components in the cluster interoperate well.
 
-## Conventions around tenant cluster release versioning {#versioning-conventions}
+## Conventions around Tenant Cluster release versioning {#versioning-conventions}
 
 The Semver standard specifies version numbers in the form of `Major.Minor.Patch`.
 
@@ -50,8 +50,8 @@ The following table shows which of our major releases contain which Kubernetes r
 | **9.x.x**                   | 1.15.x\*           | Available    |
 | **11.x.x**                  | 1.16.x             | Available    |
 | **12.x.x**                  | 1.17.x             | Available    |
-| **13.x.x**                  | 1.18.x             | ETA November 2020 |
-| **14.x.x**                  | 1.19.x             | ETA December 2020 |
+| **13.x.x**                  | 1.18.x             | Available    |
+| **14.x.x**                  | 1.19.x             | ETA January 2021|
 
 \*) As an exception from the convention, on AWS, tenant cluster releases v9.2.0 and v9.3.x include Kubernetes v1.16.x.
 
@@ -109,7 +109,7 @@ You have several options to inspect tenant cluster release details:
 
 - Azure: **{{% first_azure_nodepools_version %}}**.
 
-### Preinstalled and Optional Apps {#apps}
+### Preinstalled and optional Apps {#apps}
 
 Depending on your provider (AWS, Azure, or KVM), the apps NGINX IC, External DNS, and Cert Manager may be preinstalled, optional, or not available (n/a).
 

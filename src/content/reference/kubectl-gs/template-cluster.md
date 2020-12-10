@@ -1,5 +1,5 @@
 ---
-title: kubectl gs template cluster
+title: "'kubectl gs template cluster' command reference"
 description: Reference documentation on how to create a manifest for a Cluster using 'kubectl gs'.
 type: page
 weight: 10

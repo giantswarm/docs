@@ -1,6 +1,6 @@
 ---
-title: "gsctl Command Reference: show cluster"
-description: "The 'gsctl show cluster' command displays details of a cluster."
+title: "'gsctl show cluster' command reference"
+description: The 'gsctl show cluster' command displays details of a cluster.
 type: page
 weight: 52
 owner:

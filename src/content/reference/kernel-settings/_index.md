@@ -1,6 +1,6 @@
 ---
-title: Tuned kernel settings
-description: Complete list of the tuned CoreOS kernel settings for Giant Swarm clusters.
+title: Kernel settings
+description: Complete list of the kernel settings we apply to all cluster nodes, be it master or worker.
 layout: subsection
 weight: 300
 user_questions:
@@ -11,7 +11,7 @@ owner:
 
 # Kernel settings
 
-We adjust some kernel settings of machines used as Kubernetes nodes to non-standard values. Here is a complete reference.
+We adjust some kernel settings of Flatcar Container Linux machines used as Kubernetes nodes to non-standard values. Here is a complete reference.
 
 ## General Performance and Security settings
 
