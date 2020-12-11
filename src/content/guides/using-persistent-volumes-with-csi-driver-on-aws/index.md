@@ -43,7 +43,7 @@ The most straight forward way to create a persistent volume is to create a [Pers
 
 Alternatively, to be able to set more specific parameters on your PV, you can first create a [PersistentVolume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistent-volumes) resource and then claim that PV using a `PersistentVolumeClaim` (PVC).
 
-Under the hood, the EBS CSI driver will take care that a corresponding EBS Volume with the correct parameters is created.
+Under the hood, the EBS CSI driver will take care that a corresponding EBS volume with the correct parameters is created.
 
 The EBS Volume and its data will persist as long as the corresponding PV resource exists. Deleting the resource will also delete the corresponding EBS volume, which means that all stored data will be lost at that point.
 
