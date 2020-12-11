@@ -107,7 +107,7 @@ Resizing a PersistentVolumeClaim resource in use is enabled by default with Kube
 
 **Note:** You can only resize volumes formatted with one of the file systems XFS, Ext3, or Ext4.
 
-__Warning__: Expanding EBS volumes is a time consuming operation. Also, there is a per-volume quota of one modification every 6 hours.
+__Warning__: Expanding EBS volumes is a time-consuming operation. Also, there is a per-volume quota of 1 modification every 6 hours.
 
 ## Deleting Persistent Volumes
 
