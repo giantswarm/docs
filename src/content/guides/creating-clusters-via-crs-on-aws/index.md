@@ -223,6 +223,31 @@ As a result of rendering the CRs ([sample](/reference/kubectl-gs/template-cluste
 The resources can then be created by applying the manifest files to the Control Plane, e.g. `kubectl create -f <cluster manifest file>.yaml`.
 Of course, that requires the user to be authorized towards Kubernetes Control Plane API.
 
+## How to configure OIDC authentication at cluster creation using Cluster API
+
+Starting from version {{% first_aws_nodepools_version %}} on AWS, Giant Swarm has enabled the possibility to configure the OIDC parameters per cluster at creation stage. This feature includes an OIDC section in the `AWSCluster` CR with the necessary fields.
+
+In order to configure a cluster with OIDC, you will have to add these fields to the AWSCluster CR as following:
+
+```yaml
+apiVersion: infrastructure.giantswarm.io/v1alpha2
+kind: AWSCluster
+spec:
+  cluster:
+    ...
+    oidc:
+      claims:
+        groups: GROUP_CLAIM
+        username: USERNAME_CLAIM
+      clientID: OIDC_CLIENT_ID
+      issuerURL: PROVIDER_URL_TO_DISCOVER_PUBLIC_KEYS
+   ...
+```
+
+This will result in setting up the OIDC flags API manifest for the given cluster.
+
+__Note__: Currently changing/adding config to already existing cluster is not fully supported at Giant Swarm (control plane nodes need to be recreated). Please talk to your SE if there is any need to change those settings.
+
 ## Deleting a cluster {#deleting}
 
 Triggering a delete on the `Cluster` resource  will have a cascading effect on all other resources belonging to the cluster:
