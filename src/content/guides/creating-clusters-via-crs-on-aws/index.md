@@ -223,7 +223,7 @@ As a result of rendering the CRs ([sample](/reference/kubectl-gs/template-cluste
 The resources can then be created by applying the manifest files to the Control Plane, e.g. `kubectl create -f <cluster manifest file>.yaml`.
 Of course, that requires the user to be authorized towards Kubernetes Control Plane API.
 
-## How to configure OIDC authentication at cluster creation using Cluster API
+## Configuring OIDC authentication
 
 Starting from version {{% first_aws_nodepools_version %}} on AWS, Giant Swarm has enabled the possibility to configure the OIDC parameters per cluster at creation stage. This feature includes an OIDC section in the `AWSCluster` CR with the necessary fields.
 
