@@ -53,7 +53,7 @@ Once you have a Persistent Volume Claim you can [claim it as a Volume](https://k
 
 Note that an EBS volume can only be used by a single pod at the same time. Thus, the access mode of your PVC can only be `ReadWriteOnce`.
 
-Under the hood the EBS Volume stays detached from your nodes as long as it is not claimed by a Pod. As soon as a Pod claims it, it gets attached to the node that holds the Pod.
+Under the hood the EBS volume stays detached from your nodes as long as it is not claimed by a pod. As soon as a pod claims it, it gets attached to the EC2 instance of the node that holds the pod.
 
 ## Example
 
