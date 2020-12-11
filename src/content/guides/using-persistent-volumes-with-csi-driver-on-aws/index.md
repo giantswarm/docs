@@ -41,7 +41,7 @@ The storage class offers volume encryption and allows resizing by default.
 
 The most straight forward way to create a Persistent Volume is to create a [Persistent Volume Claim object](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims), which will automatically create a corresponding Persistent Volume (PV) for you.
 
-Alternatively, to be able to set more specific parameters on your PV you can first create a [Persistent Volume object](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistent-volumes) and then claim that PV using a Persistent Volume Claim (PVC).
+Alternatively, to be able to set more specific parameters on your PV, you can first create a [PersistentVolume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistent-volumes) resource and then claim that PV using a `PersistentVolumeClaim` (PVC).
 
 Under the hood, the EBS CSI driver will take care that a corresponding EBS Volume with the correct parameters is created.
 
