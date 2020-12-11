@@ -103,7 +103,9 @@ Now we have an NGINX pod which serves the content of our EBS volume.
 
 Starting with Kubernetes v1.16, CSI volumes can be expanded by simply editing the claim (the `PersistentVolumeClaim` resource) and requesting a larger size. This will trigger an update of the associated `PersistentVolume` resource and the underlying EBS volume.
 
-Resizing an in-use PersistentVolumeClaim is enabled by default with Kubernetes v1.15, there is no need to delete and recreate a Pod. You can only resize volumes containing a file system if the file system is XFS, Ext3, or Ext4.
+Resizing a PersistentVolumeClaim resource in use is enabled by default with Kubernetes v1.15, so there is no need to delete and recreate a pod.
+
+**Note:** You can only resize volumes formatted with one of the file systems XFS, Ext3, or Ext4.
 
 __Warning__: Expanding EBS volumes is a time consuming operation. Also, there is a per-volume quota of one modification every 6 hours.
 
