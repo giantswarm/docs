@@ -235,7 +235,7 @@ metadata:
   annotations:  
     oidc.giantswarm.io/client-id: OIDC_CLIENT_ID
     oidc.giantswarm.io/group-claim: GROUP_CLAIM
-    oidc.giantswarm.io/issuer-url: PROIVER_URL_TO_DISCOVER_PUBLIC_KEYS
+    oidc.giantswarm.io/issuer-url: PROVIDER_URL_TO_DISCOVER_PUBLIC_KEYS
     oidc.giantswarm.io/username-claim: USERNAME_CLAIM
 ```
 
