@@ -75,7 +75,7 @@ spec:
 
 Note that the access mode, while being fixed with EBS, still needs to be defined as `ReadWriteOnce` in the manifest (see the `accessModes` property).
 
-Further, we need to define the Storage Class `ebs-csi` because it is not the default storage class (default `gp2`).
+Further, we need to define the storage class `ebs-csi` because it is not the default storage class (default `gp2`).
 
 Now we can create a Pod that uses our PVC:
 
