@@ -8,7 +8,7 @@ user_questions:
   - How do I install the EBS CSI driver?
   - How do I provision an EBS instance on AWS?
   - How do I test the EBS CSI storage class?
-  - How do I use EBS CSI Volumes?
+  - How do I use EBS CSI volumes?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
