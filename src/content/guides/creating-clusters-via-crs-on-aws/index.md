@@ -230,14 +230,18 @@ Starting from version {{% first_aws_nodepools_version %}} on AWS, Giant Swarm ha
 In order to configure a cluster with OIDC, you will have to add these fields to the AWSCluster CR as following:
 
 ```yaml
-apiVersion: cluster.x-k8s.io/v1alpha3
-kind: Cluster
-metadata:
-  annotations:  
-    oidc.giantswarm.io/client-id: OIDC_CLIENT_ID
-    oidc.giantswarm.io/group-claim: GROUP_CLAIM
-    oidc.giantswarm.io/issuer-url: PROVIDER_URL_TO_DISCOVER_PUBLIC_KEYS
-    oidc.giantswarm.io/username-claim: USERNAME_CLAIM
+apiVersion: infrastructure.giantswarm.io/v1alpha2
+kind: AWSCluster
+spec:
+  cluster:
+    ...
+    oidc:
+      claims:
+        groups: GROUP_CLAIM
+        username: USERNAME_CLAIM
+      clientID: OIDC_CLIENT_ID
+      issuerURL: PROVIDER_URL_TO_DISCOVER_PUBLIC_KEYS
+   ...
 ```
 
 This will result in setting up the OIDC flags API manifest for the given cluster.
