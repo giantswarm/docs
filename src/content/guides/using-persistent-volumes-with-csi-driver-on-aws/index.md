@@ -37,7 +37,7 @@ Your Kubernetes cluster will have a Storage Class `ebs-csi` deployed, once you i
 
 The storage class offers volume encryption and allows resizing by default.
 
-## Creating Persistent Volumes
+## Creating persistent volumes
 
 The most straight forward way to create a Persistent Volume is to create a [Persistent Volume Claim object](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims), which will automatically create a corresponding Persistent Volume (PV) for you.
 
