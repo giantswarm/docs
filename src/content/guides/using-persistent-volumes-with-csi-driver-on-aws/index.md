@@ -39,7 +39,7 @@ The storage class offers volume encryption and allows resizing by default.
 
 ## Creating persistent volumes
 
-The most straight forward way to create a Persistent Volume is to create a [Persistent Volume Claim object](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims), which will automatically create a corresponding Persistent Volume (PV) for you.
+The most straight forward way to create a persistent volume is to create a [PersistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims) resource, which will automatically create a corresponding `PersistentVolume` (PV) resource for you.
 
 Alternatively, to be able to set more specific parameters on your PV, you can first create a [PersistentVolume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistent-volumes) resource and then claim that PV using a `PersistentVolumeClaim` (PVC).
 
