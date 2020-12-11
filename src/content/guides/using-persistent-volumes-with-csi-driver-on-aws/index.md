@@ -19,7 +19,7 @@ CSI has been promoted to GA in Kubernetes v1.13 and is becoming the standard to 
 
 The aws-ebs-csi-driver-app, offered via our [App Platform](/basics/app-platform/) in the Giant Swarm Playground catalog, provides a CSI interface to manage the lifecycle of Amazon EBS volumes.
 
-## Installing EBS CSI driver
+## Installing the EBS CSI driver
 
 To install the EBS CSI driver you will need to follow these steps:
 
