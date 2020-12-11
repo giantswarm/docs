@@ -109,7 +109,7 @@ Resizing a PersistentVolumeClaim resource in use is enabled by default with Kube
 
 __Warning__: Expanding EBS volumes is a time-consuming operation. Also, there is a per-volume quota of 1 modification every 6 hours.
 
-## Deleting Persistent Volumes
+## Deleting persistent volumes
 
 The Reclaim Policy is set to `Delete`. Thus, deleting the `PersistentVolume` resource will also delete the respective EBS volume. Similarly, by default if you delete a `PersistentVolumeClaim` resource, the respective `PersistentVolume` and EBS volume will get deleted.
 
