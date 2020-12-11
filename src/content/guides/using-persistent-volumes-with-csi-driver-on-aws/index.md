@@ -13,7 +13,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
 
-# Using Persistent Volumes on AWS with Container Storage Interface (CSI)
+# Using persistent volumes with the EBS CSI driver on AWS
 
 The Container Storage Interface (CSI) has been promoted to general availability (GA) in Kubernetes v1.13 and is becoming the standard to replace the current Kubernetes `in-tree` storage plugin to handle volumes for different providers.
 
@@ -33,7 +33,7 @@ To install the EBS CSI driver you will need to follow these steps:
 
 ## Storage classes
 
-Your Kubernetes cluster will have a Storage Class `ebs-csi` deployed, once you installed the `aws-ebs-csi-driver-app` from _Giant Swarm Playground_ catalog.
+Once you installed the `aws-ebs-csi-driver-app` from _Giant Swarm Playground_ catalog, your Kubernetes cluster will have a Storage Class `ebs-csi` deployed.
 
 The storage class offers volume encryption and allows resizing by default.
 
@@ -99,7 +99,7 @@ spec:
 
 Now we have an NGINX pod which serves the content of our EBS volume.
 
-## Expanding Persistent Volume Claims
+## Increasing storage capacity of a volume
 
 Starting with Kubernetes v1.16, CSI volumes can be expanded by simply editing the claim (the `PersistentVolumeClaim` resource) and requesting a larger size. This will trigger an update of the associated `PersistentVolume` resource and the underlying EBS volume.
 
@@ -111,9 +111,9 @@ __Warning__: Expanding EBS volumes is a time-consuming operation. Also, there is
 
 ## Deleting persistent volumes
 
-The Reclaim Policy is set to `Delete`. Thus, deleting the `PersistentVolume` resource will also delete the respective EBS volume. Similarly, by default if you delete a `PersistentVolumeClaim` resource, the respective `PersistentVolume` and EBS volume will get deleted.
+The reclaim policy, which tells the cluster what to do with the volume after it has been released of its claim, is set to `Delete`. Thus, deleting the `PersistentVolume` resource will also delete the respective EBS volume. Similarly, by default if you delete a `PersistentVolumeClaim` resource, the respective `PersistentVolume` and EBS volume will get deleted.
 
-Note that deleting an application that is using persistent volumes might not automatically also delete its storage, so in most cases you will have to manually delete the `PersistentVolumeClaim` resources to clean up.
+Note that deleting a pod that is using persistent volumes might not automatically also delete its storage, so in most cases you will have to manually delete the `PersistentVolumeClaim` resources to clean up.
 
 ## Further reading
 
