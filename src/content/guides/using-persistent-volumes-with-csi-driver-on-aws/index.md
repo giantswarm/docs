@@ -97,7 +97,7 @@ spec:
         claimName: my-claim
 ```
 
-Now we have an NGINX Pod which serves the contents of our EBS Volume.
+Now we have an NGINX pod which serves the content of our EBS volume.
 
 ## Expanding Persistent Volume Claims
 
