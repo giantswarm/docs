@@ -47,7 +47,7 @@ Under the hood, the EBS CSI driver will take care that a corresponding EBS Volum
 
 The EBS Volume and its data will persist as long as the corresponding PV resource exists. Deleting the resource will also delete the corresponding EBS volume, which means that all stored data will be lost at that point.
 
-## Using Persistent Volumes in a Pod
+## Using persistent volumes in a pod
 
 Once you have a Persistent Volume Claim you can [claim it as a Volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#claims-as-volumes) in your Pods.
 
