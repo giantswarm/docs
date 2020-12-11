@@ -45,7 +45,7 @@ Alternatively, to be able to set more specific parameters on your PV, you can fi
 
 Under the hood, the EBS CSI driver will take care that a corresponding EBS volume with the correct parameters is created.
 
-The EBS Volume and its data will persist as long as the corresponding PV resource exists. Deleting the resource will also delete the corresponding EBS volume, which means that all stored data will be lost at that point.
+The EBS volume and its data will persist as long as the corresponding PV resource exists. Deleting the PV resource will also delete the corresponding EBS volume, which means that all stored data will be lost at that point.
 
 ## Using persistent volumes in a pod
 
