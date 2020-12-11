@@ -1,10 +1,11 @@
 ---
 title: How to deploy Istio in your cluster
 description: Tutorial on how to deploy Istio on a Giant Swarm Kubernetes cluster.
-date: 2020-04-17
 type: page
 weight: 60
 tags: ["tutorial"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
 ---
 
 # How to deploy Istio in your Cluster

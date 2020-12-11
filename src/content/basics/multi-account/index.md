@@ -1,10 +1,11 @@
 ---
 title: Multi-Account Support
 description: By default, all your tenant clusters run in the same cloud provider account. With Multi-Account support for AWS and Azure, you can define a specific cloud provider account to use per organization.
-date: 2020-05-19
 weight: 110
 type: page
 categories: ["basics"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-celestial
 ---
 
 # Multi-Account Support

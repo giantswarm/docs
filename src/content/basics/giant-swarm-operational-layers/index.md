@@ -1,7 +1,6 @@
 ---
-title: Giant Swarm Operational Layers
+title: Giant Swarm operational layers
 description: Here you learn how the operational layers of Giant Swarm are defined and what the intended operational model is.
-date: 2020-11-22
 type: page
 weight: 80
 categories: ["basics"]
@@ -22,9 +21,11 @@ user_questions:
   - What are the security safegaurds around access to the Giant Swarm control plane?
   - How is access to the control plane authorized?
   - How do users access tenant clusters?
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-horizon
 ---
 
-# Giant Swarm Operational Layers
+# Giant Swarm operational layers
 
 A Giant Swarm installation has several operational layers. At Giant Swarm we use the term operational layeres in order to indicate the different layers of code that may require access by different users for different activities. Operational layers in this context are in effect a representation of a separation of concerns both on an operational and on a security level. In this document we will define the layers and explain the operational model.
 
@@ -53,16 +54,16 @@ Network access to the Control Plane Kubernetes API is allowed only through Giant
 
 Giant Swarm SREs and operations personnel have cluster admin access to the Control Plane Kubernetes API through a tunnel. It is facilitated by SSO with MFA, as described above.
 
-A customer has *tenant admin* and *view* access via OpenID Connect (OIDC), configured towards the supported Identity Provider.
+A customer has *tenant admin* and *view* access via OpenID Connect (OIDC), configured towards the supported identity provider.
 
-#### Control Plane Kubernetes API Access for Customers
+#### Control Plane Kubernetes API access for Customers
 
-The kubernetes API on every Control has [dex](https://github.com/dexidp/dex) installed as an OIDC issuer. Dex is configured with an Identity Provider chosen by the customer. A list of supported providers can be found in the [dex github repository](https://github.com/dexidp/dex/tree/master/connector).
+The Kubernetes API on every Control Plane has [dex](https://github.com/dexidp/dex) installed as an OIDC issuer. Dex is configured with an identity provider chosen by the customer. A list of supported providers can be found in the [dex github repository](https://github.com/dexidp/dex/tree/master/connector).
 [dex-k8s-authenticator](https://github.com/mintel/dex-k8s-authenticator) is also installed, it is a web app that helps in JWT token retrieval and kubectl configuration
 
 ##### Authorization
 
-With a valid *jwt* token, received from your chosen Identity Provider, customers can have two levels of access:
+With a valid *jwt* token, received from your chosen identity provider, customers can have two levels of access:
 
 - *view*
     - *get*/*list*/*watch* access to all resources in the Control Plane, except for `configmaps` and `secrets`.
@@ -71,7 +72,7 @@ With a valid *jwt* token, received from your chosen Identity Provider, customers
     - full access, to the `cluster`, `node pool`, `appcatalogs` and `apps` resources of Control Plane Kubernetes.
     - includes *view* level access.
   
-### Giant Swarm API {#giant-swarm-api}
+### Giant Swarm Rest API {#giant-swarm-api}
 
 The [Giant Swarm API](/api/) is a customer facing API that is usually whitelisted for only a certain IP range within the customer's network. This layer covers the API itself, and its client manifestations in the form of the Giant Swarm Web UI and `gsctl` CLI.
 
@@ -93,7 +94,7 @@ Such users have access to all clusters in the organizations they belong to. They
 
 The user space layer is defined as the layer pertaining to a single Tenant Cluster Kubernetes API. Tenant Clusters are the Kubernetes clusters that run your workloads.
 
-Users on this level are either created by a Giant Swarm API user (in form of key pairs) or managed in an external Identity Provider (IdP), like [Azure AD](/guides/authenticating-with-microsoft-azure-active-directory/) or any other OIDC compliant IdP.
+Users on this level are either created by a Giant Swarm API user (in form of key pairs) or managed in an external identity provider (IdP), like [Azure Active Directory](/guides/authenticating-with-microsoft-azure-active-directory/) or any other OIDC-compliant IdP.
 
 However, a user with access to the Kubernetes API does not gain any permisssions by default, as the clusters are locked down by RBAC. To provide access, a cluster admin first needs to create roles and bindings for the users. These roles can be defined as narrowly or broadly as needed for the specific Tenant Kubernetes Cluster. They can be bound to either single users or groups of them.
 

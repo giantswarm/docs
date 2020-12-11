@@ -1,11 +1,12 @@
 ---
 title: Similar AWS EC2 instance types reference
 description: Here you find our reference regarding what is considered a similar instance type.
-date: 2020-11-18
 layout: subsection
 weight: 500
 user_questions:
   - Which EC2 instance types are used when I activate the use of similar instance types for a node pool?
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
 
 # Similar EC2 Instance Types

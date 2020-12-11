@@ -1,18 +1,19 @@
 ---
-title: "Cluster Upgrades with Giant Swarm"
-description: "How Kubernetes and other components are upgraded in a Giant Swarm installation, and how to prepare your cluster and workloads to facilitate robust upgrades."
-date: 2020-11-25
+title: Cluster upgrades
+description: How Kubernetes and other components are upgraded in a Giant Swarm tenant cluster, and how to prepare your cluster and workloads to facilitate robust upgrades.
 weight: 60
-layout: "subsection"
+layout: subsection
 user_questions:
   - How do cluster upgrades work?
   - How can I prepare my workloads to tolerate a cluster upgrade?
   - What is a major upgrade?
   - What is a minor upgrade?
   - What is a patch upgrade?
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
 ---
 
-# Cluster Upgrades with Giant Swarm
+# Cluster upgrades
 
 A tenant cluster in a Giant Swarm installation is running a stack comprising many software components, provided by the Kubernetes project and other open source projects or software vendors, as well as by Giant Swarm.
 In order to keep all components up-to-date, to allow you to benefit from latest improvements, features and security fixes, we provide upgrades for the entire software stack in tenant clusters.
@@ -22,7 +23,7 @@ We invest a lot of effort in making this happen without disrupting your usage of
 
 In this article, we explain how upgrades work in detail and how you should provide your workloads in order to keep them running during a tenant cluster upgrade and prevent disruptions of your applications.
 
-## Background and Concepts
+## Background and concepts
 
 ### The tenant cluster stack
 

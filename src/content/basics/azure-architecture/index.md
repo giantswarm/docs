@@ -1,11 +1,12 @@
 ---
-title: The Giant Swarm Azure Architecture
+title: The Giant Swarm Azure architecture
 description: Description of the Azure Giant Swarm platform, how it looks like and which features offers
-date: 2020-06-10
 weight: 50
 type: page
 categories: ["basics"]
 last_review_date: 2020-09-23
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-celestial
 ---
 
 The Giant Swarm Platform consists of various components. They can be categorized into three areas: infrastructure, operations, and applications.
@@ -22,7 +23,7 @@ Giant Swarm leverages the concept of [“Operators"](https://kubernetes.io/docs/
 
 ![Control Plane Architecture](architecture-azure-control-plane.png)
 
-## Azure Landscape
+## Azure landscape
 
 Giant Swarm's Azure operator is the product of years of work and we continue to apply our learnings and new functionality to it, as they become available. It is in charge of the provisioning and configuration of all resources needed to make a Kubernetes cluster functional on Azure. This operator runs in the Control Plane cluster, conveniently in separate subscription, and needs to reach the Azure API within subscription where you want to deploy your clusters. Thanks to our [Multi-Account](/basics/multi-account/) support, customers can add different Azure subscriptions to our platform and our operator will assume an Service Principle to operate the resources accordingly and spawn clusters into these subscriptions respectively.
 
@@ -30,7 +31,7 @@ In order to help Customers getting started with our platform, we have crafted an
 
 Following the principle of least privilege, we continuously refine the permissions needed for our automation to manage the Azure resources and the permissions given to our support engineers to assist when there is a problem. This is an ongoing process, as this is subject to change. We are constantly tweaking this based on our experience and changes introduced in Azure APIs and we have recently started utilizing the [Azure Lighthouse](https://azure.microsoft.com/en-us/services/azure-lighthouse/) that enables to delegate resources to a different account, making it easier to manage support team from both sides.
 
-## Workload segregation and Account model
+## Workload segregation and account model
 
 When starting out with our platform many of our customers are at the beginning of their journey to a distributed and highly resilient micro-service architecture. This is often a radically different approach to organizing and managing computing resources. This is mostly about abstracting the complexity of cluster creation and management. It opens up new possibilities on how to isolate applications and access to the infrastructure. The two most common reasons for customers to segregate applications over different    clusters and/or accounts are security and separation of concerns.
 

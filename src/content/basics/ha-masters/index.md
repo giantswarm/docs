@@ -1,13 +1,14 @@
 ---
-title: High availability Kubernetes masters
+title: High-availability Kubernetes masters
 description: A general description of high availability of masters as a concept, it's benefits, and some details you should be aware of.
-date: 2020-11-18
 weight: 120
 type: page
 categories: ["basics"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
 
-# High availability Kubernetes masters
+# High-availability Kubernetes masters
 
 ## Synopsis
 
@@ -52,7 +53,7 @@ purposes or clusters which don't need high availability and resilience.
 
 ## Use of availability zones {#use-of-az}
 
-When high availability master nodes is activated for a cluster, the three
+When high-availability master nodes is activated for a cluster, the three
 master nodes are spread over different availability zones (AZ). Depending on
 the number of AZs in the region, the logic is:
 

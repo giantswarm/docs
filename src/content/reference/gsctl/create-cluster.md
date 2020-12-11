@@ -1,13 +1,14 @@
 ---
-title: "gsctl Command Reference: create cluster"
-description: "Detailed documentation on how to create a new cluster using the 'create cluster' command in gsctl."
-date: 2020-08-25
+title: "'gsctl create cluster' command reference"
+description: Detailed documentation on how to create a new cluster using the 'create cluster' command in gsctl.
 type: page
 weight: 20
 user_questions:
   - What options are available for creating clusters through gsctl?
   - What are the defaults for the 'gsctl create cluster' flags?
   - How does an example call of 'gsctl create cluster' look like?
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
 # `gsctl create cluster`
@@ -105,7 +106,7 @@ When requesting cluster creation with tenant cluster release v{{% first_aws_node
 
 - [Cluster definition reference](/reference/cluster-definition/)
 - [`gsctl list releases`](/reference/gsctl/list-releases/) - List all available tenant cluster releases
-- [`gsctl create kubeconfig`](/reference/gsctl/create-kubeconfig/) - Getting a key pair and enabling `kubctl` to access a cluster
+- [`gsctl create kubeconfig`](/reference/gsctl/create-kubeconfig/) - Getting a key pair and enabling `kubectl` to access a cluster
 - [`gsctl delete cluster`](/reference/gsctl/delete-cluster/) - Deleting a cluster
 - [Basics: Cluster Size and Autoscaling](/basics/cluster-size-autoscaling/)
 - [API: Create cluster (v4)](/api/#operation/addCluster)

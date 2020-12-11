@@ -1,9 +1,10 @@
 ---
-title: "gsctl Command Reference: show release"
-description: "The 'gsctl show release' command displays details of a tenant cluster release."
-date: 2020-11-25
+title: "'gsctl show release' command reference"
+description: The 'gsctl show release' command displays details of a tenant cluster release.
 type: page
 weight: 52
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
 # `gsctl show release`

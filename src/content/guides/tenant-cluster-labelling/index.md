@@ -1,10 +1,11 @@
 ---
-title: "Labelling tenant clusters"
-description: "Introduction to labelling tenant clusters"
-date: 2020-11-18
+title: Labelling tenant clusters
+description: Introduction to labelling tenant clusters
 type: page
 weight: 130
 tags: ["recipe"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---
 
 # Labelling tenant clusters
@@ -18,6 +19,8 @@ Label keys and values are freely modifiable except labels with keys containing `
 
 Working with tenant cluster labels works likewise as working with Kubernetes labels.
 More information about Kubernetes Labels can be found in the [Kubernetes Labels and Selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/) and our [cluster labels API documentation](/api/#tag/cluster-labels).
+
+Note: You can also [manage cluster labels directly through `happa`](/reference/web-interface/tenant-cluster-labelling/), our web user interface.
 
 ## Working with tenant cluster labels using `gsctl`
 

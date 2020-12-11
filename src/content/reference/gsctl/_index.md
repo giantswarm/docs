@@ -1,12 +1,13 @@
 ---
-title: "gsctl Reference"
-description: "Documentation on gsctl, the Giant Swarm command line utility to create and delete clusters, create key pairs and more."
-date: 2020-11-25
-layout: "subsection"
+title: gsctl reference
+description: Documentation on gsctl, the Giant Swarm command line utility to create and delete clusters, create key pairs and more.
+layout: subsection
 weight: 20
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
-# `gsctl` Reference
+# gsctl CLI reference
 
 gsctl is the command line utility to manage your Giant Swarm clusters.
 

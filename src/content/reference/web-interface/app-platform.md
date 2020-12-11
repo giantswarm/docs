@@ -1,16 +1,16 @@
 ---
-title: The Giant Swarm App Platform in The Web Interface
-description: What the Giant Swarm App Platform looks like on our Web Interface and how to use it.
-date: 2020-04-22
-last-review-date: 2020-04-22
+title: The Giant Swarm App Platform in the web interface
+description: What the Giant Swarm App Platform looks like on our web interface and how to use it.
+last_review_date: 2020-04-22
 layout: subsection
 weight: 10
-aliases: [
-    "/reference/web-interface/app-catalog/",
-]
+aliases:
+  - /reference/web-interface/app-catalog/
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-batman
 ---
 
-# The Giant Swarm App Platform in the Web Interface
+# The Giant Swarm App Platform in the web interface
 
 This page will give you an overview of what parts of the Giant Swarm App Platform
 are managable using our web interface.

@@ -1,9 +1,10 @@
 ---
 title: Running Multiple NGINX Ingress Controllers
 description: Deploy multiple NGINX ingress controllers in a Kubernetes cluster to separate different ingress traffic classes.
-date: 2020-08-05
 type: page
 tags: ["tutorial"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-halo
 ---
 
 # Running Multiple NGINX Ingress Controllers

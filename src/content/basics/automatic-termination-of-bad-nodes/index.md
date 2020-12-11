@@ -1,10 +1,11 @@
 ---
 title: Automatic termination of unhealthy nodes
 description: Unhealthy cluster nodes can lead to impaired workload reliability and wasted cluster resources. Here we explain how you can activate automatic termination of such nodes.
-date: 2020-11-23
 weight: 120
 type: page
 categories: ["basics"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
 
 # Automatic termination of unhealthy nodes

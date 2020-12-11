@@ -1,7 +1,6 @@
 ---
 title: Accessing Pods and Services from the outside
 description: You can access Pods and services from outside your cluster either through the API proxy or through an Ingress.
-date: 2020-11-18
 type: page
 weight: 50
 tags: ["tutorial"]
@@ -11,6 +10,8 @@ user_questions:
   - How can I expose a service to the internet?
   - How to configure the host name in Ingress?
   - What is the right URL format for the Kubernetes API proxy?
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---
 
 # Accessing Pods and Services from the Outside

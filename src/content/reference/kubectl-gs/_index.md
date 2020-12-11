@@ -1,12 +1,13 @@
 ---
-title: kubectl gs Reference
+title: kubectl gs plugin reference
 description: User manual for kubectl-gs (also known as kgs), the Giant Swarm kubectl plugin.
-date: 2020-11-18
 layout: subsection
 weight: 40
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
-# `kubectl gs` Reference
+# `kubectl gs` plugin reference
 
 `kubectl gs`, also known as `kgs`, is a [kubectl](https://kubernetes.io/docs/reference/kubectl/kubectl/) plugin for the Giant Swarm [Control Plane Kubernetes API](/basics/api/#cp-k8s-api).
 

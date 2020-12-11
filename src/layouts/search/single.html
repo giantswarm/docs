@@ -5,6 +5,8 @@
 
     <h1>Search the Docs</h1>
 
+    <p id="result-is-limited" style="display: none">Showing the first X items only</p>
+
     <form class="search form-inline search-full" method="GET" action="/search/" role="form">
       <div class="form-group">
         <input id="qinput" name="q" class="form-control" placeholder="Search term" />
@@ -12,7 +14,11 @@
       </div>
     </form>
 
-    <div class="searchinstructions">
+    <div class="suggestion" style="display: none">
+      <p>Try this: <a href="#">term</a></p>
+    </div>
+
+    <div class="searchinstructions" style="display: none">
       <p><strong>Hint</strong>: You can use <a href="http://www.lucenetutorial.com/lucene-query-syntax.html">Lucene search syntax</a>, including operators like <code>OR</code>, <code>AND</code>, <code>NOT</code>, <code>-</code>, <code>+</code> and bracketing.</p>
     </div>
 

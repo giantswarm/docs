@@ -1,10 +1,11 @@
 ---
 title: Getting Basic Metrics in your Cluster
 description: Recipe to enable a core metrics solution running on your Kubernetes cluster.
-date: 2019-02-01
 type: page
 weight: 140
 tags: ["recipe"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
 ---
 
 # Metrics in Kubernetes

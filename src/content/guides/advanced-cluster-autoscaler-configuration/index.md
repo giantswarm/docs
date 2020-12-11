@@ -1,11 +1,12 @@
 ---
 title: Advanced Cluster Autoscaler Configuration
 description: Here we describe how you can customize the configuration of the managed Cluster Autoscaler service in your clusters
-date: 2020-07-01
 type: page
 weight: 40
 tags: ["tutorial"]
-last-review-date: 2020-09-23
+last_review_date: 2020-09-23
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
 
 # Advanced Cluster Autoscaler Configuration

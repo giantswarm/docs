@@ -1,7 +1,6 @@
 ---
-title: Tenant Cluster Release Versions
+title: Tenant Cluster release versions
 description: Details on the tenant cluster release offered by Giant Swarm and ways to look up even more details.
-date: 2020-11-18
 last_review_date: 2020-10-30
 layout: subsection
 weight: 50
@@ -16,11 +15,13 @@ user_questions:
   - How soon does Giant Swarm provide new Kubernetes versions?
 aliases:
   - /reference/release-versions/
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-product
 ---
 
-# Tenant Cluster Releases
+# Tenant Cluster release versions
 
-Our tenant cluster releases define the capabilities of the clusters you create in your installations. Here we explain the semantics of our versioning and give details on tenant cluster release on certain providers.
+Our Tenant Cluster releases define the capabilities of the clusters you create in your installations. Here we explain the semantics of our versioning and give details on tenant cluster release on certain providers.
 
 ## Introduction
 
@@ -30,7 +31,7 @@ Each tenant cluster release bundles a stack of components with their specific ve
 
 We test tenant cluster releases as a whole. To upgrade a component to a newer version, the entire cluster is upgrade to a new tenant cluster release. This is our best way to ensure that all components in the cluster interoperate well.
 
-## Conventions around tenant cluster release versioning {#versioning-conventions}
+## Conventions around Tenant Cluster release versioning {#versioning-conventions}
 
 The Semver standard specifies version numbers in the form of `Major.Minor.Patch`.
 
@@ -49,8 +50,8 @@ The following table shows which of our major releases contain which Kubernetes r
 | **9.x.x**                   | 1.15.x\*           | Available    |
 | **11.x.x**                  | 1.16.x             | Available    |
 | **12.x.x**                  | 1.17.x             | Available    |
-| **13.x.x**                  | 1.18.x             | ETA November 2020 |
-| **14.x.x**                  | 1.19.x             | ETA December 2020 |
+| **13.x.x**                  | 1.18.x             | Available    |
+| **14.x.x**                  | 1.19.x             | ETA January 2021|
 
 \*) As an exception from the convention, on AWS, tenant cluster releases v9.2.0 and v9.3.x include Kubernetes v1.16.x.
 
@@ -108,11 +109,20 @@ You have several options to inspect tenant cluster release details:
 
 - Azure: **{{% first_azure_nodepools_version %}}**.
 
-### Optional ingress controller {#optional-ic}
+### Preinstalled and optional Apps {#apps}
 
-As of **v11.0.0** on AWS installations, **v12.0.0** on Azure, and **12.2.0** on KVM the ingress controller has been
-made optional. That means it is not installed by default when you create your
-cluster.
+Depending on your provider (AWS, Azure, or KVM), the apps NGINX IC, External DNS, and Cert Manager may be preinstalled, optional, or not available (n/a).
+
+Preinstalled apps are installed by default upon cluster creation. Optional apps can be installed from App Catalogs. In releases where they are not preinstalled, n/a apps (e.g. External DNS in certain releases) are currently not available to be installed as an optional app.
+
+| Tenant cluster release version | NGINX IC      | External DNS  | Cert Manager |
+|:------------------------------:|:-------------:|:-------------:|:------------:|
+| **AWS v10.x.x+**               | optional      | preinstalled  | preinstalled |
+| **AWS legacy**                 | preinstalled  | n/a           | optional     |
+| **Azure v12.x.x+**             | optional      | preinstalled  | optional     |
+| **Azure legacy**               | preinstalled  | preinstalled  | optional     |
+| **KVM 12.2.x+**                | optional      | n/a           | optional     |
+| **KVM legacy**                 | preinstalled  | n/a           | optional     |
 
 ### Flatcar Container Linux {#flatcar}
 

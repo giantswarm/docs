@@ -1,10 +1,11 @@
 ---
 title: Accelerated Networking on Azure
 description: A general description of the Accelerated Networking for Azure VMs feature and how it works on Giant Swarm clusters.
-date: 2020-11-18
 weight: 120
 type: page
 categories: ["basics"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-celestial
 ---
 
 # Accelerated Networking on Azure
@@ -30,7 +31,7 @@ the key benefits of Accelerated Networking are:
 
 Furthermore, accelerated networking feature is available free of charge for many (but not all) Virtual Machine types.
 
-## Support in Giant Swarm Clusters
+## Support in Giant Swarm tenant clusters
 
 As of tenant cluster release v{{% first_azure_accelerated_networking_version %}}, `Accelerated Networking` is enabled by default
 on all `Node Pools` that have a [Virtual Machine type that supports the feature](https://docs.microsoft.com/en-us/azure/virtual-network/create-vm-accelerated-networking-powershell#supported-vm-instances), so there is nothing you need to do

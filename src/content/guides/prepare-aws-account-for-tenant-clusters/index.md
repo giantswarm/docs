@@ -1,7 +1,6 @@
 ---
 title: "Prepare an AWS account to run Giant Swarm clusters"
 description: "This guide will walk you through all necessary steps to set up an Amazon AWS account with appropriate IAM roles for operating Giant Swarm clusters."
-date: 2020-05-19
 type: page
 weight: 100
 tags: ["tutorial"]
@@ -9,6 +8,8 @@ user_questions:
   - Where can I find the AWS account ID to use for running a installation?
   - Where I can find the AWS account ID to run tenant clusters?
   - What are the recommended service limit/quotas for AWS accounts used with Giant Swarm?
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
 
 # Prepare an AWS account to run Giant Swarm clusters
@@ -92,26 +93,30 @@ The screenshot below shows the entry form.
 
 These are the limit increases to be requested, grouped by limit type:
 
-- VPC
-    - VPCs per region: **50**
-    - NAT Gateway per Availability Zone per region: **50**
-    - IPv4 CIDR blocks per VPC: **50**
-- Elastic IP
-    - New VPC Elastic IP Address Limit per region: **50**
-- Elastic Load Balancers
-    - Application and Classic Load Balancers per region: **100**
-- Auto Scaling
-    - Auto Scaling Groups per region: **250**
-    - Launch Configurations per region: **500**
-- EC2 Instances
-    - m4.xlarge per region: **250**
-    - m4.2xlarge per region: **250**
-    - m5.2xlarge per region: **250**
-    - other instance types to be used as workers: increase accordingly
-- EC2 Spot Instances
-    - For every primary instance type you tend to use spot instances with, set the limit according to your needs.
+- Control Plane account:
+    - VPC
+        - Routes per route table: **200**
+- Tenant Cluster account:
+    - VPC
+        - VPCs per region: **50**
+        - NAT Gateway per Availability Zone per region: **50**
+        - IPv4 CIDR blocks per VPC: **50**
+    - Elastic IP
+        - New VPC Elastic IP Address Limit per region: **50**
+    - Elastic Load Balancers
+        - Application and Classic Load Balancers per region: **100**
+    - Auto Scaling
+        - Auto Scaling Groups per region: **250**
+        - Launch Configurations per region: **500**
+    - EC2 Instances
+        - m4.xlarge per region: **250**
+        - m4.2xlarge per region: **250**
+        - m5.2xlarge per region: **250**
+        - other instance types to be used as workers: increase accordingly
+    - EC2 Spot Instances
+        - For every primary instance type you tend to use spot instances with, set the limit according to your needs.
 
-(Please extend the list of EC2 instance to also contain the types you need frequently.)
+(Please extend the list of EC2 instances to also contain the types you need frequently.)
 
 When requesting a service limit increase, you will be asked for a description of your use case. You can use this text for the purpose:
 

@@ -1,19 +1,19 @@
 ---
-title: API Access to Giant Swarm Resources
+title: API access to Giant Swarm resources
 description: An overview of the APIs that provide you with programmatic access to
   resources like your tenant clusters in a Giant Swarm installation. Namely the Rest
   API and the Control Plane Kubernetes API.
-date: 2020-10-02
 weight: 75
 type: page
 categories: ["basics"]
-last-review-date:
 user_questions:
   - How can I manage Giant Swarm resources programmatically?
   - How can I manage clusters via an API?
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
-# API Access to Giant Swarm Resources
+# API access to Giant Swarm resources
 
 For integrating Giant Swarm with your automation, we provide programmatic access via two different APIs:
 
@@ -35,7 +35,7 @@ With this realization, we made the decision to phase out the development of the 
 
 As of now, there is no termination date for the Rest API. As it might provide the much simpler and more accessible starting point, feel free to explore the [documentation](/api/), knowing that one day you may have to switch to the Control Plane Kubernetes API.
 
-## The Control Plane Kubernetes API (Preview) {#cp-k8s-api}
+## The Control Plane Kubernetes API (preview) {#cp-k8s-api}
 
 ### What it is
 

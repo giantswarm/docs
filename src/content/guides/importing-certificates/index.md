@@ -1,10 +1,11 @@
 ---
 title: Establishing Trust to Your Cluster's CA and Importing Certificates
 description: To access the API of your server as well as services like the Kubernetes Dashboard using a web browser, you need to import the CA certificate for the cluster and your key pair. Here we show how to do this for several platforms and clients.
-date: 2017-01-16
 type: page
 weight: 60
 tags: ["tutorial"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---
 
 # Establishing Trust to Your Cluster's CA and Importing Certificates

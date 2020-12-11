@@ -1,12 +1,13 @@
 ---
 title: Using on-demand instances as fall-back when spot instances are unavailable on AWS
 description: When using spot instances in a node pool on AWS, it can happen that the node pool cannot be scaled up as not enough spot instances are available. This guide shows you how to configure cluster-autoscaler in a way to provide on-demand instances as a back-up automatically.
-date: 2020-11-18
 type: page
 weight: 120
 tags: ["tutorial"]
 user_questions:
   - How can I use EC2 spot instances and fall back to on-demand if no spot instances are available?
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
 
 # Using on-demand instances as fall-back when spot instances are unavailable

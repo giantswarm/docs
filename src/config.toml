@@ -3,6 +3,7 @@ languageCode = "en"
 title = "Giant Swarm Documentation"
 pluralizeListTitles = false
 rssLimit = 50
+enableGitInfo = true
 
 [markup]
   defaultMarkdownHandler = "goldmark"
@@ -36,10 +37,6 @@ rssLimit = 50
     name = "Changes"
     url = "/changes/"
     weight = 50
-[[menu.main]]
-    name = "FAQ"
-    url = "/faq/"
-    weight = 60
 
 [taxonomies]
   changes_category = "changes_categories"

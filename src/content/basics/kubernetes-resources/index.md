@@ -1,18 +1,19 @@
 ---
 title: Kubernetes Resources
 description: Pointers to the best resources about Kubernetes to get you up to speed with Kubernetes fast
-date: 2020-05-20
 weight: 140
 type: page
 categories: ["basics"]
-last-review-date: 2020-03-31
+last_review_date: 2020-03-31
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---
 
 # Kubernetes Resources
 
 As your Giant Swarm cluster offers you fully-managed Kubernetes, the fundamentals you need are basically summarized by the userside documentation of Kubernetes. We have compiled a list of the best resources to get you started fast.
 
-## Official kubernetes documentation
+## Official Kubernetes documentation
 
 The first and most important source to read is the [official Kubernetes documentation](https://kubernetes.io/docs/home/). Since the administrative side is mostly taken care of by Giant Swarm, we recommend focussing on the [task-specific tutorials](https://kubernetes.io/docs/tutorials/).
 

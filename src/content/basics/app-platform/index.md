@@ -1,14 +1,14 @@
 ---
 title: The Giant Swarm App Platform
 description: Overview of the Giant Swarm App Platform, how it works and what to expect.
-date: 2020-05-26
 weight: 90
 type: page
 categories: ["basics"]
-last-review-date: "2020-05-26"
-aliases: [
-    "/basics/app-catalog/",
-]
+last_review_date: 2020-05-26
+aliases:
+  - /basics/app-catalog/
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-batman
 ---
 
 ![A large image with the words "The Giant Swarm App Platform" prominently visible over a screenshot of a list of apps](app-platform-header.png)

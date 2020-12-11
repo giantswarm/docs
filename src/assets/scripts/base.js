@@ -31,21 +31,39 @@ function getParameterByName(name) {
  * @param q  String     The user's search query
  */
 function doSearch(q) {
-  //console.debug("Searched for", q);
+  // reset search
+  $(".result").empty();
+  $(".searchinstructions").hide();
+
+  var limit = 100;
   $("#qinput").val(q);
   // assemble the big query object for ElasticSearch
   var postData = {
     "from": 0,
-    "size": 1000,
+    "size": limit,
     "sort": ["_score"],
     "_source": {
       "excludes": ["text", "breadcrumb_*"]
     },
     "query": {
-      "simple_query_string": {
-        "fields": ["title^5", "uri^5", "text"],
-        "default_operator": "AND",
-        "query": q
+      "function_score": {
+        "query": {
+          "simple_query_string": {
+            "fields": ["title^5", "uri^5", "text"],
+            "default_operator": "AND",
+            "query": q
+          }
+        },
+        "functions": [
+          {
+            "filter": {"term": {"breadcrumb_1": "changes"}},
+            "weight": 0.1
+          },
+          {
+            "filter": {"term": {"breadcrumb_1": "api"}},
+            "weight": 0.3
+          }
+        ]
       }
     },
     "highlight" : {
@@ -61,6 +79,23 @@ function doSearch(q) {
           "number_of_fragments" : 1
         }
       }
+    },
+    "suggest": {
+      "phrase-suggester": {
+        "text": q,
+        "phrase": {
+          "field": "text.trigram",
+          "size": 1,
+          "gram_size": 3,
+          "direct_generator": [
+            {
+              "field": "text.trigram",
+              "suggest_mode": "popular",
+              "min_word_length": 3,
+            }
+          ],
+        }
+      }
     }
   };
   $.ajax("/searchapi/", {
@@ -72,22 +107,45 @@ function doSearch(q) {
       console.warn("Error in ajax call to /searchapi/:", textStatus, errorThrown);
     },
     success: function(data){
-      $(".result").empty();
+      // Display suggestions
+      var hasSuggestion = false;
+      var suggester = data.suggest["phrase-suggester"];
+      
+      if (suggester && suggester.length > 0 && suggester[0].options.length > 0) {
+        var suggestionElement = $(".suggestion");
+        suggestionElement.find("a").attr("href", "./?q=" + encodeURI(suggester[0].options[0].text)).text(suggester[0].options[0].text);
+        suggestionElement.show();
+        hasSuggestion = true;
+      }
+
+      if (!hasSuggestion) {
+        $(".searchinstructions").show();
+      }
+
       if (data.hits.total == 0) {
-        // no results
+        // Display zero hits
         $("h1").text("No results for '" + q + "', sorry.");
-        $("#searchinstructions").show();
+
+        
 
         if (typeof ga !== 'undefined') {
           ga('send', 'event', 'search', 'zerohits', q, 0);
         }
+
       } else {
-        $("#searchinstructions").hide();
+        // Display results
         if (data.hits.total === 1) {
           $("h1").text("1 hit for '" + q + "'");
         } else {
           $("h1").text(data.hits.total + " hits for '" + q + "'");
+
+          if (data.hits.total > limit) {
+            $('#result-is-limited').text('Showing the first '+ limit +' items only').show();
+          } else {
+            $('#result-is-limited').hide();
+          }
         }
+
         $.each(data.hits.hits, function(index, hit){
           $(".result").append(renderSerpEntry(index, hit));
         });

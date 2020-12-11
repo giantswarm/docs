@@ -17,10 +17,6 @@ jobs:
           command: make lint
 
       - run:
-          name: Build
-          command: make build
-
-      - run:
           name: Install architect
           command: |
             wget -q $(curl -sS -H "Authorization: token $RELEASE_TOKEN" https://api.github.com/repos/giantswarm/architect/releases/tags/v1.0.0 | grep browser_download_url | head -n 1 | cut -d '"' -f 4)
@@ -49,7 +45,7 @@ jobs:
                 -t 4 \
                 --ignore-url="^https://docs\.giantswarm\.io/.*" \
                 --ignore-url=/api/ \
-                --ignore-url=/changes/ \
+                --ignore-url=/changes/
             docker kill docs || echo "Container 'docs' not running"
 
       - deploy:

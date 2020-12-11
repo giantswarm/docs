@@ -1,19 +1,17 @@
 ---
-title: Giant Swarm Tenant Cluster Labelling in The Web Interface
-description: How to manage tenant cluster labels in our Web Interface.
-date: 2020-11-18
+title: Labelling Tenant Clusters using the web interface
+description: How to manage tenant cluster labels in our web interface.
 last_review_date: 2020-05-29
 layout: subsection
 weight: 20
-aliases: [
-    "/reference/web-interface/tenant-cluster-labelling/",
-]
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---
 
-# Giant Swarm Tenant Cluster Labelling in The Web Interface
+# Labelling Tenant Clusters using the web interface
 
 Labels are a mechanism to assign short pieces of additional information to your Giant Swarm tenant clusters.
-For more information about this feature, check out the [Labelling tenant clusters](/guides/tenant-cluster-labelling/) user guide.
+For more information about this feature, check out the [labelling tenant clusters](/guides/tenant-cluster-labelling/) user guide.
 
 ## Viewing tenant cluster labels
 

@@ -1,9 +1,10 @@
 ---
-title: "gsctl Command Reference: show nodepool"
+title: "'gsctl show nodepool' command reference"
 description: The 'gsctl show nodepool' command shows details on a node pool.
-date: 2020-08-25
 type: page
 weight: 44
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
 # `gsctl show nodepool`
