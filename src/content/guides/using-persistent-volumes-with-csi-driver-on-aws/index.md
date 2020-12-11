@@ -51,7 +51,7 @@ The EBS Volume and its data will persist as long as the corresponding PV resourc
 
 Once you have a Persistent Volume Claim you can [claim it as a Volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#claims-as-volumes) in your Pods.
 
-Note that an EBS Volume can only be used by a single Pod at the same time. Thus, the access mode of your PVC can only be `ReadWriteOnce`.
+Note that an EBS volume can only be used by a single pod at the same time. Thus, the access mode of your PVC can only be `ReadWriteOnce`.
 
 Under the hood the EBS Volume stays detached from your nodes as long as it is not claimed by a Pod. As soon as a Pod claims it, it gets attached to the node that holds the Pod.
 
