@@ -33,13 +33,13 @@ To install the EBS CSI driver you will need to follow these steps:
 
 ## Storage classes
 
-Once you installed the `aws-ebs-csi-driver-app` from _Giant Swarm Playground_ catalog, your Kubernetes cluster will have a Storage Class `ebs-csi` deployed.
+Once you installed the `aws-ebs-csi-driver-app` from _Giant Swarm Playground_ catalog, your Kubernetes cluster will have a storage class `ebs-csi` deployed.
 
 The storage class offers volume encryption and allows resizing by default.
 
 ## Creating persistent volumes
 
-The most straight forward way to create a persistent volume is to create a [PersistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims) resource, which will automatically create a corresponding `PersistentVolume` (PV) resource for you.
+The most straight forward way to create a persistent volume is to create a [PersistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims) resource with the storage class `ebs-csi`, which will automatically create a corresponding `PersistentVolume` (PV) resource for you.
 
 Alternatively, to be able to set more specific parameters on your PV, you can first create a [PersistentVolume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistent-volumes) resource and then claim that PV using a `PersistentVolumeClaim` (PVC).
 
