@@ -49,7 +49,7 @@ The EBS Volume and its data will persist as long as the corresponding PV resourc
 
 ## Using persistent volumes in a pod
 
-Once you have a Persistent Volume Claim you can [claim it as a Volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#claims-as-volumes) in your Pods.
+Once you have a PersistentVolumeClaim you can [claim it as a volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#claims-as-volumes) in your pods.
 
 Note that an EBS volume can only be used by a single pod at the same time. Thus, the access mode of your PVC can only be `ReadWriteOnce`.
 
