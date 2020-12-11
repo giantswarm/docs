@@ -1,5 +1,5 @@
 ---
-title: "Using Persistent Volumes with EBS CSI driver on AWS"
+title: Using persistent volumes with the EBS CSI driver on AWS
 description: Tutorial on how to use dynamically provisioned Persistent Volumes with EBS CSI driver on a cluster running on Amazon Web Services"
 type: page
 weight: 50
