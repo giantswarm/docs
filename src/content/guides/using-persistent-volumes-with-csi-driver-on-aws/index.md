@@ -73,7 +73,7 @@ spec:
       storage: 5Gi
 ```
 
-Note that the Access Mode while being fixed with EBS still needs to be defined as `ReadWriteOnce` in the manifest.
+Note that the access mode, while being fixed with EBS, still needs to be defined as `ReadWriteOnce` in the manifest (see the `accessModes` property).
 
 Further, we need to define the Storage Class `ebs-csi` because it is not the default storage class (default `gp2`).
 
