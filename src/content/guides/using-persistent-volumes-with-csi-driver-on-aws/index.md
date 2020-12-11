@@ -113,7 +113,7 @@ __Warning__: Expanding EBS volumes is a time-consuming operation. Also, there is
 
 The Reclaim Policy is set to `Delete`. Thus, deleting the `PersistentVolume` resource will also delete the respective EBS volume. Similarly, by default if you delete a `PersistentVolumeClaim` resource, the respective `PersistentVolume` and EBS volume will get deleted.
 
-Note that deleting an application that is using Persistent Volumes might not automatically also delete its storage, so in most cases you will have to manually delete the `PersistentVolumeClaim` resources to clean up.
+Note that deleting an application that is using persistent volumes might not automatically also delete its storage, so in most cases you will have to manually delete the `PersistentVolumeClaim` resources to clean up.
 
 ## Further reading
 
