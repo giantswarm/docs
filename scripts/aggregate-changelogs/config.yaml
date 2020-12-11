@@ -34,8 +34,6 @@ repositories:
     category: Managed Apps
   giantswarm/kubectl-gs:
     category: kubectl gs
-  giantswarm/metrics-server-app:
-    category: Managed Apps
   giantswarm/nginx-ingress-controller-app:
     category: Managed Apps
   giantswarm/prometheus-operator-app:
@@ -55,7 +53,7 @@ repositories:
     category: Playground Apps
   giantswarm/giantswarm-todo-app:
     category: Playground Apps
-  inlets/inlets:
+  giantswarm/inlets-operator-app:
     category: Playground Apps
   giantswarm/istio-operator:
     category: Playground Apps
