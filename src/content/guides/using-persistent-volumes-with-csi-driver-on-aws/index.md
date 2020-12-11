@@ -117,7 +117,7 @@ Note that deleting an application that is using persistent volumes might not aut
 
 ## Further reading
 
-- [AWS Storage Classes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#aws)
+- [AWS storage classes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#aws)
 - [Persistent Volumes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistent-volumes)
 - [Persistent Volume Claims](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims)
 - [Claim Persistent Volumes in Pods](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#claims-as-volumes)
