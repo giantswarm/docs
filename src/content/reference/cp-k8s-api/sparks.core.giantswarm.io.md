@@ -6,7 +6,7 @@ description:   Spark is a Kubernetes resource (CR) which is based on the Spark C
    An example Spark resource can be viewed here https://github.com/giantswarm/apiextensions/blob/master/docs/cr/core.giantswarm.io_v1alpha1_spark.yaml
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.12.0
+source_repository_ref: v3.13.0
 layout: "crd"
 ---
 

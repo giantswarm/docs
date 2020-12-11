@@ -5,6 +5,8 @@ type: page
 weight: 100
 tags:
   - tutorial
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
 ---
 
 # Microservices & Custom Metrics Example
