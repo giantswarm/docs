@@ -136,6 +136,11 @@ releases.release.giantswarm.io:
 silences.monitoring.giantswarm.io:
   topics:
     - controlplane
+sparks.core.giantswarm.io:
+  provider:
+    - azure
+  topics:
+    - tenantcluster
 storageconfigs.core.giantswarm.io:
   topics:
     - controlplane
