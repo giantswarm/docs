@@ -4,7 +4,7 @@ changes_categories:
 - Tenant Cluster Releases for AWS
 changes_entry:
   repository: giantswarm/releases
-  url: https://github.com/giantswarm/releases/tree/master/aws/v9.3.7
+  url: https://github.com/giantswarm/releases/tree/master/aws/archived/v9.3.7
   version: 9.3.7
   version_tag: v9.3.7
 date: '2020-08-20T10:39:57+00:00'
