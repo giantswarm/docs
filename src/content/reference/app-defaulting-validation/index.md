@@ -11,8 +11,8 @@ owner:
 ## Overview
 
 For Giant Swarm releases using app-operator version 3.0.0 and upwards the
-defaulting and validation logic is enabled. This logic is provided by
-app-admission-controller.
+defaulting and validation logic of [app CRs]({{< relref "/src/content/reference/cp-k8s-api/apps.application.giantswarm.io.md" >}} is enabled. This logic is provided by
+[app-admission-controller](https://github.com/giantswarm/app-admission-controller).
 
 We have not enabled the defaulting and validation for existing app CRs to avoid
 disrupting your existing usage of App Platform.
@@ -84,7 +84,7 @@ spec:
 The validation logic is implemented using a validating webhook. It checks for
 common problems with app CRs.
 
-Currently we validate.
+Currently we validate:
 
 - The `app-operator.giantswarm.io/version` label is present.
 - All referenced configmaps and secrets exist.
