@@ -22,10 +22,12 @@ disrupting your current usage of App Platform.
 The defaulting logic is implemented using a mutating webhook. It currently
 defaults the following settings in the app CR if they are not specified.
 
-- The `app-operator.giantswarm.io/version` label that determines which instance of app-operator processes the app CR.
-- The kubeconfig secret that lets app-operator connect to your cluster.
+- The `app-operator.giantswarm.io/version` label that determines which instance
+of app-operator processes the app CR. The value is set based on the release
+version of the cluster. e.g. `3.0.0`
 - The cluster values configmap that contains per cluster values like the base
-domain for your cluster.
+domain for your cluster. e.g. `x7jwz-cluster-values`
+- The kubeconfig secret that lets app-operator connect to your cluster. e.g. `x7jwz-kubeconfig`
 
 Here is an example app CR with only the settings you need to provide. The user
 values configmap is optional, in case you wish to configure the app with your
