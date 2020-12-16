@@ -15,7 +15,7 @@ defaulting and validation logic is enabled. This logic is provided by
 app-admission-controller.
 
 We have not enabled the defaulting and validation for existing app CRs to avoid
-disrupting your existing usage of App Platform.
+disrupting your current usage of App Platform.
 
 ## Defaulting
 
@@ -28,7 +28,8 @@ defaults the following settings in the app CR if they are not specified.
 domain for your cluster.
 
 Here is an example app CR with only the settings you need to provide. The user
-values configmap is optional, if you wish to configure the app with your own values.
+values configmap is optional, in case you wish to configure the app with your
+own values.
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
