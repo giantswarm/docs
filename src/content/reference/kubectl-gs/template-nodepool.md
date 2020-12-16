@@ -40,8 +40,8 @@ Here are the supported flags:
 - `--availability-zones` - list of availability zones to use, instead of setting a number. Use comma to separate values. (e. g. `eu-central-1a,eu-central-1b`)
 - `--cluster-id` - ID of the cluster the node pool should be added to.
 - `--nodepool-name` - node pool name or purpose description of the node pool. (default *Unnamed node pool*)
-- `--nodes-max` - maximum number of worker nodes for the node pool. (default 10)
-- `--nodes-min` - minimum number of worker nodes for the node pool. (default 3)
+- `--nodes-max` - maximum number of worker nodes for the node pool. (default 10 on AWS, and default 3 on Azure)
+- `--nodes-min` - minimum number of worker nodes for the node pool. (default 3 on both AWS and Azure)
 - `--num-availability-zones` - number of availability zones to use. (default 1)
 - `--owner` - organization, owning tenant cluster. Must be configured with existing organization in installation.
 
