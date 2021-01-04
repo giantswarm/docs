@@ -13,9 +13,11 @@ owner:
 For Giant Swarm releases using app-operator version 3.0.0 and upwards the
 defaulting and validation logic of [App CRs](/content/reference/cp-k8s-api/apps.application.giantswarm.io.md) is enabled. This logic is provided by
 [app-admission-controller](https://github.com/giantswarm/app-admission-controller).
+You can check if your cluster has this version of app-operator by checking the
+release details in the web interface.
 
 We have not enabled the defaulting and validation for existing app CRs to avoid
-disrupting your current usage of App Platform.
+disrupting your current usage of the App Platform.
 
 ## Defaulting
 
@@ -37,17 +39,17 @@ own values.
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
-  name: "my-kong"
-  namespace: "x7jwz"
+  name: my-kong
+  namespace: x7jwz
 spec:
-  catalog: "giantswarm"
-  name: "kong-app"
-  namespace: "kong"
-  version: "0.7.2"
+  catalog: giantswarm
+  name: kong-app
+  namespace: kong
+  version: 0.7.2
   userConfig:
     configMap:
-      name: "kong-user-values"
-      namespace: "x7jwz"
+      name: kong-user-values
+      namespace: x7jwz
 ```
 
 Here is the app CR with the defaults added by the mutating webhook.
@@ -56,30 +58,30 @@ Here is the app CR with the defaults added by the mutating webhook.
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
-  name: "my-kong"
-  namespace: "x7jwz"
+  name: my-kong
+  namespace: x7jwz
   labels:
-    app-operator.giantswarm.io/version: "3.0.0"
+    app-operator.giantswarm.io/version: 3.0.0
 spec:
-  catalog: "giantswarm"
-  name: "kong-app"
-  namespace: "kong"
-  version: "0.7.2"
+  catalog: giantswarm
+  name: kong-app
+  namespace: kong
+  version: 0.7.2
   config:
     configMap:
-      name: "x7jwz-cluster-values"
-      namespace: "x7jwz"
+      name: x7jwz-cluster-values
+      namespace: x7jwz
   kubeConfig:
     context:
-      name: "x7jwz"
+      name: x7jwz
      inCluster: false
      secret:
-      name: "x7jwz-kubeconfig"
-      namespace: "x7jwz"
+      name: x7jwz-kubeconfig
+      namespace: x7jwz
   userConfig:
     configMap:
-      name: "kong-user-values"
-      namespace: "x7jwz"
+      name: kong-user-values
+      namespace: x7jwz
 ```
 
 ## Validation
