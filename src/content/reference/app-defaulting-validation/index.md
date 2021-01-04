@@ -11,7 +11,7 @@ owner:
 ## Overview
 
 For Giant Swarm releases using app-operator version 3.0.0 and upwards the
-defaulting and validation logic of [App CRs](/reference/cp-k8s-api/apps.application.giantswarm.io.md) is enabled. This logic is provided by
+defaulting and validation logic of [App CRs](/reference/cp-k8s-api/apps.application.giantswarm.io/) is enabled. This logic is provided by
 [app-admission-controller](https://github.com/giantswarm/app-admission-controller).
 You can check if your cluster has this version of app-operator by checking the
 release details in the web interface.
@@ -22,16 +22,16 @@ disrupting your current usage of the App Platform.
 ## Defaulting
 
 The defaulting logic is implemented using a [mutating admission webhook](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#mutatingadmissionwebhook). It currently
-defaults the following settings in the app CR if they are not specified.
+defaults the following settings in the App CR if they are not specified.
 
 - The `app-operator.giantswarm.io/version` label that determines which instance
-of app-operator processes the app CR. The value is set based on the release
+of app-operator processes the App CR. The value is set based on the release
 version of the cluster. e.g. `3.0.0`
 - The cluster values configmap that contains per cluster values like the base
 domain for your cluster. e.g. `x7jwz-cluster-values`
 - The kubeconfig secret that lets app-operator connect to your cluster. e.g. `x7jwz-kubeconfig`
 
-Here is an example app CR with only the settings you need to provide. The user
+Here is an example App CR with only the settings you need to provide. The user
 values configmap is optional, in case you wish to configure the app with your
 own values.
 
@@ -52,7 +52,7 @@ spec:
       namespace: x7jwz
 ```
 
-Here is the app CR with the defaults added by the mutating webhook.
+Here is the App CR with the defaults added by the mutating webhook.
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
@@ -86,8 +86,8 @@ spec:
 
 ## Validation
 
-The validation logic is implemented using a [validating admission webhook](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#validatingadmissionwebhook). It checks for
-common problems with app CRs.
+The validation logic is implemented using a [validating admission webhook](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#validatingadmissionwebhook).
+It checks for common problems with App CRs.
 
 Currently we validate:
 
