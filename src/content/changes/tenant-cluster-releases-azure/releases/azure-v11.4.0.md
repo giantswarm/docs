@@ -4,7 +4,7 @@ changes_categories:
 - Tenant Cluster Releases for Azure
 changes_entry:
   repository: giantswarm/releases
-  url: https://github.com/giantswarm/releases/tree/master/azure/v11.4.0
+  url: https://github.com/giantswarm/releases/tree/master/azure/archived/v11.4.0
   version: 11.4.0
   version_tag: v11.4.0
 date: '2020-06-30T15:00:00+00:00'

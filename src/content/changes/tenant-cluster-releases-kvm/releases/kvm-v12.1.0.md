@@ -4,7 +4,7 @@ changes_categories:
 - Tenant Cluster Releases for KVM
 changes_entry:
   repository: giantswarm/releases
-  url: https://github.com/giantswarm/releases/tree/master/kvm/v12.1.0
+  url: https://github.com/giantswarm/releases/tree/master/kvm/archived/v12.1.0
   version: 12.1.0
   version_tag: v12.1.0
 date: '2020-07-29T15:00:00+00:00'
