@@ -18,8 +18,8 @@ owner:
 A tenant cluster in a Giant Swarm installation is running a stack comprising many software components, provided by the Kubernetes project and other open source projects or software vendors, as well as by Giant Swarm.
 In order to keep all components up-to-date, to allow you to benefit from latest improvements, features and security fixes, we provide upgrades for the entire software stack in tenant clusters.
 
-At Giant Swarm we believe that frequent, small updates are a way to keep change in the system manageable.
-We invest a lot of effort in making this happen without disrupting your usage of your clusters.
+At Giant Swarm we believe that frequent, small updates are a way to keep change in the system manageable. That is why our goal is to help you to run all the clusters in the latest version.
+To make that possible, we invest a lot of effort in making this happen without disrupting your usage of your clusters.
 
 In this article, we explain how upgrades work in detail and how you should provide your workloads in order to keep them running during a tenant cluster upgrade and prevent disruptions of your applications.
 
@@ -60,15 +60,33 @@ According to our tenant cluster release versioning, three different levels of up
 
 - *Major upgrade*: The Major version number is increased.
 
-**Both patch and minor upgrades** can be rolled out at any time by Giant Swarm without your interaction. Currently, this happens in coordination with your administrators and with a notice to your developers.
+#### Patch upgrade {#patch-upgrade}
 
-When a tenant cluster release with a **new major version** becomes available, we inform you, but leave scheduling of the upgrade to you. This gives you the control to decide if and when it is time for you to upgrade, potentially updating workloads first. These upgrades are also accompanied or even triggered by Giant Swarm staff, to ensure we have a close eye on the upgrade process and the uptime of your workloads.
+Patches will contain fixes only, something that needs to be done to get rid of a bug and individual patches will be as minimal as possible. They are needed to increase the stability of your cluster or fix a CVE and are released based on upstream information and/or learnings through any of our customers.
+
+#### Minor upgrade {#minor-upgrade}
+
+In case we are releasing features in a non disruptive way, feature flagged, we will put those in minor releases. Those will actually have even less impact than a patch as they will not change anything that is in place if the customer no explicitly enable them. 
+
+#### Major upgrade {#major-upgrade}
+
+Every few months, likely in synchronization with Kubernetes Upstream Minor Releases, we provide a new major release. It includes the new Kubernetes Minor Release, other components by third parties, and any new versions of our software that contain deeper new functionality. It means that new developments, like node pools or networking changes, are delivered within a major version.
+
+As always we provide release notes with all information needed, and especially under this new structure we are working on releasing them for Major Releases early to allow for your preparation. 
+
+#### Considerations {#considerations}
 
 Once we publish a new major release, we deprecate the oldest major release.
 This means that new clusters with deprecated releases can only be created using `gsctl`.
 Existing clusters, however, are not affected.
 
 Creating clusters with deprecated releases is generally not recommended. Testing tenant cluster upgrades in a separate cluster should be the only use case.
+
+### Upgrade automation
+
+**Both patch and minor upgrades** can be rolled out at any time by Giant Swarm without your interaction. Currently, we agree beforehand with the customers with time windows will suit for those upgrades in the different environments they have. We are working towards creating automation that will manage all the upgrade logic for us letting customers plan maintenance periods and policies to ensure it aligns with the company policies.
+
+For **new major versions** we instead inform you, but leave scheduling of the upgrade to you. This gives you the control to decide if and when it is time for you to upgrade, potentially updating workloads first. These upgrades are also accompanied or even triggered by Giant Swarm staff, to ensure we have a close eye on the upgrade process and the uptime of your workloads.
 
 ### Skipping tenant cluster release
 
