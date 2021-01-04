@@ -1,5 +1,5 @@
 ---
-title: Defaulting and Validation of app CRs
+title: Defaulting and Validation of App CRs
 description: How defaulting and validation of app CRs is implemented by app-admission-controller
 weight: 110
 type: page
@@ -11,7 +11,7 @@ owner:
 ## Overview
 
 For Giant Swarm releases using app-operator version 3.0.0 and upwards the
-defaulting and validation logic of [app CRs]({{< relref "/src/content/reference/cp-k8s-api/apps.application.giantswarm.io.md" >}} is enabled. This logic is provided by
+defaulting and validation logic of [App CRs](/content/reference/cp-k8s-api/apps.application.giantswarm.io.md) is enabled. This logic is provided by
 [app-admission-controller](https://github.com/giantswarm/app-admission-controller).
 
 We have not enabled the defaulting and validation for existing app CRs to avoid
@@ -19,7 +19,7 @@ disrupting your current usage of App Platform.
 
 ## Defaulting
 
-The defaulting logic is implemented using a mutating webhook. It currently
+The defaulting logic is implemented using a [mutating admission webhook](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#mutatingadmissionwebhook). It currently
 defaults the following settings in the app CR if they are not specified.
 
 - The `app-operator.giantswarm.io/version` label that determines which instance
@@ -84,19 +84,19 @@ spec:
 
 ## Validation
 
-The validation logic is implemented using a validating webhook. It checks for
+The validation logic is implemented using a [validating admission webhook](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#validatingadmissionwebhook). It checks for
 common problems with app CRs.
 
 Currently we validate:
 
 - The `app-operator.giantswarm.io/version` label is present.
 - All referenced configmaps and secrets exist.
-- The catalog has a matching appcatalog CR.
+- The catalog has a matching AppCatalog CR.
 
 ## Retry Logic
 
 During cluster creation there can a short delay while the kubeconfig
 secret and cluster values configmap are generated.
 
-So if you have an automated process for creating app CRs please ensure
-it retries and the app CRs will be created once these resources exist.
+So if you have an automated process for creating App CRs please ensure
+it retries and the App CRs will be created once these resources exist.
