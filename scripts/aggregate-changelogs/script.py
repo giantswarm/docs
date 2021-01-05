@@ -221,16 +221,18 @@ def generate_release_file(repo_shortname, repo_config, release):
     version = normalize_version(release['version_tag'])
 
     org, repo_id = repo_shortname.split("/", maxsplit=1)
+    aliases = None
     
     if repo_shortname == RELEASES_REPO:
         provider_label = release['provider'].upper()
         if provider_label == 'AZURE':
             provider_label = 'Azure'
-        categories = [f'Tenant Cluster Releases for {provider_label}']
-        title = f'Tenant Cluster Release v{version} for {provider_label}'
+        categories = [f'Workload Cluster Releases for {provider_label}']
+        title = f'Workload Cluster Release v{version} for {provider_label}'
         description = f'Release notes for {provider_label} release v{version}, published on {release["date"].strftime("%d %B %Y, %H:%M")}'
         filename = f"{release['provider']}-{release['version_tag']}.md"
-        category_path = f"tenant-cluster-releases-{provider_label.lower()}"
+        category_path = f"workload-cluster-releases-{provider_label.lower()}"
+        aliases = [f"/changes/tenant-cluster-releases-{provider_label.lower()}/releases/{provider_label.lower()}-{release['version_tag']}/"]
     else:
         categories = [repo_config['category']]
         title = f'{repo_id} Release v{version}'
@@ -239,8 +241,6 @@ def generate_release_file(repo_shortname, repo_config, release):
         category_path = repo_config['category'].lower().replace(" ", "-")
     
     filepath = path.join(CONTENT_PATH, category_path, repo_id, filename)
-
-
 
     frontmatter = {
         'date': release['date'].isoformat(),
@@ -254,6 +254,9 @@ def generate_release_file(repo_shortname, repo_config, release):
         },
         'changes_categories': categories,
     }
+
+    if aliases is not None:
+        frontmatter['aliases'] = aliases
 
     content = "---\n"
     content += WARNING_COMMENT
