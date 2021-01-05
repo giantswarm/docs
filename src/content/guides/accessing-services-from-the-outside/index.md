@@ -62,7 +62,7 @@ To make the rest of the tutorial match your situation, please set your Ingress B
 
 Your Giant Swarm cluster typically comes with an Ingress Controller based on [NGINX](https://nginx.org/), which we run for you in your clusters.
 
-**Note:** If you are running on an AWS installation using tenant cluster release > 10.0.0, you will need to first install an Ingress Controller on your cluster.
+**Note:** If you are running on an AWS installation using workload cluster release > 10.0.0, you will need to first install an Ingress Controller on your cluster.
 
 You can expose Services publicly by setting up a simple Ingress. You can do this with an ingress manifest.
 

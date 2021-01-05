@@ -1,28 +1,30 @@
 ---
-title: Labelling tenant clusters
-description: Introduction to labelling tenant clusters
+title: Labelling workload clusters
+description: Introduction to labelling workload clusters
 type: page
 weight: 130
 tags: ["recipe"]
+aliases:
+  - /guides/tenant-cluster-labelling/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---
 
-# Labelling tenant clusters
+# Labelling workload clusters
 
-It is possible to assign *key value labels* to Giant Swarm tenant clusters with tenant cluster release v{{% first_aws_nodepools_version %}} and above on AWS.
+It is possible to assign *key value labels* to Giant Swarm workload clusters with workload cluster release v{{% first_aws_nodepools_version %}} and above on AWS.
 
-Labels are a mechanism to assign short pieces of additional information to your Giant Swarm tenant clusters.
-Under the hood, tenant cluster labels are Kubernetes labels attached to [`Cluster`](/reference/cp-k8s-api/clusters.cluster.x-k8s.io/) (`clusters.cluster.x-k8s.io`) resources.
-Therefore, all means of listing tenant cluster labels will return all Kubernetes labels attached to [`Cluster`](/reference/cp-k8s-api/clusters.cluster.x-k8s.io/) resources requested.
+Labels are a mechanism to assign short pieces of additional information to your Giant Swarm workload clusters.
+Under the hood, workload cluster labels are Kubernetes labels attached to [`Cluster`](/reference/cp-k8s-api/clusters.cluster.x-k8s.io/) (`clusters.cluster.x-k8s.io`) resources.
+Therefore, all means of listing workload cluster labels will return all Kubernetes labels attached to [`Cluster`](/reference/cp-k8s-api/clusters.cluster.x-k8s.io/) resources requested.
 Label keys and values are freely modifiable except labels with keys containing `giantswarm.io`.
 
-Working with tenant cluster labels works likewise as working with Kubernetes labels.
+Working with workload cluster labels works likewise as working with Kubernetes labels.
 More information about Kubernetes Labels can be found in the [Kubernetes Labels and Selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/) and our [cluster labels API documentation](/api/#tag/cluster-labels).
 
-Note: You can also [manage cluster labels directly through `happa`](/reference/web-interface/tenant-cluster-labelling/), our web user interface.
+Note: You can also [manage cluster labels directly through `happa`](/reference/web-interface/workload-cluster-labelling/), our web user interface.
 
-## Working with tenant cluster labels using `gsctl`
+## Working with workload cluster labels using `gsctl`
 
 With `gsctl`, our [CLI](https://github.com/giantswarm/gsctl), cluster labels can be modified by executing [`gsctl update cluster`](/reference/gsctl/update-cluster/) by setting label changes using one or multiple `--label` flag.
 
@@ -41,30 +43,30 @@ It takes a [Kubernetes Label selector](https://kubernetes.io/docs/concepts/overv
 
 The output of [`gsctl show cluster`](/reference/gsctl/show-cluster/) will contain all labels currently attached to the selected cluster.
 
-## Working with tenant cluster labels using the Giant Swarm API
+## Working with workload cluster labels using the Giant Swarm API
 
-Tenant cluster labels of clusters with tenant cluster release v{{% first_aws_nodepools_version %}} and above for AWS are returned by executing a [getClusters](/api/#operation/getClusters) request.
-The field `labels` of suitable tenant clusters contains the labels currently attached to the cluster.
-Labels of a single tenant cluster can be retrieved using the [getClusterLabels](/api/#operation/getClusterLabels) endpoint.
+Workload cluster labels of clusters with workload cluster release v{{% first_aws_nodepools_version %}} and above for AWS are returned by executing a [getClusters](/api/#operation/getClusters) request.
+The field `labels` of suitable workload clusters contains the labels currently attached to the cluster.
+Labels of a single workload cluster can be retrieved using the [getClusterLabels](/api/#operation/getClusterLabels) endpoint.
 
-Selecting tenant clusters based on a set of labels can be achieved through the [getV5ClustersByLabel](/api/#operation/getV5ClustersByLabel) operation.
+Selecting workload clusters based on a set of labels can be achieved through the [getV5ClustersByLabel](/api/#operation/getV5ClustersByLabel) operation.
 The operation accepts label selectors in the same way that `kubectl get -l` does ([Kubernetes Label selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors)) for listing clusters based on their labels.
 
-The labels of a tenant cluster can be modified by issuing a [setClusterLabels](/api/#operation/setClusterLabels) request to the API.
+The labels of a workload cluster can be modified by issuing a [setClusterLabels](/api/#operation/setClusterLabels) request to the API.
 Keys and labels should adhere to [Kubernetes labels syntax and character set](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#syntax-and-character-set).
 Label changes should be written as a [JSON Merge Patch, RFC 7386](https://tools.ietf.org/html/rfc7386).
-Changes to labels with keys containing `giantswarm.io` is forbidden, changes to label `release.giantswarm.io/version` will be validated against available tenant cluster releases.
+Changes to labels with keys containing `giantswarm.io` is forbidden, changes to label `release.giantswarm.io/version` will be validated against available workload cluster releases.
 
-Differing from `gsctl`, listing tenant cluster labels with the API will show management labels required for operation.
+Differing from `gsctl`, listing workload cluster labels with the API will show management labels required for operation.
 These usually contain `giantswarm.io` in its label keys and cannot be changed.
 
 ### Example
 
-Let's play through a simple workflow of assigning labels to a newly created tenant cluster and selecting it based on the given label.
+Let's play through a simple workflow of assigning labels to a newly created workload cluster and selecting it based on the given label.
 
 For brevity authentication and unrelated parts of requests and responses are left out.
 
-After creation, a tenant cluster will already have some labels containing information about the tenant cluster release and operator version.
+After creation, a workload cluster will already have some labels containing information about the workload cluster release and operator version.
 
 ```json
 GET /v5/clusters/7g4di
@@ -127,14 +129,14 @@ will return all clusters managed by the upstate office team regardless of other 
 
 The full documentation about label selectors can be found on the [Kubernetes Labels and Selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/) page.
 
-## Working with tenant cluster labels using `kubectl`
+## Working with workload cluster labels using `kubectl`
 
-With access to the control plane, you are able to use `kubectl` to manage tenant cluster labels.
+With access to the control plane, you are able to use `kubectl` to manage workload cluster labels.
 The underlying resource to operate on is [`clusters.cluster.x-k8s.io`](/reference/cp-k8s-api/clusters.cluster.x-k8s.io/) from the upstream [cluster-api](https://cluster-api.sigs.k8s.io/) project.
 
 Detailed documentation and examples of `kubectl label` and other commands used here can be found in the [Kubectl Reference Docs](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands).
 
-### Modify tenant cluster labels
+### Modify workload cluster labels
 
 All means of modifying cluster resources can be used to modify labels of a `clusters.cluster.x-k8s.io` resource.
 
@@ -144,24 +146,24 @@ Interactively, cluster labels can be modified using `kubectl edit`. Just edit th
 kubectl edit clusters.cluster.x-k8s.io/7g4di
 ```
 
-It is also possible to modify tenant cluster labels with `kubectl patch`.
+It is also possible to modify workload cluster labels with `kubectl patch`.
 More information about `kubectl patch` is available on the [Update API Objects in Place Using kubectl patch](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/) page.
 
 ```nohighlight
 kubectl patch clusters.cluster.x-k8s.io/7g4di --type merge -p '{"metadata":{"labels":{"my-org/team":"upstate"}}}'
 ```
 
-Additionally, [`kubectl label`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#label) can be used to modify tenant cluster labels.
+Additionally, [`kubectl label`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#label) can be used to modify workload cluster labels.
 
 ```nohighlight
 kubectl label clusters.cluster.x-k8s.io/7g4di my-org/team=upstate
 ```
 
-### Show tenant cluster labels
+### Show workload cluster labels
 
-Differing from `gsctl`, listing tenant cluster labels with `kubectl` will show management labels required for operation. These usually contain `giantswarm.io` in its label keys and cannot be changed.
+Differing from `gsctl`, listing workload cluster labels with `kubectl` will show management labels required for operation. These usually contain `giantswarm.io` in its label keys and cannot be changed.
 
-Labels of all tenant clusters:
+Labels of all workload clusters:
 
 ```nohighlight
 $ kubectl labels --list --all clusters.cluster.x-k8s.io
@@ -181,7 +183,7 @@ Listing labels for Cluster.cluster.x-k8s.io/zv86a:
  my-org/environment=production
 ```
 
-Labels of a single tenant cluster:
+Labels of a single workload cluster:
 
 ```nohighlight
 $ kubectl labels --list clusters.cluster.x-k8s.io/7g4di
@@ -193,7 +195,7 @@ my-org/team=upstate
 my-org/environment=testing
 ```
 
-### Select tenant clusters by label selector
+### Select workload clusters by label selector
 
 Many `kubectl` commands support the `-l, --selector` flag, which allows to limit the selected resources based on given [Kubernetes Label selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors).
 

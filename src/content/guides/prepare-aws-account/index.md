@@ -6,8 +6,10 @@ weight: 100
 tags: ["tutorial"]
 user_questions:
   - Where can I find the AWS account ID to use for running a installation?
-  - Where I can find the AWS account ID to run tenant clusters?
+  - Where I can find the AWS account ID to run workload clusters?
   - What are the recommended service limit/quotas for AWS accounts used with Giant Swarm?
+aliases:
+  - /guides/prepare-aws-account-for-tenant-clusters/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
@@ -15,11 +17,11 @@ owner:
 # Prepare an AWS account to run Giant Swarm clusters
 
 As detailed in the [Architecture](/basics/aws-architecture/) docs,
-the tenant clusters (the clusters running your Kubernetes workloads) in a Giant
+the workload clusters (the clusters running your Kubernetes workloads) in a Giant
 Swarm installation can run in an AWS account separate from the control plane.
 This gives great flexibility depending on requirements and usage
 scenarios. For example, it allows the control plane to be running in an AWS account
-dedicated to it, whilst tenant clusters operate in separate AWS accounts, depending
+dedicated to it, whilst workload clusters operate in separate AWS accounts, depending
 on the customer organization using them.
 
 ## Overview
@@ -29,20 +31,20 @@ these requirements:
 
 - Some AWS account (usually control plane account):
     - IAM _user_ to be used by our `aws-operator` software.
-- All control plane and tenant cluster AWS accounts:
+- All control plane and workload cluster AWS accounts:
     - Service limits set according to requirements.
     - IAM _role_ to be assumed by our `aws-operator` software.
     - IAM _role_ to be assumed by Giant Swarm staff.
 
-Each Giant Swarm tenant cluster belongs to an organization within Giant Swarm.
+Each Giant Swarm workload cluster belongs to an organization within Giant Swarm.
 This organization will later be configured with information about the two
-tenant cluster IAM roles mentioned above.
+workload cluster IAM roles mentioned above.
 
 We have created a Terraform module to automate the IAM role creation. You can view the code [here](https://github.com/giantswarm/giantswarm-aws-account-prerequisites). You can also use the steps as described in this guide.
 
 ## IAM user for aws-operator {#iam-aws-operator-user}
 
-Giant Swarm's service creating and maintaining your tenant clusters is
+Giant Swarm's service creating and maintaining your workload clusters is
 called [aws-operator](https://github.com/giantswarm/aws-operator). It runs in
 the control plane. In order to handle resources in your AWS Tenant
 Cluster account, it needs a prepared IAM user allowed to assume IAM roles
@@ -78,7 +80,7 @@ us later.
 A number of limits apply to an AWS account initially, which are described in the
 [AWS Service Limits documentation](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html).
 The following overview lists the limits that have to be adjusted in order to use
-the account to operate Giant Swarm tenant clusters.
+the account to operate Giant Swarm workload clusters.
 
 Adjusting a service limit requires a support case in the
 [AWS Support Center](https://console.aws.amazon.com/support/home),
@@ -96,7 +98,7 @@ These are the limit increases to be requested, grouped by limit type:
 - Control Plane account:
     - VPC
         - Routes per route table: **200**
-- Tenant Cluster account:
+- Workload cluster account:
     - VPC
         - VPCs per region: **50**
         - NAT Gateway per Availability Zone per region: **50**
@@ -138,7 +140,7 @@ dynamically based on traffic, hence the high numbers of EC2 instances requested.
 
 ## IAM setup in AWS accounts {#iam}
 
-The following steps must all take in the control plane and tenant cluster AWS
+The following steps must all take in the control plane and workload cluster AWS
 accounts.
 
 ### Create an IAM role for aws-operator {#iam-aws-operator-role}
@@ -206,7 +208,7 @@ access both AWS accounts. This role must have Giant Swarm's account as a trusted
 entity, and we recommend that it enforces multi-factor authentication.
 
 Giant Swarm staff require access to **all** accounts, so **the following steps must
-be duplicated in both the control plane and tenant cluster accounts**.
+be duplicated in both the control plane and workload cluster accounts**.
 
 #### 1. Basic role setup {#iam-staff-role-basic}
 
@@ -246,13 +248,13 @@ GiantSwarmAdmin
 ## Configure the Giant Swarm organization {#configure-org}
 
 In the previous sections, we explained how to create two IAM roles in the
-AWS account that's going to run the Giant Swarm tenant clusters.
+AWS account that's going to run the Giant Swarm workload clusters.
 
-Giant Swarm tenant clusters are owned by _organizations_, which allows you to control
+Giant Swarm workload clusters are owned by _organizations_, which allows you to control
 access to clusters. Only members of the owner organization have access to
 the management functions of a cluster.
 
-In order to run a tenant cluster in your AWS account, the organization owning
+In order to run a workload cluster in your AWS account, the organization owning
 your cluster has to know about the roles you just created.
 
 If you have direct access to the Giant Swarm API, please set the credentials of

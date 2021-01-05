@@ -8,7 +8,7 @@ user_questions:
   - What is a node pool?
   - What are node pools?
   - In which cloud environments are node pools supported?
-  - Which tenant cluster releases introduced node pools?
+  - Which workload cluster releases introduced node pools?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
@@ -137,13 +137,13 @@ See the [`gsctl delete nodepool`](/reference/gsctl/delete-nodepool/) reference f
 
 ## On-demand and spot instances {#on-demand-spot}
 
-As of tenant cluster release v{{% first_aws_spotinstances_version %}} for AWS, node pools can contain a mix of [on-demand](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-on-demand-instances.html) and [spot instances](https://aws.amazon.com/ec2/spot/) that will allow you to optimize your cost.
+As of workload cluster release v{{% first_aws_spotinstances_version %}} for AWS, node pools can contain a mix of [on-demand](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-on-demand-instances.html) and [spot instances](https://aws.amazon.com/ec2/spot/) that will allow you to optimize your cost.
 
 [Here](/basics/spot-instances/) you can find more detailed information on using Spot Instances in AWS clusters.
 
 ## Using similar instance types {#similar-instance-types}
 
-Starting with tenant cluster release v{{% first_aws_spotinstances_version %}} for AWS you can activate the use of similar instance types per node pool. With this setting active, your node pool can use instance types that are nearly identical to the one you selected. For example, if you select `m5.xlarge`, the node pool can also use `m4.xlarge`.
+Starting with workload cluster release v{{% first_aws_spotinstances_version %}} for AWS you can activate the use of similar instance types per node pool. With this setting active, your node pool can use instance types that are nearly identical to the one you selected. For example, if you select `m5.xlarge`, the node pool can also use `m4.xlarge`.
 
 Using multiple instance types in a node pool has some benefits:
 
@@ -217,7 +217,7 @@ that availability zone.
 
 - Every node pool is mapped with a `Virtual Machine Scale Set`. That means that there is an upper bound of 100 nodes for each node pool.
 
-- The maximum number of node pools for each tenant cluster is 200.
+- The maximum number of node pools for each workload cluster is 200.
 
 ## Further reading
 

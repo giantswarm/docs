@@ -1,6 +1,6 @@
 ---
 title: "'gsctl show release' command reference"
-description: The 'gsctl show release' command displays details of a tenant cluster release.
+description: The 'gsctl show release' command displays details of a workload cluster release.
 type: page
 weight: 52
 owner:
@@ -9,7 +9,7 @@ owner:
 
 # `gsctl show release`
 
-The `gsctl show release` command displays details of a tenant cluster release.
+The `gsctl show release` command displays details of a workload cluster release.
 
 ## Usage
 
@@ -19,7 +19,7 @@ gsctl show release 11.5.1
 
 ## Output details
 
-Example output for tenant cluster release v11.5.1 for AWS:
+Example output for workload cluster release v11.5.1 for AWS:
 
 ```nohighlight
 ---
@@ -53,11 +53,11 @@ Changelog:
 
 The output lines in detail:
 
-- **Version:** version of this tenant cluster release.
-- **Created:** date and time of tenant cluster release creation.
-- **Active:** wether this release is active or deprecated. Creating clusters with deprecated tenant cluster releases is not recommended.
+- **Version:** version of this workload cluster release.
+- **Created:** date and time of workload cluster release creation.
+- **Active:** wether this release is active or deprecated. Creating clusters with deprecated workload cluster releases is not recommended.
 - **Components:** included component versions in this release.
-- **Changelog:** link to release notes for this tenant cluster release.
+- **Changelog:** link to release notes for this workload cluster release.
 
 ## Related
 
