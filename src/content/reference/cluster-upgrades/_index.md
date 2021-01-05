@@ -78,7 +78,13 @@ Example: Going from v11.x.x directly to v13.x.x is not supported. An upgrade to 
 
 On the Minor and Patch level, you can skip any number of tenant cluster releases if desired.
 
-Note that our user interfaces only allow upgrading to the next active rtenant cluster release. In order to skip a release version, you'll have to use the [Rest API](https://docs.giantswarm.io/api/#operation/modifyClusterV5) or the [Control Plane Kubernetes API](/basics/api/#cp-k8s-api) to trigger the upgrade. Please talk to your solution engineer in case you have any questions regarding this.
+Note that by default, our user interfaces upgrade to the next active tenant cluster release. In order to skip a release version, you have several options, depending on the tool you use:
+
+- In the **web interface**, open the details page for a cluster. Click the release version of the cluster. If upgrades are available for this release, they will be listed in the dialog. Simply click the desired target version in order to enter the upgrade process. You will have an additional step for reviewing the changes before actually triggering the cluster upgrade.
+
+- In **gsctl**, the [`upgrade cluster`](/reference/gsctl/upgrade-cluster/) command provides an optional flag `--release` which allows to specify the version to upgrade to.
+
+- Alternatively, you can use the [Rest API](/api/#operation/modifyClusterV5) or the [Control Plane Kubernetes API](/basics/api/#cp-k8s-api) to trigger the upgrade. Please talk to your solution engineer in case you have any questions regarding this.
 
 ## How upgrades work
 
