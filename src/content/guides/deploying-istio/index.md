@@ -167,7 +167,7 @@ helm install \
 
 ### On premises (KVM)
 
-The main difference from the clouds is the ingress gateway service must be type `NodePort`. Since there is no automatic mechanism to provide an endpoint, the service is exposed in the host of the underlying VM. Below, we will explain how to redirect the traffic from the control plane to a second workload cluster ingress controller.
+The main difference from the clouds is the ingress gateway service must be type `NodePort`. Since there is no automatic mechanism to provide an endpoint, the service is exposed in the host of the underlying VM. Below, we will explain how to redirect the traffic from the management cluster to a second workload cluster ingress controller.
 
 ```nohighlight
 $ helm install install/kubernetes/helm/istio --name istio --namespace istio-system \
@@ -284,7 +284,7 @@ curl http://<IP>/healthz -I
 
 ### On Premises (KVM) Verification
 
-As you may already know, in our [`on premises installations`](/basics/onprem-architecture/) the tenant pods live inside the control plane pods. This means Giant Swarm creates a forward between the external ingress service to the ingress placed inside the workload cluster. By default, the workload cluster has an NGINX ingress controller allocated out-of-the-box. But, in case you want to use Istio ingress controller you need to ask our team to allocate a new redirection from the parent endpoint to the Istio controller. With the latter, you will have the two ingress controllers exposed to Internet.
+As you may already know, in our [`on premises installations`](/basics/onprem-architecture/) the tenant pods live inside the management cluster pods. This means Giant Swarm creates a forward between the external ingress service to the ingress placed inside the workload cluster. By default, the workload cluster has an NGINX ingress controller allocated out-of-the-box. But, in case you want to use Istio ingress controller you need to ask our team to allocate a new redirection from the parent endpoint to the Istio controller. With the latter, you will have the two ingress controllers exposed to Internet.
 
 After obtaining the ports, modify the ingress gateway to set the correct configuration.
 

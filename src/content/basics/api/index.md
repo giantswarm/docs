@@ -39,9 +39,9 @@ As of now, there is no termination date for the Rest API. As it might provide th
 
 ### What it is
 
-At Giant Swarm, when we say "control plane", we talk about the Kubernetes Cluster that runs all the operational and monitoring workloads which are needed to create and manage the _workload clusters_ (formerly called _tenant clusters_). These are the clusters you create to run your actual workloads. This is not to be confused with how the Kubernetes project uses the same term. In that case, it simply refers to the master nodes of a Kubernetes cluster.
+In a Giant Swarm installation, the management cluster is a Kubernetes cluster that runs all the operational and monitoring workloads which are needed to create and manage the _workload clusters_ (formerly called _tenant clusters_). These are the clusters you create to run your actual workloads.
 
-The control plane is a Kubernetes cluster. Your workload clusters and other associated resources are represented in that cluster as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/). To access these, you can use the Kubernetes API of the cluster that forms the control plane, or in short, the Control Plane Kubernetes API.
+Your workload clusters and other associated resources are represented in the management cluster as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/). To access these, you can use the Kubernetes API of the management cluster, or in short, the Control Plane Kubernetes API.
 
 ### How to gain access
 
