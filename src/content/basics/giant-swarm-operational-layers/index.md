@@ -20,7 +20,7 @@ user_questions:
   - What are the security safegaurds around access to the Giant Swarm infrastructure layer?
   - What are the security safegaurds around access to the Giant Swarm control plane?
   - How is access to the control plane authorized?
-  - How do users access tenant clusters?
+  - How do users access workload clusters?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-horizon
 ---
@@ -67,7 +67,7 @@ With a valid *jwt* token, received from your chosen identity provider, customers
 
 - *view*
     - *get*/*list*/*watch* access to all resources in the Control Plane, except for `configmaps` and `secrets`.
-    - *get*/*list*/*watch* access to all resources (including `configmaps` and `secrets`) in tenant cluster namespaces.
+    - *get*/*list*/*watch* access to all resources (including `configmaps` and `secrets`) in workload cluster namespaces.
 - *admin*
     - full access, to the `cluster`, `node pool`, `appcatalogs` and `apps` resources of Control Plane Kubernetes.
     - includes *view* level access.
@@ -92,7 +92,7 @@ Such users have access to all clusters in the organizations they belong to. They
 
 ### User space {#userspace}
 
-The user space layer is defined as the layer pertaining to a single Tenant Cluster Kubernetes API. Tenant Clusters are the Kubernetes clusters that run your workloads.
+The user space layer is defined as the layer pertaining to a single workload cluster Kubernetes API. Workload clusters are the Kubernetes clusters that run your workloads.
 
 Users on this level are either created by a Giant Swarm API user (in form of key pairs) or managed in an external identity provider (IdP), like [Azure Active Directory](/guides/authenticating-with-microsoft-azure-active-directory/) or any other OIDC-compliant IdP.
 

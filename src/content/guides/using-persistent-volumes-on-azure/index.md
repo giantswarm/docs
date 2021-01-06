@@ -82,7 +82,7 @@ Now we have an NGINX Pod which serves the contents of our Azure Managed Disk Vol
 
 ## Expanding Persistent Volume Claims
 
-Starting with volumes created on clusters using tenant cluster release v{{% first_azure_nodepools_version %}} for Azure, Persistent Volume Claims can be expanded by simply editing the claim and requesting a larger size.
+Starting with volumes created on clusters using workload cluster release v{{% first_azure_nodepools_version %}} for Azure, Persistent Volume Claims can be expanded by simply editing the claim and requesting a larger size.
 It will trigger an update in the underlying Persistent Volume and Azure Volume (Kubernetes always uses the existing one).
 
 Please note that for `Managed Disk`-based volumes, it is mandatory to release the PVC (i.e. stop the Pod that is mounting it) before the resize operation begins.

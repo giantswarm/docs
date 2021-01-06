@@ -11,7 +11,7 @@ owner:
 
 `kubectl gs`, also known as `kgs`, is a [kubectl](https://kubernetes.io/docs/reference/kubectl/kubectl/) plugin for the Giant Swarm [Control Plane Kubernetes API](/basics/api/#cp-k8s-api).
 
-**Note that Control Plane Kubernetes API access is currently in a preview stage.** Supported functionality depends on the provider and the tenant cluster release used. Please pay attention to the compatibility information given on the individual command reference pages.
+**Note that Control Plane Kubernetes API access is currently in a preview stage.** Supported functionality depends on the provider and the workload cluster release used. Please pay attention to the compatibility information given on the individual command reference pages.
 
 ## Commands {#commands}
 

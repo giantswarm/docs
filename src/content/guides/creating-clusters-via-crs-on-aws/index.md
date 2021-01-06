@@ -1,6 +1,6 @@
 ---
-title: Creating tenant clusters on AWS via Control Plane Kubernetes API
-description: This guide will walk you through the process of tenant cluster creation via Control Plane Kubernetes on AWS.
+title: Creating workload clusters on AWS via Control Plane Kubernetes API
+description: This guide will walk you through the process of workload cluster creation via Control Plane Kubernetes on AWS.
 type: page
 weight: 100
 tags: ["tutorial"]
@@ -8,14 +8,14 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
 
-# Creating tenant clusters on AWS via the Control Plane Kubernetes API
+# Creating workload clusters on AWS via the Control Plane Kubernetes API
 
 ## How cluster creation works
 
 Starting from version {{% first_aws_nodepools_version %}} on AWS, Giant Swarm introduced a feature to create multiple [node pools](/basics/nodepools/) on AWS.
 Alongside node pools support, a new API version for cluster management was released.
 
-All the tenant clusters, created with tenant cluster release v{{% first_aws_nodepools_version %}} and newer, are managed as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) in the Control Plane.
+All the workload clusters, created with workload cluster release v{{% first_aws_nodepools_version %}} and newer, are managed as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) in the Control Plane.
 
 At a high-level, the Control Plane Kubernetes API is used to manage the following custom resources (CRs):
 
@@ -25,7 +25,7 @@ At a high-level, the Control Plane Kubernetes API is used to manage the followin
 
 The CRs above then reference provider specific implementations. In our case, for clusters on AWS, they are:
 
-- [AWSCluster](/reference/cp-k8s-api/awsclusters.infrastructure.giantswarm.io/) - represents a tenant cluster.
+- [AWSCluster](/reference/cp-k8s-api/awsclusters.infrastructure.giantswarm.io/) - represents a workload cluster.
 - [AWSControlPlane](/reference/cp-k8s-api/awscontrolplanes.infrastructure.giantswarm.io/) - configures the AWS-specific details of the worker node(s).
 - [AWSMachineDeployment](/reference/cp-k8s-api/awsmachinedeployments.infrastructure.giantswarm.io/) - configures the AWS-specific details of worker nodes in a node pool.
 
@@ -200,12 +200,12 @@ spec:
 
 All the CRs, mentioned above, have strict spec and important requirements to be considered valid.
 There is very limited CR validation available in the Control Plane for now.
-Therefore, if you create a CR with wrong field values, that can result in a broken tenant cluster.
+Therefore, if you create a CR with wrong field values, that can result in a broken workload cluster.
 That's why we offer a [kubectl plugin](/reference/kubectl-gs/), which helps to template valid CRs.
 
 The utility supports rendering CRs:
 
-- Tenant cluster:
+- Workload cluster:
     - `Cluster` (API version `cluster.x-k8s.io/v1alpha2`)
     - `AWSCluster` (API version `infrastructure.giantswarm.io/v1alpha2`)
     - `G8sControlPlane` (API version `infrastructure.giantswarm.io/v1alpha2`)
@@ -219,7 +219,7 @@ The utility supports rendering CRs:
 The installation procedure is described in the [`kubectl gs` reference](/reference/kubectl-gs/#install).
 There are also specific reference pages for [cluster templating](/reference/kubectl-gs/template-cluster/) and [node pool templating](/reference/kubectl-gs/template-nodepool/).
 
-As a result of rendering the CRs ([sample](/reference/kubectl-gs/template-cluster/#example)), a user will get YAML manifests containing valid CRs that can create a tenant cluster and its node pools.
+As a result of rendering the CRs ([sample](/reference/kubectl-gs/template-cluster/#example)), a user will get YAML manifests containing valid CRs that can create a workload cluster and its node pools.
 The resources can then be created by applying the manifest files to the Control Plane, e.g. `kubectl create -f <cluster manifest file>.yaml`.
 Of course, that requires the user to be authorized towards Kubernetes Control Plane API.
 
