@@ -16,7 +16,7 @@ The Giant Swarm architecture distinguishes between the management cluster and wo
 
 Both on AWS and Azure, workload cluster resources usually exist in an account (or in Azure terms: a subscription) separate from the one hosting the management cluster resources. We configure a default account to use for all workload clusters in an installation. Both accounts, the one for the management cluster and the default one for workload clusters, are under the customer's jurisdiction.
 
-**Note:** Some customers use the same account/subscription for both management cluster and workload cluster. This choice does not affect the capabilities described below.
+**Note:** Some customers use the same account/subscription for both management cluster and workload clusters. This choice does not affect the capabilities described below.
 
 With multi-account support you can have more fine-grained control over the accounts used by workload clusters. Each Giant Swarm organization in an installation can have an individual configuration of which cloud provider account to use.
 
