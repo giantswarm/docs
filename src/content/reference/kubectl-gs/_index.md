@@ -15,15 +15,15 @@ owner:
 
 ## Commands {#commands}
 
-| Command                    | Description                                               | Provider info
-|----------------------------|-----------------------------------------------------------|----------------------
-| [`login`][1]               | [Ensure an authenticated session with a control plane][1] | all providers
-| [`get clusters`][2]        | [List clusters or get details on a single cluster][2]     | only AWS, Azure
-| [`template app`][3]        | [Create manifests for an App][3]                          | all providers
-| [`template appcatalog`][4] | [Create manifests for an AppCatalog][4]                   | all providers
-| [`template cluster`][5]    | [Create manifests for a cluster][5]                       | only AWS, Azure
-| [`template nodepool`][6]   | [Create manifests for a node pool][6]                     | only AWS, Azure
-| `help`                     | Get help for a command                                    | provider independent
+| Command                    | Description                                                    | Provider info
+|----------------------------|----------------------------------------------------------------|----------------------
+| [`login`][1]               | [Ensure an authenticated session with a management cluster][1] | all providers
+| [`get clusters`][2]        | [List clusters or get details on a single cluster][2]          | only AWS, Azure
+| [`template app`][3]        | [Create manifests for an App][3]                               | all providers
+| [`template appcatalog`][4] | [Create manifests for an AppCatalog][4]                        | all providers
+| [`template cluster`][5]    | [Create manifests for a cluster][5]                            | only AWS, Azure
+| [`template nodepool`][6]   | [Create manifests for a node pool][6]                          | only AWS, Azure
+| `help`                     | Get help for a command                                         | provider independent
 
 ## Installing and updating {#install}
 

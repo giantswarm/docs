@@ -131,7 +131,7 @@ The full documentation about label selectors can be found on the [Kubernetes Lab
 
 ## Working with workload cluster labels using `kubectl`
 
-With access to the control plane, you are able to use `kubectl` to manage workload cluster labels.
+With access to the management cluster, you are able to use `kubectl` to manage workload cluster labels.
 The underlying resource to operate on is [`clusters.cluster.x-k8s.io`](/reference/cp-k8s-api/clusters.cluster.x-k8s.io/) from the upstream [cluster-api](https://cluster-api.sigs.k8s.io/) project.
 
 Detailed documentation and examples of `kubectl label` and other commands used here can be found in the [Kubectl Reference Docs](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands).

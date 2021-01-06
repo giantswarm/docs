@@ -3,7 +3,7 @@
 # of our CRD docs.
 #
 # Schema:
-# .topics: array of strings. Possible values: "apps", "controlplane", "workloadcluster"
+# .topics: array of strings. Possible values: "apps", "managementcluster", "workloadcluster"
 # .provider: array of strings.
 appcatalogs.application.giantswarm.io:
   topics:
@@ -69,7 +69,7 @@ azuretools.tooling.giantswarm.io:
     - azure
 certconfigs.core.giantswarm.io:
   topics:
-    - controlplane
+    - managementcluster
     - workloadcluster
 charts.application.giantswarm.io:
   topics:
@@ -85,7 +85,7 @@ drainerconfigs.core.giantswarm.io:
     - workloadcluster
 etcdbackups.backup.giantswarm.io:
   topics:
-    - controlplane
+    - managementcluster
     - workloadcluster
 flannelconfigs.core.giantswarm.io:
   provider:
@@ -99,7 +99,7 @@ g8scontrolplanes.infrastructure.giantswarm.io:
     - workloadcluster
 ignitions.core.giantswarm.io:
   topics:
-    - controlplane
+    - managementcluster
     - workloadcluster
 kvmclusterconfigs.core.giantswarm.io:
   provider:
@@ -128,14 +128,14 @@ networkpools.infrastructure.giantswarm.io:
     - workloadcluster
 organizations.security.giantswarm.io:
   topics:
-    - controlplane
+    - managementcluster
 releases.release.giantswarm.io:
   topics:
-    - controlplane
+    - managementcluster
     - workloadcluster
 silences.monitoring.giantswarm.io:
   topics:
-    - controlplane
+    - managementcluster
 sparks.core.giantswarm.io:
   provider:
     - azure
@@ -143,4 +143,4 @@ sparks.core.giantswarm.io:
     - workloadcluster
 storageconfigs.core.giantswarm.io:
   topics:
-    - controlplane
+    - managementcluster

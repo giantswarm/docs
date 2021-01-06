@@ -10,13 +10,13 @@ owner:
 
 # Multi-Account Support
 
-The Giant Swarm architecture distinguishes between the control plane and workload clusters. The control plane enables the creation and operation of workload clusters and the workload cluster(s) run your Kubernetes workloads.
+The Giant Swarm architecture distinguishes between the management cluster and workload clusters. The management cluster enables the creation and operation of workload clusters and the workload cluster(s) run your Kubernetes workloads.
 
 ## How does multi-account support help? {#benefits}
 
-Both on AWS and Azure, workload cluster resources usually exist in an account (or in Azure terms: a subscription) separate from the one hosting the control plane resources. We configure a default account to use for all workload clusters in an installation. Both accounts, the one for the control plane and the default one for workload clusters, are under the customer's jurisdiction.
+Both on AWS and Azure, workload cluster resources usually exist in an account (or in Azure terms: a subscription) separate from the one hosting the management cluster resources. We configure a default account to use for all workload clusters in an installation. Both accounts, the one for the management cluster and the default one for workload clusters, are under the customer's jurisdiction.
 
-**Note:** Some customers use the same account/subscription for both control plane and workload cluster. This choice does not affect the capabilities described below.
+**Note:** Some customers use the same account/subscription for both management cluster and workload clusters. This choice does not affect the capabilities described below.
 
 With multi-account support you can have more fine-grained control over the accounts used by workload clusters. Each Giant Swarm organization in an installation can have an individual configuration of which cloud provider account to use.
 
@@ -30,7 +30,7 @@ This enables use cases such as
 
 - Several teams, business units, or profit centers sharing an installation, where many or all of them run workload clusters in their own cloud provider account, separate from each other.
 
-- An ISV, being the Giant Swarm customer, creating and giving access to workload clusters in the name of a third party, in the third party's cloud provider account. The third party in this scenario has no relationship with Giant Swarm and needs no access to the Giant Swarm API or control plane.
+- An ISV, being the Giant Swarm customer, creating and giving access to workload clusters in the name of a third party, in the third party's cloud provider account. The third party in this scenario has no relationship with Giant Swarm and needs no access to the Giant Swarm API or management cluster.
 
 In both cases, customers benefit from simpler usage and cost allocation, plus a higher level of security through isolation. It can also help to make use of credits available in certain accounts.
 
