@@ -42,7 +42,7 @@ On cluster creation the user values ConfigMap is empty (or might not exist yet) 
 ## How to set configuration options using the user values ConfigMap
 
 On the Control Plane, create or edit a ConfigMap named `cluster-autoscaler-user-values`
-in the Tenant Cluster namespace:
+in the workload cluster namespace:
 
 ```yaml
 # On the Control Plane, in the abc12 namespace
