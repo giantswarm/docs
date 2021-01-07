@@ -7,4 +7,6 @@ user_questions:
   - What is a Custom Resource Definition (CRD)?
   - What is a Custom Resource (CR)?
   - Where can I find links to Giant Swarm CRs/CRDs?
+aliases:
+  - /reference/cp-k8s-api/
 ---
