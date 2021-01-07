@@ -10,6 +10,8 @@ owner:
 
 # High-availability Kubernetes masters
 
+{{< platform_support_table aws="ga=v11.4.0" azure="roadmap=https://github.com/giantswarm/roadmap/issues/4" >}}
+
 ## Synopsis
 
 Kubernetes master nodes are the nodes that run the Kubernetes API of a workload cluster,

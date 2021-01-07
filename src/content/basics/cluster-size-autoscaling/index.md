@@ -11,9 +11,13 @@ owner:
 
 # Cluster size and autoscaling
 
-Starting with workload cluster release version {{% first_aws_autoscaling_version %}} for AWS you can leverage the benefits of the [Kubernetes autoscaler](https://github.com/kubernetes/autoscaler) to define the number of worker nodes in a cluster based on demand.
+{{< platform_support_table aws="ga=v6.3.0" azure="roadmap=https://github.com/giantswarm/roadmap/issues/64" >}}
 
-On Giant Swarm installations on Azure, on bare-metal, and on AWS prior to version {{% first_aws_autoscaling_version %}}, the cluster size would be defined statically.
+## Introduction
+
+Giant Swarm workload clusters on AWS provide the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler) by default, to set the number of worker nodes in a cluster dynamically, based on demand.
+
+On Azure and on-premises (KVM) installations, the cluster size is defined statically.
 
 ## Setting scaling limits
 
