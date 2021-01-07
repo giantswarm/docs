@@ -12,7 +12,7 @@ owner:
 
 # Labelling workload clusters
 
-{{< platform_support_table aws="ga=v10.0.0" azure="ga" >}}
+{{< platform_support_table aws="ga=v10.0.0" azure="ga=v13.0.0" >}}
 
 ## Introduction
 
