@@ -13,7 +13,7 @@ user_questions:
   - What does App Platform do?
   - What is an App Catalog?
   - Does Giant Swarm provide app catalogs out of the box?
-  - How is App Platofrm implemented?
+  - How is App Platform implemented?
   - What are the components of App Platform?
   - What are the app catalogs that Giant Swarm provides out of the box?
   - How can I create an organizational app catalog?
