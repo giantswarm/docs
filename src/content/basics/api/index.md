@@ -19,7 +19,7 @@ For integrating Giant Swarm with your automation, we provide programmatic access
 
 - [The Rest API](#rest-api): stable and recommended for production use.
 
-- [The Management Cluster API](#cp-k8s-api): our next generation API, currently in a preview phase. Formerly called _Control Plane Kubernetes API_.
+- [The Management Cluster API](#management-cluster-api): our next generation API, currently in a preview phase. Formerly called _Control Plane Kubernetes API_.
 
 In the following sections we explain the differences and specific benefits and provide some guidance on how to get started.
 
@@ -31,11 +31,11 @@ Browse our [API documentation](/api/) for a complete overview into the provided 
 
 The Rest API was originally designed to provide a simpler, easier access to the relevant resources for managing clusters, key pairs, etc. while keeping the internals under the hood. However at Giant Swarm we learnt that there are always more use cases emerging on your side than we could anticipate in our API design. We realized that the best we can do for you to provide full insight into the state and spec of your infrastructure is by opening up the underlying system itself.
 
-With this realization, we made the decision to phase out the development of the Rest API in favor of providing access to the [Management Cluster API](#cp-k8s-api) instead.
+With this realization, we made the decision to phase out the development of the Rest API in favor of providing access to the [Management Cluster API](#management-cluster-api) instead.
 
 As of now, there is no termination date for the Rest API. As it might provide the much simpler and more accessible starting point, feel free to explore the [documentation](/api/), knowing that one day you may have to switch to the Management Cluster API.
 
-## The Management Cluster API (preview) {#cp-k8s-api}
+## The Management Cluster API (preview) {#management-cluster-api}
 
 ### What it is
 
@@ -68,7 +68,7 @@ Following are some resources that should help you:
 
 - The guide [Creating workload clusters via the Management Cluster API](/guides/creating-clusters-via-crs/) explains step by step how you can create a cluster and node pools via the Management Cluster API. Here you learn about all the custom resources a cluster comprises.
 - The [App Platform](/basics/app-platform/) introduction outlines the several custom resources involved when managing app catalogs and apps.
-- Our [Management Cluster API Reference](/reference/cp-k8s-api/) provides detailed documentation on all the custom resources we use with the various providers and their versions and schema.
+- Our [Management Cluster API Reference](/reference/management-cluster-api/) provides detailed documentation on all the custom resources we use with the various providers and their versions and schema.
 
 ### Feedback is welcome
 

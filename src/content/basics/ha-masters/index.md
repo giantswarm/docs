@@ -100,10 +100,10 @@ Check the reference for the `--master-ha` flag.
 Check the [v5 cluster modification API reference](/api/#operation/modifyClusterV5)
 to find out how to convert a cluster programmatically using the Rest API.
 
-### Via the Management Cluster API {#cp-k8s-api}
+### Via the Management Cluster API {#management-cluster-api}
 
 In order to convert a single master cluster to high availability, the cluster's
-[`G8sControlPlane`](/reference/cp-k8s-api/g8scontrolplanes.infrastructure.giantswarm.io/)
+[`G8sControlPlane`](/reference/management-cluster-api/g8scontrolplanes.infrastructure.giantswarm.io/)
 has to be modified. First you have to find the resource for your cluster ID. The
 following command helps with that:
 

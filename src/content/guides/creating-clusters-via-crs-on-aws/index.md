@@ -19,15 +19,15 @@ All the workload clusters, created with workload cluster release v{{% first_aws_
 
 At a high-level, the Management Cluster API is used to manage the following custom resources (CRs):
 
-- [Cluster](/reference/cp-k8s-api/clusters.cluster.x-k8s.io/) - represents a Kubernetes cluster excluding worker nodes.
-- [G8sControlPlane](/reference/cp-k8s-api/g8scontrolplanes.infrastructure.giantswarm.io/) - hold configuration about the master node(s) of a cluster.
-- [MachineDeployment](/reference/cp-k8s-api/machinedeployments.cluster.x-k8s.io/) - represents a node pool.
+- [Cluster](/reference/management-cluster-api/clusters.cluster.x-k8s.io/) - represents a Kubernetes cluster excluding worker nodes.
+- [G8sControlPlane](/reference/management-cluster-api/g8scontrolplanes.infrastructure.giantswarm.io/) - hold configuration about the master node(s) of a cluster.
+- [MachineDeployment](/reference/management-cluster-api/machinedeployments.cluster.x-k8s.io/) - represents a node pool.
 
 The CRs above then reference provider specific implementations. In our case, for clusters on AWS, they are:
 
-- [AWSCluster](/reference/cp-k8s-api/awsclusters.infrastructure.giantswarm.io/) - represents a workload cluster.
-- [AWSControlPlane](/reference/cp-k8s-api/awscontrolplanes.infrastructure.giantswarm.io/) - configures the AWS-specific details of the worker node(s).
-- [AWSMachineDeployment](/reference/cp-k8s-api/awsmachinedeployments.infrastructure.giantswarm.io/) - configures the AWS-specific details of worker nodes in a node pool.
+- [AWSCluster](/reference/management-cluster-api/awsclusters.infrastructure.giantswarm.io/) - represents a workload cluster.
+- [AWSControlPlane](/reference/management-cluster-api/awscontrolplanes.infrastructure.giantswarm.io/) - configures the AWS-specific details of the worker node(s).
+- [AWSMachineDeployment](/reference/management-cluster-api/awsmachinedeployments.infrastructure.giantswarm.io/) - configures the AWS-specific details of worker nodes in a node pool.
 
 ## Example CRs
 

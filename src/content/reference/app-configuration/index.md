@@ -72,7 +72,7 @@ colors:
   secretColor: ""
 ```
 
-Now you create an [App](/reference/cp-k8s-api/apps.application.giantswarm.io/) resource that references a user level ConfigMap and a `user`
+Now you create an [App](/reference/management-cluster-api/apps.application.giantswarm.io/) resource that references a user level ConfigMap and a `user`
 level Secret:
 
 ```yaml
@@ -175,7 +175,7 @@ templated Secret, then you have to base64 encode it to comply with how Kubernete
 ## How configuration values are stored and referenced in the Control Plane {#storage-referencing}
 
 Configuration for Apps are stored as ConfigMaps and Secrets, which are
-referenced by `name` and `namespace` in various `spec` fields of the [App](/reference/cp-k8s-api/apps.application.giantswarm.io/) and [AppCatalog](/reference/cp-k8s-api/appcatalogs.application.giantswarm.io/) Custom Resource (CR).
+referenced by `name` and `namespace` in various `spec` fields of the [App](/reference/management-cluster-api/apps.application.giantswarm.io/) and [AppCatalog](/reference/management-cluster-api/appcatalogs.application.giantswarm.io/) Custom Resource (CR).
 
 Our operators act on those resources to ensure the actual state ends up
 looking like the desired state. More information is available in our [general overview of the App Platform](/basics/app-platform/).
@@ -276,7 +276,7 @@ colors:
 ### Using the Rest API (deprecated) {#giant-swarm-api}
 
 The [Rest API](/basics/api/#rest-api) acts as an interface between you and the [Control Plane Kubernetes
-API](/basics/api/#cp-k8s-api). It is deprecated since we are currently in the process of allowing you direct
+API](/basics/api/#management-cluster-api). It is deprecated since we are currently in the process of allowing you direct
 access to the Management Cluster API. However for the time being, our web interface makes use of the Rest API.
 
 By supplying a JSON body with the values you would like to set, the Rest API will
@@ -285,7 +285,7 @@ create a ConfigMap or Secret in the right format and wire it up correctly for yo
 - [Rest API App Configs reference](/api/#tag/app-configs) for adding configuration values
 - [Rest API App Secrets reference](/api/#tag/app-secrets) for adding secret values
 
-### Using the Management Cluster API {#cp-k8s-api}
+### Using the Management Cluster API {#management-cluster-api}
 
 There are many approaches to managing resources in Kubernetes, which go beyond
 the scope of this article. But the simplest would probably be to `kubectl apply` a file directly to the cluster.

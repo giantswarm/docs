@@ -1,7 +1,7 @@
 ---
 title: Management Cluster API reference
 description: Learn what the Giant Swarm Management Cluster offers via its Kubernetes API. This reference focuses on schema documentation for custom resources.
-layout: cp-k8s-api-reference
+layout: management-cluster-api-reference
 weight: 300
 user_questions:
   - What is a Custom Resource Definition (CRD)?

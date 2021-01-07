@@ -10,7 +10,7 @@ owner:
 
 # Creating workload clusters via the Management Cluster API
 
-Here we explain how to create clusters using the [Control Plane Kuebernetes API](/basics/api/#cp-k8s-api). This API lets you work directly with custom resources (CRs), which are specific for the cloud provider you are running on.
+Here we explain how to create clusters using the [Control Plane Kuebernetes API](/basics/api/#management-cluster-api). This API lets you work directly with custom resources (CRs), which are specific for the cloud provider you are running on.
 
 **Note:** At this point, bare metal (KVM) is not supported yet.
 
