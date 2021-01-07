@@ -1,5 +1,5 @@
 ---
-title: Creating workload clusters via Control Plane Kubernetes API
+title: Creating workload clusters via the Management Cluster API
 description: This guide will walk you through the process of workload cluster creation via Control Plane Kubernetes.
 type: page
 weight: 100
@@ -8,7 +8,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 ---
 
-# Creating workload clusters via the Control Plane Kubernetes API
+# Creating workload clusters via the Management Cluster API
 
 Here we explain how to create clusters using the [Control Plane Kuebernetes API](/basics/api/#cp-k8s-api). This API lets you work directly with custom resources (CRs), which are specific for the cloud provider you are running on.
 

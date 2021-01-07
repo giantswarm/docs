@@ -32,7 +32,7 @@ changes-test:
 	  /workdir/test_script.py foo bar baz
 
 # Generate the reference documentation for the custom resource
-# definitions (CRD) used in the Control Plane K8s API.
+# definitions (CRD) used in the management cluster API.
 update-crd-reference:
 	scripts/update-crd-reference/main.sh
 
