@@ -56,9 +56,9 @@ According to our workload cluster release versioning, three different levels of 
 
 - *Patch upgrade*: Only the patch version number is increased.
 
-- *Minor upgrade*: The minor version number is increased, while the Major version number stays the same.
+- *Minor upgrade*: The minor version number is increased, while the major version number stays the same.
 
-- *Major upgrade*: The Major version number is increased.
+- *Major upgrade*: The major version number is increased.
 
 #### Patch upgrade {#patch-upgrade}
 
@@ -72,7 +72,7 @@ In case we are releasing features in a nondisruptive way (i.e. feature flagged) 
 
 Every few months, typically in synchronization with Kubernetes Upstream Minor Releases, we provide a new major release. It includes the new Kubernetes Minor Release, other components by third parties, and any new versions of our software that contain deeper new functionality. It means that new developments, like node pools or networking changes, are delivered within a major release.
 
-As always we provide release notes with all the information needed. Under this new structure, we are working to provide them for Major Releases early to allow for your preparation.
+As always we provide release notes with all the information needed. Under this new structure, we are working to provide them for major Releases early to allow for your preparation.
 
 #### Considerations {#considerations}
 
@@ -90,7 +90,7 @@ Creating clusters with deprecated releases is not recommended. Testing workload 
 
 ### Skipping workload cluster release
 
-We **don't support omitting any Major version** when upgrading from one workload cluster release to another.
+We **don't support omitting any major version** when upgrading from one workload cluster release to another.
 
 Example: Going from v11.x.x directly to v13.x.x is not supported. An upgrade to v12.x.x would be required as an intermediate step.
 
