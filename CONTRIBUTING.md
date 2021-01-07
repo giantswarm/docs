@@ -201,6 +201,29 @@ and would get rendered like
 
 #### List of shortcodes with explanation
 
+- `platform_support_table`: A table that displays information regarding which
+providers support a feature described in the context. Look for examples in the
+code base too understand how it is configured. The shortcode offers three
+parameters `aws`, `azure`, and `kvm`. Each one functions the same way:
+
+    - Multiple key-value-pairs can be set, separated by comma. Example: `alpha=v10.0.0,beta=v11.0.0,ga=v12.0.0`.
+
+    - Key-value-pairs use the `=` character to separate key and value.
+
+    - The key must be either `alpha`, `beta`, `ga`, or `roadmap`, with a meaning as follows.
+
+        - `alpha`: Version that made the feature available in an Alpha stage. If no value/version is given, it means that the feature is currently in the Alpha stage.
+
+        - `beta`: Version that made the feature available in a beta stage. If no value/version is given, it means that the feature is currently in the Beta stage.
+
+        - `ga`: Version that made the feature GA (general availability). If no value/version is given, it means that the feature is currently in the GA stage.
+
+        - `roadmap`: The feature is on our roadmap for the given provider. The value muest be the roadmap issue URL.
+
+    - For the keys `alpha`, `beta`, and `ga` the (optional) value is expected to be a semver version number of the workload cluster release. For example, `beta=v10.0.0` indicates that the feature was published in Beta in release v10.0.0. If only the key is present, but no value, this indicates that the version number is unknown.
+
+    - For the `roadmap` key, a value must be given, and the value must be the `https://github.com/giantswarm/roadmap` issue URL about the feature.
+
 - `autoscaler_utilization_threshold`: Utilization threshold for the kubernetes
 autoscaler, including percent unit, as we configure it by default. Below this
 utilization, the autoscaler will consider a node underused and will scale down.
