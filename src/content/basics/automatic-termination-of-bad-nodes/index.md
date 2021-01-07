@@ -10,7 +10,7 @@ owner:
 
 # Automatic termination of unhealthy nodes
 
-{{< platform_support_table aws="ga=v12.6.0" azure="ga=v13.1.0">}}
+{{< platform_support_table aws="ga=v12.6.0" azure="ga=v13.1.0" kvm="roadmap=https://github.com/giantswarm/roadmap/issues/176" >}}
 
 ## Introduction
 
