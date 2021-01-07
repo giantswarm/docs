@@ -2,7 +2,7 @@
 
 CRD_DOCS_GENERATOR_VERSION=0.2.0
 
-DESTINATION=src/content/reference/cp-k8s-api
+DESTINATION=src/content/reference/management-cluster-api
 
 # Clear output folder
 find ${DESTINATION} -type f -not -name "_index.md" | xargs rm
