@@ -203,7 +203,7 @@ and would get rendered like
 
 - `platform_support_table`: A table that displays information regarding which
 providers support a feature described in the context. Look for examples in the
-code base too understand how it is configured. The shortcode offers three
+code base too, to understand how it is configured. The shortcode offers three
 parameters `aws`, `azure`, and `kvm`. Each one functions the same way:
 
     - Multiple key-value-pairs can be set, separated by comma. Example: `alpha=v10.0.0,beta=v11.0.0,ga=v12.0.0`.
