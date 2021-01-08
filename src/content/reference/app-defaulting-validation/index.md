@@ -16,7 +16,7 @@ defaulting and validation logic of [App CRs]({{< relref "/content/reference/cp-k
 You can check if your cluster has this version of app-operator by checking the
 release details in the web interface.
 
-We have not enabled the defaulting and validation for existing app CRs to avoid
+We have not enabled the defaulting and validation for existing App CRs to avoid
 disrupting your current usage of the App Platform.
 
 ## Defaulting
