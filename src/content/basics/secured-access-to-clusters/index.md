@@ -57,7 +57,7 @@ VPN secured access points:
 
 ![SSH access process diagram](./ssh_access_process.png)
 
-Customer Tenant Clusters are accessible only via SSH access to the Giant Swarm Control Plane. This Control Plane contains Giant Swarm's cluster management and operations platform, and controls our access to the underlying Tenant Clusters for diagnostic and "Day 2" operational reasons.
+Customer workload clusters are accessible only via SSH access to the Giant Swarm Control Plane. This Control Plane contains Giant Swarm's cluster management and operations platform, and controls our access to the underlying workload clusters for diagnostic and "Day 2" operational reasons.
 
 - **Management Cluster API** - Usage of the Kubernetes API on the Control Plane is also secured with SSH.
 
@@ -84,4 +84,4 @@ Access to etcd or the Kubernetes API is secured based on certificates signed by 
 - [Vault SSH certificate](https://www.vaultproject.io/docs/secrets/ssh/signed-ssh-certificates)
 - [Giant Swarm Operational Layers](/basics/giant-swarm-operational-layers/)
 - [Giant Swarm API](/basics/giant-swarm-operational-layers/#giant-swarm-api)
-- [Giant Swarm User Space](/basics/giant-swarm-operational-layers/#userspace): Tenant Cluster Kubernetes API
+- [Giant Swarm User Space](/basics/giant-swarm-operational-layers/#userspace)
