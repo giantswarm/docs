@@ -1,12 +1,14 @@
 ---
-title: AppCatalogEntry CRD Schema Reference
+title: AppCatalogEntry CRD schema reference
 linktitle: AppCatalogEntry
 technical_name: appcatalogentries.application.giantswarm.io
 description:   AppCatalogEntry represents an entry of an app in a catalog of managed apps.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.13.0
+source_repository_ref: v3.14.1
 layout: "crd"
+aliases:
+  - /reference/cp-k8s-api/appcatalogentries.application.giantswarm.io/
 ---
 
 # AppCatalogEntry

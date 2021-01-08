@@ -1,20 +1,20 @@
 ---
-title: Spark CRD Schema Reference
+title: Spark CRD schema reference
 linktitle: Spark
 technical_name: sparks.core.giantswarm.io
-description:   Spark is a Kubernetes resource (CR) which is based on the Spark CRD defined above. 
-   An example Spark resource can be viewed here https://github.com/giantswarm/apiextensions/blob/master/docs/cr/core.giantswarm.io_v1alpha1_spark.yaml
+description:   Spark is a placeholder resource to allow for the creation of ignition templates in Azure workload clusters, as of workload cluster release v13.0.0. Reconciled by azure-operator.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.13.0
+source_repository_ref: v3.14.1
 layout: "crd"
+aliases:
+  - /reference/cp-k8s-api/sparks.core.giantswarm.io/
 ---
 
 # Spark
 
 
-<p class="crd-description">Spark is a Kubernetes resource (CR) which is based on the Spark CRD defined above. 
- An example Spark resource can be viewed here https://github.com/giantswarm/apiextensions/blob/master/docs/cr/core.giantswarm.io_v1alpha1_spark.yaml</p>
+<p class="crd-description">Spark is a placeholder resource to allow for the creation of ignition templates in Azure workload clusters, as of workload cluster release v13.0.0. Reconciled by azure-operator.</p>
 <dl class="crd-meta">
 <dt class="fullname">Full name:</dt>
 <dd class="fullname">sparks.core.giantswarm.io</dd>
@@ -42,7 +42,7 @@ apiVersion: core.giantswarm.io/v1alpha1
 kind: Spark
 metadata:
   annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/reference/cp-k8s-api/ignitions.core.giantswarm.io/
+    giantswarm.io/docs: https://docs.giantswarm.io/reference/cp-k8s-api/sparks.core.giantswarm.io/
   creationTimestamp: null
   name: abc12-master
 spec:

@@ -1,13 +1,15 @@
 ---
-title: CertConfig CRD Schema Reference
+title: CertConfig CRD schema reference
 linktitle: CertConfig
 technical_name: certconfigs.core.giantswarm.io
-description: Custom Resource/Custom Resource Definition schema reference page for the CertConfig resource (certconfigs.core.giantswarm.io), as part of the Giant Swarm Control Plane Kubernetes API documentation.
+description: Custom resource definition (CRD) schema reference page for the CertConfig resource (certconfigs.core.giantswarm.io), as part of the Giant Swarm Management Cluster API documentation.
 
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.13.0
+source_repository_ref: v3.14.1
 layout: "crd"
+aliases:
+  - /reference/cp-k8s-api/certconfigs.core.giantswarm.io/
 ---
 
 # CertConfig

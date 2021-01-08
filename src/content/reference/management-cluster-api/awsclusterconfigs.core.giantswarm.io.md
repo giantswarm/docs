@@ -1,18 +1,20 @@
 ---
-title: AWSClusterConfig CRD Schema Reference
+title: AWSClusterConfig CRD schema reference
 linktitle: AWSClusterConfig
 technical_name: awsclusterconfigs.core.giantswarm.io
-description:   AWSClusterConfig used to represent tenant cluster configuration in earlier releases. Deprecated.
+description:   AWSClusterConfig used to represent workload cluster configuration in earlier releases. Deprecated.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.13.0
+source_repository_ref: v3.14.1
 layout: "crd"
+aliases:
+  - /reference/cp-k8s-api/awsclusterconfigs.core.giantswarm.io/
 ---
 
 # AWSClusterConfig
 
 
-<p class="crd-description">AWSClusterConfig used to represent tenant cluster configuration in earlier releases. Deprecated.</p>
+<p class="crd-description">AWSClusterConfig used to represent workload cluster configuration in earlier releases. Deprecated.</p>
 <dl class="crd-meta">
 <dt class="fullname">Full name:</dt>
 <dd class="fullname">awsclusterconfigs.core.giantswarm.io</dd>

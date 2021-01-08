@@ -1,12 +1,14 @@
 ---
-title: App CRD Schema Reference
+title: App CRD schema reference
 linktitle: App
 technical_name: apps.application.giantswarm.io
 description:   App represents a managed app.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.13.0
+source_repository_ref: v3.14.1
 layout: "crd"
+aliases:
+  - /reference/cp-k8s-api/apps.application.giantswarm.io/
 ---
 
 # App
@@ -509,7 +511,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Namespace is the namespace of the user values config map on the control plane, e.g. 123ab.</p>
+<p>Namespace is the namespace of the user values config map on the management cluster, e.g. 123ab.</p>
 
 </div>
 

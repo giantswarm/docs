@@ -1,18 +1,20 @@
 ---
-title: AWSConfig CRD Schema Reference
+title: AWSConfig CRD schema reference
 linktitle: AWSConfig
 technical_name: awsconfigs.provider.giantswarm.io
-description:   AWSConfig used to represent tenant cluster configuration in earlier releases. Deprecated.
+description:   AWSConfig used to represent workload cluster configuration in earlier releases. Deprecated.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.13.0
+source_repository_ref: v3.14.1
 layout: "crd"
+aliases:
+  - /reference/cp-k8s-api/awsconfigs.provider.giantswarm.io/
 ---
 
 # AWSConfig
 
 
-<p class="crd-description">AWSConfig used to represent tenant cluster configuration in earlier releases. Deprecated.</p>
+<p class="crd-description">AWSConfig used to represent workload cluster configuration in earlier releases. Deprecated.</p>
 <dl class="crd-meta">
 <dt class="fullname">Full name:</dt>
 <dd class="fullname">awsconfigs.provider.giantswarm.io</dd>
@@ -305,8 +307,8 @@ spec:
 </div>
 
 <div class="property-description">
-<p>AvailabilityZones is the number of AWS availability zones used to spread the tenant cluster&rsquo;s worker nodes across. There are limitations on availability zone settings due to binary IP range splitting and provider specific region capabilities. When for instance choosing 3 availability zones, the configured IP range will be split into 4 ranges and thus one of it will not be able to be utilized. Such limitations have to be considered when designing the network topology and configuring tenant cluster HA via AvailabilityZones.
- The selection and usage of the actual availability zones for the created tenant cluster is randomized. In case there are 4 availability zones provided in the used region and the user selects 2 availability zones, the actually used availability zones in which tenant cluster workload is put into will tend to be different across tenant cluster creations. This is done in order to provide more HA during single availability zone failures. In case a specific availability zone fails, not all tenant clusters will be affected due to the described selection process.</p>
+<p>AvailabilityZones is the number of AWS availability zones used to spread the workload cluster&rsquo;s worker nodes across. There are limitations on availability zone settings due to binary IP range splitting and provider specific region capabilities. When for instance choosing 3 availability zones, the configured IP range will be split into 4 ranges and thus one of it will not be able to be utilized. Such limitations have to be considered when designing the network topology and configuring workload cluster HA via AvailabilityZones.
+ The selection and usage of the actual availability zones for the created workload cluster is randomized. In case there are 4 availability zones provided in the used region and the user selects 2 availability zones, the actually used availability zones in which workload cluster workload is put into will tend to be different across workload cluster creations. This is done in order to provide more HA during single availability zone failures. In case a specific availability zone fails, not all workload clusters will be affected due to the described selection process.</p>
 
 </div>
 
@@ -1356,7 +1358,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>ClusterKubernetesNetworkSetupKubeProxy describes values passed to the kube-proxy running in a tenant cluster.</p>
+<p>ClusterKubernetesNetworkSetupKubeProxy describes values passed to the kube-proxy running in a workload cluster.</p>
 
 </div>
 
@@ -1990,7 +1992,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Name referrs to a tenant cluster node name.</p>
+<p>Name referrs to a workload cluster node name.</p>
 
 </div>
 
@@ -2227,7 +2229,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>TODO date is deprecated due to LastTransitionTime This can be removed ones the new properties are properly used in all tenant clusters.
+<p>TODO date is deprecated due to LastTransitionTime This can be removed ones the new properties are properly used in all workload clusters.
      <a href="https://github.com/giantswarm/giantswarm/issues/3988">https://github.com/giantswarm/giantswarm/issues/3988</a></p>
 
 </div>

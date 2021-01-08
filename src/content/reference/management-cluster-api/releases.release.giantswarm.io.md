@@ -1,18 +1,20 @@
 ---
-title: Release CRD Schema Reference
+title: Release CRD schema reference
 linktitle: Release
 technical_name: releases.release.giantswarm.io
-description:   Release is a Kubernetes resource (CR) representing a Giant Swarm tenant cluster release.
+description:   Release is a Kubernetes resource (CR) representing a Giant Swarm workload cluster release.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.13.0
+source_repository_ref: v3.14.1
 layout: "crd"
+aliases:
+  - /reference/cp-k8s-api/releases.release.giantswarm.io/
 ---
 
 # Release
 
 
-<p class="crd-description">Release is a Kubernetes resource (CR) representing a Giant Swarm tenant cluster release.</p>
+<p class="crd-description">Release is a Kubernetes resource (CR) representing a Giant Swarm workload cluster release.</p>
 <dl class="crd-meta">
 <dt class="fullname">Full name:</dt>
 <dd class="fullname">releases.release.giantswarm.io</dd>
@@ -425,7 +427,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>EndOfLifeDate is the date and time when support for a tenant cluster using this release ends. This may not be set at the time of release creation and can be specififed later.</p>
+<p>EndOfLifeDate is the date and time when support for a workload cluster using this release ends. This may not be set at the time of release creation and can be specififed later.</p>
 
 </div>
 

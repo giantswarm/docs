@@ -1,12 +1,14 @@
 ---
-title: AppCatalog CRD Schema Reference
+title: AppCatalog CRD schema reference
 linktitle: AppCatalog
 technical_name: appcatalogs.application.giantswarm.io
 description:   AppCatalog represents a catalog of managed apps.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.13.0
+source_repository_ref: v3.14.1
 layout: "crd"
+aliases:
+  - /reference/cp-k8s-api/appcatalogs.application.giantswarm.io/
 ---
 
 # AppCatalog

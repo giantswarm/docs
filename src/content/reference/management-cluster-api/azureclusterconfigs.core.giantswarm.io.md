@@ -1,13 +1,15 @@
 ---
-title: AzureClusterConfig CRD Schema Reference
+title: AzureClusterConfig CRD schema reference
 linktitle: AzureClusterConfig
 technical_name: azureclusterconfigs.core.giantswarm.io
-description: Custom Resource/Custom Resource Definition schema reference page for the AzureClusterConfig resource (azureclusterconfigs.core.giantswarm.io), as part of the Giant Swarm Control Plane Kubernetes API documentation.
+description: Custom resource definition (CRD) schema reference page for the AzureClusterConfig resource (azureclusterconfigs.core.giantswarm.io), as part of the Giant Swarm Management Cluster API documentation.
 
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.13.0
+source_repository_ref: v3.14.1
 layout: "crd"
+aliases:
+  - /reference/cp-k8s-api/azureclusterconfigs.core.giantswarm.io/
 ---
 
 # AzureClusterConfig
@@ -136,7 +138,7 @@ layout: "crd"
 </div>
 
 <div class="property-description">
-<p>AzureClusterConfigSpecGuestCredentialSecret points to the K8s Secret containing credentials for an Azure subscription in which the tenant cluster should be created.</p>
+<p>AzureClusterConfigSpecGuestCredentialSecret points to the K8s Secret containing credentials for an Azure subscription in which the workload cluster should be created.</p>
 
 </div>
 

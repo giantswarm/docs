@@ -1,13 +1,15 @@
 ---
-title: ETCDBackup CRD Schema Reference
+title: ETCDBackup CRD schema reference
 linktitle: ETCDBackup
 technical_name: etcdbackups.backup.giantswarm.io
-description: Custom Resource/Custom Resource Definition schema reference page for the ETCDBackup resource (etcdbackups.backup.giantswarm.io), as part of the Giant Swarm Control Plane Kubernetes API documentation.
+description: Custom resource definition (CRD) schema reference page for the ETCDBackup resource (etcdbackups.backup.giantswarm.io), as part of the Giant Swarm Management Cluster API documentation.
 
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.13.0
+source_repository_ref: v3.14.1
 layout: "crd"
+aliases:
+  - /reference/cp-k8s-api/etcdbackups.backup.giantswarm.io/
 ---
 
 # ETCDBackup
@@ -110,7 +112,7 @@ layout: "crd"
 </div>
 
 <div class="property-description">
-<p>GuestBackup is a boolean indicating if the tenant clusters have to be backupped</p>
+<p>GuestBackup is a boolean indicating if the workload clusters have to be backed up</p>
 
 </div>
 

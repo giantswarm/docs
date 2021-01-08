@@ -1,12 +1,14 @@
 ---
-title: AWSCluster CRD Schema Reference
+title: AWSCluster CRD schema reference
 linktitle: AWSCluster
 technical_name: awsclusters.infrastructure.giantswarm.io
 description:   AWSCluster is the infrastructure provider referenced in upstream CAPI Cluster CRs.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.13.0
+source_repository_ref: v3.14.1
 layout: "crd"
+aliases:
+  - /reference/cp-k8s-api/awsclusters.infrastructure.giantswarm.io/
 ---
 
 # AWSCluster
@@ -811,7 +813,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>IPv4 address block used by the tenant cluster nodes, in CIDR notation.</p>
+<p>IPv4 address block used by the workload cluster nodes, in CIDR notation.</p>
 
 </div>
 
@@ -829,7 +831,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Identifier of the AWS Virtual Private Cloud (VPC) of the tenant cluster, e.g. <code>vpc-1234567890abcdef0</code>.</p>
+<p>Identifier of the AWS Virtual Private Cloud (VPC) of the workload cluster, e.g. <code>vpc-1234567890abcdef0</code>.</p>
 
 </div>
 

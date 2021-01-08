@@ -1,13 +1,15 @@
 ---
-title: AzureConfig CRD Schema Reference
+title: AzureConfig CRD schema reference
 linktitle: AzureConfig
 technical_name: azureconfigs.provider.giantswarm.io
-description: Custom Resource/Custom Resource Definition schema reference page for the AzureConfig resource (azureconfigs.provider.giantswarm.io), as part of the Giant Swarm Control Plane Kubernetes API documentation.
+description: Custom resource definition (CRD) schema reference page for the AzureConfig resource (azureconfigs.provider.giantswarm.io), as part of the Giant Swarm Management Cluster API documentation.
 
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.13.0
+source_repository_ref: v3.14.1
 layout: "crd"
+aliases:
+  - /reference/cp-k8s-api/azureconfigs.provider.giantswarm.io/
 ---
 
 # AzureConfig
@@ -1134,7 +1136,7 @@ layout: "crd"
 </div>
 
 <div class="property-description">
-<p>ClusterKubernetesNetworkSetupKubeProxy describes values passed to the kube-proxy running in a tenant cluster.</p>
+<p>ClusterKubernetesNetworkSetupKubeProxy describes values passed to the kube-proxy running in a workload cluster.</p>
 
 </div>
 
@@ -1625,7 +1627,7 @@ layout: "crd"
 </div>
 
 <div class="property-description">
-<p>Name referrs to a tenant cluster node name.</p>
+<p>Name referrs to a workload cluster node name.</p>
 
 </div>
 
@@ -1862,7 +1864,7 @@ layout: "crd"
 </div>
 
 <div class="property-description">
-<p>TODO date is deprecated due to LastTransitionTime This can be removed ones the new properties are properly used in all tenant clusters.
+<p>TODO date is deprecated due to LastTransitionTime This can be removed ones the new properties are properly used in all workload clusters.
      <a href="https://github.com/giantswarm/giantswarm/issues/3988">https://github.com/giantswarm/giantswarm/issues/3988</a></p>
 
 </div>
