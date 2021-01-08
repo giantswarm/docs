@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CRD_DOCS_GENERATOR_VERSION=0.2.0
+CRD_DOCS_GENERATOR_VERSION=0.2.2
 
 DESTINATION=src/content/reference/management-cluster-api
 
