@@ -15,13 +15,13 @@ owner:
 
 # Cluster upgrades
 
-A workload cluster in a Giant Swarm installation runs a stack comprised of many software components. These components come from the Kubernetes project and other open-source projects or software vendors, as well as by Giant Swarm.
+A workload cluster (formerly called _tenant cluster_) in a Giant Swarm installation is running a stack comprising many software components, provided by the Kubernetes project and other open source projects or software vendors, as well as by Giant Swarm.
 In order to keep all components up-to-date, to allow you to benefit from latest improvements, features and security fixes, we provide upgrades for the entire software stack in workload clusters.
 
 At Giant Swarm we believe that frequent, small updates are the way to keep the change in the system manageable. That is why our goal is to help you to run all the clusters in the latest version.
 We invest a lot of effort in making this happen without disrupting your usage of your clusters.
 
-In this article, we explain, in detail, how upgrades work and how you should prepare your workloads in order to keep them running during a workload cluster upgrade and prevent disruptions of your applications.
+In this article, we explain how upgrades work in detail and how you should provide your workloads in order to keep them running during a workload cluster upgrade and prevent disruptions of your applications.
 
 ## Background and concepts
 
@@ -40,15 +40,15 @@ Among the third party components building a workload cluster stack are
 
 as well as many operators and controllers created and maintained by Giant Swarm.
 
-All of the items in the list above are released independently of each other by their vendors.
-At Giant Swarm we bundle specific versions of these components of the workload cluster stack into a **workload cluster release**. A workload cluster release is specific for a provider (AWS, Azure, or KVM) and identified by a version number. To learn more about workload cluster releases and our versioning, check the [workload cluster releases reference](/reference/tenant-cluster-release-versions/).
+All of the items in the list above are released independent of each other by their vendors.
+At Giant Swarm we bundle specific versions of these components of the workload cluster stack into a **workload cluster release**. A workload cluster release is specific for a provider (AWS, Azure, or KVM) and identified by a version number. To learn more about workload cluster releases and our versioning, check the [workload cluster releases reference](/reference/workload-cluster-release-versions/).
 
 Once deployed, the workload cluster stack is **immutable**.
 All components are deployed based on images, either of virtual machines or of Docker containers.
 No changes are ever made to components at runtime.
 This ensures that the stack running in your environment is the exact stack we tested before.
 
-As a consequence, the only way to change the stack is to perform an upgrade and to switch to a new workload cluster release.
+As a consequence, the only way to change the stack is to perform an upgrade, to switch to a new workload cluster release.
 
 ### Upgrade semantics {#semantics}
 
@@ -117,7 +117,7 @@ In particular this means:
 
 **Note**: By default, workload clusters have one master node each. [Consider using a High Availability masters setup](#checklist-ha-masters) to avoid API downtime during upgrades.
 
-### Provider-specific details for AWS
+### Specific details for AWS
 
 AWS resources are managed by the [aws-operator](https://github.com/giantswarm/aws-operator) component through a nested CloudFormation stack. For a workload cluster upgrade, the CloudFormation stacks are updated, in several steps.
 
@@ -132,7 +132,7 @@ In process of the worker node recreation, any data stored in worker node's local
 **Note:** We are in the process of making upgrades on AWS less disruptive.
 For example, we are aware that for larger clusters, one thirds of worker nodes becoming unavailable at the same time is often too much.
 
-### Provider-specific details for Azure
+### Specific details for Azure
 
 Our [azure-operator](https://github.com/giantswarm/azure-operator) manages workload clusters on Azure via Azure Resource Manager (ARM) templates and Virtual Machine Scale Sets (VMSS).
 
@@ -143,10 +143,10 @@ On Azure, the node names visible to Kubernetes (e. g. `kubectl get nodes`) are n
 
 **Note:** Any local storage in the node is erased. Persistent volumes are not affected by that.
 
-### Provider-specific details for KVM
+### Specific details for KVM
 
-In a KVM-based cluster, our [kvm-operator](https://github.com/giantswarm/kvm-operator) builds each workload cluster node out of a Kubernetes Deployment and Pod in the control plane.
-In an upgrade, each of these deployments is updated after the applicable node has been drained, one after another, starting with the master node.
+In a KVM-based cluster, our [kvm-operator](https://github.com/giantswarm/kvm-operator) builds each workload cluster node out of a Kubernetes Deployment and Pod in the management cluster.
+In an upgrade, each of these deployments is updated after the according node has been drained, one after another, starting with the master node.
 This leads to removal and recreation of the Pods.
 
 ## How to upgrade a cluster {#how-to-upgrade-a-cluster}
@@ -264,4 +264,4 @@ Furthermore, you should make your containers are as lightweight (in terms of siz
 
 ## Further reading
 
-- [Workload Cluster Releases](/reference/tenant-cluster-release-versions/) explains the semantics of workload cluster releases.
+- [Workload cluster releases](/reference/workload-cluster-release-versions/) explains the semantics of workload cluster releases.

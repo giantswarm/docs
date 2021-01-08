@@ -21,9 +21,9 @@ You can override these defaults in a ConfigMap named `coredns-user-values`.
 
 Given the cluster you are trying to configure has id: `123ab`
 
-**Tenant cluster release v9.0.1 and greater:**
+**Workload cluster release v9.0.1 and greater:**
 
-If your cluster is on tenant cluster release v9.0.1 or newer then you will find the `coredns-user-values` ConfigMap on the Control Plane in the `123ab` namespace:
+If your cluster is on workload cluster release v9.0.1 or newer then you will find the `coredns-user-values` ConfigMap on the Control Plane in the `123ab` namespace:
 
 ```nohighlight
 $ kubectl -n 123ab get cm coredns-user-values --context=control-plane
@@ -31,9 +31,9 @@ NAME                                   DATA      AGE
 coredns-user-values                    0         11m
 ```
 
-**Tenant cluster release v9.0.0 and below:**
+**Workload cluster release v9.0.0 and below:**
 
-If the cluster uses a tenant cluster release version equal to `v9.0.0` or lower, then you will find the `coredns-user-values` ConfigMap on the Tenant Cluster itself in the `kube-system` namespace:
+If the cluster uses a workload cluster release version equal to `v9.0.0` or lower, then you will find the `coredns-user-values` ConfigMap on the workload cluster itself in the `kube-system` namespace:
 
 ```nohighlight
 $ kubectl -n kube-system get cm coredns-user-values --context=tenant-cluster
@@ -43,7 +43,7 @@ coredns-user-values         0         11m
 
 -----
 
-Upgrading from v9.0.0 to a higher tenant cluster release will automatically migrate these user values from the Tenant Cluster to the
+Upgrading from v9.0.0 to a higher workload cluster release will automatically migrate these user values from the workload cluster to the
 Control Plane for you. If you have any automation or existing workflows you should keep this location change in mind.
 
 -----
@@ -61,7 +61,7 @@ Only the user values ConfigMap is safe to edit.
 ### 9.0.1 and greater
 
 On the Control Plane, create or edit a ConfigMap named `coredns-user-values`
-in the Tenant Cluster namespace:
+in the workload cluster namespace:
 
 ```yaml
 # On the Control Plane, in the abc12 namespace
@@ -81,12 +81,12 @@ data:
 
 ### 9.0.0 and below
 
-On the Tenant Cluster for which you are trying to configure CoreDNS,
+On the workload cluster for which you are trying to configure CoreDNS,
 create or edit a ConfigMap named `coredns-user-values` in the `kube-system`
 namespace:
 
 ```yaml
-# On the Tenant Cluster, in the kube-system namespace
+# On the workload cluster, in the kube-system namespace
 apiVersion: v1
 kind: ConfigMap
 metadata:

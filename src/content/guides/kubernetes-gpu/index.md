@@ -15,7 +15,7 @@ In order to have GPU instances running Flatcar we need to follow these steps to 
 ## Requirements
 
 - Your cluster must have running GPU instances (`p2` or `p3` families in AWS, `NC` or `NCs` families on Azure).
-- Your cluster must be running a supported Giant Swarm tenant cluster release:
+- Your cluster must be running a supported Giant Swarm workload cluster release:
     - `9.0.5` on AWS with Kubernetes `1.15.11`
     - `11.3.0` on AWS with Kubernetes `1.16.9`
     - `13.0.0` on Azure with kubernetes `1.18.12`
@@ -117,7 +117,7 @@ Extend shared library to contain the nvidia directory
       value: $LD_LIBRARY_PATH:/opt/nvidia/lib64
 ```
 
-Taking into account that default Pod Security Policy in the tenant clusters, `restricted`, does not
+Taking into account that default Pod Security Policy in the workload clusters, `restricted`, does not
 allow mount host paths. You will need to extend:
 
 ```yaml

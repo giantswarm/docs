@@ -1,7 +1,7 @@
 ---
 title: API access to Giant Swarm resources
 description: An overview of the APIs that provide you with programmatic access to
-  resources like your tenant clusters in a Giant Swarm installation. Namely the Rest
+  resources like your workload clusters in a Giant Swarm installation. Namely the Rest
   API and the Control Plane Kubernetes API.
 weight: 75
 type: page
@@ -39,9 +39,9 @@ As of now, there is no termination date for the Rest API. As it might provide th
 
 ### What it is
 
-At Giant Swarm, when we say "control plane", we talk about the Kubernetes Cluster that runs all the operational and monitoring workloads which are needed to create and manage the "tenant clusters". These are the clusters you create to run your actual workloads. This is not to be confused with how the Kubernetes project uses the same term. In that case, it simply refers to the master nodes of a Kubernetes cluster.
+In a Giant Swarm installation, the management cluster is a Kubernetes cluster that runs all the operational and monitoring workloads which are needed to create and manage the _workload clusters_ (formerly called _tenant clusters_). These are the clusters you create to run your actual workloads.
 
-The control plane is a Kubernetes cluster. Your tenant clusters and other associated resources are represented in that cluster as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/). To access these, you can use the Kubernetes API of the cluster that forms the control plane, or in short, the Control Plane Kubernetes API.
+Your workload clusters and other associated resources are represented in the management cluster as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/). To access these, you can use the Kubernetes API of the management cluster, or in short, the Control Plane Kubernetes API.
 
 ### How to gain access
 
@@ -60,13 +60,13 @@ Besides general Kubernetes know-how this will require only a bit of structural k
 
 #### How we organize resources in namespaces
 
-We create one namespace for each tenant cluster, where the namespace name is equal to the tenant cluster ID. All cluster specific resources reside in the namespace of that tenant cluster.
+We create one namespace for each workload cluster, where the namespace name is equal to the workload cluster ID. All cluster specific resources reside in the namespace of that workload cluster.
 
 #### Which custom resources are used for what purpose
 
 Following are some resources that should help you:
 
-- The guide [Creating tenant clusters via the Control Plane Kubernetes API](/guides/creating-clusters-via-crs/) explains step by step how you can create a cluster and node pools via the Control Plane Kubernetes API. Here you learn about all the custom resources a cluster comprises.
+- The guide [Creating workload clusters via the Control Plane Kubernetes API](/guides/creating-clusters-via-crs/) explains step by step how you can create a cluster and node pools via the Control Plane Kubernetes API. Here you learn about all the custom resources a cluster comprises.
 - The [App Platform](/basics/app-platform/) introduction outlines the several custom resources involved when managing app catalogs and apps.
 - Our [Control Plane Kubernetes API Reference](/reference/cp-k8s-api/) provides detailed documentation on all the custom resources we use with the various providers and their versions and schema.
 

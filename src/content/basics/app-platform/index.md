@@ -26,12 +26,12 @@ We provide two _App Catalogs_. You will be able to set up your own additional ca
 ### What makes up the Giant Swarm App Platform
 
 Technically the App Platform is implemented as a set of operators
-running on your Control Plane and tenant clusters. These operators watch various
+running on your Control Plane and workload clusters. These operators watch various
 Custom Resources, some created by us, and others created by you. Together, they make up
 the desired state of the App Platform.
 
 For example, this "App" Custom Resource indicates that you want Kong installed
-on a specific tenant cluster.
+on a specific workload cluster.
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
@@ -100,7 +100,7 @@ catalog at your own risk.
 
 ### Installing your own App Catalog
 
-It’s possible to create your own App Catalog. This is useful if you want to create a set of apps available to your company. Currently, this functionality is only available through direct access to the Giant Swarm Control Plane Kubernetes API. You can request access from your Solution Engineer. Prerequisite for this is a standard Helm chart repository. It should be served through HTTP and accessible to the Control Plane and your Tenant Clusters.
+It’s possible to create your own App Catalog. This is useful if you want to create a set of apps available to your company. Currently, this functionality is only available through direct access to the Giant Swarm Control Plane Kubernetes API. You can request access from your Solution Engineer. Prerequisite for this is a standard Helm chart repository. It should be served through HTTP and accessible to the Control Plane and your workload clusters.
 
 ### How can I interact with the Giant Swarm App Platform
 

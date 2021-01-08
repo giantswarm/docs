@@ -81,7 +81,7 @@ The output lines in detail:
 - **Kubernetes API endpoint:** URL of the Kubernetes API for this cluster
 - **Masters:** (_only for AWS_) Number of master nodes in the cluster
 - **Master availability zones:** (_only for AWS_) Availability zone(s) of the master node(s)
-- **Release version:** Version number of the tenant cluster release used in this cluster
+- **Release version:** Version number of the workload cluster release used in this cluster
 - **Worker node scaling**: Scaling limits. Shows either `autoscaling between <min> and <max>` for an autoscaling cluster, or `pinned to <num>` where autoscaling is disabled or where it's not available.
 - **Desired worker node count**: Only shown for autoscaling clusters. The number of worker nodes the autoscaler intends to have running.
 - **Worker nodes running:** The current number of worker nodes running in this cluster.
@@ -94,7 +94,7 @@ The output lines in detail:
 - **AWS account:** (_only on AWS_) If the cluster is running using non-default provider credentials, here we show the AWS account ID
 - **Azure subscription:** (_only on Azure_) If the cluster is running using non-default provider credentials, here we show the subscription ID
 - **Azure tenant:** (_only on Azure_) If the cluster is running using non-default provider credentials, here we show the tenant ID
-- **Labels** (_only on AWS_) user defined labels. Only available for clusters with tenant cluster release v{{% first_aws_nodepools_version %}} and above for AWS
+- **Labels** (_only on AWS_) user defined labels. Only available for clusters with workload cluster release v{{% first_aws_nodepools_version %}} and above for AWS
 
 Note that some dynamic pieces of information, like the current number of workers, and the desired worker count, may take up to five minutes to be updated.
 

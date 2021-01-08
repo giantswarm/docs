@@ -68,7 +68,7 @@ Default namespace for the efk-stack-app is "efk-stack-app".
 
 ### Create namespace
 
-To create the namespace on the tenant cluster, run:
+To create the namespace on the workload cluster, run:
 
 ```bash=
 kubectl create namespace efk-stack-app
@@ -330,7 +330,7 @@ type: Opaque
 
 ## Step 5: Configure OIDC backend for Kibana
 
-Now that the requirements to deploy the app are done, the efk-stack-app can be deployed to the tenant cluster.
+Now that the requirements to deploy the app are done, the efk-stack-app can be deployed to the workload cluster.
 
 Below is the minimal required `values.yaml` needed to configure EFK at time of installation. Currently, it's not supported to reload configuration from configMaps so make sure to finish this guide before deploying the app.
 

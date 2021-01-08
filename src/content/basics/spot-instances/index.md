@@ -10,7 +10,7 @@ owner:
 
 # Spot instances on AWS
 
-As of tenant cluster release v{{% first_aws_spotinstances_version %}} for AWS, it is possible to use spot instances in clusters that will allow you to optimize your cost.
+As of workload cluster release v{{% first_aws_spotinstances_version %}} for AWS, it is possible to use spot instances in clusters that will allow you to optimize your cost.
 
 The main differences between spot and on-demand instances are that spot instances can be terminated any time by AWS. They are also more frequently unavailable.
 

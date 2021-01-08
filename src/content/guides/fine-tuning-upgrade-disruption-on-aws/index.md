@@ -19,7 +19,7 @@ We provide two ways of limiting the amount of disruption:
 
 As worker [node pools](/basics/nodepools/) on AWS are based on Auto Scaling Groups built using CloudFormation, both settings directly affect configuration details of the CloudFormation stack's [update policy](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-updatepolicy.html).
 
-Configurability of these details has been introduced with tenant cluster release v12.7.0 for AWS. The feature is currently in an early stage and its behaviour may change in the near future.
+Configurability of these details has been introduced with workload cluster release v12.7.0 for AWS. The feature is currently in an early stage and its behaviour may change in the near future.
 
 Adjustments to these settings require using the [Control Plane Kubernetes API](/basics/api/#cp-k8s-api) to edit the [`AWSCluster`](/reference/cp-k8s-api/awsclusters.infrastructure.giantswarm.io/) resource of the cluster (for cluster-wide settings) or the [`AWSMachineDeployment`](/reference/cp-k8s-api/awsmachinedeployments.infrastructure.giantswarm.io/) of an individual node pool.
 
