@@ -39,12 +39,12 @@ It supports the following flags:
 - `--provider` - The infrastructure provider (either `aws` or `azure`)
 - `--name` - cluster name.
 - `--pods-cidr` - CIDR applied to the pods. If you don't set any, the installation default will be applied. Only versions *11.1.4+ support this feature.
-- `--owner` - organization, owning tenant cluster. Must be configured with existing organization in installation.
-- `--release` - valid tenant cluster release version.
+- `--owner` - organization, owning workload cluster. Must be configured with existing organization in installation.
+- `--release` - valid workload cluster release version.
   Can be retrieved with `gsctl list releases` for your installation. Only versions above *10.x.x*+ support cluster CRs.
-- `--label` - tenant cluster label in the form of `key=value`. Can be specified multiple times. Only clusters with tenant cluster release version above *10.x.x*+ support tenant cluster labels.
+- `--label` - workload cluster label in the form of `key=value`. Can be specified multiple times. Only clusters with workload cluster release version above *10.x.x*+ support workload cluster labels.
 - `--cluster-id` (optional) - Unique cluster identifier. Must me 5 characters in length, must contain numbers and letters, and match the regular expression `[a-z0-9]{5}`. If not given, an ID will be generated.
-- `--release-branch` (optional) - The Giant Swarm [releases repository](https://github.com/giantswarm/releases) branch to use to look up the tenant cluster release set via the `--release` flag (default: `master`).
+- `--release-branch` (optional) - The Giant Swarm [releases repository](https://github.com/giantswarm/releases) branch to use to look up the workload cluster release set via the `--release` flag (default: `master`).
 - `--master-az` - Availability zone(s) of master instance.
 
   On AWS, it must be configured with AZ of the installation region. E.g. for region *eu-central-1* valid value is *eu-central-1a*.

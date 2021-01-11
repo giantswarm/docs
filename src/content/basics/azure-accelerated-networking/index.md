@@ -31,9 +31,9 @@ the key benefits of Accelerated Networking are:
 
 Furthermore, accelerated networking feature is available free of charge for many (but not all) Virtual Machine types.
 
-## Support in Giant Swarm tenant clusters
+## Support in Giant Swarm workload clusters
 
-As of tenant cluster release v{{% first_azure_accelerated_networking_version %}}, `Accelerated Networking` is enabled by default
+As of workload cluster release v{{% first_azure_accelerated_networking_version %}}, `Accelerated Networking` is enabled by default
 on all `Node Pools` that have a [Virtual Machine type that supports the feature](https://docs.microsoft.com/en-us/azure/virtual-network/create-vm-accelerated-networking-powershell#supported-vm-instances), so there is nothing you need to do
 in order to leverage the benefits of `AN`.
 

@@ -62,6 +62,10 @@ pre code
 a code
   color: #1c91d5
 
+// resetting a Chrome user agent style
+abbr[title]
+  text-decoration-line: none
+
 .centered-text
   text-align: center
 
@@ -554,5 +558,56 @@ h2:hover .header-link, h3:hover .header-link, h4:hover .header-link, h5:hover .h
 .well.disclaimer
   background-color: #1e1f5036
 
+
+div.platform-support
+  background-color: #EDF0F2
+  padding: 15px 15px 7px 15px
+
+  table
+    margin-bottom: 0
+    table-layout: fixed
+
+    caption
+      color: #000
+      padding-top: 0
+    tr
+      height: auto
+    th
+      width: 200px
+      overflow: hidden
+      padding-left: 0
+  
+  ul
+    list-style-type: none
+    line-height: 1em
+    margin-bottom: 0
+    font-size: inherit
+    padding-inline-start: 0
+
+    li
+      display: inline-block
+      margin-bottom: 0
+      font-size: inherit
+    
+      &+li:before
+        content: "—"
+        padding: 0 3px
+  
+  .tag
+    background-color: #ccc
+    padding: 2px 7px
+    border-radius: 3px
+    font-weight: 300
+
+  .tag-provider-aws
+    background-color: #ed9235
+    color: #232f3b
+  
+  .tag-provider-azure
+    background-color: #1773bd
+    color: #fff
+  
+  .tag-provider-kvm
+    color: #000
 
 @import changes

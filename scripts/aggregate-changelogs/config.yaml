@@ -92,11 +92,11 @@ categories:
     color: "#bfffb8"
   - name: Rest API
     color: "#919ea1"
-  - name: Tenant Cluster Releases for AWS
+  - name: Workload Cluster Releases for AWS
     color: "#ff9900"
-  - name: Tenant Cluster Releases for Azure
+  - name: Workload Cluster Releases for Azure
     color: "#1773bd"
-  - name: Tenant Cluster Releases for KVM
+  - name: Workload Cluster Releases for KVM
     color: "#cccccc"
   - name: Web UI
     color: "#8098b2"

@@ -1,6 +1,6 @@
 ---
 title: Cluster upgrades
-description: How Kubernetes and other components are upgraded in a Giant Swarm tenant cluster, and how to prepare your cluster and workloads to facilitate robust upgrades.
+description: How Kubernetes and other components are upgraded in a Giant Swarm workload cluster, and how to prepare your cluster and workloads to facilitate robust upgrades.
 weight: 60
 layout: subsection
 user_questions:
@@ -15,19 +15,19 @@ owner:
 
 # Cluster upgrades
 
-A tenant cluster in a Giant Swarm installation is running a stack comprising many software components, provided by the Kubernetes project and other open source projects or software vendors, as well as by Giant Swarm.
-In order to keep all components up-to-date, to allow you to benefit from latest improvements, features and security fixes, we provide upgrades for the entire software stack in tenant clusters.
+A workload cluster (formerly called _tenant cluster_) in a Giant Swarm installation is running a stack comprising many software components, provided by the Kubernetes project and other open source projects or software vendors, as well as by Giant Swarm.
+In order to keep all components up-to-date, to allow you to benefit from latest improvements, features and security fixes, we provide upgrades for the entire software stack in workload clusters.
 
-At Giant Swarm we believe that frequent, small updates are a way to keep change in the system manageable.
+At Giant Swarm we believe that frequent, small updates are the way to keep the change in the system manageable. That is why our goal is to help you to run all the clusters in the latest version.
 We invest a lot of effort in making this happen without disrupting your usage of your clusters.
 
-In this article, we explain how upgrades work in detail and how you should provide your workloads in order to keep them running during a tenant cluster upgrade and prevent disruptions of your applications.
+In this article, we explain how upgrades work in detail and how you should provide your workloads in order to keep them running during a workload cluster upgrade and prevent disruptions of your applications.
 
 ## Background and concepts
 
-### The tenant cluster stack
+### The workload cluster stack
 
-Among the third party components building a tenant cluster stack are
+Among the third party components building a workload cluster stack are
 
 - [Kubernetes](https://kubernetes.io/) with its many sub-components
 - [Flatcar Container Linux](https://docs.flatcar-linux.org/) as the node's operating system
@@ -41,44 +41,68 @@ Among the third party components building a tenant cluster stack are
 as well as many operators and controllers created and maintained by Giant Swarm.
 
 All of the items in the list above are released independent of each other by their vendors.
-At Giant Swarm we bundle specific versions of these components of the tenant cluster stack into a **tenant cluster release**. A tenant cluster release is specific for a provider (AWS, Azure, or KVM) and identified by a version number. To learn more about tenant cluster releases and our versioning, check the [tenant cluster releases reference](/reference/tenant-cluster-release-versions/).
+At Giant Swarm we bundle specific versions of these components of the workload cluster stack into a **workload cluster release**. A workload cluster release is specific for a provider (AWS, Azure, or KVM) and identified by a version number. To learn more about workload cluster releases and our versioning, check the [workload cluster releases reference](/reference/workload-cluster-release-versions/).
 
-Once deployed, the tenant cluster stack is **immutable**.
+Once deployed, the workload cluster stack is **immutable**.
 All components are deployed based on images, either of virtual machines or of Docker containers.
 No changes are ever made to components at runtime.
-This ensures that the stack running in your environment is the exact stack we have tested before.
+This ensures that the stack running in your environment is the exact stack we tested before.
 
-As a consequence, the only way to change the stack is to perform an upgrade, to switch to a new tenant cluster release.
+As a consequence, the only way to change the stack is to perform an upgrade, to switch to a new workload cluster release.
 
 ### Upgrade semantics {#semantics}
 
-According to our tenant cluster release versioning, three different levels of upgrades can occur:
+According to our workload cluster release versioning, three different levels of upgrades can occur:
 
 - *Patch upgrade*: Only the patch version number is increased.
 
-- *Minor upgrade*: The minor version number is increased, while the Major version number stays the same.
+- *Minor upgrade*: The minor version number is increased, while the major version number stays the same.
 
-- *Major upgrade*: The Major version number is increased.
+- *Major upgrade*: The major version number is increased.
 
-**Both patch and minor upgrades** can be rolled out at any time by Giant Swarm without your interaction. Currently, this happens in coordination with your administrators and with a notice to your developers.
+#### Patch upgrade {#patch-upgrade}
 
-When a tenant cluster release with a **new major version** becomes available, we inform you, but leave scheduling of the upgrade to you. This gives you the control to decide if and when it is time for you to upgrade, potentially updating workloads first. These upgrades are also accompanied or even triggered by Giant Swarm staff, to ensure we have a close eye on the upgrade process and the uptime of your workloads.
+Patches contain bug fixes only. Individual patches are as minimal as possible and they are needed to increase the stability of the cluster or to fix a CVE. They are released based on upstream information and/or learnings from managing clusters for customers.
+
+#### Minor upgrade {#minor-upgrade}
+
+In case we are releasing features in a nondisruptive way (i.e. feature flagged) we will put those in minor releases. Those will actually have even less impact than a patch as they will not change anything that is in place if the customer doesn't explicitly enable it.
+
+#### Major upgrade {#major-upgrade}
+
+Every few months, typically in synchronization with Kubernetes Upstream Minor Releases, we provide a new major release. It includes the new Kubernetes Minor Release, other components by third parties, and any new versions of our software that contain deeper new functionality. It means that new developments, like node pools or networking changes, are delivered within a major release.
+
+As always we provide release notes with all the information needed. Under this new structure, we are working to provide them for major Releases early to allow for your preparation.
+
+#### Considerations {#considerations}
 
 Once we publish a new major release, we deprecate the oldest major release.
 This means that new clusters with deprecated releases can only be created using `gsctl`.
 Existing clusters, however, are not affected.
 
-Creating clusters with deprecated releases is generally not recommended. Testing tenant cluster upgrades in a separate cluster should be the only use case.
+Creating clusters with deprecated releases is not recommended. Testing workload cluster upgrades in a separate cluster should be the only use case.
 
-### Skipping tenant cluster release
+### Upgrade automation
 
-We **don't support omitting any Major version** when upgrading from one tenant cluster release to another.
+**Both patch and minor upgrades** can be rolled out at any time by Giant Swarm without your interaction. Currently, we agree with customers which time windows are available for upgrades in the different environments. We are working towards creating automation that will manage all the upgrade logic for us. This will be based on letting customers plan maintenance periods and policies to ensure it does not disrupt business as usual.
+
+**New major versions** are not automated. Instead, we inform you but leave the scheduling of the upgrade to you. This gives you the control to decide if and when it is time for you to upgrade, potentially updating workloads first. These upgrades are also accompanied or even triggered by Giant Swarm staff, to ensure we keep a close eye on the upgrade process and the uptime of your workloads.
+
+### Skipping workload cluster release
+
+We **don't support omitting any major version** when upgrading from one workload cluster release to another.
 
 Example: Going from v11.x.x directly to v13.x.x is not supported. An upgrade to v12.x.x would be required as an intermediate step.
 
-On the Minor and Patch level, you can skip any number of tenant cluster releases if desired.
+On the Minor and Patch level, you can skip any number of workload cluster releases if desired.
 
-Note that our user interfaces only allow upgrading to the next active rtenant cluster release. In order to skip a release version, you'll have to use the [Rest API](https://docs.giantswarm.io/api/#operation/modifyClusterV5) or the [Control Plane Kubernetes API](/basics/api/#cp-k8s-api) to trigger the upgrade. Please talk to your solution engineer in case you have any questions regarding this.
+Note that by default, our user interfaces upgrade to the next active workload cluster release. In order to skip a release version, you have several options, depending on the tool you use:
+
+- In the **web interface**, open the details page for a cluster. Click the release version of the cluster. If upgrades are available for this release, they will be listed in the dialog. Simply click the desired target version in order to start the upgrade process. You will have an additional step for reviewing the changes before actually triggering the cluster upgrade.
+
+- In **gsctl**, the [`upgrade cluster`](/reference/gsctl/upgrade-cluster/) command provides an optional flag `--release` which allows to specify the version to upgrade to.
+
+- Alternatively, you can use the [Rest API](/api/#operation/modifyClusterV5) or the [Control Plane Kubernetes API](/basics/api/#cp-k8s-api) to trigger the upgrade. Please talk to your solution engineer in case you have any questions regarding this.
 
 ## How upgrades work
 
@@ -91,15 +115,15 @@ In particular this means:
 - As a consequence of draining, Pods running on a node will be rescheduled to other nodes.
 - Once the master node is taken down and recreated, the Kubernetes API will be unavailable for a short time.
 
-**Note**: By default, tenant clusters have one master node each. [Consider using a High Availability masters setup](#checklist-ha-masters) to avoid API downtime during upgrades.
+**Note**: By default, workload clusters have one master node each. [Consider using a High Availability masters setup](#checklist-ha-masters) to avoid API downtime during upgrades.
 
-### Provider-specific details for AWS
+### Specific details for AWS
 
-AWS resources are managed by the [aws-operator](https://github.com/giantswarm/aws-operator) component through a nested CloudFormation stack. For a tenant cluster upgrade, the CloudFormation stacks are updated, in several steps.
+AWS resources are managed by the [aws-operator](https://github.com/giantswarm/aws-operator) component through a nested CloudFormation stack. For a workload cluster upgrade, the CloudFormation stacks are updated, in several steps.
 
-The master node re-creation is started first. Meanwhile, the recreation of worker nodes starts, where all worker nodes are recreated in batches. During the upgrade, **up to 33 percent of the worker nodes can be unavailable**.
+The master node re-creation is started first. Meanwhile, the recreation of worker nodes starts, where all worker nodes are recreated in batches. During the upgrade, **up to 33 percent of the worker nodes may become unavailable**.
 
-From tenant cluster release v12.7.0 some of the parameters of the upgrade can be configured. Check [Fine-tuning upgrade disruption on AWS](/guides/fine-tuning-upgrade-disruption-on-aws/) guide for more details.
+From workload cluster release v12.7.0 some of the parameters of the upgrade can be configured. Check [Fine-tuning upgrade disruption on AWS](/guides/fine-tuning-upgrade-disruption-on-aws/) guide for more details.
 
 After recreation, worker nodes are **not expected to have the same names** they had before.
 
@@ -108,9 +132,9 @@ In process of the worker node recreation, any data stored in worker node's local
 **Note:** We are in the process of making upgrades on AWS less disruptive.
 For example, we are aware that for larger clusters, one thirds of worker nodes becoming unavailable at the same time is often too much.
 
-### Provider-specific details for Azure
+### Specific details for Azure
 
-Our [azure-operator](https://github.com/giantswarm/azure-operator) manages tenant clusters on Azure via Azure Resource Manager (ARM) templates and Virtual Machine Scale Sets (VMSS).
+Our [azure-operator](https://github.com/giantswarm/azure-operator) manages workload clusters on Azure via Azure Resource Manager (ARM) templates and Virtual Machine Scale Sets (VMSS).
 
 In an upgrade, all Virtual Machines (VM) are updated by reimaging with a new OS image and then rebooting.
 Master and worker nodes are updated one by one, where each node is first drained (Pods re-scheduled to other nodes) and then reimaged and rebooted.
@@ -119,17 +143,17 @@ On Azure, the node names visible to Kubernetes (e. g. `kubectl get nodes`) are n
 
 **Note:** Any local storage in the node is erased. Persistent volumes are not affected by that.
 
-### Provider-specific details for KVM
+### Specific details for KVM
 
-In a KVM-based cluster, our [kvm-operator](https://github.com/giantswarm/kvm-operator) builds each tenant cluster node out of a Kubernetes Deployment and Pod in the control plane.
+In a KVM-based cluster, our [kvm-operator](https://github.com/giantswarm/kvm-operator) builds each workload cluster node out of a Kubernetes Deployment and Pod in the management cluster.
 In an upgrade, each of these deployments is updated after the according node has been drained, one after another, starting with the master node.
 This leads to removal and recreation of the Pods.
 
 ## How to upgrade a cluster {#how-to-upgrade-a-cluster}
 
-As an authenticated user you can upgrade the cluster to the **next active tenant cluster release**, using the web UI or the CLI. The web UI shows a yellow link next to the version information if there is an upgrade available. For the CLI you can use the command [`gsctl upgrade cluster`](/reference/gsctl/upgrade-cluster/) for the same purpose.
+As an authenticated user you can upgrade the cluster to the **next active workload cluster release**, using the web UI or the CLI. The web UI shows a yellow link next to the version information if there is an upgrade available. For the CLI you can use the command [`gsctl upgrade cluster`](/reference/gsctl/upgrade-cluster/) for the same purpose.
 
-When the upgrade process is managed by our tools, the tenant cluster release version chosen is selected by Giant Swarm according to best practices. It means it will not upgrade a cluster by more than one major version at a time. In case you use the raw API to upgrade your cluster please test the process against a non-production cluster first.
+When the upgrade process is managed by our tools, the workload cluster release version chosen is selected by Giant Swarm according to best practices. It means it will not upgrade a cluster by more than one major version at a time. In case you use the raw API to upgrade your cluster please test the process against a non-production cluster first.
 
 ## Checklist {#checklist}
 
@@ -195,7 +219,7 @@ To help the scheduler further with being able to correctly (re-)schedule your Po
 
 Some, but not all, cluster upgrades require nodes to be upgraded. With single master clusters, this causes a downtime of the Kubernetes API that can last a few minutes.
 
-If you are running Giant Swarm on AWS, since tenant cluster release v{{% first_aws_ha_masters_version %}} you have the option to use [high-availability masters](/basics/ha-masters/) instead. This will keep the Kubernetes API available even during an upgrade where nodes are rolled.
+If you are running Giant Swarm on AWS, since workload cluster release v{{% first_aws_ha_masters_version %}} you have the option to use [high-availability masters](/basics/ha-masters/) instead. This will keep the Kubernetes API available even during an upgrade where nodes are rolled.
 
 Consider this option before performing an upgrade. However, keep in mind that a cluster cannot be converted back from high-availability masters to a single master cluster.
 
@@ -240,4 +264,4 @@ Furthermore, you should make your containers are as lightweight (in terms of siz
 
 ## Further reading
 
-- [Tenant Cluster Releases](/reference/tenant-cluster-release-versions/) explains the semantics of tenant cluster releases.
+- [Workload cluster releases](/reference/workload-cluster-release-versions/) explains the semantics of workload cluster releases.

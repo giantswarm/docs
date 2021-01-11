@@ -43,7 +43,7 @@ Here are the supported flags:
 - `--nodes-max` - maximum number of worker nodes for the node pool. (default 10 on AWS, and default 3 on Azure)
 - `--nodes-min` - minimum number of worker nodes for the node pool. (default 3 on both AWS and Azure)
 - `--num-availability-zones` - number of availability zones to use. (default 1)
-- `--owner` - organization, owning tenant cluster. Must be configured with existing organization in installation.
+- `--owner` - organization, owning workload cluster. Must be configured with existing organization in installation.
 
 ### AWS specific
 

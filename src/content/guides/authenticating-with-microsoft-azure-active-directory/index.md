@@ -13,7 +13,7 @@ owner:
 
 # Authenticating with Microsoft Azure Active Directory
 
-A Giant Swarm installation can be configured to authenticate with Microsoft Azure Active Directory (AAD). This setting has to be enabled by Giant Swarm staff once per installation. After that all tenant clusters will be set up to authenticate against AAD using OpenID Connect (OIDC).
+A Giant Swarm installation can be configured to authenticate with Microsoft Azure Active Directory (AAD). This setting has to be enabled by Giant Swarm staff once per installation. After that all workload clusters will be set up to authenticate against AAD using OpenID Connect (OIDC).
 
 On the user side, you can then authenticate using the Azure Auth Provider of `kubectl`. Your access to a cluster is decided by RBAC roles mapped to your user or group.
 

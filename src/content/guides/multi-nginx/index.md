@@ -49,9 +49,9 @@ Each NGINX IC App installation has to have unique ingress class. Ingress resourc
 
 On AWS and Azure, NGINX LoadBalancer Service is fronted by cloud provider managed load balancer service. By default NGINX IC App will have a public load balancer. Changing `controller.service.public` flag to `false` declares that internal load balancer should be created instead.
 
-Similarly, cloud load balancer created for each NGINX installation on AWS and Azure has to have unique host name associated with it. Host name suffix is common for all, and equals to the tenant cluster's base domain name. Prefix is configurable via `controller.service.subdomain` configuration property and defaults to `ingress`. In example configuration override for second internal NGINX IC App it is overriden to `ingress-internal`.
+Similarly, cloud load balancer created for each NGINX installation on AWS and Azure has to have unique host name associated with it. Host name suffix is common for all, and equals to the workload cluster's base domain name. Prefix is configurable via `controller.service.subdomain` configuration property and defaults to `ingress`. In example configuration override for second internal NGINX IC App it is overriden to `ingress-internal`.
 
-For NGINX IC running on on-prem (KVM) tenant clusters there's no out-of-the-box `LoadBalancer` Service type support. Therefore NGINX Service type defaults to `NodePort`. For every NGINX IC App installation a set of unique http and https node ports ought to be assigned. The default NGINX http and https node ports are `30010` and `30011`. The example sets `31010` and `31011` as overrides for the internal NGINX.
+For NGINX IC running on on-prem (KVM) workload clusters there's no out-of-the-box `LoadBalancer` Service type support. Therefore NGINX Service type defaults to `NodePort`. For every NGINX IC App installation a set of unique http and https node ports ought to be assigned. The default NGINX http and https node ports are `30010` and `30011`. The example sets `31010` and `31011` as overrides for the internal NGINX.
 
 ## Using weak ciphers for legacy clients
 
