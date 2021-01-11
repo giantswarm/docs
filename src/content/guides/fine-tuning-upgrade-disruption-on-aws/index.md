@@ -10,6 +10,10 @@ owner:
 
 # Fine-tuning upgrade disruption on AWS
 
+{{< platform_support_table aws="alpha=v12.7.0" >}}
+
+## Introduction
+
 Cluster upgraded, described in detail in our [cluster upgrades reference](/reference/cluster-upgrades/)), can cause disruption on workloads, if the upgrade requires upgrading worker nodes.
 
 We provide two ways of limiting the amount of disruption:

@@ -12,6 +12,8 @@ owner:
 
 The Giant Swarm architecture distinguishes between the management cluster and workload clusters. The management cluster enables the creation and operation of workload clusters and the workload cluster(s) run your Kubernetes workloads.
 
+{{< platform_support_table aws="ga" azure="ga" >}}
+
 ## How does multi-account support help? {#benefits}
 
 Both on AWS and Azure, workload cluster resources usually exist in an account (or in Azure terms: a subscription) separate from the one hosting the management cluster resources. We configure a default account to use for all workload clusters in an installation. Both accounts, the one for the management cluster and the default one for workload clusters, are under the customer's jurisdiction.

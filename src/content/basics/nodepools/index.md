@@ -15,9 +15,11 @@ owner:
 
 # Node pools
 
+{{< platform_support_table aws="beta=v10.0.0,ga=v11.0.0" azure="ga=v13.0.0" kvm="roadmap=https://github.com/giantswarm/roadmap/issues/209" >}}
+
 ## Definition
 
-A node pool is a set of nodes within a Kubernetes cluster that share the same configuration (machine type, CIDR range, etc.). Each node in the pool is labeled by the node pool's name
+A node pool is a set of nodes within a Kubernetes cluster that share the same configuration (machine type, CIDR range, etc.). Each node in the pool is labeled by the node pool's name.
 
 ## Advantages
 
