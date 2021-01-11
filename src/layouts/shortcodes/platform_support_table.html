@@ -1,0 +1,70 @@
+<div class="platform-support">
+    <table class="platform-support">
+        <caption>Platform support</caption>
+        <tbody>
+            {{ with .Get "aws" }}
+            <tr>
+                <th><span class="tag tag-provider-aws">AWS</span></th>
+                <td>
+                    <ul>
+                        {{ partial "platform_support_table_chunk" . }}
+                    </ul>
+                </td>
+            </tr>
+            {{ end }}
+            
+            {{ with .Get "azure" }}
+            <tr>
+                <th><span class="tag tag-provider-azure">Azure</span></th>
+                <td>
+                    <ul>
+                        {{ partial "platform_support_table_chunk" . }}
+                    </ul>
+                </td>
+            </tr>
+            {{ end }}
+
+            {{ with .Get "kvm" }}
+            <tr>
+                <th><span class="tag tag-provider-kvm">On-premises (KVM)</span></th>
+                <td>
+                    <ul>
+                        {{ partial "platform_support_table_chunk" . }}
+                    </ul>
+                </td>
+            </tr>
+            {{ end }}
+        </tbody>
+    </table>
+</div>
+
+
+{{ define "partials/platform_support_table_chunk" }}
+    {{ range (split . ",") }}
+        <li>
+        {{- $stage_chunk := . }}
+        {{- $stage := $stage_chunk }}
+        {{- $version_or_url := "" }}
+        {{- $stage_chunk_parts := (split $stage_chunk "=") }}
+        {{- if eq (len $stage_chunk_parts) 2 }}
+            {{- $stage = index $stage_chunk_parts 0 }}
+            {{- $version_or_url = index $stage_chunk_parts 1 }}
+        {{- end }}
+        {{- if eq $stage "ga" }}
+            <abbr title="general availability">GA</abbr>{{ with $version_or_url }} in {{ . }}{{ end }}
+        {{- else if eq $stage "beta" -}}
+            Beta{{ with $version_or_url }} in {{ . }}{{ end }}
+        {{- else if eq $stage "alpha" -}}
+            Alpha{{ with $version_or_url }} in {{ . }}{{ end }}
+        {{- else if eq $stage "roadmap" -}}
+            {{ if hasPrefix $version_or_url "https://github.com/giantswarm/roadmap" }}
+                On our <a href="{{ $version_or_url }}" rel="noopener noreferrer" target="_blank">roadmap</a>
+            {{ else }}
+                {{ errorf "Bad roadmap URL %q in platform_support_table shortcut. Please give a valid roadmap issue URL." $version_or_url }}
+            {{ end }}
+        {{- else }}
+            {{ errorf "Bad maturity stage name %q in platform_support_table shortcut. Use 'roadmap', 'alpha', 'beta', or 'ga'." $stage }}
+        {{- end }}
+        </li>
+    {{ end }}
+{{ end }}
