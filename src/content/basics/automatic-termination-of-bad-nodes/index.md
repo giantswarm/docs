@@ -73,3 +73,24 @@ spec:
 ```
 
 If you want to disable the feature you must remove the annotation from the [`Cluster`](/reference/cp-k8s-api/clusters.cluster.x-k8s.io/) custom resource.
+
+### KVM
+
+To enable it, you have to edit the [`KVMConfig`](/reference/cp-k8s-api/kvmconfigs.provider.giantswarm.io/) resource of your cluster using the [Control Plane Kubernetes API](/basics/api/#cp-k8s-api).
+
+Make sure the resource has the `alpha.node.giantswarm.io/terminate-unhealthy` annotation. The value can be anything you like, as only the presence of that annotation is checked. Here is an example:
+
+```yaml
+apiVersion: provider.giantswarm.io/v1alpha1
+kind: KVMConfig
+metadata:
+  annotations:
+    alpha.node.giantswarm.io/terminate-unhealthy: "true"
+  name: fn7t8
+  namespace: default
+spec:
+  ...
+```
+
+If you want to disable the feature you must remove the annotation from the [`KVMConfig`](/reference/cp-k8s-api/kvmconfigs.provider.giantswarm.io/) custom resource.
+
