@@ -61,7 +61,7 @@ Here we document the flags that have a particular meaning for the `get nodepools
 
 ### `--cluster-id/-c` {#flags-output}
 
-If present, list the node pools that belong to this given tenant cluster.
+If present, list the node pools that belong to this given workload cluster.
 
 ### `--output/-o` {#flags-output}
 
