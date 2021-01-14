@@ -93,4 +93,3 @@ spec:
 ```
 
 If you want to disable the feature you must remove the annotation from the [`KVMConfig`](/reference/management-api/kvmconfigs.provider.giantswarm.io/) custom resource.
-
