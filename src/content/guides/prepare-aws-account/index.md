@@ -18,9 +18,9 @@ owner:
 
 As detailed in the [Architecture](/basics/aws-architecture/) docs,
 the workload clusters (the clusters running your Kubernetes workloads) in a Giant
-Swarm installation can run in an AWS account separate from the control plane.
+Swarm installation can run in an AWS account separate from the management cluster.
 This gives great flexibility depending on requirements and usage
-scenarios. For example, it allows the control plane to be running in an AWS account
+scenarios. For example, it allows the management cluster to be running in an AWS account
 dedicated to it, whilst workload clusters operate in separate AWS accounts, depending
 on the customer organization using them.
 
@@ -29,9 +29,9 @@ on the customer organization using them.
 In order to run Giant Swarm clusters, the AWS account(s) need to fulfill
 these requirements:
 
-- Some AWS account (usually control plane account):
+- Some AWS account (usually management cluster account):
     - IAM _user_ to be used by our `aws-operator` software.
-- All control plane and workload cluster AWS accounts:
+- All management cluster and workload cluster AWS accounts:
     - Service limits set according to requirements.
     - IAM _role_ to be assumed by our `aws-operator` software.
     - IAM _role_ to be assumed by Giant Swarm staff.
@@ -46,10 +46,10 @@ We have created a Terraform module to automate the IAM role creation. You can vi
 
 Giant Swarm's service creating and maintaining your workload clusters is
 called [aws-operator](https://github.com/giantswarm/aws-operator). It runs in
-the control plane. In order to handle resources in your AWS Tenant
+the management cluster. In order to handle resources in your AWS Tenant
 Cluster account, it needs a prepared IAM user allowed to assume IAM roles
 created in managed AWS accounts. IAM roles setup is explained in later sections
-of this guide. This user is usually created in control plane AWS account but it
+of this guide. This user is usually created in management cluster AWS account but it
 can be created in a different account.
 
 Details of all the required steps to set up this user are explained below:
@@ -95,7 +95,7 @@ The screenshot below shows the entry form.
 
 These are the limit increases to be requested, grouped by limit type:
 
-- Control Plane account:
+- management cluster account:
     - VPC
         - Routes per route table: **200**
 - Workload cluster account:
@@ -140,7 +140,7 @@ dynamically based on traffic, hence the high numbers of EC2 instances requested.
 
 ## IAM setup in AWS accounts {#iam}
 
-The following steps must all take in the control plane and workload cluster AWS
+The following steps must all take in the management cluster and workload cluster AWS
 accounts.
 
 ### Create an IAM role for aws-operator {#iam-aws-operator-role}
@@ -208,7 +208,7 @@ access both AWS accounts. This role must have Giant Swarm's account as a trusted
 entity, and we recommend that it enforces multi-factor authentication.
 
 Giant Swarm staff require access to **all** accounts, so **the following steps must
-be duplicated in both the control plane and workload cluster accounts**.
+be duplicated in both the management cluster and workload cluster accounts**.
 
 #### 1. Basic role setup {#iam-staff-role-basic}
 

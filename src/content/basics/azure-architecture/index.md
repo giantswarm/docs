@@ -11,21 +11,21 @@ owner:
 
 The Giant Swarm Platform consists of various components. They can be categorized into three areas: infrastructure, operations, and applications.
 
-For managing all the infrastructure we run a control plane Kubernetes cluster per cloud and region where you want to run your workloads. From that control plane you can spin up as many individual Kubernetes clusters as you want. Our operations team works to keep all cluster components healthy, while we release new versions with new features and patches. On top of that Giant Swarm offers a curated catalog with common Cloud Native tools that helps with monitoring, security, or API management. Customers can leverage those while we carry the burden of maintaining and keep them up to date.
+For managing all the infrastructure we run a management cluster per cloud and region where you want to run your workloads. From that management cluster you can spin up as many individual Kubernetes clusters, called _workload clusters_, as you want. Our operations team works to keep all cluster components healthy, while we release new versions with new features and patches. On top of that Giant Swarm offers a curated catalog with common Cloud Native tools that helps with monitoring, security, or API management. Customers can leverage those while we carry the burden of maintaining and keep them up to date.
 
 When it comes to planning and designing your cluster architecture and its adaption to our infrastructure requirements, there are many moving parts to consider. Based on our experience with various customers over the last 6 years, we have gathered best practices and general advice to help with some of the initial critical decisions.
 
-## Control Plane
+## Management cluster
 
-As we are fully convinced of Kubernetes as a platform for building platforms, we built all our Control Plane based on a Kubernetes cluster. The initial deployment entails the creation of that Control Plane cluster in a defined cloud provider region. After the Control Plane cluster is ready we deploy all our automation taking advantage of Kubernetes primitives and using the same philosophy we advocate to our customers.
+As we are fully convinced of Kubernetes as a platform for building platforms, we built all our management clusters based on Kubernetes. The initial deployment entails the creation of that management cluster in a defined cloud provider region. After the management cluster is ready we deploy all our automation taking advantage of Kubernetes primitives and using the same philosophy we advocate to our customers.
 
 Giant Swarm leverages the concept of [“Operators"](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) to control all resources that clusters need as [“Custom Resources”](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/). At the same time customers can also use the Kubernetes Control Plane API to [manage their clusters](/guides/creating-clusters-via-crs/) and/or [applications](/basics/app-catalog/).
 
-![Control Plane Architecture](architecture-azure-control-plane.png)
+![Azure management cluster architecture](architecture-azure-control-plane.png)
 
 ## Azure landscape
 
-Giant Swarm's Azure operator is the product of years of work and we continue to apply our learnings and new functionality to it, as they become available. It is in charge of the provisioning and configuration of all resources needed to make a Kubernetes cluster functional on Azure. This operator runs in the Control Plane cluster, conveniently in separate subscription, and needs to reach the Azure API within subscription where you want to deploy your clusters. Thanks to our [Multi-Account](/basics/multi-account/) support, customers can add different Azure subscriptions to our platform and our operator will assume an Service Principle to operate the resources accordingly and spawn clusters into these subscriptions respectively.
+Giant Swarm's Azure operator is the product of years of work and we continue to apply our learnings and new functionality to it, as they become available. It is in charge of the provisioning and configuration of all resources needed to make a Kubernetes cluster functional on Azure. This operator runs in the management cluster, conveniently in separate subscription, and needs to reach the Azure API within subscription where you want to deploy your clusters. Thanks to our [Multi-Account](/basics/multi-account/) support, customers can add different Azure subscriptions to our platform and our operator will assume an Service Principle to operate the resources accordingly and spawn clusters into these subscriptions respectively.
 
 In order to help Customers getting started with our platform, we have crafted an [introductory guide](/guides/prepare-azure-subscription/) on how to configure your Azure subscription. It is important to review and request Resources Quotas and Service Limits on Azure Subscription level in order to be able to spawn machines [Azure quotas](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits) when creating clusters through our platform. Additionally, we continuously monitor the relevant limits when you are running our platform. We will notify you if a cluster approaches one of these limits, so you can focus on building your applications.
 
@@ -90,7 +90,7 @@ In addition to the security policies, Network Policies define the communication 
 
 ## Observability
 
-Since we provide a **managed** Kubernetes platform, Giant Swarm has to be aware of state and unexpected events regarding the platform. For that reason our Control Planes run a [monitoring stack](https://www.giantswarm.io/blog/monitoring-on-demand-kubernetes-clusters-with-prometheus) to watch all workload clusters and ensure all managed components are healthy. In each workload cluster there are several [exporters](https://prometheus.io/docs/instrumenting/exporters/) that gather and forward the metrics for each component.
+Since we provide a **managed** Kubernetes platform, Giant Swarm has to be aware of state and unexpected events regarding the platform. For that reason our management clusters run a [monitoring stack](https://www.giantswarm.io/blog/monitoring-on-demand-kubernetes-clusters-with-prometheus) to watch all workload clusters and ensure all managed components are healthy. In each workload cluster there are several [exporters](https://prometheus.io/docs/instrumenting/exporters/) that gather and forward the metrics for each component.
 
 Our on-call engineers will be paged in case anything happens to the cluster or its base components and they will respond to the incident based on the run-books we have created based on years of operating Cloud Native systems. In case there is an improvement to be made, a post mortem is created and a solution will be implemented before long. Any patch or fix added to the platform will be released to all customers.
 

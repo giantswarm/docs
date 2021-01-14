@@ -103,7 +103,7 @@ We encourage you to try out this playground catalog and the different apps offer
 
 ### Installing your own App Catalog
 
-It’s possible to create your own App Catalog. This is useful if you want to create a set of apps available to your company. Currently, this functionality is only available through direct access to the Giant Swarm Control Plane Kubernetes API. You can request access from your Solution Engineer. Prerequisite for this is a standard Helm chart repository. It should be served through HTTP and accessible to the management cluster and your workload clusters.
+It’s possible to create your own App Catalog. This is useful if you want to create a set of apps available to your company. Currently, this functionality is only available through direct access to the Giant Swarm Management API. You can request access from your Solution Engineer. Prerequisite for this is a standard Helm chart repository. It should be served through HTTP and accessible to the management cluster and your workload clusters.
 
 ### How can I interact with the Giant Swarm App Platform
 
@@ -116,5 +116,5 @@ our web interface.
 Lastly, at the end of the day, what our interfaces do, is create (or update)
 a set of Custom Resources on your Kubernetes management cluster.
 
-As we are giving you direct access to the Control Plane Kubernetes API you can also interact with the above mentioned resources using `kubectl`, and automate them just as you have been automating other parts of your stack.
+As we are giving you direct access to the Management API you can also interact with the above mentioned resources using `kubectl`, and automate them just as you have been automating other parts of your stack.
 And as Kubernetes resources and especially some CRDs require lots of boilerplate and conventions, we built a kubectl plugin to help you with that.

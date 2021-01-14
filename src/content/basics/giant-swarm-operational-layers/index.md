@@ -10,16 +10,16 @@ user_questions:
   - Why does Giant Swarm use several operational layers?
   - What is the Giant Swarm infrastructure layer?
   - Who has access to the infrastructure layer?
-  - What is the Giant Swarm control plane?
-  - Who has access to the Giant Swarm control plane?
+  - What is the Giant Swarm management cluster?
+  - Who has access to the Giant Swarm management cluster?
   - What is the Giant Swarm API?
   - Who has access to the Giant Swarm API?
   - What is the Giant Swarm user space?
   - Who has access to the Giant Swarm user space?
   - How is the Giant Swarm infrastructure layer accessed?
   - What are the security safegaurds around access to the Giant Swarm infrastructure layer?
-  - What are the security safegaurds around access to the Giant Swarm control plane?
-  - How is access to the control plane authorized?
+  - What are the security safegaurds around access to the Giant Swarm management cluster?
+  - How is access to the management cluster authorized?
   - How do users access workload clusters?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-horizon
@@ -34,7 +34,7 @@ A Giant Swarm installation has several operational layers. At Giant Swarm we use
 We will go through the operational layers one by one from the bottom (infrastructure) to the top (user space) and explain the intended operational model by defining (typical) users and permission levels. The layers are:
 
 1. [Infrastructure](#infrastructure)
-2. [Giant Swarm Control Plane](#controlplane)
+2. [Giant Swarm management cluster](#management-cluster)
 3. [Giant Swarm API](#giant-swarm-api)
 4. [User Space](#userspace)
 
@@ -46,19 +46,19 @@ This layer does not include the actual hardware and maintenance of the data cent
 
 On this layer, Giant Swarm SREs have root level SSH access to everything that pertains to a Giant Swarm installation. This is facilitated by a Single Sign On (SSO) mechanism including MFA (multi-factor authentication). On the cloud they additionally have access to the cloud account/subscription through a role to set up and manage the cloud resources.
 
-### Giant Swarm control plane {#controlplane}
+### Giant Swarm management cluster {#management-cluster}
 
-The Giant Swarm Control Plane consists mainly of services running inside the Control Plane Kubernetes cluster.
+The Giant Swarm management cluster consists mainly of services running inside the management cluster.
 
-Network access to the Control Plane Kubernetes API is allowed only through Giant Swarm VPN and customer VPN.
+Network access to the Management API is allowed only through Giant Swarm VPN and customer VPN.
 
-Giant Swarm SREs and operations personnel have cluster admin access to the Control Plane Kubernetes API through a tunnel. It is facilitated by SSO with MFA, as described above.
+Giant Swarm SREs and operations personnel have cluster admin access to the Management API through a tunnel. It is facilitated by SSO with MFA, as described above.
 
 A customer has *tenant admin* and *view* access via OpenID Connect (OIDC), configured towards the supported identity provider.
 
-#### Control Plane Kubernetes API access for Customers
+#### Management API access for Customers
 
-The Kubernetes API on every Control Plane has [dex](https://github.com/dexidp/dex) installed as an OIDC issuer. Dex is configured with an identity provider chosen by the customer. A list of supported providers can be found in the [dex github repository](https://github.com/dexidp/dex/tree/master/connector).
+The Kubernetes API on every management cluster has [dex](https://github.com/dexidp/dex) installed as an OIDC issuer. Dex is configured with an identity provider chosen by the customer. A list of supported providers can be found in the [dex github repository](https://github.com/dexidp/dex/tree/master/connector).
 [dex-k8s-authenticator](https://github.com/mintel/dex-k8s-authenticator) is also installed, it is a web app that helps in JWT token retrieval and kubectl configuration
 
 ##### Authorization
@@ -66,10 +66,10 @@ The Kubernetes API on every Control Plane has [dex](https://github.com/dexidp/de
 With a valid *jwt* token, received from your chosen identity provider, customers can have two levels of access:
 
 - *view*
-    - *get*/*list*/*watch* access to all resources in the Control Plane, except for `configmaps` and `secrets`.
+    - *get*/*list*/*watch* access to all resources in the management cluster, except for `configmaps` and `secrets`.
     - *get*/*list*/*watch* access to all resources (including `configmaps` and `secrets`) in workload cluster namespaces.
 - *admin*
-    - full access, to the `cluster`, `node pool`, `appcatalogs` and `apps` resources of Control Plane Kubernetes.
+    - full access, to the `cluster`, `node pool`, `appcatalogs` and `apps` resources of management cluster Kubernetes.
     - includes *view* level access.
   
 ### Giant Swarm Rest API {#giant-swarm-api}

@@ -11,6 +11,10 @@ owner:
 
 # Clusters over multiple availability zones
 
+{{< platform_support_table aws="ga" azure="ga" >}}
+
+## Introduction
+
 With Giant Swarm on AWS and Azure you can easily launch clusters with worker nodes spread across multiple availability zones (AZ). This will lower the risk that your cluster will become unavailable due to an incident in a particular AWS or Azure data center.
 
 On AWS, starting with workload cluster release {{% first_aws_ha_masters_version %}}, master nodes of a cluster are spread over different availability zones by default, for high availability of the Kubernetes API. You can chose however to run only a single master node. Read [High availability Kubernetes masters](/basics/ha-masters/) for more information.
@@ -35,7 +39,7 @@ This enables use cases such as:
 
 - On both AWS and Azure availability zones are randomized across accounts. There is no way to determine which AZ you are really in, based on the name. E.g. the zone `eu-central-1a` in the account of the cluster is not necessarily the same `eu-central-1a` in your account.
 
-- Availability zones get selected randomly by the Giant Swarm control plane. You only need to specify the required number of availability zones.
+- Availability zones get selected randomly by the Giant Swarm management cluster. You only need to specify the required number of availability zones.
 
 - Nodes will get distributed evenly across availability zones. There is currently no way to determine which or how many nodes should be started in a particular availability zone. But the nodes will have a label `topology.kubernetes.io/zone` (or in Kubernetes before 1.17: `failure-domain.beta.kubernetes.io/zone`) that indicates which availability zone the node is running in.
 

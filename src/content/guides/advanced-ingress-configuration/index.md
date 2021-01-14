@@ -351,7 +351,7 @@ Your Giant Swarm installation comes with a default configuration for the Ingress
 
 You can override these defaults by setting your per cluster configuration in the form of a ConfigMap named `nginx-ingress-controller-user-values`.
 
-Depending on the workload cluster release version, this ConfigMap is located either in the workload cluster or in the control plane.
+Depending on the workload cluster release version, this ConfigMap is located either in the workload cluster or in the management cluster.
 
 ### Where is the user values ConfigMap
 
@@ -359,7 +359,7 @@ Given the cluster you are trying to configure has id: `123ab`
 
 **Workload cluster release v9.0.1 and greater:**
 
-If your cluster is on workload cluster release version v9.0.1 or greater then you will find the `nginx-ingress-controller-user-values` ConfigMap on the Control Plane in the `123ab` namespace:
+If your cluster is on workload cluster release version v9.0.1 or greater then you will find the `nginx-ingress-controller-user-values` ConfigMap on the management cluster in the `123ab` namespace:
 
 ```nohighlight
 $ kubectl -n 123ab get cm nginx-ingress-controller-user-values --context=control-plane
@@ -368,7 +368,7 @@ nginx-ingress-controller-user-values   0         11m
 ```
 
 Upgrading from v9.0.0v to a higher workload cluster release will automatically migrate these user values from the workload cluster to the
-Control Plane for you. If you have any automation or existing workflows you should keep this location change in mind.
+management cluster for you. If you have any automation or existing workflows you should keep this location change in mind.
 
 ---
 
@@ -403,7 +403,7 @@ that with great power comes great responsibility.
 On release version `9.0.1` and greater you are able to set any value from the [upstream documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/) by including them in the user values ConfigMap under the `data.values` field like so:
 
 ```yaml
-# On the Control Plane, in the abc12 namespace
+# On the management cluster, in the abc12 namespace
 
 apiVersion: v1
 kind: ConfigMap
