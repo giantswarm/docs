@@ -12,6 +12,10 @@ owner:
 
 # Labelling workload clusters
 
+{{< platform_support_table aws="ga=v10.0.0" azure="ga=v13.0.0" >}}
+
+## Introduction
+
 It is possible to assign *key value labels* to Giant Swarm workload clusters with workload cluster release v{{% first_aws_nodepools_version %}} and above on AWS.
 
 Labels are a mechanism to assign short pieces of additional information to your Giant Swarm workload clusters.

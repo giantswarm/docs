@@ -10,6 +10,10 @@ owner:
 
 # Fine-tuning upgrade disruption on AWS
 
+{{< platform_support_table aws="alpha=v12.7.0" >}}
+
+## Introduction
+
 Cluster upgraded, described in detail in our [cluster upgrades reference](/reference/cluster-upgrades/)), can cause disruption on workloads, if the upgrade requires upgrading worker nodes.
 
 We provide two ways of limiting the amount of disruption:
@@ -21,7 +25,7 @@ As worker [node pools](/basics/nodepools/) on AWS are based on Auto Scaling Grou
 
 Configurability of these details has been introduced with workload cluster release v12.7.0 for AWS. The feature is currently in an early stage and its behaviour may change in the near future.
 
-Adjustments to these settings require using the [Management Cluster API](/basics/api/#management-cluster-api) to edit the [`AWSCluster`](/reference/management-cluster-api/awsclusters.infrastructure.giantswarm.io/) resource of the cluster (for cluster-wide settings) or the [`AWSMachineDeployment`](/reference/management-cluster-api/awsmachinedeployments.infrastructure.giantswarm.io/) of an individual node pool.
+Adjustments to these settings require using the [Management API](/basics/api/#management-api) to edit the [`AWSCluster`](/reference/management-cluster-api/awsclusters.infrastructure.giantswarm.io/) resource of the cluster (for cluster-wide settings) or the [`AWSMachineDeployment`](/reference/management-cluster-api/awsmachinedeployments.infrastructure.giantswarm.io/) of an individual node pool.
 
 ## Maximum batch size {#maximum-batch-size}
 
@@ -134,4 +138,4 @@ metadata:
 
 - [Cluster upgrades reference](/reference/cluster-upgrades/)
 - [Node pools](/basics/nodepools/)
-- [Management Cluster API](/basics/api/#management-cluster-api)
+- [Management API](/basics/api/#management-api)

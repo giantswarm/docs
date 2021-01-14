@@ -240,7 +240,7 @@ There are three ways to provide configuration values:
 
 - via the web interface
 - via the Rest API
-- via the Management Cluster API
+- via the Management API
 
 ### Through the web interface
 
@@ -275,8 +275,8 @@ colors:
 
 ### Using the Rest API (deprecated) {#giant-swarm-api}
 
-The [Rest API](/basics/api/#rest-api) acts as an interface between you and the [Control Plane Kubernetes
-API](/basics/api/#management-cluster-api). It is deprecated since we are currently in the process of allowing you direct
+The [Rest API](/basics/api/#rest-api) acts as an interface between you and the [Management
+API](/basics/api/#management-api). It is deprecated since we are currently in the process of allowing you direct
 access to the Management Cluster API. However for the time being, our web interface makes use of the Rest API.
 
 By supplying a JSON body with the values you would like to set, the Rest API will
@@ -285,7 +285,7 @@ create a ConfigMap or Secret in the right format and wire it up correctly for yo
 - [Rest API App Configs reference](/api/#tag/app-configs) for adding configuration values
 - [Rest API App Secrets reference](/api/#tag/app-secrets) for adding secret values
 
-### Using the Management Cluster API {#management-cluster-api}
+### Using the Management API {#management-api}
 
 There are many approaches to managing resources in Kubernetes, which go beyond
 the scope of this article. But the simplest would probably be to `kubectl apply` a file directly to the cluster.

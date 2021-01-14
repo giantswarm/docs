@@ -1,5 +1,5 @@
 ---
-title: Creating workload clusters on Azure via Management Cluster API
+title: Creating workload clusters on Azure via Management API
 description: This guide will walk you through the process of workload cluster creation via Control Plane Kubernetes on Azure.
 type: page
 weight: 100

@@ -54,7 +54,7 @@ The standard tabular output format features these columns:
     - `UPDATING`: The cluster is currently being updated, e. g. during an upgrade.
     - `UPDATED`: The cluster update is finished.
     - `DELETING`: The cluster is being deleted.
-- `RELEASE`: Tenant cluster release version of the cluster.
+- `RELEASE`: Workload cluster release version of the cluster.
 - `ORGANIZATION`: Organization owning the cluster.
 - `DESCRIPTION`: User friendly description for the cluster.
 

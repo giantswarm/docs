@@ -11,7 +11,7 @@ owner:
 
 {{% kgs_alias_assumption %}}
 
-This command helps with creating a cluster by producing a manifest based on user input. This manifest can then optionally be modified and finally be applied to the Management Cluster API to create a cluster.
+This command helps with creating a cluster by producing a manifest based on user input. This manifest can then optionally be modified and finally be applied to the Management API to create a cluster.
 
 The outcome depends on the provider, set via the `--provider` flag:
 
