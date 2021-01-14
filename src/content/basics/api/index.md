@@ -2,7 +2,7 @@
 title: API access to Giant Swarm resources
 description: An overview of the APIs that provide you with programmatic access to
   resources like your workload clusters in a Giant Swarm installation. Namely the Rest
-  API and the Control Plane Kubernetes API.
+  API and the Management API.
 weight: 75
 type: page
 categories: ["basics"]
@@ -19,7 +19,7 @@ For integrating Giant Swarm with your automation, we provide programmatic access
 
 - [The Rest API](#rest-api): stable and recommended for production use.
 
-- [The Control Plane Kubernetes API](#cp-k8s-api): our next generation API, currently in a preview phase.
+- [The Management API](#management-api): our next generation API, currently in a preview phase. Formerly called _Control Plane Kubernetes API_.
 
 In the following sections we explain the differences and specific benefits and provide some guidance on how to get started.
 
@@ -31,17 +31,17 @@ Browse our [API documentation](/api/) for a complete overview into the provided 
 
 The Rest API was originally designed to provide a simpler, easier access to the relevant resources for managing clusters, key pairs, etc. while keeping the internals under the hood. However at Giant Swarm we learnt that there are always more use cases emerging on your side than we could anticipate in our API design. We realized that the best we can do for you to provide full insight into the state and spec of your infrastructure is by opening up the underlying system itself.
 
-With this realization, we made the decision to phase out the development of the Rest API in favor of providing access to the [Control Plane Kubernetes API](#cp-k8s-api) instead.
+With this realization, we made the decision to phase out the development of the Rest API in favor of providing access to the [Management API](#management-api) instead.
 
-As of now, there is no termination date for the Rest API. As it might provide the much simpler and more accessible starting point, feel free to explore the [documentation](/api/), knowing that one day you may have to switch to the Control Plane Kubernetes API.
+As of now, there is no termination date for the Rest API. As it might provide the much simpler and more accessible starting point, feel free to explore the [documentation](/api/), knowing that one day you may have to switch to the Management API.
 
-## The Control Plane Kubernetes API (preview) {#cp-k8s-api}
+## The Management API (preview) {#management-api}
 
 ### What it is
 
-At Giant Swarm, when we say "control plane", we talk about the Kubernetes Cluster that runs all the operational and monitoring workloads which are needed to create and manage the _workload clusters_ (formerly called _tenant clusters_). These are the clusters you create to run your actual workloads. This is not to be confused with how the Kubernetes project uses the same term. In that case, it simply refers to the master nodes of a Kubernetes cluster.
+In a Giant Swarm installation, the management cluster is a Kubernetes cluster that runs all the operational and monitoring workloads which are needed to create and manage the _workload clusters_ (formerly called _tenant clusters_). These are the clusters you create to run your actual workloads.
 
-The control plane is a Kubernetes cluster. Your workload clusters and other associated resources are represented in that cluster as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/). To access these, you can use the Kubernetes API of the cluster that forms the control plane, or in short, the Control Plane Kubernetes API.
+Your workload clusters and other associated resources are represented in the management cluster as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/). To access these, you can use the Kubernetes API of the management cluster, or in short, the Management API.
 
 ### How to gain access
 
@@ -51,7 +51,7 @@ Currently we provide read-only access by default. As we are currently working on
 
 ### How to use
 
-We recommend using `kubectl` to navigate the resources present on the Control Plane Kubernetes API.
+We recommend using `kubectl` to navigate the resources present on the Management API.
 
 To facilitate this we provide a kubectl plugin called [`kubectl gs`](/reference/kubectl-gs/).
 Our goal is to have the same great user experience you've become accustomed from `gsctl` and `happa`.
@@ -66,12 +66,12 @@ We create one namespace for each workload cluster, where the namespace name is e
 
 Following are some resources that should help you:
 
-- The guide [Creating workload clusters via the Control Plane Kubernetes API](/guides/creating-clusters-via-crs/) explains step by step how you can create a cluster and node pools via the Control Plane Kubernetes API. Here you learn about all the custom resources a cluster comprises.
+- The guide [Creating workload clusters via the Management API](/guides/creating-clusters-via-crs/) explains step by step how you can create a cluster and node pools via the Management API. Here you learn about all the custom resources a cluster comprises.
 - The [App Platform](/basics/app-platform/) introduction outlines the several custom resources involved when managing app catalogs and apps.
-- Our [Control Plane Kubernetes API Reference](/reference/cp-k8s-api/) provides detailed documentation on all the custom resources we use with the various providers and their versions and schema.
+- Our [Management API reference](/reference/management-api/) provides detailed documentation on all the custom resources we use with the various providers and their versions and schema.
 
 ### Feedback is welcome
 
-We are keen to learn from you about your experience with using the Control Plane Kubernetes API, with navigating the custom resources via the API, with our reference documentation and the user guides we provide. This helps us provide more and better material and improve to make the journey more seamless, more satisfactory for you.
+We are keen to learn from you about your experience with using the Management API, with navigating the custom resources via the API, with our reference documentation and the user guides we provide. This helps us provide more and better material and improve to make the journey more seamless, more satisfactory for you.
 
 So please, don't hesitate to give your feedback in your Slack channel.

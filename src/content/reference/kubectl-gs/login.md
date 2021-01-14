@@ -1,6 +1,6 @@
 ---
 title: "'kubectl gs login' command reference"
-description: Reference documentation on how to ensure an authenticated kubectl context for a Giant Swarm control plane, using 'kubectl gs'.
+description: Reference documentation on how to ensure an authenticated kubectl context for a Giant Swarm management cluster, using 'kubectl gs'.
 type: page
 weight: 10
 owner:
@@ -23,13 +23,13 @@ kubectl gs login [argument]
 
 where `argument` can be either:
 
-- **Empty:** If the current kubectl context is a Giant Swarm control plane, this ensures that the OIDC auth token will be refreshed and show the name of the current context.
+- **Empty:** If the current kubectl context is a Giant Swarm management cluster, this ensures that the OIDC auth token will be refreshed and show the name of the current context.
 
-- **Web interface URL:** The URL of the control plane's [web UI](/reference/web-interface/) instance.
+- **Web interface URL:** The URL of the management cluster's [web UI](/reference/web-interface/) instance.
 
-- **Control plane Kubernetes API endpoint:** The URL of the control plane's Kubernetes API endpoint.
+- **Management API endpoint:** The URL of the management cluster's Kubernetes API endpoint.
 
-- **Context name:** Name of a Giant Swarm control plane kubectl context, with or without `gs-` prefix.
+- **Context name:** Name of a Giant Swarm management cluster kubectl context, with or without `gs-` prefix.
 
 ## Examples
 

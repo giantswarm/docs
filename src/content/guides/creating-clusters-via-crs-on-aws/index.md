@@ -1,5 +1,5 @@
 ---
-title: Creating workload clusters on AWS via Control Plane Kubernetes API
+title: Creating workload clusters on AWS via the Management API
 description: This guide will walk you through the process of workload cluster creation via Control Plane Kubernetes on AWS.
 type: page
 weight: 100
@@ -8,7 +8,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
 
-# Creating workload clusters on AWS via the Control Plane Kubernetes API
+# Creating workload clusters on AWS via the Management API
 
 ## How cluster creation works
 
@@ -17,17 +17,17 @@ Alongside node pools support, a new API version for cluster management was relea
 
 All the workload clusters, created with workload cluster release v{{% first_aws_nodepools_version %}} and newer, are managed as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) in the Control Plane.
 
-At a high-level, the Control Plane Kubernetes API is used to manage the following custom resources (CRs):
+At a high-level, the Management API is used to manage the following custom resources (CRs):
 
-- [Cluster](/reference/cp-k8s-api/clusters.cluster.x-k8s.io/) - represents a Kubernetes cluster excluding worker nodes.
-- [G8sControlPlane](/reference/cp-k8s-api/g8scontrolplanes.infrastructure.giantswarm.io/) - hold configuration about the master node(s) of a cluster.
-- [MachineDeployment](/reference/cp-k8s-api/machinedeployments.cluster.x-k8s.io/) - represents a node pool.
+- [Cluster](/reference/management-api/clusters.cluster.x-k8s.io/) - represents a Kubernetes cluster excluding worker nodes.
+- [G8sControlPlane](/reference/management-api/g8scontrolplanes.infrastructure.giantswarm.io/) - hold configuration about the master node(s) of a cluster.
+- [MachineDeployment](/reference/management-api/machinedeployments.cluster.x-k8s.io/) - represents a node pool.
 
 The CRs above then reference provider specific implementations. In our case, for clusters on AWS, they are:
 
-- [AWSCluster](/reference/cp-k8s-api/awsclusters.infrastructure.giantswarm.io/) - represents a workload cluster.
-- [AWSControlPlane](/reference/cp-k8s-api/awscontrolplanes.infrastructure.giantswarm.io/) - configures the AWS-specific details of the worker node(s).
-- [AWSMachineDeployment](/reference/cp-k8s-api/awsmachinedeployments.infrastructure.giantswarm.io/) - configures the AWS-specific details of worker nodes in a node pool.
+- [AWSCluster](/reference/management-api/awsclusters.infrastructure.giantswarm.io/) - represents a workload cluster.
+- [AWSControlPlane](/reference/management-api/awscontrolplanes.infrastructure.giantswarm.io/) - configures the AWS-specific details of the worker node(s).
+- [AWSMachineDeployment](/reference/management-api/awsmachinedeployments.infrastructure.giantswarm.io/) - configures the AWS-specific details of worker nodes in a node pool.
 
 ## Example CRs
 

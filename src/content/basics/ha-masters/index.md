@@ -10,6 +10,8 @@ owner:
 
 # High-availability Kubernetes masters
 
+{{< platform_support_table aws="ga=v11.4.0" azure="roadmap=https://github.com/giantswarm/roadmap/issues/4" >}}
+
 ## Synopsis
 
 Kubernetes master nodes are the nodes that run the Kubernetes API of a workload cluster,
@@ -100,10 +102,10 @@ Check the reference for the `--master-ha` flag.
 Check the [v5 cluster modification API reference](/api/#operation/modifyClusterV5)
 to find out how to convert a cluster programmatically using the Rest API.
 
-### Via the Control Plane K8s API {#cp-k8s-api}
+### Via the Management API {#management-api}
 
 In order to convert a single master cluster to high availability, the cluster's
-[`G8sControlPlane`](/reference/cp-k8s-api/g8scontrolplanes.infrastructure.giantswarm.io/)
+[`G8sControlPlane`](/reference/management-api/g8scontrolplanes.infrastructure.giantswarm.io/)
 has to be modified. First you have to find the resource for your cluster ID. The
 following command helps with that:
 
