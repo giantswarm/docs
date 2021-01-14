@@ -15,7 +15,7 @@ description: Release notes for AWS release v12.7.1, published on 24 December 202
 title: Workload Cluster Release v12.7.1 for AWS
 ---
 
-This release fixes an issue that causes ImagePullback errors when new nodes are coming ready.
+This release fixes an issue that causes `ImagePullBackOff` errors when new nodes are becoming ready.
 
 ## Change details
 
