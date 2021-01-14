@@ -13,13 +13,13 @@ repositories:
   giantswarm/api-spec:
     category: Rest API
   giantswarm/apiextensions:
-    category: Management cluster API
+    category: Management API
   giantswarm/aqua-app:
     category: Managed Apps
   giantswarm/aws-admission-controller:
-    category: Management cluster API
+    category: Management API
   giantswarm/azure-admission-controller:
-    category: Management cluster API
+    category: Management API
   giantswarm/cert-manager-app:
     category: Managed Apps
   giantswarm/docs:
@@ -78,7 +78,7 @@ repositories:
 
 # Here we define the colors for categories.
 categories:
-  - name: Management cluster API
+  - name: Management API
     color: "#b47fb0"
   - name: Documentation
     color: "#9aa48e"

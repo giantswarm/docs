@@ -32,7 +32,7 @@ This section explains how you can enable the feature for each supported provider
 
 ### AWS
 
-To enable it, you have to edit the [`AWSCluster`](/reference/cp-k8s-api/awsclusters.infrastructure.giantswarm.io/) resource of your cluster using the [Management Cluster API](/basics/api/#cp-k8s-api).
+To enable it, you have to edit the [`AWSCluster`](/reference/cp-k8s-api/awsclusters.infrastructure.giantswarm.io/) resource of your cluster using the [Management API](/basics/api/#cp-k8s-api).
 
 Make sure the resource has the `alpha.node.giantswarm.io/terminate-unhealthy` annotation. The value can be anything you like, as only the presence of that annotation is checked. Here is an example:
 
@@ -56,7 +56,7 @@ If you want to disable the feature you must remove the annotation from the [`AWS
 
 ### Azure
 
-To enable it, you have to edit the [`Cluster`](/reference/cp-k8s-api/clusters.cluster.x-k8s.io/) resource of your cluster using the [Management Cluster API](/basics/api/#cp-k8s-api).
+To enable it, you have to edit the [`Cluster`](/reference/cp-k8s-api/clusters.cluster.x-k8s.io/) resource of your cluster using the [Management API](/basics/api/#cp-k8s-api).
 
 Make sure the resource has the `alpha.node.giantswarm.io/terminate-unhealthy` annotation. The value can be anything you like, as only the presence of that annotation is checked. Here is an example:
 

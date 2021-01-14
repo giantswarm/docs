@@ -59,7 +59,7 @@ VPN secured access points:
 
 Customer workload clusters are accessible only via SSH access to the Giant Swarm Control Plane. This Control Plane contains Giant Swarm's cluster management and operations platform, and controls our access to the underlying workload clusters for diagnostic and "Day 2" operational reasons.
 
-- **Management Cluster API** - Usage of the Kubernetes API on the Control Plane is also secured with SSH.
+- **Management API** - Usage of the Kubernetes API on the Control Plane is also secured with SSH.
 
 ### General VPN connection schema
 

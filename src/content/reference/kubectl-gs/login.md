@@ -27,7 +27,7 @@ where `argument` can be either:
 
 - **Web interface URL:** The URL of the management cluster's [web UI](/reference/web-interface/) instance.
 
-- **Management Cluster API endpoint:** The URL of the management cluster's Kubernetes API endpoint.
+- **Management API endpoint:** The URL of the management cluster's Kubernetes API endpoint.
 
 - **Context name:** Name of a Giant Swarm management cluster kubectl context, with or without `gs-` prefix.
 
