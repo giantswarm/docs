@@ -17,13 +17,13 @@ All the workload clusters, created with workload cluster release v{{% first_azur
 
 At a high-level, the Control Plane API is used to manage the following CRs:
 
-- [Cluster](/reference/management-cluster-api/clusters.cluster.x-k8s.io/) - represents a Kubernetes cluster excluding worker nodes.
-- [MachinePool](/reference/management-cluster-api/machinepools.exp.cluster.x-k8s.io/) - represents a node pool.
+- [Cluster](/reference/management-api/clusters.cluster.x-k8s.io/) - represents a Kubernetes cluster excluding worker nodes.
+- [MachinePool](/reference/management-api/machinepools.exp.cluster.x-k8s.io/) - represents a node pool.
 
 The CRs above then reference provider specific implementations. In our case, for clusters on Azure, they are:
 
-- [AzureCluster](/reference/management-cluster-api/azureclusters.infrastructure.cluster.x-k8s.io/) - represents a workload cluster.
-- [AzureMachinePool](/reference/management-cluster-api/azuremachinepools.exp.infrastructure.cluster.x-k8s.io/) - configures the Azure-specific details of worker nodes in a node pool.
+- [AzureCluster](/reference/management-api/azureclusters.infrastructure.cluster.x-k8s.io/) - represents a workload cluster.
+- [AzureMachinePool](/reference/management-api/azuremachinepools.exp.infrastructure.cluster.x-k8s.io/) - configures the Azure-specific details of worker nodes in a node pool.
 
 ## Example CRs
 

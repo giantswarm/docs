@@ -105,7 +105,7 @@ to find out how to convert a cluster programmatically using the Rest API.
 ### Via the Management API {#management-api}
 
 In order to convert a single master cluster to high availability, the cluster's
-[`G8sControlPlane`](/reference/management-cluster-api/g8scontrolplanes.infrastructure.giantswarm.io/)
+[`G8sControlPlane`](/reference/management-api/g8scontrolplanes.infrastructure.giantswarm.io/)
 has to be modified. First you have to find the resource for your cluster ID. The
 following command helps with that:
 

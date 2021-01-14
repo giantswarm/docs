@@ -2,7 +2,7 @@
 title: API access to Giant Swarm resources
 description: An overview of the APIs that provide you with programmatic access to
   resources like your workload clusters in a Giant Swarm installation. Namely the Rest
-  API and the management cluster API.
+  API and the Management API.
 weight: 75
 type: page
 categories: ["basics"]

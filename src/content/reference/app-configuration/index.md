@@ -72,7 +72,7 @@ colors:
   secretColor: ""
 ```
 
-Now you create an [App](/reference/management-cluster-api/apps.application.giantswarm.io/) resource that references a user level ConfigMap and a `user`
+Now you create an [App](/reference/management-api/apps.application.giantswarm.io/) resource that references a user level ConfigMap and a `user`
 level Secret:
 
 ```yaml
@@ -175,7 +175,7 @@ templated Secret, then you have to base64 encode it to comply with how Kubernete
 ## How configuration values are stored and referenced in the Control Plane {#storage-referencing}
 
 Configuration for Apps are stored as ConfigMaps and Secrets, which are
-referenced by `name` and `namespace` in various `spec` fields of the [App](/reference/management-cluster-api/apps.application.giantswarm.io/) and [AppCatalog](/reference/management-cluster-api/appcatalogs.application.giantswarm.io/) Custom Resource (CR).
+referenced by `name` and `namespace` in various `spec` fields of the [App](/reference/management-api/apps.application.giantswarm.io/) and [AppCatalog](/reference/management-api/appcatalogs.application.giantswarm.io/) Custom Resource (CR).
 
 Our operators act on those resources to ensure the actual state ends up
 looking like the desired state. More information is available in our [general overview of the App Platform](/basics/app-platform/).
@@ -277,7 +277,7 @@ colors:
 
 The [Rest API](/basics/api/#rest-api) acts as an interface between you and the [Management
 API](/basics/api/#management-api). It is deprecated since we are currently in the process of allowing you direct
-access to the Management Cluster API. However for the time being, our web interface makes use of the Rest API.
+access to the Management API. However for the time being, our web interface makes use of the Rest API.
 
 By supplying a JSON body with the values you would like to set, the Rest API will
 create a ConfigMap or Secret in the right format and wire it up correctly for you.

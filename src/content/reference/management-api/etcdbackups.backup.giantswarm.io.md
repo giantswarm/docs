@@ -2,7 +2,7 @@
 title: ETCDBackup CRD schema reference
 linktitle: ETCDBackup
 technical_name: etcdbackups.backup.giantswarm.io
-description: Custom resource definition (CRD) schema reference page for the ETCDBackup resource (etcdbackups.backup.giantswarm.io), as part of the Giant Swarm Management Cluster API documentation.
+description: Custom resource definition (CRD) schema reference page for the ETCDBackup resource (etcdbackups.backup.giantswarm.io), as part of the Giant Swarm Management API documentation.
 
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions

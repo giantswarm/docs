@@ -17,14 +17,14 @@ The outcome depends on the provider, set via the `--provider` flag:
 
 For AWS (`--provider aws`):
 
-- [`MachineDeployment`](/reference/management-cluster-api/machinedeployments.cluster.x-k8s.io/) (API version `cluster.x-k8s.io/v1alpha2`)
-- [`AWSMachineDeployment`](/reference/management-cluster-api/awsmachinedeployments.infrastructure.giantswarm.io/) (API version `infrastructure.giantswarm.io/v1alpha2`)
+- [`MachineDeployment`](/reference/management-api/machinedeployments.cluster.x-k8s.io/) (API version `cluster.x-k8s.io/v1alpha2`)
+- [`AWSMachineDeployment`](/reference/management-api/awsmachinedeployments.infrastructure.giantswarm.io/) (API version `infrastructure.giantswarm.io/v1alpha2`)
 
 For Azure (`--provider azure`):
 
-- [`MachinePool`](/reference/management-cluster-api/machinepools.exp.cluster.x-k8s.io/) (API version `cluster.x-k8s.io/v1alpha3`)
-- [`AzureMachinePool`](/reference/management-cluster-api/azuremachinepools.exp.infrastructure.cluster.x-k8s.io/) (API version `exp.infrastructure.cluster.x-k8s.io/v1alpha3`)
-- [`Spark`](/reference/management-cluster-api/sparks.core.giantswarm.io/) (API version `core.giantswarm.io/v1alpha1`)
+- [`MachinePool`](/reference/management-api/machinepools.exp.cluster.x-k8s.io/) (API version `cluster.x-k8s.io/v1alpha3`)
+- [`AzureMachinePool`](/reference/management-api/azuremachinepools.exp.infrastructure.cluster.x-k8s.io/) (API version `exp.infrastructure.cluster.x-k8s.io/v1alpha3`)
+- [`Spark`](/reference/management-api/sparks.core.giantswarm.io/) (API version `core.giantswarm.io/v1alpha1`)
 
 ## Usage
 

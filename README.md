@@ -11,7 +11,7 @@ in the `src/content/` directory. Images are in the `src/static/img/` directory.
 Additional content is tied in through the scripts
 
 - `scripts/aggregate-changelogs`: Aggregates changelog entries into the `src/content/changes` destination.
-- `scripts/update-crd-reference`: Generates reference pages for our custom resource definitions in the `src/content/reference/management-cluster-api` destination.
+- `scripts/update-crd-reference`: Generates reference pages for our custom resource definitions in the `src/content/reference/management-api` destination.
 - `scripts/update-external-repos`: Tutorials that need their own code repository. They must have a `docs` subfolder with the Markdown content and optionally some images. Configuration is found in `scripts/update-external-repos/repositories.txt`.
 
 To update these external content types, the `Makefile` provides specific targets:

@@ -2,7 +2,7 @@
 title: AzureConfig CRD schema reference
 linktitle: AzureConfig
 technical_name: azureconfigs.provider.giantswarm.io
-description: Custom resource definition (CRD) schema reference page for the AzureConfig resource (azureconfigs.provider.giantswarm.io), as part of the Giant Swarm Management Cluster API documentation.
+description: Custom resource definition (CRD) schema reference page for the AzureConfig resource (azureconfigs.provider.giantswarm.io), as part of the Giant Swarm Management API documentation.
 
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions

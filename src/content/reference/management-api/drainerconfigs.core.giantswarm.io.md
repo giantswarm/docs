@@ -2,7 +2,7 @@
 title: DrainerConfig CRD schema reference
 linktitle: DrainerConfig
 technical_name: drainerconfigs.core.giantswarm.io
-description: Custom resource definition (CRD) schema reference page for the DrainerConfig resource (drainerconfigs.core.giantswarm.io), as part of the Giant Swarm Management Cluster API documentation.
+description: Custom resource definition (CRD) schema reference page for the DrainerConfig resource (drainerconfigs.core.giantswarm.io), as part of the Giant Swarm Management API documentation.
 
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
