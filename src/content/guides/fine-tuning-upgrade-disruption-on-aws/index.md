@@ -25,7 +25,7 @@ As worker [node pools](/basics/nodepools/) on AWS are based on Auto Scaling Grou
 
 Configurability of these details has been introduced with workload cluster release v12.7.0 for AWS. The feature is currently in an early stage and its behaviour may change in the near future.
 
-Adjustments to these settings require using the [Control Plane Kubernetes API](/basics/api/#cp-k8s-api) to edit the [`AWSCluster`](/reference/cp-k8s-api/awsclusters.infrastructure.giantswarm.io/) resource of the cluster (for cluster-wide settings) or the [`AWSMachineDeployment`](/reference/cp-k8s-api/awsmachinedeployments.infrastructure.giantswarm.io/) of an individual node pool.
+Adjustments to these settings require using the [Management API](/basics/api/#management-api) to edit the [`AWSCluster`](/reference/management-api/awsclusters.infrastructure.giantswarm.io/) resource of the cluster (for cluster-wide settings) or the [`AWSMachineDeployment`](/reference/management-api/awsmachinedeployments.infrastructure.giantswarm.io/) of an individual node pool.
 
 ## Maximum batch size {#maximum-batch-size}
 
@@ -43,8 +43,8 @@ alpha.aws.giantswarm.io/update-max-batch-size
 
 must be set
 
-- on the [`AWSCluster`](/reference/cp-k8s-api/awsclusters.infrastructure.giantswarm.io/) resource, to be applied as a default to **all node pools** of the cluster.
-- on the [`AWSMachineDeployment`](/reference/cp-k8s-api/awsmachinedeployments.infrastructure.giantswarm.io/) resource, to be effective for only **one node pool**. A value here will override any value specified on the `AWSCluster` level.
+- on the [`AWSCluster`](/reference/management-api/awsclusters.infrastructure.giantswarm.io/) resource, to be applied as a default to **all node pools** of the cluster.
+- on the [`AWSMachineDeployment`](/reference/management-api/awsmachinedeployments.infrastructure.giantswarm.io/) resource, to be effective for only **one node pool**. A value here will override any value specified on the `AWSCluster` level.
 
 You have two options to configure the maximum batch size:
 
@@ -97,8 +97,8 @@ alpha.aws.giantswarm.io/update-pause-time
 
 Again, the setting can be defined on two levels:
 
-- on the [`AWSCluster`](/reference/cp-k8s-api/awsclusters.infrastructure.giantswarm.io/) resource, to be applied as a default to **all node pools** of the cluster.
-- on the [`AWSMachineDeployment`](/reference/cp-k8s-api/awsmachinedeployments.infrastructure.giantswarm.io/) resource, to be effective for only **one node pool**. A value here will override any value specified on the `AWSCluster` level.
+- on the [`AWSCluster`](/reference/management-api/awsclusters.infrastructure.giantswarm.io/) resource, to be applied as a default to **all node pools** of the cluster.
+- on the [`AWSMachineDeployment`](/reference/management-api/awsmachinedeployments.infrastructure.giantswarm.io/) resource, to be effective for only **one node pool**. A value here will override any value specified on the `AWSCluster` level.
 
 The value must be a string in the ISO 8601 duration format. Value examples:
 
@@ -138,4 +138,4 @@ metadata:
 
 - [Cluster upgrades reference](/reference/cluster-upgrades/)
 - [Node pools](/basics/nodepools/)
-- [Control Plane Kubernetes API](/basics/api/#cp-k8s-api)
+- [Management API](/basics/api/#management-api)

@@ -85,7 +85,7 @@ Now we have to tell cluster-autoscaler to actually use the `priority` expander, 
 
 To switch the expander, we provide a user ConfigMap as described in our guide on [advanced cluster autoscaler configuration](/guides/advanced-cluster-autoscaler-configuration/).
 
-In contrast to the previous step, this is not done in the workload cluster, but in the management cluster instead. So this step requires write access to the [Control Plane Kubernetes API](/basics/api/#cp-k8s-api). Please contact your Giant Swarm Solution Engineer in case you need assistance.
+In contrast to the previous step, this is not done in the workload cluster, but in the management cluster instead. So this step requires write access to the [Management API](/basics/api/#management-api). Please contact your Giant Swarm Solution Engineer in case you need assistance.
 
 The user ConfigMap has to reside in the namespace named after the (workload) cluster ID, so make sure to adapt `.metadata.labels.namespace` to your cluster ID.
 

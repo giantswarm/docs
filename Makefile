@@ -32,7 +32,7 @@ changes-test:
 	  /workdir/test_script.py foo bar baz
 
 # Generate the reference documentation for the custom resource
-# definitions (CRD) used in the Control Plane K8s API.
+# definitions (CRD) used in the Management API.
 update-crd-reference:
 	scripts/update-crd-reference/main.sh
 
@@ -51,7 +51,7 @@ lint:
 	    --config .markdownlint.yaml \
 	    --ignore README.md \
 		--ignore ./src/content/changes \
-		--ignore ./src/content/reference/cp-k8s-api \
+		--ignore ./src/content/reference/management-api \
 		./src
 
 docker-build: update-latest-versions
