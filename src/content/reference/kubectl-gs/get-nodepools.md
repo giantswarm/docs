@@ -49,7 +49,7 @@ The standard tabular output format features these columns:
 - `ID`: Unique identifier of the node pool.
 - `CLUSTER ID`: Unique identifier of the cluster that the node pool belongs to.
 - `CREATED`: Date and time of the node pool CR creation.
-- `CONDITION`: Latest condition reported for the node pool.
+- `CONDITION`: Latest condition reported for the node pool. (Azure only)
 - `NODES MIN/MAX`: Node pool autoscaler settings (if supported).
 - `NODES DESIRED`: The total number of nodes that the node pool should have.
 - `NODES READY`: The number of nodes in the node pool that are actually ready.
