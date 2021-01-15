@@ -1,6 +1,6 @@
 ---
 title: "'kubectl gs get nodepools' command reference"
-description: Reference documentation on how to list node pools and get details for a single node pools using 'kubectl gs'.
+description: Reference documentation on how to list node pools and get details for a single node pool using 'kubectl gs'.
 type: page
 weight: 10
 owner:
@@ -37,7 +37,7 @@ ab12c   s921a        2021-01-02 15:04:32 +0000 UTC   READY       3/10           
 When used with a node pool ID as additional argument, the command will show details for a single node pool. Example:
 
 ```nohighlight
-kgs get nodepools ab12c
+kgs get nodepool ab12c
 ```
 
 Note: As an alternative to `get nodepools`, `get nodepool` will also work.
@@ -66,6 +66,7 @@ If present, list the node pools that belong to this given workload cluster.
 ### `--output/-o` {#flags-output}
 
 `kubectl` commonly allows to specify the output format for all `get` subcommands. `kgs get nodepools` is no different.
+Similar to other `get` subcommands, you can specify the output format of `kgs get nodepools` using the `--output` flag.
 
 #### YAML output {#yaml}
 
@@ -74,7 +75,7 @@ To inspect a node pool's main custom resource in YAML notation, add the `--outpu
 The following example command would print the main resource for node pool `ab12c`. On AWS that would be the [MachineDeployment](/reference/cp-k8s-api/machinedeployments.cluster.x-k8s.io/) resource printed. On Azure, it would return the [MachinePool](/reference/cp-k8s-api/machinepools.exp.cluster.x-k8s.io/) resource.
 
 ```nohighlight
-kgs get nodepools ab12c --output yaml
+kgs get nodepool ab12c --output yaml
 ```
 
 When applied without a node pool ID argument, the output will be a list of resources. Example:
