@@ -79,7 +79,7 @@ kgs get clusters ab12c --output yaml
 When applied without a cluster ID argument, the output will be a list of resources. Example:
 
 ```nohighlight
-$ kgs get clusters ab12c --output yaml
+$ kgs get clusters --output yaml
 apiVersion: v1
 kind: List
 items:
