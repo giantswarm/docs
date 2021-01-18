@@ -50,13 +50,13 @@ On this layer, Giant Swarm SREs have root level SSH access to everything that pe
 
 The Giant Swarm management cluster consists mainly of services running inside the management cluster.
 
-Network access to the Control Plane Kubernetes API is allowed only through Giant Swarm VPN and customer VPN.
+Network access to the Management API is allowed only through Giant Swarm VPN and customer VPN.
 
-Giant Swarm SREs and operations personnel have cluster admin access to the Control Plane Kubernetes API through a tunnel. It is facilitated by SSO with MFA, as described above.
+Giant Swarm SREs and operations personnel have cluster admin access to the Management API through a tunnel. It is facilitated by SSO with MFA, as described above.
 
 A customer has *tenant admin* and *view* access via OpenID Connect (OIDC), configured towards the supported identity provider.
 
-#### Control Plane Kubernetes API access for Customers
+#### Management API access for Customers
 
 The Kubernetes API on every management cluster has [dex](https://github.com/dexidp/dex) installed as an OIDC issuer. Dex is configured with an identity provider chosen by the customer. A list of supported providers can be found in the [dex github repository](https://github.com/dexidp/dex/tree/master/connector).
 [dex-k8s-authenticator](https://github.com/mintel/dex-k8s-authenticator) is also installed, it is a web app that helps in JWT token retrieval and kubectl configuration
