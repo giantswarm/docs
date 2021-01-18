@@ -9,13 +9,23 @@ aliases:
   - /basics/app-catalog/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-batman
+user_questions:
+  - What does App Platform do?
+  - What is an App Catalog?
+  - Does Giant Swarm provide app catalogs out of the box?
+  - How is App Platform implemented?
+  - What are the components of App Platform?
+  - What are the app catalogs that Giant Swarm provides out of the box?
+  - How can I create an organizational app catalog?
+  - How can I interact with the Giant Swarm App Platform?
+  - Can I create an app catalog?
 ---
 
 ![A large image with the words "The Giant Swarm App Platform" prominently visible over a screenshot of a list of apps](app-platform-header.png)
 
 The _Giant Swarm App Platform_ refers to a set of features and concepts that allow
 you to browse, install and manage the configurations of apps (such as Prometheus)
-from a single place; the Control Plane.
+from a single place; the management cluster.
 
 Using this platform we will provide a collection of curated _Apps_. These _Apps_ are grouped into _App Catalogs_, which are browsable through our web interface.
 
@@ -26,7 +36,7 @@ We provide two _App Catalogs_. You will be able to set up your own additional ca
 ### What makes up the Giant Swarm App Platform
 
 Technically the App Platform is implemented as a set of operators
-running on your Control Plane and workload clusters. These operators watch various
+running on your management cluster and workload clusters. These operators watch various
 Custom Resources, some created by us, and others created by you. Together, they make up
 the desired state of the App Platform.
 
@@ -91,16 +101,9 @@ Bear in mind that we do NOT support these apps and they won’t be worked on wit
 
 We encourage you to try out this playground catalog and the different apps offered there. As always, feedback is welcome.
 
-### The Helm Stable Catalog
-
-The Helm Stable Catalog contains all the Apps you'd find in the upstream
-[helm stable repository](https://github.com/helm/charts/tree/master/stable).
-There is no guarantee or SLA here. Install Apps from this
-catalog at your own risk.
-
 ### Installing your own App Catalog
 
-It’s possible to create your own App Catalog. This is useful if you want to create a set of apps available to your company. Currently, this functionality is only available through direct access to the Giant Swarm Management API. You can request access from your Solution Engineer. Prerequisite for this is a standard Helm chart repository. It should be served through HTTP and accessible to the Control Plane and your workload clusters.
+It’s possible to create your own App Catalog. This is useful if you want to create a set of apps available to your company. Currently, this functionality is only available through direct access to the Giant Swarm Management API. You can request access from your Solution Engineer. Prerequisite for this is a standard Helm chart repository. It should be served through HTTP and accessible to the management cluster and your workload clusters.
 
 ### How can I interact with the Giant Swarm App Platform
 
@@ -111,7 +114,7 @@ our web interface.
 - [Apps and App Configs in the API reference](/api/#tag/apps)
 
 Lastly, at the end of the day, what our interfaces do, is create (or update)
-a set of Custom Resources on your Control Plane Kubernetes.
+a set of Custom Resources on your Kubernetes management cluster.
 
 As we are giving you direct access to the Management API you can also interact with the above mentioned resources using `kubectl`, and automate them just as you have been automating other parts of your stack.
 And as Kubernetes resources and especially some CRDs require lots of boilerplate and conventions, we built a kubectl plugin to help you with that.
