@@ -13,7 +13,7 @@ owner:
 
 ## Introduction
 
-Handling of similar instance types is done in [aws-operator](https://github.com/giantswarm/aws-operator) since version 8.3.1, which has been introduced with tenant cluster release v{{% first_aws_spotinstances_version %}} for AWS.
+Handling of similar instance types is done in [aws-operator](https://github.com/giantswarm/aws-operator) since version 8.3.1, which has been introduced with workload cluster release v{{% first_aws_spotinstances_version %}} for AWS.
 
 Read more about the use of similar instance types in our general article about [node pools](/basics/nodepools/#similar-instance-types).
 

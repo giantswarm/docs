@@ -3,7 +3,7 @@
 # of our CRD docs.
 #
 # Schema:
-# .topics: array of strings. Possible values: "apps", "controlplane", "tenantcluster"
+# .topics: array of strings. Possible values: "apps", "managementcluster", "workloadcluster"
 # .provider: array of strings.
 appcatalogs.application.giantswarm.io:
   topics:
@@ -18,59 +18,59 @@ awsclusterconfigs.core.giantswarm.io:
   provider:
     - aws
   topics:
-    - tenantcluster
+    - workloadcluster
 awsclusters.infrastructure.giantswarm.io:
   provider:
     - aws
   topics:
-    - tenantcluster
+    - workloadcluster
 awsconfigs.provider.giantswarm.io:
   provider:
     - aws
   topics:
-    - tenantcluster
+    - workloadcluster
 awscontrolplanes.infrastructure.giantswarm.io:
   provider:
     - aws
   topics:
-    - tenantcluster
+    - workloadcluster
 awsmachinedeployments.infrastructure.giantswarm.io:
   provider:
     - aws
   topics:
-    - tenantcluster
+    - workloadcluster
 azureclusters.infrastructure.cluster.x-k8s.io:
   provider:
     - azure
   topics:
-    - tenantcluster
+    - workloadcluster
 azureclusterconfigs.core.giantswarm.io:
   provider:
     - azure
   topics:
-    - tenantcluster
+    - workloadcluster
 azureconfigs.provider.giantswarm.io:
   provider:
     - azure
   topics:
-    - tenantcluster
+    - workloadcluster
 azuremachinepools.exp.infrastructure.cluster.x-k8s.io:
   provider:
     - azure
   topics:
-    - tenantcluster
+    - workloadcluster
 azuremachines.infrastructure.cluster.x-k8s.io:
   provider:
     - azure
   topics:
-    - tenantcluster
+    - workloadcluster
 azuretools.tooling.giantswarm.io:
   provider:
     - azure
 certconfigs.core.giantswarm.io:
   topics:
-    - controlplane
-    - tenantcluster
+    - managementcluster
+    - workloadcluster
 charts.application.giantswarm.io:
   topics:
     - apps
@@ -79,68 +79,68 @@ clusters.cluster.x-k8s.io:
     - aws
     - azure
   topics:
-    - tenantcluster
+    - workloadcluster
 drainerconfigs.core.giantswarm.io:
   topics:
-    - tenantcluster
+    - workloadcluster
 etcdbackups.backup.giantswarm.io:
   topics:
-    - controlplane
-    - tenantcluster
+    - managementcluster
+    - workloadcluster
 flannelconfigs.core.giantswarm.io:
   provider:
     - kvm
   topics:
-    - tenantcluster
+    - workloadcluster
 g8scontrolplanes.infrastructure.giantswarm.io:
   provider:
     - aws
   topics:
-    - tenantcluster
+    - workloadcluster
 ignitions.core.giantswarm.io:
   topics:
-    - controlplane
-    - tenantcluster
+    - managementcluster
+    - workloadcluster
 kvmclusterconfigs.core.giantswarm.io:
   provider:
     - kvm
   topics:
-    - tenantcluster
+    - workloadcluster
 kvmconfigs.provider.giantswarm.io:
   provider:
     - kvm
   topics:
-    - tenantcluster
+    - workloadcluster
 machinedeployments.cluster.x-k8s.io:
   provider:
     - aws
   topics:
-    - tenantcluster
+    - workloadcluster
 machinepools.exp.cluster.x-k8s.io:
   provider:
     - azure
   topics:
-    - tenantcluster
+    - workloadcluster
 networkpools.infrastructure.giantswarm.io:
   provider:
     - aws
   topics:
-    - tenantcluster
+    - workloadcluster
 organizations.security.giantswarm.io:
   topics:
-    - controlplane
+    - managementcluster
 releases.release.giantswarm.io:
   topics:
-    - controlplane
-    - tenantcluster
+    - managementcluster
+    - workloadcluster
 silences.monitoring.giantswarm.io:
   topics:
-    - controlplane
+    - managementcluster
 sparks.core.giantswarm.io:
   provider:
     - azure
   topics:
-    - tenantcluster
+    - workloadcluster
 storageconfigs.core.giantswarm.io:
   topics:
-    - controlplane
+    - managementcluster

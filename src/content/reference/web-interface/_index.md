@@ -34,7 +34,7 @@ detailed information:
 - Manage your own account and password
 - Learn how to get started with your Kubernetes clusters by following a guide
 - [Add, remove and configure Apps on your clusters](/reference/web-interface/app-platform/)
-- [View and manage tenant cluster labels](/reference/web-interface/tenant-cluster-labelling/)
+- [View and manage workload cluster labels](/reference/web-interface/workload-cluster-labelling/)
 
 ## Usage data recording
 

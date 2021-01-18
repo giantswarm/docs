@@ -1,6 +1,6 @@
 ---
-title: Creating tenant clusters on Azure via Control Plane Kubernetes API
-description: This guide will walk you through the process of tenant cluster creation via Control Plane Kubernetes on Azure.
+title: Creating workload clusters on Azure via Management API
+description: This guide will walk you through the process of workload cluster creation via Control Plane Kubernetes on Azure.
 type: page
 weight: 100
 tags: ["tutorial"]
@@ -13,17 +13,17 @@ owner:
 Starting from version {{% first_azure_nodepools_version %}} on Azure, Giant Swarm introduced a feature to create multiple [node pools](/basics/nodepools/) on Azure.
 Alongside node pools support, a new API version for cluster management was released.
 
-All the tenant clusters, created with tenant cluster release v{{% first_azure_nodepools_version %}} and newer, are managed as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) in the Control Plane.
+All the workload clusters, created with workload cluster release v{{% first_azure_nodepools_version %}} and newer, are managed as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) in the Control Plane.
 
 At a high-level, the Control Plane API is used to manage the following CRs:
 
-- [Cluster](/reference/cp-k8s-api/clusters.cluster.x-k8s.io/) - represents a Kubernetes cluster excluding worker nodes.
-- [MachinePool](/reference/cp-k8s-api/machinepools.exp.cluster.x-k8s.io/) - represents a node pool.
+- [Cluster](/reference/management-api/clusters.cluster.x-k8s.io/) - represents a Kubernetes cluster excluding worker nodes.
+- [MachinePool](/reference/management-api/machinepools.exp.cluster.x-k8s.io/) - represents a node pool.
 
 The CRs above then reference provider specific implementations. In our case, for clusters on Azure, they are:
 
-- [AzureCluster](/reference/cp-k8s-api/azureclusters.infrastructure.cluster.x-k8s.io/) - represents a tenant cluster.
-- [AzureMachinePool](/reference/cp-k8s-api/azuremachinepools.exp.infrastructure.cluster.x-k8s.io/) - configures the Azure-specific details of worker nodes in a node pool.
+- [AzureCluster](/reference/management-api/azureclusters.infrastructure.cluster.x-k8s.io/) - represents a workload cluster.
+- [AzureMachinePool](/reference/management-api/azuremachinepools.exp.infrastructure.cluster.x-k8s.io/) - configures the Azure-specific details of worker nodes in a node pool.
 
 ## Example CRs
 
@@ -168,12 +168,12 @@ spec: {}
 
 All the CRs, mentioned above, have strict spec and important requirements to be considered valid.
 There is very limited CR validation available in the Control Plane for now.
-Therefore, if you create a CR with wrong field values, that can result in a broken tenant cluster.
+Therefore, if you create a CR with wrong field values, that can result in a broken workload cluster.
 That's why we offer a [kubectl plugin](/reference/kubectl-gs/), which helps to template valid CRs.
 
 The utility supports rendering CRs:
 
-- Tenant clusters:
+- Workload clusters:
     - `Cluster` (API version `cluster.x-k8s.io/v1alpha3`)
     - `AzureCluster` (API version `infrastructure.cluster.x-k8s.io/v1alpha3`)
     - `AzureMachine` (API version `infrastructure.cluster.x-k8s.io/v1alpha3`)
@@ -187,7 +187,7 @@ The utility supports rendering CRs:
 The installation procedure is described in the [`kubectl gs` reference](/reference/kubectl-gs/#install).
 There are also specific reference pages for [cluster templating](/reference/kubectl-gs/template-cluster/) and [node pool templating](/reference/kubectl-gs/template-nodepool/).
 
-As a result of rendering the CRs ([sample](/reference/kubectl-gs/template-cluster/#example)), a user will get YAML manifests containing valid CRs that can create a tenant cluster and its node pools.
+As a result of rendering the CRs ([sample](/reference/kubectl-gs/template-cluster/#example)), a user will get YAML manifests containing valid CRs that can create a workload cluster and its node pools.
 The resources can then be created by applying the manifest files to the Control Plane, e.g. `kubectl create -f <cluster manifest file>.yaml`.
 Of course, that requires the user to be authorized towards Kubernetes Control Plane API.
 

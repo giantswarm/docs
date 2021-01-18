@@ -11,22 +11,22 @@ owner:
 
 {{% kgs_alias_assumption %}}
 
-This command helps with creating a cluster by producing a manifest based on user input. This manifest can then optionally be modified and finally be applied to the Control Plane Kubernetes API to create a cluster.
+This command helps with creating a cluster by producing a manifest based on user input. This manifest can then optionally be modified and finally be applied to the Management API to create a cluster.
 
 The outcome depends on the provider, set via the `--provider` flag:
 
 For AWS (`--provider aws`):
 
-- [`Cluster`](/reference/cp-k8s-api/clusters.cluster.x-k8s.io/) (API version `cluster.x-k8s.io/v1alpha2`) - holds the base cluster specification.
-- [`AWSCluster`](/reference/cp-k8s-api/awsclusters.infrastructure.giantswarm.io/) (API version `infrastructure.giantswarm.io/v1alpha2`) - holds AWS-specific configuration.
-- [`G8sControlPlane`](/reference/cp-k8s-api/g8scontrolplanes.infrastructure.giantswarm.io/) (API version `infrastructure.giantswarm.io/v1alpha2`) - specifies the master nodes
-- [`AWSControlPlane`](/reference/cp-k8s-api/awscontrolplanes.infrastructure.giantswarm.io/) (API version `infrastructure.giantswarm.io/v1alpha2`) - specifies the master nodes with AWS-specific details
+- [`Cluster`](/reference/management-api/clusters.cluster.x-k8s.io/) (API version `cluster.x-k8s.io/v1alpha2`) - holds the base cluster specification.
+- [`AWSCluster`](/reference/management-api/awsclusters.infrastructure.giantswarm.io/) (API version `infrastructure.giantswarm.io/v1alpha2`) - holds AWS-specific configuration.
+- [`G8sControlPlane`](/reference/management-api/g8scontrolplanes.infrastructure.giantswarm.io/) (API version `infrastructure.giantswarm.io/v1alpha2`) - specifies the master nodes
+- [`AWSControlPlane`](/reference/management-api/awscontrolplanes.infrastructure.giantswarm.io/) (API version `infrastructure.giantswarm.io/v1alpha2`) - specifies the master nodes with AWS-specific details
 
 For Azure (`--provider azure`):
 
-- [`Cluster`](/reference/cp-k8s-api/clusters.cluster.x-k8s.io/) (API version `cluster.x-k8s.io/v1alpha3`) - holds the base cluster specification.
-- [`AzureCluster`](/reference/cp-k8s-api/azureclusters.infrastructure.cluster.x-k8s.io/) (API version `infrastructure.cluster.x-k8s.io/v1alpha3`) - holds Azure-specific configuration.
-- [`AzureMachine`](/reference/cp-k8s-api/azuremachines.infrastructure.cluster.x-k8s.io/) (API version `infrastructure.cluster.x-k8s.io/v1alpha3`) - specifies the master nodes.
+- [`Cluster`](/reference/management-api/clusters.cluster.x-k8s.io/) (API version `cluster.x-k8s.io/v1alpha3`) - holds the base cluster specification.
+- [`AzureCluster`](/reference/management-api/azureclusters.infrastructure.cluster.x-k8s.io/) (API version `infrastructure.cluster.x-k8s.io/v1alpha3`) - holds Azure-specific configuration.
+- [`AzureMachine`](/reference/management-api/azuremachines.infrastructure.cluster.x-k8s.io/) (API version `infrastructure.cluster.x-k8s.io/v1alpha3`) - specifies the master nodes.
 
 **Note:** The CRs generated won't trigger the creation of any worker nodes. Please see the [template nodepool](/reference/kubectl-gs/template-nodepool/) for instructions on how to create worker node pools.
 
@@ -39,12 +39,12 @@ It supports the following flags:
 - `--provider` - The infrastructure provider (either `aws` or `azure`)
 - `--name` - cluster name.
 - `--pods-cidr` - CIDR applied to the pods. If you don't set any, the installation default will be applied. Only versions *11.1.4+ support this feature.
-- `--owner` - organization, owning tenant cluster. Must be configured with existing organization in installation.
-- `--release` - valid tenant cluster release version.
+- `--owner` - organization, owning workload cluster. Must be configured with existing organization in installation.
+- `--release` - valid workload cluster release version.
   Can be retrieved with `gsctl list releases` for your installation. Only versions above *10.x.x*+ support cluster CRs.
-- `--label` - tenant cluster label in the form of `key=value`. Can be specified multiple times. Only clusters with tenant cluster release version above *10.x.x*+ support tenant cluster labels.
+- `--label` - workload cluster label in the form of `key=value`. Can be specified multiple times. Only clusters with workload cluster release version above *10.x.x*+ support workload cluster labels.
 - `--cluster-id` (optional) - Unique cluster identifier. Must me 5 characters in length, must contain numbers and letters, and match the regular expression `[a-z0-9]{5}`. If not given, an ID will be generated.
-- `--release-branch` (optional) - The Giant Swarm [releases repository](https://github.com/giantswarm/releases) branch to use to look up the tenant cluster release set via the `--release` flag (default: `master`).
+- `--release-branch` (optional) - The Giant Swarm [releases repository](https://github.com/giantswarm/releases) branch to use to look up the workload cluster release set via the `--release` flag (default: `master`).
 - `--master-az` - Availability zone(s) of master instance.
 
   On AWS, it must be configured with AZ of the installation region. E.g. for region *eu-central-1* valid value is *eu-central-1a*.

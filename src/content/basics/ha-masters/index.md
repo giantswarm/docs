@@ -10,9 +10,11 @@ owner:
 
 # High-availability Kubernetes masters
 
+{{< platform_support_table aws="ga=v11.4.0" azure="roadmap=https://github.com/giantswarm/roadmap/issues/4" >}}
+
 ## Synopsis
 
-Kubernetes master nodes are the nodes that run the Kubernetes API of a tenant cluster,
+Kubernetes master nodes are the nodes that run the Kubernetes API of a workload cluster,
 as well as some other important components. In the case of Giant Swarm, the master nodes
 also host the [etcd](https://etcd.io/) database that keeps all the states that configure
 the cluster, the workloads and other resources.
@@ -21,7 +23,7 @@ Clusters can run in a fully functional way with one master node. However this re
 Kubernetes API unavailable in certain cases like a cluster upgrade or even an outage of
 the underlying infrastructure.
 
-As of tenant cluster release v{{% first_aws_ha_masters_version %}} for AWS, new tenant clusters are launched with three master nodes by default, spread over multiple availability zones. This results in much higher availability of the API during upgrades or other changes to the cluster configuration, plus enhanced resilience against any data center or hardware failures.
+As of workload cluster release v{{% first_aws_ha_masters_version %}} for AWS, new workload clusters are launched with three master nodes by default, spread over multiple availability zones. This results in much higher availability of the API during upgrades or other changes to the cluster configuration, plus enhanced resilience against any data center or hardware failures.
 
 ## Benefits
 
@@ -44,7 +46,7 @@ Having multiple master nodes in different availability zones has several benefit
 
 We recommend that all production clusters on AWS are run with high
 availability of master nodes. As a result, this is the default setting starting with
-tenant cluster release v{{% first_aws_ha_masters_version %}}.
+workload cluster release v{{% first_aws_ha_masters_version %}}.
 
 Since these benefits come at the cost of additional EC2 instances and
 additional network traffic across availability zones, it is still possible to
@@ -69,7 +71,7 @@ worker [node pools](/basics/nodepools/) is taken into account.
 
 ## Upgrades from previous releases {#upgrades}
 
-When upgrading a cluster to tenant cluster release v11.4.0, the cluster will remain a single
+When upgrading a cluster to workload cluster release v11.4.0, the cluster will remain a single
 master cluster during and after the upgrade. The API unavailability during the
 upgrade that is typical for single master clusters will apply for this upgrade.
 
@@ -78,7 +80,7 @@ complete.
 
 ## Conversion from single master to high availability {#conversion-to-ha}
 
-Single master clusters using tenant cluster release v{{% first_aws_ha_masters_version %}} or
+Single master clusters using workload cluster release v{{% first_aws_ha_masters_version %}} or
 above on AWS can be converted to master node high availability in the user
 interfaces and via the APIs.
 
@@ -100,10 +102,10 @@ Check the reference for the `--master-ha` flag.
 Check the [v5 cluster modification API reference](/api/#operation/modifyClusterV5)
 to find out how to convert a cluster programmatically using the Rest API.
 
-### Via the Control Plane K8s API {#cp-k8s-api}
+### Via the Management API {#management-api}
 
 In order to convert a single master cluster to high availability, the cluster's
-[`G8sControlPlane`](/reference/cp-k8s-api/g8scontrolplanes.infrastructure.giantswarm.io/)
+[`G8sControlPlane`](/reference/management-api/g8scontrolplanes.infrastructure.giantswarm.io/)
 has to be modified. First you have to find the resource for your cluster ID. The
 following command helps with that:
 
@@ -147,7 +149,7 @@ through a machine failure or availability zone outage.
 
 The number of three masters running three etcd members is a good balance between resilience
 and cost. While it would be technically possible to run five or more master nodes, this
-is not currently supported with Giant Swarm tenant clusters.
+is not currently supported with Giant Swarm workload clusters.
 
 ## Limitations
 
@@ -155,7 +157,7 @@ is not currently supported with Giant Swarm tenant clusters.
 - Short API downtimes are still possible during cluster modifications, especially when the leader of the
   etcd cluster (the member that handles write requests) changes. This happens when the node that
   hosts the etcd leader has to be modified. Typical cases for this would be an upgrade to a newer
-  tenant cluster release or the conversion from a single to multiple master nodes. These downtimes are expected to
+  workload cluster release or the conversion from a single to multiple master nodes. These downtimes are expected to
   last only a few seconds.
 - Conversion of a cluster from high availability (three masters) to a single master node is not
   possible.
