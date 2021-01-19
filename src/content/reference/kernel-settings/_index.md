@@ -11,7 +11,7 @@ owner:
 
 # Kernel settings
 
-We adjust some kernel settings of Flatcar Container Linux machines used as Kubernetes nodes to non-standard values. Here is a complete reference.
+We adjust some kernel settings of Flatcar Container Linux machines used as Kubernetes nodes to non-standard values. Here is a complete reference. For information on other Linux kernel settings, please refer to the [official documentation](https://www.kernel.org/doc/html/latest/).
 
 ## General Performance and Security settings
 
