@@ -37,6 +37,18 @@ When creating a Cluster, you can assing the NetworkPool in the `.spec.provider.n
 
 ```yaml
 apiVersion: infrastructure.giantswarm.io/v1alpha2
+kind: NetworkPool
+metadata:
+  labels:
+    giantswarm.io/organization: giantswarm
+  name: custom
+  namespace: development-networkpool
+spec:
+  cidrBlock: 192.168.0.0/16
+```
+
+```yaml
+apiVersion: infrastructure.giantswarm.io/v1alpha2
 kind: AWSCluster
 metadata:
   name: g8kw3
@@ -47,6 +59,8 @@ spec:
       instanceType: m5.2xlarge
     nodes:
       networkPool: development-networkpool
+    pods:
+      cidrBlock: 192.168.1.0/16
     ...
 ```
 
@@ -64,3 +78,4 @@ You can check out the YAML definition in the [Management API](/reference/managem
 - NetworkPools must be created in the same namespace as the cluster.
 - NetworkPools can not overlap with each other.
 - NetworkPools can not overlap with the installation default CIDR.
+- The Pod CIDR must be in the same Private IP Block as the NetworkPool.
