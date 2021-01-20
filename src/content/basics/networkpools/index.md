@@ -21,6 +21,7 @@ A NetworkPool defines a CIDR range for the Control Plane and MachineDeployment n
 ## Advantages
 
 The main advantages of using NetworkPools are:
+
 - Extending installation default CIDR range.
 - Limit the CIDR range a single cluster can have.
 
