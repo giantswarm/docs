@@ -1,9 +1,10 @@
 ---
-title: kubectl gs get clusters
+title: "'kubectl gs get clusters' command reference"
 description: Reference documentation on how to list clusters and get details for a single cluster using 'kubectl gs'.
-date: 2020-10-02
 type: page
 weight: 10
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
 # `kubectl gs get clusters`
@@ -53,7 +54,7 @@ The standard tabular output format features these columns:
     - `UPDATING`: The cluster is currently being updated, e. g. during an upgrade.
     - `UPDATED`: The cluster update is finished.
     - `DELETING`: The cluster is being deleted.
-- `RELEASE`: Release version of the cluster.
+- `RELEASE`: Workload cluster release version of the cluster.
 - `ORGANIZATION`: Organization owning the cluster.
 - `DESCRIPTION`: User friendly description for the cluster.
 
@@ -69,7 +70,7 @@ Here we document the flags that have a particular meaning for the `get clusters`
 
 To inspect a cluster's main custom resource in YAML notation, add the `--output yaml` flag (or `-o yaml` in short) to the command.
 
-The following example command would print the main resource for cluster `ab12c`. On AWS that would be the [AWSCluster](/reference/cp-k8s-api/awsclusters.infrastructure.giantswarm.io/) resource printed. On Azure, it would return the [Cluster](/reference/cp-k8s-api/clusters.cluster.x-k8s.io/) resource.
+The following example command would print the main resource for cluster `ab12c`. On AWS that would be the [AWSCluster](/reference/management-api/awsclusters.infrastructure.giantswarm.io/) resource printed. On Azure, it would return the [Cluster](/reference/management-api/clusters.cluster.x-k8s.io/) resource.
 
 ```nohighlight
 kgs get clusters ab12c --output yaml
@@ -78,7 +79,7 @@ kgs get clusters ab12c --output yaml
 When applied without a cluster ID argument, the output will be a list of resources. Example:
 
 ```nohighlight
-$ kgs get clusters ab12c --output yaml
+$ kgs get clusters --output yaml
 apiVersion: v1
 kind: List
 items:

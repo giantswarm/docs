@@ -1,11 +1,10 @@
 ---
 title: Secure access to clusters - Users and Giant Swarm support
 description: This documentation explains security measures for users and Giant Swarm support to access your infrastructure
-date: 2020-01-21
 weight: 40
 type: page
 categories: ["basics"]
-last-review-date: 2020-01-21
+last_review_date: 2020-01-21
 user_questions:
   - How does Giant Swarm access my account with the cloud provider?
   - How is admin access safeguarded?
@@ -58,9 +57,9 @@ VPN secured access points:
 
 ![SSH access process diagram](./ssh_access_process.png)
 
-Customer Tenant Clusters are accessible only via SSH access to the Giant Swarm Control Plane. This Control Plane contains Giant Swarm's cluster management and operations platform, and controls our access to the underlying Tenant Clusters for diagnostic and "Day 2" operational reasons.
+Customer workload clusters are accessible only via SSH access to the Giant Swarm Control Plane. This Control Plane contains Giant Swarm's cluster management and operations platform, and controls our access to the underlying workload clusters for diagnostic and "Day 2" operational reasons.
 
-- **Control Plane Kubernetes API** - Usage of the Kubernetes API on the Control Plane is also secured with SSH.
+- **Management API** - Usage of the Kubernetes API on the Control Plane is also secured with SSH.
 
 ### General VPN connection schema
 
@@ -81,8 +80,8 @@ Access to etcd or the Kubernetes API is secured based on certificates signed by 
 
 ## Further reading
 
-- [GitHub Vault authentication](https://www.vaultproject.io/docs/auth/github/)
-- [Vault SSH certificate](https://www.vaultproject.io/docs/secrets/ssh/signed-ssh-certificates/)
+- [GitHub Vault authentication](https://www.vaultproject.io/docs/auth/github)
+- [Vault SSH certificate](https://www.vaultproject.io/docs/secrets/ssh/signed-ssh-certificates)
 - [Giant Swarm Operational Layers](/basics/giant-swarm-operational-layers/)
 - [Giant Swarm API](/basics/giant-swarm-operational-layers/#giant-swarm-api)
-- [Giant Swarm User Space](/basics/giant-swarm-operational-layers/#userspace): Tenant Cluster Kubernetes API
+- [Giant Swarm User Space](/basics/giant-swarm-operational-layers/#userspace)

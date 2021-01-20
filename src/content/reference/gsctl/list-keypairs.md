@@ -1,9 +1,10 @@
 ---
-title: "gsctl Command Reference: list keypairs"
+title: "'gsctl list keypairs' command reference"
 description: "The 'gsctl list keypairs' lists key pairs for a cluster."
-date: "2020-03-11"
 type: page
 weight: 40
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
 # `gsctl list keypairs`

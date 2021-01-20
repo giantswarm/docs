@@ -1,8 +1,9 @@
 ---
 title: Usage data recording in our web interface
 description: Details on which data is tracked when using the Giant Swarm web interface
-date: 2020-09-25
 weight: 1000
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
 # Usage data recording in our web interface

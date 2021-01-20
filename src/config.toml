@@ -2,6 +2,8 @@ baseurl = "https://docs.giantswarm.io"
 languageCode = "en"
 title = "Giant Swarm Documentation"
 pluralizeListTitles = false
+rssLimit = 50
+enableGitInfo = true
 
 [markup]
   defaultMarkdownHandler = "goldmark"
@@ -32,6 +34,12 @@ pluralizeListTitles = false
     url = "/reference/"
     weight = 40
 [[menu.main]]
-    name = "FAQ"
-    url = "/faq/"
+    name = "Changes"
+    url = "/changes/"
     weight = 50
+
+[taxonomies]
+  changes_category = "changes_categories"
+
+[permalinks]
+  changes_categories = "/changes/:slug"

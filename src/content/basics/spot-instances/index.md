@@ -1,13 +1,20 @@
 ---
-title: Spot Instances on AWS
+title: Spot instances on AWS
 description: A general description of spot instances, it's benefits, usage and differences from on-demand instance types.
-date: 2020-09-31
 weight: 130
 type: page
 categories: ["basics"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
 
-As of release v{{% first_aws_spotinstances_version %}} on AWS, it is possible to use spot instances in clusters that will allow you to optimize your cost.
+# Spot instances on AWS
+
+{{< platform_support_table aws="ga=v11.2.0" azure="roadmap=https://github.com/giantswarm/roadmap/issues/7" >}}
+
+## Introduction
+
+As of workload cluster release v{{% first_aws_spotinstances_version %}} for AWS, it is possible to use spot instances in clusters that will allow you to optimize your cost.
 
 The main differences between spot and on-demand instances are that spot instances can be terminated any time by AWS. They are also more frequently unavailable.
 
@@ -19,7 +26,7 @@ There are two parameters on the node pool level that will allow you to configure
 
 - **Spot instance percentage above base capacity**: controls the percentage of spot instances to be used for worker nodes beyond the number of *on-demand base capacity*.
 
-### Notes on using spot instances
+## Notes on using spot instances
 
 Since the availability of spot instances is volatile, there are a few things you can consider:
 
@@ -27,7 +34,7 @@ Since the availability of spot instances is volatile, there are a few things you
 - Activating the [use of similar instance types](#similar-instance-types) also increases the likelihood of getting spot instances when using common instance types. Read more about this below.
 - When no spot instances are unavailable, missing spot instances are _not_ replaced by on-demand instances. The affected node pool will instead have less nodes than desired, probably leaving some pods unscheduled. For a solution to this, check our guide on [using on-demand instances as fall-back when spot instances are unavailable](/guides/spot-instances-with-on-demand-fallback/).
 
-### Examples
+## Examples
 
 The following table shows four examples to illustrate how different settings of spot instance percentage and on-demand base capacity influence the outcome.
 

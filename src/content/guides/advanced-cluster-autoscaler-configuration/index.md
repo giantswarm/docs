@@ -1,11 +1,12 @@
 ---
 title: Advanced Cluster Autoscaler Configuration
 description: Here we describe how you can customize the configuration of the managed Cluster Autoscaler service in your clusters
-date: 2020-07-01
 type: page
 weight: 40
 tags: ["tutorial"]
-last-review-date: 2020-09-23
+last_review_date: 2020-09-23
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
 
 # Advanced Cluster Autoscaler Configuration
@@ -41,7 +42,7 @@ On cluster creation the user values ConfigMap is empty (or might not exist yet) 
 ## How to set configuration options using the user values ConfigMap
 
 On the Control Plane, create or edit a ConfigMap named `cluster-autoscaler-user-values`
-in the Tenant Cluster namespace:
+in the workload cluster namespace:
 
 ```yaml
 # On the Control Plane, in the abc12 namespace

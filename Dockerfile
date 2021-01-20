@@ -1,12 +1,19 @@
-FROM quay.io/giantswarm/hugo:v0.75.1 AS build
+FROM quay.io/giantswarm/hugo:v0.79.0 AS build
 
 RUN apk --no-cache add findutils gzip
 
 WORKDIR /docs
 
-COPY build .
+COPY . /docs
 
-RUN hugo --verbose --gc --minify --cleanDestinationDir --path-warnings --destination /public
+RUN hugo \
+      --verbose \
+      --gc \
+      --minify \
+      --source src \
+      --path-warnings \
+      --destination /public \
+      --cleanDestinationDir
 
 # Compress static files above 512 bytes using gzip
 RUN find /public \
@@ -24,6 +31,9 @@ RUN rm /docker-entrypoint.d/* && \
     -e 's|listen       80;|listen 8080;|' \
     -e 's|listen  [::]:80;||' \
     /etc/nginx/conf.d/default.conf
+
+RUN nginx -t -c /etc/nginx/nginx.conf && \
+    rm -rf /tmp/nginx.pid
 
 EXPOSE 8080
 

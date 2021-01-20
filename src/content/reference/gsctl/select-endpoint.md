@@ -1,9 +1,10 @@
 ---
-title: "gsctl Command Reference: select endpoint"
-description: "The 'gsctl select endpoint' command selects an endpoint for usage in subsequent command executions."
-date: "2020-05-13"
+title: "'gsctl select endpoint' command reference"
+description: The 'gsctl select endpoint' command selects an endpoint for usage in subsequent command executions.
 type: page
 weight: 41
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
 # `gsctl select endpoint`
@@ -18,10 +19,10 @@ on-premises and one in the cloud.
 
 The command works basically as a switch between several available endpoints
 that are maintained in your local gsctl configuration file. An endpoint is
-added to your configuration whenever you use the [`gsctl login`](../login/)
-command with a new endpoint URL. [`gsctl select endpoint`](../select-endpoint/)
+added to your configuration whenever you use the [`gsctl login`](/reference/gsctl/login/)
+command with a new endpoint URL. [`gsctl select endpoint`](/reference/gsctl/select-endpoint/)
 helps you switch between several endpoints while staying logged in.
-[`gsctl list endpoints`](../list-endpoints/) and [`gsctl info`](../info/) give
+[`gsctl list endpoints`](/reference/gsctl/list-endpoints/) and [`gsctl info`](/reference/gsctl/info/) give
 you more information on status and which endpoints are available.
 
 ## Selection priority
@@ -38,16 +39,16 @@ Which endpoint is used is defined in this order:
 
 To simplify the selection of an endpoint, each endpoint URL can have an alias.
 When adding a new endpoint to your configuration by the use of
-[`gsctl login`](../login/), an alias for the endpoint is automatically set to
+[`gsctl login`](/reference/gsctl/login/), an alias for the endpoint is automatically set to
 the unique name of the according Giant Swarm installation.
 
 You can find out the alias of the currently selected endpoint, if set, using
-[`gsctl info`](../info/). The command
-[`gsctl list endpoints`](../list-endpoints/) will print all available endpoints
+[`gsctl info`](/reference/gsctl/info/). The command
+[`gsctl list endpoints`](/reference/gsctl/list-endpoints/) will print all available endpoints
 and their aliases.
 
 Aliases can be edited manually by editing your
-[gsctl configuration file](../configuration-file/). We
+[gsctl configuration file](/reference/gsctl/configuration-file/). We
 strongly recommend to use the same aliases throughout a team, as that
 simplifies communication. Also note that aliases must be unique within your
 configuration.
@@ -81,6 +82,6 @@ gsctl select endpoint myalias
 
 ## Related
 
-- [`gsctl login`](../login/)
-- [`gsctl list endpoints`](../list-endpoints/)
-- [`gsctl delete endpoint`](../delete-endpoint/)
+- [`gsctl login`](/reference/gsctl/login/)
+- [`gsctl list endpoints`](/reference/gsctl/list-endpoints/)
+- [`gsctl delete endpoint`](/reference/gsctl/delete-endpoint/)

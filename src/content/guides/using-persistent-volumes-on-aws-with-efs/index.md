@@ -1,7 +1,6 @@
 ---
 title: "Using Persistent Volumes on AWS with EFS"
 description: "Tutorial on how to use dynamically provisioned Persistent Volumes on a cluster running on Amazon Web Services with EFS"
-date: "2020-02-06"
 type: page
 weight: 50
 tags: ["tutorial"]
@@ -11,6 +10,8 @@ user_questions:
   - How do I test the efs storage class?
   - How do I use EFS Volumes?
   - What auto-provisioner for AWS do you recommend? EFS? EBS?
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
 
 # Using Persistent Volumes on AWS with EFS
@@ -75,7 +76,7 @@ podSecurityPolicy:
 
 You will need to populate the `efsFileSystemId` and `awsRegion` parameters to match the configured values of the EFS instance.
 
-For additional configuration parameters see the [upstream documentation](https://github.com/kubernetes-incubator/external-storage/tree/master/aws/efs).
+For additional configuration parameters see the [upstream documentation](https://github.com/kubernetes-retired/external-storage/tree/master/aws/efs).
 
 ## Installing EFS Provisioner
 

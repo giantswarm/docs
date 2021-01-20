@@ -1,9 +1,10 @@
 ---
-title: "gsctl Command Reference: create keypair"
-description: "The 'gsctl create keypair' command creates a key pair and stores the related files in your certificate folder."
-date: "2020-04-16"
+title: "'gsctl create keypair' command reference"
+description: The 'gsctl create keypair' command creates a key pair and stores the related files in your certificate folder.
 type: page
 weight: 32
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
 # `gsctl create keypair`

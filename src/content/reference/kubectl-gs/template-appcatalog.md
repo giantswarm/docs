@@ -1,9 +1,10 @@
 ---
-title: kubectl gs template appcatalog
+title: "'kubectl gs template appcatalog' command reference"
 description: Reference documentation on how to create a manifest for an AppCatalog using 'kubectl gs'.
-date: 2020-10-02
 type: page
 weight: 10
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-batman
 ---
 
 # `kubectl gs template appcatalog`
@@ -12,7 +13,7 @@ weight: 10
 
 In order to create an [App Catalog](/basics/app-platform/) using custom resources, `kubectl-gs` will help you create manifests for the resource type:
 
-- [`AppCatalog`](/reference/cp-k8s-api/appcatalogs.application.giantswarm.io/) (API group/version `application.giantswarm.io/v1alpha1`) - holds the base AppCatalog specification.
+- [`AppCatalog`](/reference/management-api/appcatalogs.application.giantswarm.io/) (API group/version `application.giantswarm.io/v1alpha1`) - holds the base AppCatalog specification.
 
 ## Usage
 
@@ -23,7 +24,7 @@ It supports the following flags:
 - `--name` - Catalog name.
 - `--description` - Description of the purpose of the catalog.
 - `--url` - URL where the helm repository lives.
-- `--owner` - organization, owning tenant cluster. Must be configured with existing organization in installation.
+- `--owner` - organization, owning workload cluster. Must be configured with existing organization in installation.
 - `--logo` - URL of the catalog logo image.
 
 Example command:

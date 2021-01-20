@@ -1,9 +1,10 @@
 ---
-title: "gsctl Command Reference: delete nodepool"
-description: "The 'gsctl delete nodepool' command deletes a node pool."
-date: "2020-03-11"
+title: "'gsctl delete nodepool' command reference"
+description: The 'gsctl delete nodepool' command deletes a node pool.
 type: page
 weight: 44
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
 # `gsctl delete nodepool`

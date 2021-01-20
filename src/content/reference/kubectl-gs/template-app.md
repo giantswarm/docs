@@ -1,9 +1,10 @@
 ---
-title: kubectl gs template app
+title: "'kubectl gs template app' command reference"
 description: Reference documentation on how to create a manifest for an App using 'kubectl gs'.
-date: 2020-10-02
 type: page
 weight: 10
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-batman
 ---
 
 # `kubectl gs template app`
@@ -12,7 +13,7 @@ weight: 10
 
 In order to create an App using custom resources, `kubectl gs` will help you create manifests for the resource type:
 
-- [App](/reference/cp-k8s-api/apps.application.giantswarm.io/) (API group/version `application.giantswarm.io/v1alpha1`) - holds the base App specification.
+- [App](/reference/management-api/apps.application.giantswarm.io/) (API group/version `application.giantswarm.io/v1alpha1`) - holds the base App specification.
 
 ## Usage
 
