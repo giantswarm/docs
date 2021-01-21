@@ -6,12 +6,19 @@ type: page
 last_review_date: 2020-12-16
 owner:
   - https://github.com/orgs/giantswarm/teams/team-batman
+user_questions:
+  - Is App CR defaulting and validation logic enabled for my cluster? 
+  - How can I use App CR defaulting logic when installing Managed Apps?
+  - What fields are validated in App CRs when installing or updating Managed Apps?
 ---
 
 ## Overview
 
 For Giant Swarm releases using app-operator version 3.0.0 and upwards the
-defaulting and validation logic of [App CRs]({{< relref "/content/reference/management-api/apps.application.giantswarm.io.md" >}}) is enabled. This logic is provided by
+defaulting and validation logic of [App CRs]({{< relref "/content/reference/management-api/apps.application.giantswarm.io.md" >}}) is enabled.
+As of writing this is Azure releases from v13.1.0 onwards. AWS and KVM support will be added in upcoming releases.
+
+This logic is provided by
 [app-admission-controller](https://github.com/giantswarm/app-admission-controller).
 You can check if your cluster has this version of app-operator by checking the
 release details in the web interface.
