@@ -44,7 +44,7 @@ $color-background: #fff // background
   &__label
     display: block
     font-size: 16px
-    padding: 7px 0
+    padding: 7px 0 7px 0
     margin: 0
     line-height: 17px
     cursor: pointer
@@ -53,26 +53,25 @@ $color-background: #fff // background
     box-shadow: inset 0 -1px lighten($color-background, 6%)
     transition: color .2s ease-in, background-color .2s ease-in
 
-  .acnav__list--level1 > li > .acnav__label
+  // top level items
+  &__list--level1 > li > .acnav__label
     font-weight: bold
 
   // second level items
-  // &__link--level2,
-  // &__label--level2
-  //   padding-left: 3em
-  //   background: darken($color-background, 3%)
-  //   &:focus,
-  //   &:hover
-  //     background: darken($color-background, 6%)
+  &__list--level2 .acnav__link,
+  &__list--level2 > li > .acnav__label
+    color: green
 
   // third level items
-  &__link--level3,
-  &__label--level3
+  &__list--level3 .acnav__link,
+  &__list--level3 > li > .acnav__label
+    color: pink
     font-size: 14px
 
   // fourth level items
-  &__link--level4,
-  &__label--level4
+  &__list--level4 .acnav__link,
+  &__list--level4 > li > .acnav__label
+    color: red
     font-size: 14px
 
   // hide nested lists
