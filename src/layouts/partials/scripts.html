@@ -1,7 +1,8 @@
 {{ $aside := resources.Get "scripts/aside.js" }}
+{{ $menu := resources.Get "scripts/menu.js" }}
 {{ $base := resources.Get "scripts/base.js" }}
 {{ $gs_menu := resources.Get "scripts/gs_menu.js" }}
-{{ $js := slice $aside $base $gs_menu | resources.Concat "js/docs.js" | resources.Minify | fingerprint }}
+{{ $js := slice $aside $menu $base $gs_menu | resources.Concat "js/docs.js" | resources.Minify | fingerprint }}
 {{ $secureJS := $js | resources.Fingerprint "sha256" }}
 
 <script type="text/javascript" src="https://s.giantswarm.io/jquery/3.3.1/1/jquery.min.js"></script>
