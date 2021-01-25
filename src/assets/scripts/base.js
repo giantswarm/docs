@@ -227,19 +227,6 @@ if (typeof username !== "undefined" && username !== "") {
   $(".helloworldlink").html('Then open your running application at <a href="http://helloworld-' + username + '.gigantic.io/" target="_blank">helloworld-' + username + '.gigantic.io</a>')
 }
 
-/** Adapt docs menu **/
-if (document.location.pathname == "/") {
-  $("#homelink").addClass("active");
-} else {
-  $(".docsnav .nav li").each(function(index, item){
-    var link = $(item).find("a").attr("href");
-    if (link !== "/" && document.location.pathname.indexOf(link) == 0) {
-      $(item).addClass("active");
-      return;
-    }
-  });
-}
-
 // make all tables bootstrappy
 $("table").addClass("table");
 
