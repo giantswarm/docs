@@ -5,7 +5,7 @@ technical_name: awsconfigs.provider.giantswarm.io
 description:   AWSConfig used to represent workload cluster configuration in earlier releases. Deprecated.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.14.1
+source_repository_ref: v3.15.0
 layout: "crd"
 aliases:
   - /reference/cp-k8s-api/awsconfigs.provider.giantswarm.io/
