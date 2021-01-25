@@ -7,13 +7,12 @@
   display: none
   visibility: hidden
 
-// change colors here
-$color-foreground: #333 // text and border color
-$color-background: #fff // background
+$indent: 14px
 
 // accordion nav
 .acnav
   width: 100%
+  font-size: 14px
 
   li
     margin-bottom: 0
@@ -22,7 +21,7 @@ $color-background: #fff // background
 
   // first level items
   &__list
-    padding: 0
+    padding: 0 0 14px 0
     margin: 0
     list-style: none
 
@@ -31,7 +30,6 @@ $color-background: #fff // background
     content: "\f015"
     display: inline-block
     font-family: GiantSwarmHappaAndDocs
-    font-size: inherit
     text-rendering: auto
     margin-left: 3px
     transition: transform .2s
@@ -43,36 +41,27 @@ $color-background: #fff // background
   &__link,
   &__label
     display: block
-    font-size: 16px
     padding: 7px 0 7px 0
     margin: 0
     line-height: 17px
     cursor: pointer
-    color: $color-foreground
-    background: $color-background
-    box-shadow: inset 0 -1px lighten($color-background, 6%)
     transition: color .2s ease-in, background-color .2s ease-in
 
   // top level items
-  &__list--level1 > li > .acnav__label
+  &__list--level1 > li > .acnav__label,
+  &__list--level1 > li > .acnav__link
     font-weight: bold
-
-  // second level items
-  &__list--level2 .acnav__link,
-  &__list--level2 > li > .acnav__label
-    color: green
+    color: rgb(51, 67, 77)
 
   // third level items
   &__list--level3 .acnav__link,
   &__list--level3 > li > .acnav__label
-    color: pink
-    font-size: 14px
+    padding-left: $indent
 
   // fourth level items
   &__list--level4 .acnav__link,
   &__list--level4 > li > .acnav__label
-    color: red
-    font-size: 14px
+    padding-left: ($indent * 2)
 
   // hide nested lists
   &__list--level2,
@@ -83,6 +72,7 @@ $color-background: #fff // background
     .is-open > &
       display: block
 
-// indent nested lists
-ul.acnav__list ul.acnav__list
-  padding-left: 22px
+.acnav__list--level1
+  padding-bottom: 30px
+  .acnav__list
+    padding-left: 0px
