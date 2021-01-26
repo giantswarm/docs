@@ -18,6 +18,8 @@ user_questions:
 
 A NetworkPool defines a CIDR range for the Control Plane and MachineDeployment nodes of a Cluster.
 
+NetworkPools have been introduced in release 12.7.0 on AWS and are not yet available in KVM or Azure.
+
 ## Advantages
 
 The main advantages of using NetworkPools are:
