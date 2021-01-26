@@ -1,9 +1,10 @@
 ---
-title: "gsctl Command Reference: login"
+title: "'gsctl login' command reference"
 description: "The 'gsctl login' command starts an authenticated session."
-date: "2017-10-16"
 type: page
 weight: 41
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
 # `gsctl login`

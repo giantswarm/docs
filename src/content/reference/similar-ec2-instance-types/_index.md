@@ -1,18 +1,19 @@
 ---
 title: Similar AWS EC2 instance types reference
 description: Here you find our reference regarding what is considered a similar instance type.
-date: 2020-04-24
 layout: subsection
 weight: 500
 user_questions:
   - Which EC2 instance types are used when I activate the use of similar instance types for a node pool?
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
 
 # Similar EC2 Instance Types
 
 ## Introduction
 
-Handling of similar instance types is done in [aws-operator](https://github.com/giantswarm/aws-operator) since version 8.3.1, which has been introduced with Giant Swarm release v{{% first_aws_spotinstances_version %}}.
+Handling of similar instance types is done in [aws-operator](https://github.com/giantswarm/aws-operator) since version 8.3.1, which has been introduced with workload cluster release v{{% first_aws_spotinstances_version %}} for AWS.
 
 Read more about the use of similar instance types in our general article about [node pools](/basics/nodepools/#similar-instance-types).
 

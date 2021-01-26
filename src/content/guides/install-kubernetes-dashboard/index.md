@@ -1,10 +1,11 @@
 ---
 title: Installing the Kubernetes Dashboard
 description: The Dashboard is a general-purpose administrative web UI for Kubernetes, running in Kubernetes itself. It's easy to install.
-date: 2018-04-10
 type: page
 weight: 50
 tags: ["recipe"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
 ---
 
 # Installing the Kubernetes Dashboard
@@ -137,5 +138,5 @@ After login, the user can only see `namespaces` and `pods`.
 
 ## Further reading
 
-- [Official User Guide](http://kubernetes.io/docs/user-guide/ui/)
+- [Official User Guide](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/)
 - [On Securing the Kubernetes Dashboard](https://blog.heptio.com/on-securing-the-kubernetes-dashboard-16b09b1b7aca)

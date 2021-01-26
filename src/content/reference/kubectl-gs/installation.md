@@ -1,12 +1,13 @@
 ---
 title: kubectl gs installation
 description: How to get kubectl gs (aka 'kgs') installed and keep it up to date
-date: 2020-10-02
 type: page
 weight: 1
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
-# Installation
+# Installing the kubcetl gs plugin
 
 `kubectl-gs` is the Giant Swarm plug-in for `kubectl` with the official plug-in name `gs`.
 

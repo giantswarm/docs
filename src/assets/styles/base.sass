@@ -1,8 +1,10 @@
-@import icomoon
-@import footer.css
 @import header
 @import consent_dialog
+
 @import crd.css
+
+body
+  margin-top: 120px
 
 h1, h2, h3, h4, h5, h6
   text-align: left
@@ -11,6 +13,7 @@ h1, h2, h3, h4, h5, h6
 
 h1
   font-size: 42px
+  font-weight: 300
 
 
 h2
@@ -22,10 +25,12 @@ h2
 h3
   font-size: 26px
   margin-top: 45px
+  font-weight: 300
 
 h4
   font-size: 20px
   margin-top: 45px
+  font-weight: 300
 
 h5
   font-weight: 700
@@ -57,11 +62,18 @@ pre code
 a code
   color: #1c91d5
 
+// resetting a Chrome user agent style
+abbr[title]
+  text-decoration-line: none
+
 .centered-text
   text-align: center
 
 .docsnav
   margin-bottom: 40px
+
+.docsnav nav
+  display: flex
 
 .docsnav .nav > li > a
   font-size: 14px
@@ -70,6 +82,7 @@ a code
 .docsnav form
   margin: 0
   font-size: 14px
+  margin-left: auto
 
 .docsnav input
   font-size: 14px
@@ -544,3 +557,57 @@ h2:hover .header-link, h3:hover .header-link, h4:hover .header-link, h5:hover .h
 
 .well.disclaimer
   background-color: #1e1f5036
+
+
+div.platform-support
+  background-color: #EDF0F2
+  padding: 15px 15px 7px 15px
+
+  table
+    margin-bottom: 0
+    table-layout: fixed
+
+    caption
+      color: #000
+      padding-top: 0
+    tr
+      height: auto
+    th
+      width: 200px
+      overflow: hidden
+      padding-left: 0
+  
+  ul
+    list-style-type: none
+    line-height: 1em
+    margin-bottom: 0
+    font-size: inherit
+    padding-inline-start: 0
+
+    li
+      display: inline-block
+      margin-bottom: 0
+      font-size: inherit
+    
+      &+li:before
+        content: "—"
+        padding: 0 3px
+  
+  .tag
+    background-color: #ccc
+    padding: 2px 7px
+    border-radius: 3px
+    font-weight: 300
+
+  .tag-provider-aws
+    background-color: #ed9235
+    color: #232f3b
+  
+  .tag-provider-azure
+    background-color: #1773bd
+    color: #fff
+  
+  .tag-provider-kvm
+    color: #000
+
+@import changes

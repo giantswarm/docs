@@ -1,36 +1,37 @@
 ---
-title: The Giant Swarm Azure Architecture
+title: The Giant Swarm Azure architecture
 description: Description of the Azure Giant Swarm platform, how it looks like and which features offers
-date: 2020-06-10
 weight: 50
 type: page
 categories: ["basics"]
 last_review_date: 2020-09-23
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-celestial
 ---
 
 The Giant Swarm Platform consists of various components. They can be categorized into three areas: infrastructure, operations, and applications.
 
-For managing all the infrastructure we run a control plane Kubernetes cluster per cloud and region where you want to run your workloads. From that control plane you can spin up as many individual Kubernetes clusters as you want. Our operations team works to keep all cluster components healthy, while we release new versions with new features and patches. On top of that Giant Swarm offers a curated catalog with common Cloud Native tools that helps with monitoring, security, or API management. Customers can leverage those while we carry the burden of maintaining and keep them up to date.
+For managing all the infrastructure we run a management cluster per cloud and region where you want to run your workloads. From that management cluster you can spin up as many individual Kubernetes clusters, called _workload clusters_, as you want. Our operations team works to keep all cluster components healthy, while we release new versions with new features and patches. On top of that Giant Swarm offers a curated catalog with common Cloud Native tools that helps with monitoring, security, or API management. Customers can leverage those while we carry the burden of maintaining and keep them up to date.
 
 When it comes to planning and designing your cluster architecture and its adaption to our infrastructure requirements, there are many moving parts to consider. Based on our experience with various customers over the last 6 years, we have gathered best practices and general advice to help with some of the initial critical decisions.
 
-## Control Plane
+## Management cluster
 
-As we are fully convinced of Kubernetes as a platform for building platforms, we built all our Control Plane based on a Kubernetes cluster. The initial deployment entails the creation of that Control Plane cluster in a defined cloud provider region. After the Control Plane cluster is ready we deploy all our automation taking advantage of Kubernetes primitives and using the same philosophy we advocate to our customers.
+As we are fully convinced of Kubernetes as a platform for building platforms, we built all our management clusters based on Kubernetes. The initial deployment entails the creation of that management cluster in a defined cloud provider region. After the management cluster is ready we deploy all our automation taking advantage of Kubernetes primitives and using the same philosophy we advocate to our customers.
 
-Giant Swarm leverages the concept of [“Operators"](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) to control all resources that clusters need as [“Custom Resources”](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/). At the same time customers can also use the Kubernetes Control Plane API to [manage their clusters](https://docs.giantswarm.io/guides/creating-clusters-via-crs/) and/or [applications](https://docs.giantswarm.io/basics/app-catalog/).
+Giant Swarm leverages the concept of [“Operators"](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) to control all resources that clusters need as [“Custom Resources”](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/). At the same time customers can also use the Kubernetes Control Plane API to [manage their clusters](/guides/creating-clusters-via-crs/) and/or [applications](/basics/app-catalog/).
 
-![Control Plane Architecture](architecture-azure-control-plane.png)
+![Azure management cluster architecture](architecture-azure-control-plane.png)
 
-## Azure Landscape
+## Azure landscape
 
-Giant Swarm's Azure operator is the product of years of work and we continue to apply our learnings and new functionality to it, as they become available. It is in charge of the provisioning and configuration of all resources needed to make a Kubernetes cluster functional on Azure. This operator runs in the Control Plane cluster, conveniently in separate subscription, and needs to reach the Azure API within subscription where you want to deploy your clusters. Thanks to our [Multi-Account](https://docs.giantswarm.io/basics/byoc/) support, customers can add different Azure subscriptions to our platform and our operator will assume an Service Principle to operate the resources accordingly and spawn clusters into these subscriptions respectively.
+Giant Swarm's Azure operator is the product of years of work and we continue to apply our learnings and new functionality to it, as they become available. It is in charge of the provisioning and configuration of all resources needed to make a Kubernetes cluster functional on Azure. This operator runs in the management cluster, conveniently in separate subscription, and needs to reach the Azure API within subscription where you want to deploy your clusters. Thanks to our [Multi-Account](/basics/multi-account/) support, customers can add different Azure subscriptions to our platform and our operator will assume an Service Principle to operate the resources accordingly and spawn clusters into these subscriptions respectively.
 
-In order to help Customers getting started with our platform, we have crafted an [introductory guide](https://docs.giantswarm.io/guides/prepare-azure-subscription-for-tenant-clusters/) on how to configure your Azure subscription. It is important to review and request Resources Quotas and Service Limits on Azure Subscription level in order to be able to spawn machines [Azure quotas](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits) when creating clusters through our platform. Additionally, we continuously monitor the relevant limits when you are running our platform. We will notify you if a cluster approaches one of these limits, so you can focus on building your applications.
+In order to help Customers getting started with our platform, we have crafted an [introductory guide](/guides/prepare-azure-subscription/) on how to configure your Azure subscription. It is important to review and request Resources Quotas and Service Limits on Azure Subscription level in order to be able to spawn machines [Azure quotas](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits) when creating clusters through our platform. Additionally, we continuously monitor the relevant limits when you are running our platform. We will notify you if a cluster approaches one of these limits, so you can focus on building your applications.
 
 Following the principle of least privilege, we continuously refine the permissions needed for our automation to manage the Azure resources and the permissions given to our support engineers to assist when there is a problem. This is an ongoing process, as this is subject to change. We are constantly tweaking this based on our experience and changes introduced in Azure APIs and we have recently started utilizing the [Azure Lighthouse](https://azure.microsoft.com/en-us/services/azure-lighthouse/) that enables to delegate resources to a different account, making it easier to manage support team from both sides.
 
-## Workload segregation and Account model
+## Workload segregation and account model
 
 When starting out with our platform many of our customers are at the beginning of their journey to a distributed and highly resilient micro-service architecture. This is often a radically different approach to organizing and managing computing resources. This is mostly about abstracting the complexity of cluster creation and management. It opens up new possibilities on how to isolate applications and access to the infrastructure. The two most common reasons for customers to segregate applications over different    clusters and/or accounts are security and separation of concerns.
 
@@ -49,15 +50,15 @@ Having said that, there is no general rule to split workloads between Azure subs
 - Divide different services of single systems into different [namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/). It allows to control resources, network communication and access to those in finer granularity.
 - Automate and abstract your workload lifecycle. Defining the configuration of applications and the underlying [infrastructure as code](https://en.wikipedia.org/wiki/Infrastructure_as_code) has become the de facto standard to manage complex systems. There are plenty of tools nowadays to declare your application configuration as code, rely on them and discard manual changes. Think about the possibility of having to migrate your application from one cluster to another. Ideally, such a change should imply just a single config line change. Kubernetes helps to define [Cloud Native Applications](https://12factor.net/) but there are some parts that still reside on the developer side.
 
-## Tenant Cluster
+## Workload Cluster
 
 ### Architecture
 
 Our Azure Operator creates a single Virtual Network per cluster and one subnet for each of the node pools defined in the configuration. There is no overlay network thanks to Azure CNI in place, so that pods run in the same IP range as nodes. For each subnet there is a NAT Gateway, which is in charge of routing traffic from nodes or pods to the Internet. Once a workload is exposed to the Internet, a Load Balancer is placed in the public subnet to balance the request over the different backends.
 
-![Tenant Cluster Architecture](architecture-azure-tenant-cluster.png)
+![Workload cluster architecture](architecture-azure-tenant-cluster.png)
 
-In Azure the [node pool](https://docs.giantswarm.io/basics/nodepools/) concept is mapped to an Virtual Machine Scale Set, which defines a launch configuration and scaling properties of the worker nodes located in it.
+In Azure the [node pool](/basics/nodepools/) concept is mapped to an Virtual Machine Scale Set, which defines a launch configuration and scaling properties of the worker nodes located in it.
 
 In order to communicate with your on-premises data center or with other Virtual Networks (other cluster or existing infrastructure) you can leverage a VPN/Direct Connect or a Transit Gateway/peering respectively.
 
@@ -69,42 +70,42 @@ To determine the right sizing in terms of cores and RAM, you need to know what k
 
 ### Control resource assignment
 
-One of the golden rules of Kubernetes is proper resource assignment. This is hard to do, especially for developers which are not used to profiling their applications under different scenarios. But the resource definition is a [key configuration](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/) part that allows Kubernetes to schedule, limit, control and scale the applications. So our recommendation [is to define resources](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) for most of your applications running in the clusters. That said, there is some controversy about defining CPU limits due to how Kernels manage the CPU quota assigned to the containers. There have been some fixes in the latest Kernel versions which improve the situation. To learn more, we encourage you to [check this Kubecon video](https://www.youtube.com/watch?v=UE7QX98-kO0) or talk to your Solution Engineer.
+One of the golden rules of Kubernetes is proper resource assignment. This is hard to do, especially for developers which are not used to profiling their applications under different scenarios. But the resource definition is a [key configuration](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) part that allows Kubernetes to schedule, limit, control and scale the applications. So our recommendation [is to define resources](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) for most of your applications running in the clusters. That said, there is some controversy about defining CPU limits due to how Kernels manage the CPU quota assigned to the containers. There have been some fixes in the latest Kernel versions which improve the situation. To learn more, we encourage you to [check this Kubecon video](https://www.youtube.com/watch?v=UE7QX98-kO0) or talk to your Solution Engineer.
 
 Further, to enforce the definition of resources, [Limit Ranges](https://kubernetes.io/docs/concepts/policy/limit-range/) helps to set the defaults once a user forgets to add those. At the same time, [Resource Quotas](https://kubernetes.io/docs/concepts/policy/resource-quotas/) enables cluster operators to assign a predetermined amount of resources to each namespace. Thus, protecting other workloads.
 
 ### Cluster scalability
 
-Our clusters are crafted with the [cluster autoscaling component](https://docs.giantswarm.io/basics/cluster-size-autoscaling/) included as a managed app. This means that a users can define the size of the cluster by defining a minimum and maximum number of nodes per node pool. The cluster autoscaling component will scale the node pools up and down based on the capacity needed. Although we manage the component, we also allow for some customization in order to adapt the autoscaling behaviour to your needs.
+Our clusters are crafted with the [cluster autoscaling component](/basics/cluster-size-autoscaling/) included as a managed app. This means that a users can define the size of the cluster by defining a minimum and maximum number of nodes per node pool. The cluster autoscaling component will scale the node pools up and down based on the capacity needed. Although we manage the component, we also allow for some customization in order to adapt the autoscaling behaviour to your needs.
 
 ### Cluster authentication
 
-Giant Swarm configures the clusters in a secure way. [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) is enabled by default and our customers can create their own roles or use the ones predefined in the cluster to gain access to manage their workloads. The concept of authenticating users and groups does not exist in Kubernetes, so it relies on an external solution to authenticate the users (e.g. via X.509 certificates or [OIDC](https://en.wikipedia.org/wiki/OpenID_Connect)). Although our platform allows users to access the cluster using certificates, we recommend using an OIDC compliant Identity Provider, such as Active Directory, to provide authentication. There are several advantages to using an OIDC provider, such as short lived tokens or taking advantage of existing user and group information. Once authentication is sorted out, the authorization part is handled with RBAC. RBAC, along with namespaces, lets users define granular permissions for each user or group (given by OIDC or certs). This [guide](https://docs.giantswarm.io/guides/securing-with-rbac-and-psp/) will walk you through it.
+Giant Swarm configures the clusters in a secure way. [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) is enabled by default and our customers can create their own roles or use the ones predefined in the cluster to gain access to manage their workloads. The concept of authenticating users and groups does not exist in Kubernetes, so it relies on an external solution to authenticate the users (e.g. via X.509 certificates or [OIDC](https://en.wikipedia.org/wiki/OpenID_Connect)). Although our platform allows users to access the cluster using certificates, we recommend using an OIDC compliant Identity Provider, such as Active Directory, to provide authentication. There are several advantages to using an OIDC provider, such as short lived tokens or taking advantage of existing user and group information. Once authentication is sorted out, the authorization part is handled with RBAC. RBAC, along with namespaces, lets users define granular permissions for each user or group (given by OIDC or certs). This [guide](/guides/securing-with-rbac-and-psp/) will walk you through it.
 
 ### Secure your workloads
 
-Within the cluster, Giant Swarm has set up a secure baseline using [Pod Security Policies (PSPs)](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) and [Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/). Pod Security Policies are the Kubernetes resource that configures the sensitive aspects of your applications. By default, users and workloads running in Giant Swarm clusters, are assigned a restrictive policy that disallows running containers as root or mounting host path volumes (these are just two examples). Cluster operators must enable applications to have higher security privileges on a case by case basis. In the aforementioned [guide](https://docs.giantswarm.io/guides/securing-with-rbac-and-psp/#pod-security-policies) we also explain how to configure tailored PSPs for you applications.
+Within the cluster, Giant Swarm has set up a secure baseline using [Pod Security Policies (PSPs)](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) and [Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/). Pod Security Policies are the Kubernetes resource that configures the sensitive aspects of your applications. By default, users and workloads running in Giant Swarm clusters, are assigned a restrictive policy that disallows running containers as root or mounting host path volumes (these are just two examples). Cluster operators must enable applications to have higher security privileges on a case by case basis. In the aforementioned [guide](/guides/securing-with-rbac-and-psp/#pod-security-policies) we also explain how to configure tailored PSPs for you applications.
 
-In addition to the security policies, Network Policies define the communication policies to and from the applications in each namespace. All components to run a cluster provided by Giant Swarm come with strict policies by default. Our managed namespaces (“kube-system” and “giantswarm”) block all traffic in general, so only expected and specifically configured routes and ports are enabled. Customers can follow this approach and deny all communications by default in their application namespaces forcing each workload to define which communications are allowed. This [guide](https://docs.giantswarm.io/guides/limiting-pod-communication-with-network-policies/) helps to understand how such a dynamic firewall works.
+In addition to the security policies, Network Policies define the communication policies to and from the applications in each namespace. All components to run a cluster provided by Giant Swarm come with strict policies by default. Our managed namespaces (“kube-system” and “giantswarm”) block all traffic in general, so only expected and specifically configured routes and ports are enabled. Customers can follow this approach and deny all communications by default in their application namespaces forcing each workload to define which communications are allowed. This [guide](/guides/limiting-pod-communication-with-network-policies/) helps to understand how such a dynamic firewall works.
 
 ## Observability
 
-Since we provide a **managed** Kubernetes platform, Giant Swarm has to be aware of state and unexpected events regarding the platform. For that reason our Control Planes run a [monitoring stack](https://www.giantswarm.io/blog/monitoring-on-demand-kubernetes-clusters-with-prometheus) to watch all tenant clusters and ensure all managed components are healthy. In each tenant cluster there are several [exporters](https://prometheus.io/docs/instrumenting/exporters/) that gather and forward the metrics for each component.
+Since we provide a **managed** Kubernetes platform, Giant Swarm has to be aware of state and unexpected events regarding the platform. For that reason our management clusters run a [monitoring stack](https://www.giantswarm.io/blog/monitoring-on-demand-kubernetes-clusters-with-prometheus) to watch all workload clusters and ensure all managed components are healthy. In each workload cluster there are several [exporters](https://prometheus.io/docs/instrumenting/exporters/) that gather and forward the metrics for each component.
 
 Our on-call engineers will be paged in case anything happens to the cluster or its base components and they will respond to the incident based on the run-books we have created based on years of operating Cloud Native systems. In case there is an improvement to be made, a post mortem is created and a solution will be implemented before long. Any patch or fix added to the platform will be released to all customers.
 
 ## App Platform
 
-Giant Swarm [has designed a system](https://www.giantswarm.io/app-catalog) to ease the use of some common Cloud Native apps. The amount of components available in the landscape is huge, and [we have decided to include some of the projects in our catalog](https://www.giantswarm.io/blog/announcing-the-giant-swarm-app-platform) for our customers to rely on.
+Giant Swarm [has designed a system](https://www.giantswarm.io/app-platform) to ease the use of some common Cloud Native apps. The amount of components available in the landscape is huge, and [we have decided to include some of the projects in our catalog](https://www.giantswarm.io/blog/announcing-the-giant-swarm-app-platform) for our customers to rely on.
 
 Right now we have several managed apps to control the Ingress traffic ([NGINX Ingress Controller](https://github.com/giantswarm/nginx-ingress-controller-app) and [Kong](https://github.com/giantswarm/kong-app)), secure the AWS API and map roles ([kiam](https://github.com/giantswarm/kiam-app)), collect and process logs ([EFK](https://github.com/giantswarm/efk-stack-app)) or automate the DNS setup ([external DNS](https://github.com/giantswarm/external-dns-app)).
 
 But at the same time we open the catalog to our customers and employees to use for their own apps. That is why we are running a proof of concept for AWS App Mesh, the AWS implementation of Service Mesh pattern, or Loki, the “coolest” log collector. If you trust in a Cloud Native app and operating it does not add any value to your business, talk to us and we might take over its management for you, too.
 
-Please note, while this document went into extensive details with regards to how Giant Swarm runs Kubernetes on AWS, we support [Azure](https://docs.giantswarm.io/basics/azure-architecture/) as well as [Bare Metal](https://docs.giantswarm.io/basics/onprem-architecture/). For more details, please [contact us](https://www.giantswarm.io/contact).
+Please note, while this document went into extensive details with regards to how Giant Swarm runs Kubernetes on AWS, we support [Azure](/basics/azure-architecture/) as well as [Bare Metal](/basics/onprem-architecture/). For more details, please [contact us](https://www.giantswarm.io/contact).
 
 ## Further reading
 
-- [Giant Swarm support model](https://docs.giantswarm.io/basics/giant-swarm-support/)
-- [Giant Swarm operational layers](https://docs.giantswarm.io/basics/giant-swarm-operational-layers/)
-- [Giant Swarm App Catalog](https://docs.giantswarm.io/basics/app-catalog/)
+- [Giant Swarm support model](/basics/giant-swarm-support/)
+- [Giant Swarm operational layers](/basics/giant-swarm-operational-layers/)
+- [Giant Swarm App Catalog](/basics/app-catalog/)

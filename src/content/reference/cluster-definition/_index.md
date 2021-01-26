@@ -1,9 +1,8 @@
 ---
-title: Cluster Definition Reference
-description: Complete documentation of the Giant Swarm cluster definition YAML format, compatible with API v4 and v5.
-date: 2020-06-16
+title: Cluster definition reference
+description: Complete documentation of the Giant Swarm cluster definition YAML format, compatible with API v4 and v5. Use this format to create customized clusters via gsctl.
 layout: subsection
-weight: 100
+weight: 40
 user_questions:
   - What are additional fields I need to fill out for node pool clusters
   - What are node definition keys I need to specify for a non-node pool cluster definition?
@@ -14,7 +13,7 @@ user_questions:
   - Will my cluster definition change if I use node pools?
 ---
 
-# Cluster Definition Reference
+# Cluster definition reference
 
 Giant Swarm's cluster definition allows to define the detailed specs for a cluster in a YAML
 format, which is then passed to [`gsctl create cluster`](/reference/gsctl/create-cluster/) in order to
@@ -25,18 +24,18 @@ creation. As it's the case within the API, the YAML definition comes in two diff
 
 - [**v4**](#v4): For a long time, this has been the only version around. As of now, this version is required
 to create clusters on bare metal (**KVM**). It is also needed for cluster creation on
-AWS using a release prior to {{% first_aws_nodepools_version %}}, or on Azure using a release prior to {{% first_azure_nodepools_version %}}, basically to create a cluster without
+AWS using a workload cluster release prior to v{{% first_aws_nodepools_version %}}, or on Azure using a workload cluster release prior to v{{% first_azure_nodepools_version %}}, basically to create a cluster without
 support for node pools.
 - [**v5**](#v5): This version has been introduced in October 2019 to support clusters with
-[node pools](/basics/nodepools/). The feature is available on AWS starting with release
-{{% first_aws_nodepools_version %}}, or on Azure starting with release {{% first_azure_nodepools_version %}};
+[node pools](/basics/nodepools/). The feature is available on AWS starting with workload cluster release
+v{{% first_aws_nodepools_version %}}, or on Azure starting with workload cluster release v{{% first_azure_nodepools_version %}};
 
 As it's the case with the Giant Swarm API, cluster creation using the YAML definition only requires you
 to specify the details you need to deviate from defaults. For every setting not contained in the
 definition, defaults will apply as explained below. For any missing information regarding defaults,
 please contact your Giant Swarm support team via Slack or at support@giantswarm.io.
 
-## v4 Definition {#v4}
+## v4 definition {#v4}
 
 ### Examples
 
@@ -74,7 +73,7 @@ workers:
 
 **Note:** AWS clusters defined using a v4 definition (and consequently not using node pools) restrict you to all worker nodes being of the same instance type. With v5 and node pools, you gain the flexibility to create several node pools using different instance types.
 
-### v4 Schema {#v4-schema}
+### v4 schema {#v4-schema}
 
 #### v4 root level keys {#root-keys}
 
@@ -94,7 +93,7 @@ workers:
 - `azure`: Settings specific to Azure based clusters
 - `azure.vm_size`: The Azure VM size to use for worker nodes
 
-## v5 Definition {#v5}
+## v5 definition {#v5}
 
 Let's start with an AWS example:
 
@@ -163,7 +162,7 @@ Coming from v4, you might want to understand how v5 is different from v4:
 - Several settings that were specified on the cluster level in v4 (root level of the definition) have been moved to the node pool level.
 - The key `master_nodes` has been added to allow influencing master nodes.
 
-### v5 Schema {#v5-schema}
+### v5 schema {#v5-schema}
 
 #### v5 root level keys {#v5-root-keys}
 

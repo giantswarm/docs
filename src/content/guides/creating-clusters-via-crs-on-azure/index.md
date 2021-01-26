@@ -1,10 +1,11 @@
 ---
-title: Creating tenant clusters on Azure via Control Plane Kubernetes API
-description: This guide will walk you through the process of tenant cluster creation via Control Plane Kubernetes on Azure.
-date: 2020-10-02
+title: Creating workload clusters on Azure via Management API
+description: This guide will walk you through the process of workload cluster creation via Control Plane Kubernetes on Azure.
 type: page
 weight: 100
 tags: ["tutorial"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-celestial
 ---
 
 ## How does cluster creation work
@@ -12,17 +13,17 @@ tags: ["tutorial"]
 Starting from version {{% first_azure_nodepools_version %}} on Azure, Giant Swarm introduced a feature to create multiple [node pools](/basics/nodepools/) on Azure.
 Alongside node pools support, a new API version for cluster management was released.
 
-All the tenant clusters, created with release version {{% first_azure_nodepools_version %}} and newer, are managed as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) in the Control Plane.
+All the workload clusters, created with workload cluster release v{{% first_azure_nodepools_version %}} and newer, are managed as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) in the Control Plane.
 
 At a high-level, the Control Plane API is used to manage the following CRs:
 
-- [Cluster](/reference/cp-k8s-api/clusters.cluster.x-k8s.io/) - represents a Kubernetes cluster excluding worker nodes.
-- [MachinePool](/reference/cp-k8s-api/machinepools.exp.cluster.x-k8s.io/) - represents a node pool.
+- [Cluster](/reference/management-api/clusters.cluster.x-k8s.io/) - represents a Kubernetes cluster excluding worker nodes.
+- [MachinePool](/reference/management-api/machinepools.exp.cluster.x-k8s.io/) - represents a node pool.
 
 The CRs above then reference provider specific implementations. In our case, for clusters on Azure, they are:
 
-- [AzureCluster](/reference/cp-k8s-api/azureclusters.infrastructure.cluster.x-k8s.io/) - represents a tenant cluster.
-- [AzureMachinePool](/reference/cp-k8s-api/azuremachinepools.exp.infrastructure.cluster.x-k8s.io/) - configures the Azure-specific details of worker nodes in a node pool.
+- [AzureCluster](/reference/management-api/azureclusters.infrastructure.cluster.x-k8s.io/) - represents a workload cluster.
+- [AzureMachinePool](/reference/management-api/azuremachinepools.exp.infrastructure.cluster.x-k8s.io/) - configures the Azure-specific details of worker nodes in a node pool.
 
 ## Example CRs
 
@@ -167,12 +168,12 @@ spec: {}
 
 All the CRs, mentioned above, have strict spec and important requirements to be considered valid.
 There is very limited CR validation available in the Control Plane for now.
-Therefore, if you create a CR with wrong field values, that can result in a broken tenant cluster.
+Therefore, if you create a CR with wrong field values, that can result in a broken workload cluster.
 That's why we offer a [kubectl plugin](/reference/kubectl-gs/), which helps to template valid CRs.
 
 The utility supports rendering CRs:
 
-- Tenant clusters:
+- Workload clusters:
     - `Cluster` (API version `cluster.x-k8s.io/v1alpha3`)
     - `AzureCluster` (API version `infrastructure.cluster.x-k8s.io/v1alpha3`)
     - `AzureMachine` (API version `infrastructure.cluster.x-k8s.io/v1alpha3`)
@@ -186,6 +187,30 @@ The utility supports rendering CRs:
 The installation procedure is described in the [`kubectl gs` reference](/reference/kubectl-gs/#install).
 There are also specific reference pages for [cluster templating](/reference/kubectl-gs/template-cluster/) and [node pool templating](/reference/kubectl-gs/template-nodepool/).
 
-As a result of rendering the CRs ([sample](/reference/kubectl-gs/template-cluster/#example)), a user will get YAML manifests containing valid CRs that can create a tenant cluster and its node pools.
+As a result of rendering the CRs ([sample](/reference/kubectl-gs/template-cluster/#example)), a user will get YAML manifests containing valid CRs that can create a workload cluster and its node pools.
 The resources can then be created by applying the manifest files to the Control Plane, e.g. `kubectl create -f <cluster manifest file>.yaml`.
 Of course, that requires the user to be authorized towards Kubernetes Control Plane API.
+
+## How to configure OIDC authentication at cluster creation using Cluster API
+
+Starting from version {{% first_azure_nodepools_version %}} on Azure we have enabled the possibility to configure the OIDC per cluster at the cluster creation stage. This feature only includes configuration of the OIDC in the `Cluster` CR before it is applied on the Control Plane.
+
+In order to configure your new cluster with OIDC, you will have to add annotations to the Cluster CR as following:
+
+```yaml
+apiVersion: cluster.x-k8s.io/v1alpha3
+kind: Cluster
+metadata:
+  annotations:  
+    oidc.giantswarm.io/client-id: OIDC_CLIENT_ID
+    oidc.giantswarm.io/group-claim: GROUP_CLAIM
+    oidc.giantswarm.io/issuer-url: https://login.microsoftonline.com/TENANT_ID/v2.0
+    oidc.giantswarm.io/username-claim: USERNAME_CLAIM
+```
+
+This will result in setting up the OIDC config per cluster in the K8S API manifest.
+Currently changing/adding config to already existing cluster is not fully supported at Giant Swarm. Please talk to your SE if there is any need to change those settings.
+
+## How to delete cluster via Control Plane API
+
+In order to delete your cluster created via the Cluster API on the Control Plane, simply delete the `Cluster` CR corresponding to the given cluster. This will result in starting the process of cluster deletion and clean up of all related CRs on the Control Plane.

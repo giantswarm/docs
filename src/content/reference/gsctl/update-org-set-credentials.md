@@ -1,9 +1,10 @@
 ---
-title: "gsctl Command Reference: update organization set-credentials"
+title: "'gsctl update organization set-credentials' command reference"
 description: The 'gsctl update organization set-credentials' command allows to set cloud provider credentials for an organization.
-date: 2020-05-20
 type: page
 weight: 55
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
 # `update organization set-credentials`
@@ -12,8 +13,8 @@ Giant Swarm allows you to run clusters in your own cloud provider account/subscr
 
 Please refer to our detailed guides on how to prepare roles and credentials in your AWS account or Azure subscription:
 
-- [Prepare an AWS account to run Giant Swarm tenant clusters](/guides/prepare-aws-account-for-tenant-clusters/)
-- [Prepare an Azure subscription to run Giant Swarm tenant clusters](/guides/prepare-azure-subscription-for-tenant-clusters/)
+- [Prepare an AWS account to run Giant Swarm workload clusters](/guides/prepare-aws-account/)
+- [Prepare an Azure subscription to run Giant Swarm workload clusters](/guides/prepare-azure-subscription/)
 
 gsctl provides this command to store the credentials connected to your organization. After doing this, you will want to [create a cluster](../create-cluster/) owned by the organization configured that way.
 
@@ -70,6 +71,6 @@ The flags mean:
 ## Related
 
 - [Basics and Concepts: Multi-Account Support](/basics/multi-account/)
-- [Guides: Prepare an AWS account to run Giant Swarm tenant clusters](/guides/prepare-aws-account-for-tenant-clusters/)
-- [Guides: Prepare an Azure subscription to run Giant Swarm tenant clusters](/guides/prepare-azure-subscription-for-tenant-clusters/)
+- [Guides: Prepare an AWS account to run Giant Swarm workload clusters](/guides/prepare-aws-account/)
+- [Guides: Prepare an Azure subscription to run Giant Swarm workload clusters](/guides/prepare-azure-subscription/)
 - [API: Set credentials](/api/#operation/addCredentials)

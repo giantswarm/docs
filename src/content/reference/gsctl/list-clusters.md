@@ -1,9 +1,10 @@
 ---
-title: "gsctl Command Reference: list clusters"
-description: "The 'gsctl list clusters' command shows all clusters you have access to with a few details like cluster ID, name, creation date, and owner organization."
-date: "2019-11-25"
+title: "'gsctl list clusters' command reference"
+description: The 'gsctl list clusters' command shows all clusters you have access to with a few details like cluster ID, name, creation date, and owner organization.
 type: page
 weight: 51
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
 # `gsctl list clusters`
@@ -25,7 +26,7 @@ The details displayed are:
 - `ID`: The unique cluster ID.
 - `ORGANIZATION`: The cluster's owner organization.
 - `NAME`: The name selected for the cluster on creation.
-- `RELEASE`: The version number of the release used by the cluster. For older clusters, this may be `n/a`.
+- `RELEASE`: The version of the workload cluster release used by the cluster. For older clusters, this may be `n/a`.
 - `CREATED`: The date and time when the cluster has been created (UTC).
 
 The `--selector` flag can be used to filter the output based on a set of requirements.
@@ -46,7 +47,7 @@ More information about possible queries can be found in the [Kubernetes Labels a
 - `--selector` or `-l`: Label selector query to filter clusters on.
 Accepts a single string containing multiple selector requirements which are comma-separated.
 In the case of multiple requirements, all must be satisfied so the comma separator acts as a logical AND (&&) operator.
-This feature is only available for clusters with release version {{% first_aws_nodepools_version %}} and above on AWS.
+This feature is only available for clusters with workload cluster release v{{% first_aws_nodepools_version %}} and above on AWS.
 - `--sort` or `-s`: Sort clusters by one of the columns, in ascending order. The default value is `id`.
 Accepted values: `id`, `created`, `name`, `organization`, `release`, `deleting-since`.
 Providing a small part of the column name is also accepted: `d`/`del`/`deleting` are all valid for the `deleting-since` value.

@@ -1,14 +1,28 @@
 ---
-title: App Configuration
-description: Documentation on the various levels of App configuration and how they get merged into a final Values object.
-date: 2020-04-27
+title: App configuration reference
+description: Documentation on the various levels of App configuration and how they get merged into a final values object.
 type: subsection
+weight: 100
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-batman
+user_questions:
+ - What tool is used to deploy applications?
+ - What configurations are required on an App in order to make it ready to deploy?
+ - What app configuration levels exist?
+ - Why are there multiple app configuration levels?
+ - What are the configuration values that I can change for Apps?
+ - What is the logic behind setting the final configuration of an App?
+ - What happens if I don't customize configurations?
+ - What is the correct App configuration level to use?
+ - What are the limitations around uploading secrets when configuring them for an App?
+ - How are configuration values stored and referenced in the Control Plane?
+ - How can I provide configuration values for apps?
 ---
 
-# App Configuration Reference
+# App configuration reference
 
 Giant Swarm's [App Platform](/basics/app-platform/) allows you to easily install Apps across your entire
-fleet of clusters. We fully support Helm as a general tool to deploy your applications as well as for our general app catalogue, which you can of course also use for your own applications by creating a new catalogue.
+fleet of clusters. We fully support [Helm](https://helm.sh/) as a general tool to deploy your applications as well as for our general App Catalog, which you can of course also use for your own applications by creating a new Catalog.
 
 Apps are packaged as Helm charts. Helm charts rely on _values_ to be set in order to fill in placeholders in _templates_. By configuring your App you set the values that become available to the templates when they are deployed.
 
@@ -20,7 +34,7 @@ There are three levels of configuration:
 2. **Cluster**: Configuration provided by the cluster admin.
 3. **User**: Configuration provided by the user installing an App.
 
-Each level can override the previous one. As a user you are not expected to edit configuration at the `catalog` or `cluster` level. However user level configuration can override both catalog and cluster level configuration.
+Each level overrides the previous one. As a user you are not expected to edit configuration at the `catalog` or `cluster` level. However user level configuration can override both catalog and cluster level configuration.
 
 Each level of configuration has two types of values that you can provide:
 
@@ -58,7 +72,7 @@ colors:
   secretColor: ""
 ```
 
-Now you create an [App](/reference/cp-k8s-api/apps.application.giantswarm.io/) resource that references a user level ConfigMap and a `user`
+Now you create an [App](/reference/management-api/apps.application.giantswarm.io/) resource that references a user level ConfigMap and a `user`
 level Secret:
 
 ```yaml
@@ -161,7 +175,7 @@ templated Secret, then you have to base64 encode it to comply with how Kubernete
 ## How configuration values are stored and referenced in the Control Plane {#storage-referencing}
 
 Configuration for Apps are stored as ConfigMaps and Secrets, which are
-referenced by `name` and `namespace` in various `spec` fields of the [App](/reference/cp-k8s-api/apps.application.giantswarm.io/) and [AppCatalog](/reference/cp-k8s-api/appcatalogs.application.giantswarm.io/) Custom Resource (CR).
+referenced by `name` and `namespace` in various `spec` fields of the [App](/reference/management-api/apps.application.giantswarm.io/) and [AppCatalog](/reference/management-api/appcatalogs.application.giantswarm.io/) Custom Resource (CR).
 
 Our operators act on those resources to ensure the actual state ends up
 looking like the desired state. More information is available in our [general overview of the App Platform](/basics/app-platform/).
@@ -225,16 +239,18 @@ data:
 There are three ways to provide configuration values:
 
 - via the web interface
-- via the Giant Swarm (Rest) API
-- via the Control Plane Kubernetes API
+- via the Rest API
+- via the Management API
 
-### Through the Web Interface
+### Through the web interface
 
-Our web interface allows you to upload configuration and secret values for the
+Our [web interface](/reference/web-interface/) allows you to upload configuration and secret values for the
 user configuration level. You can do this by uploading a YAML file consisting
 of just the keys and values you would like to set.
 
-The web interface currently talks to the Giant Swarm API and will do the right
+For a general explanation on the web interface functionality related to Apps, check [our overview](/reference/web-interface/app-platform/).
+
+The web interface currently talks to the Rest API and will do the right
 calls to create a ConfigMap or Secret and will wire it up correctly in the App CR
 for you.
 
@@ -243,42 +259,36 @@ YAML files using the web interface. Notice that no ConfigMap or Secret metadata
 is required. You only have to supply the `values` part as a valid YAML file, with
 no encoding.
 
-#### hello-world user values example
+**hello-world user values example:**
 
 ```yaml
 colors:
    background: "red"
 ```
 
-#### hello-world user secrets example
+**hello-world user secrets example:**
 
 ```yaml
 colors:
    secretColor: "blue"
 ```
 
-### Using the Giant Swarm API (Deprecated) {#giant-swarm-api}
+### Using the Rest API (deprecated) {#giant-swarm-api}
 
-The Giant Swarm API acts as an interface between you and the Control Plane Kubernetes
-API.
+The [Rest API](/basics/api/#rest-api) acts as an interface between you and the [Management
+API](/basics/api/#management-api). It is deprecated since we are currently in the process of allowing you direct
+access to the Management API. However for the time being, our web interface makes use of the Rest API.
 
-It is deprecated since we are currently in the process of allowing you direct
-access to the Control Plane Kubernetes API.
-
-However for the time being, our Web Interface makes use of the Giant Swarm API.
-
-By supplying a JSON body with the values you would like to set, the Giant Swarm API will
+By supplying a JSON body with the values you would like to set, the Rest API will
 create a ConfigMap or Secret in the right format and wire it up correctly for you.
 
-- [Giant Swarm API App Configs reference](/api/#tag/app-configs) for adding configuration values
-- [Giant Swarm API App Secrets reference](/api/#tag/app-secrets) for adding secret values
+- [Rest API App Configs reference](/api/#tag/app-configs) for adding configuration values
+- [Rest API App Secrets reference](/api/#tag/app-secrets) for adding secret values
 
-### Using the Control Plane Kubernetes API {#cp-k8s-api}
+### Using the Management API {#management-api}
 
-There are many approaches to managing resources in Kubernetes, that goes beyond
-the scope of this resource page.
+There are many approaches to managing resources in Kubernetes, which go beyond
+the scope of this article. But the simplest would probably be to `kubectl apply` a file directly to the cluster.
 
-But the simplest would probably be to `kubectl apply` a file directly to the cluster.
-
-_Note: Depending on your installation you might not have access to the Control Plane API yet.
-Please contact your SE if you would like more information about that._
+**Note:** Depending on your installation you might not have access to the Control Plane API yet.
+Please contact your SE if you would like more information about that.

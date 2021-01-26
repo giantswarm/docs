@@ -1,9 +1,10 @@
 ---
-title: "gsctl Command Reference: upgrade cluster"
+title: "'gsctl upgrade cluster' command reference"
 description: Detailed documentation on how to upgrade a cluster using the 'upgrade cluster' command in gsctl.
-date: 2020-03-11
 type: page
 weight: 30
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
 # `gsctl upgrade cluster`
@@ -28,9 +29,18 @@ To prevent the interactive confirmation, you can use the `--force` flag. This wi
 gsctl upgrade cluster f01r4 --force
 ```
 
+If you want to upgrade to a specific version, you can use the `--release` flag:
+
+```nohighlight
+gsctl upgrade cluster f01r4 --release 13.0.0
+```
+
+You can list available workload cluster releases with `gsctl list releases`.
+
 ## Related
 
 - [Upgrade cluster general documentation](/reference/cluster-upgrades/)
 - [`gsctl create cluster`](/reference/gsctl/create-cluster/): Reference for creating a cluster
 - [`gsctl delete cluster`](/reference/gsctl/delete-cluster/): Reference for deleting a cluster
+- [`gsctl list releases`](/reference/gsctl/list-releases/): Reference for listing available workload cluster releases
 - [API: Upgrade cluster](/api/#operation/upgradeCluster)

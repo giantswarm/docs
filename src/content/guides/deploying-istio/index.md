@@ -1,10 +1,11 @@
 ---
 title: How to deploy Istio in your cluster
 description: Tutorial on how to deploy Istio on a Giant Swarm Kubernetes cluster.
-date: 2020-04-17
 type: page
 weight: 60
 tags: ["tutorial"]
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
 ---
 
 # How to deploy Istio in your Cluster
@@ -15,7 +16,7 @@ Istio is one of the main players in the arena of service meshes. It stands out b
 
 ## Preparation
 
-At the present time, the recommended way to deploy Istio is using Helm. Please ensure the Kubernetes package manager is installed and running in your cluster. Go to the official [docs](https://docs.helm.sh/using_helm#install-helm) if you need to install it. Additionally, a Helm registry plugin is used to download the app charts. Please be sure you [have it configured, too](https://github.com/app-registry/appr-helm-plugin).
+At the present time, the recommended way to deploy Istio is using Helm. Please ensure the Kubernetes package manager is installed and running in your cluster. Go to the official [docs](https://helm.sh/docs/using_helm/#install-helm) if you need to install it. Additionally, a Helm registry plugin is used to download the app charts. Please be sure you [have it configured, too](https://github.com/app-registry/appr-helm-plugin).
 
 Start off by [downloading the Istio project package](https://github.com/istio/istio/releases/) and include the command line interface in your path. After having it in a local folder uncompressed, make sure the `/bin` directory is under your system path.
 
@@ -51,7 +52,7 @@ initContainers:
       privileged: true
 ```
 
-As a consequence, the pod now must have the right security policies configured to run in the cluster. An easy way to solve this problem is to [create a pod security policy that contains the correct capabilities](/guides/securing-with-rbac-and-psp#pod-security-policies/). Then, define a RBAC role and a role binding for wiring it together against the default service account for the namespace(s) where your apps are running.
+As a consequence, the pod now must have the right security policies configured to run in the cluster. An easy way to solve this problem is to [create a pod security policy that contains the correct capabilities](/guides/securing-with-rbac-and-psp/#pod-security-policies). Then, define a RBAC role and a role binding for wiring it together against the default service account for the namespace(s) where your apps are running.
 
 __Warning:__ If your apps are using a custom service account then you need to create the binding for each of them.
 
@@ -111,7 +112,7 @@ The deployment is made up of a different number of components. Some of them, lik
 
 A followed convention, not only within the Istio community but in Kubernetes too, is to define in all your app deployments the label `app` and `version` as metadata. Both labels help the tracing and metrics systems to have richer meta information.
 
-Another good practice is to name the service ports. Istio uses the name to discover the protocol used by the end service container. Thus, you have to prefix the port name with the protocol desired. The different supported protocols (`http`, `http2`, `grpc`, `mongo`, or `redis`) leverage Istio to route traffic more intelligently. Otherwise, it will use plain TCP routing. Read more [in the official docs](https://istio.io/docs/setup/kubernetes/spec-requirements/).
+Another good practice is to name the service ports. Istio uses the name to discover the protocol used by the end service container. Thus, you have to prefix the port name with the protocol desired. The different supported protocols (`http`, `http2`, `grpc`, `mongo`, or `redis`) leverage Istio to route traffic more intelligently. Otherwise, it will use plain TCP routing. Read more [in the official docs](https://istio.io/latest/docs/ops/deployment/requirements/).
 
 ```yaml
 apiVersion: v1
@@ -149,7 +150,7 @@ Istio is a complex system composed by several pieces. All these pieces are relea
 - Mutual TLS
 - Certmanager
 
-With exception of Mutual TLS and Certmanager, all of these are installed. As mentioned above, Mutual TLS can impact ongoing traffic. We suggest reading the [upstream docs](https://istio.io/docs/tasks/security/authentication/authn-policy/#auto-mutual-tls) before enabling it. You can configure the components by tweaking the values passed to Helm. Run `helm inspect install/kubernetes/helm/istio` to display the different options available.
+With exception of Mutual TLS and Certmanager, all of these are installed. As mentioned above, Mutual TLS can impact ongoing traffic. We suggest reading the [upstream docs](https://istio.io/latest/docs/tasks/security/authentication/authn-policy/#auto-mutual-tls) before enabling it. You can configure the components by tweaking the values passed to Helm. Run `helm inspect install/kubernetes/helm/istio` to display the different options available.
 
 Although Istio can run in almost every Kubernetes cluster regardless of the underlying infrastructure, there are some quirks to consider depending on where the service mesh is deployed.
 
@@ -166,7 +167,7 @@ helm install \
 
 ### On premises (KVM)
 
-The main difference from the clouds is the ingress gateway service must be type `NodePort`. Since there is no automatic mechanism to provide an endpoint, the service is exposed in the host of the underlying VM. Below, we will explain how to redirect the traffic from the control plane to a second tenant cluster ingress controller.
+The main difference from the clouds is the ingress gateway service must be type `NodePort`. Since there is no automatic mechanism to provide an endpoint, the service is exposed in the host of the underlying VM. Below, we will explain how to redirect the traffic from the management cluster to a second workload cluster ingress controller.
 
 ```nohighlight
 $ helm install install/kubernetes/helm/istio --name istio --namespace istio-system \
@@ -283,7 +284,7 @@ curl http://<IP>/healthz -I
 
 ### On Premises (KVM) Verification
 
-As you may already know, in our [`on premises installations`](/basics/onprem-architecture/) the tenant pods live inside the control plane pods. This means Giant Swarm creates a forward between the external ingress service to the ingress placed inside the tenant cluster. By default, the tenant clusters has an NGINX ingress controller allocated out-of-the-box. But, in case you want to use Istio ingress controller you need to ask our team to allocate a new redirection from the parent endpoint to the Istio controller. With the latter, you will have the two ingress controllers exposed to Internet.
+As you may already know, in our [`on premises installations`](/basics/onprem-architecture/) the workload cluster pods live inside the management cluster pods. This means Giant Swarm creates a forward between the external ingress service to the ingress placed inside the workload cluster. By default, the workload cluster has an NGINX ingress controller allocated out-of-the-box. But, in case you want to use Istio ingress controller you need to ask our team to allocate a new redirection from the parent endpoint to the Istio controller. With the latter, you will have the two ingress controllers exposed to Internet.
 
 After obtaining the ports, modify the ingress gateway to set the correct configuration.
 
@@ -363,6 +364,6 @@ spec:                      spec:
 
 ## Further reading
 
-- [Istio official docs](https://istio.io/docs/)
+- [Istio official docs](https://istio.io/latest/docs/)
 - [Istio community chat](https://slack.istio.io/)
 - [Istio GitHub project](https://github.com/istio/istio)

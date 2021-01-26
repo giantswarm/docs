@@ -1,18 +1,19 @@
 ---
 title: Authenticating with Microsoft Azure Active Directory
 description: Tutorial on how to setup Authentication with Microsoft Azure Active Directory in kubectl.
-date: 2019-11-06
 type: page
 weight: 30
 tags: ["tutorial"]
 user_questions:
   - How can I use Azure Active Directory to authenticate cluster access?
   - How to use OIDC for cluster authentication?
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-celestial
 ---
 
 # Authenticating with Microsoft Azure Active Directory
 
-A Giant Swarm installation can be configured to authenticate with Microsoft Azure Active Directory (AAD). This setting has to be enabled by Giant Swarm staff once per installation. After that all tenant clusters will be set up to authenticate against AAD using OpenID Connect (OIDC).
+A Giant Swarm installation can be configured to authenticate with Microsoft Azure Active Directory (AAD). This setting has to be enabled by Giant Swarm staff once per installation. After that all workload clusters will be set up to authenticate against AAD using OpenID Connect (OIDC).
 
 On the user side, you can then authenticate using the Azure Auth Provider of `kubectl`. Your access to a cluster is decided by RBAC roles mapped to your user or group.
 

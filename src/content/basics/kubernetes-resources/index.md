@@ -1,20 +1,21 @@
 ---
 title: Kubernetes Resources
 description: Pointers to the best resources about Kubernetes to get you up to speed with Kubernetes fast
-date: 2020-05-20
 weight: 140
 type: page
 categories: ["basics"]
-last-review-date: 2020-03-31
+last_review_date: 2020-03-31
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---
 
 # Kubernetes Resources
 
 As your Giant Swarm cluster offers you fully-managed Kubernetes, the fundamentals you need are basically summarized by the userside documentation of Kubernetes. We have compiled a list of the best resources to get you started fast.
 
-## Official kubernetes documentation
+## Official Kubernetes documentation
 
-The first and most important source to read is the [official Kubernetes documentation](http://kubernetes.io/docs/). Since the administrative side is mostly taken care of by Giant Swarm, we recommend focussing on the [task-specific tutorials](https://kubernetes.io/docs/tutorials/).
+The first and most important source to read is the [official Kubernetes documentation](https://kubernetes.io/docs/home/). Since the administrative side is mostly taken care of by Giant Swarm, we recommend focussing on the [task-specific tutorials](https://kubernetes.io/docs/tutorials/).
 
 ## Useful primitives
 
@@ -22,7 +23,7 @@ The first and most important source to read is the [official Kubernetes document
 
 Pods are the smallest deployable units of computing that can be created and managed in Kubernetes. They contain one or more containers that run inside the pod as if they were running on a single host.
 
-[Pods Reference](https://kubernetes.io/docs/concepts/workloads/pods/pod/)
+[Pods Reference](https://kubernetes.io/docs/concepts/workloads/pods/)
 
 ### Labels and selectors
 
@@ -60,7 +61,7 @@ There are two primitives for keeping configuration out of your containers. The f
 
 Unlike the typical pod that you use for long-running processes, jobs let you manage pods that are supposed to terminate and not be restarted. A job creates one or more pods and ensures their termination after a specified number of successful completions.
 
-[Jobs Reference](https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/)
+[Jobs Reference](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
 
 ### Daemon Sets
 
@@ -85,19 +86,19 @@ Giant Swarm clusters come with CoreDNS installed by default. You can use DNS to 
 There are some useful tools and content out there that help you with get to know Kubernetes.
 
 - The [Kubernetes Blog](https://kubernetes.io/blog/) is a good resource for reading up on new features, examples, and user stories around Kubernetes.
-- [Kompose](https://github.com/kubernetes-incubator/kompose) is a tool to move from `docker-compose` to Kubernetes.
+- [Kompose](https://github.com/kubernetes/kompose) is a tool to move from `docker-compose` to Kubernetes.
 - [Helm](https://helm.sh/) is a package manager for Kubernetes that helps you deploy common applications to your cluster.
 
 ## Useful blog posts
 
 We have also written some more detailed out blog posts about the basic Kubernetes concepts and use cases for them.
 
-- [Understanding Basic Kubernetes Concepts I - An Introduction To Pods, Labels, and Replicas](https://blog.giantswarm.io/understanding-basic-kubernetes-concepts-i-introduction-to-pods-labels-replicas/)
-- [Understanding Basic Kubernetes Concepts II - Using Deployments To Manage Your Services Declaratively](https://blog.giantswarm.io/understanding-basic-kubernetes-concepts-using-deployments-manage-services-declaratively/)
-- [Understanding Basic Kubernetes Concepts III - Services Give You Abstraction](https://blog.giantswarm.io/basic-kubernetes-concepts-iii-services-give-abstraction/)
-- [Understanding Basic Kubernetes Concepts IV - Secrets and ConfigMaps](https://blog.giantswarm.io/understanding-basic-kubernetes-concepts-iv-secrets-and-configmaps/)
-- [Understanding Basic Kubernetes Concepts V - Daemon Sets and Jobs](https://blog.giantswarm.io/understanding-basic-kubernetes-concepts-v-daemon-sets-and-jobs/)
-- [Getting Started With A Local Kubernetes Environment](https://blog.giantswarm.io/getting-started-with-a-local-kubernetes-environment/)
+- [Understanding Basic Kubernetes Concepts I - An Introduction To Pods, Labels, and Replicas](https://www.giantswarm.io/blog/understanding-basic-kubernetes-concepts-i-introduction-to-pods-labels-replicas)
+- [Understanding Basic Kubernetes Concepts II - Using Deployments To Manage Your Services Declaratively](https://www.giantswarm.io/blog/understanding-basic-kubernetes-concepts-using-deployments-manage-services-declaratively)
+- [Understanding Basic Kubernetes Concepts III - Services Give You Abstraction](https://www.giantswarm.io/blog/basic-kubernetes-concepts-iii-services-give-abstraction)
+- [Understanding Basic Kubernetes Concepts IV - Secrets and ConfigMaps](https://www.giantswarm.io/blog/understanding-basic-kubernetes-concepts-iv-secrets-and-configmaps)
+- [Understanding Basic Kubernetes Concepts V - Daemon Sets and Jobs](https://www.giantswarm.io/blog/understanding-basic-kubernetes-concepts-v-daemon-sets-and-jobs)
+- [Getting Started With A Local Kubernetes Environment](https://www.giantswarm.io/blog/getting-started-with-a-local-kubernetes-environment)
 
 ## Extended reading
 
