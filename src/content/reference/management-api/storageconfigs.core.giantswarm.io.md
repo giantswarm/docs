@@ -5,7 +5,7 @@ technical_name: storageconfigs.core.giantswarm.io
 description:   StorageConfig used to provide storage for Giant Swarm API microservices. Deprecated.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.14.1
+source_repository_ref: v3.15.0
 layout: "crd"
 aliases:
   - /reference/cp-k8s-api/storageconfigs.core.giantswarm.io/

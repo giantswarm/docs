@@ -5,7 +5,7 @@ technical_name: appcatalogentries.application.giantswarm.io
 description:   AppCatalogEntry represents an entry of an app in a catalog of managed apps.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.14.1
+source_repository_ref: v3.15.0
 layout: "crd"
 aliases:
   - /reference/cp-k8s-api/appcatalogentries.application.giantswarm.io/
@@ -35,6 +35,31 @@ aliases:
 <div class="crd-schema-version">
 <h2 id="v1alpha1">Version v1alpha1</h2>
 
+
+<h3 id="crd-example-v1alpha1">Example CR</h3>
+<pre class="crd-example-cr"><code class="language-yaml">
+apiVersion: application.giantswarm.io/v1alpha1
+kind: AppCatalogEntry
+metadata:
+  creationTimestamp: null
+  name: giantswarm-nginx-ingress-controller-app-1.9.2
+  namespace: default
+spec:
+  appName: nginx-ingress-controller-app
+  appVersion: v0.35.0
+  catalog:
+    name: giantswarm
+    namespace: &#34;&#34;
+  chart:
+    home: https://github.com/giantswarm/nginx-ingress-controller-app
+    icon: https://upload.wikimedia.org/wikipedia/commons/nginx-logo.svg
+  dateCreated: &#34;2020-09-02T09:40:39Z&#34;
+  dateUpdated: &#34;2020-09-02T09:40:39Z&#34;
+  restrictions:
+    clusterSingleton: true
+    fixedNamespace: giantswarm
+  version: 1.9.2
+</code></pre>
 
 
 <h3 id="property-details-v1alpha1">Properties</h3>
