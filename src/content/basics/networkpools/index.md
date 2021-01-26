@@ -31,7 +31,7 @@ NetworkPools must be created before the cluster is created via Management Cluste
 
 NetworkPools can be modified as long as the CIDR doesn't overlap with other NetworkPools and contains the original CIDR. For example 10.0.0.0/16 could be modified to 10.0.0.0/15 but not to 10.0.0.0/17.
 
-## Assigning clusters to NetworkPools {#assigning-networkpool}
+## Assigning clusters to NetworkPools
 
 When creating a Cluster, you can assing the NetworkPool in the `.spec.provider.nodes.networkPool` attribute like:
 
