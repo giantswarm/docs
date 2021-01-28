@@ -5,7 +5,7 @@ technical_name: azureclusters.infrastructure.cluster.x-k8s.io
 description:   AzureCluster is the Schema for the azureclusters API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.14.1
+source_repository_ref: v3.15.0
 layout: "crd"
 aliases:
   - /reference/cp-k8s-api/azureclusters.infrastructure.cluster.x-k8s.io/

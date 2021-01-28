@@ -5,7 +5,7 @@ technical_name: apps.application.giantswarm.io
 description:   App represents a managed app.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.14.1
+source_repository_ref: v3.15.0
 layout: "crd"
 aliases:
   - /reference/cp-k8s-api/apps.application.giantswarm.io/
@@ -55,6 +55,8 @@ spec:
     secret:
       name: f2def-cluster-values
       namespace: f2def
+  install:
+    skipCRDs: true
   kubeConfig:
     context:
       name: f2def
@@ -278,6 +280,42 @@ spec:
 
 <div class="property-description">
 <p>Namespace is the namespace of the secret, e.g. kube-system.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.install">.spec.install</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Install is the config used when installing the app.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.install.skipCRDs">.spec.install.skipCRDs</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>SkipCRDs when true decides that CRDs which are supplied with the chart are not installed. Default: false.</p>
 
 </div>
 
