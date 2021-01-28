@@ -1,7 +1,6 @@
 ---
 title: Network Pools
 description: A general description of network pools as a concept, it's benefits, and some details you should be aware of.
-date: 2021-01-28
 weight: 130
 type: page
 categories: ["basics"]
