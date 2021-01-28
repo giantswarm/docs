@@ -14,6 +14,8 @@ user_questions:
 
 # Network Pools
 
+{{< platform_support_table aws="ga=v12.7.0" >}}
+
 ## Definition
 
 A NetworkPool defines a CIDR range for the Control Plane and MachineDeployment nodes of a Cluster.
