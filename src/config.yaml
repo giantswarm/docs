@@ -1,0 +1,43 @@
+baseurl: https://docs.giantswarm.io
+languageCode: en
+title: Giant Swarm Documentation
+pluralizeListTitles: false
+rssLimit: 50
+enableGitInfo: true
+
+markup:
+  defaultMarkdownHandler: goldmark
+  tableOfContents:
+    endLevel: 5
+    startLevel: 1
+
+  goldmark:
+    renderer:
+      unsafe: true
+    highlight:
+      codeFences: true
+      style: solarized-dark
+      guessSyntax: false
+      tabWidth: 4
+      lineNos: false
+
+menu:
+  main:
+  - name: Basics and Concepts
+    url: /basics/
+    weight: 20
+  - name: User Guides
+    url: /guides/
+    weight: 30
+  - name: Reference
+    url: /reference/
+    weight: 40
+  - name: Changes
+    url: /changes/
+    weight: 50
+
+taxonomies:
+  changes_category: changes_categories
+
+permalinks:
+  changes_categories: /changes/:slug
