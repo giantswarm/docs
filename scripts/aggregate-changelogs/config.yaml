@@ -40,6 +40,8 @@ repositories:
     category: Managed Apps
   giantswarm/grafana-app:
     category: Managed Apps
+  giantswarm/loki-app:
+    category: Managed Apps
 
   giantswarm/app-mesh-app:
     category: Playground Apps
