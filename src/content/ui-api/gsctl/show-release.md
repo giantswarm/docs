@@ -64,6 +64,6 @@ The output lines in detail:
 
 ## Related
 
-- [`gsctl list releases`](../list-releases/)
-- [`gsctl upgrade cluster`](../upgrade-cluster/)
-- [`gsctl create cluster`](../create-cluster/)
+- [`gsctl list releases`]({{< relref "/ui-api/gsctl/list-releases" >}})
+- [`gsctl upgrade cluster`]({{< relref "/ui-api/gsctl/upgrade-cluster" >}})
+- [`gsctl create cluster`]({{< relref "/ui-api/gsctl/create-cluster" >}})

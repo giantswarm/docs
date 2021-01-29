@@ -19,7 +19,7 @@ Please refer to our detailed guides on how to prepare roles and credentials in y
 - [Prepare an AWS account to run Giant Swarm workload clusters]({{< relref "/getting-started/cloud-provider-accounts/aws" >}})
 - [Prepare an Azure subscription to run Giant Swarm workload clusters]({{< relref "/getting-started/cloud-provider-accounts/azure" >}})
 
-gsctl provides this command to store the credentials connected to your organization. After doing this, you will want to [create a cluster](../create-cluster/) owned by the organization configured that way.
+gsctl provides this command to store the credentials connected to your organization. After doing this, you will want to [create a cluster]({{< relref "/ui-api/gsctl/create-cluster" >}}) owned by the organization configured that way.
 
 **Note:** The credentials of an organization are currently immutable. Once set, you cannot modify or remove them. However you can create and delete organizations at will.
 

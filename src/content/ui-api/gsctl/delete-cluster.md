@@ -77,6 +77,6 @@ Passing flag `--output` with value `json` to `gsctl delete cluster` changes the 
 
 ## Related
 
-- [`gsctl scale cluster`](../scale-cluster/)
-- [`gsctl` reference overview](../)
+- [`gsctl scale cluster`]({{< relref "/ui-api/gsctl/scale-cluster" >}})
+- [`gsctl` reference overview]({{< relref "/ui-api/gsctl" >}})
 - [API: Delete cluster](/api/#operation/deleteCluster)

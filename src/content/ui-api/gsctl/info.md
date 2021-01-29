@@ -68,7 +68,7 @@ Maximum workers per cluster:  20
 - `kubectl config path`: Path to the kubectl configuration file in use.
 - `API endpoint`: The API endpoint URL you are currently using.
 - `API endpoint alias`: The alias of the endpoint. See
-  [`gsctl select endpoint`](../select-endpoint/#alias) for details
+  [`gsctl select endpoint`]({{< relref "/ui-api/gsctl/select-endpoint#alias" >}}) for details
 - `Email`: Your email address. If this isn't displayed, you are not logged in.
 - `Logged in`: Whether or not you are authenticated against the API endpoint.
 - `Auth token`: Current authentication token, if activated and you are logged in. Only displayed when `-v/--verbose` is used.
@@ -87,6 +87,5 @@ Maximum workers per cluster:  20
 
 ## Related
 
-- [`gsctl` reference overview](../)
-- [`gsctl select endpoint`](../select-endpoint/)
+- [`gsctl select endpoint`]({{< relref "/ui-api/gsctl/select-endpoint" >}})
 - [API: Get information on the installation](/api/#operation/getInfo)

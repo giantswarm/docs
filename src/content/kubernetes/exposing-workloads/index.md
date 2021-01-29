@@ -118,7 +118,7 @@ http://PREFIX.CLUSTER_ID.k8s.gigantic.io
 
 Currently, this is limited to exposing by default on port `80`. Support for TLS will be added soon.
 
-For additional features and options, please see our documentation around [Advanced Ingress Configuration](../advanced-ingress-configuration/).
+For additional features and options, please see our documentation around [advanced ingress configuration]({{< relref "/advanced/ingress/configuration" >}}).
 
 ## Forwarding an authenticated port with `kubectl port-forward` {#port-forward}
 
@@ -186,7 +186,7 @@ curl -v -u username:password \
 
 ## Further reading
 
-- [Establishing Trust to Your Cluster's CA and Importing Certificates](../importing-certificates/)
+- [Establishing Trust to Your Cluster's CA and Importing Certificates]({{< relref "/getting-started/ca-certificate" >}})
 - [Official Kubernetes documentation for the Ingress Resource](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 - [Official Kubernetes documentation for the kubectl port-forward](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#port-forward/)
 - [Official Kubernetes documentation for accessing services running on the cluster](https://kubernetes.io/docs/tasks/access-application-cluster/access-cluster/#accessing-services-running-on-the-cluster)

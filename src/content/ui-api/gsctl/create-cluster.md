@@ -40,7 +40,7 @@ Note that command line flags take precedence over values in the definition. This
 
 ## Full argument reference {#arguments}
 
-- `--file`, `-f`: Definition file path. See [cluster definition reference](../../cluster-definition/) for details. The value `-` means that the definition will be read from standard input.
+- `--file`, `-f`: Definition file path. See [cluster definition reference]({{< relref "/ui-api/gsctl/cluster-definition" >}}) for details. The value `-` means that the definition will be read from standard input.
 - `--owner`, `-o`: Name of the owner organization. Overwrites a name given per definition file.
 - `--name`: Name of the cluster. Overwrites name given in definition file.
 - `--release`, `-r`: Specific the workload cluster release version to use. Defaults to the latest active version. See [list releases]({{< relref "/ui-api/gsctl/list-releases" >}}) for details on listing available workload cluster releases.

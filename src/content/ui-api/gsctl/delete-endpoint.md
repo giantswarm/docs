@@ -30,6 +30,6 @@ A message will be printed letting you know if the endpoint has been deleted.
 
 ## Related
 
-- [`gsctl login`](../login/)
-- [`gsctl select endpoint`](../select-endpoint/)
-- [`gsctl list endpoints`](../list-endpoints/)
+- [`gsctl login`]({{< relref "/ui-api/gsctl/login" >}})
+- [`gsctl select endpoint`]({{< relref "/ui-api/gsctl/select-endpoint" >}})
+- [`gsctl list endpoints`]({{< relref "/ui-api/gsctl/list-endpoints" >}})

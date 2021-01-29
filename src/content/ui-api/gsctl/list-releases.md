@@ -80,6 +80,6 @@ Output details:
 
 ## Related
 
-- [`gsctl create cluster`](../create-cluster/)
-- [`gsctl show cluster`](../show-cluster/)
+- [`gsctl create cluster`]({{< relref "/ui-api/gsctl/create-cluster" >}})
+- [`gsctl show cluster`]({{< relref "/ui-api/gsctl/show-cluster" >}})
 - [API: Get releases](/api/#operation/getReleases)

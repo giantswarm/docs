@@ -103,7 +103,7 @@ Note that some dynamic pieces of information, like the current number of workers
 
 ## Related
 
-- [`gsctl list clusters`](../list-clusters/)
-- [`gsctl scale cluster`](../scale-cluster/)
-- [`gsctl delete cluster`](../delete-cluster/)
+- [`gsctl list clusters`]({{< relref "/ui-api/gsctl/list-clusters" >}})
+- [`gsctl scale cluster`]({{< relref "/ui-api/gsctl/scale-cluster" >}})
+- [`gsctl delete cluster`]({{< relref "/ui-api/gsctl/delete-cluster" >}})
 - [API: Get cluster details](/api/#operation/getCluster)

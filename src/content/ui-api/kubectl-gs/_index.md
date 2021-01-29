@@ -50,10 +50,10 @@ See the [GitHub project](https://github.com/giantswarm/kubectl-gs) for source co
 
 As a Giant Swarm customer, feel free to use your Slack channel to give feedback, ask questions and suggest improvements for `kubectl gs`.
 
-[1]: /reference/kubectl-gs/login/
-[2]: /reference/kubectl-gs/get-clusters/
-[3]: /reference/kubectl-gs/get-nodepools/
-[4]: /reference/kubectl-gs/template-app/
-[5]: /reference/kubectl-gs/template-appcatalog/
-[6]: /reference/kubectl-gs/template-cluster/
-[7]: /reference/kubectl-gs/template-nodepool/
+[1]: {{< relref "/ui-api/kubectl-gs/login" >}}
+[2]: {{< relref "/ui-api/kubectl-gs/get-clusters" >}}
+[3]: {{< relref "/ui-api/kubectl-gs/get-nodepools" >}}
+[4]: {{< relref "/ui-api/kubectl-gs/template-app" >}}
+[5]: {{< relref "/ui-api/kubectl-gs/template-appcatalog" >}}
+[6]: {{< relref "/ui-api/kubectl-gs/template-cluster" >}}
+[7]: {{< relref "/ui-api/kubectl-gs/template-nodepool" >}}

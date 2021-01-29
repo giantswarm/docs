@@ -57,7 +57,7 @@ VPN secured access points:
 
 - **SSH** - SSH access is based on GitHub SSO. Only users in the GitHub Giant Swarm Organization are allowed to authenticate. The following diagram describes our SSH authentication in more detail:
 
-![SSH access process diagram](./ssh_access_process.png)
+![SSH access process diagram](ssh_access_process.png)
 
 Customer workload clusters are accessible only via SSH access to the Giant Swarm Control Plane. This Control Plane contains Giant Swarm's cluster management and operations platform, and controls our access to the underlying workload clusters for diagnostic and "Day 2" operational reasons.
 
@@ -67,7 +67,7 @@ Customer workload clusters are accessible only via SSH access to the Giant Swarm
 
 The following schema illustrates what the VPN connection looks like in practice.
 
-![VPN diagram](./site-to-site-vpn.png)
+![VPN diagram](site-to-site-vpn.png)
 
 A cluster can be accessed by connecting to a Giant Swarm VPN server which establishes a secure connection with the jump host of the cluster.
 

@@ -29,8 +29,8 @@ As usual, a certificate comes in pairs with a private key, hence the name
 "key pair".
 
 gsctl allows you to issue a new key pair using the two commands
-[`gsctl create keypair`](../create-keypair/) and
-[`gsctl create kubeconfig`](../create-kubeconfig/). These commands request the
+[`gsctl create keypair`]({{< relref "/ui-api/gsctl/create-keypair" >}}) and
+[`gsctl create kubeconfig`]({{< relref "/ui-api/gsctl/create-kubeconfig" >}}). These commands request the
 creation of a new key pair in the cluster's public key infrastructure (PKI) and
 download it to the client. The PKI stores metadata about the issued key pairs,
 but not the key pairs themselves.
@@ -76,8 +76,8 @@ CREATED                 EXPIRES                 ID          DESCRIPTION         
 
 ## Related
 
-- [`gsctl create keypair`](../create-keypair/)
-- [`gsctl create kubeconfig`](../create-kubeconfig/)
-- [X.509 on Wikipedia](https://en.wikipedia.org/wiki/X.509)
+- [`gsctl create keypair`]({{< relref "/ui-api/gsctl/create-keypair" >}})
+- [`gsctl create kubeconfig`]({{< relref "/ui-api/gsctl/create-kubeconfig" >}})
 - [Securing your cluster with RBAC and PSP]({{< relref "/getting-started/rbac-and-psp" >}})
 - [API: Get key pairs](/api/#operation/getKeyPairs)
+- [X.509 on Wikipedia](https://en.wikipedia.org/wiki/X.509)

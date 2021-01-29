@@ -57,7 +57,7 @@ Providing a small part of the column name is also accepted: `d`/`del`/`deleting`
 
 ## Related
 
-- [`gsctl create cluster`](../create-cluster/)
-- [`gsctl scale cluster`](../scale-cluster/)
-- [`gsctl delete cluster`](../delete-cluster/)
+- [`gsctl create cluster`]({{< relref "/ui-api/gsctl/create-cluster" >}})
+- [`gsctl scale cluster`]({{< relref "/ui-api/gsctl/scale-cluster" >}})
+- [`gsctl delete cluster`]({{< relref "/ui-api/gsctl/delete-cluster" >}})
 - [API: Get clusters](/api/#operation/getClusters)

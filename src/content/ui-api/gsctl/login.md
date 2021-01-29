@@ -34,7 +34,7 @@ The password will _not_ be displayed during input.
 
 The `-e`/`--endpoint` flag is optional. If you have been logged in with the same
 endpoint before and it is still the selected one, which you can check using
-[`gsctl info`](../info/), you can omit the endpoint part.
+[`gsctl info`]({{< relref "/ui-api/gsctl/info" >}}), you can omit the endpoint part.
 
 ## Non-interactive login
 
@@ -48,5 +48,4 @@ gsctl login <email> -e <endpoint> -p <password>
 
 ## Related
 
-- [`gsctl` reference overview](../)
 - [API: Create auth token](/api/#operation/createAuthToken)

@@ -18,7 +18,7 @@ owner:
 
 ## Overview
 
-- `--endpoint`/`-e`: Using this option you can override the endpoint temporarily for a given command. For interactive use however it's more convenient to switch endpoints using the [`gsctl select endpoint`](../select-endpoint/) command.
+- `--endpoint`/`-e`: Using this option you can override the endpoint temporarily for a given command. For interactive use however it's more convenient to switch endpoints using the [`gsctl select endpoint`]({{< relref "/ui-api/gsctl/select-endpoint" >}}) command.
 - `--auth-token`: Can be used to pass an authentication token for the use in single command, as an alternative to a permanent login in via `gsctl login`.
 - `--config-dir`: This option allows to override the directory path to use for storing your configuration file and key pairs. By default, they get stored in `$HOME/.config/gsctl`.
 - `--verbose`, `-v`: Print more detailed output
@@ -32,7 +32,7 @@ a few tips to make that as convenient as possible.
 
 `gsctl` (starting with version 0.8) maintains a list of all endpoints you have
 successfully logged in with. The command
-[`gsctl list endpoints`](../list-endpoints/) lets you show that list. You can
+[`gsctl list endpoints`]({{< relref "/ui-api/gsctl/list-endpoints" >}}) lets you show that list. You can
 be in fact logged in with all your endpoints at the same time. All you have to
 do to switch between them is run the `select endpoint` command.
 

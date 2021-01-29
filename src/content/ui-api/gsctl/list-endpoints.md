@@ -37,7 +37,7 @@ onpremy  https://api.g8s.onpremy.my-datacenter.gigantic.io     me@example.com   
 ### Output details
 
 - The first column shows the endpoint alias which you can use as a shorthand to
-  select this endpoint. See [`gsctl select endpoint`](../select-endpoint/#alias)
+  select this endpoint. See [`gsctl select endpoint`]({{< relref "/ui-api/gsctl/select-endpoint#alias" >}})
   for details.
 
   **Note:** If the column shows `n/a`, the endpoint has been added with a
@@ -58,6 +58,6 @@ onpremy  https://api.g8s.onpremy.my-datacenter.gigantic.io     me@example.com   
 
 ## Related
 
-- [`gsctl login`](../login/)
-- [`gsctl select endpoint`](../select-endpoint/)
-- [`gsctl delete endpoint`](../delete-endpoint/)
+- [`gsctl login`]({{< relref "/ui-api/gsctl/login" >}})
+- [`gsctl select endpoint`]({{< relref "/ui-api/gsctl/select-endpoint" >}})
+- [`gsctl delete endpoint`]({{< relref "/ui-api/gsctl/delete-endpoint" >}})
