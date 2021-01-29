@@ -23,18 +23,42 @@ markup:
 
 menu:
   main:
-  - name: Basics and Concepts
-    url: /basics/
+  - identifier: general
+    name: General
+    url: /general/
+    weight: 10
+  - identifier: getting-started
+    name: Getting started
+    url: /getting-started/
     weight: 20
-  - name: User Guides
-    url: /guides/
+  - identifier: advanced
+    name: Advanced setup
+    url: /advanced/
     weight: 30
-  - name: Reference
-    url: /reference/
+  - identifier: ui-api
+    name: UIs and APIs
+    url: /ui-api/
     weight: 40
-  - name: Changes
-    url: /changes/
+  - identifier: app-platform
+    name: App platform
+    url: /app-platform/
     weight: 50
+  - identifier: security
+    name: Security
+    url: /security/
+    weight: 60
+  - identifier: kubernetes
+    name: Kubernetes basics
+    url: /kubernetes/
+    weight: 70
+  - identifier: reference
+    name: Reference
+    url: /reference/
+    weight: 80
+  - identifier: changes
+    name: Changes and releases
+    url: /changes/
+    weight: 90
 
 taxonomies:
   changes_category: changes_categories
