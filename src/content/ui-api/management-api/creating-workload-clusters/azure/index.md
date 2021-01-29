@@ -13,7 +13,7 @@ owner:
 
 ## How does cluster creation work
 
-Starting from version {{% first_azure_nodepools_version %}} on Azure, Giant Swarm introduced a feature to create multiple [node pools](/basics/nodepools/) on Azure.
+Starting from version {{% first_azure_nodepools_version %}} on Azure, Giant Swarm introduced a feature to create multiple [node pools]({{< relref "/advanced/node-pools" >}}) on Azure.
 Alongside node pools support, a new API version for cluster management was released.
 
 All the workload clusters, created with workload cluster release v{{% first_azure_nodepools_version %}} and newer, are managed as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) in the Control Plane.

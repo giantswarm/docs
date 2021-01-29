@@ -12,7 +12,7 @@ owner:
 
 # `gsctl update nodepool`
 
-The `gsctl update nodepool` allows modifying a [node pool](/basics/nodepools/), such as editing the scaling range and the name.
+The `gsctl update nodepool` allows modifying a [node pool]({{< relref "/advanced/node-pools" >}}), such as editing the scaling range and the name.
 
 ## Usage
 

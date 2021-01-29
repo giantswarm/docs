@@ -15,7 +15,7 @@ owner:
 
 ## How cluster creation works
 
-Starting from version {{% first_aws_nodepools_version %}} on AWS, Giant Swarm introduced a feature to create multiple [node pools](/basics/nodepools/) on AWS.
+Starting from version {{% first_aws_nodepools_version %}} on AWS, Giant Swarm introduced a feature to create multiple [node pools]({{< relref "/advanced/node-pools" >}}) on AWS.
 Alongside node pools support, a new API version for cluster management was released.
 
 All the workload clusters, created with workload cluster release v{{% first_aws_nodepools_version %}} and newer, are managed as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) in the Control Plane.

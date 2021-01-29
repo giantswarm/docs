@@ -23,7 +23,7 @@ We provide two ways of limiting the amount of disruption:
 - **Maximum batch size**: the highest possible number of nodes to upgrade at the same time
 - **Pause time**: the time to wait between batches of worker nodes
 
-As worker [node pools](/basics/nodepools/) on AWS are based on Auto Scaling Groups built using CloudFormation, both settings directly affect configuration details of the CloudFormation stack's [update policy](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-updatepolicy.html).
+As worker [node pools]({{< relref "/advanced/node-pools" >}}) on AWS are based on Auto Scaling Groups built using CloudFormation, both settings directly affect configuration details of the CloudFormation stack's [update policy](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-updatepolicy.html).
 
 Configurability of these details has been introduced with workload cluster release v12.7.0 for AWS. The feature is currently in an early stage and its behaviour may change in the near future.
 
@@ -139,5 +139,5 @@ metadata:
 ## Further reading
 
 - [Cluster upgrades reference](/reference/cluster-upgrades/)
-- [Node pools](/basics/nodepools/)
+- [Node pools]({{< relref "/advanced/node-pools" >}})
 - [Management API]({{< relref "/ui-api/management-api" >}})

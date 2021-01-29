@@ -12,7 +12,7 @@ owner:
 
 # `gsctl create nodepool`
 
-The `gsctl create nodepool` command allows to create a new [node pool](/basics/nodepools/) in a cluster.
+The `gsctl create nodepool` command allows to create a new [node pool]({{< relref "/advanced/node-pools" >}}) in a cluster.
 
 ## Usage
 

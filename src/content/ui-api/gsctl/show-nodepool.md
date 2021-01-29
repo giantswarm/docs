@@ -12,7 +12,7 @@ owner:
 
 # `gsctl show nodepool`
 
-The `gsctl show nodepool` command shows details on a [node pool](/basics/nodepools/).
+The `gsctl show nodepool` command shows details on a [node pool]({{< relref "/advanced/node-pools" >}}).
 
 ## Usage
 

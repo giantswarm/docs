@@ -50,7 +50,7 @@ This enables use cases such as:
 
 - To make sure your pods and volumes end up on the same nodes, we recommend to specify `WaitForFirstConsumer` as `volumeBindingMode` in your storage classes. Your clusters come with a default storage class that contains this setting already. See the [Volume Binding Mode](https://kubernetes.io/docs/concepts/storage/storage-classes/#volume-binding-mode) section in the Kubernetes storage documentation for more information.
 
-Spreading worker nodes over multiple availability zones can be configured per [node pool](/basics/nodepools/) and independent of the choice of a single master node vs. using multiple master nodes (currently multiple master nodes are only supported on AWS).
+Spreading worker nodes over multiple availability zones can be configured per [node pool]({{< relref "/advanced/node-pools" >}}) and independent of the choice of a single master node vs. using multiple master nodes (currently multiple master nodes are only supported on AWS).
 
 ## Get started
 

@@ -31,7 +31,7 @@ to create clusters on bare metal (**KVM**). It is also needed for cluster creati
 AWS using a workload cluster release prior to v{{% first_aws_nodepools_version %}}, or on Azure using a workload cluster release prior to v{{% first_azure_nodepools_version %}}, basically to create a cluster without
 support for node pools.
 - [**v5**](#v5): This version has been introduced in October 2019 to support clusters with
-[node pools](/basics/nodepools/). The feature is available on AWS starting with workload cluster release
+[node pools]({{< relref "/advanced/node-pools" >}}). The feature is available on AWS starting with workload cluster release
 v{{% first_aws_nodepools_version %}}, or on Azure starting with workload cluster release v{{% first_azure_nodepools_version %}};
 
 As it's the case with the Giant Swarm API, cluster creation using the YAML definition only requires you

@@ -62,7 +62,7 @@ Our Azure Operator creates a single Virtual Network per cluster and one subnet f
 
 ![Workload cluster architecture](architecture-azure-tenant-cluster.png)
 
-In Azure the [node pool](/basics/nodepools/) concept is mapped to an Virtual Machine Scale Set, which defines a launch configuration and scaling properties of the worker nodes located in it.
+In Azure the [node pool]({{< relref "/advanced/node-pools" >}}) concept is mapped to an Virtual Machine Scale Set, which defines a launch configuration and scaling properties of the worker nodes located in it.
 
 In order to communicate with your on-premises data center or with other Virtual Networks (other cluster or existing infrastructure) you can leverage a VPN/Direct Connect or a Transit Gateway/peering respectively.
 

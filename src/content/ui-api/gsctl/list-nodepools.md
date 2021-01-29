@@ -12,7 +12,7 @@ owner:
 
 # `gsctl list nodepools`
 
-The `gsctl list nodepools` command lists all [node pools](/basics/nodepools/) of a cluster.
+The `gsctl list nodepools` command lists all [node pools]({{< relref "/advanced/node-pools" >}}) of a cluster.
 
 ## Usage
 

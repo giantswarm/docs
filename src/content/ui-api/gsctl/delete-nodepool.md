@@ -12,7 +12,7 @@ owner:
 
 # `gsctl delete nodepool`
 
-The `gsctl delete nodepool` command deletes a [node pool](/basics/nodepools/).
+The `gsctl delete nodepool` command deletes a [node pool]({{< relref "/advanced/node-pools" >}}).
 
 Deleting a node pool means that all worker nodes in the pool will be drained,
 cordoned and then terminated.

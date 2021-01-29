@@ -78,7 +78,7 @@ Our [AWS operator](https://www.giantswarm.io/blog/aws-operator-2-0-creating-kube
 
 ![AWS workload cluster architecture](aws-tenant-cluster-architecture.png)
 
-In AWS the [node pool](/basics/nodepools/) concept is mapped to an Autoscaling Group, which defines a launch configuration and scaling properties of the worker nodes located in it.
+In AWS the [node pool]({{< relref "/advanced/node-pools" >}}) concept is mapped to an Autoscaling Group, which defines a launch configuration and scaling properties of the worker nodes located in it.
 
 In order to communicate with your on-premises data center or with other VPCs (other cluster or existing infrastructure) you can leverage a VPN/Direct Connect or a Transit Gateway/peering respectively.
 
