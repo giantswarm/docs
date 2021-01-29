@@ -29,7 +29,7 @@ where `argument` can be either:
 
 - **Empty:** If the current kubectl context is a Giant Swarm management cluster, this ensures that the OIDC auth token will be refreshed and show the name of the current context.
 
-- **Web interface URL:** The URL of the management cluster's [web UI](/reference/web-interface/) instance.
+- **Web interface URL:** The URL of the management cluster's [web UI]({{< relref "/ui-api/web/" >}}) instance.
 
 - **Management API endpoint:** The URL of the management cluster's Kubernetes API endpoint.
 

@@ -16,7 +16,7 @@ owner:
 
 In order to create an App using custom resources, `kubectl gs` will help you create manifests for the resource type:
 
-- [App](/reference/management-api/apps.application.giantswarm.io/) (API group/version `application.giantswarm.io/v1alpha1`) - holds the base App specification.
+- [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) (API group/version `application.giantswarm.io/v1alpha1`) - holds the base App specification.
 
 ## Usage
 

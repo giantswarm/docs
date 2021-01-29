@@ -113,7 +113,7 @@ It’s possible to create your own App Catalog. This is useful if you want to cr
 You can interact with the Giant Swarm App Platform through our API and
 our web interface.
 
-- [Web Interface Reference: The Giant Swarm App Platform](/reference/web-interface/app-platform/)
+- [Web Interface Reference: The Giant Swarm App Platform]({{< relref "/ui-api/web/app-platform" >}})
 - [Apps and App Configs in the API reference](/api/#tag/apps)
 
 Lastly, at the end of the day, what our interfaces do, is create (or update)

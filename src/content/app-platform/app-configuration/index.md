@@ -75,7 +75,7 @@ colors:
   secretColor: ""
 ```
 
-Now you create an [App](/reference/management-api/apps.application.giantswarm.io/) resource that references a user level ConfigMap and a `user`
+Now you create an [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) resource that references a user level ConfigMap and a `user`
 level Secret:
 
 ```yaml
@@ -178,7 +178,7 @@ templated Secret, then you have to base64 encode it to comply with how Kubernete
 ## How configuration values are stored and referenced in the Control Plane {#storage-referencing}
 
 Configuration for Apps are stored as ConfigMaps and Secrets, which are
-referenced by `name` and `namespace` in various `spec` fields of the [App](/reference/management-api/apps.application.giantswarm.io/) and [AppCatalog](/reference/management-api/appcatalogs.application.giantswarm.io/) Custom Resource (CR).
+referenced by `name` and `namespace` in various `spec` fields of the [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) and [AppCatalog]({{< relref "/ui-api/management-api/crd/appcatalogs.application.giantswarm.io.md" >}}) Custom Resource (CR).
 
 Our operators act on those resources to ensure the actual state ends up
 looking like the desired state. More information is available in our [general overview of the App Platform]({{< relref "/app-platform" >}}).
@@ -200,7 +200,7 @@ looking like the desired state. More information is available in our [general ov
 |||`.spec.userConfig.secret.name`|
 |||`.spec.userConfig.secret.namespace`|
 
-When setting user level configuration using the Giant Swarm API or our [web interface](/reference/web-interface/),
+When setting user level configuration using the Giant Swarm API or our [web interface]({{< relref "/ui-api/web/" >}}),
 the fields in the App CR are edited automatically for you while creating
 the `ConfigMap` or `Secret`.
 
@@ -247,11 +247,11 @@ There are three ways to provide configuration values:
 
 ### Through the web interface
 
-Our [web interface](/reference/web-interface/) allows you to upload configuration and secret values for the
+Our [web interface]({{< relref "/ui-api/web/" >}}) allows you to upload configuration and secret values for the
 user configuration level. You can do this by uploading a YAML file consisting
 of just the keys and values you would like to set.
 
-For a general explanation on the web interface functionality related to Apps, check [our overview](/reference/web-interface/app-platform/).
+For a general explanation on the web interface functionality related to Apps, check [our overview]({{< relref "/ui-api/web/app-platform" >}}).
 
 The web interface currently talks to the Rest API and will do the right
 calls to create a ConfigMap or Secret and will wire it up correctly in the App CR

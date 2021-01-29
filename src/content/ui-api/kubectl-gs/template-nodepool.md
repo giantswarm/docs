@@ -20,14 +20,14 @@ The outcome depends on the provider, set via the `--provider` flag:
 
 For AWS (`--provider aws`):
 
-- [`MachineDeployment`](/reference/management-api/machinedeployments.cluster.x-k8s.io/) (API version `cluster.x-k8s.io/v1alpha2`)
-- [`AWSMachineDeployment`](/reference/management-api/awsmachinedeployments.infrastructure.giantswarm.io/) (API version `infrastructure.giantswarm.io/v1alpha2`)
+- [`MachineDeployment`]({{< relref "/ui-api/management-api/crd/machinedeployments.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1alpha2`)
+- [`AWSMachineDeployment`]({{< relref "/ui-api/management-api/crd/awsmachinedeployments.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha2`)
 
 For Azure (`--provider azure`):
 
-- [`MachinePool`](/reference/management-api/machinepools.exp.cluster.x-k8s.io/) (API version `cluster.x-k8s.io/v1alpha3`)
-- [`AzureMachinePool`](/reference/management-api/azuremachinepools.exp.infrastructure.cluster.x-k8s.io/) (API version `exp.infrastructure.cluster.x-k8s.io/v1alpha3`)
-- [`Spark`](/reference/management-api/sparks.core.giantswarm.io/) (API version `core.giantswarm.io/v1alpha1`)
+- [`MachinePool`]({{< relref "/ui-api/management-api/crd/machinepools.exp.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1alpha3`)
+- [`AzureMachinePool`]({{< relref "/ui-api/management-api/crd/azuremachinepools.exp.infrastructure.cluster.x-k8s.io.md" >}}) (API version `exp.infrastructure.cluster.x-k8s.io/v1alpha3`)
+- [`Spark`]({{< relref "/ui-api/management-api/crd/sparks.core.giantswarm.io.md" >}}) (API version `core.giantswarm.io/v1alpha1`)
 
 ## Usage
 

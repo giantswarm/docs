@@ -18,7 +18,7 @@ The `gsctl list releases` command shows all workload cluster releases available 
 
 Workload cluster releases are software bundles that constitute the software running in a cluster.
 They are identified by their semantic version number in the `MAJOR.MINOR.PATCH` format.
-Check our detailed explanation of [workload cluster releases](/reference/workload-cluster-release-versions/) to learn more.
+Check our detailed explanation of [workload cluster releases]({{< relref "/general/releases" >}}) to learn more.
 
 A workload cluster release provides _components_, of which Kubernetes is an important one.
 For each workload cluster release the contained components are listed with their specific

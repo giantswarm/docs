@@ -42,7 +42,7 @@ alias kgs="kubectl gs"
 kgs
 ```
 
-Find out more details in our [installation docs](/reference/kubectl-gs/installation/).
+Find out more details in our [installation docs]({{< relref "/ui-api/kubectl-gs/installation" >}})).
 
 ## Contributing
 

@@ -22,15 +22,15 @@ All the workload clusters, created with workload cluster release v{{% first_aws_
 
 At a high-level, the Management API is used to manage the following custom resources (CRs):
 
-- [Cluster](/reference/management-api/clusters.cluster.x-k8s.io/) - represents a Kubernetes cluster excluding worker nodes.
-- [G8sControlPlane](/reference/management-api/g8scontrolplanes.infrastructure.giantswarm.io/) - hold configuration about the master node(s) of a cluster.
-- [MachineDeployment](/reference/management-api/machinedeployments.cluster.x-k8s.io/) - represents a node pool.
+- [Cluster]({{< relref "/ui-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) - represents a Kubernetes cluster excluding worker nodes.
+- [G8sControlPlane]({{< relref "/ui-api/management-api/crd/g8scontrolplanes.infrastructure.giantswarm.io.md" >}}) - hold configuration about the master node(s) of a cluster.
+- [MachineDeployment]({{< relref "/ui-api/management-api/crd/machinedeployments.cluster.x-k8s.io.md" >}}) - represents a node pool.
 
 The CRs above then reference provider specific implementations. In our case, for clusters on AWS, they are:
 
-- [AWSCluster](/reference/management-api/awsclusters.infrastructure.giantswarm.io/) - represents a workload cluster.
-- [AWSControlPlane](/reference/management-api/awscontrolplanes.infrastructure.giantswarm.io/) - configures the AWS-specific details of the worker node(s).
-- [AWSMachineDeployment](/reference/management-api/awsmachinedeployments.infrastructure.giantswarm.io/) - configures the AWS-specific details of worker nodes in a node pool.
+- [AWSCluster]({{< relref "/ui-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) - represents a workload cluster.
+- [AWSControlPlane]({{< relref "/ui-api/management-api/crd/awscontrolplanes.infrastructure.giantswarm.io.md" >}}) - configures the AWS-specific details of the worker node(s).
+- [AWSMachineDeployment]({{< relref "/ui-api/management-api/crd/awsmachinedeployments.infrastructure.giantswarm.io.md" >}}) - configures the AWS-specific details of worker nodes in a node pool.
 
 ## Example CRs
 
@@ -220,7 +220,7 @@ The utility supports rendering CRs:
 - `App`
 
 The installation procedure is described in the [`kubectl gs` reference](/reference/kubectl-gs/#install).
-There are also specific reference pages for [cluster templating](/reference/kubectl-gs/template-cluster/) and [node pool templating](/reference/kubectl-gs/template-nodepool/).
+There are also specific reference pages for [cluster templating]({{< relref "/ui-api/kubectl-gs/template-cluster" >}}) and [node pool templating]({{< relref "/ui-api/kubectl-gs/template-nodepool" >}}).
 
 As a result of rendering the CRs ([sample](/reference/kubectl-gs/template-cluster/#example)), a user will get YAML manifests containing valid CRs that can create a workload cluster and its node pools.
 The resources can then be created by applying the manifest files to the Control Plane, e.g. `kubectl create -f <cluster manifest file>.yaml`.

@@ -51,7 +51,7 @@ or any time after the cluster has been created
 
 - via the Giant Swarm web interface
 - via the CLI command [`gsctl create nodepool`]({{< relref "/ui-api/gsctl/create-nodepool" >}})
-- via `kubectl` with the help of the [`gs` plugin](/reference/kubectl-gs/template-nodepool/)
+- via `kubectl` with the help of the [`gs` plugin]({{< relref "/ui-api/kubectl-gs/template-nodepool" >}})
 
 Node pools can be modified and deleted using `gsctl` or the web interface.
 
@@ -173,7 +173,7 @@ Using the v5 API endpoints, you can
 ## Node pools and the cluster definition YAML format
 
 Just as the Giant Swarm API schema for v4 (without node pools) and v5 (with node pools) clusters are different, the
-[cluster definition format](/reference/cluster-definition/) is different between the two versions.
+[cluster definition format]({{< relref "/ui-api/gsctl/cluster-definition" >}}) is different between the two versions.
 
 The new definition schema for v5 allows for defining cluster and node pool details in one file,
 to be submitted for creation via the [`gsctl create cluster`]({{< relref "/ui-api/gsctl/create-cluster" >}}) command.

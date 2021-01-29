@@ -95,4 +95,4 @@ items:
 
 ## Related
 
-- [`kubectl gs login`](/reference/kubectl-gs/login/) - Ensure an authenticated kubectl context.
+- [`kubectl gs login`]({{< relref "/ui-api/kubectl-gs/login" >}}) - Ensure an authenticated kubectl context.

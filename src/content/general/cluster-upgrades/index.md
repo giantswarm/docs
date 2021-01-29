@@ -44,7 +44,7 @@ Among the third party components building a workload cluster stack are
 as well as many operators and controllers created and maintained by Giant Swarm.
 
 All of the items in the list above are released independent of each other by their vendors.
-At Giant Swarm we bundle specific versions of these components of the workload cluster stack into a **workload cluster release**. A workload cluster release is specific for a provider (AWS, Azure, or KVM) and identified by a version number. To learn more about workload cluster releases and our versioning, check the [workload cluster releases reference](/reference/workload-cluster-release-versions/).
+At Giant Swarm we bundle specific versions of these components of the workload cluster stack into a **workload cluster release**. A workload cluster release is specific for a provider (AWS, Azure, or KVM) and identified by a version number. To learn more about workload cluster releases and our versioning, check the [workload cluster releases reference]({{< relref "/general/releases" >}}).
 
 Once deployed, the workload cluster stack is **immutable**.
 All components are deployed based on images, either of virtual machines or of Docker containers.
@@ -267,4 +267,4 @@ Furthermore, you should make your containers are as lightweight (in terms of siz
 
 ## Further reading
 
-- [Workload cluster releases](/reference/workload-cluster-release-versions/) explains the semantics of workload cluster releases.
+- [Workload cluster releases]({{< relref "/general/releases" >}}) explains the semantics of workload cluster releases.

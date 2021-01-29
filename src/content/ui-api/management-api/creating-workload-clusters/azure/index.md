@@ -20,13 +20,13 @@ All the workload clusters, created with workload cluster release v{{% first_azur
 
 At a high-level, the Control Plane API is used to manage the following CRs:
 
-- [Cluster](/reference/management-api/clusters.cluster.x-k8s.io/) - represents a Kubernetes cluster excluding worker nodes.
-- [MachinePool](/reference/management-api/machinepools.exp.cluster.x-k8s.io/) - represents a node pool.
+- [Cluster]({{< relref "/ui-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) - represents a Kubernetes cluster excluding worker nodes.
+- [MachinePool]({{< relref "/ui-api/management-api/crd/machinepools.exp.cluster.x-k8s.io.md" >}}) - represents a node pool.
 
 The CRs above then reference provider specific implementations. In our case, for clusters on Azure, they are:
 
-- [AzureCluster](/reference/management-api/azureclusters.infrastructure.cluster.x-k8s.io/) - represents a workload cluster.
-- [AzureMachinePool](/reference/management-api/azuremachinepools.exp.infrastructure.cluster.x-k8s.io/) - configures the Azure-specific details of worker nodes in a node pool.
+- [AzureCluster]({{< relref "/ui-api/management-api/crd/azureclusters.infrastructure.cluster.x-k8s.io.md" >}}) - represents a workload cluster.
+- [AzureMachinePool]({{< relref "/ui-api/management-api/crd/azuremachinepools.exp.infrastructure.cluster.x-k8s.io.md" >}}) - configures the Azure-specific details of worker nodes in a node pool.
 
 ## Example CRs
 
@@ -188,7 +188,7 @@ The utility supports rendering CRs:
 - `App`
 
 The installation procedure is described in the [`kubectl gs` reference](/reference/kubectl-gs/#install).
-There are also specific reference pages for [cluster templating](/reference/kubectl-gs/template-cluster/) and [node pool templating](/reference/kubectl-gs/template-nodepool/).
+There are also specific reference pages for [cluster templating]({{< relref "/ui-api/kubectl-gs/template-cluster" >}}) and [node pool templating]({{< relref "/ui-api/kubectl-gs/template-nodepool" >}}).
 
 As a result of rendering the CRs ([sample](/reference/kubectl-gs/template-cluster/#example)), a user will get YAML manifests containing valid CRs that can create a workload cluster and its node pools.
 The resources can then be created by applying the manifest files to the Control Plane, e.g. `kubectl create -f <cluster manifest file>.yaml`.

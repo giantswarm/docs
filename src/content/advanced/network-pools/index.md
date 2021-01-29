@@ -76,7 +76,7 @@ Before deleting a NetworkPool you must ensure there are no clusters using it.
 
 ## NetworkPool YAML format
 
-You can check out the YAML definition in the [Management API](/reference/management-api/networkpools.infrastructure.giantswarm.io/).
+You can check out the YAML definition in the [Management API]({{< relref "/ui-api/management-api/crd/networkpools.infrastructure.giantswarm.io.md" >}}).
 
 ## Limitations
 

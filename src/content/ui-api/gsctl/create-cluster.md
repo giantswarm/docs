@@ -20,7 +20,7 @@ The command `gsctl create cluster` allows to create new Kubernetes clusters.
 
 You can use the command with very simple syntax to create a cluster using default values. Note that several cluster specification details cannot be changed after creation.
 
-In order to configure all details of the cluster according to your requirements, you'll create a [cluster definition](/reference/cluster-definition/) first and pass it to the command.
+In order to configure all details of the cluster according to your requirements, you'll create a [cluster definition]({{< relref "/ui-api/gsctl/cluster-definition" >}}) first and pass it to the command.
 
 ## Command line examples
 
@@ -107,7 +107,7 @@ When requesting cluster creation with workload cluster release v{{% first_aws_no
 
 ## Related
 
-- [Cluster definition reference](/reference/cluster-definition/)
+- [Cluster definition reference]({{< relref "/ui-api/gsctl/cluster-definition" >}})
 - [`gsctl list releases`]({{< relref "/ui-api/gsctl/list-releases" >}}) - List all available workload cluster releases
 - [`gsctl create kubeconfig`]({{< relref "/ui-api/gsctl/create-kubeconfig" >}}) - Getting a key pair and enabling `kubectl` to access a cluster
 - [`gsctl delete cluster`]({{< relref "/ui-api/gsctl/delete-cluster" >}}) - Deleting a cluster

@@ -20,18 +20,18 @@ The outcome depends on the provider, set via the `--provider` flag:
 
 For AWS (`--provider aws`):
 
-- [`Cluster`](/reference/management-api/clusters.cluster.x-k8s.io/) (API version `cluster.x-k8s.io/v1alpha2`) - holds the base cluster specification.
-- [`AWSCluster`](/reference/management-api/awsclusters.infrastructure.giantswarm.io/) (API version `infrastructure.giantswarm.io/v1alpha2`) - holds AWS-specific configuration.
-- [`G8sControlPlane`](/reference/management-api/g8scontrolplanes.infrastructure.giantswarm.io/) (API version `infrastructure.giantswarm.io/v1alpha2`) - specifies the master nodes
-- [`AWSControlPlane`](/reference/management-api/awscontrolplanes.infrastructure.giantswarm.io/) (API version `infrastructure.giantswarm.io/v1alpha2`) - specifies the master nodes with AWS-specific details
+- [`Cluster`]({{< relref "/ui-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1alpha2`) - holds the base cluster specification.
+- [`AWSCluster`]({{< relref "/ui-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha2`) - holds AWS-specific configuration.
+- [`G8sControlPlane`]({{< relref "/ui-api/management-api/crd/g8scontrolplanes.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha2`) - specifies the master nodes
+- [`AWSControlPlane`]({{< relref "/ui-api/management-api/crd/awscontrolplanes.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha2`) - specifies the master nodes with AWS-specific details
 
 For Azure (`--provider azure`):
 
-- [`Cluster`](/reference/management-api/clusters.cluster.x-k8s.io/) (API version `cluster.x-k8s.io/v1alpha3`) - holds the base cluster specification.
-- [`AzureCluster`](/reference/management-api/azureclusters.infrastructure.cluster.x-k8s.io/) (API version `infrastructure.cluster.x-k8s.io/v1alpha3`) - holds Azure-specific configuration.
-- [`AzureMachine`](/reference/management-api/azuremachines.infrastructure.cluster.x-k8s.io/) (API version `infrastructure.cluster.x-k8s.io/v1alpha3`) - specifies the master nodes.
+- [`Cluster`]({{< relref "/ui-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1alpha3`) - holds the base cluster specification.
+- [`AzureCluster`]({{< relref "/ui-api/management-api/crd/azureclusters.infrastructure.cluster.x-k8s.io.md" >}}) (API version `infrastructure.cluster.x-k8s.io/v1alpha3`) - holds Azure-specific configuration.
+- [`AzureMachine`]({{< relref "/ui-api/management-api/crd/azuremachines.infrastructure.cluster.x-k8s.io.md" >}}) (API version `infrastructure.cluster.x-k8s.io/v1alpha3`) - specifies the master nodes.
 
-**Note:** The CRs generated won't trigger the creation of any worker nodes. Please see the [template nodepool](/reference/kubectl-gs/template-nodepool/) for instructions on how to create worker node pools.
+**Note:** The CRs generated won't trigger the creation of any worker nodes. Please see the [template nodepool]({{< relref "/ui-api/kubectl-gs/template-nodepool" >}}) for instructions on how to create worker node pools.
 
 ## Usage
 

@@ -56,8 +56,8 @@ Spreading worker nodes over multiple availability zones can be configured per [n
 
 You can create clusters in several ways:
 
-- In the [web interface](/reference/web-interface/).
-- In `gsctl` using the [`create cluster`]({{< relref "/ui-api/gsctl/create-cluster" >}}) command with the appropriate details set in a [cluster definition](/reference/cluster-definition/).
+- In the [web interface]({{< relref "/ui-api/web/" >}}).
+- In `gsctl` using the [`create cluster`]({{< relref "/ui-api/gsctl/create-cluster" >}}) command with the appropriate details set in a [cluster definition]({{< relref "/ui-api/gsctl/cluster-definition" >}}).
 - Via the [Giant Swarm API](/api/#operation/addCluster).
 
 When inspecting details of such a cluster, or using the [`gsctl show cluster`]({{< relref "/ui-api/gsctl/show-cluster" >}}) command, we display the list of availability zones used by the cluster.

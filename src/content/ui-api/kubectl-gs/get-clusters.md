@@ -73,7 +73,7 @@ Here we document the flags that have a particular meaning for the `get clusters`
 
 To inspect a cluster's main custom resource in YAML notation, add the `--output yaml` flag (or `-o yaml` in short) to the command.
 
-The following example command would print the main resource for cluster `ab12c`. On AWS that would be the [AWSCluster](/reference/management-api/awsclusters.infrastructure.giantswarm.io/) resource printed. On Azure, it would return the [Cluster](/reference/management-api/clusters.cluster.x-k8s.io/) resource.
+The following example command would print the main resource for cluster `ab12c`. On AWS that would be the [AWSCluster]({{< relref "/ui-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) resource printed. On Azure, it would return the [Cluster]({{< relref "/ui-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) resource.
 
 ```nohighlight
 kgs get clusters ab12c --output yaml
@@ -93,4 +93,4 @@ items:
 
 ## Related
 
-- [`kubectl gs login`](/reference/kubectl-gs/login/) - Ensure an authenticated kubectl context.
+- [`kubectl gs login`]({{< relref "/ui-api/kubectl-gs/login" >}}) - Ensure an authenticated kubectl context.

@@ -20,14 +20,14 @@ owner:
 It is possible to assign *key value labels* to Giant Swarm workload clusters with workload cluster release v{{% first_aws_nodepools_version %}} and above on AWS.
 
 Labels are a mechanism to assign short pieces of additional information to your Giant Swarm workload clusters.
-Under the hood, workload cluster labels are Kubernetes labels attached to [`Cluster`](/reference/management-api/clusters.cluster.x-k8s.io/) (`clusters.cluster.x-k8s.io`) resources.
-Therefore, all means of listing workload cluster labels will return all Kubernetes labels attached to [`Cluster`](/reference/management-api/clusters.cluster.x-k8s.io/) resources requested.
+Under the hood, workload cluster labels are Kubernetes labels attached to [`Cluster`]({{< relref "/ui-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) (`clusters.cluster.x-k8s.io`) resources.
+Therefore, all means of listing workload cluster labels will return all Kubernetes labels attached to [`Cluster`]({{< relref "/ui-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) resources requested.
 Label keys and values are freely modifiable except labels with keys containing `giantswarm.io`.
 
 Working with workload cluster labels works likewise as working with Kubernetes labels.
 More information about Kubernetes Labels can be found in the [Kubernetes Labels and Selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/) and our [cluster labels API documentation](/api/#tag/cluster-labels).
 
-Note: You can also [manage cluster labels directly through `happa`](/reference/web-interface/workload-cluster-labelling/), our web user interface.
+Note: You can also [manage cluster labels directly through `happa`]({{< relref "/ui-api/web/workload-cluster-labelling" >}}), our web user interface.
 
 ## Working with workload cluster labels using `gsctl`
 
@@ -137,7 +137,7 @@ The full documentation about label selectors can be found on the [Kubernetes Lab
 ## Working with workload cluster labels using `kubectl`
 
 With access to the management cluster, you are able to use `kubectl` to manage workload cluster labels.
-The underlying resource to operate on is [`clusters.cluster.x-k8s.io`](/reference/management-api/clusters.cluster.x-k8s.io/) from the upstream [cluster-api](https://cluster-api.sigs.k8s.io/) project.
+The underlying resource to operate on is [`clusters.cluster.x-k8s.io`]({{< relref "/ui-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) from the upstream [cluster-api](https://cluster-api.sigs.k8s.io/) project.
 
 Detailed documentation and examples of `kubectl label` and other commands used here can be found in the [Kubectl Reference Docs](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands).
 

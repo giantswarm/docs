@@ -34,12 +34,12 @@ detailed information:
 - View and manage organizations
 - Manage your own account and password
 - Learn how to get started with your Kubernetes clusters by following a guide
-- [Add, remove and configure Apps on your clusters](/reference/web-interface/app-platform/)
-- [View and manage workload cluster labels](/reference/web-interface/workload-cluster-labelling/)
+- [Add, remove and configure Apps on your clusters]({{< relref "/ui-api/web/app-platform" >}})
+- [View and manage workload cluster labels]({{< relref "/ui-api/web/workload-cluster-labelling" >}})
 
 ## Usage data recording
 
-Learn [what data is recorded for what purpose](/reference/web-interface/usage-data/) when using the web interface.
+Learn [what data is recorded for what purpose]({{< relref "/ui-api/web/usage-data" >}}) when using the web interface.
 
 ## Source code
 
