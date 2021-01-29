@@ -145,4 +145,4 @@ This table shows which workload cluster releases first introduced Flatcar Contai
 
 ## Further reading
 
-- [Cluster Upgrades with Giant Swarm](/reference/cluster-upgrades/) explains how upgrades work and suggests some best practices to keep a cluster ready to upgrade.
+- [Cluster Upgrades with Giant Swarm]({{< relref "/general/cluster-upgrades" >}}) explains how upgrades work and suggests some best practices to keep a cluster ready to upgrade.

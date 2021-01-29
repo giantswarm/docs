@@ -15,7 +15,7 @@ owner:
 The `gsctl list keypairs` command lists information on key pairs for a cluster. This is useful to
 understand which key pairs have been issued when and, if details are given,
 for what purpose. It is also helpful for setting up
-[role based access control](/guides/securing-with-rbac-and-psp/) (RBAC) rules
+[role based access control]({{< relref "/getting-started/rbac-and-psp" >}}) (RBAC) rules
 in the cluster.
 
 Note that key pair information can only by shown as long as the key pair has
@@ -79,5 +79,5 @@ CREATED                 EXPIRES                 ID          DESCRIPTION         
 - [`gsctl create keypair`](../create-keypair/)
 - [`gsctl create kubeconfig`](../create-kubeconfig/)
 - [X.509 on Wikipedia](https://en.wikipedia.org/wiki/X.509)
-- [Securing your cluster with RBAC and PSP](/guides/securing-with-rbac-and-psp/)
+- [Securing your cluster with RBAC and PSP]({{< relref "/getting-started/rbac-and-psp" >}})
 - [API: Get key pairs](/api/#operation/getKeyPairs)

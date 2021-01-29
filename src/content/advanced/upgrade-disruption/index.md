@@ -16,7 +16,7 @@ owner:
 
 ## Introduction
 
-Cluster upgraded, described in detail in our [cluster upgrades reference](/reference/cluster-upgrades/)), can cause disruption on workloads, if the upgrade requires upgrading worker nodes.
+Cluster upgraded, described in detail in our [cluster upgrades reference]({{< relref "/general/cluster-upgrades" >}})), can cause disruption on workloads, if the upgrade requires upgrading worker nodes.
 
 We provide two ways of limiting the amount of disruption:
 
@@ -138,6 +138,6 @@ metadata:
 
 ## Further reading
 
-- [Cluster upgrades reference](/reference/cluster-upgrades/)
+- [Cluster upgrades reference]({{< relref "/general/cluster-upgrades" >}})
 - [Node pools]({{< relref "/advanced/node-pools" >}})
 - [Management API]({{< relref "/ui-api/management-api" >}})

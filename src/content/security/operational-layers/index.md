@@ -106,6 +106,6 @@ Giant Swarm operational layers are the means which we use to keep a separation o
 
 ## Further reading
 
-- [Securing your Cluster with RBAC and PSP](/guides/securing-with-rbac-and-psp/)
+- [Securing your Cluster with RBAC and PSP]({{< relref "/getting-started/rbac-and-psp" >}})
 - [Creating a kubeconfig with gsctl]({{< relref "/ui-api/gsctl/create-kubeconfig" >}})
 - [Creating a key pair with gsctl]({{< relref "/ui-api/gsctl/create-keypair" >}})

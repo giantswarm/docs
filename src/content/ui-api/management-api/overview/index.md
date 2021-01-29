@@ -27,7 +27,7 @@ Currently we provide read-only access by default. As we are currently working on
 
 We recommend using `kubectl` to navigate the resources present on the Management API.
 
-To facilitate this we provide a kubectl plugin called [`kubectl gs`](/reference/kubectl-gs/).
+To facilitate this we provide a kubectl plugin called [`kubectl gs`]({{< relref "/ui-api/kubectl-gs" >}}).
 Our goal is to have the same great user experience you've become accustomed from `gsctl` and `happa`.
 
 Besides general Kubernetes know-how this will require only a bit of structural knowledge:

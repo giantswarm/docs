@@ -16,8 +16,8 @@ Giant Swarm allows you to run clusters in your own cloud provider account/subscr
 
 Please refer to our detailed guides on how to prepare roles and credentials in your AWS account or Azure subscription:
 
-- [Prepare an AWS account to run Giant Swarm workload clusters](/guides/prepare-aws-account/)
-- [Prepare an Azure subscription to run Giant Swarm workload clusters](/guides/prepare-azure-subscription/)
+- [Prepare an AWS account to run Giant Swarm workload clusters]({{< relref "/getting-started/cloud-provider-accounts/aws" >}})
+- [Prepare an Azure subscription to run Giant Swarm workload clusters]({{< relref "/getting-started/cloud-provider-accounts/azure" >}})
 
 gsctl provides this command to store the credentials connected to your organization. After doing this, you will want to [create a cluster](../create-cluster/) owned by the organization configured that way.
 
@@ -74,6 +74,6 @@ The flags mean:
 ## Related
 
 - [Basics and Concepts: Multi-Account Support]({{< relref "/advanced/multi-account" >}})
-- [Guides: Prepare an AWS account to run Giant Swarm workload clusters](/guides/prepare-aws-account/)
-- [Guides: Prepare an Azure subscription to run Giant Swarm workload clusters](/guides/prepare-azure-subscription/)
+- [Guides: Prepare an AWS account to run Giant Swarm workload clusters]({{< relref "/getting-started/cloud-provider-accounts/aws" >}})
+- [Guides: Prepare an Azure subscription to run Giant Swarm workload clusters]({{< relref "/getting-started/cloud-provider-accounts/azure" >}})
 - [API: Set credentials](/api/#operation/addCredentials)

@@ -85,7 +85,7 @@ kubectl apply -f ./expander-cm.yaml
 
 Now we have to tell cluster-autoscaler to actually use the `priority` expander, which we have provided configuration for in the previous step. As you can see in the default `values.yaml` of the cluster-autoscaler-app ([here for v1.1.4 of the app](https://github.com/giantswarm/cluster-autoscaler-app/blob/v1.1.4/helm/cluster-autoscaler-app/values.yaml#L12)), normally the `least-waste` expander would be used, which optimizes for highest possible node utilization.
 
-To switch the expander, we provide a user ConfigMap as described in our guide on [advanced cluster autoscaler configuration](/guides/advanced-cluster-autoscaler-configuration/).
+To switch the expander, we provide a user ConfigMap as described in our guide on [advanced cluster autoscaler configuration]({{< relref "/advanced/cluster-autoscaler" >}}).
 
 In contrast to the previous step, this is not done in the workload cluster, but in the management cluster instead. So this step requires write access to the [Management API]({{< relref "/ui-api/management-api" >}}). Please contact your Giant Swarm Solution Engineer in case you need assistance.
 

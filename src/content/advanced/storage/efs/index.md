@@ -18,13 +18,13 @@ owner:
 
 # Using Persistent Volumes on AWS with EFS
 
-If your cluster is running in the cloud on Amazon Web Services (AWS) the most common way to store data is using EBS volumes with the [dynamic provisioner](/guides/using-persistent-volumes-on-aws/). Sometimes EBS is not the optimal solution.
+If your cluster is running in the cloud on Amazon Web Services (AWS) the most common way to store data is using EBS volumes with the [dynamic provisioner]({{< relref "/getting-started/persistent-volumes/aws" >}}). Sometimes EBS is not the optimal solution.
 
 The advantages of using EFS over EBS are:
 
 - EFS data can be accessed from all Availability Zones in the same region while EBS is tied to a single Availability Zone.
 - EFS has the capability to mount the same Persistent Volume to multiple pods at the same time using the ReadWriteMany [access mode](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes).
-- EFS will not hit the [AWS Instance Volume Limit](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/volume_limits.html) as it is a software mount and will avoid the [Impaired EBS](/guides/aws-impaired-volumes/) issue.
+- EFS will not hit the [AWS Instance Volume Limit](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/volume_limits.html) as it is a software mount and will avoid the [Impaired EBS]({{< relref "/advanced/storage/ebs-troubleshooting" >}}) issue.
 - EFS mount times are better than EBS.
 
 If you need to use EFS to provision volumes, be advised:

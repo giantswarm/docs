@@ -41,9 +41,9 @@ In both cases, customers benefit from simpler usage and cost allocation, plus a 
 
 Details of the implementation differ between AWS and Azure.
 
-- On AWS, Giant Swarms uses two separate IAM roles in order to act in the workload cluster account: one for use by automation, one for technical support staff. Details on the exact permissions required can be found in our guide on [preparing an AWS account to run Giant Swarm workload clusters](/guides/prepare-aws-account/).
+- On AWS, Giant Swarms uses two separate IAM roles in order to act in the workload cluster account: one for use by automation, one for technical support staff. Details on the exact permissions required can be found in our guide on [preparing an AWS account to run Giant Swarm workload clusters]({{< relref "/getting-started/cloud-provider-accounts/aws" >}}).
 
-- On Azure, one service principal is configured for Giant Swarm, used by automation and technical support staff. Details can be found in our guide on [preparing an Azure subscription to run Giant Swarm workload clusters](/guides/prepare-azure-subscription/).
+- On Azure, one service principal is configured for Giant Swarm, used by automation and technical support staff. Details can be found in our guide on [preparing an Azure subscription to run Giant Swarm workload clusters]({{< relref "/getting-started/cloud-provider-accounts/azure" >}}).
 
 ## Additional information {#details}
 
@@ -59,8 +59,8 @@ To create clusters in a new cloud provider account, you first need to provide th
 
 To prepare your credentials, either as AWS account roles or as an Azure service principle, please follow our specific guides:
 
-- [Prepare an AWS account to run Giant Swarm workload clusters](/guides/prepare-aws-account/)
-- [Prepare an Azure subscription to run Giant Swarm workload clusters](/guides/prepare-azure-subscription/)
+- [Prepare an AWS account to run Giant Swarm workload clusters]({{< relref "/getting-started/cloud-provider-accounts/aws" >}})
+- [Prepare an Azure subscription to run Giant Swarm workload clusters]({{< relref "/getting-started/cloud-provider-accounts/azure" >}})
 
 You can then assign the credentials to your organization in several ways:
 

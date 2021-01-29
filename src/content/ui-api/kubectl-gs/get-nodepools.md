@@ -75,7 +75,7 @@ Similar to other `get` subcommands, you can specify the output format of `kgs ge
 
 To inspect a node pool's main custom resource in YAML notation, add the `--output yaml` flag (or `-o yaml` in short) to the command.
 
-The following example command would print the main resource for node pool `ab12c`. On AWS that would be the [MachineDeployment](/reference/cp-k8s-api/machinedeployments.cluster.x-k8s.io/) resource printed. On Azure, it would return the [MachinePool](/reference/cp-k8s-api/machinepools.exp.cluster.x-k8s.io/) resource.
+The following example command would print the main resource for node pool `ab12c`. On AWS that would be the [MachineDeployment]({{< relref "/ui-api/management-api/crd/machinedeployments.cluster.x-k8s.io.md" >}}) resource printed. On Azure, it would return the [MachinePool]({{< relref "/ui-api/management-api/crd/machinepools.exp.cluster.x-k8s.io.md" >}}) resource.
 
 ```nohighlight
 kgs get nodepool ab12c --output yaml
