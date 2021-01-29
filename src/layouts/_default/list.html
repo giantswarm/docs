@@ -10,14 +10,15 @@
 
     <h1 id="title">{{ .LinkTitle }}</h1>
 
-    {{ with .Description -}}
-    <p class="intro">{{ . }}</p>
-    {{- end }}
+    {{ if or .Description .Content }}
+      {{- with .Description -}}
+      <p class="intro">{{ . }}</p>
+      {{- end }}
 
-    {{ with .Content -}}
-    <p style="color: red">TODO: This is a navigation page. Please remove the body content of this page.</p>
-    {{ . }}
-    <hr />
+      {{- with .Content -}}
+      {{ . }}
+      {{- end }}
+      <hr />
     {{- end }}
 
     {{ if gt (add (len .Sections) (len .RegularPages)) 0 }}
