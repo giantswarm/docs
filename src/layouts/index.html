@@ -1,4 +1,4 @@
-{{ partial "header.html" . }}
+{{ partial "header" . }}
 
 <div id="home">
   <div class="row">
@@ -7,106 +7,18 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-4">
-      <ul class="linklist">
-        <li>
-          <a href="/basics/kubernetes-on-giant-swarm/">Details on Kubernetes on Giant Swarm</a>
-          <div class="meta">Here  you learn how we set up things for you and what we manage for you, so you don't have to.</div>
-        </li>
-      </ul>
-    </div>
-    <div class="col-sm-4">
-      <ul class="linklist">
-        <li>
-          <a href="/basics/aws-architecture/">AWS Architecture</a>
-          <div class="meta">How Giant Swarm is running Kubernetes clusters on AWS infrastructure</div>
-        </li>
-      </ul>
-    </div>
-    <div class="col-sm-4">
-      <ul class="linklist">
-        <li>
-          <a href="/basics/azure-architecture/">Azure Architecture</a>
-          <div class="meta">How Giant Swarm is running Kubernetes clusters on Azure infrastructure</div>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-4">
-      <ul class="linklist">
-        <li>
-          <a href="/basics/onprem-architecture/">On Premises Architectures</a>
-          <div class="meta">How Giant Swarm is running in your datacenter on the hardware you provide</div>
-        </li>
-      </ul>
-    </div>
-    <div class="col-sm-4">
-      <ul class="linklist">
-        <li>
-          <a href="/basics/security/">Security</a>
-          <div class="meta">Details on security features</div>
-        </li>
-      </ul>
-    </div>
-    <div class="col-sm-4">
-      <ul class="linklist">
-        <li>
-          <a href="/basics/kubernetes-resources/">Kubernetes Resources</a>
-          <div class="meta">Pointers to the best resources about Kubernetes, to get you up to speed with Kubernetes fast</div>
-        </li>
-      </ul>
-    </div>
+    
   </div>
 
   <div class="row">
     <div class="col-md-12">
-      <hr />
+      {{ partial "menu" . }}
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-12">
-      <h2>User Guides</h2>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-6">
-      <h3>Tutorials</h3>
-      {{ partial "frontpage_linklist" "tutorial" }}
-    </div>
-    <div class="col-sm-6">
-      <h3>Recipes</h3>
-      {{ partial "frontpage_linklist" "recipe" }}
-    </div>
-  </div> <!-- row -->
-
-  <div class="row">
-    <div class="col-md-12">
-      <hr />
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-12">
-      <h2>Reference Documentation</h2>
-      <ul class="linklist linklist-compact">
-        <li><a href="/reference/gsctl/">gsctl &ndash; The Giant Swarm command line utility</a></li>
-        <li><a href="/reference/kubectl-gs/">kubectl gs &ndash; The Giant Swarm kubectl plugin</a></li>
-        <li><a href="/reference/cluster-definition/">Cluster definition YAML reference</a></li>
-        <li><a href="/reference/cluster-upgrades/">Cluster upgrades</a></li>
-        <li><a href="/api/">The Giant Swarm API</a></li>
-        <li><a href="https://kubernetes.io/docs/reference/kubectl/overview/">kubectl reference <i class="fa fa-open-in-new" aria-hidden="true"></i></a></li>
-        <li><a href="https://kubernetes.io/docs/concepts/overview/kubernetes-api/">Kubernetes API reference <i class="fa fa-open-in-new" aria-hidden="true"></i></a></li>
-      </ul>
-    </div>
-  </div>
-
-
-  {{ partial "search_cta.html" . }}
+  {{ partial "search_cta" . }}
 
 
 </div>
 
-{{ partial "footer.html" . }}
+{{ partial "footer" . }}

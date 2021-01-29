@@ -1,7 +1,13 @@
 {{ partial "header.html" . }}
 
 <div class="row">
-  <div class="col-md-10 col-md-offset-1">
+  <div class="col-md-4 col-lg-3 hidden-sm hidden-xs ">
+    {{ partial "search_above_menu.html" . }}
+    {{ partial "menu.html" . }}
+  </div>
+  <div class="col-sm-12 col-md-8 col-lg-9">
+    {{ partial "breadcrumb.html" . }}
+
     <h1 id="title">Management API Reference</h1>
 
     <p>At Giant Swarm, the <em>control plane</em> is another term for the management cluster that allows to create and manage the workload clusters running your workloads.</p>

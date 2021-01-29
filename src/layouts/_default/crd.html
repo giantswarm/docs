@@ -1,19 +1,11 @@
 {{ partial "header.html" . }}
 
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-md-4 col-lg-3 hidden-sm hidden-xs ">
+    {{ partial "search_above_menu.html" . }}
+    {{ partial "menu.html" . }}
   </div>
-</div>
-
-<div class="row">
-  <div class="col-md-4 col-lg-3 hidden-sm hidden-xs toc-sidebar">
-    <div>
-      <div class="toc">
-        {{ .TableOfContents }}
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-12 col-md-8 col-lg-8 col-lg-offset-1 base-content">
+  <div class="col-sm-12 col-md-8 col-lg-9 base-content">
 
     {{ partial "breadcrumb.html" . }}
 

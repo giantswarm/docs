@@ -1,20 +1,8 @@
 {{ partial "header.html" . }}
 
 <div class="row">
-  <div class="col-xs-12">
-  </div>
-</div>
-
-<div class="row">
   <div class="col-md-4 col-lg-3 hidden-sm hidden-xs ">
-    <form class="form-inline" id="mobileSearchForm" method="GET" action="/search/" role="search">
-      <div class="form-group">
-        <label class="sr-only" for="searchInputMobile">Search term</label>
-        <input type="search" name="q" class="form-control" placeholder="Search the Docs" id="searchInputMobile"/>
-      </div>
-      <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-    </form>
-    
+    {{ partial "search_above_menu.html" . }}
     {{ partial "menu.html" . }}
   </div>
   <div class="col-sm-12 col-md-8 col-lg-7 base-content">

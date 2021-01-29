@@ -1,16 +1,37 @@
 {{ partial "header.html" . }}
 
 <div class="row">
-  <div class="col-md-12 col-lg-8 col-lg-offset-2">
-    <h1 id="title">{{ .Title }}</h1>
-    <ul class="linklist">
-      {{ range .Data.Pages.ByWeight }}
-      <li>
-        <a href="{{ .Permalink | relURL }}">{{ .Title }}</a>
-        <div class="meta">{{ .Description }}</div>
-      </li>
-      {{ end }}
-    </ul>
+  <div class="col-md-4 col-lg-3 hidden-sm hidden-xs ">
+    {{ partial "search_above_menu.html" . }}
+    {{ partial "menu.html" . }}
+  </div>
+  <div class="col-sm-12 col-md-8 col-lg-7">
+    {{ partial "breadcrumb.html" . }}
+
+    <h1 id="title">{{ .LinkTitle }}</h1>
+
+    {{ with .Description -}}
+    <p class="intro">{{ . }}</p>
+    {{- end }}
+
+    {{ with .Content -}}
+    <p style="color: red">TODO: This is a navigation page. Please remove the body content of this page.</p>
+    {{ . }}
+    <hr />
+    {{- end }}
+
+    {{ if gt (add (len .Sections) (len .RegularPages)) 0 }}
+      <ul class="linklist">
+        {{ range .Pages.ByWeight }}
+        <li>
+          <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+          <div class="meta">{{ .Description }}</div>
+        </li>
+        {{ end }}
+      </ul>
+
+    {{ end }}
+
   </div>
 </div>
 

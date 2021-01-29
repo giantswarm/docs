@@ -32,7 +32,7 @@ $indent: 14px
     font-family: GiantSwarmHappaAndDocs
     text-rendering: auto
     margin-left: 3px
-    transition: transform .2s
+    //transition: transform .2s
 
   // animate icon when list is opened
   .has-children.is-open > &__label::after
@@ -40,12 +40,12 @@ $indent: 14px
 
   &__link,
   &__label
-    display: block
-    padding: 7px 0 7px 0
+    display: inline-block
     margin: 0
+    padding: 7px 0 7px 0
     line-height: 17px
     cursor: pointer
-    transition: color .2s ease-in, background-color .2s ease-in
+    //transition: color .2s ease-in, background-color .2s ease-in
 
   // top level items
   &__list--level1 > li > .acnav__label,
@@ -53,24 +53,20 @@ $indent: 14px
     font-weight: bold
     color: rgb(51, 67, 77)
 
+  // second level items
+  &__list--level2 .acnav__link,
+  &__list--level2 > li > .acnav__label
+    padding: 5px 0 5px 0
+
   // third level items
   &__list--level3 .acnav__link,
   &__list--level3 > li > .acnav__label
-    padding-left: $indent
+    padding: 4px 0 4px $indent
 
   // fourth level items
   &__list--level4 .acnav__link,
   &__list--level4 > li > .acnav__label
     padding-left: ($indent * 2)
-
-  // hide nested lists
-  &__list--level2,
-  &__list--level3,
-  &__list--level4
-    display: none
-    // open list
-    .is-open > &
-      display: block
 
 .acnav__list--level1
   padding-bottom: 30px
