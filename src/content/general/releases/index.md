@@ -101,7 +101,7 @@ You have several options to inspect workload cluster release details:
 
 - In `gsctl`, our command line interface, commands like [`gsctl list clusters`](/reference/gsctl/list-clusters/) and [`gsctl show cluster`](/reference/gsctl/show-cluster/) reveal the release version number of an existing cluster. To get information on all available releases, use the [`gsctl list releases`](/reference/gsctl/list-releases/) command. The command `gsctl show release` gives you more details on a specific workload cluster release.
 
-- The [Rest API](/basics/api/#rest-api) provides an endpoint to list all workload cluster releases with their details.
+- The [Rest API]({{< relref "/ui-api/rest-api" >}}) provides an endpoint to list all workload cluster releases with their details.
 
 ## Details about workload cluster releases and features {#release-details}
 

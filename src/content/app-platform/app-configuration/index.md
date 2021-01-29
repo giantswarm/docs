@@ -278,8 +278,8 @@ colors:
 
 ### Using the Rest API (deprecated) {#giant-swarm-api}
 
-The [Rest API](/basics/api/#rest-api) acts as an interface between you and the [Management
-API](/basics/api/#management-api). It is deprecated since we are currently in the process of allowing you direct
+The [Rest API]({{< relref "/ui-api/rest-api" >}}) acts as an interface between you and the [Management
+API]({{< relref "/ui-api/management-api" >}}). It is deprecated since we are currently in the process of allowing you direct
 access to the Management API. However for the time being, our web interface makes use of the Rest API.
 
 By supplying a JSON body with the values you would like to set, the Rest API will

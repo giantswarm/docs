@@ -21,7 +21,7 @@ Here we explain the different purposes and what data is recorded.
 
 ## Rest API level
 
-Each request to our [Rest API](/basics/api/) is logged for auditing purposes, in case a customer wants to understand modifications made to resources, e. g. the creation or deletion of a cluster.
+Each request to our [Rest API]({{< relref "/ui-api/rest-api" >}}) is logged for auditing purposes, in case a customer wants to understand modifications made to resources, e. g. the creation or deletion of a cluster.
 
 Note: This is not only the case when using the web interface, but occurs independent of the type of client using the API.
 
