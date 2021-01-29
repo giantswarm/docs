@@ -51,7 +51,7 @@ lint:
 	    --config .markdownlint.yaml \
 	    --ignore README.md \
 		--ignore ./src/content/changes \
-		--ignore ./src/content/reference/management-api \
+		--ignore ./src/content/ui-api/management-api/crd \
 		./src
 
 docker-build: update-latest-versions
