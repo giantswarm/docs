@@ -169,7 +169,7 @@ Access will only be granted to clients which
 
 The Giant Swarm [web user interface]({{< relref "/ui-api/web/" >}}) shows you how to obtain the certificate files.
 
-To make these certificates available to HTTP clients/browsers, see our guide [Establishing Trust to Your Cluster's CA and Importing Certificates](/guides/importing-certificates/) which explains this for different clients on various platforms.
+To make these certificates available to HTTP clients/browsers, see our guide [Establishing Trust to Your Cluster's CA and Importing Certificates]({{< relref "/getting-started/ca-certificate" >}}) which explains this for different clients on various platforms.
 
 ### Example
 

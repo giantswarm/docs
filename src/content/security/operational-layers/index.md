@@ -96,7 +96,7 @@ Such users have access to all clusters in the organizations they belong to. They
 
 The user space layer is defined as the layer pertaining to a single workload cluster Kubernetes API. Workload clusters are the Kubernetes clusters that run your workloads.
 
-Users on this level are either created by a Giant Swarm API user (in form of key pairs) or managed in an external identity provider (IdP), like [Azure Active Directory](/guides/authenticating-with-microsoft-azure-active-directory/) or any other OIDC-compliant IdP.
+Users on this level are either created by a Giant Swarm API user (in form of key pairs) or managed in an external identity provider (IdP), like [Azure Active Directory]({{< relref "/advanced/authentication-azure-ad" >}}) or any other OIDC-compliant IdP.
 
 However, a user with access to the Kubernetes API does not gain any permisssions by default, as the clusters are locked down by RBAC. To provide access, a cluster admin first needs to create roles and bindings for the users. These roles can be defined as narrowly or broadly as needed for the specific Tenant Kubernetes Cluster. They can be bound to either single users or groups of them.
 

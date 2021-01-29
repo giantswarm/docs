@@ -17,7 +17,7 @@ owner:
 # Labelling workload clusters using the web interface
 
 Labels are a mechanism to assign short pieces of additional information to your Giant Swarm workload clusters.
-For more information about this feature, check out the [labelling workload clusters](/guides/workload-cluster-labelling/) user guide.
+For more information about this feature, check out the [labelling workload clusters]({{< relref "/advanced/labelling-workload-clusters" >}}) user guide.
 
 ## Viewing workload cluster labels
 

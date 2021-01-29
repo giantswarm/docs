@@ -47,7 +47,7 @@ There are some common cases where Core Metrics are used by Kubernetes:
 
 - Horizontal Pod Autoscaler: it scales pods automatically based on CPU or custom metrics (not explained here). More information [here](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/).
 - `kubectl top`: the command `top` of our beloved Kubernetes CLI display metrics directly in the terminal.
-- Kubernetes dashboard: see Pod and Nodes metrics integrated into the main Kubernetes UI dashboard. More info [here](/guides/install-kubernetes-dashboard/)
+- Kubernetes dashboard: see Pod and Nodes metrics integrated into the main Kubernetes UI dashboard. More info [here]({{< relref "/app-platform/apps/kubernetes-dashboard" >}})
 - Scheduler: in the future, core metrics will be considered in order to schedule best-effort Pods.
 
 ## Further reading

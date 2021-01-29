@@ -18,7 +18,7 @@ owner:
 
 Keep in mind that Dashboard despite it 1.x version number is still an early-stage effort and might miss certain functionality (e.g. no cascaded deletes like `kubectl`).
 
-If you want to have some simple metrics (as shown in the screenshot above) integrated in your Dashboard, you can additionally [install Heapster](/guides/kubernetes-heapster/).
+If you want to have some simple metrics (as shown in the screenshot above) integrated in your Dashboard, you can additionally [install Heapster]({{< relref "/getting-started/metrics" >}}).
 
 ## Deploying dashboard
 
@@ -31,7 +31,7 @@ kubectl apply \
 
 Once the pod is running you can open Dashboard at `https://api.<cluster-id>.k8s.gigantic.io/ui`.
 
-*Note*: The above URL uses your K8s API to proxy to the service. As the K8s API is guarded with your credentials, you need to [set them up in your system](/guides/accessing-services-from-the-outside/) (and/or browser). We do not recommend to set up an Ingress for the Dashboard at this time, as opening up the dashboard to public would create a non-official workaround to access K8s api. Please validate this with your security department and check the Heptio blog post [On Securing the Kubernetes Dashboard](https://blog.heptio.com/on-securing-the-kubernetes-dashboard-16b09b1b7aca)
+*Note*: The above URL uses your K8s API to proxy to the service. As the K8s API is guarded with your credentials, you need to [set them up in your system]({{< relref "/kubernetes/exposing-workloads" >}}) (and/or browser). We do not recommend to set up an Ingress for the Dashboard at this time, as opening up the dashboard to public would create a non-official workaround to access K8s api. Please validate this with your security department and check the Heptio blog post [On Securing the Kubernetes Dashboard](https://blog.heptio.com/on-securing-the-kubernetes-dashboard-16b09b1b7aca)
 
 Alternatively, you can run
 
