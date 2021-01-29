@@ -41,7 +41,7 @@ If the utilization is below the threshold, the autoscaler decides to remove the 
 
 ## Minimal and default cluster size
 
-When creating a cluster without specifying the number of worker nodes, {{% default_cluster_size_worker_nodes %}} worker nodes will be created. On supported AWS and Azure workload clusters, when not specified, the maximum number of worker nodes is also set to {{% default_cluster_size_worker_nodes %}}.
+When creating a cluster without specifying the number of worker nodes, {{% default_cluster_size_worker_nodes %}} worker nodes will be created. On supported AWS and Azure workload clusters, when not specified, the maximum number of worker nodes is also set to {{% default_cluster_size_max_worker_nodes %}}.
 
 Technically, while you may be able to create and run smaller clusters successfully, we don't encourage this due to reduced resilience.
 
