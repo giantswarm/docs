@@ -2,6 +2,7 @@
 
 <div class="row">
   <div class="col-xs-12">
+    {{ partial "breadcrumb" . }}
   </div>
 </div>
 
@@ -14,9 +15,6 @@
     </div>
   </div>
   <div class="col-sm-12 col-md-8 col-lg-8 col-lg-offset-1 base-content">
-
-    {{ partial "breadcrumb" . }}
-
     <div class="content">
       <p class="lastmod">Last modified {{ .Lastmod.Format "January 2, 2006" }}</p>
 

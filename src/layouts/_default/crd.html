@@ -1,14 +1,17 @@
 {{ partial "header" . }}
 
 <div class="row">
+  <div class="col-xs-12">
+    {{ partial "breadcrumb" . }}
+  </div>
+</div>
+
+<div class="row">
   <div class="col-md-4 col-lg-3 hidden-sm hidden-xs ">
     {{ partial "sidebar_search_form" . }}
     {{ partial "menu" . }}
   </div>
   <div class="col-sm-12 col-md-8 col-lg-9 base-content">
-
-    {{ partial "breadcrumb" . }}
-
     <div class="content">
       <p class="lastmod">Last generated {{ .Lastmod.Format "January 2, 2006" }}</p>
 
