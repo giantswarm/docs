@@ -8,8 +8,8 @@ enableGitInfo: true
 markup:
   defaultMarkdownHandler: goldmark
   tableOfContents:
-    endLevel: 5
-    startLevel: 1
+    endLevel: 3
+    startLevel: 2
 
   goldmark:
     renderer:

@@ -207,15 +207,14 @@ $(document).ready(function(){
   doSearch(q);
 });
 
-/** Re-format the table of contents **/
-
+/** Remove TOC if empty **/
 var toc = $('#TableOfContents');
 if (toc.length !== 0) {
-  var innerToc = toc.find("ul:first-child > li:first-child > ul").html();
-  if (typeof innerToc !== "undefined") {
-    toc.html("<ul>" + innerToc + "</ul>");
-  } else {
-    $('#TableOfContents').remove();
+  var innerToc = toc.html();
+  console.debug(innerToc);
+  if (typeof innerToc === "undefined" || innerToc === "") {
+    toc.remove();
+    $('.toc .header').remove();
   }
 }
 
