@@ -42,9 +42,9 @@
     </ol>
     
     {{ if .Paginator }}
-    {{ partial "changes/list.html" . }}
+    {{ partial "changes/list" . }}
     {{ else }}
-    {{ partial "changes/single.html" . }}
+    {{ partial "changes/single" . }}
     {{ end }}
 
   </div>

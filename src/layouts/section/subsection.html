@@ -1,4 +1,4 @@
-{{ partial "header.html" . }}
+{{ partial "header" . }}
 
 <div class="row">
   <div class="col-xs-12">
@@ -15,17 +15,17 @@
   </div>
   <div class="col-sm-12 col-md-8 col-lg-8 col-lg-offset-1 base-content">
 
-    {{ partial "breadcrumb.html" . }}
+    {{ partial "breadcrumb" . }}
 
     <div class="content">
       <p class="lastmod">Last modified {{ .Lastmod.Format "January 2, 2006" }}</p>
 
       {{ .Content }}
 
-      {{ partial "help_feedback.html" . }}
+      {{ partial "help_feedback" . }}
 
     </div>
   </div>
 </div>
 
-{{ partial "footer.html" . }}
+{{ partial "footer" . }}
