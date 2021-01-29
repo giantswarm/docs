@@ -23,13 +23,13 @@ When it comes to planning and designing your cluster architecture and its adapti
 
 As we are fully convinced of Kubernetes as a platform for building platforms, we built all our management clusters based on Kubernetes. The initial deployment entails the creation of that management cluster in a defined cloud provider region. After the management cluster is ready we deploy all our automation taking advantage of Kubernetes primitives and using the same philosophy we advocate to our customers.
 
-Giant Swarm leverages the concept of [“Operators"](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) to control all resources that clusters need as [“Custom Resources”](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/). At the same time customers can also use the Kubernetes Control Plane API to [manage their clusters](/guides/creating-clusters-via-crs/) and/or [applications](/basics/app-catalog/).
+Giant Swarm leverages the concept of [“Operators"](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) to control all resources that clusters need as [“Custom Resources”](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/). At the same time customers can also use the Kubernetes Control Plane API to [manage their clusters](/guides/creating-clusters-via-crs/) and/or [applications]({{< relref "/app-platform" >}}).
 
 ![Azure management cluster architecture](architecture-azure-control-plane.png)
 
 ## Azure landscape
 
-Giant Swarm's Azure operator is the product of years of work and we continue to apply our learnings and new functionality to it, as they become available. It is in charge of the provisioning and configuration of all resources needed to make a Kubernetes cluster functional on Azure. This operator runs in the management cluster, conveniently in separate subscription, and needs to reach the Azure API within subscription where you want to deploy your clusters. Thanks to our [Multi-Account](/basics/multi-account/) support, customers can add different Azure subscriptions to our platform and our operator will assume an Service Principle to operate the resources accordingly and spawn clusters into these subscriptions respectively.
+Giant Swarm's Azure operator is the product of years of work and we continue to apply our learnings and new functionality to it, as they become available. It is in charge of the provisioning and configuration of all resources needed to make a Kubernetes cluster functional on Azure. This operator runs in the management cluster, conveniently in separate subscription, and needs to reach the Azure API within subscription where you want to deploy your clusters. Thanks to our [Multi-Account]({{< relref "/advanced/multi-account" >}}) support, customers can add different Azure subscriptions to our platform and our operator will assume an Service Principle to operate the resources accordingly and spawn clusters into these subscriptions respectively.
 
 In order to help Customers getting started with our platform, we have crafted an [introductory guide](/guides/prepare-azure-subscription/) on how to configure your Azure subscription. It is important to review and request Resources Quotas and Service Limits on Azure Subscription level in order to be able to spawn machines [Azure quotas](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits) when creating clusters through our platform. Additionally, we continuously monitor the relevant limits when you are running our platform. We will notify you if a cluster approaches one of these limits, so you can focus on building your applications.
 
@@ -112,4 +112,4 @@ Please note, while this document went into extensive details with regards to how
 
 - [Giant Swarm support model](/basics/giant-swarm-support/)
 - [Giant Swarm operational layers](/basics/giant-swarm-operational-layers/)
-- [Giant Swarm App Catalog](/basics/app-catalog/)
+- [Giant Swarm App Catalog]({{< relref "/app-platform" >}})

@@ -142,7 +142,7 @@ See the [`gsctl delete nodepool`](/reference/gsctl/delete-nodepool/) reference f
 
 As of workload cluster release v{{% first_aws_spotinstances_version %}} for AWS, node pools can contain a mix of [on-demand](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-on-demand-instances.html) and [spot instances](https://aws.amazon.com/ec2/spot/) that will allow you to optimize your cost.
 
-[Here](/basics/spot-instances/) you can find more detailed information on using Spot Instances in AWS clusters.
+[Here]({{< relref "/advanced/spot-instances" >}}) you can find more detailed information on using Spot Instances in AWS clusters.
 
 ## Using similar instance types {#similar-instance-types}
 

@@ -19,7 +19,7 @@ This page will give you an overview of what parts of the Giant Swarm App Platfor
 are managable using our web interface.
 
 If you'd like to know more about the App Platform in general, go here for an
-[overview of the Giant Swarm App Platform](/basics/app-platform/) instead.
+[overview of the Giant Swarm App Platform]({{< relref "/app-platform" >}}) instead.
 
 ## Viewing all App Catalogs
 

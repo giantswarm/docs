@@ -24,7 +24,7 @@ user_questions:
 
 # App configuration reference
 
-Giant Swarm's [App Platform](/basics/app-platform/) allows you to easily install Apps across your entire
+Giant Swarm's [App Platform]({{< relref "/app-platform" >}}) allows you to easily install Apps across your entire
 fleet of clusters. We fully support [Helm](https://helm.sh/) as a general tool to deploy your applications as well as for our general App Catalog, which you can of course also use for your own applications by creating a new Catalog.
 
 Apps are packaged as Helm charts. Helm charts rely on _values_ to be set in order to fill in placeholders in _templates_. By configuring your App you set the values that become available to the templates when they are deployed.
@@ -181,7 +181,7 @@ Configuration for Apps are stored as ConfigMaps and Secrets, which are
 referenced by `name` and `namespace` in various `spec` fields of the [App](/reference/management-api/apps.application.giantswarm.io/) and [AppCatalog](/reference/management-api/appcatalogs.application.giantswarm.io/) Custom Resource (CR).
 
 Our operators act on those resources to ensure the actual state ends up
-looking like the desired state. More information is available in our [general overview of the App Platform](/basics/app-platform/).
+looking like the desired state. More information is available in our [general overview of the App Platform]({{< relref "/app-platform" >}}).
 
 |Configuration Level|Where to set it|Fields to set|
 |---|---|---|

@@ -14,7 +14,7 @@ owner:
 
 {{% kgs_alias_assumption %}}
 
-In order to create an [App Catalog](/basics/app-platform/) using custom resources, `kubectl-gs` will help you create manifests for the resource type:
+In order to create an [App Catalog]({{< relref "/app-platform" >}}) using custom resources, `kubectl-gs` will help you create manifests for the resource type:
 
 - [`AppCatalog`](/reference/management-api/appcatalogs.application.giantswarm.io/) (API group/version `application.giantswarm.io/v1alpha1`) - holds the base AppCatalog specification.
 

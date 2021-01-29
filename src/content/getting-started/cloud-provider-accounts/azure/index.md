@@ -144,7 +144,7 @@ This command should be run for all subscriptions that are used for Giant Swarm w
 
 ## Further reading
 
-- [Basics and Concepts: Multi-Account Support](/basics/multi-account/)
+- [Basics and Concepts: Multi-Account Support]({{< relref "/advanced/multi-account" >}})
 - [gsctl Reference: `update organization set-credentials`](/reference/gsctl/update-org-set-credentials/)
 - [API: Set credentials](/api/#operation/addCredentials)
 - [Azure Lighthouse](https://docs.microsoft.com/en-us/azure/lighthouse/how-to/onboard-customer)

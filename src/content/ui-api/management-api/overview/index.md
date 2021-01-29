@@ -41,7 +41,7 @@ We create one namespace for each workload cluster, where the namespace name is e
 Following are some resources that should help you:
 
 - The guide [Creating workload clusters via the Management API](/guides/creating-clusters-via-crs/) explains step by step how you can create a cluster and node pools via the Management API. Here you learn about all the custom resources a cluster comprises.
-- The [App Platform](/basics/app-platform/) introduction outlines the several custom resources involved when managing app catalogs and apps.
+- The [App Platform]({{< relref "/app-platform" >}}) introduction outlines the several custom resources involved when managing app catalogs and apps.
 - Our [Management API reference](/reference/management-api/) provides detailed documentation on all the custom resources we use with the various providers and their versions and schema.
 
 ## Feedback is welcome
