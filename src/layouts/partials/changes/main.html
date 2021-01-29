@@ -1,4 +1,10 @@
 <div class="row">
+  <div class="col-xs-12">
+    {{ partial "changes/breadcrumb" . }}
+  </div>
+</div>
+
+<div class="row">
   <div class="col-md-4 hidden-sm hidden-xs changelog">
     <div class="tagsfilter">
       <h3>By Category</h3>
@@ -23,23 +29,6 @@
     </div>
   </div>
   <div class="col-sm-12 col-md-8 base-content">
-    <ol class="breadcrumb">
-      <li class="prefix">Back to:</li>
-      <li class="item"><a href="/" class="crumb">Docs</a></li>
-      {{ if .Paginator }}
-        {{- if .Data.Term }}
-        <li class="item"><a href="/changes/">Changes and Releases</a></li>
-        {{- end }}
-      {{- else }}
-        <li class="item"><a href="/changes/">Changes and Releases</a></li>
-        {{- with .Params.changes_categories }}
-          {{- range . }}
-            {{- $cat := urlize . }}
-            <li class="item"><a href="/changes/{{ $cat }}/">{{ . }}</a></li>
-        {{- end }}
-        {{- end }}
-      {{- end }}
-    </ol>
     
     {{ if .Paginator }}
     {{ partial "changes/list" . }}
