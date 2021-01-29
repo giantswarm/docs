@@ -1,7 +1,6 @@
 ---
 title: "'gsctl create nodepool' command reference"
 description: The 'gsctl create nodepool' command allows to create a new pool of worker nodes in cluster.
-type: page
 weight: 44
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux

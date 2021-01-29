@@ -1,7 +1,6 @@
 ---
 title: "'gsctl create cluster' command reference"
 description: Detailed documentation on how to create a new cluster using the 'create cluster' command in gsctl.
-type: page
 weight: 20
 user_questions:
   - What options are available for creating clusters through gsctl?

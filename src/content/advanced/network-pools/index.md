@@ -1,17 +1,20 @@
 ---
-title: Network Pools
+title: Network pools
 description: A general description of network pools as a concept, it's benefits, and some details you should be aware of.
-weight: 130
-type: page
-categories: ["basics"]
+weight: 140
+menu:
+  main:
+    parent: advanced
 user_questions:
   - What is a network pool?
   - What are network pools?
   - In which cloud environments are network pools supported?
   - Which releases introduced network pools?
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
 
-# Network Pools
+# Network pools
 
 {{< platform_support_table aws="ga=v12.7.0" >}}
 

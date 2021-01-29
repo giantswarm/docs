@@ -1,15 +1,17 @@
 ---
-title: Advanced Cluster Autoscaler Configuration
-description: Here we describe how you can customize the configuration of the managed Cluster Autoscaler service in your clusters
-type: page
-weight: 40
-tags: ["tutorial"]
+linkTitle: Cluster autoscaler
+title: Advanced cluster autoscaler configuration
+description: Here we describe how you can customize the configuration of the managed cluster autoscaler service in your workload clusters.
+weight: 90
+menu:
+  main:
+    parent: advanced
 last_review_date: 2020-09-23
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
 
-# Advanced Cluster Autoscaler Configuration
+# Advanced cluster autoscaler configuration
 
 Your Giant Swarm installation comes with a default configuration for the [Cluster Autoscaler addon](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler)
 

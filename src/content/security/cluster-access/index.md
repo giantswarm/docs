@@ -1,9 +1,11 @@
 ---
+linkTitle: Secure access to clusters
 title: Secure access to clusters - Users and Giant Swarm support
 description: This documentation explains security measures for users and Giant Swarm support to access your infrastructure
-weight: 40
-type: page
-categories: ["basics"]
+weight: 30
+menu:
+  main:
+    parent: security
 last_review_date: 2020-01-21
 user_questions:
   - How does Giant Swarm access my account with the cloud provider?

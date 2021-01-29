@@ -1,8 +1,13 @@
 ---
+linkTitle: kubectl gs
 title: kubectl gs plugin reference
 description: User manual for kubectl-gs (also known as kgs), the Giant Swarm kubectl plugin.
-layout: subsection
 weight: 40
+menu:
+  main:
+    parent: ui-api
+# TODO: remove "layout: single" and let the page be rendered by a specific section template.
+layout: single
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---

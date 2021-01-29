@@ -1,12 +1,14 @@
 ---
-title: Creating Your Own Admission Controller
+linkTitle: Custom admission controllers
+title: Creating your own admission controller
 description: Tutorial on how to create your own admission controller.
-type: page
-weight: 45
-tags: ["tutorial"]
+weight: 160
+menu:
+  main:
+    parent: advanced
 ---
 
-# Creating Your Own Admission Controller
+# Creating your own admission controller
 
 The Kubernetes API is amazing territory. Thanks to being built around the REST model, it gives us the possibility to manage all our workloads using HTTP requests. Tools like `kubectl` or `Kubernetes dashboard` take advantage of this, helping to manage the different resources. But the Kubernetes API is far more. Let's take a deeper look at how it is composed:
 

@@ -1,9 +1,12 @@
 ---
+linkTitle: Overview
 title: The Giant Swarm App Platform
 description: Overview of the Giant Swarm App Platform, how it works and what to expect.
-weight: 90
-type: page
-categories: ["basics"]
+weight: 10
+menu:
+  main:
+    parent: app-platform
+    identifier: app-platform-overview
 last_review_date: 2020-05-26
 aliases:
   - /basics/app-catalog/

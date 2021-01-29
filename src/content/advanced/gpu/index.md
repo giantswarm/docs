@@ -1,9 +1,11 @@
 ---
+linkTitle: Using GPUs
 title: Preparing a Kubernetes cluster for the use of GPUs
-description: Here we explain how to make the GPU driver for CoreOS available so that workloads can use GPUs.
-type: page
-weight: 150
-tags: ["recipe"]
+description: Here we explain how to make the GPU driver for Flatcar container linux available so that workloads can use GPUs.
+weight: 130
+menu:
+  main:
+    parent: advanced
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
 ---

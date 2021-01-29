@@ -1,9 +1,11 @@
 ---
+linkTitle: On-premises
 title: The Giant Swarm on-premises architecture
 description: Architecture overview showing how Giant Swarm is set up within a customer data center on bare metal or virtual machines, using KVM as a virtualization layer.
-weight: 70
-type: page
-categories: ["basics"]
+weight: 30
+menu:
+  main:
+    parent: general-architecture
 last_review_date: 2020-01-28
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket

@@ -1,8 +1,13 @@
 ---
-title: gsctl reference
+linkTitle: gsctl
+title: gsctl CLI reference
 description: Documentation on gsctl, the Giant Swarm command line utility to create and delete clusters, create key pairs and more.
-layout: subsection
 weight: 20
+menu:
+  main:
+    parent: ui-api
+# TODO: remove "layout: single" and let the page be rendered by a specific section template.
+layout: single
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---

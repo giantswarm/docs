@@ -1,8 +1,11 @@
 ---
-title: Defaulting and Validation of App CRs
+linkTitle: Defaulting and validation
+title: Defaulting and validation of App CRs
 description: How defaulting and validation of app CRs is implemented by app-admission-controller
-weight: 110
-type: page
+weight: 30
+menu:
+  main:
+    parent: app-platform
 last_review_date: 2020-12-16
 owner:
   - https://github.com/orgs/giantswarm/teams/team-batman
@@ -11,6 +14,8 @@ user_questions:
   - How can I use App CR defaulting logic when installing Managed Apps?
   - What fields are validated in App CRs when installing or updating Managed Apps?
 ---
+
+# Defaulting and validation of App CRs
 
 ## Overview
 

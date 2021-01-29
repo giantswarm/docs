@@ -1,9 +1,10 @@
 ---
 title: Node pools
 description: A general description of node pools as a concept, it's benefits, and some details you should be aware of.
-weight: 130
-type: page
-categories: ["basics"]
+weight: 50
+menu:
+  main:
+    parent: advanced
 user_questions:
   - What is a node pool?
   - What are node pools?

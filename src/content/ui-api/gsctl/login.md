@@ -1,7 +1,6 @@
 ---
 title: "'gsctl login' command reference"
 description: "The 'gsctl login' command starts an authenticated session."
-type: page
 weight: 41
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux

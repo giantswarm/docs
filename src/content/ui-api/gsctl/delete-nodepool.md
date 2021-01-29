@@ -1,7 +1,6 @@
 ---
 title: "'gsctl delete nodepool' command reference"
 description: The 'gsctl delete nodepool' command deletes a node pool.
-type: page
 weight: 44
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux

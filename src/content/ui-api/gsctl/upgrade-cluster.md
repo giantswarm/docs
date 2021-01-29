@@ -1,7 +1,6 @@
 ---
 title: "'gsctl upgrade cluster' command reference"
 description: Detailed documentation on how to upgrade a cluster using the 'upgrade cluster' command in gsctl.
-type: page
 weight: 30
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux

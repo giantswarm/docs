@@ -1,9 +1,11 @@
 ---
+linkTitle: Kubernetes Dashboard
 title: Installing the Kubernetes Dashboard
 description: The Dashboard is a general-purpose administrative web UI for Kubernetes, running in Kubernetes itself. It's easy to install.
-type: page
 weight: 50
-tags: ["recipe"]
+menu:
+  main:
+    parent: app-platform-apps
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
 ---

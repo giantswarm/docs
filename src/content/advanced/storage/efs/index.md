@@ -1,9 +1,11 @@
 ---
-title: "Using Persistent Volumes on AWS with EFS"
-description: "Tutorial on how to use dynamically provisioned Persistent Volumes on a cluster running on Amazon Web Services with EFS"
-type: page
-weight: 50
-tags: ["tutorial"]
+linkTitle: Amazon Elastic File System (EFS)
+title: Using Persistent Volumes on AWS with EFS
+description: Tutorial on how to use dynamically provisioned Persistent Volumes on a cluster running on Amazon Web Services with EFS
+weight: 30
+menu:
+  main:
+    parent: advanced-storage
 user_questions:
   - How do I install the EFS provisioner?
   - How do I provision an EFS instance on AWS?

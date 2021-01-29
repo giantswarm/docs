@@ -1,8 +1,11 @@
 ---
-title: Cluster upgrades
+linkTitle: Cluster upgrades
+title: Workload cluster upgrades
 description: How Kubernetes and other components are upgraded in a Giant Swarm workload cluster, and how to prepare your cluster and workloads to facilitate robust upgrades.
-weight: 60
-layout: subsection
+weight: 40
+menu:
+  main:
+    parent: general
 user_questions:
   - How do cluster upgrades work?
   - How can I prepare my workloads to tolerate a cluster upgrade?

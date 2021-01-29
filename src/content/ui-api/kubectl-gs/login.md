@@ -1,7 +1,6 @@
 ---
 title: "'kubectl gs login' command reference"
 description: Reference documentation on how to ensure an authenticated kubectl context for a Giant Swarm management cluster, using 'kubectl gs'.
-type: page
 weight: 10
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux

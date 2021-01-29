@@ -1,7 +1,6 @@
 ---
 title: Global command line options in gsctl
 description: Documentation for gsctl options that can be passed on the command line for almost all commands. Plus some tips on how you can use them to switch environments.
-type: page
 weight: 20
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux

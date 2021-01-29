@@ -1,8 +1,11 @@
 ---
+linkTitle: App configuration
 title: App configuration reference
 description: Documentation on the various levels of App configuration and how they get merged into a final values object.
-type: subsection
-weight: 100
+menu:
+  main:
+    parent: app-platform
+weight: 20
 owner:
   - https://github.com/orgs/giantswarm/teams/team-batman
 user_questions:

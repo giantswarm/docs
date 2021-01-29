@@ -1,9 +1,10 @@
 ---
 title: High-availability Kubernetes masters
 description: A general description of high availability of masters as a concept, it's benefits, and some details you should be aware of.
-weight: 120
-type: page
-categories: ["basics"]
+weight: 10
+menu:
+  main:
+    parent: advanced-highavailability
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---

@@ -1,9 +1,11 @@
 ---
+linkTitle: Elastic stack
 title: Configure OIDC for EFK Stack App
 description: Configure authentication with kibana and the efk-stack-app through OIDC
-type: page
 weight: 50
-tags: ["recipe"]
+menu:
+  main:
+    parent: app-platform-apps
 owner:
   - https://github.com/orgs/giantswarm/teams/team-halo
 ---

@@ -1,14 +1,15 @@
 ---
-title: Multi-Account Support
-description: By default, all your workload clusters run in the same cloud provider account. With Multi-Account support for AWS and Azure, you can define a specific cloud provider account to use per organization.
-weight: 110
-type: page
-categories: ["basics"]
+title: Multi-account support
+description: By default, all your workload clusters run in the same cloud provider account. With multi-account support for AWS and Azure, you can define a specific cloud provider account to use per organization.
+weight: 80
+menu:
+  main:
+    parent: advanced
 owner:
   - https://github.com/orgs/giantswarm/teams/team-celestial
 ---
 
-# Multi-Account Support
+# Multi-account support
 
 The Giant Swarm architecture distinguishes between the management cluster and workload clusters. The management cluster enables the creation and operation of workload clusters and the workload cluster(s) run your Kubernetes workloads.
 

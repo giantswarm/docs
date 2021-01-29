@@ -1,14 +1,15 @@
 ---
-title: Services of type LoadBalancer and Multiple Ingress Controllers
+title: Services of type LoadBalancer and multiple ingress controllers
 description: Learn how to expose services directly on cloud providers and run multiple Ingress Controllers at the same time.
-type: page
-weight: 35
-tags: ["tutorial"]
+weight: 30
+menu:
+  main:
+    parent: advanced-ingress
 owner:
   - https://github.com/orgs/giantswarm/teams/team-halo
 ---
 
-# Services of type LoadBalancer and Multiple Ingress Controllers
+# Services of type LoadBalancer and multiple ingress controllers
 
 Next to using the default NGINX Ingress Controller, on cloud providers (currently AWS and Azure), you can expose services directly outside your cluster by using Services of type `LoadBalancer`.
 

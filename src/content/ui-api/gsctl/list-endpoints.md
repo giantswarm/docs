@@ -1,7 +1,6 @@
 ---
 title: "'gsctl list endpoints' command reference"
 description: The 'gsctl list endpoints' command shows all endpoints you have logged in to so far and tells you which one is currently selected.
-type: page
 weight: 41
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux

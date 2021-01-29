@@ -1,8 +1,8 @@
 ---
+linkTitle: Labelling workload clusters
 title: Labelling workload clusters using the web interface
 description: How to manage workload cluster labels in our web interface.
 last_review_date: 2020-05-29
-layout: subsection
 weight: 20
 aliases:
   - /reference/web-interface/tenant-cluster-labelling/

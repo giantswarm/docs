@@ -1,7 +1,6 @@
 ---
 title: "'gsctl info' command reference"
 description: The 'gsctl info' command lets you display information on your current status and configuration.
-type: page
 weight: 41
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux

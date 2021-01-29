@@ -1,9 +1,10 @@
 ---
-title: Installing an Ingress Controller
-description: How to install the nginx-ingress-controller using our Web UI
-type: page
+title: Installing an ingress controller
+description: How to install the NGINX ingress controller using the Giant Swarm web user interface.
 weight: 50
-tags: ["tutorial"]
+menu:
+  main:
+    parent: getting-started
 owner:
   - https://github.com/orgs/giantswarm/teams/team-halo
 ---

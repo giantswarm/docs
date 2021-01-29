@@ -1,9 +1,11 @@
 ---
+linkTitle: Authenticating with Azure Active Directory
 title: Authenticating with Microsoft Azure Active Directory
 description: Tutorial on how to setup Authentication with Microsoft Azure Active Directory in kubectl.
-type: page
-weight: 30
-tags: ["tutorial"]
+weight: 120
+menu:
+  main:
+    parent: advanced
 user_questions:
   - How can I use Azure Active Directory to authenticate cluster access?
   - How to use OIDC for cluster authentication?

@@ -1,9 +1,11 @@
 ---
-title: Advanced CoreDNS Configuration
+linkTitle: CordeDNS
+title: Advanced CoreDNS configuration
 description: Here we describe how you can customize the configuration of the managed CoreDNS service in your clusters
-type: page
-weight: 50
-tags: ["tutorial"]
+weight: 100
+menu:
+  main:
+    parent: advanced
 user_questions:
   - How can I override the default CoreDNS configuration?
   - How can I customize the CoreDNS configuration?

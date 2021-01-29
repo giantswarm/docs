@@ -1,9 +1,8 @@
 ---
-title: "Prepare an AWS account to run Giant Swarm clusters"
-description: "This guide will walk you through all necessary steps to set up an Amazon AWS account with appropriate IAM roles for operating Giant Swarm clusters."
-type: page
-weight: 100
-tags: ["tutorial"]
+linkTitle: AWS
+title: Prepare an AWS account to run Giant Swarm clusters
+description: This guide will walk you through all necessary steps to set up an Amazon AWS account with appropriate IAM roles for operating Giant Swarm clusters.
+weight: 10
 user_questions:
   - Where can I find the AWS account ID to use for running a installation?
   - Where I can find the AWS account ID to run workload clusters?

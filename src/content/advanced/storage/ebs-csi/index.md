@@ -1,9 +1,11 @@
 ---
+linkTitle: Using the EBS CSI driver
 title: Using persistent volumes with the EBS CSI driver on AWS
 description: Tutorial on how to use dynamically provisioned persistent volumes with the EBS CSI driver on a cluster running on Amazon Web Services (AWS)."
-type: page
-weight: 50
-tags: ["tutorial"]
+weight: 20
+menu:
+  main:
+    parent: advanced-storage
 user_questions:
   - How do I install the EBS CSI driver?
   - How do I provision an EBS instance on AWS?

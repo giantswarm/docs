@@ -1,7 +1,6 @@
 ---
 title: "'gsctl update nodepool' command reference"
 description: The 'gsctl update nodepool' command allows renaming and scaling of a node pool.
-type: page
 weight: 44
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux

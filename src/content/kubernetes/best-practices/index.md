@@ -1,9 +1,11 @@
 ---
-title: Recommendations and Best Practices
+linkTitle: Best practices
+title: Recommendations and best practices
 description: Recommendations and best practices around cluster and node sizing as well as multi-tenant setups
-type: page
 weight: 50
-tags: ["tutorial"]
+menu:
+  main:
+    parent: kubernetes
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
 ---

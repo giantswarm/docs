@@ -1,8 +1,10 @@
 ---
 title: Similar AWS EC2 instance types reference
 description: Here you find our reference regarding what is considered a similar instance type.
-layout: subsection
-weight: 500
+weight: 20
+menu:
+  main:
+    parent: reference
 user_questions:
   - Which EC2 instance types are used when I activate the use of similar instance types for a node pool?
 owner:

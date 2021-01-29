@@ -1,9 +1,11 @@
 ---
-title: Kubernetes Resources
+linkTitle: Resources
+title: Kubernetes resources
 description: Pointers to the best resources about Kubernetes to get you up to speed with Kubernetes fast
-weight: 140
-type: page
-categories: ["basics"]
+weight: 10
+menu:
+  main:
+    parent: kubernetes
 last_review_date: 2020-03-31
 owner:
   - https://github.com/orgs/giantswarm/teams/team-ludacris

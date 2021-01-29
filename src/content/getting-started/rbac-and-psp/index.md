@@ -1,9 +1,12 @@
 ---
-title: "Securing your Cluster with RBAC and PSP"
-description: "Introduction to using RBAC and PSP to secure your cluster and manage access control."
-type: page
-weight: 30
-tags: ["tutorial"]
+
+linkTitle: Securing your cluster with RBAC and PSP
+title: Securing your Cluster with RBAC and PSP
+description: Introduction to using role-based access control (RBAC) and pod sewcurity policies (PSP) to secure your cluster and manage access control.
+weight: 40
+menu:
+  main:
+    parent: getting-started
 user_questions:
   - How can I add permissions to a service account?
   - How can I give my container permission to access a persistent volume?

@@ -1,9 +1,11 @@
 ---
+linkTitle: Support
 title: Giant Swarm support
 description: An explanation of how our support service works.
-type: page
-weight: 30
-categories: ["basics"]
+weight: 50
+menu:
+  main:
+    parent: general
 last_review_date: 2020-01-20
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-customer-happiness

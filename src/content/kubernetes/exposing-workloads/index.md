@@ -1,9 +1,11 @@
 ---
+linkTitle: Exposing workloads
 title: Accessing Pods and Services from the outside
 description: You can access Pods and services from outside your cluster either through the API proxy or through an Ingress.
-type: page
-weight: 50
-tags: ["tutorial"]
+weight: 20
+menu:
+  main:
+    parent: kubernetes
 user_questions:
   - How can I connect to a Pod running in a cluster?
   - How can I expose a TCP port of a Pod to the internet?

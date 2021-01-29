@@ -1,8 +1,9 @@
 ---
+linkTitle: Custom resource definitions (CRDs)
 title: Management API reference
-description: Learn what the Giant Swarm Management Cluster offers via its Kubernetes API. This reference focuses on schema documentation for custom resources.
+description: Schema reference of all custom resources (CRs) you can use with the Management API.
 layout: management-api-reference
-weight: 300
+weight: 20
 user_questions:
   - What is a Custom Resource Definition (CRD)?
   - What is a Custom Resource (CR)?

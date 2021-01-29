@@ -1,7 +1,6 @@
 ---
 title: "'gsctl select endpoint' command reference"
 description: The 'gsctl select endpoint' command selects an endpoint for usage in subsequent command executions.
-type: page
 weight: 41
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux

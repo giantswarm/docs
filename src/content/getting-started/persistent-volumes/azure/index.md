@@ -1,9 +1,7 @@
 ---
-title: "Using Persistent Volumes on Azure"
-description: Tutorial on how to use dynamically provisioned Persistent Volumes on a cluster running on Azure Cloud"
-type: page
-weight: 50
-tags: ["tutorial"]
+title: Using Persistent Volumes on Azure
+description: Tutorial on how to use dynamically provisioned Persistent Volumes on a cluster running on Azure Cloud
+weight: 20
 owner:
   - https://github.com/orgs/giantswarm/teams/team-celestial
 ---

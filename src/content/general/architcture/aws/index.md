@@ -1,39 +1,57 @@
 ---
-title: The Giant Swarm Azure architecture
-description: Description of the Azure Giant Swarm platform, how it looks like and which features offers
-weight: 50
-type: page
-categories: ["basics"]
-last_review_date: 2020-09-23
+linkTitle: AWS
+title: The Giant Swarm AWS platform
+description: Description of the Giant Swarm platform on Amazon Web Services (AWS), how it looks like and which features it offers.
+weight: 10
+menu:
+  main:
+    parent: general-architecture
+last_review_date: 2020-10-28
+user_questions:
+  - What areas are covered in the Giant Swarm AWS platform?
+  - Do I need a management cluster per AWS region?
+  - What does Giant Swarm use operators for?
+  - How does Giant Swarm manage Custom Resources (CRs)?
+  - How does Giant Swarm operate in the AWS landscape?
+  - Why does Giant Swarm need access to my AWS account?
+  - What isolation layers are available when using Giant Swarm on AWS?
+  - What are best practices for workload segregation on AWS?
+  - How would Node Pools look on workload clusters in AWS?
+  - How do you control resource assignment on AWS?
+  - Will my AWS clusters autoscale?
+  - How are workloads secured on AWS clusters?
+  - Why does Giant Swarm run a monitoring stack on my AWS management cluster?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-celestial
+  - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
+
+# The Giant Swarm AWS platform
 
 The Giant Swarm Platform consists of various components. They can be categorized into three areas: infrastructure, operations, and applications.
 
-For managing all the infrastructure we run a management cluster per cloud and region where you want to run your workloads. From that management cluster you can spin up as many individual Kubernetes clusters, called _workload clusters_, as you want. Our operations team works to keep all cluster components healthy, while we release new versions with new features and patches. On top of that Giant Swarm offers a curated catalog with common Cloud Native tools that helps with monitoring, security, or API management. Customers can leverage those while we carry the burden of maintaining and keep them up to date.
+For managing all the infrastructure we run a management cluster per cloud and region where you want run your workloads. From that management cluster you can spin up as many individual Kubernetes clusters, called _workload clusters_, as you want. Our operations team works to keep all cluster components healthy, while we release new versions with new features and patches. On top of that Giant Swarm offers a curated catalog with common Cloud Native tools that helps with monitoring, security or API management. Customers can leverage those while we carry the burden of maintain and keep them up to date.
 
 When it comes to planning and designing your cluster architecture and its adaption to our infrastructure requirements, there are many moving parts to consider. Based on our experience with various customers over the last 6 years, we have gathered best practices and general advice to help with some of the initial critical decisions.
 
 ## Management cluster
 
-As we are fully convinced of Kubernetes as a platform for building platforms, we built all our management clusters based on Kubernetes. The initial deployment entails the creation of that management cluster in a defined cloud provider region. After the management cluster is ready we deploy all our automation taking advantage of Kubernetes primitives and using the same philosophy we advocate to our customers.
+As we are fully convinced of Kubernetes as a platform for building platforms, we build all our management clusters based on Kubernetes. The initial deployment entails the creation of that management cluster in a defined cloud provider region. After the management cluster is ready we deploy all our automation taking advantage of Kubernetes primitives and using the same philosophy we advocate to our customers.
 
-Giant Swarm leverages the concept of [“Operators"](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) to control all resources that clusters need as [“Custom Resources”](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/). At the same time customers can also use the Kubernetes Control Plane API to [manage their clusters](/guides/creating-clusters-via-crs/) and/or [applications](/basics/app-catalog/).
+Giant Swarm leverages the concept of [“Operators"](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) to control all resources that clusters need as [“Custom Resources”](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/). At the same time customers can also use the Kubernetes Control Plane API to [manage their clusters](/guides/creating-clusters-via-crs-on-aws/) and/or [applications](/basics/app-catalog/).
 
-![Azure management cluster architecture](architecture-azure-control-plane.png)
+![AWS management cluster architecture](aws-cp-cluster-architecture.png)
 
-## Azure landscape
+## AWS landscape
 
-Giant Swarm's Azure operator is the product of years of work and we continue to apply our learnings and new functionality to it, as they become available. It is in charge of the provisioning and configuration of all resources needed to make a Kubernetes cluster functional on Azure. This operator runs in the management cluster, conveniently in separate subscription, and needs to reach the Azure API within subscription where you want to deploy your clusters. Thanks to our [Multi-Account](/basics/multi-account/) support, customers can add different Azure subscriptions to our platform and our operator will assume an Service Principle to operate the resources accordingly and spawn clusters into these subscriptions respectively.
+Giant Swarm's AWS operator is the product of years of work and we continue to apply our learnings and new functionality to it, as they become available. It is in charge of the provisioning and configuration of all resources needed to make a Kubernetes cluster functional on AWS. This operator runs in the management cluster, conveniently in separate accounts, and needs to reach the AWS API where you want to deploy your clusters. Thanks to our [Multi-Account](/basics/multi-account/) support, customers can add different AWS accounts to our platform and our operator will assume an IAM Role to operate the resources accordingly and spawn clusters into these accounts respectively.
 
-In order to help Customers getting started with our platform, we have crafted an [introductory guide](/guides/prepare-azure-subscription/) on how to configure your Azure subscription. It is important to review and request Resources Quotas and Service Limits on Azure Subscription level in order to be able to spawn machines [Azure quotas](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits) when creating clusters through our platform. Additionally, we continuously monitor the relevant limits when you are running our platform. We will notify you if a cluster approaches one of these limits, so you can focus on building your applications.
+Most of our customers rely on additional AWS services like Control Tower, Organizations or Config to help them with the landing, configuration, and audit of their applications on cloud provider resources. Based on our experience, we have crafted an [introductory guide](/guides/prepare-aws-account/) on how to configure your AWS accounts, to prepare them for our platform. These include good defaults, which will prevent you from hitting [AWS limits (service quotas)](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) when creating clusters through our platform. Additionally, we continuously monitor the relevant limits. We will notify you, if a cluster approaches one of these limits, so you can focus on building your applications.
 
-Following the principle of least privilege, we continuously refine the permissions needed for our automation to manage the Azure resources and the permissions given to our support engineers to assist when there is a problem. This is an ongoing process, as this is subject to change. We are constantly tweaking this based on our experience and changes introduced in Azure APIs and we have recently started utilizing the [Azure Lighthouse](https://azure.microsoft.com/en-us/services/azure-lighthouse/) that enables to delegate resources to a different account, making it easier to manage support team from both sides.
+Following the principle of least privilege, we continuously refine the permissions needed for our automation to manage the AWS resources and the permissions given to our support engineers to assist when there is a problem. This is an ongoing process, as this is subject to change. We are constantly tweaking this based on our experience and changes introduced in AWS APIs as well as upstream changes in Kubernetes and other community projects. That being said, as infrastructure providers, we need a certain level of access to the cloud providers’ APIs in order to ensure the smooth operation and support of our platform. In some cases, we recommend creating accounts solely for Giant Swarm related resources and keeping other resources in separate accounts. These accounts are only accessed on demand.
 
 ## Workload segregation and account model
 
-When starting out with our platform many of our customers are at the beginning of their journey to a distributed and highly resilient micro-service architecture. This is often a radically different approach to organizing and managing computing resources. This is mostly about abstracting the complexity of cluster creation and management. It opens up new possibilities on how to isolate applications and access to the infrastructure. The two most common reasons for customers to segregate applications over different    clusters and/or accounts are security and separation of concerns.
+When starting out with our platform many of our customers are at the beginning of their journey to a distributed and highly resilient micro-service architecture. This is often a radically different approach to organizing and managing computing resources. This is mostly about abstracting the complexity of cluster creation and management. It opens up new possibilities on how to isolate applications and access to the infrastructure. The two most common reasons for customers to segregate applications over different clusters and/or accounts are security and separation of concerns.
 
 Once Kubernetes arrived on the scene, the promise of having all your applications in a single cluster seemed invaluable, as container isolation, namespaces, and other Kubernetes features allow you to isolate the workloads. But as time passed several drawbacks were found that discourage this approach. [Container isolation is not perfect](https://sysdig.com/blog/container-isolation-gone-wrong/), in the end workloads still share a kernel and some cluster components that can affect each other. Though it can be mitigated using [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/),  [Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/) or [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/), it requires expertise and knowledge. At the same time, as you continue to add more and more applications into the cluster, the traffic increases. This potentially affects DNS latency, ingress handling, or the attack surface. In addition, having multiple tenants in the cluster increases the possibility to affect each other when a central component is tuned for a specific scenario. Potentially, it can significantly impact the cluster lifecycle, i.e. upgrades, due to the extra effort in communication and planning across various teams.
 
@@ -41,11 +59,13 @@ All of this is not to say that segregation inside a cluster should be avoided bu
 
 Hence, the key is to find the right balance between the new Cloud Native approach and the old school hard isolation.
 
-Above, we see several isolation layers in one place. Our automation creates a single Virtual Network by cluster, with private subnets for the worker nodes and secure configuration by default. At the same time, the nodes run a container-ready operating system created with security and reliability in mind. Next, our base Kubernetes setup provides [Network Polices](https://kubernetes.io/docs/concepts/services-networking/network-policies/) and [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) to restrict communication to core components accompanying with a very strict policy to ensure containers do not gain extended privileges unintentionally.
+![Default AWS security layers](aws-security-layers.png)
 
-Having said that, there is no general rule to split workloads between Azure subscriptions, clusters or namespaces. It highly depends on the customers policies in effect and access requirements among others. However, we can give some advice on where to start.
+Above, we see several isolation layers in one place. Our automation creates a single VPC by cluster, with private subnets for the worker nodes and secure configuration by default. At the same time, the nodes run a container-ready operating system created with security and reliability in mind. Next, our base Kubernetes setup provides [Network Polices](https://kubernetes.io/docs/concepts/services-networking/network-policies/) and [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) to restrict communication to core components accompanying with a very strict policy to ensure containers do not gain extended privileges unintentionally.
 
-- Use Azure AD and subscriptions to establish different access models based on environments. You could have an subscription **A** for production, where users have no rights, and audit policies and logging systems track every single action. And you could have an subscription **B**, where developers can get access to debug and test their applications or understand the infrastructure that holds it.
+Having said that, there is no general rule to split workloads between AWS accounts, clusters or namespaces. It highly depends on the customers policies in effect and access requirements among others. However, we can give some advice on where to start.
+
+- Use AWS accounts (and other AWS tools) to establish different access models based on environments. You could have an account **A** for production, where users have no rights, and audit policies and logging systems track every single action. And you could have an account **B**, where developers can get access to debug and test their applications or understand the infrastructure that holds it.
 - Segregate applications based on responsibility and volume of services included. If a team or department owns a service platform composed of several components, it makes sense to use a single cluster for it. That way, upgrades to the cluster or its shared components, like Ingress Controller or DNS servers, do not interfere with other applications which reduces overall complexity.
 - Divide different services of single systems into different [namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/). It allows to control resources, network communication and access to those in finer granularity.
 - Automate and abstract your workload lifecycle. Defining the configuration of applications and the underlying [infrastructure as code](https://en.wikipedia.org/wiki/Infrastructure_as_code) has become the de facto standard to manage complex systems. There are plenty of tools nowadays to declare your application configuration as code, rely on them and discard manual changes. Think about the possibility of having to migrate your application from one cluster to another. Ideally, such a change should imply just a single config line change. Kubernetes helps to define [Cloud Native Applications](https://12factor.net/) but there are some parts that still reside on the developer side.
@@ -54,13 +74,13 @@ Having said that, there is no general rule to split workloads between Azure subs
 
 ### Architecture
 
-Our Azure Operator creates a single Virtual Network per cluster and one subnet for each of the node pools defined in the configuration. There is no overlay network thanks to Azure CNI in place, so that pods run in the same IP range as nodes. For each subnet there is a NAT Gateway, which is in charge of routing traffic from nodes or pods to the Internet. Once a workload is exposed to the Internet, a Load Balancer is placed in the public subnet to balance the request over the different backends.
+Our [AWS operator](https://www.giantswarm.io/blog/aws-operator-2-0-creating-kubernetes-clusters-with-cloudformation) creates a single VPC per cluster and a subnet (in fact its two subnets: one public and private) for each node pool defined in the configuration. There is no overlay network in place, so that pods run in the same IP range as nodes. For each private subnet there is a NAT Gateway, which is in charge of routing traffic from nodes or pods to the Internet. Once a workload is exposed to the Internet, an ELB is placed in the public subnet to balance the request over the different backends.
 
-![Workload cluster architecture](architecture-azure-tenant-cluster.png)
+![AWS workload cluster architecture](aws-tenant-cluster-architecture.png)
 
-In Azure the [node pool](/basics/nodepools/) concept is mapped to an Virtual Machine Scale Set, which defines a launch configuration and scaling properties of the worker nodes located in it.
+In AWS the [node pool](/basics/nodepools/) concept is mapped to an Autoscaling Group, which defines a launch configuration and scaling properties of the worker nodes located in it.
 
-In order to communicate with your on-premises data center or with other Virtual Networks (other cluster or existing infrastructure) you can leverage a VPN/Direct Connect or a Transit Gateway/peering respectively.
+In order to communicate with your on-premises data center or with other VPCs (other cluster or existing infrastructure) you can leverage a VPN/Direct Connect or a Transit Gateway/peering respectively.
 
 ### Worker node size
 
@@ -94,18 +114,9 @@ Since we provide a **managed** Kubernetes platform, Giant Swarm has to be aware 
 
 Our on-call engineers will be paged in case anything happens to the cluster or its base components and they will respond to the incident based on the run-books we have created based on years of operating Cloud Native systems. In case there is an improvement to be made, a post mortem is created and a solution will be implemented before long. Any patch or fix added to the platform will be released to all customers.
 
-## App Platform
-
-Giant Swarm [has designed a system](https://www.giantswarm.io/app-platform) to ease the use of some common Cloud Native apps. The amount of components available in the landscape is huge, and [we have decided to include some of the projects in our catalog](https://www.giantswarm.io/blog/announcing-the-giant-swarm-app-platform) for our customers to rely on.
-
-Right now we have several managed apps to control the Ingress traffic ([NGINX Ingress Controller](https://github.com/giantswarm/nginx-ingress-controller-app) and [Kong](https://github.com/giantswarm/kong-app)), secure the AWS API and map roles ([kiam](https://github.com/giantswarm/kiam-app)), collect and process logs ([EFK](https://github.com/giantswarm/efk-stack-app)) or automate the DNS setup ([external DNS](https://github.com/giantswarm/external-dns-app)).
-
-But at the same time we open the catalog to our customers and employees to use for their own apps. That is why we are running a proof of concept for AWS App Mesh, the AWS implementation of Service Mesh pattern, or Loki, the “coolest” log collector. If you trust in a Cloud Native app and operating it does not add any value to your business, talk to us and we might take over its management for you, too.
-
 Please note, while this document went into extensive details with regards to how Giant Swarm runs Kubernetes on AWS, we support [Azure](/basics/azure-architecture/) as well as [Bare Metal](/basics/onprem-architecture/). For more details, please [contact us](https://www.giantswarm.io/contact).
 
 ## Further reading
 
 - [Giant Swarm support model](/basics/giant-swarm-support/)
 - [Giant Swarm operational layers](/basics/giant-swarm-operational-layers/)
-- [Giant Swarm App Catalog](/basics/app-catalog/)

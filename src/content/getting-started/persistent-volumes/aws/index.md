@@ -1,9 +1,7 @@
 ---
-title: "Using Persistent Volumes on AWS"
-description: Tutorial on how to use dynamically provisioned Persistent Volumes on a cluster running on Amazon Web Services"
-type: page
-weight: 50
-tags: ["tutorial"]
+title: Using Persistent Volumes on AWS
+description: Tutorial on how to use dynamically provisioned Persistent Volumes on a cluster running on Amazon Web Services
+weight: 10
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---

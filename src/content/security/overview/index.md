@@ -1,9 +1,12 @@
 ---
+linkTitle: Overview
 title: Security
 description: Documentation of the Giant Swarm cluster security
-type: page
-weight: 20
-categories: ["basics"]
+weight: 10
+menu:
+  main:
+    parent: security
+    identifier: security-overview
 last_review_date: 2020-05-18
 owner:
   - https://github.com/orgs/giantswarm/teams/team-ludacris

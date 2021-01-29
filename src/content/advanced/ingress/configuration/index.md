@@ -1,10 +1,10 @@
 ---
-title: Advanced Ingress Configuration
+title: Advanced ingress configuration
 description: Here we describe how you can customize and enable specific features for the NGINX-based Ingress
-type: page
-weight: 50
-tags:
-  - tutorial
+weight: 10
+menu:
+  main:
+    parent: advanced-ingress
 user_questions:
   - How can I allow only certain IPs for Ingress access?
   - How can I assign requests to different services, based on the URL path?
@@ -24,7 +24,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-halo
 ---
 
-# Advanced Ingress Configuration
+# Advanced ingress configuration
 
 The [NGINX-based Ingress Controller](https://github.com/kubernetes/ingress-nginx) has additional configuration options and features that can be customized. The functionality is split into two categories:
 

@@ -1,9 +1,11 @@
 ---
+linkTitle: Fine-tuning upgrade disruption
 title: Fine-tuning upgrade disruption on AWS
 description: The level of disruption caused by cluster upgrades can be influenced per cluster. This article explains how to adjust the number of nodes that is updated simlutaneously, and the wait time between batches of nodes.
-type: page
-weight: 130
-tags: ["recipe"]
+weight: 150
+menu:
+  main:
+    parent: advanced
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---

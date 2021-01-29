@@ -1,14 +1,16 @@
 ---
-title: "Scheduling Constraints and Resource Quality of Service"
-description: "How you can constrain resource usage and define Quality of Service classes in Kubernetes"
-type: page
-weight: 70
-tags: ["tutorial"]
+linkTitle: Resource quality of service
+title: Scheduling constraints and resource quality of service (QoS)
+description: How you can constrain resource usage and define Quality of Service classes in Kubernetes
+weight: 40
+menu:
+  main:
+    parent: kubernetes
 owner:
   - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---
 
-# Scheduling Constraints and Resource Quality of Service
+# Scheduling constraints and resource quality of service (QoS)
 
 Kubernetes provides resource Quality of Service (QoS) to Pods based on what resources they request and what limits are set for them.
 

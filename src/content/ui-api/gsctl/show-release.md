@@ -1,7 +1,6 @@
 ---
 title: "'gsctl show release' command reference"
 description: The 'gsctl show release' command displays details of a workload cluster release.
-type: page
 weight: 52
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux

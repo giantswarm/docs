@@ -1,9 +1,10 @@
 ---
 title: Labelling workload clusters
 description: Introduction to labelling workload clusters
-type: page
-weight: 130
-tags: ["recipe"]
+weight: 110
+menu:
+  main:
+    parent: advanced
 aliases:
   - /guides/tenant-cluster-labelling/
 owner:

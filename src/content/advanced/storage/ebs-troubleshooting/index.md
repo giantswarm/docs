@@ -1,9 +1,11 @@
 ---
+linkTitle: EBS volume troubleshooting
 title: Handling Impaired EBS Volumes
 description: This guide will walk you through what happens to a node with impaired EBS volumes, and how to improve your workloads to handle them.
-type: page
-weight: 100
-tags: ["tutorial"]
+weight: 10
+menu:
+  main:
+    parent: advanced-storage
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---

@@ -1,9 +1,7 @@
 ---
-title: "Using Persistent Volumes on bare metal"
-description: "Tutorial on how to use pre-created Persistent Volumes on a cluster running on premise (bare metal)"
-type: page
+title: Using Persistent Volumes on-premises
+description: "Tutorial on how to use pre-created Persistent Volumes on a cluster running on-premises (on bare metal)"
 weight: 50
-tags: ["tutorial"]
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
 ---

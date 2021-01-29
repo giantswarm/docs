@@ -1,9 +1,12 @@
 ---
-title: Workload Cluster release versions
+linkTitle: Releases
+title: Workload cluster release versions
 description: Details on the workload cluster release offered by Giant Swarm and ways to look up even more details.
 last_review_date: 2020-10-30
-layout: subsection
-weight: 50
+weight: 30
+menu:
+  main:
+    parent: general
 user_questions:
   - What is a workload cluster release?
   - Where can I find details about workload cluster releases?

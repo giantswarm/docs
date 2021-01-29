@@ -1,4 +1,5 @@
 ---
+linkTitle: Usage data recording
 title: Usage data recording in our web interface
 description: Details on which data is tracked when using the Giant Swarm web interface
 weight: 1000
