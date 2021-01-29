@@ -19,7 +19,7 @@ owner:
 
 # Prepare an AWS account to run Giant Swarm clusters
 
-As detailed in the [Architecture](/basics/aws-architecture/) docs,
+As detailed in the [Architecture]({{< relref "/general/architcture/aws" >}}) docs,
 the workload clusters (the clusters running your Kubernetes workloads) in a Giant
 Swarm installation can run in an AWS account separate from the management cluster.
 This gives great flexibility depending on requirements and usage
@@ -278,7 +278,7 @@ organization. These clusters' resources will be created in your AWS account.
 - [Basics and Concepts: Multi Account Support](/basics/multi-account/)
 - [gsctl Reference: `update organization set-credentials`](/reference/gsctl/update-org-set-credentials/)
 - [API: Set credentials](/api/#operation/addCredentials)
-- [Giant Swarm Architecture](/basics/aws-architecture/)
+- [Giant Swarm Architecture]({{< relref "/general/architcture/aws" >}})
 - [Giant Swarm API documentation](/api/)
 - [AWS Service Limits](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)
 - [AWS Support Center](https://console.aws.amazon.com/support/home)

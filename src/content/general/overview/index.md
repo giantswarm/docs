@@ -40,7 +40,7 @@ There are some things not included in the cluster as managed by us:
 
 ## High availability and resilience
 
-As of workload cluster release v{{% first_aws_ha_masters_version %}} for AWS, [multiple master nodes](/basics/ha-masters/) with one
+As of workload cluster release v{{% first_aws_ha_masters_version %}} for AWS, [multiple master nodes]({{< relref "/advanced/high-availability/masters" >}}) with one
 etcd cluster member each are active by default on AWS.
 
 On other providers and in older workload cluster release for AWS, your clusters have a single running master. However, the clusters are set up in a way that they keep running even if the master is unavailable for a while (e.g. due to planned upgrades, failure, etc.). The only slight degradation you might notice is that while the master is down, you cannot change the state of your pods and other resources. As soon as the master is up again, you regain full control.

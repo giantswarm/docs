@@ -74,5 +74,5 @@ When inspecting details of such a cluster, or using the [`gsctl show cluster`](/
 
 ## Further reading
 
-- [The Giant Swarm AWS Architecture](/basics/aws-architecture/) explains the setup of Giant Swarm on AWS, in more detail.
-- [The Giant Swarm Azure Architecture](/basics/azure-architecture/) explains the setup of Giant Swarm on Azure, in more detail.
+- [The Giant Swarm AWS Architecture]({{< relref "/general/architcture/aws" >}}) explains the setup of Giant Swarm on AWS, in more detail.
+- [The Giant Swarm Azure Architecture]({{< relref "/general/architcture/azure" >}}) explains the setup of Giant Swarm on Azure, in more detail.

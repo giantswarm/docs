@@ -222,7 +222,7 @@ To help the scheduler further with being able to correctly (re-)schedule your Po
 
 Some, but not all, cluster upgrades require nodes to be upgraded. With single master clusters, this causes a downtime of the Kubernetes API that can last a few minutes.
 
-If you are running Giant Swarm on AWS, since workload cluster release v{{% first_aws_ha_masters_version %}} you have the option to use [high-availability masters](/basics/ha-masters/) instead. This will keep the Kubernetes API available even during an upgrade where nodes are rolled.
+If you are running Giant Swarm on AWS, since workload cluster release v{{% first_aws_ha_masters_version %}} you have the option to use [high-availability masters]({{< relref "/advanced/high-availability/masters" >}}) instead. This will keep the Kubernetes API available even during an upgrade where nodes are rolled.
 
 Consider this option before performing an upgrade. However, keep in mind that a cluster cannot be converted back from high-availability masters to a single master cluster.
 

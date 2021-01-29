@@ -18,7 +18,7 @@ owner:
 
 With Giant Swarm on AWS and Azure you can easily launch clusters with worker nodes spread across multiple availability zones (AZ). This will lower the risk that your cluster will become unavailable due to an incident in a particular AWS or Azure data center.
 
-On AWS, starting with workload cluster release {{% first_aws_ha_masters_version %}}, master nodes of a cluster are spread over different availability zones by default, for high availability of the Kubernetes API. You can chose however to run only a single master node. Read [High availability Kubernetes masters](/basics/ha-masters/) for more information.
+On AWS, starting with workload cluster release {{% first_aws_ha_masters_version %}}, master nodes of a cluster are spread over different availability zones by default, for high availability of the Kubernetes API. You can chose however to run only a single master node. Read [High availability Kubernetes masters]({{< relref "/advanced/high-availability/masters" >}}) for more information.
 
 ## What availability zones are good for {#benefits}
 
@@ -68,5 +68,5 @@ Also exclusively on AWS, for master nodes, the choice to use high availability (
 
 ## Further reading
 
-- [The Giant Swarm AWS Architecture](/basics/aws-architecture/) explains in more detail the setup of Giant Swarm on AWS.
-- [The Giant Swarm Azure Architecture](/basics/azure-architecture/) explains in more detail the setup of Giant Swarm on Azure.
+- [The Giant Swarm AWS Architecture]({{< relref "/general/architcture/aws" >}}) explains in more detail the setup of Giant Swarm on AWS.
+- [The Giant Swarm Azure Architecture]({{< relref "/general/architcture/azure" >}}) explains in more detail the setup of Giant Swarm on Azure.
