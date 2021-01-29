@@ -1,7 +1,12 @@
 ---
+linkTitle: Azure
 title: Using Persistent Volumes on Azure
 description: Tutorial on how to use dynamically provisioned Persistent Volumes on a cluster running on Azure Cloud
 weight: 20
+menu:
+  main:
+    identifier: gettingstarted-persistentvolumes-azure
+    parent: gettingstarted-persistentvolumes
 owner:
   - https://github.com/orgs/giantswarm/teams/team-celestial
 ---

@@ -1,7 +1,11 @@
 ---
+linkTitle: Configuration file
 title: gsctl configuration file reference
 description: Documentation of the configuration file format of gsctl
-weight: 1000
+weight: 20
+menu:
+  main:
+    parent: uiapi-gsctl
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---

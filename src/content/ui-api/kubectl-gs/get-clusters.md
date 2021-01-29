@@ -1,7 +1,11 @@
 ---
+linkTitle: get clusters
 title: "'kubectl gs get clusters' command reference"
 description: Reference documentation on how to list clusters and get details for a single cluster using 'kubectl gs'.
-weight: 10
+weight: 20
+menu:
+  main:
+    parent: uiapi-kubectlgs
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---

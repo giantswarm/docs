@@ -1,9 +1,12 @@
 ---
-linkTitle: Custom resource definitions (CRDs)
+linkTitle: CRDs
 title: Management API reference
 description: Schema reference of all custom resources (CRs) you can use with the Management API.
 layout: management-api-reference
 weight: 20
+menu:
+  main:
+    parent: uiapi-managementapi
 user_questions:
   - What is a Custom Resource Definition (CRD)?
   - What is a Custom Resource (CR)?

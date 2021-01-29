@@ -1,8 +1,12 @@
 ---
+linkTitle: Cluster definition
 title: Cluster definition reference
 description: Complete documentation of the Giant Swarm cluster definition YAML format, compatible with API v4 and v5. Use this format to create customized clusters via gsctl.
 layout: subsection
-weight: 40
+weight: 30
+menu:
+  main:
+    parent: uiapi-gsctl
 user_questions:
   - What are additional fields I need to fill out for node pool clusters
   - What are node definition keys I need to specify for a non-node pool cluster definition?

@@ -1,7 +1,11 @@
 ---
+linkTitle: Installation
 title: kubectl gs installation
 description: How to get kubectl gs (aka 'kgs') installed and keep it up to date
-weight: 1
+weight: 10
+menu:
+  main:
+    parent: uiapi-kubectlgs
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---

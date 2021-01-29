@@ -5,6 +5,7 @@ description: Documentation on our web interface, a visual way to manage workload
 weight: 10
 menu:
   main:
+    identifier: uiapi-web
     parent: ui-api
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux

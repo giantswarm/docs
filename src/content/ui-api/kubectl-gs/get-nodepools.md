@@ -1,7 +1,11 @@
 ---
+linkTitle: get nodepools
 title: "'kubectl gs get nodepools' command reference"
 description: Reference documentation on how to list node pools and get details for a single node pool using 'kubectl gs'.
-weight: 10
+weight: 30
+menu:
+  main:
+    parent: uiapi-kubectlgs
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---

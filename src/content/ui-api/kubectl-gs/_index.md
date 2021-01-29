@@ -5,6 +5,7 @@ description: User manual for kubectl-gs (also known as kgs), the Giant Swarm kub
 weight: 40
 menu:
   main:
+    identifier: uiapi-kubectlgs
     parent: ui-api
 # TODO: remove "layout: single" and let the page be rendered by a specific section template.
 layout: single

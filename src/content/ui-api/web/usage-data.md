@@ -3,6 +3,9 @@ linkTitle: Usage data recording
 title: Usage data recording in our web interface
 description: Details on which data is tracked when using the Giant Swarm web interface
 weight: 1000
+menu:
+  main:
+    parent: uiapi-web
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---

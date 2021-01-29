@@ -1,7 +1,11 @@
 ---
+linkTitle: template app
 title: "'kubectl gs template app' command reference"
 description: Reference documentation on how to create a manifest for an App using 'kubectl gs'.
-weight: 10
+weight: 50
+menu:
+  main:
+    parent: uiapi-kubectlgs
 owner:
   - https://github.com/orgs/giantswarm/teams/team-batman
 ---

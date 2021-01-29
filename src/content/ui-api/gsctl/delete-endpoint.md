@@ -1,7 +1,11 @@
 ---
+linkTitle: delete endpoint
 title: "'gsctl delete endpoint' command reference"
 description: The 'gsctl delete endpoint' command deletes an endpoint that you previously used from the configuration.
-weight: 41
+weight: 90
+menu:
+  main:
+    parent: uiapi-gsctl
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---

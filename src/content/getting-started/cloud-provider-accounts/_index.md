@@ -5,5 +5,6 @@ description: How to set up your AWS account or your Azure subscription in order 
 weight: 10
 menu:
   main:
+    identifier: gettingstarted-cloudprovider
     parent: getting-started
 ---

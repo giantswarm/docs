@@ -1,7 +1,12 @@
 ---
+linkTitle: AWS
 title: Creating workload clusters on AWS via the Management API
 description: This guide will walk you through the process of workload cluster creation via Control Plane Kubernetes on AWS.
-weight: 100
+weight: 20
+menu:
+  main:
+    identifier: uiapi-managementapi-creatingclusters-aws
+    parent: uiapi-managementapi-creatingclusters
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---

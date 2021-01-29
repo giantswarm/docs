@@ -1,7 +1,11 @@
 ---
+linkTitle: show nodepool
 title: "'gsctl show nodepool' command reference"
 description: The 'gsctl show nodepool' command shows details on a node pool.
-weight: 44
+weight: 210
+menu:
+  main:
+    parent: uiapi-gsctl
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---

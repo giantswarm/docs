@@ -5,5 +5,6 @@ description:
 weight: 40
 menu:
   main:
+    identifier: uiapi-managementapi
     parent: ui-api
 ---

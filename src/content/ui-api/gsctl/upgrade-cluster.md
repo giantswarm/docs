@@ -1,7 +1,11 @@
 ---
+linkTitle: upgrade cluster
 title: "'gsctl upgrade cluster' command reference"
 description: Detailed documentation on how to upgrade a cluster using the 'upgrade cluster' command in gsctl.
-weight: 30
+weight: 260
+menu:
+  main:
+    parent: uiapi-gsctl
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---

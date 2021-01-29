@@ -1,7 +1,11 @@
 ---
+linkTitle: list clusters
 title: "'gsctl list clusters' command reference"
 description: The 'gsctl list clusters' command shows all clusters you have access to with a few details like cluster ID, name, creation date, and owner organization.
-weight: 51
+weight: 120
+menu:
+  main:
+    parent: uiapi-gsctl
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---

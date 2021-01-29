@@ -1,7 +1,11 @@
 ---
+linkTitle: login
 title: "'gsctl login' command reference"
 description: "The 'gsctl login' command starts an authenticated session."
-weight: 41
+weight: 170
+menu:
+  main:
+    parent: uiapi-gsctl
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---

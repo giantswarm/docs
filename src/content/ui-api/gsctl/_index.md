@@ -5,6 +5,7 @@ description: Documentation on gsctl, the Giant Swarm command line utility to cre
 weight: 20
 menu:
   main:
+    identifier: uiapi-gsctl
     parent: ui-api
 # TODO: remove "layout: single" and let the page be rendered by a specific section template.
 layout: single

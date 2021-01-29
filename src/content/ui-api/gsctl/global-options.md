@@ -1,7 +1,11 @@
 ---
+linkTitle: Global options
 title: Global command line options in gsctl
 description: Documentation for gsctl options that can be passed on the command line for almost all commands. Plus some tips on how you can use them to switch environments.
-weight: 20
+weight: 10
+menu:
+  main:
+    parent: uiapi-gsctl
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---

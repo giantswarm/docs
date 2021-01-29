@@ -1,7 +1,11 @@
 ---
+linkTitle: update org set-credentials
 title: "'gsctl update organization set-credentials' command reference"
 description: The 'gsctl update organization set-credentials' command allows to set cloud provider credentials for an organization.
-weight: 55
+weight: 250
+menu:
+  main:
+    parent: uiapi-gsctl
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---

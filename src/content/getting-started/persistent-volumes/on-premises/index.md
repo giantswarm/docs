@@ -1,7 +1,12 @@
 ---
+linkTitle: On-premises
 title: Using Persistent Volumes on-premises
 description: "Tutorial on how to use pre-created Persistent Volumes on a cluster running on-premises (on bare metal)"
-weight: 50
+weight: 30
+menu:
+  main:
+    identifier: gettingstarted-persistentvolumes-onpremises
+    parent: gettingstarted-persistentvolumes
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
 ---

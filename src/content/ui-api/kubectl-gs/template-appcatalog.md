@@ -1,7 +1,11 @@
 ---
+linkTitle: template appcatalog
 title: "'kubectl gs template appcatalog' command reference"
 description: Reference documentation on how to create a manifest for an AppCatalog using 'kubectl gs'.
-weight: 10
+weight: 60
+menu:
+  main:
+    parent: uiapi-kubectlgs
 owner:
   - https://github.com/orgs/giantswarm/teams/team-batman
 ---

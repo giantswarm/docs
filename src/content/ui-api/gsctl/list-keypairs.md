@@ -1,7 +1,11 @@
 ---
+linkTitle: list keypairs
 title: "'gsctl list keypairs' command reference"
 description: "The 'gsctl list keypairs' lists key pairs for a cluster."
-weight: 40
+weight: 140
+menu:
+  main:
+    parent: uiapi-gsctl
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---

@@ -1,7 +1,11 @@
 ---
+linkTitle: list releases
 title: "'gsctl list releases' command reference"
 description: The 'gsctl list releases' command shows all workload cluster releases available in an installation.
-weight: 45
+weight: 160
+menu:
+  main:
+    parent: uiapi-gsctl
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---

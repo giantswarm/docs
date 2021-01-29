@@ -1,7 +1,11 @@
 ---
+linkTitle: list nodepools
 title: "'gsctl list nodepools' command reference"
 description: "The 'gsctl list nodepools' command shows all node pools of a cluster."
-weight: 44
+weight: 150
+menu:
+  main:
+    parent: uiapi-gsctl
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---

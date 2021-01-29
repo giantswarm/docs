@@ -4,6 +4,9 @@ title: The Giant Swarm App Platform in the web interface
 description: What the Giant Swarm App Platform looks like on our web interface and how to use it.
 last_review_date: 2020-04-22
 weight: 30
+menu:
+  main:
+    parent: uiapi-web
 aliases:
   - /reference/web-interface/app-catalog/
 owner:

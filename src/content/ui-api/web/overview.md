@@ -1,8 +1,11 @@
 ---
 linkTitle: Overview
 title: The web user interface
-description: TODO
+description: The Giant Swarm web user interface allows simple management of workload clusters. Here we give an introduction and guide through some features.
 weight: 10
+menu:
+  main:
+    parent: uiapi-web
 ---
 
 # The web user interface

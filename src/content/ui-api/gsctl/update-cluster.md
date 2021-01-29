@@ -1,7 +1,11 @@
 ---
+linkTitle: update cluster
 title: "'gsctl update cluster' command reference"
 description: The 'gsctl update cluster' command allows the modification of the cluster name, its labels, and converting it to provide high-availability Kubernetes masters.
-weight: 44
+weight: 230
+menu:
+  main:
+    parent: uiapi-gsctl
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---

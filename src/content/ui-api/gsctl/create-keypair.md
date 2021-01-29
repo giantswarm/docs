@@ -1,7 +1,11 @@
 ---
+linkTitle: create keypair
 title: "'gsctl create keypair' command reference"
 description: The 'gsctl create keypair' command creates a key pair and stores the related files in your certificate folder.
-weight: 32
+weight: 50
+menu:
+  main:
+    parent: uiapi-gsctl
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---

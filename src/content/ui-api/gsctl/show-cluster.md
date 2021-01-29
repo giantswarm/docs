@@ -1,7 +1,11 @@
 ---
+linkTitle: show cluster
 title: "'gsctl show cluster' command reference"
 description: The 'gsctl show cluster' command displays details of a cluster.
-weight: 52
+weight: 200
+menu:
+  main:
+    parent: uiapi-gsctl
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
