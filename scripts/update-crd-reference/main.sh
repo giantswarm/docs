@@ -2,7 +2,7 @@
 
 CRD_DOCS_GENERATOR_VERSION=0.2.3
 
-DESTINATION=src/content/reference/management-api
+DESTINATION=src/content/ui-api/management-api/crd
 
 # Clear output folder
 find ${DESTINATION} -type f -not -name "_index.md" | xargs rm
