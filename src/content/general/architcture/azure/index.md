@@ -80,7 +80,7 @@ Further, to enforce the definition of resources, [Limit Ranges](https://kubernet
 
 ### Cluster scalability
 
-Our clusters are crafted with the [cluster autoscaling component](/basics/cluster-size-autoscaling/) included as a managed app. This means that a users can define the size of the cluster by defining a minimum and maximum number of nodes per node pool. The cluster autoscaling component will scale the node pools up and down based on the capacity needed. Although we manage the component, we also allow for some customization in order to adapt the autoscaling behaviour to your needs.
+Our clusters are crafted with the [cluster autoscaling component]({{< relref "/kubernetes/cluster-size-autoscaling" >}}) included as a managed app. This means that a users can define the size of the cluster by defining a minimum and maximum number of nodes per node pool. The cluster autoscaling component will scale the node pools up and down based on the capacity needed. Although we manage the component, we also allow for some customization in order to adapt the autoscaling behaviour to your needs.
 
 ### Cluster authentication
 
@@ -110,6 +110,6 @@ Please note, while this document went into extensive details with regards to how
 
 ## Further reading
 
-- [Giant Swarm support model](/basics/giant-swarm-support/)
-- [Giant Swarm operational layers](/basics/giant-swarm-operational-layers/)
+- [Giant Swarm support model]({{< relref "/general/support" >}})
+- [Giant Swarm operational layers]({{< relref "/security/operational-layers" >}})
 - [Giant Swarm App Catalog]({{< relref "/app-platform" >}})

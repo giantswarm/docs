@@ -55,5 +55,5 @@ Our support process is subject to change. As we continuously improve it we disco
 
 ## Further reading
 
-- [Giant Swarm Operation Layers](/basics/giant-swarm-operational-layers/)
+- [Giant Swarm Operation Layers]({{< relref "/security/operational-layers" >}})
 - [Giant Swarm Cluster Upgrades](/reference/cluster-upgrades/)

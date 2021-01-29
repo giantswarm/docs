@@ -101,7 +101,7 @@ On-premises we achieve similar isolation by running the nodes in hypervisors (KV
 
 ### Management access
 
-Giant Swarm needs access to your clusters in order to provide day 2 support. For details on how we protect this access please visit the [Secure access to clusters - Users and Giant Swarm support](/basics/secured-access-to-clusters/) page.
+Giant Swarm needs access to your clusters in order to provide day 2 support. For details on how we protect this access please visit the [Secure access to clusters - Users and Giant Swarm support]({{< relref "/security/cluster-access" >}}) page.
 
 ### User management
 

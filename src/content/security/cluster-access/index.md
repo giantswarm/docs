@@ -32,7 +32,7 @@ Access to Giant Swarm clusters can be split into two parts.
 
 2. Admin Access - designated for Giant Swarm staff for management/development/support purposes.
 
-If you would like to know more about the different parts of the Giant Swarm infrastructure, please see our [operational layers article](/basics/giant-swarm-operational-layers/)
+If you would like to know more about the different parts of the Giant Swarm infrastructure, please see our [operational layers article]({{< relref "/security/operational-layers" >}})
 
 ## User access
 
@@ -84,6 +84,6 @@ Access to etcd or the Kubernetes API is secured based on certificates signed by 
 
 - [GitHub Vault authentication](https://www.vaultproject.io/docs/auth/github)
 - [Vault SSH certificate](https://www.vaultproject.io/docs/secrets/ssh/signed-ssh-certificates)
-- [Giant Swarm Operational Layers](/basics/giant-swarm-operational-layers/)
-- [Giant Swarm API](/basics/giant-swarm-operational-layers/#giant-swarm-api)
-- [Giant Swarm User Space](/basics/giant-swarm-operational-layers/#userspace)
+- [Giant Swarm Operational Layers]({{< relref "/security/operational-layers" >}})
+- [Giant Swarm API]({{< relref "/security/operational-layers#giant-swarm-api" >}})
+- [Giant Swarm User Space]({{< relref "/security/operational-layers#userspace" >}})
