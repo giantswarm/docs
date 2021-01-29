@@ -12,6 +12,7 @@ $indent: 14px
 // accordion nav
 .acnav
   width: 100%
+  padding-right: 10px
 
   *
     font-size: 14px
@@ -28,16 +29,15 @@ $indent: 14px
     list-style: none
 
   // font awesome icon 'fa-plus'
-  .has-children > &__label::after
+  .has-children > &__label a::after
     content: "\f015"
     display: inline-block
     font-family: GiantSwarmHappaAndDocs
     text-rendering: auto
     margin-left: 3px
-    //transition: transform .2s
+    pointer-events: all
 
-  // animate icon when list is opened
-  .has-children.is-open > &__label::after
+  &__label.active a::after
     transform: rotate(90deg)
 
   &__link,
@@ -69,6 +69,9 @@ $indent: 14px
   &__list--level4 .acnav__link,
   &__list--level4 > li > .acnav__label
     padding-left: ($indent * 2)
+  
+  a.current
+    color: #000
 
 .acnav__list--level1
   padding-bottom: 30px

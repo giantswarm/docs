@@ -8,31 +8,31 @@
                 {{ $pageForItem1 := $site.GetPage .URL }}
                 {{ if .HasChildren }}
                     <li class="has-children">
-                        <div class="acnav__label"><a href="{{ .URL }}">{{ .Name }}</a></div>
+                        <div class="acnav__label{{ if or ($currentPage.HasMenuCurrent "main" .) ($currentPage.IsMenuCurrent "main" . ) }} active{{ end }}"><a href="{{ .URL }}" class="{{ if $currentPage.IsMenuCurrent "main" . }}current{{ end }}">{{ .Name }}</a></div>
                         {{ if $currentPage.IsDescendant $pageForItem1 }}
                         <ul class="acnav__list acnav__list--level2">
                             {{ range .Children }}
                                 {{ $pageForItem2 := $site.GetPage .URL }}
                                 {{ if .HasChildren }}
                                     <li class="has-children">
-                                        <div class="acnav__label"><a class="acnav__link" href="{{ .URL }}">{{ .Name }}</a></div>
+                                        <div class="acnav__label{{ if or ($currentPage.HasMenuCurrent "main" .) ($currentPage.IsMenuCurrent "main" . ) }} active{{ end }}"><a class="acnav__link{{ if $currentPage.IsMenuCurrent "main" . }} current{{ end }}" href="{{ .URL }}">{{ .Name }}</a></div>
                                         {{ if $currentPage.IsDescendant $pageForItem2 }}
                                             <ul class="acnav__list acnav__list--level3">
                                                 {{ range .Children }}
-                                                <li><a class="acnav__link" href="{{ .URL }}">{{ .Name }}</a></li>
+                                                <li><a class="acnav__link{{ if $currentPage.IsMenuCurrent "main" . }} current{{ end }}" href="{{ .URL }}">{{ .Name }}</a></li>
                                                 {{ end }}
                                             </ul>
                                         {{ end }}
                                     </li>
                                 {{ else }}
-                                    <li><a class="acnav__link" href="{{ .URL }}">{{ .Name }}</a></li>
+                                    <li><a class="acnav__link{{ if $currentPage.IsMenuCurrent "main" . }} current{{ end }}" href="{{ .URL }}">{{ .Name }}</a></li>
                                 {{ end }}
                             {{ end }}
                         </ul>
                         {{ end }}
                     </li>
                 {{ else }}
-                    <li><a class="acnav__link" href="{{ .URL }}">{{ .Name }}</a></li>
+                    <li><a class="acnav__link{{ if $currentPage.IsMenuCurrent "main" . }} current{{ end }}" href="{{ .URL }}">{{ .Name }}</a></li>
                 {{ end }}
             {{ end }}
 		</ul>
