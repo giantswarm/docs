@@ -74,5 +74,5 @@ __Warning:__ Setting `system:masters` as an organization means the user who uses
 
 ## Related
 
-- [`gsctl create kubeconfig`](/reference/gsctl/create-kubeconfig/): Create a key pair and prepare your kubectl configuration to access the cluster.
+- [`gsctl create kubeconfig`]({{< relref "/ui-api/gsctl/create-kubeconfig" >}}): Create a key pair and prepare your kubectl configuration to access the cluster.
 - [API: Create key pair](/api/#operation/addKeyPair)

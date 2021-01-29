@@ -136,7 +136,7 @@ Special front matter fields we use:
 In order to link to other docs pages, please use this format only:
 
 ```markdown
-... see the [gsctl reference](/reference/gsctl/) for details. ...
+... see the [gsctl reference]({{< relref "/ui-api/gsctl" >}}) for details. ...
 ```
 
 Note that

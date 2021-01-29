@@ -66,8 +66,8 @@ To remove a label, set its key to an empty string (`labeltodelete=`).
 
 ## Related
 
-- [`gsctl create cluster`](/reference/gsctl/create-cluster/) - Add a node pool to a cluster
-- [`gsctl list clusters`](/reference/gsctl/list-clusters/) - List all node pools of a cluster
+- [`gsctl create cluster`]({{< relref "/ui-api/gsctl/create-cluster" >}}) - Add a node pool to a cluster
+- [`gsctl list clusters`]({{< relref "/ui-api/gsctl/list-clusters" >}}) - List all node pools of a cluster
 - [API: Modify cluster (v4)](/api/#operation/modifyCluster)
 - [API: Modify cluster (v5)](/api/#operation/modifyClusterV5)
 - [API: Update cluster labels](/api/#operation/setClusterLabels)

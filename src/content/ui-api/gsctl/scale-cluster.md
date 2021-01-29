@@ -75,6 +75,6 @@ Use `gsctl scale cluster --help` for a additional (global) arguments.
 
 ## Related
 
-- [`gsctl delete cluster`](/reference/gsctl/delete-cluster/): Delete a cluster
+- [`gsctl delete cluster`]({{< relref "/ui-api/gsctl/delete-cluster" >}}): Delete a cluster
 - [Basics: Cluster Size and Autoscaling]({{< relref "/kubernetes/cluster-size-autoscaling" >}})
 - [API: Modify cluster](/api/#operation/modifyCluster)

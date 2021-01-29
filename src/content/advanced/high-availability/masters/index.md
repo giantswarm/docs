@@ -95,7 +95,7 @@ the instructions in the web UI.
 ### Via the CLI (`gsctl`) {#gsctl}
 
 The `gsctl` CLI as of v0.23.1 provides the
-[gsctl update cluster](/reference/gsctl/update-cluster/) to change cluster details.
+[gsctl update cluster]({{< relref "/ui-api/gsctl/update-cluster" >}}) to change cluster details.
 Check the reference for the `--master-ha` flag.
 
 ### Via the Rest API {#rest-api}

@@ -43,7 +43,7 @@ You can list available workload cluster releases with `gsctl list releases`.
 ## Related
 
 - [Upgrade cluster general documentation](/reference/cluster-upgrades/)
-- [`gsctl create cluster`](/reference/gsctl/create-cluster/): Reference for creating a cluster
-- [`gsctl delete cluster`](/reference/gsctl/delete-cluster/): Reference for deleting a cluster
-- [`gsctl list releases`](/reference/gsctl/list-releases/): Reference for listing available workload cluster releases
+- [`gsctl create cluster`]({{< relref "/ui-api/gsctl/create-cluster" >}}): Reference for creating a cluster
+- [`gsctl delete cluster`]({{< relref "/ui-api/gsctl/delete-cluster" >}}): Reference for deleting a cluster
+- [`gsctl list releases`]({{< relref "/ui-api/gsctl/list-releases" >}}): Reference for listing available workload cluster releases
 - [API: Upgrade cluster](/api/#operation/upgradeCluster)

@@ -31,11 +31,11 @@ modes:
   `--self-contained` and set it's value to the desired output file path.
 
 In both cases, a new key pair will be created in your installation, just as it
-is the case with the [`gsctl create keypair`](/reference/gsctl/create-keypair/) command.
+is the case with the [`gsctl create keypair`]({{< relref "/ui-api/gsctl/create-keypair" >}}) command.
 
 As a prerequisite, you need to be logged in to `gsctl` and you have to be
 a member of the organization owning the cluster. If you can find the cluster
-using [`gsctl list clusters`](/reference/gsctl/list-clusters/), this is the case.
+using [`gsctl list clusters`]({{< relref "/ui-api/gsctl/list-clusters" >}}), this is the case.
 
 ## Command Line Examples {#example}
 
@@ -206,6 +206,6 @@ Passing flag `--output` with value `json` to `gsctl create kubeconfig` changes t
 
 ## Related
 
-- [`gsctl create keypair`](/reference/gsctl/create-keypair/): Create and download a key pair
+- [`gsctl create keypair`]({{< relref "/ui-api/gsctl/create-keypair" >}}): Create and download a key pair
 - [kubectl reference](https://kubernetes.io/docs/reference/kubectl/overview/)
 - [API: Create key pair](/api/#operation/addKeyPair)

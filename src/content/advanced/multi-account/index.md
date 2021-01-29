@@ -65,12 +65,12 @@ To prepare your credentials, either as AWS account roles or as an Azure service 
 You can then assign the credentials to your organization in several ways:
 
 - In the Giant Swarm web UI via the organization details page
-- In `gsctl` using the [`update organization set-credentials`](/reference/gsctl/update-org-set-credentials/) command
+- In `gsctl` using the [`update organization set-credentials`]({{< relref "/ui-api/gsctl/update-org-set-credentials" >}}) command
 - Via the [Giant Swarm API](/api/#operation/addCredentials)
 
 All workload clusters created for that organization will then use the credentials provided to the organization and will reside in the account/subscription associated with them.
 
-When inspecting details of such a cluster, or using the [`gsctl show cluster`](/reference/gsctl/show-cluster/) command, we display cloud provider details in the case the workload cluster does not reside in the default account.
+When inspecting details of such a cluster, or using the [`gsctl show cluster`]({{< relref "/ui-api/gsctl/show-cluster" >}}) command, we display cloud provider details in the case the workload cluster does not reside in the default account.
 
 ## Further reading
 

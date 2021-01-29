@@ -82,9 +82,9 @@ In workload clusters without autoscaling support, the number of Ingress Controll
 
 - [Cluster Autoscaler advanced configuration](/guides/advanced-cluster-autoscaler-configuration/)
 - [Recommendations and Best Practices regarding cluster size](/guides/recommendations-and-best-practices/#cluster-sizing)
-- [`gsctl create cluster`](/reference/gsctl/create-cluster/): Creating a cluster
-- [`gsctl create cluster`](/reference/gsctl/scale-cluster/): Scaling a cluster
-- [`gsctl show cluster`](/reference/gsctl/show-cluster/): Inspecting a cluster
+- [`gsctl create cluster`]({{< relref "/ui-api/gsctl/create-cluster" >}}): Creating a cluster
+- [`gsctl scale cluster`]({{< relref "/ui-api/gsctl/scale-cluster" >}}): Scaling a cluster
+- [`gsctl show cluster`]({{< relref "/ui-api/gsctl/show-cluster" >}}): Inspecting a cluster
 - [API: Create cluster](/api/#operation/addCluster)
 - [API: Modify cluster](/api/#operation/modifyCluster)
 - [API: Get cluster details](/api/#operation/getCluster)

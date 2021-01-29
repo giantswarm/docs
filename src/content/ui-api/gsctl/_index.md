@@ -114,7 +114,7 @@ brew install gsctl</code></pre>
 
 ## Configuration {#configuration}
 
-`gsctl` keeps its own settings under `$HOME/.config/gsctl/`. There is a [configuration file](/reference/gsctl/configuration-file/) called `config.yaml`. Key pairs are stored in the `certs` subdirectory.
+`gsctl` keeps its own settings under `$HOME/.config/gsctl/`. There is a [configuration file]({{< relref "/ui-api/gsctl/configuration-file" >}}) called `config.yaml`. Key pairs are stored in the `certs` subdirectory.
 
 The following environment variables can be used to affect some behavior:
 

@@ -261,8 +261,8 @@ In order to run a workload cluster in your AWS account, the organization owning
 your cluster has to know about the roles you just created.
 
 If you have direct access to the Giant Swarm API, please set the credentials of
-your organization with our CLI [gsctl](/reference/gsctl/). Look for the
-[`update organization set-credentials`](/reference/gsctl/update-org-set-credentials/#aws)
+your organization with our CLI [gsctl]({{< relref "/ui-api/gsctl" >}}). Look for the
+[`update organization set-credentials`]({{< relref "/ui-api/gsctl/update-org-set-credentials" >}})/#aws)
 command.
 
 In case you are working with a Giant Swarm partner, you might not have
@@ -276,7 +276,7 @@ organization. These clusters' resources will be created in your AWS account.
 ## Further reading
 
 - [Basics and Concepts: Multi Account Support]({{< relref "/advanced/multi-account" >}})
-- [gsctl Reference: `update organization set-credentials`](/reference/gsctl/update-org-set-credentials/)
+- [gsctl Reference: `update organization set-credentials`]({{< relref "/ui-api/gsctl/update-org-set-credentials" >}})
 - [API: Set credentials](/api/#operation/addCredentials)
 - [Giant Swarm Architecture]({{< relref "/general/architcture/aws" >}})
 - [Giant Swarm API documentation](/api/)

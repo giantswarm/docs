@@ -52,7 +52,7 @@ confirmation, add the `--force` option.
 
 ## Related
 
-- [`gsctl create nodepool`](/reference/gsctl/create-nodepool/) - Add a node pool to a cluster
-- [`gsctl list nodepools`](/reference/gsctl/list-nodepools/) - List all node pools of a cluster
-- [`gsctl show nodepool`](/reference/gsctl/show-nodepool/) - Show details for a node pool
-- [`gsctl update nodepool`](/reference/gsctl/update-nodepool/) - Modify a node pool
+- [`gsctl create nodepool`]({{< relref "/ui-api/gsctl/create-nodepool" >}}) - Add a node pool to a cluster
+- [`gsctl list nodepools`]({{< relref "/ui-api/gsctl/list-nodepools" >}}) - List all node pools of a cluster
+- [`gsctl show nodepool`]({{< relref "/ui-api/gsctl/show-nodepool" >}}) - Show details for a node pool
+- [`gsctl update nodepool`]({{< relref "/ui-api/gsctl/update-nodepool" >}}) - Modify a node pool

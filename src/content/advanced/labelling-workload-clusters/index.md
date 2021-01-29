@@ -31,7 +31,7 @@ Note: You can also [manage cluster labels directly through `happa`](/reference/w
 
 ## Working with workload cluster labels using `gsctl`
 
-With `gsctl`, our [CLI](https://github.com/giantswarm/gsctl), cluster labels can be modified by executing [`gsctl update cluster`](/reference/gsctl/update-cluster/) by setting label changes using one or multiple `--label` flag.
+With `gsctl`, our [CLI](https://github.com/giantswarm/gsctl), cluster labels can be modified by executing [`gsctl update cluster`]({{< relref "/ui-api/gsctl/update-cluster" >}}) by setting label changes using one or multiple `--label` flag.
 
 Deleting a label can be accomplished by setting its value to an empty string. `--label labeltodelete=`.
 
@@ -43,10 +43,10 @@ my-org/environment=testing
 my-org/team=upstate
 ```
 
-Once clusters are labelled, the output of [`gsctl list clusters`](/reference/gsctl/list-clusters/) can be augmented by setting flag `--selector` (or `-l`)
+Once clusters are labelled, the output of [`gsctl list clusters`]({{< relref "/ui-api/gsctl/list-clusters" >}}) can be augmented by setting flag `--selector` (or `-l`)
 It takes a [Kubernetes Label selector](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors) to specify requirements on cluster labels to select.
 
-The output of [`gsctl show cluster`](/reference/gsctl/show-cluster/) will contain all labels currently attached to the selected cluster.
+The output of [`gsctl show cluster`]({{< relref "/ui-api/gsctl/show-cluster" >}}) will contain all labels currently attached to the selected cluster.
 
 ## Working with workload cluster labels using the Giant Swarm API
 

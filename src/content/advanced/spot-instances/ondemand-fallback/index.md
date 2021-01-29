@@ -73,7 +73,7 @@ The `.data.priorities` part defines a map of priority values and regular express
 
 Now this ConfigMap must be deployed in the (workload) cluster with your two node pools.
 
-If you are not authenticated with the cluster's Kubernetes API yet, create a key pair via the web UI or via [`gsctl create kubeconfig`](/reference/gsctl/create-kubeconfig/).
+If you are not authenticated with the cluster's Kubernetes API yet, create a key pair via the web UI or via [`gsctl create kubeconfig`]({{< relref "/ui-api/gsctl/create-kubeconfig" >}}).
 
 With the above manifest edited according to your IDs and stored as `expander-cm.yaml`, use this command:
 

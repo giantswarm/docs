@@ -20,7 +20,7 @@ user_questions:
 # Cluster definition reference
 
 Giant Swarm's cluster definition allows to define the detailed specs for a cluster in a YAML
-format, which is then passed to [`gsctl create cluster`](/reference/gsctl/create-cluster/) in order to
+format, which is then passed to [`gsctl create cluster`]({{< relref "/ui-api/gsctl/create-cluster" >}}) in order to
 create that cluster.
 
 The cluster definition schema corresponds to a high degree with the Giant Swarm API schema for cluster
@@ -83,7 +83,7 @@ workers:
 
 - `owner`: Name of the owner organization.
 - `name`: Friendly name of the cluster. If not specified, a name will be generated.
-- `release_version`: Allows to select a specific release version. The value must be the semantic version number (SemVer) of an active release. To get information on all available releases, use the [`gsctl list releases`](/reference/gsctl/list-releases/) command.
+- `release_version`: Allows to select a specific release version. The value must be the semantic version number (SemVer) of an active release. To get information on all available releases, use the [`gsctl list releases`]({{< relref "/ui-api/gsctl/list-releases" >}}) command.
 - `availability_zones`: Number of availability zones to use for worker nodes (on AWS and Azure only). Both the default value and the maximum can be obtained via the [Info endpoint](/api/#operation/getInfo) of the Giant Swarm API.
 - `workers`: Array of node definition objects describing each worker node. See below for possible keys. If not specified, the default number of worker nodes with default settings will be created.
 
@@ -173,7 +173,7 @@ Coming from v4, you might want to understand how v5 is different from v4:
 - `api_version`: Mandatory and must have the string value `v5`.
 - `owner`: Name of the owner organization.
 - `name`: Friendly name of the cluster. If not specified, a name will be generated.
-- `release_version`: Allows to select a specific release version. The value must be the semver version number of an active release. To get information on all available releases, use the [`gsctl list releases`](/reference/gsctl/list-releases/) command.
+- `release_version`: Allows to select a specific release version. The value must be the semver version number of an active release. To get information on all available releases, use the [`gsctl list releases`]({{< relref "/ui-api/gsctl/list-releases" >}}) command.
 - `master_nodes`: Settings regarding the Kubernetes master nodes.
     - `high_availability`: Where supported, this is `true` by default, which means that the cluster will have three master nodes. Supported on AWS since release v{{% first_aws_ha_masters_version %}}. Set this to `false` to have only one master node in the cluster (recommended only for test clusters).
 - `nodepools`: Here you can list your node pool definitions as explained below. Note that this is not mandatory, and you can also add node pools to a cluster after it has been created.
@@ -213,9 +213,9 @@ Chances are that you already work with YAML in various places. If not, here are 
 
 ## Related
 
-- [`gsctl create cluster`](/reference/gsctl/create-cluster/): Create a cluster based on flags, or a definition file
-- [`gsctl create nodepool`](/reference/gsctl/create-nodepool/)
-- [`gsctl list releases`](/reference/gsctl/list-releases/): Listing available releases
+- [`gsctl create cluster`]({{< relref "/ui-api/gsctl/create-cluster" >}}): Create a cluster based on flags, or a definition file
+- [`gsctl create nodepool`]({{< relref "/ui-api/gsctl/create-nodepool" >}})
+- [`gsctl list releases`]({{< relref "/ui-api/gsctl/list-releases" >}}): Listing available releases
 - [API: Create cluster (v4)](/api/#operation/addCluster)
 - [API: Create cluster (v5)](/api/#operation/addClusterV5)
 - [API: Create node pool](/api/#operation/addNodePool)

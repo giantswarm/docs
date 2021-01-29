@@ -66,7 +66,7 @@ $ gsctl create nodepool "Cluster name" \
 
 ## Related
 
-- [`gsctl list nodepools`](/reference/gsctl/list-nodepools/) - List all node pools of a cluster
-- [`gsctl show nodepool`](/reference/gsctl/show-nodepool/) - Show details for a node pool
-- [`gsctl update nodepool`](/reference/gsctl/update-nodepool/) - Modify a node pool
-- [`gsctl delete nodepool`](/reference/gsctl/delete-nodepool/) - Delete a node pool
+- [`gsctl list nodepools`]({{< relref "/ui-api/gsctl/list-nodepools" >}}) - List all node pools of a cluster
+- [`gsctl show nodepool`]({{< relref "/ui-api/gsctl/show-nodepool" >}}) - Show details for a node pool
+- [`gsctl update nodepool`]({{< relref "/ui-api/gsctl/update-nodepool" >}}) - Modify a node pool
+- [`gsctl delete nodepool`]({{< relref "/ui-api/gsctl/delete-nodepool" >}}) - Delete a node pool

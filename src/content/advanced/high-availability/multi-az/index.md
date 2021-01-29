@@ -57,12 +57,12 @@ Spreading worker nodes over multiple availability zones can be configured per [n
 You can create clusters in several ways:
 
 - In the [web interface](/reference/web-interface/).
-- In `gsctl` using the [`create cluster`](/reference/gsctl/create-cluster/) command with the appropriate details set in a [cluster definition](/reference/cluster-definition/).
+- In `gsctl` using the [`create cluster`]({{< relref "/ui-api/gsctl/create-cluster" >}}) command with the appropriate details set in a [cluster definition](/reference/cluster-definition/).
 - Via the [Giant Swarm API](/api/#operation/addCluster).
 
-When inspecting details of such a cluster, or using the [`gsctl show cluster`](/reference/gsctl/show-cluster/) command, we display the list of availability zones used by the cluster.
+When inspecting details of such a cluster, or using the [`gsctl show cluster`]({{< relref "/ui-api/gsctl/show-cluster" >}}) command, we display the list of availability zones used by the cluster.
 
-Where worker nodes are organized in node pools, the availability zone distribution must be configured when creating a node pool. This is supported both in the web UI as well as the CLI with the [`gsctl create nodepool`](/reference/gsctl/create-nodepool/) command. For inspection, both the [`gsctl list nodepools`](/reference/gsctl/list-nodepools/) and [`gsctl show nodepool`](/reference/gsctl/show-nodepool/) commands provide AZ information.
+Where worker nodes are organized in node pools, the availability zone distribution must be configured when creating a node pool. This is supported both in the web UI as well as the CLI with the [`gsctl create nodepool`]({{< relref "/ui-api/gsctl/create-nodepool" >}}) command. For inspection, both the [`gsctl list nodepools`]({{< relref "/ui-api/gsctl/list-nodepools" >}}) and [`gsctl show nodepool`]({{< relref "/ui-api/gsctl/show-nodepool" >}}) commands provide AZ information.
 
 Also exclusively on AWS, for master nodes, the choice to use high availability (three master nodes, placed in one AZ each) is made on cluster creation. It is also possible to switch from a single master node to high availability after cluster creation, but not vice versa.
 

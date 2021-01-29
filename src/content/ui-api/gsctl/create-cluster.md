@@ -43,7 +43,7 @@ Note that command line flags take precedence over values in the definition. This
 - `--file`, `-f`: Definition file path. See [cluster definition reference](../../cluster-definition/) for details. The value `-` means that the definition will be read from standard input.
 - `--owner`, `-o`: Name of the owner organization. Overwrites a name given per definition file.
 - `--name`: Name of the cluster. Overwrites name given in definition file.
-- `--release`, `-r`: Specific the workload cluster release version to use. Defaults to the latest active version. See [list releases](/reference/gsctl/list-releases/) for details on listing available workload cluster releases.
+- `--release`, `-r`: Specific the workload cluster release version to use. Defaults to the latest active version. See [list releases]({{< relref "/ui-api/gsctl/list-releases" >}}) for details on listing available workload cluster releases.
 - `--create-default-nodepool`: Where node pools are supported (AWS since workload cluster release v{{% first_aws_nodepools_version %}} and Azure since workload cluster release v{{% first_azure_nodepools_version %}}), setting this to `false` allows to suppress the creation of a default node pool. A default node pools would otherwise be created automatically if no cluster definition is given specifying any node pools details, to get you started quickly.
 - `--masters-ha`: Where supported, this is `true` by default, which means that the cluster will have three master nodes. Available on AWS since workload cluster release v{{% first_aws_ha_masters_version %}}. Set this to `false` to have only one master node in the cluster (recommended only for test clusters).
 - `--output`: By specifying this flag with value `json`, the output can be printed in JSON format. This is convenient for use in automation. See [JSON output](#json-output) for examples.
@@ -108,9 +108,9 @@ When requesting cluster creation with workload cluster release v{{% first_aws_no
 ## Related
 
 - [Cluster definition reference](/reference/cluster-definition/)
-- [`gsctl list releases`](/reference/gsctl/list-releases/) - List all available workload cluster releases
-- [`gsctl create kubeconfig`](/reference/gsctl/create-kubeconfig/) - Getting a key pair and enabling `kubectl` to access a cluster
-- [`gsctl delete cluster`](/reference/gsctl/delete-cluster/) - Deleting a cluster
+- [`gsctl list releases`]({{< relref "/ui-api/gsctl/list-releases" >}}) - List all available workload cluster releases
+- [`gsctl create kubeconfig`]({{< relref "/ui-api/gsctl/create-kubeconfig" >}}) - Getting a key pair and enabling `kubectl` to access a cluster
+- [`gsctl delete cluster`]({{< relref "/ui-api/gsctl/delete-cluster" >}}) - Deleting a cluster
 - [Basics: Cluster Size and Autoscaling]({{< relref "/kubernetes/cluster-size-autoscaling" >}})
 - [API: Create cluster (v4)](/api/#operation/addCluster)
 - [API: Create cluster (v5)](/api/#operation/addClusterV5)
