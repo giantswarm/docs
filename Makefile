@@ -73,7 +73,7 @@ clean:
 	rm -rf .sass-cache
 
 # Verify internal links
-linkcheck-external:
+linkcheck-internal:
 	@echo "Checking internal links only\n"
 	docker run -d --rm --name server -p 8080:8080 -P $(REGISTRY)/$(COMPANY)/$(PROJECT):latest
 	sleep 2
