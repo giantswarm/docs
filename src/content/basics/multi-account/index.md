@@ -4,6 +4,9 @@ description: By default, all your workload clusters run in the same cloud provid
 weight: 110
 type: page
 categories: ["basics"]
+user_questions:
+- What use cases are supported by the multi-account functionality?
+- How do I setup multi-account functionality?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-celestial
 ---
