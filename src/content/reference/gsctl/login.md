@@ -3,6 +3,10 @@ title: "'gsctl login' command reference"
 description: "The 'gsctl login' command starts an authenticated session."
 type: page
 weight: 41
+user_questions:
+- How can I authenticate gaianst an API endpoint
+- How do I login to gsctl manually?
+- How do I login to gstcl in a script?
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
