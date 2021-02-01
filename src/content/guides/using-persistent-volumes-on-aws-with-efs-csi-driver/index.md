@@ -36,7 +36,7 @@ If you need to use EFS to provision volumes, be advised:
 
 ## Provision an EFS instance on AWS
 
-**Note:** Currently only static provisioning is supported. This means an AWS EFS file system needs to be created manually on AWS first. After that it can be mounted inside a container as a volume using the driver. 
+**Note:** Currently only static provisioning is supported. This means an AWS EFS file system needs to be created manually on AWS first. After that it can be mounted inside a container as a volume using the driver.
 
 Before installing the provisioner in Kubernetes we will need to create the EFS instance in the same AWS account:
 
@@ -63,11 +63,11 @@ To install the EFS CSI driver you will need to follow these steps:
 
 Once you installed the `aws-efs-csi-driver` from _Giant Swarm Playground_ catalog, Kubernetes cluster will have a storage class `efs-csi` deployed.
 
-## Deploy a sample application 
+## Deploy a sample application
 
 In order to see if all works out we need to create some manifests:
 
-First we apply a PersistentVolume with a capacity of 5 GB storage, here you need to provide EFS instance id.
+First we apply a PersistentVolume with a capacity of 5 GB storage, here you need to provide EFS instance id:
 
 ```yaml
 apiVersion: v1
@@ -86,9 +86,10 @@ spec:
     driver: efs.csi.aws.com
     volumeHandle: fs-xxxxxxxx
 ```
+
 **Note:** Storage capacity is a required field, you need to specify a valid value but is not used when creating the file system. It's important to note EFS is an elastic file system, it does not enforce any file system capacity limits.
 
-Additionally we need a PerstentVolumeClaim with a request of 5 GB storage. 
+Additionally we need a PerstentVolumeClaim with a request of 5 GB storage:
 
 ```yaml
 apiVersion: v1
@@ -104,7 +105,7 @@ spec:
       storage: 5Gi
 ```
 
-And finally, we apply a Pod which writes every 5 seconds the current date in UTC time in a file located in our EFS storage mount.
+And finally, we apply a Pod which writes every 5 seconds the current date in UTC time in a file located in our EFS storage mount:
 
 ```yaml
 apiVersion: v1
@@ -125,6 +126,7 @@ spec:
     persistentVolumeClaim:
       claimName: efs-claim
 ```
+
 **Warning:**
 By default, new EFS file systems are owned by root:root. You might need to change file system permissions if your container is not running as root.
 
