@@ -8,7 +8,7 @@ user_questions:
 - What is the command to access gsctl commands from the command line itself?
 - How do I find which version of gsctl I am using?
 - How do I install or update gsctl on my machine?
-- What are the configuartion parameters that I can change on gsctl?
+- What are the configuration parameters that I can change on gsctl?
 - Are there known bugs and limitations for gsctl?
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
