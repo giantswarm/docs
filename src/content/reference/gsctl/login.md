@@ -5,7 +5,7 @@ type: page
 weight: 41
 user_questions:
 - How can I authenticate against an API endpoint using gsctl?
-- How do I login to gsctl manually?
+- How do I login with gsctl manually?
 - How do I login with gsctl in a script?
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
