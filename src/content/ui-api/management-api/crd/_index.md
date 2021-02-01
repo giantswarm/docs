@@ -1,7 +1,7 @@
 ---
 linkTitle: CRDs
-title: Management API reference
-description: Schema reference of all custom resources (CRs) you can use with the Management API.
+title: Management API CRDs
+description: Schema reference of all custom resource definitions (CRD) and custom resources (CR) you can use with the Management API.
 layout: management-api-reference
 weight: 20
 menu:
