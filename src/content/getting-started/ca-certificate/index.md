@@ -2,7 +2,7 @@
 linkTitle: Accepting your cluster’s CA certificate
 title: Establishing trust to your cluster's CA and importing certificates
 description: To access the API of your server as well as services like the Kubernetes Dashboard using a web browser, you need to import the CA certificate for the cluster and your key pair. Here we show how to do this for several platforms and clients.
-weight: 70
+weight: 80
 menu:
   main:
     parent: getting-started

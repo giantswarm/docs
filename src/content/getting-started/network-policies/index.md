@@ -1,7 +1,7 @@
 ---
 title: Limiting pod communication with network policies
 description: Guide on how to limit pod communication using network policies.
-weight: 60
+weight: 80
 menu:
   main:
     parent: getting-started
