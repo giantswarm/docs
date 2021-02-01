@@ -4,7 +4,7 @@ description: "The 'gsctl login' command starts an authenticated session."
 type: page
 weight: 41
 user_questions:
-- How can I authenticate gaianst an API endpoint
+- How can I authenticate against an API endpoint using gsctl?
 - How do I login to gsctl manually?
 - How do I login to gstcl in a script?
 owner:
