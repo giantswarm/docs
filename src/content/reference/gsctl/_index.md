@@ -10,6 +10,7 @@ user_questions:
 - How do I install or update gsctl on my machine?
 - What are the configuration parameters that I can change on gsctl?
 - Are there known bugs and limitations for gsctl?
+- What are the command line flags of gsctl?
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
