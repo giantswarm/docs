@@ -4,6 +4,7 @@ description: Using multiple availability zones both for worker and for master no
 weight: 100
 type: page
 categories: ["basics"]
+last_review_date: 2020-01-02
 user_questions:
 - Does Giant Swarm support multiple availibilty zones (AZ)?
 - What are the benefits of using multiple availibilty zones (AZ)?
