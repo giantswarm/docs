@@ -4,7 +4,18 @@ description: Using multiple availability zones both for worker and for master no
 weight: 100
 type: page
 categories: ["basics"]
-last_review_date: 2020-04-09
+last_review_date: 2020-01-02
+user_questions:
+- Does Giant Swarm support multiple availibilty zones (AZ)?
+- What are the benefits of using multiple availibilty zones (AZ)?
+- How do I know which availibility zone (AZ) my cluster nodes are running in?
+- Can I influence the scheduling of my pods?
+- How are availibility zones (AZ) selected?
+- Can I move standard volumes across availibility zones (AZ)?
+- What is the alternative to moving standard volumes across availibility zones (AZ)?
+- How do I ensure my pods and volumes are on the same nodes?
+- Can I spread worker nodes over availibility zones?
+- How do I create clusters in multiple availibility zones (AZ)?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-celestial
 ---
