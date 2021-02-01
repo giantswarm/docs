@@ -4,11 +4,15 @@ description: How to install the nginx-ingress-controller using our Web UI
 type: page
 weight: 50
 tags: ["tutorial"]
+user_questions:
+- Which workload clusters do not ship with a pre-installed ingress controller?
+- How do I install my own ingress controller?
+- Which ingress controller is available for installation via Giant Swarm app catalog?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-halo
 ---
 
-# Installing an Ingress Controller
+# Installing an ingress controller
 
 An ingress controller helps you expose your services to the outside world.
 
@@ -22,7 +26,7 @@ want to run on your cluster.
 Clusters on KVM (On-premises) continue to include `nginx-ingress-controller`
 as a default component.
 
-## How do I Install my own Ingress Controller
+## How do I Install my own ingress controller
 
 Using our Web UI you can install an NGINX ingress controller using our App Catalog.
 
