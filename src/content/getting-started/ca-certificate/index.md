@@ -264,4 +264,4 @@ You can manually add the CA file and key pair via the _Tools / Options / Advance
 
 ## Related
 
-- [Accessing Pods and Services from the outside]({{< relref "/kubernetes/exposing-workloads" >}})
+- [Accessing Pods and Services from the outside]({{< relref "/getting-started/exposing-workloads" >}})

@@ -32,7 +32,7 @@ This creates a service and a daemon set launching the necessary components. For 
 
 Once everything is running you can open the UI at `https://api.<cluster-id>.k8s.gigantic.io/api/v1/proxy/namespaces/weavescope/services/weavescope-app:80/`.
 
-*Note*: The above URL uses your Kubernetes API to proxy to the service. As the API is guarded with your credentials, you need to [set them up in your system]({{< relref "/kubernetes/exposing-workloads" >}}) (and/or browser). We do not recommend to set up an Ingress for the Weave Scope UI at this time, as its dashboard currently does not support any kind of authentication and thus your cluster would be open to everyone.
+*Note*: The above URL uses your Kubernetes API to proxy to the service. As the API is guarded with your credentials, you need to [set them up in your system]({{< relref "/getting-started/exposing-workloads" >}}) (and/or browser). We do not recommend to set up an Ingress for the Weave Scope UI at this time, as its dashboard currently does not support any kind of authentication and thus your cluster would be open to everyone.
 
 For an overview of what Weave Scope can do and how to use it check out the [Weave Scope User Guide](https://www.weave.works/docs/scope/latest/introducing/).
 
