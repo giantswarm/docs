@@ -5,6 +5,12 @@ type: page
 tags: ["tutorial"]
 owner:
   - https://github.com/orgs/giantswarm/teams/team-halo
+user_questions:
+  - How do I install multiple NGINX Ingress Controllers?
+  - How do I separate internal and external Services?
+  - How do I configure NGINX Ingress Controller for internal traffic?
+  - How do I override the NodePorts on KVM Ingresses?
+  - How do I configure NGINX Ingress Controller to allow weak ciphers for legacy devices?
 ---
 
 # Running Multiple NGINX Ingress Controllers
