@@ -37,7 +37,8 @@ aliases:
 
 
 <h3 id="crd-example-v1alpha1">Example CR</h3>
-<pre class="crd-example-cr"><code class="language-yaml">
+
+```yaml
 apiVersion: provider.giantswarm.io/v1alpha1
 kind: AWSConfig
 metadata:
@@ -50,7 +51,7 @@ spec:
     api:
       elb:
         idleTimeoutSeconds: 0
-      hostedZones: &#34;&#34;
+      hostedZones: ""
     availabilityZones: 1
     az: eu-central-1a
     credentialSecret:
@@ -59,7 +60,7 @@ spec:
     etcd:
       elb:
         idleTimeoutSeconds: 0
-      hostedZones: &#34;&#34;
+      hostedZones: ""
     hostedZones:
       api:
         name: gauss.eu-central-1.aws.gigantic.io
@@ -70,17 +71,17 @@ spec:
     ingress:
       elb:
         idleTimeoutSeconds: 0
-      hostedZones: &#34;&#34;
+      hostedZones: ""
     masters:
     - dockerVolumeSizeGB: 0
       imageID: ami-90c152ff
       instanceType: m4.xlarge
     region: eu-central-1
     vpc:
-      cidr: &#34;&#34;
+      cidr: ""
       peerId: vpc-02030541ba719061c
-      privateSubnetCidr: &#34;&#34;
-      publicSubnetCidr: &#34;&#34;
+      privateSubnetCidr: ""
+      publicSubnetCidr: ""
       routeTableNames:
       - gauss_private_0
       - gauss_private_1
@@ -106,7 +107,7 @@ spec:
       daemon:
         cidr: 172.17.0.1/16
     etcd:
-      altNames: &#34;&#34;
+      altNames: ""
       domain: etcd.l8zrw.k8s.gauss.eu-central-1.aws.gigantic.io
       port: 2379
       prefix: giantswarm.io
@@ -126,7 +127,7 @@ spec:
         domain: ingress.l8zrw.k8s.gauss.eu-central-1.aws.gigantic.io
         insecurePort: 30010
         securePort: 30011
-        wildcardDomain: &#34;&#34;
+        wildcardDomain: ""
       kubelet:
         altNames: kubernetes,kubernetes.default,kubernetes.default.svc,kubernetes.default.svc.cluster.local
         domain: worker.l8zrw.k8s.gauss.eu-central-1.aws.gigantic.io
@@ -140,20 +141,20 @@ spec:
       ssh:
         userList:
         - name: joe
-          publicKey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCuJvxy3FKGrfJ4XB5exEdKXiqqteXEPFzPtex6dC0lHyigtO7l&#43;NXXbs9Lga2&#43;Ifs0Tza92MRhg/FJ&#43;6za3oULFo7&#43;gDyt86DIkZkMFdnSv9&#43;YxYe&#43;g4zqakSV&#43;bLVf2KP6krUGJb7t4Nb&#43;gGH62AiUx&#43;58Onxn5rvYC0/AXOYhkAiH8PydXTDJDPhSA/qWSWEeCQistpZEDFnaVi0e7uq/k3hWJ&#43;v9Gz0q---SHORTENED---G7iIV0Y6o9w5gIHJxf6&#43;8X70DCuVDx9OLHmjjMyGnd&#43;1c3yTFMUdugtvmeiGW== joe
+          publicKey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCuJvxy3FKGrfJ4XB5exEdKXiqqteXEPFzPtex6dC0lHyigtO7l+NXXbs9Lga2+Ifs0Tza92MRhg/FJ+6za3oULFo7+gDyt86DIkZkMFdnSv9+YxYe+g4zqakSV+bLVf2KP6krUGJb7t4Nb+gGH62AiUx+58Onxn5rvYC0/AXOYhkAiH8PydXTDJDPhSA/qWSWEeCQistpZEDFnaVi0e7uq/k3hWJ+v9Gz0q---SHORTENED---G7iIV0Y6o9w5gIHJxf6+8X70DCuVDx9OLHmjjMyGnd+1c3yTFMUdugtvmeiGW== joe
     masters:
     - id: 6t04n
     scaling:
       max: 3
       min: 3
-    version: &#34;&#34;
+    version: ""
     workers:
     - id: by3fd
     - id: z4yi6
     - id: mkpv8
   versionBundle:
     version: 5.5.1-dev
-</code></pre>
+```
 
 
 <h3 id="property-details-v1alpha1">Properties</h3>

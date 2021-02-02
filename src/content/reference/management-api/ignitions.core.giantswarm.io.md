@@ -39,7 +39,8 @@ aliases:
 
 
 <h3 id="crd-example-v1alpha1">Example CR</h3>
-<pre class="crd-example-cr"><code class="language-yaml">
+
+```yaml
 apiVersion: core.giantswarm.io/v1alpha1
 kind: Ignition
 metadata:
@@ -51,9 +52,9 @@ spec:
   apiServerEncryptionKey: 5fd466f48df84f47bb8006b68f0355ba
   baseDomain: https://abc12.k8s.example.eu-west-1.aws.gigantic.io
   calico:
-    cidr: &#34;16&#34;
+    cidr: "16"
     disable: false
-    mtu: &#34;1430&#34;
+    mtu: "1430"
     subnet: 10.250.0.0
   clusterID: abc12
   disableEncryptionAtRest: false
@@ -65,7 +66,7 @@ spec:
   etcd:
     domain: https://etcd.abc12.k8s.example.eu-west-1.aws.gigantic.io
     port: 2379
-    prefix: &#34;&#34;
+    prefix: ""
   extension: {}
   ingress:
     disable: false
@@ -84,10 +85,10 @@ spec:
     oidc:
       clientID: abc12
       enabled: true
-      groupsClaim: &#34;&#34;
+      groupsClaim: ""
       groupsPrefix: gs
       issuerUrl: https://giantswarm.io
-      usernameClaim: &#34;&#34;
+      usernameClaim: ""
       usernamePrefix: gs
   provider: aws
   registry:
@@ -95,7 +96,7 @@ spec:
     pullProgressDeadline: 10s
   sso:
     publicKey: ssh-rsa 1234567890
-</code></pre>
+```
 
 
 <h3 id="property-details-v1alpha1">Properties</h3>

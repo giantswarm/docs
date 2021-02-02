@@ -37,7 +37,8 @@ aliases:
 
 
 <h3 id="crd-example-v1alpha1">Example CR</h3>
-<pre class="crd-example-cr"><code class="language-yaml">
+
+```yaml
 apiVersion: release.giantswarm.io/v1alpha1
 kind: Release
 metadata:
@@ -90,10 +91,10 @@ spec:
     version: 3.10.1
   - name: etcd
     version: 3.3.17
-  date: &#34;2020-03-03T11:12:13Z&#34;
-  endOfLifeDate: &#34;2020-10-03T00:00:00Z&#34;
+  date: "2020-03-03T11:12:13Z"
+  endOfLifeDate: "2020-10-03T00:00:00Z"
   state: active
-</code></pre>
+```
 
 
 <h3 id="property-details-v1alpha1">Properties</h3>

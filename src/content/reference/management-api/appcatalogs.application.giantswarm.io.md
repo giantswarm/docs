@@ -37,7 +37,8 @@ aliases:
 
 
 <h3 id="crd-example-v1alpha1">Example CR</h3>
-<pre class="crd-example-cr"><code class="language-yaml">
+
+```yaml
 apiVersion: application.giantswarm.io/v1alpha1
 kind: AppCatalog
 metadata:
@@ -59,7 +60,7 @@ spec:
     URL: https://my-org.github.com/my-playground-catalog/
     type: helm
   title: My Playground Catalog
-</code></pre>
+```
 
 
 <h3 id="property-details-v1alpha1">Properties</h3>
