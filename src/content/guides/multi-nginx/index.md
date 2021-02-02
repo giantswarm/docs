@@ -59,6 +59,8 @@ Similarly, cloud load balancer created for each NGINX installation on AWS and Az
 
 For NGINX IC running on on-prem (KVM) workload clusters there's no out-of-the-box `LoadBalancer` Service type support. Therefore NGINX Service type defaults to `NodePort`. For every NGINX IC App installation a set of unique http and https node ports ought to be assigned. The default NGINX http and https node ports are `30010` and `30011`. The example sets `31010` and `31011` as overrides for the internal NGINX.
 
+More information on this topic can be found in document [Services of type LoadBalancer and Multiple Ingress Controllers]({{< relref "/content/guides/services-of-type-loadbalancer-and-multiple-ingress-controllers/index.md#multiple-ingress" >}}).
+
 ## Using weak ciphers for legacy clients
 
 In NGINX IC App v1.2.0 upgrade to ingress-nginx 0.27.1 was included. Among other things this upgrade brought in security improvements - SSL ciphers which are considered as weak got removed from the default configuration. Some of the older clients (like web browsers, http libraries in apps) could no longer establish secure connections with cluster services exposed via new NGINX, since these legacy clients only supported SSL ciphers that got removed.
@@ -85,6 +87,7 @@ For the second NGINX IC App installation ingress class and host name subdomain a
 
 ## Additional resources
 
+- [Installing an Ingress Controller]({{< relref "/content/guides/installing-optional-ingress-controller/index.md" >}})
 - [NGINX IC App configuration options](https://github.com/giantswarm/nginx-ingress-controller-app/blob/master/helm/nginx-ingress-controller-app/values.yaml)
 - [Upstream ingress-nginx configuration documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)
 - [Upstream ingress-nginx multi-nginx documentation](https://kubernetes.github.io/ingress-nginx/user-guide/multiple-ingress/)

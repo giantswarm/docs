@@ -6,6 +6,11 @@ weight: 35
 tags: ["tutorial"]
 owner:
   - https://github.com/orgs/giantswarm/teams/team-halo
+user_questions:
+  - How can I expose Services to the internet?
+  - How do I configure an Ingress Controller that is behind an internal ELB for traffic between services within the VPC (or a group of peered VPCs)?
+  - How do I configure an Ingress Controller behind an ELB that already terminates SSL?
+  - How do I configure an Ingress Controller with different functionality or performance?
 ---
 
 # Services of type LoadBalancer and Multiple Ingress Controllers
@@ -206,7 +211,7 @@ metadata:
 
 ## Using multiple Ingress Controllers {#multiple-ingress}
 
-By default a cluster in Giant Swarm is bootstrapped with a default Ingress Controller based on NGINX. This Ingress Controller is registered with the default `nginx` Ingress Class.
+In order to expose your services using an Ingress, you need to install a Ingress Controller. The optional NGINX Ingress Controller can be [[installed as as an App on your cluster]({{< relref "/content/guides/installing-optional-ingress-controller/index.md" >}}). This Ingress Controller is registered with the default `nginx` Ingress Class.
 
 You can run additional Ingress Controllers by exposing them through Services of type `LoadBalancer` as explained above.
 
