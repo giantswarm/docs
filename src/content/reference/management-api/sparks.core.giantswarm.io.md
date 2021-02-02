@@ -37,7 +37,8 @@ aliases:
 
 
 <h3 id="crd-example-v1alpha1">Example CR</h3>
-<pre class="crd-example-cr"><code class="language-yaml">
+
+```yaml
 apiVersion: core.giantswarm.io/v1alpha1
 kind: Spark
 metadata:
@@ -48,7 +49,7 @@ metadata:
 spec:
   values:
     dummy: test
-</code></pre>
+```
 
 
 <h3 id="property-details-v1alpha1">Properties</h3>

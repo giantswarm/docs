@@ -37,7 +37,8 @@ aliases:
 
 
 <h3 id="crd-example-v1alpha1">Example CR</h3>
-<pre class="crd-example-cr"><code class="language-yaml">
+
+```yaml
 apiVersion: application.giantswarm.io/v1alpha1
 kind: AppCatalogEntry
 metadata:
@@ -49,17 +50,17 @@ spec:
   appVersion: v0.35.0
   catalog:
     name: giantswarm
-    namespace: &#34;&#34;
+    namespace: ""
   chart:
     home: https://github.com/giantswarm/nginx-ingress-controller-app
     icon: https://upload.wikimedia.org/wikipedia/commons/nginx-logo.svg
-  dateCreated: &#34;2020-09-02T09:40:39Z&#34;
-  dateUpdated: &#34;2020-09-02T09:40:39Z&#34;
+  dateCreated: "2020-09-02T09:40:39Z"
+  dateUpdated: "2020-09-02T09:40:39Z"
   restrictions:
     clusterSingleton: true
     fixedNamespace: giantswarm
   version: 1.9.2
-</code></pre>
+```
 
 
 <h3 id="property-details-v1alpha1">Properties</h3>

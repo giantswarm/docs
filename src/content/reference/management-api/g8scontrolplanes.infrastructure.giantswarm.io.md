@@ -37,7 +37,8 @@ aliases:
 
 
 <h3 id="crd-example-v1alpha2">Example CR</h3>
-<pre class="crd-example-cr"><code class="language-yaml">
+
+```yaml
 apiVersion: infrastructure.giantswarm.io/v1alpha2
 kind: G8sControlPlane
 metadata:
@@ -52,7 +53,7 @@ spec:
     name: 0p8h5
     namespace: default
   replicas: 1
-</code></pre>
+```
 
 
 <h3 id="property-details-v1alpha2">Properties</h3>

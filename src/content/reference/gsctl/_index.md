@@ -3,6 +3,14 @@ title: gsctl reference
 description: Documentation on gsctl, the Giant Swarm command line utility to create and delete clusters, create key pairs and more.
 layout: subsection
 weight: 20
+user_questions:
+- What are the commands for the Giant Swarm command line utility, gsctl?
+- What is the list of subcommands of gsctl?
+- How do I find which version of gsctl I am using?
+- How do I install or update gsctl on my machine?
+- What are the configuration parameters that I can change on gsctl?
+- Are there known bugs and limitations for gsctl?
+- What are the command line flags of gsctl?
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---

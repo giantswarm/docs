@@ -36,7 +36,8 @@ aliases:
 
 
 <h3 id="crd-example-v1alpha1">Example CR</h3>
-<pre class="crd-example-cr"><code class="language-yaml">
+
+```yaml
 apiVersion: core.giantswarm.io/v1alpha1
 kind: CertConfig
 metadata:
@@ -58,7 +59,7 @@ spec:
     ttl: 4320h
   versionBundle:
     version: 0.1.0
-</code></pre>
+```
 
 
 <h3 id="property-details-v1alpha1">Properties</h3>
