@@ -1,6 +1,8 @@
 #!/bin/bash
 
-CRD_DOCS_GENERATOR_VERSION=0.2.3
+set -e
+
+CRD_DOCS_GENERATOR_VERSION=0.3.0
 
 DESTINATION=src/content/reference/management-api
 
