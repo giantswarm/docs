@@ -20,19 +20,19 @@ If your cluster is running in the cloud on Amazon Web Services (AWS) the most co
 
 The advantages of using EFS over EBS are:
 
-- EFS data can be accessed from all Availability Zones in the same region while EBS is tied to a single Availability Zone.
-- EFS has the capability to mount the same Persistent Volume to multiple pods at the same time using the ReadWriteMany [access mode](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes).
+- EFS data can be accessed from all availability zones in the same region while EBS is tied to a single availability zone.
+- EFS has the capability to mount the same persistent volume to multiple pods at the same time using the ReadWriteMany [access mode](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes).
 - EFS will not hit the [AWS Instance Volume Limit](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/volume_limits.html) as it is a software mount and will avoid the [Impaired EBS](/guides/aws-impaired-volumes/) issue.
 - EFS mount times are better than EBS.
 - EFS provides [encryption in transit](https://aws.amazon.com/blogs/aws/new-encryption-of-data-in-transit-for-amazon-efs/) support using TLS and it's enabled by default.
 
 If you need to use EFS to provision volumes, be advised:
 
-- All Kubernetes Persistent Volumes will be stored in the same EFS instance. You can deploy multiple provisioners per cluster, each having its own storage-class and EFS instance.
+- All Kubernetes persistent volumes will be stored in the same EFS instance. You can deploy multiple provisioners per cluster, each having its own storage-class and EFS instance.
 - [EFS throughput](https://docs.aws.amazon.com/efs/latest/ug/performance.html) need to be set up accordingly in order to not have performance issues. We only recommend Provisioned Throughput, and if you need high performance you will need EBS.
 - EFS backups are done with [AWS Backup](https://aws.amazon.com/backup/) and it does not have the snapshot feature of EBS.
 - You cannot limit the amount of data stored in an EFS volume. The requested value in Kubernetes is ignored.
-- EFS mount targets are limited to 1 subnet per Availability Zone. Each NodePool will create a different subnet per AZ, plan accordingly.
+- EFS mount targets are limited to 1 subnet per availability zone. Each NodePool will create a different subnet per AZ, plan accordingly.
 
 ## Provision an EFS instance on AWS
 
@@ -42,10 +42,10 @@ Before installing the provisioner in Kubernetes we will need to create the EFS i
 
 1. Open the [AWS management](https://aws.amazon.com/console/) console for the AWS account holding your cluster resources.
 2. From the `Services` menu, select `EFS`.
-3. Create a new file system and select the VPC where your cluster is located.
-4. Select the Availability Zone with the subnets your instances are located on and the security-groups of your node pools.
-5. Choose the throughput and performance mode, no file system policy or access points are needed.
-6. Create the instance and note the EFS instance ID.
+3. Create a new file system and select the VPC where your cluster is located. VPC can be identified by your cluster ID.
+4. Select the availability zone with the subnets your instances are located on and the security groups of your node pools. Subnets and security groups can be identified by you cluster ID.
+5. Choose the [throughput](https://docs.aws.amazon.com/efs/latest/ug/performance.html#throughput-modes) and [performance mode](https://docs.aws.amazon.com/efs/latest/ug/performance.html#performancemodes). Setting a file system policy or access points is optional. 
+6. Create the instance and note the EFS instance id.
 
 ## Installing the EFS CSI driver
 
@@ -55,7 +55,7 @@ To install the EFS CSI driver in the workload cluster, you will need to follow t
 2. Open the Apps tab.
 3. Click the Install App button
 4. Select the Giant Swarm Playground catalog.
-5. Select the App named aws-efs-csi-driver.
+5. Select the App named `aws-efs-csi-driver`.
 6. Click the Configure & Install button. Make sure that the correct cluster is selected.
 7. Click the Install App button.
 
@@ -128,11 +128,12 @@ spec:
 ```
 
 **Warning:**
-By default, new EFS file systems are owned by root:root. You might need to change file system permissions if your container is not running as root.
+By default, new EFS file systems are owned by root:root. You might need to change file system permissions if your container is not running as root. Exposing separate data stores with independent ownership and permissions you can check [EFS access points](https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html) to get familiar.
 
 ## Further reading
 
 - [AWS Elastic File System](https://docs.aws.amazon.com/efs/latest/ug/whatisefs.html)
+- [AWS Elastic File System Access Points Example](https://github.com/kubernetes-sigs/aws-efs-csi-driver/blob/master/examples/kubernetes/access_points/README.md)
 - [Persistent volumes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistent-volumes)
 - [Persistent volume claims](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims)
 - [Claim persistent volumes in pods](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#claims-as-volumes)
