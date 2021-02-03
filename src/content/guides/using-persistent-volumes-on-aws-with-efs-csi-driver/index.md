@@ -89,7 +89,7 @@ spec:
 
 **Note:** `.spec.storage.capacity` is a required field. You must specify a valid value, however that value is not used when creating the file system. It's important to note that EFS is an elastic file system, which does not enforce any file system capacity limits.
 
-Additionally we need a PerstentVolumeClaim with a request of 5 GB storage:
+Additionally we need a persistent volume claim with a storage request matching the size of the persistent volume defined above:
 
 ```yaml
 apiVersion: v1
