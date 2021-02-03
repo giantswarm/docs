@@ -65,7 +65,7 @@ Once you installed the `aws-efs-csi-driver` from _Giant Swarm Playground_ catalo
 
 ## Deploy a sample application
 
-In order to see if all works out we need to create some manifests:
+In order to verify that the EFS CSI driver works as expected, we suggest to deploy a test workload based on the following manifests.
 
 First we apply a PersistentVolume with a capacity of 5 GB storage, here you need to provide EFS instance id:
 
