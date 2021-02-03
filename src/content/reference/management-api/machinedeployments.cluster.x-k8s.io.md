@@ -37,7 +37,8 @@ aliases:
 
 
 <h3 id="crd-example-v1alpha2">Example CR</h3>
-<pre class="crd-example-cr"><code class="language-yaml">
+
+```yaml
 apiVersion: infrastructure.giantswarm.io/v1alpha2
 kind: MachineDeployment
 metadata:
@@ -57,10 +58,10 @@ spec:
         kind: AWSMachineDeployment
         name: e3z8q
         namespace: default
-        resourceVersion: &#34;58776588&#34;
+        resourceVersion: "58776588"
         uid: b5fdf153-6f10-462b-a49f-0e821873d16b
       metadata: {}
-</code></pre>
+```
 
 
 <h3 id="property-details-v1alpha2">Properties</h3>

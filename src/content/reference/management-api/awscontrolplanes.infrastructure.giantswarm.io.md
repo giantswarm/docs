@@ -37,7 +37,8 @@ aliases:
 
 
 <h3 id="crd-example-v1alpha2">Example CR</h3>
-<pre class="crd-example-cr"><code class="language-yaml">
+
+```yaml
 apiVersion: infrastructure.giantswarm.io/v1alpha2
 kind: AWSControlPlane
 metadata:
@@ -51,7 +52,7 @@ spec:
   - eu-central-1b
   - eu-central-1c
   instanceType: m4.xlarge
-</code></pre>
+```
 
 
 <h3 id="property-details-v1alpha2">Properties</h3>

@@ -37,7 +37,8 @@ aliases:
 
 
 <h3 id="crd-example-v1alpha1">Example CR</h3>
-<pre class="crd-example-cr"><code class="language-yaml">
+
+```yaml
 apiVersion: security.giantswarm.io/v1alpha1
 kind: Organization
 metadata:
@@ -47,7 +48,7 @@ metadata:
   name: example-inc
 spec:
   {}
-</code></pre>
+```
 
 
 <h3 id="property-details-v1alpha1">Properties</h3>
