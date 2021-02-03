@@ -41,7 +41,7 @@ If you need to use EFS to provision volumes, be advised:
 Before installing the provisioner in Kubernetes we will need to create the EFS instance in the same AWS account:
 
 1. Open the [AWS management](https://aws.amazon.com/console/) console for the AWS account holding your cluster resources.
-2. Select EFS from the services list.
+2. From the `Services` menu, select `EFS`.
 3. Create a new file system and select the VPC where your cluster is located.
 4. Select the Availability Zone with the subnets your instances are located on and the security-groups of your node pools.
 5. Choose the throughput and performance mode, no file system policy or access points are needed.
