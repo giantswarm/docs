@@ -49,7 +49,7 @@ Before installing the provisioner in Kubernetes we will need to create the EFS i
 
 ## Installing the EFS CSI driver
 
-To install the EFS CSI driver you will need to follow these steps:
+To install the EFS CSI driver in the workload cluster, you will need to follow these steps:
 
 1. Access the [web interface](/reference/web-interface/) and select the cluster on which you want to install the EFS CSI driver.
 2. Open the Apps tab.
