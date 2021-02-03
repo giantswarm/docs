@@ -239,6 +239,7 @@ Further note that if you are running additional Ingress Controllers you might ne
 
 ## Further reading
 
+- [Running Multiple NGINX Ingress Controllers](https://docs.giantswarm.io/guides/multi-nginx/)
 - [Services of type LoadBalancer](https://kubernetes.io/docs/concepts/services-networking/service/#type-loadbalancer)
 - [Running Multiple Ingress Controllers](https://github.com/kubernetes/ingress-nginx#running-multiple-ingress-controllers)
 - [Deploying the NGINX Ingress Controller](https://github.com/kubernetes/ingress-nginx/tree/master/deploy)
