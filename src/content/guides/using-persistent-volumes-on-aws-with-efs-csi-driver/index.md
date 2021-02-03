@@ -45,7 +45,7 @@ Before installing the provisioner in Kubernetes we will need to create the EFS i
 3. Create a new file system and select the VPC where your cluster is located.
 4. Select the Availability Zone with the subnets your instances are located on and the security-groups of your node pools.
 5. Choose the throughput and performance mode, no file system policy or access points are needed.
-6. Create the instance and note the EFS instance id.
+6. Create the instance and note the EFS instance ID.
 
 ## Installing the EFS CSI driver
 
