@@ -61,7 +61,7 @@ To install the EFS CSI driver in the workload cluster, you will need to follow t
 
 ## Storage classes
 
-Once you installed the `aws-efs-csi-driver` from _Giant Swarm Playground_ catalog, Kubernetes cluster will have a storage class `efs-csi` deployed.
+Once you installed the `aws-efs-csi-driver` from _Giant Swarm Playground_ catalog, you workload cluster will have a storage class `efs-csi` deployed.
 
 ## Deploy a sample application
 
