@@ -1,27 +1,26 @@
-$gutter: 18px
+.home-searchform
+  margin-top: 1.5em
+  
+  > *
+    font-size: 18px
 
-.flexgrid
-  display: flex
-  flex-wrap: wrap
-  padding: 0
-  //margin: -$gutter 0 0 -$gutter
-  //align-items: stretch
+  .center-block
+    width: 600px
 
-  > .cell
-    padding: $gutter 0 $gutter $gutter
-    flex: 1
+    @media (max-width: 768px)
+      width: 400px
 
-    h3
-      margin-top: 0
-      margin-bottom: 3px
+    .form-group
+      width: 550px
+      @media (max-width: 768px)
+        width: 300px
 
-/* Small to medium screens */
-@media (min-width: 24em)
-  .cell
-    flex: 0 0 50%
-
-
-/* Large screens */
-@media (min-width: 48em)
-  .cell
-    flex: 0 0 25%
+  .form-inline
+    .form-control
+      width: 100%
+      font-size: 18px
+      line-height: 28px
+      height: 40px
+    
+    .btn
+      font-size: 18px
