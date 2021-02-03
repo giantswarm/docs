@@ -19,7 +19,7 @@ An ingress controller helps you expose your services to the outside world.
 
 ## Which workload cluster releases do not ship with an ingress controller
 
-Clusters on our AWS, Azure, and KVM (On-premises) installations that have a workload cluster release version newer than `10.0.0` (AWS), `12.0.0` (Azure), and `12.2.0` (KVM) ship without an ingress controller by default. (Related: [Preinstalled and optional apps in workload clusters]({{< relref "/content/reference/workload-cluster-release-versions/_index.md#apps" >}}))
+Clusters on our AWS, Azure, and KVM (On-premises) installations that have a workload cluster release version newer than `10.0.0` (AWS), `12.0.0` (Azure), and `12.2.0` (KVM) ship without an ingress controller by default. (Related: [Preinstalled and optional apps in workload clusters]({{< relref "/general/releases/index.md#apps" >}}))
 
 That allows you full control to choose which and how many ingress controllers you
 want to run on your cluster.
