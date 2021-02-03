@@ -42,6 +42,8 @@ repositories:
     category: Managed Apps
   giantswarm/loki-app:
     category: Managed Apps
+  giantswarm/external-dns-app:
+    category: Managed Apps
 
   giantswarm/app-mesh-app:
     category: Playground Apps
