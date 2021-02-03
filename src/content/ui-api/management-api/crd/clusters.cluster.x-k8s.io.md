@@ -37,7 +37,8 @@ aliases:
 
 
 <h3 id="crd-example-v1alpha2">Example CR</h3>
-<pre class="crd-example-cr"><code class="language-yaml">
+
+```yaml
 apiVersion: infrastructure.giantswarm.io/v1alpha2
 kind: Cluster
 metadata:
@@ -51,9 +52,9 @@ spec:
     kind: AWSCluster
     name: ca1p0
     namespace: default
-    resourceVersion: &#34;57975957&#34;
+    resourceVersion: "57975957"
     uid: 2dc05fcd-ba76-4135-b9ea-76955e3a7966
-</code></pre>
+```
 
 
 <h3 id="property-details-v1alpha2">Properties</h3>
