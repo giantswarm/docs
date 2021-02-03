@@ -87,7 +87,7 @@ spec:
     volumeHandle: fs-xxxxxxxx
 ```
 
-**Note:** Storage capacity is a required field, you need to specify a valid value but is not used when creating the file system. It's important to note EFS is an elastic file system, it does not enforce any file system capacity limits.
+**Note:** `.spec.storage.capacity` is a required field. You must specify a valid value, however that value is not used when creating the file system. It's important to note that EFS is an elastic file system, which does not enforce any file system capacity limits.
 
 Additionally we need a PerstentVolumeClaim with a request of 5 GB storage:
 
