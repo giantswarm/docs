@@ -105,7 +105,7 @@ spec:
       storage: 5Gi
 ```
 
-And finally, we apply a Pod which writes every 5 seconds the current date in UTC time in a file located in our EFS storage mount:
+And finally, we create a pod which repeatedly writes the current date into a file located in our EFS storage mount:
 
 ```yaml
 apiVersion: v1
