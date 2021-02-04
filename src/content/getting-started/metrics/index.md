@@ -1,5 +1,5 @@
 ---
-linkTitle: Activating basic metrics
+linkTitle: Basic metrics
 title: Getting Basic Metrics in your Cluster
 description: Recipe to enable a core metrics solution running on your Kubernetes cluster.
 weight: 30
