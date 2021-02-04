@@ -11,7 +11,7 @@
     {{ partial "sidebar_search_form" . }}
     {{ partial "menu" . }}
   </div>
-  <div class="col-sm-12 col-md-8 col-lg-7 base-content">
+  <div class="col-xs-12 col-md-8 col-lg-7 base-content">
     <div class="content">
       <p class="lastmod">Last modified {{ .Lastmod.Format "January 2, 2006" }}</p>
 
@@ -21,7 +21,7 @@
 
     </div>
   </div>
-  <div class="col-lg-2 toc-sidebar">
+  <div class="col-lg-2 hidden-xs hidden-sm hidden-md toc-sidebar">
     <div class="toc">
       <p class="header">On this page</p>
       {{ .TableOfContents }}
