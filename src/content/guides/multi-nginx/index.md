@@ -17,11 +17,35 @@ user_questions:
 
 NGINX ingress controller handles [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) resources, routing traffic from outside the Kubernetes cluster to services within the cluster.
 
-Starting with [NGINX IC v1.8.0](https://github.com/giantswarm/nginx-ingress-controller-app/blob/master/CHANGELOG.md#180---2020-07-24), one can install multiple NGINX ingress controllers in a Kubernetes cluster. Below, we cover common cases.
+Starting with [NGINX IC v1.8.0](https://github.com/giantswarm/nginx-ingress-controller-app/blob/master/CHANGELOG.md#180---2020-07-24), one can install multiple NGINX ingress controllers in a Kubernetes cluster. The optional NGINX Ingress Controller can be [installed as as an App on your cluster]({{< relref "/content/guides/installing-optional-ingress-controller/index.md" >}}). This Ingress Controller is registered with the default `nginx` Ingress Class.
+
+Some use cases for this might be:
+
+- An Ingress Controller that is behind an internal ELB for traffic between services within the VPC (or a group of peered VPCs)
+- An Ingress Controller behind an ELB that already terminates SSL
+- An Ingress Controller with different functionality or performance
+
+__Note__ that if you are running multiple Ingress Controllers you need to annotate each Ingress with the appropriate class, e.g.
+
+```yaml
+kubernetes.io/ingress.class: "nginx"
+```
+
+or
+
+```yaml
+kubernetes.io/ingress.class: "nginx-internal"
+```
+
+Not specifying the annotation will lead to multiple ingress controllers claiming the same ingress. Specifying a value which does not match the class of any existing ingress controllers will result in all ingress controllers ignoring the ingress.
+
+Further note that if you are running additional Ingress Controllers you might need to configure them so their Ingress Class does not collide with the class of our default NGINX Ingress Controller. For the community supported NGINX Ingress Controller this is described in the [official documentation](https://kubernetes.github.io/ingress-nginx/user-guide/multiple-ingress/).
 
 Most NGINX configuration options have NGINX-wide defaults. They can also be overriden on a per-Ingress resource level.
 
 In each case below, one installs a second NGINX with a different NGINX global-only configuration. Ingress resources managed by this NGINX installation cannot be customized on a per-Ingress resource level.
+
+Further information on configuring NGINX Ingress Controller can be found in the [Services of type LoadBalancer]
 
 ## Separating public from internal ingress traffic
 
@@ -93,6 +117,7 @@ For the second NGINX IC App installation, ingress class and host name subdomain 
 
 ## Additional resources
 
+- [Services of type LoadBalancer]({{< relref "/content/guides/services-of-type-loadbalancer/index.md" >}})
 - [Installing an Ingress Controller]({{< relref "/content/guides/installing-optional-ingress-controller/index.md" >}})
 - [NGINX IC App configuration options](https://github.com/giantswarm/nginx-ingress-controller-app/blob/master/helm/nginx-ingress-controller-app/values.yaml)
 - [Upstream ingress-nginx configuration documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)
