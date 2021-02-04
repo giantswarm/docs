@@ -9,9 +9,9 @@
 {{ end }}
 <li class="item{{ if eq .p1 .p2 }} active{{ end }}">
   {{ if .p1.IsHome }}
-  <a class="crumb" href="{{ .p1.Permalink }}">Docs</a>
+  <a class="crumb" href="{{ .p1.RelPermalink }}">Docs</a>
   {{ else }}
-  <a class="crumb" href="{{ .p1.Permalink }}">{{ .p1.LinkTitle }}</a>
+  <a class="crumb" href="{{ .p1.RelPermalink }}">{{ .p1.LinkTitle }}</a>
   {{ end }}
 </li>
 {{ end }}
