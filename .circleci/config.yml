@@ -34,20 +34,6 @@ jobs:
             CURL_OUTPUT=$(curl --no-buffer -s http://localhost:8080)
             echo $CURL_OUTPUT | grep --quiet "Giant Swarm"
 
-      - run:
-          name: Internal link check
-          command: |
-            docker pull linkchecker/linkchecker > /dev/null
-            docker run --rm -ti --name linkchecker \
-              --link docs:docs \
-              linkchecker/linkchecker \
-                http://docs:8080 \
-                -t 4 \
-                --ignore-url="^https://docs\.giantswarm\.io/.*" \
-                --ignore-url=/api/ \
-                --ignore-url=/changes/
-            docker kill docs || echo "Container 'docs' not running"
-
       - deploy:
           name: Deploy (only if branch is "master")
           command: |
