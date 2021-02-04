@@ -6,6 +6,8 @@ menu:
   main:
     parent: app-platform
 weight: 20
+aliases:
+ - /reference/app-configuration/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-batman
 user_questions:

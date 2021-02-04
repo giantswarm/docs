@@ -6,6 +6,8 @@ weight: 30
 menu:
   main:
     parent: getting-started
+aliases:
+  - /guides/kubernetes-heapster/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
 ---

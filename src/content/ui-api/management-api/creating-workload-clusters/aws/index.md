@@ -7,6 +7,8 @@ menu:
   main:
     identifier: uiapi-managementapi-creatingclusters-aws
     parent: uiapi-managementapi-creatingclusters
+aliases:
+  - /guides/creating-clusters-via-crs-on-aws/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---

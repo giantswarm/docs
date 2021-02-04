@@ -20,6 +20,8 @@ user_questions:
   - How can I enable TLS passthrough in Ingress?
   - How can I let the Ingress Controller do TLS termination?
   - How can I rate-limit Ingress requests?
+aliases:
+  - /guides/advanced-ingress-configuration/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-halo
 ---

@@ -9,6 +9,8 @@ menu:
     parent: ui-api
 # TODO: remove "layout: single" and let the page be rendered by a specific section template.
 layout: single
+aliases:
+  - /reference/gsctl/
 user_questions:
 - What are the commands for the Giant Swarm command line utility, gsctl?
 - What is the list of subcommands of gsctl?

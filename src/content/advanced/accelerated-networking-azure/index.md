@@ -5,6 +5,8 @@ weight: 70
 menu:
   main:
     parent: advanced
+aliases:
+  - /basics/azure-accelerated-networking/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-celestial
 ---

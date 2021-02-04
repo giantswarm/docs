@@ -23,6 +23,8 @@ user_questions:
   - What are the security safegaurds around access to the Giant Swarm management cluster?
   - How is access to the management cluster authorized?
   - How do users access workload clusters?
+aliases:
+  - /basics/giant-swarm-operational-layers/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-horizon
 ---

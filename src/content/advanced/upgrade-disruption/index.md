@@ -6,6 +6,8 @@ weight: 150
 menu:
   main:
     parent: advanced
+aliases:
+  - /guides/fine-tuning-upgrade-disruption-on-aws/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---

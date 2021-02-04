@@ -5,6 +5,8 @@ weight: 30
 menu:
   main:
     parent: advanced-ingress
+aliases:
+  - /guides/services-of-type-loadbalancer-and-multiple-ingress-controllers/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-halo
 ---

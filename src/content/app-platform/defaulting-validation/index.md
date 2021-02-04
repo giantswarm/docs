@@ -9,6 +9,8 @@ menu:
 last_review_date: 2020-12-16
 owner:
   - https://github.com/orgs/giantswarm/teams/team-batman
+aliases:
+  - /reference/app-defaulting-validation/
 user_questions:
   - Is App CR defaulting and validation logic enabled for my cluster? 
   - How can I use App CR defaulting logic when installing Managed Apps?

@@ -7,4 +7,6 @@ menu:
   main:
     identifier: uiapi-managementapi
     parent: ui-api
+aliases:
+  - /reference/management-api/
 ---

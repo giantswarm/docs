@@ -6,6 +6,8 @@ weight: 110
 menu:
   main:
     parent: uiapi-gsctl
+aliases:
+  - /reference/gsctl/info/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---

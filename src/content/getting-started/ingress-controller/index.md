@@ -9,6 +9,8 @@ user_questions:
 - Which workload clusters do not ship with a pre-installed ingress controller?
 - How do I install my own ingress controller?
 - Which ingress controller is available for installation via Giant Swarm app catalog?
+aliases:
+  - /guides/installing-optional-ingress-controller/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-halo
 ---

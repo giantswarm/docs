@@ -6,6 +6,8 @@ weight: 40
 menu:
   main:
     parent: kubernetes
+aliases:
+  - /guides/scheduling-constraints-and-resource-qos/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---

@@ -13,6 +13,7 @@ user_questions:
   - What are the recommended service limit/quotas for AWS accounts used with Giant Swarm?
 aliases:
   - /guides/prepare-aws-account-for-tenant-clusters/
+  - /guides/prepare-aws-account/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---

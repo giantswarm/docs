@@ -7,6 +7,8 @@ menu:
   main:
     identifier: uiapi-managementapi-creatingclusters
     parent: uiapi-managementapi
+aliases:
+  - /guides/creating-clusters-via-crs/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 ---

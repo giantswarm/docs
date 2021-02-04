@@ -6,6 +6,8 @@ weight: 60
 menu:
   main:
     parent: uiapi-kubectlgs
+aliases:
+  - /reference/kubectl-gs/template-appcatalog/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-batman
 ---

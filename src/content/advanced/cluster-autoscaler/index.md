@@ -7,6 +7,8 @@ menu:
   main:
     parent: advanced
 last_review_date: 2020-09-23
+aliases:
+  - /guides/advanced-cluster-autoscaler-configuration/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---

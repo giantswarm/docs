@@ -10,6 +10,8 @@ user_questions:
 - How can I authenticate against an API endpoint using gsctl?
 - How do I login with gsctl manually?
 - How do I login with gsctl in a script?
+aliases:
+  - /reference/gsctl/login/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---

@@ -6,6 +6,8 @@ weight: 1000
 menu:
   main:
     parent: uiapi-web
+aliases:
+   - /reference/web-interface/usage-data/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---

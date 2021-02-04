@@ -17,6 +17,8 @@ user_questions:
 - How do I ensure my pods and volumes are on the same nodes?
 - Can I spread worker nodes over availibility zones?
 - How do I create clusters in multiple availibility zones (AZ)?
+aliases:
+  - /basics/multiaz/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-celestial
 ---

@@ -8,6 +8,8 @@ menu:
     identifier: general-overview
     parent: general
 last_review_date: 2020-06-17
+aliases:
+  - /basics/kubernetes-on-giant-swarm/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---

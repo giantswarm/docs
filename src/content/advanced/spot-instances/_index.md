@@ -6,4 +6,6 @@ menu:
   main:
     identifier: advanced-spotinstances
     parent: advanced
+aliases:
+  - /basics/spot-instances/
 ---

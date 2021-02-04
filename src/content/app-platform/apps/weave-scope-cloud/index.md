@@ -6,6 +6,8 @@ weight: 120
 menu:
   main:
     parent: app-platform-apps
+aliases:
+  - /guides/weave-scope-cloud/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
 ---

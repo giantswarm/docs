@@ -7,6 +7,8 @@ menu:
   main:
     identifier: gettingstarted-persistentvolumes-onpremises
     parent: gettingstarted-persistentvolumes
+aliases:
+  - /guides/using-persistent-volumes-on-baremetal/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
 ---

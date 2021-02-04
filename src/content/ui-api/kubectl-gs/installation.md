@@ -6,6 +6,8 @@ weight: 10
 menu:
   main:
     parent: uiapi-kubectlgs
+aliases:
+  - /reference/kubectl-gs/installation/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---

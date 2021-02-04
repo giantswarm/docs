@@ -6,6 +6,8 @@ weight: 50
 menu:
   main:
     parent: app-platform-apps
+aliases:
+  - /guides/efk-stack-app-oidc/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-halo
 ---

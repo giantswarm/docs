@@ -6,6 +6,8 @@ weight: 50
 menu:
   main:
     parent: app-platform-apps
+aliases:
+  - /guides/install-kubernetes-dashboard/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
 ---

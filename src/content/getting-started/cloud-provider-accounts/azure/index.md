@@ -12,6 +12,7 @@ user_questions:
   - What do I need to configure in Azure in order to run Giant Swarm clusters?
 aliases:
   - /guides/prepare-azure-subscription-for-tenant-clusters/
+  - /guides/prepare-azure-subscription/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-celestial
 ---

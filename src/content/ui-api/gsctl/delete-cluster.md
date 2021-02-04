@@ -6,6 +6,8 @@ weight: 80
 menu:
   main:
     parent: uiapi-gsctl
+aliases:
+  - /reference/gsctl/delete-cluster/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---

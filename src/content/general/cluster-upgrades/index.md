@@ -6,6 +6,8 @@ weight: 40
 menu:
   main:
     parent: general
+aliases:
+  - /reference/cluster-upgrades/
 user_questions:
   - How do cluster upgrades work?
   - How can I prepare my workloads to tolerate a cluster upgrade?

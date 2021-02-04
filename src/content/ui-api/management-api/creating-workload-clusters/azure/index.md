@@ -7,6 +7,8 @@ menu:
   main:
     identifier: uiapi-managementapi-creatingclusters-azure
     parent: uiapi-managementapi-creatingclusters
+aliases:
+  - /guides/creating-clusters-via-crs-on-azure/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-celestial
 ---

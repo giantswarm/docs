@@ -7,6 +7,8 @@ menu:
   main:
     parent: security
 last_review_date: 2020-01-21
+aliases:
+  - /basics/secured-access-to-clusters/
 user_questions:
   - How does Giant Swarm access my account with the cloud provider?
   - How is admin access safeguarded?

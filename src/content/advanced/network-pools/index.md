@@ -10,6 +10,8 @@ user_questions:
   - What are network pools?
   - In which cloud environments are network pools supported?
   - Which releases introduced network pools?
+aliases:
+  - /basics/networkpools/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---

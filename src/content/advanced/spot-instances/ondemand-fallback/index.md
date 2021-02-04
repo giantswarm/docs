@@ -8,6 +8,8 @@ menu:
     parent: advanced-spotinstances
 user_questions:
   - How can I use EC2 spot instances and fall back to on-demand if no spot instances are available?
+aliases:
+  - /guides/spot-instances-with-on-demand-fallback/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---

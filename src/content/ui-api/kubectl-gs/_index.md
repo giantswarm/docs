@@ -9,6 +9,8 @@ menu:
     parent: ui-api
 # TODO: remove "layout: single" and let the page be rendered by a specific section template.
 layout: single
+aliases:
+  - /reference/kubectl-gs/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---

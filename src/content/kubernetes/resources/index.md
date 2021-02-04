@@ -7,6 +7,8 @@ menu:
   main:
     parent: kubernetes
 last_review_date: 2020-03-31
+aliases:
+  - /basics/kubernetes-resources/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---

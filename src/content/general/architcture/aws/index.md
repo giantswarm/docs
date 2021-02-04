@@ -21,6 +21,8 @@ user_questions:
   - Will my AWS clusters autoscale?
   - How are workloads secured on AWS clusters?
   - Why does Giant Swarm run a monitoring stack on my AWS management cluster?
+aliases:
+  - /basics/aws-architecture/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---

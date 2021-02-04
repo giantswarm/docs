@@ -5,6 +5,8 @@ weight: 80
 menu:
   main:
     parent: getting-started
+aliases:
+  - /guides/limiting-pod-communication-with-network-policies/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---

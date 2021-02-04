@@ -6,6 +6,8 @@ weight: 10
 menu:
   main:
     parent: advanced-storage
+aliases:
+  - /guides/aws-impaired-volumes/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---

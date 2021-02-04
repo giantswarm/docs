@@ -7,6 +7,8 @@ menu:
   main:
     parent: kubernetes
 last_review_date: 2020-10-07
+aliases:
+  - /basics/cluster-size-autoscaling/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
 ---

@@ -6,6 +6,8 @@ weight: 160
 menu:
   main:
     parent: advanced
+aliases:
+  - /guides/creating-your-own-admission-controller/
 ---
 
 # Creating your own admission controller

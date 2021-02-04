@@ -7,6 +7,8 @@ menu:
   main:
     identifier: uiapi-kubectlgs-login
     parent: uiapi-kubectlgs
+aliases:
+  - /reference/kubectl-gs/login/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---

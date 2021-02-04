@@ -6,6 +6,8 @@ weight: 50
 menu:
   main:
     parent: uiapi-gsctl
+aliases:
+  - /reference/gsctl/create-keypair/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---

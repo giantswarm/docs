@@ -9,6 +9,7 @@ menu:
     parent: uiapi-web
 aliases:
   - /reference/web-interface/app-catalog/
+  - /reference/web-interface/app-platform/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-batman
 ---

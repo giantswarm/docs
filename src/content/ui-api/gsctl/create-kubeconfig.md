@@ -6,6 +6,8 @@ weight: 60
 menu:
   main:
     parent: uiapi-gsctl
+aliases:
+  - /reference/gsctl/create-kubeconfig/
 user_questions:
   - How can I add a cluster key pair to my kubectl config file?
   - How to gain access to a cluster using gsctl?

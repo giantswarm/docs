@@ -6,6 +6,8 @@ weight: 250
 menu:
   main:
     parent: uiapi-gsctl
+aliases:
+   /reference/gsctl/update-org-set-credentials/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---

@@ -6,6 +6,8 @@ weight: 50
 menu:
   main:
     parent: kubernetes
+aliases:
+  - /guides/recommendations-and-best-practices/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
 ---

@@ -15,6 +15,8 @@ user_questions:
   - How can I specify which permissions a user will have when using a certain key pair?
   - Why are my containers failing to access some resources?
   - Why is my container lacking permission to use a persistent volume?
+aliases:
+  - /guides/securing-with-rbac-and-psp/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---

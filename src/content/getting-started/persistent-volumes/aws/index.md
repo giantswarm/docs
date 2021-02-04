@@ -7,6 +7,8 @@ menu:
   main:
     identifier: gettingstarted-persistentvolumes-aws
     parent: gettingstarted-persistentvolumes
+aliases:
+  - /guides/using-persistent-volumes-on-aws/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---

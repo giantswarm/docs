@@ -6,6 +6,8 @@ weight: 60
 menu:
   main:
     parent: app-platform-apps
+aliases:
+  - /guides/deploying-istio/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
 ---

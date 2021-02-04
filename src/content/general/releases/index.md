@@ -19,6 +19,7 @@ user_questions:
 aliases:
   - /reference/release-versions/
   - /reference/tenant-cluster-release-versions/
+  - /reference/workload-cluster-release-versions/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-product
 ---

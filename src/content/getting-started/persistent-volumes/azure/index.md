@@ -7,6 +7,8 @@ menu:
   main:
     identifier: gettingstarted-persistentvolumes-azure
     parent: gettingstarted-persistentvolumes
+aliases:
+  - /guides/using-persistent-volumes-on-azure/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-celestial
 ---

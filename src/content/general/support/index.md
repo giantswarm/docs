@@ -7,6 +7,8 @@ menu:
   main:
     parent: general
 last_review_date: 2020-01-20
+aliases:
+  - /basics/giant-swarm-support/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
 ---

@@ -8,6 +8,8 @@ menu:
     parent: security
     identifier: security-overview
 last_review_date: 2020-05-18
+aliases:
+  - /basics/security/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---

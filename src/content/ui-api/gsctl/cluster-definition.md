@@ -7,6 +7,8 @@ weight: 30
 menu:
   main:
     parent: uiapi-gsctl
+aliases:
+  - /reference/cluster-definition/
 user_questions:
   - What are additional fields I need to fill out for node pool clusters
   - What are node definition keys I need to specify for a non-node pool cluster definition?

@@ -6,6 +6,8 @@ weight: 130
 menu:
   main:
     parent: advanced
+aliases:
+  - /guides/kubernetes-gpu/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
 ---

@@ -6,6 +6,8 @@ weight: 20
 menu:
   main:
     parent: advanced-ingress
+aliases:
+  - /guides/multi-nginx/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-halo
 ---

@@ -10,6 +10,8 @@ user_questions:
   - What are node pools?
   - In which cloud environments are node pools supported?
   - Which workload cluster releases introduced node pools?
+aliases:
+  - /basics/nodepools/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---

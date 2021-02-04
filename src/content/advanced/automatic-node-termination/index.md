@@ -5,6 +5,8 @@ weight: 60
 menu:
   main:
     parent: advanced
+aliases:
+  - /basics/automatic-termination-of-bad-nodes/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---

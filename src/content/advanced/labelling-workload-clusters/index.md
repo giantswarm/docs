@@ -7,6 +7,7 @@ menu:
     parent: advanced
 aliases:
   - /guides/tenant-cluster-labelling/
+  - /guides/workload-cluster-labelling/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---

@@ -16,6 +16,8 @@ user_questions:
   - How does Giant Swarm access an on-prem installation?
   - How can I setup a workload cluser?
   - What makes up the service architecture?
+aliases:
+  - /basics/onprem-architecture/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
 ---

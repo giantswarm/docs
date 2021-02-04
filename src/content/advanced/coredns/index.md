@@ -9,6 +9,8 @@ menu:
 user_questions:
   - How can I override the default CoreDNS configuration?
   - How can I customize the CoreDNS configuration?
+aliases:
+  - /guides/advanced-coredns-configuration/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---

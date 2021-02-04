@@ -7,6 +7,8 @@ menu:
   main:
     parent: general-architecture
 last_review_date: 2020-09-23
+aliases:
+  - /basics/azure-architecture/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-celestial
 ---

@@ -6,6 +6,8 @@ weight: 20
 menu:
   main:
     parent: uiapi-kubectlgs
+aliases:
+  - /reference/kubectl-gs/get-clusters/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---

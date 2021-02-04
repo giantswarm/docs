@@ -6,6 +6,8 @@ weight: 80
 menu:
   main:
     parent: getting-started
+aliases:
+  - /guides/importing-certificates/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---

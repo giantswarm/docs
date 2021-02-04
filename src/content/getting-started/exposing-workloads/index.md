@@ -12,6 +12,8 @@ user_questions:
   - How can I expose a service to the internet?
   - How to configure the host name in ingress?
   - What is the right URL format for the Kubernetes API proxy?
+aliases:
+  - /guides/accessing-services-from-the-outside/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---

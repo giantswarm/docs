@@ -10,6 +10,7 @@ menu:
     parent: uiapi-web
 aliases:
   - /reference/web-interface/tenant-cluster-labelling/
+  - /reference/web-interface/workload-cluster-labelling/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---

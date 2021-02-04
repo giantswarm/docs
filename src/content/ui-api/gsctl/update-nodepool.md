@@ -6,6 +6,8 @@ weight: 240
 menu:
   main:
     parent: uiapi-gsctl
+aliases:
+  - /reference/gsctl/update-nodepool/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---

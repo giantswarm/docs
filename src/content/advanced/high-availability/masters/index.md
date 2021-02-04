@@ -5,6 +5,8 @@ weight: 10
 menu:
   main:
     parent: advanced-highavailability
+aliases:
+  - /basics/ha-masters/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
