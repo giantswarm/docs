@@ -3,6 +3,9 @@ COMPANY=giantswarm
 REGISTRY=quay.io
 SHELL=bash
 MARKDOWNLINT_IMAGE=06kellyjac/markdownlint-cli:0.23.0-alpine
+APPLICATION=docs-staging-app
+
+include Makefile.*.mk
 
 default: docker-build
 
