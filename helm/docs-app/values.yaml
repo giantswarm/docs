@@ -1,5 +1,7 @@
-name: docs-app
-namespace: docs
+# TODO: revert from docs-staging-app to docs-app
+name: docs-staging-app
+# TODO: revert from docs-staging to docs
+namespace: docs-staging
 image:
   name: docs
   tag: "[[.Version]]"
