@@ -54,8 +54,10 @@ workflows:
       - build:
           filters:  # required since `architect/push-to-app-catalog` has tag filters AND requires `build`
             # Ignore all commits, but run when tagging a release.
-            branches:
-              ignore: /.*/
+            
+            # TODO: uncomment the two lines below again after docs-staging-app is no longer a thing
+            #branches:
+            #  ignore: /.*/
             tags:
               only: /^v.*/
       - architect/push-to-app-catalog:

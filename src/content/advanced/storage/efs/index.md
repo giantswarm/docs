@@ -24,7 +24,7 @@ The advantages of using EFS over EBS are:
 
 - EFS data can be accessed from all availability zones in the same region while EBS is tied to a single availability zone.
 - EFS has the capability to mount the same persistent volume to multiple pods at the same time using the ReadWriteMany [access mode](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes).
-- EFS will not hit the [AWS Instance Volume Limit](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/volume_limits.html) as it is a software mount and will avoid the [Impaired EBS](/guides/aws-impaired-volumes/) issue.
+- EFS will not hit the [AWS Instance Volume Limit](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/volume_limits.html) as it is a software mount and will avoid the [Impaired EBS]({{< relref "/advanced/storage/ebs-troubleshooting" >}}) issue.
 - EFS mount times are better than EBS.
 - EFS provides [encryption in transit](https://aws.amazon.com/blogs/aws/new-encryption-of-data-in-transit-for-amazon-efs/) support using TLS and it's enabled by default.
 
@@ -53,7 +53,7 @@ Before installing the provisioner in Kubernetes we will need to create the EFS i
 
 To install the EFS CSI driver in the workload cluster, you will need to follow these steps:
 
-1. Access the [web interface](/reference/web-interface/) and select the cluster on which you want to install the EFS CSI driver.
+1. Access the [web interface]({{< relref "/ui-api/web" >}}) and select the cluster on which you want to install the EFS CSI driver.
 2. Open the Apps tab.
 3. Click the Install App button
 4. Select the Giant Swarm Playground catalog.
