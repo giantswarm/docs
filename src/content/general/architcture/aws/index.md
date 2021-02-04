@@ -1,7 +1,7 @@
 ---
 linkTitle: AWS
 title: The Giant Swarm AWS platform
-description: Description of the Giant Swarm platform on Amazon Web Services (AWS), how it looks like and which features it offers.
+description: Description of the Giant Swarm platform on Amazon Web Services (AWS), how it looks, and which features it offers.
 weight: 10
 menu:
   main:
