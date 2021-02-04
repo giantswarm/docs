@@ -19,7 +19,7 @@ NGINX ingress controller handles [Ingress](https://kubernetes.io/docs/concepts/s
 
 Starting with [NGINX IC v1.8.0](https://github.com/giantswarm/nginx-ingress-controller-app/blob/master/CHANGELOG.md#180---2020-07-24), one can install multiple NGINX ingress controllers in a Kubernetes cluster. Below, we cover common cases.
 
-Most NGINX configuration options have NGINX-wide defaults. They can also be overriden on a per-Ingress resource level. 
+Most NGINX configuration options have NGINX-wide defaults. They can also be overriden on a per-Ingress resource level.
 
 In each case below, one installs a second NGINX with a different NGINX global-only configuration. Ingress resources managed by this NGINX installation cannot be customized on a per-Ingress resource level.
 
