@@ -2,7 +2,6 @@
 linkTitle: Cluster definition
 title: Cluster definition reference
 description: Complete documentation of the Giant Swarm cluster definition YAML format, compatible with API v4 and v5. Use this format to create customized clusters via gsctl.
-layout: subsection
 weight: 30
 menu:
   main:
