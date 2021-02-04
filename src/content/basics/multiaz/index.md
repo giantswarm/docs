@@ -56,7 +56,7 @@ This enables use cases such as:
 
 - Single availability zone clusters start in a random availability zone too. This is a means to minimize the risk of all your clusters becoming unavailable due to a failure in one particular AZ.
 
-- Standard volumes can not be moved across availability zones. You need to take this into account when designing for high availability. If the AZ with your volume goes down, there will be no way to reschedule the pod to another availability zone. You either need to create a new volume from a snapshot or you will have to replicate your data across AZ. On AWS, you can also consider using [EFS](/guides/using-persistent-volumes-on-aws-with-efs/) as a storage provider to be able to access volumes from several availability zones.
+- Standard volumes can not be moved across availability zones. You need to take this into account when designing for high availability. If the AZ with your volume goes down, there will be no way to reschedule the pod to another availability zone. You either need to create a new volume from a snapshot or you will have to replicate your data across AZ. On AWS, you can also consider using [EFS](/guides/using-persistent-volumes-on-aws-with-efs-csi-driver/) as a storage provider to be able to access volumes from several availability zones.
 
 - To make sure your pods and volumes end up on the same nodes, we recommend to specify `WaitForFirstConsumer` as `volumeBindingMode` in your storage classes. Your clusters come with a default storage class that contains this setting already. See the [Volume Binding Mode](https://kubernetes.io/docs/concepts/storage/storage-classes/#volume-binding-mode) section in the Kubernetes storage documentation for more information.
 
