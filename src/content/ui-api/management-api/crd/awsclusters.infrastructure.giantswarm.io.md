@@ -1,6 +1,6 @@
 ---
 title: AWSCluster CRD schema reference
-linktitle: AWSCluster
+linkTitle: AWSCluster
 technical_name: awsclusters.infrastructure.giantswarm.io
 description:   AWSCluster is the infrastructure provider referenced in upstream CAPI Cluster CRs.
 weight: 100
@@ -9,6 +9,7 @@ source_repository_ref: v3.15.0
 layout: "crd"
 aliases:
   - /reference/cp-k8s-api/awsclusters.infrastructure.giantswarm.io/
+  - /reference/management-api/awsclusters.infrastructure.giantswarm.io/
 ---
 
 # AWSCluster

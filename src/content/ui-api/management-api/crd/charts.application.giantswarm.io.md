@@ -1,6 +1,6 @@
 ---
 title: Chart CRD schema reference
-linktitle: Chart
+linkTitle: Chart
 technical_name: charts.application.giantswarm.io
 description:   Chart represents a Helm Chart deployed as a Helm Release.
 weight: 100
@@ -9,6 +9,7 @@ source_repository_ref: v3.15.0
 layout: "crd"
 aliases:
   - /reference/cp-k8s-api/charts.application.giantswarm.io/
+  - /reference/management-api/charts.application.giantswarm.io/
 ---
 
 # Chart

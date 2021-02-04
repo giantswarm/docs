@@ -1,6 +1,6 @@
 ---
 title: AzureCluster CRD schema reference
-linktitle: AzureCluster
+linkTitle: AzureCluster
 technical_name: azureclusters.infrastructure.cluster.x-k8s.io
 description:   AzureCluster is the Schema for the azureclusters API
 weight: 100
@@ -9,6 +9,7 @@ source_repository_ref: v3.15.0
 layout: "crd"
 aliases:
   - /reference/cp-k8s-api/azureclusters.infrastructure.cluster.x-k8s.io/
+  - /reference/management-api/azureclusters.infrastructure.cluster.x-k8s.io/
 ---
 
 # AzureCluster

@@ -1,6 +1,6 @@
 ---
 title: App CRD schema reference
-linktitle: App
+linkTitle: App
 technical_name: apps.application.giantswarm.io
 description:   App represents a managed app.
 weight: 100
@@ -9,6 +9,7 @@ source_repository_ref: v3.15.0
 layout: "crd"
 aliases:
   - /reference/cp-k8s-api/apps.application.giantswarm.io/
+  - /reference/management-api/apps.application.giantswarm.io/
 ---
 
 # App

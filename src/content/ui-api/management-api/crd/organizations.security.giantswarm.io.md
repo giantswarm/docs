@@ -1,6 +1,6 @@
 ---
 title: Organization CRD schema reference
-linktitle: Organization
+linkTitle: Organization
 technical_name: organizations.security.giantswarm.io
 description:   Organization represents schema for managed Kubernetes namespace. Reconciled by organization-operator.
 weight: 100
@@ -9,6 +9,7 @@ source_repository_ref: v3.15.0
 layout: "crd"
 aliases:
   - /reference/cp-k8s-api/organizations.security.giantswarm.io/
+  - /reference/management-api/organizations.security.giantswarm.io/
 ---
 
 # Organization

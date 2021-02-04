@@ -1,6 +1,6 @@
 ---
 title: AzureTool CRD schema reference
-linktitle: AzureTool
+linkTitle: AzureTool
 technical_name: azuretools.tooling.giantswarm.io
 description: Custom resource definition (CRD) schema reference page for the AzureTool resource (azuretools.tooling.giantswarm.io), as part of the Giant Swarm Management API documentation.
 
@@ -10,6 +10,7 @@ source_repository_ref: v3.15.0
 layout: "crd"
 aliases:
   - /reference/cp-k8s-api/azuretools.tooling.giantswarm.io/
+  - /reference/management-api/azuretools.tooling.giantswarm.io/
 ---
 
 # AzureTool

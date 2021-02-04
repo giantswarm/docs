@@ -1,6 +1,6 @@
 ---
 title: AzureClusterConfig CRD schema reference
-linktitle: AzureClusterConfig
+linkTitle: AzureClusterConfig
 technical_name: azureclusterconfigs.core.giantswarm.io
 description: Custom resource definition (CRD) schema reference page for the AzureClusterConfig resource (azureclusterconfigs.core.giantswarm.io), as part of the Giant Swarm Management API documentation.
 
@@ -10,6 +10,7 @@ source_repository_ref: v3.15.0
 layout: "crd"
 aliases:
   - /reference/cp-k8s-api/azureclusterconfigs.core.giantswarm.io/
+  - /reference/management-api/azureclusterconfigs.core.giantswarm.io/
 ---
 
 # AzureClusterConfig

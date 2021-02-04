@@ -1,6 +1,6 @@
 ---
 title: MachineDeployment CRD schema reference
-linktitle: MachineDeployment
+linkTitle: MachineDeployment
 technical_name: machinedeployments.cluster.x-k8s.io
 description:   MachineDeployment is the Schema for the machinedeployments API
 weight: 100
@@ -9,6 +9,7 @@ source_repository_ref: v3.15.0
 layout: "crd"
 aliases:
   - /reference/cp-k8s-api/machinedeployments.cluster.x-k8s.io/
+  - /reference/management-api/machinedeployments.cluster.x-k8s.io/
 ---
 
 # MachineDeployment

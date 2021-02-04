@@ -1,6 +1,6 @@
 ---
 title: KVMClusterConfig CRD schema reference
-linktitle: KVMClusterConfig
+linkTitle: KVMClusterConfig
 technical_name: kvmclusterconfigs.core.giantswarm.io
 description: Custom resource definition (CRD) schema reference page for the KVMClusterConfig resource (kvmclusterconfigs.core.giantswarm.io), as part of the Giant Swarm Management API documentation.
 
@@ -10,6 +10,7 @@ source_repository_ref: v3.15.0
 layout: "crd"
 aliases:
   - /reference/cp-k8s-api/kvmclusterconfigs.core.giantswarm.io/
+  - /reference/management-api/kvmclusterconfigs.core.giantswarm.io/
 ---
 
 # KVMClusterConfig
