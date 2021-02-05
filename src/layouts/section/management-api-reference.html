@@ -1,18 +1,20 @@
-{{ partial "header.html" . }}
+{{ partial "header" . }}
 
 <div class="row">
-  <div class="col-md-10 col-md-offset-1">
-    <h1 id="title">Management API Reference</h1>
+  <div class="col-xs-12">
+    {{ partial "breadcrumb" . }}
+  </div>
+</div>
 
-    <p>At Giant Swarm, the <em>control plane</em> is another term for the management cluster that allows to create and manage the workload clusters running your workloads.</p>
-    
-    <p>The Management API gives you access to the custom resources (CR) defining your workload clusters in your Giant Swarm installation’s management cluster. Here you find schema descriptions for the custom resources in use.</p>
+<div class="row">
+  <div class="col-md-4 col-lg-3 hidden-sm hidden-xs ">
+    {{ partialCached "sidebar_search_form" . }}
+    {{ partial "menu" . }}
+  </div>
+  <div class="col-sm-12 col-md-8 col-lg-9 list-content">
+    <h1 id="title">Custom Resource Definitions (CRD)</h2>
 
-    <hr />
-
-    <h2>Custom Resource Definitions</h2>
-
-    <p>Select the <abbr title="Custom Resource">CR</abbr>/<abbr title="Custom Resource Definition">CRD</abbr> name to get information on the custom resource schema.</p>
+    <p>Select the <abbr title="Custom Resource">CR</abbr>/<abbr title="Custom Resource Definition">CRD</abbr> name to get information on the custom resource versions and schema.</p>
 
     <ul class="linklist crd-index">
 
@@ -50,4 +52,4 @@
   </div>
 </div>
 
-{{ partial "footer.html" . }}
+{{ partialCached "footer" . }}

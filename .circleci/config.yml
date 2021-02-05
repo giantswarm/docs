@@ -34,20 +34,6 @@ jobs:
             CURL_OUTPUT=$(curl --no-buffer -s http://localhost:8080)
             echo $CURL_OUTPUT | grep --quiet "Giant Swarm"
 
-      - run:
-          name: Internal link check
-          command: |
-            docker pull linkchecker/linkchecker > /dev/null
-            docker run --rm -ti --name linkchecker \
-              --link docs:docs \
-              linkchecker/linkchecker \
-                http://docs:8080 \
-                -t 4 \
-                --ignore-url="^https://docs\.giantswarm\.io/.*" \
-                --ignore-url=/api/ \
-                --ignore-url=/changes/
-            docker kill docs || echo "Container 'docs' not running"
-
       - deploy:
           name: Deploy (only if branch is "master")
           command: |
@@ -68,6 +54,7 @@ workflows:
       - build:
           filters:  # required since `architect/push-to-app-catalog` has tag filters AND requires `build`
             # Ignore all commits, but run when tagging a release.
+
             branches:
               ignore: /.*/
             tags:
@@ -76,7 +63,7 @@ workflows:
           name: "package and push docs"
           app_catalog: "giantswarm-operations-platform-catalog"
           app_catalog_test: "giantswarm-operations-platform-test-catalog"
-          chart: "docs-app"
+          chart: docs-app
           # Trigger job on git tag.
           filters:
             tags:

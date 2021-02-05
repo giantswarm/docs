@@ -34,22 +34,26 @@ We use [Title Case](https://titlecase.com/) only for the main article headline, 
 
 A YAML block, for example, is opened with triple back-ticks followed by `yaml`:
 
-    ```yaml
-    foo: bar
-    ```
+~~~markdown
+```yaml
+foo: bar
+```
+~~~
 
 **Guideline:** Shell commands and their output get the fake hint `nohighlight` to prevent any funky syntax highlighting.
 
-Shell commands in code blocks are prepended with a `$ ` (dollar sign and one blank character).
+Shell commands in code blocks are prepended with a `$` (dollar sign and one blank character).
 
 Example:
 
-    ```nohighlight
-    $ gsctl --version
-    Version:      0.26.0 - https://github.com/giantswarm/gsctl/releases/tag/0.26.0
-    Build date:   2020-11-18T08:48:37Z
-    Commit hash:  5c7820239fc68fc9552eb2751ca3c3ceda47001c - https://github.com...
-    ```
+~~~markdown
+```nohighlight
+$ gsctl --version
+Version:      0.26.0 - https://github.com/giantswarm/gsctl/releases/tag/0.26.0
+Build date:   2020-11-18T08:48:37Z
+Commit hash:  5c7820239fc68fc9552eb2751ca3c3ceda47001c - https://github.com...
+```
+~~~
 
 ### CLI commands
 
@@ -118,6 +122,7 @@ Edit existing content in the `src/content` folder.
 Each documentation page consists of a Markdown file that starts with some metadata called [front matter](https://gohugo.io/content-management/front-matter/). Some hints:
 
 - Please look at the other pages to get an idea of what the front matter is good for.
+- When your page's `title` is too long for the navigation menu, add a `linkTitle` field with a short title.
 - Please double-check whether the `description` is still up-to-date or could be improved. It will often show up Google search results.
 
 Special front matter fields we use:
@@ -131,7 +136,7 @@ Special front matter fields we use:
 In order to link to other docs pages, please use this format only:
 
 ```markdown
-... see the [gsctl reference](/reference/gsctl/) for details. ...
+... see the [gsctl reference]({{< relref "/ui-api/gsctl" >}}) for details. ...
 ```
 
 Note that
