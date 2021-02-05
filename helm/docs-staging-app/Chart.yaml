@@ -1,6 +1,5 @@
 apiVersion: v1
-# TODO: revert from docs-staging-app to docs-app
-name: docs-staging-app
+name: docs-app
 namespace: docs
 appVersion: 0.0.1
 description: Giant Swarm documentation published at https://docs.giantswarm.io/
