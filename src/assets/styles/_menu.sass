@@ -40,24 +40,31 @@ $indent: 14px
   &__label.active a::after
     transform: rotate(90deg)
 
-  &__link,
   &__label
+    display: block
+    margin: 0
+    line-height: 17px
+
+  &__link
     display: inline-block
     margin: 0
-    padding: 7px 0 7px 0
     line-height: 17px
     cursor: pointer
-    //transition: color .2s ease-in, background-color .2s ease-in
+  
+  &__link
+    padding: 7px 0 7px 0
+  
+  &__label > a
+    display: inline-block
+    padding: 7px 0 7px
 
   // top level items
   &__list--level1 > li > .acnav__label,
   &__list--level1 > li > .acnav__link
-    font-weight: bold
-    color: rgb(51, 67, 77)
+    font-weight: 700
 
   // second level items
-  &__list--level2 .acnav__link,
-  &__list--level2 > li > .acnav__label
+  &__list--level2 .acnav__link
     padding: 5px 0 5px 0
 
   // third level items
@@ -70,8 +77,13 @@ $indent: 14px
   &__list--level4 > li > .acnav__label
     padding-left: ($indent * 2)
   
-  a.current
-    color: #000
+  a
+    color: #666
+    &:hover
+      color: #1c91d5
+      text-decoration: none
+    &.current
+      color: #000
 
 .acnav__list--level1
   padding-bottom: 30px
