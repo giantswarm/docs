@@ -11,8 +11,6 @@ owner:
 
 # Spot instances on AWS
 
-{{< platform_support_table aws="ga=v11.2.0" azure="roadmap=https://github.com/giantswarm/roadmap/issues/7" >}}
-
 ## Introduction
 
 As of workload cluster release v{{% first_aws_spotinstances_version %}} for AWS, it is possible to use spot instances in clusters that will allow you to optimize your cost.
