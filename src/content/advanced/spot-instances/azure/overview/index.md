@@ -4,7 +4,7 @@ description: A general description of spot instances, it's benefits, usage and d
 weight: 10
 menu:
   main:
-    parent: advanced-spotinstances
+    parent: advanced-spotinstances-azure
 owner:
   - https://github.com/orgs/giantswarm/teams/team-celestial
 ---

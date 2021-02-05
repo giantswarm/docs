@@ -5,7 +5,7 @@ description: When using spot instances in a node pool on Azure, it can happen th
 weight: 30
 menu:
   main:
-    parent: advanced-spotinstances
+    parent: advanced-spotinstances-azure
 user_questions:
   - How can I use VM spot instances and fall back to on-demand if no spot instances are available?
 aliases:

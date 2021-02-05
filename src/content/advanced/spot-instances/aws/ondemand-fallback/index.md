@@ -5,7 +5,7 @@ description: When using spot instances in a node pool on AWS, it can happen that
 weight: 30
 menu:
   main:
-    parent: advanced-spotinstances
+    parent: advanced-spotinstances-aws
 user_questions:
   - How can I use EC2 spot instances and fall back to on-demand if no spot instances are available?
 aliases:
