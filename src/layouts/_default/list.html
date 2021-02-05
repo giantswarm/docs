@@ -1,17 +1,43 @@
-{{ partial "header.html" . }}
+{{ partial "header" . }}
 
 <div class="row">
-  <div class="col-md-12 col-lg-8 col-lg-offset-2">
-    <h1 id="title">{{ .Title }}</h1>
-    <ul class="linklist">
-      {{ range .Data.Pages.ByWeight }}
-      <li>
-        <a href="{{ .Permalink | relURL }}">{{ .Title }}</a>
-        <div class="meta">{{ .Description }}</div>
-      </li>
-      {{ end }}
-    </ul>
+  <div class="col-xs-12">
+    {{ partial "breadcrumb" . }}
   </div>
 </div>
 
-{{ partial "footer.html" . }}
+<div class="row">
+  <div class="col-md-4 col-lg-3 hidden-sm hidden-xs ">
+    {{ partialCached "sidebar_search_form" . }}
+    {{ partial "menu" . }}
+  </div>
+  <div class="col-sm-12 col-md-8 col-lg-7 list-content">
+    <h1 id="title">{{ .LinkTitle }}</h1>
+
+    {{ if or .Description .Content }}
+      {{- with .Description -}}
+      <p class="intro">{{ . }}</p>
+      {{- end }}
+
+      {{- with .Content -}}
+      {{ . }}
+      {{- end }}
+      <hr />
+    {{- end }}
+
+    {{ if gt (add (len .Sections) (len .RegularPages)) 0 }}
+      <ul class="linklist">
+        {{ range .Pages.ByWeight }}
+        <li>
+          <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+          <div class="meta">{{ .Description }}</div>
+        </li>
+        {{ end }}
+      </ul>
+
+    {{ end }}
+
+  </div>
+</div>
+
+{{ partialCached "footer" . }}
