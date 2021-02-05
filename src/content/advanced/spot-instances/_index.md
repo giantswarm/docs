@@ -7,7 +7,7 @@ menu:
     identifier: advanced-spotinstances
     parent: advanced
 aliases:
-  - /basics/spot-instances/
+  - /advanced/spot-instances/
 ---
 
 {{< platform_support_table aws="ga=v11.2.0" azure="roadmap=https://github.com/giantswarm/roadmap/issues/7" >}}
