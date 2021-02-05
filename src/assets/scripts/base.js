@@ -36,7 +36,7 @@ function doSearch(q) {
   $(".searchinstructions").hide();
 
   var limit = 100;
-  $("#qinput").val(q);
+  $("#searchInput").val(q);
   // assemble the big query object for ElasticSearch
   var postData = {
     "from": 0,
