@@ -229,14 +229,6 @@ if (typeof username !== "undefined" && username !== "") {
 // make all tables bootstrappy
 $("table").addClass("table");
 
-$(".search-cta input").on("change keypress keyup", function(evt){
-  if ($(".search-cta input").val() === "") {
-    $(".search-cta button").animate({"opacity": 0.0});
-  } else {
-    $(".search-cta button").animate({"opacity": 1.0});
-  }
-});
-
 // link headlines
 // Thanks to http://ben.balter.com/2014/03/13/pages-anchor-links/!
 $(function() {
