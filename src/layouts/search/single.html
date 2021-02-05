@@ -16,7 +16,7 @@
 
     <p id="result-is-limited" style="display: none">Showing the first X items only</p>
 
-    {{ partial "search_form" }}
+    {{ partial "search_form" (dict "context" . "placeholder" "Your search term") }}
 
     <div class="suggestion" style="display: none">
       <p>Try this: <a href="#">term</a></p>

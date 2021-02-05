@@ -1,7 +1,7 @@
 <form class="form-inline" method="GET" action="/search/" role="search">
   <div class="form-group">
     <label class="sr-only" for="searchInput">Find documentation for</label>
-    <input type="search" name="q" class="form-control" placeholder="Search documentation" id="searchInput"/>
+    <input type="search" name="q" class="form-control" placeholder="{{ if .placeholder }}{{ .placeholder}}{{ else }}Search documentation{{ end }}" id="searchInput"/>
   </div>
   <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
 </form>
