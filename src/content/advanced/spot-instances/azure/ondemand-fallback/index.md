@@ -1,10 +1,11 @@
 ---
-linkTitle: Using on-demand as fall-back on Azure
+linkTitle: Using on-demand as fall-back
 title: Using on-demand instances as fall-back when spot instances are unavailable on Azure
 description: When using spot instances in a node pool on Azure, it can happen that the node pool cannot be scaled up as not enough spot instances are available. This guide shows you how to configure cluster-autoscaler in a way to provide on-demand instances as a back-up automatically.
 weight: 30
 menu:
   main:
+    identifier: advanced-spotinstances-azure-ondemandfallback
     parent: advanced-spotinstances-azure
 user_questions:
   - How can I use VM spot instances and fall back to on-demand if no spot instances are available?

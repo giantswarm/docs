@@ -1,6 +1,6 @@
 ---
 title: Spot instances
-description: Spot instances (also called low-priority VMs on Azure) are a simple way to save on compute cost, if your use case permits it.
+description: Spot instances (also called low-priority VMs on Azure) are a simple way to save on compute cost, if your use case permits it. Here you find documentation for using them with Giant Swarm Kubernetes clusters, both on AWS and Microsoft Azure.
 weight: 40
 menu:
   main:

@@ -1,15 +1,17 @@
 ---
-title: Spot instances on  Azure
+linkTitle: Overview
+title: Overview on spot instances on Azure
 description: A general description of spot instances, it's benefits, usage and differences from on-demand instance types.
 weight: 10
 menu:
   main:
+    identifier: advanced-spotinstances-azure-overview
     parent: advanced-spotinstances-azure
 owner:
   - https://github.com/orgs/giantswarm/teams/team-celestial
 ---
 
-# Spot instances on Azure
+# Overview on spot instances on Azure
 
 ## Introduction
 

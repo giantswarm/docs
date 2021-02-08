@@ -1,15 +1,17 @@
 ---
-title: Spot instances on AWS
+linkTitle: Overview
+title: Overview on spot instances on AWS
 description: A general description of spot instances, it's benefits, usage and differences from on-demand instance types.
 weight: 10
 menu:
   main:
+    identifier: advanced-spotinstances-aws-overview
     parent: advanced-spotinstances-aws
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
 
-# Spot instances on AWS
+# Overview on spot instances on AWS
 
 ## Introduction
 
