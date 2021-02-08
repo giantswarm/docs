@@ -1,10 +1,6 @@
+import datetime
 import os
 import re
-from pprint import pprint
-from sys import exit
-
-from dateutil.parser import parse
-import datetime
 
 from yaml import load
 try:
