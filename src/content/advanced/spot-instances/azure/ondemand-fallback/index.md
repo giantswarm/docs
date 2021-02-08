@@ -25,7 +25,7 @@ To ensure enough capacity in a cluster, this guide presents a solution where
 - two node pools exist: one configured to only use spot instances, the other one to only use on-demand instances.
 - cluster-autoscaler is configured to scale up the spot node pool first, and only if that fails, scale up the on-demand node pool.
 
-Credit where credit is due: this solution has been proposed [in a blog post by Nir Forer](https://blog.doit-intl.com/running-eks-workloads-on-spot-instances-with-on-demand-instances-fallback-14bef39ce689). We adapt it here to match exactly the situation of Giant Swarm workload clusters on AWS.
+Credit where credit is due: this solution has been proposed [in a blog post by Nir Forer](https://blog.doit-intl.com/running-eks-workloads-on-spot-instances-with-on-demand-instances-fallback-14bef39ce689). We adapt it here to match exactly the situation of Giant Swarm workload clusters on Azure.
 
 **Note:** This guide has been written for workload cluster release v14.1.0 with [cluster-autoscaler](https://github.com/kubernetes/autoscaler) v1.19.1, provided via our [cluster-autoscaler-app](https://github.com/giantswarm/cluster-autoscaler-app) version [v1.19.1](https://github.com/giantswarm/cluster-autoscaler-app/releases/tag/v1.19.1).
 
