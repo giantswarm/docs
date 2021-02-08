@@ -7,6 +7,7 @@ menu:
     parent: advanced-ingress
 aliases:
   - /guides/services-of-type-loadbalancer-and-multiple-ingress-controllers/
+  - /advanced/ingress/service-type-loadbalancer-multi-ic/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-halo
 user_questions:
