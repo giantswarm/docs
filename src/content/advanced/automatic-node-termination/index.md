@@ -1,4 +1,5 @@
 ---
+linkTitle: Automatic termination of unhealthy nodes
 title: Automatic termination of unhealthy nodes
 description: Unhealthy cluster nodes can lead to impaired workload reliability and wasted cluster resources. Here we explain how you can activate automatic termination of such nodes.
 weight: 60

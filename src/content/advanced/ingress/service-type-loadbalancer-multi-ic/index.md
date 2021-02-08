@@ -1,4 +1,5 @@
 ---
+linkTitle: Load balancer services and multiple IC
 title: Services of type LoadBalancer and multiple ingress controllers
 description: Learn how to expose services directly on cloud providers and run multiple Ingress Controllers at the same time.
 weight: 30
