@@ -22,7 +22,7 @@ user_questions:
 
 NGINX ingress controller handles [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) resources, routing traffic from outside the Kubernetes cluster to services within the cluster.
 
-Starting with [NGINX IC v1.8.0](https://github.com/giantswarm/nginx-ingress-controller-app/blob/master/CHANGELOG.md#180---2020-07-24), one can install multiple NGINX ingress controllers in a Kubernetes cluster. The optional NGINX Ingress Controller can be [installed as as an App on your cluster]({{< relref "/content/guides/installing-optional-ingress-controller/index.md" >}}). This Ingress Controller is registered with the default `nginx` Ingress Class.
+Starting with [NGINX IC v1.8.0](https://github.com/giantswarm/nginx-ingress-controller-app/blob/master/CHANGELOG.md#180---2020-07-24), one can install multiple NGINX ingress controllers in a Kubernetes cluster. The optional NGINX Ingress Controller can be [installed as as an App on your cluster]({{< relref "/content/getting-started/ingress-controller/index.md" >}}). This Ingress Controller is registered with the default `nginx` Ingress Class.
 
 Some use cases for this might be:
 
@@ -94,7 +94,7 @@ Similarly, cloud load balancer created for each NGINX installation on AWS and Az
 
 For NGINX IC running on on-prem (KVM) workload clusters there's no out-of-the-box `LoadBalancer` Service type support. Therefore, NGINX Service type defaults to `NodePort`. For every NGINX IC App installation, one must assign a set of unique http and https node ports. The default NGINX http and https node ports are `30010` and `30011`. The example sets `31010` and `31011` as overrides for the internal NGINX.
 
-More information on this topic can be found in document [Services of type LoadBalancer and Multiple Ingress Controllers]({{< relref "/content/guides/services-of-type-loadbalancer-and-multiple-ingress-controllers/index.md#multiple-ingress" >}}).
+More information on this topic can be found in document [Services of type LoadBalancer]({{< relref "/content/advanced/ingress/service-type-loadbalancer/index.md" >}}).
 
 ## Using weak ciphers for legacy clients
 
@@ -122,8 +122,8 @@ For the second NGINX IC App installation, ingress class and host name subdomain 
 
 ## Additional resources
 
-- [Services of type LoadBalancer]({{< relref "/content/guides/services-of-type-loadbalancer/index.md" >}})
-- [Installing an Ingress Controller]({{< relref "/content/guides/installing-optional-ingress-controller/index.md" >}})
+- [Services of type LoadBalancer]({{< relref "/content/advanced/ingress/service-type-loadbalancer/index.md" >}})
+- [Installing an Ingress Controller]({{< relref "/content/getting-started/ingress-controller/index.md" >}})
 - [NGINX IC App configuration options](https://github.com/giantswarm/nginx-ingress-controller-app/blob/master/helm/nginx-ingress-controller-app/values.yaml)
 - [Upstream ingress-nginx configuration documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)
 - [Upstream ingress-nginx multi-nginx documentation](https://kubernetes.github.io/ingress-nginx/user-guide/multiple-ingress/)
