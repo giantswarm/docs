@@ -1,6 +1,6 @@
 ---
 title: Limiting pod communication with network policies
-description: Guide on how to limit pod communication using network policies.
+description: In order to restrict how pods can communicate with other pods, services and even the world outside your cluster, you can use network policies. This guide gives you an introduction and some common examples.
 weight: 80
 menu:
   main:

@@ -1,7 +1,7 @@
 ---
 linkTitle: show cluster
 title: "'gsctl show cluster' command reference"
-description: The 'gsctl show cluster' command displays details of a cluster.
+description: The 'gsctl show cluster' command displays many details of a workload cluster.
 weight: 200
 menu:
   main:

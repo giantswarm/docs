@@ -1,7 +1,7 @@
 ---
 linkTitle: Custom admission controllers
 title: Creating your own admission controller
-description: Tutorial on how to create your own admission controller.
+description: Tutorial on how to create your own admission controller, to enforce certain custom rules and policies in the resources created in your Kubernetes cluster.
 weight: 160
 menu:
   main:
