@@ -36,7 +36,7 @@ function doSearch(q) {
   $(".searchinstructions").hide();
 
   var limit = 100;
-  $("#qinput").val(q);
+  $("#searchInput").val(q);
   // assemble the big query object for ElasticSearch
   var postData = {
     "from": 0,
@@ -207,15 +207,14 @@ $(document).ready(function(){
   doSearch(q);
 });
 
-/** Re-format the table of contents **/
-
+/** Remove TOC if empty **/
 var toc = $('#TableOfContents');
 if (toc.length !== 0) {
-  var innerToc = toc.find("ul:first-child > li:first-child > ul").html();
-  if (typeof innerToc !== "undefined") {
-    toc.html("<ul>" + innerToc + "</ul>");
-  } else {
-    $('#TableOfContents').remove();
+  var innerToc = toc.html();
+  console.debug(innerToc);
+  if (typeof innerToc === "undefined" || innerToc === "") {
+    toc.remove();
+    $('.toc .header').remove();
   }
 }
 
@@ -227,29 +226,8 @@ if (typeof username !== "undefined" && username !== "") {
   $(".helloworldlink").html('Then open your running application at <a href="http://helloworld-' + username + '.gigantic.io/" target="_blank">helloworld-' + username + '.gigantic.io</a>')
 }
 
-/** Adapt docs menu **/
-if (document.location.pathname == "/") {
-  $("#homelink").addClass("active");
-} else {
-  $(".docsnav .nav li").each(function(index, item){
-    var link = $(item).find("a").attr("href");
-    if (link !== "/" && document.location.pathname.indexOf(link) == 0) {
-      $(item).addClass("active");
-      return;
-    }
-  });
-}
-
 // make all tables bootstrappy
 $("table").addClass("table");
-
-$(".search-cta input").on("change keypress keyup", function(evt){
-  if ($(".search-cta input").val() === "") {
-    $(".search-cta button").animate({"opacity": 0.0});
-  } else {
-    $(".search-cta button").animate({"opacity": 1.0});
-  }
-});
 
 // link headlines
 // Thanks to http://ben.balter.com/2014/03/13/pages-anchor-links/!
