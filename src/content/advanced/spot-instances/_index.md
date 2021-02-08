@@ -10,4 +10,4 @@ aliases:
   - /advanced/spot-instances/
 ---
 
-{{< platform_support_table aws="ga=v11.2.0" azure="roadmap=https://github.com/giantswarm/roadmap/issues/7" >}}
+{{< platform_support_table aws="ga=v11.2.0" azure="ga=v14.1.0" >}}
