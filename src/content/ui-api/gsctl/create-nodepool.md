@@ -67,7 +67,7 @@ $ gsctl create nodepool f01r4 \
     --azure-spot-instances
 ```
 
-Here is how you can set a maximum price that a single node pool VM instance can reach before it is deallocated:
+Here is how you can set a maximum hourly price in USD that a single node pool VM instance can reach before it is deallocated:
 
 ```nohighlight
 $ gsctl create nodepool f01r4 \
