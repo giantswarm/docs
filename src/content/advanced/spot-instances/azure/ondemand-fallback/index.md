@@ -37,7 +37,7 @@ Next, create two node pools.
 
 1. Name: Spot,
    Enable spot instances: yes,
-   Spot maximum price per hour: set your value for max price or use current on-demand pricing as max
+   Spot maximum price per hour: set your value for max price or use current on-demand pricing as max, 
    Scaling range: min=1
 
 2. Name: On-Demand,
