@@ -36,7 +36,7 @@ In each case below, one installs a second NGINX with a different NGINX global-on
 
 Further information on configuring NGINX Ingress Controller can be found in the [Services of type LoadBalancer]({{< relref "/content/advanced/ingress/service-type-loadbalancer/index.md" >}}).
 
-### Quick installation instructions for a second NGINX Ingress controller
+## Quick installation instructions for a second NGINX Ingress controller
 
 1. Install a second NGINX IC app (and subsequent apps) with a different NGINX global-only configuration. Ingress resources managed by this NGINX installation cannot be customized on a per-Ingress resource level.
 2. Annotate each Ingress with the appropriate class. Make sure the Ingress Class of each Ingress Controller do not collide with each other
