@@ -1,7 +1,7 @@
 ---
 linkTitle: Configuration file
 title: gsctl configuration file reference
-description: Documentation of the configuration file format of gsctl
+description: Details on the gsctl configuration file, which keeps your endpoint information and state.
 weight: 20
 menu:
   main:

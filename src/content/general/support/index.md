@@ -1,7 +1,7 @@
 ---
 linkTitle: Support
 title: Giant Swarm support
-description: An explanation of how our support service works.
+description: An explanation of how our support service and various specific processes and workflows.
 weight: 50
 menu:
   main:

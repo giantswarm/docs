@@ -1,7 +1,7 @@
 ---
 linkTitle: Weave Scope/Cloud
 title: Setting up Weave Scope or Weave Cloud
-description: "Recipe to spin up the Weave Scope UI or Weave Cloud on Kubernetes."
+description: Recipe to spin up the Weave Scope UI or Weave Cloud in a Giant Swarm Kubernetes cluster.
 weight: 120
 menu:
   main:
