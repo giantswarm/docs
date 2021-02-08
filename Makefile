@@ -57,6 +57,14 @@ lint:
 		--ignore ./src/content/ui-api/management-api/crd \
 		./src
 
+check-frontmatter:
+	docker build scripts/parse-front-matter -t parse-front-matter
+	docker run --rm \
+	  --volume=${PWD}:/workdir:ro \
+	  -w /workdir \
+	  parse-front-matter \
+	  /workdir/scripts/parse-front-matter/script.py
+
 docker-build: update-latest-versions
 	docker build -t $(REGISTRY)/$(COMPANY)/$(PROJECT):latest .
 
