@@ -3,15 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v11.2.1/
 changes_categories:
-- Workload Cluster Releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v11.2.1
   version: 11.2.1
   version_tag: v11.2.1
 date: '2020-04-28T15:00:00+00:00'
-description: Release notes for AWS release v11.2.1, published on 28 April 2020, 15:00
-title: Workload Cluster Release v11.2.1 for AWS
+description: Release notes for AWS workload cluster release v11.2.1, published on
+  28 April 2020, 15:00
+title: Workload cluster release v11.2.1 for AWS
 ---
 
 This release fixes a problem that could occur when upgrading from an older release to a v11.2.x release.
