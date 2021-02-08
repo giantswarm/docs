@@ -17,7 +17,7 @@ As of workload cluster release v{{% first_azure_spotinstances_version %}} for Az
 
 The main differences between spot and on-demand instances are that spot instances can be terminated any time by the cloud provider. They are also more frequently unavailable.
 
-The hourly price for a spot instance is determined by the cloud provider through a bidding system. The resulting price varies over time and is usually much lower than the cost of the same instance type when booked as on-demand instance. To maximize the likelihood of getting a spot instance when needed, the configuration for Giant Swarm is set to bid up to the price of an on-demand instance with the same type, but not more.
+The hourly price for a spot instance is determined by the cloud provider through a bidding system. The resulting price varies over time and is usually much lower than the cost of the same instance type when booked as on-demand instance. To maximize the likelihood of getting a spot instance when needed, the configuration for Giant Swarm is set to bid up to the price of an on-demand instance with the same type, but not more. This is the generic [Azure feature](https://docs.microsoft.com/en-us/azure/virtual-machines/spot-vms#pricing) that allows to set spot instances dynamic price up to the standard VMs price
 
 On Azure it is not supported to have mixed Node Pools having on-demand and spot instances at the same time. It is possible to set a custom bid price as a maximum value.
 
