@@ -1,4 +1,5 @@
 ---
+linkTitle: Network pools
 title: Network pools
 description: A general description of network pools as a concept, it's benefits, and some details you should be aware of.
 weight: 140
