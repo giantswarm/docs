@@ -16,6 +16,8 @@ user_questions:
   - What are the node pool definition keys I need to specify for a cluster definition? 
   - What goes into the 'masters' key of a cluster definition?
   - Will my cluster definition change if I use node pools?
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
 # Cluster definition reference

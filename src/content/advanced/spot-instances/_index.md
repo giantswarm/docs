@@ -8,6 +8,8 @@ menu:
     parent: advanced
 aliases:
   - /basics/spot-instances/
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-docs
 ---
 
 {{< platform_support_table aws="ga=v11.2.0" azure="roadmap=https://github.com/giantswarm/roadmap/issues/7" >}}

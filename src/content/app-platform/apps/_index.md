@@ -7,4 +7,6 @@ menu:
   main:
     identifier: app-platform-apps
     parent: app-platform
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-halo
 ---

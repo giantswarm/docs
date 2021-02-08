@@ -7,4 +7,6 @@ menu:
   main:
     identifier: advanced-ingress
     parent: advanced
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-halo
 ---

@@ -7,4 +7,6 @@ menu:
   main:
     parent: general
     identifier: general-architecture
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-docs
 ---

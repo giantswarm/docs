@@ -7,4 +7,6 @@ menu:
   main:
     identifier: gettingstarted-cloudprovider
     parent: getting-started
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-docs
 ---

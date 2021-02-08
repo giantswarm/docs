@@ -9,4 +9,6 @@ menu:
     parent: ui-api
 aliases:
   - /reference/management-api/
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---

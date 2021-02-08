@@ -6,6 +6,8 @@ weight: 10
 menu:
   main:
     parent: uiapi-web
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
 
 # The web user interface

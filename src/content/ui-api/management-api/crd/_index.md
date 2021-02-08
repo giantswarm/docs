@@ -13,4 +13,6 @@ user_questions:
   - Where can I find links to Giant Swarm CRs/CRDs?
 aliases:
   - /reference/cp-k8s-api/
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-ux
 ---

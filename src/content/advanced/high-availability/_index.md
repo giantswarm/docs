@@ -6,4 +6,6 @@ menu:
   main:
     identifier: advanced-highavailability
     parent: advanced
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-docs
 ---
