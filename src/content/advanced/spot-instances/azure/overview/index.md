@@ -28,4 +28,4 @@ On Azure it is not supported to have mixed node pools having on-demand and spot 
 Since the availability of spot instances is volatile, there are a few things you can consider:
 
 - The more availability zones you cover with your node pool, the higher the likelihood that spot instances are available when required.
-- When no spot instances are unavailable, missing spot instances are _not_ replaced by on-demand instances. The affected node pool will fail in deployment on Azure, probably leaving some pods unscheduled. For a solution to this, check our guide on [using on-demand instances as fall-back when spot instances are unavailable](/advanced/spot-instances/azure/on-demand-fallback/ ).
+- When no spot instances are unavailable, missing spot instances are _not_ replaced by on-demand instances. The affected node pool will fail in deployment on Azure, probably leaving some pods unscheduled. For a solution to this, check our guide on [using on-demand instances as fall-back when spot instances are unavailable]({{< relref "/advanced/spot-instances/azure/ondemand-fallback" >}}).
