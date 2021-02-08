@@ -44,7 +44,7 @@ kubernetes.io/ingress.class: "nginx-internal"
 
 Not specifying the annotation will lead to multiple ingress controllers claiming the same ingress. Specifying a value which does not match the class of any existing ingress controllers will result in all ingress controllers ignoring the ingress.
 
-Further note that if you are running additional Ingress Controllers you might need to configure them so their Ingress Class does not collide with the class of our default NGINX Ingress Controller. For the community supported NGINX Ingress Controller this is described in the [official documentation](https://kubernetes.github.io/ingress-nginx/user-guide/multiple-ingress/).
+Additionally, please ensure the Ingress Class of each of your Ingress Controllers do not collide with each other and with the [preinstalled Ingress Controllers in legacy clusters]({{< relref "/content/general/releases/index.md#apps" >}}). For the community supported NGINX Ingress Controller this is described in the [official documentation](https://kubernetes.github.io/ingress-nginx/user-guide/multiple-ingress/).
 
 Most NGINX configuration options have NGINX-wide defaults. They can also be overriden on a per-Ingress resource level.
 
