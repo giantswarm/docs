@@ -17,7 +17,7 @@ jobs:
           command: make lint
       
       - run:
-          name: Validate Front Matter
+          name: Validate front matter
           command: make validate-front-matter
 
       - run:
