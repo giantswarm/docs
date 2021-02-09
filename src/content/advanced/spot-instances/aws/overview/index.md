@@ -33,7 +33,7 @@ Since the availability of spot instances is volatile, there are a few things you
 
 - The more availability zones you cover with your node pool, the higher the likelihood that spot instances are available when required.
 - Activating the [use of similar instance types](#similar-instance-types) also increases the likelihood of getting spot instances when using common instance types. Read more about this below.
-- When no spot instances are unavailable, missing spot instances are _not_ replaced by on-demand instances. The affected node pool will instead have less nodes than desired, probably leaving some pods unscheduled. For a solution to this, check our guide on [using on-demand instances as fall-back when spot instances are unavailable]({{< relref "/advanced/spot-instances/aws/ondemand-fallback" >}}).
+- When no spot instances are available, missing spot instances are _not_ replaced by on-demand instances. The affected node pool will instead have less nodes than desired, probably leaving some pods unscheduled. For a solution to this, check our guide on [using on-demand instances as fall-back when spot instances are unavailable]({{< relref "/advanced/spot-instances/aws/ondemand-fallback" >}}).
 
 ## Examples
 
