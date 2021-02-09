@@ -40,6 +40,10 @@ repositories:
     category: Managed Apps
   giantswarm/grafana-app:
     category: Managed Apps
+  giantswarm/loki-app:
+    category: Managed Apps
+  giantswarm/external-dns-app:
+    category: Managed Apps
 
   giantswarm/app-mesh-app:
     category: Playground Apps
@@ -74,6 +78,8 @@ repositories:
   giantswarm/strimzi-kafka-operator-app:
     category: Playground Apps
   giantswarm/vertical-pod-autoscaler-app:
+    category: Playground Apps
+  giantswarm/velero-app:
     category: Playground Apps
 
 # Here we define the colors for categories.

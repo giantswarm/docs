@@ -3,6 +3,9 @@ COMPANY=giantswarm
 REGISTRY=quay.io
 SHELL=bash
 MARKDOWNLINT_IMAGE=06kellyjac/markdownlint-cli:0.23.0-alpine
+APPLICATION=docs-app
+
+include Makefile.*.mk
 
 default: docker-build
 
@@ -51,7 +54,7 @@ lint:
 	    --config .markdownlint.yaml \
 	    --ignore README.md \
 		--ignore ./src/content/changes \
-		--ignore ./src/content/reference/management-api \
+		--ignore ./src/content/ui-api/management-api/crd \
 		./src
 
 docker-build: update-latest-versions
@@ -73,7 +76,7 @@ clean:
 	rm -rf .sass-cache
 
 # Verify internal links
-linkcheck-external:
+linkcheck-internal:
 	@echo "Checking internal links only\n"
 	docker run -d --rm --name server -p 8080:8080 -P $(REGISTRY)/$(COMPANY)/$(PROJECT):latest
 	sleep 2

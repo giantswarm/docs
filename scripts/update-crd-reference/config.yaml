@@ -12,3 +12,6 @@ skip_crds:
   - ingressconfigs.core.giantswarm.io
   - memcachedconfigs.example.giantswarm.io
   - releasecycles.release.giantswarm.io
+  - drainerconfigs.core.giantswarm.io
+  - storageconfigs.core.giantswarm.io
+  - etcdbackups.backup.giantswarm.io
