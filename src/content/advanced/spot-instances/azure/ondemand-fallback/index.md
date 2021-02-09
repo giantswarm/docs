@@ -50,7 +50,7 @@ If it is important to you that the nodes in both node pools run in the same avai
 
 Make sure there are no other node pools in the cluster.
 
-Finally, once you have create the cluster and the two node pools, take note of their IDs. You will need them in the next steps.
+Finally, once you have created the cluster and the two node pools, take note of their IDs. You will need them in the next steps.
 
 ## Autoscaler expander configuration
 
