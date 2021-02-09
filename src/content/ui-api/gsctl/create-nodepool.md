@@ -76,7 +76,7 @@ $ gsctl create nodepool f01r4 \
     --azure-spot-instances-max-price 0.00315
 ```
 
-By setting the `--azure-spot-instances-max-price` flag to '0', the maximum price will be set to the on-demand price of the instance.
+By setting the `--azure-spot-instances-max-price` flag to '-1', the maximum price will be set to the on-demand price of the instance.
 
 ### Options
 
@@ -88,7 +88,7 @@ By setting the `--azure-spot-instances-max-price` flag to '0', the maximum price
 - `--aws-spot-percentage`: Percentage of spot instances used once the on-demand base capacity is fulfilled. A number of 40 would mean that 60% will be on-demand and 40% will be spot instances. Defaults to `0`.
 - `--aws-use-alike-instance-types`: Use similar instance type in your node pool. This list is maintained by Giant Swarm at the moment. Eg if you select m5.xlarge then the node pool can fall back on m4.xlarge too.
 - `--azure-spot-instances`: Whether the node pool must use spot instances or on-demand.
-- `--azure-spot-instances-max-price`: Max bid hourly price (in USD) for a single instance. `0` means on-demand price.
+- `--azure-spot-instances-max-price`: Max bid hourly price (in USD) for a single instance. `-1` means on-demand price.
 - `--azure-vm-size`: VM Size to use for workers, e.g. `Standard_D4s_v3`.
 - `--nodes-min`: Minimum number of worker nodes for the node pool. Defaults to `3`.
 - `--nodes-max`: Maximum number of worker nodes for the node pool. Defaults to `10`.
