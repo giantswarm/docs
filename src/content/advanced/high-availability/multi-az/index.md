@@ -14,7 +14,7 @@ user_questions:
 - Can I influence the scheduling of my pods?
 - How are availibility zones (AZ) selected?
 - Can I move standard volumes across availibility zones (AZ)?
-- What is the alternative to moving standard volumes across availibility zones (AZ)?
+- What is the alternative to moving volumes across availibility zones (AZ)?
 - How do I ensure my pods and volumes are on the same nodes?
 - Can I spread worker nodes over availibility zones?
 - How do I create clusters in multiple availibility zones (AZ)?
