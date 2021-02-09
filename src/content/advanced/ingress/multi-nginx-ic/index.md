@@ -16,13 +16,14 @@ user_questions:
   - How do I configure NGINX Ingress Controller for internal traffic?
   - How do I override the NodePorts on KVM Ingresses?
   - How do I configure NGINX Ingress Controller to allow weak ciphers for legacy devices?
+  - How do I configure an Ingress Controller with different functionality or performance?
 ---
 
 # Installing and running multiple NGINX ingress controllers
 
 NGINX ingress controller handles [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) resources, routing traffic from outside the Kubernetes cluster to services within the cluster.
 
-Starting with [NGINX IC v1.8.0](https://github.com/giantswarm/nginx-ingress-controller-app/blob/master/CHANGELOG.md#180---2020-07-24), one can install multiple NGINX ingress controllers in a Kubernetes cluster. The optional NGINX Ingress Controller can be [installed as as an App on your cluster]({{< relref "/content/getting-started/ingress-controller/index.md" >}}). This Ingress Controller is registered with the default `nginx` Ingress Class.
+Starting with [NGINX IC v1.8.0](https://github.com/giantswarm/nginx-ingress-controller-app/blob/master/CHANGELOG.md#180---2020-07-24), one can install multiple NGINX ingress controllers in a Kubernetes cluster. The optional NGINX Ingress Controller can be [installed as an App on your cluster]({{< relref "/content/getting-started/ingress-controller/index.md" >}}). This Ingress Controller is registered with the default `nginx` Ingress Class.
 
 Some use cases for this might be:
 

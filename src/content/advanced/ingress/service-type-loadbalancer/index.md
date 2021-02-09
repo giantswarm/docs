@@ -14,7 +14,6 @@ user_questions:
   - How can I expose Services to the internet?
   - How do I configure an Ingress Controller that is behind an internal ELB for traffic between services within the VPC (or a group of peered VPCs)?
   - How do I configure an Ingress Controller behind an ELB that already terminates SSL?
-  - How do I configure an Ingress Controller with different functionality or performance?
 ---
 
 # Services of type LoadBalancer
