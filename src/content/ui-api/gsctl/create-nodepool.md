@@ -42,7 +42,11 @@ $ gsctl create nodepool "Cluster name" \
     --nodes-max 20
 ```
 
-To request spot instances in your node pool, you have to set the percentage of worker nodes to be using spot instances via the `--aws-spot-percentage` flag. Optionally you can also define a number of workers that will be guaranteed to use on-demand instances, using the flag `--aws-on-demand-base-capacity`. Here is an example with 3 on-demand instances as a base capacity and 50 percent spot instances above that:
+### Spot instances
+
+#### AWS
+
+To request spot instances in your node pool on AWS, you have to set the percentage of worker nodes to be using spot instances via the `--aws-spot-percentage` flag. Optionally you can also define a number of workers that will be guaranteed to use on-demand instances, using the flag `--aws-on-demand-base-capacity`. Here is an example with 3 on-demand instances as a base capacity and 50 percent spot instances above that:
 
 ```nohighlight
 $ gsctl create nodepool "Cluster name" \
@@ -53,6 +57,27 @@ $ gsctl create nodepool "Cluster name" \
     --aws-spot-percentage 50
 ```
 
+#### Azure
+
+In order to use spot instances, specify the flag, like this:
+
+```nohighlight
+$ gsctl create nodepool f01r4 \
+    --name "Production" \
+    --azure-spot-instances
+```
+
+Here is how you can set a maximum hourly price in USD that a single node pool VM instance can reach before it is deallocated:
+
+```nohighlight
+$ gsctl create nodepool f01r4 \
+    --name "Production" \
+    --azure-spot-instances \
+    --azure-spot-instances-max-price 0.00315
+```
+
+By setting the `--azure-spot-instances-max-price` flag to '-1', the maximum price will be set to the on-demand price of the instance.
+
 ### Options
 
 - `-n, --name`: Name or purpose description of the node pool. Defaults to "Unnamed node pool".
@@ -62,6 +87,8 @@ $ gsctl create nodepool "Cluster name" \
 - `--aws-on-demand-base-capacity`: Number of on-demand instances that this node pool needs to have until spot instances are used. Defaults to `0`.
 - `--aws-spot-percentage`: Percentage of spot instances used once the on-demand base capacity is fulfilled. A number of 40 would mean that 60% will be on-demand and 40% will be spot instances. Defaults to `0`.
 - `--aws-use-alike-instance-types`: Use similar instance type in your node pool. This list is maintained by Giant Swarm at the moment. Eg if you select m5.xlarge then the node pool can fall back on m4.xlarge too.
+- `--azure-spot-instances`: Whether the node pool must use spot instances or on-demand.
+- `--azure-spot-instances-max-price`: Max bid hourly price (in USD) for a single instance. `-1` means on-demand price.
 - `--azure-vm-size`: VM Size to use for workers, e.g. `Standard_D4s_v3`.
 - `--nodes-min`: Minimum number of worker nodes for the node pool. Defaults to `3`.
 - `--nodes-max`: Maximum number of worker nodes for the node pool. Defaults to `10`.

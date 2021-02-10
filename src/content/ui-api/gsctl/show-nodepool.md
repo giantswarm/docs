@@ -68,7 +68,9 @@ Description of output rows:
 - **Node scaling**:                        Current scaling setting of the node pool. When the lower and upper end of the scaling range are the same number, the pool size is "Pinned" at  certain number of worker nodes. Otherwise the node pool uses the Kubernetes autoscaler to set the amount of worker nodes within the configured range.
 - **Nodes desired**:                       The expected number of nodes. With auto-scaling active, this is the number determined by the autoscaler.
 - **Nodes in state Ready**:                The current number of worker nodes which are in state `Ready`.
-- **Spot instances**:                      The current number of worker nodes using spot instances.
+- **Spot instances**:                      Whether spot instances are used or not.
+- **Spot instances count**:                The current number of worker nodes using spot instances.
+- **Spot instances max price**:            The maximum price per hour (in USD) that a single node pool VM instance can reach before it is deallocated (-1 means that the maximum price will be fixed to the on-demand price of the instance).
 - **CPUs**:                                The total number of CPU cores in this node pool.
 - **RAM**:                                 The total amount of memory in this node pool.
 

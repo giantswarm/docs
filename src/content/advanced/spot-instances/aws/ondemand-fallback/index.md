@@ -5,18 +5,19 @@ description: When using spot instances in a node pool on AWS, it can happen that
 weight: 30
 menu:
   main:
-    parent: advanced-spotinstances
+    identifier: advanced-spotinstances-aws-ondemandfallback
+    parent: advanced-spotinstances-aws
 user_questions:
   - How can I use EC2 spot instances and fall back to on-demand if no spot instances are available?
 aliases:
-  - /guides/spot-instances-with-on-demand-fallback/
+  - /advanced/spot-instances/aws/on-demand-fallback/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
 
 # Using on-demand instances as fall-back when spot instances are unavailable
 
-As of workload cluster release v{{% first_aws_spotinstances_version %}} for AWS, node pools can use [spot instances]({{< relref "/advanced/spot-instances" >}}). Users can select for each node pool which percentage of nodes should be covered by spot instances and by on-demand instances respectively. And users can define a base amount of on-demand instances that will be used, to ensure at least a certain amount of worker nodes are available at any time.
+As of workload cluster release v{{% first_aws_spotinstances_version %}} for AWS, node pools can use [spot instances]({{< relref "/advanced/spot-instances/aws/overview  " >}}). Users can select for each node pool which percentage of nodes should be covered by spot instances and by on-demand instances respectively. And users can define a base amount of on-demand instances that will be used, to ensure at least a certain amount of worker nodes are available at any time.
 
 However, it is still possible that the node pool is in need of more worker nodes and there are just no spot instances available matching the request, based on the availability zone and the instance type(s). In this case the node pool cannot be scaled up. As a result, workloads will likely remain unscheduled.
 
@@ -49,7 +50,7 @@ If it is important to you that the nodes in both node pools run in the same avai
 
 Make sure there are no other node pools in the cluster.
 
-Finally, once you have create the cluster and the two node pools, take note of their IDs. You will need them in the next steps.
+Finally, once you have created the cluster and the two node pools, take note of their IDs. You will need them in the next steps.
 
 ## Autoscaler expander configuration
 
