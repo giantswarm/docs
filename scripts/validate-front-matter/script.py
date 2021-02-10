@@ -29,6 +29,28 @@ NO_USER_QUESTIONS     = 'NO_USER_QUESTIONS'
 NO_WEIGHT             = 'NO_WEIGHT'
 REVIEW_TOO_LONG_AGO   = 'REVIEW_TOO_LONG_AGO'
 SHORT_DESCRIPTION     = 'SHORT_DESCRIPTION'
+UNKNOWN_ATTRIBUTE     = 'UNKNOWN_ATTRIBUTE'
+
+# valid top level keys in front matter
+valid_keys = set((
+    'aliases',
+    'changes_categories',
+    'changes_entry',
+    'date',
+    'description',
+    'last_review_date',
+    'layout',
+    'linkTitle',
+    'menu',
+    'owner',
+    'source_repository',
+    'source_repository_ref',
+    'technical_name',
+    'title',
+    #'type',
+    'user_questions',
+    'weight',
+))
 
 def dump_result(rdict):
     for key in rdict:
@@ -72,6 +94,7 @@ def main():
         NO_WEIGHT: set(),
         REVIEW_TOO_LONG_AGO: set(),
         SHORT_DESCRIPTION: set(),
+        UNKNOWN_ATTRIBUTE: set(),
     }
 
     # Iterate through pages
@@ -172,9 +195,14 @@ def main():
         else:
             if not fpath.startswith(changes_path):
                 result[NO_LAST_REVIEW_DATE].add(fpath)
+        
+        # Evaluate all attributes
+        for key in top_attributes:
+            if key not in valid_keys:
+                result[UNKNOWN_ATTRIBUTE].add(f'{key} in {fpath}')
 
     dump_result(result)
-            
+
 
 if __name__ == '__main__':
     main()
