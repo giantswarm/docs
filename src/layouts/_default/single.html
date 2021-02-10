@@ -1,3 +1,6 @@
+{{- if gt (len .Params.Title) 15 -}}
+{{- warnf "Page title %s is longer than 15 characters in file %s" .Params.Title .File.Path -}}
+{{- end -}}
 {{ partial "header" . }}
 
 <div class="row">
