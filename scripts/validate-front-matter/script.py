@@ -9,27 +9,28 @@ except ImportError:
     from yaml import Loader
 
 path = 'src/content'
-
 changes_path = 'src/content/changes/'
+crds_path = 'src/content/ui-api/management-api/crd/'
 
 INVALID_LAST_REVIEW_DATE = 'INVALID_LAST_REVIEW_DATE'
-INVALID_OWNER         = 'INVALID_OWNER'
-LONG_DESCRIPTION      = 'LONG_DESCRIPTION'
-LONG_LINK_TITLE       = 'LONG_LINK_TITLE'
-LONG_TITLE            = 'LONG_TITLE'
-LONG_USER_QUESTIONS   = 'LONG_USER_QUESTIONS'
-NO_DESCRIPTION        = 'NO_DESCRIPTION'
-NO_FRONT_MATTER_FOUND = 'NO_FRONT_MATTER_FOUND'
-NO_LAST_REVIEW_DATE   = 'NO_LAST_REVIEW_DATE'
-NO_LINK_TITLE         = 'NO_LINK_TITLE'
-NO_OWNER              = 'NO_OWNER'
-NO_TITLE              = 'NO_TITLE'
-NO_TRAILING_NEWLINE   = 'NO_TRAILING_NEWLINE'
-NO_USER_QUESTIONS     = 'NO_USER_QUESTIONS'
-NO_WEIGHT             = 'NO_WEIGHT'
-REVIEW_TOO_LONG_AGO   = 'REVIEW_TOO_LONG_AGO'
-SHORT_DESCRIPTION     = 'SHORT_DESCRIPTION'
-UNKNOWN_ATTRIBUTE     = 'UNKNOWN_ATTRIBUTE'
+INVALID_OWNER            = 'INVALID_OWNER'
+LONG_DESCRIPTION         = 'LONG_DESCRIPTION'
+LONG_LINK_TITLE          = 'LONG_LINK_TITLE'
+LONG_TITLE               = 'LONG_TITLE'
+LONG_USER_QUESTIONS      = 'LONG_USER_QUESTIONS'
+NO_DESCRIPTION           = 'NO_DESCRIPTION'
+NO_FRONT_MATTER_FOUND    = 'NO_FRONT_MATTER_FOUND'
+NO_LAST_REVIEW_DATE      = 'NO_LAST_REVIEW_DATE'
+NO_LINK_TITLE            = 'NO_LINK_TITLE'
+NO_OWNER                 = 'NO_OWNER'
+NO_TITLE                 = 'NO_TITLE'
+NO_TRAILING_NEWLINE      = 'NO_TRAILING_NEWLINE'
+NO_USER_QUESTIONS        = 'NO_USER_QUESTIONS'
+NO_WEIGHT                = 'NO_WEIGHT'
+REVIEW_TOO_LONG_AGO      = 'REVIEW_TOO_LONG_AGO'
+SHORT_DESCRIPTION        = 'SHORT_DESCRIPTION'
+SHORT_TITLE              = 'SHORT_TITLE'
+UNKNOWN_ATTRIBUTE        = 'UNKNOWN_ATTRIBUTE'
 
 # valid top level keys in front matter
 valid_keys = set((
@@ -47,7 +48,6 @@ valid_keys = set((
     'source_repository_ref',
     'technical_name',
     'title',
-    #'type',
     'user_questions',
     'weight',
 ))
@@ -94,6 +94,7 @@ def main():
         NO_WEIGHT: set(),
         REVIEW_TOO_LONG_AGO: set(),
         SHORT_DESCRIPTION: set(),
+        SHORT_TITLE: set(),
         UNKNOWN_ATTRIBUTE: set(),
     }
 
@@ -106,10 +107,9 @@ def main():
             
             fpaths.append(os.path.join(root, file))
 
-    top_attributes = set()
-
     for fpath in fpaths:
         fm = {}
+
         with open(fpath, 'r') as input:
             content = input.read()
 
@@ -126,10 +126,6 @@ def main():
         if fm is None:
             result[NO_FRONT_MATTER_FOUND].add(fpath)
             continue
-        
-        # Collect all front matter keys
-        for key in fm:
-            top_attributes.add(key)
 
         # Evaluate linkTitle
         if 'linkTitle' in fm:
@@ -138,7 +134,9 @@ def main():
         
         # Evaluate title
         if 'title' in fm:
-            if len(fm['title']) > 40 and not 'linkTitle' in fm:
+            if len(fm['title']) < 5:
+                result[SHORT_TITLE].add(fpath)
+            elif len(fm['title']) > 40 and not 'linkTitle' in fm and not fpath.startswith(changes_path):
                 result[NO_LINK_TITLE].add(fpath)
             if len(fm['title']) > 100:
                 result[LONG_TITLE].add(fpath)
@@ -149,7 +147,8 @@ def main():
             if fm['description'] is None:
                 result[NO_DESCRIPTION].add(fpath)
             elif len(fm['description']) < 70:
-                result[SHORT_DESCRIPTION].add(fpath)
+                if not fpath.startswith(changes_path):
+                    result[SHORT_DESCRIPTION].add(fpath)
             elif len(fm['description']) > 300:
                 result[LONG_DESCRIPTION].add(fpath)
         else:
@@ -174,7 +173,8 @@ def main():
                     if not o.startswith('https://github.com/orgs/giantswarm/teams/'):
                         result[INVALID_OWNER].add(fpath)
         else:
-            if not fpath.startswith(changes_path):
+            if (not fpath.startswith(changes_path) and
+                not fpath.startswith(crds_path)):
                 result[NO_OWNER].add(fpath)
         
         if 'user_questions' in fm:
@@ -182,7 +182,8 @@ def main():
                 if len(q) > 80:
                     result[LONG_USER_QUESTIONS].add(fpath)
         else:
-            if not fpath.startswith(changes_path):
+            if (not fpath.startswith(changes_path) and
+                not fpath.startswith(crds_path)):
                 result[NO_USER_QUESTIONS].add(fpath)
         
         if 'last_review_date' in fm:
@@ -193,11 +194,12 @@ def main():
             else:
                 result[INVALID_LAST_REVIEW_DATE].add(fpath)
         else:
-            if not fpath.startswith(changes_path):
+            if (not fpath.startswith(changes_path) and
+                not fpath.startswith(crds_path)):
                 result[NO_LAST_REVIEW_DATE].add(fpath)
         
         # Evaluate all attributes
-        for key in top_attributes:
+        for key in fm.keys():
             if key not in valid_keys:
                 result[UNKNOWN_ATTRIBUTE].add(f'{key} in {fpath}')
 
