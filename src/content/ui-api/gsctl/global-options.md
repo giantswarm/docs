@@ -10,6 +10,8 @@ aliases:
   - /reference/gsctl/global-options/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
+user_questions:
+  - What options/flags does gsctl offer for all commands?
 ---
 
 # Global Command Line Options

@@ -10,6 +10,8 @@ aliases:
   - /reference/gsctl/create-keypair/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
+user_questions:
+  - How can I create a key pair for cluster access with gsctl?
 ---
 
 # `gsctl create keypair`

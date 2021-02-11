@@ -10,6 +10,12 @@ aliases:
   - /reference/kubectl-gs/installation/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
+user_questions:
+  - Where can I find the Giant Swarm plugin for kubectl?
+  - How can I install the Giant Swarm plugin for kubectl?
+  - How can I keep the Giant Swarm plugin for kubectl up to date?
+  - What is kgs?
+  - How can I install kgs?
 ---
 
 # Installing the kubcetl gs plugin

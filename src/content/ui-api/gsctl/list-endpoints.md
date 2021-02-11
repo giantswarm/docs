@@ -10,6 +10,8 @@ aliases:
   - /reference/gsctl/list-endpoints/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
+user_questions:
+  - How can I list the API endpoints I have configured in gsctl?
 ---
 
 # `gsctl list endpoints`
