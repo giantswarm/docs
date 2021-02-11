@@ -11,6 +11,8 @@ aliases:
   - /reference/kubectl-gs/login/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
+user_questions:
+  - How can I log in with kubectl for the Management API?
 ---
 
 # `kubectl gs login`
