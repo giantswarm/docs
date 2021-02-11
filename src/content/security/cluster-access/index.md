@@ -6,7 +6,7 @@ weight: 30
 menu:
   main:
     parent: security
-last_review_date: 2020-01-21
+last_review_date: 2021-02-11
 aliases:
   - /basics/secured-access-to-clusters/
 user_questions:
@@ -44,11 +44,11 @@ User access is provided via two APIs for interaction with your clusters.
 ### Giant Swarm API
 
 High-level cluster management access is provided to you via the Giant Swarm API. This includes creating, scaling, and deleting your clusters, as well as other organization and user management functions.
-Network access to the API endpoint is typically whitelisted to a certain range of IP addresses. It can also be configured to work over a Virtual Private Network (VPN) following the general VPN connection schema shown below under [admin access](#admin-access). In this case, the connection to the API residing in the cluster can be established only via your configured VPN.
+Network access to the API endpoint is typically permitted only to a certain range of IP addresses. It can also be configured to work over a virtual private network (VPN) following the general VPN connection schema shown below under [admin access](#admin-access). In this case, the connection to the API residing in the cluster can be established only via your configured VPN.
 
 ### Kubernetes API
 
-The Kubernetes API of each cluster is exposed to customers. Authorized users of the cluster can be managed by connecting an external Identity Provider to the Kubernetes API, or by provisioning them directly through the Giant Swarm API. In either case, you retain full control over user management.
+The Kubernetes API of each cluster is exposed to customers. Authorized users of the cluster can be managed by connecting an external identity provider to the Kubernetes API, or by provisioning them directly through the Giant Swarm API. In either case, you retain full control over user management.
 
 ## Admin access
 
