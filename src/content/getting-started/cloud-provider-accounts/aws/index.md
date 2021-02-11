@@ -10,7 +10,7 @@ menu:
 user_questions:
   - Where can I find the AWS account ID to use for running a installation?
   - Where I can find the AWS account ID to run workload clusters?
-  - What are the recommended service limit/quotas for AWS accounts used with Giant Swarm?
+  - What are the recommended service limit/quotas for AWS accounts?
 aliases:
   - /guides/prepare-aws-account-for-tenant-clusters/
   - /guides/prepare-aws-account/

@@ -1,7 +1,7 @@
 ---
 linkTitle: Istio
 title: How to deploy Istio in your cluster
-description: Tutorial on how to deploy Istio on a Giant Swarm Kubernetes cluster.
+description: Tutorial on how to deploy an Istio service mesh on a Giant Swarm Kubernetes cluster.
 weight: 60
 menu:
   main:

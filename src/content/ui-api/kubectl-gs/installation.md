@@ -1,7 +1,7 @@
 ---
 linkTitle: Installation
 title: kubectl gs installation
-description: How to get kubectl gs (aka 'kgs') installed and keep it up to date
+description: How to obtain kubectl gs, the Giant Swarm kubectl plugin (aka 'kgs') and how to keep it up to date.
 weight: 10
 menu:
   main:

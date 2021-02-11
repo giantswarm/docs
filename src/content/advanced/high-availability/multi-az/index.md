@@ -1,6 +1,7 @@
 ---
+linkTitle: Multiple AZ
 title: Clusters over multiple availability zones
-description: Using multiple availability zones both for worker and for master nodes increases the resilience for clusters. Here we explain some details regarding support on different cloud providers and in different workload cluster releases. And we give basic information on how to configure workloads to leverage multiple availability zones.
+description: Using multiple availability zones both for worker and for master nodes increases the resilience of the cluster. Here we explain some details regarding support on different cloud providers and releases, plus how to configure workloads to leverage multiple availability zones.
 weight: 20
 menu:
   main:
@@ -13,7 +14,7 @@ user_questions:
 - Can I influence the scheduling of my pods?
 - How are availibility zones (AZ) selected?
 - Can I move standard volumes across availibility zones (AZ)?
-- What is the alternative to moving standard volumes across availibility zones (AZ)?
+- What is the alternative to moving volumes across availibility zones (AZ)?
 - How do I ensure my pods and volumes are on the same nodes?
 - Can I spread worker nodes over availibility zones?
 - How do I create clusters in multiple availibility zones (AZ)?
