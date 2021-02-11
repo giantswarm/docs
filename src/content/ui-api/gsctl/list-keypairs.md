@@ -1,7 +1,7 @@
 ---
 linkTitle: list keypairs
 title: "'gsctl list keypairs' command reference"
-description: "Dokcumentation of the 'gsctl list keypairs' command, which prints a list of all key pairs currently valid for accessing a workload cluster."
+description: "Documentation of the 'gsctl list keypairs' command, which prints a list of all key pairs currently valid for accessing a workload cluster."
 weight: 140
 menu:
   main:

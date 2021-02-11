@@ -1,7 +1,7 @@
 ---
 linkTitle: login
 title: "'gsctl login' command reference"
-description: "The 'gsctl login' command ensures an authenticated session with a Giant Swarm installation's Rest API."
+description: "The 'gsctl login' command ensures an authenticated session with a Giant Swarm installation's REST API."
 weight: 170
 menu:
   main:
