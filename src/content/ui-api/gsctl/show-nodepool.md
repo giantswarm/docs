@@ -10,6 +10,8 @@ aliases:
   - /reference/gsctl/show-nodepool/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
+user_questions:
+  - How can I inspect a node pool using gsctl?
 ---
 
 # `gsctl show nodepool`

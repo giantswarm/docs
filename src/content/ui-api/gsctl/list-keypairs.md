@@ -10,6 +10,8 @@ aliases:
   - /reference/gsctl/list-keypairs/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
+user_questions:
+  - How can I show the valid key pairs for a cluster using gsctl?
 ---
 
 # `gsctl list keypairs`

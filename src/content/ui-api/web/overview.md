@@ -6,6 +6,13 @@ weight: 10
 menu:
   main:
     parent: uiapi-web
+user_questions:
+  - Does Giant Swarm provide a web UI?
+  - How can I find the web UI?
+  - What use cases does the web UI support?
+  - What can I do with the web UI?
+  - Where can I find the web UI source code?
+  - How can I give feedback on the web UI?
 ---
 
 # The web user interface

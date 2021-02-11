@@ -10,6 +10,8 @@ aliases:
   - /reference/gsctl/create-nodepool/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
+user_questions:
+  - How can I create a node pool with gsctl?
 ---
 
 # `gsctl create nodepool`

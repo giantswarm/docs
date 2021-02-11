@@ -10,6 +10,8 @@ aliases:
   - /reference/gsctl/scale-cluster/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
+user_questions:
+  - How can I scale a cluster using gsctl?
 ---
 
 # `gsctl scale cluster`

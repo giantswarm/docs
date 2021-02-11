@@ -10,6 +10,8 @@ aliases:
   - /reference/kubectl-gs/template-nodepool/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
+user_questions:
+  - How can I create a node pool manifest for the Management API?
 ---
 
 # `kubectl gs template nodepool`
