@@ -286,7 +286,8 @@ def main():
                     result[LONG_USER_QUESTIONS].add(f"{fpath} question: {literal(q)}")
         else:
             if (not fpath.startswith(changes_path) and
-                not fpath.startswith(crds_path)):
+                not fpath.startswith(crds_path) and
+                not fpath.endswith('_index.md')):
                 result[NO_USER_QUESTIONS].add(fpath)
         
         if 'last_review_date' in fm:
