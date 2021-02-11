@@ -10,6 +10,8 @@ aliases:
    /reference/gsctl/update-org-set-credentials/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
+user_questions:
+  - How can I set cloud provider credentials for an organization using gsctl?
 ---
 
 # `update organization set-credentials`

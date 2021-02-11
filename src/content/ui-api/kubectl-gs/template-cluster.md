@@ -10,6 +10,8 @@ aliases:
   - /reference/kubectl-gs/template-cluster/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
+user_questions:
+  - How can I create a cluster manifest for the Management API?
 ---
 
 # `kubectl gs template cluster`
