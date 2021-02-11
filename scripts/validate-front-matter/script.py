@@ -176,27 +176,9 @@ def headline(text):
 
 def main():
     # Result dict has a key for each rule to check, where the value is a list of pages
-    result = {
-        INVALID_LAST_REVIEW_DATE: set(),
-        INVALID_OWNER: set(),
-        LONG_DESCRIPTION: set(),
-        LONG_LINK_TITLE: set(),
-        LONG_TITLE: set(),
-        LONG_USER_QUESTIONS: set(),
-        NO_DESCRIPTION: set(),
-        NO_FRONT_MATTER: set(),
-        NO_LAST_REVIEW_DATE: set(),
-        NO_LINK_TITLE: set(),
-        NO_OWNER: set(),
-        NO_TITLE: set(),
-        NO_TRAILING_NEWLINE: set(),
-        NO_USER_QUESTIONS: set(),
-        NO_WEIGHT: set(),
-        REVIEW_TOO_LONG_AGO: set(),
-        SHORT_DESCRIPTION: set(),
-        SHORT_TITLE: set(),
-        UNKNOWN_ATTRIBUTE: set(),
-    }
+    result = {}
+    for check in checks:
+        result[check['id']] = set()
 
     # Iterate through pages
     fpaths = []
