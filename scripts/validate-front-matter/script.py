@@ -26,6 +26,7 @@ NO_FRONT_MATTER          = 'NO_FRONT_MATTER'
 NO_LAST_REVIEW_DATE      = 'NO_LAST_REVIEW_DATE'
 NO_LINK_TITLE            = 'NO_LINK_TITLE'
 NO_OWNER                 = 'NO_OWNER'
+NO_QUESTION_MARK         = 'NO_QUESTION_MARK'
 NO_TITLE                 = 'NO_TITLE'
 NO_TRAILING_NEWLINE      = 'NO_TRAILING_NEWLINE'
 NO_USER_QUESTIONS        = 'NO_USER_QUESTIONS'
@@ -116,6 +117,10 @@ checks = (
         'id': LONG_USER_QUESTIONS,
         'description': 'Each user question should be no longer than 80 characters',
     },
+    {
+        'id': NO_QUESTION_MARK,
+        'description': 'Questions should end with a question mark'
+    }
 )
 
 # valid top level keys in front matter
@@ -266,6 +271,8 @@ def main():
             for q in fm['user_questions']:
                 if len(q) > 80:
                     result[LONG_USER_QUESTIONS].add(f"{fpath} question: {literal(q)}")
+                if not q.endswith('?'):
+                    result[NO_QUESTION_MARK].add(f"{fpath} question: {literal(q)}")
         else:
             if (not fpath.startswith(changes_path) and
                 not fpath.startswith(crds_path) and
