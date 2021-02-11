@@ -17,21 +17,20 @@ update-external-repos:
 changes:
 	@if [ -z "${GITHUB_TOKEN}" ]; then echo "Please set the GITHUB_TOKEN environment variable"; exit 1; fi
 
-	docker build scripts/aggregate-changelogs -t aggregate-changelogs
 	docker run --rm \
 	  --volume=${PWD}/scripts/aggregate-changelogs:/workdir:ro \
 	  --volume=${PWD}/src/content/changes:/output:rw \
 	  --volume=${PWD}/src/data:/data:rw \
 	  -w /workdir \
 	  --env GITHUB_TOKEN \
-	  aggregate-changelogs \
+	  quay.io/giantswarm/docs-scriptrunner:latest \
 	  /workdir/script.py /workdir/config.yaml /output /data
 
 changes-test:
 	docker run --rm \
 	  --volume=${PWD}/scripts/aggregate-changelogs:/workdir:ro \
 	  -w /workdir \
-	  aggregate-changelogs \
+	  quay.io/giantswarm/docs-scriptrunner:latest \
 	  /workdir/test_script.py foo bar baz
 
 # Generate the reference documentation for the custom resource
@@ -58,11 +57,10 @@ lint:
 		./src
 
 validate-front-matter:
-	docker build scripts/validate-front-matter -t validate-front-matter
 	docker run --rm \
 	  --volume=${PWD}:/workdir:ro \
 	  -w /workdir \
-	  validate-front-matter \
+	  quay.io/giantswarm/docs-scriptrunner:latest \
 	  /workdir/scripts/validate-front-matter/script.py
 
 docker-build: update-latest-versions
