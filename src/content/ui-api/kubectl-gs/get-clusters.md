@@ -10,6 +10,9 @@ aliases:
   - /reference/kubectl-gs/get-clusters/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
+user_questions:
+  - How can I list clusters using kubectl?
+  - How can I inspect clusters using kubectl?
 ---
 
 # `kubectl gs get clusters`
