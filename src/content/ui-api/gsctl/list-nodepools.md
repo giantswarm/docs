@@ -10,6 +10,8 @@ aliases:
   - /reference/gsctl/list-nodepools/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
+user_questions:
+  - How can I see all node pools in a cluster using gsctl?
 ---
 
 # `gsctl list nodepools`

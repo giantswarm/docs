@@ -10,6 +10,8 @@ aliases:
   - /reference/gsctl/show-release/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
+user_questions:
+  - How can I inspeact a workload cluster release using gsctl?
 ---
 
 # `gsctl show release`

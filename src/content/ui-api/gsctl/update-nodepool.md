@@ -10,6 +10,8 @@ aliases:
   - /reference/gsctl/update-nodepool/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
+user_questions:
+  - How can I modify a node pool using gsctl?
 ---
 
 # `gsctl update nodepool`
