@@ -3,15 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v11.5.4/
 changes_categories:
-- Workload Cluster Releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v11.5.4
   version: 11.5.4
   version_tag: v11.5.4
 date: '2020-08-28T13:00:00+00:00'
-description: Release notes for AWS release v11.5.4, published on 28 August 2020, 13:00
-title: Workload Cluster Release v11.5.4 for AWS
+description: Release notes for AWS workload cluster release v11.5.4, published on
+  28 August 2020, 13:00
+title: Workload cluster release v11.5.4 for AWS
 ---
 
 This release upgrades external-dns app to v1.4.0 to improve observability.

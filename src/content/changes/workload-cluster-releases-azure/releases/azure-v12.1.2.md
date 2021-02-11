@@ -3,16 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-azure/releases/azure-v12.1.2/
 changes_categories:
-- Workload Cluster Releases for Azure
+- Workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/azure/v12.1.2
   version: 12.1.2
   version_tag: v12.1.2
 date: '2020-11-02T13:00:00+00:00'
-description: Release notes for Azure release v12.1.2, published on 02 November 2020,
-  13:00
-title: Workload Cluster Release v12.1.2 for Azure
+description: Release notes for Azure workload cluster release v12.1.2, published on
+  02 November 2020, 13:00
+title: Workload cluster release v12.1.2 for Azure
 ---
 
 **Nodes will be rolled during upgrade to this version.**

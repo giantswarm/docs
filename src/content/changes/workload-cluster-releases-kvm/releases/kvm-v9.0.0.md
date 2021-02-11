@@ -3,15 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-kvm/releases/kvm-v9.0.0/
 changes_categories:
-- Workload Cluster Releases for KVM
+- Workload cluster releases for KVM
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/kvm/archived/v9.0.0
   version: 9.0.0
   version_tag: v9.0.0
 date: '2019-10-28T12:00:00+00:00'
-description: Release notes for KVM release v9.0.0, published on 28 October 2019, 12:00
-title: Workload Cluster Release v9.0.0 for KVM
+description: Release notes for KVM workload cluster release v9.0.0, published on 28
+  October 2019, 12:00
+title: Workload cluster release v9.0.0 for KVM
 ---
 
 ### Kubernetes v1.15.5

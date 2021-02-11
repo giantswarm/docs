@@ -3,15 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v9.3.2/
 changes_categories:
-- Workload Cluster Releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/v9.3.2
   version: 9.3.2
   version_tag: v9.3.2
 date: '2020-05-26T15:00:00+00:00'
-description: Release notes for AWS release v9.3.2, published on 26 May 2020, 15:00
-title: Workload Cluster Release v9.3.2 for AWS
+description: Release notes for AWS workload cluster release v9.3.2, published on 26
+  May 2020, 15:00
+title: Workload cluster release v9.3.2 for AWS
 ---
 
 This release fixes an issue where upgrading from an earlier platform release to platform release v9.3.0 or v9.3.1 would result in the `nginx-ingress-controller` service having no endpoints, causing the NGINX IC app to not work.

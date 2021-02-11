@@ -3,16 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v14.0.0/
 changes_categories:
-- Workload Cluster Releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/v14.0.0
   version: 14.0.0
   version_tag: v14.0.0
 date: '2021-02-09T13:00:00+00:00'
-description: Release notes for AWS release v14.0.0, published on 09 February 2021,
-  13:00
-title: Workload Cluster Release v14.0.0 for AWS
+description: Release notes for AWS workload cluster release v14.0.0, published on
+  09 February 2021, 13:00
+title: Workload cluster release v14.0.0 for AWS
 ---
 
 This release provides support for Kubernetes 1.19 on AWS.

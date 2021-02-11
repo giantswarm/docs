@@ -3,16 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v12.4.0/
 changes_categories:
-- Workload Cluster Releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v12.4.0
   version: 12.4.0
   version_tag: v12.4.0
 date: '2020-10-13T18:00:00+00:00'
-description: Release notes for AWS release v12.4.0, published on 13 October 2020,
-  18:00
-title: Workload Cluster Release v12.4.0 for AWS
+description: Release notes for AWS workload cluster release v12.4.0, published on
+  13 October 2020, 18:00
+title: Workload cluster release v12.4.0 for AWS
 ---
 
 This release upgrades cert-manager-app to `v2.3.0` which brings new patch version `v1.0.2` of the upstream project. 

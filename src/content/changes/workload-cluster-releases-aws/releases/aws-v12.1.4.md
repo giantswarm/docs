@@ -3,15 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v12.1.4/
 changes_categories:
-- Workload Cluster Releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/v12.1.4
   version: 12.1.4
   version_tag: v12.1.4
 date: '2020-08-28T15:00:00+00:00'
-description: Release notes for AWS release v12.1.4, published on 28 August 2020, 15:00
-title: Workload Cluster Release v12.1.4 for AWS
+description: Release notes for AWS workload cluster release v12.1.4, published on
+  28 August 2020, 15:00
+title: Workload cluster release v12.1.4 for AWS
 ---
 
 This release upgrades external-dns app to v1.4.0 to improve observability.
