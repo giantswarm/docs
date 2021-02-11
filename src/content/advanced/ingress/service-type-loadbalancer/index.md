@@ -1,21 +1,26 @@
 ---
-title: Services of type LoadBalancer and multiple ingress controllers
-description: Learn how to expose services directly on cloud providers and run multiple Ingress Controllers at the same time.
-weight: 30
+title: Services of type LoadBalancer
+description: Learn how to expose services directly on cloud providers through Services of type LoadBalancer.
+weight: 35
 menu:
   main:
     parent: advanced-ingress
 aliases:
   - /guides/services-of-type-loadbalancer-and-multiple-ingress-controllers/
+  - /advanced/ingress/service-type-loadbalancer-multi-ic/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-halo
+user_questions:
+  - How can I expose Services to the internet?
+  - How do I configure an Ingress Controller that is behind an internal ELB for traffic between services within the VPC (or a group of peered VPCs)?
+  - How do I configure an Ingress Controller behind an ELB that already terminates SSL?
 ---
 
-# Services of type LoadBalancer and multiple ingress controllers
+# Services of type LoadBalancer
 
 Next to using the default NGINX Ingress Controller, on cloud providers (currently AWS and Azure), you can expose services directly outside your cluster by using Services of type `LoadBalancer`.
 
-You can use this to [expose single Services](#service-of-type-lb) or [create additional Ingress Controllers](#multiple-ingress) to expose a subset of your Services with a different Ingress Controller configuration.
+You can use this to [expose single Services](#service-of-type-lb) to the internet. It is also possible, to [install additional NGINX Ingress Controllers]({{< relref "/content/advanced/ingress/multi-nginx-ic/index.md" >}}) to expose a subset of your Services with a different Ingress Controller configuration.
 
 __Note__ that this functionality cannot be used on premises.
 
@@ -51,7 +56,7 @@ The above YAML would expose port 8080 of our helloworld Pods on the http port of
 
 ### Exposing on a non-HTTP port and protocol
 
-You can change the port of the load balancer and protocol of the load balancer by changing the `targetPort`field and adding a `ports.protocol` field. This way you can expose TCP services directly without having to customize the Ingress Controller.
+You can change the port of the load balancer and protocol of the load balancer by changing the `targetPort` field and adding a `ports.protocol` field. This way you can expose TCP services directly without having to customize the Ingress Controller.
 
 Following example would set the ELB to TCP and port `8888`:
 
@@ -207,36 +212,9 @@ metadata:
     # A list of additional security groups to be added to the ELB.
 ```
 
-## Using multiple Ingress Controllers {#multiple-ingress}
-
-By default a cluster in Giant Swarm is bootstrapped with a default Ingress Controller based on NGINX. This Ingress Controller is registered with the default `nginx` Ingress Class.
-
-You can run additional Ingress Controllers by exposing them through Services of type `LoadBalancer` as explained above.
-
-Some use cases for this might be:
-
-- An Ingress Controller that is behind an internal ELB for traffic between services within the VPC (or a group of peered VPCs)
-- An Ingress Controller behind an ELB that already terminates SSL
-- An Ingress Controller with different functionality or performance
-
-__Note__ that if you are running multiple Ingress Controllers you need to annotate each Ingress with the appropriate class, e.g.
-
-```yaml
-kubernetes.io/ingress.class: "nginx"
-```
-
-or
-
-```yaml
-kubernetes.io/ingress.class: "nginx-internal"
-```
-
-Not specifying the annotation will lead to multiple ingress controllers claiming the same ingress. Specifying a value which does not match the class of any existing ingress controllers will result in all ingress controllers ignoring the ingress.
-
-Further note that if you are running additional Ingress Controllers you might need to configure them so their Ingress Class does not collide with the class of our default NGINX Ingress Controller. For the community supported NGINX Ingress Controller this is described in the [official documentation](https://kubernetes.github.io/ingress-nginx/user-guide/multiple-ingress/).
-
 ## Further reading
 
+- [Running Multiple NGINX Ingress Controllers]({{< relref "/content/advanced/ingress/multi-nginx-ic/index.md" >}})
 - [Services of type LoadBalancer](https://kubernetes.io/docs/concepts/services-networking/service/#type-loadbalancer)
 - [Running Multiple Ingress Controllers](https://github.com/kubernetes/ingress-nginx#running-multiple-ingress-controllers)
 - [Deploying the NGINX Ingress Controller](https://github.com/kubernetes/ingress-nginx/tree/master/deploy)
