@@ -11,10 +11,12 @@ try:
 except ImportError:
     from yaml import Loader
 
-path = 'src/content'
+# Som path config
+path         = 'src/content'
 changes_path = 'src/content/changes/'
-crds_path = 'src/content/ui-api/management-api/crd/'
+crds_path    = 'src/content/ui-api/management-api/crd/'
 
+# Unique identifiers for our checks
 INVALID_LAST_REVIEW_DATE = 'INVALID_LAST_REVIEW_DATE'
 INVALID_OWNER            = 'INVALID_OWNER'
 LONG_DESCRIPTION         = 'LONG_DESCRIPTION'
@@ -79,6 +81,7 @@ checks = (
     {
         'id': NO_LINK_TITLE,
         'description': 'The page should have a linkTitle, which appears in menus and list pages',
+        'ignore_paths': [crds_path, changes_path],
     },
     {
         'id': LONG_LINK_TITLE,
@@ -92,6 +95,7 @@ checks = (
     {
         'id': NO_OWNER,
         'description': 'The page should have an owner assigned',
+        'ignore_paths': [crds_path, changes_path],
     },
     {
         'id': INVALID_OWNER,
@@ -100,6 +104,7 @@ checks = (
     {
         'id': NO_LAST_REVIEW_DATE,
         'description': 'The page should have a last_review_date',
+        'ignore_paths': [crds_path, changes_path],
     },
     {
         'id': REVIEW_TOO_LONG_AGO,
@@ -112,6 +117,7 @@ checks = (
     {
         'id': NO_USER_QUESTIONS,
         'description': 'The page should have user_questions assigned',
+        'ignore_paths': [crds_path, changes_path],
     },
     {
         'id': LONG_USER_QUESTIONS,
@@ -167,6 +173,21 @@ def get_front_matter(source_text):
         data = load(source_text[(front_matter_start + 3):front_matter_end], Loader=Loader)
         return data
     return None
+
+
+def ignored_path(path, check_id):
+    "Returns true if the given path should be ignored for the given check"
+    check = None
+    for c in checks:
+        if c['id'] == check_id:
+            check = c
+            break
+    if 'ignore_paths' not in check:
+        return False
+    for ignore_path in check['ignore_paths']:
+        if path.startswith(ignore_path):
+            return True
+    return False
 
 
 def literal(text):
@@ -229,7 +250,7 @@ def main():
         if 'title' in fm:
             if len(fm['title']) < 5:
                 result[SHORT_TITLE].add(f"{fpath} title: {literal(fm['title'])}")
-            elif len(fm['title']) > 40 and not 'linkTitle' in fm and not fpath.startswith(changes_path):
+            elif len(fm['title']) > 40 and not 'linkTitle' in fm and not ignored_path(fpath, NO_LINK_TITLE):
                 result[NO_LINK_TITLE].add(f"{fpath} title: {literal(fm['title'])}")
             if len(fm['title']) > 100:
                 result[LONG_TITLE].add(f"{fpath} title: {literal(fm['title'])}")
@@ -266,8 +287,7 @@ def main():
                     if not o.startswith('https://github.com/orgs/giantswarm/teams/'):
                         result[INVALID_OWNER].add(f"{fpath} owner: {literal(o)}")
         else:
-            if (not fpath.startswith(changes_path) and
-                not fpath.startswith(crds_path)):
+            if not ignored_path(fpath, NO_OWNER):
                 result[NO_OWNER].add(fpath)
         
         if 'user_questions' in fm:
@@ -277,8 +297,7 @@ def main():
                 if not q.endswith('?'):
                     result[NO_QUESTION_MARK].add(f"{fpath} question: {literal(q)}")
         else:
-            if (not fpath.startswith(changes_path) and
-                not fpath.startswith(crds_path) and
+            if (not ignored_path(fpath, NO_USER_QUESTIONS) and
                 not fpath.endswith('_index.md')):
                 result[NO_USER_QUESTIONS].add(fpath)
         
@@ -290,8 +309,7 @@ def main():
             else:
                 result[INVALID_LAST_REVIEW_DATE].add(f"{fpath} last_review_date: {literal(fm['last_review_date'])}")
         else:
-            if (not fpath.startswith(changes_path) and
-                not fpath.startswith(crds_path)):
+            if not ignored_path(fpath, NO_LAST_REVIEW_DATE):
                 result[NO_LAST_REVIEW_DATE].add(fpath)
         
         # Evaluate all attributes
