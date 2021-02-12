@@ -1,12 +1,12 @@
 ---
 title: AWSConfig CRD schema reference
-linktitle: AWSConfig
+linkTitle: AWSConfig
 technical_name: awsconfigs.provider.giantswarm.io
 description:   AWSConfig used to represent workload cluster configuration in earlier releases. Deprecated.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.18.0
-layout: "crd"
+layout: crd
 aliases:
   - /reference/cp-k8s-api/awsconfigs.provider.giantswarm.io/
 ---

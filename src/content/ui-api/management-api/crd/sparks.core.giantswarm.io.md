@@ -1,12 +1,12 @@
 ---
 title: Spark CRD schema reference
-linktitle: Spark
+linkTitle: Spark
 technical_name: sparks.core.giantswarm.io
 description:   Spark is a placeholder resource to allow for the creation of ignition templates in Azure workload clusters, as of workload cluster release v13.0.0. Reconciled by azure-operator.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.18.0
-layout: "crd"
+layout: crd
 aliases:
   - /reference/cp-k8s-api/sparks.core.giantswarm.io/
 ---
