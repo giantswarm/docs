@@ -3,15 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v11.1.2/
 changes_categories:
-- Workload Cluster Releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v11.1.2
   version: 11.1.2
   version_tag: v11.1.2
 date: '2020-04-06T08:00:00+00:00'
-description: Release notes for AWS release v11.1.2, published on 06 April 2020, 08:00
-title: Workload Cluster Release v11.1.2 for AWS
+description: Release notes for AWS workload cluster release v11.1.2, published on
+  06 April 2020, 08:00
+title: Workload cluster release v11.1.2 for AWS
 ---
 
 __Note:__ Upgrading to this release from any release prior 11.1.1 will cause a network downtime due to the network-related changes coming with the switch from Calico CNI to AWS CNI.
