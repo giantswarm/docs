@@ -3,16 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-azure/releases/azure-v8.4.0/
 changes_categories:
-- Workload Cluster Releases for Azure
+- Workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/azure/archived/v8.4.0
   version: 8.4.0
   version_tag: v8.4.0
 date: '2019-08-14T10:00:00+00:00'
-description: Release notes for Azure release v8.4.0, published on 14 August 2019,
-  10:00
-title: Workload Cluster Release v8.4.0 for Azure
+description: Release notes for Azure workload cluster release v8.4.0, published on
+  14 August 2019, 10:00
+title: Workload cluster release v8.4.0 for Azure
 ---
 
 This release contains Kubernetes 1.14.6 and therefore fixes for CVE-2019-9512 and CVE-2019-9514.

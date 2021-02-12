@@ -3,15 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-kvm/releases/kvm-v12.0.0/
 changes_categories:
-- Workload Cluster Releases for KVM
+- Workload cluster releases for KVM
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/kvm/archived/v12.0.0
   version: 12.0.0
   version_tag: v12.0.0
 date: '2020-07-16T12:00:00+00:00'
-description: Release notes for KVM release v12.0.0, published on 16 July 2020, 12:00
-title: Workload Cluster Release v12.0.0 for KVM
+description: Release notes for KVM workload cluster release v12.0.0, published on
+  16 July 2020, 12:00
+title: Workload cluster release v12.0.0 for KVM
 ---
 
 This is the first Giant Swarm release which includes Kubernetes v1.17. Many core components and default apps have been updated for improved reliability and observability. Further details about changes to individual components can be found below.

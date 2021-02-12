@@ -3,16 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v12.5.2/
 changes_categories:
-- Workload Cluster Releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/v12.5.2
   version: 12.5.2
   version_tag: v12.5.2
 date: '2020-10-27T16:40:57+00:00'
-description: Release notes for AWS release v12.5.2, published on 27 October 2020,
-  16:40
-title: Workload Cluster Release v12.5.2 for AWS
+description: Release notes for AWS workload cluster release v12.5.2, published on
+  27 October 2020, 16:40
+title: Workload cluster release v12.5.2 for AWS
 ---
 
 **If you are upgrading from 12.5.1, upgrading to this release will not roll your nodes. It will only update the apps.**

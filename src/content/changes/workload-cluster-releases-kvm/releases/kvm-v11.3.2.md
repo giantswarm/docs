@@ -3,15 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-kvm/releases/kvm-v11.3.2/
 changes_categories:
-- Workload Cluster Releases for KVM
+- Workload cluster releases for KVM
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/kvm/v11.3.2
   version: 11.3.2
   version_tag: v11.3.2
 date: '2020-06-11T15:00:00+00:00'
-description: Release notes for KVM release v11.3.2, published on 11 June 2020, 15:00
-title: Workload Cluster Release v11.3.2 for KVM
+description: Release notes for KVM workload cluster release v11.3.2, published on
+  11 June 2020, 15:00
+title: Workload cluster release v11.3.2 for KVM
 ---
 
 **If you are upgrading from 11.3.1, upgrading to this release will not roll your nodes. It will only update the apps.**
