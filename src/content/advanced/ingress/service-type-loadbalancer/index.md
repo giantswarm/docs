@@ -13,8 +13,8 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-halo
 user_questions:
   - How can I expose Services to the internet?
-  - How do I configure an Ingress Controller that is behind an internal ELB for traffic between services within the VPC (or a group of peered VPCs)?
-  - How do I configure an Ingress Controller behind an ELB that already terminates SSL?
+  - How do I configure an Ingress Controller behind an ELB for traffic between services within the VPC?
+  - How do I configure an Ingress Controller behind an ELB that terminates SSL?
 ---
 
 # Services of type LoadBalancer
