@@ -1,12 +1,12 @@
 ---
 title: Config CRD schema reference
-linktitle: Config
+linkTitle: Config
 technical_name: configs.core.giantswarm.io
 description:   Config represents configuration of an App.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.18.0
-layout: "crd"
+layout: crd
 aliases:
   - /reference/cp-k8s-api/configs.core.giantswarm.io/
 ---

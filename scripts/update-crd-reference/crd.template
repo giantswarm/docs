@@ -1,6 +1,6 @@
 ---
 title: {{ .Title }} CRD schema reference
-linktitle: {{ .Title }}
+linkTitle: {{ .Title }}
 technical_name: {{ .NamePlural }}.{{ .Group }}
 description: {{ if .Description -}}
 {{- .Description | indent 2 }}
@@ -10,7 +10,7 @@ description: {{ if .Description -}}
 weight: {{ .Weight }}
 source_repository: {{ .SourceRepository }}
 source_repository_ref: {{ .SourceRepositoryRef }}
-layout: "crd"
+layout: crd
 aliases:
   - /reference/cp-k8s-api/{{ .NamePlural }}.{{ .Group }}/
 ---
