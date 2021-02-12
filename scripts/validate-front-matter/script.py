@@ -194,6 +194,9 @@ def main():
             
             fpaths.append(os.path.join(root, file))
 
+
+    todays_date = datetime.date.today()
+
     for fpath in fpaths:
         fm = {}
 
@@ -281,7 +284,7 @@ def main():
         
         if 'last_review_date' in fm:
             if type(fm['last_review_date']) is datetime.date:
-                diff = datetime.date.today() - fm['last_review_date']
+                diff = todays_date - fm['last_review_date']
                 if diff > datetime.timedelta(days=365):
                     result[REVIEW_TOO_LONG_AGO].add(f"{fpath} last_review_date: {literal(fm['last_review_date'])}")
             else:
