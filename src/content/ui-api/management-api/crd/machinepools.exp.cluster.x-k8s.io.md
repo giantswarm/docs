@@ -1,15 +1,14 @@
 ---
 title: MachinePool CRD schema reference
-linkTitle: MachinePool
+linktitle: MachinePool
 technical_name: machinepools.exp.cluster.x-k8s.io
 description:   MachinePool is the Schema for the machinepools API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.15.0
+source_repository_ref: v3.18.0
 layout: "crd"
 aliases:
   - /reference/cp-k8s-api/machinepools.exp.cluster.x-k8s.io/
-  - /reference/management-api/machinepools.exp.cluster.x-k8s.io/
 ---
 
 # MachinePool
@@ -1541,6 +1540,9 @@ aliases:
 
 </div>
 </div>
+
+
+
 
 
 </div>
