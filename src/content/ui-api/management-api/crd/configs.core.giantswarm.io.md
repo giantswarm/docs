@@ -1,29 +1,29 @@
 ---
-title: AppCatalogEntry CRD schema reference
-linktitle: AppCatalogEntry
-technical_name: appcatalogentries.application.giantswarm.io
-description:   AppCatalogEntry represents an entry of an app in a catalog of managed apps.
+title: Config CRD schema reference
+linktitle: Config
+technical_name: configs.core.giantswarm.io
+description:   Config represents configuration of an App.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.18.0
 layout: "crd"
 aliases:
-  - /reference/cp-k8s-api/appcatalogentries.application.giantswarm.io/
+  - /reference/cp-k8s-api/configs.core.giantswarm.io/
 ---
 
-# AppCatalogEntry
+# Config
 
 
-<p class="crd-description">AppCatalogEntry represents an entry of an app in a catalog of managed apps.</p>
+<p class="crd-description">Config represents configuration of an App.</p>
 <dl class="crd-meta">
 <dt class="fullname">Full name:</dt>
-<dd class="fullname">appcatalogentries.application.giantswarm.io</dd>
+<dd class="fullname">configs.core.giantswarm.io</dd>
 <dt class="groupname">Group:</dt>
-<dd class="groupname">application.giantswarm.io</dd>
+<dd class="groupname">core.giantswarm.io</dd>
 <dt class="singularname">Singular name:</dt>
-<dd class="singularname">appcatalogentry</dd>
+<dd class="singularname">config</dd>
 <dt class="pluralname">Plural name:</dt>
-<dd class="pluralname">appcatalogentries</dd>
+<dd class="pluralname">configs</dd>
 <dt class="scope">Scope:</dt>
 <dd class="scope">Namespaced</dd>
 <dt class="versions">Versions:</dt>
@@ -35,35 +35,6 @@ aliases:
 <div class="crd-schema-version">
 <h2 id="v1alpha1">Version v1alpha1</h2>
 
-
-<h3 id="crd-example-v1alpha1">Example CR</h3>
-
-```yaml
-apiVersion: application.giantswarm.io/v1alpha1
-kind: AppCatalogEntry
-metadata:
-  creationTimestamp: null
-  name: giantswarm-nginx-ingress-controller-app-1.9.2
-  namespace: default
-spec:
-  appName: nginx-ingress-controller-app
-  appVersion: v0.35.0
-  catalog:
-    name: giantswarm
-    namespace: ""
-  chart:
-    apiVersion: v1
-    home: https://github.com/giantswarm/nginx-ingress-controller-app
-    icon: https://upload.wikimedia.org/wikipedia/commons/nginx-logo.svg
-  dateCreated: "2020-09-02T09:40:39Z"
-  dateUpdated: "2020-09-02T09:40:39Z"
-  restrictions:
-    clusterSingleton: true
-    compatibleProviders:
-    - aws
-    fixedNamespace: giantswarm
-  version: 1.9.2
-```
 
 
 <h3 id="property-details-v1alpha1">Properties</h3>
@@ -128,21 +99,8 @@ spec:
 <span class="property-required">Required</span>
 </div>
 
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.appName">.spec.appName</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
 <div class="property-description">
-<p>AppName is the name of the app this entry belongs to. e.g. nginx-ingress-controller-app</p>
+<p>ConfigSpec is the spec part for the Config resource.</p>
 
 </div>
 
@@ -151,25 +109,7 @@ spec:
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.appVersion">.spec.appVersion</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>AppVersion is the upstream version of the app for this entry. e.g. v0.35.0</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.catalog">.spec.catalog</h3>
+<h3 class="property-path" id="v1alpha1-.spec.app">.spec.app</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -178,7 +118,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Catalog is the name of the app catalog this entry belongs to. e.g. giantswarm</p>
+<p>App details for which the configuration should be generated.</p>
 
 </div>
 
@@ -187,7 +127,7 @@ spec:
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.catalog.name">.spec.catalog.name</h3>
+<h3 class="property-path" id="v1alpha1-.spec.app.catalog">.spec.app.catalog</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -196,7 +136,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Name is the name of the app catalog this entry belongs to. e.g. giantswarm-catalog</p>
+<p>Catalog is the name of the App&rsquo;s App Catalog.</p>
 
 </div>
 
@@ -205,25 +145,43 @@ spec:
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.catalog.namespace">.spec.catalog.namespace</h3>
+<h3 class="property-path" id="v1alpha1-.spec.app.name">.spec.app.name</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
-<p>Namespace is the namespace of the catalog. It is empty while the appcatalog CRD is cluster scoped.</p>
+<p>Name is the name of the App.</p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-1">
+<div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.chart">.spec.chart</h3>
+<h3 class="property-path" id="v1alpha1-.spec.app.version">.spec.app.version</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Version is the version of the App.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-0">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.status">.status</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -232,61 +190,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Chart is metadata from the Chart.yaml of the app this entry belongs to.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.chart.apiVersion">.spec.chart.apiVersion</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>APIVersion is the Helm chart API version.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.chart.home">.spec.chart.home</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>Home is the URL of this projects home page.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.chart.icon">.spec.chart.icon</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>Icon is a URL to an SVG or PNG image to be used as an icon.</p>
+<p>Status part of the Config resource.</p>
 
 </div>
 
@@ -295,43 +199,7 @@ spec:
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.dateCreated">.spec.dateCreated</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>DateCreated is when this entry was first created. e.g. 2020-09-02T09:40:39.223638219Z</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.dateUpdated">.spec.dateUpdated</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>DateUpdated is when this entry was last updated. e.g. 2020-09-02T09:40:39.223638219Z</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.restrictions">.spec.restrictions</h3>
+<h3 class="property-path" id="v1alpha1-.status.app">.status.app</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -340,7 +208,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Restrictions is metadata from Chart.yaml for this app and is used to validate app CRs.</p>
+<p>App details for which the configuration was generated.</p>
 
 </div>
 
@@ -349,16 +217,16 @@ spec:
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.restrictions.clusterSingleton">.spec.restrictions.clusterSingleton</h3>
+<h3 class="property-path" id="v1alpha1-.status.app.catalog">.status.app.catalog</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
-
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
-<p>ClusterSingleton is a flag for whether this app can be installed at most once per cluster. Default is false.</p>
+<p>Catalog is the name of the App&rsquo;s App Catalog.</p>
 
 </div>
 
@@ -367,16 +235,70 @@ spec:
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.restrictions.compatibleProviders">.spec.restrictions.compatibleProviders</h3>
+<h3 class="property-path" id="v1alpha1-.status.app.name">.status.app.name</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Name is the name of the App.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.status.app.version">.status.app.version</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Version is the version of the App.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.status.config">.status.config</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
 
 </div>
 
 <div class="property-description">
-<p>CompatibleProviders is a list of provider names which this app is compatible with. Default is empty. Empty list means app is compatible with all providers.</p>
+<p>Config holds the references to the generated configuration.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.status.config.configMapRef">.status.config.configMapRef</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>ConfigStatusConfigConfigMapRef contains a reference to the generated ConfigMap.</p>
 
 </div>
 
@@ -385,74 +307,7 @@ spec:
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.restrictions.compatibleProviders[*]">.spec.restrictions.compatibleProviders[*]</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.restrictions.fixedNamespace">.spec.restrictions.fixedNamespace</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>FixedNamespace is the namespace which this app must be installed in.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.restrictions.gpuInstances">.spec.restrictions.gpuInstances</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">boolean</span>
-
-</div>
-
-<div class="property-description">
-<p>GpuInstances is a flag for whether this app requires GPU instances to run. Default is false.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.restrictions.namespaceSingleton">.spec.restrictions.namespaceSingleton</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">boolean</span>
-
-</div>
-
-<div class="property-description">
-<p>NamespaceSingleton is a flag for whether this app can be installed at most once per namespace. Default is false.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.version">.spec.version</h3>
+<h3 class="property-path" id="v1alpha1-.status.config.configMapRef.name">.status.config.configMapRef.name</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -460,8 +315,78 @@ spec:
 <span class="property-required">Required</span>
 </div>
 
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.status.config.configMapRef.namespace">.status.config.configMapRef.namespace</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.status.config.secretRef">.status.config.secretRef</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+<span class="property-required">Required</span>
+</div>
+
 <div class="property-description">
-<p>Version is the version of the app chart for this entry. e.g. 1.9.2</p>
+<p>ConfigStatusConfigSecretRef contains a reference to the generated Secret.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.status.config.secretRef.name">.status.config.secretRef.name</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.status.config.secretRef.namespace">.status.config.secretRef.namespace</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.status.version">.status.version</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Version of the giantswarm/config repository used to generate the configuration.</p>
 
 </div>
 

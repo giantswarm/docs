@@ -1,7 +1,7 @@
 ---
 linkTitle: Labelling clusters
 title: Labelling workload clusters using the web interface
-description: How to manage workload cluster labels in our web interface.
+description: Here we explain how you can manage labels for workload cluster in our web user interface.
 last_review_date: 2020-05-29
 weight: 20
 menu:

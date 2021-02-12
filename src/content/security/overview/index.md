@@ -1,7 +1,7 @@
 ---
 linkTitle: Overview
 title: Security
-description: Documentation of the Giant Swarm cluster security
+description: Introductory documentation on the Giant Swarm cluster security measures.
 weight: 10
 menu:
   main:

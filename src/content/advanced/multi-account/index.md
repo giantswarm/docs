@@ -1,4 +1,5 @@
 ---
+linkTitle: Multi-account
 title: Multi-account support
 description: By default, all your workload clusters run in the same cloud provider account. With multi-account support for AWS and Azure, you can define a specific cloud provider account to use per organization.
 weight: 80

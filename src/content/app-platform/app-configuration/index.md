@@ -19,7 +19,7 @@ user_questions:
  - What is the logic behind setting the final configuration of an App?
  - What happens if I don't customize configurations?
  - What is the correct App configuration level to use?
- - What are the limitations around uploading secrets when configuring them for an App?
+ - What are the limitations around secrets when configuring them for an App?
  - How are configuration values stored and referenced in the Control Plane?
  - How can I provide configuration values for apps?
 ---

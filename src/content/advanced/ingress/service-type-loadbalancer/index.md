@@ -1,7 +1,8 @@
 ---
+linkTitle: Load balancer services
 title: Services of type LoadBalancer
-description: Learn how to expose services directly on cloud providers through Services of type LoadBalancer.
-weight: 35
+description: Learn how to expose services directly on cloud providers through services of type LoadBalancer.
+weight: 30
 menu:
   main:
     parent: advanced-ingress

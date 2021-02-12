@@ -12,7 +12,7 @@ user_questions:
   - How can I give my container permission to access a persistent volume?
   - How can I run a container as a certain user?
   - How can I run a container as privileged?
-  - How can I specify which permissions a user will have when using a certain key pair?
+  - How can I specify which permissions are associated with a key pair?
   - Why are my containers failing to access some resources?
   - Why is my container lacking permission to use a persistent volume?
 aliases:

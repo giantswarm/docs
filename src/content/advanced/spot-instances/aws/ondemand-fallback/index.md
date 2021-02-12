@@ -8,7 +8,7 @@ menu:
     identifier: advanced-spotinstances-aws-ondemandfallback
     parent: advanced-spotinstances-aws
 user_questions:
-  - How can I use EC2 spot instances and fall back to on-demand if no spot instances are available?
+  - How can I use EC2 spot instances and fall back to on-demand?
 aliases:
   - /advanced/spot-instances/aws/on-demand-fallback/
 owner:

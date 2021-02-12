@@ -1,7 +1,7 @@
 ---
 linkTitle: list nodepools
 title: "'gsctl list nodepools' command reference"
-description: "The 'gsctl list nodepools' command shows all node pools of a cluster."
+description: "The 'gsctl list nodepools' command shows a list of all node pools in a workload cluster."
 weight: 150
 menu:
   main:

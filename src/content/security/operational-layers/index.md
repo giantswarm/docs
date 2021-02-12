@@ -19,8 +19,8 @@ user_questions:
   - What is the Giant Swarm user space?
   - Who has access to the Giant Swarm user space?
   - How is the Giant Swarm infrastructure layer accessed?
-  - What are the security safegaurds around access to the Giant Swarm infrastructure layer?
-  - What are the security safegaurds around access to the Giant Swarm management cluster?
+  - What are the security safeguards around access to the Giant Swarm infrastructure layer?
+  - What are the security safeguards around access to the Giant Swarm management cluster?
   - How is access to the management cluster authorized?
   - How do users access workload clusters?
 aliases:
