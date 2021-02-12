@@ -1,7 +1,7 @@
 ---
 linkTitle: list keypairs
 title: "'gsctl list keypairs' command reference"
-description: "The 'gsctl list keypairs' lists key pairs for a cluster."
+description: "Documentation of the 'gsctl list keypairs' command, which prints a list of all key pairs currently valid for accessing a workload cluster."
 weight: 140
 menu:
   main:
@@ -10,6 +10,8 @@ aliases:
   - /reference/gsctl/list-keypairs/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
+user_questions:
+  - How can I show the valid key pairs for a cluster using gsctl?
 ---
 
 # `gsctl list keypairs`

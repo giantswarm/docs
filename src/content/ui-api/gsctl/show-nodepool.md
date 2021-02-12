@@ -1,7 +1,7 @@
 ---
 linkTitle: show nodepool
 title: "'gsctl show nodepool' command reference"
-description: The 'gsctl show nodepool' command shows details on a node pool.
+description: The 'gsctl show nodepool' command shows practically all available details about a specific node pool.
 weight: 210
 menu:
   main:
@@ -10,6 +10,8 @@ aliases:
   - /reference/gsctl/show-nodepool/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
+user_questions:
+  - How can I inspect a node pool using gsctl?
 ---
 
 # `gsctl show nodepool`

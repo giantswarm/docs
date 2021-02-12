@@ -5,11 +5,10 @@ technical_name: awsmachinedeployments.infrastructure.giantswarm.io
 description:   AWSMachineDeployment is the infrastructure provider referenced in Kubernetes Cluster API MachineDeployment resources. It contains provider-specific specification and status for a node pool. In use on AWS since Giant Swarm release v10.x.x and reconciled by aws-operator.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.15.0
-layout: "crd"
+source_repository_ref: v3.18.0
+layout: crd
 aliases:
   - /reference/cp-k8s-api/awsmachinedeployments.infrastructure.giantswarm.io/
-  - /reference/management-api/awsmachinedeployments.infrastructure.giantswarm.io/
 ---
 
 # AWSMachineDeployment
@@ -549,6 +548,64 @@ spec:
 
 </div>
 </div>
+
+
+
+
+<h3 id="annotation-details-v1alpha2">Annotations</h3>
+
+
+<div class="annotation">
+<div class="annotation-header">
+<h3 class="annotation-path" id="v1alpha2-alpha.aws.giantswarm.io/aws-subnet-size">alpha.aws.giantswarm.io/aws-subnet-size</h3>
+</div>
+<div class="annotation-body">
+<div class="annotation-meta">
+<span class="annotation-release">Since 12.7.0</span>
+</div>
+
+<div class="annotation-description">
+<p>This annotation is used for configuring the subnet size of AWSCluster or AWSMachineDeployment. The value is a number that will represent the subnet mask used when creating the subnet. This value must be smaller than 28 due to AWS restrictions.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="annotation">
+<div class="annotation-header">
+<h3 class="annotation-path" id="v1alpha2-alpha.aws.giantswarm.io/update-max-batch-size">alpha.aws.giantswarm.io/update-max-batch-size</h3>
+</div>
+<div class="annotation-body">
+<div class="annotation-meta">
+<span class="annotation-release">Since 12.7.0</span>
+</div>
+
+<div class="annotation-description">
+<p>This annotation is used for configuring maximum batch size for instances termination during ASG update. The value can be either a whole number specifying the number of instances or a percentage of total instances as decimal number ie <code>0.3</code> for 30%. See <a href="https://docs.giantswarm.io/guides/fine-tuning-upgrade-disruption-on-aws/">Fine Tuning Upgrades</a> and <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-updatepolicy.html#cfn-attributes-updatepolicy-rollingupdate-maxbatchsize">AWS Documentation</a> for additional information.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="annotation">
+<div class="annotation-header">
+<h3 class="annotation-path" id="v1alpha2-alpha.aws.giantswarm.io/update-pause-time">alpha.aws.giantswarm.io/update-pause-time</h3>
+</div>
+<div class="annotation-body">
+<div class="annotation-meta">
+<span class="annotation-release">Since 12.7.0</span>
+</div>
+
+<div class="annotation-description">
+<p>This annotation is used for configuring time pause between rolling a single batch during ASG update. The value must be in ISO 8601 duration format, e. g. &ldquo;PT5M&rdquo; for five minutes or &ldquo;PT10S&rdquo; for 10 seconds. See <a href="https://docs.giantswarm.io/guides/fine-tuning-upgrade-disruption-on-aws/">Fine Tuning Upgrades</a> and <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-updatepolicy.html#cfn-attributes-updatepolicy-rollingupdate-maxbatchsize">AWS Documentation</a> for additional information.</p>
+
+</div>
+
+</div>
+</div>
+
 
 
 </div>

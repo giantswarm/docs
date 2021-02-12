@@ -6,11 +6,10 @@ description: Custom resource definition (CRD) schema reference page for the Cert
 
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.15.0
-layout: "crd"
+source_repository_ref: v3.18.0
+layout: crd
 aliases:
   - /reference/cp-k8s-api/certconfigs.core.giantswarm.io/
-  - /reference/management-api/certconfigs.core.giantswarm.io/
 ---
 
 # CertConfig
@@ -322,6 +321,9 @@ spec:
 
 </div>
 </div>
+
+
+
 
 
 </div>

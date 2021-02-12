@@ -1,7 +1,7 @@
 ---
 linkTitle: Configuration file
 title: gsctl configuration file reference
-description: Documentation of the configuration file format of gsctl
+description: Details on the gsctl configuration file, which keeps your endpoint information and state.
 weight: 20
 menu:
   main:
@@ -10,6 +10,9 @@ aliases:
   - /reference/gsctl/configuration-file/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
+user_questions:
+  - What settings does gsctl store in its config file?
+  - Where can I find gsctl's configuration file?
 ---
 
 # Configuration file

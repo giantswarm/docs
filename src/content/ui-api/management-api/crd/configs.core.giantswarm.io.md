@@ -1,28 +1,29 @@
 ---
-title: AzureClusterConfig CRD schema reference
-linkTitle: AzureClusterConfig
-technical_name: azureclusterconfigs.core.giantswarm.io
-description: Custom resource definition (CRD) schema reference page for the AzureClusterConfig resource (azureclusterconfigs.core.giantswarm.io), as part of the Giant Swarm Management API documentation.
-
+title: Config CRD schema reference
+linkTitle: Config
+technical_name: configs.core.giantswarm.io
+description:   Config represents configuration of an App.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.18.0
 layout: crd
 aliases:
-  - /reference/cp-k8s-api/azureclusterconfigs.core.giantswarm.io/
+  - /reference/cp-k8s-api/configs.core.giantswarm.io/
 ---
 
-# AzureClusterConfig
+# Config
 
+
+<p class="crd-description">Config represents configuration of an App.</p>
 <dl class="crd-meta">
 <dt class="fullname">Full name:</dt>
-<dd class="fullname">azureclusterconfigs.core.giantswarm.io</dd>
+<dd class="fullname">configs.core.giantswarm.io</dd>
 <dt class="groupname">Group:</dt>
 <dd class="groupname">core.giantswarm.io</dd>
 <dt class="singularname">Singular name:</dt>
-<dd class="singularname">azureclusterconfig</dd>
+<dd class="singularname">config</dd>
 <dt class="pluralname">Plural name:</dt>
-<dd class="pluralname">azureclusterconfigs</dd>
+<dd class="pluralname">configs</dd>
 <dt class="scope">Scope:</dt>
 <dd class="scope">Namespaced</dd>
 <dt class="versions">Versions:</dt>
@@ -82,7 +83,7 @@ aliases:
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">object</span>
-<span class="property-required">Required</span>
+
 </div>
 
 </div>
@@ -98,312 +99,8 @@ aliases:
 <span class="property-required">Required</span>
 </div>
 
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.guest">.spec.guest</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-<span class="property-required">Required</span>
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.guest.availabilityZones">.spec.guest.availabilityZones</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">integer</span>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.guest.credentialSecret">.spec.guest.credentialSecret</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-<span class="property-required">Required</span>
-</div>
-
 <div class="property-description">
-<p>AzureClusterConfigSpecGuestCredentialSecret points to the K8s Secret containing credentials for an Azure subscription in which the workload cluster should be created.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.guest.credentialSecret.name">.spec.guest.credentialSecret.name</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.guest.credentialSecret.namespace">.spec.guest.credentialSecret.namespace</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.guest.dnsZone">.spec.guest.dnsZone</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>DNSZone for guest cluster is supplemented with host prefixes for specific services such as Kubernetes API or Etcd. In general this DNS Zone should start with &ldquo;k8s&rdquo; like for example &ldquo;k8s.cluster.example.com.&rdquo;.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.guest.id">.spec.guest.id</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.guest.masters">.spec.guest.masters</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">array</span>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.guest.masters[*]">.spec.guest.masters[*]</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.guest.masters[*].id">.spec.guest.masters[*].id</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.guest.masters[*].vmSize">.spec.guest.masters[*].vmSize</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.guest.name">.spec.guest.name</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.guest.owner">.spec.guest.owner</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.guest.releaseVersion">.spec.guest.releaseVersion</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.guest.versionBundles">.spec.guest.versionBundles</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">array</span>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.guest.versionBundles[*]">.spec.guest.versionBundles[*]</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.guest.versionBundles[*].name">.spec.guest.versionBundles[*].name</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.guest.versionBundles[*].version">.spec.guest.versionBundles[*].version</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.guest.workers">.spec.guest.workers</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">array</span>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.guest.workers[*]">.spec.guest.workers[*]</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.guest.workers[*].id">.spec.guest.workers[*].id</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.guest.workers[*].labels">.spec.guest.workers[*].labels</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.guest.workers[*].vmSize">.spec.guest.workers[*].vmSize</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
+<p>ConfigSpec is the spec part for the Config resource.</p>
 
 </div>
 
@@ -412,11 +109,222 @@ aliases:
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.versionBundle">.spec.versionBundle</h3>
+<h3 class="property-path" id="v1alpha1-.spec.app">.spec.app</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">object</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>App details for which the configuration should be generated.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.app.catalog">.spec.app.catalog</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Catalog is the name of the App&rsquo;s App Catalog.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.app.name">.spec.app.name</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Name is the name of the App.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.app.version">.spec.app.version</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Version is the version of the App.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-0">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.status">.status</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Status part of the Config resource.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.status.app">.status.app</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>App details for which the configuration was generated.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.status.app.catalog">.status.app.catalog</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Catalog is the name of the App&rsquo;s App Catalog.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.status.app.name">.status.app.name</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Name is the name of the App.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.status.app.version">.status.app.version</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Version is the version of the App.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.status.config">.status.config</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Config holds the references to the generated configuration.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.status.config.configMapRef">.status.config.configMapRef</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>ConfigStatusConfigConfigMapRef contains a reference to the generated ConfigMap.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.status.config.configMapRef.name">.status.config.configMapRef.name</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.status.config.configMapRef.namespace">.status.config.configMapRef.namespace</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
 <span class="property-required">Required</span>
 </div>
 
@@ -425,12 +333,61 @@ aliases:
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.versionBundle.version">.spec.versionBundle.version</h3>
+<h3 class="property-path" id="v1alpha1-.status.config.secretRef">.status.config.secretRef</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>ConfigStatusConfigSecretRef contains a reference to the generated Secret.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.status.config.secretRef.name">.status.config.secretRef.name</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
 <span class="property-required">Required</span>
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.status.config.secretRef.namespace">.status.config.secretRef.namespace</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.status.version">.status.version</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Version of the giantswarm/config repository used to generate the configuration.</p>
+
 </div>
 
 </div>

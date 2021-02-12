@@ -5,11 +5,10 @@ technical_name: apps.application.giantswarm.io
 description:   App represents a managed app.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.15.0
-layout: "crd"
+source_repository_ref: v3.18.0
+layout: crd
 aliases:
   - /reference/cp-k8s-api/apps.application.giantswarm.io/
-  - /reference/management-api/apps.application.giantswarm.io/
 ---
 
 # App
@@ -755,6 +754,9 @@ spec:
 
 </div>
 </div>
+
+
+
 
 
 </div>

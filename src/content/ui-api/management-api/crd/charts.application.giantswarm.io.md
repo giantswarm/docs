@@ -5,11 +5,10 @@ technical_name: charts.application.giantswarm.io
 description:   Chart represents a Helm Chart deployed as a Helm Release.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.15.0
-layout: "crd"
+source_repository_ref: v3.18.0
+layout: crd
 aliases:
   - /reference/cp-k8s-api/charts.application.giantswarm.io/
-  - /reference/management-api/charts.application.giantswarm.io/
 ---
 
 # Chart
@@ -540,6 +539,9 @@ spec:
 
 </div>
 </div>
+
+
+
 
 
 </div>

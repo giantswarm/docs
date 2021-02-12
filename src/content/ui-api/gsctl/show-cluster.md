@@ -1,7 +1,7 @@
 ---
 linkTitle: show cluster
 title: "'gsctl show cluster' command reference"
-description: The 'gsctl show cluster' command displays details of a cluster.
+description: The 'gsctl show cluster' command displays many details of a workload cluster.
 weight: 200
 menu:
   main:
@@ -10,6 +10,8 @@ aliases:
   - /reference/gsctl/show-cluster/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
+user_questions:
+  - How can I inspect cluster details using gsctl?
 ---
 
 # `gsctl show cluster`

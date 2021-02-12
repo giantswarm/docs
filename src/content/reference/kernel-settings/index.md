@@ -1,4 +1,5 @@
 ---
+linkTitle: Kernel settings
 title: Kernel settings
 description: Complete list of the kernel settings we apply to all cluster nodes, be it master or worker.
 weight: 10

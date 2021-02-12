@@ -10,6 +10,9 @@ aliases:
    - /reference/web-interface/usage-data/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
+user_questions:
+  - What usage data is Giant Swarm recording in the web UI?
+  - How is Giant Swarm treating usage data recorded in the web UI?
 ---
 
 # Usage data recording in our web interface

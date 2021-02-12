@@ -5,11 +5,10 @@ technical_name: azuremachines.infrastructure.cluster.x-k8s.io
 description:   AzureMachine is the Schema for the azuremachines API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.15.0
-layout: "crd"
+source_repository_ref: v3.18.0
+layout: crd
 aliases:
   - /reference/cp-k8s-api/azuremachines.infrastructure.cluster.x-k8s.io/
-  - /reference/management-api/azuremachines.infrastructure.cluster.x-k8s.io/
 ---
 
 # AzureMachine
@@ -733,6 +732,42 @@ aliases:
 
 <div class="property depth-3">
 <div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.osDisk.managedDisk.diskEncryptionSet">.spec.osDisk.managedDisk.diskEncryptionSet</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>DiskEncryptionSetParameters defines disk encryption options.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.osDisk.managedDisk.diskEncryptionSet.id">.spec.osDisk.managedDisk.diskEncryptionSet.id</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>ID defines resourceID for diskEncryptionSet resource. It must be in the same subscription</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.osDisk.managedDisk.storageAccountType">.spec.osDisk.managedDisk.storageAccountType</h3>
 </div>
 <div class="property-body">
@@ -795,6 +830,42 @@ aliases:
 
 <div class="property depth-1">
 <div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.securityProfile">.spec.securityProfile</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>SecurityProfile specifies the Security profile settings for a virtual machine.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.securityProfile.encryptionAtHost">.spec.securityProfile.encryptionAtHost</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>This field indicates whether Host Encryption should be enabled or disabled for a virtual machine or virtual machine scale set. Default is disabled.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.spotVMOptions">.spec.spotVMOptions</h3>
 </div>
 <div class="property-body">
@@ -817,7 +888,7 @@ aliases:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">number</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -853,7 +924,7 @@ aliases:
 </div>
 
 <div class="property-description">
-<p>UserAssignedIdentities is a list of standalone Azure identities provided by the user The lifecycle of a user-assigned identity is managed separately from the lifecycle of the AzureMachine.</p>
+<p>UserAssignedIdentities is a list of standalone Azure identities provided by the user The lifecycle of a user-assigned identity is managed separately from the lifecycle of the AzureMachine. See <a href="https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-to-manage-ua-identity-cli">https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-to-manage-ua-identity-cli</a></p>
 
 </div>
 
@@ -1218,6 +1289,9 @@ aliases:
 
 </div>
 </div>
+
+
+
 
 
 </div>

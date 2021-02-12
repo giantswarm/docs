@@ -6,11 +6,10 @@ description: Custom resource definition (CRD) schema reference page for the Azur
 
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.15.0
-layout: "crd"
+source_repository_ref: v3.18.0
+layout: crd
 aliases:
   - /reference/cp-k8s-api/azureconfigs.provider.giantswarm.io/
-  - /reference/management-api/azureconfigs.provider.giantswarm.io/
 ---
 
 # AzureConfig
@@ -1986,6 +1985,9 @@ aliases:
 
 </div>
 </div>
+
+
+
 
 
 </div>

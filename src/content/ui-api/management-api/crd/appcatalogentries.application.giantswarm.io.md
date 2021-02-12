@@ -5,11 +5,10 @@ technical_name: appcatalogentries.application.giantswarm.io
 description:   AppCatalogEntry represents an entry of an app in a catalog of managed apps.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.15.0
-layout: "crd"
+source_repository_ref: v3.18.0
+layout: crd
 aliases:
   - /reference/cp-k8s-api/appcatalogentries.application.giantswarm.io/
-  - /reference/management-api/appcatalogentries.application.giantswarm.io/
 ---
 
 # AppCatalogEntry
@@ -53,12 +52,15 @@ spec:
     name: giantswarm
     namespace: ""
   chart:
+    apiVersion: v1
     home: https://github.com/giantswarm/nginx-ingress-controller-app
     icon: https://upload.wikimedia.org/wikipedia/commons/nginx-logo.svg
   dateCreated: "2020-09-02T09:40:39Z"
   dateUpdated: "2020-09-02T09:40:39Z"
   restrictions:
     clusterSingleton: true
+    compatibleProviders:
+    - aws
     fixedNamespace: giantswarm
   version: 1.9.2
 ```
@@ -239,6 +241,24 @@ spec:
 
 <div class="property depth-2">
 <div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.chart.apiVersion">.spec.chart.apiVersion</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>APIVersion is the Helm chart API version.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
 <h3 class="property-path" id="v1alpha1-.spec.chart.home">.spec.chart.home</h3>
 </div>
 <div class="property-body">
@@ -347,6 +367,37 @@ spec:
 
 <div class="property depth-2">
 <div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.restrictions.compatibleProviders">.spec.restrictions.compatibleProviders</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>CompatibleProviders is a list of provider names which this app is compatible with. Default is empty. Empty list means app is compatible with all providers.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.restrictions.compatibleProviders[*]">.spec.restrictions.compatibleProviders[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
 <h3 class="property-path" id="v1alpha1-.spec.restrictions.fixedNamespace">.spec.restrictions.fixedNamespace</h3>
 </div>
 <div class="property-body">
@@ -416,6 +467,9 @@ spec:
 
 </div>
 </div>
+
+
+
 
 
 </div>

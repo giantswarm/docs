@@ -1,4 +1,5 @@
 ---
+linkTitle: Accelerated networking on Azure
 title: Accelerated networking on Azure
 description: A general description of the accelerated networking for Azure VMs feature and how it works on Giant Swarm clusters.
 weight: 70

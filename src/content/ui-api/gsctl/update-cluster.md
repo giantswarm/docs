@@ -10,6 +10,8 @@ aliases:
   - /reference/gsctl/update-cluster/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
+user_questions:
+  - How can I modify a cluster using gsctl?
 ---
 
 # `gsctl update cluster`

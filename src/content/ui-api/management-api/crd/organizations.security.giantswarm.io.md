@@ -5,11 +5,10 @@ technical_name: organizations.security.giantswarm.io
 description:   Organization represents schema for managed Kubernetes namespace. Reconciled by organization-operator.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.15.0
-layout: "crd"
+source_repository_ref: v3.18.0
+layout: crd
 aliases:
   - /reference/cp-k8s-api/organizations.security.giantswarm.io/
-  - /reference/management-api/organizations.security.giantswarm.io/
 ---
 
 # Organization
@@ -116,6 +115,9 @@ spec:
 
 </div>
 </div>
+
+
+
 
 
 </div>

@@ -1,7 +1,7 @@
 ---
 linkTitle: Installation
 title: kubectl gs installation
-description: How to get kubectl gs (aka 'kgs') installed and keep it up to date
+description: How to obtain kubectl gs, the Giant Swarm kubectl plugin (aka 'kgs') and how to keep it up to date.
 weight: 10
 menu:
   main:
@@ -10,6 +10,12 @@ aliases:
   - /reference/kubectl-gs/installation/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
+user_questions:
+  - Where can I find the Giant Swarm plugin for kubectl?
+  - How can I install the Giant Swarm plugin for kubectl?
+  - How can I keep the Giant Swarm plugin for kubectl up to date?
+  - What is kgs?
+  - How can I install kgs?
 ---
 
 # Installing the kubcetl gs plugin

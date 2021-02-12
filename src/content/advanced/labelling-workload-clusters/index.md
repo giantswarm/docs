@@ -1,6 +1,7 @@
 ---
+linkTitle: Labelling clusters
 title: Labelling workload clusters
-description: Introduction to labelling workload clusters
+description: Complete guide on using labels with workload clusters for the purpose of grouping, categorization and selection.
 weight: 110
 menu:
   main:

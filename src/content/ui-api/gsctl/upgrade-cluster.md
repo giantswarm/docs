@@ -10,6 +10,8 @@ aliases:
   - /reference/gsctl/upgrade-cluster/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
+user_questions:
+  - How can I upgrade a workload cluster using gsctl?
 ---
 
 # `gsctl upgrade cluster`
