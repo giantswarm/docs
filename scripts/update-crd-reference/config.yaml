@@ -17,3 +17,4 @@ skip_crds:
   - etcdbackups.backup.giantswarm.io
   - azureclusterconfig.core.giantswarm.io
   - azureconfig.provider.giantswarm.io
+  - azuretool.tooling.giantswarm.io
