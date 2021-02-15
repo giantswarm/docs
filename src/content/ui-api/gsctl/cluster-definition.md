@@ -9,7 +9,7 @@ menu:
 aliases:
   - /reference/cluster-definition/
 user_questions:
-  - What are additional fields I need to fill out for node pool clusters?
+  - What additional configuration options are available for node pool clusters?
   - What are node definition keys I need to specify for a non-node pool cluster definition?
   - What are root level keys I need to specify for a node pool cluster definition?
   - What are root level keys I need to specify for a non-node pool cluster definition?
