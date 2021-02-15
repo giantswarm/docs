@@ -5,7 +5,7 @@ technical_name: azuremachines.infrastructure.cluster.x-k8s.io
 description:   AzureMachine is the Schema for the azuremachines API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.18.0
+source_repository_ref: v3.18.1
 layout: crd
 aliases:
   - /reference/cp-k8s-api/azuremachines.infrastructure.cluster.x-k8s.io/
@@ -36,7 +36,7 @@ aliases:
 <h2 id="v1alpha3">Version v1alpha3</h2>
 
 
-<h3 id="crd-example-v1alpha1">Example CR</h3>
+<h3 id="crd-example-v1alpha3">Example CR</h3>
 
 ```yaml
 apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
