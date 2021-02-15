@@ -5,7 +5,7 @@ technical_name: azureclusters.infrastructure.cluster.x-k8s.io
 description:   AzureCluster is the Schema for the azureclusters API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.18.0
+source_repository_ref: v3.18.1
 layout: crd
 aliases:
   - /reference/cp-k8s-api/azureclusters.infrastructure.cluster.x-k8s.io/
@@ -36,7 +36,7 @@ aliases:
 <h2 id="v1alpha3">Version v1alpha3</h2>
 
 
-<h3 id="crd-example-v1alpha1">Example CR</h3>
+<h3 id="crd-example-v1alpha3">Example CR</h3>
 
 ```yaml
 apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
@@ -59,25 +59,25 @@ spec:
   networkSpec:
     apiServerLB:
       frontendIPs:
-      - name: mmh5x-API-PublicLoadBalancer-Frontend
+        - name: mmh5x-API-PublicLoadBalancer-Frontend
       name: mmh5x-API-PublicLoadBalancer
       sku: Standard
       type: Public
     subnets:
-    - cidrBlocks:
-      - 10.3.3.0/24
-      id: /subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee/resourceGroups/mmh5x/providers/Microsoft.Network/virtualNetworks/mmh5x-VirtualNetwork/subnets/w86vu
-      name: w86vu
-      role: node
-      routeTable: {}
-      securityGroup: {}
-    - name: mmh5x-VirtualNetwork-MasterSubnet
-      role: control-plane
-      routeTable: {}
-      securityGroup: {}
+      - cidrBlocks:
+          - 10.3.3.0/24
+        id: /subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee/resourceGroups/mmh5x/providers/Microsoft.Network/virtualNetworks/mmh5x-VirtualNetwork/subnets/w86vu
+        name: w86vu
+        role: node
+        routeTable: {}
+        securityGroup: {}
+      - name: mmh5x-VirtualNetwork-MasterSubnet
+        role: control-plane
+        routeTable: {}
+        securityGroup: {}
     vnet:
       cidrBlocks:
-      - 10.3.0.0/16
+        - 10.3.0.0/16
       name: mmh5x-VirtualNetwork
       resourceGroup: mmh5x
   resourceGroup: mmh5x
