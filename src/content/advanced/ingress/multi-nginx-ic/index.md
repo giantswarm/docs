@@ -15,8 +15,7 @@ user_questions:
   - How do I separate internal and external Services?
   - How do I configure NGINX Ingress Controller for internal traffic?
   - How do I override the NodePorts on KVM Ingresses?
-  - How do I configure NGINX Ingress Controller to allow weak ciphers for legacy devices?
-  - How do I configure an Ingress Controller with different functionality or performance?
+  - How do I configure NGINX Ingress Controller to allow weak ciphers?
 ---
 
 # Installing and running multiple NGINX ingress controllers

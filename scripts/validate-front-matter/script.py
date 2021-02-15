@@ -121,7 +121,7 @@ checks = (
     },
     {
         'id': LONG_USER_QUESTIONS,
-        'description': 'Each user question should be no longer than 80 characters',
+        'description': 'Each user question should be no longer than 100 characters',
     },
     {
         'id': NO_QUESTION_MARK,
@@ -292,7 +292,7 @@ def main():
         
         if 'user_questions' in fm:
             for q in fm['user_questions']:
-                if len(q) > 80:
+                if len(q) > 100:
                     result[LONG_USER_QUESTIONS].add(f"{fpath} question: {literal(q)}")
                 if not q.endswith('?'):
                     result[NO_QUESTION_MARK].add(f"{fpath} question: {literal(q)}")

@@ -13,7 +13,7 @@ user_questions:
   - How can I configure basic authentication in an Ingress resource?
   - How can I configure ingress to prevent DDoS attacks?
   - How can I configure request URL rewrites in the Ingress resource?
-  - How can I configure session affinity in Ingress, so that requests for one session reach the same backend?
+  - How can I configure ingress so requests of one session reach the same backend?
   - How can I connect several services in one Ingress, based on the URL path?
   - How can I define several ingresses in one Ingress resource?
   - How can I disable the redirect to HTTPS in the Ingress configuration?
