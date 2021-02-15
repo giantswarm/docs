@@ -35,6 +35,45 @@ aliases:
 <div class="crd-schema-version">
 <h2 id="v1alpha3">Version v1alpha3</h2>
 
+<h3 id="crd-example-v1alpha1">Example CR</h3>
+
+```yaml
+apiVersion: exp.infrastructure.cluster.x-k8s.io/v1alpha3
+kind: AzureMachinePool
+metadata:
+  labels:
+    azure-operator.giantswarm.io/version: 5.3.1
+    cluster.x-k8s.io/cluster-name: mmh5x
+    giantswarm.io/cluster: mmh5x
+    giantswarm.io/machine-pool: w86vu
+    giantswarm.io/organization: giantswarm
+    release.giantswarm.io/version: 14.1.0
+  name: w86vu
+  namespace: org-giantswarm
+spec:
+  identity: None
+  location: westeurope
+  providerID: azure:///subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee/resourceGroups/mmh5x/providers/Microsoft.Compute/virtualMachineScaleSets/nodepool-w86vu
+  providerIDList:
+    - azure:///subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee/resourceGroups/mmh5x/providers/Microsoft.Compute/virtualMachineScaleSets/nodepool-w86vu/virtualMachines/0
+    - azure:///subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee/resourceGroups/mmh5x/providers/Microsoft.Compute/virtualMachineScaleSets/nodepool-w86vu/virtualMachines/1
+    - azure:///subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee/resourceGroups/mmh5x/providers/Microsoft.Compute/virtualMachineScaleSets/nodepool-w86vu/virtualMachines/2
+  template:
+    dataDisks:
+      - diskSizeGB: 100
+        lun: 21
+        nameSuffix: docker
+      - diskSizeGB: 100
+        lun: 22
+        nameSuffix: kubelet
+    osDisk:
+      diskSizeGB: 0
+      managedDisk:
+        storageAccountType: Premium_LRS
+      osType: ""
+    sshPublicKey: ""
+    vmSize: Standard_D4s_v3
+```
 
 
 <h3 id="property-details-v1alpha3">Properties</h3>
