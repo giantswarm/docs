@@ -1,6 +1,6 @@
 ---
 linkTitle: Apps
-title: Applications
+title: Apps
 description: Documentation for a selection of the most popular managed apps by Giant Swarm.
 weight: 40
 menu:
