@@ -15,6 +15,6 @@ skip_crds:
   - drainerconfigs.core.giantswarm.io
   - storageconfigs.core.giantswarm.io
   - etcdbackups.backup.giantswarm.io
-  - azureclusterconfig.core.giantswarm.io
-  - azureconfig.provider.giantswarm.io
-  - azuretool.tooling.giantswarm.io
+  - azureclusterconfigs.core.giantswarm.io
+  - azureconfigs.provider.giantswarm.io
+  - azuretools.tooling.giantswarm.io
