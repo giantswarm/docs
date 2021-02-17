@@ -1,7 +1,8 @@
 ---
 linkTitle: Management Clusters
 title: Giant Swarm Management Clusters
-description: Describes the role Management Clusters perform in the Giant Swarm architecture and how they are updated.
+description: The role Management Clusters perform in the Giant Swarm architecture and how they are updated.
+weight: 60
 menu:
   main:
     identifier: management-clusters
@@ -29,14 +30,16 @@ We deploy new instances of the operators with the new version to avoid impacting
 
 ## Management cluster only components
 
-The components that are not part of a Giant Swarm release like our monitoring stack are deployed via app collections. We run the latest version of each component and the collection is managed by our legacy deployment component called draughtsman.
+The components that are not part of a Giant Swarm release like our monitoring stack are deployed via app collections. We run the latest version of each component and the collection is managed by our legacy deployment component called draughtsman (which we plan to replace in Q2 2021).
 
 The components are deployed as App custom resources using our app platform. Changes are tested in a number of internal management clusters before being deployed to all management clusters.
 
 ## Configuration changes for Management Clusters
 
-TBC
+From time to time we also need to update the configuration for management clusters. These changes are also tested on our internal management clusters before being applied. 
 
 ## Management Cluster infrastructure upgrades
 
-TBC
+The infrastructure including the management cluster nodes and supporting resources like bastion hosts are managed by our SRE team using Terraform.
+
+However, we plan to move more of this provisioning to Operators reusing the components that manage our workload clusters where possible. As they are more dynamic compared to Terraform and other tools such as Kops. Operators continuously reconcile the cluster to its desired state.
