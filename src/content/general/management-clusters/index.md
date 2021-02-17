@@ -36,7 +36,7 @@ The components are deployed as App custom resources using our app platform. Chan
 
 ## Configuration changes for Management Clusters
 
-From time to time we also need to update the configuration for management clusters. These changes are also tested on our internal management clusters before being applied. 
+From time to time we also need to update the configuration for management clusters. These changes are also tested on our internal management clusters before being applied.
 
 ## Management Cluster infrastructure upgrades
 
