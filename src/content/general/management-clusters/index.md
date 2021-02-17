@@ -22,10 +22,10 @@ As well as Operators our management clusters run supporting components such as o
 
 ## Workload Cluster releases
 
-Our workload clusters are versioned using Giant Swarm releases. From a workload cluster point of view upgrades are described in [cluster upgrades]({{< relref "/general/cluster-upgrades" > }}).
+Our workload clusters are versioned using Giant Swarm releases. From a workload cluster point of view upgrades are described in [cluster upgrades]({{< relref "/general/cluster-upgrades" >}}).
 
 For management clusters when we publish a new Giant Swarm release we create a new Release custom resource and any new operator versions are deployed to the management cluster.
-We deploy new instances of the operators with the new version to avoid impacting existing workload clusters. These new operators will not become active until existing workload clusters are upgraded or a new workload cluster is created.
+We deploy new instances of the operators with the new version to avoid impacting existing workload clusters. These new operators will not become active until existing workload clusters are upgraded or a new cluster is created.
 
 ## Management cluster only components
 
