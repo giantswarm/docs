@@ -17,9 +17,9 @@ owner:
 
 ## Overview
 
-As we are fully convinced of Kubernetes as a platform for building platforms, we build all our management clusters based on Kubernetes. Giant Swarm leverages the concept of [“Operators"](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) to control all resources that clusters need as [“Custom Resources”](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
+As we are fully convinced of Kubernetes as a platform for building platforms, we build all our management clusters based on Kubernetes. Giant Swarm leverages the concept of [operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) to control all resources that clusters need as [“Custom Resources”](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
 
-As well as Operators, our management clusters run supporting components such as our monitoring stack and Happa, our web UI. All components are deployed using the Giant Swarm [App Platform]({{< relref "/app-platform/overview" >}}).
+As well as operators, our management clusters run supporting components such as our monitoring stack and Happa, our web UI. All components are deployed using the Giant Swarm [App Platform]({{< relref "/app-platform/overview" >}}).
 
 ## Workload Cluster releases
 
