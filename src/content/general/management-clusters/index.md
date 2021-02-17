@@ -2,7 +2,7 @@
 linkTitle: Management Clusters
 title: Giant Swarm Management Clusters
 description: The role Management Clusters perform in the Giant Swarm architecture and how they are updated.
-weight: 60
+weight: 50
 menu:
   main:
     identifier: management-clusters
