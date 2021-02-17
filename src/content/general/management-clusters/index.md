@@ -42,4 +42,4 @@ From time to time, we also need to update the configuration for management clust
 
 The infrastructure including the management cluster nodes and supporting resources like bastion hosts are managed by our SRE team using Terraform.
 
-However, we plan to move more of this provisioning to Operators reusing the components that manage our workload clusters where possible. As they are more dynamic compared to Terraform and other tools such as Kops. Operators continuously reconcile the cluster to its desired state.
+However, we plan to move more of this provisioning to operators, reusing the components that manage our workload clusters where possible. As they continuously reconcile the cluster to its desired state, operators are more dynamic than Terraform and other tools such as Kops.
