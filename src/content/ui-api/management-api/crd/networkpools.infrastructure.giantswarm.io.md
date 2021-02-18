@@ -5,7 +5,7 @@ technical_name: networkpools.infrastructure.giantswarm.io
 description:   NetworkPool is the infrastructure provider referenced in upstream CAPI Cluster CRs.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.18.1
+source_repository_ref: v3.18.2
 layout: crd
 aliases:
   - /reference/cp-k8s-api/networkpools.infrastructure.giantswarm.io/
