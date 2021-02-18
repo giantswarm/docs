@@ -65,6 +65,8 @@ repositories:
     category: Playground Apps
   giantswarm/k8s-initiator-app:
     category: Playground Apps
+  giantswarm/keda-app:
+    category: Playground Apps
   giantswarm/kibana-oss-app:
     category: Playground Apps
   giantswarm/kubernetes-gpu:
