@@ -2,7 +2,7 @@
 
 set -e
 
-CRD_DOCS_GENERATOR_VERSION=0.4.0-ee74b086d228a80d7c560ffe5a90bf7480c98cd7
+CRD_DOCS_GENERATOR_VERSION=0.5.0
 DESTINATION=src/content/ui-api/management-api/crd
 
 # Clear output folder
