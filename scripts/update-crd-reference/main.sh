@@ -9,7 +9,7 @@ DESTINATION=src/content/ui-api/management-api/crd
 find ${DESTINATION} -type f -not -name "_index.md" | xargs rm
 
 # Determine apiextensions version
-VERSION=$(docker run --rm -ti --entrypoint /bin/sh quay.io/giantswarm/docs-scriptrunner -c "curl --silent https://api.github.com/repos/giantswarm/apiextensions/releases/latest|jq -r .tag_name|tr -d '\n'")
+VERSION=$(docker run --rm --entrypoint /bin/sh quay.io/giantswarm/docs-scriptrunner -c "curl --silent https://api.github.com/repos/giantswarm/apiextensions/releases/latest|jq -r .tag_name|tr -d '\n'")
 
 echo "Version: ${VERSION}"
 
