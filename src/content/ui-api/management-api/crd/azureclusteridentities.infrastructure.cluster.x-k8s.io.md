@@ -5,7 +5,7 @@ technical_name: azureclusteridentities.infrastructure.cluster.x-k8s.io
 description:   AzureClusterIdentity is the Schema for the azureclustersidentities API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.18.1
+source_repository_ref: v3.18.2
 layout: crd
 aliases:
   - /reference/cp-k8s-api/azureclusteridentities.infrastructure.cluster.x-k8s.io/
