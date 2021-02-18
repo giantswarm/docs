@@ -1,6 +1,8 @@
-# This workflow, when done, is supposed to automatically update the
-# Changes and Releases section (/changes/).
-name: Update Changes and Releases
+# This workflow, when done, is supposed to automatically update all
+# generated content in these sections:
+# - Changes and releases
+# - CRDs (Management API)
+name: Update generated content
 
 # Trigger by cronjob
 on:
@@ -9,7 +11,7 @@ on:
     - cron: "13,33,53 7-18 * * MON-FRI"
 
 jobs:
-  update-changes:
+  update-generated-content:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -23,20 +25,27 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         run: make changes
+      
+      - name: Update CRD pages
+        run: make update-crd-reference
 
       - name: Create or update pull request
         uses: gr2m/create-or-update-pull-request-action@v1.3.1
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
-          title: Automated update of Changes and Releases
-          branch: "automated-update-for-changes"
+          title: Semi-automatic update of generated content
+          branch: "automatic-update-of-generated-content"
           body: |
-            This PR has been created automatically by the 'Update Changes and Releases' Github workflow.
+            This PR has been created automatically by the 'Update generated content' Github workflow
+            to keep
+
+            - Changes and releases
+            - CRD pages
+
+            up-to-date.
 
             If you see relevant additions in the 'Files' tab, feel free to **Approve** this PR.
-            (Non-relevant additions would be, for example, a docs release that only updates the Changelog
-            section.)
-            
-            Otherwise, leave the PR open. It will be updated periodically as new entries arrive in the
-            Changes and Releases section.
+
+            If not, leave the PR open. It will be updated periodically as new entries arrive in the
+            Changes and releases section or as CRD page sections are updated.
