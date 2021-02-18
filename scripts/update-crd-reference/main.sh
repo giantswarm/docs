@@ -18,6 +18,6 @@ docker run \
     -v ${PWD}/${DESTINATION}:/opt/crd-docs-generator/output \
     -v ${PWD}/scripts/update-crd-reference:/opt/crd-docs-generator/config \
     quay.io/giantswarm/crd-docs-generator:${CRD_DOCS_GENERATOR_VERSION} \
-        --version ${VERSION} \
+        --commit-reference ${VERSION} \
         --config /opt/crd-docs-generator/config/config.yaml \
         --template /opt/crd-docs-generator/config/crd.template
