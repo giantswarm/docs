@@ -5,7 +5,7 @@ technical_name: awsclusterconfigs.core.giantswarm.io
 description:   AWSClusterConfig used to represent workload cluster configuration in earlier releases. Deprecated.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.18.1
+source_repository_ref: v3.18.2
 layout: crd
 aliases:
   - /reference/cp-k8s-api/awsclusterconfigs.core.giantswarm.io/
