@@ -33,7 +33,7 @@ We deploy new instances of the operators with this new version, via the [release
 
 There are a number of components that are not a part of a workload cluster release, such as our monitoring stack, or web UI. These components are deployed exclusively to the management cluster, and do not affect workload clusters.
 
-These components are deployed via app collections, which are a set of App Custom Resources, which are ultimately deployed via the App Platform. This collection contains the latest tagged version of each component, and is managed by our deployment component [draughtsman](https://github.com/giantswarm/draughtsman/).
+These components are deployed via app collections, which are a set of App custom resources, which are ultimately deployed via the App Platform. This collection contains the latest tagged version of each component, and is managed by our deployment component [draughtsman](https://github.com/giantswarm/draughtsman/).
 
 These management cluster-only components are tested on our internal management clusters before releases are cut.
 
