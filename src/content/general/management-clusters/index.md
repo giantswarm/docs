@@ -55,6 +55,6 @@ This configuration system is being updated in Q1 2021, with a system based on th
 
 The management cluster infrastructure, such as the Kubernetes cluster itself, or other supporting resources such as bastion hosts, are managed using Terraform.
 
-Updates to our Terraform playbooks are rolled out by CI as needed, with changes to our Terraform playbooks being tested on internal management clusters before being deployed.
+Updates to our Terraform modules are rolled out by CI as needed, with changes to our Terraform modules being tested on internal management clusters before being deployed.
 
 In 2021, we plan to start reusing our own workload clusters as the clusters that base management clusters, to both avoid having to maintain two methods of provisioning clusters, but also to gain the reliability benefits of our workload clusters.
