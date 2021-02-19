@@ -43,7 +43,7 @@ We plan on replacing draughtsman in Q2 2021, with a new component that more nati
 
 Periodically, we need to update the configuration for management clusters.
 
-This configuration is currently held in a ConfigMap and a Secret stored on the Management Cluster. When updates are required, these resources are updated manually using our current tooling, from our central configuration repository.
+This configuration is currently held in a ConfigMap and a Secret stored on the management cluster. When updates are required, these resources are updated manually using our current tooling, from our central configuration repository.
 
 These configuration files are watched by the App Platform, and any necessary applications are reconfigured on changes.
 
