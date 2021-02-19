@@ -17,16 +17,20 @@ owner:
 
 ## Overview
 
-As we are fully convinced of Kubernetes as a platform for building platforms, we build all our management clusters based on Kubernetes. Giant Swarm leverages the concept of [operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) to control all resources that clusters need as [“Custom Resources”](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
+As we are fully convinced of Kubernetes as a platform for building platforms, we build all our management clusters based on Kubernetes. Giant Swarm leverages the concept of [operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) to control all resources that clusters need as [“Custom Resources”](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/). At the moment we don't support the upstream Cluster API for all our providers yet. But we are fully committed to support this open standard very soon. 
+
+Our users have direct access to the Kubernetes API of the management cluster and you can find the documentation [here]({{< relref "/ui-api/management-api/" >}}). The Kubernetes API not only gives you access to the automation we've built into operators but also gives you full visibility into components and logs running within the management cluster.
 
 As well as operators, our management clusters run supporting components such as our monitoring stack and our [web UI]({{< relref "/ui-api/web" >}}). All components are deployed using the Giant Swarm [App Platform]({{< relref "/app-platform/overview" >}}).
 
+The management cluster creates and manages the kubernetes cluster that you can use for your own workloads. Therefore we call them workload clusters.
+
 ## Workload Cluster releases
 
-Our workload clusters are versioned using [workload cluster releases]({{< relref "/general/releases" >}}). From a workload cluster point of view, upgrades are described in [cluster upgrades]({{< relref "/general/cluster-upgrades" >}}).
+Our workload clusters are versioned using [workload cluster releases]({{< relref "/general/releases" >}}). We have put a lot of effort into our versioning to guarantee stability and reliability. Our upgrades are following a lockstep approach moving from one tested set of component versions to the next set of tested components. It was important for us to ensure testability and repeatability. So you can test out new versions, test upgrades and even integrate cluster creation into your own CI to run integration tests. From a workload cluster point of view, upgrades are described in [cluster upgrades]({{< relref "/general/cluster-upgrades" >}}).
 
-When we publish a new Giant Swarm release, we create a new release custom resource and any new operator versions are deployed to the management cluster.
-We deploy new instances of the operators with the new version to avoid impacting existing workload clusters. These new operators will not become active until existing workload clusters are upgraded or a new cluster is created.
+When we publish a new Giant Swarm release, we create a new release, which is represented within the management cluster as a custom resource and any new operator versions are deployed to the management cluster. Check out the release definitions in our [release repository on github](https://github.com/giantswarm/releases).
+To make sure that existing workload clusters aren't affected by new versions we keep our operators immutable. With each new release we deploy new instances of the operators to avoid impacting existing workload clusters. So the operator code on the management cluster is versioned together with the infrastructure of the cloud provider and the component versions (eg. Kubernetes, CoreDNS, etc) of the cluster itself. Once you tell the system to upgrade your cluster the new operators will take over and make sure the cluster is upgraded to the new version.
 
 ## Management cluster-only components
 
