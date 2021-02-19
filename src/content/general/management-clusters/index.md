@@ -29,7 +29,7 @@ We do not support the upstream Cluster API for all our providers yet, but are fu
 
 Our workload clusters are versioned using [workload cluster releases]({{< relref "/general/releases" >}}). From a workload cluster point of view, upgrades are described in [cluster upgrades]({{< relref "/general/cluster-upgrades" >}}).
 
-A core focus of our development in our versioning is to guarantee stability and reliability. Our upgrades follow a lockstep approach, where we move from one tested set of versions of our components to the next set of versions of our components. This strict versioning also allows you to test out new versions, test upgrades, and even integrate cluster creation into your own CI, such as to run integration tests.
+A core focus of development in our versioning approach is to guarantee stability and reliability. Our upgrades follow a lockstep approach, where we move from one tested set of versions of our components to the next set of versions of our components. This strict versioning also allows you to test out new versions, test upgrades, and even integrate cluster creation into your own CI, such as to run integration tests.
 
 When we publish a new workload cluster release, we create a new [Release]({{< relref "/ui-api/management-api/crd/releases.release.giantswarm.io.md" >}}) custom resource, which is deployed to the management cluster, and any new operator versions are also subsequently deployed. All release definitions can be found at [giantswarm/releases](https://github.com/giantswarm/releases).
 
