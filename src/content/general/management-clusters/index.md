@@ -21,13 +21,19 @@ As we are fully convinced of Kubernetes as a platform for building platforms, we
 
 As well as operators, our management clusters run supporting components such as our monitoring stack and our [web UI]({{< relref "/ui-api/web" >}}). All components are deployed using the Giant Swarm [App Platform]({{< relref "/app-platform/overview" >}}).
 
+Users have direct access to the Kubernetes API of the management cluster. The gives full access to the automation we've built into our operators, as well as visibility into the components running within the management cluster. Documentation can be found [here]({{< relref "/ui-api/management-api/" >}}).
+
+We do not support the upstream Cluster API for all our providers yet, but are fully committed to supporting this open standard soon.
+
 ## Workload Cluster releases
 
 Our workload clusters are versioned using [workload cluster releases]({{< relref "/general/releases" >}}). From a workload cluster point of view, upgrades are described in [cluster upgrades]({{< relref "/general/cluster-upgrades" >}}).
 
-When we publish a new workload cluster release, we create a new [Release]({{< relref "/ui-api/management-api/crd/releases.release.giantswarm.io.md" >}}) custom resource and any new operator versions are deployed to the management cluster.
+A core focus of development in our versioning approach is to guarantee stability and reliability. Our upgrades follow a lockstep approach, where we move from one tested set of versions of our components to the next set of versions of our components. This strict versioning also allows you to test out new versions, test upgrades, and even integrate cluster creation into your own CI, such as to run integration tests.
 
-We deploy new instances of the operators with this new version, via the [release-operator](https://github.com/giantswarm/release-operator/) to avoid impacting existing workload clusters. These new operators will not become active until existing workload clusters are upgraded or a new cluster is created.
+When we publish a new workload cluster release, we create a new [Release]({{< relref "/ui-api/management-api/crd/releases.release.giantswarm.io.md" >}}) custom resource, which is deployed to the management cluster, and any new operator versions are also subsequently deployed. All release definitions can be found at [giantswarm/releases](https://github.com/giantswarm/releases).
+
+To make sure that existing workload clusters aren't affected by new versions, our operators are immutable. With each new release, we deploy new instances of the operators with the new version, via the [release-operator](https://github.com/giantswarm/release-operator/), which avoids impacting existing workload clusters. These new operators will not become active until existing workload clusters are upgraded or a new cluster is created. Overall, this entails that the operators are versioned together with the cloud provider infrastructure and component versions (e.g: Kubernetes, CoreDNS, etc.) of the cluster itself, with the new operators taking over when the cluster is upgraded to the new version.
 
 ## Management cluster-only components
 
