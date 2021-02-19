@@ -25,7 +25,7 @@ As well as operators, our management clusters run supporting components such as 
 
 Our workload clusters are versioned using [workload cluster releases]({{< relref "/general/releases" >}}). From a workload cluster point of view, upgrades are described in [cluster upgrades]({{< relref "/general/cluster-upgrades" >}}).
 
-When we publish a new workload cluster release, we create a new [Release Custom Resource]({{< relref "/ui-api/management-api/crd/releases.release.giantswarm.io.md" >}}) and any new operator versions are deployed to the management cluster.
+When we publish a new workload cluster release, we create a new [Release]({{< relref "/ui-api/management-api/crd/releases.release.giantswarm.io.md" >}}) custom resource and any new operator versions are deployed to the management cluster.
 
 We deploy new instances of the operators with this new version, via the [release-operator](https://github.com/giantswarm/release-operator/) to avoid impacting existing workload clusters. These new operators will not become active until existing workload clusters are upgraded or a new cluster is created.
 
