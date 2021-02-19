@@ -7,9 +7,9 @@ menu:
   main:
     identifier: management-clusters
     parent: general
-last_review_date: 2021-02-17
+last_review_date: 2021-02-19
 user_questions:
-  - How do Giant Swarm use Management Clusters?
+  - How does Giant Swarm use Management Clusters?
   - How are Management Clusters kept up to date?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-biscuit
@@ -25,21 +25,36 @@ As well as operators, our management clusters run supporting components such as 
 
 Our workload clusters are versioned using [workload cluster releases]({{< relref "/general/releases" >}}). From a workload cluster point of view, upgrades are described in [cluster upgrades]({{< relref "/general/cluster-upgrades" >}}).
 
-When we publish a new Giant Swarm release, we create a new release custom resource and any new operator versions are deployed to the management cluster.
-We deploy new instances of the operators with the new version to avoid impacting existing workload clusters. These new operators will not become active until existing workload clusters are upgraded or a new cluster is created.
+When we publish a new Giant Swarm release, we create a new [Release Custom Resource]({{< relref "/ui-api/management-api/crd/releases.release.giantswarm.io/" >}}) and any new operator versions are deployed to the management cluster.
+
+We deploy new instances of the operators with this new version, via the [release-operator](https://github.com/giantswarm/release-operator/) to avoid impacting existing workload clusters. These new operators will not become active until existing workload clusters are upgraded or a new cluster is created.
 
 ## Management cluster-only components
 
-The components that are not part of a workload cluster release -- like our monitoring stack -- are deployed via app collections. We run the latest version of each component and the collection is managed by our legacy deployment component called draughtsman (which we plan to retire in Q2 2021).
+There are a number of components that are not a part of a workload cluster release, such as our monitoring stack, or web UI. These components are deployed exclusively to the management cluster, and do not affect workload clusters.
 
-The components are deployed as App custom resources using our App Platform. Changes are tested in a number of internal management clusters before being deployed to all management clusters.
+These components are deployed via app collections, which are a set of App Custom Resources, which are ultimately deployed via the App Platform. This collection contains the latest tagged version of each component, and is managed by our deployment component [draughtsman](https://github.com/giantswarm/draughtsman/).
+
+These management cluster-only components are tested on our internal management clusters before releases are cut.
+
+We plan on replacing draughtsman in Q2 2021, with a new component that more natively synchronises app collections to a management cluster, mostly to improve the scalability of the system.
 
 ## Configuration changes
 
-From time to time, we also need to update the configuration for management clusters. These changes are also tested on our internal management clusters before being applied.
+Periodically, we need to update the configuration for management clusters.
+
+This configuration is currently held in a ConfigMap and a Secret stored on the Management Cluster. When updates are required, these resources are updated manually using our current tooling, from our central configuration repository.
+
+These configuration files are watched by the App Platform, and any necessary applications are reconfigured on changes.
+
+Changes to configuration are tested on our internal management clusters before being applied.
+
+This configuration system is being updated in Q1 2021, with a system based on the new [config-controller](https://github.com/giantswarm/config-controller/). This will remove the need for manual updates of configuration, remove the shared ConfigMap and Secret, and allow for versioning of configuration. Overall, aiming to further increase the safety, reliability, and scalability of configuration changes.
 
 ## Infrastructure upgrades
 
-The infrastructure including the management cluster nodes and supporting resources like bastion hosts are managed by our SRE team using Terraform.
+The management cluster infrastructure, such as the Kubernetes cluster itself, or other supporting resources such as bastion hosts, are managed using Terraform.
 
-However, we plan to move more of this provisioning to operators, reusing the components that manage our workload clusters where possible. As they continuously reconcile the cluster to its desired state, operators are more dynamic than Terraform and other tools such as Kops.
+Updates to our Terraform playbooks are rolled out by CI as needed, with changes to our Terraform playbooks being tested on internal management clusters before being deployed.
+
+In 2021, we plan to start reusing our own workload clusters as the clusters that base management clusters, to both avoid having to maintain two methods of provisioning clusters, but also to gain the reliability benefits of our workload clusters.
