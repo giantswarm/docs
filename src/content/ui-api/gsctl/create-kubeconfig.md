@@ -11,6 +11,7 @@ aliases:
 user_questions:
   - How can I add a cluster key pair to my kubectl config file?
   - How to gain access to a cluster using gsctl?
+  - How can I configure kubie?
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 ---
@@ -18,13 +19,18 @@ owner:
 # `gsctl create kubeconfig`
 
 The `gsctl create kubeconfig` command is used to configure [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/) for access to
-a cluster in your Giant Swarm installation. It can operate in two different
-modes:
+a cluster in your Giant Swarm installation. It can operate in multiple modes:
 
 - By default, **your standard kubectl configuration file will be modified**. A
   cluster, user, and context entry are added. A client certificate together
   with a private key and the CA certificate of the cluster are placed in
   your gsctl configuration directory.
+
+- Use [Kubie](https://github.com/sbstp/kubie) to launch the context. It behaves
+  similarly to the default, in that context entry is created,  but rather than
+  modifying the existing context in kubectl, it will launch a new shell with the
+  context set in the shell. **Please Note** To use this method, you need to have
+  the `kubie` binary in your system path.
 
 - Alternatively, a **self-contained kubectl configuration file can be created**.
   This is useful when you would like to keep things separate, or if you want to
@@ -32,7 +38,7 @@ modes:
   stored inline in the file. To enable this behavior, use the flag
   `--self-contained` and set it's value to the desired output file path.
 
-In both cases, a new key pair will be created in your installation, just as it
+In all cases, a new key pair will be created in your installation, just as it
 is the case with the [`gsctl create keypair`]({{< relref "/ui-api/gsctl/create-keypair" >}}) command.
 
 As a prerequisite, you need to be logged in to `gsctl` and you have to be
@@ -67,6 +73,13 @@ The output of the command gives details on what exactly happens.
   but this can be overwritten using the `--context` flag.
 - The new context is selected so that you can directly start using kubectl
   with the cluster.
+
+To use `kubie`, simply use the above commnd line options with the additional
+`--kubie` switch:
+
+```nohighlight
+gsctl create kubeconfig --cluster w6wn8 --kubie
+```
 
 The next example shows creation of a self-contained configuration file:
 
@@ -113,6 +126,7 @@ gsctl create kubeconfig --cluster w6wn8 \
   config file. Credentials will be included. The file will contain only one
   user, one cluster, and one context. When this option is used, the default
   kubectl config file is not altered.
+- `--kubie`: Launch the kubectl context in a new shell using `kubie` binary
 - `--tenant-internal`: This option sets whether an internal endpoint should be used
   to access Kubernetes API.
 - `--force`: Always overwrite existing files without prompt when using `--self-contained`.
@@ -206,8 +220,11 @@ Passing flag `--output` with value `json` to `gsctl create kubeconfig` changes t
 }
 ```
 
+(JSON output is not available using Kubie)
+
 ## Related
 
 - [`gsctl create keypair`]({{< relref "/ui-api/gsctl/create-keypair" >}}): Create and download a key pair
 - [kubectl reference](https://kubernetes.io/docs/reference/kubectl/overview/)
 - [API: Create key pair](/api/#operation/addKeyPair)
+- [Kubie](https://github.com/sbstp/kubie)
