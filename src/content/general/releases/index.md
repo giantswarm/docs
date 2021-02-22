@@ -97,7 +97,7 @@ Once deprecated, you can still continue to use the workload cluster release with
 
 You have several options to inspect workload cluster release details:
 
-- We announce new workload cluster releases in your Slack support channel. There you will find a link to the according release notes in our [changes and releases]({{< relref "/changes" >}}) section here in the docs site. Here you also find comprehensive release notes.
+- We announce new workload cluster releases in your Slack support channel. In each announcement, you will find a link to the corresponding release notes in our [changes and releases]({{< relref "/changes" >}}) section here on the docs site, where you also find comprehensive release notes.
 
 - In the [web UI]({{< relref "/ui-api/web/" >}}), the cluster overview and the cluster details page show the release version number of the workload cluster. In the cluster details page you can click the release version number to get more information about a workload cluster release. Additionally, the web UI will soon provide more ways to browse workload cluster releases and inspect changes between versions.
 
