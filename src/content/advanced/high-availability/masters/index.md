@@ -1,4 +1,5 @@
 ---
+linkTitle: High-availability masters
 title: High-availability Kubernetes masters
 description: A general description of high availability of masters as a concept, it's benefits, and some details you should be aware of.
 weight: 10

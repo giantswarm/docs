@@ -5,11 +5,10 @@ technical_name: azuremachinepools.exp.infrastructure.cluster.x-k8s.io
 description:   AzureMachinePool is the Schema for the azuremachinepools API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.15.0
-layout: "crd"
+source_repository_ref: v3.18.2
+layout: crd
 aliases:
   - /reference/cp-k8s-api/azuremachinepools.exp.infrastructure.cluster.x-k8s.io/
-  - /reference/management-api/azuremachinepools.exp.infrastructure.cluster.x-k8s.io/
 ---
 
 # AzureMachinePool
@@ -36,6 +35,46 @@ aliases:
 <div class="crd-schema-version">
 <h2 id="v1alpha3">Version v1alpha3</h2>
 
+
+<h3 id="crd-example-v1alpha3">Example CR</h3>
+
+```yaml
+apiVersion: exp.infrastructure.cluster.x-k8s.io/v1alpha3
+kind: AzureMachinePool
+metadata:
+  labels:
+    azure-operator.giantswarm.io/version: 5.3.1
+    cluster.x-k8s.io/cluster-name: mmh5x
+    giantswarm.io/cluster: mmh5x
+    giantswarm.io/machine-pool: w86vu
+    giantswarm.io/organization: giantswarm
+    release.giantswarm.io/version: 14.1.0
+  name: w86vu
+  namespace: org-giantswarm
+spec:
+  identity: None
+  location: westeurope
+  providerID: azure:///subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee/resourceGroups/mmh5x/providers/Microsoft.Compute/virtualMachineScaleSets/nodepool-w86vu
+  providerIDList:
+    - azure:///subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee/resourceGroups/mmh5x/providers/Microsoft.Compute/virtualMachineScaleSets/nodepool-w86vu/virtualMachines/0
+    - azure:///subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee/resourceGroups/mmh5x/providers/Microsoft.Compute/virtualMachineScaleSets/nodepool-w86vu/virtualMachines/1
+    - azure:///subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee/resourceGroups/mmh5x/providers/Microsoft.Compute/virtualMachineScaleSets/nodepool-w86vu/virtualMachines/2
+  template:
+    dataDisks:
+      - diskSizeGB: 100
+        lun: 21
+        nameSuffix: docker
+      - diskSizeGB: 100
+        lun: 22
+        nameSuffix: kubelet
+    osDisk:
+      diskSizeGB: 0
+      managedDisk:
+        storageAccountType: Premium_LRS
+      osType: ""
+    sshPublicKey: ""
+    vmSize: Standard_D4s_v3
+```
 
 
 <h3 id="property-details-v1alpha3">Properties</h3>
@@ -128,6 +167,24 @@ aliases:
 
 <div class="property depth-1">
 <div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.identity">.spec.identity</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Identity is the type of identity used for the Virtual Machine Scale Set. The type &lsquo;SystemAssigned&rsquo; is an implicitly created identity. The generated identity will be assigned a Subscription contributor role. The type &lsquo;UserAssigned&rsquo; is a standalone Azure resource provided by the user and assigned to the VM</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.location">.spec.location</h3>
 </div>
 <div class="property-body">
@@ -187,6 +244,24 @@ aliases:
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.roleAssignmentName">.spec.roleAssignmentName</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>RoleAssignmentName is the name of the role assignment to create for a system assigned identity. It can be any valid GUID. If not specified, a random GUID will be generated.</p>
 
 </div>
 
@@ -684,6 +759,42 @@ aliases:
 
 <div class="property depth-4">
 <div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template.osDisk.managedDisk.diskEncryptionSet">.spec.template.osDisk.managedDisk.diskEncryptionSet</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>DiskEncryptionSetParameters defines disk encryption options.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template.osDisk.managedDisk.diskEncryptionSet.id">.spec.template.osDisk.managedDisk.diskEncryptionSet.id</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>ID defines resourceID for diskEncryptionSet resource. It must be in the same subscription</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.template.osDisk.managedDisk.storageAccountType">.spec.template.osDisk.managedDisk.storageAccountType</h3>
 </div>
 <div class="property-body">
@@ -703,6 +814,78 @@ aliases:
 <div class="property-meta">
 <span class="property-type">string</span>
 <span class="property-required">Required</span>
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template.securityProfile">.spec.template.securityProfile</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>SecurityProfile specifies the Security profile settings for a virtual machine.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template.securityProfile.encryptionAtHost">.spec.template.securityProfile.encryptionAtHost</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>This field indicates whether Host Encryption should be enabled or disabled for a virtual machine or virtual machine scale set. Default is disabled.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template.spotVMOptions">.spec.template.spotVMOptions</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>SpotVMOptions allows the ability to specify the Machine should use a Spot VM</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template.spotVMOptions.maxPrice">.spec.template.spotVMOptions.maxPrice</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+
+
+</div>
+
+<div class="property-description">
+<p>MaxPrice defines the maximum price the user is willing to pay for Spot VM instances</p>
+
 </div>
 
 </div>
@@ -756,6 +939,60 @@ aliases:
 
 <div class="property-description">
 <p>VMSize is the size of the Virtual Machine to build. See <a href="https://docs.microsoft.com/en-us/rest/api/compute/virtualmachines/createorupdate#virtualmachinesizetypes">https://docs.microsoft.com/en-us/rest/api/compute/virtualmachines/createorupdate#virtualmachinesizetypes</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.userAssignedIdentities">.spec.userAssignedIdentities</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>UserAssignedIdentities is a list of standalone Azure identities provided by the user The lifecycle of a user-assigned identity is managed separately from the lifecycle of the AzureMachinePool. See <a href="https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-to-manage-ua-identity-cli">https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-to-manage-ua-identity-cli</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.userAssignedIdentities[*]">.spec.userAssignedIdentities[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>UserAssignedIdentity defines the user-assigned identities provided by the user to be assigned to Azure resources.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.userAssignedIdentities[*].providerID">.spec.userAssignedIdentities[*].providerID</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>ProviderID is the identification ID of the user-assigned Identity, the format of an identity is: &lsquo;azure:///subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}&rsquo;</p>
 
 </div>
 
@@ -966,6 +1203,240 @@ aliases:
 
 <div class="property depth-1">
 <div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.instances">.status.instances</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>Instances is the VM instance status for each VM in the VMSS</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.instances[*]">.status.instances[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>AzureMachinePoolInstanceStatus provides status information for each instance in the VMSS</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.instances[*].instanceID">.status.instances[*].instanceID</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>InstanceID is the identification of the Machine Instance within the VMSS</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.instances[*].instanceName">.status.instances[*].instanceName</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>InstanceName is the name of the Machine Instance within the VMSS</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.instances[*].latestModelApplied">.status.instances[*].latestModelApplied</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>LatestModelApplied indicates the instance is running the most up-to-date VMSS model. A VMSS model describes the image version the VM is running. If the instance is not running the latest model, it means the instance may not be running the version of Kubernetes the Machine Pool has specified and needs to be updated.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.instances[*].providerID">.status.instances[*].providerID</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>ProviderID is the provider identification of the VMSS Instance</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.instances[*].provisioningState">.status.instances[*].provisioningState</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>ProvisioningState is the provisioning state of the Azure virtual machine instance.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.instances[*].version">.status.instances[*].version</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Version defines the Kubernetes version for the VM Instance</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.longRunningOperationState">.status.longRunningOperationState</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>LongRunningOperationState saves the state for an Azure long running operations so it can be continued on the next reconciliation loop.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.longRunningOperationState.futureData">.status.longRunningOperationState.futureData</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>FutureData is the base64 url encoded json Azure AutoRest Future</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.longRunningOperationState.name">.status.longRunningOperationState.name</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Name is the name of the Azure resource</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.longRunningOperationState.resourceGroup">.status.longRunningOperationState.resourceGroup</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>ResourceGroup is the Azure resource group for the resource</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.longRunningOperationState.type">.status.longRunningOperationState.type</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Type describes the type of future, update, create, delete, etc</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
 <h3 class="property-path" id="v1alpha3-.status.provisioningState">.status.provisioningState</h3>
 </div>
 <div class="property-body">
@@ -1017,6 +1488,27 @@ aliases:
 
 </div>
 </div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.version">.status.version</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Version is the Kubernetes version for the current VMSS model</p>
+
+</div>
+
+</div>
+</div>
+
+
+
 
 
 </div>

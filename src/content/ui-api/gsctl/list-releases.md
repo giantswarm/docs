@@ -10,6 +10,8 @@ aliases:
   - /reference/gsctl/list-releases/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
+user_questions:
+  - How can I see the workload cluster releases available using gsctl?
 ---
 
 # `gsctl list releases`

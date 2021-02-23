@@ -10,6 +10,8 @@ aliases:
   - /reference/gsctl/delete-cluster/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
+user_questions:
+  - How can I delete a cluster using gsctl?
 ---
 
 # Delete a Cluster using `gsctl`

@@ -3,15 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v9.3.5/
 changes_categories:
-- Workload Cluster Releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v9.3.5
   version: 9.3.5
   version_tag: v9.3.5
 date: '2020-07-21T15:00:00+00:00'
-description: Release notes for AWS release v9.3.5, published on 21 July 2020, 15:00
-title: Workload Cluster Release v9.3.5 for AWS
+description: Release notes for AWS workload cluster release v9.3.5, published on 21
+  July 2020, 15:00
+title: Workload cluster release v9.3.5 for AWS
 ---
 
 This release updates NGINX Ingress Controller to the latest upstream release.

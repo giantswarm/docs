@@ -16,6 +16,7 @@ user_questions:
   - How long are workload cluster releases supported?
   - What does it mean when a workload cluster release is deprecated?
   - How soon does Giant Swarm provide new Kubernetes versions?
+  - How are workload cluster releases announced?
 aliases:
   - /reference/release-versions/
   - /reference/tenant-cluster-release-versions/
@@ -96,7 +97,7 @@ Once deprecated, you can still continue to use the workload cluster release with
 
 You have several options to inspect workload cluster release details:
 
-- All workload cluster releases are defined in code in the [giantswarm/releases](https://github.com/giantswarm/releases) GitHub repository. Here you also find comprehensive release notes.
+- We announce new workload cluster releases in your Slack support channel. In each announcement, you will find a link to the corresponding release notes in our [changes and releases]({{< relref "/changes" >}}) section here on the docs site, where you also find comprehensive release notes.
 
 - In the [web UI]({{< relref "/ui-api/web/" >}}), the cluster overview and the cluster details page show the release version number of the workload cluster. In the cluster details page you can click the release version number to get more information about a workload cluster release. Additionally, the web UI will soon provide more ways to browse workload cluster releases and inspect changes between versions.
 

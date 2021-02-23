@@ -10,6 +10,17 @@ aliases:
   - /reference/gsctl/info/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
+user_questions:
+  - How can I find out my gsctl version?
+  - How can I find out my current API endpoint used in gsctl?
+  - How can I check my login status in gsctl?
+  - How can I find which EC2 istances are allowed for node pools using gsctl?
+  - How can I find the default EC2 instance type using gsctl?
+  - How can I find which VM sizes are allowed for node pools using gsctl?
+  - How can I find the default VM size using gsctl?
+  - How can I find the maximum size of a node pool using gsctl?
+  - How can I find the maximum size of a cluster using gsctl?
+  - How can I print my current API token using gsctl?
 ---
 
 # `gsctl info`

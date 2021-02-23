@@ -65,6 +65,8 @@ repositories:
     category: Playground Apps
   giantswarm/k8s-initiator-app:
     category: Playground Apps
+  giantswarm/keda-app:
+    category: Playground Apps
   giantswarm/kibana-oss-app:
     category: Playground Apps
   giantswarm/kubernetes-gpu:
@@ -98,11 +100,11 @@ categories:
     color: "#bfffb8"
   - name: Rest API
     color: "#919ea1"
-  - name: Workload Cluster Releases for AWS
+  - name: Workload cluster releases for AWS
     color: "#ff9900"
-  - name: Workload Cluster Releases for Azure
+  - name: Workload cluster releases for Azure
     color: "#1773bd"
-  - name: Workload Cluster Releases for KVM
+  - name: Workload cluster releases for KVM
     color: "#cccccc"
   - name: Web UI
     color: "#8098b2"

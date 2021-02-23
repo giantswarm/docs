@@ -3,15 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v9.3.1/
 changes_categories:
-- Workload Cluster Releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v9.3.1
   version: 9.3.1
   version_tag: v9.3.1
 date: '2020-05-12T11:00:00+00:00'
-description: Release notes for AWS release v9.3.1, published on 12 May 2020, 11:00
-title: Workload Cluster Release v9.3.1 for AWS
+description: Release notes for AWS workload cluster release v9.3.1, published on 12
+  May 2020, 11:00
+title: Workload cluster release v9.3.1 for AWS
 ---
 
 This release fixes a rare bug that would prevent the NGINX IC from being installed on a new cluster.

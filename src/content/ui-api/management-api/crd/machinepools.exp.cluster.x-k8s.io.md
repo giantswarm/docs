@@ -5,11 +5,10 @@ technical_name: machinepools.exp.cluster.x-k8s.io
 description:   MachinePool is the Schema for the machinepools API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.15.0
-layout: "crd"
+source_repository_ref: v3.18.2
+layout: crd
 aliases:
   - /reference/cp-k8s-api/machinepools.exp.cluster.x-k8s.io/
-  - /reference/management-api/machinepools.exp.cluster.x-k8s.io/
 ---
 
 # MachinePool
@@ -1541,6 +1540,9 @@ aliases:
 
 </div>
 </div>
+
+
+
 
 
 </div>

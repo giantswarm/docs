@@ -3,15 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v11.4.1/
 changes_categories:
-- Workload Cluster Releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v11.4.1
   version: 11.4.1
   version_tag: v11.4.1
 date: '2020-07-08T13:00:00+00:00'
-description: Release notes for AWS release v11.4.1, published on 08 July 2020, 13:00
-title: Workload Cluster Release v11.4.1 for AWS
+description: Release notes for AWS workload cluster release v11.4.1, published on
+  08 July 2020, 13:00
+title: Workload cluster release v11.4.1 for AWS
 ---
 
 This release re-activates the recent AWS [release of high-availability (HA) masters](https://docs.giantswarm.io/changes/tenant-cluster-releases-aws/releases/aws-v11.4.0/), fixing OIDC configurations issues.

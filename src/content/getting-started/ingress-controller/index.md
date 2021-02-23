@@ -1,4 +1,5 @@
 ---
+linkTitle: Installing an ingress controller
 title: Installing an ingress controller
 description: How to install the NGINX ingress controller using the Giant Swarm web user interface.
 weight: 50
@@ -6,9 +7,9 @@ menu:
   main:
     parent: getting-started
 user_questions:
-- Which workload clusters do not ship with a pre-installed ingress controller?
+- Which workload clusters ship with a pre-installed ingress controller?
 - How do I install my own ingress controller?
-- Which ingress controller is available for installation via Giant Swarm app catalog?
+- Which ingress controller is available via the Giant Swarm app platform?
 aliases:
   - /guides/installing-optional-ingress-controller/
 owner:

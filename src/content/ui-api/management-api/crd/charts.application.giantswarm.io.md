@@ -2,20 +2,19 @@
 title: Chart CRD schema reference
 linkTitle: Chart
 technical_name: charts.application.giantswarm.io
-description:   Chart represents a Helm Chart deployed as a Helm Release.
+description:   Chart represents a Helm chart to be deployed as a Helm release. It is reconciled by chart-operator.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.15.0
-layout: "crd"
+source_repository_ref: v3.18.2
+layout: crd
 aliases:
   - /reference/cp-k8s-api/charts.application.giantswarm.io/
-  - /reference/management-api/charts.application.giantswarm.io/
 ---
 
 # Chart
 
 
-<p class="crd-description">Chart represents a Helm Chart deployed as a Helm Release.</p>
+<p class="crd-description">Chart represents a Helm chart to be deployed as a Helm release. It is reconciled by chart-operator.</p>
 <dl class="crd-meta">
 <dt class="fullname">Full name:</dt>
 <dd class="fullname">charts.application.giantswarm.io</dd>
@@ -540,6 +539,9 @@ spec:
 
 </div>
 </div>
+
+
+
 
 
 </div>

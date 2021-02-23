@@ -10,6 +10,8 @@ aliases:
   - /reference/gsctl/list-clusters/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
+user_questions:
+  - How can I list all clusters I have access to using gsctl?
 ---
 
 # `gsctl list clusters`

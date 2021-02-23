@@ -3,15 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v12.1.3/
 changes_categories:
-- Workload Cluster Releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v12.1.3
   version: 12.1.3
   version_tag: v12.1.3
 date: '2020-08-27T13:00:00+00:00'
-description: Release notes for AWS release v12.1.3, published on 27 August 2020, 13:00
-title: Workload Cluster Release v12.1.3 for AWS
+description: Release notes for AWS workload cluster release v12.1.3, published on
+  27 August 2020, 13:00
+title: Workload cluster release v12.1.3 for AWS
 ---
 
 This release provides a new cluster-operator which fixes the issue that prevented release upgrade when reference id does not align with the G8sControlPlane id or MachineDeployment id and cluster status condition not being changed during cluster upgrade. 

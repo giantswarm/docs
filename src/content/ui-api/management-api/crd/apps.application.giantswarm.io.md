@@ -2,20 +2,19 @@
 title: App CRD schema reference
 linkTitle: App
 technical_name: apps.application.giantswarm.io
-description:   App represents a managed app.
+description:   App represents a managed app which a user intended to install. It is reconciled by app-operator.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.15.0
-layout: "crd"
+source_repository_ref: v3.18.2
+layout: crd
 aliases:
   - /reference/cp-k8s-api/apps.application.giantswarm.io/
-  - /reference/management-api/apps.application.giantswarm.io/
 ---
 
 # App
 
 
-<p class="crd-description">App represents a managed app.</p>
+<p class="crd-description">App represents a managed app which a user intended to install. It is reconciled by app-operator.</p>
 <dl class="crd-meta">
 <dt class="fullname">Full name:</dt>
 <dd class="fullname">apps.application.giantswarm.io</dd>
@@ -755,6 +754,9 @@ spec:
 
 </div>
 </div>
+
+
+
 
 
 </div>

@@ -10,10 +10,9 @@ description: {{ if .Description -}}
 weight: {{ .Weight }}
 source_repository: {{ .SourceRepository }}
 source_repository_ref: {{ .SourceRepositoryRef }}
-layout: "crd"
+layout: crd
 aliases:
   - /reference/cp-k8s-api/{{ .NamePlural }}.{{ .Group }}/
-  - /reference/management-api/{{ .NamePlural }}.{{ .Group }}/
 ---
 
 # {{ .Title }}
@@ -76,6 +75,29 @@ aliases:
 {{end}}
 </div>
 </div>
+{{ end }}
+
+
+{{ if .Annotations }}
+<h3 id="annotation-details-{{$versionName}}">Annotations</h3>
+
+{{ range $versionSchema.Annotations }}
+<div class="annotation">
+<div class="annotation-header">
+<h3 class="annotation-path" id="{{.APIVersion}}-{{.Annotation}}">{{.Annotation}}</h3>
+</div>
+<div class="annotation-body">
+<div class="annotation-meta">
+{{with .Release}}<span class="annotation-release">{{.}}</span>{{end}}
+</div>
+{{with .Documentation}}
+<div class="annotation-description">
+{{.|markdown}}
+</div>
+{{end}}
+</div>
+</div>
+{{ end }}
 {{ end }}
 
 </div>

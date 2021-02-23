@@ -6,18 +6,19 @@ weight: 30
 menu:
   main:
     parent: security
-last_review_date: 2020-01-21
+last_review_date: 2021-02-11
 aliases:
   - /basics/secured-access-to-clusters/
 user_questions:
-  - How does Giant Swarm access my account with the cloud provider?
+  - How does Giant Swarm access my cloud provider account?
   - How is admin access safeguarded?
   - What is admin access to a cluster?
-  - What is the difference between user access to clusters and admin access to clusters?
+  - What is the difference between user access and admin access to clusters?
   - What is user access to a cluster?
   - Which APIs enable user access to the clusters?
+  - How do I get access my clusters?
   - Who has access to my clusters?
-  - Why does Giant Swarm personnel need access to my clusters?
+  - Why do Giant Swarm personnel need access to my clusters?
 ---
 
 # Secure access to clusters for users and Giant Swarm support
@@ -38,32 +39,32 @@ If you would like to know more about the different parts of the Giant Swarm infr
 
 ## User access
 
-User access is limited to the offered APIs for interaction with your clusters.
+User access is provided via two APIs for interaction with your clusters.
 
 ### Giant Swarm API
 
 High-level cluster management access is provided to you via the Giant Swarm API. This includes creating, scaling, and deleting your clusters, as well as other organization and user management functions.
-Network access to the API endpoint is usually whitelisted to a certain range of IP addresses. It can also be configured to work over a VPN following the general VPN connection schema shown below under [admin access](#admin-access). In this case the connection to the API residing in the cluster can be established only via your configured VPN.
+Network access to the API endpoint is typically permitted only to a certain range of IP addresses. It can also be configured to work over a virtual private network (VPN) following the general VPN connection schema shown below under [admin access](#admin-access). In this case, the connection to the API residing in the cluster can be established only via your configured VPN.
 
 ### Kubernetes API
 
-The Kubernetes API of each cluster is exposed to customers. You have full control over the users that are created via the Giant Swarm API. Additionally, you can also manage users by connecting an external Identity Provider to the Kubernetes API.
+The Kubernetes API of each cluster is exposed to customers. Authorized users of the cluster can be managed by connecting an external identity provider to the Kubernetes API, or by provisioning them directly through the Giant Swarm API. In either case, you retain full control over user management.
 
 ## Admin access
 
-Admin access is guarded by a Virtual Private Network (VPN) that is managed via certificates (public/private keys).
+Admin access is restricted to a VPN that is managed via certificates (public/private keys).
 
-Certificates management is handled by a combination of Vault and the Giant Swarm Organization on Github. The general principle is that a certificate is configured for each individual Giant Swarm staff member.
+Certificate management is backed by Hashicorp Vault, using the Giant Swarm GitHub organization for user authentication. Each Giant Swarm staff member uses their own individual keypair, the public key of which must be additionally signed by Vault after authorizing the user for each session.
 
-VPN secured access points:
+### VPN secured access points
 
 - **SSH** - SSH access is based on GitHub SSO. Only users in the GitHub Giant Swarm Organization are allowed to authenticate. The following diagram describes our SSH authentication in more detail:
 
-![SSH access process diagram](ssh_access_process.png)
+![SSH access process diagram](ssh_access_process.svg)
 
-Customer workload clusters are accessible only via SSH access to the Giant Swarm Control Plane. This Control Plane contains Giant Swarm's cluster management and operations platform, and controls our access to the underlying workload clusters for diagnostic and "Day 2" operational reasons.
+Customer workload clusters are accessible only via SSH access to the Giant Swarm management cluster. The management cluster contains Giant Swarm's cluster automation and operations platform, and controls our access to the underlying workload clusters for diagnostic and "Day 2" operational reasons.
 
-- **Management API** - Usage of the Kubernetes API on the Control Plane is also secured with SSH.
+- **Management API** - Usage of the Kubernetes API on the management cluster is also secured with SSH.
 
 ### General VPN connection schema
 
@@ -79,7 +80,7 @@ We use two different VPN providers to provide highly resilient and available sup
 
 Currently, Giant Swarm operators - which are responsible for managing cluster lifecycle - are granted admin rights by the customer to the given cloud provider. This is necessary to create, configure, and clean up the underlying resources (machines, networks, security groups, etc.) used by the cluster.
 
-The operator secret used for authentication with the cloud provider is stored in Kubernetes' etcd.
+The operator secret used for authentication with the cloud provider is stored in etcd.
 Access to etcd or the Kubernetes API is secured based on certificates signed by Vault, to which only personnel in the Giant Swarm GitHub organization have access.
 
 ## Further reading

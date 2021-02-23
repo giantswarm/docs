@@ -6,11 +6,10 @@ description: Custom resource definition (CRD) schema reference page for the KVMC
 
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.15.0
-layout: "crd"
+source_repository_ref: v3.18.2
+layout: crd
 aliases:
   - /reference/cp-k8s-api/kvmclusterconfigs.core.giantswarm.io/
-  - /reference/management-api/kvmclusterconfigs.core.giantswarm.io/
 ---
 
 # KVMClusterConfig
@@ -444,6 +443,9 @@ aliases:
 
 </div>
 </div>
+
+
+
 
 
 </div>

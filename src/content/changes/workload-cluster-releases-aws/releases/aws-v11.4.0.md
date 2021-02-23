@@ -3,15 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v11.4.0/
 changes_categories:
-- Workload Cluster Releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v11.4.0
   version: 11.4.0
   version_tag: v11.4.0
 date: '2020-06-17T13:00:00+00:00'
-description: Release notes for AWS release v11.4.0, published on 17 June 2020, 13:00
-title: Workload Cluster Release v11.4.0 for AWS
+description: Release notes for AWS workload cluster release v11.4.0, published on
+  17 June 2020, 13:00
+title: Workload cluster release v11.4.0 for AWS
 ---
 
 This release introduces [high availability Kubernetes masters](https://docs.giantswarm.io/basics/ha-masters/),
