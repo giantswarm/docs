@@ -25,9 +25,7 @@ The kubelet exposes core metrics of the nodes/pods via an endpoint, however, you
 To deploy it, run:
 
 ```nohighlight
-git clone https://github.com/kubernetes-sigs/metrics-server/tree/master/deploy/1.8%2B
-cd metrics-server
-kubectl apply --filename deploy/1.8+/
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 ```
 
 __Note__: For Metrics Server to work you need to have Kubernetes API Aggregator enabled on your cluster. This is enabled by default on clusters started after February 14th 2018. For older clusters you can use Heapster as described below.
