@@ -64,8 +64,6 @@ It supports the following flags:
 
 ### AWS specific
 
-- `--domain` - base domain of your installation. Customer solution engineer can provide this value.
-- `--credential` - AWS cloud credentials that point to the AWS account used to spin up the cluster resources. To get this info run against the Control Plane API `kubectl -n giantswarm get secret -oyaml | grep ORG_NAME -A2 | tail -n 1 | awk '{print $2}'` replacing `ORG_NAME` for the name of the organization selected.
 - `--external-snat` - AWS CNI configuration to disable (is enabled by default) the [external source network address translation](https://docs.aws.amazon.com/eks/latest/userguide/external-snat.html). Only versions *11.3.1+ support this feature.
 
 ## Example
@@ -76,12 +74,10 @@ Example command for an AWS cluster:
 kgs template cluster \
   --provider aws
   --master-az eu-central-1a \
-  --domain gauss.eu-central-1.aws.gigantic.io \
   --external-snat true \
   --name "Cluster #2" \
   --pods-cidr 10.2.0.0/16 \
   --owner acme \
-  --credential credential-34hg5 \
   --release 11.2.1 \
   --label environment=testing \
   --label "team=upstate"
