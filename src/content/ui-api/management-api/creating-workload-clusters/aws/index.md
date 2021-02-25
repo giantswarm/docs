@@ -256,7 +256,7 @@ __Note__: Currently changing/adding config to already existing cluster is not fu
 
 ## Cluster provider resource tagging
 
-Since AWS Giant Swarm release `14.0.0` our operator will propage cluster CR labels to the cloud provider resources (if they have the prefix `tag.provider.giantswarm.io/`). Take into account that it will only work, for most of the (static) resources, when you set the labels at creation time. 
+Since AWS Giant Swarm release `14.0.0` our operator will propage cluster CR labels to the cloud provider resources (if they have the prefix `tag.provider.giantswarm.io/`). Take into account that it will only work, for most of the (static) resources, when you set the labels at creation time.
 
 ```yaml
 apiVersion: cluster.x-k8s.io/v1alpha2
