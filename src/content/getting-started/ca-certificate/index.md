@@ -80,7 +80,7 @@ Operating systems and HTTP clients have a variety of ways to manage CAs and cert
 ### Shortcut by client
 
 - macOS
-    - Safari and Chrome use the [macOS Keychain](#mac-os-keychain)
+    - Safari and Chrome use the [macOS keychain](#mac-os-keychain)
     - [Firefox](#mac-os-firefox)
 - Linux
     - [Chrome, Chromium](#linux-chromium)
@@ -95,7 +95,7 @@ Operating systems and HTTP clients have a variety of ways to manage CAs and cert
 
 On macOS, browsers like **Safari** and **Chrome** rely on the system keychain for CA information and certificates. Firefox can be configured to support this, too, which is explained in a [separate section](#mac-os-firefox).
 
-Importing certificates on macOS can be done interactively through the Keychain app, or via the command line. We explain the latter option here.
+Importing certificates on macOS can be done interactively through the _Keychain_ app, or via the command line. We explain the latter option here.
 
 With the keychain path `$HOME/Library/Keychains/login.keychain` and the CA file under the path `path/to/ca.crt`, this command would import the CA and set it to trusted:
 
@@ -121,7 +121,7 @@ By default, Firefox does not use the system keychain, but provides its own certi
 
 However, a possible simpler alternative is to let Firefox use the system keychain in addition. To enable this
 
-1. open the advanced preferences by typing the pseudo-URL `about:config` into the location bar.
+1. Open the advanced preferences by typing the pseudo-URL `about:config` into the location bar.
 2. Set the following two configuration variables to `true`:
    - `security.enterprise_roots.enabled`
    - `security.osclientcerts.autoload`
