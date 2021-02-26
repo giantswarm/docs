@@ -40,9 +40,7 @@ update-crd-reference:
 
 # Ensure that the CLI version mention in docs is actually the latest
 update-latest-versions:
-	which jq || (echo "jq not found" && exit 1)
-	which curl || (echo "curl not found" && exit 1)
-	curl -s https://api.github.com/repos/giantswarm/gsctl/releases/latest | jq -j .tag_name > src/layouts/shortcodes/gsctl_version.html
+	scripts/update-latest-versions/main.sh
 
 lint:
 	@docker pull $(MARKDOWNLINT_IMAGE) > /dev/null

@@ -22,6 +22,8 @@ user_questions:
 
 `kubectl-gs` is the Giant Swarm plug-in for `kubectl` with the official plug-in name `gs`.
 
+The latest version is {{% kubectl_gs_version %}}.
+
 The simplest way to manage `kubectl` plug-ins across platforms is using [Krew](https://krew.sigs.k8s.io/). If you don't have Krew installed, check the [Krew installation docs](https://krew.sigs.k8s.io/docs/user-guide/setup/install/) on how to get it installed.
 
 Further down you will also find instructions on installing the plug-in [without Krew](#without-krew).
