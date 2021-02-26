@@ -208,7 +208,7 @@ pk12util -i path/to/bundle.p12 \
 
 ### Windows
 
-#### Common Certificate Store {#win-cert-store}
+#### Common certificate store {#win-cert-store}
 
 Browsers like Edge, Internet Explorer, Chrome, and Chromium use the certificate store provided by the operating system.
 
@@ -234,4 +234,4 @@ You can manually add the CA file and key pair via the _Tools / Options / Advance
 
 ## Related
 
-- [Accessing Pods and Services from the outside]({{< relref "/getting-started/exposing-workloads" >}})
+- [Accessing pods and services from the outside]({{< relref "/getting-started/exposing-workloads" >}})
