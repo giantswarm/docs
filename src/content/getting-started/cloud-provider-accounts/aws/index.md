@@ -67,7 +67,7 @@ go to the [Users](https://console.aws.amazon.com/iam/home#/users) subsection.
 Now hit the **Add user** button. Enter the user name as `aws-operator` and ensure
 only _Programmatic access_ is enabled.
 
-![AWS IAM console: Create user](/img/aws-user-create-user.png)
+![AWS IAM console: Create user](aws-user-create-user.png)
 
 ### 2. Review and create user {#iam-aws-operator-user-review}
 
@@ -77,7 +77,7 @@ a *Secret access key*. Click the 'show' link to display the access key secret,
 and then copy both the key ID and key secret; these will need to be provided to
 us later.
 
-![AWS IAM console: User secrets](/img/aws-user-secrets.png)
+![AWS IAM console: User secrets](aws-user-secrets.png)
 
 ## Service limits in AWS accounts {#limits}
 
@@ -95,7 +95,7 @@ region.
 
 The screenshot below shows the entry form.
 
-![Screenshot](/img/aws-service-limits.png)
+![Screenshot](aws-service-limits.png)
 
 These are the limit increases to be requested, grouped by limit type:
 
@@ -161,7 +161,7 @@ subsection.
 Now hit the **Create role** button. In the following screen, when asked to
 _Select type of trusted entity_ chose _Another AWS account_.
 
-![AWS IAM console: Create role](/img/aws-roles-create-role.png)
+![AWS IAM console: Create role](aws-roles-create-role.png)
 
 The **Account ID** you enter is the ID of the AWS account where `aws-operator`
 use is created.
@@ -190,7 +190,7 @@ GiantSwarmAWSOperator
 Enter `GiantSwarmAWSOperator` into the search field to select the policy
 you created before. Check the box in the row containing that policy.
 
-![AWS IAM console: Attach policy](/img/aws-roles-attach-policy.png)
+![AWS IAM console: Attach policy](aws-roles-attach-policy.png)
 
 Then proceed to the next step.
 
@@ -199,7 +199,7 @@ Then proceed to the next step.
 The last step of role creation requires you to set a name for the role. Please
 set the name to `GiantSwarmAWSOperator`.
 
-![AWS IAM console: Review](/img/aws-roles-review.png)
+![AWS IAM console: Review](aws-roles-review.png)
 
 You may also set a description for team members to better understand the reasons
 for the existence of this role. It could be helpful to also paste a link to this

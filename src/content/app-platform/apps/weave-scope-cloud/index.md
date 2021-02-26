@@ -18,11 +18,11 @@ Weave Scope is a UI that lets you see and interact with distributed applications
 
 ## Weave Scope
 
-![Screenshot of the Weave Scope UI](/img/weave_scope_topology.png)
+![Screenshot of the Weave Scope UI](weave_scope_topology.png)
 
 It builds logical topologies of your applications and cluster and let's you filter and search through what is running. You get real-time app and container metrics and can manage your containers directly from within the UI.
 
-![Screenshot of a detail view in Weave Scope](/img/weave_scope_details.png)
+![Screenshot of a detail view in Weave Scope](weave_scope_details.png)
 
 It is very easy to set up as it does not need any configuration or integration. It automatically bootstraps directly from your Kubernetes cluster. A single command will get you up and running:
 
