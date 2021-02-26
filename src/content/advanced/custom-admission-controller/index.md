@@ -14,7 +14,7 @@ aliases:
 
 The Kubernetes API is amazing territory. Thanks to being built around the REST model, it gives us the possibility to manage all our workloads using HTTP requests. Tools like `kubectl` or `Kubernetes dashboard` take advantage of this, helping to manage the different resources. But the Kubernetes API is far more. Let's take a deeper look at how it is composed:
 
-![API components](/img/api_components.png)
+![API components](api_components.png)
 
 The picture highlights the different components living inside the API component. The request starts the API journey communicating with the authentication controller. Once the request is authenticated, the authorization module dictates if the request issuer may perform the operation. After the request is properly authorized, the admission magic comes into play.
 

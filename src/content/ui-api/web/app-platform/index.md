@@ -31,26 +31,26 @@ be visible if your Control Plane has at least one App Catalog installed on it.
 The screenshot below shows what the "App Catalogs" page looks like with two app catalogs
 installed:
 
-![A screenshot of our web interface, showing a list of available app catalogs](/img/app-catalogs.png)
+![A screenshot of our web interface, showing a list of available app catalogs](app-catalogs.png)
 
 ## Installing an App
 
 Click on the catalog you'd like to install from. Only apps in the Managed catalog
 will be monitored and managed by us.
 
-![A screenshot of our web interface, showing a list of apps in an app catalog](/img/apps.png)
+![A screenshot of our web interface, showing a list of apps in an app catalog](apps.png)
 
 Once you know what app you'd like to install, click on that app, and then on
 "Configure & Install"
 
-![A screenshot of our web interface, showing the detail page for a specific app, in this case grafana](/img/app-detail-page.png)
+![A screenshot of our web interface, showing the detail page for a specific app, in this case grafana](app-detail-page.png)
 
 That'll bring up a modal where you can choose what cluster you want to install
 the app on, the version you want install, as well as some further steps allowing you to configure the app.
 
 This is also where you can provide your [values.yaml](https://helm.sh/docs/chart_template_guide/values_files/) with custom configuration for the app.
 
-![A screenshot of the configuration screen when install an app using our web interface](/img/app-configuration-modal.png#width-60)
+![A screenshot of the configuration screen when install an app using our web interface](app-configuration-modal.png#width-60)
 
 Apps can be configured by uploading optional YAML files, one intended for general configuration values and the other
 for secret values.
@@ -82,4 +82,4 @@ app you would like to edit.
 
 Once there you should see a dropdown that you can use to pick a different version.
 
-![A screenshot showing where you can edit the app's version](/img/app-version-picker.png#width-60)
+![A screenshot showing where you can edit the app's version](app-version-picker.png#width-60)
