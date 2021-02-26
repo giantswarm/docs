@@ -16,7 +16,7 @@ owner:
 
 [Kubernetes Dashboard](https://github.com/kubernetes/dashboard/) is the official general purpose web UI for Kubernetes clusters. It can show you all running workloads in your cluster and even includes some functionality to control and change those workloads. It can show logs of your pods and if you have Heapster monitoring installed also some basic resource usage.
 
-![Kubernetes Dashboard](/img/dashboard-ui.png)
+![Kubernetes Dashboard](dashboard-ui.png)
 
 Keep in mind that Dashboard despite it 1.x version number is still an early-stage effort and might miss certain functionality (e.g. no cascaded deletes like `kubectl`).
 
@@ -47,7 +47,7 @@ and then open your browser at this URL:
 
 You should see the authentication page for your dashboard, it is securely exposed.
 
-![Kubernetes Dashboard Authentication](/img/dashboard-authentication.png)
+![Kubernetes Dashboard Authentication](dashboard-authentication.png)
 
 You need to generate a Service Account token be have access to the dashboard.
 
@@ -138,7 +138,7 @@ token:      eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZ
 
 After login, the user can only see `namespaces` and `pods`.
 
-![Kubernetes Dashboard Limited user](/img/dashboard-pod-viewer.png)
+![Kubernetes Dashboard Limited user](dashboard-pod-viewer.png)
 
 ## Further reading
 
