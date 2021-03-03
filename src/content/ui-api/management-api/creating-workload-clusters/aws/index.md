@@ -44,6 +44,7 @@ kind: Cluster
 metadata:
   generation: 1
   labels:
+    tag.provider.giantswarm.io/Environment: PROD
     cluster-operator.giantswarm.io/version: 2.3.0
     giantswarm.io/cluster: nzr5z
     giantswarm.io/organization: acme
@@ -252,6 +253,21 @@ spec:
 This will result in setting up the OIDC flags API manifest for the given cluster.
 
 __Note__: Currently changing/adding config to already existing cluster is not fully supported at Giant Swarm (control plane nodes need to be recreated). Please talk to your SE if there is any need to change those settings.
+
+## Cluster provider resource tagging
+
+Since AWS Giant Swarm release `14.0.0` our operator will propage cluster CR labels to the cloud provider resources (if they have the prefix `tag.provider.giantswarm.io/`). Take into account that it will only work, for most of the (static) resources, when you set the labels at creation time.
+
+```yaml
+apiVersion: cluster.x-k8s.io/v1alpha2
+kind: Cluster
+metadata:
+  labels:
+    tag.provider.giantswarm.io/Environment: PROD
+    tag.provider.giantswarm.io/Office: Bahamas
+```
+
+__Warning__: This feature does only work for AWS at the moment.
 
 ## Deleting a cluster {#deleting}
 

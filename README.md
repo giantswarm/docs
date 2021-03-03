@@ -6,7 +6,7 @@ This is the main documentation repository for the documentation available at htt
 
 This repository named `docs` holds the main **content** of our documentation. The documentation
 site is created using the static site generator [HUGO](http://gohugo.io/) based on Markdown files
-in the `src/content/` directory. Images are in the `src/static/img/` directory.
+in the `src/content/` directory.
 
 Additional content is tied in through the scripts
 
