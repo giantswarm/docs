@@ -12,6 +12,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 user_questions:
   - What options/flags does gsctl offer for all commands?
+  - How can I customize the gsctl configuration directory?
 ---
 
 # Global Command Line Options
