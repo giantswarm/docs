@@ -12,6 +12,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 user_questions:
   - What options/flags does gsctl offer for all commands?
+  - How can I customize the gsctl configuration directory?
 ---
 
 # Global Command Line Options
@@ -24,7 +25,7 @@ user_questions:
 
 - `--endpoint`/`-e`: Using this option you can override the endpoint temporarily for a given command. For interactive use however it's more convenient to switch endpoints using the [`gsctl select endpoint`]({{< relref "/ui-api/gsctl/select-endpoint" >}}) command.
 - `--auth-token`: Can be used to pass an authentication token for the use in single command, as an alternative to a permanent login in via `gsctl login`.
-- `--config-dir`: This option allows to override the directory path to use for storing your configuration file and key pairs. By default, they get stored in `$HOME/.config/gsctl`.
+- `--config-dir`: This option allows to override the directory path to use for storing your configuration file and key pairs. By default, they get stored in `$HOME/.config/gsctl`. This flag overrides the `GSCTL_CONFIG_DIR` environment variable.
 - `--verbose`, `-v`: Print more detailed output
 - `--silence-http-endpoint-warning`: **Insecure!** Allows to silence warnings when using endpoints with non-HTTPS URLs. This should only used in scenarios where users specifically want `gsctl` to communicate with endpoints only supporting unencrypted HTTP traffic. This can be neccessary when `gsctl` output is being parsed.
 
