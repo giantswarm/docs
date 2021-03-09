@@ -114,7 +114,6 @@ If app-operator finds a matching AppCatalogEntry CR named `{appCatalog}-{app}-{v
 - Cloud provider compatibility (e.g. you can’t install kiam app in azure, for example)
 - Namespace restriction (cluster singleton, namespace singleton, fixed namespace) (e.g You can only install cert-manager in the kube-system namespace.)
 
-
 ## Retry Logic
 
 During cluster creation there can a short delay while the kubeconfig
