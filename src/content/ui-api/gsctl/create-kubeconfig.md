@@ -97,7 +97,7 @@ an internal Kubernetes API endpoint.
 
 ```nohighlight
 gsctl create kubeconfig --cluster w6wn8 --self-contained kubeconfig.yaml \
-  --tenant-internal=true
+  --internal-api=true
 ```
 
 Here, the file `kubeconfig.yaml` will be created and it will contain an internal
@@ -126,8 +126,8 @@ gsctl create kubeconfig --cluster w6wn8 \
   config file. Credentials will be included. The file will contain only one
   user, one cluster, and one context. When this option is used, the default
   kubectl config file is not altered.
+- `--internal-api`: This option sets whether an internal endpoint should be used
 - `--kubie`: Launch the kubectl context in a new shell using `kubie` binary
-- `--tenant-internal`: This option sets whether an internal endpoint should be used
   to access Kubernetes API.
 - `--force`: Always overwrite existing files without prompt when using `--self-contained`.
 - `--context`: Allows to set the context name to be used in the config file.
