@@ -19,7 +19,7 @@ owner:
 `Accelerated Networking` (or `AN` for short) is a feature provided by the `Azure Cloud` that allows for
 "ultra-low network latency" thanks to Azure's in-house programmable hardware and technologies like [SR-IOV](https://docs.microsoft.com/en-us/windows-hardware/drivers/network/overview-of-single-root-i-o-virtualization--sr-iov-).
 
-![Accelerated Networking](/img/accelerated-networking.png)
+![Accelerated Networking](accelerated-networking.png)
 
 As shown in the drawing, when `AN` is enabled on a virtual machine the Host server's virtual network is not in use:
 network traffic flows directly from the virtual machine to the physical network card.

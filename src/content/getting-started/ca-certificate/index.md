@@ -79,8 +79,8 @@ Operating systems and HTTP clients have a variety of ways to manage CAs and cert
 
 ### Shortcut by client
 
-- Mac OS
-    - Safari and Chrome use the [Mac OS Keychain](#mac-os-keychain)
+- macOS
+    - Safari and Chrome use the [macOS keychain](#mac-os-keychain)
     - [Firefox](#mac-os-firefox)
 - Linux
     - [Chrome, Chromium](#linux-chromium)
@@ -89,11 +89,13 @@ Operating systems and HTTP clients have a variety of ways to manage CAs and cert
     - Edge, IE, Chrome, and Chromium use the [certificate store](#win-cert-store) provided by the operating system
     - [Firefox](#win-firefox)
 
-### Mac OS
+### macOS
 
-#### Mac OS keychain {#mac-os-keychain}
+#### macOS keychain {#mac-os-keychain}
 
-On Mac OS, browsers like **Safari** and **Chrome** rely on the system keychain for CA information and certificates. Firefox is an exception and treated in a [separate section](#mac-os-firefox).
+On macOS, browsers like **Safari** and **Chrome** rely on the system keychain for CA information and certificates. Firefox can be configured to support this, too, which is explained in a [separate section](#mac-os-firefox).
+
+Importing certificates on macOS can be done interactively through the _Keychain_ app, or via the command line. We explain the latter option here.
 
 With the keychain path `$HOME/Library/Keychains/login.keychain` and the CA file under the path `path/to/ca.crt`, this command would import the CA and set it to trusted:
 
@@ -113,52 +115,18 @@ security import \
   -P giantswarm
 ```
 
-#### Firefox on Mac OS {#mac-os-firefox}
+#### Firefox on macOS {#mac-os-firefox}
 
-Firefox does not use the system keychain. You can manually add the CA file and key pair via the _Preferences / Advanced / Certificates / View Certificates / Import_ function.
+By default, Firefox does not use the system keychain, but provides its own certificate manager. You can manually add the CA file and key pair via the _Preferences / Advanced / Certificates / View Certificates / Import_ function.
 
-A command line method involves installing the NSS utilities from Mozilla first:
+However, a possible simpler alternative is to let Firefox use the system keychain in addition. To enable this
 
-```nohighlight
-brew install nss
-```
+1. Open the advanced preferences by typing the pseudo-URL `about:config` into the location bar.
+2. Set the following two configuration variables to `true`:
+   - `security.enterprise_roots.enabled`
+   - `security.osclientcerts.autoload`
 
-The `homebrew` install recipe does not install the command line utilities in any directory under the path. Instead, when installing version 3.28.1 (the latest as of Jan 2017), they land in `/usr/local/Cellar/nss/3.28.1/bin`. So, to make our work easier later, we copy them:
-
-```nohighlight
-sudo cp /usr/local/Cellar/nss/3.28.1/bin/certutil /usr/local/bin/
-sudo cp /usr/local/Cellar/nss/3.28.1/bin/pk12util /usr/local/bin/
-```
-
-One more prerequisite: We have to find your Firefox profile folder. This command should list all profiles available to the current user:
-
-```nohighlight
-ls -la "$HOME/Library/Application Support/Firefox/Profiles"
-```
-
-Here you should either get exactly one entry, or you can see which directory has been modified last, which indicates that this is the one you use actively.
-
-**Important:** Before you proceed, please **shut down Firefox** in case it is running.
-
-Now let's import the CA and set it to trusted. Assuming that your Firefox profile folder is `~/Library/Application Support/Firefox/Profiles/6eozd6kv.default` and the CA file is at `path/to/ca.crt`, this command will do both for you:
-
-```nohighlight
-certutil -A \
-  -n "Name of certificate" \
-  -t "TC,," \
-  -d "${HOME}/Library/Application Support/Firefox/Profiles/6eozd6kv.default" \
-  -i path/to/ca.crt
-```
-
-Of course you can change `Name of certificate` to whatever name or description you like.
-
-Now we can import the PKCS12 key bundle. The example below again assumes your Firefox profile to be found at `~/Library/Application Support/Firefox/Profiles/6eozd6kv.default` and the PKCS12 bundle at `path/to/bundle.p12`. The password given via the `-W` switch has to match the one you set when [creating the bundle](#creating-pkcs12-bundle).
-
-```nohighlight
-pk12util -i path/to/bundle.p12 \
-  -d ~/.mozilla/firefox/6eozd6kv.default \
-  -W giantswarm
-```
+Restarting Firefox may be required after changing these preferences.
 
 ### Linux
 
@@ -240,7 +208,7 @@ pk12util -i path/to/bundle.p12 \
 
 ### Windows
 
-#### Common Certificate Store {#win-cert-store}
+#### Common certificate store {#win-cert-store}
 
 Browsers like Edge, Internet Explorer, Chrome, and Chromium use the certificate store provided by the operating system.
 
@@ -266,4 +234,4 @@ You can manually add the CA file and key pair via the _Tools / Options / Advance
 
 ## Related
 
-- [Accessing Pods and Services from the outside]({{< relref "/getting-started/exposing-workloads" >}})
+- [Accessing pods and services from the outside]({{< relref "/getting-started/exposing-workloads" >}})

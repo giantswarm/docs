@@ -5,7 +5,7 @@ technical_name: azuremachinepools.exp.infrastructure.cluster.x-k8s.io
 description:   AzureMachinePool is the Schema for the azuremachinepools API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.18.2
+source_repository_ref: v3.19.0
 layout: crd
 aliases:
   - /reference/cp-k8s-api/azuremachinepools.exp.infrastructure.cluster.x-k8s.io/
