@@ -111,8 +111,8 @@ Currently we validate:
 
 If app-operator finds a matching AppCatalogEntry CR named `{appCatalog}-{app}-{version}`, it will run more two validation.
 
-- Cloud provider compatibility (e.g. you can’t install kiam app in azure, for example)
-- Namespace restriction (cluster singleton, namespace singleton, fixed namespace) (e.g You can only install cert-manager in the kube-system namespace.)
+- Cloud provider compatibility (e.g. you can’t install the azure-ad-pod-identity app in AWS).
+- Namespace restriction (cluster singleton, namespace singleton, fixed namespace).
 
 ## Retry Logic
 
