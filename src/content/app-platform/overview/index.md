@@ -7,7 +7,7 @@ menu:
   main:
     parent: app-platform
     identifier: app-platform-overview
-last_review_date: 2020-05-26
+last_review_date: 2021-03-15
 aliases:
   - /basics/app-catalog/
 owner:
