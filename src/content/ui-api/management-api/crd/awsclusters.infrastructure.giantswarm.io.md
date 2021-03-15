@@ -5,7 +5,7 @@ technical_name: awsclusters.infrastructure.giantswarm.io
 description:   AWSCluster is the infrastructure provider referenced in upstream CAPI Cluster CRs.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.19.0
+source_repository_ref: v3.20.0
 layout: crd
 aliases:
   - /reference/cp-k8s-api/awsclusters.infrastructure.giantswarm.io/
@@ -706,7 +706,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Release versions the cluster used so far.</p>
+<p>Workload cluster release versions the cluster used so far.</p>
 
 </div>
 

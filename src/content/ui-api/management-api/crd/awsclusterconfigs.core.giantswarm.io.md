@@ -5,7 +5,7 @@ technical_name: awsclusterconfigs.core.giantswarm.io
 description:   AWSClusterConfig used to represent workload cluster configuration in earlier releases. Deprecated.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.19.0
+source_repository_ref: v3.20.0
 layout: crd
 aliases:
   - /reference/cp-k8s-api/awsclusterconfigs.core.giantswarm.io/
@@ -139,7 +139,7 @@ aliases:
 </div>
 
 <div class="property-description">
-<p>AWSClusterConfigSpecGuestCredentialSecret points to the K8s Secret containing credentials for an AWS account in which the guest cluster should be created.</p>
+<p>AWSClusterConfigSpecGuestCredentialSecret points to the K8s Secret containing credentials for an AWS account in which the workload cluster should be created.</p>
 
 </div>
 
@@ -183,7 +183,7 @@ aliases:
 </div>
 
 <div class="property-description">
-<p>DNSZone for guest cluster is supplemented with host prefixes for specific services such as Kubernetes API or Etcd. In general this DNS Zone should start with &ldquo;k8s&rdquo; like for example &ldquo;k8s.cluster.example.com.&rdquo;.</p>
+<p>DNSZone for the workload cluster is supplemented with host prefixes for specific services such as Kubernetes API or Etcd. In general this DNS Zone should start with &ldquo;k8s&rdquo; like for example &ldquo;k8s.cluster.example.com.&rdquo;.</p>
 
 </div>
 

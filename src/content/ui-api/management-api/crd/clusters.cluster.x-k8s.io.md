@@ -5,7 +5,7 @@ technical_name: clusters.cluster.x-k8s.io
 description:   Cluster is the Schema for the clusters API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.19.0
+source_repository_ref: v3.20.0
 layout: crd
 aliases:
   - /reference/cp-k8s-api/clusters.cluster.x-k8s.io/
@@ -44,7 +44,8 @@ kind: Cluster
 metadata:
   annotations:
     giantswarm.io/docs: https://pkg.go.dev/sigs.k8s.io/cluster-api/api/v1alpha2?tab=doc#Cluster
-  creationTimestamp: null
+  labels:
+    tag.provider.giantswarm.io/environment: prod
   name: ca1p0
 spec:
   infrastructureRef:
