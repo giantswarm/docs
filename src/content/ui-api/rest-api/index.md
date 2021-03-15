@@ -21,7 +21,7 @@ The Giant Swarm REST API is an abstraction over the many resources that reside i
 
 Browse our [API documentation](/api/) for a complete overview into the provided functionality.
 
-The REST API was originally designed to provide a simpler, easier access to the relevant resources for managing clusters, key pairs, etc. while keeping the internals under the hood. However at Giant Swarm we learnt that there are always more use cases emerging on your side than we could anticipate in our API design. We realized that the best we can do for you to provide full insight into the state and spec of your infrastructure is by opening up the underlying system itself.
+The REST API was originally designed to provide a simpler, easier access to the relevant resources for managing clusters, key pairs, etc. while keeping the internals under the hood. However at Giant Swarm we learned that there are always more use cases emerging on your side than we could anticipate in our API design. We realized that the best we can do for you to provide full insight into the state and spec of your infrastructure is by opening up the underlying system itself.
 
 With this realization, we made the decision to phase out the development of the REST API in favor of providing access to the [Management API]({{< relref "/ui-api/management-api" >}}) instead.
 
