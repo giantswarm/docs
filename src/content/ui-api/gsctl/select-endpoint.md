@@ -16,7 +16,7 @@ user_questions:
 
 # `gsctl select endpoint`
 
-The `gsctl select endpoint` command selects a Giant Swarm API endpoint for
+The `gsctl select endpoint` command selects a Giant Swarm REST API endpoint for
 usage in subsequent command executions. This defines which endpoint you use,
 unless an endpoint is specified on a per-command basis using the
 `-e`/`--endpoint` flag.

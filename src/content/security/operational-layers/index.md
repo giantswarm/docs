@@ -14,8 +14,8 @@ user_questions:
   - Who has access to the infrastructure layer?
   - What is the Giant Swarm management cluster?
   - Who has access to the Giant Swarm management cluster?
-  - What is the Giant Swarm API?
-  - Who has access to the Giant Swarm API?
+  - What is the Giant Swarm REST API?
+  - Who has access to the Giant Swarm REST API?
   - What is the Giant Swarm user space?
   - Who has access to the Giant Swarm user space?
   - How is the Giant Swarm infrastructure layer accessed?
@@ -39,7 +39,7 @@ We will go through the operational layers one by one from the bottom (infrastruc
 
 1. [Infrastructure](#infrastructure)
 2. [Giant Swarm management cluster](#management-cluster)
-3. [Giant Swarm API](#giant-swarm-api)
+3. [Giant Swarm REST API](#giant-swarm-api)
 4. [User Space](#userspace)
 
 ### Infrastructure {#infrastructure}
@@ -76,21 +76,21 @@ With a valid *jwt* token, received from your chosen identity provider, customers
     - full access, to the `cluster`, `node pool`, `appcatalogs` and `apps` resources of management cluster Kubernetes.
     - includes *view* level access.
   
-### Giant Swarm Rest API {#giant-swarm-api}
+### Giant Swarm REST API {#giant-swarm-api}
 
-The [Giant Swarm API](/api/) is a customer facing API that is usually whitelisted for only a certain IP range within the customer's network. This layer covers the API itself, and its client manifestations in the form of the Giant Swarm Web UI and `gsctl` CLI.
+The [Giant Swarm REST API](/api/) is a customer facing API that is usually whitelisted for only a certain IP range within the customer's network. This layer covers the API itself, and its client manifestations in the form of the Giant Swarm Web UI and `gsctl` CLI.
 
 On this layer there are two levels of access:
 
-#### 1. Giant Swarm API admin
+#### 1. Giant Swarm REST API admin
 
 This access level is reserved for Giant Swarm operations and support personnel and like the above layers is facilitated by SSO with MFA.
 
 Admin users have access to all organizations and all clusters in the Giant Swarm installation.
 
-#### 2. Giant Swarm API user
+#### 2. Giant Swarm REST API user
 
-This is the standard type of Giant Swarm API user that is given out to DevOps/Operations personnel on the customer side. Usually that covers only few users that are tasked with cluster creation and management.
+This is the standard type of Giant Swarm REST API user that is given out to DevOps/Operations personnel on the customer side. Usually that covers only few users that are tasked with cluster creation and management.
 
 Such users have access to all clusters in the organizations they belong to. They can create new clusters and organizations as well as manage or delete cluster and organization that they are part of. They can be considered multi-cluster admins.
 
@@ -98,11 +98,11 @@ Such users have access to all clusters in the organizations they belong to. They
 
 The user space layer is defined as the layer pertaining to a single workload cluster Kubernetes API. Workload clusters are the Kubernetes clusters that run your workloads.
 
-Users on this level are either created by a Giant Swarm API user (in form of key pairs) or managed in an external identity provider (IdP), like [Azure Active Directory]({{< relref "/advanced/authentication-azure-ad" >}}) or any other OIDC-compliant IdP.
+Users on this level are either created by a Giant Swarm REST API user (in form of key pairs) or managed in an external identity provider (IdP), like [Azure Active Directory]({{< relref "/advanced/authentication-azure-ad" >}}) or any other OIDC-compliant IdP.
 
 However, a user with access to the Kubernetes API does not gain any permisssions by default, as the clusters are locked down by RBAC. To provide access, a cluster admin first needs to create roles and bindings for the users. These roles can be defined as narrowly or broadly as needed for the specific Tenant Kubernetes Cluster. They can be bound to either single users or groups of them.
 
-This enables the customer to individually set up their user management according to the needs of their organization. The configuration for this can be kept in version control and needs to be done by an initial cluster admin user, which can be created by the Giant Swarm API user mentioned above.
+This enables the customer to individually set up their user management according to the needs of their organization. The configuration for this can be kept in version control and needs to be done by an initial cluster admin user, which can be created by the Giant Swarm REST API user mentioned above.
 
 Giant Swarm operational layers are the means which we use to keep a separation of concerns between different users of the Giant Swarm platform. This reduces burden from an operational perspective as well as enhancing security.
 

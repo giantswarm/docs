@@ -50,7 +50,7 @@ It takes a [Kubernetes Label selector](https://kubernetes.io/docs/concepts/overv
 
 The output of [`gsctl show cluster`]({{< relref "/ui-api/gsctl/show-cluster" >}}) will contain all labels currently attached to the selected cluster.
 
-## Working with workload cluster labels using the Giant Swarm API
+## Working with workload cluster labels using the Giant Swarm REST API
 
 Workload cluster labels of clusters with workload cluster release v{{% first_aws_nodepools_version %}} and above for AWS are returned by executing a [getClusters](/api/#operation/getClusters) request.
 The field `labels` of suitable workload clusters contains the labels currently attached to the cluster.
