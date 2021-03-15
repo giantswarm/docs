@@ -34,7 +34,7 @@ Using this platform we provide a collection of curated _Apps_. These _Apps_ are 
 
 In short: the _Giant Swarm App Platform_ refers to the whole feature, and an _App Catalog_ is a collection of _Apps_.
 
-We provide two _App Catalogs_, the Giant Swarm Catalog and the Giant Swarm Playground. You will be able to set up your own additional catalog(s)
+We provide two _App Catalogs_, the Giant Swarm Catalog and the Giant Swarm Playground. You are able to set up your own additional catalog(s)
 to provide for any needs you have at the enterprise level.
 
 ### What makes up the Giant Swarm App Platform
@@ -89,7 +89,7 @@ on your Control Planes.
 
 ### The Giant Swarm Catalog
 
-This catalog will contain our stable, fully managed apps, with SLA (e.g. the NGINX Ingress Controller). It will also contain apps that we are developing towards that level of commitment (e.g. Kong, EFK).
+This catalog contains our stable, fully managed apps, with SLA (e.g. the NGINX Ingress Controller). It also contain apps that we are developing towards that level of commitment (e.g. Kong, EFK).
 
 Maturity levels of apps in this catalog are expressed through semantic versioning as follows:
 
