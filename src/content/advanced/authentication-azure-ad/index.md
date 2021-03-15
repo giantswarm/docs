@@ -7,8 +7,8 @@ menu:
   main:
     parent: advanced
 user_questions:
-  - How can I use Azure Active Directory to authenticate cluster access?
-  - How to use OIDC for cluster authentication?
+  - How can I use Azure Active Directory to authenticate workload cluster access?
+  - How to use OIDC for workload cluster authentication?
 aliases:
   - /guides/authenticating-with-microsoft-azure-active-directory/
 owner:
@@ -17,9 +17,9 @@ owner:
 
 # Authenticating with Microsoft Azure Active Directory
 
-A Giant Swarm installation can be configured to authenticate with Microsoft Azure Active Directory (AAD). This setting has to be enabled by Giant Swarm staff once per installation. After that all workload clusters will be set up to authenticate against AAD using OpenID Connect (OIDC).
+The Kubernetes API of workload clusters, by default, uses key pairs (X.509 private key and certificate) for authentication.
 
-On the user side, you can then authenticate using the Azure Auth Provider of `kubectl`. Your access to a cluster is decided by RBAC roles mapped to your user or group.
+In order to use Microsoft Azure Active Directory (AAD) for authentication instead, Giant Swarm can configure your management cluster(s) so that all workload clusters use the same settings and users can authenticate `kubectl` using their common identity (single sign-on, SSO) via OpenID Connect (OIDC).
 
 ## Setting up `kubectl` for Azure auth
 
