@@ -5,7 +5,7 @@ technical_name: awsconfigs.provider.giantswarm.io
 description:   AWSConfig used to represent workload cluster configuration in earlier releases. Deprecated.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.19.0
+source_repository_ref: v3.20.0
 layout: crd
 aliases:
   - /reference/cp-k8s-api/awsconfigs.provider.giantswarm.io/
@@ -1512,7 +1512,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Max defines maximum number of worker nodes guest cluster is allowed to have.</p>
+<p>Max defines maximum number of worker nodes the workload cluster is allowed to have.</p>
 
 </div>
 
@@ -1530,7 +1530,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Min defines minimum number of worker nodes required to be present in guest cluster.</p>
+<p>Min defines minimum number of worker nodes required to be present in the workload cluster.</p>
 
 </div>
 
@@ -1800,7 +1800,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Conditions is a list of status information expressing the current conditional state of a guest cluster. This may reflect the status of the guest cluster being updating or being up to date.</p>
+<p>Conditions is a list of status information expressing the current conditional state of a workload cluster. This may reflect the status of the workload cluster being updating or being up to date.</p>
 
 </div>
 
@@ -1818,7 +1818,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>StatusClusterCondition expresses the conditions in which a guest cluster may is.</p>
+<p>StatusClusterCondition expresses the conditions in which a workload cluster may is.</p>
 
 </div>
 
@@ -1890,7 +1890,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>StatusClusterNetwork expresses the network segment that is allocated for a guest cluster.</p>
+<p>StatusClusterNetwork expresses the network segment that is allocated for a workload cluster.</p>
 
 </div>
 
@@ -1921,7 +1921,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Nodes is a list of guest cluster node information reflecting the current state of the guest cluster nodes.</p>
+<p>Nodes is a list of workload cluster node information reflecting the current state of the workload cluster nodes.</p>
 
 </div>
 
@@ -1939,7 +1939,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>StatusClusterNode holds information about a guest cluster node.</p>
+<p>StatusClusterNode holds information about a workload cluster node.</p>
 
 </div>
 
@@ -2163,7 +2163,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>StatusClusterScaling expresses the current status of desired number of worker nodes in guest cluster.</p>
+<p>StatusClusterScaling expresses the current status of desired number of worker nodes in the workload cluster.</p>
 
 </div>
 
@@ -2194,7 +2194,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Versions is a list that acts like a historical track record of versions a guest cluster went through. A version is only added to the list as soon as the guest cluster successfully migrated to the version added here.</p>
+<p>Versions is a list that acts like a historical track record of versions a workload cluster went through. A version is only added to the list as soon as the workload cluster successfully migrated to the version added here.</p>
 
 </div>
 
@@ -2212,7 +2212,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>StatusClusterVersion expresses the versions in which a guest cluster was and may still be.</p>
+<p>StatusClusterVersion expresses the versions in which a workload cluster was and may still be.</p>
 
 </div>
 
