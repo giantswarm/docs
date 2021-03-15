@@ -23,7 +23,7 @@ user_questions:
 
 # Secure access to clusters for users and Giant Swarm support
 
-It goes without saying that our customers will have secure access to their own clusters. In order to provide the best service possible, Giant Swarm staff also needs access to them.
+It goes without saying that our customers will have secure access to their own workload clusters. In order to provide the best service possible, Giant Swarm staff also needs access to them.
 
 In this document we will explain the nature of this access and the security measures in place to ensure management of your clusters is conducted privately and responsibly.
 
@@ -41,14 +41,14 @@ If you would like to know more about the different parts of the Giant Swarm infr
 
 User access is provided via two APIs for interaction with your clusters.
 
-### Giant Swarm API
+### Giant Swarm REST API
 
-High-level cluster management access is provided to you via the Giant Swarm API. This includes creating, scaling, and deleting your clusters, as well as other organization and user management functions.
+High-level cluster management access is provided to you via the Giant Swarm REST API. This includes creating, scaling, and deleting your clusters, as well as other organization and user management functions.
 Network access to the API endpoint is typically permitted only to a certain range of IP addresses. It can also be configured to work over a virtual private network (VPN) following the general VPN connection schema shown below under [admin access](#admin-access). In this case, the connection to the API residing in the cluster can be established only via your configured VPN.
 
 ### Kubernetes API
 
-The Kubernetes API of each cluster is exposed to customers. Authorized users of the cluster can be managed by connecting an external identity provider to the Kubernetes API, or by provisioning them directly through the Giant Swarm API. In either case, you retain full control over user management.
+The Kubernetes API of each workload cluster is exposed to customers. Authorized users of the cluster can be managed by connecting an external identity provider to the Kubernetes API, or by provisioning them directly through the Giant Swarm REST API. In either case, you retain full control over user management.
 
 ## Admin access
 
@@ -88,5 +88,5 @@ Access to etcd or the Kubernetes API is secured based on certificates signed by 
 - [GitHub Vault authentication](https://www.vaultproject.io/docs/auth/github)
 - [Vault SSH certificate](https://www.vaultproject.io/docs/secrets/ssh/signed-ssh-certificates)
 - [Giant Swarm Operational Layers]({{< relref "/security/operational-layers" >}})
-- [Giant Swarm API]({{< relref "/security/operational-layers#giant-swarm-api" >}})
+- [Giant Swarm REST API]({{< relref "/security/operational-layers#giant-swarm-api" >}})
 - [Giant Swarm User Space]({{< relref "/security/operational-layers#userspace" >}})

@@ -19,14 +19,14 @@ user_questions:
 
 In general, when using the Giant Swarm web interface, usage data is collected on two different levels:
 
-- The Rest API level
+- The REST API level
 - External usage monitoring
 
 Here we explain the different purposes and what data is recorded.
 
-## Rest API level
+## REST API level
 
-Each request to our [Rest API]({{< relref "/ui-api/rest-api" >}}) is logged for auditing purposes, in case a customer wants to understand modifications made to resources, e. g. the creation or deletion of a cluster.
+Each request to our [REST API]({{< relref "/ui-api/rest-api" >}}) is logged for auditing purposes, in case a customer wants to understand modifications made to resources, e. g. the creation or deletion of a cluster.
 
 Note: This is not only the case when using the web interface, but occurs independent of the type of client using the API.
 

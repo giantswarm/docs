@@ -18,7 +18,7 @@ user_questions:
 
 The `gsctl list endpoints` command shows all endpoints you have logged in to so far with additional information.
 
-An endpoint is the Giant Swarm API URL for an installation you access using gsctl.
+An endpoint is the Giant Swarm REST API URL for an installation you access using gsctl.
 If you have only one installation, you have only one endpoint.
 But if you are using, for example, one installation on-premises and one in the cloud, you have two endpoints.
 

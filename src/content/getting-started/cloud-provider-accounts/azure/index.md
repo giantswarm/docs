@@ -107,12 +107,12 @@ Giant Swarm workload clusters are owned by organizations. This allows you to con
 
 In order to run a workload cluster in your Azure subscription, the organization owning your cluster has to know about the Service Principal you just created.
 
-If you have direct access to the Giant Swarm API, please set the credentials of
+If you have direct access to the Giant Swarm REST API, please set the credentials of
 your organization with our [gsctl]({{< relref "/ui-api/gsctl" >}}) CLI. Look for the
 [`update organization set-credentials`]({{< relref "/ui-api/gsctl/update-org-set-credentials" >}})/#azure)
 command. You will need your Azure subscription ID and the output from step 3 as arguments.
 
-In case you are working with a Giant Swarm partner, you might not have access to the Giant Swarm API. In that case, please provide your Azure subscription ID and the output from step 3 to your partner contact.
+In case you are working with a Giant Swarm partner, you might not have access to the Giant Swarm REST API. In that case, please provide your Azure subscription ID and the output from step 3 to your partner contact.
 
 After the organization's credentials are set, you can create clusters owned by that
 organization. These clusters' resources will be created in your Azure subscription.

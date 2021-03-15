@@ -131,7 +131,7 @@ The following environment variables can be used to affect some behavior:
 - `GSCTL_CONFIG_DIR`: Path to the gsctl configuration directory.
 - `GSCTL_ENDPOINT`: This can be used to specify an API endpoint URL.
 - `GSCTL_AUTH_TOKEN`: This can be used to specify an authentication token.
-- `GSCTL_CAFILE`: If your Giant Swarm API endpoint uses a certificate signed by an authority not known to your operating system, this variable can be set to the path of a custom CA (certification authority) bundle. A CA bundle is a text file containing one or more CA certificates in PEM format.
+- `GSCTL_CAFILE`: If your Giant Swarm REST API endpoint uses a certificate signed by an authority not known to your operating system, this variable can be set to the path of a custom CA (certification authority) bundle. A CA bundle is a text file containing one or more CA certificates in PEM format.
 - `GSCTL_CAPATH`: Similar to `GSCTL_CAFILE`, but `GSCTL_CAPATH` is expected to point to a directory containing one or more PEM files.
 - `GSCTL_DISABLE_COLORS`: When this variable is set to any non-empty string, all terminal output will be monochrome.
 - `GSCTL_DISABLE_CMDLINE_TRACKING`: When this variable is set to any non-empty string, command lines won't be submitted to the API. Otherwise, command lines are submitted to learn about the tool's usage and find ways to improve.

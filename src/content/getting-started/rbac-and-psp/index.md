@@ -294,7 +294,7 @@ For details on PSPs we defer to the [official PSP documentation](https://kuberne
 
 ## User management with Giant Swarm
 
-If you are managing users through the Giant Swarm API or its clients, `gsctl` or the Web UI, you can specify a Common Name Prefix and Organizations when you create key-pairs of kubeconfigs.
+If you are managing users through the Giant Swarm REST API or its clients, `gsctl` or the Web UI, you can specify a Common Name Prefix and Organizations when you create key-pairs of kubeconfigs.
 
 ### Using common name as username in Kubernetes
 
