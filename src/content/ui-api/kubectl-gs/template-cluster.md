@@ -50,7 +50,7 @@ It supports the following flags:
 - `--release` - valid workload cluster release version.
   Can be retrieved with `gsctl list releases` for your installation. Only versions above *10.x.x*+ support cluster CRs.
 - `--label` - workload cluster label in the form of `key=value`. Can be specified multiple times. Only clusters with workload cluster release version above *10.x.x*+ support workload cluster labels.
-- `--cluster-id` (optional) - Unique cluster identifier. Must me 5 characters in length, must contain numbers and letters, and match the regular expression `[a-z0-9]{5}`. If not given, an ID will be generated.
+- `--cluster-id` (optional) - Unique cluster identifier. Must be 5 characters in length, must contain numbers and letters, must begin with a letter, and match the regular expression `([a-z][a-z0-9]){5}`. If not given, an ID will be generated.
 - `--release-branch` (optional) - The Giant Swarm [releases repository](https://github.com/giantswarm/releases) branch to use to look up the workload cluster release set via the `--release` flag (default: `master`).
 - `--master-az` - Availability zone(s) of master instance.
 
