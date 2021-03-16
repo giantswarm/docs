@@ -27,7 +27,7 @@ On KVM installations, the cluster size is defined statically.
 
 With the autoscaler taking control over the number of worker nodes, you only define the bounds or limits in which the cluster size can vary. This is possible both during cluster creation as well as after creation.
 
-To enforce an exact cluster size and **effectively disable the autoscaler**, simply set the minimum and maximum worker node count to the same value. This is also the recommended way to control the number of worker nodes through external tooling via the Giant Swarm API.
+To enforce an exact cluster size and **effectively disable the autoscaler**, simply set the minimum and maximum worker node count to the same value. This is also the recommended way to control the number of worker nodes through external tooling via the Giant Swarm REST API.
 
 ## How the autoscaler works
 

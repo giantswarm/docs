@@ -101,10 +101,10 @@ The `gsctl` CLI as of v0.23.1 provides the
 [gsctl update cluster]({{< relref "/ui-api/gsctl/update-cluster" >}}) to change cluster details.
 Check the reference for the `--master-ha` flag.
 
-### Via the Rest API {#rest-api}
+### Via the REST API {#rest-api}
 
 Check the [v5 cluster modification API reference](/api/#operation/modifyClusterV5)
-to find out how to convert a cluster programmatically using the Rest API.
+to find out how to convert a cluster programmatically using the Giant Swarm REST API.
 
 ### Via the Management API {#management-api}
 

@@ -125,7 +125,7 @@ Another example: In a case where you have different node pools using different a
 
 ## Node pool deletion
 
-You can delete a node pool at any time using the Giant Swarm API and user interfaces. When a node pool gets deleted the following things will happen:
+You can delete a node pool at any time using the Giant Swarm REST API and user interfaces. When a node pool gets deleted the following things will happen:
 
 - nodes in the pool will be marked as unschedulable and then drained, resulting in Pods being unassigned from the nodes
 and containers being stopped (only on AWS clusters).
@@ -159,7 +159,7 @@ Using multiple instance types in a node pool has some benefits:
 
 Instances that contain the same amount of CPU and RAM are considered similar. We provide more information regarding which instance types are considered similar in our [reference]({{< relref "/reference/similar-ec2-instance-types" >}}).
 
-## Node pools and the Giant Swarm API {#restapi}
+## Node pools and the Giant Swarm REST API {#restapi}
 
 Handling clusters with node pools requires an API schema different from the one used for clusters
 with homogeneous worker nodes. To account for this need, we introduced a new API version path `v5`.
@@ -175,7 +175,7 @@ Using the v5 API endpoints, you can
 
 ## Node pools and the cluster definition YAML format
 
-Just as the Giant Swarm API schema for v4 (without node pools) and v5 (with node pools) clusters are different, the
+Just as the Giant Swarm REST API schema for v4 (without node pools) and v5 (with node pools) clusters are different, the
 [cluster definition format]({{< relref "/ui-api/gsctl/cluster-definition" >}}) is different between the two versions.
 
 The new definition schema for v5 allows for defining cluster and node pool details in one file,

@@ -107,7 +107,7 @@ Note that by default, our user interfaces upgrade to the next active workload cl
 
 - In **gsctl**, the [`upgrade cluster`]({{< relref "/ui-api/gsctl/upgrade-cluster" >}})) command provides an optional flag `--release` which allows to specify the version to upgrade to.
 
-- Alternatively, you can use the [Rest API](/api/#operation/modifyClusterV5) or the [Management API]({{< relref "/ui-api/management-api" >}}) to trigger the upgrade. Please talk to your solution engineer in case you have any questions regarding this.
+- Alternatively, you can use the [Giant Swarm REST API](/api/#operation/modifyClusterV5) or the [Management API]({{< relref "/ui-api/management-api" >}}) to trigger the upgrade. Please talk to your solution engineer in case you have any questions regarding this.
 
 ## How upgrades work
 
