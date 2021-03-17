@@ -5,7 +5,7 @@ technical_name: charts.application.giantswarm.io
 description:   Chart represents a Helm chart to be deployed as a Helm release. It is reconciled by chart-operator.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.21.0
+source_repository_ref: v3.22.0
 layout: crd
 aliases:
   - /reference/cp-k8s-api/charts.application.giantswarm.io/
@@ -61,6 +61,9 @@ spec:
     skipCRDs: true
   name: prometheus
   namespace: monitoring
+  namespaceConfig:
+    annotations:
+      linkerd.io/inject: enabled
   tarballURL: prometheus-1.0.1.tgz
   version: 1.0.1
 ```
@@ -359,6 +362,60 @@ spec:
 
 <div class="property-description">
 <p>Namespace is the namespace where the chart should be deployed. e.g. monitoring</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.namespaceConfig">.spec.namespaceConfig</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>NamespaceConfig is the namespace config to be applied to the target namespace when the chart is deployed.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.namespaceConfig.annotations">.spec.namespaceConfig.annotations</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Annotations is a string map of annotations to apply to the target namespace.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.namespaceConfig.labels">.spec.namespaceConfig.labels</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Labels is a string map of labels to apply to the target namespace.</p>
 
 </div>
 

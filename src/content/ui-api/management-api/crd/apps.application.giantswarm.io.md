@@ -5,7 +5,7 @@ technical_name: apps.application.giantswarm.io
 description:   App represents a managed app which a user intended to install. It is reconciled by app-operator.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.21.0
+source_repository_ref: v3.22.0
 layout: crd
 aliases:
   - /reference/cp-k8s-api/apps.application.giantswarm.io/
