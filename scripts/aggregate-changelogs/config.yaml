@@ -50,8 +50,6 @@ repositories:
     category: Managed Apps
   giantswarm/cloudflared-app:
     category: Managed Apps
-  giantswarm/calico-app:
-    category: Managed Apps
   giantswarm/app-mesh-app:
     category: Playground Apps
   giantswarm/azure-ad-pod-identity-app:
