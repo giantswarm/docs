@@ -78,6 +78,8 @@ repositories:
     category: Playground Apps
   giantswarm/linkerd2-app:
     category: Playground Apps
+  giantswarm/linkerd2-cni-app:
+    category: Playground Apps  
   giantswarm/loki-stack-app:
     category: Playground Apps
   giantswarm/opencensus-collector-app:
