@@ -26,6 +26,8 @@ repositories:
     category: Documentation
   giantswarm/efk-stack-app:
     category: Managed Apps
+  giantswarm/goldilocks-app:
+    category: Managed Apps
   giantswarm/gsctl:
     category: gsctl
   giantswarm/happa:
