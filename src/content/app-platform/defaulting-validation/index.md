@@ -23,7 +23,11 @@ user_questions:
 
 For Giant Swarm releases using app-operator version 3.0.0 and upwards the
 defaulting and validation logic of [App CRs]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) is enabled.
-As of writing this is Azure releases from v13.1.0 onwards. AWS and KVM support will be added in upcoming releases.
+This is the following releases:
+
+- AWS >= v14.0.0
+- Azure >= v13.1.0
+- KVM >= v13.1.0
 
 This logic is provided by
 [app-admission-controller](https://github.com/giantswarm/app-admission-controller).
