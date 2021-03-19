@@ -14,12 +14,12 @@ repositories:
     category: REST API
   giantswarm/apiextensions:
     category: Management API
-  giantswarm/aqua-app:
-    category: Managed Apps
   giantswarm/aws-admission-controller:
     category: Management API
   giantswarm/azure-admission-controller:
     category: Management API
+  giantswarm/aqua-app:
+    category: Managed Apps
   giantswarm/cert-manager-app:
     category: Managed Apps
   giantswarm/docs:
@@ -42,16 +42,19 @@ repositories:
     category: Managed Apps
   giantswarm/loki-app:
     category: Managed Apps
+  giantswarm/promtail-app:
+    category: Managed Apps
   giantswarm/external-dns-app:
     category: Managed Apps
-
+  giantswarm/fluent-logshipping-app:
+    category: Managed Apps
+  giantswarm/cloudflared-app:
+    category: Managed Apps
   giantswarm/app-mesh-app:
     category: Playground Apps
   giantswarm/azure-ad-pod-identity-app:
     category: Playground Apps
   giantswarm/eventrouter-app:
-    category: Playground Apps
-  giantswarm/fluent-logshipping-app:
     category: Playground Apps
   giantswarm/gatling-app:
     category: Playground Apps
@@ -73,12 +76,14 @@ repositories:
     category: Playground Apps
   giantswarm/linkerd2-app:
     category: Playground Apps
+  giantswarm/linkerd2-cni-app:
+    category: Playground Apps  
   giantswarm/loki-stack-app:
     category: Playground Apps
   giantswarm/opencensus-collector-app:
     category: Playground Apps
   giantswarm/strimzi-kafka-operator-app:
-    category: Playground Apps
+    category: Managed Apps
   giantswarm/vertical-pod-autoscaler-app:
     category: Playground Apps
   giantswarm/velero-app:
