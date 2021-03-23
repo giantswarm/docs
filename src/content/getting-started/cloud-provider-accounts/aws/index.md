@@ -230,8 +230,7 @@ subsection of the AWS console and select **Create role**. When asked to
 
 #### 2. Permission setup {#iam-staff-role-permissions}
 
-Select **Create policy** to create another policy. Use the same JSON policy code
-as you used for the `aws-operator` user. This time, call the policy
+Select **Create policy** to create another policy. Use the [admin JSON policy](https://raw.githubusercontent.com/giantswarm/giantswarm-aws-account-prerequisites/master/admin-role/iam-policy.json) file as the policy content. This time, call the policy
 
 ```nohighlight
 GiantSwarmAdmin
