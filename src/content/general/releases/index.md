@@ -57,7 +57,7 @@ The following table shows which of our major releases contain which Kubernetes r
 | **11.x.x**                  | 1.16.x             | Available    |
 | **12.x.x**                  | 1.17.x             | Available    |
 | **13.x.x**                  | 1.18.x             | Available    |
-| **14.x.x**                  | 1.19.x             | ETA January 2021|
+| **14.x.x**                  | 1.19.x             | Available    |
 
 \*) As an exception from the convention, on AWS, workload cluster releases v9.2.0 and v9.3.x include Kubernetes v1.16.x.
 
