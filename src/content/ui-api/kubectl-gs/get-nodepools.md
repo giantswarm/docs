@@ -17,8 +17,6 @@ user_questions:
 
 # `kubectl gs get nodepools`
 
-{{% kgs_alias_assumption %}}
-
 Like with all `get` commands in `kubectl`, this command can be used to get details on one item, a node pool in this case, or list several of them.
 
 ## Usage
@@ -28,7 +26,7 @@ Like with all `get` commands in `kubectl`, this command can be used to get detai
 Simply execute
 
 ```nohighlight
-kgs get nodepools
+kubectl gs get nodepools
 ```
 
 to list some information on all node pools available to you in the current installation.
@@ -45,7 +43,7 @@ ab12c   s921a        2021-01-02 15:04:32 +0000 UTC   READY       3/10           
 When used with a node pool ID as additional argument, the command will show details for a single node pool. Example:
 
 ```nohighlight
-kgs get nodepool ab12c
+kubectl gs get nodepool ab12c
 ```
 
 Note: As an alternative to `get nodepools`, `get nodepool` will also work.
@@ -65,7 +63,7 @@ The standard tabular output format features these columns:
 
 ## Flags {#flags}
 
-Here we document the flags that have a particular meaning for the `get nodepools` command. Use `kgs get nodepools --help` for a full list.
+Here we document the flags that have a particular meaning for the `get nodepools` command. Use `kubectl gs get nodepools --help` for a full list.
 
 ### `--cluster-id/-c` {#flags-output}
 
@@ -73,8 +71,8 @@ If present, list the node pools that belong to this given workload cluster.
 
 ### `--output/-o` {#flags-output}
 
-`kubectl` commonly allows to specify the output format for all `get` subcommands. `kgs get nodepools` is no different.
-Similar to other `get` subcommands, you can specify the output format of `kgs get nodepools` using the `--output` flag.
+`kubectl` commonly allows to specify the output format for all `get` subcommands. `kubectl gs get nodepools` is no different.
+Similar to other `get` subcommands, you can specify the output format of `kubectl gs get nodepools` using the `--output` flag.
 
 #### YAML output {#yaml}
 
@@ -83,13 +81,13 @@ To inspect a node pool's main custom resource in YAML notation, add the `--outpu
 The following example command would print the main resource for node pool `ab12c`. On AWS that would be the [MachineDeployment]({{< relref "/ui-api/management-api/crd/machinedeployments.cluster.x-k8s.io.md" >}}) resource printed. On Azure, it would return the [MachinePool]({{< relref "/ui-api/management-api/crd/machinepools.exp.cluster.x-k8s.io.md" >}}) resource.
 
 ```nohighlight
-kgs get nodepool ab12c --output yaml
+kubectl gs get nodepool ab12c --output yaml
 ```
 
 When applied without a node pool ID argument, the output will be a list of resources. Example:
 
 ```nohighlight
-$ kgs get nodepools --output yaml
+$ kubectl gs get nodepools --output yaml
 apiVersion: v1
 kind: List
 items:

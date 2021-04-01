@@ -17,8 +17,6 @@ user_questions:
 
 # `kubectl gs get clusters`
 
-{{% kgs_alias_assumption %}}
-
 Like with all `get` commands in `kubectl`, this command can be used to get details on one item, a cluster in this case, or list several of them.
 
 ## Usage
@@ -28,7 +26,7 @@ Like with all `get` commands in `kubectl`, this command can be used to get detai
 Simply execute
 
 ```nohighlight
-kgs get clusters
+kubectl gs get clusters
 ```
 
 to list some information on all clusters available to you in the current installation.
@@ -45,7 +43,7 @@ ID      CREATED                         CONDITION   RELEASE   ORGANIZATION   DES
 When used with a cluster ID as additional argument, the command will show details for a single cluster. Example:
 
 ```nohighlight
-kgs get clusters ab12c
+kubectl gs get clusters ab12c
 ```
 
 Note: As an alternative to `get clusters`, `get cluster` will also work.
@@ -68,11 +66,11 @@ The standard tabular output format features these columns:
 
 ## Flags {#flags}
 
-Here we document the flags that have a particular meaning for the `get clusters` command. Use `kgs get clusters --help` for a full list.
+Here we document the flags that have a particular meaning for the `get clusters` command. Use `kubectl gs get clusters --help` for a full list.
 
 ### `--output/-o` {#flags-output}
 
-`kubectl` commonly allows to specify the output format for all `get` subcommands. `kgs get clusters` is no different.
+`kubectl` commonly allows to specify the output format for all `get` subcommands. `kubectl gs get clusters` is no different.
 
 #### YAML output {#yaml}
 
@@ -81,13 +79,13 @@ To inspect a cluster's main custom resource in YAML notation, add the `--output 
 The following example command would print the main resource for cluster `ab12c`. It would return the [Cluster]({{< relref "/ui-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) resource.
 
 ```nohighlight
-kgs get clusters ab12c --output yaml
+kubectl gs get clusters ab12c --output yaml
 ```
 
 When applied without a cluster ID argument, the output will be a list of resources. Example:
 
 ```nohighlight
-$ kgs get clusters --output yaml
+$ kubectl gs get clusters --output yaml
 apiVersion: v1
 kind: List
 items:

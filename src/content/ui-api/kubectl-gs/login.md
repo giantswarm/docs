@@ -17,8 +17,6 @@ user_questions:
 
 # `kubectl gs login`
 
-{{% kgs_alias_assumption %}}
-
 This command allows to ensure an authenticated kubectl context is selected.
 
 ## Usage
