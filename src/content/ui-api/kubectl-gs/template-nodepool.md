@@ -16,8 +16,6 @@ user_questions:
 
 # `kubectl gs template nodepool`
 
-{{% kgs_alias_assumption %}}
-
 Node pools are groups of worker nodes sharing common configuration. In terms of custom resources they consist of custom resources of type
 
 The outcome depends on the provider, set via the `--provider` flag:
@@ -38,7 +36,7 @@ For Azure (`--provider azure`):
 To create the manifests for a new node pool, use this command:
 
 ```nohighlight
-kgs template nodepool
+kubectl gs template nodepool
 ```
 
 Here are the supported flags:
@@ -63,7 +61,7 @@ Here are the supported flags:
 ## Example
 
 ```nohighlight
-kgs template nodepool \
+kubectl gs template nodepool \
   --provider aws \
   --cluster-id a1b2c \
   --nodepool-name "General purpose" \

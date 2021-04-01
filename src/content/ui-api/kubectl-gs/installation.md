@@ -1,7 +1,7 @@
 ---
 linkTitle: Installation
 title: kubectl gs installation
-description: How to obtain kubectl gs, the Giant Swarm kubectl plugin (aka 'kgs') and how to keep it up to date.
+description: How to obtain kubectl gs, the Giant Swarm kubectl plugin and how to keep it up to date.
 weight: 10
 menu:
   main:
@@ -14,8 +14,8 @@ user_questions:
   - Where can I find the Giant Swarm plugin for kubectl?
   - How can I install the Giant Swarm plugin for kubectl?
   - How can I keep the Giant Swarm plugin for kubectl up to date?
-  - What is kgs?
-  - How can I install kgs?
+  - What is kubectl gs?
+  - How can I install kubectl gs?
 ---
 
 # Installing the kubcetl gs plugin
@@ -36,18 +36,10 @@ To install the `gs` plug-in, simply execute this command:
 kubectl krew install gs
 ```
 
-We highly recommend to set up the `kgs` shorthand as well:
-
-```nohighlight
-alias kgs="kubectl gs"
-```
-
-(Best add this to your shell profile or config file.)
-
 Lastly, let's check that the plug-in is working as it's supposed to.
 
 ```nohighlight
-kgs
+kubectl gs
 ```
 
 You should see information regarding the commands available.
@@ -65,8 +57,7 @@ The platform-agnostic description:
 1. Download the [latest release](https://github.com/giantswarm/kubectl-gs/releases/latest) archive for your platform
 2. Unpack the archive
 3. Copy the executable to a location included in your `$PATH`
-4. Create an alias `kgs` for `kubectl gs`
-5. Check if it's working by executing `kgs`
+4. Check if it's working by executing `kubectl gs`
 
 ### Linux
 
@@ -83,11 +74,8 @@ tar xzf kubectl-gs-${VERSION}-linux-amd64.tar.gz
 # Copy to a dir in $PATH
 cp kubectl-gs-${VERSION}-linux-amd64/kubectl-gs /usr/local/bin/
 
-# Set up alias
-alias kgs="kubectl gs"
-
 # Check
-kgs
+kubectl gs
 ```
 
 ### Mac OS
@@ -105,9 +93,6 @@ tar xzf kubectl-gs-${VERSION}-darwin-amd64.tar.gz
 # Copy to a dir in $PATH
 cp kubectl-gs-${VERSION}-darwin-amd64/kubectl-gs /usr/local/bin/
 
-# Set up alias
-alias kgs="kubectl gs"
-
 # Check
-kgs
+kubectl gs
 ```
