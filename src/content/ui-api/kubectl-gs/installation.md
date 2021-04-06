@@ -26,7 +26,7 @@ The latest version is {{% kubectl_gs_version %}}.
 
 The simplest way to manage `kubectl` plug-ins across platforms is using [Krew](https://krew.sigs.k8s.io/). If you don't have Krew installed, check the [Krew installation docs](https://krew.sigs.k8s.io/docs/user-guide/setup/install/) on how to get it installed.
 
-Further down you will also find instructions on installing the plug-in [without Krew](#without-krew).
+Further down you will also find instructions on installing the plug-in [without Krew](#without-krew) and additional [instructions for WSL2](#windows-subsystem-for-linux-2-wsl2).
 
 ## Using Krew
 
@@ -95,4 +95,12 @@ cp kubectl-gs-${VERSION}-darwin-amd64/kubectl-gs /usr/local/bin/
 
 # Check
 kubectl gs
+```
+
+## Windows Subsystem for Linux 2 (WSL2)
+
+Follow the Linux installation instructions with or without Krew first. After successfully installing `kubectl-gs` run the following command so that `kubectl gs login` can open your browser.
+
+```bash
+sudo ln -s $(which wslview) /usr/local/bin/xdg-open
 ```
