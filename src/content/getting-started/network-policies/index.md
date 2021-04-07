@@ -180,7 +180,7 @@ spec:
   podSelector:
   ingress:
     - from:
-      - NamespaceSelector:
+      - namespaceSelector:
           matchLabels:
             name: freeforall
 ```
