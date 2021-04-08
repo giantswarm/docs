@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  architect: giantswarm/architect@2.1.0
+  architect: giantswarm/architect@2.7.0
 
 
 jobs:
@@ -15,7 +15,7 @@ jobs:
       - run:
           name: Check Markdown structure
           command: make lint
-      
+
       - run:
           name: Validate front matter
           command: make validate-front-matter
