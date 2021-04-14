@@ -2,7 +2,7 @@
 linkTitle: App target namespace metadata
 title: How to annotate an app's target namespace via its App CR
 description: Configuring metadata for the target namespace of an app via its app CR so it can be used by other tools such as service meshes.
-weight: 20
+weight: 40
 menu:
   main:
     parent: app-platform
