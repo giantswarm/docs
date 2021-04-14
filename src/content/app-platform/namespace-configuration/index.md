@@ -24,7 +24,7 @@ This feature enables you to add labels and annotations to the app's namespace by
 
 ### Updating labels/annotations
 
-You can use `.spec.namespaceConfig` to update the namespace metadata. You can either choose `.spec.namespaceConfig.lables` or 
+You can use `.spec.namespaceConfig` to update the namespace metadata. You can either choose `.spec.namespaceConfig.lables` or
 `spec.namespaceConfig.lables` and give values as a key/value map. App platform would ensure this metadata into the namespace.
 
 For example, if you want to add an annotation `linked.io/inject: enabled` into the namespace `loki1`, try as below.
@@ -74,5 +74,5 @@ spec:
 
 ### Validation in App CR's Namespace Config
 
-In [default validation logic]({{< relref "/app-platform/default-validation" >}}), app-admission-controller checks whether multiple app CRs are updating the same namespace with the same key, 
+In [default validation logic]({{< relref "/app-platform/default-validation" >}}), app-admission-controller checks whether multiple app CRs are updating the same namespace with the same key,
 but different values. This logic would avoid the situation where the same namespace keeps changing at each app CR's reconciliation.
