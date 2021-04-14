@@ -2,14 +2,14 @@
 linkTitle: App namespace metadata
 title: App's namespace metadata
 description: Documentation on how to labelling, annotating the app CR's namespace
+weight: 20
 menu:
   main:
     parent: app-platform
-weight: 20
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-batman
 aliases:
-- /reference/app-configuration/
-  owner:
-- https://github.com/orgs/giantswarm/teams/team-batman
+  - /reference/app-configuration/
 user_questions:
   - How can I label the app CR's namespace?
   - How can I annotate the app CR's namespace?
