@@ -112,7 +112,7 @@ Currently we validate:
 - The `app-operator.giantswarm.io/version` label is present.
 - All referenced configmaps and secrets exist.
 - The catalog has a matching AppCatalog CR.
-- There is no App CR with a conflicting annotation or label value for the [target namespace]({{< relref "/app-platform/namespace-configuration/" >}}).
+- There is no App CR with a conflicting annotation or label value for the [target namespace]({{< relref "/app-platform/namespace-configuration" >}}).
 
 If app-operator finds a matching [AppCatalogEntry]({{< relref "/ui-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}}) CR, it will use this to run more validation checks.
 
