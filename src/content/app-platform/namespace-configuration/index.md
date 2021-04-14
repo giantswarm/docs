@@ -1,7 +1,7 @@
 ---
-linkTitle: App namespace metadata
-title: App's namespace metadata
-description: Documentation on how to labelling, annotating the app CR's namespace
+linkTitle: App target namespace metadata
+title: How to annotate an app's target namespace via its App CR
+description: Configuring metadata for the target namespace of an app via its app CR so it can be used by other tools such as service meshes.
 weight: 20
 menu:
   main:
@@ -11,23 +11,23 @@ owner:
 aliases:
   - /reference/app-configuration/
 user_questions:
-  - How can I label the app CR's namespace?
-  - How can I annotate the app CR's namespace?
+  - How can I label an app CR's target namespace?
+  - How can I annotate an app CR's target namespace?
 ---
 
-# App CR's namespace configuration
+# App CR's target namespace configuration
 
-At some point, you might want to put the specific labels or annotations to the app's namespace to bring benefits from `linkerd` or `kiam`.
+## Overview
+
+At some point, you might want to put the specific labels or annotations to the app's namespace to bring benefits from `linkerd` or `kiam`. For example, to include everything in a namespace to the Linkerd service mesh. Or, to tell KIAM you do allow Loki to get logs about pods running in this namespace.
 This feature enables you to add labels and annotations to the app's namespace by updating [App CRs]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}).
 
-## Configuring the App CR's namespace
+## Configuring labels / annotations
 
-### Updating labels/annotations
+You can use `.spec.namespaceConfig` to configure the namespace metadata. You can either choose `.spec.namespaceConfig.annotations` or
+`spec.namespaceConfig.labels` and provide the values as a key/value map. App platform then ensures the namespace exists and has this metadata.
 
-You can use `.spec.namespaceConfig` to update the namespace metadata. You can either choose `.spec.namespaceConfig.lables` or
-`spec.namespaceConfig.lables` and give values as a key/value map. App platform would ensure this metadata into the namespace.
-
-For example, if you want to add an annotation `linked.io/inject: enabled` into the namespace `loki1`, try as below.
+For example, if you want to add an annotation `linked.io/inject: enabled` to the target namespace `loki1` add this to the app CR.
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
@@ -44,7 +44,7 @@ spec:
       linkerd.io/inject: "enabled"
 ```
 
-Now you can check the namespace and the namespace `loki0` would be the same as below.
+Now you can check the namespace and it will be the same as below.
 
 ```yaml
 apiVersion: v1
@@ -55,7 +55,7 @@ metadata:
   name: giantswarm
 ```
 
-If you want to update annotations in the namespace, use `spec.namespaceConfig.annotation` as below.
+If you want to set annotations on the namespace, use `spec.namespaceConfig.annotation`.
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
@@ -72,7 +72,7 @@ spec:
       monitoring: "enabled"
 ```
 
-### Validation in App CR's Namespace Config
+### Validation
 
-In [default validation logic]({{< relref "/app-platform/defaulting-validation" >}}), app-admission-controller checks whether multiple app CRs are updating the same namespace
-with different values. This logic would avoid the situation where the same namespace keeps changing at each app CR's reconciliation.
+The [validation logic]({{< relref "/app-platform/defaulting-validation" >}}) in app-admission-controller checks whether multiple app CRs are updating the same namespace
+with different values. The validation webhook will prevent the conflicting value from being added.
