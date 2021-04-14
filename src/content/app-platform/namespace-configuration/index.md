@@ -74,5 +74,5 @@ spec:
 
 ### Validation in App CR's Namespace Config
 
-In [default validation logic]({{< relref "/app-platform/defaulting-validation" >}}), app-admission-controller checks whether multiple app CRs are updating the same namespace with the same key,
-but different values. This logic would avoid the situation where the same namespace keeps changing at each app CR's reconciliation.
+In [default validation logic]({{< relref "/app-platform/defaulting-validation" >}}), app-admission-controller checks whether multiple app CRs are updating the same namespace
+with different values. This logic would avoid the situation where the same namespace keeps changing at each app CR's reconciliation.
