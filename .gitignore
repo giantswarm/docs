@@ -11,3 +11,4 @@
 /src/public
 __pycache__
 venv/
+.env
