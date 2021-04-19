@@ -195,7 +195,7 @@ function renderSerpEntry(index, hit) {
     var top = hit._source.breadcrumb[0].toLowerCase();
     if (top === 'blog') {
       var breadcrumb = 'Blog post'
-      if (typeof(hit._source.published) !== "undefined") {
+      if (typeof hit._source.published !== "undefined") {
         var dt = new Date(hit._source.published);
         breadcrumb += ' published ' + months[dt.getMonth()];
         breadcrumb += ' ' + dt.getDate();
