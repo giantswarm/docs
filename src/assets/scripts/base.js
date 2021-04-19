@@ -1,3 +1,5 @@
+var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
 /* Prevent disabled links from causing a page reload */
 $("li.disabled a").click(function() {
   event.preventDefault();
@@ -98,6 +100,7 @@ function doSearch(q) {
       }
     }
   };
+
   $.ajax("/searchapi/", {
     type: "POST",
     data: JSON.stringify(postData),
@@ -171,9 +174,23 @@ function renderSerpEntry(index, hit) {
   } else {
     d.append($("<h4></h4>").html((index + 1) + ". " + hit._source.title));
   }
+
   if (typeof(hit._source.breadcrumb) !== "undefined" && hit._source.breadcrumb.length > 0) {
-    d.append($("<p class='sbreadcrumb'></p>").html("/" + hit._source.breadcrumb.join("/") + "/"));
+    var top = hit._source.breadcrumb[0].toLowerCase();
+    if (top === 'blog') {
+      var breadcrumb = 'Blog post'
+      if (typeof(hit._source.published) !== "undefined") {
+        var dt = new Date(hit._source.published);
+        breadcrumb += ' published ' + months[dt.getMonth()];
+        breadcrumb += ' ' + dt.getDate();
+        breadcrumb += ', ' + dt.getFullYear();
+      }
+      d.append($("<p class='sbreadcrumb'></p>").html(breadcrumb));
+    } else {
+      d.append($("<p class='sbreadcrumb'></p>").html("/" + hit._source.breadcrumb.join("/") + "/"));
+    }
   }
+
   if (typeof(hit.highlight) !== "undefined" && typeof(hit.highlight.body) !== "undefined" && hit.highlight.body.length > 0) {
     d.append($("<p class='snippet'></p>").html(hit.highlight.body.join(' <span class="hellip">[...]</span> ')));
   }
