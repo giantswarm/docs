@@ -185,13 +185,13 @@ function doSearch(q) {
  */
 function renderSerpEntry(index, hit) {
   d = $("<a class='item'></>").attr("href", hit._source.uri);
-  if (typeof(hit.highlight) !== "undefined" && typeof(hit.highlight.title) !== "undefined") {
+  if (typeof hit.highlight !== "undefined" && typeof hit.highlight.title !== "undefined") {
     d.append($("<h4></h4>").html((index + 1) + ". " + hit.highlight.title));
   } else {
     d.append($("<h4></h4>").html((index + 1) + ". " + hit._source.title));
   }
 
-  if (typeof(hit._source.breadcrumb) !== "undefined" && hit._source.breadcrumb.length > 0) {
+  if (typeof hit._source.breadcrumb !== "undefined" && hit._source.breadcrumb.length > 0) {
     var top = hit._source.breadcrumb[0].toLowerCase();
     if (top === 'blog') {
       var breadcrumb = 'Blog post'
@@ -207,7 +207,7 @@ function renderSerpEntry(index, hit) {
     }
   }
 
-  if (typeof(hit.highlight) !== "undefined" && typeof(hit.highlight.body) !== "undefined" && hit.highlight.body.length > 0) {
+  if (typeof hit.highlight !== "undefined" && typeof hit.highlight.body !== "undefined" && hit.highlight.body.length > 0) {
     d.append($("<p class='snippet'></p>").html(hit.highlight.body.join(' <span class="hellip">[...]</span> ')));
   }
   return d;
@@ -233,7 +233,7 @@ $(document).ready(function(){
     q = q.slice(0, -1);
   }
 
-  if (typeof(q) === "undefined" || q == null || q === "") {
+  if (typeof q === "undefined" || q == null || q === "") {
     $(".feedback").hide();
     return;
   }
