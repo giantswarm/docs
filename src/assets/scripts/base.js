@@ -57,13 +57,29 @@ function doSearch(q) {
           }
         },
         "functions": [
+          // changelog ranks low
           {
             "filter": {"term": {"breadcrumb_1": "changes"}},
             "weight": 0.1
           },
+          // REST API spec ranks low
           {
             "filter": {"term": {"breadcrumb_1": "api"}},
             "weight": 0.3
+          },
+          // Blog posts rank a bit lower
+          {
+            "filter": {"term": {"breadcrumb_1": "blog"}},
+            "weight": 0.8
+          },
+          // Blog posts rank lower the older they are
+          {
+            "linear": {
+              "published": {
+                "scale": "100d",
+                "decay": 0.2
+              }
+            }
           }
         ]
       }
