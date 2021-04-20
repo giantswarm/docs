@@ -1,7 +1,7 @@
 ---
 linkTitle: Access control
 title: Access control for organizations in the web user interface
-description: Learn how to use our web UI for organization access control to quickly associate users, groups, and service accounts with organizations.
+description: Learn how to use our web UI for organization RBAC to quickly associate users, groups, and service accounts with organizations.
 weight: 20
 menu:
   main:
@@ -39,7 +39,7 @@ The access control UI in the web interface provides quick access to a focused se
 
 The access control user interface provides:
 
-- A list of roles, both from the organization's namespace and cluster roles, to select from. Each role defines a specific set of permissions for a number of resources. Cluster roles are marked using a 🌐 icon. In the list, it is also indicated how many users and groups are bound to each role in this organization's namespace.
+- A list of roles to select from, sourced from both the organization's namespace and cluster roles. Each role defines a specific set of permissions for a number of resources. Cluster roles are marked using a 🌐 icon. In the list, it is also indicated how many users and groups are bound to each role in this organization's namespace.
 
 - For the selected role:
 
