@@ -97,26 +97,8 @@ Now you need to give Giant Swarm's Service Principal permission to access resour
 In your subscription, go to "Access Control (IAM)" and click the "Add Role" button, then select "Add role assignment".
 In the right sidebar that pops up, please select the `azure-operator` role.
 
-## Configure the Giant Swarm organization
-
-In the previous section, we explained how to invite the Giant Swarm's Service Principal in your Azure Active Directory and give it 
-access to your subscription.
-
-Giant Swarm tenant clusters are owned by organizations. This allows you to control access to clusters, since only members of the
-owner organization have access to the management functions of a cluster.
-
-In order to run a tenant cluster in your Azure subscription, the organization owning your cluster has to know about the 
-Service Principal you just created.
-
-If you have direct access to the Giant Swarm API, please set the credentials of
-your organization with our [gsctl](/reference/gsctl/) CLI. Look for the
-[`update organization set-credentials`](/reference/gsctl/update-org-set-credentials/#azure)
-command. You will need your Azure subscription ID and the output from step 3 as arguments.
-
-In case you are working with a Giant Swarm partner, you might not have access to the Giant Swarm API. In that case, please provide your Azure subscription ID and the output from step 3 to your partner contact.
-
-After the organization's credentials are set, you can create clusters owned by that
-organization. These clusters' resources will be created in your Azure subscription.
+If the `Subscription` where the `Management Cluster` is deployed is not the same as the one that will host Workload Clusters, 
+you also need to give `Network Contributor` role to the Service Principal on the `Management Cluster` subscription.
 
 ## Configure Subscription to allow access for Giant Swarm Support
 
@@ -147,6 +129,4 @@ This command should be run for all subscriptions that are used for Giant Swarm t
 ## Further reading
 
 - [Basics and Concepts: Multi-Account Support](/basics/multi-account/)
-- [gsctl Reference: `update organization set-credentials`](/reference/gsctl/update-org-set-credentials/)
-- [API: Set credentials](/api/#operation/addCredentials)
 - [Azure Lighthouse](https://docs.microsoft.com/en-us/azure/lighthouse/how-to/onboard-customer)
