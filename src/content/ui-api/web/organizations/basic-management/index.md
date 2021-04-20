@@ -34,9 +34,9 @@ All you have to do here is to enter the name of the new organization. There are 
 - Must be unique within the management cluster, of course.
 - Must contain at most 59 characters.
 - Has to conform the DNS label names convention as [documented by Kubernetes](https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-label-names) additionally, which means
-  - contain only lowercase alphanumeric characters or '-'
-  - start with an alphanumeric character
-  - end with an alphanumeric character
+    - contain only lowercase alphanumeric characters or '-'
+    - start with an alphanumeric character
+    - end with an alphanumeric character
 
 <!-- TODO: Move the above details over to general / organizations once it exists, and link there -->
 
