@@ -61,7 +61,7 @@ The example above shows permission details for a role that grants:
 - only `get`, `list`, and `watch` permission to `appcatalogs` and `appcatalogentries` from the `application.giantswarm.io` API group.
 - only `get`, `list`, and `watch` permission for clusters.
 
-The single letter icons in the **Verbs** column each represent one of the seven standard verbs: `get`, `watch`, `list`, `create`, `update`, `patch`, and `delete`. The last items, showing an ellipsis `⋯`, stands for additional, arbitrary verbs. Hovering these icons with you pointer will reveal additional information in a tooltip.
+The single letter icons in the **Verbs** column each represent one of the seven standard verbs: `get`, `watch`, `list`, `create`, `update`, `patch`, and `delete`. The last items, showing an ellipsis `⋯`, stands for additional, arbitrary verbs. Hovering these icons with your pointer will reveal additional information in a tooltip.
 
 The same permissions, shown as a partial YAML representation of the [Role](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole) definition, could look like this:
 
