@@ -33,10 +33,10 @@ To create and assign the role to Giant Swarm's Service Principal you need:
 - An account with [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner) or [User Access Administrator](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#user-access-administrator) role.
 - [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) installed.
 
-### 2. Invite Giant Swarm's service principal to your Active Directory. 
+### 2. Invite Giant Swarm's service principal to your Active Directory
 
-By visiting the following link you can invite GiantSwarm's Service Principal and authorize it to the Tenant AD on behalf 
-of your organization. You just need to replace `${TENANT_ID}` with your Tenant ID, and `${SERVICE_PRINCIPAL_ID}` with the 
+By visiting the following link you can invite GiantSwarm's Service Principal and authorize it to the Tenant AD on behalf
+of your organization. You just need to replace `${TENANT_ID}` with your Tenant ID, and `${SERVICE_PRINCIPAL_ID}` with the
 Service Principal ID provided by Giant Swarm.
 
 ```nohighlight
@@ -45,8 +45,8 @@ https://login.microsoftonline.com/${TENANT_ID}/oauth2/authorize?client_id=${SERV
 
 Please note that the above URL will forward you to the `microsoft.com` home page on success. This is intended.
 
-### 3. Assign the owner role to the Giant Swarm service principal.
+### 3. Assign the owner role to the Giant Swarm service principal
 
-Now you need to give Giant Swarm's Service Principal permission to access resources belonging to your subscription. 
+Now you need to give Giant Swarm's Service Principal permission to access resources belonging to your subscription.
 In your subscription, go to "Access Control (IAM)" and click the "Add Role" button, then select "Add role assignment".
 In the right sidebar that pops up, please select the `Owner` role.

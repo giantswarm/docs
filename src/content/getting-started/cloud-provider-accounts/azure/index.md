@@ -25,7 +25,7 @@ In order to run Giant Swarm tenant clusters, an Azure subscription needs:
 
 ## Procedure
 
-In order to perform necessary actions to deploy and maintain tenant clusters in your Azure subscription, `azure-operator` 
+In order to perform necessary actions to deploy and maintain tenant clusters in your Azure subscription, `azure-operator`
 needs to access the subscription using a Service Principal.
 Below we detail the steps necessary to set it up.
 
@@ -79,10 +79,10 @@ az role definition create --role-definition @guest.json
 
 On success this command prints the created role definition.
 
-### 3. Invite Giant Swarm's service principal to your Active Directory. 
+### 3. Invite Giant Swarm's service principal to your Active Directory
 
-By visiting the following link you can invite GiantSwarm's Service Principal and authorize it to the Tenant AD on behalf 
-of your organization. You just need to replace `${TENANT_ID}` with your Tenant ID, and `${SERVICE_PRINCIPAL_ID}` with the 
+By visiting the following link you can invite GiantSwarm's Service Principal and authorize it to the Tenant AD on behalf
+of your organization. You just need to replace `${TENANT_ID}` with your Tenant ID, and `${SERVICE_PRINCIPAL_ID}` with the
 Service Principal ID provided by Giant Swarm.
 
 ```nohighlight
@@ -91,13 +91,13 @@ https://login.microsoftonline.com/${TENANT_ID}/oauth2/authorize?client_id=${SERV
 
 Please note that the above URL will forward you to the `microsoft.com` home page on success. This is intended.
 
-### 4. Assign the right role to the Giant Swarm service principal.
+### 4. Assign the right role to the Giant Swarm service principal
 
-Now you need to give Giant Swarm's Service Principal permission to access resources belonging to your subscription. 
+Now you need to give Giant Swarm's Service Principal permission to access resources belonging to your subscription.
 In your subscription, go to "Access Control (IAM)" and click the "Add Role" button, then select "Add role assignment".
 In the right sidebar that pops up, please select the `azure-operator` role.
 
-If the `Subscription` where the `Management Cluster` is deployed is not the same as the one that will host Workload Clusters, 
+If the `Subscription` where the `Management Cluster` is deployed is not the same as the one that will host Workload Clusters,
 you also need to give `Network Contributor` role to the Service Principal on the `Management Cluster` subscription.
 
 ## Configure Subscription to allow access for Giant Swarm Support
