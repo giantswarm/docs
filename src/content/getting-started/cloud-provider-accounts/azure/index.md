@@ -1,6 +1,6 @@
 ---
-title: "Prepare an Azure subscription to run Giant Swarm tenant clusters"
-description: "This guide will walk you through all necessary steps to set up an Azure subscription with approriate Role definition and Service Principal for operating Giant Swarm tenant clusters."
+title: "Prepare an Azure subscription to run Giant Swarm workload clusters"
+description: "This guide will walk you through all necessary steps to set up an Azure subscription with approriate Role definition and Service Principal for operating Giant Swarm worload clusters."
 date: "2020-05-19"
 type: page
 weight: 100
@@ -10,22 +10,22 @@ user_questions:
   - What do I need to configure in Azure in order to run Giant Swarm clusters?
 ---
 
-# Prepare an Azure subscription to run Giant Swarm tenant clusters
+# Prepare an Azure subscription to run Giant Swarm workload clusters
 
-In a Giant Swarm installation the tenant clusters (the clusters running your Kubernetes workloads) can run in a separate Azure subscription from the control plane. This gives greater flexibility depending on the requirements and the use case. For example, it allows the control plane to be running in one Azure subscription, while tenant clusters operate in different Azure subscriptions, depending on the customer entities using them.
+In a Giant Swarm installation the workload clusters (the clusters running your Kubernetes workloads) can run in a separate Azure subscription from the control plane. This gives greater flexibility depending on the requirements and the use case. For example, it allows the control plane to be running in one Azure subscription, while workload clusters operate in different Azure subscriptions, depending on the customer entities using them.
 
-Giant Swarm operates tenant clusters using a service called `azure-operator` which runs on the control plane.
+Giant Swarm operates workload clusters using a service called `azure-operator` which runs on the control plane.
 
 ## Overview
 
-In order to run Giant Swarm tenant clusters, an Azure subscription needs:
+In order to run Giant Swarm workload clusters, an Azure subscription needs:
 
 - to invite Giant Swarm `azure-operator`'s service principal to the Active Directory your `Subscription` belongs to;
 - to assign Giant Swarm `azure-operator`'s service principal an appropriate role on the `Subscription`.
 
 ## Procedure
 
-In order to perform necessary actions to deploy and maintain tenant clusters in your Azure subscription, `azure-operator`
+In order to perform necessary actions to deploy and maintain workload clusters in your Azure subscription, `azure-operator`
 needs to access the subscription using a Service Principal.
 Below we detail the steps necessary to set it up.
 
@@ -124,7 +124,7 @@ You will have to supply a general Delegated Resource Management [template file](
 The Delegated Resource Management template uses a [parameters file](https://raw.githubusercontent.com/giantswarm/azure-operator/master/docs/delegatedResourceManagement.parameters.json) to supply the needed variables for configuration.
 Please remember to change the `roleDefinitionId` in case you would like to use your custom role definition. Moreover ask your Solution Engineer so he can provide you the `GiantSwarmPrincipalID` and `GiantSwarmTenantID`
 
-This command should be run for all subscriptions that are used for Giant Swarm tenant clusters as well as the control plane that orchestrates it all.  
+This command should be run for all subscriptions that are used for Giant Swarm workload clusters as well as the control plane that orchestrates it all.  
 
 ## Further reading
 
