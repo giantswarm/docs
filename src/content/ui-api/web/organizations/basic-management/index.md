@@ -9,6 +9,12 @@ menu:
     parent: web-orgs
 owner:
   - https://github.com/orgs/giantswarm/teams/biscuit
+last_review_date: 2021-04-20
+user_questions:
+  - Where can I manage organizations in the web UI?
+  - How can I add an organization using the web UI?
+  - How can I check organization details using the web UI?
+  - How can I delete an organization using the web UI?
 ---
 
 # Creating, inspecting and deleting organizations
