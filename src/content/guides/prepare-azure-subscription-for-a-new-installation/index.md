@@ -10,7 +10,7 @@ tags: ["tutorial"]
 # Prepare an Azure subscription to run a Giant Swarm intallation
 
 In a Giant Swarm installation the software managing workload clusters (the kubernetes clusters that run your workloads)
-is installed in a separate Kubernetes cluster, called `control plane`.
+is installed in a separate Kubernetes cluster called `management cluster`.
 
 This document will guide you through the setup process for your Azure Subscription to make it possibile to install, operate and upgrade
 the Giant Swarm's control plane.
