@@ -61,7 +61,7 @@ The example above shows permission details for a role that grants:
 - only `get`, `list`, and `watch` permission to `appcatalogs` and `appcatalogentries` from the `application.giantswarm.io` API group.
 - only `get`, `list`, and `watch` permission for clusters.
 
-The single letter icons in the **Verbs** column each represent one of the seven standard verbs: `get`, `watch`, `list`, `create`, `update`, `patch`, and `delete`. The last items, showing an ellipsis `⋯`, stands for additional, arbitrary verbs. Hovering these icons with your pointer will reveal additional information in a tooltip.
+The single letter icons in the **Verbs** column each represent one of the seven standard verbs: `get`, `watch`, `list`, `create`, `update`, `patch`, and `delete`. The last items, showing an ellipsis `⋯`, stands for additional, arbitrary verbs. Hovering over these icons with your pointer will reveal additional information in a tooltip.
 
 The same permissions, shown as a partial YAML representation of the [Role](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole) definition, could look like this:
 
@@ -121,9 +121,9 @@ By inspecting the _Permissions_ tab, double check that the role grants only the 
 
 On the _Subjects_ tab, add the group(s) or user(s) you want to assign to the selected role.
 
-When adding a **group** or a **user**, you have to enter the exact user or group identifier as your identity provider presents them. This includes upper- and lowercase spelling. User identifiers may or may not be email addresses, according to your set-up.
+When adding a **group** or a **user**, you have to enter the exact user or group identifier as your identity provider presents them. This includes upper and lowercase spelling. User identifiers may or may not be email addresses, according to your set-up.
 
-**Note:** Your Giant Swarm solution engineer (SE) is happy to assist in case there are uncertainties about the correct spelling.
+**Note:** Your Giant Swarm account engineer (AE) is happy to assist in case there are uncertainties about the correct spelling.
 
 You can enter or paste multiple identifiers, separated by blank or comma, into a single input field.
 

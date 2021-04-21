@@ -23,13 +23,13 @@ user_questions:
 
 ## The organizations overview
 
-In the web user interface top navigation menu you find the **Organizations** section easily. Click this item to navigate to an overview of the organizations you have access to.
+In the web user interface top navigation menu you can easily find the **Organizations** section. Click this item to navigate to an overview of the organizations you have access to.
 
 ![Organizations overview](organizations-overview.png)
 
 If you are an admin user, this page shows all organizations existing in the management cluster of your installation. As a non-admin user, you see the organizations you have some sort of access to.
 
-To learn more about an individual organization, and to find more management functions, click one of the organizations in the list.
+To learn more about an individual organization, and to find more management functions, click on one of the organizations in the list.
 
 ## Adding an organization
 
@@ -50,7 +50,7 @@ All you have to do here is to enter the name of the new organization. There are 
 
 From the organizations overview, click an organization in order to open its detail page.
 
-As a permitted user -- either an admin or a non-admin user with _delete_ permission for the [Organization]({{< relref "/ui-api/management-api/crd/organizations.security.giantswarm.io.md">}}) resource -- you find at the bottom of this page a section titled **Delete this organization**.
+As a permitted user - either an admin or a non-admin user with _delete_ permission for the [Organization]({{< relref "/ui-api/management-api/crd/organizations.security.giantswarm.io.md">}}) resource - you will find at the bottom of this page a section titled **Delete this organization**.
 
 Apart from adequate permission, in order to be able to delete an organization, there must not be any workload clusters owned by the organization.
 
