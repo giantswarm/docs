@@ -13,11 +13,11 @@ In a Giant Swarm installation the software managing workload clusters (the kuber
 is installed in a separate Kubernetes cluster called `management cluster`.
 
 This document will guide you through the setup process for your Azure Subscription to make it possibile to install, operate and upgrade
-the Giant Swarm's control plane.
+the Giant Swarm's management cluster.
 
 ## Overview
 
-In order to run a Giant Swarm control plane, you will need:
+In order to run a Giant Swarm management cluster, you will need:
 
 - to invite Giant Swarm's service principal to the Active Directory your `Subscription` belongs to;
 - to assign Giant Swarm's service principal the `Owner` role in the `Subscription`.
