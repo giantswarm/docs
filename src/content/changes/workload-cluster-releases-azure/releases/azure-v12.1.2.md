@@ -6,7 +6,7 @@ changes_categories:
 - Workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
-  url: https://github.com/giantswarm/releases/tree/master/azure/v12.1.2
+  url: https://github.com/giantswarm/releases/tree/master/azure/archived/v12.1.2
   version: 12.1.2
   version_tag: v12.1.2
 date: '2020-11-02T13:00:00+00:00'
