@@ -71,39 +71,59 @@ Organization names must follow these rules:
 
 - Must be unique within the management cluster
 - Must contain at most 59 characters.
-- Has to conform the same convention as Kubernetes namespaces additionally (which is the [DNS label names convention](https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-label-names) additionally, which means:
+- Has to conform the same convention as Kubernetes namespaces additionally (i. e. the [DNS label names convention](https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-label-names)), which means:
     - contain only lowercase alphanumeric characters or '-'
     - start with an alphanumeric character
     - end with an alphanumeric character
 
-Since there will be a namespace created for each org, prefixed with `org-`, we recommend to not use that same prefix in the organization name, to avoid confusion.
+Since there will be a namespace created for each org, prefixed with `org-`, we recommend against using that same prefix in the organization name, to avoid confusion.
 
 ## Organization namespaces {#namespaces}
 
-TODO: explain namespaces
+For each organization there is a namespace in the management cluster. The namespace is named after the organization CR name, prefixed with `org-`.
 
-Example
+For example, for an organization `acme`, there is the defining organization CR named `acme`. In addition, cluster-operator ensures the existence of the namespace `org-acme` in the management cluster.
 
-```yaml
-apiVersion: v1
- kind: Namespace
- metadata:
-   finalizers:
-   - operatorkit.giantswarm.io/rbac-operator-rbac-controller
-   labels:
-     giantswarm.io/managed-by: organization-operator
-     giantswarm.io/organization: acme
-   name: org-acme
- spec:
-   finalizers:
-   - kubernetes
- status:
-   phase: Active
-```
+We recommend to place all resources to be owned by an organization into the organization's namespace. Our user interfaces will work towards supporting this as a default.
+
+### Namespace use in different providers {#namespace-use}
+
+Giant Swarm is currently working towards making the organization's namespace the default namespace for all resources owned by the organization: clusters, node pools, apps, and more. We have (as of April 2021) reached different stages on different providers.
+
+#### Azure {#namespace-use-azure}
+
+With the latest workload cluster releases for Azure (as of April 2021 that is v14.1.x), all cluster and node pool resources are placed in the organization namespace by default.
+
+Resources belonging to apps deployed to workload clusters are not yet placed in the organization namespace.
+
+#### AWS {#namespace-use-aws}
+
+With the latest AWS releases (as of April 2021 that's v14.1.x), the organization namespace is not yet used by default.
+
+#### On-premises (KVM) {#namespace-use-onprem}
+
+With the latest KVM releases (as of April 2021 that's v13.1.x), the organization namespace is not yet used by default.
+
+## Access control
+
+The management API relies on single sign-on using each customer's own identity provider for authentication.
+
+As the customer's admin for an installation, you decide which users should get access to an organization's resources. You do so using the user or group identifiers from your own identity provider, associating them with roles in the organization's namespace.
+
+- As an admin, you have to decide who gets which access to organization's resources.
+- GS automation (rbac-operator) provides you with some default roles to bind.
+
+<!-- TODO: link to SSO documentation once it's published -->
 
 ## Managing organizations
 
 Organizations can be managed in several ways.
 
-- The web user interface allows to create and delete organizations, manage access
-- TODO: MAPI interaction with organizations (link)
+- The [web user interface]({{< relref "/ui-api/web/_index.md" >}}) allows to create organizations, delete organizations, and manage access interactively. The web user interace leverages the [Management API]({{< relref "/ui-api/management-api/_index.md" >}}).
+- The [Management API]({{< relref "/ui-api/management-api/_index.md" >}}) provides support
+
+<!-- TODO: set links to more organization-specific sub sections once they are published -->
+
+## Migrating from the REST API {#migration-from-rest-api}
+
+Giant Swarm migrates all organizations from the REST API era 
