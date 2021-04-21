@@ -16,8 +16,6 @@ user_questions:
 
 # `kubectl gs template cluster`
 
-{{% kgs_alias_assumption %}}
-
 This command helps with creating a cluster by producing a manifest based on user input. This manifest can then optionally be modified and finally be applied to the Management API to create a cluster.
 
 The outcome depends on the provider, set via the `--provider` flag:
@@ -71,7 +69,7 @@ It supports the following flags:
 Example command for an AWS cluster:
 
 ```nohighlight
-kgs template cluster \
+kubectl gs template cluster \
   --provider aws
   --master-az eu-central-1a \
   --external-snat true \

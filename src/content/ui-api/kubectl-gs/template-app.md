@@ -14,15 +14,13 @@ owner:
 
 # `kubectl gs template app`
 
-{{% kgs_alias_assumption %}}
-
 In order to create an App using custom resources, `kubectl gs` will help you create manifests for the resource type:
 
 - [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) (API group/version `application.giantswarm.io/v1alpha1`) - holds the base App specification.
 
 ## Usage
 
-The command to execute is `kgs template app`.
+The command to execute is `kubectl gs template app`.
 
 It supports the following flags:
 
@@ -35,7 +33,7 @@ It supports the following flags:
 The example command
 
 ```nohighlight
-kgs template app \
+kubectl gs template app \
   --catalog pipo-catalog \
   --name my-app \
   --namespace default \
