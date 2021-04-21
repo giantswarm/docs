@@ -1,7 +1,7 @@
 ---
 linkTitle: Organizations
 title: Organizations
-description: Explaining the organization concept in the Giant Swarm Management API
+description: Explaining the organization concept in the Giant Swarm management API
 last_review_date: 2021-04-21
 weight: 40
 menu:
@@ -19,7 +19,7 @@ owner:
 
 <div class="well disclaimer">
 
-<i class="fa fa-warning"></i> This article covers organizations as defined in the [Management API]({{< relref "/ui-api/management-api/_index.md" >}}). These are replacing the organizations as used with the [REST API]({{< relref "/ui-api/rest-api/index.md">}}). While the general concept is similar in both implementations, there are difference which we'll provide more detailed documentation for soon.
+<i class="fa fa-warning"></i> This article covers organizations as defined in the [management API]({{< relref "/ui-api/management-api/_index.md" >}}). These are replacing the organizations as used with the [REST API]({{< relref "/ui-api/rest-api/index.md">}}). While the general concept is similar in both implementations, there are difference which we'll provide more detailed documentation for soon.
 
 <!-- TODO: link article about changes and migration -->
 
@@ -55,19 +55,21 @@ TODO: visualization
 - Cluster resources, app resources, configmaps, secrets, other resources
 - User/group from IdP, or service account, being bound via role/clusterrole
 
-## The Organization CRD and CRs
+## Organization CRD and CRs {#organization-crd-cr}
 
-Giant Swarm management clusters provide a custom resource definition (CRD) named `Organization` (long form: `organizations.security.giantswarm.io`). An organization is defined simply by a custom resource using the `Organization` CRD, which we'll call an "organization CR" here for brevity.
+If the concept of custom resources (CR) and custom resource definitions (CRD) is new to you: Kubernetes allows to define [arbitrary objects](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) to be handled via the Kubernetes API. The schema of such an object is specified by a custom resource definition. The actual objects are called the custom resources.
 
-> An organization is defined simply by an organization CR.
+Giant Swarm management clusters provide a custom resource definition (CRD) named `Organization` (long form: `organizations.security.giantswarm.io`). An organization is defined simply by a custom resource using that CRD, which we'll call an "organization CR" here for brevity.
+
+> An organization is defined by an organization CR.
 
 Our CRD schema documentation provides details about the [Organization CRD]({{< relref "/ui-api/management-api/crd/organizations.security.giantswarm.io.md" >}}). But before you raise your eyebrows in disappointment, be warned: there isn't much to document. The single most important aspect of an organization CR is it's name. But there is more to it, of course.
 
-Once an organization CR is created, our operator ([organization-operator](https://github.com/giantswarm/organization-operator), to be precise) ensures that a namespace exists for the organization.
+Once an organization CR is created, our operator ([organization-operator](https://github.com/giantswarm/organization-operator), to be precise) ensures that a namespace exists for the organization. More about that [in a minute](#namespace).
 
-## Naming conventions
+## Naming conventions {#naming-conventions}
 
-Organization names must follow these rules:
+Organization names (technically: organization CR names) must follow these rules:
 
 - Must be unique within the management cluster
 - Must contain at most 59 characters.
@@ -78,7 +80,7 @@ Organization names must follow these rules:
 
 Since there will be a namespace created for each org, prefixed with `org-`, we recommend against using that same prefix in the organization name, to avoid confusion.
 
-## Organization namespaces {#namespaces}
+## Organization namespace {#namespace}
 
 For each organization there is a namespace in the management cluster. The namespace is named after the organization CR name, prefixed with `org-`.
 
@@ -108,22 +110,34 @@ With the latest KVM releases (as of April 2021 that's v13.1.x), the organization
 
 The management API relies on single sign-on using each customer's own identity provider for authentication.
 
-As the customer's admin for an installation, you decide which users should get access to an organization's resources. You do so using the user or group identifiers from your own identity provider, associating them with roles in the organization's namespace.
+As the customer's admin for an installation, you decide which users should get access to an organization's resources. You do so associating the user or group identifiers from your own identity provider with permissions for resources in the organization's namespace. All of this is done using standard Kubernetes RBAC elements:
 
-- As an admin, you have to decide who gets which access to organization's resources.
-- GS automation (rbac-operator) provides you with some default roles to bind.
+- `Role` and `ClusterRole` resources define the permissions to be granted (using verbs like `get`, `create`, `delete` etc.) for a set of resources. You can define these roles yourself, or get started with the default roles we provide.
+- `RoleBindings` associate (cluster) roles with the organization's namespace and subjects like users, groups, and service accounts.
 
 <!-- TODO: link to SSO documentation once it's published -->
+
+Our web user interface provides support for interactively adding and revoking organization access to/from users, groups, and service accounts.
+
+<!-- TODO: link to web user interface > organizations > access control -->
 
 ## Managing organizations
 
 Organizations can be managed in several ways.
 
-- The [web user interface]({{< relref "/ui-api/web/_index.md" >}}) allows to create organizations, delete organizations, and manage access interactively. The web user interace leverages the [Management API]({{< relref "/ui-api/management-api/_index.md" >}}).
-- The [Management API]({{< relref "/ui-api/management-api/_index.md" >}}) provides support
+- The [web user interface]({{< relref "/ui-api/web/_index.md" >}}) allows to create organizations, delete organizations, and manage access interactively. The web user interface leverages the [management API]({{< relref "/ui-api/management-api/_index.md" >}}).
+- The [management API]({{< relref "/ui-api/management-api/_index.md" >}}) provides full, native support for managing all organization-related resources.
+
+In addition, we plan to enhance the `kubectl` user experience for organization management via our [`gs`]({{< relref "/ui-api/kubectl-gs/_index.md" >}}) plug-in.
 
 <!-- TODO: set links to more organization-specific sub sections once they are published -->
 
 ## Migrating from the REST API {#migration-from-rest-api}
 
-Giant Swarm migrates all organizations from the REST API era 
+Giant Swarm migrates all organizations from the REST API era into the management API to ensure a smooth transition for customers.
+
+In some cases, renaming an organization is necessary, where the original organization used characters that are not supported any more (uppercase letters and underscores). In this case, Giant Swarm Solution Engineers will reach out to their customer contacts to agree on the new organization names.
+
+We will provide additional information regarding the technical changes caused by the migration soon.
+
+<!-- TODO: link specific page "Migration of organizations from REST API to MAPI" once published -->
