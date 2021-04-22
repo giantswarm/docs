@@ -34,7 +34,7 @@ with the Kubernetes API such as Helm or GitOps tools (like Argo CD or Flux).
 ## Setting up
 
 You can access your management cluster using the [kubectl gs login]({{< relref "/ui-api/kubectl-gs/login" >}})
-command of our kubectl plugin. See [here]({{< relref "/ui-api/kubectl-gs/installlation" >}})
+command of our kubectl plugin. See [here]({{< relref "/ui-api/kubectl-gs/installation" >}})
 for how to install it.
 
 In the management cluster your App CRs are stored in a namespace with the same
