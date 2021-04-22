@@ -2,7 +2,7 @@
 linkTitle: App target namespace metadata
 title: How to annotate an app's target namespace via its App CR
 description: Configuring metadata for the target namespace of an app via its app CR so it can be used by other tools such as service meshes.
-weight: 40
+weight: 50
 menu:
   main:
     parent: app-platform
@@ -50,7 +50,7 @@ kind: Namespace
 metadata:
   annotations:
     linkerd.io/inject: "enabled"
-  name: giantswarm
+  name: loki0
 ```
 
 If you want to set annotations on the namespace, use `spec.namespaceConfig.annotation`.
