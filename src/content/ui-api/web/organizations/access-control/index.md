@@ -125,7 +125,7 @@ When adding a **group** or a **user**, you have to enter the exact user or group
 
 **Note:** Your Giant Swarm account engineer (AE) is happy to assist in case there are uncertainties about the correct spelling.
 
-You can enter or paste multiple identifiers, separated by blank or comma, into a single input field.
+You can enter or paste multiple identifiers, separated by a space or comma, into a single input field.
 
 When adding a **service account** as a subject, you are free to select from the existing ones in the current organization's namespace, by using the suggestions in the input field. When typing some letters, these suggestions will present existing service accounts that match your input. However you can also create new service accounts here by entering new names here.
 

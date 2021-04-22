@@ -27,7 +27,7 @@ In the web user interface top navigation menu you can easily find the **Organiza
 
 ![Organizations overview](organizations-overview.png)
 
-If you are an admin user, this page shows all organizations existing in the management cluster of your installation. As a non-admin user, you see the organizations you have some sort of access to.
+If you are an admin user, this page shows all organizations existing in the management cluster of your installation. As a non-admin user, you see the organizations you have access to.
 
 To learn more about an individual organization, and to find more management functions, click on one of the organizations in the list.
 
@@ -37,7 +37,7 @@ Below the organization overview, as a permitted user, you find the option to cre
 
 All you have to do here is to enter the name of the new organization. There are a few requirements for the name:
 
-- Must be unique within the management cluster, of course.
+- Must be unique within the management cluster.
 - Must contain at most 59 characters.
 - Has to conform the DNS label names convention as [documented by Kubernetes](https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-label-names) additionally, which means
     - contain only lowercase alphanumeric characters or '-'
@@ -48,11 +48,11 @@ All you have to do here is to enter the name of the new organization. There are 
 
 ## Deleting an organization
 
-From the organizations overview, click an organization in order to open its detail page.
+From the organizations overview, click on an organization in order to open its detail page.
 
 As a permitted user - either an admin or a non-admin user with _delete_ permission for the [Organization]({{< relref "/ui-api/management-api/crd/organizations.security.giantswarm.io.md">}}) resource - you will find at the bottom of this page a section titled **Delete this organization**.
 
-Apart from adequate permission, in order to be able to delete an organization, there must not be any workload clusters owned by the organization.
+Apart from adequate permission, in order to be able to delete an organization there must not be any workload clusters owned by the organization.
 
 **Warning:** Deleting an organization also causes deletion of resources in the according namespace, e. g. apps, role bindings, secrets, configmaps etc. in the organization's namespace.
 
