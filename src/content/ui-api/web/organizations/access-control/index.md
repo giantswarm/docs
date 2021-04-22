@@ -49,7 +49,7 @@ The access control user interface provides:
 
     - The list of **Permissions** granted to any subject associated with the role.
 
-While the **Subjects** tab will be explained in more detail below under [granting access](#grantin-access), the information shown under **Permissions** deserves a closer look here.
+While the **Subjects** tab will be explained in more detail below under [granting access](#granting-access), the information shown under **Permissions** deserves a closer look here.
 
 ### Permissions
 
