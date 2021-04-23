@@ -105,7 +105,9 @@ You can filter the list of roles and cluster roles based on a search term. This 
 
 Granting access to an organization's resources means, in Kubernetes RBAC terms: you assign a role or cluster role to the selected organization's namespace, by creating role bindings in this namespace.
 
-In order to assign a role to a user, group, or service account, follow these steps:
+**Note:** When using groups from your identity provider as subjects in access control, all you have to do in order to assign new permissions to an individual user is to add that user to a the right group in your identity provider. Hence, if you have that flexibility with your identity provider, the recommended approach is to only assign groups, not individual users, to Giant Swarm organizations.
+
+In order to assign a role to a group, user, or service account, follow these steps:
 
 ### 1. Select a role
 
@@ -123,7 +125,7 @@ On the _Subjects_ tab, add the group(s) or user(s) you want to assign to the sel
 
 When adding a **group** or a **user**, you have to enter the exact user or group identifier as your identity provider presents them. This includes upper and lowercase spelling. User identifiers may or may not be email addresses, according to your set-up.
 
-**Note:** Your Giant Swarm account engineer (AE) is happy to assist in case there are uncertainties about the correct spelling.
+**Note:** Your Giant Swarm account engineer (AE) is happy to assist in case there are uncertainties about the correct format.
 
 You can enter or paste multiple identifiers, separated by a space or comma, into a single input field.
 
@@ -150,6 +152,8 @@ You are free to edit or delete the role bindings and service accounts created vi
 ## Revoking access
 
 To revoke access from a subject (be it user, user group, or service account) you'll have to remove this subject's associations with any role in this organization's namespace. In RBAC terms, this means to remove or edit the role bindings referencing these roles.
+
+**Note:** If you are assigning groups from your identity provider to organizations, in order to revoke access from an individual user, you have to remove that user from a group in your identity provider.
 
 In the access control user interface, this is how you do it:
 
