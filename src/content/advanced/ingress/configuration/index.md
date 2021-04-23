@@ -353,40 +353,19 @@ In case you want to set up a general http snippet you can define it at [NGINX Co
 
 Your Giant Swarm installation comes with a default configuration for the Ingress Controller.
 
-You can override these defaults by setting your per cluster configuration in the form of a ConfigMap named `nginx-ingress-controller-user-values`.
-
-Depending on the workload cluster release version, this ConfigMap is located either in the workload cluster or in the management cluster.
+You can override these defaults by setting your per cluster configuration in the form of a ConfigMap named `nginx-ingress-controller-user-values` in the management cluster.
 
 ### Where is the user values ConfigMap
 
 Given the cluster you are trying to configure has id: `123ab`
 
-**Workload cluster release v9.0.1 and greater:**
-
-If your cluster is on workload cluster release version v9.0.1 or greater then you will find the `nginx-ingress-controller-user-values` ConfigMap on the management cluster in the `123ab` namespace:
+You will find the `nginx-ingress-controller-user-values` ConfigMap on the management cluster in the `123ab` namespace:
 
 ```nohighlight
 $ kubectl -n 123ab get cm nginx-ingress-controller-user-values --context=control-plane
 NAME                                   DATA      AGE
 nginx-ingress-controller-user-values   0         11m
 ```
-
-Upgrading from v9.0.0v to a higher workload cluster release will automatically migrate these user values from the workload cluster to the
-management cluster for you. If you have any automation or existing workflows you should keep this location change in mind.
-
----
-
-**Workload cluster release v9.0.0 and below:**
-
-If the cluster has a workload cluster release version equal to v9.0.0 or lower, then you will find the `nginx-ingress-controller-user-values` ConfigMap on the workload cluster itself in the `kube-system` namespace:
-
-```nohighlight
-$ kubectl -n kube-system get cm nginx-ingress-controller-user-values --context=tenant-cluster
-NAME                                   DATA      AGE
-nginx-ingress-controller-user-values   0         11m
-```
-
----
 
 __Warning:__
 
@@ -433,7 +412,7 @@ We also allow setting `use-proxy-protocol: "true"/"false"`. This setting always 
 
 ---
 
-##### Default certificate
+### Default certificate
 
 When you want to have the default server on the nginx controller support TLS you need to provide a certificate. This is configured using the flag `--default-ssl-certificate`. Now you can provide this value in the user values ConfigMap to force the component to be restarted with the provided certificate. The value of the property should be the namespace and secret name which holds the certificate content.
 
@@ -449,7 +428,7 @@ data:
    default-ssl-certificate: "custom.prefix.io"
 ```
 
-##### Custom annotation prefix
+### Custom annotation prefix
 
 By default we use the standard annotation prefix `nginx.ingress.kubernetes.io` in the ingress controller. In case the customer needs to have a specific one this can be done via the user values ConfigMap. This is recommended when there is more than one ingress controller. So in the ingress resource the prefix can be used to distinguish between controllers.
 
