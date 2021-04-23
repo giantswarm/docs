@@ -25,7 +25,7 @@ Here we explain how you'll authenticate against the management API as a user. Fo
 
 As a user of the management API for any given installation, you need
 
-- A **user account** in the customer's identity provider (single sign-on).
+- A **user account** in the identity provider used by the installation (single sign-on).
 - The management API **endpoint URL** of the installation. Alternatively, the web user interface URL.
 
 ### Using kubectl gs login
@@ -52,7 +52,7 @@ As a result of running the command, your `kubectl` configuration has a new conte
 gs-<installation-name>
 ```
 
-This context is selected automatically as the current context, so you should be ready to use kubectl with the management API.
+This context is selected automatically as the current context, so you are ready to use kubectl with the management API.
 
 When switching back to this context, it should not be necessary to go through the web-based authentication flow again. `kubectl` will automatically refresh the authentication token when needed, without your interaction.
 
@@ -60,7 +60,7 @@ When switching back to this context, it should not be necessary to go through th
 
 You can alternatively initiate the single sign-on authentication directly in a browser, without the need of installing the `kubectl` plug-in.
 
-We provide a login helper utility. If you have your installation's management API endpoint URL, you can construct the utility's URL by prepending `login.` to the host name.
+We provide a web-based login helper utility, available under a URL specific for each installation. If you have your installation's management API endpoint URL, you can construct the utility's URL by prepending `login.` to the host name.
 
 If, for example, your management API URL is
 
