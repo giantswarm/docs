@@ -40,7 +40,7 @@ Technically, organizations make use of some well-known building blocks of Kubern
 
 Typical use cases for organizations are:
 
-- Separating clusters for development, experimentation, and testing, form clusters used for staging and for production purposes.
+- Separating clusters for development, experimentation, and testing from clusters used for staging and for production purposes.
 
 - Isolating teams, business units, or even legal entities.
 
@@ -84,7 +84,7 @@ Since there will be a namespace created for each org, prefixed with `org-`, we r
 
 For each organization there is a namespace in the management cluster. The namespace is named after the organization CR name, prefixed with `org-`.
 
-For example, for an organization `acme`, there is the defining organization CR named `acme`. In addition, cluster-operator ensures the existence of the namespace `org-acme` in the management cluster.
+For example, for an organization `acme`, there is the defining organization CR named `acme`. In addition, organization-operator ensures the existence of the namespace `org-acme` in the management cluster.
 
 We recommend to place all resources to be owned by an organization into the organization's namespace. Our user interfaces will work towards supporting this as a default.
 
@@ -110,7 +110,7 @@ With the latest KVM releases (as of April 2021 that's v13.1.x), the organization
 
 The management API relies on single sign-on using each customer's own identity provider for authentication.
 
-As the customer's admin for an installation, you decide which users should get access to an organization's resources. You do so associating the user or group identifiers from your own identity provider with permissions for resources in the organization's namespace. All of this is done using standard Kubernetes RBAC elements:
+As the customer's admin for an installation, you decide which users should get access to an organization's resources. You do so by associating the user or group identifiers from your own identity provider with permissions for resources in the organization's namespace. All of this is done using standard Kubernetes RBAC elements:
 
 - `Role` and `ClusterRole` resources define the permissions to be granted (using verbs like `get`, `create`, `delete` etc.) for a set of resources. You can define these roles yourself, or get started with the default roles we provide.
 - `RoleBindings` associate (cluster) roles with the organization's namespace and subjects like users, groups, and service accounts.
@@ -136,7 +136,7 @@ In addition, we plan to enhance the `kubectl` user experience for organization m
 
 Giant Swarm migrates all organizations from the REST API era into the management API to ensure a smooth transition for customers.
 
-In some cases, renaming an organization is necessary, where the original organization used characters that are not supported any more (uppercase letters and underscores). In this case, Giant Swarm Solution Engineers will reach out to their customer contacts to agree on the new organization names.
+In some cases, renaming an organization is necessary, where the original organization used characters that are not supported any more (uppercase letters and underscores). In this case, Giant Swarm Account Engineers will reach out to their customer contacts to agree on the new organization names.
 
 We will provide additional information regarding the technical changes caused by the migration soon.
 
