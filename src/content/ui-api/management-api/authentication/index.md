@@ -13,6 +13,8 @@ user_questions:
   - How can I inspect the ID token issued for authenticating with the management API?
   - What requirements are there to use single sign-on with the management API?
   - How ca I refresh my groups memberships for management API authorization?
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-biscuit
 ---
 
 # Authentication for the Management API
