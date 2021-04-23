@@ -98,7 +98,7 @@ Giant Swarm assists all customers with setting up single sign-on (SSO) for the m
 
 - As a customer, you need to decide on an **identity provider** to use. Most enterprise-grade organizations have a solution already in place. Since we use [Dex](https://github.com/dexidp/dex) as a connector between the management API and your identity provider, we can support a variety of common standards like OpenID Connect (OIDC) and LDAP.
 
-    For cases where no suited identity provider is available, or not yet available, we recommend to use Github, where an organization and teams can be set up and managed easily.
+    For cases where no suitable identity provider is available, or not yet available, we recommend to use Github, where an organization and teams can be set up and managed easily.
 
 - Your identity provider must define a **group to be considered as admins** for the Giant Swarm installation. All members of this group automatically get administrative permissions when authenticating with the management API.
 
@@ -114,6 +114,6 @@ Here we provide some additional details you might want to be aware of, either as
 
 By default, ID tokens for the management API are issued with a lifetime of **{{% mapi_oidc_token_ttl_minutes %}} minutes**.
 
-When assigning users to groups in your identity provider, and when removing users from groups, it can take up to  {{% mapi_oidc_token_ttl_minutes %}} minutes until the change becomes effective for end users. If a user has authenticated and obtained an ID token before the change, tools like `kubectl` will use that token until it expires.
+When assigning users to groups in your identity provider, and when removing users from groups, it can take up to {{% mapi_oidc_token_ttl_minutes %}} minutes until the change becomes effective for end users. If a user has authenticated and obtained an ID token before the change, tools like `kubectl` will use that token until it expires.
 
 To force the adoption of up-to-date user information and group assignments, a user can manually remove the `id-token` value from the user entry in their `kubectl` configuration file.

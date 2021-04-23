@@ -30,7 +30,7 @@ Currently we provide read-only access by default. As we are currently working on
 
 ## How to use
 
-**Note:** Currently (as of April 2021) we are in a process to enable our [web user interface]({{< relref "/ui-api/web" >}}) for interaction with the Management API.
+**Note:** Currently (as of April 2021) we are in the process of enabling our [web user interface]({{< relref "/ui-api/web" >}}) to interact with the Management API.
 
 For now we recommend using `kubectl` to interact with the Management API.
 
