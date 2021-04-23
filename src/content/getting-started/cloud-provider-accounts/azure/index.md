@@ -1,20 +1,13 @@
 ---
-linkTitle: Azure
-title: Prepare an Azure subscription to run Giant Swarm workload clusters
-description: This guide will walk you through all necessary steps to set up an Azure subscription with approriate Role definition and Service Principal for operating Giant Swarm workload clusters.
-weight: 20
-menu:
-  main:
-    identifier: gettingstarted-cloudprovider-azure
-    parent: gettingstarted-cloudprovider
+title: "Prepare an Azure subscription to run Giant Swarm workload clusters"
+description: "This guide will walk you through all necessary steps to set up an Azure subscription with approriate Role definition and Service Principal for operating Giant Swarm worload clusters."
+date: "2020-05-19"
+type: page
+weight: 100
+tags: ["tutorial"]
 user_questions:
   - How do I prepare my Azure subscription for use with Giant Swarm?
   - What do I need to configure in Azure in order to run Giant Swarm clusters?
-aliases:
-  - /guides/prepare-azure-subscription-for-tenant-clusters/
-  - /guides/prepare-azure-subscription/
-owner:
-  - https://github.com/orgs/giantswarm/teams/team-celestial
 ---
 
 # Prepare an Azure subscription to run Giant Swarm workload clusters
@@ -25,24 +18,25 @@ Giant Swarm operates workload clusters using a service called `azure-operator` w
 
 ## Overview
 
-In order to run Giant Swarm workload clusters, an Azure subscription needs the following elements:
+In order to run Giant Swarm workload clusters, an Azure subscription needs:
 
-- Role definition: a set of permission to operate workload clusters in the Azure subscription.
-- Service Principal: an identity (bound to the previously defined Role definition) to access the Azure subscription.
+- to invite Giant Swarm `azure-operator`'s service principal to the Active Directory your `Subscription` belongs to;
+- to assign Giant Swarm `azure-operator`'s service principal an appropriate role on the `Subscription`.
 
-## Create Azure role definition and Service Principal
+## Procedure
 
-In order to perform necessary actions to deploy and maintain workload clusters in your Azure subscription, `azure-operator` needs to access the subscription using a Service Principal.
+In order to perform necessary actions to deploy and maintain workload clusters in your Azure subscription, `azure-operator`
+needs to access the subscription using a Service Principal.
 Below we detail the steps necessary to set it up.
 
 ### 1. Prerequisites
 
-To create a Service Principal you need:
+To create and assign the role to Giant Swarm's Service Principal you need:
 
 - An account with [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner) or [User Access Administrator](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#user-access-administrator) role.
 - [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) installed.
 
-### 2. Role definition
+### 2. Create the role definition
 
 Download our Role definition template:
 
@@ -66,7 +60,7 @@ Open it and replace `${SUBSCRIPTION_ID}` with your subscription id.
 
 To find out your subscription ID you can use [the Azure portal](https://portal.azure.com/#blade/Microsoft_Azure_Billing/SubscriptionsBlade), as shown in the screenshot below:
 
-![Azure Subscriptions list](azure-subscriptions-list.png)
+![Azure Subscriptions list](/img/azure-subscriptions-list.png)
 
 Alternatively you can use the Azure CLI as follows:
 
@@ -85,37 +79,26 @@ az role definition create --role-definition @guest.json
 
 On success this command prints the created role definition.
 
-### 3. Service principal
+### 3. Invite Giant Swarm's service principal to your Active Directory
 
-Create the service principal using the Azure CLI:
+By visiting the following link you can invite GiantSwarm's Service Principal and authorize it to the Tenant AD on behalf
+of your organization. You just need to replace `${TENANT_ID}` with your Tenant ID, and `${SERVICE_PRINCIPAL_ID}` with the
+Service Principal ID provided by Giant Swarm.
 
 ```nohighlight
-$ az ad sp create-for-rbac --name "azure-operator-sp" --role "azure-operator" --query '{client_id:appId, secret_key:password, tenant_id:tenant, subscription_id:""}'
-{
-    "client_id": "72bc3de4-3cf8-46c5-bd2b-243368ed0622",
-    "secret_key": "d6b2cb93-cae9-44b3-8ec5-dc5feb8c28ba",
-    "subscription_id": null,
-    "tenant_id": "31f75bf9-3d8c-4691-95c0-83dd71613db8"
-}
+https://login.microsoftonline.com/${TENANT_ID}/oauth2/authorize?client_id=${SERVICE_PRINCIPAL_ID}&response_type=code&redirect_uri=https%3A%2F%2Fwww.microsoft.com%2F
 ```
 
-## Configure the Giant Swarm organization
+Please note that the above URL will forward you to the `microsoft.com` home page on success. This is intended.
 
-In the previous section, we explained how to create the Service Principal in the Azure subscription in order to run Giant Swarm workload clusters.
+### 4. Assign the right role to the Giant Swarm service principal
 
-Giant Swarm workload clusters are owned by organizations. This allows you to control access to clusters, since only members of the owner organization have access to the management functions of a cluster.
+Now you need to give Giant Swarm's Service Principal permission to access resources belonging to your subscription.
+In your subscription, go to "Access Control (IAM)" and click the "Add Role" button, then select "Add role assignment".
+In the right sidebar that pops up, please select the `azure-operator` role.
 
-In order to run a workload cluster in your Azure subscription, the organization owning your cluster has to know about the Service Principal you just created.
-
-If you have direct access to the Giant Swarm REST API, please set the credentials of
-your organization with our [gsctl]({{< relref "/ui-api/gsctl" >}}) CLI. Look for the
-[`update organization set-credentials`]({{< relref "/ui-api/gsctl/update-org-set-credentials" >}})/#azure)
-command. You will need your Azure subscription ID and the output from step 3 as arguments.
-
-In case you are working with a Giant Swarm partner, you might not have access to the Giant Swarm REST API. In that case, please provide your Azure subscription ID and the output from step 3 to your partner contact.
-
-After the organization's credentials are set, you can create clusters owned by that
-organization. These clusters' resources will be created in your Azure subscription.
+If the `Subscription` where the `Management Cluster` is deployed is not the same as the one that will host Workload Clusters,
+you also need to give `Network Contributor` role to the Service Principal on the `Management Cluster` subscription.
 
 ## Configure Subscription to allow access for Giant Swarm Support
 
@@ -145,7 +128,5 @@ This command should be run for all subscriptions that are used for Giant Swarm w
 
 ## Further reading
 
-- [Basics and Concepts: Multi-Account Support]({{< relref "/advanced/multi-account" >}})
-- [gsctl Reference: `update organization set-credentials`]({{< relref "/ui-api/gsctl/update-org-set-credentials" >}})
-- [API: Set credentials](/api/#operation/addCredentials)
+- [Basics and Concepts: Multi-Account Support](/basics/multi-account/)
 - [Azure Lighthouse](https://docs.microsoft.com/en-us/azure/lighthouse/how-to/onboard-customer)
