@@ -89,7 +89,7 @@ We are also filtering using the catalog label. You can change this to
 you to try but do not offer as a managed service.
 
 ```sh
-kubectl get appcatalogentry -l latest=true,application.giantswarm.io/catalog=giantswarm
+kubectl gs get appcatalogentry --catalog=giantswarm
 
 NAME                                             CATALOG      APP NAME                       APP VERSION   VERSION        AGE
 ...
