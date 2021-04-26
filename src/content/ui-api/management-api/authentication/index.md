@@ -1,7 +1,7 @@
 ---
 linkTitle: Authentication
 title: Authentication for the Management API
-description: How to authenticate for the management API as a user using single sign-on, plus some information for admins regarding how to set up single sign-on with your own identity provider.
+description: How to authenticate for the Management API as a user using single sign-on, plus some information for admins regarding how to set up single sign-on with your own identity provider.
 weight: 20
 menu:
   main:
@@ -9,28 +9,28 @@ menu:
     parent: uiapi-managementapi
 last_review_date: 2021-04-23
 user_questions:
-  - How can I authenticate as a user to the management API?
-  - How can I inspect the ID token issued for authenticating to the management API?
-  - What requirements are there to use single sign-on with the management API?
-  - How can I refresh my groups memberships for management API authorization?
+  - How can I authenticate as a user to the Management API?
+  - How can I inspect the ID token issued for authenticating to the Management API?
+  - What requirements are there to use single sign-on with the Management API?
+  - How can I refresh my groups memberships for Management API authorization?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-biscuit
 ---
 
 # Authentication for the Management API
 
-Here we explain how you'll authenticate against the management API as a user. For admins, we provide some information regarding the requirements for the initial [single sign-on setup](#sso-requirements) and some [technical details](#technical-details) you might want to be interested in.
+Here we explain how you'll authenticate against the Management API as a user. For admins, we provide some information regarding the requirements for the initial [single sign-on setup](#sso-requirements) and some [technical details](#technical-details) you might want to be interested in.
 
 ## Authenticating as a user {#user-auth}
 
-As a user of the management API for any given installation, you need
+As a user of the Management API for any given installation, you need
 
 - A **user account** in the identity provider used by the installation (single sign-on).
-- The management API **endpoint URL** of the installation. Alternatively, the web user interface URL.
+- The Management API **endpoint URL** of the installation. Alternatively, the web user interface URL.
 
 ### Using kubectl gs login
 
-Assuming that you want to work with the API using `kubectl`, the easiest method to authenticate is by using the [Giant Swarm plug-in]({{< relref "/ui-api/kubectl-gs/_index.md" >}}) named `gs`. It can be [installed]({{< relref "/ui-api/kubectl-gs/installation/index.md" >}}) easily using `krew` and is recommended for all users of the management API.
+Assuming that you want to work with the API using `kubectl`, the easiest method to authenticate is by using the [Giant Swarm plug-in]({{< relref "/ui-api/kubectl-gs/_index.md" >}}) named `gs`. It can be [installed]({{< relref "/ui-api/kubectl-gs/installation/index.md" >}}) easily using `krew` and is recommended for all users of the Management API.
 
 To set up your `kubectl` configuration file, execute the following command:
 
@@ -38,7 +38,7 @@ To set up your `kubectl` configuration file, execute the following command:
 kubectl gs login <URL>
 ```
 
-As a URL, use the management API endpoint URL (normally starting with `https://g8s.`) or the web user interface URL (normally starting with `https://happa.g8s.`) of the installation.
+As a URL, use the Management API endpoint URL (normally starting with `https://g8s.`) or the web user interface URL (normally starting with `https://happa.g8s.`) of the installation.
 
 More information can be found in the [`kubectl gs login`]({{< relref "/ui-api/kubectl-gs/login/index.md" >}}) manual page.
 
@@ -52,7 +52,7 @@ As a result of running the command, your `kubectl` configuration has a new conte
 gs-<installation-name>
 ```
 
-This context is selected automatically as the current context, so you are ready to use kubectl with the management API.
+This context is selected automatically as the current context, so you are ready to use kubectl with the Management API.
 
 When switching back to this context, it should not be necessary to go through the web-based authentication flow again. `kubectl` will automatically refresh the authentication token when needed, without your interaction.
 
@@ -60,9 +60,9 @@ When switching back to this context, it should not be necessary to go through th
 
 You can alternatively initiate the single sign-on authentication directly in a browser, without the need of installing the `kubectl` plug-in.
 
-We provide a web-based login helper utility, available under a URL specific for each installation. If you have your installation's management API endpoint URL, you can construct the utility's URL by prepending `login.` to the host name.
+We provide a web-based login helper utility, available under a URL specific for each installation. If you have your installation's Management API endpoint URL, you can construct the utility's URL by prepending `login.` to the host name.
 
-If, for example, your management API URL is
+If, for example, your Management API URL is
 
 ```nohighlight
 https://g8s.base.domain.tld
@@ -80,7 +80,7 @@ The screenshot shows an example of that result page.
 
 ![Login helper screenshot](login-utility-results.png)
 
-Here you can inspect the details that will be passed to the management API as part of the ID token. You can use this to verify the details coming from your identity provider, especially the `email` (which is used as your user identifier) and `groups` claim.
+Here you can inspect the details that will be passed to the Management API as part of the ID token. You can use this to verify the details coming from your identity provider, especially the `email` (which is used as your user identifier) and `groups` claim.
 
 The rest of the page helps you set up `kubectl` manually.
 
@@ -94,17 +94,17 @@ Each Giant Swarm installation provides a service account named `automation` in t
 
 ## Single sign-on requirements {#sso-requirements}
 
-Giant Swarm assists all customers with setting up single sign-on (SSO) for the management API. During that process, we make sure that these requirements are met:
+Giant Swarm assists all customers with setting up single sign-on (SSO) for the Management API. During that process, we make sure that these requirements are met:
 
-- As a customer, you need to decide on an **identity provider** to use. Most enterprise-grade organizations have a solution already in place. Since we use [Dex](https://github.com/dexidp/dex) as a connector between the management API and your identity provider, we can support a variety of common standards like OpenID Connect (OIDC) and LDAP.
+- As a customer, you need to decide on an **identity provider** to use. Most enterprise-grade organizations have a solution already in place. Since we use [Dex](https://github.com/dexidp/dex) as a connector between the Management API and your identity provider, we can support a variety of common standards like OpenID Connect (OIDC) and LDAP.
 
     For cases where no suitable identity provider is available, or not yet available, we recommend to use Github, where an organization and teams can be set up and managed easily.
 
-- Your identity provider must define a **group to be considered as admins** for the Giant Swarm installation. All members of this group automatically get administrative permissions when authenticating with the management API.
+- Your identity provider must define a **group to be considered as admins** for the Giant Swarm installation. All members of this group automatically get administrative permissions when authenticating with the Management API.
 
 - TODO: email claim.
 
-- All additional (non-admin) users you'll want to grant access to the management API in the future will also need to have a user account in your selected identity provider.
+- All additional (non-admin) users you'll want to grant access to the Management API in the future will also need to have a user account in your selected identity provider.
 
 ## Technical details {#technical-details}
 
@@ -112,7 +112,7 @@ Here we provide some additional details you might want to be aware of, either as
 
 ### ID-token lifetime {#id-token-ttl}
 
-By default, ID tokens for the management API are issued with a lifetime of **{{% mapi_oidc_token_ttl_minutes %}} minutes**.
+By default, ID tokens for the Management API are issued with a lifetime of **{{% mapi_oidc_token_ttl_minutes %}} minutes**.
 
 When assigning users to groups in your identity provider, and when removing users from groups, it can take up to {{% mapi_oidc_token_ttl_minutes %}} minutes until the change becomes effective for end users. If a user has authenticated and obtained an ID token before the change, tools like `kubectl` will use that token until it expires.
 
