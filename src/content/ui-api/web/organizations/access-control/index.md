@@ -22,7 +22,7 @@ Learn how to quickly grant and revoke access to an organization's resources via 
 
 {{% organization_mgmt_mapi_disclaimer %}}
 
-Granting access means that the users (when associating users or groups) or programs (when using service accounts) affected will be able to access resources via the management API, including via the web user interface itself.
+Granting access means that the users (when associating users or groups) or programs (when using service accounts) affected will be able to access resources via the Management API, including via the web user interface itself.
 
 The access control UI in the web interface provides quick access to a focused set of RBAC resources, with the goal to make it easy for you to give someone – be it individuals or groups – or service accounts access to resources in an organization's namespace.
 
@@ -147,7 +147,7 @@ As an example, a `RoleBinding` for a `Role` or `ClusterRole` named `read-all` co
 
 As mentioned, new service accounts may have been created in the organization's namespace.
 
-You are free to edit or delete the role bindings and service accounts created via the web user interface in some other way via the management API. Treat them as if they were yours.
+You are free to edit or delete the role bindings and service accounts created via the web user interface in some other way via the Management API. Treat them as if they were yours.
 
 ## Revoking access
 
@@ -171,7 +171,7 @@ Make sure to repeat this for all relevant roles.
 
 **Note:** It is currently not possible to add new roles or cluster roles via the web user interface.
 
-As an admin user of the management API, you can add roles or cluster roles directly, e. g using `kubectl`. Make sure to add the label `ui.giantswarm.io/display` with the string value `"true"` in order to get the role listed in the access control UI.
+As an admin user of the Management API, you can add roles or cluster roles directly, e. g using `kubectl`. Make sure to add the label `ui.giantswarm.io/display` with the string value `"true"` in order to get the role listed in the access control UI.
 
 ## Related
 
