@@ -1,7 +1,7 @@
 ---
 linkTitle: Organizations
 title: Organizations
-description: Explaining the organization concept in the Giant Swarm management API
+description: Explaining the organization concept in the Giant Swarm Management API
 last_review_date: 2021-04-21
 weight: 40
 menu:
@@ -19,7 +19,7 @@ owner:
 
 <div class="well disclaimer">
 
-<i class="fa fa-warning"></i> This article covers organizations as defined in the [management API]({{< relref "/ui-api/management-api/_index.md" >}}). These are replacing the organizations as used with the [REST API]({{< relref "/ui-api/rest-api/index.md">}}). While the general concept is similar in both implementations, there are difference which we'll provide more detailed documentation for soon.
+<i class="fa fa-warning"></i> This article covers organizations as defined in the [Management API]({{< relref "/ui-api/management-api/_index.md" >}}). These are replacing the organizations as used with the [REST API]({{< relref "/ui-api/rest-api/index.md">}}). While the general concept is similar in both implementations, there are difference which we'll provide more detailed documentation for soon.
 
 <!-- TODO: link article about changes and migration -->
 
@@ -29,7 +29,7 @@ owner:
 
 Organizations are a way to manage resources like clusters and apps in a way that different entities are isolated from each other. You can use organizations to separate projects, business units, teams etc.
 
-Clusters are _owned_ by organizations. So in order to be able to manage a cluster (on the management API level, not on the individual cluster level), access to the organization owning the cluster is required.
+Clusters are _owned_ by organizations. So in order to be able to manage a cluster (on the Management API level, not on the individual cluster level), access to the organization owning the cluster is required.
 
 Technically, organizations make use of some well-known building blocks of Kubernetes in the [management cluster]({{< relref "/general/management-clusters/index.md" >}}):
 
@@ -108,7 +108,7 @@ With the latest KVM releases (as of April 2021 that's v13.1.x), the organization
 
 ## Access control
 
-The management API relies on single sign-on using each customer's own identity provider for authentication.
+The Management API relies on single sign-on using each customer's own identity provider for authentication.
 
 As the customer's admin for an installation, you decide which users should get access to an organization's resources. You do so by associating the user or group identifiers from your own identity provider with permissions for resources in the organization's namespace. All of this is done using standard Kubernetes RBAC elements:
 
@@ -125,8 +125,8 @@ Our web user interface provides support for interactively adding and revoking or
 
 Organizations can be managed in several ways.
 
-- The [web user interface]({{< relref "/ui-api/web/_index.md" >}}) allows to create organizations, delete organizations, and manage access interactively. The web user interface leverages the [management API]({{< relref "/ui-api/management-api/_index.md" >}}).
-- The [management API]({{< relref "/ui-api/management-api/_index.md" >}}) provides full, native support for managing all organization-related resources.
+- The [web user interface]({{< relref "/ui-api/web/_index.md" >}}) allows to create organizations, delete organizations, and manage access interactively. The web user interface leverages the [Management API]({{< relref "/ui-api/management-api/_index.md" >}}).
+- The [Management API]({{< relref "/ui-api/management-api/_index.md" >}}) provides full, native support for managing all organization-related resources.
 
 In addition, we plan to enhance the `kubectl` user experience for organization management via our [`gs`]({{< relref "/ui-api/kubectl-gs/_index.md" >}}) plug-in.
 
@@ -134,7 +134,7 @@ In addition, we plan to enhance the `kubectl` user experience for organization m
 
 ## Migrating from the REST API {#migration-from-rest-api}
 
-Giant Swarm migrates all organizations from the REST API era into the management API to ensure a smooth transition for customers.
+Giant Swarm migrates all organizations from the REST API era into the Management API to ensure a smooth transition for customers.
 
 In some cases, renaming an organization is necessary, where the original organization used characters that are not supported any more (uppercase letters and underscores). In this case, Giant Swarm Account Engineers will reach out to their customer contacts to agree on the new organization names.
 
