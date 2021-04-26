@@ -6,7 +6,7 @@ changes_categories:
 - Workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
-  url: https://github.com/giantswarm/releases/tree/master/azure/v13.0.1
+  url: https://github.com/giantswarm/releases/tree/master/azure/archived/v13.0.1
   version: 13.0.1
   version_tag: v13.0.1
 date: '2020-12-03T13:19:55+00:00'
