@@ -56,6 +56,8 @@ Apart from adequate permission, in order to be able to delete an organization th
 
 **Warning:** Deleting an organization also causes deletion of resources in the according namespace, e. g. apps, role bindings, secrets, configmaps etc. in the organization's namespace.
 
+![Delete an organization](delete-organization.png)
+
 Once the _Delete organization_ button appears and is clickable, a click on this button will prompt an additional confirmation. After that confirmation, the organization and the according namespace with everything in it will be deleted.
 
 ## Related
