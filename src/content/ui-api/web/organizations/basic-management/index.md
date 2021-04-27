@@ -27,13 +27,15 @@ In the web user interface top navigation menu you can easily find the **Organiza
 
 ![Organizations overview](organizations-overview.png)
 
-If you are an admin user, this page shows all organizations existing in the management cluster of your installation. As a non-admin user, you see the organizations you have access to.
+If you are an admin user, this page shows all organizations existing in the management cluster of your installation.
+
+<!-- TODO: Mention that as a non-admin user, you see the organizations you have access to, when non-admin users gain access. -->
 
 To learn more about an individual organization, and to find more management functions, click on one of the organizations in the list.
 
 ## Adding an organization
 
-Below the organization overview, as a permitted user, you find the option to create a new organization.
+Below the organization overview you find the option to create a new organization.
 
 All you have to do here is to enter the name of the new organization. There are a few requirements for the name:
 
@@ -48,13 +50,13 @@ All you have to do here is to enter the name of the new organization. There are 
 
 ## Deleting an organization
 
-From the organizations overview, click on an organization in order to open its detail page.
+From the organizations overview, click on an organization in order to open its detail page.You will find a section titled **Delete this organization** at the bottom of that page.
 
-As a permitted user - either an admin or a non-admin user with _delete_ permission for the [Organization]({{< relref "/ui-api/management-api/crd/organizations.security.giantswarm.io.md">}}) resource - you will find at the bottom of this page a section titled **Delete this organization**.
-
-Apart from adequate permission, in order to be able to delete an organization there must not be any workload clusters owned by the organization.
+In order to be able to delete an organization there must not be any workload clusters owned by the organization.
 
 **Warning:** Deleting an organization also causes deletion of resources in the according namespace, e. g. apps, role bindings, secrets, configmaps etc. in the organization's namespace.
+
+**Warning:** In on-premises installations (using the KVM provider), the system does not ensure that there are no clusters owned by the organization before deleting it. Please double check before deleting an organization that there are no clusters owned by it. Otherwise these clusters will remain in place and consume resources, but will be invisible to the user interfaces.
 
 ![Delete an organization](delete-organization.png)
 
