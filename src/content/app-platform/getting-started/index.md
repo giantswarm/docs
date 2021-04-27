@@ -39,7 +39,7 @@ name as your workload cluster ID. Let's set an environment variable for this
 which we will use in the later steps.
 
 ```sh
-export NAMESPACE=** your cluster id**
+export NAMESPACE=**your cluster id**
 ```
 
 ## Checking if your cluster has an ingress controller
