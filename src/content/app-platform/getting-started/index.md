@@ -39,7 +39,7 @@ name as your workload cluster ID. Let's set an environment variable for this
 which we will use in the later steps.
 
 ```sh
-export NAMESPACE=** your cluster id**
+export CLUSTER=** your cluster id**
 ```
 
 ## Checking if your cluster has an ingress controller
@@ -54,7 +54,7 @@ In some older releases the ingress controller is pre-installed. If this is the
 case please use another cluster.
 
 ```sh
-kubectl -n ${NAMESPACE} gs get apps
+kubectl -n ${CLUSTER} gs get apps
 
 NAME                       VERSION   LAST DEPLOYED   STATUS
 cert-exporter              1.6.1     69m             deployed
@@ -102,7 +102,7 @@ command to generate the App CR using the latest version from the previous comman
 ```sh
 kubectl gs template app \
   --catalog=giantswarm \
-  --cluster=${NAMESPACE} \
+  --cluster=${CLUSTER} \
   --name=nginx-ingress-controller-app \
   --namespace=kube-system \
   --version=1.16.1 > nginx-ingress-controller-app.yaml
@@ -134,7 +134,7 @@ Now lets check the app using the `kubectl gs get app` command which filters
 the output to show only the most important fields.
 
 ```sh
-kubectl -n ${NAMESPACE} gs get app nginx-ingress-controller-app -o yaml
+kubectl -n ${CLUSTER} gs get app nginx-ingress-controller-app -o yaml
 ```
 
 The labels, cluster config and kubeconfig have been all defaulted to the correct
@@ -200,7 +200,7 @@ EOL
 
 kubectl gs template app \
   --catalog=giantswarm \
-  --cluster=${NAMESPACE} \
+  --cluster=${CLUSTER} \
   --name=nginx-ingress-controller-app \
   --namespace=kube-system \
   --user-configmap=ingress-values.yaml \
