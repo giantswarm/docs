@@ -16,32 +16,39 @@ owner:
 
 # Cost optimization in Kubernetes
 
-Adoption of Kuberenetes still requires monitoring cost drivers. Improving resource utilization allows you to get the most out of your infrastructure, while maintaining your budget. This document is comrpised of a curated list of helpful tools on the journey to cost optimization. The list is based on our experience building and running owr own infrastructure, in addition to learnings we gained from working with large global enterprise.
+Adoption of Kubernetes still requires monitoring cost drivers. Improving resource utilization allows you to get the most out of your infrastructure, while maintaining your budget. This document is comprised of a curated list of helpful tools on the journey to cost optimization. The list is based on our experience building and running owr own infrastructure, in addition to learnings we gained from working with large global enterprise.
 
-## Visualization
+## Visualization && Optimization
 
-- Open Core Cost visualization tool https://kubecost.com
-- AWS cost explorer https://aws.amazon.com/es/aws-cost-management/aws-cost-explorer/ 
-- kubectl plugin https://github.com/robscott/kube-capacity
-- Prometheus + Grafana + exporters https://github.com/giantswarm/prometheus-operator-app
-   - Limit/Requests exporter https://github.com/cloudworkz/kube-eagle  
-- Kubernetes Opex Analytics https://github.com/rchakode/kube-opex-analytics
-
-## Optimization
-
-- Goldilocks https://github.com/FairwindsOps/goldilocks
+- [Kubecost](https://kubecost.com), an open core cost visualization tool (now with a nice [plugin](http://blog.kubecost.com/blog/kubectl-cost-kubernetes-monitoring-cli/) included)
+- Cloud Provider tooling:
+  - [AWS Cost Explorer](https://aws.amazon.com/es/aws-cost-management/aws-cost-explorer/)
+  - [Azure Cost Management and Billing Service](https://azure.microsoft.com/en-us/services/cost-management/)
+- [Kube-capacity](https://github.com/robscott/kube-capacity), a simple kubectl plugin that helps with visualize usage across nodes
+- [Prometheus + Grafana + exporters](https://github.com/giantswarm/prometheus-operator-app)
+   - [Limit/Requests exporter](https://github.com/cloudworkz/kube-eagle)
+   - [AWS CloudWatch data source integration](https://grafana.com/docs/grafana/latest/datasources/cloudwatch/#iam-policies)
+   - [Azure Monitor data source integration](https://grafana.com/grafana/plugins/grafana-azure-monitor-datasource/)
+- 
+- [Goldilocks](https://github.com/FairwindsOps/goldilocks), a tool for refine and discover the right application resource settings
+-  There are a lot of payed solutions offering dashboard oriented services that track costs of Kubernetes Applications like:
+  - [Replex](https://www.replex.io/)
+  - [Cloudability](https://www.apptio.com/products/cloudability/)
+  - [Opsani](https://opsani.com/) (Also manages resource assignation using AI)
+  - [Kubernetes Opex Analytics](https://github.com/rchakode/kube-opex-analytics)
+  - [CloudHealth](https://www.cloudhealthtech.com/)
 
 ## Autoscaling
 
-- Cluster Autoscaler https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler
-- Horizontal Pod Autoscaler https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
-- Vertical Pod Autoscaler https://github.com/giantswarm/vertical-pod-autoscaler-app
-- Custom Metrics https://github.com/zalando-incubator/kube-metrics-adapter 
+- [Cluster Autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler) scales up, based on unscheduled pods, and down nodes when certain threshold is reached
+- [Horizontal Pod Autoscaler](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) scale out/in the replicas of you application based on metrics defined
+- [Vertical Pod Autoscaler](https://github.com/giantswarm/vertical-pod-autoscaler-app) evaluate and modify current application resource based on usage
+- [Custom Metrics Adapter](https://github.com/zalando-incubator/kube-metrics-adapter) makes possible to scale your application based on a new different set of metrics
 
 ## Dev/Test clusters
 
-- Janitor https://codeberg.org/hjacobs/kube-janitor
-- Kubedownscaler https://codeberg.org/hjacobs/kube-downscaler
+- [Janitor](https://codeberg.org/hjacobs/kube-janitor), a tool that leverages on resource annotations to clean and set TTL for your deployments, find out unused volumes,...
+- [Kubedownscaler](https://codeberg.org/hjacobs/kube-downscaler) scales down deployments on your non production cluster based on some conditions
 
 ## Summary
 
