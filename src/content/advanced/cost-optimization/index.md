@@ -1,13 +1,13 @@
 ---
 linkTitle: Cost-optimization
 title: Cost optimization tools
-description: Cost is always a concern when running IT infrasturcture. This document is a curated list of cost optimization tools that we have found to be valuable for our customers and oursleves.
+description: Cost is always a concern when running IT infrastructure. This document is a curated list of cost optimization tools that we have found to be valuable for our customers and ourselves.
 weight: 100
 menu:
   main:
     parent: advanced
 user_questions:
-- What cost optimization tools do you reccomend?
+- What cost optimization tools do you recommend?
 - How can I tune my setup to optimize for cost?
 aliases:
 owner:
@@ -16,27 +16,26 @@ owner:
 
 # Cost optimization in Kubernetes
 
-Adoption of Kubernetes still requires monitoring cost drivers. Improving resource utilization allows you to get the most out of your infrastructure, while maintaining your budget. This document is comprised of a curated list of helpful tools on the journey to cost optimization. The list is based on our experience building and running owr own infrastructure, in addition to learnings we gained from working with large global enterprise.
+Adoption of Kubernetes still requires monitoring cost drivers. Improving resource utilization allows you to get the most out of your infrastructure, while maintaining your budget. This document is comprised of a curated list of helpful tools on the journey to cost optimization. The list is based on our experience building and running our own infrastructure, in addition to learnings we gained from working with large global enterprise.
 
-## Visualization && Optimization
+## Visualization and Optimization
 
 - [Kubecost](https://kubecost.com), an open core cost visualization tool (now with a nice [plugin](http://blog.kubecost.com/blog/kubectl-cost-kubernetes-monitoring-cli/) included)
 - Cloud Provider tooling:
-  - [AWS Cost Explorer](https://aws.amazon.com/es/aws-cost-management/aws-cost-explorer/)
-  - [Azure Cost Management and Billing Service](https://azure.microsoft.com/en-us/services/cost-management/)
+    - [AWS Cost Explorer](https://aws.amazon.com/es/aws-cost-management/aws-cost-explorer/)
+    - [Azure Cost Management and Billing Service](https://azure.microsoft.com/en-us/services/cost-management/)
 - [Kube-capacity](https://github.com/robscott/kube-capacity), a simple kubectl plugin that helps with visualize usage across nodes
 - [Prometheus + Grafana + exporters](https://github.com/giantswarm/prometheus-operator-app)
-   - [Limit/Requests exporter](https://github.com/cloudworkz/kube-eagle)
-   - [AWS CloudWatch data source integration](https://grafana.com/docs/grafana/latest/datasources/cloudwatch/#iam-policies)
-   - [Azure Monitor data source integration](https://grafana.com/grafana/plugins/grafana-azure-monitor-datasource/)
-- 
+    - [Limit/Requests exporter](https://github.com/cloudworkz/kube-eagle)
+    - [AWS CloudWatch data source integration](https://grafana.com/docs/grafana/latest/datasources/cloudwatch/#iam-policies)
+    - [Azure Monitor data source integration](https://grafana.com/grafana/plugins/grafana-azure-monitor-datasource/)
 - [Goldilocks](https://github.com/FairwindsOps/goldilocks), a tool for refine and discover the right application resource settings
--  There are a lot of payed solutions offering dashboard oriented services that track costs of Kubernetes Applications like:
-  - [Replex](https://www.replex.io/)
-  - [Cloudability](https://www.apptio.com/products/cloudability/)
-  - [Opsani](https://opsani.com/) (Also manages resource assignation using AI)
-  - [Kubernetes Opex Analytics](https://github.com/rchakode/kube-opex-analytics)
-  - [CloudHealth](https://www.cloudhealthtech.com/)
+- There are a lot of payed solutions offering dashboard oriented services that track costs of Kubernetes Applications like:
+    - [Replex](https://www.replex.io/)
+    - [Cloudability](https://www.apptio.com/products/cloudability/)
+    - [Opsani](https://opsani.com/) (Also manages resource assignation using AI)
+    - [Kubernetes Opex Analytics](https://github.com/rchakode/kube-opex-analytics)
+    - [CloudHealth](https://www.cloudhealthtech.com/)
 
 ## Autoscaling
 
@@ -48,9 +47,8 @@ Adoption of Kubernetes still requires monitoring cost drivers. Improving resourc
 ## Dev/Test clusters
 
 - [Janitor](https://codeberg.org/hjacobs/kube-janitor), a tool that leverages on resource annotations to clean and set TTL for your deployments, find out unused volumes,...
-- [Kubedownscaler](https://codeberg.org/hjacobs/kube-downscaler) scales down deployments on your non production cluster based on some conditions
+- [Kubernetes Downscaler](https://codeberg.org/hjacobs/kube-downscaler) scales down deployments on your non production cluster based on some conditions
 
 ## Summary
 
 Cost optimization is a journey. You will find you need to adopt different tools and continually tweak your setup to get the greatest benefit from cloud native.
-
