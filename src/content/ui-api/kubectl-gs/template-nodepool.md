@@ -47,7 +47,6 @@ Here are the supported flags:
 - `--nodepool-name` - node pool name or purpose description of the node pool. (default *Unnamed node pool*)
 - `--nodes-max` - maximum number of worker nodes for the node pool. (default 10)
 - `--nodes-min` - minimum number of worker nodes for the node pool. (default 3)
-- `--num-availability-zones` - number of availability zones to use. (default 1)
 - `--owner` - organization, owning workload cluster. Must be configured with existing organization in installation.
 
 ### AWS specific
