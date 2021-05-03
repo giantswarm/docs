@@ -20,28 +20,28 @@ Adoption of Kuberenetes still requires monitoring cost drivers. Improving resour
 
 ## Visualization
 
-- Open Core Cost visualization tool https://kubecost.com
-- AWS cost explorer https://aws.amazon.com/es/aws-cost-management/aws-cost-explorer/ 
-- kubectl plugin https://github.com/robscott/kube-capacity
-- Prometheus + Grafana + exporters https://github.com/giantswarm/prometheus-operator-app
-   - Limit/Requests exporter https://github.com/cloudworkz/kube-eagle  
-- Kubernetes Opex Analytics https://github.com/rchakode/kube-opex-analytics
+- [Open Core Cost visualization tool](https://kubecost.com) - A comprehensive cost monitoring & optimization solution for teams running Kubernetes
+- [AWS cost explorer](https://aws.amazon.com/es/aws-cost-management/aws-cost-explorer/) - A tool that lets users visualize, understand, and manage  AWS costs and usage over time.
+- [kubectl plugin](https://github.com/robscott/kube-capacity) - A simple CLI that provides an overview of the resource requests, limits and utilization in a Kubernetes cluster.
+- [Prometheus + Grafana + exporters](https://github.com/giantswarm/prometheus-operator-app) - The Prometheus Operator provides Kubernetes native deployment and management of Prometheus and related monitoring components.
+   - [Limit/Requests exporter](https://github.com/cloudworkz/kube-eagle) - Kube eagle is a prometheus exporter which exports various metrics of kubernetes pod resource requests, limits and it's actual usages.   
+- [Kubernetes Opex Analytics](https://github.com/rchakode/kube-opex-analytics) - A tool to help organizations track the resources being consumed by their Kubernetes clusters to prevent overpaying.
 
 ## Optimization
 
-- Goldilocks https://github.com/FairwindsOps/goldilocks
+- [Goldilocks](https://github.com/FairwindsOps/goldilocks) - A utility that can help you identify a starting point for resource requests and limits.
 
 ## Autoscaling
 
-- Cluster Autoscaler https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler
-- Horizontal Pod Autoscaler https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
-- Vertical Pod Autoscaler https://github.com/giantswarm/vertical-pod-autoscaler-app
-- Custom Metrics https://github.com/zalando-incubator/kube-metrics-adapter 
+- [Cluster Autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler) - A  tool that automatically adjusts the size of the Kubernetes cluster when there are pods that failed to run in the cluster due to insufficient resources or when there are nodes in the cluster that have been underutilized for an extended period of time.
+- [Horizontal Pod Autoscaler](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale) - The Horizontal Pod Autoscaler (HPA) automatically scales the number of Pods in a replication controller, deployment, replica set or stateful set based on observed CPU utilization or custom metrics.
+  - [Custom Metrics](https://github.com/zalando-incubator/kube-metrics-adapter) - Kube Metrics Adapter is a general purpose metrics adapter for Kubernetes that can collect and serve custom and external metrics for Horizontal Pod Autoscaling.
+- [Vertical Pod Autoscaler](https://github.com/giantswarm/vertical-pod-autoscaler-app) - Vertical Pod Autoscaler (VPA) frees the users from necessity of setting up-to-date resource limits and requests for the containers in their pods.
 
 ## Dev/Test clusters
 
-- Janitor https://codeberg.org/hjacobs/kube-janitor
-- Kubedownscaler https://codeberg.org/hjacobs/kube-downscaler
+- [Janitor](https://codeberg.org/hjacobs/kube-janitor) - Kubernetes Janitor cleans up (deletes) Kubernetes resources on (1) a configured TTL (time to live) or (2) a configured expiry date (absolute timestamp).
+- [Kubedownscaler](https://codeberg.org/hjacobs/kube-downscaler) - A tool to scale down / "pause" Kubernetes workloads (Deployments, StatefulSets, and/or HorizontalPodAutoscalers and CronJobs too !) during non-work hours.
 
 ## Summary
 
