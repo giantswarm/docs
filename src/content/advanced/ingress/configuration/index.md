@@ -2,6 +2,7 @@
 linkTitle: Advanced configuration
 title: Advanced ingress configuration
 description: Here we describe how you can customize and enable specific features for the NGINX-based Ingress
+last_review_date: 2021-04-23
 weight: 10
 menu:
   main:
@@ -352,40 +353,19 @@ In case you want to set up a general http snippet you can define it at [NGINX Co
 
 Your Giant Swarm installation comes with a default configuration for the Ingress Controller.
 
-You can override these defaults by setting your per cluster configuration in the form of a ConfigMap named `nginx-ingress-controller-user-values`.
-
-Depending on the workload cluster release version, this ConfigMap is located either in the workload cluster or in the management cluster.
+You can override these defaults by setting your per cluster configuration in the form of a ConfigMap named `nginx-ingress-controller-user-values` in the management cluster.
 
 ### Where is the user values ConfigMap
 
 Given the cluster you are trying to configure has id: `123ab`
 
-**Workload cluster release v9.0.1 and greater:**
-
-If your cluster is on workload cluster release version v9.0.1 or greater then you will find the `nginx-ingress-controller-user-values` ConfigMap on the management cluster in the `123ab` namespace:
+You will find the `nginx-ingress-controller-user-values` ConfigMap on the management cluster in the `123ab` namespace:
 
 ```nohighlight
 $ kubectl -n 123ab get cm nginx-ingress-controller-user-values --context=control-plane
 NAME                                   DATA      AGE
 nginx-ingress-controller-user-values   0         11m
 ```
-
-Upgrading from v9.0.0v to a higher workload cluster release will automatically migrate these user values from the workload cluster to the
-management cluster for you. If you have any automation or existing workflows you should keep this location change in mind.
-
----
-
-**Workload cluster release v9.0.0 and below:**
-
-If the cluster has a workload cluster release version equal to v9.0.0 or lower, then you will find the `nginx-ingress-controller-user-values` ConfigMap on the workload cluster itself in the `kube-system` namespace:
-
-```nohighlight
-$ kubectl -n kube-system get cm nginx-ingress-controller-user-values --context=tenant-cluster
-NAME                                   DATA      AGE
-nginx-ingress-controller-user-values   0         11m
-```
-
----
 
 __Warning:__
 
@@ -397,13 +377,7 @@ Only the user ConfigMap is safe to edit.
 
 ### How to set configuration options using the user values ConfigMap
 
-The values that you are allowed to configure will depend on the workload cluster release version.
-As of v9.0.1 and above, you have much more freedom to configure any option available, however keep in mind
-that with great power comes great responsibility.
-
-#### Workload cluster release v9.0.1 and greater
-
-On release version `9.0.1` and greater you are able to set any value from the [upstream documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/) by including them in the user values ConfigMap under the `data.values` field like so:
+You are able to set any value from the [upstream documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/) by including them in the user values ConfigMap under the `data.values` field like so:
 
 ```yaml
 # On the management cluster, in the abc12 namespace
@@ -421,57 +395,14 @@ data:
       log-format-upstream: "MY EDITED LOG FORMAT - $status $body_bytes_sent $http_referer"
 ```
 
-Any defaults that we override are visible in the following `values.yaml` file, under the `configmap` key. [Check this values.yaml file in v1.6.10](https://github.com/giantswarm/nginx-ingress-controller-app/blob/v1.6.10/helm/nginx-ingress-controller-app/values.yaml) as an example.
+However keep in mind that with great power comes great responsibility.
 
-Do make sure you look at the right tag of that repository, when reading this file check that the tag
-corresponds to the version of the nginx-ingress-controller-app running on your cluster.
-
-#### Worload cluster release v9.0.0 and below
-
-On release version `9.0.0` and below you can only configure a specific subset of the [standard nginx configuration options](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/), which we default as follows. If you need any other upstream documented option added to this list, please contact support.
-
-```yaml
-disable-access-log: "false"
-enable-vts-status: "true"
-error-log-level: "error"
-hsts: "false"
-http-snippet: |
-  server {
-    ...
-  }
-http2-max-field-size: "8K"
-large-client-header-buffers: "4 8K"
-log-format-upstream: "$status $body_bytes_sent $http_referer"
-server-name-hash-bucket-size: "1024"
-server-name-hash-max-size: "1024"
-server-tokens: "false"
-worker-processes: "4"
-enable-underscores-in-headers: ""
-proxy-buffers-size: ""
-proxy-buffers: ""
-vts-default-filter-key: ""
-```
-
-To edit one of these values, include it in the `data` field of the `nginx-ingress-controller-user-values` ConfigMap in the
-`kube-system` namespace of the workload cluster:
-
-```yaml
-# On the workload cluster, in the kube-system namespace
-
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  labels:
-    app: nginx-ingress-controller
-    name: nginx-ingress-controller-user-values
-    namespace: kube-system
-data:
-  log-format-upstream: "MY EDITED LOG FORMAT - $status $body_bytes_sent $http_referer"
-```
+Any defaults that we override are visible in the following `values.yaml` file, under the `configmap` key. [Check this values.yaml file in v1.16.1](https://github.com/giantswarm/nginx-ingress-controller-app/blob/v1.16.1/helm/nginx-ingress-controller-app/values.yaml) as an example.
 
 Do not copy all the defaults if you do not need to change them, that way we can adjust them in case they need to change.
 
-On cluster creation the ConfigMap is empty and the above defaults will be applied to the final Ingress Controller deployment.
+Do make sure you look at the right tag of that repository, when reading this file check that the tag
+corresponds to the version of the nginx-ingress-controller-app running on your cluster.
 
 ---
 
@@ -481,7 +412,7 @@ We also allow setting `use-proxy-protocol: "true"/"false"`. This setting always 
 
 ---
 
-##### Default certificate
+### Default certificate
 
 When you want to have the default server on the nginx controller support TLS you need to provide a certificate. This is configured using the flag `--default-ssl-certificate`. Now you can provide this value in the user values ConfigMap to force the component to be restarted with the provided certificate. The value of the property should be the namespace and secret name which holds the certificate content.
 
@@ -497,7 +428,7 @@ data:
    default-ssl-certificate: "custom.prefix.io"
 ```
 
-##### Custom annotation prefix
+### Custom annotation prefix
 
 By default we use the standard annotation prefix `nginx.ingress.kubernetes.io` in the ingress controller. In case the customer needs to have a specific one this can be done via the user values ConfigMap. This is recommended when there is more than one ingress controller. So in the ingress resource the prefix can be used to distinguish between controllers.
 
