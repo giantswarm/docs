@@ -16,7 +16,7 @@ owner:
 
 # Cost optimization in Kubernetes
 
-Adoption of Kuberenetes still requires monitoring cost drivers. Improving resource utilization allows you to get the most out of your infrastructure, while maintaining your budget. This document is comrpised of a curated list of helpful tools on the journey to cost optimization.
+Adoption of Kuberenetes still requires monitoring cost drivers. Improving resource utilization allows you to get the most out of your infrastructure, while maintaining your budget. This document is comrpised of a curated list of helpful tools on the journey to cost optimization. The list is based on our experience building and running owr own infrastructure, in addition to learnings we gained from working with large global enterprise.
 
 ## Visualization
 
