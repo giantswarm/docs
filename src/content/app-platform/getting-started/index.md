@@ -100,31 +100,59 @@ We can use the [kubectl gs template app]({{< relref "/ui-api/kubectl-gs/login" >
 command to generate the App CR using the latest version from the previous command.
 
 ```sh
+cat > ingress-values.yaml <<EOL
+configmap:
+  hsts: "true"
+EOL
+
 kubectl gs template app \
   --catalog=giantswarm \
   --cluster=${CLUSTER} \
   --name=nginx-ingress-controller-app \
   --namespace=kube-system \
+  --user-configmap=ingress-values.yaml \
   --version=1.16.1 > nginx-ingress-controller-app.yaml
 
 kubectl apply -f nginx-ingress-controller-app.yaml
+cat nginx-ingress-controller-app.yaml
 ```
 
 Lets first see the output of the template command which shows only the
 required fields.
 
 ```yaml
+apiVersion: v1
+data:
+  values: |
+    controller:
+      replicas: 2
+    autoscaling:
+      enabled: false
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: nginx-ingress-controller-app-userconfig-gz25x
+  namespace: gz25x
+---
+---
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
   name: nginx-ingress-controller-app
-  namespace: s2wf9
+  namespace: gz25x
 spec:
   catalog: giantswarm
   kubeConfig:
     inCluster: false
   name: nginx-ingress-controller-app
   namespace: kube-system
+  userConfig:
+    configMap:
+      name: nginx-ingress-controller-app-userconfig-gz25x
+      namespace: gz25x
+    secret:
+      name: ""
+      namespace: ""
   version: 1.16.1
 ```
 
@@ -149,20 +177,20 @@ metadata:
     app-operator.giantswarm.io/version: 3.2.1
     app.kubernetes.io/name: nginx-ingress-controller-app
   name: nginx-ingress-controller-app
-  namespace: s2wf9
+  namespace: gz25x
 spec:
   catalog: giantswarm
   config:
     configMap:
       name: ingress-controller-values
-      namespace: s2wf9
+      namespace: gz25x
   kubeConfig:
     context:
-      name: s2wf9
+      name: gz25x
     inCluster: false
     secret:
-      name: s2wf9-kubeconfig
-      namespace: s2wf9
+      name: gz25x-kubeconfig
+      namespace: gz25x
   name: nginx-ingress-controller-app
   namespace: kube-system
   version: 1.16.1
@@ -192,10 +220,8 @@ both the App CR and the related Config Map.
 
 ```sh
 cat > ingress-values.yaml <<EOL
-controller:
-  replicas: 2
-autoscaling:
-  enabled: false
+configmap:
+  hsts: "true"
 EOL
 
 kubectl gs template app \
@@ -216,20 +242,18 @@ secrets for more sensitive configuration.
 apiVersion: v1
 data:
   values: |
-    controller:
-      replicas: 2
-    autoscaling:
-      enabled: false
+    configmap:
+      hsts: "true"
 kind: ConfigMap
 metadata:
-  name: nginx-ingress-controller-app-userconfig-s2wf9
-  namespace: s2wf9
+  name: nginx-ingress-controller-app-userconfig-gz25x
+  namespace: gz25x
 ---
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
   name: nginx-ingress-controller-app
-  namespace: s2wf9
+  namespace: gz25x
 spec:
   catalog: giantswarm
   kubeConfig:
@@ -238,8 +262,8 @@ spec:
   namespace: kube-system
   userConfig:
     configMap:
-      name: nginx-ingress-controller-app-userconfig-s2wf9
-      namespace: s2wf9
+      name: nginx-ingress-controller-app-userconfig-gz25x
+      namespace: gz25x
   version: 1.16.1
 ```
 
