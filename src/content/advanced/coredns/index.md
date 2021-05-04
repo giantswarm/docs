@@ -2,7 +2,7 @@
 linkTitle: CordeDNS
 title: Advanced CoreDNS configuration
 description: Here we describe how you can customize the configuration of the managed CoreDNS service in your clusters
-weight: 100
+weight: 25
 menu:
   main:
     parent: advanced
