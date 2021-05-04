@@ -7,7 +7,7 @@ menu:
   main:
     parent: app-platform
     identifier: app-platform-overview
-last_review_date: 2021-04-26
+last_review_date: 2021-05-04
 aliases:
   - /basics/app-catalog/
 owner:
@@ -17,6 +17,7 @@ user_questions:
   - What is an App Catalog?
   - Does Giant Swarm provide app catalogs out of the box?
   - How is App Platform implemented?
+  - How does the App Platform relate to Helm?
   - What are the components of App Platform?
   - What are the app catalogs that Giant Swarm provides out of the box?
   - How can I create an organizational app catalog?
