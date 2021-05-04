@@ -2,7 +2,7 @@
 linkTitle: Organizations
 title: Organizations
 description: Explaining the organization concept in the Giant Swarm Management API
-last_review_date: 2021-04-21
+last_review_date: 2021-05-04
 weight: 40
 menu:
   main:
@@ -20,6 +20,8 @@ owner:
 <div class="well disclaimer">
 
 <i class="fa fa-warning"></i> This article covers organizations as defined in the [Management API]({{< relref "/ui-api/management-api/_index.md" >}}). These are replacing the organizations as used with the [REST API]({{< relref "/ui-api/rest-api/index.md">}}). While the general concept is similar in both implementations, there are difference which we'll provide more detailed documentation for soon.
+
+If you intend to use Management API organizations now, be aware that your REST API users (using gsctl and the web UI) won't have access to these organizations.
 
 <!-- TODO: link article about changes and migration -->
 
@@ -48,18 +50,13 @@ At Giant Swarm, for example, we run several shared installations where we allow 
 
 ## Visual overview
 
-TODO: visualization
-
-- Organization CR
-- org-namespace per organization
-- Cluster resources, app resources, configmaps, secrets, other resources
-- User/group from IdP, or service account, being bound via role/clusterrole
+[![Organizations in the Management API, visualized](organizations-management-api.svg)](organizations-management-api.svg)
 
 ## Organization CRD and CRs {#organization-crd-cr}
 
 If the concept of custom resources (CR) and custom resource definitions (CRD) is new to you: Kubernetes allows to define [arbitrary objects](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) to be handled via the Kubernetes API. The schema of such an object is specified by a custom resource definition. The actual objects are called the custom resources.
 
-Giant Swarm management clusters provide a custom resource definition (CRD) named `Organization` (long form: `organizations.security.giantswarm.io`). An organization is defined simply by a custom resource using that CRD, which we'll call an "organization CR" here for brevity.
+Giant Swarm management clusters provide a CRD named `Organization` (long form: `organizations.security.giantswarm.io`). An organization is defined simply by a custom resource using that CRD, which we'll call an "organization CR" here for brevity.
 
 > An organization is defined by an organization CR.
 
@@ -86,11 +83,11 @@ For each organization there is a namespace in the management cluster. The namesp
 
 For example, for an organization `acme`, there is the defining organization CR named `acme`. In addition, organization-operator ensures the existence of the namespace `org-acme` in the management cluster.
 
-We recommend to place all resources to be owned by an organization into the organization's namespace. Our user interfaces will work towards supporting this as a default.
+We recommend to place all resources belonging to an organization into the organization's namespace. Our user interfaces will work towards supporting this as a default.
 
 ### Namespace use in different providers {#namespace-use}
 
-Giant Swarm is currently working towards making the organization's namespace the default namespace for all resources owned by the organization: clusters, node pools, apps, and more. We have (as of April 2021) reached different stages on different providers.
+Giant Swarm is currently working towards making the organization's namespace the default namespace for all resources owned by the organization: clusters, node pools, apps, and more. We have (as of May 2021) reached different stages on different providers.
 
 #### Azure {#namespace-use-azure}
 
@@ -138,6 +135,6 @@ Giant Swarm migrates all organizations from the REST API era into the Management
 
 In some cases, renaming an organization is necessary, where the original organization used characters that are not supported any more (uppercase letters and underscores). In this case, Giant Swarm Account Engineers will reach out to their customer contacts to agree on the new organization names.
 
-We will provide additional information regarding the technical changes caused by the migration soon.
+More information will follow once this migration starts.
 
 <!-- TODO: link specific page "Migration of organizations from REST API to MAPI" once published -->
