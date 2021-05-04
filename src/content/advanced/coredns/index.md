@@ -9,6 +9,7 @@ menu:
 user_questions:
   - How can I override the default CoreDNS configuration?
   - How can I customize the CoreDNS configuration?
+  - Where is the user values ConfigMap for CoreDNS?
 aliases:
   - /guides/advanced-coredns-configuration/
 owner:
