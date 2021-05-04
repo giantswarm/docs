@@ -30,6 +30,9 @@ The _Giant Swarm App Platform_ refers to a set of features and concepts that all
 you to browse, install and manage the configurations of apps (such as Prometheus)
 from a single place; the management cluster.
 
+We fully support [Helm](https://helm.sh/) as a general tool to deploy your applications as well as for our general App Catalog. Apps are packaged as Helm charts and can be configured with _values_. We provide a recommended
+[app configuration]({{< relref "/app-platform/app-configuration" >}}) which you can override to meet your needs.
+
 Using this platform, we are providing a collection of curated _Apps_. These _Apps_ are grouped into _App Catalogs_, which are browsable through our web interface.
 We also use app platform to install the apps that are pre-installed in your cluster (such as CoreDNS).
 
@@ -86,7 +89,7 @@ together to enable the features of the Giant Swarm App Platform:
 ### What kind of App Catalogs are there
 
 By default you will have the Giant Swarm Catalog and the Giant Swarm Playground installed
-on your Control Planes.
+on your management clusters.
 
 ### The Giant Swarm Catalog
 
