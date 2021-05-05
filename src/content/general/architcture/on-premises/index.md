@@ -60,4 +60,4 @@ All of these are geared towards enabling you to run multiple projects independen
 
 ## Further Reading
 
-- [Giant Swarm VPN and secure cluster access]({{< relref "/security/cluster-access" >}})
+* [Giant Swarm VPN and secure cluster access]({{< relref "/security/cluster-access" >}})
