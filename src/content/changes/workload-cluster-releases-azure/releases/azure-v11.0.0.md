@@ -3,16 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-azure/releases/azure-v11.0.0/
 changes_categories:
-- Workload Cluster Releases for Azure
+- Workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/azure/archived/v11.0.0
   version: 11.0.0
   version_tag: v11.0.0
 date: '2020-01-08T12:00:00+00:00'
-description: Release notes for Azure release v11.0.0, published on 08 January 2020,
-  12:00
-title: Workload Cluster Release v11.0.0 for Azure
+description: Release notes for Azure workload cluster release v11.0.0, published on
+  08 January 2020, 12:00
+title: Workload cluster release v11.0.0 for Azure
 ---
 
 This is the first Giant Swarm release which includes Kubernetes v1.16. In addition, CPU limits have been removed from several supporting components and priority classes have been adjusted to ensure system reliability under heavy load. Further details about changes to individual components can be found below.

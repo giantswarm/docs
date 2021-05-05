@@ -3,16 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-azure/releases/azure-v13.0.0-beta2/
 changes_categories:
-- Workload Cluster Releases for Azure
+- Workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/azure/archived/v13.0.0-beta2
   version: 13.0.0-beta2
   version_tag: v13.0.0-beta2
 date: '2020-11-26T11:07:11+00:00'
-description: Release notes for Azure release v13.0.0-beta2, published on 26 November
-  2020, 11:07
-title: Workload Cluster Release v13.0.0-beta2 for Azure
+description: Release notes for Azure workload cluster release v13.0.0-beta2, published
+  on 26 November 2020, 11:07
+title: Workload cluster release v13.0.0-beta2 for Azure
 ---
 
 This is the first tenant cluster release to support Kubernetes 1.18 and node pools on Azure.

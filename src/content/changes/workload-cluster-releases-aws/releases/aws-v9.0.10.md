@@ -3,15 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v9.0.10/
 changes_categories:
-- Workload Cluster Releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/v9.0.10
   version: 9.0.10
   version_tag: v9.0.10
 date: '2020-08-20T10:34:28+00:00'
-description: Release notes for AWS release v9.0.10, published on 20 August 2020, 10:34
-title: Workload Cluster Release v9.0.10 for AWS
+description: Release notes for AWS workload cluster release v9.0.10, published on
+  20 August 2020, 10:34
+title: Workload cluster release v9.0.10 for AWS
 ---
 
 This release provides a new aws-operator which is fixing an issue with overlapping networks when creating legacy clusters together with node pools clusters.

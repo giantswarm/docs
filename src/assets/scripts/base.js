@@ -1,3 +1,5 @@
+var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
 /* Prevent disabled links from causing a page reload */
 $("li.disabled a").click(function() {
   event.preventDefault();
@@ -36,7 +38,7 @@ function doSearch(q) {
   $(".searchinstructions").hide();
 
   var limit = 100;
-  $("#qinput").val(q);
+  $("#searchInput").val(q);
   // assemble the big query object for ElasticSearch
   var postData = {
     "from": 0,
@@ -55,13 +57,20 @@ function doSearch(q) {
           }
         },
         "functions": [
+          // changelog ranks low
           {
             "filter": {"term": {"breadcrumb_1": "changes"}},
             "weight": 0.1
           },
+          // REST API spec ranks low
           {
             "filter": {"term": {"breadcrumb_1": "api"}},
             "weight": 0.3
+          },
+          // Blog posts rank a bit lower
+          {
+            "filter": {"term": {"breadcrumb_1": "blog"}},
+            "weight": 0.8
           }
         ]
       }
@@ -98,6 +107,7 @@ function doSearch(q) {
       }
     }
   };
+
   $.ajax("/searchapi/", {
     type: "POST",
     data: JSON.stringify(postData),
@@ -166,15 +176,29 @@ function doSearch(q) {
  */
 function renderSerpEntry(index, hit) {
   d = $("<a class='item'></>").attr("href", hit._source.uri);
-  if (typeof(hit.highlight) !== "undefined" && typeof(hit.highlight.title) !== "undefined") {
+  if (typeof hit.highlight !== "undefined" && typeof hit.highlight.title !== "undefined") {
     d.append($("<h4></h4>").html((index + 1) + ". " + hit.highlight.title));
   } else {
     d.append($("<h4></h4>").html((index + 1) + ". " + hit._source.title));
   }
-  if (typeof(hit._source.breadcrumb) !== "undefined" && hit._source.breadcrumb.length > 0) {
-    d.append($("<p class='sbreadcrumb'></p>").html("/" + hit._source.breadcrumb.join("/") + "/"));
+
+  if (typeof hit._source.breadcrumb !== "undefined" && hit._source.breadcrumb.length > 0) {
+    var top = hit._source.breadcrumb[0].toLowerCase();
+    if (top === 'blog') {
+      var breadcrumb = 'Blog post'
+      if (typeof hit._source.published !== "undefined") {
+        var dt = new Date(hit._source.published);
+        breadcrumb += ' published ' + months[dt.getMonth()];
+        breadcrumb += ' ' + dt.getDate();
+        breadcrumb += ', ' + dt.getFullYear();
+      }
+      d.append($("<p class='sbreadcrumb'></p>").html(breadcrumb));
+    } else {
+      d.append($("<p class='sbreadcrumb'></p>").html("/" + hit._source.breadcrumb.join("/") + "/"));
+    }
   }
-  if (typeof(hit.highlight) !== "undefined" && typeof(hit.highlight.body) !== "undefined" && hit.highlight.body.length > 0) {
+
+  if (typeof hit.highlight !== "undefined" && typeof hit.highlight.body !== "undefined" && hit.highlight.body.length > 0) {
     d.append($("<p class='snippet'></p>").html(hit.highlight.body.join(' <span class="hellip">[...]</span> ')));
   }
   return d;
@@ -200,22 +224,21 @@ $(document).ready(function(){
     q = q.slice(0, -1);
   }
 
-  if (typeof(q) === "undefined" || q == null || q === "") {
+  if (typeof q === "undefined" || q == null || q === "") {
     $(".feedback").hide();
     return;
   }
   doSearch(q);
 });
 
-/** Re-format the table of contents **/
-
+/** Remove TOC if empty **/
 var toc = $('#TableOfContents');
 if (toc.length !== 0) {
-  var innerToc = toc.find("ul:first-child > li:first-child > ul").html();
-  if (typeof innerToc !== "undefined") {
-    toc.html("<ul>" + innerToc + "</ul>");
-  } else {
-    $('#TableOfContents').remove();
+  var innerToc = toc.html();
+  console.debug(innerToc);
+  if (typeof innerToc === "undefined" || innerToc === "") {
+    toc.remove();
+    $('.toc .header').remove();
   }
 }
 
@@ -227,29 +250,8 @@ if (typeof username !== "undefined" && username !== "") {
   $(".helloworldlink").html('Then open your running application at <a href="http://helloworld-' + username + '.gigantic.io/" target="_blank">helloworld-' + username + '.gigantic.io</a>')
 }
 
-/** Adapt docs menu **/
-if (document.location.pathname == "/") {
-  $("#homelink").addClass("active");
-} else {
-  $(".docsnav .nav li").each(function(index, item){
-    var link = $(item).find("a").attr("href");
-    if (link !== "/" && document.location.pathname.indexOf(link) == 0) {
-      $(item).addClass("active");
-      return;
-    }
-  });
-}
-
 // make all tables bootstrappy
 $("table").addClass("table");
-
-$(".search-cta input").on("change keypress keyup", function(evt){
-  if ($(".search-cta input").val() === "") {
-    $(".search-cta button").animate({"opacity": 0.0});
-  } else {
-    $(".search-cta button").animate({"opacity": 1.0});
-  }
-});
 
 // link headlines
 // Thanks to http://ben.balter.com/2014/03/13/pages-anchor-links/!

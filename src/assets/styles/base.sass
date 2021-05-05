@@ -1,4 +1,8 @@
 @import header
+@import menu
+@import home
+@import search
+
 @import consent_dialog
 
 @import crd.css
@@ -69,45 +73,33 @@ abbr[title]
 .centered-text
   text-align: center
 
-.docsnav
-  margin-bottom: 40px
-
-.docsnav nav
-  display: flex
-
-.docsnav .nav > li > a
+#sidebarSearchForm
   font-size: 14px
-  padding: 6px 9px
+  margin: 28px 0 28px auto
 
-.docsnav form
-  margin: 0
-  font-size: 14px
-  margin-left: auto
+  input
+    width: 160px
+    font-size: 14px
+    padding: 2px
+    padding-bottom: 2px
+    padding-top: 2px
+    padding-left: 4px
+    padding-right: 2px
+    line-height: 17px
+    height: 32px
 
-.docsnav input
-  font-size: 14px
-  padding: 2px
-  padding-bottom: 2px
-  padding-top: 2px
-  padding-left: 4px
-  padding-right: 2px
-  line-height: 18px
-  height: 34px
+  button
+    height: 32px
+    border: none
+    padding: 0px 4px
 
-#mobileSearchForm input
-  width: 200px
-  height: 36px
-
-#mobileSearchForm button
-  height: 36px
-
-#mobileSearchForm .form-group
-  display: inline-block
+  .form-group
+    display: inline-block
 
 .lastmod
   font-size: 13px
   color: #999
-  margin-top: 0px
+  margin-top: 22px
   padding-top: 0px
 
 .feedback
@@ -218,38 +210,6 @@ abbr[title]
 .home-introbox hr
   margin: 15px 0 15px 0
 
-.search-cta
-  margin-top: 25px
-  margin-bottom: 25px
-
-.search-cta-inner
-  margin-top: 25px
-  margin-bottom: 25px
-
-.search-cta-header
-  font-size: 22px
-  margin-bottom: 10px
-  position: relative
-  left: 40px
-
-.search-cta-header input
-  border: none
-  border-bottom: 2px solid #555
-  font-family: Inconsolata, monospace
-  color: #666
-  min-width: 100px
-  padding-left: 4px
-  padding-right: 4px
-
-.search-cta-header button
-  margin-left: 10px
-  padding-left: 14px
-  padding-right: 14px
-  opacity: 0
-
-.search-cta-text
-  font-size: 18px
-
 ul.notype
   list-style-type: none
   margin: 0
@@ -355,47 +315,47 @@ ul.notype li
     font-size: 16px
 
 
+.toc
+  .header
+    font-size: 14px
+    padding-left: 14px
+    padding-top: 21px
+
 #TableOfContents
   font-size: 14px
-  border: 1px solid #ddd
-  padding: 10px 0px 10px 0px
-
-#TableOfContents ul
-  list-style-type: none
-  margin: 0
   padding: 0
 
-#TableOfContents li a
-  margin: 0
-  padding: 5px 14px 5px 18px
-  line-height: 23px
-  display: block
-  border-left: 2px solid #fff
-  transition: .2s ease-out
+  *
+    font-size: 14px
 
-#TableOfContents li a.active
-  background-color: #ddd
-  border-left-color: #234a61
+  ul
+    list-style-type: none
+    margin: 0
+    padding: 0
 
-// second level entries
-#TableOfContents ul ul a
-  padding-left: 32px
+    ul
+      // second level entries
+      a
+        padding-left: 28px
 
-// third level entries
-#TableOfContents ul ul ul a
-  display: none
+  li
+    margin-bottom: 0
 
-#TableOfContents ul ul ul a
-  padding-left: 42px
-  padding-top: 2px
-  padding-bottom: 2px
-  font-size: 12px
-  line-height: 18px
+    a
+      margin: 0
+      padding: 5px 14px 5px 14px
+      line-height: 20px
+      display: block
+      border-left: 2px solid #fff
+      transition: .2s ease-out
 
-#TableOfContents li a:hover
-  background-color: #eee
-  border-left-color: #234a61
-  text-decoration: none
+    a.active
+      border-left-color: #234a61
+
+    a:hover
+      background-color: #eee
+      border-left-color: #234a61
+      text-decoration: none
 
 // Search
 form.search-full

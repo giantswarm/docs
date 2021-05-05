@@ -3,15 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v12.1.1/
 changes_categories:
-- Workload Cluster Releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v12.1.1
   version: 12.1.1
   version_tag: v12.1.1
 date: '2020-08-19T12:00:00+00:00'
-description: Release notes for AWS release v12.1.1, published on 19 August 2020, 12:00
-title: Workload Cluster Release v12.1.1 for AWS
+description: Release notes for AWS workload cluster release v12.1.1, published on
+  19 August 2020, 12:00
+title: Workload cluster release v12.1.1 for AWS
 ---
 
 This release provides new aws-operator version with reliability improvements and upgrades kiam-app from v1.3.1 to v1.4.0, to align with Cert Manager v0.16.1 API changes.

@@ -6,7 +6,7 @@
 <ul class="changelog">
     {{- range .Paginator.Pages }}
     <li class="changelog">
-        {{ partial "changes/meta.html" . }}
+        {{ partial "changes/meta" . }}
         {{- with .Content }}
         <div class="content">{{ . }}</div>
         {{- end }}
@@ -14,4 +14,4 @@
     {{ end }}
 </ul>
 
-{{ partial "pagination.html" . }}
+{{ partial "pagination" . }}

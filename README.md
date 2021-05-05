@@ -6,7 +6,7 @@ This is the main documentation repository for the documentation available at htt
 
 This repository named `docs` holds the main **content** of our documentation. The documentation
 site is created using the static site generator [HUGO](http://gohugo.io/) based on Markdown files
-in the `src/content/` directory. Images are in the `src/static/img/` directory.
+in the `src/content/` directory.
 
 Additional content is tied in through the scripts
 
@@ -26,7 +26,7 @@ There are several additional repositories which provide additional functionality
 
 - [docs-proxy](https://github.com/giantswarm/docs-proxy/): nginx proxy server which integrates the search engine and the API spec (see below) into the documentation site, and provides some additional configuration, e. g. regarding HTTP headers.
 
-- [api-spec](https://github.com/giantswarm/api-spec/): Specification (in Swagger/OpenAPI) format for the Giant Swarm API. Available in the docs site under https://docs.giantswarm.io/api/.
+- [api-spec](https://github.com/giantswarm/api-spec/): Specification (in Swagger/OpenAPI) format for the Giant Swarm REST API. Available in the docs site under https://docs.giantswarm.io/api/.
 
 - [sitesearch](https://github.com/giantswarm/sitesearch/): Search engine for the documentation site.
 
@@ -51,9 +51,9 @@ and link, if possible, to https://www.giantswarm.io/
 
 ## Deploying
 
-To publish the content in this repository, a release is needed. Releases are created automatically for every push to the `master` branch, so normally whenever a pull request gets merged.
+To publish the content in this repository, a release is needed. Releases are created automatically for every push to the `master` branch, so normally whenever a pull request gets merged. [app-updater](https://github.com/giantswarm/app-updater) then updates the `docs-app` app CR in the `c68pn` namespace.
 
-To publish the release, update the version of App `docs-app` in `gollum` in namespace `c68pn`. You can use this command:
+You can also publish manually with this command:
 
 ```nohighlight
 kubectl --context giantswarm-gollum -n c68pn patch app docs-app --type merge -p '{"spec": {"version": "X.Y.Z"}}'
@@ -62,8 +62,6 @@ kubectl --context giantswarm-gollum -n c68pn patch app docs-app --type merge -p 
 Here, `giantswarm-gollum` is the kubeconfig context created by `opsctl create kubeconfig -i gollum`. `X.Y.Z` is to be replaced by the new version number of the app, without `v` prefix.
 
 Latest content should be visible after a short period. When checking, make sure to circumvent any browser cache. For example, do this by keeping the Shift key pressed while hitting the reload button of your browser.
-
-TODO: update this section as soon as app-updater is working.
 
 ## About the Header and Footer
 

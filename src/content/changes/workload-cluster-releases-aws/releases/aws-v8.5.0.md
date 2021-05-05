@@ -3,16 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v8.5.0/
 changes_categories:
-- Workload Cluster Releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v8.5.0
   version: 8.5.0
   version_tag: v8.5.0
 date: '2019-09-02T13:30:00+00:00'
-description: Release notes for AWS release v8.5.0, published on 02 September 2019,
-  13:30
-title: Workload Cluster Release v8.5.0 for AWS
+description: Release notes for AWS workload cluster release v8.5.0, published on 02
+  September 2019, 13:30
+title: Workload cluster release v8.5.0 for AWS
 ---
 
 **IMPORTANT**: Due to cgroup restructure (change can be found [here](https://github.com/giantswarm/k8scloudconfig/pull/564)) and more resource reservation for core components, we are now switching to bigger master instance types (from m4.large to m4.xlarge). This adds some room for additional workload scheduling on master.

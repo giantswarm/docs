@@ -3,16 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v13.0.0/
 changes_categories:
-- Workload Cluster Releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/v13.0.0
   version: 13.0.0
   version_tag: v13.0.0
 date: '2020-12-09T08:23:09+00:00'
-description: Release notes for AWS release v13.0.0, published on 09 December 2020,
-  08:23
-title: Workload Cluster Release v13.0.0 for AWS
+description: Release notes for AWS workload cluster release v13.0.0, published on
+  09 December 2020, 08:23
+title: Workload cluster release v13.0.0 for AWS
 ---
 
 This release provides support for Kubernetes 1.18 on AWS.

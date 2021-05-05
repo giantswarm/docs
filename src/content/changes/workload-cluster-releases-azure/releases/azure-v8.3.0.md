@@ -3,15 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-azure/releases/azure-v8.3.0/
 changes_categories:
-- Workload Cluster Releases for Azure
+- Workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/azure/archived/v8.3.0
   version: 8.3.0
   version_tag: v8.3.0
 date: '2019-07-11T10:00:00+00:00'
-description: Release notes for Azure release v8.3.0, published on 11 July 2019, 10:00
-title: Workload Cluster Release v8.3.0 for Azure
+description: Release notes for Azure workload cluster release v8.3.0, published on
+  11 July 2019, 10:00
+title: Workload cluster release v8.3.0 for Azure
 ---
 
 

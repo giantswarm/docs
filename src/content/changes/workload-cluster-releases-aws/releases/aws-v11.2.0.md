@@ -3,15 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v11.2.0/
 changes_categories:
-- Workload Cluster Releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v11.2.0
   version: 11.2.0
   version_tag: v11.2.0
 date: '2020-04-23T15:00:00+00:00'
-description: Release notes for AWS release v11.2.0, published on 23 April 2020, 15:00
-title: Workload Cluster Release v11.2.0 for AWS
+description: Release notes for AWS workload cluster release v11.2.0, published on
+  23 April 2020, 15:00
+title: Workload cluster release v11.2.0 for AWS
 ---
 
 This release adds support for [EC2 Spot Instances](https://aws.amazon.com/ec2/spot/) in your node pools to allow reduction of your compute resource cost. Find details on how to use spot instances [in our node pools documentation](https://docs.giantswarm.io/basics/nodepools/#instance-distribution).

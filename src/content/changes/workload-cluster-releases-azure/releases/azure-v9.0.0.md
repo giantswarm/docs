@@ -3,16 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-azure/releases/azure-v9.0.0/
 changes_categories:
-- Workload Cluster Releases for Azure
+- Workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/azure/archived/v9.0.0
   version: 9.0.0
   version_tag: v9.0.0
 date: '2019-10-25T10:00:00+00:00'
-description: Release notes for Azure release v9.0.0, published on 25 October 2019,
-  10:00
-title: Workload Cluster Release v9.0.0 for Azure
+description: Release notes for Azure workload cluster release v9.0.0, published on
+  25 October 2019, 10:00
+title: Workload cluster release v9.0.0 for Azure
 ---
 
 This release contains Kubernetes `1.15.5` as well as a change to the default worker size of new clusters to `Standard_D4s_v3`.

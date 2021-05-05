@@ -1,0 +1,67 @@
+baseurl: https://docs.giantswarm.io
+languageCode: en
+title: Giant Swarm Documentation
+pluralizeListTitles: false
+rssLimit: 50
+enableGitInfo: true
+
+markup:
+  defaultMarkdownHandler: goldmark
+  tableOfContents:
+    endLevel: 3
+    startLevel: 2
+
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    codeFences: true
+    style: solarized-dark
+    guessSyntax: false
+    tabWidth: 4
+    lineNos: false
+
+menu:
+  main:
+  - identifier: general
+    name: General
+    url: /general/
+    weight: 10
+  - identifier: getting-started
+    name: Getting started
+    url: /getting-started/
+    weight: 20
+  - identifier: advanced
+    name: Advanced setup
+    url: /advanced/
+    weight: 30
+  - identifier: ui-api
+    name: UIs and APIs
+    url: /ui-api/
+    weight: 40
+  - identifier: app-platform
+    name: App platform
+    url: /app-platform/
+    weight: 50
+  - identifier: security
+    name: Security
+    url: /security/
+    weight: 60
+  - identifier: kubernetes
+    name: Kubernetes basics
+    url: /kubernetes/
+    weight: 70
+  - identifier: reference
+    name: Reference
+    url: /reference/
+    weight: 80
+  - identifier: changes
+    name: Changes and releases
+    url: /changes/
+    weight: 90
+
+taxonomies:
+  changes_category: changes_categories
+
+permalinks:
+  changes_categories: /changes/:slug

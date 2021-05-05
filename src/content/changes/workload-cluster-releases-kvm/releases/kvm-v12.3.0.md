@@ -3,16 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-kvm/releases/kvm-v12.3.0/
 changes_categories:
-- Workload Cluster Releases for KVM
+- Workload cluster releases for KVM
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/kvm/archived/v12.3.0
   version: 12.3.0
   version_tag: v12.3.0
 date: '2020-10-15T17:30:00+00:00'
-description: Release notes for KVM release v12.3.0, published on 15 October 2020,
-  17:30
-title: Workload Cluster Release v12.3.0 for KVM
+description: Release notes for KVM workload cluster release v12.3.0, published on
+  15 October 2020, 17:30
+title: Workload cluster release v12.3.0 for KVM
 ---
 
 This release upgrades all Helm releases managed by Giant Swarm to use [Helm v3.3.4](https://github.com/helm/helm/releases/tag/v3.3.4).

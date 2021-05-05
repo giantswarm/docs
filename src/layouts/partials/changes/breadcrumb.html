@@ -1,0 +1,7 @@
+<ol class="breadcrumb">
+  <li class="item"><a href="/" class="crumb">Docs</a></li>
+  <li class="item"><a href="/changes/" class="crumb">Changes and releases</a></li>
+  {{- if .Data.Term }}
+    <li class="item"><a href="{{ .RelPermalink }}" class="crumb">{{ .Data.Term }}</a></li>
+  {{- end }}
+</ol>

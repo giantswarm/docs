@@ -1,4 +1,4 @@
-name: Merge Update Changes and Releases PR
+name: Merge approved PR for updating generated content
 
 on:
   pull_request_review:
@@ -16,13 +16,13 @@ jobs:
           echo "github.event.review.state: ${{ github.event.review.state }}"
           
       - name: Merge PR
-        if: github.event.review.state == 'approved' && contains('automated-update-for-changes', github.event.pull_request.head.ref)
+        if: github.event.review.state == 'approved' && contains('automatic-update-of-generated-content', github.event.pull_request.head.ref)
         uses: KeisukeYamashita/auto-pull-request-merge@v1.0.1
         with:
           checkStatus: true
-          comment: "Automatic merge after approval"
+          comment: Automatic merge after approval
           failStep: true
-          strategy: "squash"
+          strategy: squash
           intervalSeconds: 2
           timeoutSeconds: 60
           token: ${{ secrets.TOKEN }}

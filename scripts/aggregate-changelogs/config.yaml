@@ -11,20 +11,22 @@ repositories:
     # The repo 'giantswarm/releases' gets special treatment, so no
     # config needed
   giantswarm/api-spec:
-    category: Rest API
+    category: REST API
   giantswarm/apiextensions:
     category: Management API
-  giantswarm/aqua-app:
-    category: Managed Apps
   giantswarm/aws-admission-controller:
     category: Management API
   giantswarm/azure-admission-controller:
     category: Management API
+  giantswarm/aqua-app:
+    category: Managed Apps
   giantswarm/cert-manager-app:
     category: Managed Apps
   giantswarm/docs:
     category: Documentation
   giantswarm/efk-stack-app:
+    category: Managed Apps
+  giantswarm/goldilocks-app:
     category: Managed Apps
   giantswarm/gsctl:
     category: gsctl
@@ -40,14 +42,21 @@ repositories:
     category: Managed Apps
   giantswarm/grafana-app:
     category: Managed Apps
-
+  giantswarm/loki-app:
+    category: Managed Apps
+  giantswarm/promtail-app:
+    category: Managed Apps
+  giantswarm/external-dns-app:
+    category: Managed Apps
+  giantswarm/fluent-logshipping-app:
+    category: Managed Apps
+  giantswarm/cloudflared-app:
+    category: Managed Apps
   giantswarm/app-mesh-app:
     category: Playground Apps
   giantswarm/azure-ad-pod-identity-app:
     category: Playground Apps
   giantswarm/eventrouter-app:
-    category: Playground Apps
-  giantswarm/fluent-logshipping-app:
     category: Playground Apps
   giantswarm/gatling-app:
     category: Playground Apps
@@ -61,19 +70,25 @@ repositories:
     category: Playground Apps
   giantswarm/k8s-initiator-app:
     category: Playground Apps
+  giantswarm/keda-app:
+    category: Playground Apps
   giantswarm/kibana-oss-app:
     category: Playground Apps
   giantswarm/kubernetes-gpu:
     category: Playground Apps
   giantswarm/linkerd2-app:
     category: Playground Apps
+  giantswarm/linkerd2-cni-app:
+    category: Playground Apps  
   giantswarm/loki-stack-app:
     category: Playground Apps
   giantswarm/opencensus-collector-app:
     category: Playground Apps
   giantswarm/strimzi-kafka-operator-app:
-    category: Playground Apps
+    category: Managed Apps
   giantswarm/vertical-pod-autoscaler-app:
+    category: Playground Apps
+  giantswarm/velero-app:
     category: Playground Apps
 
 # Here we define the colors for categories.
@@ -90,13 +105,13 @@ categories:
     color: "#7ac271"
   - name: Playground Apps
     color: "#bfffb8"
-  - name: Rest API
+  - name: REST API
     color: "#919ea1"
-  - name: Workload Cluster Releases for AWS
+  - name: Workload cluster releases for AWS
     color: "#ff9900"
-  - name: Workload Cluster Releases for Azure
+  - name: Workload cluster releases for Azure
     color: "#1773bd"
-  - name: Workload Cluster Releases for KVM
+  - name: Workload cluster releases for KVM
     color: "#cccccc"
   - name: Web UI
     color: "#8098b2"
