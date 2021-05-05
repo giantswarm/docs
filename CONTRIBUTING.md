@@ -4,7 +4,19 @@
 
 Please review these contribution guidelines to ease getting your changes into this repository.
 
+## Contributing
+
+This repository is public to facilitate content quality and encourage contributions. We appreciate all contributions, including corrections and suggestions for improvement.
+
+The best way to contribute changes are pull requests. Please note the following regarding pull requests:
+
+- Please make one pull request per topic/issue. Avoid putting several non-related issues in a single pull request!
+
+- When creating a pull request, please remember you accept that your contribution will be published under the Creative Commons license mentioned in `README.md`. Giant Swarm will be able to use your content without restriction.   Giant Swarm is not obliged to list you as the author of your contribution, but will attempt to do so where possible.
+
 ## Style
+
+TODO: Move this section to intranet https://intranet.giantswarm.io/docs/product/docs/
 
 Some general guidelines to know about when editing or reviewing content.
 
@@ -174,121 +186,3 @@ will result in a headline
 ```html
 <h3 id="more">Another section with more content</h3>
 ```
-
-### Shortcodes
-
-Shortcodes allow the use of a string in any number of places in the docs,
-while maintaining it only in one place. We use these to place, for example,
-configuration details.
-
-The goal here is to give users accurate, complete and up-to-date information.
-
-Shortcodes exist as one file each in the folder [src/layouts/shortcodes](https://github.com/giantswarm/docs/tree/master/src/layouts/shortcodes).
-
-#### Usage
-
-A shortcode can only be placed in *Markdown* text. The file name (without
-`.html` suffix) is used as a placeholder, wrapped in a certain way, like
-`{{% placeholder %}}`.
-
-For example, to place the shortcode from `first_aws_autoscaling_version.html`,
-the content would look like this
-
-```markdown
-... since version {{% first_aws_autoscaling_version %}} and ...
-```
-
-and would get rendered like
-
-```nohighlight
-... since version 6.3.0 ...
-```
-
-#### List of shortcodes with explanation
-
-- `platform_support_table`: A table that displays information regarding which
-providers support a feature described in the context. Look for examples in the
-code base too, to understand how it is configured. The shortcode offers three
-parameters `aws`, `azure`, and `kvm`. Each one functions the same way:
-
-    - Multiple key-value-pairs can be set, separated by comma. Example: `alpha=v10.0.0,beta=v11.0.0,ga=v12.0.0`.
-
-    - Key-value-pairs use the `=` character to separate key and value.
-
-    - The key must be either `alpha`, `beta`, `ga`, or `roadmap`, with a meaning as follows.
-
-        - `alpha`: Version that made the feature available in an Alpha stage. If no value/version is given, it means that the feature is currently in the Alpha stage.
-
-        - `beta`: Version that made the feature available in a beta stage. If no value/version is given, it means that the feature is currently in the Beta stage.
-
-        - `ga`: Version that made the feature GA (general availability). If no value/version is given, it means that the feature is currently in the GA stage.
-
-        - `roadmap`: The feature is on our roadmap for the given provider. The value muest be the roadmap issue URL.
-
-    - For the keys `alpha`, `beta`, and `ga` the (optional) value is expected to be a semver version number of the workload cluster release. For example, `beta=v10.0.0` indicates that the feature was published in Beta in release v10.0.0. If only the key is present, but no value, this indicates that the version number is unknown.
-
-    - For the `roadmap` key, a value must be given, and the value must be the `https://github.com/giantswarm/roadmap` issue URL about the feature.
-
-- `autoscaler_utilization_threshold`: Utilization threshold for the kubernetes
-autoscaler, including percent unit, as we configure it by default. Below this
-utilization, the autoscaler will consider a node underused and will scale down.
-
-- `default_aws_instance_type`: The AWS EC2 instance type we use by default for
-worker nodes.
-
-- `default_cluster_size_worker_nodes`: The default number of worker nodes we
-use when a cluster is created without specifying a number.
-
-- `first_aws_autoscaling_version`: The workload cluster release version that introduced
-autoscaling for AWS.
-
-- `first_aws_nodepools_version`: The workload cluster release version that introduced
-nodepools for AWS.
-
-- `first_azure_nodepools_version`: The workload cluster release version that introduced nodepools for Azure.
-
-- `first_spotinstances_version`: The workload cluster release version that introduced
-spotinstances for AWS.
-
-- `minimal_supported_cluster_size_worker_nodes`: The minimum number of worker
-nodes a cluster must have in order to be supported by Giant Swarm.
-
-### Iterating on content locally
-
-If you want to iterate quickly on some content you can use the `make dev`
-command.
-
-You can access the server at http://localhost:1313/. The server can be stopped by hitting `Ctrl + C`.
-
-It will not include content from the external repositories.
-
-### Previewing changes
-
-You can bring up the final site using the following commands:
-
-```nohighlight
-make docker-build
-docker-compose up
-```
-
-You can access the server at http://localhost:8080/. The server can be stopped by hitting `Ctrl + C`.
-
-### Content from external sources
-
-The build process of this repo (see the `build` target in the `Makefile`) ties in content from several sources:
-
-- Changes and Releases (see scritps/aggregate-changelogs)
-- Guides or recipes from external repositories
-- Custom Resource Definitions from [apiextensions](https://github.com/giantswarm/apiextensions)
-
-To trigger the build and fetching external content locally, run `make`.
-
-## Contributing
-
-This repository is public to facilitate content quality and encourage contributions. We appreciate all contributions, including corrections and suggestions for improvement.
-
-The best way to contribute changes are pull requests. Please note the following regarding pull requests:
-
-- Please make one pull request per topic/issue. Avoid putting several non-related issues in a single pull request!
-
-- When creating a pull request, please remember you accept that your contribution will be published under the Creative Commons referenced below. Giant Swarm will be able to use your content without restriction.   Giant Swarm is not obliged to list you as the author of your contribution, but will attempt to do so where possible.
