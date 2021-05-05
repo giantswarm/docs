@@ -26,6 +26,8 @@ from a single place; the management cluster.
 Using this platform, we are providing a collection of curated _Apps_. These _Apps_ are grouped into _App Catalogs_, which are browsable through our web interface.
 We also use app platform to install the apps that are pre-installed in your cluster (such as CoreDNS).
 
+We fully support [Helm](https://helm.sh/) as a general tool to deploy these _Apps_. Apps are packaged as Helm charts and can be configured with _values_. We provide a recommended configuration which you can override to meet your needs.
+
 If you'd like to know more about the App Platform in general, go here for an
 [overview of the Giant Swarm App Platform]({{< relref "/app-platform" >}}) instead.
 
