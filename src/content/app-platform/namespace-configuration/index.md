@@ -1,7 +1,7 @@
 ---
-linkTitle: App target namespace metadata
-title: How to annotate an app's target namespace via its App CR
-description: Configuring metadata for the target namespace of an app via its app CR so it can be used by other tools such as service meshes.
+linkTitle: Target namespace metadata
+title: Configure an app's target namespace via its App CR
+description: How to configure metadata for the target namespace of an app via its app CR. So it can be used by other tools such as service meshes.
 weight: 40
 menu:
   main:
@@ -18,7 +18,8 @@ user_questions:
 ## Overview
 
 At some point, you might want to add specific labels or annotations to an app's target namespace to enable other tools such as `linkerd` or `kiam`. For example, to include all pods in a namespace in the `linkerd` service mesh. Or, to tell `kiam` you do allow Loki to get logs from pods running in this namespace.
-This feature enables you to add labels and annotations to the app's target namespace via its [App CR]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}). This is simpler than using other solutions such as triggering a Kubernetes job via a Helm hook.
+This feature enables you to add labels and annotations to the app's target namespace via its [App CR]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}). This is simpler and
+easier than using other solutions such as triggering a Kubernetes job via a Helm hook.
 
 ## Configuring labels / annotations
 
@@ -50,10 +51,10 @@ kind: Namespace
 metadata:
   annotations:
     linkerd.io/inject: "enabled"
-  name: giantswarm
+  name: loki
 ```
 
-If you want to set annotations on the namespace, use `spec.namespaceConfig.annotation`.
+If you want to set labels on the namespace, use `spec.namespaceConfig.labels`.
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
