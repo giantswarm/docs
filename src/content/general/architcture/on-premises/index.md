@@ -6,7 +6,7 @@ weight: 30
 menu:
   main:
     parent: general-architecture
-last_review_date: 2021-01-28
+last_review_date: 2021-05-05
 user_questions:
   - Do you run on bare metal?
   - Can you run on virtual machines (e.g. VMWare)?
