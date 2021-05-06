@@ -17,7 +17,7 @@ user_questions:
 
 # `kubectl gs get appcatalogs`
 
-Like with all `get` commands in `kubectl`, this command can be used to get details on one item, an [AppCatalog]({{< relref "/ui-api/management-api/crd/appcatalogs.application.giantswarm.io.md" >}})
+Like with all `get` commands in `kubectl`, this command can be used to get details on one item, an [App Catalog]({{< relref "/ui-api/management-api/crd/appcatalogs.application.giantswarm.io.md" >}})
 custom resource in this case, or list several of them.
 
 ## Usage
@@ -30,7 +30,7 @@ Simply execute
 kubectl gs get appcatalogs
 ```
 
-to list some information on all available public appcatalogs.
+to list some information on all available public App Catalogs.
 
 Here is some example output:
 
@@ -42,8 +42,8 @@ giantswarm-playground   https://giantswarm.github.io/giantswarm-playground-catal
 
 ### Get specific appcatalog
 
-When used with an appcatalog name as additional argument, the command will show
-the latest available version of each app in the catalog according to
+When used with an App Catalog name as additional argument, the command will show
+the latest available version of each App in the catalog according to
 [semantic versioning](https://semver.org/).
 
 Example:
@@ -62,20 +62,20 @@ Note: As an alternative to `get appcatalogs`, `get appcatalog` will also work.
 
 ## Output {#columns}
 
-The standard tabular output format for app catalogs features these columns:
+The standard tabular output format for App Catalogs features these columns:
 
-- `NAME`: Name of the appcatalog.
+- `NAME`: Name of the App Catalog.
 - `URL`: URL for the Helm chart repository.
 - `AGE`: How long ago the appcatalog was created.
 
-When viewing the available apps within an appcatalog the output format features
+When viewing the available Apps within an App Catalog the output format features
 these columns:
 
-- `CATALOG`: Name of the appcatalog.
-- `APP NAME`: Name of the app.
-- `APP VERSION`: Upstream version of the app.
-- `VERSION`: Latest version of the app.
-- `AGE`: How long ago the app release was created.
+- `CATALOG`: Name of the App Catalog.
+- `APP NAME`: Name of the App.
+- `APP VERSION`: Upstream version of the App.
+- `VERSION`: Latest version of the App.
+- `AGE`: How long ago the App release was created.
 
 ## Flags {#flags}
 
@@ -89,13 +89,13 @@ Here we document the flags that have a particular meaning for the `get appcatalo
 
 To inspect a cluster's main custom resource in YAML notation, add the `--output yaml` flag (or `-o yaml` in short) to the command.
 
-The following example command would print the main resource for cluster `ab12c`. It would return the [AppCatalog]({{< relref "/ui-api/management-api/crd/appcatalogs.application.giantswarm.io.md" >}}) resource.
+The following example command would print the main resource for cluster `ab12c`. It would return the [App Catalog]({{< relref "/ui-api/management-api/crd/appcatalogs.application.giantswarm.io.md" >}}) resource.
 
 ```nohighlight
 kubectl gs get appcatalogs giantswarm --output yaml
 ```
 
-When applied without an appcatalog name, the output will be a list of resources. Example:
+When applied without an App Catalog name, the output will be a list of resources. Example:
 
 ```nohighlight
 $ kubectl gs get appcatalogs --output yaml

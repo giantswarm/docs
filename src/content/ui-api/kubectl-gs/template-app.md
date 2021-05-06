@@ -85,7 +85,3 @@ status:
     status: ""
   version: ""
 ```
-
-## Related
-
-- [`kubectl gs login`]({{< relref "/ui-api/kubectl-gs/login" >}}) - Ensure an authenticated kubectl context.
