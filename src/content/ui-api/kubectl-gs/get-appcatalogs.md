@@ -17,7 +17,7 @@ user_questions:
 
 # `kubectl gs get appcatalogs`
 
-Like with all `get` commands in `kubectl`, this command can be used to get details on one item, an [App Catalog]({{< relref "/ui-api/management-api/crd/appcatalogs.application.giantswarm.io.md" >}})
+Like with all `get` commands in `kubectl`, this command can be used to get details on one item, an [AppCatalog]({{< relref "/ui-api/management-api/crd/appcatalogs.application.giantswarm.io.md" >}})
 custom resource in this case, or list several of them.
 
 ## Usage
@@ -89,7 +89,7 @@ Here we document the flags that have a particular meaning for the `get appcatalo
 
 To inspect a cluster's main custom resource in YAML notation, add the `--output yaml` flag (or `-o yaml` in short) to the command.
 
-The following example command would print the main resource for cluster `ab12c`. It would return the [App Catalog]({{< relref "/ui-api/management-api/crd/appcatalogs.application.giantswarm.io.md" >}}) resource.
+The following example command would print the main resource for cluster `ab12c`. It would return the [AppCatalog]({{< relref "/ui-api/management-api/crd/appcatalogs.application.giantswarm.io.md" >}}) resource.
 
 ```nohighlight
 kubectl gs get appcatalogs giantswarm --output yaml
