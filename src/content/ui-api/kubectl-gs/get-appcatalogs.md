@@ -22,7 +22,7 @@ custom resource in this case, or list several of them.
 
 ## Usage
 
-### Get a list of appcatalogs {#list}
+### Get a list of App Catalogs {#list}
 
 Simply execute
 
@@ -40,7 +40,7 @@ giantswarm              https://giantswarm.github.io/giantswarm-catalog/        
 giantswarm-playground   https://giantswarm.github.io/giantswarm-playground-catalog/   280d
 ```
 
-### Get specific appcatalog
+### Get specific App Catalog
 
 When used with an App Catalog name as additional argument, the command will show
 the latest available version of each App in the catalog according to

@@ -22,7 +22,7 @@ custom resource in this case, or list several of them.
 
 ## Usage
 
-### Get a list of apps {#list}
+### Get a list of Apps {#list}
 
 Simply execute
 
@@ -41,7 +41,7 @@ NAME                 VERSION   LAST DEPLOYED   STATUS
 cert-exporter        1.6.1     11m             deployed
 ```
 
-### Get specific app
+### Get specific App
 
 When used with an App name as additional argument, the command will show details for a single App. Example:
 
