@@ -44,7 +44,7 @@ giantswarm-playground   https://giantswarm.github.io/giantswarm-playground-catal
 
 When used with an appcatalog name as additional argument, the command will show
 the latest available version of each app in the catalog according to
-[semantic versioning](https://semver.org/). 
+[semantic versioning](https://semver.org/).
 
 Example:
 
