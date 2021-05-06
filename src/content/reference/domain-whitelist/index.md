@@ -7,7 +7,7 @@ menu:
   main:
     parent: reference
 user_questions:
-  - How is the Linux kernel of cluster nodes configured?
+  - What domains do Giant Swarm clusters need access to?
 owner:
   - https://github.com/orgs/giantswarm/teams/se
 ---
@@ -22,8 +22,6 @@ Below is a list of the external domains we require access to for our clusters to
     - *.quay.io
 - github.com
     - *.github.com
-- release.core-os.net
-    - *.release.core-os.net
 - amazonaws.com
     - *.amazonaws.com
 - docker.io
