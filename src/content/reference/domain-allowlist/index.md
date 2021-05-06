@@ -1,6 +1,6 @@
 ---
-linkTitle: Domain whitelist
-title: Domain whitelist
+linkTitle: Domain allowlist
+title: Domain allowlist
 description: A list of all external domains Giant Swarm clusters need access to.
 weight: 10
 menu:
