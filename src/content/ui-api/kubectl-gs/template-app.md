@@ -2,7 +2,7 @@
 linkTitle: template app
 title: "'kubectl gs template app' command reference"
 description: Reference documentation on how to create a manifest for an App using 'kubectl gs'.
-weight: 50
+weight: 70
 menu:
   main:
     parent: uiapi-kubectlgs
@@ -85,3 +85,7 @@ status:
     status: ""
   version: ""
 ```
+
+## Related
+
+- [`kubectl gs login`]({{< relref "/ui-api/kubectl-gs/login" >}}) - Ensure an authenticated kubectl context.

@@ -26,12 +26,14 @@ owner:
 | Command                    | Description                                                    | Provider info        |
 | -------------------------- | -------------------------------------------------------------- | -------------------- |
 | [`login`][1]               | [Ensure an authenticated session with a management cluster][1] | all providers        |
-| [`get clusters`][2]        | [List clusters or get details on a single cluster][2]          | only AWS, Azure      |
-| [`get nodepools`][3]       | [List node pools or get details on a single node pool][3]      | only AWS, Azure      |
-| [`template app`][4]        | [Create manifests for an App][4]                               | all providers        |
-| [`template appcatalog`][5] | [Create manifests for an AppCatalog][5]                        | all providers        |
-| [`template cluster`][6]    | [Create manifests for a cluster][6]                            | only AWS, Azure      |
-| [`template nodepool`][7]   | [Create manifests for a node pool][7]                          | only AWS, Azure      |
+| [`get appcatalogs`][2]        | [List appcatalogs or get details on a single appcatalog][2]          | all providers      |
+| [`get apps`][3]        | [List apps or get details on a single app][3]          | all providers      |
+| [`get clusters`][4]        | [List clusters or get details on a single cluster][4]          | only AWS, Azure      |
+| [`get nodepools`][5]       | [List node pools or get details on a single node pool][5]      | only AWS, Azure      |
+| [`template app`][6]        | [Create manifests for an App][6]                               | all providers        |
+| [`template appcatalog`][7] | [Create manifests for an AppCatalog][7]                        | all providers        |
+| [`template cluster`][8]    | [Create manifests for a cluster][8]                            | only AWS, Azure      |
+| [`template nodepool`][9]   | [Create manifests for a node pool][9]                          | only AWS, Azure      |
 | `help`                     | Get help for a command                                         | provider independent |
 
 ## Installing and updating {#install}
