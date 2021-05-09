@@ -6,9 +6,9 @@ This is the main documentation repository for the documentation available at htt
 
 **We welcome any contributions on content to this repository in the form of pull requests!**
 
-Please review the [Contribution guidelines](CONTRIBUTING.md) to ease ... getting your changes into this repository.
+Please review the [Contribution guidelines](CONTRIBUTING.md) for guidelines on suggesting changes and getting them published this repository.
 
-... TODO: GS staff internal [intranet page](https://intranet.giantswarm.io/docs/product/docs/) with info on style etc....
+If you are an employee of Giant Swarm you can get more information per [intranet page](https://intranet.giantswarm.io/docs/product/docs/) with info on style and other pre-requisites.
 
 ## License
 
