@@ -14,13 +14,13 @@ owner:
 
 # Automatic termination of unhealthy nodes
 
-{{< platform_support_table aws="ga=v12.6.0" azure="ga=v13.1.0" kvm="roadmap=https://github.com/giantswarm/roadmap/issues/176" >}}
+{{< platform_support_table aws="ga=v12.6.0" azure="ga=v13.1.0" kvm="alpha=v14.0.0" >}}
 
 ## Introduction
 
 Degraded nodes in a Kubernetes cluster should be a rare issue, however when it occurs, it can have severe consequences for the workloads scheduled to the affected nodes. The goal should be to detect bad nodes early and remove them from the cluster, replacing them with healthy ones.
 
-Starting with workload cluster release v12.6.0 for AWS and v13.1.0 for Azure, you now have the option to automate the detection and termination of bad nodes. When enabled, all nodes in your cluster are periodically checked. If a node fails consecutive health checks over an extended time period, it will be drained and terminated.
+Starting with workload cluster release v12.6.0 for AWS, v13.1.0 for Azure and v14.0.0 for KVM, you now have the option to automate the detection and termination of bad nodes. When enabled, all nodes in your cluster are periodically checked. If a node fails consecutive health checks over an extended time period, it will be drained and terminated.
 
 ## Technical details
 
@@ -77,3 +77,23 @@ spec:
 ```
 
 If you want to disable the feature you must remove the annotation from the [`Cluster`]({{< relref "/ui-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) custom resource.
+
+### KVM
+
+To enable it, you have to edit the [`KVMConfig`]({{< relref "/ui-api/management-api/crd/kvmconfigs.provider.giantswarm.io.md" >}}) resource of your cluster using the [Management API]({{< relref "/ui-api/management-api/" >}}).
+
+Make sure the resource has the `alpha.node.giantswarm.io/terminate-unhealthy` annotation. The value can be anything you like, as only the presence of that annotation is checked. Here is an example:
+
+```yaml
+apiVersion: provider.giantswarm.io/v1alpha1
+kind: KVMConfig
+metadata:
+  annotations:
+    alpha.node.giantswarm.io/terminate-unhealthy: "true"
+  name: fn7t8
+  namespace: default
+spec:
+  ...
+```
+
+If you want to disable the feature you must remove the annotation from the [`KVMConfig`]({{< relref "/ui-api/management-api/crd/kvmconfigs.provider.giantswarm.io.md" >}}) custom resource.
