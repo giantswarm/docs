@@ -50,6 +50,8 @@ At Giant Swarm, for example, we run several shared installations where we allow 
 
 [![Organizations in the Management API, visualized](organizations-management-api.svg)](organizations-management-api.svg)
 
+<!-- Source for above image: -->
+
 ## Current state and roadmap {#roadmap}
 
 Organizations are transitioning from being managed completely by microservices behind our REST API to becoming entities you can manage fully via the Management API. In this section we disect where we are coming from, where we are heading, and what the current situation is on the different providers.
@@ -75,8 +77,9 @@ Organizations are transitioning from being managed completely by microservices b
 
 ### Further plans
 
-- All resources related to workload clusters and apps should reside in the owner organization's namespace. See [roadmap#103](https://github.com/giantswarm/roadmap/issues/103) for details. As a next step, this will be implemented for AWS workload clusters. On-premises/KVM will follow.
-- Authentication for our [web user interface]({{< relref "/ui-api/web" >}}) will switch to single sign-on. At the same time, 
+- We are migrating our [web user interface]({{< relref "/ui-api/web" >}}) from using the REST API to the Management API. This also brings a switch from proprietary Giant Swarm user accounts to single sign-on (SSO). Once this switch is effective for you, you will be using the same identity provider and identities for authentication in the web UI that you use with the Management API. With the web user interface no longer relying on the REST API, the REST API will be decommissioned.
+- All resources related to workload clusters and apps should reside in the owner organization's namespace. See [roadmap#103](https://github.com/giantswarm/roadmap/issues/103) for details. As a next step, this will be implemented for AWS workload clusters. On-premises/KVM will follow. For details regarding the state on the different providers, see [namespace use in different providers](#namespace-use) further down.
+- Once the web user interface only relies on the Management API as a backend, we will start supporting a variety of different user permissions. For example, based on RBAC it will be possible to admit users who have read permissions only. The web user interface will adapt to these restricted permissions and provide a good user experience, regardless of the permissions a user has. This will allow you to permit more users access to the web UI, using identities (user groups and individuals) from your own identity provider, authenticating via single-sign-on.
 
 ## Organization CRD and CRs {#organization-crd-cr}
 
@@ -129,26 +132,11 @@ With the latest AWS releases (as of April 2021 that's v14.1.x), the organization
 
 With the latest KVM releases (as of April 2021 that's v13.1.x), the organization namespace is not yet used by default.
 
-## Access control
-
-The Management API relies on single sign-on using each customer's own identity provider for authentication.
-
-As the customer's admin for an installation, you decide which users should get access to an organization's resources. You do so by associating the user or group identifiers from your own identity provider with permissions for resources in the organization's namespace. All of this is done using standard Kubernetes RBAC elements:
-
-- `Role` and `ClusterRole` resources define the permissions to be granted (using verbs like `get`, `create`, `delete` etc.) for a set of resources. You can define these roles yourself, or get started with the default roles we provide.
-- `RoleBindings` associate (cluster) roles with the organization's namespace and subjects like users, groups, and service accounts.
-
-<!-- TODO: link to SSO documentation once it's published -->
-
-Our web user interface provides support for interactively adding and revoking organization access to/from users, groups, and service accounts.
-
-<!-- TODO: link to web user interface > organizations > access control -->
-
 ## Managing organizations
 
 Organizations can be managed in several ways.
 
-- The [web user interface]({{< relref "/ui-api/web/_index.md" >}}) allows to create organizations, delete organizations, and manage access interactively. The web user interface leverages the [Management API]({{< relref "/ui-api/management-api/_index.md" >}}).
+- The [web user interface]({{< relref "/ui-api/web/_index.md" >}}) allows to create and delete organizations interactively. The web user interface leverages the [Management API]({{< relref "/ui-api/management-api/_index.md" >}}).
 - The [Management API]({{< relref "/ui-api/management-api/_index.md" >}}) provides full, native support for managing all organization-related resources.
 
 In addition, we plan to enhance the `kubectl` user experience for organization management via our [`gs`]({{< relref "/ui-api/kubectl-gs/_index.md" >}}) plug-in.
