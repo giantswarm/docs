@@ -66,7 +66,7 @@ The standard tabular output format for App Catalogs features these columns:
 
 - `NAME`: Name of the App Catalog.
 - `URL`: URL for the Helm chart repository.
-- `AGE`: How long ago the appcatalog was created.
+- `CREATED`: How long ago the appcatalog was created.
 
 When viewing the available Apps within an App Catalog the output format features
 these columns:
@@ -75,7 +75,7 @@ these columns:
 - `APP NAME`: Name of the App.
 - `APP VERSION`: Upstream version of the App.
 - `VERSION`: Latest version of the App.
-- `AGE`: How long ago the App release was created.
+- `CREATED`: How long ago the App release was created.
 
 ## Flags {#flags}
 
