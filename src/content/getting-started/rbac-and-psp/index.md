@@ -124,7 +124,7 @@ metadata:
     rbac.authorization.k8s.io/aggregate-to-admin: "true"
 rules:
 - apiGroups:
-  - extensions
+  - policy
   resources:
   - podsecuritypolicies
   resourceNames:
@@ -536,7 +536,7 @@ kubectl get psp restricted -o yaml --export
 In this example we assume that fluentd needs to expose a host port (it doesn't, but just for this example's sake) and mount host paths (it actually does). Our PSP object based on the `restricted` PSP should look like following after editing.
 
 ```yaml
-apiVersion: extensions/v1beta1
+apiVersion: policy/v1beta1
 kind: PodSecurityPolicy
 metadata:
   name: fluentd
@@ -579,7 +579,7 @@ metadata:
   name: fluentd
 rules:
 - apiGroups:
-  - extensions
+  - policy
   resources:
   - podsecuritypolicies
   resourceNames:
@@ -600,7 +600,7 @@ rules:
   resources: ["pods", "namespaces"]
   verbs: ["get", "watch", "list"]
 - apiGroups:
-  - extensions
+  - policy
   resources:
   - podsecuritypolicies
   resourceNames:
