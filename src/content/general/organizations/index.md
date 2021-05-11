@@ -50,7 +50,7 @@ At Giant Swarm, for example, we run several shared installations where we allow 
 
 [![Organizations in the Management API, visualized](organizations-management-api.svg)](organizations-management-api.svg)
 
-<!-- Source for above image: -->
+<!-- Source for above image: https://docs.google.com/drawings/d/1PDve3HoE7br_6npe0RSCw8ddt-H7pFztPlSDiQbNabs/edit -->
 
 ## Current state and roadmap {#roadmap}
 
