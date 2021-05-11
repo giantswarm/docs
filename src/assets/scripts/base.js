@@ -72,10 +72,10 @@ function doSearch(q) {
             "filter": {"term": {"breadcrumb_1": "blog"}},
             "weight": 0.8
           },
-          // Blog posts rank lower the older they are
+          // Entries rank lower the older they are
           {
             "linear": {
-              "published": {
+              "date": {
                 "scale": "100d",
                 "decay": 0.2
               }
