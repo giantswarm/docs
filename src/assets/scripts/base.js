@@ -195,12 +195,18 @@ function renderSerpEntry(index, hit) {
     var top = hit._source.breadcrumb[0].toLowerCase();
     if (top === 'blog') {
       var breadcrumb = 'Blog post'
-      if (typeof hit._source.published !== "undefined") {
-        var dt = new Date(hit._source.published);
+      if (typeof hit._source.date !== "undefined") {
+        var dt = new Date(hit._source.date);
         breadcrumb += ' published ' + months[dt.getMonth()];
         breadcrumb += ' ' + dt.getDate();
         breadcrumb += ', ' + dt.getFullYear();
       }
+      d.append($("<p class='sbreadcrumb'></p>").html(breadcrumb));
+    } else if (top === 'changes') {
+      var dt = new Date(hit._source.date);
+      var breadcrumb = 'Release info published ' + months[dt.getMonth()];
+      breadcrumb += ' ' + dt.getDate();
+      breadcrumb += ', ' + dt.getFullYear();
       d.append($("<p class='sbreadcrumb'></p>").html(breadcrumb));
     } else {
       d.append($("<p class='sbreadcrumb'></p>").html("/" + hit._source.breadcrumb.join("/") + "/"));
