@@ -22,7 +22,7 @@ custom resource in this case, or list several of them.
 
 ## Usage
 
-### Get a list of App Catalogs {#list}
+### Get a list of app catalogs {#list}
 
 Simply execute
 
@@ -30,7 +30,7 @@ Simply execute
 kubectl gs get appcatalogs
 ```
 
-to list some information on all available public App Catalogs.
+to list some information on all available public app catalogs.
 
 Here is some example output:
 
@@ -40,10 +40,10 @@ giantswarm              https://giantswarm.github.io/giantswarm-catalog/        
 giantswarm-playground   https://giantswarm.github.io/giantswarm-playground-catalog/   280d
 ```
 
-### Get specific App Catalog
+### Get a specific app catalog
 
-When used with an App Catalog name as additional argument, the command will show
-the latest available version of each App in the catalog according to
+When used with an app catalog name as additional argument, the command will show
+the latest available version of each app in the catalog according to
 [semantic versioning](https://semver.org/).
 
 Example:
@@ -62,20 +62,20 @@ Note: As an alternative to `get appcatalogs`, `get appcatalog` will also work.
 
 ## Output {#columns}
 
-The standard tabular output format for App Catalogs features these columns:
+The standard tabular output format for app catalogs features these columns:
 
-- `NAME`: Name of the App Catalog.
+- `NAME`: Name of the app catalog.
 - `URL`: URL for the Helm chart repository.
 - `CREATED`: How long ago the appcatalog was created.
 
-When viewing the available Apps within an App Catalog the output format features
+When viewing the available apps within an app catalog the output format features
 these columns:
 
-- `CATALOG`: Name of the App Catalog.
-- `APP NAME`: Name of the App.
-- `APP VERSION`: Upstream version of the App.
-- `VERSION`: Latest version of the App.
-- `CREATED`: How long ago the App release was created.
+- `CATALOG`: Name of the app catalog.
+- `APP NAME`: Name of the app.
+- `APP VERSION`: Upstream version of the app.
+- `VERSION`: Latest version of the app.
+- `CREATED`: How long ago the app release was created.
 
 ## Flags {#flags}
 
@@ -95,7 +95,7 @@ The following example command would print the main resource for cluster `ab12c`.
 kubectl gs get appcatalogs giantswarm --output yaml
 ```
 
-When applied without an App Catalog name, the output will be a list of resources. Example:
+When applied without an app catalog name, the output will be a list of resources. Example:
 
 ```nohighlight
 $ kubectl gs get appcatalogs --output yaml
