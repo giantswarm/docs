@@ -54,8 +54,8 @@ kubectl gs get appcatalogs giantswarm
 
 ```nohighlight
 kubectl gs get appcatalogs giantswarm
-CATALOG      APP NAME                       APP VERSION   VERSION                                          AGE
-giantswarm   cert-manager-app               1.3.1         2.7.0                                            25h
+CATALOG      APP NAME                       APP VERSION   VERSION            AGE
+giantswarm   cert-manager-app               1.3.1         2.7.0              25h
 ```
 
 Note: As an alternative to `get appcatalogs`, `get appcatalog` will also work.
