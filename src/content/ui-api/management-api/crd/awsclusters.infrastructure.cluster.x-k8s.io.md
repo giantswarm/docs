@@ -2,7 +2,8 @@
 title: AWSCluster CRD schema reference
 linkTitle: AWSCluster
 technical_name: awsclusters.infrastructure.cluster.x-k8s.io
-description:   AWSCluster is the Schema for the awsclusters API
+description: |
+  AWSCluster is the Schema for the awsclusters API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0

@@ -2,7 +2,8 @@
 title: AWSClusterControllerIdentity CRD schema reference
 linkTitle: AWSClusterControllerIdentity
 technical_name: awsclustercontrolleridentities.infrastructure.cluster.x-k8s.io
-description:   AWSClusterControllerIdentity is the Schema for the awsclustercontrolleridentities API It is used to grant access to use Cluster API Provider AWS Controller credentials.
+description: |
+  AWSClusterControllerIdentity is the Schema for the awsclustercontrolleridentities API It is used to grant access to use Cluster API Provider AWS Controller credentials.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0

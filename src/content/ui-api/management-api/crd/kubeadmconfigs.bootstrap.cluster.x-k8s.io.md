@@ -2,7 +2,8 @@
 title: KubeadmConfig CRD schema reference
 linkTitle: KubeadmConfig
 technical_name: kubeadmconfigs.bootstrap.cluster.x-k8s.io
-description:   KubeadmConfig is the Schema for the kubeadmconfigs API
+description: |
+  KubeadmConfig is the Schema for the kubeadmconfigs API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0

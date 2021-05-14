@@ -2,7 +2,8 @@
 title: KubeadmConfigTemplate CRD schema reference
 linkTitle: KubeadmConfigTemplate
 technical_name: kubeadmconfigtemplates.bootstrap.cluster.x-k8s.io
-description:   KubeadmConfigTemplate is the Schema for the kubeadmconfigtemplates API
+description: |
+  KubeadmConfigTemplate is the Schema for the kubeadmconfigtemplates API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0

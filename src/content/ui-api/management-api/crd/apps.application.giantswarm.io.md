@@ -2,7 +2,8 @@
 title: App CRD schema reference
 linkTitle: App
 technical_name: apps.application.giantswarm.io
-description:   App represents a managed app which a user intended to install. It is reconciled by app-operator.
+description: |
+  App represents a managed app which a user intended to install. It is reconciled by app-operator.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0

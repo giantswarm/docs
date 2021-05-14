@@ -2,7 +2,8 @@
 title: AzureManagedControlPlane CRD schema reference
 linkTitle: AzureManagedControlPlane
 technical_name: azuremanagedcontrolplanes.exp.infrastructure.cluster.x-k8s.io
-description:   AzureManagedControlPlane is the Schema for the azuremanagedcontrolplanes API
+description: |
+  AzureManagedControlPlane is the Schema for the azuremanagedcontrolplanes API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0

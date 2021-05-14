@@ -2,7 +2,8 @@
 title: AzureManagedCluster CRD schema reference
 linkTitle: AzureManagedCluster
 technical_name: azuremanagedclusters.exp.infrastructure.cluster.x-k8s.io
-description:   AzureManagedCluster is the Schema for the azuremanagedclusters API
+description: |
+  AzureManagedCluster is the Schema for the azuremanagedclusters API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0

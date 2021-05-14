@@ -2,7 +2,8 @@
 title: AzureCluster CRD schema reference
 linkTitle: AzureCluster
 technical_name: azureclusters.infrastructure.cluster.x-k8s.io
-description:   AzureCluster is the Schema for the azureclusters API
+description: |
+  AzureCluster is the Schema for the azureclusters API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0

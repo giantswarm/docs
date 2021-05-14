@@ -2,7 +2,8 @@
 title: Chart CRD schema reference
 linkTitle: Chart
 technical_name: charts.application.giantswarm.io
-description:   Chart represents a Helm chart to be deployed as a Helm release. It is reconciled by chart-operator.
+description: |
+  Chart represents a Helm chart to be deployed as a Helm release. It is reconciled by chart-operator.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0

@@ -2,7 +2,8 @@
 title: AWSMachineTemplate CRD schema reference
 linkTitle: AWSMachineTemplate
 technical_name: awsmachinetemplates.infrastructure.cluster.x-k8s.io
-description:   AWSMachineTemplate is the Schema for the awsmachinetemplates API
+description: |
+  AWSMachineTemplate is the Schema for the awsmachinetemplates API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0

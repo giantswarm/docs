@@ -2,7 +2,8 @@
 title: AzureManagedMachinePool CRD schema reference
 linkTitle: AzureManagedMachinePool
 technical_name: azuremanagedmachinepools.exp.infrastructure.cluster.x-k8s.io
-description:   AzureManagedMachinePool is the Schema for the azuremanagedmachinepools API
+description: |
+  AzureManagedMachinePool is the Schema for the azuremanagedmachinepools API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0

@@ -2,7 +2,8 @@
 title: Machine CRD schema reference
 linkTitle: Machine
 technical_name: machines.cluster.x-k8s.io
-description:   Machine is the Schema for the machines API
+description: |
+  Machine is the Schema for the machines API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0

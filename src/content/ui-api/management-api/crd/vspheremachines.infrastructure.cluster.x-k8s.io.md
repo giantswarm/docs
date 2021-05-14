@@ -2,7 +2,8 @@
 title: VSphereMachine CRD schema reference
 linkTitle: VSphereMachine
 technical_name: vspheremachines.infrastructure.cluster.x-k8s.io
-description:   VSphereMachine is the Schema for the vspheremachines API
+description: |
+  VSphereMachine is the Schema for the vspheremachines API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0

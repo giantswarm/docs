@@ -2,7 +2,8 @@
 title: Release CRD schema reference
 linkTitle: Release
 technical_name: releases.release.giantswarm.io
-description:   Release is a Kubernetes resource (CR) representing a Giant Swarm workload cluster release.
+description: |
+  Release is a Kubernetes resource (CR) representing a Giant Swarm workload cluster release.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0

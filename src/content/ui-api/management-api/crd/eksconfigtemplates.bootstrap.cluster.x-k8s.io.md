@@ -2,7 +2,8 @@
 title: EKSConfigTemplate CRD schema reference
 linkTitle: EKSConfigTemplate
 technical_name: eksconfigtemplates.bootstrap.cluster.x-k8s.io
-description:   EKSConfigTemplate is the Schema for the eksconfigtemplates API
+description: |
+  EKSConfigTemplate is the Schema for the eksconfigtemplates API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0

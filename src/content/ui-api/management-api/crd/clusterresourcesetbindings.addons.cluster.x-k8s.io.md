@@ -2,7 +2,8 @@
 title: ClusterResourceSetBinding CRD schema reference
 linkTitle: ClusterResourceSetBinding
 technical_name: clusterresourcesetbindings.addons.cluster.x-k8s.io
-description:   ClusterResourceSetBinding lists all matching ClusterResourceSets with the cluster it belongs to.
+description: |
+  ClusterResourceSetBinding lists all matching ClusterResourceSets with the cluster it belongs to.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0

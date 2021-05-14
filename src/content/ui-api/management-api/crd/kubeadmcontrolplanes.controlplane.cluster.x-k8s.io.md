@@ -2,7 +2,8 @@
 title: KubeadmControlPlane CRD schema reference
 linkTitle: KubeadmControlPlane
 technical_name: kubeadmcontrolplanes.controlplane.cluster.x-k8s.io
-description:   KubeadmControlPlane is the Schema for the KubeadmControlPlane API.
+description: |
+  KubeadmControlPlane is the Schema for the KubeadmControlPlane API.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0

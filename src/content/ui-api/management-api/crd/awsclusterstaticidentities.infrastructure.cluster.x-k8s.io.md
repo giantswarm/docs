@@ -2,7 +2,8 @@
 title: AWSClusterStaticIdentity CRD schema reference
 linkTitle: AWSClusterStaticIdentity
 technical_name: awsclusterstaticidentities.infrastructure.cluster.x-k8s.io
-description:   AWSClusterStaticIdentity is the Schema for the awsclusterstaticidentities API It represents a reference to an AWS access key ID and secret access key, stored in a secret.
+description: |
+  AWSClusterStaticIdentity is the Schema for the awsclusterstaticidentities API It represents a reference to an AWS access key ID and secret access key, stored in a secret.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0

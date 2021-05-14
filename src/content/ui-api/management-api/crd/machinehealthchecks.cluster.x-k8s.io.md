@@ -2,7 +2,8 @@
 title: MachineHealthCheck CRD schema reference
 linkTitle: MachineHealthCheck
 technical_name: machinehealthchecks.cluster.x-k8s.io
-description:   MachineHealthCheck is the Schema for the machinehealthchecks API
+description: |
+  MachineHealthCheck is the Schema for the machinehealthchecks API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0

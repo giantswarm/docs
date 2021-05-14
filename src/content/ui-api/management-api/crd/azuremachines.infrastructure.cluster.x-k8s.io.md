@@ -2,7 +2,8 @@
 title: AzureMachine CRD schema reference
 linkTitle: AzureMachine
 technical_name: azuremachines.infrastructure.cluster.x-k8s.io
-description:   AzureMachine is the Schema for the azuremachines API
+description: |
+  AzureMachine is the Schema for the azuremachines API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0

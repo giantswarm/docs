@@ -2,7 +2,8 @@
 title: AWSManagedControlPlane CRD schema reference
 linkTitle: AWSManagedControlPlane
 technical_name: awsmanagedcontrolplanes.controlplane.cluster.x-k8s.io
-description:   AWSManagedControlPlane is the Schema for the awsmanagedcontrolplanes API
+description: |
+  AWSManagedControlPlane is the Schema for the awsmanagedcontrolplanes API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0

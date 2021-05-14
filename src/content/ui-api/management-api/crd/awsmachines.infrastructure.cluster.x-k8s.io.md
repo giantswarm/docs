@@ -2,7 +2,8 @@
 title: AWSMachine CRD schema reference
 linkTitle: AWSMachine
 technical_name: awsmachines.infrastructure.cluster.x-k8s.io
-description:   AWSMachine is the Schema for the awsmachines API
+description: |
+  AWSMachine is the Schema for the awsmachines API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0

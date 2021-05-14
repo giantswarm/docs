@@ -2,7 +2,8 @@
 title: EKSConfig CRD schema reference
 linkTitle: EKSConfig
 technical_name: eksconfigs.bootstrap.cluster.x-k8s.io
-description:   EKSConfig is the Schema for the eksconfigs API
+description: |
+  EKSConfig is the Schema for the eksconfigs API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0

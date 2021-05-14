@@ -2,7 +2,8 @@
 title: MachineSet CRD schema reference
 linkTitle: MachineSet
 technical_name: machinesets.cluster.x-k8s.io
-description:   MachineSet is the Schema for the machinesets API
+description: |
+  MachineSet is the Schema for the machinesets API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0

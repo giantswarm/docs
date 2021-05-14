@@ -2,7 +2,8 @@
 title: ClusterResourceSet CRD schema reference
 linkTitle: ClusterResourceSet
 technical_name: clusterresourcesets.addons.cluster.x-k8s.io
-description:   ClusterResourceSet is the Schema for the clusterresourcesets API
+description: |
+  ClusterResourceSet is the Schema for the clusterresourcesets API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0

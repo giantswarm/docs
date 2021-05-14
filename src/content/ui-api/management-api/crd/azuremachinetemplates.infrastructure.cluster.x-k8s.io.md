@@ -2,7 +2,8 @@
 title: AzureMachineTemplate CRD schema reference
 linkTitle: AzureMachineTemplate
 technical_name: azuremachinetemplates.infrastructure.cluster.x-k8s.io
-description:   AzureMachineTemplate is the Schema for the azuremachinetemplates API
+description: |
+  AzureMachineTemplate is the Schema for the azuremachinetemplates API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0

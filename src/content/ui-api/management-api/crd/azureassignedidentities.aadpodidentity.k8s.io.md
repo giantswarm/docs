@@ -2,8 +2,8 @@
 title: AzureAssignedIdentity CRD schema reference
 linkTitle: AzureAssignedIdentity
 technical_name: azureassignedidentities.aadpodidentity.k8s.io
-description: Custom resource definition (CRD) schema reference page for the AzureAssignedIdentity resource (azureassignedidentities.aadpodidentity.k8s.io), as part of the Giant Swarm Management API documentation.
-
+description: |
+  Custom resource definition (CRD) schema reference page for the AzureAssignedIdentity resource (azureassignedidentities.aadpodidentity.k8s.io), as part of the Giant Swarm Management API documentation.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0

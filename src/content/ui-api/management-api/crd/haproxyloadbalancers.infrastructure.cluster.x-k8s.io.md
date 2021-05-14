@@ -2,7 +2,8 @@
 title: HAProxyLoadBalancer CRD schema reference
 linkTitle: HAProxyLoadBalancer
 technical_name: haproxyloadbalancers.infrastructure.cluster.x-k8s.io
-description:   HAProxyLoadBalancer is the Schema for the haproxyloadbalancers API DEPRECATED: will be removed in v1alpha4
+description: |
+  HAProxyLoadBalancer is the Schema for the haproxyloadbalancers API DEPRECATED: will be removed in v1alpha4
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0

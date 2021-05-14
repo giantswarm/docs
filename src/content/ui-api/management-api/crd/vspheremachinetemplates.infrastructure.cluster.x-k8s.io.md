@@ -2,7 +2,8 @@
 title: VSphereMachineTemplate CRD schema reference
 linkTitle: VSphereMachineTemplate
 technical_name: vspheremachinetemplates.infrastructure.cluster.x-k8s.io
-description:   VSphereMachineTemplate is the Schema for the vspheremachinetemplates API
+description: |
+  VSphereMachineTemplate is the Schema for the vspheremachinetemplates API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0

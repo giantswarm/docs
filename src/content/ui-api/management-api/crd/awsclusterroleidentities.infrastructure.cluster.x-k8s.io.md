@@ -2,7 +2,8 @@
 title: AWSClusterRoleIdentity CRD schema reference
 linkTitle: AWSClusterRoleIdentity
 technical_name: awsclusterroleidentities.infrastructure.cluster.x-k8s.io
-description:   AWSClusterRoleIdentity is the Schema for the awsclusterroleidentities API It is used to assume a role using the provided sourceRef.
+description: |
+  AWSClusterRoleIdentity is the Schema for the awsclusterroleidentities API It is used to assume a role using the provided sourceRef.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0

@@ -2,7 +2,8 @@
 title: AWSManagedCluster CRD schema reference
 linkTitle: AWSManagedCluster
 technical_name: awsmanagedclusters.infrastructure.cluster.x-k8s.io
-description:   AWSManagedCluster is the Schema for the awsmanagedclusters API
+description: |
+  AWSManagedCluster is the Schema for the awsmanagedclusters API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0

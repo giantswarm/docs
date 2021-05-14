@@ -2,7 +2,8 @@
 title: VSphereVM CRD schema reference
 linkTitle: VSphereVM
 technical_name: vspherevms.infrastructure.cluster.x-k8s.io
-description:   VSphereVM is the Schema for the vspherevms API
+description: |
+  VSphereVM is the Schema for the vspherevms API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0

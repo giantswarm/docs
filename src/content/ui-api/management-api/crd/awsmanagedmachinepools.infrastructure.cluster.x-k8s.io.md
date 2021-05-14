@@ -2,7 +2,8 @@
 title: AWSManagedMachinePool CRD schema reference
 linkTitle: AWSManagedMachinePool
 technical_name: awsmanagedmachinepools.infrastructure.cluster.x-k8s.io
-description:   AWSManagedMachinePool is the Schema for the awsmanagedmachinepools API
+description: |
+  AWSManagedMachinePool is the Schema for the awsmanagedmachinepools API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0

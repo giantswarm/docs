@@ -2,7 +2,8 @@
 title: VSphereCluster CRD schema reference
 linkTitle: VSphereCluster
 technical_name: vsphereclusters.infrastructure.cluster.x-k8s.io
-description:   VSphereCluster is the Schema for the vsphereclusters API
+description: |
+  VSphereCluster is the Schema for the vsphereclusters API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.23.0
