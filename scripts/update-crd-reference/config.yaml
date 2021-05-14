@@ -1,0 +1,19 @@
+# Configuration file for crd-docs-generator
+source_repository:
+  url: https://github.com/giantswarm/apiextensions
+  organization: giantswarm
+  short_name: apiextensions
+skip_crds:
+  - chartconfigs.core.giantswarm.io
+  - clusters.core.giantswarm.io
+  - draughtsmanconfigs.core.giantswarm.io
+  - flannelconfigs.core.giantswarm.io
+  - ingressconfigs.core.giantswarm.io
+  - memcachedconfigs.example.giantswarm.io
+  - releasecycles.release.giantswarm.io
+  - drainerconfigs.core.giantswarm.io
+  - storageconfigs.core.giantswarm.io
+  - etcdbackups.backup.giantswarm.io
+  - azureclusterconfigs.core.giantswarm.io
+  - azureconfigs.provider.giantswarm.io
+  - azuretools.tooling.giantswarm.io

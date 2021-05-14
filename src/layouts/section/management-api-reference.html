@@ -1,0 +1,55 @@
+{{ partial "header" . }}
+
+<div class="row">
+  <div class="col-xs-12">
+    {{ partial "breadcrumb" . }}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4 col-lg-3 hidden-sm hidden-xs ">
+    {{ partialCached "sidebar_search_form" . }}
+    {{ partial "menu" . }}
+  </div>
+  <div class="col-sm-12 col-md-8 col-lg-9 list-content">
+    <h1 id="title">Custom Resource Definitions (CRD)</h2>
+
+    <p>Select the <abbr title="Custom Resource">CR</abbr>/<abbr title="Custom Resource Definition">CRD</abbr> name to get information on the custom resource versions and schema.</p>
+
+    <ul class="linklist crd-index">
+
+      {{ range .Pages.ByTitle }}
+      <li>
+          <a href="{{ .Permalink | relURL }}">{{ .LinkTitle }}</a>
+          <div class="meta">
+            {{ with .Params.technical_name }}
+              {{ $crdName := . }}
+              <p><code>{{ $crdName }}</code>
+              {{ with index $.Site.Data.crd_metadata $crdName }}
+                {{ $crdMetaData := . }}
+                  {{ with index $crdMetaData "provider" }}
+                    &mdash; Provider
+                    {{ range . }}
+                      <span class="tag tag-provider tag-provider-{{ . }}">{{ . }}</span>
+                    {{ end }}
+                  {{ end }}
+                  {{ with index $crdMetaData "topics" }}
+                    &mdash; Topic
+                    {{ range . }}
+                      <span class="tag tag-topic tag-topic-{{ . }}">{{ . }}</span>
+                    {{ end }}
+                  {{ end }}
+              {{ end }}
+              </p>
+            {{ end }}
+            <p>{{ .Description }}</p>
+          </div>
+      </li>
+      {{ end }}
+
+    </ul>
+
+  </div>
+</div>
+
+{{ partialCached "footer" . }}

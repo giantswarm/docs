@@ -13,6 +13,9 @@ default: true
 MD004:
   style: consistent
 
+MD007:
+  indent: 4
+
 # Ignore front matter in headline linting
 MD025:
   front_matter_title: ""
@@ -23,6 +26,9 @@ MD029:
 
 # Ignore inline HTML. We need this in certain places
 MD033: false
+
+# Ignore bare URLs, as this does not work with HUGO shortcodes
+MD034: false
 
 # Enforcing the rules below will require big changes in the entire repo.
 # So we exclude them for now.
