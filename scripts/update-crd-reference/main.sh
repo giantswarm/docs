@@ -14,7 +14,7 @@ VERSION=$(docker run --rm --entrypoint /bin/sh quay.io/giantswarm/docs-scriptrun
 echo "Version: ${VERSION}"
 
 # Generate new content
-docker run \
+docker run --rm \
     -v ${PWD}/${DESTINATION}:/opt/crd-docs-generator/output \
     -v ${PWD}/scripts/update-crd-reference:/opt/crd-docs-generator/config \
     quay.io/giantswarm/crd-docs-generator:${CRD_DOCS_GENERATOR_VERSION} \
