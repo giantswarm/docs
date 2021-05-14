@@ -2,10 +2,11 @@
 title: NetworkPool CRD schema reference
 linkTitle: NetworkPool
 technical_name: networkpools.infrastructure.giantswarm.io
-description:   NetworkPool is the infrastructure provider referenced in upstream CAPI Cluster CRs.
+description: |
+  NetworkPool is the infrastructure provider referenced in upstream CAPI Cluster CRs.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.22.0
+source_repository_ref: v3.23.0
 layout: crd
 aliases:
   - /reference/cp-k8s-api/networkpools.infrastructure.giantswarm.io/

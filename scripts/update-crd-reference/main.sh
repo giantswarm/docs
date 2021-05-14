@@ -2,7 +2,7 @@
 
 set -e
 
-CRD_DOCS_GENERATOR_VERSION=0.5.0
+CRD_DOCS_GENERATOR_VERSION=0.6.1
 DESTINATION=src/content/ui-api/management-api/crd
 
 # Clear output folder
@@ -14,7 +14,7 @@ VERSION=$(docker run --rm --entrypoint /bin/sh quay.io/giantswarm/docs-scriptrun
 echo "Version: ${VERSION}"
 
 # Generate new content
-docker run \
+docker run --rm \
     -v ${PWD}/${DESTINATION}:/opt/crd-docs-generator/output \
     -v ${PWD}/scripts/update-crd-reference:/opt/crd-docs-generator/config \
     quay.io/giantswarm/crd-docs-generator:${CRD_DOCS_GENERATOR_VERSION} \
