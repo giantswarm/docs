@@ -2,10 +2,11 @@
 title: AWSCluster CRD schema reference
 linkTitle: AWSCluster
 technical_name: awsclusters.infrastructure.giantswarm.io
-description:   AWSCluster is the infrastructure provider referenced in upstream CAPI Cluster CRs.
+description: |
+  AWSCluster is the infrastructure provider referenced in upstream CAPI Cluster CRs.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.22.0
+source_repository_ref: v3.23.0
 layout: crd
 aliases:
   - /reference/cp-k8s-api/awsclusters.infrastructure.giantswarm.io/
@@ -855,7 +856,7 @@ spec:
 </div>
 
 <div class="annotation-description">
-<p>This annotation is used for configuring the subnet size of AWSCluster or AWSMachineDeployment. The value is a number that will represent the subnet mask used when creating the subnet. This value must be smaller than 28 due to AWS restrictions.</p>
+<p>This annotation is used to configure the workload cluster&rsquo;s control plane subnet size when used on an <code>AWSCluster</code> resource or to configure the workload cluster&rsquo;s node pool subnet size when used on an <code>AWSMachineDeployment</code> resource. The value is a number that will represent the subnet mask used when creating the subnet. It must be smaller than 28 due to AWS restrictions.</p>
 
 </div>
 
