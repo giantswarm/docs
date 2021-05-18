@@ -6,7 +6,7 @@ description: |
   Catalog represents a catalog of managed apps. It stores general information for potential apps to install. It is reconciled by app-operator.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.24.0
+source_repository_ref: v3.25.0
 layout: crd
 aliases:
   - /reference/cp-k8s-api/catalogs.application.giantswarm.io/

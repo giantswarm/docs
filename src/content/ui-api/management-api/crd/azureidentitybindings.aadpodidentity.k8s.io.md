@@ -6,7 +6,7 @@ description: |
   Custom resource definition (CRD) schema reference page for the AzureIdentityBinding resource (azureidentitybindings.aadpodidentity.k8s.io), as part of the Giant Swarm Management API documentation.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.24.0
+source_repository_ref: v3.25.0
 layout: crd
 aliases:
   - /reference/cp-k8s-api/azureidentitybindings.aadpodidentity.k8s.io/
