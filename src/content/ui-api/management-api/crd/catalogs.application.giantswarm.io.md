@@ -1,32 +1,32 @@
 ---
-title: AppCatalog CRD schema reference
-linkTitle: AppCatalog
-technical_name: appcatalogs.application.giantswarm.io
+title: Catalog CRD schema reference
+linkTitle: Catalog
+technical_name: catalogs.application.giantswarm.io
 description: |
-  Deprecated, use Catalog CRD instead. AppCatalog represents a catalog of managed apps. It stores general information for potential apps to install. It is reconciled by app-operator.
+  Catalog represents a catalog of managed apps. It stores general information for potential apps to install. It is reconciled by app-operator.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.24.0
 layout: crd
 aliases:
-  - /reference/cp-k8s-api/appcatalogs.application.giantswarm.io/
+  - /reference/cp-k8s-api/catalogs.application.giantswarm.io/
 ---
 
-# AppCatalog
+# Catalog
 
 
-<p class="crd-description">Deprecated, use Catalog CRD instead. AppCatalog represents a catalog of managed apps. It stores general information for potential apps to install. It is reconciled by app-operator.</p>
+<p class="crd-description">Catalog represents a catalog of managed apps. It stores general information for potential apps to install. It is reconciled by app-operator.</p>
 <dl class="crd-meta">
 <dt class="fullname">Full name:</dt>
-<dd class="fullname">appcatalogs.application.giantswarm.io</dd>
+<dd class="fullname">catalogs.application.giantswarm.io</dd>
 <dt class="groupname">Group:</dt>
 <dd class="groupname">application.giantswarm.io</dd>
 <dt class="singularname">Singular name:</dt>
-<dd class="singularname">appcatalog</dd>
+<dd class="singularname">catalog</dd>
 <dt class="pluralname">Plural name:</dt>
-<dd class="pluralname">appcatalogs</dd>
+<dd class="pluralname">catalogs</dd>
 <dt class="scope">Scope:</dt>
-<dd class="scope">Cluster</dd>
+<dd class="scope">Namespaced</dd>
 <dt class="versions">Versions:</dt>
 <dd class="versions"><a class="version" href="#v1alpha1" title="Show schema for version v1alpha1">v1alpha1</a></dd>
 </dl>
@@ -41,12 +41,11 @@ aliases:
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
-kind: AppCatalog
+kind: Catalog
 metadata:
   creationTimestamp: null
-  labels:
-    app-operator.giantswarm.io/version: 1.0.0
   name: my-playground-catalog
+  namespace: default
 spec:
   config:
     configMap:
@@ -279,7 +278,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>LogoURL contains the links for logo image file for this app catalog</p>
+<p>LogoURL contains the links for logo image file for this catalog</p>
 
 </div>
 
@@ -297,7 +296,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Storage references a map containing values that should be applied to the appcatalog.</p>
+<p>Storage references a map containing values that should be applied to the catalog.</p>
 
 </div>
 
@@ -315,7 +314,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>URL is the link to where this AppCatalog&rsquo;s repository is located e.g. <a href="https://example.com/app-catalog/">https://example.com/app-catalog/</a></p>
+<p>URL is the link to where this Catalog&rsquo;s repository is located e.g. <a href="https://example.com/app-catalog/">https://example.com/app-catalog/</a></p>
 
 </div>
 
@@ -333,7 +332,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Type indicates which repository type would be used for this AppCatalog. e.g. helm</p>
+<p>Type indicates which repository type would be used for this Catalog. e.g. helm</p>
 
 </div>
 
@@ -351,7 +350,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Title is the name of the app catalog for this CR e.g. Catalog of Apps by Giant Swarm</p>
+<p>Title is the name of the catalog for this CR e.g. Catalog of Apps by Giant Swarm</p>
 
 </div>
 
