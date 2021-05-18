@@ -2,10 +2,11 @@
 title: AWSMachineDeployment CRD schema reference
 linkTitle: AWSMachineDeployment
 technical_name: awsmachinedeployments.infrastructure.giantswarm.io
-description:   AWSMachineDeployment is the infrastructure provider referenced in Kubernetes Cluster API MachineDeployment resources. It contains provider-specific specification and status for a node pool. In use on AWS since workload cluster release v10.x.x and reconciled by aws-operator.
+description: |
+  AWSMachineDeployment is the infrastructure provider referenced in Kubernetes Cluster API MachineDeployment resources. It contains provider-specific specification and status for a node pool. In use on AWS since workload cluster release v10.x.x and reconciled by aws-operator.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.22.0
+source_repository_ref: v3.23.0
 layout: crd
 aliases:
   - /reference/cp-k8s-api/awsmachinedeployments.infrastructure.giantswarm.io/
@@ -565,7 +566,7 @@ spec:
 </div>
 
 <div class="annotation-description">
-<p>This annotation is used for configuring the subnet size of AWSCluster or AWSMachineDeployment. The value is a number that will represent the subnet mask used when creating the subnet. This value must be smaller than 28 due to AWS restrictions.</p>
+<p>This annotation is used to configure the workload cluster&rsquo;s control plane subnet size when used on an <code>AWSCluster</code> resource or to configure the workload cluster&rsquo;s node pool subnet size when used on an <code>AWSMachineDeployment</code> resource. The value is a number that will represent the subnet mask used when creating the subnet. It must be smaller than 28 due to AWS restrictions.</p>
 
 </div>
 

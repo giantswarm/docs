@@ -6,7 +6,7 @@ changes_categories:
 - Workload cluster releases for KVM
 changes_entry:
   repository: giantswarm/releases
-  url: https://github.com/giantswarm/releases/tree/master/kvm/v12.3.3
+  url: https://github.com/giantswarm/releases/tree/master/kvm/archived/v12.3.3
   version: 12.3.3
   version_tag: v12.3.3
 date: '2021-02-23T12:00:00+00:00'

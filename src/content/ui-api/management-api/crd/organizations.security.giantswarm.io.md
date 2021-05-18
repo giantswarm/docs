@@ -2,10 +2,11 @@
 title: Organization CRD schema reference
 linkTitle: Organization
 technical_name: organizations.security.giantswarm.io
-description:   Organization represents schema for managed Kubernetes namespace. Reconciled by organization-operator.
+description: |
+  Organization represents schema for managed Kubernetes namespace. Reconciled by organization-operator.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.22.0
+source_repository_ref: v3.23.0
 layout: crd
 aliases:
   - /reference/cp-k8s-api/organizations.security.giantswarm.io/
@@ -111,6 +112,37 @@ spec:
 <div class="property-meta">
 <span class="property-type">object</span>
 <span class="property-required">Required</span>
+</div>
+
+</div>
+</div>
+
+<div class="property depth-0">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.status">.status</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.status.namespace">.status.namespace</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Namespace is the namespace containing the resources for this organization.</p>
+
 </div>
 
 </div>
