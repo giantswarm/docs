@@ -6,7 +6,7 @@ description: |
   Spark is a placeholder resource to allow for the creation of ignition templates in Azure workload clusters, as of workload cluster release v13.0.0. Reconciled by azure-operator.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.23.0
+source_repository_ref: v3.25.0
 layout: crd
 aliases:
   - /reference/cp-k8s-api/sparks.core.giantswarm.io/

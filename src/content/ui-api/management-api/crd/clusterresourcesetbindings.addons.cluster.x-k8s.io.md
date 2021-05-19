@@ -6,7 +6,7 @@ description: |
   ClusterResourceSetBinding lists all matching ClusterResourceSets with the cluster it belongs to.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.23.0
+source_repository_ref: v3.25.0
 layout: crd
 aliases:
   - /reference/cp-k8s-api/clusterresourcesetbindings.addons.cluster.x-k8s.io/

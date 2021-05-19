@@ -1,28 +1,30 @@
 ---
-title: CertConfig CRD schema reference
-linkTitle: CertConfig
-technical_name: certconfigs.core.giantswarm.io
+title: Catalog CRD schema reference
+linkTitle: Catalog
+technical_name: catalogs.application.giantswarm.io
 description: |
-  Custom resource definition (CRD) schema reference page for the CertConfig resource (certconfigs.core.giantswarm.io), as part of the Giant Swarm Management API documentation.
+  Catalog represents a catalog of managed apps. It stores general information for potential apps to install. It is reconciled by app-operator.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v3.25.0
 layout: crd
 aliases:
-  - /reference/cp-k8s-api/certconfigs.core.giantswarm.io/
+  - /reference/cp-k8s-api/catalogs.application.giantswarm.io/
 ---
 
-# CertConfig
+# Catalog
 
+
+<p class="crd-description">Catalog represents a catalog of managed apps. It stores general information for potential apps to install. It is reconciled by app-operator.</p>
 <dl class="crd-meta">
 <dt class="fullname">Full name:</dt>
-<dd class="fullname">certconfigs.core.giantswarm.io</dd>
+<dd class="fullname">catalogs.application.giantswarm.io</dd>
 <dt class="groupname">Group:</dt>
-<dd class="groupname">core.giantswarm.io</dd>
+<dd class="groupname">application.giantswarm.io</dd>
 <dt class="singularname">Singular name:</dt>
-<dd class="singularname">certconfig</dd>
+<dd class="singularname">catalog</dd>
 <dt class="pluralname">Plural name:</dt>
-<dd class="pluralname">certconfigs</dd>
+<dd class="pluralname">catalogs</dd>
 <dt class="scope">Scope:</dt>
 <dd class="scope">Namespaced</dd>
 <dt class="versions">Versions:</dt>
@@ -38,27 +40,26 @@ aliases:
 <h3 id="crd-example-v1alpha1">Example CR</h3>
 
 ```yaml
-apiVersion: core.giantswarm.io/v1alpha1
-kind: CertConfig
+apiVersion: application.giantswarm.io/v1alpha1
+kind: Catalog
 metadata:
-  annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/reference/cp-k8s-api/certconfigs.core.giantswarm.io/
   creationTimestamp: null
-  name: c68pn-prometheus
+  name: my-playground-catalog
+  namespace: default
 spec:
-  cert:
-    allowBareDomains: false
-    altNames:
-    - api.c68pn.gollum.westeurope.azure.gigantic.io
-    clusterComponent: prometheus
-    clusterID: c68pn
-    commonName: api.c68pn.k8s.gollum.westeurope.azure.gigantic.io
-    disableRegeneration: false
-    organizations:
-    - giantswarm
-    ttl: 4320h
-  versionBundle:
-    version: 0.1.0
+  config:
+    configMap:
+      name: my-playground-catalog
+      namespace: my-namespace
+    secret:
+      name: my-playground-catalog
+      namespace: my-namespace
+  description: A catalog to store all new application packages.
+  logoURL: https://my-org.github.com/logo.png
+  storage:
+    URL: https://my-org.github.com/my-playground-catalog/
+    type: helm
+  title: My Playground Catalog
 ```
 
 
@@ -108,7 +109,7 @@ spec:
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">object</span>
-<span class="property-required">Required</span>
+
 </div>
 
 </div>
@@ -129,12 +130,17 @@ spec:
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.cert">.spec.cert</h3>
+<h3 class="property-path" id="v1alpha1-.spec.config">.spec.config</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">object</span>
-<span class="property-required">Required</span>
+
+</div>
+
+<div class="property-description">
+<p>Config is the config to be applied when apps belonging to this catalog are deployed.</p>
+
 </div>
 
 </div>
@@ -142,24 +148,16 @@ spec:
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.cert.allowBareDomains">.spec.cert.allowBareDomains</h3>
+<h3 class="property-path" id="v1alpha1-.spec.config.configMap">.spec.config.configMap</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
-<span class="property-required">Required</span>
-</div>
+<span class="property-type">object</span>
 
 </div>
-</div>
 
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.cert.altNames">.spec.cert.altNames</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">array</span>
+<div class="property-description">
+<p>ConfigMap references a config map containing catalog values that should be applied to apps in this catalog.</p>
 
 </div>
 
@@ -168,20 +166,7 @@ spec:
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.cert.altNames[*]">.spec.cert.altNames[*]</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.cert.clusterComponent">.spec.cert.clusterComponent</h3>
+<h3 class="property-path" id="v1alpha1-.spec.config.configMap.name">.spec.config.configMap.name</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -189,55 +174,8 @@ spec:
 <span class="property-required">Required</span>
 </div>
 
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.cert.clusterID">.spec.cert.clusterID</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.cert.commonName">.spec.cert.commonName</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.cert.disableRegeneration">.spec.cert.disableRegeneration</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">boolean</span>
-<span class="property-required">Required</span>
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.cert.ipSans">.spec.cert.ipSans</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">array</span>
+<div class="property-description">
+<p>Name is the name of the config map containing catalog values to apply, e.g. app-catalog-values.</p>
 
 </div>
 
@@ -246,11 +184,16 @@ spec:
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.cert.ipSans[*]">.spec.cert.ipSans[*]</h3>
+<h3 class="property-path" id="v1alpha1-.spec.config.configMap.namespace">.spec.config.configMap.namespace</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Namespace is the namespace of the catalog values config map, e.g. giantswarm.</p>
 
 </div>
 
@@ -259,11 +202,16 @@ spec:
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.cert.organizations">.spec.cert.organizations</h3>
+<h3 class="property-path" id="v1alpha1-.spec.config.secret">.spec.config.secret</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Secret references a secret containing catalog values that should be applied to apps in this catalog.</p>
 
 </div>
 
@@ -272,20 +220,43 @@ spec:
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.cert.organizations[*]">.spec.cert.organizations[*]</h3>
+<h3 class="property-path" id="v1alpha1-.spec.config.secret.name">.spec.config.secret.name</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Name is the name of the secret containing catalog values to apply, e.g. app-catalog-secret.</p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.cert.ttl">.spec.cert.ttl</h3>
+<h3 class="property-path" id="v1alpha1-.spec.config.secret.namespace">.spec.config.secret.namespace</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Namespace is the namespace of the secret, e.g. giantswarm.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.description">.spec.description</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -298,7 +269,25 @@ spec:
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.versionBundle">.spec.versionBundle</h3>
+<h3 class="property-path" id="v1alpha1-.spec.logoURL">.spec.logoURL</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>LogoURL contains the links for logo image file for this catalog</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.storage">.spec.storage</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -306,17 +295,63 @@ spec:
 <span class="property-required">Required</span>
 </div>
 
+<div class="property-description">
+<p>Storage references a map containing values that should be applied to the catalog.</p>
+
+</div>
+
 </div>
 </div>
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.versionBundle.version">.spec.versionBundle.version</h3>
+<h3 class="property-path" id="v1alpha1-.spec.storage.URL">.spec.storage.URL</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
 <span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>URL is the link to where this Catalog&rsquo;s repository is located e.g. <a href="https://example.com/app-catalog/">https://example.com/app-catalog/</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.storage.type">.spec.storage.type</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Type indicates which repository type would be used for this Catalog. e.g. helm</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.title">.spec.title</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Title is the name of the catalog for this CR e.g. Catalog of Apps by Giant Swarm</p>
+
 </div>
 
 </div>
