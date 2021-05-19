@@ -14,7 +14,7 @@ owner:
 
 # Automatic termination of unhealthy nodes
 
-{{< platform_support_table aws="alpha=v12.6.0" aws="GA=v15.0.0" azure="alpha=v13.1.0" kvm="alpha=v14.0.0" >}}
+{{< platform_support_table aws="alpha=v12.6.0" aws="ga=v15.0.0" azure="alpha=v13.1.0" kvm="alpha=v14.0.0" >}}
 
 ## Introduction
 
