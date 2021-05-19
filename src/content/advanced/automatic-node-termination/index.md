@@ -22,7 +22,7 @@ Degraded nodes in a Kubernetes cluster should be a rare issue, however when it o
 
 Starting with workload cluster release v12.6.0 for AWS, v13.1.0 for Azure and v14.0.0 for KVM, you now have the option to automate the detection and termination of bad nodes. When enabled, all nodes in your cluster are periodically checked. If a node fails consecutive health checks over an extended time period, it will be drained and terminated.
 
-From release `v15.0.0` the feature is **enabled by default**.
+From AWS release `v15.0.0` the feature is **enabled by default**. On other providers it has to be enabled.
 
 ## Technical details
 
