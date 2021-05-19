@@ -36,7 +36,9 @@ Automatic termination of unhealthy nodes is **enabled by default** on AWS since 
 
 This section explains how you can enable the feature for each supported provider.
 
-### AWS release < v15.0.0
+### AWS
+
+#### Workload cluster releases v12.6.x to v14.x.x
 
 To enable it, you have to edit the [`AWSCluster`]({{< relref "/ui-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) resource of your cluster using the [Management API]({{< relref "/ui-api/management-api/" >}}).
 
