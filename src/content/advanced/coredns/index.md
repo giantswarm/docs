@@ -93,7 +93,7 @@ To learn more about the exact details of each log level log plugin, please read 
 
 ### Resource limits
 
-We set resource limits for the CoreDNS deployment. For larger clusters these may need to be increased. This can be done in the user ConfigMap like this: 
+We set resource limits for the CoreDNS deployment. For larger clusters these may need to be increased. This can be done in the user ConfigMap like this:
 
 ```yaml
 data:
