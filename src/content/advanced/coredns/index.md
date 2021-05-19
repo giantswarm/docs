@@ -9,6 +9,7 @@ menu:
 user_questions:
   - How can I override the default CoreDNS configuration?
   - How can I customize the CoreDNS configuration?
+  - How can I adjust resource limits for CoreDNS?
   - Where is the user values ConfigMap for CoreDNS?
 aliases:
   - /guides/advanced-coredns-configuration/
@@ -89,6 +90,21 @@ data:
 ```
 
 To learn more about the exact details of each log level log plugin, please read the [upstream documentation](https://coredns.io/plugins/log/).
+
+### Resource limits
+
+We set resource limits for the CoreDNS deployment. For larger clusters these may need to be increased. This can be done in the user ConfigMap like this: 
+
+```yaml
+data:
+  values: |
+    resources:
+      limits:
+        memory: 512Mi
+      requests:
+        cpu: 250m
+        memory: 512Mi
+```
 
 ## Additional forwards (formerly known as proxy) {#additional-forwards}
 
