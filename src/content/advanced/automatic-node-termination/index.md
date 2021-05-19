@@ -14,13 +14,15 @@ owner:
 
 # Automatic termination of unhealthy nodes
 
-{{< platform_support_table aws="alpha=v12.6.0" azure="alpha=v13.1.0" kvm="alpha=v14.0.0" >}}
+{{< platform_support_table aws="alpha=v12.6.0" aws="GA=v15.0.0" azure="alpha=v13.1.0" kvm="alpha=v14.0.0" >}}
 
 ## Introduction
 
 Degraded nodes in a Kubernetes cluster should be a rare issue, however when it occurs, it can have severe consequences for the workloads scheduled to the affected nodes. The goal should be to detect bad nodes early and remove them from the cluster, replacing them with healthy ones.
 
 Starting with workload cluster release v12.6.0 for AWS, v13.1.0 for Azure and v14.0.0 for KVM, you now have the option to automate the detection and termination of bad nodes. When enabled, all nodes in your cluster are periodically checked. If a node fails consecutive health checks over an extended time period, it will be drained and terminated.
+
+From release `v15.0.0` the feature is **enabled by default**.
 
 ## Technical details
 
@@ -30,11 +32,11 @@ An unhealthy status means the `kubelet` on a given node has reported `NotReady` 
 
 ## Enabling automatic termination
 
-Automatic termination of unhealthy nodes is **disabled by default**. You can enable it for each individual cluster.
+Automatic termination of unhealthy nodes is **enabled by default** for releases greater or equal to `v15.0.0` nd  **disabled by default** for older releases.
 
 This section explains how you can enable the feature for each supported provider.
 
-### AWS
+### AWS release < v15.0.0
 
 To enable it, you have to edit the [`AWSCluster`]({{< relref "/ui-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) resource of your cluster using the [Management API]({{< relref "/ui-api/management-api/" >}}).
 
@@ -57,6 +59,28 @@ spec:
 ```
 
 If you want to disable the feature you must remove the annotation from the [`AWSCluster`]({{< relref "/ui-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) custom resource.
+
+### AWS release >= v15.0.0
+To disable it, you have to edit the [`AWSCluster`]({{< relref "/ui-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) resource of your cluster using the [Management API]({{< relref "/ui-api/management-api/" >}}).
+
+Make sure the resource has the `node.giantswarm.io/terminate-unhealthy` annotation. The value to disable the feature needs to be `false`.
+
+```yaml
+apiVersion: infrastructure.giantswarm.io/v1alpha2
+kind: AWSCluster
+metadata:
+  annotations:
+    node.giantswarm.io/terminate-unhealthy: "false"
+  labels:
+    giantswarm.io/cluster: jni9x
+    giantswarm.io/organization: giantswarm
+    release.giantswarm.io/version: 12.6.0
+  name: jni9x
+  namespace: default
+spec:
+  ...
+```
+
 
 ### Azure
 
