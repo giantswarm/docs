@@ -6,7 +6,7 @@ description: |
   App represents a managed app which a user intended to install. It is reconciled by app-operator.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.25.0
+source_repository_ref: v3.26.0
 layout: crd
 aliases:
   - /reference/cp-k8s-api/apps.application.giantswarm.io/
@@ -50,6 +50,7 @@ metadata:
   namespace: default
 spec:
   catalog: my-playground-catalog
+  catalogNamespace: giantswarm
   config:
     configMap:
       name: f2def-cluster-values
@@ -159,6 +160,24 @@ spec:
 
 <div class="property-description">
 <p>Catalog is the name of the app catalog this app belongs to. e.g. giantswarm</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.catalogNamespace">.spec.catalogNamespace</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>CatalogNamespace is the namespace of the Catalog CR this app belongs to. e.g. giantswarm</p>
 
 </div>
 
