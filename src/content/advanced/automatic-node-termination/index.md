@@ -64,7 +64,7 @@ If you want to disable the feature you must remove the annotation from the [`AWS
 
 ### Workload cluster releases v15.x.x and newer
 
-To disable automatic termination of unhealthy nodes, you have to edit the [`AWSCluster`]({{< relref "/ui-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) resource of your cluster using the [Management API]({{< relref "/ui-api/management-api/" >}}).
+To disable automatic termination of unhealthy nodes, edit the [`AWSCluster`]({{< relref "/ui-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) resource of your cluster using the [Management API]({{< relref "/ui-api/management-api/" >}}).
 
 Make sure the resource has the annotation
 
