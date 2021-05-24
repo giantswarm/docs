@@ -40,7 +40,7 @@ This section explains how you can enable the feature for each supported provider
 
 #### Workload cluster releases v12.6.x to v14.x.x
 
-To enable it, you have to edit the [`AWSCluster`]({{< relref "/ui-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) resource of your cluster using the [Management API]({{< relref "/ui-api/management-api/" >}}).
+To enable the feature, edit the [`AWSCluster`]({{< relref "/ui-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) resource of your cluster using the [Management API]({{< relref "/ui-api/management-api/" >}}).
 
 Make sure the resource has the `alpha.node.giantswarm.io/terminate-unhealthy` annotation. The value can be anything you like, as only the presence of that annotation is checked. Here is an example:
 
