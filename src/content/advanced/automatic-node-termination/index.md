@@ -32,7 +32,7 @@ An unhealthy status means the `kubelet` on a given node has reported `NotReady` 
 
 ## Enabling automatic termination
 
-Automatic termination of unhealthy nodes is **enabled by default** on AWS since release `v15.0.0` and  **disabled by default** for older releases.
+Automatic termination of unhealthy nodes is **enabled by default** on AWS as of release `v15.0.0`. It continues to be **disabled by default** for older releases.
 
 This section explains how you can enable the feature for each supported provider.
 
