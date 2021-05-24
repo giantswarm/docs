@@ -91,7 +91,7 @@ spec:
 
 To enable automatic termination of unhealthy nodes, edit the [`Cluster`]({{< relref "/ui-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) resource of your cluster using the [Management API]({{< relref "/ui-api/management-api" >}}).
 
-Make sure the resource has the `alpha.node.giantswarm.io/terminate-unhealthy` annotation. The value can be anything you like, as only the presence of that annotation is checked. Here is an example:
+Make sure the resource has the `alpha.node.giantswarm.io/terminate-unhealthy` annotation. The value can be anything you like, as just the presence of that annotation is checked. Here is an example:
 
 ```yaml
 apiVersion: cluster.x-k8s.io/v1alpha3
