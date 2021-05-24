@@ -42,6 +42,7 @@ Master nodes matter much more than worker nodes in order to achieve better avail
 The master hosts the critical components like the API, scheduler, ETCD... The load of this components will directly depend on the amount of resources they are managing, API requests and events happening in the cluster.
 
 In order to have high availability we recommend:
+
 - Cluster with 50 nodes or 1000 pods should and single master should use m5.2xlarge instance types or higher.
 - Cluster with 100 nodes or 2000 pods should use m5.4xlarge or High Availability with m5.2xlarge instances.
 
