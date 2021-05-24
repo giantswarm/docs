@@ -6,7 +6,7 @@ description: |
   AWSMachine is the Schema for the awsmachines API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.25.0
+source_repository_ref: v3.26.0
 layout: crd
 aliases:
   - /reference/cp-k8s-api/awsmachines.infrastructure.cluster.x-k8s.io/
