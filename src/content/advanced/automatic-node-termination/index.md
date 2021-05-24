@@ -28,7 +28,7 @@ From AWS workload cluster release v15.0.0 the feature is enabled by default. In 
 
 The node's health status is used to determine if a node needs to be terminated. A node reporting a `Ready` status is considered healthy. If a node reports an unhealthy status continuously for a given time threshold it will be recycled.
 
-An unhealthy status means the `kubelet` on a given node has reported `NotReady` status on consecutive checks over a certain time threshold (approximately 15 minutes).
+An unhealthy status means the `kubelet` on a given node has reported `NotReady` status on consecutive checks (aproximately every 2-3 minutes)  over a certain time threshold (approximately 15 minutes).
 
 ## Enabling automatic termination
 
