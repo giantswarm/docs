@@ -112,7 +112,7 @@ We encourage you to try out this playground catalog and the different apps offer
 
 ### Installing your own App Catalog
 
-It’s possible to create your own App Catalog. This is useful if you want to create a set of apps available to your company. Currently, this functionality is only available through direct access to the Giant Swarm Management API. You can request access from your Solution Engineer. Prerequisite for this is a standard Helm chart repository. It should be served through HTTP and accessible to the management cluster and your workload clusters.
+It’s possible to create your own App Catalog. This is useful if you want to create a set of apps available to your company. Currently, this functionality is only available through direct access to the Giant Swarm Management API. You can request access from your Account Engineer. Prerequisite for this is a standard Helm chart repository. It should be served through HTTP and accessible to the management cluster and your workload clusters.
 
 ### How can I interact with the Giant Swarm App Platform
 
