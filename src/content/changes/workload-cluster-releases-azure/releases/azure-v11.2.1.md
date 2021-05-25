@@ -26,7 +26,7 @@ title: Workload cluster release v11.2.1 for Azure
 Here, you will find the NGINX IC to be more elastic thus driving down your costs. The criteria for which cluster profiles are selected will be adjusted as we collect data from running in production.
 Version development included work with the upstream maintainer. Prior to release, we ran trials with customers. We performed these tests on small and large clusters alike, in order to ensure stability and scalability.
 
-To upgrade, please contact your Solution Engineer.
+To upgrade, please contact your Account Engineer.
 
 Below, you can find more details on components that were changed with this release.
 

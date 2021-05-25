@@ -17,9 +17,9 @@ title: Workload cluster release v12.1.1 for AWS
 
 This release provides new aws-operator version with reliability improvements and upgrades kiam-app from v1.3.1 to v1.4.0, to align with Cert Manager v0.16.1 API changes.
 
-**This version of Cert Manager no longer reconciles your existing resources** due to changes in its API. Manual intervention is required to update affected resources. While the negative impact to your workloads is low-to-none, to minimize disruption, **we recommend discussing this upgrade with your Solution Engineer**.
+**This version of Cert Manager no longer reconciles your existing resources** due to changes in its API. Manual intervention is required to update affected resources. While the negative impact to your workloads is low-to-none, to minimize disruption, **we recommend discussing this upgrade with your Account Engineer**.
 
-**Note for Solution Engineers:**
+**Note for Account Engineers:**
 
 Please use this [upgrade script](https://github.com/giantswarm/cert-manager-app/blob/master/files/migrate-v090-to-v200.sh) to assist with the process. Due to changes in Cert Manager's API, associated Ingresses and Secrets must also be updated to ensure they are reconciled by Cert Manager.
 

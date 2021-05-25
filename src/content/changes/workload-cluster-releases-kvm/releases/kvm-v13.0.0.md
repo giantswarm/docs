@@ -24,7 +24,7 @@ This release upgrades Kubernetes to 1.18 and Calico to 3.15. It also includes ot
 
 Kubernetes 1.18 includes a large number of features, deprecations, and bug fixes. We have attempted to summarize the changes relevant to Giant Swarm customers in the following section. The full list of changes can be viewed [here](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.18.md).
 
-Please discuss with your Giant Swarm solution engineer if you are unsure about a cluster's Kubernetes 1.18 upgrade readiness.
+Please discuss with your Giant Swarm Account Engineer if you are unsure about a cluster's Kubernetes 1.18 upgrade readiness.
 
 #### kube-apiserver
 - The following features are unconditionally enabled and the corresponding `--feature-gates` flags have been removed: `PodPriority`, `TaintNodesByCondition`, `ResourceQuotaScopeSelectors` and `ScheduleDaemonSetPods`.

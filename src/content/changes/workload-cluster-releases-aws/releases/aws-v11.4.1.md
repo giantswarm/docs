@@ -18,7 +18,7 @@ title: Workload cluster release v11.4.1 for AWS
 This release re-activates the recent AWS [release of high-availability (HA) masters](https://docs.giantswarm.io/changes/tenant-cluster-releases-aws/releases/aws-v11.4.0/), fixing OIDC configurations issues.
 
 
-**Note for Solution Engineers:** This release contains an external-dns fix introduced in
+**Note for Account Engineers:** This release contains an external-dns fix introduced in
 [11.3.2](https://github.com/giantswarm/releases/blob/master/aws/v11.3.2/release-notes.md).
 It requires manual intervention for cluster upgrades in China to work. When upgrading a
 cluster, existing ingress `A+TXT` record sets do not get replaced with `CNAME+TXT` record sets

@@ -21,7 +21,7 @@ We experienced issues with stuck upgrades where not enough quota was available, 
 
 The release also includes reliability improvements to these pre-installed apps: NGINX Ingress Controller and kube-state-metrics.
 
-To upgrade, please contact your Solution Engineer.
+To upgrade, please contact your Account Engineer.
 
 Below, you can find more details on components that were changed with this release.
 
