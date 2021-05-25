@@ -27,7 +27,7 @@ Our support shifts run from 08:00 to 18:00 (CET) on Monday-Friday. While product
 
 If there is a problem that the first line support cannot resolve, it is handed over to the Ops Duty engineer, who has deeper knowledge of the platform. This is a 24 hour rotating shift.
 
-Each customer has a dedicated Solution Engineer who holds regular sync meetings to discuss customer needs and issues. This go-to person provides additional support and acts as a first backup in case the person on first line support is overloaded.
+Each customer has a dedicated Account Engineer who holds regular sync meetings to discuss customer needs and issues. This go-to person provides additional support and acts as a first backup in case the person on first line support is overloaded.
 
 Project level work (e.g. installations) is handled by an SRE of the week. This person also serves as backup for the Ops Duty engineer.
 
