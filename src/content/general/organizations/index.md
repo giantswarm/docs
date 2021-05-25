@@ -56,38 +56,36 @@ At Giant Swarm, for example, we run several shared installations where we allow 
 
 Organizations are transitioning from being managed completely by microservices behind our REST API to becoming entities you can manage fully via the Management API. In this section we dissect where we are coming from, where we are heading, and what the current situation is on the different providers.
 
-**2016 to present: REST API**
+- **2016 to present: REST API**
 
-- Our REST API provides [functions to manage organizations](https://docs.giantswarm.io/api/#tag/organizations).
-- Each workload cluster is owned by an organization.
-- Customers assign users with proprietary Giant Swarm user accounts to organizations as members, in which they have full permissions.
+    - Our REST API provides [functions to manage organizations](https://docs.giantswarm.io/api/#tag/organizations).
+    - Each workload cluster is owned by an organization.
+    - Customers assign users with proprietary Giant Swarm user accounts to organizations as members, in which they have full permissions.
 
-**2019: introduction of the Management API**
+- **2019: introduction of the Management API**
 
-- In order to give customers full access to management clusters, workload cluster and app resources, we provide experimental access to the Kubernetes API of management clusters, which we now call the Management API. (We used to call it the _Control Plane API_ back then.)
-- For authentication we introduce OpenID Connect (OIDC), using the customer's own identity provider. We decide to abandon the proprietary Giant Swarm user account, used for the REST API, in the long run.
-- In the beginning, the concept of the organization does not exist in the Management API.
-- Cluster resources carry an annotation `giantswarm.io/organization` to indicate which organization they are assigned to via the REST API.
+    - In order to give customers full access to management clusters, workload cluster and app resources, we provide experimental access to the Kubernetes API of management clusters, which we now call the Management API. (We used to call it the _Control Plane API_ back then.)
+    - For authentication we introduce OpenID Connect (OIDC), using the customer's own identity provider. We decide to abandon the proprietary Giant Swarm user account, used for the REST API, in the long run.
+    - In the beginning, the concept of the organization does not exist in the Management API.
+    - Cluster resources carry an annotation `giantswarm.io/organization` to indicate which organization they are assigned to via the REST API.
 
-**2020: introduction of the organization concept in the Management API**
+- **2020: introduction of the organization concept in the Management API**
 
-- With the [Organization CRD]({{< relref "/ui-api/management-api/crd/organizations.security.giantswarm.io.md" >}}) we introduce an entity in the Management API to represent an organization.
-- Operators ensure that a namespace exists for each organization in the management cluster.
-- Starting with workload cluster release v13.0.0 for Azure, cluster resources are created in the owner organization's namespace.
+    - With the [Organization CRD]({{< relref "/ui-api/management-api/crd/organizations.security.giantswarm.io.md" >}}) we introduce an entity in the Management API to represent an organization.
+    - Operators ensure that a namespace exists for each organization in the management cluster.
+    - Starting with workload cluster release v13.0.0 for Azure, cluster resources are created in the owner organization's namespace.
 
-**2021: synchronization of organizations in REST API and Management API**
+- **2021: synchronization of organizations in REST API and Management API**
 
-- We make sure that for each organization defined in the REST API, there is a companion in the Management API, and vice versa. And when one gets deleted, the companion gets deleted, too.
+    - We make sure that for each organization defined in the REST API, there is a companion in the Management API, and vice versa. And when one gets deleted, the companion gets deleted, too.
 
-  Naming conventions for Management API organization names are more restricted than the REST API names were. In cases where the REST API organization name uses characters that are not supported in the management API (uppercase letters and underscores), the Organization CR will be names using only lowercase letters and using the dash (`-`) as the only special character. However, in the web interface, you will still see the original name of the organization.
+      Naming conventions for Management API organization names are more restricted than the REST API names were. In cases where the REST API organization name uses characters that are not supported in the management API (uppercase letters and underscores), the Organization CR will be names using only lowercase letters and using the dash (`-`) as the only special character. However, in the web interface, you will still see the original name of the organization.
 
-**Further plans**
+- **Further plans**
 
-- We are migrating our [web user interface]({{< relref "/ui-api/web" >}}) from using the REST API to the Management API. This also brings a switch from authentication via proprietary Giant Swarm user accounts to single sign-on (SSO), using your own identity provider. Once the switch is made, you will work with Management API organizations directly and there will be no longer such a thing as "membership" for an organization.
-
-- All resources related to workload clusters and apps should reside in the owner organization's namespace. See [roadmap#103](https://github.com/giantswarm/roadmap/issues/103) for details. As a next step, this will be implemented for AWS workload clusters. On-premises/KVM will follow. For details regarding the state on the different providers, see [namespace use in different providers](#namespace-use) further down.
-
-- Once the web user interface only relies on the Management API as a backend, we will start supporting a variety of different user permissions. For example, based on RBAC it will be possible to admit users who have read permissions only. The web user interface will adapt to these restricted permissions and provide a good user experience, regardless of the permissions a user has. This will allow you to permit more users access to the web UI, using identities (user groups and individuals) from your own identity provider, authenticating via single-sign-on.
+    - We are migrating our [web user interface]({{< relref "/ui-api/web" >}}) from using the REST API to the Management API. This also brings a switch from authentication via proprietary Giant Swarm user accounts to single sign-on (SSO), using your own identity provider. Once the switch is made, you will work with Management API organizations directly and there will be no longer such a thing as "membership" for an organization.
+    - All resources related to workload clusters and apps should reside in the owner organization's namespace. See [roadmap#103](https://github.com/giantswarm/roadmap/issues/103) for details. As a next step, this will be implemented for AWS workload clusters. On-premises/KVM will follow. For details regarding the state on the different providers, see [namespace use in different providers](#namespace-use) further down.
+    - Once the web user interface only relies on the Management API as a backend, we will start supporting a variety of different user permissions. For example, based on RBAC it will be possible to admit users who have read permissions only. The web user interface will adapt to these restricted permissions and provide a good user experience, regardless of the permissions a user has. This will allow you to permit more users access to the web UI, using identities (user groups and individuals) from your own identity provider, authenticating via single-sign-on.
 
 ## Organization CRD and CRs {#organization-crd-cr}
 
