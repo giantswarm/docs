@@ -23,7 +23,7 @@ One, it upgrades to upstream ingress-nginx v0.29.0. Two, optional metrics Servic
 
 Three, NGINX IC SSL support for old browsers and clients (e.g. Safari 9) is dropped. This is due to default SSL ciphers no longer including AES-CBC based ciphers since they are considered weak. At your own risk, weak ciphers can still be enabled on demand independently for each cluster.
 
-To ensure a smooth upgrade and migration experience, and for additional questions you may have in relation to these changes, as always, please consult with your Account Engineer.
+To ensure a smooth upgrade and migration experience, and for additional questions you may have in relation to these changes, as always, please consult with your Solution Engineer.
 
 Below, you can find more details on components that were changed with this release.
 

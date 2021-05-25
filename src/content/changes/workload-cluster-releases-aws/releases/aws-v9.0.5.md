@@ -19,7 +19,7 @@ This release fixes a rare bug that would prevent the NGINX IC from being install
 
 This bug would only occur on cluster creation if you had a nginx-ingress-controller-user-values configmap in the kube-system namespace while the cluster was still initialising.
 
-Account Engineers have already done the manual fix for affected customers.
+Solution Engineers have already done the manual fix for affected customers.
 
 It also modifies release templates to support the coming upgrade to Helm 3.
 

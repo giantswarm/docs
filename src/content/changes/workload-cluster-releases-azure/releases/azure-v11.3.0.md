@@ -30,7 +30,7 @@ It is important to remember that while the switch is in progress for the master 
 4. After the master is upgraded successfully, the upgrade will proceed with the worker instances. Here, the process is simpler. The Azure Operator will create a VMSS with Flatcar Container Linux images and migrate the workloads, as you are used to during the previous upgrades.
 5. Finally, when all your workload is migrated, the VMSS running the CoreOS Container Linux instances will be deleted.
 
-Due to the additional steps in the upgrade process, the whole procedure will take more time. As it also requires a manual intervention on our side, could you please **schedule all the upgrades to 11.3.0 with your Account Engineer at least a day in advance**. This will allow us to prepare and guarantee you the appropriate support throughout the upgrade process.
+Due to the additional steps in the upgrade process, the whole procedure will take more time. As it also requires a manual intervention on our side, could you please **schedule all the upgrades to 11.3.0 with your Solution Engineer at least a day in advance**. This will allow us to prepare and guarantee you the appropriate support throughout the upgrade process.
 
 Our initial tests showed up to 2% loss of incoming traffic over the time period of 5-10min. It was not reproduced in the following tests but because of the complexity of the process you should be aware that this may occur.
 
@@ -51,4 +51,4 @@ e.g: If you had a cluster with id `e05c8`, then you'll find your
 `nginx-ingress-controller-user-values` configmap now in a namespace called `e05c8`
 on the Control Plane.
 
-Please contact your Account Engineer for more information.
+Please contact your Solution Engineer for more information.

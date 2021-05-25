@@ -28,7 +28,7 @@ This ensures the workload running on the node is handled gracefully when the `cl
 
 Please note that with version `1.19` there a few breaking changes in the `Kubernetes` APIs.
 Please refer to the [upstream documentation](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.19.md#urgent-upgrade-notes)
-and feel free to get in touch with your Account Engineer for any concern you might have.
+and feel free to get in touch with your solutions engineer for any concern you might have.
 
 ## Change details
 

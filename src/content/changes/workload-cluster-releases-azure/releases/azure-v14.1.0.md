@@ -28,7 +28,7 @@ We made this change to allow kubernetes making better decisions about which avai
 
 This will not affect any `PersistentVolume` already existing, but will affect future provisioning. In case of old behavior being preferable, creation of additional storageclass will be required.
 Refer to the [official documentation](https://kubernetes.io/docs/concepts/storage/storage-classes/#volume-binding-mode)
-for more details and get in touch your Account Engineer for any doubts.
+for more details and get in touch your solution engineer for any doubts.
 
 ## Change details
 

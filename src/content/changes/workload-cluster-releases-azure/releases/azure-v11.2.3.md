@@ -17,7 +17,7 @@ title: Workload cluster release v11.2.3 for Azure
 
 This release improves the way upgrades handle Azure VMSS Instances to make them more reliable in the Germany West Central location. This does not affect any existing functionality.
 
-To upgrade, please contact your Account Engineer.
+To upgrade, please contact your Solution Engineer.
 
 Below, you can find more details on components that were changed with this release.
 

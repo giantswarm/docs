@@ -27,9 +27,9 @@ Below, you can find more details on components that were changed with this relea
 
 **Note before upgrade:**
 
-Please contact your Account Engineer before upgrading. The upgrade is automated. However, it includes a data migration from Helm 2 release configmaps to Helm 3 release secrets, there are some pre-upgrade checks and we recommend monitoring the upgrade to ensure safety.
+Please contact your Solution Engineer before upgrading. The upgrade is automated. However, it includes a data migration from Helm 2 release configmaps to Helm 3 release secrets, there are some pre-upgrade checks and we recommend monitoring the upgrade to ensure safety.
 
-**Note for Account Engineers:**
+**Note for Solution Engineers:**
 
 Before upgrading, please ensure cluster is on [KVM 12.1.x](https://github.com/giantswarm/releases/tree/master/kvm/v12.1.0) platform release first.
 

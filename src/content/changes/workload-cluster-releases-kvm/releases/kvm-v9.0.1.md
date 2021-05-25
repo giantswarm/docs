@@ -30,7 +30,7 @@ e.g: If you had a cluster with id `e05c8`, then you'll find your
 `nginx-ingress-controller-user-values` configmap now in a namespace called `e05c8`
 on the Control Plane.
 
-Please contact your Account Engineer for more information.
+Please contact your Solution Engineer for more information.
 
 ---
 

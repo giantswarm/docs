@@ -18,7 +18,7 @@ title: Workload cluster release v14.1.2 for Azure
 This is a bugfix release to resolve a few bugs related to the cluster autoscaler.
 We strongly suggest upgrading any 14.x workload cluster to this release to ensure the cluster autoscaler feature works properly.
 
-Warning: to avoid downtimes in the ingress-based workloads, before upgrading to this release it is important to ensure your cluster has a recent version (1.14.0 or newer) of the `Nginx Ingress Controller APP` running. Please get in touch with your Account Engineer before upgrading if you have any concern.
+Warning: to avoid downtimes in the ingress-based workloads, before upgrading to this release it is important to ensure your cluster has a recent version (1.14.0 or newer) of the `Nginx Ingress Controller APP` running. Please get in touch with your Solution Engineer before upgrading if you have any concern.
 
 ## Change details
 

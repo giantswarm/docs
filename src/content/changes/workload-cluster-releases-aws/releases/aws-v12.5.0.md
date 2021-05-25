@@ -17,7 +17,7 @@ title: Workload cluster release v12.5.0 for AWS
 
 This release offers the possibility to add additional Network Pools to the Control Plane and flexibly choose the IP range for new Tenant Clusters from these pools. It also upgrades Kubernetes to v1.17.13.
 
-**Note for Account Engineers:**
+**Note for Solution Engineers:**
 
 - Helm3:
   - Please use [Upgrading tenant clusters to Helm 3](https://intranet.giantswarm.io/docs/dev-and-releng/helm/helm3-tenant-cluster-upgrade/) as a guide on the upgrade process for the checks and monitoring steps.

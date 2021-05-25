@@ -20,7 +20,7 @@ This is the first Giant Swarm Azure release featuring Kubernetes 1.20.
 This release includes improvements to make the upgrade process even more reliable with additional focus on Spot Instances Node Pools upgrades.
 
 This release also uses Vnet peering in place of VPN Gateway to connect the Workload Clusters with the Management Cluster.
-There should be no impact in terms of connectivity from the workload point of view. Prior to upgrades please check with your Account Engineer if your Service Principals are correctly configured.
+There should be no impact in terms of connectivity from the workload point of view. Prior to upgrades please check with your Solution Engineer if your Service Principals are correctly configured.
 
 ## Change details
 

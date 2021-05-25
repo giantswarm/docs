@@ -23,7 +23,7 @@ Version development included work with the upstream maintainer. Prior to release
 
 This version also includes an upgrade to the latest upstream NGINX IC 0.30.0, as well as improvements to other components (cluster-operator, chart-operator, coredns) as detailed in the changelog.
 
-To upgrade, please contact your Account Engineer.
+To upgrade, please contact your Solution Engineer.
 
 Below, you can find more details on components that were changed with this release.
 

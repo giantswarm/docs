@@ -40,7 +40,7 @@ version in order to work with the master node high availability functions.
 Read our [dedicated documentation article](https://docs.giantswarm.io/basics/ha-masters/)
 for more details and instructions.
 
-**Note for Account Engineers:** This release contains an external-dns fix introduced in
+**Note for Solution Engineers:** This release contains an external-dns fix introduced in
 [11.3.2](https://docs.giantswarm.io/changes/tenant-cluster-releases-aws/releases/aws-v11.3.2/).
 It requires manual intervention for cluster upgrades in China to work. When upgrading a
 cluster, existing ingress `A+TXT` record sets do not get replaced with `CNAME+TXT` record sets
