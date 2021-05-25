@@ -6,7 +6,7 @@ changes_categories:
 - Workload cluster releases for KVM
 changes_entry:
   repository: giantswarm/releases
-  url: https://github.com/giantswarm/releases/tree/master/kvm/v9.0.3
+  url: https://github.com/giantswarm/releases/tree/master/kvm/archived/v9.0.3
   version: 9.0.3
   version_tag: v9.0.3
 date: '2020-05-13T19:00:00+00:00'
