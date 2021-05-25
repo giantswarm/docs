@@ -19,7 +19,7 @@ Your workload clusters and other associated resources are represented in the man
 
 ## How to gain access
 
-Access to the Giant Swarm Control Plane API is secured using OIDC. Please contact your Account Engineer (SE) to sort out the details.
+Access to the Giant Swarm Control Plane API is secured using OIDC. Please contact your Account Engineer (AE) to sort out the details.
 
 Currently we provide read-only access by default. As we are currently working on a fine-grained way to control permissions to resources, and validation and defaulting are not implemented to the extend we want to, having write access right now means fully unrestricted access and should only be granted to select individuals.
 
