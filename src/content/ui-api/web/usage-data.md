@@ -1,7 +1,7 @@
 ---
 linkTitle: Usage data recording
 title: Usage data recording in our web interface
-description: Details on which data is tracked when using the Giant Swarm web interface
+description: Our goal is to provide a snappy and bug-free experience to you when using our web interface. To achieve that goal, we collect some usage data. Here we explain in detail what we collect and how.
 weight: 1000
 menu:
   main:
@@ -17,10 +17,11 @@ user_questions:
 
 # Usage data recording in our web interface
 
-In general, when using the Giant Swarm web interface, usage data is collected on two different levels:
+In general, when using the Giant Swarm web interface, usage data is collected on these levels:
 
 - The REST API level
-- External usage monitoring
+- Usage monitoring
+- Error data collection
 
 Here we explain the different purposes and what data is recorded.
 
@@ -37,36 +38,32 @@ The data stored for each log entry consists of:
 - The HTTP method (e. g. `GET`, `POST`, `DELETE`).
 - The date and time when the request has been received.
 
-## External usage monitoring
+## Usage monitoring
 
-When using the web interface, usage data is collected using a third party monitoring service (Datadog), if this service is enabled for the given installation. The recorded data serves several purposes:
+When using the web interface, some anonymous usage data is collected using a dedicated monitoring service. The recorded data serves several purposes:
 
 - to help Giant Swarm understand how users use the web interface
-- to identify performance problems in real usage
-- to identify errors occurring in the field
+- to identify performance problems in real world usage
 
 The data recorded consists of:
 
-- Session/Client parameters:
-    - Session start and end timestamp
-    - Browser brand and version
-    - Operating system name and version
-    - Location based on the client IP address
-    - Available display size
-- For every page view:
-    - Timestamp
-    - Page URI
-    - Performance related metrics
-- For every resource request:
-    - Timestamp
-    - Request URI
-    - Performance related metrics
-- For every user-initiated action:
-    - Timestamp
-    - Identifier of the element clicked/used
-- For every error occurring in the browser
-    - Timestamp
-    - Request/page URI
-    - Error message reported by the browser
+- Timestamp
+- Client data: Browser brand and version, device type, display and viewport size.
+- The URL viewed.
+- Performance related data related to network transfers, content rendering, application readiness.
 
-The data is submitted to servers located in the EU. Giant Swarm can gladly provide Datadog's GDPR Data Processing Addendum (DPA) on request.
+The data is submitted to a service in the Giant Swarm management cluster.
+
+## Error data collection
+
+We like to learn about any exceptions (unexpected errors) happening during web interface usage, hence we forward information about exceptions to [Sentry](https://sentry.io/).
+
+Data submitted to sentry includes:
+
+- Timestamp
+- Browser brand and version
+- Operating system name and version
+- The URL visited in the web interface
+- Exception description and JavaScript stack trace
+- History of requests (timestamp, URL, HTTP method) made prior to the exception
+- Information on any interaction prior to the exception, e. g. a button click
