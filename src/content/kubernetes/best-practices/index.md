@@ -37,14 +37,14 @@ For production usage the cluster should have at least 5 nodes and a buffer of 2 
 
 #### Master nodes
 
-Master nodes matter much more than worker nodes in order to achieve better availability and performance. Several worker nodes can be replaced at the same time with no downtime but the failure of a master node could cause a major issue if it is your only master node.
+Master nodes matter much more than worker nodes in order to achieve better availability and performance. Several worker nodes can be replaced at the same time with no downtime but the failure of a master node could cause a major issue if it is your only master node. High availavility can be used to reduce downtime to a minimum but sill need to be sized correctly to avoid performance issues.
 
 The master nodes host the critical components like the API, scheduler, Etcd, and many more. The load of these components will directly depend on the amount of resources they are managing, the number of API requests being served, and the events being generated in the cluster.
 
 In order to have high availability we recommend:
 
-- Cluster with 50 nodes or 1000 pods should and single master should use m5.2xlarge instance types or higher.
-- Cluster with 100 nodes or 2000 pods should use m5.4xlarge or High Availability with m5.2xlarge instances.
+- Cluster with 50 nodes or 1000 pods should use m5.2xlarge instance types or higher.
+- Cluster with 100 nodes or 2000 pods should use m5.4xlarge in single master or High Availability with m5.2xlarge instances.
 
 #### Worker node size
 
