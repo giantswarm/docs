@@ -39,7 +39,7 @@ For production usage the cluster should have at least 5 nodes and a buffer of 2 
 
 Master nodes matter much more than worker nodes in order to achieve better availability and performance. Several worker nodes can be replaced at the same time with no downtime but the failure of a master node could cause a major issue if it is your only master node.
 
-The master hosts the critical components like the API, scheduler, ETCD... The load of this components will directly depend on the amount of resources they are managing, API requests and events happening in the cluster.
+The master nodes host the critical components like the API, scheduler, Etcd, and many more. The load of these components will directly depend on the amount of resources they are managing, the number of API requests being served, and the events being generated in the cluster.
 
 In order to have high availability we recommend:
 
