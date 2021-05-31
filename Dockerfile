@@ -22,7 +22,7 @@ RUN find /public \
   -iregex '.*\.(css|csv|html?|js|svg|txt|xml|json|webmanifest|ttf)' \
   -exec gzip -9 -k '{}' \;
 
-FROM quay.io/giantswarm/nginx:1.18-alpine
+FROM quay.io/giantswarm/nginx:1.19-alpine
 
 COPY nginx.conf /etc/nginx/nginx.conf
 

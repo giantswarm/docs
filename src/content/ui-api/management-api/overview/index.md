@@ -24,13 +24,13 @@ Your workload clusters and other associated resources are represented in the man
 
 ## How to gain access
 
-Access to the Giant Swarm Control Plane API is secured using OIDC. Our [authentication]({{< relref "/ui-api/management-api/authentication" >}}) section provides additional information both for admins and end users. Please contact your Solution Engineer (SE) to sort out the details.
+Access to the Giant Swarm Control Plane API is secured using OIDC. Our [authentication]({{< relref "/ui-api/management-api/authentication" >}}) section provides additional information both for admins and end users. Please contact your Account Engineer to sort out the details.
 
 Currently we provide read-only access by default. As we are currently working on a fine-grained way to control permissions to resources, and validation and defaulting are not implemented to the extend we want to, having write access right now means fully unrestricted access and should only be granted to select individuals.
 
 ## How to use
 
-**Note:** Currently (as of April 2021) we are in the process of enabling our [web user interface]({{< relref "/ui-api/web" >}}) to interact with the Management API.
+**Note:** Currently (as of May 2021) we are in the process of enabling our [web user interface]({{< relref "/ui-api/web" >}}) to interact with the Management API.
 
 For now we recommend using `kubectl` to interact with the Management API.
 
