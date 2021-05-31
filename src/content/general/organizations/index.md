@@ -2,7 +2,7 @@
 linkTitle: Organizations
 title: Organizations
 description: Explaining the organization concept in the Giant Swarm Management API, how to use organizations currently, and our future plans to make use of them.
-last_review_date: 2021-05-07
+last_review_date: 2021-05-31
 weight: 40
 menu:
   main:
