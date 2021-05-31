@@ -75,7 +75,7 @@ Organizations are transitioning from being managed completely by microservices b
 
     - We make sure that for each organization defined in the REST API, there is a companion in the Management API, and vice versa. And when one gets deleted, the companion gets deleted, too.
 
-      Naming conventions for Management API organization names are more restricted than the REST API names were. In cases where the REST API organization name uses characters that are not supported in the management API (uppercase letters and underscores), the Organization CR will be names using only lowercase letters and using the dash (`-`) as the only special character. However, in the web interface, you will still see the original name of the organization.
+      Naming conventions for Management API organization names are more restricted than the REST API names were. In cases where the REST API organization name uses characters that are not supported in the management API (uppercase letters and underscores), the Organization CR will be named using only lowercase letters and using the dash (`-`) as the only special character. However, in the web interface, you will still see the original name of the organization.
 
 - **Further plans**
 
