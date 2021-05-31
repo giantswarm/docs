@@ -10,6 +10,7 @@ menu:
 user_questions:
   - What is the Management API?
   - In what development stage is the Management API?
+last_review_date: 2021-05-31
 owner:
   - https://github.com/orgs/giantswarm/teams/team-biscuit
 ---
@@ -30,18 +31,15 @@ Currently we provide read-only access by default. As we are currently working on
 
 ## How to use
 
-**Note:** Currently (as of May 2021) we are in the process of enabling our [web user interface]({{< relref "/ui-api/web" >}}) to interact with the Management API.
+Currently (as of May 2021) we are in the process of enabling our [web user interface]({{< relref "/ui-api/web" >}}) to interact with the Management API.
 
-For now we recommend using `kubectl` to interact with the Management API.
-
-To facilitate this we provide a kubectl plug-in called [`kubectl gs`]({{< relref "/ui-api/kubectl-gs" >}}).
-Our goal is to have the same great user experience you've become accustomed from `gsctl` and `happa`.
+For now we recommend using `kubectl` to interact with the Management API. To facilitate this we provide a kubectl plug-in called [`kubectl gs`]({{< relref "/ui-api/kubectl-gs" >}}).
 
 Besides general Kubernetes know-how this will require only a bit of structural knowledge:
 
 ### How we organize resources in namespaces
 
-We create one namespace for each workload cluster, where the namespace name is equal to the workload cluster ID. All cluster specific resources reside in the namespace of that workload cluster.
+We are working towards making [organization namespaces]({{< relref "/general/organizations/index.md" >}}) the default location for all resources associated with one organization. However, so far we haven't reached this goal yet. Please check [this dedicated section]({{< relref "/general/organizations/index.md" >}}#namespace-use) regarding the current state on various providers.
 
 ### Which custom resources are used for what purpose
 
