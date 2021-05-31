@@ -7,7 +7,7 @@ menu:
   main:
     identifier: uiapi-managementapi-authentication
     parent: uiapi-managementapi
-last_review_date: 2021-04-23
+last_review_date: 2021-05-31
 user_questions:
   - How can I authenticate as a user to the Management API?
   - How can I inspect the ID token issued for authenticating to the Management API?
@@ -101,8 +101,6 @@ Giant Swarm assists all customers with setting up single sign-on (SSO) for the M
     For cases where no suitable identity provider is available, or not yet available, we recommend to use Github, where an organization and teams can be set up and managed easily.
 
 - Your identity provider must define a **group to be considered as admins** for the Giant Swarm installation. All members of this group automatically get administrative permissions when authenticating with the Management API.
-
-- TODO: email claim.
 
 - All additional (non-admin) users you'll want to grant access to the Management API in the future will also need to have a user account in your selected identity provider.
 
