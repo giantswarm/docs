@@ -21,15 +21,11 @@ owner:
 
 <i class="fa fa-warning"></i> This article covers organizations as defined in the [Management API]({{< relref "/ui-api/management-api/_index.md" >}}). These are replacing the organizations as used with the [REST API]({{< relref "/ui-api/rest-api/index.md">}}). Please make sure you read the details about this transition carefully, especially the [roadmap](#roadmap) section, to understand the ramifications for you and your end users.
 
-<!-- TODO: link article about changes and migration -->
-
 </div>
 
 ## Introduction
 
-Organizations are a way to manage resources like clusters and apps in a way that different entities are isolated from each other. You can use organizations to separate projects, business units, teams etc.
-
-Clusters are _owned_ by organizations. So in order to be able to manage a cluster (on the Management API level, not on the individual cluster level), access to the organization owning the cluster is required.
+Organizations are a means to organize resources like clusters and apps in a way that different entities are isolated from each other. You can use organizations to separate resource for different projects, business units, teams etc. within the same Giant Swarm management cluster.
 
 The organization concept makes use of some well-known building blocks of Kubernetes in the [management cluster]({{< relref "/general/management-clusters/index.md" >}}), such as:
 
@@ -44,7 +40,7 @@ Typical use cases for organizations are:
 
 - Isolating teams, business units, or even legal entities.
 
-At Giant Swarm, for example, we run several shared installations where we allow different customers access to a single organization only, usually before they get their own installation. This way we can ensure that each customer, while using the same management cluster, can only access their own clusters and other resources.
+At Giant Swarm, for example, we run several shared installations where we allow different customers access to a single organization only, usually before they get their own installation. This way we can ensure that each customer, while using the same management cluster, can only access their own workload clusters and resources.
 
 ### Visual overview {#intro-visual}
 
@@ -73,7 +69,7 @@ Organizations are transitioning from being managed completely by microservices b
 
     - With the [Organization CRD]({{< relref "/ui-api/management-api/crd/organizations.security.giantswarm.io.md" >}}) we introduce an entity in the Management API to represent an organization.
     - Operators ensure that a namespace exists for each organization in the management cluster.
-    - Starting with workload cluster release v13.0.0 for Azure, cluster resources are created in the owner organization's namespace.
+    - Starting with workload cluster release v13.0.0 for Azure, cluster resources are created in the owner organization's namespace by default (meaning: unless the resource is placed in a different namespaces explicitly).
 
 - **2021: synchronization of organizations in REST API and Management API**
 
@@ -110,23 +106,23 @@ Organization names (technically: organization CR names) must follow these rules:
     - start with an alphanumeric character
     - end with an alphanumeric character
 
-Since there will be a namespace created for each org, prefixed with `org-`, we recommend against using that same prefix in the organization name, to avoid confusion.
+Since there will be a namespace created for each organization, prefixed with `org-`, we recommend against using that same prefix in the organization name, to avoid confusion.
 
 ## Organization namespace {#namespace}
 
-For each organization there is a namespace in the management cluster. The namespace is named after the organization CR name, prefixed with `org-`.
+For each organization there is a namespace created in the management cluster. The namespace is named after the organization CR name, prefixed with `org-`.
 
 For example, for an organization `acme`, there is the defining organization CR named `acme`. In addition, organization-operator ensures the existence of the namespace `org-acme` in the management cluster.
 
-We recommend to place all resources belonging to an organization into the organization's namespace. Our user interfaces will work towards supporting this as a default.
+We recommend to place all resources belonging to an organization into the organization's namespace. Our user interfaces and admission controllers are moving towards supporting this as a default.
 
 ### Namespace utilization in different providers {#namespace-use}
 
 Giant Swarm is currently working towards making the organization's namespace the default namespace for all resources owned by the organization: clusters, node pools, apps, and more. We have reached different stages on different providers as of May 2021:
 
-- **Azure**: With the latest workload cluster releases for Azure (as of April 2021 that is v14.1.x), all cluster and node pool resources are placed in the organization namespace by default.
+- **Azure**: With the latest workload cluster releases for Azure (v14.1.x), all cluster and node pool resources are placed in the organization namespace by default.
 
-  Resources belonging to apps deployed to workload clusters are not yet placed in the organization namespace.
+  Resources belonging to apps deployed to workload clusters are not yet placed in the organization namespace. Instead they are placed in a namespace named after the workload cluster ID.
 
 - **AWS**: With the latest AWS releases, the organization namespace is not yet used by default.
 
