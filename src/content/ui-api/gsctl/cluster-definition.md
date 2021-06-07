@@ -176,7 +176,7 @@ Coming from v4, you might want to understand how v5 is different from v4:
 - `name`: Friendly name of the cluster. If not specified, a name will be generated.
 - `release_version`: Allows to select a specific release version. The value must be the semver version number of an active release. To get information on all available releases, use the [`gsctl list releases`]({{< relref "/ui-api/gsctl/list-releases" >}}) command.
 - `master_nodes`: Settings regarding the Kubernetes master nodes.
-    - `high_availability`: Where supported, this is `true` by default, which means that the cluster will have three master nodes. Supported on AWS since release v{{% first_aws_ha_control_plane_version %}}. Set this to `false` to have only one master node in the cluster (recommended only for test clusters).
+    - `high_availability`: Where supported, this is `true` by default, which means that the cluster will have three master nodes. Supported on AWS since release v{{% first_aws_ha_controlplane_version %}}. Set this to `false` to have only one master node in the cluster (recommended only for test clusters).
 - `nodepools`: Here you can list your node pool definitions as explained below. Note that this is not mandatory, and you can also add node pools to a cluster after it has been created.
 - `master` (deprecated):
     - `availability_zone`: Name of the availability zone to use for the master node. If not set, one will be assigned randomly.
