@@ -1,75 +1,78 @@
 ---
-linkTitle: High-availability masters
-title: High-availability Kubernetes masters
-description: A general description of high availability of masters as a concept, it's benefits, and some details you should be aware of.
+linkTitle: High-availability control plane
+title: High-availability Kubernetes control plane
+description: For production clusters with high availability requirements, Giant Swarm on AWS enables control planes with three control plane nodes and three etcd replicas spread over multiple availability zones. Here we explain most details.
 weight: 10
+last_review_date: 2021-06-07
 menu:
   main:
     parent: advanced-highavailability
 aliases:
   - /basics/ha-masters/
+  - /advanced/high-availability/masters
+  - /advanced/high-availability/masters/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
 
-# High-availability Kubernetes masters
+# High-availability Kubernetes control plane
 
 {{< platform_support_table aws="ga=v11.4.0" azure="roadmap=https://github.com/giantswarm/roadmap/issues/4" >}}
 
 ## Synopsis
 
-Kubernetes master nodes are the nodes that run the Kubernetes API of a workload cluster,
-as well as some other important components. In the case of Giant Swarm, the master nodes
+Kubernetes control plane nodes are the nodes that run the Kubernetes API of a workload cluster,
+as well as some other important components. In the case of Giant Swarm, the control plane nodes
 also host the [etcd](https://etcd.io/) database that keeps all the states that configure
-the cluster, the workloads and other resources.
+the cluster, the workloads, and other resources.
 
-Clusters can run in a fully functional way with one master node. However this renders the
+Clusters can run in a fully functional way with one control plane node. However this renders the
 Kubernetes API unavailable in certain cases like a cluster upgrade or even an outage of
 the underlying infrastructure.
 
-As of workload cluster release v{{% first_aws_ha_masters_version %}} for AWS, new workload clusters are launched with three master nodes by default, spread over multiple availability zones. This results in much higher availability of the API during upgrades or other changes to the cluster configuration, plus enhanced resilience against any data center or hardware failures.
+As of workload cluster release v{{% first_aws_ha_controlplane_version %}} for AWS, new workload clusters are launched with three control plane nodes by default, spread over multiple availability zones. This results in much higher availability of the API during upgrades or other changes to the cluster configuration, plus enhanced resilience against any data center or hardware failures.
 
 ## Benefits
 
-Having multiple master nodes in different availability zones has several benefits:
+Having multiple control plane nodes in different availability zones has several benefits:
 
-- **API downtimes during upgrades are reduced to a minimum**. With a single master node,
+- **API downtimes during upgrades are reduced to a minimum**. With a single control plane node,
   upgrading the cluster requires the only master to be terminated and rebooted with new
-  configuration. This results in several minutes of downtime. With multiple master nodes,
+  configuration. This results in several minutes of downtime. With multiple control plane nodes,
   the nodes get updated one at a time. The API can only become unreachable in the event
   that a new etcd leader has to be elected. This usually takes only a few seconds.
 - **Resilience in case of infrastructure outages**. In the case of a failure of a single
-  master node's EC2 instance, the two remaining master nodes take over and a replacement
-  master node will be launched automatically. Running multiple master nodes of a cluster
-  in different availability zones (AZ), also protects against
+  control plane node's EC2 instance, the two remaining control plane nodes take over and a replacement
+  control plane node will be launched automatically. Running multiple control plane nodes of a cluster
+  in different availability zones (AZ) also protects against
   the risk of losing control of the cluster in case of a single AZ downtime. Refer to
   [below](#use-of-az) for details.
-- **Load balancing of API requests.** Read-only requests to the Kubernetes API are performed
-  by all three master nodes, so that latencies stay low in comparison to a single master
+- **Load balancing of API requests.** Read-only requests to the Kubernetes API are distributed over
+  all three control plane nodes, so that latencies stay low in comparison to a single master
   node which can suffer from high loads temporarily.
 
-We recommend that all production clusters on AWS are run with high
-availability of master nodes. As a result, this is the default setting starting with
-workload cluster release v{{% first_aws_ha_masters_version %}}.
+We recommend that all production clusters on AWS are run with high-availability
+control planes. As a result, this is the default setting starting with
+workload cluster release v{{% first_aws_ha_controlplane_version %}}.
 
 Since these benefits come at the cost of additional EC2 instances and
 additional network traffic across availability zones, it is still possible to
-create clusters with a single master node. This setting is viable for test
+create clusters with a single control plane node. This setting is viable for test
 purposes or clusters which don't need high availability and resilience.
 
 ## Use of availability zones {#use-of-az}
 
-When high-availability master nodes is activated for a cluster, the three
-master nodes are spread over different availability zones (AZ). Depending on
+When high-availability control plane is activated for a cluster, the three
+control plane nodes are spread over different availability zones (AZ). Depending on
 the number of AZs in the region, the logic is:
 
-- In case of **three or more AZs** in the region, each master node is assigned to a different
+- In case of **three or more AZs** in the region, each control plane node is assigned to a different
   AZ, selected randomly.
 - In case of **two AZs** in the region (as is the case in `cn-north-1`), both AZs get used.
-  Two of the master nodes will share the same AZ.
+  Two of the control plane nodes will share the same AZ.
 
 When [converting a single master cluster to high availability](#conversion-to-ha),
-the AZ used by the master node before is re-used. Additional AZs are assigned
+the AZ used by the control plane node before is re-used. Additional AZs are assigned
 by applying the logic described above. Here, the AZ assignment of existing
 worker [node pools]({{< relref "/advanced/node-pools" >}}) is taken into account.
 
@@ -84,13 +87,12 @@ complete.
 
 ## Conversion from single master to high availability {#conversion-to-ha}
 
-Single master clusters using workload cluster release v{{% first_aws_ha_masters_version %}} or
-above on AWS can be converted to master node high availability in the user
-interfaces and via the APIs.
+Clusters using workload cluster release v{{% first_aws_ha_controlplane_version %}} or
+above on AWS with a single control plane node can be converted via our user interfaces and APIs to run high-availability control planes.
 
 ### Via the web UI {#web-ui}
 
-The web UI presents information on the master node in the cluster details page.
+The web UI presents information on the control plane node in the cluster details page.
 Next to these details you will find a button _Switch to high availability…_, unless
 the cluster is currently undergoing an upgrade. Click this button and follow
 the instructions in the web UI.
@@ -126,7 +128,7 @@ first output column. Use that name in the `kubectl edit` command, or a
 kubectl edit g8scontrolplanes.infrastructure.giantswarm.io <NAME>
 ```
 
-The `.spec.replicas` attribute, which specifies the number of master nodes to
+The `.spec.replicas` attribute, which specifies the number of control plane nodes to
 run, must be changed from 1 to 3.
 
 For non-interactive patching:
@@ -137,22 +139,22 @@ kubectl patch g8scontrolplanes.infrastructure.giantswarm.io <NAME> \
 ```
 
 Once that is done, the operators will reconcile the desired state and create the
-additional master nodes.
+additional control plane nodes.
 
 ## Technical details
 
-### Why three master nodes
+### Why three control plane nodes
 
-At Giant Swarm we operate "stacked" clusters where etcd nodes run on the same machines
-as the Kubernetes master nodes. Each master node runs control plane components and a member of
+At Giant Swarm we operate "stacked" clusters where etcd replicas run on the same machines
+as the Kubernetes control plane nodes. Each control plane node runs control plane components and a member of
 an etcd cluster.
 
 In order to achieve high availability in an etcd cluster, a quorum (majority of members) is
 needed. With three members, one member is allowed to become dysfunctional at any time, e. g.
 through a machine failure or availability zone outage.
 
-The number of three masters running three etcd members is a good balance between resilience
-and cost. While it would be technically possible to run five or more master nodes, this
+The number of three control plane nodes running three etcd members is a good balance between resilience
+and cost. While it would be technically possible to run five or more control plane nodes, this
 is not currently supported with Giant Swarm workload clusters.
 
 ## Limitations
@@ -161,7 +163,7 @@ is not currently supported with Giant Swarm workload clusters.
 - Short API downtimes are still possible during cluster modifications, especially when the leader of the
   etcd cluster (the member that handles write requests) changes. This happens when the node that
   hosts the etcd leader has to be modified. Typical cases for this would be an upgrade to a newer
-  workload cluster release or the conversion from a single to multiple master nodes. These downtimes are expected to
+  workload cluster release or the conversion from a single to multiple control plane nodes. These downtimes are expected to
   last only a few seconds.
-- Conversion of a cluster from high availability (three masters) to a single master node is not
-  possible.
+- Conversion of a cluster from high availability (three control plane nodes) to a single
+  control plane node is not possible.
