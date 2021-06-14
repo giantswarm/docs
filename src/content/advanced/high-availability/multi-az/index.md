@@ -1,23 +1,23 @@
 ---
 linkTitle: Multiple AZ
 title: Clusters over multiple availability zones
-description: Using multiple availability zones both for worker and for master nodes increases the resilience of the cluster. Here we explain some details regarding support on different cloud providers and releases, plus how to configure workloads to leverage multiple availability zones.
+description: Using multiple availability zones both for worker and control plane nodes increases the resilience of the cluster. Here we explain some details regarding support on different cloud providers and releases, plus how to configure workloads to leverage multiple availability zones.
 weight: 20
 menu:
   main:
     parent: advanced-highavailability
 last_review_date: 2021-02-01
 user_questions:
-- Does Giant Swarm support multiple availibilty zones (AZ)?
-- What are the benefits of using multiple availibilty zones (AZ)?
-- How do I know which availibility zone (AZ) my cluster nodes are running in?
+- Does Giant Swarm support multiple availability zones (AZ)?
+- What are the benefits of using multiple availability zones (AZ)?
+- How do I know which availability zone (AZ) my cluster nodes are running in?
 - Can I influence the scheduling of my pods?
-- How are availibility zones (AZ) selected?
-- Can I move standard volumes across availibility zones (AZ)?
-- What is the alternative to moving volumes across availibility zones (AZ)?
+- How are availability zones (AZ) selected?
+- Can I move standard volumes across availability zones (AZ)?
+- What is the alternative to moving volumes across availability zones (AZ)?
 - How do I ensure my pods and volumes are on the same nodes?
-- Can I spread worker nodes over availibility zones?
-- How do I create clusters in multiple availibility zones (AZ)?
+- Can I spread worker nodes over availability zones?
+- How do I create clusters in multiple availability zones (AZ)?
 aliases:
   - /basics/multiaz/
 owner:
@@ -32,7 +32,7 @@ owner:
 
 With Giant Swarm on AWS and Azure you can easily launch clusters with worker nodes spread across multiple availability zones (AZ). This will lower the risk that your cluster will become unavailable due to an incident in a particular AWS or Azure data center.
 
-On AWS, starting with workload cluster release {{% first_aws_ha_controlplane_version %}}, control plane nodes of a cluster are spread over different availability zones by default, for high availability of the Kubernetes API. You can chose however to run only a single control plane node. Read [High availability Kubernetes masters]({{< relref "/advanced/high-availability/control-plane" >}}) for more information.
+On AWS, starting with workload cluster release {{% first_aws_ha_controlplane_version %}}, control plane nodes of a cluster are spread over different availability zones by default, for high availability of the Kubernetes API. You can choose to run only a single control plane node. Read [High-availability Kubernetes control plane]({{< relref "/advanced/high-availability/control-plane" >}}) for more information.
 
 ## What availability zones are good for {#benefits}
 

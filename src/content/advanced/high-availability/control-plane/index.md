@@ -37,7 +37,7 @@ As of workload cluster release v{{% first_aws_ha_controlplane_version %}} for AW
 Having multiple control plane nodes in different availability zones has several benefits:
 
 - **API downtimes during upgrades are reduced to a minimum**. With a single control plane node,
-  upgrading the cluster requires the only master to be terminated and rebooted with new
+  upgrading the cluster requires only the control plane node to be terminated and rebooted with a new
   configuration. This results in several minutes of downtime. With multiple control plane nodes,
   the nodes get updated one at a time. The API can only become unreachable in the event
   that a new etcd leader has to be elected. This usually takes only a few seconds.
@@ -48,7 +48,7 @@ Having multiple control plane nodes in different availability zones has several 
   the risk of losing control of the cluster in case of a single AZ downtime. Refer to
   [below](#use-of-az) for details.
 - **Load balancing of API requests.** Read-only requests to the Kubernetes API are distributed over
-  all three control plane nodes, so that latencies stay low in comparison to a single master
+  all three control plane nodes, so that latencies stay low in comparison to a single control plane
   node which can suffer from high loads temporarily.
 
 We recommend that all production clusters on AWS are run with high-availability
@@ -71,21 +71,21 @@ the number of AZs in the region, the logic is:
 - In case of **two AZs** in the region (as is the case in `cn-north-1`), both AZs get used.
   Two of the control plane nodes will share the same AZ.
 
-When [converting a single master cluster to high availability](#conversion-to-ha),
+When [converting a cluster with a single control plane node to high availability](#conversion-to-ha),
 the AZ used by the control plane node before is re-used. Additional AZs are assigned
 by applying the logic described above. Here, the AZ assignment of existing
 worker [node pools]({{< relref "/advanced/node-pools" >}}) is taken into account.
 
 ## Upgrades from previous releases {#upgrades}
 
-When upgrading a cluster to workload cluster release v11.4.0, the cluster will remain a single
-master cluster during and after the upgrade. The API unavailability during the
-upgrade that is typical for single master clusters will apply for this upgrade.
+When upgrading a cluster to workload cluster release v11.4.0 or later, the cluster will still
+only have one control plane node after the upgrade. The API unavailability during the
+upgrade that is expected for a single control plane node will apply for this upgrade.
 
 A conversion to high availability can be triggered after the upgrade is
 complete.
 
-## Conversion from single master to high availability {#conversion-to-ha}
+## Conversion from a single control plane node to high availability {#conversion-to-ha}
 
 Clusters using workload cluster release v{{% first_aws_ha_controlplane_version %}} or
 above on AWS with a single control plane node can be converted via our user interfaces and APIs to run high-availability control planes.
@@ -97,7 +97,7 @@ Next to these details you will find a button _Switch to high availability…_, u
 the cluster is currently undergoing an upgrade. Click this button and follow
 the instructions in the web UI.
 
-### Via the CLI (`gsctl`) {#gsctl}
+### Via `gsctl` {#gsctl}
 
 The `gsctl` CLI as of v0.23.1 provides the
 [gsctl update cluster]({{< relref "/ui-api/gsctl/update-cluster" >}}) to change cluster details.
@@ -110,7 +110,7 @@ to find out how to convert a cluster programmatically using the Giant Swarm REST
 
 ### Via the Management API {#management-api}
 
-In order to convert a single master cluster to high availability, the cluster's
+In order to convert a single node control plane to high availability, the cluster's
 [`G8sControlPlane`]({{< relref "/ui-api/management-api/crd/g8scontrolplanes.infrastructure.giantswarm.io.md" >}})
 has to be modified. First you have to find the resource for your cluster ID. The
 following command helps with that:
