@@ -20,7 +20,7 @@ The `gsctl update cluster` command allows the modification of some cluster attri
 
 Changing the cluster name is possible on all providers and in all workload cluster release versions.
 
-Cluster labelling is only available for clusters with workload cluster release v{{% first_aws_nodepools_version %}} and above for AWS, or v{{% first_azure_nodepools_version %}} and above for Azure. High availability of master nodes is available on AWS starting at workload cluster release v{{% first_aws_ha_masters_version %}}.
+Cluster labelling is only available for clusters with workload cluster release v{{% first_aws_nodepools_version %}} and above for AWS, or v{{% first_azure_nodepools_version %}} and above for Azure. High availability of master nodes is available on AWS starting at workload cluster release v{{% first_aws_ha_controlplane_version %}}.
 
 ## Usage
 
@@ -50,7 +50,7 @@ will update the labels of cluster `vxvc7`. It will add (or update depending on p
 
 ### Switching to high-availability of master nodes {#ex-master-ha}
 
-Starting with workload cluster release v{{% first_aws_ha_masters_version %}} for AWS, a single master node cluster can be converted into using multiple master nodes in multiple availability zones using a command like the following:
+Starting with workload cluster release v{{% first_aws_ha_controlplane_version %}} for AWS, a single master node cluster can be converted into using multiple master nodes in multiple availability zones using a command like the following:
 
 ```nohighlight
 gsctl update cluster vxvc7 \
@@ -66,7 +66,7 @@ Note that it is not possible to change from multiple master nodes to a single ma
 Allowed multiple times.
 Available on AWS starting at workload cluster release v{{% first_aws_nodepools_version %}}.
 To remove a label, set its key to an empty string (`labeltodelete=`).
-- `--master-ha`: When set to `true`, the cluster should be modified to use multiple master nodes. Available on AWS starting at workload cluster release v{{% first_aws_ha_masters_version %}}.
+- `--master-ha`: When set to `true`, the cluster should be modified to use multiple master nodes. Available on AWS starting at workload cluster release v{{% first_aws_ha_controlplane_version %}}.
 
 ## Related
 

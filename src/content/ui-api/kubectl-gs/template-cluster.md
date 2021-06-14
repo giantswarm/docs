@@ -2,7 +2,7 @@
 linkTitle: template cluster
 title: "'kubectl gs template cluster' command reference"
 description: Reference documentation on how to create a manifest for a Cluster using 'kubectl gs'.
-weight: 70
+weight: 90
 menu:
   main:
     parent: uiapi-kubectlgs

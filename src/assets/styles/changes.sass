@@ -53,7 +53,7 @@
             color: #585858
             margin-right: 8px
             display: inline-block
-            min-width: 11em
+            min-width: 8em
         
         a.repo
             color: #585858
@@ -87,10 +87,16 @@ ul.changelog
                 margin: 0px 0px
                 margin-bottom: 0px !important
         
-        // Changelogs should not have H1 headlines left, but if the do,
-        // we don't want to display them in the list view.
+
         h1
+            // normally we don't want H1 to appear in the changelog list
             display: none
+
+            &.highlights
+                display: block
+                font-size: 28px
+                margin: 7px 0 14px 0
+                
         
         h2
             font-size: 16px

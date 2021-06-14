@@ -7,7 +7,7 @@ menu:
   main:
     parent: app-platform
     identifier: app-platform-overview
-last_review_date: 2021-03-15
+last_review_date: 2021-05-04
 aliases:
   - /basics/app-catalog/
 owner:
@@ -17,6 +17,7 @@ user_questions:
   - What is an App Catalog?
   - Does Giant Swarm provide app catalogs out of the box?
   - How is App Platform implemented?
+  - How does the App Platform relate to Helm?
   - What are the components of App Platform?
   - What are the app catalogs that Giant Swarm provides out of the box?
   - How can I create an organizational app catalog?
@@ -30,7 +31,11 @@ The _Giant Swarm App Platform_ refers to a set of features and concepts that all
 you to browse, install and manage the configurations of apps (such as Prometheus)
 from a single place; the management cluster.
 
+We fully support [Helm](https://helm.sh/) as a general tool to deploy your applications as well as for our general App Catalog. Apps are packaged as Helm charts and can be configured with _values_. We provide a recommended
+[app configuration]({{< relref "/app-platform/app-configuration" >}}) which you can override to meet your needs.
+
 Using this platform, we are providing a collection of curated _Apps_. These _Apps_ are grouped into _App Catalogs_, which are browsable through our web interface.
+We also use app platform to install the apps that are pre-installed in your cluster (such as CoreDNS).
 
 In short: the _Giant Swarm App Platform_ refers to the whole feature, and an _App Catalog_ is a collection of _Apps_.
 
@@ -85,7 +90,7 @@ together to enable the features of the Giant Swarm App Platform:
 ### What kind of App Catalogs are there
 
 By default you will have the Giant Swarm Catalog and the Giant Swarm Playground installed
-on your Control Planes.
+on your management clusters.
 
 ### The Giant Swarm Catalog
 
@@ -107,18 +112,17 @@ We encourage you to try out this playground catalog and the different apps offer
 
 ### Installing your own App Catalog
 
-It’s possible to create your own App Catalog. This is useful if you want to create a set of apps available to your company. Currently, this functionality is only available through direct access to the Giant Swarm Management API. You can request access from your Solution Engineer. Prerequisite for this is a standard Helm chart repository. It should be served through HTTP and accessible to the management cluster and your workload clusters.
+It’s possible to create your own App Catalog. This is useful if you want to create a set of apps available to your company. Currently, this functionality is only available through direct access to the Giant Swarm Management API. You can request access from your Account Engineer. Prerequisite for this is a standard Helm chart repository. It should be served through HTTP and accessible to the management cluster and your workload clusters.
 
 ### How can I interact with the Giant Swarm App Platform
 
-You can interact with the Giant Swarm App Platform through our API and
-our web interface.
+You can interact with the Giant Swarm App Platform through creating App custom resources using the Management API, our web interface, and our REST API.
 
+- [App CRD reference]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}})
 - [Web Interface Reference: The Giant Swarm App Platform]({{< relref "/ui-api/web/app-platform" >}})
 - [Apps and App Configs in the API reference](/api/#tag/apps)
 
-Lastly, at the end of the day, what our interfaces do, is create (or update)
-a set of Custom Resources on your Kubernetes management cluster.
+Both our web interface and REST API are used to create (or update) a set of App Custom Resources on your Kubernetes management cluster.
 
 As we are giving you direct access to the Management API you can also interact with the above mentioned resources using `kubectl`, and automate them just as you have been automating other parts of your stack.
-And as Kubernetes resources and especially some CRDs require lots of boilerplate and conventions, we built a kubectl plugin to help you with that.
+And as Kubernetes resources and especially some CRDs require lots of boilerplate and conventions, we built a [kubectl plugin]({{< relref "/ui-api/kubectl-gs" >}}) to help you with that.
