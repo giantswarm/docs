@@ -19,7 +19,7 @@ owner:
 
 # Authentication for the Management API
 
-Here we explain how you'll authenticate against the Management API as a user. For admins, we provide some information regarding the requirements for the initial [single sign-on setup](#sso-requirements) and some [technical details](#technical-details) you might want to be interested in.
+Here we explain how you'll authenticate against the Management API as a user. Also on this page, we provide some information for customer admins regarding the requirements for the initial [single sign-on setup](#sso-requirements) and some [technical details](#technical-details) you might be interested in.
 
 ## Authenticating as a user {#user-auth}
 
@@ -28,11 +28,11 @@ As a user of the Management API for any given installation, you need
 - A **user account** in the identity provider used by the installation (single sign-on).
 - The Management API **endpoint URL** of the installation. Alternatively, the web user interface URL.
 
-### Using kubectl gs login
+### Using `kubectl gs login` {#kubectl-gs-login}
 
-Assuming that you want to work with the API using `kubectl`, the easiest method to authenticate is by using the [Giant Swarm plug-in]({{< relref "/ui-api/kubectl-gs/_index.md" >}}) named `gs`. It can be [installed]({{< relref "/ui-api/kubectl-gs/installation/index.md" >}}) easily using `krew` and is recommended for all users of the Management API.
+Assuming that you want to work with the API using `kubectl`, we recommend you install the [Giant Swarm plug-in]({{< relref "/ui-api/kubectl-gs/_index.md" >}}) named `gs`. It can be [installed]({{< relref "/ui-api/kubectl-gs/installation/index.md" >}}) and updated using `krew`.
 
-To set up your `kubectl` configuration file, execute the following command:
+To set up your `kubectl` configuration with a context for your Giant Swarm installation's Management API, execute the following command:
 
 ```nohighlight
 kubectl gs login <URL>
@@ -58,7 +58,7 @@ When switching back to this context, it should not be necessary to go through th
 
 ### Alternative method
 
-You can alternatively initiate the single sign-on authentication directly in a browser, without the need of installing the `kubectl` plug-in.
+You can alternatively initiate the single sign-on authentication directly in a browser, without the need of installing the `kubectl gs` plug-in.
 
 We provide a web-based login helper utility, available under a URL specific for each installation. If you have your installation's Management API endpoint URL, you can construct the utility's URL by prepending `login.` to the host name.
 
@@ -82,15 +82,17 @@ The screenshot shows an example of that result page.
 
 Here you can inspect the details that will be passed to the Management API as part of the ID token. You can use this to verify the details coming from your identity provider, especially the `email` (which is used as your user identifier) and `groups` claim.
 
-The rest of the page helps you set up `kubectl` manually.
+This page will also present your Management API endpoint's certification authority (CA) certificate. In order to connect to your Management API endpoint, you should add this CA certificate to your client's trusted (root) certificates.
+
+The rest of the page helps you set up `kubectl` manually, adaptable for various operating systems.
 
 ## Authenticating for programmatic access {#service-auth}
 
 For programmatic access, for example from CI/CD pipelines, you should not rely on the above authentication mechanism. Instead, please use [service accounts](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/).
 
-Each Giant Swarm installation provides a service account named `automation` in the `default` namespace. The according token can be found by inspecting this `ServiceAccount` resource. It is usually named starting with `automation-token-`.
+Each Giant Swarm installation provides a service account named `automation` in the `default` namespace.
 
-**Note:** Since the above token is extremely powerful, **we strongly recommend to create a specific service account for each integration**, binding it to specific roles and only to the required namespaces.
+**Note:** This service account comes with a quite powerful set permissions. **We strongly recommend to create a specific service account for each application**, binding it to specific roles granting only the required permissions in the required namespaces.
 
 ## Single sign-on requirements {#sso-requirements}
 
@@ -98,20 +100,26 @@ Giant Swarm assists all customers with setting up single sign-on (SSO) for the M
 
 - As a customer, you need to decide on an **identity provider** to use. Most enterprise-grade organizations have a solution already in place. Since we use [Dex](https://github.com/dexidp/dex) as a connector between the Management API and your identity provider, we can support a variety of common standards like OpenID Connect (OIDC) and LDAP.
 
-    For cases where no suitable identity provider is available, or not yet available, we recommend to use Github, where an organization and teams can be set up and managed easily.
+    For cases where no suitable identity provider is available, or not yet available, we recommend to use GitHub, where an organization and teams can be set up and managed easily.
 
 - Your identity provider must define a **group to be considered as admins** for the Giant Swarm installation. All members of this group automatically get administrative permissions when authenticating with the Management API.
 
-- All additional (non-admin) users you'll want to grant access to the Management API in the future will also need to have a user account in your selected identity provider.
-
 ## Technical details {#technical-details}
-
-Here we provide some additional details you might want to be aware of, either as a user or as an admin.
 
 ### ID-token lifetime {#id-token-ttl}
 
 By default, ID tokens for the Management API are issued with a lifetime of **{{% mapi_oidc_token_ttl_minutes %}} minutes**.
 
+After that period, clients like `kubectl` will automatically attempt to get a fresh token from the identity provider. This does not require any additional user interaction. However, when this happens, the round-trip time for a `kubectl` command can be increased by a few seconds.
+
+It is possible to configure a shorter token lifetime at the cost of more frequent delays due to token refreshing. Please contact your account engineer for assistance.
+
+<!--
+
+TODO: once we recommend assigning groups and users (non-admin MAPI users)
+
 When assigning users to groups in your identity provider, and when removing users from groups, it can take up to {{% mapi_oidc_token_ttl_minutes %}} minutes until the change becomes effective for end users. If a user has authenticated and obtained an ID token before the change, tools like `kubectl` will use that token until it expires.
 
 To force the adoption of up-to-date user information and group assignments, a user can manually remove the `id-token` value from the user entry in their `kubectl` configuration file.
+
+-->
