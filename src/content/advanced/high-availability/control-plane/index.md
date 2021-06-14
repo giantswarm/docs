@@ -37,7 +37,7 @@ As of workload cluster release v{{% first_aws_ha_controlplane_version %}} for AW
 Having multiple control plane nodes in different availability zones has several benefits:
 
 - **API downtimes during upgrades are reduced to a minimum**. With a single control plane node,
-  upgrading the cluster requires the only control plane node to be terminated and rebooted with a new
+  upgrading the cluster requires only the control plane node to be terminated and rebooted with a new
   configuration. This results in several minutes of downtime. With multiple control plane nodes,
   the nodes get updated one at a time. The API can only become unreachable in the event
   that a new etcd leader has to be elected. This usually takes only a few seconds.
@@ -79,8 +79,8 @@ worker [node pools]({{< relref "/advanced/node-pools" >}}) is taken into account
 ## Upgrades from previous releases {#upgrades}
 
 When upgrading a cluster to workload cluster release v11.4.0 or later, the cluster will still
-have only one control plane node after the upgrade. The API unavailability during the
-upgrade that is typical for a single control plane node will apply for this upgrade.
+only have one control plane node after the upgrade. The API unavailability during the
+upgrade that is expected for a single control plane node will apply for this upgrade.
 
 A conversion to high availability can be triggered after the upgrade is
 complete.
