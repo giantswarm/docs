@@ -24,7 +24,7 @@ Learn how to quickly grant and revoke access to an organization's resources via 
 
 Granting access means that the users (when associating users or groups) or programs (when using service accounts) affected will be able to access resources via the Management API, including via the web user interface itself.
 
-The access control UI in the web interface provides quick access to a focused set of RBAC resources, with the goal to make it easy for you to give someone &ndash; be it individuals or groups &ndash; or service accounts access to resources in an organization's namespace.
+The access control UI in the web interface provides quick access to a focused set of RBAC resources, with the goal to make it easy for you to give individuals, groups, or service accounts access to resources in an organization's namespace.
 
 ## Where to find it {#where-to-find}
 
