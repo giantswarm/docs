@@ -103,24 +103,22 @@ grab-main-site-header-footer:
 	curl -s https://www.giantswarm.io/why-giant-swarm | sed -n '/^<!-- BEGIN SITE_FOOTER -->/,/^<!-- END SITE_FOOTER -->/p;/^<!-- END SITE_FOOTER -->/q' | sed '1d;$d' > src/layouts/partials/gs_footer.html
 
 # Verify internal and external links
+# based on the currently deployed docs website.
 linkcheck:
 	@echo "Checking all links\n"
-	docker run -d --rm --name server -p 8080:8080 -P $(REGISTRY)/$(COMPANY)/$(PROJECT):latest
-	sleep 2
 
 	docker run --rm -ti --name linkchecker \
-		--link server:server \
-		linkchecker/linkchecker \
-		http://server:8080 \
-		-t 2 \
+		-v ${PWD}/volumes/linkchecker:/workdir:rw \
+		-w /workdir \
+		linkchecker \
+		https://docs.giantswarm.io \
+		-t 1 \
+		--file-output csv/linkcheck.csv \
 		--check-extern \
-		--no-status \
-		--ignore-url="^https://docs.giantswarm.io/.*" \
+		--verbose \
 		--ignore-url=/api/ \
 		--ignore-url="^https://.+.example.com/.*" \
 		--ignore-url=".*gigantic\.io.*" \
 		--ignore-url="^https://my-org\.github\.com/.*" \
 		--ignore-url="^https://github\.com/giantswarm/giantswarm/.*"
 
-	docker kill server
-	docker kill linkchecker

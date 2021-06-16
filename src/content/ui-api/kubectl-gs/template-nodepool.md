@@ -2,7 +2,7 @@
 linkTitle: template nodepool
 title: "'kubectl gs template nodepool' command reference"
 description: Reference documentation on how to create a manifest for a node pool using 'kubectl gs'.
-weight: 80
+weight: 100
 menu:
   main:
     parent: uiapi-kubectlgs
