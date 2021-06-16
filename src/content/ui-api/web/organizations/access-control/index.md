@@ -1,7 +1,7 @@
 ---
 linkTitle: Access control
 title: Access control for organizations in the web user interface
-description: Learn how to use our web UI for organization RBAC to quickly associate users, groups, and service accounts with organizations.
+description: Learn how to use our web UI for organization RBAC to quickly associate service accounts with organizations.
 weight: 20
 menu:
   main:
@@ -10,10 +10,10 @@ menu:
 owner:
   - https://github.com/orgs/giantswarm/teams/biscuit
 user_questions:
-  - How can I give someone access to an Organization in the web UI?
-  - How can I give someone access to the web UI?
-  - Where can I find the access control UI?
-last_review_date: 2021-04-20
+  - How can I inspect roles and permissions bound to an org-namespace?
+  - How can I create a service account in the web interface?
+  - How can I bind a service account to an org-namespace in the web interface?
+last_review_date: 2021-06-16
 ---
 
 # Access control for organizations in the web user interface
@@ -24,7 +24,7 @@ Learn how to quickly grant and revoke access to an organization's resources via 
 
 Granting access means that the users (when associating users or groups) or programs (when using service accounts) affected will be able to access resources via the Management API, including via the web user interface itself.
 
-The access control UI in the web interface provides quick access to a focused set of RBAC resources, with the goal to make it easy for you to give someone – be it individuals or groups – or service accounts access to resources in an organization's namespace.
+The access control UI in the web interface provides quick access to a focused set of RBAC resources, with the goal to make it easy for you to give someone &ndash; be it individuals or groups &ndash; or service accounts access to resources in an organization's namespace.
 
 ## Where to find it {#where-to-find}
 
@@ -39,7 +39,7 @@ The access control UI in the web interface provides quick access to a focused se
 
 The access control user interface provides:
 
-- A list of roles to select from, sourced from both the organization's namespace and cluster roles. Each role defines a specific set of permissions for a number of resources. Cluster roles are marked using a 🌐 icon. In the list, it is also indicated how many users and groups are bound to each role in this organization's namespace.
+- A list of roles to select from, sourced from both the organization's namespace and cluster roles. Each role defines a specific set of permissions for a number of resources. Cluster roles are marked using a 🌐 globe icon. In the list, it is also indicated how many users and groups are bound to each role in this organization's namespace.
 
 - For the selected role:
 
@@ -51,7 +51,7 @@ The access control user interface provides:
 
 While the **Subjects** tab will be explained in more detail below under [granting access](#granting-access), the information shown under **Permissions** deserves a closer look here.
 
-### Permissions
+### Inspecting permissions
 
 ![Access control user interface overview](permissions.png)
 
@@ -103,11 +103,9 @@ You can filter the list of roles and cluster roles based on a search term. This 
 
 ## Granting access {#granting-access}
 
-Granting access to an organization's resources means, in Kubernetes RBAC terms: you assign a role or cluster role to the selected organization's namespace, by creating role bindings in this namespace.
+Granting access to an organization's resources means, in Kubernetes RBAC terms: you assign a role or cluster role to a subject (here: a service account) in the selected organization's namespace, by creating role bindings in this namespace.
 
-**Note:** When using groups from your identity provider as subjects in access control, all you have to do in order to assign new permissions to an individual user is to add that user to a the right group in your identity provider. Hence, if you have that flexibility with your identity provider, the recommended approach is to only assign groups, not individual users, to Giant Swarm organizations.
-
-In order to assign a role to a group, user, or service account, follow these steps:
+In order to assign a role to a service account, follow these steps:
 
 ### 1. Select a role
 
@@ -121,13 +119,7 @@ By inspecting the _Permissions_ tab, double check that the role grants only the 
 
 ### 3. Add subjects
 
-On the _Subjects_ tab, add the group(s) or user(s) you want to assign to the selected role.
-
-When adding a **group** or a **user**, you have to enter the exact user or group identifier as your identity provider presents them. This includes upper and lowercase spelling. User identifiers may or may not be email addresses, according to your set-up.
-
-**Note:** Your Giant Swarm account engineer (AE) is happy to assist in case there are uncertainties about the correct format.
-
-You can enter or paste multiple identifiers, separated by a space or comma, into a single input field.
+On the _Subjects_ tab, add or select the service account you want to assign to the selected role.
 
 When adding a **service account** as a subject, you are free to select from the existing ones in the current organization's namespace, by using the suggestions in the input field. When typing some letters, these suggestions will present existing service accounts that match your input. However you can also create new service accounts here by entering new names here.
 
@@ -151,15 +143,13 @@ You are free to edit or delete the role bindings and service accounts created vi
 
 ## Revoking access
 
-To revoke access from a subject (be it user, user group, or service account) you'll have to remove this subject's associations with any role in this organization's namespace. In RBAC terms, this means to remove or edit the role bindings referencing these roles.
-
-**Note:** If you are assigning groups from your identity provider to organizations, in order to revoke access from an individual user, you have to remove that user from a group in your identity provider.
+To revoke access from a service account you'll have to remove this subject's associations with any role in this organization's namespace. In RBAC terms, this means to remove or edit the role bindings referencing these roles.
 
 In the access control user interface, this is how you do it:
 
 1. Find the role you want to remove the subject from. This can be done easily using the **Find role** function described above under [finding roles](#finding-roles), which also accepts user, group, and service account names as a search criterium. Make sure to select the correct role by clicking it.
 
-2. In the **Subjects** tab, next to the subject you want to remove, find the × icon and click it.
+2. In the **Subjects** tab, next to the service account you want to remove, find the × icon and click it.
 
     ![Removing a subject](remove-subject.png)
 
@@ -167,11 +157,13 @@ In the access control user interface, this is how you do it:
 
 Make sure to repeat this for all relevant roles.
 
-## Adding roles
+## Limitations and future plans
 
-**Note:** It is currently not possible to add new roles or cluster roles via the web user interface.
+- **Users and groups are read-only.** Currently it is not possible to add users or groups to a (cluster) role binding or to remove users or groups from (cluster) role binding. We intend to enable adding and removal of users and groups once the web interface acts fully permission-aware and ensures a seamless user experience even for users with limited permissions.
 
-As an admin user of the Management API, you can add roles or cluster roles directly, e. g using `kubectl`. Make sure to add the label `ui.giantswarm.io/display` with the string value `"true"` in order to get the role listed in the access control UI.
+- **Roles and cluster roles are read-only.** It is currently not possible to add new roles or cluster roles via the web user interface.
+
+  As an admin user of the Management API, you can add roles or cluster roles directly, e. g using `kubectl`. Make sure to add the label `ui.giantswarm.io/display` with the string value `"true"` in order to get the role listed in the access control UI.
 
 ## Related
 
