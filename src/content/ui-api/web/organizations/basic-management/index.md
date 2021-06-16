@@ -9,7 +9,7 @@ menu:
     parent: web-orgs
 owner:
   - https://github.com/orgs/giantswarm/teams/biscuit
-last_review_date: 2021-04-20
+last_review_date: 2021-06-16
 user_questions:
   - Where can I manage organizations in the web UI?
   - How can I add an organization using the web UI?
@@ -27,7 +27,7 @@ In the web user interface top navigation menu you can easily find the **Organiza
 
 ![Organizations overview](organizations-overview.png)
 
-If you are an admin user, this page shows all organizations existing in the management cluster of your installation.
+This page shows all organizations existing in the management cluster of your installation.
 
 <!-- TODO: Mention that as a non-admin user, you see the organizations you have access to, when non-admin users gain access. -->
 
@@ -37,24 +37,15 @@ To learn more about an individual organization, and to find more management func
 
 Below the organization overview you find the option to create a new organization.
 
-All you have to do here is to enter the name of the new organization. There are a few requirements for the name:
-
-- Must be unique within the management cluster.
-- Must contain at most 59 characters.
-- Has to conform the DNS label names convention as [documented by Kubernetes](https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-label-names) additionally, which means
-    - contain only lowercase alphanumeric characters or '-'
-    - start with an alphanumeric character
-    - end with an alphanumeric character
-
-<!-- TODO: Move the above details over to general / organizations once it exists, and link there -->
+All you have to do here is to enter the name of the new organization. Please take the [naming conventions and restrictions]({{< relref "/general/organizations/index.md#naming-conventions" >}}) into account.
 
 ## Deleting an organization
 
-From the organizations overview, click on an organization in order to open its detail page.You will find a section titled **Delete this organization** at the bottom of that page.
+From the organizations overview, click on an organization in order to open its detail page. You will find a section titled **Delete this organization** at the bottom of that page.
 
 In order to be able to delete an organization there must not be any workload clusters owned by the organization.
 
-**Warning:** Deleting an organization also causes deletion of resources in the according namespace, e. g. apps, role bindings, secrets, configmaps etc. in the organization's namespace.
+**Warning:** Deleting an organization also causes deletion of resources in the according namespace, e. g. apps, role bindings, secrets, etc. in the organization's namespace.
 
 **Warning:** In on-premises installations (using the KVM provider), the system does not ensure that there are no clusters owned by the organization before deleting it. Please double check before deleting an organization that there are no clusters owned by it. Otherwise these clusters will remain in place and consume resources, but will be invisible to the user interfaces.
 
