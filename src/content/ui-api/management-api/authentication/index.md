@@ -44,7 +44,7 @@ More information can be found in the [`kubectl gs login`]({{< relref "/ui-api/ku
 
 [![Authentication flow](sso-auth-flow-with-kubectl-gs-login.svg)](sso-auth-flow-with-kubectl-gs-login.svg)
 
-In order to complete the authentication flow, `kubectl gs` will open your default web browser. If in that browser you are authenticated with your identity provider (determined e. g. via a cookie), you will see a confirmation page and can close the browser window again. However, if you weren't authenticated with your identity provider yet, you'll have to go through the authentication process you are used to. When this is done, a confirmation page will be shown.
+In order to complete the authentication flow, `kubectl gs` will open your default web browser. If in that browser you are authenticated with your identity provider (determined e.g. via a cookie), you will see a confirmation page and can close the browser window again. However, if you weren't authenticated with your identity provider yet, you'll have to go through the authentication process you are used to. When this is done, a confirmation page will be shown.
 
 As a result of running the command, your `kubectl` configuration has a new context, user, and cluster entry. The context is named according to the pattern
 
@@ -82,7 +82,7 @@ The screenshot shows an example of that result page.
 
 Here you can inspect the details that will be passed to the Management API as part of the ID token. You can use this to verify the details coming from your identity provider, especially the `email` (which is used as your user identifier) and `groups` claim.
 
-This page will also present your Management API endpoint's certification authority (CA) certificate. In order to connect to your Management API endpoint, you should add this CA certificate to your client's trusted (root) certificates.
+This page will also present your Management API endpoint's certificate authority (CA) certificate. In order to connect to your Management API endpoint, you should add this CA certificate to your client's trusted (root) certificates.
 
 The rest of the page helps you set up `kubectl` manually, adaptable for various operating systems.
 
