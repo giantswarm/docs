@@ -9,11 +9,9 @@ menu:
     parent: uiapi-web
 owner:
   - https://github.com/orgs/giantswarm/teams/biscuit
-last_review_date: 2021-04-20
+last_review_date: 2021-06-16
 ---
 
 {{% organization_mgmt_mapi_disclaimer %}}
 
-Organizations are a way to group resources like clusters and apps in a way that different entities are isolated from each other. You can use organizations to separate projects, business units, teams etc.
-
-<!-- TODO: Link to general/organizations page once it exists -->
+[Organizations]({{< relref "/general/organizations/index.md" >}}) are a way to group resources like clusters and apps in a way that different entities are isolated from each other. You can use organizations to separate projects, business units, teams etc.
