@@ -43,7 +43,7 @@ For production usage the cluster should have at least 5 nodes and a buffer of 2 
 
 #### Control plane nodes
 
-Control plane nodes matter much more than worker nodes in order to achieve better availability and performance. Several worker nodes can be replaced at the same time with no downtime but the failure of a control plane node could cause a major issue if it is your only control plane node. [High-availability control planes]({{< relref "/advanced/high-availability/control-plane/index.md" >}}) can be used on AWS to reduce downtime to a minimum but still need to be sized correctly to avoid performance issues.
+Control plane nodes are more critical than worker nodes in achieving better availability and performance. Several worker nodes can be replaced at the same time with no downtime but the failure of a control plane node could cause a major issue if it is your only control plane node. [High-availability control planes]({{< relref "/advanced/high-availability/control-plane/index.md" >}}) can be used on AWS to reduce downtime to a minimum but still need to be sized correctly to avoid performance issues.
 
 The control plane nodes host critical components like the API, scheduler, Etcd, and many more. The load of these components will directly depend on the amount of resources they are managing, the number of API requests being served, and the events being generated in the cluster.
 
@@ -54,7 +54,7 @@ In order to size the control plane nodes sufficiently, we recommend:
 
 #### Worker node size
 
-When it comes to sizing your worker nodes, there should generally be a preference for more smaller nodes vs. less bigger ones.
+When it comes to sizing your worker nodes, there should generally be a preference for a greater number of smaller nodes vs. a smaller number of larger nodes.
 However, avoid node sizes of less than 1 core and 2GB RAM.
 
 To determine the right sizing in terms of cores and RAM, you need to know what kind of workloads will be run on the cluster
