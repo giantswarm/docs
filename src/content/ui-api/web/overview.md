@@ -23,7 +23,7 @@ easy to use that this reference isn't necessary.
 However, for those of you interested in having an overview of what is possible
 with our web interface, and how to access it, read on!
 
-## Where can I find the web interface
+## Where can I find the web interface {#where-to-find}
 
 The URL to your installation's web interface is handed to you once Giant Swarm
 staff finishes the initial setup.
