@@ -10,6 +10,12 @@ aliases:
   - /guides/recommendations-and-best-practices/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
+user_questions:
+  - How should I size my control plane nodes?
+  - How should I size my worker nodes?
+  - How should I separate concerns using several clusters?
+  - How many worker nodes should my clusters have?
+  - How many control plane nodes should I run?
 ---
 
 # Recommendations and Best Practices
