@@ -6,7 +6,7 @@ description: |
   Release is a Kubernetes resource (CR) representing a Giant Swarm workload cluster release.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.26.0
+source_repository_ref: v3.27.0
 layout: crd
 aliases:
   - /reference/cp-k8s-api/releases.release.giantswarm.io/
