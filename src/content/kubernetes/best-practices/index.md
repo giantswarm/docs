@@ -43,8 +43,8 @@ The master nodes host the critical components like the API, scheduler, Etcd, and
 
 In order to have high availability we recommend:
 
-- Cluster with 50 nodes or 1000 pods should use m5.2xlarge instance types or higher.
-- Cluster with 100 nodes or 2000 pods should use m5.4xlarge in single master or High Availability with m5.2xlarge instances.
+- Cluster with 50 nodes or 1000 pods should use m5.2xlarge or Standard_D4s_v3 instance types or higher.
+- Cluster with 100 nodes or 2000 pods should use m5.4xlarge or Standard_D8s_v3 in single master or High Availability with m5.2xlarge or Standard_D4s_v3 instances.
 
 #### Worker node size
 
