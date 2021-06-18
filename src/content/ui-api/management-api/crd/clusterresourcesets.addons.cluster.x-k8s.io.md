@@ -6,7 +6,7 @@ description: |
   ClusterResourceSet is the Schema for the clusterresourcesets API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.26.0
+source_repository_ref: v3.27.0
 layout: crd
 aliases:
   - /reference/cp-k8s-api/clusterresourcesets.addons.cluster.x-k8s.io/
