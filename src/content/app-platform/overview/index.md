@@ -86,6 +86,7 @@ Below you can see a high level overview of the components and resources that wor
 together to enable the features of the Giant Swarm App Platform:
 
 ![A diagram showing an overview of various components and concepts that make up the Giant Swarm App Platform](app-platform-overview.png)
+<!-- Original version: https://docs.google.com/drawings/d/1V3KcUImxRdrrb2v_nIQnkapHiRkRM6t8PoYGCqWebYY/edit -->
 
 ### What kind of App Catalogs are there
 
