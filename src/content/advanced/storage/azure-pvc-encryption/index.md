@@ -66,7 +66,7 @@ parameters:
 ```
 
 From now on your Persistent Volumes using this storage class will have encrypted data with your Customer-Managed key.
-Final step is to add the Managed Identities (Service Principals) per Virtual Machine Scale Set that are created both for master and for all node pools in your cluster to also have access to the Key Vault instance in order to be able to read the encryption key.
+The final step is to add the Managed Identities (Service Principals) per Virtual Machine Scale Set that are created both for master and for all node pools in your cluster to also have access to the Key Vault instance in order to be able to read the encryption key.
 
 ## Further reading
 
