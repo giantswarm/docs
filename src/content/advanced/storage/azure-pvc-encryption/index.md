@@ -25,16 +25,16 @@ In order to increase the security of your persistent data on PVs you can use the
 
 ## Azure Key Vault setup
 
-A prerequisite for next steps is to have a deployed Key Vault instance either in your cluster's Resource Group, or in your account. Please follow the [official docs](https://docs.microsoft.com/en-us/azure/key-vault/general/overview) to get started.
+A prerequisite for following steps is to have a deployed Key Vault instance either in your cluster's Resource Group, or in your account. Please follow the [official docs](https://docs.microsoft.com/en-us/azure/key-vault/general/overview) to get started.
 
 ## Create first encryption key
 
-After successful deployment we can move to creating an encryption key which will be used to encrypt data on your PVs.
+After successful deployment, we can move to creating the encryption key which will be used to encrypt data on your PVs.
 
 Add a new key with a key type, RSA key size, and activation or expiration date of your choosing in the Key Vault directory.
 
 When the creation is finished, the Key Identifier should look similar to:
-```https://name-of-your-key-vault-instance.vault.azure.net/keys/test-vault-enc-key/xxxaaadddwww222111dddaaa23456789```
+`https://name-of-your-key-vault-instance.vault.azure.net/keys/test-vault-enc-key/xxxaaadddwww222111dddaaa23456789`
 
 ## Create Disk Encryption Set
 
@@ -46,13 +46,13 @@ Regardless of your choice, please specify the key you have just created to be us
 Remember to add access permissions to the Key Vault instance you have created for the created Disk Encryption Set as it will need it to actually access and read the key after creation.
 
 In the last step you will need the Resource ID of the created Disk Encryption Set looking like:
-```/subscriptions/sub_id/resourceGroups/rg_where_key_vault_is/providers/Microsoft.Compute/diskEncryptionSets/name_of_your_disk_encryption_set```
+`/subscriptions/sub_id/resourceGroups/rg_where_key_vault_is/providers/Microsoft.Compute/diskEncryptionSets/name_of_your_disk_encryption_set`
 
 ## Create Storage Class with Encryption
 
 The last step is to create your own Storage Class with the defined encryption set.
 
-After adjusting with your Encryption Set Resource ID, you will be able to apply following manifest:
+After replacing the placeholder below with your Encryption Set Resource ID, you will be able to apply the following snippet:
 
 ```yaml
 kind: StorageClass
@@ -67,7 +67,7 @@ parameters:
 ```
 
 From now on, your Persistent Volumes using this storage class will have encrypted data with your Customer-Managed key.
-The final step is to add the Managed Identities (Service Principals) per Virtual Machine Scale Set that are created both for master and for all node pools in your cluster to also have access to the Key Vault instance in order to be able to read the encryption key.
+The final step is to add the Managed Identities (Service Principals) to every Virtual Machine Scale Set which is created (both for master and for all node pools in your cluster). This is to enable them to have access to the Key Vault instance in order to be able to read the encryption key.
 
 ## Further reading
 
