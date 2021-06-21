@@ -28,7 +28,7 @@ A prerequisite for next steps is to have a deployed Key Vault instance either in
 
 ## Create first encryption key
 
-After successful deployment we can move to creating encryption key that will be used to encrypt data on your PVs.
+After successful deployment we can move to creating an encryption key which will be used to encrypt data on your PVs.
 
 Add a new key with key type, RSA key size, activation or expiration date of your choosing in the Key Vault directory.
 
