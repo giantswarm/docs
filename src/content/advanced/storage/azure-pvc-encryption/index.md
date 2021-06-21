@@ -33,7 +33,7 @@ After successful deployment we can move to creating an encryption key which will
 
 Add a new key with a key type, RSA key size, and activation or expiration date of your choosing in the Key Vault directory.
 
-When creation is finished, the Key Identifier should look similar to:
+When the creation is finished, the Key Identifier should look similar to:
 ```https://name-of-your-key-vault-instance.vault.azure.net/keys/test-vault-enc-key/xxxaaadddwww222111dddaaa23456789```
 
 ## Create Disk Encryption Set
