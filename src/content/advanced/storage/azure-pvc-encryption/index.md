@@ -9,6 +9,7 @@ menu:
 user_questions:
   - How do I encrypt data on Persistent Volumes?
   - How do I secure data on Persistent Volumes?
+  - How do I use Azure Key Vault?
 aliases:
   - /guides/encrypting-persistent-volumes-on-azure-with-azure-key-vault/
 owner:
