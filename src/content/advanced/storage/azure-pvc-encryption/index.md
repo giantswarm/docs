@@ -19,7 +19,7 @@ owner:
 
 If your cluster is running in Azure infrastructure, most common way to provision Persistent Volumes is by using the Azure Disks.
 
-On GS clusters default Storage Classes include already definitions for Azure Disks as well as Azure Files. Those disks however are not encrypted with Customer-Managed keys but only with Platform-Managed keys.
+On Giant Swarm Workload clusters, the default Storage Classes already include definitions for Azure Disks as well as Azure Files. Those disks however are not encrypted with Customer-Managed keys but only with Platform-Managed keys.
 In order to increase the security of your data persisting on PVs you can facilitate [Azure Key Vault](https://azure.microsoft.com/en-us/services/key-vault/) service as an encryption key provider.
 
 ## Azure Key Vault setup
