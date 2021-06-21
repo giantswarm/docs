@@ -76,4 +76,3 @@ Final step is to add the Managed Identities (Service Principals) per Virtual Mac
 - [Claim persistent volumes in pods](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#claims-as-volumes)
 - [BYOC with Azure disks on AKS](https://docs.microsoft.com/en-us/azure/aks/azure-disk-customer-managed-keys)
 - [Azure Disk Encryption](https://docs.microsoft.com/en-us/azure/virtual-machines/disks-enable-customer-managed-keys-portal)
-    
