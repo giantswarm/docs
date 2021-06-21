@@ -19,12 +19,12 @@ owner:
 
 If your cluster is running in Azure infrastructure, most common way to provision Persistent Volumes is by using the Azure Disks.
 
-On GS clusters default Storage Classes include already definitions for Azure Disks as well as Azure Files. Those disks however are not encrypted with Customer-Managed keys but only with Platform-Managed keys. 
+On GS clusters default Storage Classes include already definitions for Azure Disks as well as Azure Files. Those disks however are not encrypted with Customer-Managed keys but only with Platform-Managed keys.
 In order to increase the security of your data persisting on PVs you can facilitate [Azure Key Vault](https://azure.microsoft.com/en-us/services/key-vault/) service as an encryption key provider.
 
 ## Azure Key Vault setup
 
-Prerequisite for next steps is to have a deployed Key Vault instance either in your clusters Resource Group or in your account. Please follow the [official docs](https://docs.microsoft.com/en-us/azure/key-vault/general/overview) to get started. 
+Prerequisite for next steps is to have a deployed Key Vault instance either in your clusters Resource Group or in your account. Please follow the [official docs](https://docs.microsoft.com/en-us/azure/key-vault/general/overview) to get started.
 
 ## Create first encryption key
 
@@ -37,7 +37,7 @@ When creation is finished, the Key Identifier should look similar to:
 
 ## Create Disk Encryption Set
 
-Next step is to create a Azure Disk Encryption Set with the key generated in previous step. You can use Azure CLI or navigate in the Portal by adding a new Disk Encryption Set resource. 
+Next step is to create a Azure Disk Encryption Set with the key generated in previous step. You can use Azure CLI or navigate in the Portal by adding a new Disk Encryption Set resource.
 
 When creating the Set, you can specify encryption type which should use only Customer-Managed keys or provide a double encryption with additional Platform-Managed keys.
 Regardless of your choice, please specify the key you have just created to be used in the Set.
@@ -47,13 +47,13 @@ Remember to add access permissions to the Key Vault instance you have created fo
 In the last step you will need the Resource ID of the created Disk Encryption Set looking like:
 ```/subscriptions/sub_id/resourceGroups/rg_where_key_vault_is/providers/Microsoft.Compute/diskEncryptionSets/name_of_your_disk_encryption_set```
 
-
 ## Create Storage Class with Encryption
 
 Last step is to create your own Storage Class with the defined encryption set.
 
 After adjusting with your Encryption Set Resource ID, you will be able to apply following code:
-```kind: StorageClass
+```
+kind: StorageClass
 apiVersion: storage.k8s.io/v1  
 metadata:
   name: EncryptedDisks
@@ -61,7 +61,7 @@ provisioner: kubernetes.io/azure-disk
 parameters:
   skuname: Standard_LRS
   kind: managed
-  diskEncryptionSetID: "/subscriptions/sub_id/resourceGroups/rg_where_key_vault_is/providers/Microsoft.Compute/diskEncryptionSets/name_of_your_disk_encryption_set" 
+  diskEncryptionSetID: "/subscriptions/sub_id/resourceGroups/rg_where_key_vault_is/providers/Microsoft.Compute/diskEncryptionSets/name_of_your_disk_encryption_set"
 ```
 
 From now on your Persistent Volumes using this storage class will have encrypted data with your Customer-Managed key.
