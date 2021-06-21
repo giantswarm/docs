@@ -31,7 +31,7 @@ A prerequisite for next steps is to have a deployed Key Vault instance either in
 
 After successful deployment we can move to creating an encryption key which will be used to encrypt data on your PVs.
 
-Add a new key with key type, RSA key size, activation or expiration date of your choosing in the Key Vault directory.
+Add a new key with a key type, RSA key size, and activation or expiration date of your choosing in the Key Vault directory.
 
 When creation is finished, the Key Identifier should look similar to:
 ```https://name-of-your-key-vault-instance.vault.azure.net/keys/test-vault-enc-key/xxxaaadddwww222111dddaaa23456789```
