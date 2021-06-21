@@ -51,7 +51,7 @@ In the last step you will need the Resource ID of the created Disk Encryption Se
 
 Last step is to create your own Storage Class with the defined encryption set.
 
-After adjusting with your Encryption Set Resource ID, you will be able to apply following code:
+After adjusting with your Encryption Set Resource ID, you will be able to apply following manifest:
 
 ```yaml
 kind: StorageClass
