@@ -24,7 +24,7 @@ In order to increase the security of your persistent data on PVs you can use the
 
 ## Azure Key Vault setup
 
-Prerequisite for next steps is to have a deployed Key Vault instance either in your clusters Resource Group or in your account. Please follow the [official docs](https://docs.microsoft.com/en-us/azure/key-vault/general/overview) to get started.
+A prerequisite for next steps is to have a deployed Key Vault instance either in your cluster's Resource Group, or in your account. Please follow the [official docs](https://docs.microsoft.com/en-us/azure/key-vault/general/overview) to get started.
 
 ## Create first encryption key
 
