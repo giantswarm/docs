@@ -40,7 +40,7 @@ When the creation is finished, the Key Identifier should look similar to:
 
 The next step is to create an Azure Disk Encryption Set with the key generated in the previous step. You can use the Azure CLI or navigate in the Portal by adding a new Disk Encryption Set resource.
 
-When creating the Set, you can specify encryption type which should use only Customer-Managed keys or provide a double encryption with additional Platform-Managed keys.
+When creating the Set, you can specify an encryption type to use only Customer-Managed keys or provide a double encryption with additional Platform-Managed keys.
 Regardless of your choice, please specify the key you have just created to be used in the Set.
 
 Remember to add access permissions to the Key Vault instance you have created for the created Disk Encryption Set as it will need it to actually access and read the key after creation.
