@@ -52,7 +52,8 @@ In the last step you will need the Resource ID of the created Disk Encryption Se
 Last step is to create your own Storage Class with the defined encryption set.
 
 After adjusting with your Encryption Set Resource ID, you will be able to apply following code:
-```
+
+```yaml
 kind: StorageClass
 apiVersion: storage.k8s.io/v1  
 metadata:
@@ -75,3 +76,4 @@ Final step is to add the Managed Identities (Service Principals) per Virtual Mac
 - [Claim persistent volumes in pods](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#claims-as-volumes)
 - [BYOC with Azure disks on AKS](https://docs.microsoft.com/en-us/azure/aks/azure-disk-customer-managed-keys)
 - [Azure Disk Encryption](https://docs.microsoft.com/en-us/azure/virtual-machines/disks-enable-customer-managed-keys-portal)
+    
