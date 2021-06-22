@@ -1,15 +1,8 @@
 ---
-<<<<<<< HEAD
-linkTitle: App target namespace metadata
-title: How to annotate an app's target namespace via its App CR
-description: Configuring metadata for the target namespace of an app via its app CR so it can be used by other tools such as service meshes.
-weight: 50
-=======
 linkTitle: Target namespace metadata
 title: Configure an app's target namespace via its App CR
 description: How to configure metadata for the target namespace of an app via its app CR. So it can be used by other tools such as service meshes.
-weight: 40
->>>>>>> master
+weight: 50
 menu:
   main:
     parent: app-platform
@@ -58,11 +51,7 @@ kind: Namespace
 metadata:
   annotations:
     linkerd.io/inject: "enabled"
-<<<<<<< HEAD
-  name: loki0
-=======
   name: loki
->>>>>>> master
 ```
 
 If you want to set labels on the namespace, use `spec.namespaceConfig.labels`.

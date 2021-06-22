@@ -6,7 +6,7 @@ weight: 20
 menu:
   main:
     parent: app-platform
-last_review_date: 2021-04-21
+last_review_date: 2021-06-22
 owner:
   - https://github.com/orgs/giantswarm/teams/team-batman
 user_questions:
@@ -78,19 +78,25 @@ but this information is also available in the management cluster. We create
 [AppCatalogEntry]({{< relref "/ui-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}})
 CRs for the apps that are available.
 
-In this example we are filtering using the `latest=true` label to show only the
-latest version according to semantic versioning.
-
-We are also filtering using the catalog label. You can change this to
-`giantswarm-playground` to show our more experimental apps which we encourage
-you to try but do not offer as a managed service.
+First let's list the available [Catalog]({< relref "/ui-api/management-api/crd/catalogs.application.giantswarm.io.md" >}})
+CRs.
 
 ```sh
-kubectl gs get appcatalogentry --catalog=giantswarm
+kubectl gs get catalogs
 
-NAME                                             CATALOG      APP NAME                       APP VERSION   VERSION        AGE
+NAME                    CATALOG URL                                                   CREATED
+giantswarm              https://giantswarm.github.io/giantswarm-catalog/              17 Jul 20 17:28 CEST
+giantswarm-playground   https://giantswarm.github.io/giantswarm-playground-catalog/   17 Jul 20 17:28 CEST
+```
+
+Now we can list the latest version of each app in the catalog.
+
+```sh
+kubectl gs get catalog giantswarm
+
+CATALOG      APP NAME                       APP VERSION   VERSION        CREATED
 ...
-giantswarm-nginx-ingress-controller-app-1.16.1   giantswarm   nginx-ingress-controller-app   v0.45.0       1.16.1         25h
+giantswarm   nginx-ingress-controller-app   v0.45.0       1.16.1         20 Apr 21 15:34 CEST
 ...
 ```
 
@@ -100,17 +106,11 @@ We can use the [kubectl gs template app]({{< relref "/ui-api/kubectl-gs/login" >
 command to generate the App CR using the latest version from the previous command.
 
 ```sh
-cat > ingress-values.yaml <<EOL
-configmap:
-  hsts: "true"
-EOL
-
 kubectl gs template app \
   --catalog=giantswarm \
   --cluster=${CLUSTER} \
   --name=nginx-ingress-controller-app \
   --namespace=kube-system \
-  --user-configmap=ingress-values.yaml \
   --version=1.16.1 > nginx-ingress-controller-app.yaml
 
 kubectl apply -f nginx-ingress-controller-app.yaml
@@ -121,20 +121,6 @@ Lets first see the output of the template command which shows only the
 required fields.
 
 ```yaml
-apiVersion: v1
-data:
-  values: |
-    controller:
-      replicas: 2
-    autoscaling:
-      enabled: false
-kind: ConfigMap
-metadata:
-  creationTimestamp: null
-  name: nginx-ingress-controller-app-userconfig-gz25x
-  namespace: gz25x
----
----
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
@@ -146,13 +132,6 @@ spec:
     inCluster: false
   name: nginx-ingress-controller-app
   namespace: kube-system
-  userConfig:
-    configMap:
-      name: nginx-ingress-controller-app-userconfig-gz25x
-      namespace: gz25x
-    secret:
-      name: ""
-      namespace: ""
   version: 1.16.1
 ```
 
@@ -197,7 +176,7 @@ spec:
 status:
   appVersion: v0.45.0
   release:
-    lastDeployed: "2021-04-21T16:28:08Z"
+    lastDeployed: "2021-06-21T16:28:08Z"
     status: deployed
   version: 1.16.1
 ```
@@ -214,14 +193,14 @@ your app is deployed as a Helm chart with values YAML. You can add custom
 configuation as YAML and it will be merged with the rest of the configuation
 we provide.
 
-For this example we will do something simple and ensure we always run 2 replicas
-for the ingress controller. We can use `kubectl gs template app` to generate
-both the App CR and the related Config Map.
+For this example we will do something simple and increase the log level from
+notice to info. We can use `kubectl gs template app` to generate both the
+updated App CR and the related Config Map.
 
 ```sh
 cat > ingress-values.yaml <<EOL
 configmap:
-  hsts: "true"
+  error-log-level: "info"
 EOL
 
 kubectl gs template app \
@@ -243,7 +222,7 @@ apiVersion: v1
 data:
   values: |
     configmap:
-      hsts: "true"
+      error-log-level: "info"
 kind: ConfigMap
 metadata:
   name: nginx-ingress-controller-app-userconfig-gz25x
