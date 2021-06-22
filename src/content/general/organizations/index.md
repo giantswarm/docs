@@ -132,7 +132,7 @@ Giant Swarm is currently working towards making the organization's namespace the
 
 Organizations can be managed in several ways.
 
-- The [web user interface]({{< relref "/ui-api/web/_index.md" >}}) allows to create and delete organizations interactively. Since organizations are synchronized, this affects both the REST API as well as the Management API.
+- The [web user interface]({{< relref "/ui-api/web/organizations/_index.md" >}}) allows to create and delete organizations interactively. Since organizations are synchronized, this affects both the REST API as well as the Management API.
 
 - The [Management API]({{< relref "/ui-api/management-api/_index.md" >}}) provides full, native support for managing all organization-related resources.
 
