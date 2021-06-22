@@ -1,5 +1,5 @@
 ---
-linkTitle: Persistent Volumes data encryption with Azure Key Vault
+linkTitle: Azure volume encryption
 title: Encrypting Persistent Volumes using Azure Key Vault
 description: Tutorial on how to encrypt dynamically provisioned Persistent Volumes on Azure clusters using Azure Key Vault feature.
 weight: 40
@@ -16,7 +16,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-celestial
 ---
 
-# Using Persistent Volumes on Azure
+# Encrypting Persistent Volumes using Azure Key Vault
 
 If your cluster is running in Azure infrastructure, the most common way to provision Persistent Volumes (PVs) is by using Azure Disks.
 
