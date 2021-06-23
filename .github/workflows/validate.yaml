@@ -1,10 +1,10 @@
-name: Validation
+name: Validate
 on:
   push:
     branches-ignore:
       - master
 jobs:
-  validate:
+  front-matter:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
