@@ -7,8 +7,8 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - name: Echo base ref
-        run: echo $GITHUB_BASE_REF
+      - name: Echo ref
+        run: echo $GITHUB_REF
 
       - name: Checkout
         uses: actions/checkout@v2
@@ -19,7 +19,7 @@ jobs:
         run: pip3 install colored
       
       - name: List changed files
-        run: git --no-pager diff --name-only FETCH_HEAD...master
+        run: git --no-pager diff --name-only $GITHUB_REF...master
 
       - name: Validate front matter
         run: git diff --name-only $GITHUB_BASE_REF | python3 scripts/validate-front-matter/script.py
