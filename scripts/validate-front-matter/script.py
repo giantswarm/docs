@@ -1,5 +1,6 @@
 import datetime
 import fileinput
+import json
 import os
 import re
 import sys
@@ -39,18 +40,20 @@ SHORT_DESCRIPTION        = 'SHORT_DESCRIPTION'
 SHORT_TITLE              = 'SHORT_TITLE'
 UNKNOWN_ATTRIBUTE        = 'UNKNOWN_ATTRIBUTE'
 
+GITHUB_ACTIONS = os.getenv('GITHUB_ACTIONS')
+
 # All checks with metadata, in a logical order
 checks = (
     # 1. prerequisites
     {
         'id': NO_FRONT_MATTER,
-        'description': 'The page does not have any front matter',
+        'description': 'No front matter found in the beginning of the page',
         'severity': 'FAIL',
     },
     {
         'id': NO_TRAILING_NEWLINE,
-        'description': 'There should be a newline character at the end of the page',
-        'severity': 'WARN',
+        'description': 'There must be a newline character at the end of the page to ensure proper parsing',
+        'severity': 'FAIL',
     },
     {
         'id': UNKNOWN_ATTRIBUTE,
@@ -195,18 +198,47 @@ def dump_result(rdict):
         print(f"Please fix at least those marked with {severity('FAIL')}.", end="\n\n")
         sys.exit(1)
 
-def get_front_matter(source_text):
+def dump_annotations(rdict):
+    """
+    Create an annotations JSON file for use with
+    https://github.com/yuzutech/annotations-action
+    in ./annotations.json
+
+    [
+        {
+            file: "path/to/file.js",
+            line: 5,
+            title: "title for my annotation",
+            message: "my message",
+            annotation_level: "failure"
+        }
+    ]
+    """
+
+    dummy_annotations = [
+        {
+            'file': 'src/content/dummy.md',
+            'line': 1,
+            'title': 'Dummy title',
+            'message': 'This is a dummy message\n\nwith line breaks and **markdown**',
+            'annotation_level': 'failure',
+        }
+    ]
+    with open('anotations.json', 'wb') as annotations:
+        json.dump(dummy_annotations, indent=2, fp=annotations)
+
+
+def get_raw_front_matter(source_text):
     """
     Tries to find front matter in the beginning of the document and
-    then returns a dict or raises an exception.
+    returns it as a string.
     """
     matches = list(re.finditer(r"(---)\n", source_text))
     if len(matches) >= 2:
         front_matter_start = matches[0].start(1)
         front_matter_end = matches[1].start(1)
-        data = load(source_text[(front_matter_start + 3):front_matter_end], Loader=Loader)
-        return data
-    return None
+        return source_text[(front_matter_start + 3):front_matter_end]
+    return ""
 
 
 def ignored_path(path, check_id):
@@ -267,6 +299,7 @@ def main():
 
     for fpath in fpaths:
         fm = {}
+        fmstring = ""
 
         with open(fpath, 'r') as input:
             content = input.read()
@@ -275,14 +308,18 @@ def main():
                 result[NO_TRAILING_NEWLINE].add(fpath)
                 # Can't parse reliably, so skipping further checks
                 continue
+            
+            if not content.startswith("---\n"):
+                result[NO_FRONT_MATTER].add(fpath)
+                continue
 
             try:
-                fm = get_front_matter(content)
+                fmstring = get_raw_front_matter(content)
+                if fmstring != "":
+                    fm = load(fmstring, Loader=Loader)
             except Exception as e:
-                # TODO: once we fail on collected errors,
-                # collect this one here instead of failing immediately.
-                print(f'ERROR: page {fpath} has no front matter')
-                sys.exit(1)
+                result[NO_FRONT_MATTER].add(fpath)
+                continue
         
         if fm is None:
             result[NO_FRONT_MATTER].add(fpath)
@@ -363,6 +400,9 @@ def main():
         for key in fm.keys():
             if key not in valid_keys:
                 result[UNKNOWN_ATTRIBUTE].add(f'{fpath} attribute {literal(key)}')
+
+    if GITHUB_ACTIONS != None:
+        dump_annotations(result)
 
     dump_result(result)
 
