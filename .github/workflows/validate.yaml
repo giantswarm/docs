@@ -31,3 +31,9 @@ jobs:
         if: success()
         run: |
           cat files.txt | python3 scripts/validate-front-matter/script.py
+      
+      - name: Send annotations
+        uses: yuzutech/annotations-action@a651a74507fca3f3fd2b0c3fa2e00e549b5ffcce # v0.3.0
+        with:
+          title: dummy-title
+          input: ./annotations.json
