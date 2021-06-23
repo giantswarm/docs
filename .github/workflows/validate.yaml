@@ -13,13 +13,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          fetch-depth: 50 # need some commits to find ref 'master'
+          fetch-depth: 100 # need some commits to find ref 'master'
 
       - name: List changed files
-        run: git --no-pager diff master
+        run: git --no-pager diff --name-only master
 
       - name: Install dependencies
         run: pip3 install colored
       
       - name: Validate front matter
-        run: git diff --name-only master | python3 scripts/validate-front-matter/script.py
+        run: git --no-pager diff --name-only master | python3 scripts/validate-front-matter/script.py
