@@ -7,6 +7,9 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
+      - name: Echo base ref
+        run: echo $GITHUB_BASE_REF
+
       - name: Checkout
         uses: actions/checkout@v2
         with:
