@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 100 # need some commits to find ref 'master'
 
       - name: List changed files
-        run: git --no-pager diff --name-only master
+        run: git --no-pager diff --name-only FETCH_HEAD $(git merge-base FETCH_HEAD master)
 
       - name: Install dependencies
         run: pip3 install colored
