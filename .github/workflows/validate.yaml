@@ -20,7 +20,7 @@ jobs:
 
       - name: List changed files
         run: |
-          echo ${{ github.event.issue.number }}
+          echo ${{github.event.number}}
           URL=$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER/files
           echo $URL
           curl -sS $URL | jq -r .
