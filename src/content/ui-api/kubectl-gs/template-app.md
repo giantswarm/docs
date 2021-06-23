@@ -68,7 +68,7 @@ It also supports the following optional flags:
 Only required fields are templated. Other fields are are set by the
 [defaulting webhook]({{< relref "/app-platform/defaulting-validation" >}}).
 
-This is enabled for Giant Swarm releases. For older releases you can set the `--defaulting-enabled` flag to false.
+This is enabled for the Giant Swarm releases shown below. For older releases you can set the `--defaulting-enabled` flag to false.
 
 - AWS >= v14.0.0
 - Azure >= v13.1.0
