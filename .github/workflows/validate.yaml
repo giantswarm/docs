@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          fetch-depth: 100 # need some commits to find ref 'master'
+          fetch-depth: 0 # need full history to find ref 'master'
 
       - name: List changed files
         run: git --no-pager diff --name-only FETCH_HEAD $(git merge-base FETCH_HEAD master)
