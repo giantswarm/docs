@@ -13,7 +13,7 @@ jobs:
           fetch-depth: 50 # need some commits to find ref 'master'
 
       - name: Validate front matter
-        run:
+        run: |
           pip3 install colored
           git diff --name-only ${GITHUB_BASE_REF} | python3 scripts/validate-front-matter/script.py
 
