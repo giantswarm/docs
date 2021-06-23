@@ -20,4 +20,4 @@ jobs:
 
       - name: Validate front matter for changed files
         run: |
-          git diff --name-only {{ github.base_ref }} | python3 scripts/validate-front-matter/script.py
+          git diff --name-only "{{ github.base_ref }}" | python3 scripts/validate-front-matter/script.py
