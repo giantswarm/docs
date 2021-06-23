@@ -14,6 +14,7 @@ jobs:
 
       - name: Validate front matter
         run:
+          pip3 install colored
           git diff --name-only ${GITHUB_BASE_REF} | python3 scripts/validate-front-matter/script.py
 
       # - name: Validate front matter
