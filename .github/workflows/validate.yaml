@@ -1,0 +1,10 @@
+name: Validation
+on: push
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Validate front matter
+        run: validate-front-matter

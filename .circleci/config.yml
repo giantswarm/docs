@@ -16,9 +16,9 @@ jobs:
           name: Check Markdown structure
           command: make lint
 
-      - run:
-          name: Validate front matter
-          command: make validate-front-matter
+      # - run:
+      #     name: Validate front matter
+      #     command: make validate-front-matter
 
       - run:
           name: Install architect
