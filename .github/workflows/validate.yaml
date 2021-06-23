@@ -9,6 +9,9 @@ jobs:
     steps:
       - name: Echo ENV
         run: env | sort
+      
+      - name: Event context
+        run: cat $GITHUB_EVENT_PATH | jq .
 
       - name: Checkout
         uses: actions/checkout@v2
@@ -18,7 +21,7 @@ jobs:
       - name: List changed files
         run: |
           echo ${{ github.event.issue.number }}
-          URL=https://api.github.com/repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER/files
+          URL=$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER/files
           echo $URL
           curl -sS $URL | jq -r .
 
