@@ -186,12 +186,12 @@ def dump_result(rdict):
         if check['severity'] == 'FAIL':
             fail = True
         
-        hl = headline(check['description'])
-        print(f"\n{hl} ({check['id']})")
+        print(f"\n{severity(check['severity'])}: {headline(check['description'])} ({check['id']})")
         for item in sorted(rdict[check['id']]):
             print(f'  - {item}')
 
     if fail:
+        sys.stderr.write(f"Some problems found.\nPlease fix at least those marked with {severity('FAIL')}.\n")
         sys.exit(1)
 
 def get_front_matter(source_text):
@@ -227,11 +227,17 @@ def literal(text):
     "Returns a text wrapped in ANSI markup to stand out as a literal"
     return f"{fg('yellow')}{bg('black')}{text}{attr('reset')}"
 
-
 def headline(text):
     "Return a text styled as headline"
     return f"{fg('white')}{attr('bold')}{text}{attr('reset')}"
 
+def severity(text):
+    "Return the check's severity in the right color."
+    if text == 'FAIL':
+        return f"{fg('red')}{text}{attr('reset')}"
+    elif text == 'WARN':
+        return f"{fg('yellow')}{text}{attr('reset')}"
+    return text
 
 def main():
     # Result dict has a key for each rule to check, where the value is a list of pages
