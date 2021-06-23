@@ -17,8 +17,17 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0 # need full history to find ref 'master'
+      
+      - uses: jwalton/gh-find-current-pr@v1
+        id: findPr
+      
+      - run: echo "Your PR is ${PR}"
+        if: success() && steps.findPr.outputs.number
+        env:
+          PR: ${{ steps.findPr.outputs.pr }}
 
       - name: List changed files
+        if: success()
         run: |
           echo ${{github.event.number}}
           URL=$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER/files
@@ -26,7 +35,9 @@ jobs:
           curl -sS $URL | jq -r .
 
       - name: Install dependencies
+        if: success()
         run: pip3 install colored
       
       - name: Validate front matter
+        if: success()
         run: git --no-pager diff --name-only master | python3 scripts/validate-front-matter/script.py
