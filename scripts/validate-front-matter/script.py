@@ -1,4 +1,5 @@
 import datetime
+import fileinput
 import os
 import re
 import sys
@@ -11,7 +12,7 @@ try:
 except ImportError:
     from yaml import Loader
 
-# Som path config
+# Some path config
 path         = 'src/content'
 changes_path = 'src/content/changes/'
 crds_path    = 'src/content/ui-api/management-api/crd/'
@@ -44,88 +45,108 @@ checks = (
     {
         'id': NO_FRONT_MATTER,
         'description': 'The page does not have any front matter',
+        'severity': 'FAIL',
     },
     {
         'id': NO_TRAILING_NEWLINE,
         'description': 'There should be a newline character at the end of the page',
+        'severity': 'WARN',
     },
     {
         'id': UNKNOWN_ATTRIBUTE,
         'description': 'There is an unknown front matter attribute in this page',
+        'severity': 'FAIL',
     },
     # 2. standard attributes
     {
         'id': NO_TITLE,
         'description': 'The page should have a title',
+        'severity': 'FAIL',
     },
     {
         'id': LONG_TITLE,
         'description': 'The title should be less than 40 characters',
+        'severity': 'FAIL',
     },
     {
         'id': SHORT_TITLE,
         'description': 'The title should be longer than 5 characters',
+        'severity': 'FAIL',
     },
     {
         'id': NO_DESCRIPTION,
         'description': 'Each page should have a description',
+        'severity': 'FAIL',
     },
     {
         'id': LONG_DESCRIPTION,
         'description': 'The description should be less than 300 characters',
+        'severity': 'FAIL',
     },
     {
         'id': SHORT_DESCRIPTION,
         'description': 'The description should be longer than 70 characters',
+        'severity': 'FAIL',
     },
     {
         'id': NO_LINK_TITLE,
         'description': 'The page should have a linkTitle, which appears in menus and list pages',
         'ignore_paths': [crds_path, changes_path],
+        'severity': 'WARN',
     },
     {
         'id': LONG_LINK_TITLE,
         'description': 'The linkTitle (used in menu and list pages) should be less than 40 characters',
+        'severity': 'FAIL',
     },
     {
         'id': NO_WEIGHT,
-        'description': 'The page should have a weight attribute',
+        'description': 'The page should have a weight attribute, to control the sort order',
+        'severity': 'WARN',
     },
     # 3. custom attributes
     {
         'id': NO_OWNER,
         'description': 'The page should have an owner assigned',
         'ignore_paths': [crds_path, changes_path],
+        'severity': 'FAIL',
     },
     {
         'id': INVALID_OWNER,
         'description': 'The owner field values must start with a Github teams URL',
+        'severity': 'FAIL',
     },
     {
         'id': NO_LAST_REVIEW_DATE,
         'description': 'The page should have a last_review_date',
         'ignore_paths': [crds_path, changes_path],
+        'severity': 'WARN',
     },
     {
         'id': REVIEW_TOO_LONG_AGO,
         'description': 'The last review date is too long ago',
+        'severity': 'WARN',
     },
     {
         'id': INVALID_LAST_REVIEW_DATE,
         'description': 'The last_review_date should be of format YYYY-MM-DD',
+        'severity': 'FAIL',
     },
     {
         'id': NO_USER_QUESTIONS,
         'description': 'The page should have user_questions assigned',
         'ignore_paths': [crds_path, changes_path],
+        'severity': 'FAIL',
     },
     {
         'id': LONG_USER_QUESTIONS,
         'description': 'Each user question should be no longer than 100 characters',
+        'severity': 'FAIL',
     },
     {
         'id': NO_QUESTION_MARK,
-        'description': 'Questions should end with a question mark'
+        'description': 'Questions should end with a question mark',
+        'severity': 'FAIL',
     }
 )
 
@@ -150,16 +171,29 @@ valid_keys = set((
 ))
 
 def dump_result(rdict):
+    """
+    Print check results and emit non-zero exit code
+    if there was an error with severity FAIL.
+    """
     global checks
+
+    fail = False
+
     for check in checks:
         if len(rdict[check['id']]) == 0:
             continue
         
-        hl = headline(check['description'])
-        print(f"\n{hl} ({check['id']})")
+        if check['severity'] == 'FAIL':
+            fail = True
+        
+        print(f"\n{severity(check['severity'])}: {headline(check['description'])} ({check['id']})")
         for item in sorted(rdict[check['id']]):
             print(f'  - {item}')
 
+    if fail:
+        print("\nSome problems found.")
+        print(f"Please fix at least those marked with {severity('FAIL')}.", end="\n\n")
+        sys.exit(1)
 
 def get_front_matter(source_text):
     """
@@ -194,11 +228,17 @@ def literal(text):
     "Returns a text wrapped in ANSI markup to stand out as a literal"
     return f"{fg('yellow')}{bg('black')}{text}{attr('reset')}"
 
-
 def headline(text):
     "Return a text styled as headline"
     return f"{fg('white')}{attr('bold')}{text}{attr('reset')}"
 
+def severity(text):
+    "Return the check's severity in the right color."
+    if text == 'FAIL':
+        return f"{fg('red')}{text}{attr('reset')}"
+    elif text == 'WARN':
+        return f"{fg('yellow')}{text}{attr('reset')}"
+    return text
 
 def main():
     # Result dict has a key for each rule to check, where the value is a list of pages
@@ -206,14 +246,21 @@ def main():
     for check in checks:
         result[check['id']] = set()
 
-    # Iterate through pages
+    # Use list of pages from STDIN, or iterate through all pages.
     fpaths = []
-    for root, _, files in os.walk(path):
-        for file in files:
-            if not file.endswith('.md'):
-                continue
-            
-            fpaths.append(os.path.join(root, file))
+    stdin = list(fileinput.input())
+    if len(stdin) > 0:
+        for line in stdin:
+            line = line.strip()
+            if line.startswith(path) and line.endswith('.md'):
+                fpaths.append(os.path.join(line))
+                print(f"Adding to files checked: {line}")
+    else:
+        for root, _, files in os.walk(path):
+            for file in files:
+                if not file.endswith('.md'):
+                    continue
+                fpaths.append(os.path.join(root, file))
 
 
     todays_date = datetime.date.today()
