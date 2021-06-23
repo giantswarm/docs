@@ -191,7 +191,7 @@ def dump_result(rdict):
             print(f'  - {item}')
 
     if fail:
-        print("Some problems found.")
+        print("\nSome problems found.")
         print(f"Please fix at least those marked with {severity('FAIL')}.", end="\n\n")
         sys.exit(1)
 
