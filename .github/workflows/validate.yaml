@@ -1,33 +1,23 @@
 name: Validate
 on:
-  push:
-    branches-ignore:
+  pull_request:
+    branches:
       - master
+    paths:
+      - 'src/**.md'
+
 jobs:
   front-matter:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      
-      - name: Get pull request information
-        uses: jwalton/gh-find-current-pr@6025da8f655f241d580c1b3a07f2f0a781349ed8 # v1.1.0
-        id: findPr
 
       - name: Install dependencies
-        if: success()
         run: pip3 install colored
-            
-      - name: Get list of changed files
-        id: fileList
-        if: success()
-        env:
-          URL: https://api.github.com/repos/${{ github.repository }}/pulls/${{ steps.findPr.outputs.pr }}/files
-        run: |
-          curl --fail -sS $URL | jq -r .[].filename | sort -u > files.txt
-          cat files.txt
-      
+
       - name: Validate front matter for changed files
-        if: success()
         run: |
+          git fetch --no-tags origin "${GITHUB_BASE_REF}":"${GITHUB_BASE_REF}"
+          git diff --name-only "refs/heads/${GITHUB_BASE_REF}" -- . | tee files.txt
           cat files.txt | python3 scripts/validate-front-matter/script.py
