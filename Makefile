@@ -55,7 +55,7 @@ lint:
 		./src
 
 validate-front-matter:
-	git diff --name-only master
+	TERM=ansi git diff --name-only master
 	git diff --name-only master | docker run --rm -i \
 	  --volume=${PWD}:/workdir:ro \
 	  -w /workdir \
