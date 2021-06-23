@@ -404,6 +404,7 @@ def main():
     if GITHUB_ACTIONS != None:
         dump_annotations(result)
 
+    # This must happen last, as it does sys.exit() in cases.
     dump_result(result)
 
 
