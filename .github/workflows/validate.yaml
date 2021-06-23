@@ -15,11 +15,11 @@ jobs:
         with:
           fetch-depth: 50 # need some commits to find ref 'master'
 
+      - name: List changed files
+        run: git --no-pager diff master
+
       - name: Install dependencies
         run: pip3 install colored
       
-      - name: List changed files
-        run: git --no-pager diff --name-only $GITHUB_SHA...master
-
       - name: Validate front matter
-        run: git diff --name-only $GITHUB_BASE_REF | python3 scripts/validate-front-matter/script.py
+        run: git diff --name-only master | python3 scripts/validate-front-matter/script.py
