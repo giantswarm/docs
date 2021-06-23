@@ -191,7 +191,8 @@ def dump_result(rdict):
             print(f'  - {item}')
 
     if fail:
-        sys.stderr.write(f"Some problems found.\nPlease fix at least those marked with {severity('FAIL')}.\n")
+        print("Some problems found.")
+        print(f"Please fix at least those marked with {severity('FAIL')}.", end="\n\n")
         sys.exit(1)
 
 def get_front_matter(source_text):
