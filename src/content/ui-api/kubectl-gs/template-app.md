@@ -8,7 +8,7 @@ menu:
     parent: uiapi-kubectlgs
 aliases:
   - /reference/kubectl-gs/template-app/
-last_review_date: 2021-02-22
+last_review_date: 2021-06-22
 owner:
   - https://github.com/orgs/giantswarm/teams/team-batman
 ---
