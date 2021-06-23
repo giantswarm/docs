@@ -10,8 +10,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       
-      - name: Get Pull Request information
-        uses: jwalton/gh-find-current-pr@v1
+      - name: Get pull request information
+        uses: jwalton/gh-find-current-pr@6025da8f655f241d580c1b3a07f2f0a781349ed8 # v1.1.0
         id: findPr
 
       - name: Install dependencies
