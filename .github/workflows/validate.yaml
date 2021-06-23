@@ -13,4 +13,14 @@ jobs:
           fetch-depth: 50 # need some commits to find ref 'master'
 
       - name: Validate front matter
-        run: make validate-front-matter
+        run:
+          git diff --name-only ${GITHUB_BASE_REF} | python3 scripts/validate-front-matter/script.py
+
+      # - name: Validate front matter
+      #   run: |
+      #     docker pull --quiet quay.io/giantswarm/docs-scriptrunner:latest
+      #     git diff --name-only ${GITHUB_BASE_REF} | docker run --rm -i \
+      #       --volume=${PWD}:/workdir:ro \
+      #       -w /workdir \
+      #       quay.io/giantswarm/docs-scriptrunner:latest \
+      #       /workdir/scripts/validate-front-matter/script.py
