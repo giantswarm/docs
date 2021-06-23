@@ -19,7 +19,7 @@ jobs:
         run: |
           echo $GITHUB_EVENT_PATH
 
-          PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+          PR_NUMBER="${{ github.event.issue.number }}"
           URL=https://api.github.com/repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER/files
           echo $URL
           curl -sS $URL | jq -r .
