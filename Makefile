@@ -54,6 +54,13 @@ lint:
 		--ignore ./src/content/ui-api/management-api/crd \
 		./src
 
+validate-front-matter:
+	docker run --rm \
+	  --volume=${PWD}:/workdir:ro \
+	  -w /workdir \
+	  quay.io/giantswarm/docs-scriptrunner:latest \
+	  /workdir/scripts/validate-front-matter/script.py
+
 docker-build: update-latest-versions
 	docker build -t $(REGISTRY)/$(COMPANY)/$(PROJECT):latest .
 
