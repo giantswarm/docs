@@ -25,6 +25,7 @@ jobs:
           URL: https://api.github.com/repos/${{ github.repository }}/pulls/${{ steps.findPr.outputs.pr }}/files
         run: |
           curl --fail -sS $URL | jq -r .[].filename | sort -u > files.txt
+          cat files.txt
       
       - name: Validate front matter for changed files
         if: success()
