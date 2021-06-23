@@ -17,9 +17,7 @@ jobs:
       - name: Install dependencies
         if: success()
         run: pip3 install colored
-      
-      - run: git ls-tree -r --name-only ${{ github.ref }}
-      
+            
       - name: Get list of changed files
         id: fileList
         if: success()
