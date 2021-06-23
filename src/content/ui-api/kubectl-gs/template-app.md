@@ -61,17 +61,15 @@ spec:
 
 It also supports the following optional flags:
 
-- `--defaulting-enabled`: Don't template fields that will be defaulted. (default true)
+- `--defaulting-enabled`: Only include fields that differ from the default value (default true). When false, a much longer template is created.
 - `--user-configmap`: Path to the user values configmap YAML file.
 - `--user-secret`: Path to the user secrets YAML file.
 
-Only required fields are templated. Other fields like the path to the kubeconfig secret are set by the
+Only required fields are templated. Other fields are are set by the
 [defaulting webhook]({{< relref "/app-platform/defaulting-validation" >}}).
 
-This is enabled for Giant Swarm releases.
+This is enabled for Giant Swarm releases. For older releases you can set the `--defaulting-enabled` flag to false.
 
 - AWS >= v14.0.0
 - Azure >= v13.1.0
 - KVM >= v13.1.0
-
-For older releases you can set the `--defaulting-enabled` flag to false.
