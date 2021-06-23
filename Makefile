@@ -55,7 +55,7 @@ lint:
 		./src
 
 validate-front-matter:
-	docker run --rm \
+	git diff --name-only HEAD | docker run --rm -i \
 	  --volume=${PWD}:/workdir:ro \
 	  -w /workdir \
 	  quay.io/giantswarm/docs-scriptrunner:latest \
