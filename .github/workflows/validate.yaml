@@ -16,7 +16,7 @@ jobs:
         run: pip3 install colored
       
       - name: List changed files
-        run: git diff --name-only ${GITHUB_BASE_REF}
+        run: git diff --name-only $GITHUB_BASE_REF
 
       - name: Validate front matter
-        run: git diff --name-only ${GITHUB_BASE_REF} | python3 scripts/validate-front-matter/script.py
+        run: git diff --name-only $GITHUB_BASE_REF | python3 scripts/validate-front-matter/script.py
