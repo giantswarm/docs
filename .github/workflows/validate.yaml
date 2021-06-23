@@ -18,9 +18,17 @@ jobs:
         if: success()
         run: pip3 install colored
       
+      - name: Get list of changed files
+        id: fileList
+        if: success()
+        env:
+          URL: $GITHUB_API_URL/repos/$GITHUB_REPOSITORY/pulls/${{ steps.findPr.outputs.pr }}/files
+        run: |
+          curl -sS $URL | jq -r .[].filename > files.txt
+          cat files.txt
+          echo "::set-output name=files::$(cat files.txt)"
+      
       - name: Validate front matter for changed files
         if: success()
         run: |
-          URL=$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/pulls/${{ steps.findPr.outputs.pr }}/files
-          echo $URL
-          curl -sS $URL | jq -r .[].filename | python3 scripts/validate-front-matter/script.py
+          echo ${{ steps.fileList.outputs.files }} | python3 scripts/validate-front-matter/script.py
