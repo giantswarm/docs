@@ -24,11 +24,9 @@ jobs:
         env:
           URL: https://api.github.com/repos/${{ github.repository }}/pulls/${{ steps.findPr.outputs.pr }}/files
         run: |
-          curl --fail -sS $URL | jq -r .[].filename > files.txt
-          cat files.txt
-          echo "::set-output name=files::$(cat files.txt)"
+          curl --fail -sS $URL | jq -r .[].filename | sort -u > files.txt
       
       - name: Validate front matter for changed files
         if: success()
         run: |
-          echo ${{ steps.fileList.outputs.files }} | python3 scripts/validate-front-matter/script.py
+          cat files.txt | python3 scripts/validate-front-matter/script.py
