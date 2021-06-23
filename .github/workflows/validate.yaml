@@ -16,7 +16,11 @@ jobs:
           fetch-depth: 0 # need full history to find ref 'master'
 
       - name: List changed files
-        run: git --no-pager diff --name-only FETCH_HEAD $(git merge-base FETCH_HEAD master)
+        run: |
+          PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+          URL=https://api.github.com/repos/$GITHUB_REPOSITORY/pulls/PR_NUMBER/files
+          echo $URL
+          curl -sS $URL | jq -r .
 
       - name: Install dependencies
         run: pip3 install colored
