@@ -224,7 +224,7 @@ def dump_annotations(rdict):
             'annotation_level': 'failure',
         }
     ]
-    with open('anotations.json', 'wb') as annotations:
+    with open('anotations.json', 'w') as annotations:
         json.dump(dummy_annotations, indent=2, fp=annotations)
 
 
