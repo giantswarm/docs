@@ -1,7 +1,10 @@
 name: Validation
-on: push
+on:
+  push:
+    branches-ignore:
+      - master
 jobs:
-  linux:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
