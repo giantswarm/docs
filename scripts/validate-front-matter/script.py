@@ -173,7 +173,7 @@ valid_keys = set((
     'weight',
 ))
 
-def dump_result(rdict):
+def handle_result(rdict):
     """
     Print check results and emit non-zero exit code
     if there was an error with severity FAIL.
@@ -196,7 +196,6 @@ def dump_result(rdict):
     if fail:
         print("\nSome problems found.")
         print(f"Please fix at least those marked with {severity('FAIL')}.", end="\n\n")
-        sys.exit(1)
 
 def dump_annotations(rdict):
     """
@@ -405,7 +404,7 @@ def main():
         dump_annotations(result)
 
     # This must happen last, as it does sys.exit() in cases.
-    dump_result(result)
+    handle_result(result)
 
 
 if __name__ == '__main__':
