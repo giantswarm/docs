@@ -29,5 +29,5 @@ jobs:
         uses: yuzutech/annotations-action@a651a74507fca3f3fd2b0c3fa2e00e549b5ffcce # v0.3.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          title: dummy-title
+          title: Front matter problems
           input: ./annotations.json

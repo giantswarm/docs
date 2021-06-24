@@ -217,9 +217,9 @@ def dump_annotations(rdict):
     dummy_annotations = [
         {
             'file': 'src/content/dummy.md',
-            'line': 1,
-            'title': 'Dummy title',
-            'message': 'This is a dummy message\n\nwith line breaks and **markdown**',
+            'line': 3,
+            'title': 'Annotation title for line 3',
+            'message': 'This is a dummy message\n\nwith line breaks and <b>HTML</b>',
             'annotation_level': 'failure',
         }
     ]
