@@ -20,6 +20,7 @@ crds_path    = 'src/content/ui-api/management-api/crd/'
 todays_date = datetime.date.today()
 
 # Unique identifiers for our checks
+INVALID_DESCRIPTION      = 'INVALID_DESCRIPTION'
 INVALID_LAST_REVIEW_DATE = 'INVALID_LAST_REVIEW_DATE'
 INVALID_OWNER            = 'INVALID_OWNER'
 LONG_DESCRIPTION         = 'LONG_DESCRIPTION'
@@ -99,6 +100,11 @@ checks = (
         'description': 'The description should be longer than 70 characters',
         'severity': SEVERITY_FAIL,
         'has_value': True,
+    },
+    {
+        'id': INVALID_DESCRIPTION,
+        'description': 'Description must be a simple string without any markup or line breaks',
+        'severity': SEVERITY_FAIL,
     },
     {
         'id': NO_LINK_TITLE,
@@ -391,6 +397,11 @@ def validate(content, fpath):
             result.append({
                 'check': NO_DESCRIPTION,
             })
+        elif type(fm['description']) != str:
+            result.append({
+                'check': INVALID_DESCRIPTION,
+                'value': fm['description'],
+            })
         elif len(fm['description']) < 70:
             if not fpath.startswith(changes_path):
                 result.append({
@@ -400,6 +411,11 @@ def validate(content, fpath):
         elif len(fm['description']) > 300:
             result.append({
                 'check': LONG_DESCRIPTION,
+                'value': fm['description'],
+            })
+        elif "\n" in fm['description'].strip():
+            result.append({
+                'check': INVALID_DESCRIPTION,
                 'value': fm['description'],
             })
     else:
