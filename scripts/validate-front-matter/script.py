@@ -253,6 +253,8 @@ def dump_annotations(rdict):
     https://github.com/yuzutech/annotations-action
     in ./annotations.json
 
+    with one annotation per file
+
     [
         {
             file: "path/to/file.js",
@@ -264,18 +266,65 @@ def dump_annotations(rdict):
     ]
     """
 
-    dummy_annotations = [
-        {
-            'file': 'src/content/dummy.md',
+    global checks_dict
+
+    annotations = []
+
+    def format_message_part(check_id, severity_str, description, value):
+        out = f'{severity_str} - {description}\n'
+        if checks_dict[check_id].get('has_value') and value is not None and value != "":
+            if type(value) == str:
+                out += f': {literal(value.strip())}\n'
+            elif type(value) == datetime.date:
+                out += f': {literal(value.isoformat())}\n'
+            else:
+                out += f': {literal(json.dumps(value))}\n'
+        return out + "\n"
+
+    for fpath in rdict.keys():
+        level = 'warning'
+
+        # line range to attach the annotation to
+        end_line = 1
+
+        nwarnings = 0
+        nfails = 0
+
+        message = ""
+
+        for check in rdict[fpath]['checks']:
+            end_line = max(end_line,
+                           check.get('line', 1),
+                           check.get('end_line', rdict[fpath]['num_front_matter_lines']))
+            
+            if checks_dict[check['check']]['severity'] == SEVERITY_FAIL:
+                level = 'failure'
+                nfails += 1
+            else:
+                nwarnings += 1
+            
+            message += format_message_part(check['check'],
+                                           checks_dict[check['check']]['severity'],
+                                           checks_dict[check['check']]['description'],
+                                           check.get('value'))
+        
+        headline = f'Found {nwarnings} less severe problems'
+        if nwarnings > 0 and nfails > 0:
+            headline = f'Found {nfails} severe and {nwarnings} less severe problems'
+        elif nfails > 0 and nwarnings == 0:
+            headline = f'Found {nfails} severe problems'
+
+        annotations.append({
+            'file': fpath,
             'line': 1,
-            'end_line': 3,
-            'title': 'Annotation title for line 3',
-            'message': 'This is a dummy message\n\nwith line breaks and <b>HTML</b>',
-            'annotation_level': 'failure',
-        }
-    ]
+            'end_line': end_line,
+            'title': headline,
+            'message': message,
+            'annotation_level': level,
+        })
+
     with open('annotations.json', 'w') as annotations:
-        json.dump(dummy_annotations, indent=2, fp=annotations)
+        json.dump(annotations, indent=2, fp=annotations)
 
 
 def get_raw_front_matter(source_text):
