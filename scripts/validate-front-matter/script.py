@@ -323,8 +323,8 @@ def dump_annotations(rdict):
             'annotation_level': level,
         })
 
-    with open('annotations.json', 'w') as annotations:
-        json.dump(annotations, indent=2, fp=annotations)
+    with open('annotations.json', 'w') as fp:
+        json.dump(annotations, indent=2, fp=fp)
 
 
 def get_raw_front_matter(source_text):
