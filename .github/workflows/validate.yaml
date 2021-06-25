@@ -26,7 +26,7 @@ jobs:
         run: cat ./annotations.json
       
       - name: Send annotations
-        uses: yuzutech/annotations-action@a651a74507fca3f3fd2b0c3fa2e00e549b5ffcce # v0.3.0
+        uses: giantswarm/annotations-action@add-end-line
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           title: Front matter problems
