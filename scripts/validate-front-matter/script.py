@@ -87,6 +87,7 @@ checks = (
     {
         'id': NO_DESCRIPTION,
         'description': 'Each page should have a description',
+        'ignore_paths': [changes_path],
         'severity': SEVERITY_FAIL,
     },
     {
@@ -442,7 +443,7 @@ def validate(content, fpath):
         })
 
     if 'description' in fm:
-        if fm['description'] is None:
+        if fm['description'] is None and not ignored_path(fpath, NO_DESCRIPTION):
             result.append({
                 'check': NO_DESCRIPTION,
             })
@@ -467,7 +468,7 @@ def validate(content, fpath):
                 'check': INVALID_DESCRIPTION,
                 'value': fm['description'],
             })
-    else:
+    elif not ignored_path(fpath, NO_DESCRIPTION):
         result.append({
             'check': NO_DESCRIPTION,
         })
