@@ -3,7 +3,6 @@ import fileinput
 import json
 import os
 import re
-import sys
 
 from colored import fg, bg, attr
 
@@ -18,13 +17,15 @@ path         = 'src/content'
 changes_path = 'src/content/changes/'
 crds_path    = 'src/content/ui-api/management-api/crd/'
 
+todays_date = datetime.date.today()
+
 # Unique identifiers for our checks
 INVALID_LAST_REVIEW_DATE = 'INVALID_LAST_REVIEW_DATE'
 INVALID_OWNER            = 'INVALID_OWNER'
 LONG_DESCRIPTION         = 'LONG_DESCRIPTION'
 LONG_LINK_TITLE          = 'LONG_LINK_TITLE'
 LONG_TITLE               = 'LONG_TITLE'
-LONG_USER_QUESTIONS      = 'LONG_USER_QUESTIONS'
+LONG_USER_QUESTION       = 'LONG_USER_QUESTION'
 NO_DESCRIPTION           = 'NO_DESCRIPTION'
 NO_FRONT_MATTER          = 'NO_FRONT_MATTER'
 NO_LAST_REVIEW_DATE      = 'NO_LAST_REVIEW_DATE'
@@ -42,114 +43,127 @@ UNKNOWN_ATTRIBUTE        = 'UNKNOWN_ATTRIBUTE'
 
 GITHUB_ACTIONS = os.getenv('GITHUB_ACTIONS')
 
+SEVERITY_FAIL = 'FAIL'
+SEVERITY_WARN = 'WARN'
+
 # All checks with metadata, in a logical order
 checks = (
     # 1. prerequisites
     {
         'id': NO_FRONT_MATTER,
         'description': 'No front matter found in the beginning of the page',
-        'severity': 'FAIL',
+        'severity': SEVERITY_FAIL,
     },
     {
         'id': NO_TRAILING_NEWLINE,
         'description': 'There must be a newline character at the end of the page to ensure proper parsing',
-        'severity': 'FAIL',
+        'severity': SEVERITY_FAIL,
     },
     {
         'id': UNKNOWN_ATTRIBUTE,
         'description': 'There is an unknown front matter attribute in this page',
-        'severity': 'FAIL',
+        'severity': SEVERITY_FAIL,
+        'has_value': True,
     },
     # 2. standard attributes
     {
         'id': NO_TITLE,
         'description': 'The page should have a title',
-        'severity': 'FAIL',
+        'severity': SEVERITY_FAIL,
     },
     {
         'id': LONG_TITLE,
         'description': 'The title should be less than 40 characters',
-        'severity': 'FAIL',
+        'severity': SEVERITY_FAIL,
+        'has_value': True,
     },
     {
         'id': SHORT_TITLE,
         'description': 'The title should be longer than 5 characters',
-        'severity': 'FAIL',
+        'severity': SEVERITY_FAIL,
+        'has_value': True,
     },
     {
         'id': NO_DESCRIPTION,
         'description': 'Each page should have a description',
-        'severity': 'FAIL',
+        'severity': SEVERITY_FAIL,
     },
     {
         'id': LONG_DESCRIPTION,
         'description': 'The description should be less than 300 characters',
-        'severity': 'FAIL',
+        'severity': SEVERITY_FAIL,
+        'has_value': True,
     },
     {
         'id': SHORT_DESCRIPTION,
         'description': 'The description should be longer than 70 characters',
-        'severity': 'FAIL',
+        'severity': SEVERITY_FAIL,
+        'has_value': True,
     },
     {
         'id': NO_LINK_TITLE,
         'description': 'The page should have a linkTitle, which appears in menus and list pages',
         'ignore_paths': [crds_path, changes_path],
-        'severity': 'WARN',
+        'severity': SEVERITY_WARN,
     },
     {
         'id': LONG_LINK_TITLE,
         'description': 'The linkTitle (used in menu and list pages) should be less than 40 characters',
-        'severity': 'FAIL',
+        'severity': SEVERITY_FAIL,
     },
     {
         'id': NO_WEIGHT,
         'description': 'The page should have a weight attribute, to control the sort order',
-        'severity': 'WARN',
+        'severity': SEVERITY_WARN,
     },
     # 3. custom attributes
     {
         'id': NO_OWNER,
         'description': 'The page should have an owner assigned',
         'ignore_paths': [crds_path, changes_path],
-        'severity': 'FAIL',
+        'severity': SEVERITY_FAIL,
     },
     {
         'id': INVALID_OWNER,
         'description': 'The owner field values must start with a Github teams URL',
-        'severity': 'FAIL',
+        'severity': SEVERITY_FAIL,
+        'has_value': True,
     },
     {
         'id': NO_LAST_REVIEW_DATE,
         'description': 'The page should have a last_review_date',
         'ignore_paths': [crds_path, changes_path],
-        'severity': 'WARN',
+        'severity': SEVERITY_WARN,
     },
     {
         'id': REVIEW_TOO_LONG_AGO,
         'description': 'The last review date is too long ago',
-        'severity': 'WARN',
+        'severity': SEVERITY_WARN,
+        'has_value': True,
     },
     {
         'id': INVALID_LAST_REVIEW_DATE,
         'description': 'The last_review_date should be of format YYYY-MM-DD',
-        'severity': 'FAIL',
+        'severity': SEVERITY_FAIL,
+        'has_value': True,
     },
     {
         'id': NO_USER_QUESTIONS,
         'description': 'The page should have user_questions assigned',
         'ignore_paths': [crds_path, changes_path],
-        'severity': 'FAIL',
+        'severity': SEVERITY_FAIL,
     },
     {
-        'id': LONG_USER_QUESTIONS,
+        'id': LONG_USER_QUESTION,
         'description': 'Each user question should be no longer than 100 characters',
-        'severity': 'FAIL',
+        'severity': SEVERITY_FAIL,
+        'has_value': True,
     },
     {
         'id': NO_QUESTION_MARK,
         'description': 'Questions should end with a question mark',
-        'severity': 'FAIL',
+        'severity': SEVERITY_FAIL,
+        'has_value': True,
     }
 )
 
@@ -173,29 +187,59 @@ valid_keys = set((
     'weight',
 ))
 
-def handle_result(rdict):
+# Convenience dict for checks by ID
+checks_dict = {}
+for c in checks:
+    checks_dict[c['id']] = c
+
+
+def print_result(rdict):
     """
-    Print check results and emit non-zero exit code
-    if there was an error with severity FAIL.
+    Print a formatted result report to STDOUT.
+
+    rdict is a dict with file paths as keys and a list of check results as a value.
     """
-    global checks
+    global checks_dict
 
-    fail = False
+    nfails = 0
+    nwarnings = 0
 
-    for check in checks:
-        if len(rdict[check['id']]) == 0:
-            continue
+    for fpath in rdict.keys():
+        print(f'\n{fpath}')
+
+        fails = []
+        warnings = []
+
+        for check in rdict[fpath]['checks']:
+            if checks_dict[check['check']]['severity'] == SEVERITY_FAIL:
+                fails.append(check)
+                nfails += 1
+            else:
+                warnings.append(check)
+                nwarnings += 1
         
-        if check['severity'] == 'FAIL':
-            fail = True
+        def format_line(check_id, severity_str, description, value):
+            out = f' - {severity(severity_str)} - {headline(check_id)} - {description}'
+            if checks_dict[check_id].get('has_value') and value != "":
+                if type(value) == str:
+                    out += f': {literal(value.strip())}'
+                elif type(value) == datetime.date:
+                    out += f': {literal(value.isoformat())}'
+                else:
+                    out += f': {literal(json.dumps(value))}'
+            return out
         
-        print(f"\n{severity(check['severity'])}: {headline(check['description'])} ({check['id']})")
-        for item in sorted(rdict[check['id']]):
-            print(f'  - {item}')
+        for check in fails:
+            print(format_line(check['check'], SEVERITY_FAIL, checks_dict[check['check']]['description'], check.get('value')))
+        for check in warnings:
+            print(format_line(check['check'], SEVERITY_WARN, checks_dict[check['check']]['description'], check.get('value')))
 
-    if fail:
-        print("\nSome problems found.")
-        print(f"Please fix at least those marked with {severity('FAIL')}.", end="\n\n")
+    print('')
+    if nfails > 0:
+        print(f'Found {nfails} critical problems, marked with {severity(SEVERITY_FAIL)}.')
+    if  nwarnings > 0:
+        print(f'Found {nwarnings} less severe problems, marked with {severity(SEVERITY_WARN)}.')
+
 
 def dump_annotations(rdict):
     """
@@ -217,7 +261,8 @@ def dump_annotations(rdict):
     dummy_annotations = [
         {
             'file': 'src/content/dummy.md',
-            'line': 3,
+            'line': 1,
+            'end_line': 3,
             'title': 'Annotation title for line 3',
             'message': 'This is a dummy message\n\nwith line breaks and <b>HTML</b>',
             'annotation_level': 'failure',
@@ -232,11 +277,11 @@ def get_raw_front_matter(source_text):
     Tries to find front matter in the beginning of the document and
     returns it as a string.
     """
-    matches = list(re.finditer(r"(---)\n", source_text))
+    matches = list(re.finditer(r"(---\n)", source_text))
     if len(matches) >= 2:
         front_matter_start = matches[0].start(1)
         front_matter_end = matches[1].start(1)
-        return source_text[(front_matter_start + 3):front_matter_end]
+        return source_text[(front_matter_start + 4):front_matter_end]
     return ""
 
 
@@ -254,28 +299,226 @@ def ignored_path(path, check_id):
             return True
     return False
 
+def validate(content, fpath):
+    """
+    Validate the markdown page given as string and
+    return a result array containing info on failed checks
+    and the number of lines in front matter. Structure:
+
+    {
+        "num_front_matter_lines": 5,
+        "checks": [
+            {
+                "check": "UNKNOWN_ATTRIBUTE",
+                "value": "my_attribute",
+                "line": 1,     # line number where this problem occurs or starts (optional)
+                "end_line": 5, # line number where this problem ends (optional)
+            }
+        ]
+    }
+    """
+    result = []
+    num_lines = len(list(content.split("\n")))
+
+    # Detect whether there is front matter
+    if not content.endswith('\n'):
+        result.append({
+            'check': NO_TRAILING_NEWLINE,
+            'line': num_lines, # last line
+        })
+        return result
+    if not content.startswith("---\n"):
+        result.append({
+            'check': NO_FRONT_MATTER,
+            'line': 1,
+        })
+        return result
+
+    # Parse front matter
+    fm = {}
+    fmstring = ""
+    num_fmlines = 0
+    try:
+        fmstring = get_raw_front_matter(content)
+        num_fmlines = len(list(fmstring.split("\n")))
+        if fmstring != "":
+            fm = load(fmstring, Loader=Loader)
+    except Exception as e:
+        result.append({
+            'check': NO_FRONT_MATTER,
+            'line': 1,
+        })
+        return result
+
+    if fm is None:
+        result.append({
+            'check': NO_FRONT_MATTER,
+            'line': 1,
+        })
+        return result
+
+    # Evaluate linkTitle
+    if 'linkTitle' in fm:
+        if len(fm['linkTitle']) > 40:
+            result.append({
+                'check': LONG_LINK_TITLE,
+                'value': fm['linkTitle'],
+            })
+
+    # Evaluate title
+    if 'title' in fm:
+        if len(fm['title']) < 5:
+            result.append({
+                'check': SHORT_TITLE,
+                'value': fm['title'],
+            })
+        elif len(fm['title']) > 40 and not 'linkTitle' in fm and not ignored_path(fpath, NO_LINK_TITLE):
+            result.append({
+                'check': NO_LINK_TITLE,
+            })
+        if len(fm['title']) > 100:
+            result.append({
+                'check': LONG_TITLE,
+                'value': fm['title'],
+            })
+    else:
+        result.append({
+            'check': NO_TITLE,
+        })
+
+    if 'description' in fm:
+        if fm['description'] is None:
+            result.append({
+                'check': NO_DESCRIPTION,
+            })
+        elif len(fm['description']) < 70:
+            if not fpath.startswith(changes_path):
+                result.append({
+                    'check': SHORT_DESCRIPTION,
+                    'value': fm['description'],
+                })
+        elif len(fm['description']) > 300:
+            result.append({
+                'check': LONG_DESCRIPTION,
+                'value': fm['description'],
+            })
+    else:
+        result.append({
+            'check': NO_DESCRIPTION,
+        })
+
+    # Evaluate menu
+    if 'menu' in fm:
+        if 'linkTitle' not in fm:
+            result.append({
+                'check': NO_LINK_TITLE,
+            })
+        if 'weight' not in fm:
+            result.append({
+                'check': NO_WEIGHT,
+            })
+
+    # Evaluate owner
+    if 'owner' in fm:
+        if type(fm['owner']) != list:
+            result.append({
+                'check': INVALID_OWNER,
+                'value': fm['owner'],
+            })
+        elif len(fm['owner']) == 0:
+            result.append({
+                'check': NO_OWNER,
+            })
+        else:
+            for o in fm['owner']:
+                if not o.startswith('https://github.com/orgs/giantswarm/teams/'):
+                    result.append({
+                        'check': INVALID_OWNER,
+                        'value': fm['owner'],
+                    })
+    else:
+        if not ignored_path(fpath, NO_OWNER):
+            result.append({
+                'check': NO_OWNER,
+            })
+
+    if 'user_questions' in fm:
+        for q in fm['user_questions']:
+            if len(q) > 100:
+                result.append({
+                    'check': LONG_USER_QUESTION,
+                    'value': q,
+                })
+            if not q.endswith('?'):
+                result.append({
+                    'check': NO_QUESTION_MARK,
+                    'value': q,
+                })
+    else:
+        if (not ignored_path(fpath, NO_USER_QUESTIONS) and
+            not fpath.endswith('_index.md')):
+            result.append({
+                'check': NO_USER_QUESTIONS,
+            })
+
+    if 'last_review_date' in fm:
+        if type(fm['last_review_date']) is datetime.date:
+            diff = todays_date - fm['last_review_date']
+            if diff > datetime.timedelta(days=365):
+                result.append({
+                    'check': REVIEW_TOO_LONG_AGO,
+                    'value': fm['last_review_date'],
+                })
+            elif diff < datetime.timedelta(seconds=0):
+                # in the future
+                result.append({
+                    'check': INVALID_LAST_REVIEW_DATE,
+                    'value': fm['last_review_date'],
+                })
+        else:
+            result.append({
+                'check': INVALID_LAST_REVIEW_DATE,
+                'value': fm['last_review_date'],
+            })
+    else:
+        if not ignored_path(fpath, NO_LAST_REVIEW_DATE):
+            result.append({
+                'check': NO_LAST_REVIEW_DATE,
+            })
+
+    # Evaluate all attributes
+    for key in fm.keys():
+        if key not in valid_keys:
+            result.append({
+                'check': UNKNOWN_ATTRIBUTE,
+                'value': key,
+            })
+    
+    return {
+        'num_front_matter_lines': num_fmlines,
+        'checks': result,
+    }
+
 
 def literal(text):
     "Returns a text wrapped in ANSI markup to stand out as a literal"
-    return f"{fg('yellow')}{bg('black')}{text}{attr('reset')}"
+    return f"{fg('cyan')}{text}{attr('reset')}"
 
 def headline(text):
     "Return a text styled as headline"
-    return f"{fg('white')}{attr('bold')}{text}{attr('reset')}"
+    return f"{fg('white')}{text}{attr('reset')}"
 
 def severity(text):
     "Return the check's severity in the right color."
-    if text == 'FAIL':
-        return f"{fg('red')}{text}{attr('reset')}"
-    elif text == 'WARN':
-        return f"{fg('yellow')}{text}{attr('reset')}"
+    if text == SEVERITY_FAIL:
+        return f"{attr('bold')}{fg('red')}{text}{attr('reset')}"
+    elif text == SEVERITY_WARN:
+        return f"{attr('bold')}{fg('yellow')}{text}{attr('reset')}"
     return text
 
 def main():
-    # Result dict has a key for each rule to check, where the value is a list of pages
+    # Result dict has a key for each file to check
     result = {}
-    for check in checks:
-        result[check['id']] = set()
 
     # Use list of pages from STDIN, or iterate through all pages.
     fpaths = []
@@ -293,118 +536,17 @@ def main():
                     continue
                 fpaths.append(os.path.join(root, file))
 
-
-    todays_date = datetime.date.today()
-
     for fpath in fpaths:
-        fm = {}
-        fmstring = ""
-
         with open(fpath, 'r') as input:
             content = input.read()
+            r = validate(content, fpath)
+            if len(r['checks']) > 0:
+                result[fpath] = r
 
-            if not content.endswith('\n'):
-                result[NO_TRAILING_NEWLINE].add(fpath)
-                # Can't parse reliably, so skipping further checks
-                continue
-            
-            if not content.startswith("---\n"):
-                result[NO_FRONT_MATTER].add(fpath)
-                continue
-
-            try:
-                fmstring = get_raw_front_matter(content)
-                if fmstring != "":
-                    fm = load(fmstring, Loader=Loader)
-            except Exception as e:
-                result[NO_FRONT_MATTER].add(fpath)
-                continue
-        
-        if fm is None:
-            result[NO_FRONT_MATTER].add(fpath)
-            continue
-
-        # Evaluate linkTitle
-        if 'linkTitle' in fm:
-            if len(fm['linkTitle']) > 40:
-                result[LONG_LINK_TITLE].add(f"{fpath} linkTitle: {literal(fm['linkTitle'])}")
-        
-        # Evaluate title
-        if 'title' in fm:
-            if len(fm['title']) < 5:
-                result[SHORT_TITLE].add(f"{fpath} title: {literal(fm['title'])}")
-            elif len(fm['title']) > 40 and not 'linkTitle' in fm and not ignored_path(fpath, NO_LINK_TITLE):
-                result[NO_LINK_TITLE].add(f"{fpath} title: {literal(fm['title'])}")
-            if len(fm['title']) > 100:
-                result[LONG_TITLE].add(f"{fpath} title: {literal(fm['title'])}")
-        else:
-            result[NO_TITLE].add(fpath)
-        
-        if 'description' in fm:
-            if fm['description'] is None:
-                result[NO_DESCRIPTION].add(fpath)
-            elif len(fm['description']) < 70:
-                if not fpath.startswith(changes_path):
-                    result[SHORT_DESCRIPTION].add(f"{fpath} description: {literal(fm['description'])}")
-            elif len(fm['description']) > 300:
-                result[LONG_DESCRIPTION].add(f"{fpath} description: {literal(fm['description'])}")
-        else:
-            result[NO_DESCRIPTION].add(fpath)
-
-        # Evaluate menu
-        if 'menu' in fm:
-            if 'linkTitle' not in fm:
-                result[NO_LINK_TITLE].add(fpath)
-            if 'weight' not in fm:
-                result[NO_WEIGHT].add(fpath)
-        
-        # Evaluate owner
-        if 'owner' in fm:
-            # TODO: check owner validity
-            if type(fm['owner']) != list:
-                result[INVALID_OWNER].add(fpath)
-            elif len(fm['owner']) == 0:
-                result[NO_OWNER].add(fpath)
-            else:
-                for o in fm['owner']:
-                    if not o.startswith('https://github.com/orgs/giantswarm/teams/'):
-                        result[INVALID_OWNER].add(f"{fpath} owner: {literal(o)}")
-        else:
-            if not ignored_path(fpath, NO_OWNER):
-                result[NO_OWNER].add(fpath)
-        
-        if 'user_questions' in fm:
-            for q in fm['user_questions']:
-                if len(q) > 100:
-                    result[LONG_USER_QUESTIONS].add(f"{fpath} question: {literal(q)}")
-                if not q.endswith('?'):
-                    result[NO_QUESTION_MARK].add(f"{fpath} question: {literal(q)}")
-        else:
-            if (not ignored_path(fpath, NO_USER_QUESTIONS) and
-                not fpath.endswith('_index.md')):
-                result[NO_USER_QUESTIONS].add(fpath)
-        
-        if 'last_review_date' in fm:
-            if type(fm['last_review_date']) is datetime.date:
-                diff = todays_date - fm['last_review_date']
-                if diff > datetime.timedelta(days=365):
-                    result[REVIEW_TOO_LONG_AGO].add(f"{fpath} last_review_date: {literal(fm['last_review_date'])}")
-            else:
-                result[INVALID_LAST_REVIEW_DATE].add(f"{fpath} last_review_date: {literal(fm['last_review_date'])}")
-        else:
-            if not ignored_path(fpath, NO_LAST_REVIEW_DATE):
-                result[NO_LAST_REVIEW_DATE].add(fpath)
-        
-        # Evaluate all attributes
-        for key in fm.keys():
-            if key not in valid_keys:
-                result[UNKNOWN_ATTRIBUTE].add(f'{fpath} attribute {literal(key)}')
+    print_result(result)
 
     if GITHUB_ACTIONS != None:
         dump_annotations(result)
-
-    # This must happen last, as it does sys.exit() in cases.
-    handle_result(result)
 
 
 if __name__ == '__main__':
