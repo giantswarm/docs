@@ -295,7 +295,7 @@ def dump_annotations(rdict):
         for check in rdict[fpath]['checks']:
             end_line = max(end_line,
                            check.get('line', 1),
-                           check.get('end_line', rdict[fpath]['num_front_matter_lines']))
+                           check.get('end_line', rdict[fpath]['num_front_matter_lines'] + 1))
             
             if checks_dict[check['check']]['severity'] == SEVERITY_FAIL:
                 level = 'failure'
