@@ -274,11 +274,11 @@ def dump_annotations(rdict):
         out = f'{severity_str} - {description}\n'
         if checks_dict[check_id].get('has_value') and value is not None and value != "":
             if type(value) == str:
-                out += f': {literal(value.strip())}\n'
+                out += f': {value.strip()}\n'
             elif type(value) == datetime.date:
-                out += f': {literal(value.isoformat())}\n'
+                out += f': {value.isoformat()}\n'
             else:
-                out += f': {literal(json.dumps(value))}\n'
+                out += f': {json.dumps(value)}\n'
         return out + "\n"
 
     for fpath in rdict.keys():
