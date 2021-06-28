@@ -8,6 +8,9 @@ menu:
     identifier: general-overview
     parent: general
 last_review_date: 2020-06-17
+user_questions:
+  - What's included with Kubernetes run by Giant Swarm?
+  - What's not included with Kubernetes run by Giant Swarm?
 aliases:
   - /basics/kubernetes-on-giant-swarm/
 owner:
