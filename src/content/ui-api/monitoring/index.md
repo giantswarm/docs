@@ -63,4 +63,4 @@ You can easily track changes in that repository directly from the Home dashboard
 
 ## Limitations
 
-Grafana access requires an **exclusive installation** and is currently not available in shared installations, where several customer's metrics are collected using the same Prometheus instance.
+Grafana access is currently not available in shared installations, where several customer's metrics are collected using the same Prometheus instance.
