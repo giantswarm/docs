@@ -55,11 +55,11 @@ There is one identity provider configured for Giant Swarm staff and one for you 
 
 After selecting the right identity provider, you may run through an authentication workflow. However, if you are already authenticated within the current browser, this will be skipped and you should see the Home dashboard as a result.
 
-## Repositories
+## Repository
 
-Grafana is deployed to Giant Swarm management clusters via our own App, to be found in the [giantswarm/g8s-grafana](https://github.com/giantswarm/g8s-grafana) Github repository.
+Dashboard are defined in the [giantswarm/dashboards](https://github.com/giantswarm/dashboards) repository. As an example, [this link](https://github.com/giantswarm/dashboards/blob/2be49ef09bccdb65c4fd62c835567bc0794617da/helm/dashboards/dashboards/shared/home.json) takes you to the _Home_ dashboard definition as of June 28, 2021.
 
-Dashboard are defined in the [giantswarm/dashboards](https://github.com/giantswarm/dashboards) repository. You can easily track changes in that repository directly from the Home dashboard in Grafana or via the [changes and releases](/changes/dashboards/) section.
+You can easily track changes in that repository directly from the Home dashboard in Grafana or via the [changes and releases](/changes/dashboards/) section.
 
 ## Limitations
 
