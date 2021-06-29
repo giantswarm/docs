@@ -8,8 +8,11 @@ menu:
     parent: uiapi-kubectlgs
 aliases:
   - /reference/kubectl-gs/template-app/
+last_review_date: 2021-06-29
 owner:
   - https://github.com/orgs/giantswarm/teams/team-batman
+user_questions:
+  - How can I create an app manifest for the Management API?
 ---
 
 # `kubectl gs template app`
@@ -22,7 +25,7 @@ In order to create an App using custom resources, `kubectl gs` will help you cre
 
 The command to execute is `kubectl gs template app`.
 
-It supports the following flags:
+It supports the following required flags:
 
 - `--name`: App name.
 - `--namespace`: Namespace where the app will be deployed.
@@ -34,8 +37,8 @@ The example command
 
 ```nohighlight
 kubectl gs template app \
-  --catalog pipo-catalog \
-  --name my-app \
+  --catalog giantswarm-playground \
+  --name keda \
   --namespace default \
   --cluster 2hr7z  \
   --version 0.1.0
@@ -47,41 +50,28 @@ produces the following output:
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
-  creationTimestamp: null
-  labels:
-    app-operator.giantswarm.io/version: 1.0.0
-  name: my-app
-  namespace: default
-spec:
-  catalog: pipo-catalog
-  config:
-    configMap:
-      name: 2hr7z-cluster-values
-      namespace: 2hr7z
-    secret:
-      name: ""
-      namespace: ""
-  kubeConfig:
-    context:
-      name: 2hr7z-kubeconfig
-    inCluster: false
-    secret:
-      name: 2hr7z-kubeconfig
-      namespace: 2hr7z
-  name: my-app
+  name: keda
   namespace: 2hr7z
-  userConfig:
-    configMap:
-      name: ""
-      namespace: ""
-    secret:
-      name: ""
-      namespace: ""
+spec:
+  catalog: giantswarm-playground
+  kubeConfig:
+    inCluster: false
+  name: keda
+  namespace: default
   version: 0.1.0
-status:
-  appVersion: ""
-  release:
-    lastDeployed: "0001-01-01T00:00:00Z"
-    status: ""
-  version: ""
 ```
+
+It also supports the following optional flags:
+
+- `--defaulting-enabled`: Only include fields that differ from the default value (default true). When false, a much longer template is created.
+- `--user-configmap`: Path to the user values configmap YAML file.
+- `--user-secret`: Path to the user secrets YAML file.
+
+Only required fields are templated. Other fields are are set by the
+[defaulting webhook]({{< relref "/app-platform/defaulting-validation" >}}).
+
+This is enabled for the Giant Swarm releases shown below. For older releases you can set the `--defaulting-enabled` flag to false.
+
+- AWS >= v14.0.0
+- Azure >= v13.1.0
+- KVM >= v13.1.0
