@@ -11,6 +11,8 @@ aliases:
 last_review_date: 2021-06-22
 owner:
   - https://github.com/orgs/giantswarm/teams/team-batman
+user_questions:
+  - How can I create an app manifest for the Management API?
 ---
 
 # `kubectl gs template app`

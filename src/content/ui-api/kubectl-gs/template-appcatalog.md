@@ -10,6 +10,8 @@ aliases:
   - /reference/kubectl-gs/template-appcatalog/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-batman
+user_questions:
+  - How can I create an appcatalog manifest for the Management API
 ---
 
 # `kubectl gs template appcatalog`
