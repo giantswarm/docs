@@ -22,6 +22,8 @@ repositories:
     category: Managed Apps
   giantswarm/cert-manager-app:
     category: Managed Apps
+  giantswarm/dashboards:
+    category: Dashboards
   giantswarm/docs:
     category: Documentation
   giantswarm/efk-stack-app:
@@ -103,6 +105,8 @@ repositories:
 categories:
   - name: Management API
     color: "#b47fb0"
+  - name: Dashboards
+    color: "#e461a9"
   - name: Documentation
     color: "#9aa48e"
   - name: gsctl
