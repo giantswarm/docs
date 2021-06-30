@@ -2,7 +2,7 @@
 linkTitle: Advanced configuration
 title: Advanced ingress configuration
 description: Here we describe how you can customize and enable specific features for the NGINX-based Ingress
-last_review_date: 2021-04-23
+last_review_date: 2021-06-30
 weight: 10
 menu:
   main:
@@ -22,6 +22,7 @@ user_questions:
   - How can I enable TLS passthrough in Ingress?
   - How can I let the Ingress Controller do TLS termination?
   - How can I rate-limit Ingress requests?
+  - How can I change the NGINX ingress controller configmap?
 aliases:
   - /guides/advanced-ingress-configuration/
 owner:
@@ -385,10 +386,8 @@ You are able to set any value from the [upstream documentation](https://kubernet
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  labels:
-    app: nginx-ingress-controller
-    name: nginx-ingress-controller-user-values
-    namespace: abc12
+  name: nginx-ingress-controller-app-user-values
+  namespace: abc12
 data:
   values: |
     configmap:
@@ -396,6 +395,18 @@ data:
 ```
 
 However keep in mind that with great power comes great responsibility.
+
+If the ConfigMap does not exist, create it. In this case you'll need to reference it in the App CR of the ingress controller.
+
+```yaml
+# Add missing keys to the spec field of the App CR
+
+spec:
+  userConfig:
+    configMap:
+      name: nginx-ingress-controller-app-user-values
+      namespace: abc12
+```
 
 Any defaults that we override are visible in the following `values.yaml` file, under the `configmap` key. [Check this values.yaml file in v1.16.1](https://github.com/giantswarm/nginx-ingress-controller-app/blob/v1.16.1/helm/nginx-ingress-controller-app/values.yaml) as an example.
 
@@ -417,15 +428,10 @@ We also allow setting `use-proxy-protocol: "true"/"false"`. This setting always 
 When you want to have the default server on the nginx controller support TLS you need to provide a certificate. This is configured using the flag `--default-ssl-certificate`. Now you can provide this value in the user values ConfigMap to force the component to be restarted with the provided certificate. The value of the property should be the namespace and secret name which holds the certificate content.
 
 ```yaml
-# 9.0.1 and greater
 data:
   values: |
     controller:
        defaultSSLCertificate: "custom.prefix.io"
-
-# 9.0.0 and below
-data:
-   default-ssl-certificate: "custom.prefix.io"
 ```
 
 ### Custom annotation prefix
@@ -433,15 +439,10 @@ data:
 By default we use the standard annotation prefix `nginx.ingress.kubernetes.io` in the ingress controller. In case the customer needs to have a specific one this can be done via the user values ConfigMap. This is recommended when there is more than one ingress controller. So in the ingress resource the prefix can be used to distinguish between controllers.
 
 ```yaml
-# 9.0.1 and greater
 data:
   values: |
     controller:
       annotationsPrefix: "custom.prefix.io"
-
-# 9.0.0 and below
-data:
-  annotations-prefix: "custom.prefix.io"
 ```
 
 ## Further reading
