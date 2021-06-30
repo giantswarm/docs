@@ -13,6 +13,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-batman
 user_questions:
   - How can I create an catalog manifest for the Management API?
+  - How can I add catalog level values or secrets for the apps deployed from this catalog?
 ---
 
 # `kubectl gs template catalog`
@@ -23,6 +24,8 @@ In order to create a [Catalog]({{< relref "/app-platform" >}}) using custom reso
 
 The Catalog CRD is namespace scoped and replaces the [AppCatalog]({{< relref "/ui-api/management-api/crd/appcatalogs.application.giantswarm.io.md" >}})
 CRD which is cluster scoped. This is to improve multi-tenancy support when used with the [Management API]({{< relref "/ui-api/management-api/overview/index.md" >}}).
+
+The Catalog CRD supports having a related ConfigMap or Secret with values YAML. These values are merged with the rest of the [configuration]({< relref "/app-platform/app-configuration/index.md" >}}) when Apps are deployed from this App Catalog.
 
 ## Usage
 
