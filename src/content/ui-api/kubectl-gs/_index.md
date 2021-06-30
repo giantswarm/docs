@@ -26,8 +26,8 @@ owner:
 | Command                    | Description                                                    | Provider info        |
 | -------------------------- | -------------------------------------------------------------- | -------------------- |
 | [`login`][1]               | [Ensure an authenticated session with a management cluster][1] | all providers        |
-| [`get appcatalogs`][2]     | [List App Catalogs or get details on a single App Catalog][2]  | all providers      |
-| [`get apps`][3]            | [List Apps or get details on a single App][3]                  | all providers      |
+| [`get apps`][2]            | [List Apps or get details on a single App][2]                  | all providers        |
+| [`get catalogs`][3]        | [List Catalogs or get details on a single Catalog][3]          | all providers        |
 | [`get clusters`][4]        | [List clusters or get details on a single cluster][4]          | only AWS, Azure      |
 | [`get nodepools`][5]       | [List node pools or get details on a single node pool][5]      | only AWS, Azure      |
 | [`template app`][6]        | [Create manifests for an App][6]                               | all providers        |
@@ -54,8 +54,8 @@ See the [GitHub project](https://github.com/giantswarm/kubectl-gs) for source co
 As a Giant Swarm customer, feel free to use your Slack channel to give feedback, ask questions and suggest improvements for `kubectl gs`.
 
 [1]: {{< relref "/ui-api/kubectl-gs/login" >}}
-[3]: {{< relref "/ui-api/kubectl-gs/get-apps" >}}
-[2]: {{< relref "/ui-api/kubectl-gs/get-catalogs" >}}
+[2]: {{< relref "/ui-api/kubectl-gs/get-apps" >}}
+[3]: {{< relref "/ui-api/kubectl-gs/get-catalogs" >}}
 [4]: {{< relref "/ui-api/kubectl-gs/get-clusters" >}}
 [5]: {{< relref "/ui-api/kubectl-gs/get-nodepools" >}}
 [6]: {{< relref "/ui-api/kubectl-gs/template-app" >}}
