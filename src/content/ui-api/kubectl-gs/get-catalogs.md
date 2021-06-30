@@ -7,6 +7,7 @@ menu:
   main:
     parent: uiapi-kubectlgs
 aliases:
+  - /reference/kubectl-gs/get-appcatalogs/
   - /reference/kubectl-gs/get-catalogs/
 last_review_date: 2021-06-30
 owner:
