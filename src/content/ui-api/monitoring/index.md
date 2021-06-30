@@ -25,7 +25,7 @@ We aim to provide a useful set of dashboards for you to quickly explore all metr
 
 ## Accessing dashboards
 
-If you have access to the Giant Swarm [web interface]({{< relref "/ui-api/web" >}}), the easiest way to get to Grafana is to click the link **Monitoring** in the top menu when logged in.
+If you have access to the Giant Swarm [web interface]({{< relref "/ui-api/web" >}}), the easiest way to get to Grafana is to click the **Monitoring** link in the top menu when logged in.
 
 In case you don't have access to the Giant Swarm web interface, you can ask your Giant Swarm support contact for the URL.
 
