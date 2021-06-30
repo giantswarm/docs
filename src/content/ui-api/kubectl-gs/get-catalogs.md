@@ -89,7 +89,7 @@ Here we document the flags that have a particular meaning for the `get catalogs`
 ### `--all-namespaces/-A` {#flags-all-namespaces}
 
 `kubectl` commonly allows to list resources for all namespaces for all `get` subcommands. `kubectl gs get catalogs` is no different.
-However by default we hide internal catalogs in `giantswarm` namespace.
+However by default we hide internal catalogs in the `giantswarm` namespace.
 
 ### `--output/-o` {#flags-output}
 
