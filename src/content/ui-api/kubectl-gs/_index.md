@@ -38,11 +38,14 @@ owner:
 
 ## Installing and updating {#install}
 
-With [Krew](https://krew.sigs.k8s.io/) installed, here is a synopsis:
+With [Krew](https://krew.sigs.k8s.io/), simply install and upgrade the `gs` plug-in:
 
 ```nohighlight
 kubectl krew install gs
-kubectl gs
+```
+
+```nohighlight
+kubectl krew upgrade gs
 ```
 
 Find out more details in our [installation docs]({{< relref "/ui-api/kubectl-gs/installation" >}}).
