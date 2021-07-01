@@ -2,6 +2,11 @@
 linkTitle: Monitoring
 title: Monitoring and dashboards
 description: Giant Swarm runs a monitoring stack in each installation, comprising Prometheus, Grafana, and more. Learn how to get access to the data we collect.
+menu:
+  main:
+    identifier: uiapi-monitoring
+    parent: ui-api
+weight: 50
 last_review_date: 2021-06-28
 user_questions:
   - How can I access Grafana for my installation?
