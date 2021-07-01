@@ -9,6 +9,7 @@ menu:
     parent: ui-api
 # TODO: remove "layout: single" and let the page be rendered by a specific section template.
 layout: single
+last_review_date: 2021-07-01
 aliases:
   - /reference/kubectl-gs/
 owner:
