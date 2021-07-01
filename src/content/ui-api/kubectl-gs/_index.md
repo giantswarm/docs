@@ -1,14 +1,15 @@
 ---
 linkTitle: kubectl gs
 title: kubectl gs plugin reference
-description: User manual for kubectl gs, the Giant Swarm kubectl plugin.
+description: Main page for documentation on kubectl gs, the Giant Swarm kubectl plugin, with an overview of all commans, plus information on how to insstall and upgrade.
 weight: 40
 menu:
   main:
     identifier: uiapi-kubectlgs
     parent: ui-api
-# TODO: remove "layout: single" and let the page be rendered by a specific section template.
-layout: single
+last_review_date: 2021-07-01
+user_questions:
+  - Which commands does kubectl gs offer?
 aliases:
   - /reference/kubectl-gs/
 owner:
@@ -38,11 +39,14 @@ owner:
 
 ## Installing and updating {#install}
 
-With [Krew](https://krew.sigs.k8s.io/) installed, here is a synopsis:
+With [Krew](https://krew.sigs.k8s.io/), simply install and upgrade the `gs` plug-in:
 
 ```nohighlight
 kubectl krew install gs
-kubectl gs
+```
+
+```nohighlight
+kubectl krew upgrade gs
 ```
 
 Find out more details in our [installation docs]({{< relref "/ui-api/kubectl-gs/installation" >}}).
