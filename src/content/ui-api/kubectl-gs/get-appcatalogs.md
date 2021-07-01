@@ -1,7 +1,7 @@
 ---
 linkTitle: get appcatalogs
 title: "'kubectl gs get appcatalogs' command reference"
-description: This command is replaced by 'kubectl gs get catalogs'.
+description: Reference documentation for 'kubectl gs get appcatalogs' which is replaced by 'kubectl gs get catalogs'.
 weight: 110
 menu:
   main:
