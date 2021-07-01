@@ -1,7 +1,7 @@
 ---
 linkTitle: template catalog
 title: "'kubectl gs template catalog' command reference"
-description: Reference documentation for 'kubectl gs template appcatalog' which is replaced by 'kubectl gs template catalog'.
+description: Reference documentation on how to create a manifest for a Catalog using 'kubectl gs'.
 weight: 80
 menu:
   main:

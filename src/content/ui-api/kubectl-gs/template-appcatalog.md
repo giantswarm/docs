@@ -1,7 +1,7 @@
 ---
 linkTitle: template appcatalog
 title: "'kubectl gs template appcatalog' command reference"
-description: This command is replaced by 'kubectl gs template catalog'.
+description: Reference documentation for 'kubectl gs template appcatalog' which is replaced by 'kubectl gs template catalog'.
 weight: 120
 menu:
   main:
