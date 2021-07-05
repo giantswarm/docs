@@ -6,7 +6,7 @@ description: |
   AWSClusterStaticIdentity is the Schema for the awsclusterstaticidentities API It represents a reference to an AWS access key ID and secret access key, stored in a secret.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.27.0
+source_repository_ref: v3.27.1
 layout: crd
 aliases:
   - /reference/cp-k8s-api/awsclusterstaticidentities.infrastructure.cluster.x-k8s.io/

@@ -6,7 +6,7 @@ description: |
   AWSCluster is the Schema for the awsclusters API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.27.0
+source_repository_ref: v3.27.1
 layout: crd
 aliases:
   - /reference/cp-k8s-api/awsclusters.infrastructure.cluster.x-k8s.io/

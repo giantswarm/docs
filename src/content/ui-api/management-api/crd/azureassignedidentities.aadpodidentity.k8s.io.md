@@ -6,7 +6,7 @@ description: |
   AzureAssignedIdentity contains the identity &lt;-&gt; pod mapping which is matched.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.27.0
+source_repository_ref: v3.27.1
 layout: crd
 aliases:
   - /reference/cp-k8s-api/azureassignedidentities.aadpodidentity.k8s.io/
