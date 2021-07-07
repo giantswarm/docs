@@ -8,6 +8,7 @@ menu:
     parent: app-platform
 owner:
   - https://github.com/orgs/giantswarm/teams/team-batman
+last_review_date: 2021-07-07
 user_questions:
   - How can I label an app CR's target namespace?
   - How can I annotate an app CR's target namespace?

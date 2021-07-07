@@ -8,6 +8,7 @@ menu:
 weight: 30
 aliases:
  - /reference/app-configuration/
+last_review_date: 2021-07-07
 owner:
   - https://github.com/orgs/giantswarm/teams/team-batman
 user_questions:

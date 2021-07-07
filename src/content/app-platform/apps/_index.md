@@ -1,7 +1,10 @@
 ---
-linkTitle: Apps
-title: Apps
+linkTitle: Managed Apps
+title: Managed Apps
 description: Documentation for a selection of the most popular managed apps by Giant Swarm.
+last_review_date: 2021-07-07
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-halo
 weight: 60
 menu:
   main:
