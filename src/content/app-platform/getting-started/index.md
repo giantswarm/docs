@@ -21,8 +21,8 @@ user_questions:
 
 The _Giant Swarm App Platform_ is built on top of [Helm](https://helm.sh/) and allows you to manage apps and their configurations represented by App Custom Resources (CRs) for multiple clusters, from a single place: the [management cluster]({{< relref "/general/management-clusters" >}}).
 
-In this guide, we will install the NGINX Ingress Controller app. We'll do this by using kubectl, to create
-[App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) CRs using the Kubernetes API of your management cluster.
+In this guide, we will install the NGINX Ingress Controller app. We will do this by using kubectl, to create
+an [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) CR using the Kubernetes API of your management cluster.
 
 App CRs can be created this way via your automation or our Web UI (See: [guide]({{< relref "/getting-started/ingress-controller" >}})).
 
