@@ -1,7 +1,7 @@
 ---
 linkTitle: Getting started
 title: Getting started with App Platform
-description: Guide to deploying apps using kubectl and the Giant Swarm Management API.
+description: Guide to deploying apps using kubectl gs and the Giant Swarm Management API.
 weight: 20
 menu:
   main:
@@ -21,24 +21,25 @@ user_questions:
 
 The _Giant Swarm App Platform_ is built on top of [Helm](https://helm.sh/) and allows you to manage apps and their configurations represented by App Custom Resources (CRs) for multiple clusters, from a single place: the [management cluster]({{< relref "/general/management-clusters" >}}).
 
-In this guide, we will install the NGINX Ingress Controller app. We'll do this by using kubectl, which creates
+In this guide, we will install the NGINX Ingress Controller app. We'll do this by using kubectl, to create
 [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) CRs using the Kubernetes API of your management cluster.
 
 App CRs can be created this way via your automation or our Web UI (See: [guide]({{< relref "/getting-started/ingress-controller" >}})).
 
-In general, you can manage App CRs with any tool that can communicate with the Kubernetes API such as Helm or GitOps tools (like Argo CD or Flux).
+In general, you can manage App CRs with any tool that can communicate with the Kubernetes API such as Helm or GitOps tools (like Argo CD or Flux CD).
 
 ## Setting up
 
 You can access your management cluster using the [kubectl gs login]({{< relref "/ui-api/kubectl-gs/login" >}})
 command of our kubectl plugin. See [here]({{< relref "/ui-api/kubectl-gs/installation" >}})
-for how to install it.
+for how to install it. If you already have it installed please upgrade to the
+latest version.
 
 In the management cluster your App CRs are stored in a namespace with the same
 name as your workload cluster ID. Let's set an environment variable for this
 which we will use in the later steps.
 
-```sh
+```nohighlight
 export CLUSTER=** your cluster id**
 ```
 
@@ -53,23 +54,26 @@ continue with the guide.
 In some older releases the ingress controller is pre-installed. If this is the
 case please use another cluster.
 
-```sh
-kubectl -n ${CLUSTER} gs get apps
+```nohighlight
+kubectl gs -n ${CLUSTER} get apps
 
-NAME                       VERSION   LAST DEPLOYED   STATUS
-cert-exporter              1.6.1     69m             deployed
-cert-manager               2.4.3     68m             deployed
-chart-operator             2.13.0    68m             deployed
-cluster-autoscaler         1.19.2    69m             deployed
-coredns                    1.4.1     67m             deployed
-external-dns               2.3.0     69m             deployed
-grafana                    0.2.0     46m             deployed
-kiam                       1.7.1     67m             deployed
-kube-state-metrics         1.3.1     69m             deployed
-metrics-server             1.2.2     69m             deployed
-net-exporter               1.9.3     69m             deployed
-node-exporter              1.7.2     68m             deployed
+NAME                 VERSION   LAST DEPLOYED          STATUS
+app-operator-tm23r   4.4.0     07 Jul 21 14:20 CEST   deployed
+cert-exporter        1.6.1     07 Jul 21 14:39 CEST   deployed
+cert-manager         2.7.1     07 Jul 21 14:37 CEST   deployed
+chart-operator       2.14.0    07 Jul 21 14:39 CEST   deployed
+cluster-autoscaler   1.19.3    07 Jul 21 14:39 CEST   deployed
+coredns              1.4.1     07 Jul 21 14:39 CEST   deployed
+external-dns         2.3.1     07 Jul 21 14:39 CEST   deployed
+kiam                 1.7.1     07 Jul 21 14:41 CEST   deployed
+kube-state-metrics   1.3.1     07 Jul 21 14:39 CEST   deployed
+metrics-server       1.3.0     07 Jul 21 14:39 CEST   deployed
+net-exporter         1.10.1    07 Jul 21 14:39 CEST   deployed
+node-exporter        1.7.2     07 Jul 21 14:39 CEST   deployed
 ```
+
+app-operator is running in the management cluster and the rest of the apps are
+installed in your workload cluster.
 
 ## Finding the ingress controller version
 
@@ -78,11 +82,11 @@ but this information is also available in the management cluster. We create
 [AppCatalogEntry]({{< relref "/ui-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}})
 CRs for the apps that are available.
 
-First let's list the available [Catalog]({< relref "/ui-api/management-api/crd/catalogs.application.giantswarm.io.md" >}})
+First let's list the available [AppCatalog]({< relref "/ui-api/management-api/crd/appcatalogs.application.giantswarm.io.md" >}})
 CRs.
 
-```sh
-kubectl gs get catalogs
+```nohighlight
+kubectl gs get appcatalogs
 
 NAME                    CATALOG URL                                                   CREATED
 giantswarm              https://giantswarm.github.io/giantswarm-catalog/              17 Jul 20 17:28 CEST
@@ -91,12 +95,12 @@ giantswarm-playground   https://giantswarm.github.io/giantswarm-playground-catal
 
 Now we can list the latest version of each app in the catalog.
 
-```sh
-kubectl gs get catalog giantswarm
+```nohighlight
+kubectl gs get appcatalog giantswarm
 
-CATALOG      APP NAME                       APP VERSION   VERSION        CREATED
+CATALOG      APP NAME                       APP VERSION   VERSION   CREATED
 ...
-giantswarm   nginx-ingress-controller-app   v0.45.0       1.16.1         20 Apr 21 15:34 CEST
+giantswarm   nginx-ingress-controller-app   v0.47.0       1.17.0    16 Jun 21 11:54 CEST
 ...
 ```
 
@@ -105,13 +109,13 @@ giantswarm   nginx-ingress-controller-app   v0.45.0       1.16.1         20 Apr 
 We can use the [kubectl gs template app]({{< relref "/ui-api/kubectl-gs/login" >}})
 command to generate the App CR using the latest version from the previous command.
 
-```sh
+```nohighlight
 kubectl gs template app \
   --catalog=giantswarm \
   --cluster=${CLUSTER} \
   --name=nginx-ingress-controller-app \
   --namespace=kube-system \
-  --version=1.16.1 > nginx-ingress-controller-app.yaml
+  --version=1.17.0 > nginx-ingress-controller-app.yaml
 
 kubectl apply -f nginx-ingress-controller-app.yaml
 cat nginx-ingress-controller-app.yaml
@@ -125,22 +129,21 @@ apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
   name: nginx-ingress-controller-app
-  namespace: gz25x
+  namespace: tm23r
 spec:
   catalog: giantswarm
   kubeConfig:
     inCluster: false
   name: nginx-ingress-controller-app
   namespace: kube-system
-  version: 1.16.1
+  version: 1.17.0
 ```
 
 ## Defaulting and App Status
 
-Now lets check the app using the `kubectl gs get app` command which filters
-the output to show only the most important fields.
+Now lets check the app using the `kubectl gs get app` command.
 
-```sh
+```nohighlight
 kubectl -n ${CLUSTER} gs get app nginx-ingress-controller-app -o yaml
 ```
 
@@ -153,23 +156,23 @@ apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
   labels:
-    app-operator.giantswarm.io/version: 3.2.1
+    app-operator.giantswarm.io/version: 4.4.0
     app.kubernetes.io/name: nginx-ingress-controller-app
   name: nginx-ingress-controller-app
-  namespace: gz25x
+  namespace: tm23r
 spec:
   catalog: giantswarm
   config:
     configMap:
       name: ingress-controller-values
-      namespace: gz25x
+      namespace: tm23r
   kubeConfig:
     context:
-      name: gz25x
+      name: tm23r
     inCluster: false
     secret:
-      name: gz25x-kubeconfig
-      namespace: gz25x
+      name: tm23r-kubeconfig
+      namespace: tm23r
   name: nginx-ingress-controller-app
   namespace: kube-system
   version: 1.16.1
@@ -197,7 +200,7 @@ For this example we will do something simple and increase the log level from
 notice to info. We can use `kubectl gs template app` to generate both the
 updated App CR and the related Config Map.
 
-```sh
+```nohighlight
 cat > ingress-values.yaml <<EOL
 configmap:
   error-log-level: "info"
@@ -209,7 +212,9 @@ kubectl gs template app \
   --name=nginx-ingress-controller-app \
   --namespace=kube-system \
   --user-configmap=ingress-values.yaml \
-  --version=1.16.1 > nginx-ingress-controller-app.yaml
+  --version=1.17.0 > nginx-ingress-controller-app.yaml
+
+kubectl apply -f nginx-ingress-controller-app.yaml
 cat nginx-ingress-controller-app.yaml
 ```
 
@@ -217,7 +222,7 @@ Now let's see what was generated. In the Config Map there is a values key with
 the YAML and it is referenced in the App CR. You can also configure apps with
 secrets for more sensitive configuration.
 
-```sh
+```yaml
 apiVersion: v1
 data:
   values: |
@@ -225,14 +230,14 @@ data:
       error-log-level: "info"
 kind: ConfigMap
 metadata:
-  name: nginx-ingress-controller-app-userconfig-gz25x
-  namespace: gz25x
+  name: nginx-ingress-controller-app-userconfig-tm23r
+  namespace: tm23r
 ---
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
   name: nginx-ingress-controller-app
-  namespace: gz25x
+  namespace: tm23r
 spec:
   catalog: giantswarm
   kubeConfig:
@@ -241,9 +246,9 @@ spec:
   namespace: kube-system
   userConfig:
     configMap:
-      name: nginx-ingress-controller-app-userconfig-gz25x
-      namespace: gz25x
-  version: 1.16.1
+      name: nginx-ingress-controller-app-userconfig-tm23r
+      namespace: tm23r
+  version: 1.17.0
 ```
 
 You can read more about app platform configuration [here]({{< relref "/app-platform/app-configuration" >}})
@@ -254,7 +259,7 @@ and about advanced ingress configuration [here]({{< relref "/advanced/ingress" >
 This completes the guide. If you no longer need the ingress controller you can
 run the commands below.
 
-```sh
+```nohighlight
 kubectl delete -f nginx-ingress-controller-app.yaml
 rm ingress-values.yaml nginx-ingress-controller-app.yaml
 ```
