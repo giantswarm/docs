@@ -16,7 +16,6 @@ services:
       - "ES_HOME=/usr/share/elasticsearch"
     ports:
       - 9200:9200
-    restart: always
     volumes:
       - $PWD/volumes/elasticsearch-logs:/usr/share/elasticsearch/data
       - $PWD/volumes/elasticsearch-data:/usr/share/elasticsearch/logs

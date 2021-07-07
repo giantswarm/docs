@@ -3,10 +3,10 @@ title: CertConfig CRD schema reference
 linkTitle: CertConfig
 technical_name: certconfigs.core.giantswarm.io
 description: |
-  Custom resource definition (CRD) schema reference page for the CertConfig resource (certconfigs.core.giantswarm.io), as part of the Giant Swarm Management API documentation.
+  CertConfig specifies sdetails for an X.509 certificate to be issued, handled by cert-operator.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.27.0
+source_repository_ref: v3.27.1
 layout: crd
 aliases:
   - /reference/cp-k8s-api/certconfigs.core.giantswarm.io/
@@ -14,6 +14,8 @@ aliases:
 
 # CertConfig
 
+
+<p class="crd-description">CertConfig specifies sdetails for an X.509 certificate to be issued, handled by cert-operator.</p>
 <dl class="crd-meta">
 <dt class="fullname">Full name:</dt>
 <dd class="fullname">certconfigs.core.giantswarm.io</dd>
@@ -137,6 +139,11 @@ spec:
 <span class="property-required">Required</span>
 </div>
 
+<div class="property-description">
+<p>Specifies the configurable certificate details.</p>
+
+</div>
+
 </div>
 </div>
 
@@ -160,6 +167,11 @@ spec:
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>Subject Alternative Names to be set in the certificate.</p>
 
 </div>
 
@@ -189,6 +201,11 @@ spec:
 <span class="property-required">Required</span>
 </div>
 
+<div class="property-description">
+<p>Host name of the service to create the certificate for.</p>
+
+</div>
+
 </div>
 </div>
 
@@ -200,6 +217,11 @@ spec:
 <div class="property-meta">
 <span class="property-type">string</span>
 <span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Workload cluster ID to issue the certificate for.</p>
+
 </div>
 
 </div>
@@ -215,6 +237,11 @@ spec:
 <span class="property-required">Required</span>
 </div>
 
+<div class="property-description">
+<p>Full common name (CN).</p>
+
+</div>
+
 </div>
 </div>
 
@@ -228,6 +255,11 @@ spec:
 <span class="property-required">Required</span>
 </div>
 
+<div class="property-description">
+<p>If set, cert-operator will forbid updating this certificate.</p>
+
+</div>
+
 </div>
 </div>
 
@@ -238,6 +270,11 @@ spec:
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>List of IP addresses to be set as SANs (Subject Alternative Names) in the certificate.</p>
 
 </div>
 
@@ -267,6 +304,11 @@ spec:
 
 </div>
 
+<div class="property-description">
+<p>List of organizations to set in the certificate.</p>
+
+</div>
+
 </div>
 </div>
 
@@ -293,6 +335,11 @@ spec:
 <span class="property-required">Required</span>
 </div>
 
+<div class="property-description">
+<p>Expiry time as a Golang duration string, e. g. &ldquo;1d&rdquo; for one day.</p>
+
+</div>
+
 </div>
 </div>
 
@@ -304,6 +351,11 @@ spec:
 <div class="property-meta">
 <span class="property-type">object</span>
 <span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Specifies the cert-operator version to use.</p>
+
 </div>
 
 </div>
