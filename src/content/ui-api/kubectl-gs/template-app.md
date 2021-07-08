@@ -63,7 +63,7 @@ spec:
 
 It also supports the following optional flags:
 
-- `--app-name`: Name of the App CR. Can be set when you want to change the name or install multiple instances of an app.
+- `--app-name`: Name of the App CR, otherwise uses the same value as `--name`. This can be set when you want to change the name or install multiple instances of an app.
 - `--defaulting-enabled`: Only include fields that differ from the default value (default true). When false, a much longer template is created.
 - `--user-configmap`: Path to the user values configmap YAML file.
 - `--user-secret`: Path to the user secrets YAML file.
