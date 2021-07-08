@@ -10,3 +10,5 @@ menu:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-celestial
 ---
+
+{{< platform_support_table azure="ga=v14.1.0" >}}

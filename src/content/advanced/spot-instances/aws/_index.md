@@ -10,3 +10,5 @@ menu:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
+
+{{< platform_support_table aws="ga=v11.2.0" >}}
