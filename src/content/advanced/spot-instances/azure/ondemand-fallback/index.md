@@ -1,29 +1,31 @@
 ---
 linkTitle: Using on-demand as fall-back
-title: Using on-demand instances as fall-back when spot instances are unavailable on Azure
-description: When using spot instances in a node pool on Azure, it can happen that the node pool cannot be scaled up as not enough spot instances are available. This guide shows you how to configure cluster-autoscaler in a way to provide on-demand instances as a back-up automatically.
+title: Using on-demand VMs as fall-back when spot VMs are unavailable on Azure
+description: When using spot VMs in a node pool on Azure, it can happen that the node pool cannot be scaled up as not enough spot VMs are available. This guide shows you how to configure cluster-autoscaler in a way to provide on-demand VMs as a back-up automatically.
 weight: 30
 menu:
   main:
     identifier: advanced-spotinstances-azure-ondemandfallback
     parent: advanced-spotinstances-azure
 user_questions:
-  - How can I use VM spot instances and fall back to on-demand if no spot instances are available?
+  - How can I use Azure spot VMs and fall back to on-demand if spot is unavailable?
 aliases:
   - /advanced/spot-instances/azure/on-demand-fallback/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-celestial
 ---
 
-# Using on-demand instances as fall-back when spot instances are unavailable
+# Using on-demand VMs as fall-back when spot VMs are unavailable on Azure
 
-As of workload cluster release v{{% first_azure_spotinstances_version %}} for Azure, node pools can use [spot instances]({{< relref "/advanced/spot-instances/azure/overview" >}}). Users can select for each node pool whether nodes should be covered by spot instances or by on-demand instances respectively. It is also possible to create a node pool with a dynamic price going up to the price of standard VMs.
+{{< platform_support_table azure="ga=v14.1.0" >}}
 
-However, it is still possible that the node pool is in need of more worker nodes and there are just no spot instances available matching the request, based on the availability zone and the instance type(s). In this case the node pool cannot be scaled up. As a result, workloads will likely remain unscheduled.
+As of workload cluster release v{{% first_azure_spotinstances_version %}} for Azure, node pools can use [spot virtual machines]({{< relref "/advanced/spot-instances/azure/overview" >}}) (VMs). Users can select for each node pool whether nodes should be covered by spot VMs or by on-demand VMs respectively. It is also possible to create a node pool with a dynamic price going up to the price of standard VMs.
+
+However, it is still possible that the node pool is in need of more worker nodes and there are just no spot VMs available matching the request, based on the availability zone and the VM size(s). In this case the node pool cannot be scaled up. As a result, workloads will likely remain unscheduled.
 
 To ensure enough capacity in a cluster, this guide presents a solution where
 
-- two node pools exist: one configured to only use spot instances, the other one to only use on-demand instances.
+- two node pools exist: one configured to only use spot VMs, the other one to only use on-demand VMs.
 - cluster-autoscaler is configured to scale up the spot node pool first, and only if that fails, scale up the on-demand node pool.
 
 Credit where credit is due: this solution has been proposed [in a blog post by Nir Forer](https://blog.doit-intl.com/running-eks-workloads-on-spot-instances-with-on-demand-instances-fallback-14bef39ce689). We adapt it here to match exactly the situation of Giant Swarm workload clusters on Azure.
@@ -37,13 +39,13 @@ First, create a cluster with at least version 14.1.x for the purpose of this tut
 Next, create two node pools.
 
 1. Name: Spot,
-   Enable spot instances: yes,
+   Enable spot VMs: yes,
    Spot maximum price per hour: set your value for max price or use current on-demand pricing as max,
    Scaling range: min=1
 
 2. Name: On-Demand,
-   Instance type: the same as selected for the "Spot" node pool,
-   Enable spot instances: no,
+   VM size: the same as selected for the "Spot" node pool,
+   Enable spot VMs: no,
    Scaling range: min=1
 
 If it is important to you that the nodes in both node pools run in the same availability zone(s), you have to select the matching zones manually for each node pool.
