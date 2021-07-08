@@ -27,7 +27,7 @@ The command to execute is `kubectl gs template app`.
 
 It supports the following required flags:
 
-- `--name`: App name.
+- `--name`: Name of the app in the catalog. This is also the name of the App CR unless `--app-name` is set.
 - `--namespace`: Namespace where the app will be deployed.
 - `--catalog`: Catalog name where the app package is stored. `AppCatalog` CR for this catalog must exist in the cluster.
 - `--cluster`: Cluster ID where app will be installed.
@@ -63,6 +63,7 @@ spec:
 
 It also supports the following optional flags:
 
+- `--app-name`: Name of the App CR. Can be set when you want to change the name or install multiple instances of an app.
 - `--defaulting-enabled`: Only include fields that differ from the default value (default true). When false, a much longer template is created.
 - `--user-configmap`: Path to the user values configmap YAML file.
 - `--user-secret`: Path to the user secrets YAML file.

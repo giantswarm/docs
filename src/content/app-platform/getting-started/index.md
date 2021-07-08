@@ -139,6 +139,10 @@ spec:
   version: 1.17.0
 ```
 
+The `--name` parameter is the name of the app in the catalog and the name of
+the App CR. The App CR name can be changed via the `--app-name` parameter which
+allows installing multiple instances of an app.
+
 ## Defaulting and App Status
 
 Now lets check the app using the `kubectl gs get app` command.
