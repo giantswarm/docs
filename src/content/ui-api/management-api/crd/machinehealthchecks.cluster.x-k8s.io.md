@@ -6,7 +6,7 @@ description: |
   MachineHealthCheck is the Schema for the machinehealthchecks API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.27.0
+source_repository_ref: v3.27.1
 layout: crd
 aliases:
   - /reference/cp-k8s-api/machinehealthchecks.cluster.x-k8s.io/
