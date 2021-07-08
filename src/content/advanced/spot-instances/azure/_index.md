@@ -1,7 +1,7 @@
 ---
 linkTitle: Azure
-title: Spot instances on Azure
-description: Documentation for using spot instances (also known as low-priority VMs) with Kubernetes clusters on Microsoft Azure.
+title: Spot virtual machines on Azure
+description: Documentation for using spot virtual machines or spot VMs with Kubernetes clusters on Microsoft Azure.
 weight: 20
 menu:
   main:
