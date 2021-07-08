@@ -88,9 +88,9 @@ CRs.
 ```nohighlight
 kubectl gs get appcatalogs
 
-NAME                    CATALOG URL                                                   CREATED
-giantswarm              https://giantswarm.github.io/giantswarm-catalog/              17 Jul 20 17:28 CEST
-giantswarm-playground   https://giantswarm.github.io/giantswarm-playground-catalog/   17 Jul 20 17:28 CEST
+NAME                    CATALOG URL
+giantswarm              https://giantswarm.github.io/giantswarm-catalog/
+giantswarm-playground   https://giantswarm.github.io/giantswarm-playground-catalog/
 ```
 
 Now we can list the latest version of each app in the catalog.
@@ -100,7 +100,7 @@ kubectl gs get appcatalog giantswarm
 
 CATALOG      APP NAME                       APP VERSION   VERSION   CREATED
 ...
-giantswarm   nginx-ingress-controller-app   v0.47.0       1.17.0    16 Jun 21 11:54 CEST
+giantswarm   nginx-ingress-controller-app   v0.47.0       1.17.0    16 Jun 21 11:54
 ...
 ```
 
@@ -138,6 +138,10 @@ spec:
   namespace: kube-system
   version: 1.17.0
 ```
+
+The `--name` parameter is the name of the app in the catalog and the name of
+the App CR. The App CR name can be changed via the `--app-name` parameter which
+allows installing multiple instances of an app.
 
 ## Defaulting and App Status
 
