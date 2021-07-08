@@ -82,7 +82,7 @@ but this information is also available in the management cluster. We create
 [AppCatalogEntry]({{< relref "/ui-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}})
 CRs for the apps that are available.
 
-First let's list the available [AppCatalog]({< relref "/ui-api/management-api/crd/appcatalogs.application.giantswarm.io.md" >}})
+First let's list the available [AppCatalog]({{< relref "/ui-api/management-api/crd/appcatalogs.application.giantswarm.io.md" >}})
 CRs.
 
 ```nohighlight
