@@ -5,9 +5,10 @@ description: Documentation on the various levels of App configuration and how th
 menu:
   main:
     parent: app-platform
-weight: 20
+weight: 30
 aliases:
  - /reference/app-configuration/
+last_review_date: 2021-07-07
 owner:
   - https://github.com/orgs/giantswarm/teams/team-batman
 user_questions:

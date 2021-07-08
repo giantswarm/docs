@@ -20,7 +20,7 @@ user_questions:
   - Is there an official Docker image for kubectl-gs?
 ---
 
-# Installing the kubcetl gs plugin
+# Installing the kubectl gs plugin
 
 `kubectl-gs` is the Giant Swarm plug-in for `kubectl` with the official plug-in name `gs`.
 
