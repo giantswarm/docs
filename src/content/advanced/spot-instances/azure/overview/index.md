@@ -7,6 +7,11 @@ menu:
   main:
     identifier: advanced-spotinstances-azure-overview
     parent: advanced-spotinstances-azure
+user_questions:
+  - How can I use Azure spot VMs in my clusters?
+  - How can I use Azure spot virtual machines in my clusters?
+  - As of which release are Azure spot VMs supported?
+  - What's the difference between spot VMs and on-demand VMs on Azure?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-celestial
 ---

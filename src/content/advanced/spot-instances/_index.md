@@ -9,6 +9,9 @@ menu:
     parent: advanced
 aliases:
   - /basics/spot-instances/
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-celestial
+  - https://github.com/orgs/giantswarm/teams/team-firecracker
 ---
 
 {{< platform_support_table aws="ga=v11.2.0" azure="ga=v14.1.0" >}}
