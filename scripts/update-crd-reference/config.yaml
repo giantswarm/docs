@@ -17,3 +17,7 @@ skip_crds:
   - azureclusterconfigs.core.giantswarm.io
   - azureconfigs.provider.giantswarm.io
   - azuretools.tooling.giantswarm.io
+  - vsphereclusters.infrastructure.cluster.x-k8s.io
+  - vspheremachines.infrastructure.cluster.x-k8s.io
+  - vspheremachinetemplates.infrastructure.cluster.x-k8s.io
+  - vspherevms.infrastructure.cluster.x-k8s.io
