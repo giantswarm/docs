@@ -21,3 +21,11 @@ skip_crds:
   - vspheremachines.infrastructure.cluster.x-k8s.io
   - vspheremachinetemplates.infrastructure.cluster.x-k8s.io
   - vspherevms.infrastructure.cluster.x-k8s.io
+
+  # CAPI for AWS to be hidden until supported for customers
+  - awsclusterroleidentities.infrastructure.cluster.x-k8s.io
+  - awsclusters.infrastructure.cluster.x-k8s.io
+  - awsmachinepools.infrastructure.cluster.x-k8s.io
+  - awsmachinetemplates.infrastructure.cluster.x-k8s.io
+  - kubeadmconfigs.bootstrap.cluster.x-k8s.io
+  - kubeadmcontrolplanes.controlplane.cluster.x-k8s.io
