@@ -52,5 +52,7 @@ You can set the annotation to either an existing workload cluster or a brand new
   removing the `annotation` from the `AzureCluster` Custom Resource at any time. Reconciliation takes just a few minutes to switch
   between the two modes and there shouldn't be any significant network packet loss while switching.
 - This feature is only supported for Node Pools and not for the Master node.
+- If you enable the feature in an existing `Workload Cluster`, the previously used `Public IP` will not be deleted. If the
+  feature is disabled again, the same IP address will be reused. 
 - There is no frontend support for this feature. The only way of enabling it is by editing the `AzureCluster` Custom Resource.
 
