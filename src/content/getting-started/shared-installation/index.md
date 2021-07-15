@@ -76,3 +76,6 @@ To create a team, follow these steps:
 5. Make sure the team has the expected members at `https://github.com/orgs/<org-name>/teams/<team-name>/members`.
 6. Copy the details URL of the team, like `https://github.com/orgs/<org-name>/teams/<team-name>`, and hand it to your Account Engineer at Giant Swarm.
 
+### TODO
+
+Add a final step regarding waiting for the Account Engineer to get in contact with "the keys".
