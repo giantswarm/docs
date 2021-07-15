@@ -1,5 +1,4 @@
 ---
-
 linkTitle: Securing your cluster with RBAC and PSP
 title: Securing your Cluster with RBAC and PSP
 description: Introduction to using role-based access control (RBAC) and pod sewcurity policies (PSP) to secure your cluster and manage access control.
