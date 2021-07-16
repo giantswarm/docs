@@ -79,7 +79,7 @@ installed in your workload cluster.
 
 You can browse the apps in our catalog using our [web UI]({{< relref "/ui-api/web" >}})
 but this information is also available in the management cluster. We create
-[CatalogEntry]({{< relref "/ui-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}})
+[AppCatalogEntry]({{< relref "/ui-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}})
 CRs for the apps that are available.
 
 First let's list the available [Catalog]({{< relref "/ui-api/management-api/crd/catalogs.application.giantswarm.io.md" >}})
