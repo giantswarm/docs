@@ -79,14 +79,14 @@ installed in your workload cluster.
 
 You can browse the apps in our catalog using our [web UI]({{< relref "/ui-api/web" >}})
 but this information is also available in the management cluster. We create
-[AppCatalogEntry]({{< relref "/ui-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}})
+[CatalogEntry]({{< relref "/ui-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}})
 CRs for the apps that are available.
 
-First let's list the available [AppCatalog]({{< relref "/ui-api/management-api/crd/appcatalogs.application.giantswarm.io.md" >}})
+First let's list the available [Catalog]({{< relref "/ui-api/management-api/crd/catalogs.application.giantswarm.io.md" >}})
 CRs.
 
 ```nohighlight
-kubectl gs get appcatalogs
+kubectl gs get catalogs
 
 NAME                    CATALOG URL
 giantswarm              https://giantswarm.github.io/giantswarm-catalog/
@@ -96,7 +96,7 @@ giantswarm-playground   https://giantswarm.github.io/giantswarm-playground-catal
 Now we can list the latest version of each app in the catalog.
 
 ```nohighlight
-kubectl gs get appcatalog giantswarm
+kubectl gs get catalog giantswarm
 
 CATALOG      APP NAME                       APP VERSION   VERSION   CREATED
 ...

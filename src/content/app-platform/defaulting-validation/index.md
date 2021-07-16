@@ -111,10 +111,10 @@ Currently we validate:
 
 - The `app-operator.giantswarm.io/version` label is present.
 - All referenced configmaps and secrets exist.
-- The catalog has a matching AppCatalog CR.
+- The catalog has a matching Catalog CR.
 - There is no App CR with a conflicting annotation or label value for the [target namespace]({{< relref "/app-platform/namespace-configuration" >}}).
 
-If app-operator finds a matching [AppCatalogEntry]({{< relref "/ui-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}}) CR, it will use this to run more validation checks.
+If app-operator finds a matching [CatalogEntry]({{< relref "/ui-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}}) CR, it will use this to run more validation checks.
 
 - Cloud provider compatibility (e.g. you can’t install the azure-ad-pod-identity app in AWS).
 - Namespace restriction (cluster singleton, namespace singleton, fixed namespace).
