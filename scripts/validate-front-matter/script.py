@@ -603,6 +603,9 @@ def main():
                 fpaths.append(os.path.join(root, file))
 
     for fpath in fpaths:
+        if not os.path.exists(fpath):
+            continue
+
         with open(fpath, 'r') as input:
             content = input.read()
             r = validate(content, fpath)

@@ -58,6 +58,7 @@ The following table shows which of our major releases contain which Kubernetes r
 | **12.x.x**                  | 1.17.x             | Available    |
 | **13.x.x**                  | 1.18.x             | Available    |
 | **14.x.x**                  | 1.19.x             | Available    |
+| **15.x.x**                  | 1.20.x             | Available for AWS and Azure |
 
 \*) As an exception from the convention, on AWS, workload cluster releases v9.2.0 and v9.3.x include Kubernetes v1.16.x.
 
@@ -77,8 +78,6 @@ We use patch releases to publish bug fixes, security fixes, or to make changes t
 ### Lifecycle {#lifecycle}
 
 For every provider, we maintain **two different major versions** of workload cluster releases at the same time, which means that you have two different Kubernetes minor versions to chose from.
-
-Whenever a new Kubernetes minor version is released by the Kubernetes project, we aim to make that version available in a new major workload cluster release within 30 days.
 
 With our development of **new functionality** we focus on our latest major version. The older major version is mostly maintained to fix security issues and stability problems.
 

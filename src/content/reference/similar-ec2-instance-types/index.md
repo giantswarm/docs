@@ -14,6 +14,8 @@ owner:
 
 # Similar EC2 Instance Types
 
+{{< platform_support_table aws="ga=11.2.0" >}}
+
 ## Introduction
 
 Handling of similar instance types is done in [aws-operator](https://github.com/giantswarm/aws-operator) since version 8.3.1, which has been introduced with workload cluster release v{{% first_aws_spotinstances_version %}} for AWS.
