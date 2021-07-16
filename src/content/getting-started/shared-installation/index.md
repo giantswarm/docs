@@ -48,6 +48,10 @@ A shared installation is monitored and managed by Giant Swarm staff, just like a
 
 ## Getting started
 
+### Kick-off
+
+We talked. Together, you and Giant Swarm agree on a project. You have an Account Engineer at Giant Swarm responsible for you.
+
 ### Pick an organization name
 
 It's up to you to decide for an organization name that represents you as a company, business unit, or team. Please take our [naming conventions]({{< relref "/general/organizations#naming-conventions" >}}) into account.
@@ -76,6 +80,6 @@ To create a team, follow these steps:
 5. Make sure the team has the expected members at `https://github.com/orgs/<org-name>/teams/<team-name>/members`.
 6. Copy the details URL of the team, like `https://github.com/orgs/<org-name>/teams/<team-name>`, and hand it to your Account Engineer at Giant Swarm.
 
-### TODO
+### Let us take care of the rest
 
-Add a final step regarding waiting for the Account Engineer to get in contact with "the keys".
+Once you have gone through the steps outlined above, let us set up your organization in the selected shared installation. We'll let you know when you can access our web user interface and start your first clusters.
