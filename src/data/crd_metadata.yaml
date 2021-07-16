@@ -5,9 +5,15 @@
 # Schema:
 # .topics: array of strings. Possible values: "apps", "managementcluster", "workloadcluster"
 # .provider: array of strings.
+# .deprecation: If set, the CRD is marked as deprecated.
+# .deprecation.replaced_by: full name of the CRD to be used instead.
 appcatalogs.application.giantswarm.io:
   topics:
     - apps
+  deprecation:
+    replaced_by:
+      full_name: catalogs.application.giantswarm.io
+      short_name: Catalog
 appcatalogentries.application.giantswarm.io:
   topics:
     - apps
