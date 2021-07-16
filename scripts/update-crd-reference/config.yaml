@@ -4,6 +4,8 @@ source_repository:
   organization: giantswarm
   short_name: apiextensions
 skip_crds:
+  - awsclusterconfigs.core.giantswarm.io
+  - awsconfigs.provider.giantswarm.io
   - chartconfigs.core.giantswarm.io
   - clusters.core.giantswarm.io
   - draughtsmanconfigs.core.giantswarm.io
