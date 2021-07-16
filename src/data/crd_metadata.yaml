@@ -20,17 +20,7 @@ appcatalogentries.application.giantswarm.io:
 apps.application.giantswarm.io:
   topics:
     - apps
-awsclusterconfigs.core.giantswarm.io:
-  provider:
-    - aws
-  topics:
-    - workloadcluster
 awsclusters.infrastructure.giantswarm.io:
-  provider:
-    - aws
-  topics:
-    - workloadcluster
-awsconfigs.provider.giantswarm.io:
   provider:
     - aws
   topics:
