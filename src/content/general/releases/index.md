@@ -79,8 +79,6 @@ We use patch releases to publish bug fixes, security fixes, or to make changes t
 
 For every provider, we maintain **two different major versions** of workload cluster releases at the same time, which means that you have two different Kubernetes minor versions to chose from.
 
-Whenever a new Kubernetes minor version is released by the Kubernetes project, we aim to make that version available in a new major workload cluster release within 30 days.
-
 With our development of **new functionality** we focus on our latest major version. The older major version is mostly maintained to fix security issues and stability problems.
 
 Old workload cluster release get [deprecated](#deprecation) when replaced by newer ones. After deprecation, and once no longer in use by any customer, a workload cluster release gets archived, which means that it is no longer accessible to you.
