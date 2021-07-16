@@ -29,9 +29,9 @@ It supports the following required flags:
 
 - `--name`: Name of the app in the catalog. This is also the name of the App CR unless `--app-name` is set.
 - `--namespace`: Namespace where the app will be deployed.
-- `--catalog`: Catalog name where the app package is stored. `AppCatalog` CR for this catalog must exist in the cluster.
+- `--catalog`: Catalog name where the app package is stored. `Catalog` CR for this catalog must exist in the cluster.
 - `--cluster`: Cluster ID where app will be installed.
-- `--version`: Version of the app to be installed. The version package must exit in the `AppCatalog` storage.
+- `--version`: Version of the app to be installed. The version package must exist in the `Catalog` storage.
 
 The example command
 
