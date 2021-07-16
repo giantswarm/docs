@@ -67,6 +67,9 @@ azuremachines.infrastructure.cluster.x-k8s.io:
 azuretools.tooling.giantswarm.io:
   provider:
     - azure
+catalogs.application.giantswarm.io:
+  topics:
+    - apps
 certconfigs.core.giantswarm.io:
   topics:
     - managementcluster
