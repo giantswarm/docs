@@ -181,7 +181,7 @@ templated Secret, then you have to base64 encode it to comply with how Kubernete
 ## How configuration values are stored and referenced in the Control Plane {#storage-referencing}
 
 Configuration for Apps are stored as ConfigMaps and Secrets, which are
-referenced by `name` and `namespace` in various `spec` fields of the [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) and [AppCatalog]({{< relref "/ui-api/management-api/crd/appcatalogs.application.giantswarm.io.md" >}}) Custom Resource (CR).
+referenced by `name` and `namespace` in various `spec` fields of the [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) and [Catalog]({{< relref "/ui-api/management-api/crd/catalogs.application.giantswarm.io.md" >}}) Custom Resource (CR).
 
 Our operators act on those resources to ensure the actual state ends up
 looking like the desired state. More information is available in our [general overview of the App Platform]({{< relref "/app-platform" >}}).
