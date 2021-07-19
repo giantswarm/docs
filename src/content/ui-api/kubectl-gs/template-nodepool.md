@@ -63,7 +63,7 @@ Here are the supported flags:
 
 - `--azure-vm-size` - Azure VM size to use for workers (e.g. *Standard_D4s_v3*).
 - `--azure-spot-vms` - Whether to use spot VMs for this node pool (defaults to false which means not to use spot VMs).
-- `--azure-spot-max-price` - Max hourly price in USD to pay for one spot VM. If the current price for the VM is exceeded, the VM is deleted. If not set, the on demand price for the same instance size is used as max value.
+- `--azure-spot-max-price` - Max hourly price in USD to pay for one spot VM. If the current price for the VM is exceeded, the VM is deleted. If not set, the on-demand price for the same machine size is used as limit.
 
 ## Example
 
