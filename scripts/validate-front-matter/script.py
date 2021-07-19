@@ -99,6 +99,7 @@ checks = (
     {
         'id': SHORT_DESCRIPTION,
         'description': 'The description should be longer than 70 characters',
+        'ignore_paths': [crds_path],
         'severity': SEVERITY_FAIL,
         'has_value': True,
     },
