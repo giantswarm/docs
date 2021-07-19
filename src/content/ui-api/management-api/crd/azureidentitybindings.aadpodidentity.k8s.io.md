@@ -6,7 +6,7 @@ description: |
   AzureIdentityBinding brings together the spec of matching pods and the identity which they can use.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.27.1
+source_repository_ref: v3.27.2
 layout: crd
 aliases:
   - /reference/cp-k8s-api/azureidentitybindings.aadpodidentity.k8s.io/

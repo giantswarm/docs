@@ -6,7 +6,7 @@ description: |
   EKSConfig is the Schema for the eksconfigs API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.27.1
+source_repository_ref: v3.27.2
 layout: crd
 aliases:
   - /reference/cp-k8s-api/eksconfigs.bootstrap.cluster.x-k8s.io/
