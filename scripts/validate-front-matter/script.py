@@ -179,6 +179,7 @@ valid_keys = set((
     'aliases',
     'changes_categories',
     'changes_entry',
+    'crd',
     'date',
     'description',
     'last_review_date',
