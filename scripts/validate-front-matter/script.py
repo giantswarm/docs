@@ -87,12 +87,13 @@ checks = (
     {
         'id': NO_DESCRIPTION,
         'description': 'Each page should have a description',
-        'ignore_paths': [changes_path],
+        'ignore_paths': [crds_path, changes_path],
         'severity': SEVERITY_FAIL,
     },
     {
         'id': LONG_DESCRIPTION,
         'description': 'The description should be less than 300 characters',
+        'ignore_paths': [crds_path],
         'severity': SEVERITY_FAIL,
         'has_value': True,
     },
@@ -106,6 +107,7 @@ checks = (
     {
         'id': INVALID_DESCRIPTION,
         'description': 'Description must be a simple string without any markup or line breaks',
+        'ignore_paths': [crds_path],
         'severity': SEVERITY_FAIL,
     },
     {
@@ -346,15 +348,19 @@ def get_raw_front_matter(source_text):
 def ignored_path(path, check_id):
     "Returns true if the given path should be ignored for the given check"
     check = None
+    
     for c in checks:
         if c['id'] == check_id:
             check = c
             break
+    
     if 'ignore_paths' not in check:
         return False
+    
     for ignore_path in check['ignore_paths']:
         if path.startswith(ignore_path):
             return True
+
     return False
 
 def validate(content, fpath):
@@ -450,26 +456,29 @@ def validate(content, fpath):
                 'check': NO_DESCRIPTION,
             })
         elif type(fm['description']) != str:
-            result.append({
-                'check': INVALID_DESCRIPTION,
-                'value': fm['description'],
-            })
+            if not ignored_path(fpath, INVALID_DESCRIPTION):
+                result.append({
+                    'check': INVALID_DESCRIPTION,
+                    'value': fm['description'],
+                })
         elif len(fm['description']) < 70:
-            if not not ignored_path(fpath, SHORT_DESCRIPTION):
+            if not ignored_path(fpath, SHORT_DESCRIPTION):
                 result.append({
                     'check': SHORT_DESCRIPTION,
                     'value': fm['description'],
                 })
         elif len(fm['description']) > 300:
-            result.append({
-                'check': LONG_DESCRIPTION,
-                'value': fm['description'],
-            })
+            if not ignored_path(fpath, LONG_DESCRIPTION):
+                result.append({
+                    'check': LONG_DESCRIPTION,
+                    'value': fm['description'],
+                })
         elif "\n" in fm['description'].strip():
-            result.append({
-                'check': INVALID_DESCRIPTION,
-                'value': fm['description'],
-            })
+            if not ignored_path(fpath, INVALID_DESCRIPTION):
+                result.append({
+                    'check': INVALID_DESCRIPTION,
+                    'value': fm['description'],
+                })
     elif not ignored_path(fpath, NO_DESCRIPTION):
         result.append({
             'check': NO_DESCRIPTION,
