@@ -6,7 +6,7 @@ description: |
   Cluster is the Schema for the clusters API
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.27.1
+source_repository_ref: v3.27.2
 layout: crd
 aliases:
   - /reference/cp-k8s-api/clusters.cluster.x-k8s.io/

@@ -6,7 +6,7 @@ description: |
   Silence represents schema for managed silences in Alertmanager. Reconciled by silence-operator.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.27.1
+source_repository_ref: v3.27.2
 layout: crd
 aliases:
   - /reference/cp-k8s-api/silences.monitoring.giantswarm.io/

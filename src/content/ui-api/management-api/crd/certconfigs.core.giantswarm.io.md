@@ -3,10 +3,10 @@ title: CertConfig CRD schema reference
 linkTitle: CertConfig
 technical_name: certconfigs.core.giantswarm.io
 description: |
-  CertConfig specifies sdetails for an X.509 certificate to be issued, handled by cert-operator.
+  CertConfig specifies details for an X.509 certificate to be issued, handled by cert-operator.
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.27.1
+source_repository_ref: v3.27.2
 layout: crd
 aliases:
   - /reference/cp-k8s-api/certconfigs.core.giantswarm.io/
@@ -15,7 +15,7 @@ aliases:
 # CertConfig
 
 
-<p class="crd-description">CertConfig specifies sdetails for an X.509 certificate to be issued, handled by cert-operator.</p>
+<p class="crd-description">CertConfig specifies details for an X.509 certificate to be issued, handled by cert-operator.</p>
 <dl class="crd-meta">
 <dt class="fullname">Full name:</dt>
 <dd class="fullname">certconfigs.core.giantswarm.io</dd>

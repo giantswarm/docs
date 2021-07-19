@@ -7,7 +7,7 @@ description: |
    An example Ignition resource can be viewed here https://github.com/giantswarm/apiextensions/blob/master/docs/cr/core.giantswarm.io_v1alpha1_ignition.yaml
 weight: 100
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.27.1
+source_repository_ref: v3.27.2
 layout: crd
 aliases:
   - /reference/cp-k8s-api/ignitions.core.giantswarm.io/
