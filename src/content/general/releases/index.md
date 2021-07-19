@@ -2,7 +2,7 @@
 linkTitle: Releases
 title: Workload cluster release versions
 description: Details on the workload cluster release offered by Giant Swarm and ways to look up even more details.
-last_review_date: 2020-10-30
+last_review_date: 2021-07-19
 weight: 30
 menu:
   main:
@@ -53,14 +53,10 @@ The following table shows which of our major releases contain which Kubernetes r
 
 | Workload cluster release version | Kubernetes version | Availability |
 |:---------------------------:|:------------------:|:------------:|
-| **9.x.x**                   | 1.15.x\*           | Available    |
-| **11.x.x**                  | 1.16.x             | Available    |
 | **12.x.x**                  | 1.17.x             | Available    |
 | **13.x.x**                  | 1.18.x             | Available    |
 | **14.x.x**                  | 1.19.x             | Available    |
 | **15.x.x**                  | 1.20.x             | Available for AWS and Azure |
-
-\*) As an exception from the convention, on AWS, workload cluster releases v9.2.0 and v9.3.x include Kubernetes v1.16.x.
 
 We test every new major workload cluster release, bringing a new Kubernetes minor release, against the CNCF [conformance test suite](https://github.com/cncf/k8s-conformance).
 Every workload cluster release, from patch to major, also undergoes automated integration testing.
@@ -129,21 +125,6 @@ Preinstalled apps are installed by default upon cluster creation. Optional apps 
 | **KVM 12.2.x+**                | optional      | n/a           | optional     |
 | **KVM legacy**                 | preinstalled  | n/a           | optional     |
 
-### Flatcar Container Linux {#flatcar}
-
-Generally all active workload cluster releases are available with Flatcar Container Linux as
-the operating system.
-
-This table shows which workload cluster releases first introduced Flatcar Container Linux on various providers and with which Kubernetes minor version:
-
-| Provider | Workload cluster release | Kubernetes version |
-|:-:|:-:|:-:|
-| AWS | **v9.3.0** | 1.16.x |
-| AWS | **v11.3.0** | 1.16.x |
-| Azure | **v11.3.x** | 1.16.x |
-| KVM | **v9.0.3**  | 1.15.x  |
-| KVM | **v11.3.x** | 1.16.x  |
-
 ## Further reading
 
-- [Cluster Upgrades with Giant Swarm]({{< relref "/general/cluster-upgrades" >}}) explains how upgrades work and suggests some best practices to keep a cluster ready to upgrade.
+- [Cluster upgrades]({{< relref "/general/cluster-upgrades" >}}) explains how upgrades work and suggests some best practices to keep a cluster ready to upgrade.
