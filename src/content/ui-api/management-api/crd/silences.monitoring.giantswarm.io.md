@@ -1,15 +1,31 @@
 ---
-title: Silence CRD schema reference
+title: Silence CRD schema reference (group monitoring.giantswarm.io)
 linkTitle: Silence
-technical_name: silences.monitoring.giantswarm.io
 description: |
   Silence represents schema for managed silences in Alertmanager. Reconciled by silence-operator.
 weight: 100
-source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.27.1
+crd:
+  name_camelcase: Silence
+  name_plural: silences
+  name_singular: silence
+  group: monitoring.giantswarm.io
+  technical_name: silences.monitoring.giantswarm.io
+  scope: Cluster
+  source_repository: https://github.com/giantswarm/apiextensions
+  source_repository_ref: add-docs-metadata
+  versions:
+    - v1alpha1
+  topics:
+    - managementcluster
+  providers:
 layout: crd
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-biscuit
 aliases:
   - /reference/cp-k8s-api/silences.monitoring.giantswarm.io/
+technical_name: silences.monitoring.giantswarm.io
+source_repository: https://github.com/giantswarm/apiextensions
+source_repository_ref: add-docs-metadata
 ---
 
 # Silence

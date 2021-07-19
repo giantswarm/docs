@@ -1,15 +1,32 @@
 ---
-title: AWSCluster CRD schema reference
+title: AWSCluster CRD schema reference (group infrastructure.giantswarm.io)
 linkTitle: AWSCluster
-technical_name: awsclusters.infrastructure.giantswarm.io
 description: |
   AWSCluster is the infrastructure provider referenced in upstream CAPI Cluster CRs.
 weight: 100
-source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.27.1
+crd:
+  name_camelcase: AWSCluster
+  name_plural: awsclusters
+  name_singular: awscluster
+  group: infrastructure.giantswarm.io
+  technical_name: awsclusters.infrastructure.giantswarm.io
+  scope: Namespaced
+  source_repository: https://github.com/giantswarm/apiextensions
+  source_repository_ref: add-docs-metadata
+  versions:
+    - v1alpha2
+  topics:
+    - workloadcluster
+  providers:
+    - aws
 layout: crd
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-firecracker
 aliases:
   - /reference/cp-k8s-api/awsclusters.infrastructure.giantswarm.io/
+technical_name: awsclusters.infrastructure.giantswarm.io
+source_repository: https://github.com/giantswarm/apiextensions
+source_repository_ref: add-docs-metadata
 ---
 
 # AWSCluster

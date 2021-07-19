@@ -1,15 +1,32 @@
 ---
-title: AWSMachineDeployment CRD schema reference
+title: AWSMachineDeployment CRD schema reference (group infrastructure.giantswarm.io)
 linkTitle: AWSMachineDeployment
-technical_name: awsmachinedeployments.infrastructure.giantswarm.io
 description: |
   AWSMachineDeployment is the infrastructure provider referenced in Kubernetes Cluster API MachineDeployment resources. It contains provider-specific specification and status for a node pool. In use on AWS since workload cluster release v10.x.x and reconciled by aws-operator.
 weight: 100
-source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.27.1
+crd:
+  name_camelcase: AWSMachineDeployment
+  name_plural: awsmachinedeployments
+  name_singular: awsmachinedeployment
+  group: infrastructure.giantswarm.io
+  technical_name: awsmachinedeployments.infrastructure.giantswarm.io
+  scope: Namespaced
+  source_repository: https://github.com/giantswarm/apiextensions
+  source_repository_ref: add-docs-metadata
+  versions:
+    - v1alpha2
+  topics:
+    - workloadcluster
+  providers:
+    - aws
 layout: crd
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-firecracker
 aliases:
   - /reference/cp-k8s-api/awsmachinedeployments.infrastructure.giantswarm.io/
+technical_name: awsmachinedeployments.infrastructure.giantswarm.io
+source_repository: https://github.com/giantswarm/apiextensions
+source_repository_ref: add-docs-metadata
 ---
 
 # AWSMachineDeployment

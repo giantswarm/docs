@@ -1,16 +1,33 @@
 ---
-title: Ignition CRD schema reference
+title: Ignition CRD schema reference (group core.giantswarm.io)
 linkTitle: Ignition
-technical_name: ignitions.core.giantswarm.io
 description: |
   Ignition is a Kubernetes resource (CR) which is based on the Ignition CRD defined above. 
    An example Ignition resource can be viewed here https://github.com/giantswarm/apiextensions/blob/master/docs/cr/core.giantswarm.io_v1alpha1_ignition.yaml
 weight: 100
-source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.27.1
+crd:
+  name_camelcase: Ignition
+  name_plural: ignitions
+  name_singular: ignition
+  group: core.giantswarm.io
+  technical_name: ignitions.core.giantswarm.io
+  scope: Namespaced
+  source_repository: https://github.com/giantswarm/apiextensions
+  source_repository_ref: add-docs-metadata
+  versions:
+    - v1alpha1
+  topics:
+    - managementcluster
+    - workloadcluster
+  providers:
 layout: crd
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-ludacris
 aliases:
   - /reference/cp-k8s-api/ignitions.core.giantswarm.io/
+technical_name: ignitions.core.giantswarm.io
+source_repository: https://github.com/giantswarm/apiextensions
+source_repository_ref: add-docs-metadata
 ---
 
 # Ignition

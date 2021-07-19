@@ -1,15 +1,32 @@
 ---
-title: KVMConfig CRD schema reference
+title: KVMConfig CRD schema reference (group provider.giantswarm.io)
 linkTitle: KVMConfig
-technical_name: kvmconfigs.provider.giantswarm.io
 description: |
   Custom resource definition (CRD) schema reference page for the KVMConfig resource (kvmconfigs.provider.giantswarm.io), as part of the Giant Swarm Management API documentation.
 weight: 100
-source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.27.1
+crd:
+  name_camelcase: KVMConfig
+  name_plural: kvmconfigs
+  name_singular: kvmconfig
+  group: provider.giantswarm.io
+  technical_name: kvmconfigs.provider.giantswarm.io
+  scope: Namespaced
+  source_repository: https://github.com/giantswarm/apiextensions
+  source_repository_ref: add-docs-metadata
+  versions:
+    - v1alpha1
+  topics:
+    - workloadcluster
+  providers:
+    - kvm
 layout: crd
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-rocket
 aliases:
   - /reference/cp-k8s-api/kvmconfigs.provider.giantswarm.io/
+technical_name: kvmconfigs.provider.giantswarm.io
+source_repository: https://github.com/giantswarm/apiextensions
+source_repository_ref: add-docs-metadata
 ---
 
 # KVMConfig
