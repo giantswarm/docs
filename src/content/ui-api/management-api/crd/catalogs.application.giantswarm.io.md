@@ -12,7 +12,7 @@ crd:
   technical_name: catalogs.application.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: add-docs-metadata
+  source_repository_ref: v3.27.2
   versions:
     - v1alpha1
   topics:
@@ -25,7 +25,7 @@ aliases:
   - /reference/cp-k8s-api/catalogs.application.giantswarm.io/
 technical_name: catalogs.application.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: add-docs-metadata
+source_repository_ref: v3.27.2
 ---
 
 # Catalog
