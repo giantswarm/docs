@@ -23,18 +23,21 @@
           <a href="{{ .Permalink | relURL }}">{{ .LinkTitle }}</a>
           <div class="meta">
             <p><code>{{ .Params.crd.technical_name }}</code>
-            {{ with .Params.crd.providers }}
+            {{- if .Params.crd.deprecation }}
+              <span class="tag">DEPRECATED</span>
+            {{- end }}
+            {{- with .Params.crd.providers }}
               &mdash; Provider
               {{ range . }}
                 <span class="tag tag-provider tag-provider-{{ . }}">{{ . }}</span>
               {{ end }}
-            {{ end }}
-            {{ with .Params.crd.topics }}
+            {{- end }}
+            {{- with .Params.crd.topics }}
               &mdash; Topic
               {{ range . }}
                 <span class="tag tag-topic tag-topic-{{ . }}">{{ . }}</span>
               {{ end }}
-            {{ end }}
+            {{- end }}
             </p>
             <p>{{ .Description }}</p>
           </div>
