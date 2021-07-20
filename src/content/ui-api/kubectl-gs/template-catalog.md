@@ -8,7 +8,7 @@ menu:
     parent: uiapi-kubectlgs
 aliases:
   - /reference/kubectl-gs/template-catalog/
-last_review_date: 2021-06-30
+last_review_date: 2021-07-20
 owner:
   - https://github.com/orgs/giantswarm/teams/team-batman
 user_questions:
@@ -25,7 +25,7 @@ In order to create a [Catalog]({{< relref "/app-platform" >}}) using custom reso
 The Catalog CRD is namespace scoped and replaces the [AppCatalog]({{< relref "/ui-api/management-api/crd/appcatalogs.application.giantswarm.io.md" >}})
 CRD which is cluster scoped. This is to improve multi-tenancy support when used with the [Management API]({{< relref "/ui-api/management-api/overview/index.md" >}}).
 
-The Catalog CRD supports having a related ConfigMap or Secret with values YAML. These values are merged with the rest of the [configuration]({< relref "/app-platform/app-configuration/index.md" >}}) when Apps are deployed from this App Catalog.
+The Catalog CRD supports having a related ConfigMap or Secret with values YAML. These values are merged with the rest of the [configuration]({{< relref "/app-platform/app-configuration/index.md" >}}) when Apps are deployed from this App Catalog.
 
 ## Usage
 
