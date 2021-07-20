@@ -1,15 +1,32 @@
 ---
-title: AWSControlPlane CRD schema reference
+title: AWSControlPlane CRD schema reference (group infrastructure.giantswarm.io)
 linkTitle: AWSControlPlane
-technical_name: awscontrolplanes.infrastructure.giantswarm.io
 description: |
   AWSControlPlane is the infrastructure provider referenced in ControlPlane CRs. Represents the master nodes (also called Control Plane) of a workload cluster on AWS. Reconciled by aws-operator.
 weight: 100
-source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.27.2
+crd:
+  name_camelcase: AWSControlPlane
+  name_plural: awscontrolplanes
+  name_singular: awscontrolplane
+  group: infrastructure.giantswarm.io
+  technical_name: awscontrolplanes.infrastructure.giantswarm.io
+  scope: Namespaced
+  source_repository: https://github.com/giantswarm/apiextensions
+  source_repository_ref: add-docs-metadata
+  versions:
+    - v1alpha2
+  topics:
+    - workloadcluster
+  providers:
+    - aws
 layout: crd
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-firecracker
 aliases:
   - /reference/cp-k8s-api/awscontrolplanes.infrastructure.giantswarm.io/
+technical_name: awscontrolplanes.infrastructure.giantswarm.io
+source_repository: https://github.com/giantswarm/apiextensions
+source_repository_ref: add-docs-metadata
 ---
 
 # AWSControlPlane

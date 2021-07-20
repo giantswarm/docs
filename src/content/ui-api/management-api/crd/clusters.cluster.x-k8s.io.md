@@ -1,15 +1,35 @@
 ---
-title: Cluster CRD schema reference
+title: Cluster CRD schema reference (group cluster.x-k8s.io)
 linkTitle: Cluster
-technical_name: clusters.cluster.x-k8s.io
 description: |
   Cluster is the Schema for the clusters API
 weight: 100
-source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.27.2
+crd:
+  name_camelcase: Cluster
+  name_plural: clusters
+  name_singular: cluster
+  group: cluster.x-k8s.io
+  technical_name: clusters.cluster.x-k8s.io
+  scope: Namespaced
+  source_repository: https://github.com/giantswarm/apiextensions
+  source_repository_ref: add-docs-metadata
+  versions:
+    - v1alpha2
+    - v1alpha3
+  topics:
+    - workloadcluster
+  providers:
+    - aws
+    - azure
 layout: crd
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-celestial
+  - https://github.com/orgs/giantswarm/teams/team-firecracker
 aliases:
   - /reference/cp-k8s-api/clusters.cluster.x-k8s.io/
+technical_name: clusters.cluster.x-k8s.io
+source_repository: https://github.com/giantswarm/apiextensions
+source_repository_ref: add-docs-metadata
 ---
 
 # Cluster

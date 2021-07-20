@@ -3,31 +3,5 @@ source_repository:
   url: https://github.com/giantswarm/apiextensions
   organization: giantswarm
   short_name: apiextensions
-skip_crds:
-  - awsclusterconfigs.core.giantswarm.io
-  - awsconfigs.provider.giantswarm.io
-  - chartconfigs.core.giantswarm.io
-  - clusters.core.giantswarm.io
-  - draughtsmanconfigs.core.giantswarm.io
-  - flannelconfigs.core.giantswarm.io
-  - ingressconfigs.core.giantswarm.io
-  - memcachedconfigs.example.giantswarm.io
-  - releasecycles.release.giantswarm.io
-  - drainerconfigs.core.giantswarm.io
-  - storageconfigs.core.giantswarm.io
-  - etcdbackups.backup.giantswarm.io
-  - azureclusterconfigs.core.giantswarm.io
-  - azureconfigs.provider.giantswarm.io
-  - azuretools.tooling.giantswarm.io
-  - vsphereclusters.infrastructure.cluster.x-k8s.io
-  - vspheremachines.infrastructure.cluster.x-k8s.io
-  - vspheremachinetemplates.infrastructure.cluster.x-k8s.io
-  - vspherevms.infrastructure.cluster.x-k8s.io
-
-  # CAPI for AWS to be hidden until supported for customers
-  - awsclusterroleidentities.infrastructure.cluster.x-k8s.io
-  - awsclusters.infrastructure.cluster.x-k8s.io
-  - awsmachinepools.infrastructure.cluster.x-k8s.io
-  - awsmachinetemplates.infrastructure.cluster.x-k8s.io
-  - kubeadmconfigs.bootstrap.cluster.x-k8s.io
-  - kubeadmcontrolplanes.controlplane.cluster.x-k8s.io
+  metadata_path: docs/config.yaml
+template_path: crd.template

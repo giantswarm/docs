@@ -1,15 +1,33 @@
 ---
-title: MachineDeployment CRD schema reference
+title: MachineDeployment CRD schema reference (group cluster.x-k8s.io)
 linkTitle: MachineDeployment
-technical_name: machinedeployments.cluster.x-k8s.io
 description: |
   MachineDeployment is the Schema for the machinedeployments API
 weight: 100
-source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.27.2
+crd:
+  name_camelcase: MachineDeployment
+  name_plural: machinedeployments
+  name_singular: machinedeployment
+  group: cluster.x-k8s.io
+  technical_name: machinedeployments.cluster.x-k8s.io
+  scope: Namespaced
+  source_repository: https://github.com/giantswarm/apiextensions
+  source_repository_ref: add-docs-metadata
+  versions:
+    - v1alpha2
+    - v1alpha3
+  topics:
+    - workloadcluster
+  providers:
+    - aws
 layout: crd
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-firecracker
 aliases:
   - /reference/cp-k8s-api/machinedeployments.cluster.x-k8s.io/
+technical_name: machinedeployments.cluster.x-k8s.io
+source_repository: https://github.com/giantswarm/apiextensions
+source_repository_ref: add-docs-metadata
 ---
 
 # MachineDeployment
