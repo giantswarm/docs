@@ -12,7 +12,7 @@ crd:
   technical_name: organizations.security.giantswarm.io
   scope: Cluster
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: add-docs-metadata
+  source_repository_ref: v3.27.2
   versions:
     - v1alpha1
   topics:
@@ -25,7 +25,7 @@ aliases:
   - /reference/cp-k8s-api/organizations.security.giantswarm.io/
 technical_name: organizations.security.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: add-docs-metadata
+source_repository_ref: v3.27.2
 ---
 
 # Organization

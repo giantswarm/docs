@@ -13,7 +13,7 @@ crd:
   technical_name: ignitions.core.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: add-docs-metadata
+  source_repository_ref: v3.27.2
   versions:
     - v1alpha1
   topics:
@@ -27,7 +27,7 @@ aliases:
   - /reference/cp-k8s-api/ignitions.core.giantswarm.io/
 technical_name: ignitions.core.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: add-docs-metadata
+source_repository_ref: v3.27.2
 ---
 
 # Ignition

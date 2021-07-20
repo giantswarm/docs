@@ -12,7 +12,7 @@ crd:
   technical_name: networkpools.infrastructure.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: add-docs-metadata
+  source_repository_ref: v3.27.2
   versions:
     - v1alpha2
   topics:
@@ -26,7 +26,7 @@ aliases:
   - /reference/cp-k8s-api/networkpools.infrastructure.giantswarm.io/
 technical_name: networkpools.infrastructure.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: add-docs-metadata
+source_repository_ref: v3.27.2
 ---
 
 # NetworkPool
