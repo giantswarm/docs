@@ -1,15 +1,32 @@
 ---
-title: G8sControlPlane CRD schema reference
+title: G8sControlPlane CRD schema reference (group infrastructure.giantswarm.io)
 linkTitle: G8sControlPlane
-technical_name: g8scontrolplanes.infrastructure.giantswarm.io
 description: |
   The G8sControlPlane resource defines the Control Plane nodes (Kubernetes master nodes) of a Giant Swarm workload cluster. It is reconciled by cluster-operator.
 weight: 100
-source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.27.2
+crd:
+  name_camelcase: G8sControlPlane
+  name_plural: g8scontrolplanes
+  name_singular: g8scontrolplane
+  group: infrastructure.giantswarm.io
+  technical_name: g8scontrolplanes.infrastructure.giantswarm.io
+  scope: Namespaced
+  source_repository: https://github.com/giantswarm/apiextensions
+  source_repository_ref: add-docs-metadata
+  versions:
+    - v1alpha2
+  topics:
+    - workloadcluster
+  providers:
+    - aws
 layout: crd
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-firecracker
 aliases:
   - /reference/cp-k8s-api/g8scontrolplanes.infrastructure.giantswarm.io/
+technical_name: g8scontrolplanes.infrastructure.giantswarm.io
+source_repository: https://github.com/giantswarm/apiextensions
+source_repository_ref: add-docs-metadata
 ---
 
 # G8sControlPlane

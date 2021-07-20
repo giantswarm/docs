@@ -1,15 +1,33 @@
 ---
-title: AzureCluster CRD schema reference
+title: AzureCluster CRD schema reference (group infrastructure.cluster.x-k8s.io)
 linkTitle: AzureCluster
-technical_name: azureclusters.infrastructure.cluster.x-k8s.io
 description: |
   AzureCluster is the Schema for the azureclusters API
 weight: 100
-source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.27.2
+crd:
+  name_camelcase: AzureCluster
+  name_plural: azureclusters
+  name_singular: azurecluster
+  group: infrastructure.cluster.x-k8s.io
+  technical_name: azureclusters.infrastructure.cluster.x-k8s.io
+  scope: Namespaced
+  source_repository: https://github.com/giantswarm/apiextensions
+  source_repository_ref: add-docs-metadata
+  versions:
+    - v1alpha2
+    - v1alpha3
+  topics:
+    - workloadcluster
+  providers:
+    - azure
 layout: crd
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-celestial
 aliases:
   - /reference/cp-k8s-api/azureclusters.infrastructure.cluster.x-k8s.io/
+technical_name: azureclusters.infrastructure.cluster.x-k8s.io
+source_repository: https://github.com/giantswarm/apiextensions
+source_repository_ref: add-docs-metadata
 ---
 
 # AzureCluster

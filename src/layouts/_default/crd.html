@@ -19,11 +19,11 @@
 
       <hr />
 
-      <p>This documentation page shows information based on <a href="{{ $.Param "source_repository" }}/tree/{{ $.Param "source_repository_ref" }}" target="_blank" rel="noopener noreferrer">apiextensions {{ $.Param "source_repository_ref" }}</a>.
+      <p>This documentation page shows information based on <a href="{{ $.Params.crd.source_repository }}/tree/{{ $.Params.crd.source_repository_ref }}" target="_blank" rel="noopener noreferrer">apiextensions {{ $.Params.crd.source_repository_ref }}</a>.
 
       <div class="feedback well">
         <h5><i class="fa fa-help-outline"></i> Need help with the Management API?</h5>
-        <p>We listen in your Slack support channel. And of course, we welcome your <a title="open this page in GitHub" href="{{ $.Param "source_repository" }}" target="_blank" rel="noopener noreferrer">pull requests</a> to improve these docs!</p>
+        <p>We listen in your Slack support channel. And of course, we welcome your <a title="open this page in GitHub" href="{{ $.Params.crd.source_repository }}" target="_blank" rel="noopener noreferrer">pull requests</a> to improve these docs!</p>
       </div>
 
     </div>

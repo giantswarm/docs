@@ -1,15 +1,32 @@
 ---
-title: NetworkPool CRD schema reference
+title: NetworkPool CRD schema reference (group infrastructure.giantswarm.io)
 linkTitle: NetworkPool
-technical_name: networkpools.infrastructure.giantswarm.io
 description: |
   NetworkPool is the infrastructure provider referenced in upstream CAPI Cluster CRs.
 weight: 100
-source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.27.2
+crd:
+  name_camelcase: NetworkPool
+  name_plural: networkpools
+  name_singular: networkpool
+  group: infrastructure.giantswarm.io
+  technical_name: networkpools.infrastructure.giantswarm.io
+  scope: Namespaced
+  source_repository: https://github.com/giantswarm/apiextensions
+  source_repository_ref: add-docs-metadata
+  versions:
+    - v1alpha2
+  topics:
+    - workloadcluster
+  providers:
+    - aws
 layout: crd
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-firecracker
 aliases:
   - /reference/cp-k8s-api/networkpools.infrastructure.giantswarm.io/
+technical_name: networkpools.infrastructure.giantswarm.io
+source_repository: https://github.com/giantswarm/apiextensions
+source_repository_ref: add-docs-metadata
 ---
 
 # NetworkPool

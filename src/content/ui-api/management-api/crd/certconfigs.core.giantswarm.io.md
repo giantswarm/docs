@@ -1,15 +1,32 @@
 ---
-title: CertConfig CRD schema reference
+title: CertConfig CRD schema reference (group core.giantswarm.io)
 linkTitle: CertConfig
-technical_name: certconfigs.core.giantswarm.io
 description: |
   CertConfig specifies details for an X.509 certificate to be issued, handled by cert-operator.
 weight: 100
-source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.27.2
+crd:
+  name_camelcase: CertConfig
+  name_plural: certconfigs
+  name_singular: certconfig
+  group: core.giantswarm.io
+  technical_name: certconfigs.core.giantswarm.io
+  scope: Namespaced
+  source_repository: https://github.com/giantswarm/apiextensions
+  source_repository_ref: add-docs-metadata
+  versions:
+    - v1alpha1
+  topics:
+    - managementcluster
+    - workloadcluster
+  providers:
 layout: crd
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-ludacris
 aliases:
   - /reference/cp-k8s-api/certconfigs.core.giantswarm.io/
+technical_name: certconfigs.core.giantswarm.io
+source_repository: https://github.com/giantswarm/apiextensions
+source_repository_ref: add-docs-metadata
 ---
 
 # CertConfig
