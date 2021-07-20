@@ -52,7 +52,24 @@ source_repository_ref: v3.27.2
 <div class="crd-schema-version">
 <h2 id="v1alpha1">Version v1alpha1</h2>
 
+<h3 id="crd-example-v1alpha1">Example CR</h3>
 
+```yaml
+apiVersion: monitoring.giantswarm.io/v1alpha1
+kind: Silence
+metadata:
+  annotations:
+    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/silences.monitoring.giantswarm.io/
+  name: custom
+spec:
+  targetTags:
+  - name: installation
+    value: custom
+  matchers:
+  - name: cluster_id
+    value: custom
+    isRegex: false
+```
 
 <h3 id="property-details-v1alpha1">Properties</h3>
 
