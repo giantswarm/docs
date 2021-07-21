@@ -12,13 +12,15 @@ crd:
   technical_name: g8scontrolplanes.infrastructure.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.27.2
+  source_repository_ref: v3.27.3
   versions:
     - v1alpha2
   topics:
     - workloadcluster
   providers:
     - aws
+  deprecation:
+    info: This CRD will be removed once Cluster API resources are used for all AWS workload clusters.
 layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
@@ -26,10 +28,14 @@ aliases:
   - /reference/cp-k8s-api/g8scontrolplanes.infrastructure.giantswarm.io/
 technical_name: g8scontrolplanes.infrastructure.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.27.2
+source_repository_ref: v3.27.3
 ---
 
 # G8sControlPlane
+<p class="well disclaimer">
+<i class="fa fa-warning"></i> <b>Deprecation:</b>
+This CRD will be removed once Cluster API resources are used for all AWS workload clusters.
+</p>
 
 
 <p class="crd-description">The G8sControlPlane resource defines the Control Plane nodes (Kubernetes master nodes) of a Giant Swarm workload cluster. It is reconciled by cluster-operator.</p>

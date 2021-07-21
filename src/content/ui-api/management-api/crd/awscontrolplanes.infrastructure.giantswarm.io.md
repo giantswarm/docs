@@ -12,13 +12,15 @@ crd:
   technical_name: awscontrolplanes.infrastructure.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.27.2
+  source_repository_ref: v3.27.3
   versions:
     - v1alpha2
   topics:
     - workloadcluster
   providers:
     - aws
+  deprecation:
+    info: This CRD will be removed once Cluster API resources are used for all AWS workload clusters.
 layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
@@ -26,10 +28,14 @@ aliases:
   - /reference/cp-k8s-api/awscontrolplanes.infrastructure.giantswarm.io/
 technical_name: awscontrolplanes.infrastructure.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.27.2
+source_repository_ref: v3.27.3
 ---
 
 # AWSControlPlane
+<p class="well disclaimer">
+<i class="fa fa-warning"></i> <b>Deprecation:</b>
+This CRD will be removed once Cluster API resources are used for all AWS workload clusters.
+</p>
 
 
 <p class="crd-description">AWSControlPlane is the infrastructure provider referenced in ControlPlane CRs. Represents the master nodes (also called Control Plane) of a workload cluster on AWS. Reconciled by aws-operator.</p>
