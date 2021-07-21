@@ -12,20 +12,19 @@ crd:
   technical_name: silences.monitoring.giantswarm.io
   scope: Cluster
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.27.2
+  source_repository_ref: v3.27.3
   versions:
     - v1alpha1
   topics:
     - managementcluster
-  providers:
 layout: crd
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-biscuit
+  - https://github.com/orgs/giantswarm/teams/team-atlas
 aliases:
   - /reference/cp-k8s-api/silences.monitoring.giantswarm.io/
 technical_name: silences.monitoring.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.27.2
+source_repository_ref: v3.27.3
 ---
 
 # Silence

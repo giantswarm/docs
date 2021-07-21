@@ -12,13 +12,12 @@ crd:
   technical_name: releases.release.giantswarm.io
   scope: Cluster
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.27.2
+  source_repository_ref: v3.27.3
   versions:
     - v1alpha1
   topics:
     - managementcluster
     - workloadcluster
-  providers:
 layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-ludacris
@@ -26,7 +25,7 @@ aliases:
   - /reference/cp-k8s-api/releases.release.giantswarm.io/
 technical_name: releases.release.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.27.2
+source_repository_ref: v3.27.3
 ---
 
 # Release
