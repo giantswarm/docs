@@ -22,16 +22,31 @@ crd:
     - {{ . -}}
 {{- end }}
   topics:
-{{- range .Topics }}
+{{- with .Metadata.Topics }}
+{{- range . }}
     - {{ . -}}
 {{- end }}
+{{- end }}
+{{- with .Metadata.Providers }}
   providers:
-{{- range .Providers }}
+{{- range . }}
     - {{ . -}}
+{{- end }}
+{{- end }}
+{{- with .Metadata.Deprecation }}
+  deprecation:
+{{- with .Info }}
+    info: {{ . }}
+{{- end }}
+{{- with .ReplacedBy }}
+    replaced_by:
+      full_name: {{ .FullName }}
+      short_name: {{ .ShortName }}
+{{- end }}
 {{- end }}
 layout: crd
 owner:
-{{- range .Owners }}
+{{- range .Metadata.Owners }}
   - {{ . -}}
 {{- end }}
 aliases:
@@ -42,6 +57,18 @@ source_repository_ref: {{ .SourceRepositoryRef }}
 ---
 
 # {{ .Title }}
+
+{{- with .Metadata.Deprecation }}
+<p class="well disclaimer">
+<i class="fa fa-warning"></i> <b>Deprecation:</b>
+{{- with .Info }}
+{{ . }}
+{{- end }}
+{{- with .ReplacedBy }}
+This CRD is being replaced by <a href="/ui-api/management-api/crd/{{ .FullName }}.md">{{ .ShortName }}</a>.
+{{- end }}
+</p>
+{{- end }}
 
 {{ with .Description }}
 <p class="crd-description">{{ . }}</p>
