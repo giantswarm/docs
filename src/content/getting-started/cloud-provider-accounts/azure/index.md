@@ -129,7 +129,7 @@ This command should be run for all subscriptions that are used for Giant Swarm w
 
 ## Accept legal terms for deeployment of Flatcar image
 
-Giant Swarm deploys Flatcar image developed by Kinvolk from Azure Marketplace. In order to be able to run the image, it is required by Azure to accept the legal terms.
+Giant Swarm deploys [Flatcar](https://kinvolk.io/flatcar-container-linux/) image developed by Kinvolk from Azure Marketplace. In order to be able to run the image, it is required by Azure to accept the legal terms.
 Please run the following command prior to creating a cluster on a given subscription:
 
 ```nohighlight
