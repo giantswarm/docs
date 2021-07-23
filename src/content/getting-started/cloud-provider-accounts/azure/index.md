@@ -136,7 +136,7 @@ Please run following command prior to launching a cluster on a given subscriptio
 az vm image terms accept --offer flatcar-container-linux-free --plan stable --publisher kinvolk
 ```
 
-This acceptance should be performed for all subscriptions that are usedd to run Giant Swarm workload clusters.
+This acceptance should be performed once for all subscriptions that are used to run Giant Swarm workload clusters.
 
 ## Further reading
 
