@@ -126,6 +126,16 @@ Please remember to change the `roleDefinitionId` in case you would like to use y
 
 This command should be run for all subscriptions that are used for Giant Swarm workload clusters as well as the management cluster that orchestrates it all.  
 
+## Accept legal terms for deeployment of Flatcar image
+
+Giant Swarm deploys Flatcar image developed by Kinvolk from Azure Marketplace. In order to be able to run the image, it is required by Azure to accept the legal terms.
+Please run following command prior to launching a cluster on a given subscription:
+```nohighlight
+az vm image terms accept --offer flatcar-container-linux-free --plan stable --publisher kinvolk
+```
+
+This acceptance should be performed for all subscriptions that are usedd to run Giant Swarm workload clusters.
+
 ## Further reading
 
 - [Basics and Concepts: Multi-Account Support](/basics/multi-account/)
