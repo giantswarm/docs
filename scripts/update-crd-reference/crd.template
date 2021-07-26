@@ -65,7 +65,7 @@ source_repository_ref: {{ .SourceRepositoryRef }}
 {{ . }}
 {{- end }}
 {{- with .ReplacedBy }}
-This CRD is being replaced by <a href="/ui-api/management-api/crd/{{ .FullName }}.md">{{ .ShortName }}</a>.
+This CRD is being replaced by <a href="../{{ .FullName }}/">{{ .ShortName }}</a>.
 {{- end }}
 </p>
 {{- end }}

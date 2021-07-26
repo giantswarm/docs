@@ -34,7 +34,7 @@ source_repository_ref: v3.27.3
 # AppCatalog
 <p class="well disclaimer">
 <i class="fa fa-warning"></i> <b>Deprecation:</b>
-This CRD is being replaced by <a href="/ui-api/management-api/crd/catalogs.application.giantswarm.io.md">Catalog</a>.
+This CRD is being replaced by <a href="../catalogs.application.giantswarm.io/">Catalog</a>.
 </p>
 
 
