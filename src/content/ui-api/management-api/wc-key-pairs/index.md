@@ -93,7 +93,7 @@ Here is how you should adapt the example to match your case:
 - `.metadata`:
     - `.name`: name for this `CertConfig` resource, unique within the management cluster.
     - `.labels`:
-        - `giantswarm.io/certificate`: an identifier for this key pair that must be unique within the management cluster.
+        - `.giantswarm.io/certificate`: an identifier for this key pair that must be unique within the management cluster.
         - `.giantswarm.io/cluster`: ID of the workload cluster to grant access to.
         - `.giantswarm.io/organization`: Name of the organization owning the above workload cluster.
 - `.spec`:
