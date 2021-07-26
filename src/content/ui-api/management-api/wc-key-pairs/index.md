@@ -18,7 +18,7 @@ owner:
 
 We recommend OIDC for authentication to the workload cluster Kubernetes API. However, in some scenarios, X.509 key pairs are a viable alternative. Here we explain a method specific to Giant Swarm to create such key pairs via the Management API.
 
-**Note:** The method described here makes use of the [`CertConfig`]({{< relref "/ui-api/management-api/crd/certconfigs.core.giantswarm.io.md" >}}) <abbr title="custom resource definition">CRD</abbr></a> and [cert-operator](https://github.com/giantswarm/cert-operator), which are currently part of every Giant Swarm management cluster. As Giant Swarm is shifting towards using Cluster API controllers, this method will not work once this transition is done. Please consider it a temporary solution.
+**Note:** The method described here makes use of the [`CertConfig`]({{< relref "/ui-api/management-api/crd/certconfigs.core.giantswarm.io.md" >}}) <abbr title="custom resource definition">CRD</abbr></a> and [cert-operator](https://github.com/giantswarm/cert-operator), which is currently part of every Giant Swarm management cluster. As Giant Swarm is shifting towards using Cluster API controllers, this method will not work once this transition is done. Please consider it a temporary solution.
 
 **Note:** If you want to use the deprecated Giant Swarm Rest API for creating key pairs, please check [`gsctl create kubeconfig`]({{< relref "/ui-api/gsctl/create-kubeconfig.md" >}}) and [`gsctl create keypair`]({{< relref "/ui-api/gsctl/create-keypair.md" >}}).
 
