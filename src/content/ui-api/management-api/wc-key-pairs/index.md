@@ -102,7 +102,7 @@ Here is how you should adapt the example to match your case:
         - `.clusterID`: set this to the same value as the `giantswarm.io/cluster` label.
         - `.commonName`: the `CN` that the created certificate will have. Set this to a unique string ending with your workload cluster's Kubernetes API endpoint domain.
         - `.organizations`: defines the RBAC groups set in the created certificate via the `O` attribute. You can include `system:masters` here to create an admin key pair. Check the security notice below.
-        - `ttl`: The duration until the created certificate will expire. `1h` stands for one hour. Check the security notice below.
+        - `.ttl`: The duration until the created certificate will expire. `1h` stands for one hour. Check the security notice below.
 
 All other values should be set as given in the example.
 
