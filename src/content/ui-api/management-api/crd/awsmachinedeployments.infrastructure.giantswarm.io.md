@@ -12,7 +12,7 @@ crd:
   technical_name: awsmachinedeployments.infrastructure.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.28.0
+  source_repository_ref: v3.29.0
   versions:
     - v1alpha2
     - v1alpha3
@@ -27,7 +27,7 @@ aliases:
   - /reference/cp-k8s-api/awsmachinedeployments.infrastructure.giantswarm.io/
 technical_name: awsmachinedeployments.infrastructure.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.28.0
+source_repository_ref: v3.29.0
 ---
 
 # AWSMachineDeployment
