@@ -68,8 +68,8 @@ It also supports the following optional flags:
 - `--defaulting-enabled`: Only include fields that differ from the default value (default true). When false, a much longer template is created.
 - `--user-configmap`: Path to the user values configmap YAML file.
 - `--user-secret`: Path to the user secrets YAML file.
-- `--namespace-annotations`: Additional annotations to be appended to the target namespace's metadata in form `key=value`. To specify multiple annotations, either separate annotation pairs with commata (,) or specify the flag multiple times.
-- `--namespace-labels`: Additional labels to be appended to the target namespace's metadata in form `key=value`. To specify multiple labels, either separate label pairs with commata (,) or specify the flag multiple times.
+- `--namespace-annotations`: Additional annotations to be appended to the target namespace's metadata ([`spec.namespaceConfig.annotations`]({{< relref "/app-platform/namespace-configuration/index.md" >}})) in form `key=value`. To specify multiple annotations, either separate annotation pairs with commata (,) or specify the flag multiple times.
+- `--namespace-labels`: Additional labels to be appended to the target namespace's metadata ([`spec.namespaceConfig.labels`]({{< relref "/app-platform/namespace-configuration/index.md" >}})) in form `key=value` through . To specify multiple labels, either separate label pairs with commata (,) or specify the flag multiple times.
 
 Only required fields are templated. Other fields are are set by the
 [defaulting webhook]({{< relref "/app-platform/defaulting-validation" >}}).
