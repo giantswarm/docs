@@ -13,6 +13,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-batman
 user_questions:
   - How can I create an app manifest for the Management API?
+  - How can I add labels and annotations to the target namespace of an app?
 ---
 
 # `kubectl gs template app`
@@ -67,6 +68,8 @@ It also supports the following optional flags:
 - `--defaulting-enabled`: Only include fields that differ from the default value (default true). When false, a much longer template is created.
 - `--user-configmap`: Path to the user values configmap YAML file.
 - `--user-secret`: Path to the user secrets YAML file.
+- `--namespace-annotations`: Additional annotations to be appended to the target namespace's metadata in form `key=value`. To specify multiple annotations, either separate annotation pairs with commata (,) or specify the flag multiple times.
+- `--namespace-labels`: Additional labels to be appended to the target namespace's metadata in form `key=value`. To specify multiple labels, either separate label pairs with commata (,) or specify the flag multiple times.
 
 Only required fields are templated. Other fields are are set by the
 [defaulting webhook]({{< relref "/app-platform/defaulting-validation" >}}).
