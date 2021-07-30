@@ -34,13 +34,13 @@ to list some information on all node pools available to you in the current insta
 Here is some example output:
 
 ```nohighlight
-ID      CLUSTER ID   CREATED                         CONDITION   NODES MIN/MAX   NODES DESIRED   NODES READY   DESCRIPTION
-ab12c   s921a        2021-01-02 15:04:32 +0000 UTC   READY       3/10            5               3             Production node pool
+NAME    CLUSTER NAME   CREATED                         CONDITION   NODES MIN/MAX   NODES DESIRED   NODES READY   DESCRIPTION
+ab12c   s921a          2021-01-02 15:04:32 +0000 UTC   READY       3/10            5               3             Production node pool
 ```
 
 ### Get specific node pool
 
-When used with a node pool ID as additional argument, the command will show details for a single node pool. Example:
+When used with a node pool name as additional argument, the command will show details for a single node pool. Example:
 
 ```nohighlight
 kubectl gs get nodepool ab12c
@@ -52,8 +52,8 @@ Note: As an alternative to `get nodepools`, `get nodepool` will also work.
 
 The standard tabular output format features these columns:
 
-- `ID`: Unique identifier of the node pool.
-- `CLUSTER ID`: Unique identifier of the cluster that the node pool belongs to.
+- `NAME`: Unique identifier of the node pool.
+- `CLUSTER NAME`: Unique identifier of the cluster that the node pool belongs to.
 - `CREATED`: Date and time of the node pool CR creation.
 - `CONDITION`: Latest condition reported for the node pool. (Azure only)
 - `NODES MIN/MAX`: Node pool autoscaler settings (if supported).
@@ -65,7 +65,7 @@ The standard tabular output format features these columns:
 
 Here we document the flags that have a particular meaning for the `get nodepools` command. Use `kubectl gs get nodepools --help` for a full list.
 
-### `--cluster-id/-c` {#flags-output}
+### `--cluster-name/-c` {#flags-output}
 
 If present, list the node pools that belong to this given workload cluster.
 
@@ -84,7 +84,7 @@ The following example command would print the main resource for node pool `ab12c
 kubectl gs get nodepool ab12c --output yaml
 ```
 
-When applied without a node pool ID argument, the output will be a list of resources. Example:
+When applied without a node pool name argument, the output will be a list of resources. Example:
 
 ```nohighlight
 $ kubectl gs get nodepools --output yaml
