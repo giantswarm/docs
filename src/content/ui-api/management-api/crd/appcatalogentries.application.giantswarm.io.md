@@ -12,7 +12,7 @@ crd:
   technical_name: appcatalogentries.application.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.29.0
+  source_repository_ref: v3.30.0
   versions:
     - v1alpha1
   topics:
@@ -24,7 +24,7 @@ aliases:
   - /reference/cp-k8s-api/appcatalogentries.application.giantswarm.io/
 technical_name: appcatalogentries.application.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.29.0
+source_repository_ref: v3.30.0
 ---
 
 # AppCatalogEntry
@@ -275,6 +275,24 @@ spec:
 
 <div class="property depth-2">
 <div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.chart.description">.spec.chart.description</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Description is the Helm chart description.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
 <h3 class="property-path" id="v1alpha1-.spec.chart.home">.spec.chart.home</h3>
 </div>
 <div class="property-body">
@@ -303,6 +321,55 @@ spec:
 
 <div class="property-description">
 <p>Icon is a URL to an SVG or PNG image to be used as an icon.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.chart.keywords">.spec.chart.keywords</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>Keywords is the keyword strings from the helm chart.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.chart.keywords[*]">.spec.chart.keywords[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.chart.upstreamChartVersion">.spec.chart.upstreamChartVersion</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>UpstreamChartVersion is the original version of upstream chart in this app.</p>
 
 </div>
 

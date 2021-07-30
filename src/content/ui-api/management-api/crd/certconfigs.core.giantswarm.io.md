@@ -12,7 +12,7 @@ crd:
   technical_name: certconfigs.core.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.29.0
+  source_repository_ref: v3.30.0
   versions:
     - v1alpha1
   topics:
@@ -25,7 +25,7 @@ aliases:
   - /reference/cp-k8s-api/certconfigs.core.giantswarm.io/
 technical_name: certconfigs.core.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.29.0
+source_repository_ref: v3.30.0
 ---
 
 # CertConfig
