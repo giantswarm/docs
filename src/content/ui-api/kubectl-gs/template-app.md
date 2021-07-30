@@ -13,6 +13,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-batman
 user_questions:
   - How can I create an app manifest for the Management API?
+  - How can I add labels and annotations to the target namespace of an app?
 ---
 
 # `kubectl gs template app`
@@ -30,7 +31,7 @@ It supports the following required flags:
 - `--name`: Name of the app in the catalog. This is also the name of the App CR unless `--app-name` is set.
 - `--namespace`: Namespace where the app will be deployed.
 - `--catalog`: Catalog name where the app package is stored. `Catalog` CR for this catalog must exist in the cluster.
-- `--cluster`: Cluster ID where app will be installed.
+- `--cluster`: Name of the cluster the app will be deployed to.
 - `--version`: Version of the app to be installed. The version package must exist in the `Catalog` storage.
 
 The example command
@@ -67,6 +68,8 @@ It also supports the following optional flags:
 - `--defaulting-enabled`: Only include fields that differ from the default value (default true). When false, a much longer template is created.
 - `--user-configmap`: Path to the user values configmap YAML file.
 - `--user-secret`: Path to the user secrets YAML file.
+- `--namespace-annotations`: Additional annotations to be appended to the metadata of the target namespace (through [`spec.namespaceConfig.annotations`]({{< relref "/app-platform/namespace-configuration/index.md" >}}) of [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) CR) in form `key=value`. To specify multiple annotations, either separate annotation pairs with commata (,) or specify the flag multiple times.
+- `--namespace-labels`: Additional labels to be appended to the metadata of the target namespace (through [`spec.namespaceConfig.labels`]({{< relref "/app-platform/namespace-configuration/index.md" >}}) of [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) CR) in form `key=value`. To specify multiple labels, either separate label pairs with commata (,) or specify the flag multiple times.
 
 Only required fields are templated. Other fields are are set by the
 [defaulting webhook]({{< relref "/app-platform/defaulting-validation" >}}).

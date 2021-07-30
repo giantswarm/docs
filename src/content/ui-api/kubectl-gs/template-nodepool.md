@@ -44,8 +44,8 @@ Here are the supported flags:
 
 - `--provider` - The infrastructure provider, either `aws` or `azure`.
 - `--availability-zones` - list of availability zones to use, instead of setting a number. Use comma to separate values. (e. g. `eu-central-1a,eu-central-1b`)
-- `--cluster-id` - ID of the cluster the node pool should be added to.
-- `--nodepool-name` - node pool name or purpose description of the node pool. (default *Unnamed node pool*)
+- `--cluster-name` - Unique identifier of the cluster the node pool should be added to.
+- `--description` - User-friendly description of the purpose of the node pool. (default *Unnamed node pool*)
 - `--nodes-max` - maximum number of worker nodes for the node pool. (default 10)
 - `--nodes-min` - minimum number of worker nodes for the node pool. (default 3)
 - `--output` - Sets a file path to write the output to. If not set, standard output will be used.
@@ -70,11 +70,11 @@ Here are the supported flags:
 ```nohighlight
 kubectl gs template nodepool \
   --provider aws \
-  --cluster-id a1b2c \
-  --nodepool-name "General purpose" \
+  --cluster-name a1b2c \
+  --description "General purpose" \
   --availability-zones eu-central-1a \
   --owner acme \
-  --aws-instance-type m5.4xlarge \
+  --aws-instance-type m5.4xlarge
 ```
 
 ## Output
@@ -85,11 +85,15 @@ The above example command would generate the following output:
 apiVersion: cluster.x-k8s.io/v1alpha2
 kind: MachineDeployment
 metadata:
+  annotations:
+    giantswarm.io/docs: https://docs.giantswarm.io/reference/cp-k8s-api/machinedeployments.cluster.x-k8s.io
   creationTimestamp: null
   labels:
-    giantswarm.io/cluster: o4omf
+    cluster-operator.giantswarm.io/version: ""
+    giantswarm.io/cluster: a1b2c
     giantswarm.io/machine-deployment: fo2xh
-    giantswarm.io/organization: giantswarm
+    giantswarm.io/organization: acme
+    release.giantswarm.io/version: ""
   name: fo2xh
   namespace: default
 spec:
@@ -109,16 +113,20 @@ status: {}
 apiVersion: infrastructure.giantswarm.io/v1alpha2
 kind: AWSMachineDeployment
 metadata:
+  annotations:
+    giantswarm.io/docs: https://docs.giantswarm.io/reference/cp-k8s-api/awsmachinedeployments.infrastructure.giantswarm.io
   creationTimestamp: null
   labels:
-    giantswarm.io/cluster: o4omf
+    aws-operator.giantswarm.io/version: ""
+    giantswarm.io/cluster: a1b2c
     giantswarm.io/machine-deployment: fo2xh
-    giantswarm.io/organization: giantswarm
+    giantswarm.io/organization: acme
+    release.giantswarm.io/version: ""
   name: fo2xh
   namespace: default
 spec:
   nodePool:
-    description: Unnamed node pool
+    description: General purpose
     machine:
       dockerVolumeSizeGB: 100
       kubeletVolumeSizeGB: 100
@@ -128,6 +136,13 @@ spec:
   provider:
     availabilityZones:
     - eu-central-1a
+    instanceDistribution:
+      onDemandBaseCapacity: 0
+      onDemandPercentageAboveBaseCapacity: 100
     worker:
-      instanceType: m5.xlarge
+      instanceType: m5.4xlarge
+      useAlikeInstanceTypes: false
+status:
+  provider:
+    worker: {}
 ```
