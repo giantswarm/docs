@@ -41,18 +41,18 @@ The command to execute is `kubectl gs template cluster`.
 
 It supports the following flags:
 
-- `--provider` - The infrastructure provider (either `aws` or `azure`)
-- `--name` - cluster name.
-- `--pods-cidr` - CIDR applied to the pods. If you don't set any, the installation default will be applied. Only versions *11.1.4+ support this feature.
+- `--provider` - The infrastructure provider (either `aws` or `azure`).
+- `--name` - Unique identifier of the cluster.
 - `--owner` - organization, owning workload cluster. Must be configured with existing organization in installation.
 - `--release` - valid workload cluster release version.
   Can be retrieved with `gsctl list releases` for your installation. Only versions above *10.x.x*+ support cluster CRs.
-- `--label` - workload cluster label in the form of `key=value`. Can be specified multiple times. Only clusters with workload cluster release version above *10.x.x*+ support workload cluster labels.
-- `--cluster-id` (optional) - Unique cluster identifier. Must be 5 characters in length, must contain numbers and letters, must begin with a letter, and match the regular expression `([a-z][a-z0-9]){5}`. If not given, an ID will be generated.
+- `--description` (optional) - User-friendly description of the cluster's purpose.
+- `--pods-cidr` (optional) - CIDR applied to the pods. If you don't set any, the installation default will be applied. Only versions *11.1.4+ support this feature.
+- `--label` (optional) - workload cluster label in the form of `key=value`. Can be specified multiple times. Only clusters with workload cluster release version above *10.x.x*+ support workload cluster labels.
 - `--release-branch` (optional) - The Giant Swarm [releases repository](https://github.com/giantswarm/releases) branch to use to look up the workload cluster release set via the `--release` flag (default: `master`).
-- `--master-az` - Availability zone(s) of master instance.
+- `--control-plane-az` (optional) - Availability zone(s) of the control plane instance(s).
 
-  On AWS, it must be configured with AZ of the installation region. E.g. for region *eu-central-1* valid value is *eu-central-1a*.
+  On AWS, it must be configured with AZ of the installation region. E.g. for region `eu-central-1`, a valid value is `eu-central-1a`.
 
   On Azure, it can be any of the 3 zones: `1`, `2`, `3`.
 
@@ -70,15 +70,15 @@ Example command for an AWS cluster:
 
 ```nohighlight
 kubectl gs template cluster \
-  --provider aws
-  --master-az eu-central-1a \
+  --provider aws \
+  --control-plane-az eu-central-1a \
   --external-snat true \
-  --name "Cluster #2" \
+  --description "Cluster #2" \
   --pods-cidr 10.2.0.0/16 \
   --owner acme \
-  --release 11.2.1 \
+  --release 15.0.0 \
   --label environment=testing \
-  --label "team=upstate"
+  --label team=upstate
 ```
 
 ## Output
@@ -89,13 +89,15 @@ The above example command would generate the following output:
 apiVersion: cluster.x-k8s.io/v1alpha2
 kind: Cluster
 metadata:
+  annotations:
+    giantswarm.io/docs: https://docs.giantswarm.io/reference/cp-k8s-api/clusters.cluster.x-k8s.io
   creationTimestamp: null
   labels:
-    cluster-operator.giantswarm.io/version: 2.1.10
+    cluster-operator.giantswarm.io/version: ""
+    environment: testing
     giantswarm.io/cluster: o4omf
     giantswarm.io/organization: acme
-    release.giantswarm.io/version: 11.2.1
-    environment: testing
+    release.giantswarm.io/version: 15.0.0
     team: upstate
   name: o4omf
   namespace: default
@@ -112,53 +114,53 @@ status:
 apiVersion: infrastructure.giantswarm.io/v1alpha2
 kind: AWSCluster
 metadata:
+  annotations:
+    giantswarm.io/docs: https://docs.giantswarm.io/reference/cp-k8s-api/awsclusters.infrastructure.giantswarm.io
   creationTimestamp: null
   labels:
-    aws-operator.giantswarm.io/version: 8.4.0
+    aws-operator.giantswarm.io/version: ""
     giantswarm.io/cluster: o4omf
     giantswarm.io/organization: acme
-    release.giantswarm.io/version: 11.2.1
+    release.giantswarm.io/version: 15.0.0
   name: o4omf
   namespace: default
 spec:
   cluster:
     description: 'Cluster #2'
     dns:
-      domain: gauss.eu-central-1.aws.gigantic.io
+      domain: ""
+    kubeProxy: {}
     oidc:
-      claims:
-        groups: ""
-        username: ""
-      clientID: ""
-      issuerURL: ""
+      claims: {}
   provider:
     credentialSecret:
-      name: credential-34hg5
+      name: ""
       namespace: giantswarm
     master:
       availabilityZone: eu-central-1a
       instanceType: m5.xlarge
+    nodes: {}
     pods:
       cidrBlock: 10.2.0.0/16
       externalSNAT: true
     region: ""
 status:
-  cluster:
-    id: ""
+  cluster: {}
   provider:
-    network:
-      cidr: ""
+    network: {}
 ---
 apiVersion: infrastructure.giantswarm.io/v1alpha2
 kind: G8sControlPlane
 metadata:
+  annotations:
+    giantswarm.io/docs: https://docs.giantswarm.io/reference/cp-k8s-api/g8scontrolplanes.infrastructure.giantswarm.io
   creationTimestamp: null
   labels:
-    cluster-operator.giantswarm.io/version: 2.1.10
+    cluster-operator.giantswarm.io/version: ""
     giantswarm.io/cluster: o4omf
     giantswarm.io/control-plane: osss7
     giantswarm.io/organization: acme
-    release.giantswarm.io/version: 11.2.1
+    release.giantswarm.io/version: 15.0.0
   name: osss7
   namespace: default
 spec:
@@ -173,18 +175,19 @@ status: {}
 apiVersion: infrastructure.giantswarm.io/v1alpha2
 kind: AWSControlPlane
 metadata:
+  annotations:
+    giantswarm.io/docs: https://docs.giantswarm.io/reference/cp-k8s-api/awscontrolplanes.infrastructure.giantswarm.io
   creationTimestamp: null
   labels:
-    aws-operator.giantswarm.io/version: 8.4.0
+    aws-operator.giantswarm.io/version: ""
     giantswarm.io/cluster: o4omf
     giantswarm.io/control-plane: osss7
     giantswarm.io/organization: acme
-    release.giantswarm.io/version: 11.2.1
+    release.giantswarm.io/version: 15.0.0
   name: osss7
   namespace: default
 spec:
   availabilityZones:
   - eu-central-1a
   instanceType: m5.xlarge
-status: {}
 ```
