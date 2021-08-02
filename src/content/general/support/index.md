@@ -45,7 +45,7 @@ Additionally, customers have a dedicated email address to reach our Ops Duty eng
 
 ## Postmortem process
 
-Sometimes an issue occurs that cannot be fully resolved by the support team. Meaning only a temporary fix was applied, and could potentially affect other environments or customers. Support person or Ops Duty engineer will create a postmortem. The `postmortem` culture [was created by Google](https://landing.google.com/sre/sre-book/chapters/postmortem-culture/) and was established in order to document a problem correctly, find the root cause and fix it across all installations permanently.
+Sometimes an issue occurs that cannot be fully resolved by the support team. Meaning only a temporary fix was applied, and could potentially affect other environments or customers. Support person or Ops Duty engineer will create a postmortem. The `postmortem` culture [was created by Google](https://sre.google/sre-book/postmortem-culture/) and was established in order to document a problem correctly, find the root cause and fix it across all installations permanently.
 
 Postmortems are created during the whole week. On Mondays, the product team meets and distributes the postmortems across our product teams. As each team plans their weekly sprint they assign a specific engineer to each postmortem. Postmortems have priority over feature development and engineers are used to spending at least a day a week to solve these problems.
 

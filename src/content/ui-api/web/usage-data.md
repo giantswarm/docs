@@ -56,7 +56,7 @@ The data is submitted to a service in the Giant Swarm management cluster.
 
 ## Error data collection
 
-We like to learn about any exceptions (unexpected errors) happening during web interface usage, hence we forward information about exceptions to [Sentry](https://sentry.io/).
+We like to learn about any exceptions (unexpected errors) happening during web interface usage, hence we forward information about exceptions to [Sentry](https://sentry.io/welcome/).
 
 Data submitted to sentry includes:
 
