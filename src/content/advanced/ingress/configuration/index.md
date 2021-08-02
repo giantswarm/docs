@@ -173,7 +173,7 @@ __Tip:__ If you want to use [Let’s Encrypt](https://letsencrypt.org/) certific
 
 ### Authentication
 
-The Ingress Controller includes support for adding authentication to an Ingress rule. You have the choice between [basic or digest http authentication types](https://tools.ietf.org/html/rfc2617).
+The Ingress Controller includes support for adding authentication to an Ingress rule. You have the choice between [basic or digest http authentication types](https://datatracker.ietf.org/doc/html/rfc2617).
 
 First, you need to create a file called `auth` containing your usernames and passwords (one per line). You can do this either by using the [`htpasswd`](https://httpd.apache.org/docs/current/programs/htpasswd.html) command line tool (like in the following example) or an online htpasswd generator.
 

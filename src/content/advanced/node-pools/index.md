@@ -227,4 +227,4 @@ that availability zone.
 
 ## Further reading
 
-- [Assigning Pods to Nodes](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/) from the official Kubernetes documentation
+- [Assigning Pods to Nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/) from the official Kubernetes documentation
