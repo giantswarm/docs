@@ -7,6 +7,9 @@ menu:
   main:
     parent: general
 last_review_date: 2020-01-20
+user_questions:
+  - What should I know when working with Giant Swarm's support staff?
+  - How is Giant Swarm organizing support?
 aliases:
   - /basics/giant-swarm-support/
 owner:

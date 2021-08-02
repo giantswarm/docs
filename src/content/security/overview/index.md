@@ -8,6 +8,8 @@ menu:
     parent: security
     identifier: security-overview
 last_review_date: 2020-05-18
+user_questions:
+  - In which was does Giant Swarm ensure system security?
 aliases:
   - /basics/security/
 owner:

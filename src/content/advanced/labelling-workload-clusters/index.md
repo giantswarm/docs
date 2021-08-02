@@ -6,6 +6,8 @@ weight: 110
 menu:
   main:
     parent: advanced
+user_questions:
+  - How can I assign metadata to cluster?
 aliases:
   - /guides/tenant-cluster-labelling/
   - /guides/workload-cluster-labelling/
