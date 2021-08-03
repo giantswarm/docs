@@ -6,7 +6,7 @@ changes_categories:
 - Workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
-  url: https://github.com/giantswarm/releases/tree/master/azure/v14.0.2
+  url: https://github.com/giantswarm/releases/tree/master/azure/archived/v14.0.2
   version: 14.0.2
   version_tag: v14.0.2
 date: '2021-03-31T07:53:08+00:00'
