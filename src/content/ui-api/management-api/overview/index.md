@@ -15,7 +15,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-biscuit
 ---
 
-# The Management API (preview)
+# The Management API
 
 ## What it is
 
