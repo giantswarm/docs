@@ -7,6 +7,9 @@ menu:
   main:
     identifier: uiapi-managementapi
     parent: ui-api
+owner:
+  - https://github.com/orgs/giantswarm/teams/biscuit
+last_review_date: 2021-08-03
 aliases:
   - /reference/management-api/
 ---
