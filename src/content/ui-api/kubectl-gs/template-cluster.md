@@ -24,14 +24,14 @@ For AWS (`--provider aws`):
 
 - [`Cluster`]({{< relref "/ui-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1alpha2`) - holds the base cluster specification.
 - [`AWSCluster`]({{< relref "/ui-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha2`) - holds AWS-specific configuration.
-- [`G8sControlPlane`]({{< relref "/ui-api/management-api/crd/g8scontrolplanes.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha2`) - specifies the master nodes
-- [`AWSControlPlane`]({{< relref "/ui-api/management-api/crd/awscontrolplanes.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha2`) - specifies the master nodes with AWS-specific details
+- [`G8sControlPlane`]({{< relref "/ui-api/management-api/crd/g8scontrolplanes.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha2`) - specifies the control plane nodes
+- [`AWSControlPlane`]({{< relref "/ui-api/management-api/crd/awscontrolplanes.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha2`) - specifies the control plane nodes with AWS-specific details
 
 For Azure (`--provider azure`):
 
 - [`Cluster`]({{< relref "/ui-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1alpha3`) - holds the base cluster specification.
 - [`AzureCluster`]({{< relref "/ui-api/management-api/crd/azureclusters.infrastructure.cluster.x-k8s.io.md" >}}) (API version `infrastructure.cluster.x-k8s.io/v1alpha3`) - holds Azure-specific configuration.
-- [`AzureMachine`]({{< relref "/ui-api/management-api/crd/azuremachines.infrastructure.cluster.x-k8s.io.md" >}}) (API version `infrastructure.cluster.x-k8s.io/v1alpha3`) - specifies the master nodes.
+- [`AzureMachine`]({{< relref "/ui-api/management-api/crd/azuremachines.infrastructure.cluster.x-k8s.io.md" >}}) (API version `infrastructure.cluster.x-k8s.io/v1alpha3`) - specifies the control plane nodes.
 
 **Note:** The CRs generated won't trigger the creation of any worker nodes. Please see the [template nodepool]({{< relref "/ui-api/kubectl-gs/template-nodepool" >}}) for instructions on how to create worker node pools.
 
@@ -56,7 +56,7 @@ It supports the following flags:
 
   On Azure, it can be any of the 3 zones: `1`, `2`, `3`.
 
-  Use the flag once with a single value to create a cluster with one master node (on both Azure and AWS). For master node high availability,
+  Use the flag once with a single value to create a cluster with one control plane node (on both Azure and AWS). For high-availability control planes,
   specify three distinct availability zones instead (AWS only). This can be done by separating AZ names with comma or using the flag
   three times with a single AZ name.
 
