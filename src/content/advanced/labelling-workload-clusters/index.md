@@ -6,6 +6,8 @@ weight: 110
 menu:
   main:
     parent: advanced
+user_questions:
+  - How can I assign metadata to cluster?
 aliases:
   - /guides/tenant-cluster-labelling/
   - /guides/workload-cluster-labelling/
@@ -61,7 +63,7 @@ The operation accepts label selectors in the same way that `kubectl get -l` does
 
 The labels of a workload cluster can be modified by issuing a [setClusterLabels](/api/#operation/setClusterLabels) request to the API.
 Keys and labels should adhere to [Kubernetes labels syntax and character set](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#syntax-and-character-set).
-Label changes should be written as a [JSON Merge Patch, RFC 7386](https://tools.ietf.org/html/rfc7386).
+Label changes should be written as a [JSON Merge Patch, RFC 7386](https://datatracker.ietf.org/doc/html/rfc7386).
 Changes to labels with keys containing `giantswarm.io` is forbidden, changes to label `release.giantswarm.io/version` will be validated against available workload cluster releases.
 
 Differing from `gsctl`, listing workload cluster labels with the API will show management labels required for operation.

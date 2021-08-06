@@ -35,10 +35,10 @@ In this article, we explain how upgrades work in detail and how you should provi
 Among the third party components building a workload cluster stack are
 
 - [Kubernetes](https://kubernetes.io/) with its many sub-components
-- [Flatcar Container Linux](https://docs.flatcar-linux.org/) as the node's operating system
+- [Flatcar Container Linux](https://kinvolk.io/docs/flatcar-container-linux/latest/) as the node's operating system
 - [Docker](https://docs.docker.com/engine/) as a container runtime environment
 - [etcd](https://etcd.io/) as distributed storage for Kubernetes and Vault
-- [Project Calico](https://www.projectcalico.org/) and [AWS CNI](https://github.com/aws/amazon-vpc-cni-k8s)/[Azure CNI](https://github.com/Azure/azure-container-networking)/[Flannel](https://github.com/coreos/flannel) for virtual networking
+- [Project Calico](https://www.tigera.io/project-calico/) and [AWS CNI](https://github.com/aws/amazon-vpc-cni-k8s)/[Azure CNI](https://github.com/Azure/azure-container-networking)/[Flannel](https://github.com/flannel-io/flannel) for virtual networking
 - [CoreDNS](https://coredns.io/) for cluster-internal name resolution
 - [Prometheus node exporter](https://github.com/prometheus/node_exporter) for hardware and OS metrics
 - [NGINX Ingress Controller](https://github.com/kubernetes/ingress-nginx) for connecting services with load balancers
@@ -216,7 +216,7 @@ Configure [PodDisruptionBudgets](https://kubernetes.io/docs/tasks/run-applicatio
 
 Consider using Pod priority to ensure that higher priority Pods are scheduled favorably in times of resource pressure.
 
-We recommend reading the upstream documentation about [priority classes and pod preemption](https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/) to get a better understanding of how the scheduler works with these.
+We recommend reading the upstream documentation about [priority classes and pod preemption](https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/) to get a better understanding of how the scheduler works with these.
 
 To help the scheduler further with being able to correctly (re-)schedule your Pods, you should [set resource request and limits](https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/). This also sets the Quality of Service of a Pod, which again has influence on scheduling priorities.
 

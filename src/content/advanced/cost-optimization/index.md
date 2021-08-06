@@ -20,7 +20,7 @@ Adoption of Kubernetes still requires monitoring cost drivers. Improving resourc
 
 ## Visualization and Optimization
 
-- [Kubecost](https://kubecost.com), an open core cost visualization tool (now with a nice [plugin](http://blog.kubecost.com/blog/kubectl-cost-kubernetes-monitoring-cli/) included)
+- [Kubecost](https://www.kubecost.com/), an open core cost visualization tool (now with a nice [plugin](https://blog.kubecost.com/blog/kubectl-cost-kubernetes-monitoring-cli/) included)
 - Cloud Provider tooling:
     - [AWS Cost Explorer](https://aws.amazon.com/es/aws-cost-management/aws-cost-explorer/)
     - [Azure Cost Management and Billing Service](https://azure.microsoft.com/en-us/services/cost-management/)
