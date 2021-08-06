@@ -54,7 +54,7 @@ This section applies to Azure-based installations only.
 
 #### Local storage {#azure-local-storage}
 
-kubelet data is stored under `/var/lib/kubelet`, Docker images under `/var/lib/docker` and for master nodes etcd data is stored under `/var/lib/etcd`. On Azure, `/var/lib/kubelet`, `/var/lib/docker` and `/var/lib/etcd` are Azure Managed disks (Premium SSD). Azure managed disk automatically encrypts data by default with platform-managed keys (managed by Microsoft). See more details in [Azure managed disk documentation](https://docs.microsoft.com/en-us/azure/virtual-machines/disk-encryption).
+kubelet data is stored under `/var/lib/kubelet`, Docker images under `/var/lib/docker` and for control plane nodes, etcd data is stored under `/var/lib/etcd`. On Azure, `/var/lib/kubelet`, `/var/lib/docker` and `/var/lib/etcd` are Azure Managed disks (Premium SSD). Azure managed disk automatically encrypts data by default with platform-managed keys (managed by Microsoft). See more details in [Azure managed disk documentation](https://docs.microsoft.com/en-us/azure/virtual-machines/disk-encryption).
 
 #### Persistent storage {#azure-persistent-storage}
 
