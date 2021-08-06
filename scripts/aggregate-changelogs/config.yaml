@@ -85,7 +85,7 @@ repositories:
   giantswarm/linkerd2-app:
     category: Managed Apps
   giantswarm/linkerd2-cni-app:
-    category: Managed Apps 
+    category: Managed Apps
   giantswarm/loki-stack-app:
     category: Playground Apps
   giantswarm/opencensus-collector-app:
