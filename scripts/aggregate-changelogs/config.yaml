@@ -83,9 +83,9 @@ repositories:
   giantswarm/kubernetes-gpu:
     category: Playground Apps
   giantswarm/linkerd2-app:
-    category: Playground Apps
+    category: Managed Apps
   giantswarm/linkerd2-cni-app:
-    category: Playground Apps  
+    category: Managed Apps 
   giantswarm/loki-stack-app:
     category: Playground Apps
   giantswarm/opencensus-collector-app:
