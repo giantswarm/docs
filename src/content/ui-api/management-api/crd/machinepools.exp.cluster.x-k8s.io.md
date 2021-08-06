@@ -12,7 +12,7 @@ crd:
   technical_name: machinepools.exp.cluster.x-k8s.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.30.0
+  source_repository_ref: v3.31.0
   versions:
     - v1alpha3
   topics:
@@ -26,7 +26,7 @@ aliases:
   - /reference/cp-k8s-api/machinepools.exp.cluster.x-k8s.io/
 technical_name: machinepools.exp.cluster.x-k8s.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.30.0
+source_repository_ref: v3.31.0
 ---
 
 # MachinePool
@@ -1575,7 +1575,7 @@ source_repository_ref: v3.30.0
 </div>
 
 <div class="annotation-description">
-<p>This annotation allows setting the max size of a node pool for autoscaling purposes. See <a href="https://docs.giantswarm.io/advanced/node-pools">Node pools</a></p>
+<p>This annotation allows setting the max size of a node pool for autoscaling purposes. See <a href="https://docs.giantswarm.io/advanced/node-pools/">node pools</a></p>
 
 </div>
 
@@ -1592,7 +1592,7 @@ source_repository_ref: v3.30.0
 </div>
 
 <div class="annotation-description">
-<p>This annotation allows setting the min size of a node pool for autoscaling purposes. See <a href="https://docs.giantswarm.io/advanced/node-pools">Node pools</a></p>
+<p>This annotation allows setting the min size of a node pool for autoscaling purposes. See <a href="https://docs.giantswarm.io/advanced/node-pools/">node pools</a></p>
 
 </div>
 
