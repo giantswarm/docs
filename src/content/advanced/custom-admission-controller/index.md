@@ -11,6 +11,8 @@ user_questions:
   - How can I create and deploy my own admission controller?
 aliases:
   - /guides/creating-your-own-admission-controller/
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-rocket
 ---
 
 # Creating your own admission controller
