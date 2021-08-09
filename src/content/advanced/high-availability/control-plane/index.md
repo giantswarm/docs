@@ -9,7 +9,6 @@ menu:
     parent: advanced-highavailability
 aliases:
   - /basics/ha-masters/
-  - /advanced/high-availability/masters
   - /advanced/high-availability/masters/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
