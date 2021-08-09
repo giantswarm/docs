@@ -148,7 +148,7 @@ allows installing multiple instances of an app.
 Now lets check the app using the `kubectl gs get app` command.
 
 ```nohighlight
-kubectl -n ${CLUSTER} gs get app nginx-ingress-controller-app -o yaml
+kubectl gs -n ${CLUSTER} get app nginx-ingress-controller-app -o yaml
 ```
 
 The labels, cluster config and kubeconfig have been all defaulted to the correct
