@@ -10,7 +10,7 @@ aliases:
   - /guides/scheduling-constraints-and-resource-qos/
 user_questions:
   - How can I restrict a workload's resource usage?
-  - How can I define a workload's quality of servie?
+  - How can I define a workload's quality of service?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-ludacris
 last_review_date: 2021-01-01

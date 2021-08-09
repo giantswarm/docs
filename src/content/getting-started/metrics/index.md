@@ -9,7 +9,7 @@ menu:
 aliases:
   - /guides/kubernetes-heapster/
 user_questions:
-  - How can I activate metrics-server on in my clusters?
+  - How can I activate metrics-server in my clusters?
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
 last_review_date: 2021-01-01
