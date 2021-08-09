@@ -9,4 +9,5 @@ menu:
     parent: ui-api
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
+last_review_date: 2021-01-01
 ---

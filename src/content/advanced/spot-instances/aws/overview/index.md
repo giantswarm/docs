@@ -13,6 +13,7 @@ user_questions:
   - What's the difference between spot instances and on-demand instances on AWS?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
+last_review_date: 2021-01-01
 ---
 
 # Overview on spot instances on AWS

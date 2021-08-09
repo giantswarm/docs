@@ -14,6 +14,7 @@ aliases:
   - /guides/encrypting-persistent-volumes-on-azure-with-azure-key-vault/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-celestial
+last_review_date: 2021-01-01
 ---
 
 # Encrypting Persistent Volumes using Azure Key Vault

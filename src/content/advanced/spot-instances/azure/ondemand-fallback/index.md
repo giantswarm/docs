@@ -13,6 +13,7 @@ aliases:
   - /advanced/spot-instances/azure/on-demand-fallback/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-celestial
+last_review_date: 2021-01-01
 ---
 
 # Using on-demand VMs as fall-back when spot VMs are unavailable on Azure

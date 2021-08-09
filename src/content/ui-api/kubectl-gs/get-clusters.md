@@ -13,6 +13,7 @@ owner:
 user_questions:
   - How can I list clusters using kubectl?
   - How can I inspect clusters using kubectl?
+last_review_date: 2021-01-01
 ---
 
 # `kubectl gs get clusters`

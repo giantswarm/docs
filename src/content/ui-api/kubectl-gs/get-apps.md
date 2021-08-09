@@ -13,6 +13,7 @@ owner:
 user_questions:
   - How can I list apps using kubectl?
   - How can I inspect apps using kubectl?
+last_review_date: 2021-01-01
 ---
 
 # `kubectl gs get apps`

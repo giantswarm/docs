@@ -10,6 +10,7 @@ user_questions:
   - How is the Linux kernel of cluster nodes configured?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-ludacris
+last_review_date: 2021-01-01
 ---
 
 # Kernel settings
