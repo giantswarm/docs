@@ -8,6 +8,10 @@ menu:
     parent: advanced
 aliases:
   - /guides/kubernetes-gpu/
+user_questions:
+  - How can I use GPUs with my Kubernetes clusters?
+  - Which releases support the use of GPUs?
+last_review_date: 2021-02-05
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
 ---
