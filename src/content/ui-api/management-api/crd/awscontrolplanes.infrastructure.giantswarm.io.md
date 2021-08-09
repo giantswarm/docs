@@ -12,7 +12,7 @@ crd:
   technical_name: awscontrolplanes.infrastructure.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.30.0
+  source_repository_ref: v3.31.0
   versions:
     - v1alpha2
     - v1alpha3
@@ -29,7 +29,7 @@ aliases:
   - /reference/cp-k8s-api/awscontrolplanes.infrastructure.giantswarm.io/
 technical_name: awscontrolplanes.infrastructure.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.30.0
+source_repository_ref: v3.31.0
 ---
 
 # AWSControlPlane

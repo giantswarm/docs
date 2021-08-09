@@ -211,11 +211,11 @@ account owner, you can request an increase of this limit via the AWS console.
 
 - Node pools can span a maximum of four availability zones. This limit affects both the number of availability zones
 a single node pool can cover, as well as the number of different availability zones all node pools of a cluster can
-cover. Once an availability zone has been assigned for use in a cluster, either for the control plane node or for worker
+cover. Once an availability zone has been assigned for use in a cluster, either for a control plane node or for worker
 nodes, it cannot be unassigned from that cluster. It will remain assigned even if there are no more node pools using
 that availability zone.
 
-    - **Example:** The control plane node is in availability zone A. Node pool 1 uses availability zones B and C. Node pool 2 uses
+    - **Example:** The control plane node(s) are in availability zone A. Node pool 1 uses availability zones B and C. Node pool 2 uses
   availability zone D. With A, B, C, and D, the limit of four availability zones assigned is reached. New node pools of this
   cluster can only use these four availability zones.
 
