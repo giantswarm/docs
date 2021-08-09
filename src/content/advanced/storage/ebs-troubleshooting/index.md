@@ -10,6 +10,8 @@ aliases:
   - /guides/aws-impaired-volumes/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
+user_questions:
+  - How can I deal with impaired EBS volumes in my AWS cluster?
 last_review_date: 2021-01-01
 ---
 
