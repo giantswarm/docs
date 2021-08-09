@@ -8,6 +8,8 @@ menu:
     identifier: gettingstarted-persistentvolumes
     parent: getting-started
 last_review_date: 2021-01-01
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-docs
 ---
 
 For more documentation related to persistent volumes and storage, please refer to our advanced section on [storage]({{< relref "/advanced/storage/" >}}).
