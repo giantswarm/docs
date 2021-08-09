@@ -6,6 +6,7 @@ weight: 100
 menu:
   main:
     parent: advanced
+last_review_date: 2021-08-02
 user_questions:
 - What cost optimization tools do you recommend?
 - How can I tune my setup to optimize for cost?
