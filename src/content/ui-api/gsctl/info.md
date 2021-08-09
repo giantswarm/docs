@@ -21,6 +21,7 @@ user_questions:
   - How can I find the maximum size of a node pool using gsctl?
   - How can I find the maximum size of a cluster using gsctl?
   - How can I print my current API token using gsctl?
+last_review_date: 2021-01-01
 ---
 
 # `gsctl info`

@@ -12,6 +12,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 user_questions:
   - How can I set cloud provider credentials for an organization using gsctl?
+last_review_date: 2021-01-01
 ---
 
 # `update organization set-credentials`

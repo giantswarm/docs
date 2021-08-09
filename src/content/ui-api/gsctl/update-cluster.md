@@ -12,6 +12,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 user_questions:
   - How can I modify a cluster using gsctl?
+last_review_date: 2021-01-01
 ---
 
 # `gsctl update cluster`

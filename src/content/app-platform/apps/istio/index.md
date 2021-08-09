@@ -10,6 +10,7 @@ aliases:
   - /guides/deploying-istio/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
+last_review_date: 2021-01-01
 ---
 
 # How to deploy Istio in your Cluster

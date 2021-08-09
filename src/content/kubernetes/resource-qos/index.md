@@ -10,6 +10,7 @@ aliases:
   - /guides/scheduling-constraints-and-resource-qos/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-ludacris
+last_review_date: 2021-01-01
 ---
 
 # Scheduling constraints and resource quality of service (QoS)

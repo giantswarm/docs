@@ -13,6 +13,7 @@ owner:
 user_questions:
   - How can I list node pools in a cluster using kubectl?
   - How can I inspect node pools using kubectl?
+last_review_date: 2021-01-01
 ---
 
 # `kubectl gs get nodepools`

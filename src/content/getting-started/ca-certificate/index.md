@@ -10,6 +10,7 @@ aliases:
   - /guides/importing-certificates/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-ludacris
+last_review_date: 2021-01-01
 ---
 
 # Establishing Trust to Your Cluster's CA and Importing Certificates

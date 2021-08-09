@@ -16,6 +16,7 @@ aliases:
   - /guides/prepare-aws-account/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
+last_review_date: 2021-01-01
 ---
 
 # Prepare an AWS account to run Giant Swarm clusters

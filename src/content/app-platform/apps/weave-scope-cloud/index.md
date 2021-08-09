@@ -10,6 +10,7 @@ aliases:
   - /guides/weave-scope-cloud/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
+last_review_date: 2021-01-01
 ---
 
 # Setting up Weave Scope or Weave Cloud

@@ -12,6 +12,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 user_questions:
   - How can I create a cluster manifest for the Management API?
+last_review_date: 2021-01-01
 ---
 
 # `kubectl gs template cluster`

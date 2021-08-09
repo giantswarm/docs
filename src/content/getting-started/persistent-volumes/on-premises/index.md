@@ -11,6 +11,7 @@ aliases:
   - /guides/using-persistent-volumes-on-baremetal/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
+last_review_date: 2021-01-01
 ---
 
 # Using Persistent Volumes on your on-premise bare metal clusters

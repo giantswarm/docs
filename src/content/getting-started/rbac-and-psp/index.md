@@ -18,6 +18,7 @@ aliases:
   - /guides/securing-with-rbac-and-psp/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-ludacris
+last_review_date: 2021-01-01
 ---
 
 # Securing your Cluster with RBAC and PSP

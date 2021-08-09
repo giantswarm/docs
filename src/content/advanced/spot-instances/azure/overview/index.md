@@ -14,6 +14,7 @@ user_questions:
   - What's the difference between spot VMs and on-demand VMs on Azure?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-celestial
+last_review_date: 2021-01-01
 ---
 
 # Overview on spot VMs on Azure

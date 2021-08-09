@@ -13,6 +13,7 @@ aliases:
   - /advanced/spot-instances/aws/on-demand-fallback/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
+last_review_date: 2021-01-01
 ---
 
 # Using on-demand instances as fall-back when spot instances are unavailable

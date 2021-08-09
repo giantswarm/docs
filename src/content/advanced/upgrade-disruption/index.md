@@ -10,6 +10,7 @@ aliases:
   - /guides/fine-tuning-upgrade-disruption-on-aws/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
+last_review_date: 2021-01-01
 ---
 
 # Fine-tuning upgrade disruption on AWS

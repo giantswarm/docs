@@ -7,4 +7,5 @@ menu:
   main:
     identifier: gettingstarted-cloudprovider
     parent: getting-started
+last_review_date: 2021-01-01
 ---

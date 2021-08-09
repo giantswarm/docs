@@ -10,6 +10,7 @@ aliases:
   - /guides/limiting-pod-communication-with-network-policies/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-ludacris
+last_review_date: 2021-01-01
 ---
 
 # Limiting Pod Communication with Network Policies

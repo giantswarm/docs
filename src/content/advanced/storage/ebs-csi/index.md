@@ -15,6 +15,7 @@ aliases:
   - /guides/using-persistent-volumes-on-aws-with-ebs-csi-driver/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
+last_review_date: 2021-01-01
 ---
 
 # Using persistent volumes with the EBS CSI driver on AWS
