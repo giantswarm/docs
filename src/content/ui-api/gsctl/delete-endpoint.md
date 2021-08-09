@@ -13,6 +13,7 @@ owner:
 user_questions:
   - How can I delete an endpoint from gsctl?
   - How can I delete an installation from gsctl?
+last_review_date: 2021-01-01
 ---
 
 # `gsctl delete endpoint`

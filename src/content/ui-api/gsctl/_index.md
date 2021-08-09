@@ -21,6 +21,7 @@ user_questions:
 - What are the command line flags of gsctl?
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
+last_review_date: 2021-01-01
 ---
 
 # gsctl CLI reference

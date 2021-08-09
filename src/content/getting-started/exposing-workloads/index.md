@@ -16,6 +16,7 @@ aliases:
   - /guides/accessing-services-from-the-outside/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-ludacris
+last_review_date: 2021-01-01
 ---
 
 # Accessing pods and services from the outside

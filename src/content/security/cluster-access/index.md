@@ -19,6 +19,8 @@ user_questions:
   - How do I get access my clusters?
   - Who has access to my clusters?
   - Why do Giant Swarm personnel need access to my clusters?
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---
 
 # Secure access to clusters for users and Giant Swarm support

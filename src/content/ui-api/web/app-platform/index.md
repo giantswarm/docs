@@ -10,6 +10,8 @@ menu:
 aliases:
   - /reference/web-interface/app-catalog/
   - /reference/web-interface/app-platform/
+user_questions:
+  - How can I browse and install apps via the web interface?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-batman
 ---
