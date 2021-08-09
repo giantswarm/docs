@@ -25,8 +25,8 @@ In order to have GPU instances running Flatcar we need to follow these steps to 
 - Your cluster must have running GPU instances (`p2` or `p3` families in AWS, `NC` or `NCs` families on Azure).
 - Your cluster must be running a supported Giant Swarm workload cluster release:
     - `9.0.5` on AWS with Kubernetes `1.15.11`
-    - `11.3.0` on AWS with Kubernetes `1.16.9`
-    - `13.0.0` on Azure with kubernetes `1.18.12`
+    - on AWS: `v11.3.0` or newer with Kubernetes `1.16.9` or newer
+    - on Azure: `v13.0.0` or newer with Kubernetes `1.18.12` or newer
 
 ## Installing
 
