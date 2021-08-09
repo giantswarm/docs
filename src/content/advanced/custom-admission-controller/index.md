@@ -6,6 +6,9 @@ weight: 160
 menu:
   main:
     parent: advanced
+last_review_date: 2021-02-26
+user_questions:
+  - How can I create and deploy my own admission controller?
 aliases:
   - /guides/creating-your-own-admission-controller/
 ---
