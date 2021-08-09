@@ -9,6 +9,8 @@ menu:
 last_review_date: 2020-09-23
 aliases:
   - /basics/azure-architecture/
+user_questions:
+  - What's the high level architecture of a Giant Swarm installation on Azure?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-celestial
 ---

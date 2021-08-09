@@ -8,6 +8,8 @@ menu:
     parent: getting-started
 aliases:
   - /guides/limiting-pod-communication-with-network-policies/
+user_questions:
+  - How can I restrict a pod's network traffic?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-ludacris
 last_review_date: 2021-01-01

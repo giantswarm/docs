@@ -9,6 +9,8 @@ menu:
     parent: gettingstarted-persistentvolumes
 aliases:
   - /guides/using-persistent-volumes-on-azure/
+user_questions:
+  - How can I use persistent volumes in my Azure clusters?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-celestial
 last_review_date: 2021-01-01
