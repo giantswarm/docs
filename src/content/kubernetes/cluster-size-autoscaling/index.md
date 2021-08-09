@@ -9,6 +9,9 @@ menu:
 last_review_date: 2020-10-07
 aliases:
   - /basics/cluster-size-autoscaling/
+user_questions:
+  - How should I size my clusters?
+  - How can clusters or node pools get scaled automatically?
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
 ---
