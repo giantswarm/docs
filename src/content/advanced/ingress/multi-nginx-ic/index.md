@@ -16,7 +16,7 @@ user_questions:
   - How do I configure NGINX Ingress Controller for internal traffic?
   - How do I override the NodePorts on KVM Ingresses?
   - How do I configure NGINX Ingress Controller to allow weak ciphers?
-last_review_date: 2021-02-15
+last_review_date: 2021-01-01
 ---
 
 # Installing and running multiple NGINX ingress controllers
