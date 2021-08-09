@@ -16,6 +16,8 @@ user_questions:
   - What are the node pool definition keys I need to specify for a cluster definition? 
   - What goes into the 'masters' key of a cluster definition?
   - Will my cluster definition change if I use node pools?
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-biscuit
 ---
 
 # Cluster definition reference
@@ -165,7 +167,7 @@ Coming from v4, you might want to understand how v5 is different from v4:
 
 - in v5, the key `api_version` is mandatory, and the value must be `v5`.
 - Several settings that were specified on the cluster level in v4 (root level of the definition) have been moved to the node pool level.
-- The key `master_nodes` has been added to allow influencing master nodes.
+- The key `master_nodes` has been added to allow influencing control plane nodes.
 
 ### v5 schema {#v5-schema}
 
@@ -175,11 +177,11 @@ Coming from v4, you might want to understand how v5 is different from v4:
 - `owner`: Name of the owner organization.
 - `name`: Friendly name of the cluster. If not specified, a name will be generated.
 - `release_version`: Allows to select a specific release version. The value must be the semver version number of an active release. To get information on all available releases, use the [`gsctl list releases`]({{< relref "/ui-api/gsctl/list-releases" >}}) command.
-- `master_nodes`: Settings regarding the Kubernetes master nodes.
+- `master_nodes`: Settings regarding the Kubernetes control plane nodes.
     - `high_availability`: Where supported, this is `true` by default, which means that the cluster will have three control plane nodes. Supported on AWS since release v{{% first_aws_ha_controlplane_version %}}. Set this to `false` to have only one control plane node in the cluster (recommended only for test clusters).
 - `nodepools`: Here you can list your node pool definitions as explained below. Note that this is not mandatory, and you can also add node pools to a cluster after it has been created.
 - `master` (deprecated):
-    - `availability_zone`: Name of the availability zone to use for the master node. If not set, one will be assigned randomly.
+    - `availability_zone`: Name of the availability zone to use for the control plane node. If not set, one will be assigned randomly.
 - `labels`: Labels to be attached to this cluster.
 
 **Note:** The `master_nodes` and `master` attribute must not be used in the same request/command, otherwise an HTTP error with status code 400 will be triggered.

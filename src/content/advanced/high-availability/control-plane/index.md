@@ -7,9 +7,13 @@ last_review_date: 2021-06-07
 menu:
   main:
     parent: advanced-highavailability
+user_questions:
+  - How can I maximize the availability of my cluster's API server?
+  - Is there support for high-availability control planes on AWS?
+  - Can I switch from a high-availability control plane to a single node control plane?
+  - How can I switch a cluster to use a high-availability control plane?
 aliases:
   - /basics/ha-masters/
-  - /advanced/high-availability/masters
   - /advanced/high-availability/masters/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
