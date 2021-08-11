@@ -12,6 +12,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 user_questions:
   - How can I see all node pools in a cluster using gsctl?
+last_review_date: 2021-01-01
 ---
 
 # `gsctl list nodepools`

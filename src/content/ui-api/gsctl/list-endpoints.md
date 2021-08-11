@@ -12,6 +12,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 user_questions:
   - How can I list the API endpoints I have configured in gsctl?
+last_review_date: 2021-01-01
 ---
 
 # `gsctl list endpoints`

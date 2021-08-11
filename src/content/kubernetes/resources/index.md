@@ -9,6 +9,8 @@ menu:
 last_review_date: 2020-03-31
 aliases:
   - /basics/kubernetes-resources/
+user_questions:
+  - Where can I find more Kubernetes documentation?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---

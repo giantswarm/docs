@@ -14,6 +14,7 @@ aliases:
   - /reference/gsctl/create-cluster/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
+last_review_date: 2021-01-01
 ---
 
 # `gsctl create cluster`
@@ -47,7 +48,7 @@ Note that command line flags take precedence over values in the definition. This
 - `--name`: Name of the cluster. Overwrites name given in definition file.
 - `--release`, `-r`: Specific the workload cluster release version to use. Defaults to the latest active version. See [list releases]({{< relref "/ui-api/gsctl/list-releases" >}}) for details on listing available workload cluster releases.
 - `--create-default-nodepool`: Where node pools are supported (AWS since workload cluster release v{{% first_aws_nodepools_version %}} and Azure since workload cluster release v{{% first_azure_nodepools_version %}}), setting this to `false` allows to suppress the creation of a default node pool. A default node pools would otherwise be created automatically if no cluster definition is given specifying any node pools details, to get you started quickly.
-- `--masters-ha`: Where supported, this is `true` by default, which means that the cluster will have three master nodes. Available on AWS since workload cluster release v{{% first_aws_ha_controlplane_version %}}. Set this to `false` to have only one master node in the cluster (recommended only for test clusters).
+- `--masters-ha`: Where supported, this is `true` by default, which means that the cluster will have three control plane nodes. Available on AWS since workload cluster release v{{% first_aws_ha_controlplane_version %}}. Set this to `false` to have only one control plane node in the cluster (recommended only for test clusters).
 - `--output`: By specifying this flag with value `json`, the output can be printed in JSON format. This is convenient for use in automation. See [JSON output](#json-output) for examples.
 
 ## Passing the cluster definition via standard input {#stdin}

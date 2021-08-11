@@ -6,6 +6,11 @@ weight: 60
 menu:
   main:
     parent: advanced
+last_review_date: 2021-06-21
+user_questions:
+  - How can I turn off automatic termination of unhealthy nodes?
+  - Since what release are unhealthy nodes terminated automatically?
+  - How are unhealthy worker nodes treated?
 aliases:
   - /basics/automatic-termination-of-bad-nodes/
 owner:

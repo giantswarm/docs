@@ -13,6 +13,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
 user_questions:
   - How can I log in with kubectl for the Management API?
+last_review_date: 2021-01-01
 ---
 
 # `kubectl gs login`

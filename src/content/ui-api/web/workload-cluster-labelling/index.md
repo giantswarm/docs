@@ -11,6 +11,8 @@ menu:
 aliases:
   - /reference/web-interface/tenant-cluster-labelling/
   - /reference/web-interface/workload-cluster-labelling/
+user_questions:
+  - How can I manage cluster labels via the web interface?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-ludacris
 ---

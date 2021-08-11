@@ -13,6 +13,7 @@ owner:
 user_questions:
   - What settings does gsctl store in its config file?
   - Where can I find gsctl's configuration file?
+last_review_date: 2021-01-01
 ---
 
 # Configuration file

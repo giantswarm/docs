@@ -14,6 +14,7 @@ user_questions:
   - What is a major upgrade?
   - What is a minor upgrade?
   - What is a patch upgrade?
+last_review_date: 2021-01-01
 owner:
   - https://github.com/orgs/giantswarm/teams/team-celestial
 ---
@@ -151,7 +152,7 @@ On Azure, the node names visible to Kubernetes (e. g. `kubectl get nodes`) are n
 ### Specific details for KVM
 
 In a KVM-based cluster, our [kvm-operator](https://github.com/giantswarm/kvm-operator) builds each workload cluster node out of a Kubernetes Deployment and Pod in the management cluster.
-In an upgrade, each of these deployments is updated after the according node has been drained, one after another, starting with the master node.
+In an upgrade, each of these deployments is updated after the according node has been drained, one after another, starting with the control plane node.
 This leads to removal and recreation of the Pods.
 
 ## How to upgrade a cluster {#how-to-upgrade-a-cluster}

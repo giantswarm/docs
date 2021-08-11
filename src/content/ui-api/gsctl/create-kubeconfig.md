@@ -14,6 +14,7 @@ user_questions:
   - How can I configure kubie?
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-ux
+last_review_date: 2021-01-01
 ---
 
 # `gsctl create kubeconfig`

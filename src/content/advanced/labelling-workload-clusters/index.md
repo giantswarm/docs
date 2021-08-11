@@ -13,6 +13,7 @@ aliases:
   - /guides/workload-cluster-labelling/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-ludacris
+last_review_date: 2021-01-01
 ---
 
 # Labelling workload clusters
@@ -103,7 +104,7 @@ The newly created cluster will be managed by your team in your upstate office an
 
 You've decided on using label keys `my-org/team` and `my-org/environment` to specify the clusters designation.
 
-```json
+```nohighlight
 PUT /v5/clusters/7g4di/labels/
 {
   "labels": {
@@ -115,7 +116,7 @@ PUT /v5/clusters/7g4di/labels/
 
 Another cluster from earlier is also managed by your team in the upstate office but is being used for production.
 
-```json
+```nohighlight
 PUT /v5/clusters/g8s2o/labels/
 {
   "labels": {
@@ -127,7 +128,7 @@ PUT /v5/clusters/g8s2o/labels/
 
 From this point on it is possible to select the clusters by label values or label key existence.
 
-```json
+```nohighlight
 POST /v5/clusters/by_label/
 {
   "labels": "my-org/team=upstate"

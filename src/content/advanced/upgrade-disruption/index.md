@@ -8,8 +8,11 @@ menu:
     parent: advanced
 aliases:
   - /guides/fine-tuning-upgrade-disruption-on-aws/
+user_questions:
+  - How can I influence the disruption a cluster upgrade will cause?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
+last_review_date: 2021-01-01
 ---
 
 # Fine-tuning upgrade disruption on AWS

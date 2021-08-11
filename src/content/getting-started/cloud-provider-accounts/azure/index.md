@@ -9,6 +9,7 @@ user_questions:
   - What do I need to configure in Azure in order to run Giant Swarm clusters?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-celestial
+last_review_date: 2021-01-01
 ---
 
 # Prepare an Azure subscription to run Giant Swarm workload clusters

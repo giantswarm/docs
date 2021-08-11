@@ -12,6 +12,7 @@ aliases:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-celestial
   - https://github.com/orgs/giantswarm/teams/team-firecracker
+last_review_date: 2021-01-01
 ---
 
 {{< platform_support_table aws="ga=v11.2.0" azure="ga=v14.1.0" >}}

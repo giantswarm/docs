@@ -1,9 +1,9 @@
 import datetime
-import fileinput
 import json
 import os
 import re
 
+import click
 from colored import fg, bg, attr
 
 from yaml import load
@@ -18,6 +18,13 @@ changes_path = 'src/content/changes/'
 crds_path    = 'src/content/ui-api/management-api/crd/'
 
 todays_date = datetime.date.today()
+
+## Validation modes
+
+# Validate everything
+VALIDATE_ALL = "all"
+# Only the last_review_date
+VALIDATE_LAST_REVIEW_DATE = "last-reviewed"
 
 # Unique identifiers for our checks
 INVALID_DESCRIPTION      = 'INVALID_DESCRIPTION'
@@ -363,7 +370,7 @@ def ignored_path(path, check_id):
 
     return False
 
-def validate(content, fpath):
+def validate(content, fpath, validation):
     """
     Validate the markdown page given as string and
     return a result array containing info on failed checks
@@ -422,154 +429,162 @@ def validate(content, fpath):
         return result
 
     # Evaluate linkTitle
-    if 'linkTitle' in fm:
-        if len(fm['linkTitle']) > 40:
-            result.append({
-                'check': LONG_LINK_TITLE,
-                'value': fm['linkTitle'],
-            })
+    if validation == VALIDATE_ALL:
+        if 'linkTitle' in fm:
+            if len(fm['linkTitle']) > 40:
+                result.append({
+                    'check': LONG_LINK_TITLE,
+                    'value': fm['linkTitle'],
+                })
 
     # Evaluate title
-    if 'title' in fm:
-        if len(fm['title']) < 5:
+    if validation == VALIDATE_ALL:
+        if 'title' in fm:
+            if len(fm['title']) < 5:
+                result.append({
+                    'check': SHORT_TITLE,
+                    'value': fm['title'],
+                })
+            elif len(fm['title']) > 40 and not 'linkTitle' in fm and not ignored_path(fpath, NO_LINK_TITLE):
+                result.append({
+                    'check': NO_LINK_TITLE,
+                })
+            if len(fm['title']) > 100:
+                result.append({
+                    'check': LONG_TITLE,
+                    'value': fm['title'],
+                })
+        else:
             result.append({
-                'check': SHORT_TITLE,
-                'value': fm['title'],
+                'check': NO_TITLE,
             })
-        elif len(fm['title']) > 40 and not 'linkTitle' in fm and not ignored_path(fpath, NO_LINK_TITLE):
-            result.append({
-                'check': NO_LINK_TITLE,
-            })
-        if len(fm['title']) > 100:
-            result.append({
-                'check': LONG_TITLE,
-                'value': fm['title'],
-            })
-    else:
-        result.append({
-            'check': NO_TITLE,
-        })
 
-    if 'description' in fm:
-        if fm['description'] is None and not ignored_path(fpath, NO_DESCRIPTION):
+    if validation == VALIDATE_ALL:
+        if 'description' in fm:
+            if fm['description'] is None and not ignored_path(fpath, NO_DESCRIPTION):
+                result.append({
+                    'check': NO_DESCRIPTION,
+                })
+            elif type(fm['description']) != str:
+                if not ignored_path(fpath, INVALID_DESCRIPTION):
+                    result.append({
+                        'check': INVALID_DESCRIPTION,
+                        'value': fm['description'],
+                    })
+            elif len(fm['description']) < 70:
+                if not ignored_path(fpath, SHORT_DESCRIPTION):
+                    result.append({
+                        'check': SHORT_DESCRIPTION,
+                        'value': fm['description'],
+                    })
+            elif len(fm['description']) > 300:
+                if not ignored_path(fpath, LONG_DESCRIPTION):
+                    result.append({
+                        'check': LONG_DESCRIPTION,
+                        'value': fm['description'],
+                    })
+            elif "\n" in fm['description'].strip():
+                if not ignored_path(fpath, INVALID_DESCRIPTION):
+                    result.append({
+                        'check': INVALID_DESCRIPTION,
+                        'value': fm['description'],
+                    })
+        elif not ignored_path(fpath, NO_DESCRIPTION):
             result.append({
                 'check': NO_DESCRIPTION,
             })
-        elif type(fm['description']) != str:
-            if not ignored_path(fpath, INVALID_DESCRIPTION):
-                result.append({
-                    'check': INVALID_DESCRIPTION,
-                    'value': fm['description'],
-                })
-        elif len(fm['description']) < 70:
-            if not ignored_path(fpath, SHORT_DESCRIPTION):
-                result.append({
-                    'check': SHORT_DESCRIPTION,
-                    'value': fm['description'],
-                })
-        elif len(fm['description']) > 300:
-            if not ignored_path(fpath, LONG_DESCRIPTION):
-                result.append({
-                    'check': LONG_DESCRIPTION,
-                    'value': fm['description'],
-                })
-        elif "\n" in fm['description'].strip():
-            if not ignored_path(fpath, INVALID_DESCRIPTION):
-                result.append({
-                    'check': INVALID_DESCRIPTION,
-                    'value': fm['description'],
-                })
-    elif not ignored_path(fpath, NO_DESCRIPTION):
-        result.append({
-            'check': NO_DESCRIPTION,
-        })
 
     # Evaluate menu
-    if 'menu' in fm:
-        if 'linkTitle' not in fm:
-            result.append({
-                'check': NO_LINK_TITLE,
-            })
-        if 'weight' not in fm:
-            result.append({
-                'check': NO_WEIGHT,
-            })
+    if validation == VALIDATE_ALL:
+        if 'menu' in fm:
+            if 'linkTitle' not in fm:
+                result.append({
+                    'check': NO_LINK_TITLE,
+                })
+            if 'weight' not in fm:
+                result.append({
+                    'check': NO_WEIGHT,
+                })
 
     # Evaluate owner
-    if 'owner' in fm:
-        if type(fm['owner']) != list:
-            result.append({
-                'check': INVALID_OWNER,
-                'value': fm['owner'],
-            })
-        elif len(fm['owner']) == 0:
-            result.append({
-                'check': NO_OWNER,
-            })
+    if validation == VALIDATE_ALL:
+        if 'owner' in fm:
+            if type(fm['owner']) != list:
+                result.append({
+                    'check': INVALID_OWNER,
+                    'value': fm['owner'],
+                })
+            elif len(fm['owner']) == 0:
+                result.append({
+                    'check': NO_OWNER,
+                })
+            else:
+                for o in fm['owner']:
+                    if not o.startswith('https://github.com/orgs/giantswarm/teams/'):
+                        result.append({
+                            'check': INVALID_OWNER,
+                            'value': fm['owner'],
+                        })
         else:
-            for o in fm['owner']:
-                if not o.startswith('https://github.com/orgs/giantswarm/teams/'):
+            if not ignored_path(fpath, NO_OWNER):
+                result.append({
+                    'check': NO_OWNER,
+                })
+
+    if validation == VALIDATE_ALL:
+        if 'user_questions' in fm:
+            for q in fm['user_questions']:
+                if len(q) > 100:
                     result.append({
-                        'check': INVALID_OWNER,
-                        'value': fm['owner'],
+                        'check': LONG_USER_QUESTION,
+                        'value': q,
                     })
-    else:
-        if not ignored_path(fpath, NO_OWNER):
-            result.append({
-                'check': NO_OWNER,
-            })
+                if not q.endswith('?'):
+                    result.append({
+                        'check': NO_QUESTION_MARK,
+                        'value': q,
+                    })
+        else:
+            if (not ignored_path(fpath, NO_USER_QUESTIONS) and
+                not fpath.endswith('_index.md')):
+                result.append({
+                    'check': NO_USER_QUESTIONS,
+                })
 
-    if 'user_questions' in fm:
-        for q in fm['user_questions']:
-            if len(q) > 100:
-                result.append({
-                    'check': LONG_USER_QUESTION,
-                    'value': q,
-                })
-            if not q.endswith('?'):
-                result.append({
-                    'check': NO_QUESTION_MARK,
-                    'value': q,
-                })
-    else:
-        if (not ignored_path(fpath, NO_USER_QUESTIONS) and
-            not fpath.endswith('_index.md')):
-            result.append({
-                'check': NO_USER_QUESTIONS,
-            })
-
-    if 'last_review_date' in fm:
-        if type(fm['last_review_date']) is datetime.date:
-            diff = todays_date - fm['last_review_date']
-            if diff > datetime.timedelta(days=365):
-                result.append({
-                    'check': REVIEW_TOO_LONG_AGO,
-                    'value': fm['last_review_date'],
-                })
-            elif diff < datetime.timedelta(seconds=0):
-                # in the future
+    if validation in (VALIDATE_ALL, VALIDATE_LAST_REVIEW_DATE):
+        if 'last_review_date' in fm:
+            if type(fm['last_review_date']) is datetime.date:
+                diff = todays_date - fm['last_review_date']
+                if diff > datetime.timedelta(days=365):
+                    result.append({
+                        'check': REVIEW_TOO_LONG_AGO,
+                        'value': fm['last_review_date'],
+                    })
+                elif diff < datetime.timedelta(seconds=0):
+                    # in the future
+                    result.append({
+                        'check': INVALID_LAST_REVIEW_DATE,
+                        'value': fm['last_review_date'],
+                    })
+            else:
                 result.append({
                     'check': INVALID_LAST_REVIEW_DATE,
                     'value': fm['last_review_date'],
                 })
         else:
-            result.append({
-                'check': INVALID_LAST_REVIEW_DATE,
-                'value': fm['last_review_date'],
-            })
-    else:
-        if not ignored_path(fpath, NO_LAST_REVIEW_DATE):
-            result.append({
-                'check': NO_LAST_REVIEW_DATE,
-            })
+            if not ignored_path(fpath, NO_LAST_REVIEW_DATE):
+                result.append({
+                    'check': NO_LAST_REVIEW_DATE,
+                })
 
     # Evaluate all attributes
-    for key in fm.keys():
-        if key not in valid_keys:
-            result.append({
-                'check': UNKNOWN_ATTRIBUTE,
-                'value': key,
-            })
+    if validation == VALIDATE_ALL:
+        for key in fm.keys():
+            if key not in valid_keys:
+                result.append({
+                    'check': UNKNOWN_ATTRIBUTE,
+                    'value': key,
+                })
     
     return {
         'num_front_matter_lines': num_fmlines,
@@ -593,16 +608,22 @@ def severity(text):
         return f"{attr('bold')}{fg('yellow')}{text}{attr('reset')}"
     return text
 
-def main():
+@click.command()
+@click.option("--validation", default="all", help="Which validation to run. Use 'last-reviewed' or 'all' (default).")
+def main(validation):
     # Result dict has a key for each file to check
     result = {}
 
     # Use list of pages from STDIN, or iterate through all pages.
     fpaths = []
-    stdin = list(fileinput.input())
-    if len(stdin) > 0:
+    stdin = []
+
+    if not click.get_text_stream('stdin').isatty():
+        stdin = click.get_text_stream('stdin').read().strip().split("\n")
+
+    if len(stdin) > 0 and stdin != [""]:
         for line in stdin:
-            line = line.strip()
+            line = click.format_filename(line)
             if line.startswith(path) and line.endswith('.md'):
                 fpaths.append(os.path.join(line))
                 print(f"Adding to files checked: {line}")
@@ -619,7 +640,7 @@ def main():
 
         with open(fpath, 'r') as input:
             content = input.read()
-            r = validate(content, fpath)
+            r = validate(content, fpath, validation)
             if len(r['checks']) > 0:
                 result[fpath] = r
 

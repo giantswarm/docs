@@ -15,6 +15,7 @@ aliases:
   - /basics/networkpools/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-firecracker
+last_review_date: 2021-01-01
 ---
 
 # Network pools
