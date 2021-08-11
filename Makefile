@@ -54,12 +54,22 @@ lint:
 		--ignore ./src/content/ui-api/management-api/crd \
 		./src
 
+# Validate front matter in all pages.
 validate-front-matter:
 	docker run --rm \
 	  --volume=${PWD}:/workdir:ro \
 	  -w /workdir \
 	  quay.io/giantswarm/docs-scriptrunner:latest \
 	  /workdir/scripts/validate-front-matter/script.py
+
+# Print a report of pages with a last_review_date that's
+# too long ago.
+validate-last-reviewed:
+	docker run --rm \
+	  --volume=${PWD}:/workdir:ro \
+	  -w /workdir \
+	  quay.io/giantswarm/docs-scriptrunner:latest \
+	  /workdir/scripts/validate-front-matter/script.py --validation last-reviewed
 
 docker-build: update-latest-versions
 	docker build -t $(REGISTRY)/$(COMPANY)/$(PROJECT):latest .
