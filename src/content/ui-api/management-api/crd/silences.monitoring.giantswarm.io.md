@@ -12,7 +12,7 @@ crd:
   technical_name: silences.monitoring.giantswarm.io
   scope: Cluster
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.31.0
+  source_repository_ref: v3.32.0
   versions:
     - v1alpha1
   topics:
@@ -24,7 +24,7 @@ aliases:
   - /reference/cp-k8s-api/silences.monitoring.giantswarm.io/
 technical_name: silences.monitoring.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.31.0
+source_repository_ref: v3.32.0
 ---
 
 # Silence
@@ -157,6 +157,19 @@ spec:
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">object</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.matchers[*].isEqual">.spec.matchers[*].isEqual</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
 
 </div>
 

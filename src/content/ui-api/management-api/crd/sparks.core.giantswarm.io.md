@@ -12,7 +12,7 @@ crd:
   technical_name: sparks.core.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.31.0
+  source_repository_ref: v3.32.0
   versions:
     - v1alpha1
   topics:
@@ -26,7 +26,7 @@ aliases:
   - /reference/cp-k8s-api/sparks.core.giantswarm.io/
 technical_name: sparks.core.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.31.0
+source_repository_ref: v3.32.0
 ---
 
 # Spark
