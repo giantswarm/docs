@@ -19,6 +19,8 @@ last_review_date: 2021-01-01
 
 # `gsctl create cluster`
 
+{{% gsctl_deprecation_disclaimer %}}
+
 The command `gsctl create cluster` allows to create new Kubernetes clusters.
 
 You can use the command with very simple syntax to create a cluster using default values. Note that several cluster specification details cannot be changed after creation.

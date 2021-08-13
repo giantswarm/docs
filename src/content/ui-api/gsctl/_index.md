@@ -7,7 +7,8 @@ menu:
   main:
     identifier: uiapi-gsctl
     parent: ui-api
-# TODO: remove "layout: single" and let the page be rendered by a specific section template.
+# Enforce the single page layout here instead of section template,
+# to avoid automatic listing of all sub pages.
 layout: single
 aliases:
   - /reference/gsctl/
@@ -27,6 +28,8 @@ last_review_date: 2021-01-01
 # gsctl CLI reference
 
 gsctl is the command line utility to manage your Giant Swarm clusters.
+
+{{% gsctl_deprecation_disclaimer %}}
 
 ## Commands {#commands}
 

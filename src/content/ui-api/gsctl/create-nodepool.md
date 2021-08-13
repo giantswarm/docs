@@ -17,6 +17,8 @@ last_review_date: 2021-01-01
 
 # `gsctl create nodepool`
 
+{{% gsctl_deprecation_disclaimer %}}
+
 The `gsctl create nodepool` command allows to create a new [node pool]({{< relref "/advanced/node-pools" >}}) in a cluster.
 
 ## Usage

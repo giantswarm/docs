@@ -17,7 +17,9 @@ last_review_date: 2021-01-01
 
 # `gsctl update nodepool`
 
-The `gsctl update nodepool` allows modifying a [node pool]({{< relref "/advanced/node-pools" >}}), such as editing the scaling range and the name.
+{{% gsctl_deprecation_disclaimer %}}
+
+The `gsctl update nodepool` command allows modifying a [node pool]({{< relref "/advanced/node-pools" >}}), such as editing the scaling range and the name.
 
 ## Usage
 

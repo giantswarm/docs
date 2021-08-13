@@ -17,6 +17,8 @@ last_review_date: 2021-01-01
 
 # `gsctl list endpoints`
 
+{{% gsctl_deprecation_disclaimer %}}
+
 The `gsctl list endpoints` command shows all endpoints you have logged in to so far with additional information.
 
 An endpoint is the Giant Swarm REST API URL for an installation you access using gsctl.
