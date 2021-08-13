@@ -6,7 +6,7 @@ menu:
   main:
     identifier: uiapi-monitoring
     parent: ui-api
-weight: 50
+weight: 40
 last_review_date: 2021-06-28
 user_questions:
   - How can I access Grafana for my installation?

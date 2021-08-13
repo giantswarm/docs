@@ -4,7 +4,7 @@ title: The Giant Swarm REST API
 description: An overview of the APIs that provide you with programmatic access to
   resources like your workload clusters in a Giant Swarm installation. Namely the Rest
   API and the Management API.
-weight: 60
+weight: 50
 menu:
   main:
     parent: ui-api
