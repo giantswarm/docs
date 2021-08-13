@@ -2,7 +2,7 @@
 linkTitle: Key pairs for workload clusters
 title: Creating workload cluster key pairs via the Management API
 description: We recommend OIDC for authentication to the workload cluster Kubernetes API. However, in some scenarios, X.509 key pairs are a viable alternative. Here we explain a Giant Swarm specific way to create such key pairs via the Management API.
-weight: 50
+weight: 40
 menu:
   main:
     identifier: uiapi-managementapi-keypairs
