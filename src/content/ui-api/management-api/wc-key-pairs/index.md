@@ -9,7 +9,7 @@ menu:
     parent: uiapi-managementapi
 user_questions:
   - How to create workload cluster key pairs via the Management API?
-last_review_date: 2021-07-26
+last_review_date: 2021-08-16
 owner:
   - https://github.com/orgs/giantswarm/teams/team-biscuit
 ---
@@ -112,7 +112,7 @@ Once the `CertConfig` manifest is adapted as required, you can create the accord
 
 ## Retrieving the key pair
 
-Once the `CertConfig` resource has been created, it should only be a matter of a few seconds until it gets updated by cert-operator to include three new attributes:
+Once the `CertConfig` resource has been created, it should only be a matter of a few seconds until a new secret has been created in the default namespace, with the same name as the `CertConfig` resource. This secret contains three separate attributes we are interested in:
 
 - `.data.crt`: the X.509 certificate
 - `.data.key`: the private key
@@ -232,10 +232,10 @@ sleep 3
 
 echo ""
 
-JSON=$(kubectl get secret $NAME -o json)
-echo $JSON | jq -r .data.crt | base64 -D > $NAME-crt.pem
-echo $JSON | jq -r .data.key | base64 -D > $NAME-key.pem
-echo $JSON | jq -r .data.ca | base64 -D > $NAME-ca.pem
+JSON=$(kubectl get secret $NAME -o json --namespace default)
+echo $JSON | jq -r .data.crt | base64 --decode > $NAME-crt.pem
+echo $JSON | jq -r .data.key | base64 --decode > $NAME-key.pem
+echo $JSON | jq -r .data.ca | base64 --decode > $NAME-ca.pem
 
 echo "Creating new kubeconfig file $NAME.yaml"
 
