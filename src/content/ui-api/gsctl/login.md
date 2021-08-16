@@ -19,6 +19,8 @@ last_review_date: 2021-01-01
 
 # `gsctl login`
 
+{{% gsctl_deprecation_disclaimer %}}
+
 With `gsctl login` you can authenticate against an API endpoint. Your session will
 stay authenticated until you use `gsctl logout`.
 

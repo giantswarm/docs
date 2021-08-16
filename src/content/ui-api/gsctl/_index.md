@@ -2,12 +2,13 @@
 linkTitle: gsctl
 title: gsctl CLI reference
 description: Documentation on gsctl, the Giant Swarm command line utility to create and delete clusters, create key pairs and more.
-weight: 20
+weight: 60
 menu:
   main:
     identifier: uiapi-gsctl
     parent: ui-api
-# TODO: remove "layout: single" and let the page be rendered by a specific section template.
+# Enforce the single page layout here instead of section template,
+# to avoid automatic listing of all sub pages.
 layout: single
 aliases:
   - /reference/gsctl/
@@ -27,6 +28,8 @@ last_review_date: 2021-01-01
 # gsctl CLI reference
 
 gsctl is the command line utility to manage your Giant Swarm clusters.
+
+{{% gsctl_deprecation_disclaimer %}}
 
 ## Commands {#commands}
 
@@ -52,7 +55,7 @@ Follow the links below for a detailed documentation, where available. You can al
 | `login`                               | [Sign in as a user](login/)
 | `logout`                              | Sign out
 | `ping`                                | Check API connection
-| `scale cluster`                       | [Add or remove worker nodes of a cluster](scale-cluster/)
+| `scale cluster`                       | [Add or remove worker nodes of a KVM cluster](scale-cluster/)
 | `select endpoint`                     | [Select an endpoint](select-endpoint/)
 | `show cluster`                        | [Show cluster details](show-cluster/)
 | `show nodepool`                       | [Show node pool details](show-nodepool/)

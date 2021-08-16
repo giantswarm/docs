@@ -17,6 +17,8 @@ last_review_date: 2021-01-01
 
 # `gsctl create keypair`
 
+{{% gsctl_deprecation_disclaimer %}}
+
 The `gsctl create keypair` command creates a key pair and stores the related files in your certificate folder.
 
 If you intend to use the created key pair with the `kubectl` program, we recommend you take a look at the [`create kubeconfig`]({{< relref "/ui-api/gsctl/create-kubeconfig" >}}) command. It creates a new key pair and adds the according user, server, and context entries to your `kubectl` configuration.
