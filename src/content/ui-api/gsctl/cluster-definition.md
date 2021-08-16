@@ -23,6 +23,8 @@ owner:
 
 # Cluster definition reference
 
+{{% gsctl_deprecation_disclaimer %}}
+
 Giant Swarm's cluster definition allows to define the detailed specs for a cluster in a YAML
 format, which is then passed to [`gsctl create cluster`]({{< relref "/ui-api/gsctl/create-cluster" >}}) in order to
 create that cluster.

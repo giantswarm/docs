@@ -17,6 +17,8 @@ last_review_date: 2021-01-01
 
 # `gsctl list nodepools`
 
+{{% gsctl_deprecation_disclaimer %}}
+
 The `gsctl list nodepools` command lists all [node pools]({{< relref "/advanced/node-pools" >}}) of a cluster.
 
 ## Usage

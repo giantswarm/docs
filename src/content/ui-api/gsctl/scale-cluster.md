@@ -17,6 +17,8 @@ last_review_date: 2021-01-01
 
 # `gsctl scale cluster`
 
+{{% gsctl_deprecation_disclaimer %}}
+
 The `gsctl scale cluster` command allows you to influence the cluster size, i. e. the number of worker nodes.
 For an [autoscaling cluster]({{< relref "/kubernetes/cluster-size-autoscaling" >}}), the command allows to modify the scaling limits for the autoscaler.
 
