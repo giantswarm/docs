@@ -55,7 +55,7 @@ Follow the links below for a detailed documentation, where available. You can al
 | `login`                               | [Sign in as a user](login/)
 | `logout`                              | Sign out
 | `ping`                                | Check API connection
-| `scale cluster`                       | [Add or remove worker nodes of a cluster](scale-cluster/)
+| `scale cluster`                       | [Add or remove worker nodes of a KVM cluster](scale-cluster/)
 | `select endpoint`                     | [Select an endpoint](select-endpoint/)
 | `show cluster`                        | [Show cluster details](show-cluster/)
 | `show nodepool`                       | [Show node pool details](show-nodepool/)
