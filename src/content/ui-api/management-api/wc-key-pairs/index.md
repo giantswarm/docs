@@ -233,9 +233,9 @@ sleep 3
 echo ""
 
 JSON=$(kubectl get secret $NAME -o json --namespace default)
-echo $JSON | jq -r .data.crt | base64 -D > $NAME-crt.pem
-echo $JSON | jq -r .data.key | base64 -D > $NAME-key.pem
-echo $JSON | jq -r .data.ca | base64 -D > $NAME-ca.pem
+echo $JSON | jq -r .data.crt | base64 --decode > $NAME-crt.pem
+echo $JSON | jq -r .data.key | base64 --decode > $NAME-key.pem
+echo $JSON | jq -r .data.ca | base64 --decode > $NAME-ca.pem
 
 echo "Creating new kubeconfig file $NAME.yaml"
 
