@@ -2,7 +2,7 @@
 linkTitle: kubectl gs
 title: kubectl gs plugin reference
 description: Main page for documentation on kubectl gs, the Giant Swarm kubectl plugin, with an overview of all commans, plus information on how to insstall and upgrade.
-weight: 40
+weight: 30
 menu:
   main:
     identifier: uiapi-kubectlgs

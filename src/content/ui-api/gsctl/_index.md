@@ -2,7 +2,7 @@
 linkTitle: gsctl
 title: gsctl CLI reference
 description: Documentation on gsctl, the Giant Swarm command line utility to create and delete clusters, create key pairs and more.
-weight: 20
+weight: 60
 menu:
   main:
     identifier: uiapi-gsctl
