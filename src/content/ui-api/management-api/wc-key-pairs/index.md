@@ -112,7 +112,7 @@ Once the `CertConfig` manifest is adapted as required, you can create the accord
 
 ## Retrieving the key pair
 
-Once the `CertConfig` resource has been created, it should only be a matter of a few seconds until it gets updated by cert-operator to include three new attributes:
+Once the `CertConfig` resource has been created, it should only be a matter of a few seconds until a new secret has been created in the default namespace, with the same name as the `CertConfig` resource. This secret contains three separate attributes we are interested in:
 
 - `.data.crt`: the X.509 certificate
 - `.data.key`: the private key
