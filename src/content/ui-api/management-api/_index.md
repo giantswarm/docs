@@ -2,7 +2,7 @@
 linkTitle: Management API
 title: The Giant Swarm Management API
 description: The Management API is the Kubernetes API of a Giant Swarm management cluster, allowing control over workload clusters and apps in a declarative fashion using the proven Kubernetes paradigms.
-weight: 40
+weight: 20
 menu:
   main:
     identifier: uiapi-managementapi

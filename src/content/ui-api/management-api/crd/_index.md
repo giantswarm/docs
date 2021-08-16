@@ -3,7 +3,7 @@ linkTitle: CRDs
 title: Management API CRDs
 description: Schema reference of all custom resource definitions (CRD) and custom resources (CR) you can use with the Management API.
 layout: management-api-reference
-weight: 30
+weight: 50
 menu:
   main:
     parent: uiapi-managementapi
