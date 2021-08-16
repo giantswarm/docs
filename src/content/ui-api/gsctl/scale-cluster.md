@@ -17,6 +17,8 @@ last_review_date: 2021-08-13
 
 # `gsctl scale cluster`
 
+{{% gsctl_deprecation_disclaimer %}}
+
 The `gsctl scale cluster` command allows to specify the number of worker nodes for an on-premises (KVM) cluster.
 
 For clusters on AWS and Azure, instead of scaling an entire cluster, please see [`gsctl update nodepool`]({{< relref "/ui-api/gsctl/update-nodepool" >}}) regarding how to scale a node pool.

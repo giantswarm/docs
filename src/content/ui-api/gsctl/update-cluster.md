@@ -17,6 +17,8 @@ last_review_date: 2021-01-01
 
 # `gsctl update cluster`
 
+{{% gsctl_deprecation_disclaimer %}}
+
 The `gsctl update cluster` command allows the modification of some cluster attributes, depending on the workload cluster release version and the provider.
 
 Changing the cluster name is possible on all providers and in all workload cluster release versions.

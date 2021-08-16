@@ -17,6 +17,8 @@ last_review_date: 2021-01-01
 
 # `gsctl upgrade cluster`
 
+{{% gsctl_deprecation_disclaimer %}}
+
 In order to upgrade a cluster to the next suitable version, use this command:
 
 ```nohighlight
