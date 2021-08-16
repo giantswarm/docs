@@ -20,8 +20,8 @@ last_review_date: 2021-01-01
 
 The REST API has been designed originally to provide a simple, easy to use interface to the relevant resources for managing clusters, key pairs, etc. while keeping the internals under the hood.
 
-Since its inception, at Giant Swarm we learned that there are always more use cases emerging on our customer's side than we could anticipate in our REST API design. We realized that the best we can do for you to provide full insight into the state and spec of your infrastructure is by opening up the underlying system itself.
+Since its inception at Giant Swarm, we learned that there are always more use cases emerging on our customer's side than we could anticipate in our REST API design. We realized that the best we can do to provide full insight into the state and spec of your infrastructure is by opening up the underlying system itself.
 
 With this realization, we made the decision to **phase out the development of the REST API** in favor of providing access to the [Management API]({{< relref "/ui-api/management-api" >}}) instead.
 
-As of now, there is no termination date for the REST API. As it might provide the much simpler and more accessible starting point, feel free to explore the [REST API documentation](/api/), knowing that one day you may have to switch to the Management API.
+As of now, there is no termination date for the REST API. As it might provide a much simpler and more accessible starting point, feel free to explore the [REST API documentation](/api/), knowing that one day you may have to switch to the Management API.
