@@ -17,6 +17,8 @@ last_review_date: 2021-01-01
 
 # `gsctl list keypairs`
 
+{{% gsctl_deprecation_disclaimer %}}
+
 The `gsctl list keypairs` command lists information on key pairs for a cluster. This is useful to
 understand which key pairs have been issued when and, if details are given,
 for what purpose. It is also helpful for setting up

@@ -17,6 +17,8 @@ last_review_date: 2021-01-01
 
 # `gsctl show cluster`
 
+{{% gsctl_deprecation_disclaimer %}}
+
 The `gsctl show cluster` command displays details of a cluster.
 
 ## Usage

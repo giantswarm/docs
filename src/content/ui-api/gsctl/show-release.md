@@ -17,6 +17,8 @@ last_review_date: 2021-01-01
 
 # `gsctl show release`
 
+{{% gsctl_deprecation_disclaimer %}}
+
 The `gsctl show release` command displays details of a workload cluster release.
 
 ## Usage
