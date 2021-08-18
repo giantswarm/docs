@@ -1,7 +1,7 @@
 ---
 linkTitle: Observability Stack
 title: Managed Observability Stack (Monitoring, Logging, Service Mesh)
-description: Overview of the Giant Swarm managed observability stack of apps
+description: Overview of the Giant Swarm managed observability stack of apps, which includes monitoring, logging, and service mesh
 weight: 10
 menu:
   main:
