@@ -25,8 +25,7 @@ In brief, super fast response times from engineers, 24//7 monitoring and alertin
 
 In addition, we strive to uphold our "30 Day Upgrade Promise," our commitment to keep all managed apps within 30 days of latest upstream releases.
 
-TL;DR
-For observability, we recommend and provide these four managed apps:
+To summarize, for observability, we recommend and provide these four managed apps:
 
 ## Prometheus for monitoring/metrics
 
