@@ -38,7 +38,7 @@ To fetch logs from containers, store and index them, and make them searchable. T
 
 In addition, we understand some customers already know and use Elasticsearch. For this reason, we also provide a managed EFK stack (Elasticsearch, Fluentd, and Kibana) for logging. To install, go to [EFK Stack README](https://github.com/giantswarm/efk-stack-app/blob/master/README.md).
 
-## 3/ Linkerd2 for service mesh
+## Linkerd2 for service mesh
 
 To get request metrics and for service discovery, as well as automatic mTLS encryption between all involved services. To install, go to [Linkerd 2 Quickstart Guide](https://github.com/giantswarm/linkerd2-app/blob/master/README.md).
 
