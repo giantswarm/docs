@@ -19,7 +19,7 @@ last_review_date: 2021-08-18
 
 Observability is based on three main data sources: logs, metrics and tracing*. To cover these needs Giant Swarm provides its customers with a managed observability stack. The apps included in this stack are listed below. We chose these apps based on our general principles of preferring open source over proprietary solutions, as well as simplicity, performance, and speed over complexity.
 
-What do we mean by a ‘managed’ app? We mean offering similar Service Level Objectives as the rest of our offering as described in [The Radical Way Giant Swarm Handles Service Level Objectives](https://www.giantswarm.io/blog/the-radical-way-giant-swarm-handles-service-level-objectives).
+**What do we mean by a ‘managed’ app?** We mean offering similar Service Level Objectives as the rest of our offering as described in [The Radical Way Giant Swarm Handles Service Level Objectives](https://www.giantswarm.io/blog/the-radical-way-giant-swarm-handles-service-level-objectives).
 
 In brief, super fast response times from engineers, 24//7 monitoring and alerting by us, and in general, having shared goals and responsibilities to keep services up and get them up when they go down.
 
