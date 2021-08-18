@@ -32,7 +32,7 @@ For observability, we recommend and provide these four managed apps:
 
 To get all your metrics, process, store and alert on them. Prometheus has become the de-facto standard monitoring tool in the kubernetes ecosystem.
 
-## 2/ Loki for logging
+## Loki for logging
 
 To fetch logs from containers, store and index them, and make them searchable. To install, go to [Loki README](https://github.com/giantswarm/loki-app/blob/master/README.md).
 
