@@ -17,9 +17,9 @@ last_review_date: 2021-08-18
 
 # Giant Swarm managed Observability Stack of Apps
 
-Observability is based on three main data sources: logs, metrics and tracing*. To cover these needs Giant Swarm provides its customers with a managed observability stack. The apps included in this stack are listed below. We chose these apps based on our general principles of preferring open source over proprietary solutions, as well as simplicity, performance, and speed over complexity.
+Observability is based on three main data sources: logs, metrics and tracing\*. To cover these needs Giant Swarm provides its customers with a managed observability stack. The apps included in this stack are listed below. We chose these apps based on our general principles of preferring open source over proprietary solutions, as well as simplicity, performance, and speed over complexity.
 
-**What do we mean by a ‘managed’ app?** We mean offering similar Service Level Objectives as the rest of our offering as described in [The Radical Way Giant Swarm Handles Service Level Objectives](https://www.giantswarm.io/blog/the-radical-way-giant-swarm-handles-service-level-objectives).
+**What do we mean by a "managed" app?** We mean offering similar Service Level Objectives as the rest of our offering as described in [The Radical Way Giant Swarm Handles Service Level Objectives](https://www.giantswarm.io/blog/the-radical-way-giant-swarm-handles-service-level-objectives).
 
 In brief, super fast response times from engineers, 24//7 monitoring and alerting by us, and in general, having shared goals and responsibilities to keep services up and get them up when they go down.
 
@@ -32,7 +32,7 @@ For observability, we recommend and provide these four managed apps:
 
 **2/ Loki for logging**: To fetch logs from containers, store and index them, and make them searchable. To install, go to [Loki README](https://github.com/giantswarm/loki-app/blob/master/README.md).
 
-In addition, we understand some customers already know and use Elasticsearch. For this reason, we also provide a managed EFK stack (Elasticsearch, Fluentd, and Kibana) for logging. To install, go to [EFK Stack README](https://github.com/giantswarm/efk-stack-app).
+In addition, we understand some customers already know and use Elasticsearch. For this reason, we also provide a managed EFK stack (Elasticsearch, Fluentd, and Kibana) for logging. To install, go to [EFK Stack README](https://github.com/giantswarm/efk-stack-app/blob/master/README.md).
 
 **3/ Linkerd2 for service mesh**: To get request metrics and for service discovery, as well as automatic mTLS encryption between all involved services. To install, go to [Linkerd 2 Quickstart Guide](https://github.com/giantswarm/linkerd2-app/blob/master/README.md).
 
