@@ -25,8 +25,8 @@ In brief, super fast response times from engineers, 24//7 monitoring and alertin
 
 In addition, we strive to uphold our “30 Day Upgrade Promise,” our commitment to keep all managed apps within 30 days of latest upstream releases.
 
-TL;DR 
-For observability, we recommend and provide these four managed apps: 
+TL;DR
+For observability, we recommend and provide these four managed apps:
 
 **1/ Prometheus for monitoring / metrics**: To get all your metrics, process, store and alert on them. Prometheus has become the de-facto standard monitoring tool in the kubernetes ecosystem.
 
