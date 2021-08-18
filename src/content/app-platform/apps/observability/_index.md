@@ -28,7 +28,7 @@ In addition, we strive to uphold our "30 Day Upgrade Promise," our commitment to
 TL;DR
 For observability, we recommend and provide these four managed apps:
 
-## 1/ Prometheus for monitoring / metrics
+## Prometheus for monitoring/metrics
 
 To get all your metrics, process, store and alert on them. Prometheus has become the de-facto standard monitoring tool in the kubernetes ecosystem.
 
