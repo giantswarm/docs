@@ -41,7 +41,7 @@ In addition, we understand some customers already know and use Elasticsearch. Fo
 
 To get request metrics and for service discovery, as well as automatic mTLS encryption between all involved services. To install, go to [Linkerd 2 Quickstart Guide](https://github.com/giantswarm/linkerd2-app/blob/master/README.md).
 
-## 4/ Grafana as data visualization tool
+## Grafana as data visualization tool
 
 To analyze, visualize, and correlate metrics from Prometheus and Linkerd as well as logs from Loki.
 
