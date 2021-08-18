@@ -23,7 +23,7 @@ Observability is based on three main data sources: logs, metrics and tracing\*. 
 
 In brief, super fast response times from engineers, 24//7 monitoring and alerting by us, and in general, having shared goals and responsibilities to keep services up and get them up when they go down.
 
-In addition, we strive to uphold our “30 Day Upgrade Promise,” our commitment to keep all managed apps within 30 days of latest upstream releases.
+In addition, we strive to uphold our "30 Day Upgrade Promise," our commitment to keep all managed apps within 30 days of latest upstream releases.
 
 TL;DR
 For observability, we recommend and provide these four managed apps:
