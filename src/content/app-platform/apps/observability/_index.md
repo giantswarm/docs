@@ -47,4 +47,4 @@ To analyze, visualize, and correlate metrics from Prometheus and Linkerd as well
 
 These pieces can be separately or together. Adopting them together and as fully managed apps from Giant Swarm gives you the benefit of using vetted open source tools that you know work together to provide you with consistency and coverage.
 
-*We are currently not offering a fully managed app for tracing due to the low priority it has with our customers. We believe that at this time the [tracing options provided by Linkerd](https://www.giantswarm.io/blog/part-5-traces-of-your-microservices-0) (that require no code changes) are sufficient.
+We are currently not offering a fully managed app for tracing due to the low priority it has with our customers. We believe that at this time the [tracing options provided by Linkerd](https://www.giantswarm.io/blog/part-5-traces-of-your-microservices-0) (that require no code changes) are sufficient.
