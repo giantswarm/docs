@@ -15,7 +15,7 @@ user_questions:
 last_review_date: 2021-08-18
 ---
 
-# Giant Swarm managed Observability Stack of Apps
+# Giant Swarm managed observability stack of apps
 
 Observability is based on three main data sources: logs, metrics and tracing\*. To cover these needs Giant Swarm provides its customers with a managed observability stack. The apps included in this stack are listed below. We chose these apps based on our general principles of preferring open source over proprietary solutions, as well as simplicity, performance, and speed over complexity.
 
