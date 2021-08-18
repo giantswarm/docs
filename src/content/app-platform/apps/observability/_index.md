@@ -28,15 +28,23 @@ In addition, we strive to uphold our “30 Day Upgrade Promise,” our commitmen
 TL;DR
 For observability, we recommend and provide these four managed apps:
 
-**1/ Prometheus for monitoring / metrics**: To get all your metrics, process, store and alert on them. Prometheus has become the de-facto standard monitoring tool in the kubernetes ecosystem.
+## 1/ Prometheus for monitoring / metrics
 
-**2/ Loki for logging**: To fetch logs from containers, store and index them, and make them searchable. To install, go to [Loki README](https://github.com/giantswarm/loki-app/blob/master/README.md).
+To get all your metrics, process, store and alert on them. Prometheus has become the de-facto standard monitoring tool in the kubernetes ecosystem.
+
+## 2/ Loki for logging
+
+To fetch logs from containers, store and index them, and make them searchable. To install, go to [Loki README](https://github.com/giantswarm/loki-app/blob/master/README.md).
 
 In addition, we understand some customers already know and use Elasticsearch. For this reason, we also provide a managed EFK stack (Elasticsearch, Fluentd, and Kibana) for logging. To install, go to [EFK Stack README](https://github.com/giantswarm/efk-stack-app/blob/master/README.md).
 
-**3/ Linkerd2 for service mesh**: To get request metrics and for service discovery, as well as automatic mTLS encryption between all involved services. To install, go to [Linkerd 2 Quickstart Guide](https://github.com/giantswarm/linkerd2-app/blob/master/README.md).
+## 3/ Linkerd2 for service mesh
 
-**4/ Grafana as data visualization tool**: To analyze, visualize, and correlate metrics from Prometheus and Linkerd as well as logs from Loki.
+To get request metrics and for service discovery, as well as automatic mTLS encryption between all involved services. To install, go to [Linkerd 2 Quickstart Guide](https://github.com/giantswarm/linkerd2-app/blob/master/README.md).
+
+## 4/ Grafana as data visualization tool
+
+To analyze, visualize, and correlate metrics from Prometheus and Linkerd as well as logs from Loki.
 
 These pieces can be separately or together. Adopting them together and as fully managed apps from Giant Swarm gives you the benefit of using vetted open source tools that you know work together to provide you with consistency and coverage.
 
