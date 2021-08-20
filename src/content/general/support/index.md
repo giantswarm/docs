@@ -32,23 +32,23 @@ If there is a problem that the first line support cannot resolve, it is handed o
 
 Each customer has a dedicated Account Engineer who holds regular sync meetings to discuss customer needs and issues. This go-to person provides additional support and acts as a first backup in case the person on first line support is overloaded.
 
-Project level work (e.g. installations) is handled by an SRE of the week. This person also serves as backup for the Ops Duty engineer.
+Project level work (e.g. installations) is handled by an SRE of the week. This person also serves as backup for the on-call engineer.
 
 In short, you have three layers of support, at your fingertips. Without the hassle of help-desk tickets and rigid escalation processes.
 
 ## Operational support
 
-The Giant Swarm platform comes with a monitoring and alerting system that helps our operations team maintain our SLAs across all customer clusters and managed applications. This is an additional aspect of the role of our Ops Duty engineers. When on call, these engineers watch over all alerts coming in from all environments where our customers run workloads. The Ops Duty engineers are available 24/7. Thus, ensuring that issues are handled promptly, even on nights and weekends.
+The Giant Swarm platform comes with a monitoring and alerting system that helps our operations team maintain our SLAs across all customer clusters and managed applications. This is an additional aspect of the role of our on-call engineers. When on call, these engineers watch over all alerts coming in from all environments where our customers run workloads. The on-call engineers are available 24/7. Thus, ensuring that issues are handled promptly, even on nights and weekends.
 
 The monitoring stack observes the underlying infrastructure of the platform. This includes the networking layer, DNS resolution, Kubernetes core components, cloud providers and any other targets we need to monitor to give us a complete view of the health of the system.
 
 Today our mean time to acknowledge is around two minutes and we usually resolve incidents in less than two hours. Obviously, not all alerts result in downtime in a customer environment. As alerts are set to make sure we fix problems before they lead to real incidents.
 
-Additionally, customers have a dedicated email address to reach our Ops Duty engineer 24/7.  This is for cases in which customers notice problems that have not been caught by our monitoring.
+Additionally, customers have a dedicated email address to reach our on-call engineer 24/7.  This is for cases in which customers notice problems that have not been caught by our monitoring.
 
 ## Postmortem process
 
-Sometimes an issue occurs that cannot be fully resolved by the support team. Meaning only a temporary fix was applied, and could potentially affect other environments or customers. Support person or Ops Duty engineer will create a postmortem. The `postmortem` culture [was created by Google](https://sre.google/sre-book/postmortem-culture/) and was established in order to document a problem correctly, find the root cause and fix it across all installations permanently.
+Sometimes an issue occurs that cannot be fully resolved by the support team. Meaning only a temporary fix was applied, and could potentially affect other environments or customers. Support person or on-call engineer will create a postmortem. The `postmortem` culture [was created by Google](https://sre.google/sre-book/postmortem-culture/) and was established in order to document a problem correctly, find the root cause and fix it across all installations permanently.
 
 Postmortems are created during the whole week. On Mondays, the product team meets and distributes the postmortems across our product teams. As each team plans their weekly sprint they assign a specific engineer to each postmortem. Postmortems have priority over feature development and engineers are used to spending at least a day a week to solve these problems.
 
