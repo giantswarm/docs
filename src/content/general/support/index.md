@@ -6,19 +6,19 @@ weight: 60
 menu:
   main:
     parent: general
-last_review_date: 2020-01-20
+last_review_date: 2021-08-20
 user_questions:
   - What should I know when working with Giant Swarm's support staff?
   - How is Giant Swarm organizing support?
 aliases:
   - /basics/giant-swarm-support/
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
+  - https://github.com/orgs/giantswarm/teams/team-horizon
 ---
 
 # Giant Swarm support
 
-We build and run a platform which lets our customers spin up as many clusters as they need. We ensure these clusters stay in the same predictable state. This becomes especially important once you need to run multiple clusters for different teams, on different environments, with different configurations or in multiple locations.
+We build and run a platform which lets our customers manage as many clusters as they need with a given set of (managed) applications they decide. We ensure these clusters and applications stay in the same predictable state. This becomes especially important once you need to run multiple clusters and applications for different teams, on different environments, with different configurations or in multiple locations.
 
 We accompany our customers throughout their cloud-native journey. Having someone to contact when problems occur is as important to us as providing a great product. Regardless of where you are in the journey. To us, it is actually the obvious complement to our product. The following is a brief description of our support process.
 
@@ -28,7 +28,7 @@ Our customer support relies on close interactions via Slack, to ensure bi-direct
 
 Our support shifts run from 08:00 to 18:00 (CET) on Monday-Friday. While production support goes without saying, we  often answer questions well outside those times. We rotate support shifts across our team, which is why we focus on support channels with clear internal handovers.
 
-If there is a problem that the first line support cannot resolve, it is handed over to the Ops Duty engineer, who has deeper knowledge of the platform. This is a 24 hour rotating shift.
+If there is a problem that the first line support cannot resolve, it is handed over to the an engineer part of the responsible for the component or application that is failing. This is a 24 hour rotating shift.
 
 Each customer has a dedicated Account Engineer who holds regular sync meetings to discuss customer needs and issues. This go-to person provides additional support and acts as a first backup in case the person on first line support is overloaded.
 
@@ -38,7 +38,7 @@ In short, you have three layers of support, at your fingertips. Without the hass
 
 ## Operational support
 
-The Giant Swarm platform comes with a monitoring and alerting system that helps our operations team maintain our SLAs across all customer clusters. This is an additional aspect of the role of Ops Duty engineer. When on call, this person watches over all alerts coming in from all environments where our customers run workloads. An Ops Duty engineer is available 24/7. Thus, ensuring that issues are handled promptly, even on nights and weekends.
+The Giant Swarm platform comes with a monitoring and alerting system that helps our operations team maintain our SLAs across all customer clusters and managed applications. This is an additional aspect of the role of our Ops Duty engineers. When on call, these engineers watch over all alerts coming in from all environments where our customers run workloads. The Ops Duty engineers are available 24/7. Thus, ensuring that issues are handled promptly, even on nights and weekends.
 
 The monitoring stack observes the underlying infrastructure of the platform. This includes the networking layer, DNS resolution, Kubernetes core components, cloud providers and any other targets we need to monitor to give us a complete view of the health of the system.
 
