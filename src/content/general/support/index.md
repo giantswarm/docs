@@ -28,7 +28,7 @@ Our customer support relies on close interactions via Slack, to ensure bi-direct
 
 Our support shifts run from 08:00 to 18:00 (CET) on Monday-Friday. While production support goes without saying, we  often answer questions well outside those times. We rotate support shifts across our team, which is why we focus on support channels with clear internal handovers.
 
-If there is a problem that the first line support cannot resolve, it is handed over to the an engineer part of the responsible for the component or application that is failing. This is a 24 hour rotating shift.
+If there is a problem that the first line support cannot resolve, it is handed over to an engineer who is part of the team responsible for the component or application that is failing. This is a 24 hour rotating shift.
 
 Each customer has a dedicated Account Engineer who holds regular sync meetings to discuss customer needs and issues. This go-to person provides additional support and acts as a first backup in case the person on first line support is overloaded.
 
