@@ -9,7 +9,7 @@ menu:
     parent: uiapi-managementapi
 user_questions:
   - How to create workload cluster key pairs via the Management API?
-last_review_date: 2021-08-16
+last_review_date: 2021-08-23
 owner:
   - https://github.com/orgs/giantswarm/teams/team-biscuit
 ---
@@ -39,7 +39,7 @@ These tools are also required:
 If you want to use our [example script](#script), you also need:
 
 - [jq](https://stedolan.github.io/jq/)
-- The shell commands/utilities `base64`, `cut`, `date`, and `shasum`
+- The shell commands/utilities `base64`, `cut`, `date`, and `sha256sum`
 
 ## Ensure Management API access
 
@@ -196,7 +196,7 @@ kubectl gs login $URL
 
 # Create name for the CertConfig and kubeconfig
 DATE=$(date)
-UNIQUE_ID=$(echo "$ORGANIZATION $WORKLOAD_CLUSTER $DATE" | shasum | cut -c 1-12)
+UNIQUE_ID=$(echo "$ORGANIZATION $WORKLOAD_CLUSTER $DATE" | sha256sum | cut -c 1-12)
 NAME="$WORKLOAD_CLUSTER-$UNIQUE_ID"
 
 # Create CN
