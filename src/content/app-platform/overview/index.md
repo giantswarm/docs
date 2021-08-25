@@ -50,7 +50,7 @@ Custom Resources, some created by us, and others created by you. Together, they 
 the desired state of the App Platform.
 
 For example, this "App" Custom Resource indicates that you want Kong installed
-on a specific workload cluster. We [default]({{< relref "/app-platform/defaulting-validation/#defaulting" >}})
+on a specific workload cluster. We [default]({{< relref "/app-platform/defaulting-validation" >}})
 some additional values for the workload cluster you select.
 
 ```yaml
