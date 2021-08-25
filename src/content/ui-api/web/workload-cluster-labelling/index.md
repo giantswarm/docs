@@ -2,7 +2,7 @@
 linkTitle: Labelling clusters
 title: Labelling workload clusters using the web interface
 description: Here we explain how you can manage labels for workload cluster in our web user interface.
-last_review_date: 2020-05-29
+last_review_date: 2021-08-25
 weight: 30
 menu:
   main:
@@ -14,7 +14,7 @@ aliases:
 user_questions:
   - How can I manage cluster labels via the web interface?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-ludacris
+  - https://github.com/orgs/giantswarm/teams/team-biscuit
 ---
 
 # Labelling workload clusters using the web interface
