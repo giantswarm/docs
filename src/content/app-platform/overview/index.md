@@ -61,6 +61,10 @@ metadata:
   namespace: "x7jwz"
 spec:
   catalog: "giantswarm"
+  config:
+    configMap:
+      name: "x7jwz-cluster-values"
+      namespace: "x7jwz"
   name: "kong-app"
   namespace: "kong"
   version: "0.7.2"
