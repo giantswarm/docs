@@ -50,7 +50,8 @@ Custom Resources, some created by us, and others created by you. Together, they 
 the desired state of the App Platform.
 
 For example, this "App" Custom Resource indicates that you want Kong installed
-on a specific workload cluster.
+on a specific workload cluster. We [default]({{< relref "/app-platform/defaulting-validation" >}})
+some additional values for the workload cluster you select.
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
@@ -58,24 +59,17 @@ kind: App
 metadata:
   name: "my-kong"
   namespace: "x7jwz"
-  labels:
-    app-operator.giantswarm.io/version: "1.0.0"
 spec:
   catalog: "giantswarm"
-  name: "kong-app"
-  namespace: "kong"
-  version: "0.7.2"
   config:
     configMap:
       name: "x7jwz-cluster-values"
       namespace: "x7jwz"
+  name: "kong-app"
+  namespace: "kong"
+  version: "0.7.2"
   kubeConfig:
-    context:
-      name: "x7jwz"
      inCluster: false
-     secret:
-      name: "x7jwz-kubeconfig"
-      namespace: "x7jwz"
   userConfig:
     configMap:
       name: "kong-user-values"
