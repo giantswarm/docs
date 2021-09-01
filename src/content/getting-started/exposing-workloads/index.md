@@ -16,7 +16,7 @@ aliases:
   - /guides/accessing-services-from-the-outside/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-ludacris
-last_review_date: 2021-01-01
+last_review_date: 2021-09-01
 ---
 
 # Accessing pods and services from the outside
@@ -72,25 +72,31 @@ You can expose services publicly by setting up a simple ingress. You can do this
 Let's look at the following YAML, which you can use as a template for your ingress manifest:
 
 ```yaml
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: INGRESS_NAME
   namespace: NAMESPACE
 spec:
+  ingressClassName: nginx
   rules:
   - host: PREFIX.CLUSTER_ID.k8s.gigantic.io
     http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
           serviceName: SERVICE_NAME
           servicePort: SERVICE_PORT
+          service:
+            name: SERVICE_NAME
+            port:
+              number: SERVICE_PORT
 ```
 
 All parts in uppercase letters are placeholders, to be replaced according to your individual requirements. In detail:
 
-- `INGRESS_NAME`: This name identifies the ingress within your namespace. As with all other kubernetes, it's up to you how you name it.
+- `INGRESS_NAME`: This name identifies the ingress within your namespace. As with all other Kubernetes resources, it's up to you how you name it.
 - `NAMESPACE`: The namespace of the service you'd like to expose. The ingress must reside in the same namespace, so it's useful to make it part of the metadata in the manifest.
 - `PREFIX`: A subdomain name of your choice. This must be unique among all ingresses of this cluster. If you like, you can make this the same as `INGRESS_NAME`.
 - `CLUSTER_ID`: The ID of the Kubernetes cluster the service you'd like to expose is running on. This should be a string consisting of five letters and numbers.
@@ -116,8 +122,6 @@ Once the ingress is up, you will be able to access your service publicly at a UR
 ```nohighlight
 http://PREFIX.CLUSTER_ID.k8s.gigantic.io
 ```
-
-Currently, this is limited to exposing by default on port `80`. Support for TLS will be added soon.
 
 For additional features and options, please see our documentation around [advanced ingress configuration]({{< relref "/advanced/ingress/configuration" >}}).
 

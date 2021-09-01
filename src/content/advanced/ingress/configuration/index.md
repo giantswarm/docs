@@ -33,10 +33,10 @@ owner:
 
 The [NGINX-based Ingress Controller](https://github.com/kubernetes/ingress-nginx) has additional configuration options and features that can be customized. The functionality is split into two categories:
 
-- [Per-Service options](#yaml) in each Ingress' YAML definition either directly or via [Annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
-- [Global options](#configmap) that influence all Ingresses of a cluster via a ConfigMap.
+- [Per-Service options](#yaml) in each Ingress' YAML definition either directly or via [Annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) ([Complete list of supported Annotations](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/)).
+- [Global options](#configmap) that influence all Ingresses of a cluster via a ConfigMap ([Complete list of ConfigMap options](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/)).
 
-**Note**: Some Giant Swarm clusters do not come with an ingress controller pre-installed. See our [guide on how to install an ingress from the Giant Swarm Catalog]({{< relref "/getting-started/ingress-controller" >}}).
+**Note**: Giant Swarm clusters do not come with an ingress controller pre-installed. See our [guide on how to install an ingress from the Giant Swarm Catalog]({{< relref "/getting-started/ingress-controller" >}}).
 
 ## Per-Service options {#yaml}
 
@@ -45,26 +45,33 @@ The [NGINX-based Ingress Controller](https://github.com/kubernetes/ingress-nginx
 You can aggregate several Ingress rules into a single Ingress definition like following:
 
 ```yaml
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: <ingress-name>
 spec:
+  ingressClassName: nginx
   rules:
   - host: <yourchoice1>.<cluster-id>.k8s.gigantic.io
     http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
-          serviceName: <service1-name>
-          servicePort: <service1-port>
+          service:
+            name: <service1-name>
+            port:
+              number: <service1-port>
   - host: <yourchoice2>.<cluster-id>.k8s.gigantic.io
     http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
-          serviceName: <service2-name>
-          servicePort: <service2-port>
+          service:
+            name: <service2-name>
+            port:
+              number: <service2-port>
 ```
 
 __Note:__ If you are using TLS you also need each of the hosts in the `tls` section (see below) of the yaml.
@@ -74,23 +81,30 @@ __Note:__ If you are using TLS you also need each of the hosts in the `tls` sect
 You can route an Ingress to different Services based on the path:
 
 ```yaml
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: <ingress-name>
 spec:
+  ingressClassName: nginx
   rules:
   - host: <yourchoice>.<cluster-id>.k8s.gigantic.io
     http:
       paths:
       - path: /foo
+        pathType: Prefix
         backend:
-          serviceName: <service1-name>
-          servicePort: <service1-port>
+          service:
+            name: <service1-name>
+            port:
+              number: <service1-port>
       - path: /bar
+        pathType: Prefix
         backend:
-          serviceName: <service2-name>
-          servicePort: <service2-port>
+          service:
+            name: <service2-name>
+            port:
+              number: <service2-port>
 ```
 
 __Note:__ Your applications need to be capable of running on a non-root path either by default or by setting the base path in their configuration.
@@ -106,13 +120,14 @@ __Warning:__ This feature was disabled by default in Nginx ingress controller ma
 For SSL passthrough you need to set an annotation and enable TLS for the host:
 
 ```yaml
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: <ingress-name>
   annotations:
     nginx.ingress.kubernetes.io/ssl-passthrough: "true"
 spec:
+  ingressClassName: nginx
    tls:
    - hosts:
      - <yourchoice>.<cluster-id>.k8s.gigantic.io
@@ -121,9 +136,12 @@ spec:
     http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
-          serviceName: <service-name>
-          servicePort: <service-port>
+          service:
+            name: <service-name>
+            port:
+              number: <service-port>
 ```
 
 __Note:__ SSL passthrough cannot work with path based routing based on the nature of SSL.
@@ -148,11 +166,12 @@ __Note:__ the data keys must be named `tls.crt` and `tls.key`!
 Referencing this secret in an Ingress will tell the Ingress Controller to secure the channel from the client to the loadbalancer using TLS:
 
 ```yaml
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: <ingress-name>
 spec:
+  ingressClassName: nginx
    tls:
    - hosts:
      - <yourchoice>.<cluster-id>.k8s.gigantic.io
@@ -162,12 +181,13 @@ spec:
     http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
-          serviceName: <service-name>
-          servicePort: <service-port>
+          service:
+            name: <service-name>
+            port:
+              number: <service-port>
 ```
-
-__Warning:__ When enabling `TLS` with the NGINX Ingress Controller, some more configuration settings become important. Notably [`HSTS`](https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html) will be enabled [by default](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#hsts) with a duration of six month for your specified domain. Once a browser retrieved these `HSTS` instructions it will refuse to read any unencrypted resource from that domain and un-setting `HSTS` on your server will not have any affect on that browser for half a year. So you might want to disable this at first to avoid [unwanted surprises](https://github.com/kubernetes/ingress-nginx/issues/549#issuecomment-291894246). Please contact our support team to find out details on how to disable HSTS in your cluster.
 
 __Tip:__ If you want to use [Let’s Encrypt](https://letsencrypt.org/) certificates with your domains you can automate their creation and renewal with the help of [cert-manager](https://cert-manager.io/docs/). After configuring cert-manager there is only an annotation with your Ingresses needed and your web page will be secured by a valid `TLS` certificate.
 
@@ -210,7 +230,7 @@ data:
 Last, we create the Ingress with the according annotations:
 
 ```yaml
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: <ingress-name>
@@ -222,14 +242,18 @@ metadata:
     # message to display with an appropiate context why the authentication is required
     nginx.ingress.kubernetes.io/auth-realm: "Authentication Required - foo"
 spec:
+  ingressClassName: nginx
   rules:
   - host: <yourchoice>.<cluster-id>.k8s.gigantic.io
     http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
-          serviceName: <service-name>
-          servicePort: <service-port>
+          service:
+            name: <service-name>
+            port:
+              number: <service-port>
 ```
 
 ### External Authentication
@@ -249,21 +273,25 @@ In some scenarios the exposed URL in the backend service differs from the specif
 This can for example be used together with path based routing, when the application expects to be on `/`:
 
 ```yaml
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: <ingress-name>
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
+  ingressClassName: nginx
   rules:
   - host: <yourchoice>.<cluster-id>.k8s.gigantic.io
     http:
       paths:
       - path: /foo
+        pathType: Prefix
         backend:
-          serviceName: <service-name>
-          servicePort: <service1port>
+          service:
+            name: <service-name>
+            port:
+              number: <service-port>
 ```
 
 If the application contains relative links it is possible to add an additional annotation `ingress.kubernetes.io/add-base-url` that will prepend a [`base` tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base) in the header of the returned HTML from the backend.
@@ -288,7 +316,7 @@ By default the controller redirects (301) to `HTTPS` if TLS is enabled for that 
 
 ### Whitelist source range
 
-You can specify the allowed client IP source ranges through the `nginx.ingress.kubernetes.io/whitelist-source-range` annotation. The value is a comma separated list of [CIDRs](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing), e.g.  `10.0.0.0/24,172.10.0.1`.
+You can specify the allowed client IP source ranges through the `nginx.ingress.kubernetes.io/whitelist-source-range` annotation. The value is a comma separated list of [CIDRs](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing), e.g. `10.0.0.0/24,172.10.0.1`.
 
 __Note:__ Adding an annotation to an Ingress rule overrides any global restrictions set in the NGINX Ingress Controller.
 
@@ -325,7 +353,7 @@ The NGINX Ingress Controller creates an NGINX configuration file. You can direct
 Here is an example adding an `Expires` header to every response:
 
 ```yaml
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: myingress
@@ -334,14 +362,18 @@ metadata:
     nginx.ingress.kubernetes.io/configuration-snippet: |
       expires 24h;
 spec:
+  ingressClassName: nginx
   rules:
   - host: host.example.com
     http:
       paths:
       - backend:
-          serviceName: http-svc
-          servicePort: 80
+          service:
+            name: http-svc
+            port:
+              number: 80
         path: /
+        pathType: Prefix
 ```
 
 Make sure to use the exact annotation scheme `nginx.ingress.kubernetes.io/configuration-snippet` in the `metadata` section of the manifest.
@@ -356,6 +388,8 @@ Your Giant Swarm installation comes with a default configuration for the Ingress
 
 You can override these defaults by setting your per cluster configuration in the form of a ConfigMap named `nginx-ingress-controller-user-values` in the management cluster.
 
+Page [App configuration reference]({{< relref "/app-platform/app-configuration/index.md" >}}) contains more information how to set user defined configuration for the nginx-ingress-controller-app.
+
 ### Where is the user values ConfigMap
 
 Given the cluster you are trying to configure has id: `123ab`
@@ -363,7 +397,7 @@ Given the cluster you are trying to configure has id: `123ab`
 You will find the `nginx-ingress-controller-user-values` ConfigMap on the management cluster in the `123ab` namespace:
 
 ```nohighlight
-$ kubectl -n 123ab get cm nginx-ingress-controller-user-values --context=control-plane
+$ kubectl -n 123ab get cm nginx-ingress-controller-user-values
 NAME                                   DATA      AGE
 nginx-ingress-controller-user-values   0         11m
 ```
@@ -408,7 +442,7 @@ spec:
       namespace: abc12
 ```
 
-Any defaults that we override are visible in the following `values.yaml` file, under the `configmap` key. [Check this values.yaml file in v1.16.1](https://github.com/giantswarm/nginx-ingress-controller-app/blob/v1.16.1/helm/nginx-ingress-controller-app/values.yaml) as an example.
+Any defaults that we override are visible in the following `values.yaml` file, under the `configmap` key. [Check this values.yaml file in v2.1.0](https://github.com/giantswarm/nginx-ingress-controller-app/blob/v2.1.0/helm/nginx-ingress-controller-app/values.yaml) as an example.
 
 Do not copy all the defaults if you do not need to change them, that way we can adjust them in case they need to change.
 
