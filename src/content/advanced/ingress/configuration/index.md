@@ -378,8 +378,6 @@ spec:
 
 Make sure to use the exact annotation scheme `nginx.ingress.kubernetes.io/configuration-snippet` in the `metadata` section of the manifest.
 
-Check out the [ingress-nginx repository](https://github.com/kubernetes/ingress-nginx/blob/master/docs/examples/customization/configuration-snippets/ingress.yaml) for more information.
-
 In case you want to set up a general http snippet you can define it at [NGINX ConfigMap](#configmap) level.
 
 ## Global (per cluster) options {#configmap}
