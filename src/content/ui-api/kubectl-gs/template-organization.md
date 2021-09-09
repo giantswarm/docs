@@ -47,6 +47,5 @@ apiVersion: security.giantswarm.io/v1alpha1
 kind: Organization
 metadata:
   name: example-organization
-  namespace: default
 spec: {}
 ```
