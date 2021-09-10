@@ -12,7 +12,7 @@ crd:
   technical_name: networkpools.infrastructure.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.32.0
+  source_repository_ref: v3.33.0
   versions:
     - v1alpha2
     - v1alpha3
@@ -27,7 +27,7 @@ aliases:
   - /reference/cp-k8s-api/networkpools.infrastructure.giantswarm.io/
 technical_name: networkpools.infrastructure.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.32.0
+source_repository_ref: v3.33.0
 ---
 
 # NetworkPool
@@ -62,7 +62,7 @@ apiVersion: infrastructure.giantswarm.io/v1alpha2
 kind: NetworkPool
 metadata:
   annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/reference/cp-k8s-api/networkpools.infrastructure.giantswarm.io/
+    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/networkpools.infrastructure.giantswarm.io/
   creationTimestamp: null
   labels:
     giantswarm.io/organization: giantswarm
@@ -178,7 +178,7 @@ apiVersion: infrastructure.giantswarm.io/v1alpha3
 kind: NetworkPool
 metadata:
   annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/reference/cp-k8s-api/networkpools.infrastructure.giantswarm.io/
+    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/networkpools.infrastructure.giantswarm.io/
   creationTimestamp: null
   labels:
     giantswarm.io/organization: giantswarm

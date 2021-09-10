@@ -12,7 +12,7 @@ crd:
   technical_name: releases.release.giantswarm.io
   scope: Cluster
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.32.0
+  source_repository_ref: v3.33.0
   versions:
     - v1alpha1
   topics:
@@ -25,7 +25,7 @@ aliases:
   - /reference/cp-k8s-api/releases.release.giantswarm.io/
 technical_name: releases.release.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.32.0
+source_repository_ref: v3.33.0
 ---
 
 # Release
@@ -60,8 +60,8 @@ apiVersion: release.giantswarm.io/v1alpha1
 kind: Release
 metadata:
   annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/reference/cp-k8s-api/releases.release.giantswarm.io/
-    giantswarm.io/release-notes: https://github.com/giantswarm/releases/tree/master/aws/v11.2.0
+    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/releases.release.giantswarm.io/
+    giantswarm.io/release-notes: https://docs.giantswarm.io/changes/workload-cluster-releases-aws/releases/aws-v11.2.0/
   creationTimestamp: null
   name: v11.2.0
 spec:

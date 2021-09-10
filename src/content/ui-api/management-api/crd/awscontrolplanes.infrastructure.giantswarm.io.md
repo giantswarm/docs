@@ -12,7 +12,7 @@ crd:
   technical_name: awscontrolplanes.infrastructure.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.32.0
+  source_repository_ref: v3.33.0
   versions:
     - v1alpha2
     - v1alpha3
@@ -29,7 +29,7 @@ aliases:
   - /reference/cp-k8s-api/awscontrolplanes.infrastructure.giantswarm.io/
 technical_name: awscontrolplanes.infrastructure.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.32.0
+source_repository_ref: v3.33.0
 ---
 
 # AWSControlPlane
@@ -68,7 +68,7 @@ apiVersion: infrastructure.giantswarm.io/v1alpha2
 kind: AWSControlPlane
 metadata:
   annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/reference/cp-k8s-api/awscontrolplanes.infrastructure.giantswarm.io/
+    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/awscontrolplanes.infrastructure.giantswarm.io/
   creationTimestamp: null
   name: ier2s
 spec:
@@ -216,7 +216,7 @@ apiVersion: infrastructure.giantswarm.io/v1alpha3
 kind: AWSControlPlane
 metadata:
   annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/reference/cp-k8s-api/awscontrolplanes.infrastructure.giantswarm.io/
+    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/awscontrolplanes.infrastructure.giantswarm.io/
   creationTimestamp: null
   name: ier2s
 spec:

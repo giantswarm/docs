@@ -12,7 +12,7 @@ crd:
   technical_name: apps.application.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.32.0
+  source_repository_ref: v3.33.0
   versions:
     - v1alpha1
   topics:
@@ -24,7 +24,7 @@ aliases:
   - /reference/cp-k8s-api/apps.application.giantswarm.io/
 technical_name: apps.application.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.32.0
+source_repository_ref: v3.33.0
 ---
 
 # App
@@ -59,8 +59,6 @@ apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
   creationTimestamp: null
-  labels:
-    app-operator.giantswarm.io/version: 1.0.0
   name: prometheus
   namespace: default
 spec:

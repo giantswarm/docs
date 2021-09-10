@@ -12,7 +12,7 @@ crd:
   technical_name: clusters.cluster.x-k8s.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.32.0
+  source_repository_ref: v3.33.0
   versions:
     - v1alpha2
     - v1alpha3
@@ -29,7 +29,7 @@ aliases:
   - /reference/cp-k8s-api/clusters.cluster.x-k8s.io/
 technical_name: clusters.cluster.x-k8s.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.32.0
+source_repository_ref: v3.33.0
 ---
 
 # Cluster
@@ -624,6 +624,50 @@ spec:
 <div class="crd-schema-version">
 <h2 id="v1alpha3">Version v1alpha3</h2>
 
+
+<h3 id="crd-example-v1alpha3">Example CR</h3>
+
+```yaml
+apiVersion: cluster.x-k8s.io/v1alpha4
+kind: Cluster
+metadata:
+  annotations:
+    cluster.giantswarm.io/description: production
+    release.giantswarm.io/last-deployed-version: 15.1.1
+  labels:
+    azure-operator.giantswarm.io/version: 5.8.1
+    cluster-operator.giantswarm.io/version: 0.27.1
+    cluster.x-k8s.io/cluster-name: x4j3p
+    giantswarm.io/cluster: x4j3p
+    giantswarm.io/organization: giantswarm
+    release.giantswarm.io/version: 15.1.1
+  name: x4j3p
+  namespace: org-giantswarm
+spec:
+  clusterNetwork:
+    apiServerPort: 443
+    serviceDomain: cluster.local
+    services:
+      cidrBlocks:
+      - 172.31.0.0/16
+  controlPlaneEndpoint:
+    host: api.example.com
+    port: 443
+  controlPlaneRef:
+    apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
+    kind: AzureMachine
+    name: x4j3p-master-0
+    namespace: org-giantswarm
+    resourceVersion: "374040211"
+    uid: 177991ca-5de0-48f6-a956-47abcb218a3b
+  infrastructureRef:
+    apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
+    kind: AzureCluster
+    name: x4j3p
+    namespace: org-giantswarm
+    resourceVersion: "374040188"
+    uid: 01d6767e-c394-43a7-bf17-2eaf11e80dcb
+```
 
 
 <h3 id="property-details-v1alpha3">Properties</h3>
@@ -1505,6 +1549,44 @@ spec:
 </div>
 
 
+
+
+<h3 id="annotation-details-v1alpha3">Annotations</h3>
+
+
+<div class="annotation">
+<div class="annotation-header">
+<h3 class="annotation-path" id="v1alpha3-alpha.giantswarm.io/update-schedule-target-release">alpha.giantswarm.io/update-schedule-target-release</h3>
+</div>
+<div class="annotation-body">
+<div class="annotation-meta">
+
+</div>
+
+<div class="annotation-description">
+<p>This annotation is used to define the desired target release for a scheduled upgrade of the cluster. The upgrade to the specified version will be applied if the &ldquo;update-schedule-target-time&rdquo; annotation has been set and the time defined there has been reached. The value has to be only the desired release version, e.g &ldquo;15.2.1&rdquo;.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="annotation">
+<div class="annotation-header">
+<h3 class="annotation-path" id="v1alpha3-alpha.giantswarm.io/update-schedule-target-time">alpha.giantswarm.io/update-schedule-target-time</h3>
+</div>
+<div class="annotation-body">
+<div class="annotation-meta">
+
+</div>
+
+<div class="annotation-description">
+<p>This annotation is used to define the desired target time for a scheduled upgrade of the cluster. The upgrade will be applied at the specified time if the &ldquo;update-schedule-target-release&rdquo; annotation has been set to the target release version. The value has to be in RFC822 Format and UTC time zone. e.g. &ldquo;30 Jan 21 15:04 UTC&rdquo;</p>
+
+</div>
+
+</div>
+</div>
 
 
 
