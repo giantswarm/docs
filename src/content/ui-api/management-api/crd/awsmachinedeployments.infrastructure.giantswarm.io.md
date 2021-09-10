@@ -12,7 +12,7 @@ crd:
   technical_name: awsmachinedeployments.infrastructure.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.32.0
+  source_repository_ref: v3.33.0
   versions:
     - v1alpha2
     - v1alpha3
@@ -27,7 +27,7 @@ aliases:
   - /reference/cp-k8s-api/awsmachinedeployments.infrastructure.giantswarm.io/
 technical_name: awsmachinedeployments.infrastructure.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.32.0
+source_repository_ref: v3.33.0
 ---
 
 # AWSMachineDeployment
@@ -62,7 +62,7 @@ apiVersion: infrastructure.giantswarm.io/v1alpha2
 kind: AWSMachineDeployment
 metadata:
   annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/reference/cp-k8s-api/awsmachinedeployments.infrastructure.giantswarm.io
+    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/awsmachinedeployments.infrastructure.giantswarm.io/
   creationTimestamp: null
   labels:
     aws-operator.giantswarm.io/version: 8.7.0
@@ -601,7 +601,7 @@ spec:
 </div>
 
 <div class="annotation-description">
-<p>This annotation is used for configuring maximum batch size for instances termination during ASG update. The value can be either a whole number specifying the number of instances or a percentage of total instances as decimal number ie <code>0.3</code> for 30%. See <a href="https://docs.giantswarm.io/guides/fine-tuning-upgrade-disruption-on-aws/">Fine Tuning Upgrades</a> and <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-updatepolicy.html#cfn-attributes-updatepolicy-rollingupdate-maxbatchsize">AWS Documentation</a> for additional information.</p>
+<p>This annotation is used for configuring maximum batch size for instances termination during ASG update. The value can be either a whole number specifying the number of instances or a percentage of total instances as decimal number ie <code>0.3</code> for 30%. See <a href="https://docs.giantswarm.io/advanced/upgrade-disruption/">fine-tuning upgrade disruption</a> and <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-updatepolicy.html#cfn-attributes-updatepolicy-rollingupdate-maxbatchsize">AWS documentation</a> for additional information.</p>
 
 </div>
 
@@ -618,7 +618,7 @@ spec:
 </div>
 
 <div class="annotation-description">
-<p>This annotation is used for configuring time pause between rolling a single batch during ASG update. The value must be in ISO 8601 duration format, e. g. &ldquo;PT5M&rdquo; for five minutes or &ldquo;PT10S&rdquo; for 10 seconds. See <a href="https://docs.giantswarm.io/guides/fine-tuning-upgrade-disruption-on-aws/">Fine Tuning Upgrades</a> and <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-updatepolicy.html#cfn-attributes-updatepolicy-rollingupdate-maxbatchsize">AWS Documentation</a> for additional information.</p>
+<p>This annotation is used for configuring time pause between rolling a single batch during ASG update. The value must be in ISO 8601 duration format, e. g. &ldquo;PT5M&rdquo; for five minutes or &ldquo;PT10S&rdquo; for 10 seconds. See <a href="https://docs.giantswarm.io/advanced/upgrade-disruption/">fine-tuning upgrade disruption</a> and <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-updatepolicy.html#cfn-attributes-updatepolicy-rollingupdate-maxbatchsize">AWS documentation</a> for additional information.</p>
 
 </div>
 
@@ -640,7 +640,7 @@ apiVersion: infrastructure.giantswarm.io/v1alpha3
 kind: AWSMachineDeployment
 metadata:
   annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/reference/cp-k8s-api/awsmachinedeployments.infrastructure.giantswarm.io
+    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/awsmachinedeployments.infrastructure.giantswarm.io/
   creationTimestamp: null
   labels:
     aws-operator.giantswarm.io/version: 8.7.0

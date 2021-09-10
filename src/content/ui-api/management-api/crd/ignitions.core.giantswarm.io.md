@@ -13,7 +13,7 @@ crd:
   technical_name: ignitions.core.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.32.0
+  source_repository_ref: v3.33.0
   versions:
     - v1alpha1
   topics:
@@ -26,7 +26,7 @@ aliases:
   - /reference/cp-k8s-api/ignitions.core.giantswarm.io/
 technical_name: ignitions.core.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.32.0
+source_repository_ref: v3.33.0
 ---
 
 # Ignition
@@ -62,7 +62,7 @@ apiVersion: core.giantswarm.io/v1alpha1
 kind: Ignition
 metadata:
   annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/reference/cp-k8s-api/ignitions.core.giantswarm.io/
+    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/ignitions.core.giantswarm.io/
   creationTimestamp: null
   name: abc12-master
 spec:

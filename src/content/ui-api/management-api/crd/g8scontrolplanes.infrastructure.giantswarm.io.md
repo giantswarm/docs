@@ -12,7 +12,7 @@ crd:
   technical_name: g8scontrolplanes.infrastructure.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.32.0
+  source_repository_ref: v3.33.0
   versions:
     - v1alpha2
     - v1alpha3
@@ -29,7 +29,7 @@ aliases:
   - /reference/cp-k8s-api/g8scontrolplanes.infrastructure.giantswarm.io/
 technical_name: g8scontrolplanes.infrastructure.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.32.0
+source_repository_ref: v3.33.0
 ---
 
 # G8sControlPlane
@@ -68,7 +68,7 @@ apiVersion: infrastructure.giantswarm.io/v1alpha2
 kind: G8sControlPlane
 metadata:
   annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/reference/cp-k8s-api/g8scontrolplanes.infrastructure.giantswarm.io/
+    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/g8scontrolplanes.infrastructure.giantswarm.io/
   creationTimestamp: null
   name: 0p8h5
 spec:
@@ -162,7 +162,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Reference to a provider-specific resource. On AWS, this would be of kind <a href="https://docs.giantswarm.io/reference/cp-k8s-api/awscontrolplanes.infrastructure.giantswarm.io/">AWSControlPlane</a>.</p>
+<p>Reference to a provider-specific resource. On AWS, this would be of kind <a href="https://docs.giantswarm.io/ui-api/management-api/crd/awscontrolplanes.infrastructure.giantswarm.io/">AWSControlPlane</a>.</p>
 
 </div>
 
@@ -384,7 +384,7 @@ apiVersion: infrastructure.giantswarm.io/v1alpha3
 kind: G8sControlPlane
 metadata:
   annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/reference/cp-k8s-api/g8scontrolplanes.infrastructure.giantswarm.io/
+    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/g8scontrolplanes.infrastructure.giantswarm.io/
   creationTimestamp: null
   name: 0p8h5
 spec:
@@ -478,7 +478,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Reference to a provider-specific resource. On AWS, this would be of kind <a href="https://docs.giantswarm.io/reference/cp-k8s-api/awscontrolplanes.infrastructure.giantswarm.io/">AWSControlPlane</a>.</p>
+<p>Reference to a provider-specific resource. On AWS, this would be of kind <a href="https://docs.giantswarm.io/ui-api/management-api/crd/awscontrolplanes.infrastructure.giantswarm.io/">AWSControlPlane</a>.</p>
 
 </div>
 
