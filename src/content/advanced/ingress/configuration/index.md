@@ -386,7 +386,7 @@ Your Giant Swarm installation comes with a default configuration for the Ingress
 
 You can override these defaults by setting your per cluster configuration in the form of a ConfigMap named `nginx-ingress-controller-user-values` in the management cluster.
 
-Page [App configuration reference]({{< relref "/app-platform/app-configuration/index.md" >}}) contains more information how to set user defined configuration for the nginx-ingress-controller-app.
+The page [App configuration reference]({{< relref "/app-platform/app-configuration/index.md" >}}) contains more information how to set user defined configuration for the nginx-ingress-controller-app.
 
 ### Where is the user values ConfigMap
 
@@ -440,7 +440,7 @@ spec:
       namespace: abc12
 ```
 
-Any defaults that we override are visible in the following `values.yaml` file, under the `configmap` key. [Check this values.yaml file in v2.1.0](https://github.com/giantswarm/nginx-ingress-controller-app/blob/v2.1.0/helm/nginx-ingress-controller-app/values.yaml) as an example.
+Any defaults that we override are visible in the following `values.yaml` file, under the `configmap` key. [Check this values.yaml file in v2.2.0](https://github.com/giantswarm/nginx-ingress-controller-app/blob/v2.2.0/helm/nginx-ingress-controller-app/values.yaml) as an example.
 
 Do not copy all the defaults if you do not need to change them, that way we can adjust them in case they need to change.
 

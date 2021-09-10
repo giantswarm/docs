@@ -91,7 +91,7 @@ spec:
 
 All parts in uppercase letters are placeholders, to be replaced according to your individual requirements. In detail:
 
-- `INGRESS_NAME`: This name identifies the ingress within your namespace. As with all other Kubernetes resources, it's up to you how you name it.
+- `INGRESS_NAME`: This name identifies the ingress within your namespace. As with all other Kubernetes resources, it's up to you how you name it though the advice is to align with your service name.
 - `NAMESPACE`: The namespace of the service you'd like to expose. The ingress must reside in the same namespace, so it's useful to make it part of the metadata in the manifest.
 - `PREFIX`: A subdomain name of your choice. This must be unique among all ingresses of this cluster. If you like, you can make this the same as `INGRESS_NAME`.
 - `CLUSTER_ID`: The ID of the Kubernetes cluster the service you'd like to expose is running on. This should be a string consisting of five letters and numbers.
