@@ -28,6 +28,7 @@ The command to execute is `kubectl gs template organization`.
 It supports the following required flag:
 
 - `--name` - Organization name.
+- `--output` - Output file path. If not set, output is written to STDOUT.
 
 Example command:
 
@@ -48,4 +49,5 @@ kind: Organization
 metadata:
   name: example-organization
 spec: {}
+status: {}
 ```
