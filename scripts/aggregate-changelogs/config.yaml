@@ -18,8 +18,6 @@ repositories:
     category: Management API
   giantswarm/azure-admission-controller:
     category: Management API
-  giantswarm/aqua-app:
-    category: Managed Apps
   giantswarm/cert-manager-app:
     category: Managed Apps
   giantswarm/dashboards:
