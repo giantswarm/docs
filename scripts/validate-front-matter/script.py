@@ -388,18 +388,22 @@ def validate(content, fpath, validation):
         ]
     }
     """
-    result = []
+
+    result = {
+        'num_front_matter_lines': 0,
+        'checks': [],
+    }
     num_lines = len(list(content.split("\n")))
 
     # Detect whether there is front matter
     if not content.endswith('\n'):
-        result.append({
+        result['checks'].append({
             'check': NO_TRAILING_NEWLINE,
             'line': num_lines, # last line
         })
         return result
     if not content.startswith("---\n"):
-        result.append({
+        result['checks'].append({
             'check': NO_FRONT_MATTER,
             'line': 1,
         })
@@ -415,14 +419,14 @@ def validate(content, fpath, validation):
         if fmstring != "":
             fm = load(fmstring, Loader=Loader)
     except Exception as e:
-        result.append({
+        result['checks'].append({
             'check': NO_FRONT_MATTER,
             'line': 1,
         })
         return result
 
     if fm is None:
-        result.append({
+        result['checks'].append({
             'check': NO_FRONT_MATTER,
             'line': 1,
         })
@@ -432,7 +436,7 @@ def validate(content, fpath, validation):
     if validation == VALIDATE_ALL:
         if 'linkTitle' in fm:
             if len(fm['linkTitle']) > 40:
-                result.append({
+                result['checks'].append({
                     'check': LONG_LINK_TITLE,
                     'value': fm['linkTitle'],
                 })
@@ -441,56 +445,56 @@ def validate(content, fpath, validation):
     if validation == VALIDATE_ALL:
         if 'title' in fm:
             if len(fm['title']) < 5:
-                result.append({
+                result['checks'].append({
                     'check': SHORT_TITLE,
                     'value': fm['title'],
                 })
             elif len(fm['title']) > 40 and not 'linkTitle' in fm and not ignored_path(fpath, NO_LINK_TITLE):
-                result.append({
+                result['checks'].append({
                     'check': NO_LINK_TITLE,
                 })
             if len(fm['title']) > 100:
-                result.append({
+                result['checks'].append({
                     'check': LONG_TITLE,
                     'value': fm['title'],
                 })
         else:
-            result.append({
+            result['checks'].append({
                 'check': NO_TITLE,
             })
 
     if validation == VALIDATE_ALL:
         if 'description' in fm:
             if fm['description'] is None and not ignored_path(fpath, NO_DESCRIPTION):
-                result.append({
+                result['checks'].append({
                     'check': NO_DESCRIPTION,
                 })
             elif type(fm['description']) != str:
                 if not ignored_path(fpath, INVALID_DESCRIPTION):
-                    result.append({
+                    result['checks'].append({
                         'check': INVALID_DESCRIPTION,
                         'value': fm['description'],
                     })
             elif len(fm['description']) < 70:
                 if not ignored_path(fpath, SHORT_DESCRIPTION):
-                    result.append({
+                    result['checks'].append({
                         'check': SHORT_DESCRIPTION,
                         'value': fm['description'],
                     })
             elif len(fm['description']) > 300:
                 if not ignored_path(fpath, LONG_DESCRIPTION):
-                    result.append({
+                    result['checks'].append({
                         'check': LONG_DESCRIPTION,
                         'value': fm['description'],
                     })
             elif "\n" in fm['description'].strip():
                 if not ignored_path(fpath, INVALID_DESCRIPTION):
-                    result.append({
+                    result['checks'].append({
                         'check': INVALID_DESCRIPTION,
                         'value': fm['description'],
                     })
         elif not ignored_path(fpath, NO_DESCRIPTION):
-            result.append({
+            result['checks'].append({
                 'check': NO_DESCRIPTION,
             })
 
@@ -498,11 +502,11 @@ def validate(content, fpath, validation):
     if validation == VALIDATE_ALL:
         if 'menu' in fm:
             if 'linkTitle' not in fm:
-                result.append({
+                result['checks'].append({
                     'check': NO_LINK_TITLE,
                 })
             if 'weight' not in fm:
-                result.append({
+                result['checks'].append({
                     'check': NO_WEIGHT,
                 })
 
@@ -510,24 +514,24 @@ def validate(content, fpath, validation):
     if validation == VALIDATE_ALL:
         if 'owner' in fm:
             if type(fm['owner']) != list:
-                result.append({
+                result['checks'].append({
                     'check': INVALID_OWNER,
                     'value': fm['owner'],
                 })
             elif len(fm['owner']) == 0:
-                result.append({
+                result['checks'].append({
                     'check': NO_OWNER,
                 })
             else:
                 for o in fm['owner']:
                     if not o.startswith('https://github.com/orgs/giantswarm/teams/'):
-                        result.append({
+                        result['checks'].append({
                             'check': INVALID_OWNER,
                             'value': fm['owner'],
                         })
         else:
             if not ignored_path(fpath, NO_OWNER):
-                result.append({
+                result['checks'].append({
                     'check': NO_OWNER,
                 })
 
@@ -535,19 +539,19 @@ def validate(content, fpath, validation):
         if 'user_questions' in fm:
             for q in fm['user_questions']:
                 if len(q) > 100:
-                    result.append({
+                    result['checks'].append({
                         'check': LONG_USER_QUESTION,
                         'value': q,
                     })
                 if not q.endswith('?'):
-                    result.append({
+                    result['checks'].append({
                         'check': NO_QUESTION_MARK,
                         'value': q,
                     })
         else:
             if (not ignored_path(fpath, NO_USER_QUESTIONS) and
                 not fpath.endswith('_index.md')):
-                result.append({
+                result['checks'].append({
                     'check': NO_USER_QUESTIONS,
                 })
 
@@ -556,24 +560,24 @@ def validate(content, fpath, validation):
             if type(fm['last_review_date']) is datetime.date:
                 diff = todays_date - fm['last_review_date']
                 if diff > datetime.timedelta(days=365):
-                    result.append({
+                    result['checks'].append({
                         'check': REVIEW_TOO_LONG_AGO,
                         'value': fm['last_review_date'],
                     })
                 elif diff < datetime.timedelta(seconds=0):
                     # in the future
-                    result.append({
+                    result['checks'].append({
                         'check': INVALID_LAST_REVIEW_DATE,
                         'value': fm['last_review_date'],
                     })
             else:
-                result.append({
+                result['checks'].append({
                     'check': INVALID_LAST_REVIEW_DATE,
                     'value': fm['last_review_date'],
                 })
         else:
             if not ignored_path(fpath, NO_LAST_REVIEW_DATE):
-                result.append({
+                result['checks'].append({
                     'check': NO_LAST_REVIEW_DATE,
                 })
 
@@ -581,15 +585,13 @@ def validate(content, fpath, validation):
     if validation == VALIDATE_ALL:
         for key in fm.keys():
             if key not in valid_keys:
-                result.append({
+                result['checks'].append({
                     'check': UNKNOWN_ATTRIBUTE,
                     'value': key,
                 })
     
-    return {
-        'num_front_matter_lines': num_fmlines,
-        'checks': result,
-    }
+    result['num_front_matter_lines'] = num_fmlines
+    return result
 
 
 def literal(text):
