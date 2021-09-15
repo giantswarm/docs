@@ -6,7 +6,7 @@ changes_categories:
 - Workload cluster releases for KVM
 changes_entry:
   repository: giantswarm/releases
-  url: https://github.com/giantswarm/releases/tree/master/kvm/v14.1.1
+  url: https://github.com/giantswarm/releases/tree/master/kvm/archived/v14.1.1
   version: 14.1.1
   version_tag: v14.1.1
 date: '2021-06-23T05:24:59+00:00'
