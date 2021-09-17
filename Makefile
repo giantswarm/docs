@@ -108,9 +108,10 @@ linkcheck-internal:
 	docker kill server
 	docker kill linkchecker
 
-grab-main-site-header-footer:
-	curl -s https://www.giantswarm.io/why-giant-swarm | sed -n '/^<!-- BEGIN SITE_HEADER -->/,/^<!-- END SITE_HEADER -->/p;/^<!-- END SITE_HEADER -->/q' | sed '1d;$d' > src/layouts/partials/gs_header.html
-	curl -s https://www.giantswarm.io/why-giant-swarm | sed -n '/^<!-- BEGIN SITE_FOOTER -->/,/^<!-- END SITE_FOOTER -->/p;/^<!-- END SITE_FOOTER -->/q' | sed '1d;$d' > src/layouts/partials/gs_footer.html
+update-website-content:
+	cd ./scripts/update-website-content && \
+		npm ci && \
+		npm start
 
 # Verify internal and external links
 # based on the currently deployed docs website.
@@ -131,4 +132,3 @@ linkcheck:
 		--ignore-url=".*gigantic\.io.*" \
 		--ignore-url="^https://my-org\.github\.com/.*" \
 		--ignore-url="^https://github\.com/giantswarm/giantswarm/.*"
-
