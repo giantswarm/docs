@@ -44,7 +44,7 @@ It supports the following flags:
 
 - `--provider` - The infrastructure provider (either `aws` or `azure`).
 - `--name` - Unique identifier of the cluster.
-- `--owner` - organization, owning workload cluster. Must be configured with existing organization in installation.
+- `--organization` - Name of the organization that will "own" the cluster.
 - `--release` - valid workload cluster release version.
   Can be retrieved with `gsctl list releases` for your installation. Only versions above *10.x.x*+ support cluster CRs.
 - `--description` (optional) - User-friendly description of the cluster's purpose.
@@ -76,7 +76,7 @@ kubectl gs template cluster \
   --external-snat true \
   --description "Cluster #2" \
   --pods-cidr 10.2.0.0/16 \
-  --owner acme \
+  --organization acme \
   --release 15.0.0 \
   --label environment=testing \
   --label team=upstate
