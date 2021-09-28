@@ -9,7 +9,7 @@ menu:
 aliases:
   - /reference/gsctl/select-endpoint/
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-ux
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I select an API endpoint for use with gsctl?
 last_review_date: 2021-01-01

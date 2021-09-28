@@ -15,7 +15,7 @@ user_questions:
   - How can I give feedback on the web UI?
 last_review_date: 2021-01-01
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-biscuit
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 ---
 
 # The web user interface

@@ -9,7 +9,7 @@ menu:
 aliases:
   - /reference/gsctl/update-nodepool/
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-ux
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I modify a node pool using gsctl?
 last_review_date: 2021-01-01

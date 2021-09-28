@@ -14,7 +14,7 @@ aliases:
 user_questions:
   - How can I manage cluster labels via the web interface?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-biscuit
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 ---
 
 # Labelling workload clusters using the web interface

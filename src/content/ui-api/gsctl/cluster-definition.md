@@ -18,7 +18,7 @@ user_questions:
   - Will my cluster definition change if I use node pools?
 last_review_date: 2021-01-01
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-biscuit
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 ---
 
 # Cluster definition reference

@@ -11,7 +11,7 @@ user_questions:
   - How to create workload cluster key pairs via the Management API?
 last_review_date: 2021-08-23
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-biscuit
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 ---
 
 # Creating workload cluster key pairs via the Management API

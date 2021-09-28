@@ -10,7 +10,7 @@ menu:
 aliases:
   - /reference/kubectl-gs/login/
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-ux
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I log in with kubectl for the Management API?
 last_review_date: 2021-01-01

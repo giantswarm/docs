@@ -9,7 +9,7 @@ menu:
 aliases:
   - /reference/gsctl/configuration-file/
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-ux
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - What settings does gsctl store in its config file?
   - Where can I find gsctl's configuration file?
