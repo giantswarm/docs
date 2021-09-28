@@ -87,7 +87,7 @@ together to enable the features of the Giant Swarm App Platform:
 By default you will have the Giant Swarm Catalog and the Giant Swarm Playground installed
 on your management clusters.
 
-### The Giant Swarm Catalog
+#### The Giant Swarm Catalog
 
 This catalog contains our stable, fully managed apps, with SLA (e.g. the NGINX Ingress Controller). It also contain apps that we are developing towards that level of commitment (e.g. Kong, EFK).
 
@@ -97,7 +97,7 @@ Maturity levels of apps in this catalog are expressed through semantic versionin
 - Version with `-rc*` suffix - the application is at a preview maturity level. This allows customers to preview a new release of an application and evaluate new features. It is supported on a best effort basis.
 - version >= `v1.0.0` with no suffix - the specified version of the application is at a stable maturity level. It is available to our customers as a managed offering with support and SLA.
 
-### The Giant Swarm Playground
+#### The Giant Swarm Playground
 
 This is our go-to place to create and try out things. Mainly, this contains apps that we have added in order help you with a certain issue. Additionally, you will find some apps that we created for non-commercial purposes (e.g. for a blog post or a workshop).
 
