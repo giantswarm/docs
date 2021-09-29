@@ -12,7 +12,7 @@ user_questions:
   - In what development stage is the Management API?
 last_review_date: 2021-08-04
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-biscuit
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 ---
 
 # The Management API

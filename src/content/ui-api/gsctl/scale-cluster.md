@@ -9,7 +9,7 @@ menu:
 aliases:
   - /reference/gsctl/scale-cluster/
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-ux
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I scale an on-premises (KVM) cluster using gsctl?
 last_review_date: 2021-08-13

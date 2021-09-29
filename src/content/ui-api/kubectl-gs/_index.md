@@ -13,7 +13,7 @@ user_questions:
 aliases:
   - /reference/kubectl-gs/
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-ux
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 ---
 
 # `kubectl gs` plugin reference

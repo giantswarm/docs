@@ -13,7 +13,7 @@ user_questions:
 aliases:
   - /reference/gsctl/login/
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-ux
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 last_review_date: 2021-01-01
 ---
 

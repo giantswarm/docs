@@ -14,7 +14,7 @@ user_questions:
   - What requirements are there to use single sign-on with the Management API?
   - How can I refresh my groups memberships for Management API authorization?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-biscuit
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 ---
 
 # Authentication for the Management API

@@ -9,7 +9,7 @@ menu:
 aliases:
   - /reference/gsctl/delete-endpoint/
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-ux
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I delete an endpoint from gsctl?
   - How can I delete an installation from gsctl?
