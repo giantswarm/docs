@@ -19,7 +19,8 @@ a {
 
 .header-container-wrapper,
 .footer-container-wrapper {
-  font-weight: 500;
+  font-weight: 400;
+  font-family: inherit;
   line-height: 1.7;
 }
 
