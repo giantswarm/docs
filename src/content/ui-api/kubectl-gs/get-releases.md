@@ -90,7 +90,7 @@ The following example command would print the main resource for release `v15.2.1
 kubectl gs get releases v15.2.1 --output yaml
 ```
 
-When applied without a release name argument, the output will be a list of resources. Example:
+When applied without a release version argument, the output will be a list of resources. Example:
 
 ```nohighlight
 $ kubectl gs get releases --output yaml
