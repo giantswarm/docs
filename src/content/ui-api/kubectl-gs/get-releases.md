@@ -13,7 +13,7 @@ owner:
 user_questions:
   - How can I list releases in a cluster using kubectl?
   - How can I inspect releases using kubectl?
-last_review_date: 2021-01-01
+last_review_date: 2021-10-04
 ---
 
 # `kubectl gs get releases`
