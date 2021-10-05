@@ -20,7 +20,7 @@ crd:
     - workloadcluster
 layout: crd
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-ludacris
+  - https://github.com/orgs/giantswarm/teams/team-cabbage
 aliases:
   - /reference/cp-k8s-api/certconfigs.core.giantswarm.io/
 technical_name: certconfigs.core.giantswarm.io
