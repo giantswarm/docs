@@ -6,5 +6,5 @@ aliases:
   - /basics/app-platform/
 last_review_date: 2021-01-01
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-batman
+  - https://github.com/orgs/giantswarm/teams/sig-honeybadger
 ---
