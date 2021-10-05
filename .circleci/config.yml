@@ -35,10 +35,10 @@ jobs:
             echo $CURL_OUTPUT | grep --quiet "Giant Swarm"
 
       - deploy:
-          name: Deploy (only if branch is "master")
+          name: Deploy (only if in default branch)
           command: |
-            echo "Deploy only if '${CIRCLE_BRANCH}' == 'master'"
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+            echo "Deploy only if '${CIRCLE_BRANCH}' == 'main'"
+            if [ "${CIRCLE_BRANCH}" == "main" ]; then
               ./architect deploy
             fi
 
