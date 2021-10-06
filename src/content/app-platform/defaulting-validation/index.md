@@ -8,7 +8,7 @@ menu:
     parent: app-platform
 last_review_date: 2020-12-16
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-batman
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 aliases:
   - /reference/app-defaulting-validation/
 user_questions:
