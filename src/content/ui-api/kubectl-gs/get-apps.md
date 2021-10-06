@@ -9,7 +9,7 @@ menu:
 aliases:
   - /reference/kubectl-gs/get-apps/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-batman
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I list apps using kubectl?
   - How can I inspect apps using kubectl?

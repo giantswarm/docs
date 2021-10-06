@@ -11,7 +11,7 @@ last_review_date: 2021-06-16
 aliases:
   - /basics/app-catalog/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-batman
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - What does App Platform do?
   - What is an App Catalog?
