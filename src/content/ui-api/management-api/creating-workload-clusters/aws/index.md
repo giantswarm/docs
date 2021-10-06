@@ -28,7 +28,7 @@ All the workload clusters, created with workload cluster release v{{% first_aws_
 At a high-level, the Management API is used to manage the following custom resources (CRs):
 
 - [Cluster]({{< relref "/ui-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) - represents a Kubernetes cluster excluding worker nodes.
-- [G8sControlPlane]({{< relref "/ui-api/management-api/crd/g8scontrolplanes.infrastructure.giantswarm.io.md" >}}) - hold configuration about the master node(s) of a cluster.
+- [G8sControlPlane]({{< relref "/ui-api/management-api/crd/g8scontrolplanes.infrastructure.giantswarm.io.md" >}}) - hold configuration about the control plane node(s) of a cluster.
 - [MachineDeployment]({{< relref "/ui-api/management-api/crd/machinedeployments.cluster.x-k8s.io.md" >}}) - represents a node pool.
 
 The CRs above then reference provider specific implementations. In our case, for clusters on AWS, they are:
