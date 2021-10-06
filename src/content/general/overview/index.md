@@ -25,7 +25,7 @@ With Giant Swarm you get fully-managed Kubernetes clusters, which you can then u
 
 Your clusters comes out-of-the-box as follows:
 
-- High-availability Kubernetes masters on AWS with clustered etcd (optional), single master with resilient etcd
+- High-availability Kubernetes control plane on AWS with clustered etcd (optional), single node control plane with resilient etcd
 - Resiliently deployed worker nodes
 - Full end-to-end encryption between Kubernetes components
 - Regularly rolling keys for above-mentioned encryption
@@ -48,7 +48,7 @@ There are some things not included in the cluster as managed by us:
 As of workload cluster release v{{% first_aws_ha_controlplane_version %}} for AWS, [multiple control plane nodes]({{< relref "/advanced/high-availability/control-plane" >}}) with one
 etcd cluster member each are active by default on AWS.
 
-On other providers and in older workload cluster release for AWS, your clusters have a single running master. However, the clusters are set up in a way that they keep running even if the master is unavailable for a while (e.g. due to planned upgrades, failure, etc.). The only slight degradation you might notice is that while the master is down, you cannot change the state of your pods and other resources. As soon as the master is up again, you regain full control.
+On other providers and in older workload cluster release for AWS, your clusters have a single running control plane node. However, the clusters are set up in a way that they keep running even if the control plane node is unavailable for a while (e.g. due to planned upgrades, failure, etc.). The only slight degradation you might notice is that while the control plane node is down, you cannot change the state of your pods and other resources. As soon as the control plane node is up again, you regain full control.
 
 Furthermore, Kubernetes takes care of syncing your cluster with your desired state, so even when a node goes down (e.g. due to planned upgrades, failure, etc.), pods will get restarted/rescheduled if they are not running once it comes up again. If the node was away due to a network partition, the pods might still be running. In that case the scheduler might have added more pods to other nodes while the node was away so it will remove some pods to be consistent with your desired number of replicas.
 
