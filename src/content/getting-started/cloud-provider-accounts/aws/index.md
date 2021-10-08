@@ -47,6 +47,8 @@ workload cluster IAM roles mentioned above.
 
 We have created a Terraform module to automate the IAM role creation. You can view the code [here](https://github.com/giantswarm/giantswarm-aws-account-prerequisites). You can also use the steps as described in this guide.
 
+![AWS Setup Diagram](aws_onboarding.png)
+
 ## IAM setup in AWS accounts {#iam}
 
 The following steps must all take in the management cluster and workload cluster AWS
