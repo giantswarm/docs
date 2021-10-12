@@ -30,6 +30,7 @@ all MCs, but we don't support managing clusters with it on KVM
 - How to use Flux with private repositories and/or Mozilla SOPS
 - Node pools for cluster section
 - Test Azure cluster creation
+- Go through the document and improve wording once its shape is agreed upon
 
 You can manage infrastructure and applications by utilizing FluxCD - a set of GitOps operators installed in Giant Swarm Management Clusters.
 
