@@ -7,7 +7,8 @@ menu:
   main:
     parent: advanced
 user_questions:
-  - How can I add a new connector?
+  - How can I configure OIDC in my cluster?
+  - How can I add a new OIDC connector?
 aliases:
   - /basics/configure-dex-in-your-cluster/
 last_review_date: 2021-10-01
