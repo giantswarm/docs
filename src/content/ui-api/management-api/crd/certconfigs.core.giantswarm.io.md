@@ -12,7 +12,7 @@ crd:
   technical_name: certconfigs.core.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.33.0
+  source_repository_ref: v3.34.0
   versions:
     - v1alpha1
   topics:
@@ -20,12 +20,12 @@ crd:
     - workloadcluster
 layout: crd
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-ludacris
+  - https://github.com/orgs/giantswarm/teams/team-cabbage
 aliases:
   - /reference/cp-k8s-api/certconfigs.core.giantswarm.io/
 technical_name: certconfigs.core.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.33.0
+source_repository_ref: v3.34.0
 ---
 
 # CertConfig
