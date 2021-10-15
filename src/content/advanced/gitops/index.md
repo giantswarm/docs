@@ -36,11 +36,21 @@ You can manage infrastructure and applications by utilizing FluxCD - a set of Gi
 
 ## What is GitOps
 
-Put simply, GitOps is a way of managing infrastructure as code. It is a Continuous Delivery solution with the premise of code repositories being the ultimate sources of truth about Kubernetes clusters at its core.
+GitOps Working Group [defines GitOps as a set of principles](https://github.com/open-gitops/documents/blob/release-v1.0.0/PRINCIPLES.md):
+> GitOps is a set of principles for operating and managing software systems. These principles are derived from modern software operations, but are also rooted in pre-existing and widely adopted best practices.
+> The desired state of a GitOps managed system must be:
+> 1. Declarative
+> A system managed by GitOps must have its desired state expressed declaratively.
+> 2. Versioned and Immutable
+> Desired state is stored in a way that enforces immutability, versioning and retains a complete version history.
+> 3. Pulled Automatically
+> Software agents automatically pull the desired state declarations from the source.
+> 4. Continuously Reconciled
+> Software agents continuously observe actual system state and attempt to apply the desired state.
 
-Cluster's desired state, or manifest, is kept in Git repositories (or Helm repositories, S3 buckets, and so on). GitOps operators are deployed to clusters and configured to watch the manifest. The operators are tasked with periodically comparing the desired and actual states of the cluster's resources and reconciling them in case any discrepancies are found.
+How those principles translate into workings of popular tools, such as FluxCD or ArgoCD can be summarized as this:
 
-If the cluster's state changes in a way that is not reflected in the code, the change will be reverted. If the code is updated with a new configuration and/or resources, the cluster will be instantly updated to match the desired state.
+Cluster's desired state, or manifest, is kept in Git repositories (or Helm repositories, S3 buckets, and so on). GitOps operators are deployed to clusters and configured to watch the manifest. The operators are tasked with periodically comparing the desired and actual states of the cluster's resources and reconciling them in case any discrepancies are found. If the cluster's state changes in a way that is not reflected in the code, the change will be reverted. If the code is updated with a new configuration and/or resources, the cluster will be instantly updated to match the desired state.
 
 This way of managing Kubernetes comes with all benefits and best practices of a versioning system: code reviews, pull requests, versioned releases, test branches, commit history, and full accountability. Due to the almost instant deployment of committed changes, it is also a perfect tool for development and testing.
 
@@ -68,27 +78,31 @@ If want to learn more about FluxCD and its capabilities, here are a couple of us
 
 In this section, we will guide you through an example Flux setup on Giant Swarm Management Cluster. Every mention of _example resources_ or _example repository_ refers to [giantswarm/flux-demo](https://github.com/giantswarm/flux-demo), where you can find all resources used in this section in full, unabbreviated forms.
 
+In order to follow [Test or development branches](#test-or-development-branches) section, you should fork the repository and work on your fork instead.
+
 We will be using [Flux CLI](https://fluxcd.io/docs/cmd/) and [kubectl-gs](https://github.com/giantswarm/kubectl-gs), but neither is strictly required to complete this guide.
 
 ### Setting up sources
 
 First things first - create a bare-bones `GitRepository` resource that points to [giantswarm/flux-demo](https://github.com/giantswarm/flux-demo).
 
-```yaml
-# 01-source.yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta1
-kind: GitRepository
-metadata:
-  name: flux-demo
-  namespace: flux-system
-spec:
-  interval: 30s # How often Flux checks for repository updates (new commits)
-  ref:
-    branch: main
-  url: https://github.com/giantswarm/flux-demo
+```nohighlight
+~ flux create source git flux-demo \
+        --url=https://github.com/giantswarm/flux-demo \
+        --branch=main \
+        --interval=30s \
+        --export > 01-source.yaml
 ```
 
-This is very straightforward and does not do anything to the cluster's state just yet. You can see if the change was applied using `kubectl`:
+This command creates the Custom Resource for you and exports it to `01-source.yaml`. You can also use the `01-source.yaml` file from example repository - they are identical. All resources generated in this document are stored there as well.
+
+Time to apply the generated YAML:
+
+```nohighlight
+~ kubectl apply -f 01-source.yaml
+```
+
+You can see if the change was applied using `kubectl`:
 
 ```nohiglight
 ~ kubectl get gitrepositories -n flux-system flux-demo
@@ -119,41 +133,33 @@ File structure
 │   └── resources.yaml      # contains Organization CR
 ```
 
-```yaml
-# 02-organization.yaml
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
-kind: Kustomization
-metadata:
-  name: install-organization
-  namespace: flux-system
-spec:
-  interval: 30s
-  path: ./02-organization
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-demo
-  validation: client
+First, let's create the kustomize directory:
+
+```nohighlight
+~ mkdir 02-organization
 ```
 
-```yaml
-# 02-organization/kustomization.yaml
-resources:
-- resources.yaml
+```nohighlight
+~ echo -e 'resources:\n- resources.yaml' > 02-organization/kustomization.yaml
 ```
 
-```yaml
-# 02-organization/resources.yaml
-apiVersion: security.giantswarm.io/v1alpha1
-kind: Organization
-metadata:
-  creationTimestamp: null
-  name: flux-demo
-spec: {}
-status: {}
+```nohighlight
+~ kubectl gs template organization --name flux-demo > 02-organization/resources.yaml
 ```
 
-You can use `kubectl gs template organization --name flux-demo` to generate contents of `02-organization/resources.yaml` on your own.
+> Note: To learn more about Giant Swarm's kubectl plugin, visit [kubectl-gs documentation]({{< relref "/ui-api/kubectl-gs/" >}}).
+
+This would be enough to create the Organization on our own. Let's add a `Kustomization` CR, so that Flux knows how to work with `02-organization/` directory.
+
+```nohighlight
+~ flux create kustomization install-organization \
+        --source=GitRepository/flux-demo.flux-system \
+        --path="./02-organization" \
+        --prune=true  \
+        --interval=30s \
+        --validation=client \
+        --export > 02-organization.yaml
+```
 
 For Flux to manage this piece of code, you just have to create the `Kustomization` resource. Contents of `02-organization` will be reconciled automatically.
 
@@ -171,7 +177,6 @@ install-organization    True    Applied revision: main/17c3d4eac3ffde575c0a799c2
 Let's see if the Organization and the namespace that comes with it are present:
 
 ```nohighlight
-
 ~ kubectl get organizations flux-demo
 NAME        AGE
 flux-demo   2m25s
@@ -180,7 +185,7 @@ NAME            STATUS   AGE
 org-flux-demo   Active   2m29s
 ```
 
-Now, if you add any more Organization CRs to `02-organization/resources.yaml` (or change anything else in that kustomization), it will be picked up by Flux automatically once it's committed and pushed. Of course, you can't do that with the demo repository, but you can try with your own, or take a look at [Test or development branches](#test-or-development-branches) section.
+Now, if you add any more Organization CRs to `02-organization/resources.yaml` (or change anything else in that kustomization), it will be picked up by Flux automatically once it's committed and pushed. This is covered in the [Test or development branches](#test-or-development-branches) section.
 
 ### Managing workload clusters
 
@@ -194,162 +199,34 @@ File structure
 .
 ├── 03-cluster-aws.yaml     # contains HelmRelease CR
 ├── 03-cluster-aws          # Helm release directory
-│   ├── Chart.yaml
+│   ├── Chart.yaml          # Helm chart definition
 │   ├── templates
 │   │   └── resources.yaml  # contains Giant Swarm cluster CRs
-│   └── values.yaml
+│   └── values.yaml         # Helm chart values
 ```
 
-You can use `kubectl gs template cluster --provider aws --name demo0 --organization flux-demo --description flux-demo` to generate contents of `03-cluster-aws/templates/resources.yaml` on your own.
 
-```yaml
-# 03-cluster-aws.yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
-kind: HelmRelease
-metadata:
-  name: install-cluster-aws-chart
-  namespace: flux-system
-spec:
-  interval: 15s
-  chart:
-    spec:
-      chart: "./03-cluster-aws"
-      sourceRef:
-        kind: GitRepository
-        name: flux-demo
-        namespace: flux-system
-      interval: 15s
-  upgrade:
-    remediation:
-      remediateLastFailure: true
-  test:
-    enable: true
+```nohighlight
+~ mkdir -p 03-cluster-aws/templates
 ```
 
-```yaml
-# 03-cluster-aws/Chart.yaml
-apiVersion: v1
-name: flux-demo-cluster
-home: https://github.com/giantswarm/flux-demo
-description: ""
-version: v1.0.0
+```nohighlight
+~ kubectl gs template cluster --provider aws --name demo0 --organization flux-demo --description flux-demo > 03-cluster-aws/templates/resources.yaml
 ```
 
-```yaml
-# 03-cluster-aws/values.yaml
-clusterid: demo0
-organization: flux-demo
-namespace: org-flux-demo
-controlplaneid: tj0a6
-description: flux-demo
-```
+> Note: There is some parametrization and hooks already added in the demo respository. You can copy from there if you don't want to do it on your own.
+> Otherwise please:
+> - parametrize common variables and put them in `values.yaml`: cluster ID, organization name, namespace, control plane ID, etc.
+> - add hook annotations to `Cluster` CR: `helm.sh/hook: pre-install` and `helm.sh/hook-weight: "-1"`
 
-```yaml
-# 03-cluster-aws/templates/resources.yaml
-apiVersion: cluster.x-k8s.io/v1alpha3
-kind: Cluster
-metadata:
-  annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/clusters.cluster.x-k8s.io/
-    helm.sh/hook: pre-install
-    helm.sh/hook-weight: "-1"
-  creationTimestamp: null
-  labels:
-    cluster-operator.giantswarm.io/version: ""
-    giantswarm.io/cluster: {{ .Values.clusterid }}
-    giantswarm.io/organization: {{ .Values.organization }}
-    release.giantswarm.io/version: ""
-  name: {{ .Values.clusterid }}
-  namespace: {{ .Values.namespace }}
-spec:
-  controlPlaneEndpoint:
-    host: ""
-    port: 0
-  infrastructureRef:
-    apiVersion: infrastructure.giantswarm.io/v1alpha3
-    kind: AWSCluster
-    name: {{ .Values.clusterid }}
-    namespace: {{ .Values.namespace }}
-status:
-  controlPlaneInitialized: false
-  infrastructureReady: false
----
-apiVersion: infrastructure.giantswarm.io/v1alpha3
-kind: AWSCluster
-metadata:
-  annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/awsclusters.infrastructure.giantswarm.io/
-  creationTimestamp: null
-  labels:
-    aws-operator.giantswarm.io/version: ""
-    cluster.x-k8s.io/cluster-name: {{ .Values.clusterid }}
-    giantswarm.io/cluster: {{ .Values.clusterid }}
-    giantswarm.io/organization: {{ .Values.organization }}
-    release.giantswarm.io/version: ""
-  name: {{ .Values.clusterid }}
-  namespace: {{ .Values.namespace }}
-spec:
-  cluster:
-    description: {{ .Values.description }}
-    dns:
-      domain: ""
-    kubeProxy: {}
-    oidc:
-      claims: {}
-  provider:
-    credentialSecret:
-      name: ""
-      namespace: giantswarm
-    master:
-      availabilityZone: ""
-      instanceType: ""
-    nodes: {}
-    pods:
-      externalSNAT: false
-    region: ""
-status:
-  cluster: {}
-  provider:
-    network: {}
----
-apiVersion: infrastructure.giantswarm.io/v1alpha3
-kind: G8sControlPlane
-metadata:
-  annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/g8scontrolplanes.infrastructure.giantswarm.io/
-  creationTimestamp: null
-  labels:
-    cluster-operator.giantswarm.io/version: ""
-    giantswarm.io/cluster: {{ .Values.clusterid }}
-    giantswarm.io/control-plane: {{ .Values.controlplaneid }}
-    giantswarm.io/organization: {{ .Values.organization }}
-    release.giantswarm.io/version: ""
-  name: {{ .Values.controlplaneid }}
-  namespace: {{ .Values.namespace }}
-spec:
-  infrastructureRef:
-    apiVersion: infrastructure.giantswarm.io/v1alpha3
-    kind: AWSControlPlane
-    name: {{ .Values.controlplaneid }}
-    namespace: {{ .Values.namespace }}
-status: {}
----
-apiVersion: infrastructure.giantswarm.io/v1alpha3
-kind: AWSControlPlane
-metadata:
-  annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/awscontrolplanes.infrastructure.giantswarm.io/
-  creationTimestamp: null
-  labels:
-    aws-operator.giantswarm.io/version: ""
-    giantswarm.io/cluster: {{ .Values.clusterid }}
-    giantswarm.io/control-plane: {{ .Values.controlplaneid }}
-    giantswarm.io/organization: {{ .Values.organization }}
-    release.giantswarm.io/version: ""
-  name: {{ .Values.controlplaneid }}
-  namespace: {{ .Values.namespace }}
-spec:
-  instanceType: m5.xlarge
+Add `Chart.yaml` and `values.yaml` from the example repository or create your own.
+
+```nohighlight
+~ flux create helmrelease install-cluster-aws-chart \
+        --source=GitRepository/flux-demo.flux-system \
+        --chart="./03-cluster-aws" \
+        --interval=15s \
+        --export > 03-cluster-aws.yaml
 ```
 
 Let's install the `HelmRelease` resource and watch the cluster come up.
@@ -374,6 +251,8 @@ NAME    PHASE
 demo0
 ```
 
+> Note: This cluster still needs a NodePool to reach full functionality. To learn more, visit [NodePool documentation]({{< relref "/advanced/node-pools/" >}}).
+
 ### Installing managed applications
 
 It is just as easy to install managed applications in existing workload clusters. In this part of the guide we will assume you have completed previous steps and have both an organization and a cluster running.
@@ -388,64 +267,82 @@ File structure
 │   └── resources.yaml      # contains Giant Swarm App CR
 ```
 
-```yaml
-# 04-managed-app.yaml
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
-kind: Kustomization
-metadata:
-  name: install-managed-app
-  namespace: flux-system
-spec:
-  interval: 30s
-  path: ./04-managed-app
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-demo
-  validation: client
+```nohighlight
+~ mkdir 04-managed-app
 ```
 
-```yaml
-# 04-managed-app/kustomization.yaml
-resources:
-- resources.yaml
+```nohighlight
+~ echo -e 'resources:\n- resources.yaml' > 04-managed-app/kustomization.yaml
 ```
 
-```yaml
-# 04-managed-app/resources.yaml
-apiVersion: application.giantswarm.io/v1alpha1
-kind: App
-metadata:
-  name: flux-app
-  namespace: demo0
-spec:
-  catalog: giantswarm
-  kubeConfig:
-    inCluster: false
-  name: flux-app
-  namespace: flux-system
-  version: 0.4.0
+```nohighlight
+kubectl gs template app \
+        --cluster "clusterid" \
+        --catalog giantswarm \
+        --name nginx-ingress-controller-app \
+        --namespace default \
+        --version 2.4.0 > 04-managed-app/resources.yaml
 ```
 
-You can create the App CR on your own using `kubectl gs template app --cluster demo0 --catalog giantswarm --name flux-app --namespace flux-system --version 0.4.0`.
+```nohighlight
+~ flux create kustomization install-managed-app \
+        --source=GitRepository/flux-demo.flux-system \
+        --path="./04-managed-app" \
+        --prune=true  \
+        --interval=30s \
+        --validation=client \
+        --export > 04-managed-app.yaml
+```
+
 
 Install the `Kustomization`:
 
 ```nohighlight
 ~ kubectl create -f 04-managed-app.yaml
 kustomization.kustomize.toolkit.fluxcd.io/install-managed-app created
-~ kubectl get apps -n demo0 flux-app
-NAME                 VERSION      LAST DEPLOYED   STATUS
-flux-app             4.0.0        31s             deployed
+~ kubectl get apps -n demo0 nginx-ingress-controller-app
+NAME                                VERSION      LAST DEPLOYED   STATUS
+nginx-ingress-controller-app        2.4.0        31s             deployed
 ```
 
 Now the managed application will be installed in your workload cluster.
 
 ### Test or development branches
 
+#### Watching for new commits
+
+If you have forked the repository, you can test if Flux is watching it for new commits. We are assuming you have completed at least [Managing organizations](#managing-organizations) section.
+
+Let's create a new Organization CR and add it to `02-organization/resources.yaml`
+
+```nohighlight
+~ echo '---' >> 02-organization/resources.yaml && \
+    kubectl gs template organization --name new-commit >> 02-organization/resources.yaml
+```
+
+Create a commit and push it to your repository's origin.
+
+```nohighlight
+~ git add . && \
+    git commit -m 'add new organization "new-commit"' && \
+    git push
+```
+
+Flux will pick it up after an interval you have set up in `Kustomization` and you should see the following result:
+
+```nohighlight
+~ kubectl get organizations
+NAME        AGE
+flux-demo   3h
+new-commit  17s
+...
+```
+
+#### Changing source to a development branch
+
 Flux enables developers to deploy work-in-progress code in many ways, one of the most useful is deploying code from development branches. To do that, we will create a new `GitRepository` resource. It will be pointing to `development` branch of demo repository, instead of `main` branch. Then we will patch the `Kustomization` created in [Managing organizations](#managing-organizations) section so that it uses the new source instead.
 
-The `development` branch contains an extra Organization in `02-organization/resources.yaml`, which will be instantly created. The same would have happened if we just pushed new commits to a source Flux is already watching - they would have been picked up immediately and reconciled against the cluster.
+The `development` branch contains an extra Organization in `02-organization/resources.yaml`, which will be instantly created.
 
 File structure
 
@@ -456,39 +353,7 @@ File structure
 │   └── source.yaml
 ```
 
-```yaml
-# 05-development/organization-patch.yaml
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
-kind: Kustomization
-metadata:
-  name: install-organization
-  namespace: flux-system
-spec:
-  interval: 30s
-  path: ./02-organization
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-demo-development
-  validation: client
-```
-
-```yaml
-# 05-development/source.yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta1
-kind: GitRepository
-metadata:
-  name: flux-demo-development
-  namespace: flux-system
-spec:
-  interval: 30s
-  ref:
-    branch: development
-  url: https://github.com/giantswarm/flux-demo
-  timeout: 30s
-```
-
-Please, note the differences
+Note the differences:
 
 ```diff
 --- a/02-organization.yaml
@@ -522,6 +387,10 @@ Please, note the differences
 ```
 
 After applying the changes, `install-organization` `Kustomization` will switch to watching `development` branch and create new organization found there:
+
+```nohighlight
+~ kubectl apply -R -f 05-development
+```
 
 ```nohighlight
 ~ kubectl get organizations flux-demo
