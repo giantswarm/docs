@@ -13,7 +13,7 @@ user_questions:
 aliases:
   - /guides/installing-optional-ingress-controller/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-halo
+  - https://github.com/orgs/giantswarm/teams/team-cabbage
 last_review_date: 2021-09-01
 ---
 
