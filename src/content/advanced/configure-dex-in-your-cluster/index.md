@@ -1,6 +1,6 @@
 ---
-linkTitle: Configure Dex in your cluster
-title: Configure Dex in your cluster
+linkTitle: Configure OIDC with Dex to access your clusters
+title: Configure OIDC with Dex to access your clusters
 description: A general explanation on how to install and configure Dex to work as authenticator mechanism to provide OpenID tokens.
 weight: 100
 menu:
@@ -16,7 +16,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-horizon
 ---
 
-# Configure Dex as authenticator mechanism for your cluster
+# Configure OpenID Connect (OIDC) with Dex to access your clusters
 
 ## Introduction
 
