@@ -24,22 +24,21 @@ In Giant Swarm we automatically configure DEX in our Management Clusters to allo
 
 For the workload clusters, where our customers run their applications, we do not enforce any OpenID Connect (OIDC) tool to enable SSO. Here we are going to expose the steps to follow in order to configure [dex](https://dexidp.io/) in those clusters.
 
-
 ![Multi Cluster Dex Architecture](dex-architecture.png)
 
-## Why dex?
+## Why dex
 
-There are other projects that help to configure OIDC to access Kubernetes cluster APIs, but [dex](https://dexidp.io/) stands out about the others. First of all, it is not tied to Kubernetes, you can use `dex` to handle authentication and authorization for your apps. But the killing feature is how to handle different connectors. In reality `dex` acts like an identity provider `hub`, you can plug in different providers and allow customer choose between them when they want to log in. 
+There are other projects that help to configure OIDC to access Kubernetes cluster APIs, but [dex](https://dexidp.io/) stands out about the others. First of all, it is not tied to Kubernetes, you can use `dex` to handle authentication and authorization for your apps. But the killing feature is how to handle different connectors. In reality `dex` acts like an identity provider `hub`, you can plug in different providers and allow customer choose between them when they want to log in.
 
 ## OIDC in Kubernetes
 
-Kubernetes API allows the users to authenticate using OIDC protocol making possible to enforce MFA or password policies thanks to your Identity Provider service. The API will use the `id_token` from the response as bearer token to authenticate the users. 
+Kubernetes API allows the users to authenticate using OIDC protocol making possible to enforce MFA or password policies thanks to your Identity Provider service. The API will use the `id_token` from the response as bearer token to authenticate the users.
 
 ## Configure the OIDC values on the cluster resource
 
 First things first, we need to set the right values in the Kubernetes API (`--oidc-issuer-url` and `--oidc-client-id`) of the cluster. At Giant Swarm, we allow the user to define those values in the AWS/Azure cluster custom resource.
 
-```
+```yaml
 apiVersion: infrastructure.giantswarm.io/v1alpha2
 kind: AWSCluster
 spec:
@@ -52,7 +51,8 @@ spec:
       clientID: dex-k8s-authenticator
       issuerURL: https://dex.<CLUSTERID>.<BASEDOMAIN>
 ```
-__Note__: In the above snippet you need to change the `<CLUSTERID>` and `<BASEDOMAIN>` variables for the real values, the cluster ID that represent your cluster and the base domain that you use for your installation respectively. 
+
+__Note__: In the above snippet you need to change the `<CLUSTERID>` and `<BASEDOMAIN>` variables for the real values, the cluster ID that represent your cluster and the base domain that you use for your installation respectively.
 
 ## Deploy DEX app to your cluster
 
@@ -60,7 +60,7 @@ In this guide, we will use a `dex` deployment for each cluster that we want to a
 
 In Giant Swarm, we have built an [App Platform](https://docs.giantswarm.io/app-platform/) that helps us to deploy apps across clusters using a single API endpoint. In this example, we define a configmap with the `dex` values configuration and an App custom resource with the parameters to install the application in the desired cluster.
 
-```
+```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -97,7 +97,7 @@ data:
           issuer: https://<IDP_ENDPOINT>/auth/realms/master
           redirectURI: https://dex.<CLUSTERID>.<BASEDOMAIN>/callback
 
-        ## For Active Directory 
+        ## For Active Directory
         connectorType: microsoft
         connectorConfig: >-
           clientID: <CLIENT-ID-SET-IN-YOUR-IdP>
@@ -109,11 +109,12 @@ data:
 
 
 ```
+
 __Note__: In the above snippet you have to replace the `<CLUSTERID>` variable and add the Kubernetes Certificate Authority to ensure dex can trust the API endpoint. Finally you have to use a connector. Here we show three example values.
 
 After you have applied the configmap to the Management API you have to submit the App custom resource that defines the intent to install the Dex app in the given cluster.
 
-```
+```yaml
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
@@ -130,6 +131,7 @@ spec:
       name: dex-app-user-values
       namespace: <CLUSTERID>
 ```
+
 __Note__: In the above snippet you have to replace the `<CLUSTERID>` variable for the cluster ID that represent your cluster.
 
 Again you need to submit the resource to the Management API and the App operator will manage it to make the actual installation and configuration. You can login now into the cluster API with you identity provider using the login endpoint that Dex creates for you. By default, it will be `https://login.<CLUSTERID>.<BASEDOMAIN>`.
