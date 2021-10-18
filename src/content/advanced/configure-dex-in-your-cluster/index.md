@@ -20,15 +20,15 @@ owner:
 
 ## Introduction
 
-In Giant Swarm we automatically configure Dex in our management clusters to allow our customer to authenticate using their own identity providers and manage their infrastructure using Kubernetes API.
+In Giant Swarm we automatically configure Dex in our management clusters to allow you to authenticate using their own identity providers and manage their infrastructure using Kubernetes API.
 
-For the workload clusters, where our customers run their applications, we do not enforce any OpenID Connect (OIDC) tool to enable SSO. Here we are going to expose the steps to follow in order to configure [dex](https://dexidp.io/) in those clusters.
+For the workload clusters, where you run their applications, we do not enforce any OpenID Connect (OIDC) tool to enable single sign-on (SSO). Here we are going to expose the steps to follow in order to configure [dex](https://dexidp.io/) in those clusters.
 
 ![Multi Cluster Dex Architecture](dex-architecture.png)
 
 ## Why dex
 
-There are other projects that help to configure OIDC to access Kubernetes cluster APIs, but [dex](https://dexidp.io/) stands out about the others. First of all, it is not tied to Kubernetes, you can use `dex` to handle authentication and authorization for your apps. But the killing feature is how to handle different connectors. In reality `dex` acts like an identity provider `hub`, you can plug in different providers and allow customer choose between them when they want to log in.
+There are other projects that help to configure OIDC to access Kubernetes cluster APIs, but [dex](https://dexidp.io/) stands out about the others. First of all, it is not tied to Kubernetes, you can use `dex` to handle authentication and authorization for your apps. But the killing feature is how to handle different connectors. In reality `dex` acts like an identity provider `hub`, you can plug in different providers and allow you to choose between them when they want to log in.
 
 ## OIDC in Kubernetes
 
