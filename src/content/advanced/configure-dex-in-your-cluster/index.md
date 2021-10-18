@@ -13,7 +13,7 @@ aliases:
   - /basics/configure-dex-in-your-cluster/
 last_review_date: 2021-10-01
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-horizon
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 ---
 
 # Configure OpenID Connect (OIDC) with Dex to access your clusters
