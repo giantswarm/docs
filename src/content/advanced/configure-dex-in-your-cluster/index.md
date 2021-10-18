@@ -25,6 +25,7 @@ In Giant Swarm we automatically configure Dex in our management clusters to allo
 For the workload clusters, where you run their applications, we do not enforce any OpenID Connect (OIDC) tool to enable single sign-on (SSO). Here we are going to expose the steps to follow in order to configure [dex](https://dexidp.io/) in those clusters.
 
 ![Multi Cluster Dex Architecture](dex-architecture.png)
+<! Source: https://drive.google.com/file/d/12Li9z2cqS8uWo1f9bGk6nwV6PLgty9g_>
 
 ## Why dex
 
