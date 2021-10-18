@@ -10,7 +10,7 @@ aliases:
  - /reference/app-configuration/
 last_review_date: 2021-07-07
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-batman
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
  - What tool is used to deploy applications?
  - What configurations are required on an App in order to make it ready to deploy?

@@ -90,3 +90,4 @@ Output details:
 - [`gsctl create cluster`]({{< relref "/ui-api/gsctl/create-cluster" >}})
 - [`gsctl show cluster`]({{< relref "/ui-api/gsctl/show-cluster" >}})
 - [API: Get releases](/api/#operation/getReleases)
+- [`kubectl gs get releases`]({{< relref "/ui-api/kubectl-gs/get-releases" >}})

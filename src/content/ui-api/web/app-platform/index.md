@@ -13,7 +13,7 @@ aliases:
 user_questions:
   - How can I browse and install apps via the web interface?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-batman
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
 
 # The Giant Swarm App Platform in the web interface

@@ -57,7 +57,7 @@ The following table shows which of our major releases contain which Kubernetes r
 | **13.x.x**                  | 1.18.x             | Available    |
 | **14.x.x**                  | 1.19.x             | Available    |
 | **15.x.x**                  | 1.20.x             | Available    |
-| **16.x.x**                  | 1.21.x             | Available for Azure and KVM |
+| **16.x.x**                  | 1.21.x             | Available    |
 
 We test every new major workload cluster release, bringing a new Kubernetes minor release, against the CNCF [conformance test suite](https://github.com/cncf/k8s-conformance).
 Every workload cluster release, from patch to major, also undergoes automated integration testing.

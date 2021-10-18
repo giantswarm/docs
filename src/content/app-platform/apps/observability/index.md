@@ -7,7 +7,7 @@ menu:
   main:
     parent: app-platform-apps
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-halo
+  - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
   - What app do you recommend for monitoring?
   - What app do you recommend for logging?

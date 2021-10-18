@@ -8,7 +8,7 @@ menu:
     parent: app-platform
 last_review_date: 2021-07-07
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-batman
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I deploy an app using an App CR?
   - How can I configure an App CR?

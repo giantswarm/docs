@@ -89,6 +89,9 @@ a { color: rgb(0, 159, 255); text-decoration: none; transition: color 0.4s ease 
 .white-content a { color: rgb(255, 255, 255); }
 .white-content a:hover { color: rgb(0, 159, 255); }
 .white-content [style*="text-decoration: underline"] a::before, .white-content [style*="text-decoration:underline"] a::before, .white-content .link-hover-underline a::before, .white-content.link-hover-underline a::before, .white-content a.link-hover-underline::before, .white-content .underline::before { background-color: rgb(255, 255, 255); }
+a > i { margin-left: 5px; }
+p { max-width: 100%; margin-top: 0px; }
+p, .p { margin-bottom: 1.8em; }
 .white-content h1, .white-content h2, .white-content h3, .white-content h4, .white-content h5, .white-content h6 { color: rgb(255, 255, 255); }
 ul, ol { margin: 0px 0px 1.8em; }
 li ul, li ol { margin-bottom: 0px; }
@@ -866,9 +869,6 @@ html body .slide-menu { max-width: 100% !important; transform: none !important; 
 .xs-visible { display: block !important; }
 }
 .link-theme a, a.link-theme, .link-hover-theme a:hover, a.link-hover-theme:hover { color: rgb(0, 159, 255) !important; }
-a > i { margin-left: 5px; }
-p { max-width: 100%; margin-top: 0px; }
-p, .p { margin-bottom: 1.8em; }
 h1, h2, h3, h4, h5, h6 { margin-top: 0px; color: rgb(0, 38, 69); font-family: Roboto, sans-serif; font-weight: 700; }
 h3 { margin-bottom: 1.1em; line-height: 1.32; }
 h3 { font-size: 1.78rem; }
@@ -1094,7 +1094,8 @@ a {
 
 .header-container-wrapper,
 .footer-container-wrapper {
-  font-weight: 500;
+  font-weight: 400;
+  font-family: inherit;
   line-height: 1.7;
 }
 

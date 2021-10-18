@@ -8,6 +8,6 @@ menu:
     identifier: advanced-ingress
     parent: advanced
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-halo
+  - https://github.com/orgs/giantswarm/teams/team-cabbage
 last_review_date: 2021-01-01
 ---

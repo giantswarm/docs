@@ -10,7 +10,7 @@ aliases:
   - /reference/kubectl-gs/template-app/
 last_review_date: 2021-06-29
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-batman
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I create an app manifest for the Management API?
   - How can I add labels and annotations to the target namespace of an app?
