@@ -1,7 +1,7 @@
 ---
 linkTitle: OIDC with Dex to access your clusters
 title: Configure OIDC with Dex to access your clusters
-description: A general explanation on how to install and configure Dex to work as authenticator mechanism to provide OpenID tokens.
+description: A general explanation on how to install and configure Dex to work as an authenticator mechanism to provide OpenID tokens.
 weight: 100
 menu:
   main:
@@ -20,20 +20,20 @@ owner:
 
 ## Introduction
 
-In Giant Swarm we automatically configure Dex in our management clusters to allow you to authenticate using their own identity providers and manage their infrastructure using Kubernetes API.
+At Giant Swarm, we automatically configure `dex` in our management clusters to allow you to authenticate using your own identity providers, towards allowing you to manage your infrastructure using the management cluster's Kubernetes API.
 
-For the workload clusters, where you run their applications, we do not enforce any OpenID Connect (OIDC) tool to enable single sign-on (SSO). Here we are going to expose the steps to follow in order to configure [dex](https://dexidp.io/) in those clusters.
+For workload clusters - where you run your applications - we do not enforce any specific OpenID Connect (OIDC) tool to enable single sign-on (SSO). Here, we're going to detail how to configure [dex](https://dexidp.io/) in those clusters, to provide SSO using OIDC.
 
 ![Multi Cluster Dex Architecture](dex-architecture.png)
 <! Source: https://drive.google.com/file/d/12Li9z2cqS8uWo1f9bGk6nwV6PLgty9g_>
 
 ## Why dex
 
-There are other projects that help to configure OIDC to access Kubernetes cluster APIs, but [dex](https://dexidp.io/) stands out about the others. First of all, it is not tied to Kubernetes, you can use `dex` to handle authentication and authorization for your apps. But the most impressive feature is how to handle different connectors. In reality `dex` acts like an identity provider `hub`, you can plug in different providers and allow you to choose between them when they want to log in.
+There are other projects that help to configure OIDC to access Kubernetes clusters, but we consider [dex](https://dexidp.io/) to be the most feature-rich. First of all, it is not tied to Kubernetes, so you can use `dex` to handle authentication and authorization for your own apps as well. Secondly, `dex` can act like an identity provider hub, where you can plug in different providers via different connectors, and choose between them when they want to log in.
 
 ## OIDC in Kubernetes
 
-Kubernetes API allows the users to authenticate using OIDC protocol making possible to enforce MFA or password policies thanks to your Identity Provider service. The API will use the `id_token` from the response as bearer token to authenticate the users.
+The Kubernetes API allows users to authenticate using the OIDC protocol, making it possible to enforce MFA or password policies by delegating to your Identity Provider. The API will use the field named `id_token` from the response as a bearer token to authenticate users.
 
 ## Configure the OIDC values on the cluster resource
 
@@ -55,9 +55,9 @@ spec:
 
 __Note__: In the above snippet you need to change the `<CLUSTERID>` and `<BASEDOMAIN>` variables for the real values, the cluster ID that represent your cluster and the base domain that you use for your installation respectively.
 
-## Deploy Dex app to your cluster
+## Deploy the `dex` app to your cluster
 
-In this guide, we will use a `dex` deployment for each cluster that we want to authenticate against. There are different ways to architecture how your authenticate against your Kubernetes API with an OIDC tool, but in my opinion using a single `dex` deployment by cluster offers to be more resilient and independent that having a single Dex instance for all.
+In this guide, we will use a single `dex` deployment for each cluster that you want to authenticate towards. There are different ways to architecture how your authenticate towards your Kubernetes API with an OIDC tool, but in our opinion, using a single `dex` deployment per cluster is more resilient than having a single `dex` instance for all your workload clusters.
 
 In Giant Swarm, we built an [App Platform](https://docs.giantswarm.io/app-platform/) that helps us deploy apps across clusters using a single API endpoint. In this example, we define a configmap with the `dex` values configuration and an App custom resource with the parameters to install the application in the desired cluster.
 
