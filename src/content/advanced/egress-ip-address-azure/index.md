@@ -7,7 +7,7 @@ menu:
   main:
     parent: advanced
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-celestial
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 last_review_date: 2021-07-13
 user_questions:
   - How can I customize the public IP address for egress traffic on Azure?
