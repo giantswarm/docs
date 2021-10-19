@@ -29,7 +29,7 @@ For the workload clusters, where you run their applications, we do not enforce a
 
 ## Why dex
 
-There are other projects that help to configure OIDC to access Kubernetes cluster APIs, but [dex](https://dexidp.io/) stands out about the others. First of all, it is not tied to Kubernetes, you can use `dex` to handle authentication and authorization for your apps. But the killing feature is how to handle different connectors. In reality `dex` acts like an identity provider `hub`, you can plug in different providers and allow you to choose between them when they want to log in.
+There are other projects that help to configure OIDC to access Kubernetes cluster APIs, but [dex](https://dexidp.io/) stands out about the others. First of all, it is not tied to Kubernetes, you can use `dex` to handle authentication and authorization for your apps. But the most impressive feature is how to handle different connectors. In reality `dex` acts like an identity provider `hub`, you can plug in different providers and allow you to choose between them when they want to log in.
 
 ## OIDC in Kubernetes
 
