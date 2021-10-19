@@ -13,7 +13,7 @@ user_questions:
   - Which releases support the use of GPUs?
 last_review_date: 2021-01-01
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
 # Preparing a Kubernetes cluster for the use of GPUs

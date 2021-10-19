@@ -14,7 +14,7 @@ user_questions:
 aliases:
   - /basics/kubernetes-on-giant-swarm/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-ludacris
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
 # Running Kubernetes on Giant Swarm
