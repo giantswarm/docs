@@ -15,7 +15,7 @@ aliases:
   - /guides/prepare-aws-account-for-tenant-clusters/
   - /guides/prepare-aws-account/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-firecracker
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 last_review_date: 2021-01-01
 ---
 

@@ -12,7 +12,7 @@ aliases:
   - /guides/tenant-cluster-labelling/
   - /guides/workload-cluster-labelling/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-ludacris
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 last_review_date: 2021-01-01
 ---
 

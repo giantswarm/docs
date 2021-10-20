@@ -10,7 +10,7 @@ aliases:
   - /guides/services-of-type-loadbalancer-and-multiple-ingress-controllers/
   - /advanced/ingress/service-type-loadbalancer-multi-ic/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-halo
+  - https://github.com/orgs/giantswarm/teams/team-cabbage
 user_questions:
   - How can I expose Services to the internet?
   - How do I configure an Ingress Controller behind an ELB for traffic between services within the VPC?

@@ -9,7 +9,7 @@ menu:
 aliases:
   - /guides/multi-nginx/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-halo
+  - https://github.com/orgs/giantswarm/teams/team-cabbage
 user_questions:
   - How do I install multiple NGINX Ingress Controllers?
   - How do I separate internal and external Services?
