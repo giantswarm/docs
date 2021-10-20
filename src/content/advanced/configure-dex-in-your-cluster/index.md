@@ -37,7 +37,7 @@ The Kubernetes API allows users to authenticate using the OIDC protocol, making 
 
 ## Configure the OIDC values on the cluster resource
 
-The first steps is to set the right values in the Kubernetes API (`--oidc-issuer-url` and `--oidc-client-id`) of the cluster. At Giant Swarm, we allow the user to define those values in the AWS/Azure cluster custom resource.
+We need to set values for the OIDC Issuer URL and Client ID. You can define those values in the cluster custom resource. These values will then be set as flags on the Kubernetes API Server (specifically, `--oidc-issuer-url` and `--oidc-client-id`).
 
 ```yaml
 apiVersion: infrastructure.giantswarm.io/v1alpha2
