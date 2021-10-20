@@ -20,7 +20,7 @@ owner:
 
 ## Introduction
 
-At Giant Swarm, we automatically configure `dex` in our management clusters to allow you to authenticate using your own identity providers, towards allowing you to manage your infrastructure using the management cluster's Kubernetes API.
+At Giant Swarm, we automatically configure `dex` in management clusters to allow you to authenticate using your own identity providers, towards allowing you to manage your infrastructure using the management cluster's Kubernetes API.
 
 For workload clusters - where you run your applications - we do not enforce any specific OpenID Connect (OIDC) tool to enable single sign-on (SSO). Here, we're going to detail how to configure [dex](https://dexidp.io/) in those clusters, to provide SSO using OIDC.
 
@@ -29,7 +29,7 @@ For workload clusters - where you run your applications - we do not enforce any 
 
 ## Why dex
 
-There are other projects that help to configure OIDC to access Kubernetes clusters, but we consider [dex](https://dexidp.io/) to be the most feature-rich. First of all, it is not tied to Kubernetes, so you can use `dex` to handle authentication and authorization for your own apps as well. Secondly, `dex` can act like an identity provider hub, where you can plug in different providers via different connectors, and choose between them when they want to log in.
+There are other projects that help to configure OIDC to access Kubernetes clusters, but we consider [dex](https://dexidp.io/) to be the most feature-rich. First of all, it is not tied to Kubernetes, so you can use `dex` to handle authentication and authorization for your own apps as well. Secondly, `dex` can act like an identity provider hub, where you can plug in different providers via different connectors, and choose between them when you want to log in.
 
 ## OIDC in Kubernetes
 
@@ -68,13 +68,13 @@ spec:
       issuerURL: https://dex.<CLUSTERID>.<BASEDOMAIN>
 ```
 
-__Note__: In the above snippets you need to change the `<CLUSTERID>` and `<BASEDOMAIN>` variables to correct values - the cluster ID of the workload cluster you are configuring, and the base domain that you use for your installation, respectively.
+__Note__: In the above snippets you need to change the `<CLUSTERID>` and `<BASEDOMAIN>` variables to the correct values - the cluster ID of the workload cluster you are configuring, and the base domain that you use for your installation, respectively.
 
 ## Deploy the `dex` app to your cluster
 
-In this guide, we will use a single `dex` deployment for each cluster that you want to authenticate towards. There are different ways to architecture how your authenticate towards your Kubernetes API with an OIDC tool, but in our opinion, using a single `dex` deployment per cluster is more resilient than having a single `dex` instance for all your workload clusters.
+In this guide, we will use a single `dex` deployment for each cluster that you want to authenticate towards. There are different ways to setup how you authenticate towards your Kubernetes API with `dex`, but in our opinion, using a single `dex` deployment per cluster is more resilient than having a single `dex` deployment for all your workload clusters.
 
-In Giant Swarm, we built an [App Platform](https://docs.giantswarm.io/app-platform/) that helps us deploy apps across clusters using a single API endpoint. In this example, we define a configmap with the `dex` values configuration and an App custom resource with the parameters to install the application in the desired cluster.
+We'll use the [App Platform](https://docs.giantswarm.io/app-platform/) to deploy the app, as it allows us to deploy apps across workload clusters using a single API endpoint. In this example, we create an `App` Custom Resource with the parameters to install `dex` in the desired cluster, and a `ConfigMap` with the values configuration.
 
 ```yaml
 apiVersion: v1
