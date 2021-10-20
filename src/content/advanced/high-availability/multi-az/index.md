@@ -21,7 +21,7 @@ user_questions:
 aliases:
   - /basics/multiaz/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-celestial
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
 # Clusters over multiple availability zones

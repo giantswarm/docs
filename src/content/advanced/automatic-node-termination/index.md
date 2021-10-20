@@ -14,7 +14,7 @@ user_questions:
 aliases:
   - /basics/automatic-termination-of-bad-nodes/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-firecracker
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
 # Automatic termination of unhealthy nodes
