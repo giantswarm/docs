@@ -53,7 +53,7 @@ spec:
       issuerURL: https://dex.<CLUSTERID>.<BASEDOMAIN>
 ```
 
-__Note__: In the above snippet you need to change the `<CLUSTERID>` and `<BASEDOMAIN>` variables for the real values, the cluster ID that represent your cluster and the base domain that you use for your installation respectively.
+__Note__: In the above snippet you need to change the `<CLUSTERID>` and `<BASEDOMAIN>` variables to correct values - the cluster ID of the workload cluster you are configuring, and the base domain that you use for your installation, respectively.
 
 ## Deploy the `dex` app to your cluster
 
