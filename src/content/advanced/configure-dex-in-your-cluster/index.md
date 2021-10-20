@@ -1,6 +1,6 @@
 ---
-linkTitle: OIDC with Dex to access your clusters
-title: Configure OIDC with Dex to access your clusters
+linkTitle: OIDC using dex to access your clusters
+title: Configure OIDC using dex to access your clusters
 description: A general explanation on how to install and configure Dex to work as an authenticator mechanism to provide OpenID tokens.
 weight: 100
 menu:
@@ -39,6 +39,21 @@ The Kubernetes API allows users to authenticate using the OIDC protocol, making 
 
 We need to set values for the OIDC Issuer URL and Client ID. You can define those values in the cluster custom resource. These values will then be set as flags on the Kubernetes API Server (specifically, `--oidc-issuer-url` and `--oidc-client-id`).
 
+### Azure
+
+```yaml
+apiVersion: cluster.x-k8s.io/v1alpha3
+kind: Cluster
+metadata:
+  annotations:  
+    oidc.giantswarm.io/client-id: dex-k8s-authenticator
+    oidc.giantswarm.io/issuer-url: https://dex.<CLUSTERID>.<BASEDOMAIN>
+    oidc.giantswarm.io/group-claim: groups
+    oidc.giantswarm.io/username-claim: email
+```
+
+### AWS
+
 ```yaml
 apiVersion: infrastructure.giantswarm.io/v1alpha2
 kind: AWSCluster
@@ -53,7 +68,7 @@ spec:
       issuerURL: https://dex.<CLUSTERID>.<BASEDOMAIN>
 ```
 
-__Note__: In the above snippet you need to change the `<CLUSTERID>` and `<BASEDOMAIN>` variables to correct values - the cluster ID of the workload cluster you are configuring, and the base domain that you use for your installation, respectively.
+__Note__: In the above snippets you need to change the `<CLUSTERID>` and `<BASEDOMAIN>` variables to correct values - the cluster ID of the workload cluster you are configuring, and the base domain that you use for your installation, respectively.
 
 ## Deploy the `dex` app to your cluster
 
@@ -148,5 +163,5 @@ Then submit the resource to the management API and the App operator will manage 
 
 ## Further reading
 
-- [App Platform](https://docs.giantswarm.io/app-platform/)
 - [Authenticating with Microsoft Azure Active Directory](https://medium.com/@GiantSwarm/authenticating-with-microsoft-azure-active-directory-2039b5f69fca)
+- [App Platform](https://docs.giantswarm.io/app-platform/)
