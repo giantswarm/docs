@@ -15,7 +15,7 @@ user_questions:
 aliases:
   - /guides/advanced-coredns-configuration/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-ludacris
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
 # Advanced CoreDNS Configuration

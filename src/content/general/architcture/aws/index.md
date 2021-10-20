@@ -24,7 +24,7 @@ user_questions:
 aliases:
   - /basics/aws-architecture/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-firecracker
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
 # The Giant Swarm AWS platform

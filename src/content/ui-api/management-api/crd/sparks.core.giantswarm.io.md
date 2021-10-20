@@ -12,7 +12,7 @@ crd:
   technical_name: sparks.core.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.33.0
+  source_repository_ref: v3.35.0
   versions:
     - v1alpha1
   topics:
@@ -21,12 +21,12 @@ crd:
     - azure
 layout: crd
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-celestial
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 aliases:
   - /reference/cp-k8s-api/sparks.core.giantswarm.io/
 technical_name: sparks.core.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.33.0
+source_repository_ref: v3.35.0
 ---
 
 # Spark
