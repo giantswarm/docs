@@ -39,7 +39,8 @@ The Kubernetes API allows users to authenticate using the OIDC protocol, making 
 
 We need to set values for the OIDC Issuer URL and Client ID. You can define those values in the cluster custom resource. These values will then be set as flags on the Kubernetes API Server (specifically, `--oidc-issuer-url` and `--oidc-client-id`).
 
-### Azure
+{{< tabs >}}
+{{< tab title="Azure">}}
 
 ```yaml
 apiVersion: cluster.x-k8s.io/v1alpha3
@@ -50,9 +51,11 @@ metadata:
     oidc.giantswarm.io/issuer-url: https://dex.<CLUSTERID>.<BASEDOMAIN>
     oidc.giantswarm.io/group-claim: groups
     oidc.giantswarm.io/username-claim: email
+  ...
 ```
 
-### AWS
+{{< /tab >}}
+{{< tab title="AWS">}}
 
 ```yaml
 apiVersion: infrastructure.giantswarm.io/v1alpha2
@@ -67,6 +70,9 @@ spec:
       clientID: dex-k8s-authenticator
       issuerURL: https://dex.<CLUSTERID>.<BASEDOMAIN>
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 __Note__: In the above snippets you need to change the `<CLUSTERID>` and `<BASEDOMAIN>` variables to the correct values - the cluster ID of the workload cluster you are configuring, and the base domain that you use for your installation, respectively.
 
