@@ -12,7 +12,7 @@ crd:
   technical_name: awsmachinedeployments.infrastructure.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.33.0
+  source_repository_ref: v3.35.0
   versions:
     - v1alpha2
     - v1alpha3
@@ -22,12 +22,12 @@ crd:
     - aws
 layout: crd
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-firecracker
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 aliases:
   - /reference/cp-k8s-api/awsmachinedeployments.infrastructure.giantswarm.io/
 technical_name: awsmachinedeployments.infrastructure.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.33.0
+source_repository_ref: v3.35.0
 ---
 
 # AWSMachineDeployment
