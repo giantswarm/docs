@@ -12,7 +12,7 @@ crd:
   technical_name: kvmclusterconfigs.core.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.33.0
+  source_repository_ref: v3.35.0
   versions:
     - v1alpha1
   topics:
@@ -26,7 +26,7 @@ aliases:
   - /reference/cp-k8s-api/kvmclusterconfigs.core.giantswarm.io/
 technical_name: kvmclusterconfigs.core.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.33.0
+source_repository_ref: v3.35.0
 ---
 
 # KVMClusterConfig
@@ -403,7 +403,7 @@ source_repository_ref: v3.33.0
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">object</span>
-<span class="property-required">Required</span>
+
 </div>
 
 </div>
