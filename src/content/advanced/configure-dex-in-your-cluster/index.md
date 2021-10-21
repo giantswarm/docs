@@ -157,7 +157,7 @@ spec:
       namespace: <CLUSTERID>
 ```
 
-__Note__: When applying the example in the snippet above, please replace the `<CLUSTERID>` variable for the cluster ID that represent your cluster.
+__Note__: When applying the example in the snippet above, please change the `<CLUSTERID>` variable to the cluster ID of the workload cluster you are configuring,
 
 Then submit the resource to the management API and the App operator will manage it to make the actual installation and configuration. You can log in now into the cluster API with your identity provider using the login endpoint that Dex creates for you. By default, it will be `https://login.<CLUSTERID>.<BASEDOMAIN>`.
 
