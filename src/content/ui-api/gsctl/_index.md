@@ -96,6 +96,8 @@ To install without homebrew, download the latest release [from GitHub](https://g
 {{< /tab >}}
 {{< tab title="Linux">}}
 
+<!-- markdownlint-disable no-emphasis-as-heading -->
+
 **Arch Linux**
 
 `gsctl` can be installed using an AUR helper, such as `yay` or `pacaur`:
@@ -107,6 +109,8 @@ yay -S gsctl-bin
 **Other distributions**
 
 Download the latest release [from GitHub](https://github.com/giantswarm/gsctl/releases), unpack the binary and move it to a location covered by your `PATH` environment variable.
+
+<!-- markdownlint-enable no-emphasis-as-heading -->
 
 {{< /tab >}}
 {{< tab title="Windows">}}
