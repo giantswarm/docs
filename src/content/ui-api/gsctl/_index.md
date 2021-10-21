@@ -75,56 +75,64 @@ For finding out which version of `gsctl` you currently have installed, and other
 The current `gsctl` version is **{{% gsctl_version %}}**. Find details in the [release notes](https://github.com/giantswarm/gsctl/releases/tag/{{% gsctl_version %}}).
 <!-- markdownlint-enable no-bare-urls -->
 
-<ul class="nav nav-tabs">
-  <li role="presentation" class="active"><a href="#install-mac" data-toggle="tab">Mac OS</a></li>
-  <li role="presentation"><a href="#install-linux" data-toggle="tab">Linux</a></li>
-  <li role="presentation"><a href="#install-win" data-toggle="tab">Windows</a></li>
-</ul>
+{{< tabs >}}
+{{< tab title="macOS">}}
 
-<div class="tab-content clearfix">
-<div class="tab-pane active" id="install-mac">
+Homebrew provides the most convenient way to install `gsctl` and keep it up to date. To install, use this command:
 
-  <p>Homebrew provides the most convenient way to install <code>gsctl</code> and keep it up to date. To install, use this command:</p>
+```nohighlight
+brew tap giantswarm/giantswarm
+brew install gsctl
+```
 
-  <pre><code class="language-nohighlight">brew tap giantswarm/giantswarm
-brew install gsctl</code></pre>
+For updating:
 
-  <p>For updating:</p>
+```nohighlight
+brew upgrade gsctl
+```
 
-  <pre><code class="language-nohighlight">brew upgrade gsctl</code></pre>
+To install without homebrew, download the latest release [from GitHub](https://github.com/giantswarm/gsctl/releases), unpack the binary and move it to a location covered by your `PATH` environment variable.
 
-  <p>To install without homebrew, download the latest release <a href="https://github.com/giantswarm/gsctl/releases">from GitHub</a>, unpack the binary and move it to a location covered by your `PATH` environment variable.</p>
-</div>
-<div class="tab-pane" id="install-linux">
+{{< /tab >}}
+{{< tab title="Linux">}}
 
-  <h3>Arch Linux</h3>
+#### Arch Linux
 
-  <p><code>gsctl</code> can be installed using an AUR helper, such as <code>yay</code> or <code>pacaur</code>:
+`gsctl` can be installed using an AUR helper, such as `yay` or `pacaur`:
 
-  <pre><code class="language-nohighlight">yay -S gsctl-bin</code></pre>
+```nohighlight
+yay -S gsctl-bin
+```
 
-  <h3>Other Distributions</h3>
+#### Other distributions
 
-  <p>Download the latest release <a href="https://github.com/giantswarm/gsctl/releases" target="_blank" rel="noreferrer noopener">from GitHub</a>, unpack the binary and move it to a location covered by your `PATH` environment variable.</p>
+Download the latest release [from GitHub](https://github.com/giantswarm/gsctl/releases), unpack the binary and move it to a location covered by your `PATH` environment variable.
 
-</div>
-<div class="tab-pane" id="install-win">
+{{< /tab >}}
+{{< tab title="Windows">}}
 
-  <p><a href="https://scoop.sh/" target="_blank" rel="noreferrer noopener">scoop</a> enables convenient installs and updates for Windows PowerShell users. Before you can install <code>gsctl</code> for the first time, execute this:</p>
+[scoop](https://scoop.sh/) enables convenient installs and updates for Windows PowerShell users. Before you can install `gsctl` for the first time, execute this:
 
-  <pre><code class="language-nohighlight">scoop bucket add giantswarm https://github.com/giantswarm/scoop-bucket.git</code></pre>
+```nohighlight
+scoop bucket add giantswarm https://github.com/giantswarm/scoop-bucket.git
+```
 
-  <p>To install:</p>
+To install:
 
-  <pre><code class="language-nohighlight">scoop install gsctl</code></pre>
+```nohighlight
+scoop install gsctl
+```
 
-  <p>To update:</p>
+To update:
 
-  <pre><code class="language-nohighlight">scoop update gsctl</code></pre>
+```nohighlight
+scoop update gsctl
+```
 
-  <p>To install without scoop, download the latest release <a href="https://github.com/giantswarm/gsctl/releases" target="_blank" rel="noreferrer noopener">from GitHub</a>, unpack the binary and move it to a location covered by your `PATH` environment variable.</p>
-</div>
-</div>
+To install without scoop, download the latest release [from GitHub](https://github.com/giantswarm/gsctl/releases), unpack the binary and move it to a location covered by your `PATH` environment variable.
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Configuration {#configuration}
 
