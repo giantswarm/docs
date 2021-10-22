@@ -9,8 +9,6 @@ menu:
 user_questions:
   - How can I configure OIDC in my cluster?
   - How can I add a new OIDC connector?
-aliases:
-  - /basics/configure-dex-in-your-cluster/
 last_review_date: 2021-10-01
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
