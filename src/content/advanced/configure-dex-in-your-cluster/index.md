@@ -1,6 +1,6 @@
 ---
 linkTitle: OIDC using dex to access your clusters
-title: Configure OIDC using dex to access your clusters
+title: Configure OIDC using Dex to access your clusters
 description: A general explanation on how to install and configure Dex to work as an authenticator mechanism to provide OpenID tokens.
 weight: 100
 menu:
