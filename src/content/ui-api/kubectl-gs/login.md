@@ -47,32 +47,12 @@ where `management-cluster` can be either:
 
 It is also possible to create client certificates for a workload cluster, by providing the right configuration flags. Please be aware that the recommended way to authenticate users for workload clusters is OIDC. Client certificates should only be a temporary replacement.
 
-## Flags {#flags}
+The command supports the following flags:
 
-Here we document the flags that have a particular meaning for the `login` command. Use `kubectl gs login --help` for a full list.
-
-### `--workload-cluster` {#flags-workload-cluster}
-
-If present, `kubectl gs` will set up a kubectl context to work with a workload cluster.
-
-### `--organization` {#flags-organization}
-
-The organization that the workload cluster belongs to.
-
-Requires the `--workload-cluster` flag.
-
-### `--certificate-group` {#flags-certificate-group}
-
-The RBAC group name to be encoded into the X.509 field "O".
-It can be specified multiple times in order to set multiple groups at once.
-
-Requires the `--workload-cluster` flag.
-
-### `--certificate-ttl` {#flags-certificate-ttl}
-
-How long the client certificate should live for. When creating client certificates, we recommend using short expiration periods.
-
-Requires the `--workload-cluster` flag.
+- `--workload-cluster` - If present, `kubectl gs` will set up a kubectl context to work with a workload cluster.
+- `--organization` - The organization that the workload cluster belongs to. Requires the `--workload-cluster` flag.
+- `--certificate-group` - The RBAC group name to be encoded into the X.509 field "O". It can be specified multiple times in order to set multiple groups at once. Requires the `--workload-cluster` flag.
+- `--certificate-ttl` - How long the client certificate should live for. When creating client certificates, we recommend using short expiration periods. Requires the `--workload-cluster` flag.
 
 ## Examples
 
