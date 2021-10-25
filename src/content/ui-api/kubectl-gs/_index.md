@@ -30,7 +30,7 @@ owner:
 
 | Command                       | Description                                                    | Provider info        |
 | ----------------------------- | -------------------------------------------------------------- | -------------------- |
-| [`login`][1]                  | [Ensure an authenticated session with a management cluster][1] | all providers        |
+| [`login`][1]                  | [Ensure an authenticated kubectl context][1]                   | all providers        |
 | [`get apps`][2]               | [List apps or get details on a single app][2]                  | all providers        |
 | [`get catalogs`][3]           | [List catalogs or get details on a single catalog][3]          | all providers        |
 | [`get clusters`][4]           | [List clusters or get details on a single cluster][4]          | only AWS, Azure      |
