@@ -22,16 +22,6 @@ last_review_date: 2021-01-01
 
 # Managing workload clusters with GitOps
 
-TODO(kuba):
-
-- Is `platform_support_table` applicable here? FluxCD is running on
-all MCs, but we don't support managing clusters with it on KVM
-- Mention how to integrate with MAPI by adopting `serviceAccount`
-- How to use Flux with private repositories and/or Mozilla SOPS
-- Node pools for cluster section
-- Test Azure cluster creation
-- Go through the document and improve wording once its shape is agreed upon
-
 You can manage infrastructure and applications by utilizing FluxCD - a set of GitOps operators installed in Giant Swarm Management Clusters.
 
 ## What is GitOps
@@ -80,7 +70,7 @@ If want to learn more about FluxCD and its capabilities, here are a couple of us
 
 In this section, we will guide you through an example Flux setup on a Giant Swarm Management Cluster. Every mention of _example resources_ or _example repository_ refers to [giantswarm/flux-demo](https://github.com/giantswarm/flux-demo), where you can find all resources used in this section in full, unabbreviated forms.
 
-In order to follow [Test or development branches](#test-or-development-branches) section, you should fork the repository and work on your fork instead.
+In order to follow [Watching for new commits](#watching-for-new-commits) section, you should fork the repository and work on your fork instead.
 
 We will be using [Flux CLI](https://fluxcd.io/docs/cmd/) and [kubectl-gs](https://github.com/giantswarm/kubectl-gs). Please make sure you have both installed on your machine. If you would rather follow the guide without them, use example resources provided.
 
@@ -190,7 +180,7 @@ NAME            STATUS   AGE
 org-flux-demo   Active   2m29s
 ```
 
-Now, if you add any more Organization CRs to `02-organization/resources.yaml` (or change anything else in that kustomization), it will be picked up by Flux automatically once it's committed and pushed. This is covered in the [Test or development branches](#test-or-development-branches) section.
+Now, if you add any more Organization CRs to `02-organization/resources.yaml` (or change anything else in that kustomization), it will be picked up by Flux automatically once it's committed and pushed. This is covered in the [Watching for new commits](#watching-for-new-commits) section.
 
 ### Managing workload clusters
 
@@ -216,13 +206,19 @@ mkdir -p 03-cluster-aws/templates
 ```
 
 ```nohighlight
-kubectl gs template cluster --provider aws --name demo0 --organization flux-demo --description flux-demo > 03-cluster-aws/templates/resources.yaml
+kubectl gs template cluster --provider aws --name demo0 --organization flux-demo --description flux-demo > 03-cluster-aws/templates/cluster-resources.yaml
 ```
 
 > Note: There is some parameterization and hooks already added in the demo respository. You can copy from there if you don't want to do it on your own.
 > Otherwise please:
 > - parameterize common variables and put them in `values.yaml`: cluster ID, organization name, namespace, control plane ID, etc.
 > - add hook annotations to `Cluster` CR: `helm.sh/hook: pre-install` and `helm.sh/hook-weight: "-1"`
+
+The cluster will still need a NodePool to reach full functionality. To learn more, visit [NodePool documentation]({{< relref "/advanced/node-pools/" >}}). We will be creating one using `kubectl gs template` command.
+
+```nohighlight
+kubectl gs template nodepool --provider aws --cluster-name demo0 --description demo0 --organization flux-demo --availability-zones 1 > 03-cluster-aws/templates/nodepool-resources.yaml
+```
 
 Add `Chart.yaml` and `values.yaml` from the example repository or create your own.
 
@@ -260,10 +256,6 @@ kubectl get clusters.cluster.x-k8s.io -n org-flux-demo demo0
 NAME    PHASE
 demo0
 ```
-
-> Note: This cluster still needs a NodePool to reach full functionality. To learn more, visit [NodePool documentation]({{< relref "/advanced/node-pools/" >}}).
-
-> TODO(kuba): Generate and create a NodePool with the cluster.
 
 ### Installing managed apps
 
@@ -320,11 +312,7 @@ nginx-ingress-controller-app        2.4.0        31s             deployed
 
 Now the managed application will be installed in your workload cluster.
 
-### Test or development branches
-
-> TODO(kuba): Split the section, change links from test-or-development-branch to the second half of the section
-
-#### Watching for new commits
+### Watching for new commits
 
 If you have forked the repository, you can test if Flux is watching it for new commits. We are assuming you have completed at least [Managing organizations](#managing-organizations) section.
 
@@ -353,7 +341,7 @@ new-commit  17s
 ...
 ```
 
-#### Changing source to a development branch
+### Test or development branches
 
 Flux enables developers to deploy work-in-progress code in many ways, one of the most useful is deploying code from development branches. To do that, we will create a new `GitRepository` resource. It will be pointing to `development` branch of demo repository, instead of `main` branch. Then we will patch the `Kustomization` created in [Managing organizations](#managing-organizations) section so that it uses the new source instead.
 
