@@ -24,7 +24,7 @@ owner:
 
 `kubectl gs` is a [kubectl](https://kubernetes.io/docs/reference/kubectl/kubectl/) plugin for the Giant Swarm [Management API]({{< relref "/ui-api/management-api" >}}).
 
-**Note that Management API access is currently in a preview stage.** Supported functionality depends on the provider and the workload cluster release used. Please pay attention to the compatibility information given on the individual command reference pages.
+**Note:** Management API support is under active development. Supported functionality depends on the provider and the workload cluster release used. Please pay attention to the compatibility information given on the individual command reference pages.
 
 ## Commands {#commands}
 
