@@ -34,8 +34,8 @@ Your clusters comes out-of-the-box as follows:
 - CoreDNS installed
 - All resources and feature gates (incl. alpha) enabled
 - NGINX Ingress Controller - running inside your cluster (optional app)
-- Monitoring
-- Storage
+- Monitoring of workload clusters by Giant Swarm
+- Storage as provided by customer
 
 ## What is not included
 
