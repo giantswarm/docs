@@ -1,7 +1,7 @@
 ---
 linkTitle: update app
 title: "'kubectl gs update app' command reference"
-description: Reference documentation on how to update an app using the 'kubectl gs'.
+description: Reference documentation on how to update an app using 'kubectl gs'.
 weight: 100
 menu:
   main:
@@ -17,7 +17,7 @@ user_questions:
 
 # `kubectl gs update app`
 
-This command helps with updating an in-cluster instance of the [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) custom resource.
+This command helps with updating [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) custom resources.
 
 ## Usage
 
@@ -26,9 +26,11 @@ The command to execute is `kubectl gs update app`.
 It supports the following required flags:
 
 - `--name`: Name of the App CR to update.
-- `--version`: New version to update the app to. The version package must exist in the `Catalog` storage.
+- `--version`: New version to update the app to. The version must exist in the [Catalog]({{< relref "/app-platform/overview/#what-kind-of-app-catalogs-are-there" >}}).
 
-See the example command updating the `starboard-app` to the `0.2.1` version:
+**Important:** ensure you have selected the correct namespace for your cluster with the `--namespace` flag.
+
+See the example command updating `starboard-app` to version `0.2.1`:
 
 ```nohighlight
 kubectl gs update app \
