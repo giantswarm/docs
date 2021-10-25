@@ -29,13 +29,13 @@ You can manage infrastructure and applications by utilizing FluxCD - a set of Gi
 GitOps Working Group [defines GitOps as a set of principles](https://github.com/open-gitops/documents/blob/release-v1.0.0/PRINCIPLES.md):
 > GitOps is a set of principles for operating and managing software systems. These principles are derived from modern software operations, but are also rooted in pre-existing and widely adopted best practices.
 > The desired state of a GitOps managed system must be:
-> 1. Declarative
+> **Declarative**
 > A system managed by GitOps must have its desired state expressed declaratively.
-> 2. Versioned and Immutable
+> **Versioned and Immutable**
 > Desired state is stored in a way that enforces immutability, versioning and retains a complete version history.
-> 3. Pulled Automatically
+> **Pulled Automatically**
 > Software agents automatically pull the desired state declarations from the source.
-> 4. Continuously Reconciled
+> **Continuously Reconciled**
 > Software agents continuously observe actual system state and attempt to apply the desired state.
 
 How those principles translate into workings of popular tools, such as FluxCD or ArgoCD can be summarized as this:
@@ -200,7 +200,6 @@ File structure
 │   └── values.yaml         # Helm chart values
 ```
 
-
 ```nohighlight
 mkdir -p 03-cluster-aws/templates
 ```
@@ -211,6 +210,7 @@ kubectl gs template cluster --provider aws --name demo0 --organization flux-demo
 
 > Note: There is some parameterization and hooks already added in the demo respository. You can copy from there if you don't want to do it on your own.
 > Otherwise please:
+>
 > - parameterize common variables and put them in `values.yaml`: cluster ID, organization name, namespace, control plane ID, etc.
 > - add hook annotations to `Cluster` CR: `helm.sh/hook: pre-install` and `helm.sh/hook-weight: "-1"`
 
@@ -297,7 +297,6 @@ flux create kustomization install-managed-app \
         --validation=client \
         --export > 04-managed-app.yaml
 ```
-
 
 Install the `Kustomization`:
 
@@ -416,4 +415,3 @@ kubectl get organizations flux-demo-dev
 NAME            AGE
 flux-demo-dev   20s
 ```
-
