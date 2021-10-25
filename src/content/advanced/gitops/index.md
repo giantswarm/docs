@@ -214,7 +214,7 @@ kubectl gs template cluster --provider aws --name demo0 --organization flux-demo
 > - parameterize common variables and put them in `values.yaml`: cluster ID, organization name, namespace, control plane ID, etc.
 > - add hook annotations to `Cluster` CR: `helm.sh/hook: pre-install` and `helm.sh/hook-weight: "-1"`
 
-The cluster will still need a NodePool to reach full functionality. To learn more, visit [NodePool documentation]({{< relref "/advanced/node-pools/" >}}). We will be creating one using `kubectl gs template` command.
+The cluster will still need a NodePool to reach full functionality. To learn more, visit [NodePool documentation]({{< relref "/advanced/node-pools/index.md" >}}). We will be creating one using `kubectl gs template` command.
 
 ```nohighlight
 kubectl gs template nodepool --provider aws --cluster-name demo0 --description demo0 --organization flux-demo --availability-zones 1 > 03-cluster-aws/templates/nodepool-resources.yaml
