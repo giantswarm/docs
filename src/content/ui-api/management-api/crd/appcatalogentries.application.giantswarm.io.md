@@ -12,19 +12,19 @@ crd:
   technical_name: appcatalogentries.application.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.33.0
+  source_repository_ref: v3.35.0
   versions:
     - v1alpha1
   topics:
     - apps
 layout: crd
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-batman
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 aliases:
   - /reference/cp-k8s-api/appcatalogentries.application.giantswarm.io/
 technical_name: appcatalogentries.application.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.33.0
+source_repository_ref: v3.35.0
 ---
 
 # AppCatalogEntry
@@ -230,7 +230,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Namespace is the namespace of the catalog. It is empty while the appcatalog CRD is cluster scoped.</p>
+<p>Namespace is the namespace of the catalog.</p>
 
 </div>
 

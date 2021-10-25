@@ -8,7 +8,7 @@ user_questions:
   - How do I prepare my Azure subscription for use with Giant Swarm?
   - What do I need to configure in Azure in order to run Giant Swarm clusters?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-celestial
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 last_review_date: 2021-01-01
 ---
 

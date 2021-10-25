@@ -1,0 +1,12 @@
+<div>
+  <ul class="nav nav-tabs" role="tablist">
+{{- range $i, $sequence := .Scratch.Get "titles" }}
+  <li role="presentation" class="{{ if eq $i 0 }}active{{ end }}"><a href="#{{ . | urlize }}" aria-controls="{{ . }}" role="tab" data-toggle="tab">{{ . }}</a></li>
+{{- end }}
+  </ul>
+  <div class="tab-content">
+
+{{ .Inner }}
+
+  </div>
+</div>

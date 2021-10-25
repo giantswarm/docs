@@ -1,0 +1,19 @@
+{{/* The tab counter is needed to activate the first tab by default. */}}
+{{- .Parent.Scratch.Add "tabcount" 1 }}
+
+{{/* Making tab titles available to the parent, to create the header. */}}
+{{ $titles := .Parent.Scratch.Get "titles" }}
+{{- if $titles }}
+{{ $titles = $titles | append (.Get "title") }}
+{{ .Parent.Scratch.Set "titles" $titles }}
+{{- else }}
+{{ $titles := slice (.Get "title") }}
+{{ .Parent.Scratch.Set "titles" $titles }}
+{{- end }}
+
+
+<div role="tabpanel" class="tab-pane{{ if eq (.Parent.Scratch.Get `tabcount`) 1 }} active{{ end }}" id="{{ .Get `title` | urlize }}">
+
+{{ .Inner | markdownify }}
+
+</div>

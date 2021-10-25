@@ -12,7 +12,7 @@ user_questions:
   - As of which release are AWS EC2 spot instances supported?
   - What's the difference between spot instances and on-demand instances on AWS?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-firecracker
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 last_review_date: 2021-01-01
 ---
 

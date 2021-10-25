@@ -12,7 +12,7 @@ aliases:
   - /basics/azure-accelerated-networking/
 last_review_date: 2021-05-04
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-celestial
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
 # Accelerated networking on Azure

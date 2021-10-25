@@ -36,6 +36,10 @@ repositories:
     category: Managed Apps
   giantswarm/kubectl-gs:
     category: kubectl gs
+  giantswarm/kyverno-app:
+    category: Management API
+  giantswarm/kyverno-policies:
+    category: Management API
   giantswarm/management-cluster-admission:
     category: Management API
   giantswarm/nginx-ingress-controller-app:
