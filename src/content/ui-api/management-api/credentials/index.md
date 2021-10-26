@@ -2,13 +2,16 @@
 linkTitle: Provider credentials
 title: Handling cloud provider credentials
 description: Where to configure the cloud provider account/subscription to be used, and how to deposit credentials via the Management API.
-#weight: 30
+weight: 30
 menu:
   main:
     parent: uiapi-managementapi
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 last_review_date: 2021-10-26
+user_questions:
+  - How can I provide AWS identity details to use with my workload clusters?
+  - How can I set cloud provider credentials via the Management API?
 ---
 
 # Handling cloud provider credentials via the Management API
