@@ -65,7 +65,7 @@ data:
   aws.awsoperator.arn: YXJuOmF3czppYW06OjEyMzQ1Njc4OTA6cm9sZS9HaWFudFN3YXJtQVdTT3BlcmF0b3I=
 ```
 
-In the `metadata`, just like in the `Cluster` resource, here we find again the name of the organization owning both the cluster and the Secret. And accordingly the secret is placed in the organization's namespace. In fact, this namespace placement is not required, as the credentials would be found in other namespaces, too.
+In the `metadata`, just like in the `Cluster` resource, here we find again the name of the organization owning both the cluster and the secret (note: `acme` is an example organization name). And accordingly the secret is placed in the organization's namespace. In fact, this namespace placement is not required, as the credentials would be found in other namespaces, too.
 
 The `data` part contains two fields which both indicate AWS IAM role identifiers (ARNs). As typical with opaque secrets, the value is encoded in base64. Here is how the two example strings would look like when decoded:
 
