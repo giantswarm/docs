@@ -36,13 +36,13 @@ See the example command updating `starboard-app` to version `0.2.1`:
 kubectl gs update app \
   --name starboard-app \
   --namespace ab01c \
-  --version 0.1.0
+  --version 0.2.1
 ```
 
 It produces the following output upon success:
 
 ```nohighlight
-App 'starboard-app' updated to version '0.1.0'
+App 'starboard-app' updated to version '0.2.1'
 ```
 
 ## Related
