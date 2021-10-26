@@ -2,7 +2,7 @@
 linkTitle: template organization
 title: "'kubectl gs template organization' command reference"
 description: Reference documentation on how to create a manifest for an organization using 'kubectl gs'.
-weight: 80
+weight: 110
 menu:
   main:
     parent: uiapi-kubectlgs
