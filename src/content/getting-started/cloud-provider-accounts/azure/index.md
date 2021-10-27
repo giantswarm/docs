@@ -1,9 +1,12 @@
 ---
-linkTitle: "Azure"
-title: "Prepare an Azure subscription to run Giant Swarm workload clusters"
-description: "This guide will walk you through all necessary steps to set up an Azure subscription with approriate Role definition and Service Principal for operating Giant Swarm worload clusters."
-date: "2020-05-19"
-weight: 100
+linkTitle: Azure
+title: Prepare an Azure subscription to run Giant Swarm workload clusters
+description: Learn how to set up an Azure subscription with appropriate Role definition and Service Principal for operating Giant Swarm workload clusters.
+menu:
+  main:
+    identifier: gettingstarted-cloudprovider-azure
+    parent: gettingstarted-cloudprovider
+weight: 20
 user_questions:
   - How do I prepare my Azure subscription for use with Giant Swarm?
   - What do I need to configure in Azure in order to run Giant Swarm clusters?
