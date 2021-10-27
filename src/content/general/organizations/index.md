@@ -131,7 +131,7 @@ Giant Swarm is currently working towards making the organization's namespace the
 
   Resources belonging to apps deployed to workload clusters are not yet placed in the organization namespace. Instead they are placed in a namespace named after the workload cluster ID.
 
-  Note: This applies to newly creaded clusters and upgrading a cluster to v16.x.x will not move it's resources to the org-namespace automatically. GS is currently preparing to move existing clusters.
+  Note: This applies to newly created clusters and upgrading a cluster to v16.x.x will not move it's resources to the org-namespace automatically. GS is currently preparing to move existing clusters.
 
 - **On-premises (KVM)**: With the latest KVM releases, the organization namespace is not yet used by default.
 
