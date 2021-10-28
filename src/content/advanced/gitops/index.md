@@ -11,7 +11,7 @@ user_questions:
   - What is FluxCD?
   - How to manage resources with GitOps?
   - How to prepare repositories for use with FluxCD?
-  - How to ensure security by combining FluxCD with Management API permission model?
+  - How to ensure security by combining FluxCD with the Management API permission model?
 aliases:
   - /advanced/fluxcd/
   - /advanced/gitops/
@@ -22,7 +22,7 @@ last_review_date: 2021-01-01
 
 # Managing workload clusters with GitOps
 
-You can manage infrastructure and applications by utilizing FluxCD - a set of GitOps operators installed in Giant Swarm Management Clusters.
+You can manage infrastructure and applications by utilizing FluxCD - a set of GitOps operators installed in Giant Swarm management clusters.
 
 ## What is GitOps
 
@@ -40,25 +40,25 @@ GitOps Working Group [defines GitOps as a set of principles](https://github.com/
 
 How those principles translate into workings of popular tools, such as FluxCD or ArgoCD can be summarized as this:
 
-Cluster's desired state, or manifest, is kept in Git repositories (or Helm repositories, S3 buckets, and so on). GitOps operators are deployed to clusters and configured to watch the manifest. The operators are tasked with periodically comparing the desired and actual states of the cluster's resources and reconciling them in case any discrepancies are found.
+The cluster's desired state, or manifest, is kept in Git repositories (or Helm repositories, S3 buckets, and so on). GitOps operators are deployed to clusters and configured to watch the manifest. The operators are tasked with periodically comparing the desired and actual states of the cluster's resources and reconciling them in case any discrepancies are found.
 
 If the cluster's state changes in a way that is not reflected in the code, the change will be reverted. If the code is updated with a new configuration and/or resources, the cluster will be instantly updated to match the desired state.
 
-This way of managing Kubernetes comes with all benefits and best practices of a versioning system: code reviews, pull requests, versioned releases, test branches, commit history, and full accountability. Due to the almost instant deployment of committed changes, it is also a perfect tool for development and testing.
+This way of managing Kubernetes comes with all the benefits and best practices of a versioning system: code reviews, pull requests, versioned releases, test branches, commit history, and full accountability. Due to the almost instant deployment of committed changes, it is also a perfect tool for development and testing.
 
 ## What is FluxCD
 
 [FluxCD](https://fluxcd.io) website says:
 > Flux is a set of continuous and progressive delivery solutions for Kubernetes that are open and extensible.
 
-What it is from a developer perspective is a set of operators and Custom Resources designed to apply GitOps in Kubernetes environment. The operators, configured with the Custom Resources, will be watching Git repositories, Helm repositories, or even S3 buckets and reconciling their contents with the state of the cluster to make sure they both match.
+What it is from a developer perspective is a set of operators and Custom Resources designed to apply GitOps in a Kubernetes environment. The operators, configured with the Custom Resources, will be watching Git repositories, Helm repositories, or even S3 buckets and reconciling their contents with the state of the cluster to make sure they both match.
 
 To get started with FluxCD, you will need to bootstrap FluxCD to your cluster of choice and create at least one of each:
 
-1. `source.toolkit.fluxcd.io` resources - they tell the `source-controller` whereto look for the manifests
+1. `source.toolkit.fluxcd.io` resources - they tell the `source-controller` where to look for the manifests
 2. `helmrelease.helm.toolkit.fluxcd.io` or `kustomization.kustomize.toolkit.fluxcd.io` resources - they are meant for `helm-controller` and `kustomize-controller` respectively and govern how the manifests found in sources will be applied
 
-Luckily, FluxCD is bootstrapped and running in Giant Swarm Management Clusters, so you can start using it immediately.
+Luckily, FluxCD is bootstrapped and running in Giant Swarm management clusters, so you can start using it immediately.
 
 If want to learn more about FluxCD and its capabilities, here are a couple of useful links:
 
@@ -72,7 +72,7 @@ In this section, we will guide you through an example Flux setup on a Giant Swar
 
 In order to follow [Watching for new commits](#watching-for-new-commits) section, you should fork the repository and work on your fork instead.
 
-We will be using [Flux CLI](https://fluxcd.io/docs/cmd/) and [kubectl-gs](https://github.com/giantswarm/kubectl-gs). Please make sure you have both installed on your machine. If you would rather follow the guide without them, use example resources provided.
+We will be using [Flux CLI](https://fluxcd.io/docs/cmd/) and [kubectl-gs](https://github.com/giantswarm/kubectl-gs). Please make sure you have both installed on your machine. If you would rather follow the guide without them, use the example resources provided.
 
 ### Setting up sources
 
@@ -86,7 +86,7 @@ flux create source git flux-demo \
         --export > 01-source.yaml
 ```
 
-This command creates the Custom Resource for you and exports it to `01-source.yaml`. You can also use the `01-source.yaml` file from example repository - they are identical. All resources generated in this document are stored there as well.
+This command creates the Custom Resource for you and exports it to `01-source.yaml`. You can also use the `01-source.yaml` file from the example repository - they are identical. All resources generated in this document are stored there as well.
 
 Time to apply the generated YAML:
 
@@ -184,9 +184,9 @@ Now, if you add any more Organization CRs to `02-organization/resources.yaml` (o
 
 ### Managing workload clusters
 
-Let's try managing clusters. Pick a directory which matches your cloud platform provider: AWS or Azure. The file structure will stay exactly the same. This tutorial will follow with AWS examples.
+Let's try managing clusters. Pick a directory which matches your cloud platform provider: AWS or Azure. The file structure will stay exactly the same. This tutorial will use the AWS examples.
 
-As in previous example, we will create a single Flux resource, namely a `HelmRelease`. This resource will contain configuration telling Flux to reconcile a path in the demo repository (`flux-demo/03-cluster-aws`) as a Helm release.
+As in the previous example, we will create a single Flux resource, namely a `HelmRelease`. This resource will contain configuration telling Flux to reconcile a path in the demo repository (`flux-demo/03-cluster-aws`) as a Helm release.
 
 File structure
 
@@ -208,7 +208,7 @@ mkdir -p 03-cluster-aws/templates
 kubectl gs template cluster --provider aws --name demo0 --organization flux-demo --description flux-demo > 03-cluster-aws/templates/cluster-resources.yaml
 ```
 
-> Note: There is some parameterization and hooks already added in the demo respository. You can copy from there if you don't want to do it on your own.
+> Note: There is some parameterization and hooks already added in the demo repository. You can copy from there if you don't want to do it on your own.
 > Otherwise please:
 >
 > - parameterize common variables and put them in `values.yaml`: cluster ID, organization name, namespace, control plane ID, etc.
@@ -259,7 +259,7 @@ demo0
 
 ### Installing managed apps
 
-It is just as easy to install managed apps in existing workload clusters. In this part of the guide we will assume you have completed previous steps and have both an organization and a cluster running.
+It is just as easy to install managed apps in existing workload clusters. In this part of the guide we will assume you have completed the previous steps and have both an organization and a cluster running.
 
 File structure
 
@@ -313,7 +313,7 @@ Now the managed application will be installed in your workload cluster. To learn
 
 ### Watching for new commits
 
-If you have forked the repository, you can test if Flux is watching it for new commits. We are assuming you have completed at least [Managing organizations](#managing-organizations) section.
+If you have forked the repository, you can test if Flux is watching it for new commits. We are assuming you have completed at least the [Managing organizations](#managing-organizations) section.
 
 Let's create a new Organization CR and add it to `02-organization/resources.yaml`
 
@@ -388,7 +388,7 @@ Note the differences:
    timeout: 30s
 ```
 
-After applying the changes, `install-organization` `Kustomization` will switch to watching `development` branch and create new organization found there:
+After applying the changes, `install-organization` `Kustomization` will switch to watching the `development` branch and create the new organization found there:
 
 ```nohighlight
 kubectl apply -R -f 05-development
@@ -415,3 +415,5 @@ kubectl get organizations flux-demo-dev
 NAME            AGE
 flux-demo-dev   20s
 ```
+
+This completes the guide. If you no longer need them you can delete the organization and cluster.
