@@ -3,9 +3,7 @@ linkTitle: template appcatalog
 title: "'kubectl gs template appcatalog' command reference"
 description: Reference documentation for 'kubectl gs template appcatalog' which is replaced by 'kubectl gs template catalog'.
 weight: 120
-menu:
-  main:
-    parent: uiapi-kubectlgs
+menu: false
 aliases:
   - /reference/kubectl-gs/template-appcatalog/
 last_review_date: 2021-06-30
