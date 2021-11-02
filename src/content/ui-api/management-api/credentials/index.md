@@ -8,7 +8,7 @@ menu:
     parent: uiapi-managementapi
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
-last_review_date: 2021-10-26
+last_review_date: 2021-11-02
 user_questions:
   - How can I provide AWS identity details to use with my workload clusters?
   - How can I set cloud provider credentials via the Management API?
