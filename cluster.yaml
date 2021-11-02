@@ -1,0 +1,94 @@
+apiVersion: cluster.x-k8s.io/v1alpha3
+kind: Cluster
+metadata:
+  annotations:
+    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/clusters.cluster.x-k8s.io/
+  labels:
+    cluster-operator.giantswarm.io/version: ""
+    giantswarm.io/cluster: z8c3d
+    giantswarm.io/organization: marian
+    release.giantswarm.io/version: ""
+  name: z8c3d
+  namespace: org-marian
+spec:
+  controlPlaneEndpoint:
+    host: ""
+    port: 0
+  infrastructureRef:
+    apiVersion: infrastructure.giantswarm.io/v1alpha3
+    kind: AWSCluster
+    name: z8c3d
+    namespace: org-marian
+status:
+  controlPlaneInitialized: false
+  infrastructureReady: false
+---
+apiVersion: infrastructure.giantswarm.io/v1alpha3
+kind: AWSCluster
+metadata:
+  annotations:
+    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/awsclusters.infrastructure.giantswarm.io/
+  labels:
+    aws-operator.giantswarm.io/version: ""
+    cluster.x-k8s.io/cluster-name: z8c3d
+    giantswarm.io/cluster: z8c3d
+    giantswarm.io/organization: marian
+    release.giantswarm.io/version: ""
+  name: z8c3d
+  namespace: org-marian
+spec:
+  cluster:
+    description: ""
+    dns:
+      domain: ""
+    kubeProxy: {}
+    oidc:
+      claims: {}
+  provider:
+    credentialSecret:
+      name: ""
+      namespace: ""
+    master:
+      availabilityZone: ""
+      instanceType: ""
+    nodes: {}
+    pods:
+      externalSNAT: false
+    region: ""
+---
+apiVersion: infrastructure.giantswarm.io/v1alpha3
+kind: G8sControlPlane
+metadata:
+  annotations:
+    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/g8scontrolplanes.infrastructure.giantswarm.io/
+  labels:
+    cluster-operator.giantswarm.io/version: ""
+    giantswarm.io/cluster: z8c3d
+    giantswarm.io/control-plane: ya2z2
+    giantswarm.io/organization: marian
+    release.giantswarm.io/version: ""
+  name: ya2z2
+  namespace: org-marian
+spec:
+  infrastructureRef:
+    apiVersion: infrastructure.giantswarm.io/v1alpha3
+    kind: AWSControlPlane
+    name: ya2z2
+    namespace: org-marian
+status: {}
+---
+apiVersion: infrastructure.giantswarm.io/v1alpha3
+kind: AWSControlPlane
+metadata:
+  annotations:
+    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/awscontrolplanes.infrastructure.giantswarm.io/
+  labels:
+    aws-operator.giantswarm.io/version: ""
+    giantswarm.io/cluster: z8c3d
+    giantswarm.io/control-plane: ya2z2
+    giantswarm.io/organization: marian
+    release.giantswarm.io/version: ""
+  name: ya2z2
+  namespace: org-marian
+spec:
+  instanceType: m5.xlarge
