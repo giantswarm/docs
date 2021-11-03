@@ -136,7 +136,7 @@ def get_cluster_releases(repo_shortname):
     """
     with tempfile.TemporaryDirectory() as tmpdir:
         print(f'Cloning to temporary directory {tmpdir}')
-        git.Git(tmpdir).clone(f"git://github.com/{repo_shortname}.git", depth=1)
+        git.Git(tmpdir).clone(f"https://github.com/{repo_shortname}.git", depth=1)
 
         (org, repo) = repo_shortname.split("/", maxsplit=1)
 
