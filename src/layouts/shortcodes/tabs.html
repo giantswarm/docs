@@ -1,0 +1,19 @@
+{{- $titles := .Scratch.Get "titles" }}
+{{- $ids := .Scratch.Get "ids" }}
+
+<div>
+  <ul class="nav nav-tabs" role="tablist">
+{{- range $i, $sequence := $titles }}
+  {{- $href := ( . | urlize ) }}
+  {{- with index $ids $i }}
+  {{- $href = ( . | urlize ) }}
+  {{- end }}
+  <li role="presentation" class="{{ if eq $i 0 }}active{{ end }}"><a href="#{{ $href }}" aria-controls="{{ . }}" role="tab" data-toggle="tab">{{ . }}</a></li>
+{{- end }}
+  </ul>
+  <div class="tab-content">
+
+{{ .Inner }}
+
+  </div>
+</div>
