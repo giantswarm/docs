@@ -236,7 +236,6 @@ curl -s https://raw.githubusercontent.com/giantswarm/flux-demo/main/03-cluster-a
 curl -s https://raw.githubusercontent.com/giantswarm/flux-demo/main/03-cluster-aws/values.yaml > 03-cluster-aws/values.yaml
 ```
 
-
 ```nohighlight
 flux create helmrelease install-cluster-aws-chart \
         --source=GitRepository/flux-demo.flux-system \
