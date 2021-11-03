@@ -68,7 +68,7 @@ If want to learn more about FluxCD and its capabilities, here are a couple of us
 
 ## Managing resources with Flux
 
-In this section, we will guide you through an example Flux setup on a Giant Swarm Management Cluster. Every mention of _example resources_ or _example repository_ refers to [giantswarm/flux-demo](https://github.com/giantswarm/flux-demo), where you can find all resources used in this section in full, unabbreviated forms.
+In this section, we will guide you through an example Flux setup on a Giant Swarm Management Cluster. You will create resources locally. Mentions of _example resources_ or _example repository_ refers to [giantswarm/flux-demo](https://github.com/giantswarm/flux-demo), where you can find all resources used in this section in full, unabbreviated forms and Flux will use these to sync with.
 
 In order to follow [Watching for new commits](#watching-for-new-commits) section, you should fork the repository and work on your fork instead.
 
@@ -91,7 +91,7 @@ This command creates the Custom Resource for you and exports it to `01-source.ya
 Time to apply the generated YAML:
 
 ```nohighlight
-kubectl apply -f 01-source.yaml
+kubectl create -f 01-source.yaml
 ```
 
 You can see if the change was applied using `kubectl`:
@@ -149,7 +149,6 @@ flux create kustomization install-organization \
         --path="./02-organization" \
         --prune=true  \
         --interval=30s \
-        --validation=client \
         --export > 02-organization.yaml
 ```
 
@@ -217,10 +216,26 @@ kubectl gs template cluster --provider aws --name demo0 --organization flux-demo
 The cluster will still need a NodePool to reach full functionality. To learn more, visit [NodePool documentation]({{< relref "/advanced/node-pools/index.md" >}}). We will be creating one using `kubectl gs template` command.
 
 ```nohighlight
-kubectl gs template nodepool --provider aws --cluster-name demo0 --description demo0 --organization flux-demo --availability-zones 1 > 03-cluster-aws/templates/nodepool-resources.yaml
+kubectl gs template nodepool \
+        --provider aws \
+        --cluster-name demo0 \
+        --description demo0 \
+        --organization flux-demo \
+        --availability-zones eu-west-1a > 03-cluster-aws/templates/nodepool-resources.yaml
 ```
 
+Please note that `kubectl gs template nodepool` requires you to specify availability zones by name and they may vary depending on your region.
+
 Add `Chart.yaml` and `values.yaml` from the example repository or create your own.
+
+```nohighlight
+curl -s https://raw.githubusercontent.com/giantswarm/flux-demo/main/03-cluster-aws/Chart.yaml > 03-cluster-aws/Chart.yaml
+```
+
+```nohighlight
+curl -s https://raw.githubusercontent.com/giantswarm/flux-demo/main/03-cluster-aws/values.yaml > 03-cluster-aws/values.yaml
+```
+
 
 ```nohighlight
 flux create helmrelease install-cluster-aws-chart \
@@ -281,7 +296,7 @@ echo -e 'resources:\n- resources.yaml' > 04-managed-app/kustomization.yaml
 
 ```nohighlight
 kubectl gs template app \
-        --cluster "clusterid" \
+        --cluster "demo0" \
         --catalog giantswarm \
         --name nginx-ingress-controller-app \
         --namespace default \
@@ -294,7 +309,6 @@ flux create kustomization install-managed-app \
         --path="./04-managed-app" \
         --prune=true  \
         --interval=30s \
-        --validation=client \
         --export > 04-managed-app.yaml
 ```
 
@@ -303,6 +317,10 @@ Install the `Kustomization`:
 ```nohighlight
 kubectl create -f 04-managed-app.yaml
 kustomization.kustomize.toolkit.fluxcd.io/install-managed-app created
+
+kubectl get kustomizations -n flux-system install-organization
+NAME                  READY   STATUS                                                            AGE
+install-managed-app   True    Applied revision: main/070c352f4949ecaad0d43e31744adf7e864cc754   23s
 
 kubectl get apps -n demo0 nginx-ingress-controller-app
 NAME                                VERSION      LAST DEPLOYED   STATUS
