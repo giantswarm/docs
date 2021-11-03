@@ -9,7 +9,8 @@ menu:
 user_questions:
   - How is the Linux kernel of cluster nodes configured?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-ludacris
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
+  - https://github.com/orgs/giantswarm/teams/team-rocket
 last_review_date: 2021-01-01
 ---
 

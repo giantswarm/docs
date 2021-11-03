@@ -12,7 +12,8 @@ user_questions:
   - How can I restrict a workload's resource usage?
   - How can I define a workload's quality of service?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-ludacris
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
+  - https://github.com/orgs/giantswarm/teams/team-rocket
 last_review_date: 2021-01-01
 ---
 
