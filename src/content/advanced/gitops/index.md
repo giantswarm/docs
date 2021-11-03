@@ -421,7 +421,7 @@ kubectl get organizations flux-demo-development
 Error from server (NotFound): organizations.security.giantswarm.io "flux-demo-dev" not found
 
 
-kubectl apply -f 05-development/
+kubectl apply -R -f 05-development/
 kustomization.kustomize.toolkit.fluxcd.io/install-organization configured
 gitrepository.source.toolkit.fluxcd.io/flux-demo-development created
 
