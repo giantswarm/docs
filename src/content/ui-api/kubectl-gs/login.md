@@ -14,7 +14,7 @@ owner:
 user_questions:
   - How can I log in with kubectl for the Management API?
   - How can I create a workload cluster client certificate?
-last_review_date: 2021-10-25
+last_review_date: 2021-11-04
 ---
 
 # `kubectl gs login`
@@ -47,29 +47,57 @@ where `management-cluster` can be either:
 
 It is also possible to create client certificates for a workload cluster, by providing the right configuration flags. Please be aware that the recommended way to authenticate users for workload clusters is OIDC. Client certificates should only be a temporary replacement.
 
-The command supports the following flags:
+### Flags
 
-- `--workload-cluster` - If present, `kubectl gs` will set up a kubectl context to work with a workload cluster.
+The command supports the following flags, all of which are related to creating client certificates for workload cluster access:
+
+- `--workload-cluster` - If present, `kubectl gs` will set up a kubectl context to work with a workload cluster. Otherwise, the command attempts to set up a management cluster context.
 - `--organization` - The organization that the workload cluster belongs to. Requires the `--workload-cluster` flag.
 - `--certificate-group` - The RBAC group name to be encoded into the X.509 field "O". It can be specified multiple times in order to set multiple groups at once. Requires the `--workload-cluster` flag.
 - `--certificate-ttl` - How long the client certificate should live for. When creating client certificates, we recommend using short expiration periods. Requires the `--workload-cluster` flag.
+
+In addition, there is one flag **only relevant to Giant Swarm staff**:
+
+- `--cluster-admin` - This flag enables the use of a Giant Swarm identity provider instead of the customer's one when authenticating for the management cluster.
 
 ## Examples
 
 ### Management cluster
 
-Using the Web UI URL as an argument:
+To set up a context initially, you'll have to use either the web UI  URL as an argument ...
 
 ```nohighlight
-kubectl gs login https://happa.g8s.mymc.westeurope.azure.gigantic.io
+kubectl gs login https://happa.g8s.example.westeurope.azure.gigantic.io
+```
+
+... or the Management API endpoint URL.
+
+```nohighlight
+kubectl gs login https://g8s.example.westeurope.azure.gigantic.io
+```
+
+As a result, a context will be created with prefix `gs-` and a shorthand for this installation. Watch the command's output:
+
+```nohighlight
+Switched to context 'gs-example'.
+You are logged in to the management cluster of installation 'example'.
+```
+
+For subsequent logins, you can use that shorthand to easily select which installation to log in to. Example:
+
+```nohighlight
+kubectl gs login example
 ```
 
 ### Workload cluster
 
+Given that a context `gs-example` already exists from previous management cluster log-ins to that installation, the following command would create a client certificate with specific group assignment:
+
 ```nohighlight
-kubectl gs login mymc \
+kubectl gs login example \
   --workload-cluster gir0y \
   --organization acme \
-  --certificate-group admins \
-  --certificate-ttl 3h
+  --certificate-group example-group
 ```
+
+Without `--certificate-group` flag, you can still create a valid certificate, however the client presenting the certificate would not get any permissions in the Kubernetes API. The reason is that without that flag, both the `CN` attribute (interpreted as the user name by the Kubernetes API) and the `O` attribute of the certificate will contain random values, so that no role bindings can match these names.
