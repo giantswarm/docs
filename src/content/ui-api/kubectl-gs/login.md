@@ -100,4 +100,4 @@ kubectl gs login example \
   --certificate-group example-group
 ```
 
-Without `--certificate-group` flag, you can still create a valid certificate, however the client presenting the certificate would not get any permissions in the Kubernetes API. The reason is that without that flag, both the `CN` attribute (interpreted as the user name by the Kubernetes API) and the `O` attribute of the certificate will contain random values, so that no role bindings can match these names.
+Without `--certificate-group` flag, you can still create a valid certificate, however the client presenting the certificate would not get any permissions in the Kubernetes API. The reason is that without that flag, both the `CN` attribute (interpreted as the user name by the Kubernetes API) and the `O` attribute of the certificate (interpreted as group name) will contain random values, so that no role bindings can match these names.
