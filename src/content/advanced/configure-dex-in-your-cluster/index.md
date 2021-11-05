@@ -80,7 +80,6 @@ In this guide, we will use a single app deployment for each cluster that you wan
 
 We'll use the [app platform](https://docs.giantswarm.io/app-platform/) to deploy the app, as it allows us to deploy apps across workload clusters using a single API endpoint. In this example, we create an `App` custom resource (CR) with the parameters to install our [`dex-app`](https://github.com/giantswarm/dex-app) in the desired cluster, and a `ConfigMap` with the configuration values.
 
-
 {{< tabs >}}
 {{< tab title="Keycloak">}}
 
@@ -122,7 +121,6 @@ data:
 
 {{< /tab >}}
 {{< tab title="Github">}}
-
 
 ```yaml
 apiVersion: v1
