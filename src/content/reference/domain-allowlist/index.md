@@ -23,6 +23,8 @@ Below is a list of the external domains we require access to for our clusters to
     - `*.quay.io`
 - github.com
     - `*.github.com`
+- github.io
+    - `*.github.io`
 - amazonaws.com
     - `*.amazonaws.com`
 - docker.io
