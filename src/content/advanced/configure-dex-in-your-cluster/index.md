@@ -80,6 +80,10 @@ In this guide, we will use a single app deployment for each cluster that you wan
 
 We'll use the [app platform](https://docs.giantswarm.io/app-platform/) to deploy the app, as it allows us to deploy apps across workload clusters using a single API endpoint. In this example, we create an `App` custom resource (CR) with the parameters to install our [`dex-app`](https://github.com/giantswarm/dex-app) in the desired cluster, and a `ConfigMap` with the configuration values.
 
+
+{{< tabs >}}
+{{< tab title="Keycloak">}}
+
 ```yaml
 apiVersion: v1
 kind: ConfigMap
@@ -103,8 +107,6 @@ data:
       customer:
         enabled: true
         connectorName: test
-
-        ## For Keycloak
         connectorType: oidc
         connectorConfig: >-
           clientID: <CLIENT-ID-SET-IN-YOUR-IdP>
@@ -116,28 +118,79 @@ data:
           - profile
           issuer: https://<IDP_ENDPOINT>/auth/realms/master
           redirectURI: https://dex.<CLUSTERID>.<BASEDOMAIN>/callback
+```
 
-        ## For Active Directory
+{{< /tab >}}
+{{< tab title="Github">}}
+
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dex-app-user-values
+  namespace: <CLUSTERID>
+data:
+  values: |
+    isWorkloadCluster: true
+    services:
+      kubernetes:
+        api:
+          caPem: |
+            -----BEGIN CERTIFICATE-----
+            M...=
+            -----END CERTIFICATE-----
+    oidc:
+      expiry:
+        signingKeys: 6h
+        idTokens: 30m
+      customer:
+        enabled: true
+        connectorName: test
         connectorType: microsoft
         connectorConfig: >-
           clientID: <CLIENT-ID-SET-IN-YOUR-IdP>
           clientSecret: <CLIENT-SECRET-SET-IN--YOUR-IdP>
           tenant: <TENANT-SET-SET-IN--YOUR-IdP>
           redirectURI: https://dex.<CLUSTERID>.<BASEDOMAIN>/callback
+```
 
-        ## For GitHub  
-        connectorType: github
+{{< /tab >}}
+{{< tab title="Active Directory">}}
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dex-app-user-values
+  namespace: <CLUSTERID>
+data:
+  values: |
+    isWorkloadCluster: true
+    services:
+      kubernetes:
+        api:
+          caPem: |
+            -----BEGIN CERTIFICATE-----
+            M...=
+            -----END CERTIFICATE-----
+    oidc:
+      expiry:
+        signingKeys: 6h
+        idTokens: 30m
+      customer:
+        enabled: true
+        connectorName: test
+        connectorType: microsoft
         connectorConfig: >-
           clientID: <CLIENT-ID-SET-IN-YOUR-IdP>
           clientSecret: <CLIENT-SECRET-SET-IN--YOUR-IdP>
-          loadAllGroups: false
-          orgs:
-          - name: <GITHUB_ORG_NAME>
-            teams:
-            - <GITHUB_TEAM_NAME>
+          tenant: <TENANT-SET-SET-IN--YOUR-IdP>
           redirectURI: https://dex.<CLUSTERID>.<BASEDOMAIN>/callback
-
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 __Note__: In the above snippet you have to replace the `<CLUSTERID>` variable and add the Kubernetes Certificate Authority to ensure Dex can trust the API endpoint. Finally you have to use a connector. Here we show examples for Keycloak, Active Directory, and GitHub.
 
