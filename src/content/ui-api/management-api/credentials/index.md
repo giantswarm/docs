@@ -11,7 +11,7 @@ owner:
 last_review_date: 2021-11-02
 user_questions:
   - How can I provide AWS identity details to use with my workload clusters?
-  - How can I provide azure identity details to use with my workload clusters?
+  - How can I provide Azure identity details to use with my workload clusters?
   - How can I set cloud provider credentials via the Management API?
 ---
 
@@ -60,7 +60,7 @@ The first of the two identifies the IAM role to be assumed by Giant Swarm staff 
 
 We provide [detailed documentation]({{< relref "/getting-started/cloud-provider-accounts/aws" >}}) regarding how to configure these roles in your AWS account.
 
-The `data` part of a credential secret in azure looks slightly different:
+The `data` part of a credential secret in Azure looks slightly different:
 
 ```yaml
 ...
@@ -98,7 +98,7 @@ The `AzureCluster` field  [`.spec.identityRef`]({{< relref "/ui-api/management-a
 
 ## Defaulting
 
-If the cluster resource does not reference a provider credential secret to use (as explained above and as always the case on azure), our admission controller fills in some defaults, in this logical order
+If the cluster resource does not reference a provider credential secret to use (as explained above and as always the case on Azure), our admission controller fills in some defaults, in this logical order
 
 1. An organization's credential secret is used, if it exists
 2. Otherwise the installation's default secret is used
@@ -152,4 +152,4 @@ The defaulting options as well as the option to reference credentials explicitly
 ## Further reading
 
 - [aws-admission-controller](https://github.com/giantswarm/aws-admission-controller/): Explore the source code of the component that does the defaulting of AWS credentials on cluster creation.
-- [azure-operator](https://github.com/giantswarm/azure-admission-controller/): Explore the source code of the component that takes care of the indirect refence of azure credentials on cluster creation.
+- [azure-operator](https://github.com/giantswarm/azure-admission-controller/): Explore the source code of the component that takes care of the indirect reference of Azure credentials on cluster creation.
