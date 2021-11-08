@@ -14,7 +14,7 @@ user_questions:
 aliases:
   - /guides/accessing-services-from-the-outside/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-ludacris
+  - https://github.com/orgs/giantswarm/teams/team-cabbage
 last_review_date: 2021-09-01
 ---
 
