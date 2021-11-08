@@ -49,12 +49,18 @@ It is also possible to create client certificates for a workload cluster, by pro
 
 ### Flags
 
-The command supports the following flags, all of which are related to creating client certificates for workload cluster access:
+The following flags related to creating client certificates for workload cluster access:
 
 - `--workload-cluster` - If present, `kubectl gs` will set up a kubectl context to work with a workload cluster. Otherwise, the command attempts to set up a management cluster context.
 - `--organization` - The organization that the workload cluster belongs to. Requires the `--workload-cluster` flag.
 - `--certificate-group` - The RBAC group name to be encoded into the X.509 field "O". It can be specified multiple times in order to set multiple groups at once. Requires the `--workload-cluster` flag.
 - `--certificate-ttl` - How long the client certificate should live for. When creating client certificates, we recommend using short expiration periods. Requires the `--workload-cluster` flag.
+
+For management cluster access, the following option is provided:
+
+- `--internal-api` - With this flag you switch to using an alternative host name for the Management API endpoint. That hostname, if available with your installation, is usually only accessible from within a your network or VPN.
+
+  Example: If your Management API host name is `g8s.example.yourdomain.tld`, the alternative hostname is `internal-g8s.example.yourdomain.tld`.
 
 In addition, there is one flag **only relevant to Giant Swarm staff**:
 
