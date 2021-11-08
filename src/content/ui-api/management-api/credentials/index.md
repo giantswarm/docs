@@ -122,7 +122,7 @@ On **Azure**, the `AzureCluster` field  [`.spec.identityRef`]({{< relref "/ui-ap
 
 ## Defaulting
 
-If the cluster resource does not reference a provider credential secret to use (as explained above and as always the case on Azure), our admission controller fills in some defaults, in this logical order
+If the cluster resource does not reference a provider credential secret to use (as explained above), our admission controller fills in some defaults, in this logical order
 
 1. An organization's credential secret is used, if it exists
 2. Otherwise the installation's default secret is used
