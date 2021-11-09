@@ -11,6 +11,7 @@ owner:
 last_review_date: 2021-11-02
 user_questions:
   - How can I provide AWS identity details to use with my workload clusters?
+  - How can I provide Azure identity details to use with my workload clusters?
   - How can I set cloud provider credentials via the Management API?
 ---
 
@@ -19,8 +20,6 @@ user_questions:
 In order to manage workload clusters in your cloud provider accounts/subscriptions, the Giant Swarm controllers require some configuration so they are able to act on your behalf.
 
 In this article we explain how to provide this configuration via the Management API.
-
-**Note:** This article covers AWS only initially. An update for Azure is planned.
 
 ## Terminology
 
@@ -31,7 +30,16 @@ As we are dealing with two cloud providers here which use different vocabulary i
 
 ## Credential secrets explained
 
-Credentials are stored in the management cluster in the form of a `Secret` resource. Here is an example for AWS:
+Credentials are stored in the management cluster in the form of a `Secret` resource.
+
+In the `metadata`, credential secrets _must_ provide the `giantswarm.io/managed-by: credentiald` and `app: credentiald` labels. We also _recommend_ to choose a resource name starting with `credential-`.
+
+The `data` part contains the cloud provider credentials that should be used. The format here differs slightly between cloud providers.
+
+{{< tabs >}}
+{{< tab title="AWS" >}}
+
+Here is an example for AWS:
 
 ```yaml
 apiVersion: v1
@@ -41,15 +49,14 @@ metadata:
   name: credential-example
   namespace: my-namespace
   labels:
+    app: credentiald
     giantswarm.io/managed-by: credentiald
 data:
   aws.admin.arn: YXJuOmF3czppYW06OjEyMzQ1Njc4OTA6cm9sZS9HaWFudFN3YXJtQWRtaW4=
   aws.awsoperator.arn: YXJuOmF3czppYW06OjEyMzQ1Njc4OTA6cm9sZS9HaWFudFN3YXJtQVdTT3BlcmF0b3I=
 ```
 
-In the `metadata`, credential secrets _must_ provide the `giantswarm.io/managed-by: credentiald` label. We also _recommend_ to choose a resource name starting with `credential-`.
-
-The `data` part contains two fields which both indicate AWS IAM role identifiers (ARNs). As typical with opaque secrets, the value is encoded in base64. Here is how the two example strings would look like when decoded:
+In above AWS example, these are two fields which both indicate AWS IAM role identifiers (ARNs). As typical with opaque secrets, the value is encoded in base64. Here is how the two example strings would look like when decoded:
 
 | Key                   | Example value (decoded)                              |
 |-----------------------|------------------------------------------------------|
@@ -60,15 +67,58 @@ The first of the two identifies the IAM role to be assumed by Giant Swarm staff 
 
 We provide [detailed documentation]({{< relref "/getting-started/cloud-provider-accounts/aws" >}}) regarding how to configure these roles in your AWS account.
 
+{{< /tab >}}
+{{< tab title="Azure" >}}
+
+Here is an example for a credential secret on Azure:
+
+```yaml
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+  name: credential-example
+  namespace: my-namespace
+  labels:
+    app: credentiald
+    giantswarm.io/managed-by: credentiald
+data:
+data:
+  azure.azureoperator.clientid: MTIzNGFiY2QtYWIxMi0xMmFiLWNkMzQtYWJjZDEyMzRhYmNkCg==
+  azure.azureoperator.subscriptionid: NTY3OGFiY2QtYWI1Ni01NmFiLWNkNTYtYWJjZDU2NzhhYmNkCg==
+  azure.azureoperator.tenantid: MTIzNGRlZmctZGUxMi0xMmRlLWRlMzQtZGVmZzEyMzRkZWZnCg==
+  azure.azureoperator.clientsecret: YWJjZC1lZmdoaWprbG1uTE9QUTEyMzQ1Njd+ODlSU3R1dnd4Cg==
+```
+
+Here the `data` part contains four fields which specify the IDs of `Client`, `Subscription` and `Tenant` as well as the `Client Secret`.
+
+Decoded example:
+
+| Key                                  | Example value (decoded)                |
+|--------------------------------------|----------------------------------------|
+| `azure.azureoperator.clientid`       | `1234abcd-ab12-12ab-cd34-abcd1234abcd` |
+| `azure.azureoperator.subscriptionid` | `5678abcd-ab56-56ab-cd56-abcd5678abcd` |
+| `azure.azureoperator.tenantid`       | `1234defg-de12-12de-de34-defg1234defg` |
+| `azure.azureoperator.clientsecret`   | `abcd-efghijklmnLOPQ1234567~89RStuvwx` |
+
+In order for `azure-operator` to manage workload clusters using these credentials, it will need access to your `Subscription` using a `Service Principal`.
+
+We provide a [detailed guide](({{< relref "/getting-started/cloud-provider-accounts/azure" >}})) prepare and obtain this data.
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Referencing credentials in the cluster resource {#explicit}
 
-When creating a workload cluster on AWS, there will be an [`AWSCluster`]({{< relref "/ui-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) resource created, containing the AWS-specific configuration of your workload cluster.
+When creating a workload cluster, depending on the cloud provider, there will be an [`AWSCluster`]({{< relref "/ui-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) or [`AzureCluster`]({{< relref "/ui-api/management-api/crd/azureclusters.infrastructure.cluster.x-k8s.io.md" >}}) resource created, containing the provider-specific configuration of your workload cluster.
 
-If you create your cluster manifest manually or via the [`kubectl gs template cluster`]({{< relref "/ui-api/kubectl-gs/template-cluster" >}}) command, you are free to adapt the `AWSCluster` to match your exact requirements before submitting the manifest to the API (e. g. via `kubectl apply`).
+If you create your cluster manifest manually or via the [`kubectl gs template cluster`]({{< relref "/ui-api/kubectl-gs/template-cluster" >}}) command, you are free to adapt the provider cluster resource to match your exact requirements before submitting the manifest to the API (e. g. via `kubectl apply`).
 
-To specify which credential secret to use, the custom resource definition (CRD) provides an attribute [`.spec.provider.credentialSecret`]({{< relref "/ui-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md#v1alpha3-.spec.provider.credentialSecret" >}}). The two sub-attributes `name` has to match the credential secret's resource name. The `namespace` sub-attribute accordingly must match the secret's namespace.
+In **AWS**, it is possible to reference your credential secret directly. The custom resource definition (CRD) provides an attribute [`.spec.provider.credentialSecret`]({{< relref "/ui-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md#v1alpha3-.spec.provider.credentialSecret" >}}). The two sub-attributes `name` has to match the credential secret's resource name. The `namespace` sub-attribute accordingly must match the secret's namespace.
 
 Note that this attribute has to be set _before_ submitting the manifest to the Management API. Otherwise, if the `AWSCluster` resource gets submitted without any `.spec.provider.credentialSecret` in place, our admission controllers will fill in default values. Read on to understand the defaulting logic.
+
+On **Azure**, the `AzureCluster` field  [`.spec.identityRef`]({{< relref "/ui-api/management-api/crd/azureclusters.infrastructure.cluster.x-k8s.io.md#v1alpha4-.spec.identityRef" >}}) is set by the `azure-operator`. It references credential secrets indirectly by creating an `org-credential` based on the organization your workload cluster is created in.
 
 ## Defaulting
 
@@ -98,6 +148,7 @@ metadata:
   name: credential-example
   namespace: org-example
   labels:
+    app: credentiald
     giantswarm.io/managed-by: credentiald
     giantswarm.io/organization: acme
 data:
@@ -108,7 +159,7 @@ data:
 
 As a last resort, if credentials are not referenced [explicitly](#explicit) and no [organization default credentials](#organization-default) are found, our defaulting will use the installation default credentials.
 
-The installation default credentials are typically configured for you by Giant Swarm, using IAM role ARNs that you provide. They are placed in the namespace `giantswarm` and thus normally not accessible to customers directly.
+The installation default credentials are typically configured for you by Giant Swarm, using credentials that you provide. They are placed in the namespace `giantswarm` and thus normally not accessible to customers directly.
 
 The idea of the default credentials is to enable every organization to create clusters, even if they don't have specific credentials configured. This can be a viable use case if all tenants are trusted and should be allowed to use the same cloud provider account.
 
@@ -120,8 +171,9 @@ The defaulting options as well as the option to reference credentials explicitly
 
 - If you plan to run each organization's clusters in a different cloud provider account, use the **organization default credentials** mechanism. Just make sure to set up the organization's credentials as early as possible, to prevent any cluster running via the installation default credentials.
 
-- For more flexibility, **set the cloud provider credentials explicitly**. Whether you want to rely on organization level or installation level defaults as a fall back is up to you.
+- On AWS, you can **set the cloud provider credentials explicitly** for more flexibility. Whether you want to rely on organization level or installation level defaults as a fall back is up to you.
 
 ## Further reading
 
-- [aws-admission-controller](https://github.com/giantswarm/aws-admission-controller/): Explore the source code of the component that does the defaulting of provider credentials on cluster creation.
+- [aws-admission-controller](https://github.com/giantswarm/aws-admission-controller/): Explore the source code of the component that does the defaulting of AWS credentials on cluster creation.
+- [azure-operator](https://github.com/giantswarm/azure-admission-controller/): Explore the source code of the component that takes care of the indirect reference of Azure credentials on cluster creation.
