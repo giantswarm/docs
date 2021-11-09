@@ -46,7 +46,7 @@ on the workloads should be as good as it can be.
 - Updates golang.org/x/text to v0.3.6 to fix CVE-2020-28852 (#102601, @jonesbr17) [SIG API Machinery, CLI, Cloud Provider, Cluster Lifecycle, Instrumentation, Node and Storage]
 
 
-### azure-operator [5.10.0](https://github.com/giantswarm/cert-operator/releases/tag/v1.2.0)
+### azure-operator [5.10.0](https://github.com/giantswarm/azure-operator/releases/tag/v5.10.0)
 
 ### Changed
 
