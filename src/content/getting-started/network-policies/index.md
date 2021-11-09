@@ -11,7 +11,7 @@ aliases:
 user_questions:
   - How can I restrict a pod's network traffic?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-ludacris
+  - https://github.com/orgs/giantswarm/teams/sig-security
 last_review_date: 2021-01-01
 ---
 

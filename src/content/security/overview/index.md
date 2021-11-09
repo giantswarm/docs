@@ -13,7 +13,7 @@ user_questions:
 aliases:
   - /basics/security/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-ludacris
+  - https://github.com/orgs/giantswarm/teams/sig-security
 ---
 
 # Security
