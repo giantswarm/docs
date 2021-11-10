@@ -18,30 +18,56 @@ user_questions:
 Below is a list of the external domains we require access to for our clusters to function.
 
 - alpinelinux.org
-    - `*.alpinelinux.org`
+    - domains:
+        - `*.alpinelinux.org`
+    - Alpine container images may update their package index.
 - amazonaws.com
-    - `*.amazonaws.com`
+    - domains:
+        - `*.amazonaws.com`
+    - AWS services are used for a variety of tasks, such as etcd backup storage.
 - azurecr.io
-    - `giantswarm.azurecr.io`
+    - domains:
+        - `giantswarm.azurecr.io`
+    - Container images are hosted on Azure Container Registry.
 - cloudfront.net
-    - `*.cloudfront.net`
-- coreos.com
-    - `*.coreos.com`
+    - domains:
+        - `*.cloudfront.net`
+    - Operators may pull from sites behind Cloudfront.
 - docker.com
-    - `*.docker.com`
+    - domains:
+        - `*.docker.com`
+    - Container images are hosted on Dockerhub.
 - docker.io
-    - `*.docker.io`
+    - domains:
+        - `*.docker.io`
+    - Container images are hosted on Dockerhub.
 - flatcar.com
-    - `*.flatcar.com`
+    - domains:
+        - `*.flatcar.com`
+    - Flatcar OS images and signing keys.
 - github.com
-    - `*.github.com`
+    - domains:
+        - `*.github.com`
+    - Various operators need to pull information from GitHub repositories.
 - github.io
-    - `*.github.io`
+    - domains:
+        - `*.github.io`
+    - Helm chart tarballs are pulled from GitHub Pages.
 - keybase.io
-    - `*.keybase.io`
+    - domains:
+        - `*.keybase.io`
+    - Vault initialisation and unsealing requires access to Keybase.
 - quay.io
-    - `*.quay.io`
+    - domains:
+        - `*.quay.io`
+    - Container images are hosted on Quay.
 - `api.opsgenie.com`
+    - Opsgenie's API is used to send alerts.
+- `gitlab.com`
+    - Grafana may download plugins from repositories hosted by Gitlab.
+- `prometheus-us-central1.grafana.net`
+    - Some metrics are pushed to our hosted Grafana tenant.
 - `vault.operations.giantswarm.io`
+    - Our operations Vault is used for unsealing customer Vault servers.
 
 In the case of on-premise installations, we also need access to the DNS provider. This is likely to be Cloudflare, but may be somewhere else.
