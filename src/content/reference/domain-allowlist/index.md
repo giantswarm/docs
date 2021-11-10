@@ -21,6 +21,8 @@ Below is a list of the external domains we require access to for our clusters to
     - `*.alpinelinux.org`
 - amazonaws.com
     - `*.amazonaws.com`
+- azurecr.io
+    - `giantswarm.azurecr.io`
 - cloudfront.net
     - `*.cloudfront.net`
 - coreos.com
