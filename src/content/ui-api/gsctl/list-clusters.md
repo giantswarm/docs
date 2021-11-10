@@ -9,7 +9,7 @@ menu:
 aliases:
   - /reference/gsctl/list-clusters/
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-ux
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I list all clusters I have access to using gsctl?
 last_review_date: 2021-01-01

@@ -9,7 +9,7 @@ menu:
 aliases:
   - /guides/efk-stack-app-oidc/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-halo
+  - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
   - How can I configure the efk-stack-app for single sign-on (SSO)?
 last_review_date: 2021-01-01

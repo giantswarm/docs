@@ -9,7 +9,7 @@ menu:
 aliases:
   - /reference/gsctl/info/
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-ux
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I find out my gsctl version?
   - How can I find out my current API endpoint used in gsctl?

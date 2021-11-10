@@ -2,7 +2,7 @@
 linkTitle: template organization
 title: "'kubectl gs template organization' command reference"
 description: Reference documentation on how to create a manifest for an organization using 'kubectl gs'.
-weight: 80
+weight: 110
 menu:
   main:
     parent: uiapi-kubectlgs
@@ -10,7 +10,7 @@ aliases:
   - /reference/kubectl-gs/template-organization/
 last_review_date: 2021-09-09
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-biscuit
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I create an organization manifest for the Management API?
 ---
@@ -28,6 +28,7 @@ The command to execute is `kubectl gs template organization`.
 It supports the following required flag:
 
 - `--name` - Organization name.
+- `--output` - Output file path. If not set, output is written to STDOUT.
 
 Example command:
 
@@ -48,4 +49,5 @@ kind: Organization
 metadata:
   name: example-organization
 spec: {}
+status: {}
 ```

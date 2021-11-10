@@ -10,7 +10,7 @@ aliases:
   - /reference/kubectl-gs/template-nodepool/
 last_review_date: 2021-07-08
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-ux
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I create a node pool manifest for the Management API?
 ---
@@ -49,7 +49,7 @@ Here are the supported flags:
 - `--nodes-max` - maximum number of worker nodes for the node pool. (default 10)
 - `--nodes-min` - minimum number of worker nodes for the node pool. (default 3)
 - `--output` - Sets a file path to write the output to. If not set, standard output will be used.
-- `--owner` - organization, owning workload cluster. Must be configured with existing organization in installation.
+- `--organization` - Name of the organization owning the cluster.
 
 ### AWS specific
 
@@ -73,7 +73,7 @@ kubectl gs template nodepool \
   --cluster-name a1b2c \
   --description "General purpose" \
   --availability-zones eu-central-1a \
-  --owner acme \
+  --organization acme \
   --aws-instance-type m5.4xlarge
 ```
 

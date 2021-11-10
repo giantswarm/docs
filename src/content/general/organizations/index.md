@@ -2,7 +2,7 @@
 linkTitle: Organizations
 title: Organizations
 description: Explaining the organization concept in the Giant Swarm Management API, how to use organizations currently, and our future plans to make use of them.
-last_review_date: 2021-05-31
+last_review_date: 2021-10-27
 weight: 40
 menu:
   main:
@@ -77,10 +77,13 @@ Organizations are transitioning from being managed completely by microservices b
 
       Naming conventions for Management API organization names are more restricted than the REST API names were. In cases where the REST API organization name uses characters that are not supported in the management API (uppercase letters and underscores), the Organization CR will be named using only lowercase letters and using the dash (`-`) as the only special character. However, in the web interface, you will still see the original name of the organization.
 
+    - Starting with workload cluster release v16.0.0 for AWS, cluster resources are created in the owner organization's namespace by default (meaning: unless the resource is placed in a different namespace explicitly).
+
 - **Further plans**
 
     - We are migrating our [web user interface]({{< relref "/ui-api/web" >}}) from using the REST API to the Management API. This also brings a switch from authentication via proprietary Giant Swarm user accounts to single sign-on (SSO), using your own identity provider. Once the switch is made, you will work with Management API organizations directly and there will be no longer such a thing as "membership" for an organization.
-    - All resources related to workload clusters and apps should reside in the owner organization's namespace. See [roadmap#103](https://github.com/giantswarm/roadmap/issues/103) for details. As a next step, this will be implemented for AWS workload clusters. On-premises/KVM will follow. For details regarding the state on the different providers, see [namespace use in different providers](#namespace-use) further down.
+    - All resources related to workload clusters and apps should reside in the owner organization's namespace. See [roadmap#103](https://github.com/giantswarm/roadmap/issues/103) for details. As a next step, this will be implemented on-premises/KVM.
+    For details regarding the state on the different providers, see [namespace use in different providers](#namespace-use) further down.
     - Once the web user interface only relies on the Management API as a backend, we will start supporting a variety of different user permissions. For example, based on RBAC it will be possible to admit users who have read permissions only. The web user interface will adapt to these restricted permissions and provide a good user experience, regardless of the permissions a user has. This will allow you to permit more users access to the web UI, using identities (user groups and individuals) from your own identity provider, authenticating via single-sign-on.
 
 ## Organization CRD and CRs {#organization-crd-cr}
@@ -118,13 +121,17 @@ We recommend to place all resources belonging to an organization into the organi
 
 ### Namespace utilization in different providers {#namespace-use}
 
-Giant Swarm is currently working towards making the organization's namespace the default namespace for all resources owned by the organization: clusters, node pools, apps, and more. We have reached different stages on different providers as of May 2021:
+Giant Swarm is currently working towards making the organization's namespace the default namespace for all resources owned by the organization: clusters, node pools, apps, and more. We have reached different stages on different providers as of October 2021:
 
 - **Azure**: With the latest workload cluster releases for Azure (v14.1.x), all cluster and node pool resources are placed in the organization namespace by default.
 
   Resources belonging to apps deployed to workload clusters are not yet placed in the organization namespace. Instead they are placed in a namespace named after the workload cluster ID.
 
-- **AWS**: With the latest AWS releases, the organization namespace is not yet used by default.
+- **AWS**: With the latest workload cluster releases for AWS (v16.x.x), all cluster and node pool resources are placed in the organization namespace by default.
+
+  Resources belonging to apps deployed to workload clusters are not yet placed in the organization namespace. Instead they are placed in a namespace named after the workload cluster ID.
+
+  Note: This applies to newly created clusters and upgrading a cluster to v16.x.x will not move it's resources to the org-namespace automatically. GS is currently preparing to move existing clusters.
 
 - **On-premises (KVM)**: With the latest KVM releases, the organization namespace is not yet used by default.
 

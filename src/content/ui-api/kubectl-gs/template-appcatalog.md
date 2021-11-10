@@ -3,14 +3,12 @@ linkTitle: template appcatalog
 title: "'kubectl gs template appcatalog' command reference"
 description: Reference documentation for 'kubectl gs template appcatalog' which is replaced by 'kubectl gs template catalog'.
 weight: 120
-menu:
-  main:
-    parent: uiapi-kubectlgs
+menu: false
 aliases:
   - /reference/kubectl-gs/template-appcatalog/
 last_review_date: 2021-06-30
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-batman
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - Why is kubectl gs template appcatalogs no longer used?
   - What is the replacement for kubectl gs template appcatalogs?

@@ -10,7 +10,7 @@ aliases:
   - /reference/kubectl-gs/template-catalog/
 last_review_date: 2021-07-20
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-batman
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I create an catalog manifest for the Management API?
   - How can I add catalog level values or secrets for the apps deployed from this catalog?

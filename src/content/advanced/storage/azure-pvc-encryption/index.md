@@ -13,7 +13,7 @@ user_questions:
 aliases:
   - /guides/encrypting-persistent-volumes-on-azure-with-azure-key-vault/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-celestial
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 last_review_date: 2021-01-01
 ---
 
@@ -68,7 +68,7 @@ parameters:
 ```
 
 From now on, your Persistent Volumes using this storage class will have encrypted data with your Customer-Managed key.
-The final step is to add the Managed Identities (Service Principals) to every Virtual Machine Scale Set which is created (both for master and for all node pools in your cluster). This is to enable them to have access to the Key Vault instance in order to be able to read the encryption key.
+The final step is to add the Managed Identities (Service Principals) to every Virtual Machine Scale Set which is created (both for control plane nodes and for all node pools in your cluster). This is to enable them to have access to the Key Vault instance in order to be able to read the encryption key.
 
 ## Further reading
 

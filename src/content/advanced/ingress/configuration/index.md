@@ -26,7 +26,7 @@ user_questions:
 aliases:
   - /guides/advanced-ingress-configuration/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-halo
+  - https://github.com/orgs/giantswarm/teams/team-cabbage
 ---
 
 # Advanced ingress configuration

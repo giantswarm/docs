@@ -18,8 +18,6 @@ repositories:
     category: Management API
   giantswarm/azure-admission-controller:
     category: Management API
-  giantswarm/aqua-app:
-    category: Managed Apps
   giantswarm/cert-manager-app:
     category: Managed Apps
   giantswarm/dashboards:
@@ -38,6 +36,10 @@ repositories:
     category: Managed Apps
   giantswarm/kubectl-gs:
     category: kubectl gs
+  giantswarm/kyverno-app:
+    category: Management API
+  giantswarm/kyverno-policies:
+    category: Management API
   giantswarm/management-cluster-admission:
     category: Management API
   giantswarm/nginx-ingress-controller-app:
@@ -59,6 +61,8 @@ repositories:
   giantswarm/app-mesh-app:
     category: Playground Apps
   giantswarm/azure-ad-pod-identity-app:
+    category: Playground Apps
+  giantswarm/dex-app:
     category: Playground Apps
   giantswarm/eventrouter-app:
     category: Playground Apps

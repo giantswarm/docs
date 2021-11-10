@@ -8,7 +8,7 @@ menu:
     identifier: advanced-spotinstances-azure
     parent: advanced-spotinstances
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-celestial
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 last_review_date: 2021-01-01
 ---
 

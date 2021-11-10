@@ -9,7 +9,7 @@ menu:
 aliases:
   - /reference/kubectl-gs/installation/
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-ux
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 last_review_date: 2021-07-02
 user_questions:
   - Where can I find the Giant Swarm plugin for kubectl?

@@ -16,7 +16,7 @@ user_questions:
   - What is a patch upgrade?
 last_review_date: 2021-01-01
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-celestial
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
 # Cluster upgrades
@@ -143,7 +143,7 @@ For example, we are aware that for larger clusters, one thirds of worker nodes b
 Our [azure-operator](https://github.com/giantswarm/azure-operator) manages workload clusters on Azure via Azure Resource Manager (ARM) templates and Virtual Machine Scale Sets (VMSS).
 
 In an upgrade, all Virtual Machines (VM) are updated by reimaging with a new OS image and then rebooting.
-Master and worker nodes are updated one by one, where each node is first drained (Pods re-scheduled to other nodes) and then reimaged and rebooted.
+Control plane nodes and worker nodes are updated one by one, where each node is first drained (Pods re-scheduled to other nodes) and then reimaged and rebooted.
 
 On Azure, the node names visible to Kubernetes (e. g. `kubectl get nodes`) are not changed in an upgrade.
 
@@ -173,7 +173,7 @@ We recommend to work through the following list of checks and best practices bef
 - [Handle termination signals in Pods](#checklist-termination-signals)
 - [Manage disruption budgets](#checklist-disruption-budgets)
 - [Set scheduling priorities](#checklist-scheduling-priorities)
-- [Consider high-availability masters](#checklist-ha-masters)
+- [Consider high-availability control planes](#checklist-ha-masters)
 - [Avoid ephemeral resources](#checklist-avoid-ephemeral-resources)
 - [Configure webhook timeouts](#checklist-webhook-timeouts)
 - [Verify that all your pods are running](#checklist-verify-pods-running)
@@ -221,13 +221,13 @@ We recommend reading the upstream documentation about [priority classes and pod 
 
 To help the scheduler further with being able to correctly (re-)schedule your Pods, you should [set resource request and limits](https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/). This also sets the Quality of Service of a Pod, which again has influence on scheduling priorities.
 
-### Consider high-availability masters {#checklist-ha-masters}
+### Consider high-availability control planes {#checklist-ha-masters}
 
-Some, but not all, cluster upgrades require nodes to be upgraded. With single master clusters, this causes a downtime of the Kubernetes API that can last a few minutes.
+Some, but not all, cluster upgrades require nodes to be upgraded. With single node control planes, this causes a downtime of the Kubernetes API that can last a few minutes.
 
 If you are running Giant Swarm on AWS, since workload cluster release v{{% first_aws_ha_controlplane_version %}} you have the option to use a [high-availability control plane]({{< relref "/advanced/high-availability/control-plane" >}}) instead. This will keep the Kubernetes API available even during an upgrade where nodes are rolled.
 
-Consider this option before performing an upgrade. However, keep in mind that a cluster cannot be converted back from high-availability masters to a single master cluster.
+Consider this option before performing an upgrade. However, keep in mind that a cluster cannot be converted back from using high-availability control plane to a single node control plane.
 
 ### Avoid ephemeral resources {#checklist-avoid-ephemeral-resources}
 
