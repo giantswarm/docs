@@ -25,8 +25,6 @@ Below is a list of the external domains we require access to for our clusters to
     - `giantswarm.azurecr.io`
 - cloudfront.net
     - `*.cloudfront.net`
-- coreos.com
-    - `*.coreos.com`
 - docker.com
     - `*.docker.com`
 - docker.io
