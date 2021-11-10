@@ -17,29 +17,29 @@ user_questions:
 
 Below is a list of the external domains we require access to for our clusters to function.
 
-- flatcar.com
-    - `*.flatcar.com`
-- quay.io
-    - `*.quay.io`
-- github.com
-    - `*.github.com`
-- github.io
-    - `*.github.io`
+- alpinelinux.org
+    - `*.alpinelinux.org`
 - amazonaws.com
     - `*.amazonaws.com`
-- docker.io
-    - `*.docker.io`
 - cloudfront.net
     - `*.cloudfront.net`
-- keybase.io
-    - `*.keybase.io`
 - coreos.com
     - `*.coreos.com`
 - docker.com
     - `*.docker.com`
-- alpinelinux.org
-    - `*.alpinelinux.org`
-- `vault.operations.giantswarm.io`
+- docker.io
+    - `*.docker.io`
+- flatcar.com
+    - `*.flatcar.com`
+- github.com
+    - `*.github.com`
+- github.io
+    - `*.github.io`
+- keybase.io
+    - `*.keybase.io`
+- quay.io
+    - `*.quay.io`
 - `api.opsgenie.com`
+- `vault.operations.giantswarm.io`
 
 In the case of on-premise installations, we also need access to the DNS provider. This is likely to be Cloudflare, but may be somewhere else.
