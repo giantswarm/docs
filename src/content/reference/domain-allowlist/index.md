@@ -61,6 +61,10 @@ Below is a list of the external domains we require access to for our clusters to
     - domains:
         - `*.quay.io`
     - Container images are hosted on Quay.
+- sentry.io
+    - domains:
+        - `o346224.ingest.sentry.io`
+    - Monitoring and crash reporting for `happa`.
 - `api.opsgenie.com`
     - Opsgenie's API is used to send alerts.
 - `gitlab.com`
