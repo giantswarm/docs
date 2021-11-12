@@ -52,11 +52,13 @@ It is also possible to create client certificates for a workload cluster, by pro
 The following flags related to creating client certificates for workload cluster access:
 
 - `--workload-cluster` - If present, `kubectl gs` will set up a kubectl context to work with a workload cluster. Otherwise, the command attempts to set up a management cluster context.
-- `--organization` - The organization that the workload cluster belongs to. Requires the `--workload-cluster` flag.
-- `--certificate-group` - The RBAC group name to be encoded into the X.509 field "O". It can be specified multiple times in order to set multiple groups at once. Requires the `--workload-cluster` flag.
-- `--certificate-ttl` - How long the client certificate should live for. When creating client certificates, we recommend using short expiration periods. Requires the `--workload-cluster` flag.
+- `--organization` - The organization that the workload cluster belongs to. Only required if the current user has access to multiple workload clusters with the same name in the same management cluster. Can also be applied if the user does not have permission to list organizations.
+- `--certificate-group` - The RBAC group name to be encoded into the X.509 field "O". It can be specified multiple times in order to set multiple groups at once.
+- `--certificate-ttl` - How long the client certificate should live for. When creating client certificates, we recommend using short expiration periods.
 
 For management cluster access on AWS, the following option is provided:
+
+- `--token`: Use a Bearer token instead of OIDC authentication, e. g. a service account token.
 
 - `--internal-api` - With this flag you use an internal Management API endpoint. It resolves to an internal IP address that is only accessible from within the cluster's virtual private cloud (VPC). The hostname of this endpoint is the same as the normal one, with the prefix `internal-`. Example: if your Management API host name is `g8s.example.yourdomain.tld`, the alternative hostname is `internal-g8s.example.yourdomain.tld`.
 
@@ -100,8 +102,18 @@ Given that a context `gs-example` already exists from previous management cluste
 ```nohighlight
 kubectl gs login example \
   --workload-cluster gir0y \
-  --organization acme \
   --certificate-group example-group
 ```
 
 Without `--certificate-group` flag, you can still create a valid certificate, however the client presenting the certificate would not get any permissions in the Kubernetes API. The reason is that without that flag, both the `CN` attribute (interpreted as the user name by the Kubernetes API) and the `O` attribute of the certificate (interpreted as group name) will contain random values, so that no role bindings can match these names.
+
+For automation, you might want to use a **service account token** to authenticate against the management cluster. Here is an example:
+
+```nohighlight
+kubectl gs login example \
+  --token SERVICE_ACCOUNT_TOKEN \
+  --workload-cluster gir0y \
+  --certificate-group example-group
+```
+
+Here, `SERVICE_ACCOUNT_TOKEN` has to be replaced with the (pretty darn long) token string.
