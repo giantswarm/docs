@@ -57,10 +57,18 @@ Below is a list of the external domains we require access to for our clusters to
     - domains:
         - `*.keybase.io`
     - Vault initialisation and unsealing requires access to Keybase.
+- letsencrypt.org
+    - domains:
+        - `*.api.letsencrypt.org`
+    - cert-manager will request certificates from Lets Encrypt.
 - quay.io
     - domains:
         - `*.quay.io`
     - Container images are hosted on Quay.
+- sentry.io
+    - domains:
+        - `o346224.ingest.sentry.io`
+    - Monitoring and crash reporting for `happa`.
 - `api.opsgenie.com`
     - Opsgenie's API is used to send alerts.
 - `gitlab.com`
@@ -70,4 +78,11 @@ Below is a list of the external domains we require access to for our clusters to
 - `vault.operations.giantswarm.io`
     - Our operations Vault is used for unsealing customer Vault servers.
 
-In the case of on-premise installations, we also need access to the DNS provider. This is likely to be Cloudflare, but may be somewhere else.
+## On-premise installations
+
+These domains are only required for on-premise installations.
+
+- cloudflare.com
+    - domains:
+        - `api.cloudflare.com`
+    - cert-manager may create ACME challenge DNS records.

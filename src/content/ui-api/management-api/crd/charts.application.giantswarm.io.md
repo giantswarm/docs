@@ -12,7 +12,7 @@ crd:
   technical_name: charts.application.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.36.0
+  source_repository_ref: v3.37.0
   versions:
     - v1alpha1
   topics:
@@ -24,7 +24,7 @@ aliases:
   - /reference/cp-k8s-api/charts.application.giantswarm.io/
 technical_name: charts.application.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.36.0
+source_repository_ref: v3.37.0
 ---
 
 # Chart

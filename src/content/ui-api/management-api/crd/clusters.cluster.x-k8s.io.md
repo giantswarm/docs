@@ -12,7 +12,7 @@ crd:
   technical_name: clusters.cluster.x-k8s.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.36.0
+  source_repository_ref: v3.37.0
   versions:
     - v1alpha3
     - v1alpha4
@@ -30,7 +30,7 @@ aliases:
   - /reference/cp-k8s-api/clusters.cluster.x-k8s.io/
 technical_name: clusters.cluster.x-k8s.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.36.0
+source_repository_ref: v3.37.0
 ---
 
 # Cluster
