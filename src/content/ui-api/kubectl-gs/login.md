@@ -14,7 +14,8 @@ owner:
 user_questions:
   - How can I log in with kubectl for the Management API?
   - How can I create a workload cluster client certificate?
-last_review_date: 2021-11-04
+  - How do I specify the time to live for a workload cluster client certificate?
+last_review_date: 2021-11-15
 ---
 
 # `kubectl gs login`
@@ -70,7 +71,7 @@ In addition, there is one flag **only relevant to Giant Swarm staff**:
 
 ### Management cluster
 
-To set up a context initially, you'll have to use either the web UI  URL as an argument ...
+To set up a context initially, you'll have to use either the web UI URL as an argument ...
 
 ```nohighlight
 kubectl gs login https://happa.g8s.example.westeurope.azure.gigantic.io
