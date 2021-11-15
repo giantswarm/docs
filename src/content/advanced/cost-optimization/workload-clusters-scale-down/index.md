@@ -26,9 +26,10 @@ The following tutorial describes a way to silence periodically alerts from speci
 ## Silences
 
 Internally Giant Swarm introduced a concept of Silence Custom Resources. They are utilized to silence either particular alerts or whole clusters in case of known persistent issues or alerts that can be omitted for a while.
-The resource consists of constraints and filters which define the silencing rules on defined alerts and clusters. Those are placed in a private github repository and are synced with every Management Cluster via [silence-operator](https://github.com/giantswarm/silence-operator) 
+The resource consists of constraints and filters which define the silencing rules on defined alerts and clusters. Those are placed in a private github repository and are synced with every Management Cluster via [silence-operator](https://github.com/giantswarm/silence-operator).
 
 You can see the example of such Custom Resource below:
+
 ```yaml
 apiVersion: monitoring.giantswarm.io/v1alpha1
 kind: Silence
@@ -48,6 +49,7 @@ Such Custom Resource if created manually, would be overwritten by the operator a
 In order to enable the manual configurability, we have introduced an annotation in order to instruct silence-operator to omit such resources.
 
 The manually created Silence directly on Management Cluster looks then as following:
+
 ```yaml
 apiVersion: monitoring.giantswarm.io/v1alpha1
 kind: Silence
@@ -73,13 +75,14 @@ Taking into the consideration the use case of scaling down and silencing cluster
 
 ### Permissions setup for the Cron Job
 
-The first step to apply any Cron Jobs that can create silences and scale down the clusters is to define a set of permissions that are assigned to the given tasks. 
-Following [Cron Job RBAC example](cronjob-silence-rbac.yaml) provides required setup for the actual tasks to run in the future. Please adjust the Organization parameter accoringly to your Workload Cluster resources location. 
+The first step to apply any Cron Jobs that can create silences and scale down the clusters is to define a set of permissions that are assigned to the given tasks.
+Following [Cron Job RBAC example](cronjob-silence-rbac.yaml) provides required setup for the actual tasks to run in the future. Please adjust the Organization parameter accoringly to your Workload Cluster resources location.
 
 ### Scale down and silence clusters
 
 After RBAC is applied successfully it is possible to create the Cron Jobs that will scale down and silence the clusters.  
 Please consider using the syntax for naming and namespaces as listed in the following [example](cronjob-scale-down-silence.yaml):
+
 ```yaml
 apiVersion: batch/v1beta1
 kind: CronJob
@@ -137,6 +140,7 @@ After the Silence creation, the annotations for mininum and maximum scaling limi
 ### Scale up and delete silence for the cluster
 
 When the time is right to scale up the cluster again, following [template](cronjob-scale-up.yaml) can be applied:
+
 ```yaml
 apiVersion: batch/v1beta1
 kind: CronJob
@@ -175,12 +179,13 @@ spec:
 
           restartPolicy: Never
 ```
+
 This Cron Job will first patch the minimum and maximum values for scaling. After 10 minutes which are given for workers to come up it will then delete the silence and make the cluster fully supported with oncall by the Giant Swarm.
 
-
 ### Important notes
+
 - Please remember to use the same name of the silence for deletion in order to have your cluster fully monitored.
-- Please remember to adjust the Min and Max for scaling up back the cluster, if the requirements in terms of values on your side have changed in between as well. 
+- Please remember to adjust the Min and Max for scaling up back the cluster, if the requirements in terms of values on your side have changed in between as well.
 - Created silences will not be adjusted or maintained by GiantSwarm, meaning that the sole maintenance is at hands of customers.
 - It is advised to use the silencing Cron Jobs only for non-production Workload Clusters.
 
@@ -190,4 +195,5 @@ Provided solution introduces a way to scale down and silence clusters for specif
 The silences themselves can be also created by hand in case of testing Workload Clusters in order to exclude them from the monitoring loop at Giant Swarm and unnecessary pages towards Oncall.
 
 ## Further reading:
+
 - [CronJobs](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/)
