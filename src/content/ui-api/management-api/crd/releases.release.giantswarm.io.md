@@ -12,7 +12,7 @@ crd:
   technical_name: releases.release.giantswarm.io
   scope: Cluster
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.37.0
+  source_repository_ref: v3.38.0
   versions:
     - v1alpha1
   topics:
@@ -25,7 +25,7 @@ aliases:
   - /reference/cp-k8s-api/releases.release.giantswarm.io/
 technical_name: releases.release.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.37.0
+source_repository_ref: v3.38.0
 ---
 
 # Release
@@ -433,6 +433,24 @@ spec:
 
 <div class="property-description">
 <p>EndOfLifeDate is the date and time when support for a workload cluster using this release ends. This may not be set at the time of release creation and can be specififed later.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.notice">.spec.notice</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Notice outlines anything worth being aware of in this release.</p>
 
 </div>
 
