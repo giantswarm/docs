@@ -194,6 +194,6 @@ This Cron Job will first patch the minimum and maximum values for scaling. After
 Provided solution introduces a way to scale down and silence clusters for specifiied period of time, such as weekends to offload the costs of running resources.
 The silences themselves can be also created by hand in case of testing Workload Clusters in order to exclude them from the monitoring loop at Giant Swarm and unnecessary pages towards Oncall.
 
-## Further reading:
+## Further reading
 
 - [CronJobs](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/)
