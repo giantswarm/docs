@@ -1,0 +1,68 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: silences-customer-rbac
+  namespace: giantswarm
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: silences-customer-rbac
+  namespace: {YOUR_ORGANIZATION}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: silences-customer-rbac
+subjects:
+- kind: ServiceAccount
+  name: silences-customer-rbac
+  namespace: {YOUR_ORGANIZATION}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: silences-customer-rbac
+rules:
+- apiGroups:
+  - monitoring.giantswarm.io
+  resources:
+  - silences
+  verbs:
+  - get
+  - update
+  - create
+  - delete
+  - list
+- apiGroups:
+  - exp.cluster.x-k8s.io
+  resources:
+  - machinepools
+  verbs:
+  - patch
+  - update
+  - get
+  - list
+---
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  name: silences-customer-rbac-psp
+  labels:
+    app: silences-customer
+spec:
+  privileged: false
+  fsGroup:
+    rule: RunAsAny
+  runAsUser:
+    rule: RunAsAny
+  runAsGroup:
+    rule: RunAsAny
+  seLinux:
+    rule: RunAsAny
+  supplementalGroups:
+    rule: RunAsAny
+  volumes:
+    - 'configMap'
+    - 'secret'
+    - 'hostPath'
+  allowPrivilegeEscalation: false
