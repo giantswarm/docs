@@ -54,7 +54,7 @@ The following flags related to creating client certificates for workload cluster
 - `--workload-cluster` - If present, `kubectl gs` will set up a kubectl context to work with a workload cluster. Otherwise, the command attempts to set up a management cluster context.
 - `--organization` - The organization that the workload cluster belongs to. Only required if the current user has access to multiple workload clusters with the same name in the same management cluster. Can also be applied if the user does not have permission to list organizations.
 - `--certificate-group` - The RBAC group name to be encoded into the X.509 field "O". It can be specified multiple times in order to set multiple groups at once.
-- `--certificate-ttl` - How long the client certificate should live for. When creating client certificates, we recommend using short expiration periods.
+- `--certificate-ttl` - How long the client certificate should live for. When creating client certificates, we recommend using short expiration periods. Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h".
 
 For management cluster access on AWS, the following option is provided:
 
