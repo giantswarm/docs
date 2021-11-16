@@ -199,14 +199,15 @@ spec:
               EOF
 
               # patch annotations of min and max values for autoscaling to 0
-              kubectl patch MachinePool -n {YOUR_ORGANIZATION-NAMESPACE} {CLUSTER_NAME} --type merge -p '{"metadata" : {"annotations": {"cluster.k8s.io/cluster-api-autoscaler-node-group-min-size": "0"}}}'
-              kubectl patch MachinePool -n {YOUR_ORGANIZATION-NAMESPACE} {CLUSTER_NAME} --type merge -p '{"metadata" : {"annotations": {"cluster.k8s.io/cluster-api-autoscaler-node-group-max-size": "0"}}}'
+              kubectl patch MachinePool -n {YOUR_ORGANIZATION-NAMESPACE} {NODEPOOL-NAME} --type merge -p '{"metadata" : {"annotations": {"cluster.k8s.io/cluster-api-autoscaler-node-group-min-size": "0"}}}'
+              kubectl patch MachinePool -n {YOUR_ORGANIZATION-NAMESPACE} {NODEPOOL-NAME} --type merge -p '{"metadata" : {"annotations": {"cluster.k8s.io/cluster-api-autoscaler-node-group-max-size": "0"}}}'
 
           restartPolicy: Never
 ```
 
 This CronJob will run accordingly to the specified schedule e.g. every Friday att 16:47 UTC. It will first create a silence for the whole cluster, such that the GS oncall is not paged by any incidents happening on the clusters.
 After the Silence creation, the annotations for mininum and maximum scaling limits for autoscaler will be adjusted to 0 what will result in 0 worker nodes in the Node Pool. The patch command in the CronJob can be repeated for multiple Node Pools to obtain 0 workers Wokload Clusters.
+Please remember to use your Node Pool Name in the patch command, which is the unique identified of the Machine Pool Custom Resource describing the Node Pool.
 
 ### Scale up and delete silence for the cluster
 
@@ -240,8 +241,8 @@ spec:
             - -c
             - |
 
-              kubectl patch MachinePool -n {YOUR_ORGANIZATION-NAMESPACE} {CLUSTER-NAME} --type merge -p '{"metadata" : {"annotations": {"cluster.k8s.io/cluster-api-autoscaler-node-group-min-size": "1"}}}'
-              kubectl patch MachinePool -n {YOUR_ORGANIZATION-NAMESPACE} {CLUSTER-NAME} --type merge -p '{"metadata" : {"annotations": {"cluster.k8s.io/cluster-api-autoscaler-node-group-max-size": "3"}}}'
+              kubectl patch MachinePool -n {YOUR_ORGANIZATION-NAMESPACE} {NODEPOOL-NAME} --type merge -p '{"metadata" : {"annotations": {"cluster.k8s.io/cluster-api-autoscaler-node-group-min-size": "1"}}}'
+              kubectl patch MachinePool -n {YOUR_ORGANIZATION-NAMESPACE} {NODEPOOL-NAME} --type merge -p '{"metadata" : {"annotations": {"cluster.k8s.io/cluster-api-autoscaler-node-group-max-size": "3"}}}'
 
               # Please let the 10minutes in for the workers to appear and initial workloads to be deployed on the cluster.
               sleep 10m
