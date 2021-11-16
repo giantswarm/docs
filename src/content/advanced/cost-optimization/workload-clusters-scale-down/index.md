@@ -15,7 +15,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
-# Periodically scaling down workload clusters to 0 worker nodes
+# Periodically scaling down workload clusters to zero worker nodes
 
 For limiting costs of workload clusters that are used periodically or have stale periods of time, there are use cases to scale down the worker nodes to zero. Such scenarios apply often for development clusters that are not being used over the weekends and there is limited possibility to scale down workloads completely.
 Moreover in order to maximize fully the cost optimization, there should be no workers running at all.  
