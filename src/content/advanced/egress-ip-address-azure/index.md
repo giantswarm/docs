@@ -17,7 +17,7 @@ user_questions:
 
 Giant Swarm's workload clusters on Azure use [NAT gateways](https://docs.microsoft.com/en-us/azure/virtual-network/nat-gateway/nat-overview) to provide internet access to worker nodes.
 
-By default, a new dedicated [public IPv4 address](https://docs.microsoft.com/en-us/azure/virtual-network/public-ip-addresses) is created during the workload cluster setup process to be used as the public
+By default, a new dedicated [public IPv4 address](https://docs.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-addresses) is created during the workload cluster setup process to be used as the public
 IP address for the NAT gateway of worker nodes.
 This means there is no way to know in advance what public IP address a certain workload cluster will have for egress traffic
 until it is created.
