@@ -6,7 +6,7 @@ metadata:
   labels:
     app: silence-customer
 spec:
-  schedule: "47 16 * * 5" #Timezone - UTC by default - Fridays, 16;47 UTC
+  schedule: "47 16 * * 5" #Timezone - UTC by default - Fridays, 16:47 UTC
   successfulJobsHistoryLimit: 1
   jobTemplate:
     spec:
