@@ -146,7 +146,7 @@ apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
   name: silences-customer-delete-{CLUSTER-ID}
-  namespace: {YOUR_ORGANIZATION}
+  namespace: org-{YOUR_ORGANIZATION}
   labels:
     app: silence-customer
 spec:
