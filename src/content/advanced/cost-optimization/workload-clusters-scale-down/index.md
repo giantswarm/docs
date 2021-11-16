@@ -76,7 +76,7 @@ Taking into the consideration the use case of scaling down and silencing cluster
 ### Permissions setup for the CronJob
 
 The first step to apply any Cron Jobs that can create silences and scale down the clusters is to define a set of permissions that are assigned to the given task.
-Following [CronJob RBAC example](cronjob-silence-rbac.yaml) provides required setup for the actual tasks to run in the future. Please adjust the Organization parameter accoringly to your Workload Cluster resources location.
+Following CronJob RBAC example provides required setup for the actual tasks to run in the future. Please adjust the Organization parameter accoringly to your Workload Cluster resources location.
 
 ```yaml
 apiVersion: v1
@@ -152,7 +152,7 @@ spec:
 ### Scale down and silence clusters
 
 After RBAC is applied successfully it is possible to create the Cron Jobs that will scale down and silence the clusters.  
-Please consider using the syntax for naming and namespaces as listed in the following [example](cronjob-scale-down-silence.yaml) that has been prepare for Azure Workload Clusters:
+Please consider using the syntax for naming and namespaces as listed in the following example that has been prepare for Azure Workload Clusters:
 
 ```yaml
 apiVersion: batch/v1beta1
@@ -210,7 +210,7 @@ After the Silence creation, the annotations for mininum and maximum scaling limi
 
 ### Scale up and delete silence for the cluster
 
-When the time is right to scale up the cluster again, following [template](cronjob-scale-up.yaml) can be applied:
+When the time is right to scale up the cluster again, following template can be applied:
 
 ```yaml
 apiVersion: batch/v1beta1
