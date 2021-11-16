@@ -17,7 +17,7 @@ owner:
 
 # Periodically scaling down workload clusters to 0 worker nodes
 
-For limiting costs of workload clusters that are used periodically or have stale periods of time, there are use cases to scale down the worker nodes to zero. Such scenarios apply often th development clusters that are not being used over the weekends and there is limited possibility to scale down workloads completely.
+For limiting costs of workload clusters that are used periodically or have stale periods of time, there are use cases to scale down the worker nodes to zero. Such scenarios apply often for development clusters that are not being used over the weekends and there is limited possibility to scale down workloads completely.
 Moreover in order to maximize fully the cost optimization, there should be no workers running at all.  
 
 However as Giant Swarm is also running several components on the workload clusters that are being monitored, this can result in our Giant Swarm Oncall to be paged due to unavailability of such services.
@@ -45,7 +45,7 @@ spec:
     isRegex: false
 ```
 
-Such Custom Resource if created manually, would be overwritten by the operator at the syncing time, meaning that there would be no option too set such silence manually.
+Such Custom Resource if created manually, would be overwritten by the operator at the syncing time, meaning that there would be no option to set such silence manually.
 In order to enable the manual configurability, we have introduced an annotation in order to instruct silence-operator to omit such resources.
 
 The manually created Silence directly on Management Cluster looks then as following:
@@ -69,19 +69,19 @@ spec:
 
 Adding the annotation `'giantswarm.io/keep': 'true'` makes it possible for customers to also set particular silences.
 
-## Scaling and Silencing Cron Jobs
+## Scaling and Silencing CronJobs
 
-Taking into the consideration the use case of scaling down and silencing clusters for the weekends we have tested a following setup with Cron Jobs that can be scheduled to perform the actions.
+Taking into the consideration the use case of scaling down and silencing clusters for the weekends we have tested a following setup with CronJobs that can be scheduled to perform the actions.
 
-### Permissions setup for the Cron Job
+### Permissions setup for the CronJob
 
-The first step to apply any Cron Jobs that can create silences and scale down the clusters is to define a set of permissions that are assigned to the given tasks.
-Following [Cron Job RBAC example](cronjob-silence-rbac.yaml) provides required setup for the actual tasks to run in the future. Please adjust the Organization parameter accoringly to your Workload Cluster resources location.
+The first step to apply any Cron Jobs that can create silences and scale down the clusters is to define a set of permissions that are assigned to the given task.
+Following [CronJob RBAC example](cronjob-silence-rbac.yaml) provides required setup for the actual tasks to run in the future. Please adjust the Organization parameter accoringly to your Workload Cluster resources location.
 
 ### Scale down and silence clusters
 
 After RBAC is applied successfully it is possible to create the Cron Jobs that will scale down and silence the clusters.  
-Please consider using the syntax for naming and namespaces as listed in the following [example](cronjob-scale-down-silence.yaml):
+Please consider using the syntax for naming and namespaces as listed in the following [example](cronjob-scale-down-silence.yaml) that has been prepare for Azure Workload Clusters:
 
 ```yaml
 apiVersion: batch/v1beta1
@@ -134,8 +134,8 @@ spec:
           restartPolicy: Never
 ```
 
-This Cron Job will run accordingly to the specified schedule e.g. every Friday att 16:47 UTC. It will first create a silence for the whole cluster, such that the GS oncall is not paged by any incidents happening on the clusters.
-After the Silence creation, the annotations for mininum and maximum scaling limits for autoscaler will be adjusted to 0 what will result in 0 worker nodes in the Node Pool. The patch command in the Cron Job can be repeated for multiple Node Pools to obtain 0 workers Wokload Clusters.
+This CronJob will run accordingly to the specified schedule e.g. every Friday att 16:47 UTC. It will first create a silence for the whole cluster, such that the GS oncall is not paged by any incidents happening on the clusters.
+After the Silence creation, the annotations for mininum and maximum scaling limits for autoscaler will be adjusted to 0 what will result in 0 worker nodes in the Node Pool. The patch command in the CronJob can be repeated for multiple Node Pools to obtain 0 workers Wokload Clusters.
 
 ### Scale up and delete silence for the cluster
 
@@ -180,14 +180,14 @@ spec:
           restartPolicy: Never
 ```
 
-This Cron Job will first patch the minimum and maximum values for scaling. After 10 minutes which are given for workers to come up it will then delete the silence and make the cluster fully supported with oncall by the Giant Swarm.
+This CronJob will first patch the minimum and maximum values for scaling. After 10 minutes which are given for workers to come up it will then delete the silence and make the cluster fully supported with oncall by the Giant Swarm.
 
 ### Important notes
 
 - Please remember to use the same name of the silence for deletion in order to have your cluster fully monitored.
 - Please remember to adjust the Min and Max for scaling up back the cluster, if the requirements in terms of values on your side have changed in between as well.
 - Created silences will not be adjusted or maintained by GiantSwarm, meaning that the sole maintenance is at hands of customers.
-- It is advised to use the silencing Cron Jobs only for non-production Workload Clusters.
+- It is advised to use the silencing CronJobs only for non-production Workload Clusters.
 
 ## Summary
 
