@@ -14,7 +14,8 @@ owner:
 user_questions:
   - How can I log in with kubectl for the Management API?
   - How can I create a workload cluster client certificate?
-last_review_date: 2021-11-04
+  - How do I specify the time to live for a workload cluster client certificate?
+last_review_date: 2021-11-15
 ---
 
 # `kubectl gs login`
@@ -54,7 +55,7 @@ The following flags related to creating client certificates for workload cluster
 - `--workload-cluster` - If present, `kubectl gs` will set up a kubectl context to work with a workload cluster. Otherwise, the command attempts to set up a management cluster context.
 - `--organization` - The organization that the workload cluster belongs to. Only required if the current user has access to multiple workload clusters with the same name in the same management cluster. Can also be applied if the user does not have permission to list organizations.
 - `--certificate-group` - The RBAC group name to be encoded into the X.509 field "O". It can be specified multiple times in order to set multiple groups at once.
-- `--certificate-ttl` - How long the client certificate should live for. When creating client certificates, we recommend using short expiration periods.
+- `--certificate-ttl` - How long the client certificate should live for. When creating client certificates, we recommend using short expiration periods. Valid time units are "s" (second), "m" (minute), "h" (hour).
 
 For management cluster access on AWS, the following option is provided:
 
@@ -70,7 +71,7 @@ In addition, there is one flag **only relevant to Giant Swarm staff**:
 
 ### Management cluster
 
-To set up a context initially, you'll have to use either the web UI  URL as an argument ...
+To set up a context initially, you'll have to use either the web UI URL as an argument ...
 
 ```nohighlight
 kubectl gs login https://happa.g8s.example.westeurope.azure.gigantic.io
