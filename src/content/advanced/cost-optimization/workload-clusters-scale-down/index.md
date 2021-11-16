@@ -8,7 +8,7 @@ menu:
     parent: cost-optimization
 last_review_date: 2021-11-15
 user_questions:
-- How can i scale down cluster nodes to 0?
+- How can I scale down cluster nodes to 0?
 - How can I silence alerts from the clusters?
 aliases:
 owner:
