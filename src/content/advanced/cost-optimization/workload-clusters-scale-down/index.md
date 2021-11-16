@@ -28,20 +28,20 @@ The following tutorial describes a way to silence periodically alerts from speci
 Internally Giant Swarm introduced a concept of Silence Custom Resources. They are utilized to silence either particular alerts or whole clusters in case of known persistent issues or alerts that can be omitted for a while.
 The resource consists of constraints and filters which define the silencing rules on defined alerts and clusters. Those are placed in a private github repository and are synced with every Management Cluster via [silence-operator](https://github.com/giantswarm/silence-operator).
 
-You can see the example of such Custom Resource below:
+The main determinant for the Cluster selection is the name of the Cluster Custom Resource that is a unique identified of the cluster itself. You can see the example of such Custom Resource below:
 
 ```yaml
 apiVersion: monitoring.giantswarm.io/v1alpha1
 kind: Silence
 metadata:
-  name: INSTALLATION-CLUSTER-ID-silence-cluster
+  name: INSTALLATION-CLUSTER-NAME-silence-cluster
 spec:
   targetTags:
   - name: installation
     value: YOUR_INSTALLATION_NAME
   matchers:
   - name: cluster_id
-    value: CLUSTER_ID
+    value: CLUSTER_NAME
     isRegex: false
 ```
 
@@ -54,7 +54,7 @@ The manually created Silence directly on Management Cluster looks then as follow
 apiVersion: monitoring.giantswarm.io/v1alpha1
 kind: Silence
 metadata:
-  name: INSTALLATION-CLUSTER-ID-silence-cluster
+  name: INSTALLATION-CLUSTER-NAME-silence-cluster
   annotations:
     'giantswarm.io/keep': 'true'
 spec:
@@ -63,7 +63,7 @@ spec:
     value: YOUR_INSTALLATION_NAME
   matchers:
   - name: cluster_id
-    value: CLUSTER_ID
+    value: CLUSTER_NAME
     isRegex: false
 ```
 
@@ -78,6 +78,77 @@ Taking into the consideration the use case of scaling down and silencing cluster
 The first step to apply any Cron Jobs that can create silences and scale down the clusters is to define a set of permissions that are assigned to the given task.
 Following [CronJob RBAC example](cronjob-silence-rbac.yaml) provides required setup for the actual tasks to run in the future. Please adjust the Organization parameter accoringly to your Workload Cluster resources location.
 
+```yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: silences-customer-rbac
+  namespace: {YOUR_ORGANIZATION-NAMESPACE}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: silences-customer-rbac
+  namespace: {YOUR_ORGANIZATION-NAMESPACE}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: silences-customer-rbac
+subjects:
+- kind: ServiceAccount
+  name: silences-customer-rbac
+  namespace: {YOUR_ORGANIZATION_NAMESPACE}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: silences-customer-rbac
+rules:
+- apiGroups:
+  - monitoring.giantswarm.io
+  resources:
+  - silences
+  verbs:
+  - get
+  - update
+  - create
+  - delete
+  - list
+- apiGroups:
+  - exp.cluster.x-k8s.io
+  resources:
+  - machinepools
+  verbs:
+  - patch
+  - update
+  - get
+  - list
+---
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  name: silences-customer-rbac-psp
+  labels:
+    app: silences-customer
+spec:
+  privileged: false
+  fsGroup:
+    rule: RunAsAny
+  runAsUser:
+    rule: RunAsAny
+  runAsGroup:
+    rule: RunAsAny
+  seLinux:
+    rule: RunAsAny
+  supplementalGroups:
+    rule: RunAsAny
+  volumes:
+    - 'configMap'
+    - 'secret'
+    - 'hostPath'
+  allowPrivilegeEscalation: false
+```
+
 ### Scale down and silence clusters
 
 After RBAC is applied successfully it is possible to create the Cron Jobs that will scale down and silence the clusters.  
@@ -87,8 +158,8 @@ Please consider using the syntax for naming and namespaces as listed in the foll
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: silences-customer-create-{CLUSTER-ID}
-  namespace: {YOUR_ORGANIZATION}
+  name: silences-customer-create-{CLUSTER-NAME}
+  namespace: {YOUR_ORGANIZATION-NAMESPACE}
   labels:
     app: silence-customer
 spec:
@@ -103,7 +174,7 @@ spec:
         spec:
           serviceAccountName: silences-customer-rbac
           containers:
-          - name: silences-customer-create-{CLUSTER-ID}
+          - name: silences-customer-create-{CLUSTER-NAME}
             image: quay.io/giantswarm/k8s-initiator
             imagePullPolicy: IfNotPresent
             command:
@@ -114,7 +185,7 @@ spec:
               apiVersion: monitoring.giantswarm.io/v1alpha1
               kind: Silence
               metadata:
-                name: {INSTALLATION}-{CLUSTER-ID}-silence-cluster
+                name: {INSTALLATION}-{CLUSTER-NAME}-silence-cluster
                 annotations:
                   'giantswarm.io/keep': 'true'
               spec:
@@ -123,13 +194,13 @@ spec:
                   value: {YOUR_INSTALLATION_NAME}
                 matchers:
                 - name: cluster_id
-                  value: {CLUSTER_ID}
+                  value: {CLUSTER_NAME}
                   isRegex: false
               EOF
 
               # patch annotations of min and max values for autoscaling to 0
-              kubectl patch MachinePool -n {YOUR_ORGANIZATION} {CLUSTER_ID} --type merge -p '{"metadata" : {"annotations": {"cluster.k8s.io/cluster-api-autoscaler-node-group-min-size": "0"}}}'
-              kubectl patch MachinePool -n {YOUR_ORGANIZATION} {CLUSTER_ID} --type merge -p '{"metadata" : {"annotations": {"cluster.k8s.io/cluster-api-autoscaler-node-group-max-size": "0"}}}'
+              kubectl patch MachinePool -n {YOUR_ORGANIZATION-NAMESPACE} {CLUSTER_NAME} --type merge -p '{"metadata" : {"annotations": {"cluster.k8s.io/cluster-api-autoscaler-node-group-min-size": "0"}}}'
+              kubectl patch MachinePool -n {YOUR_ORGANIZATION-NAMESPACE} {CLUSTER_NAME} --type merge -p '{"metadata" : {"annotations": {"cluster.k8s.io/cluster-api-autoscaler-node-group-max-size": "0"}}}'
 
           restartPolicy: Never
 ```
@@ -145,8 +216,8 @@ When the time is right to scale up the cluster again, following [template](cronj
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: silences-customer-delete-{CLUSTER-ID}
-  namespace: org-{YOUR_ORGANIZATION}
+  name: silences-customer-delete-{CLUSTER-NAME}
+  namespace: {YOUR_ORGANIZATION_NAMESPACE}
   labels:
     app: silence-customer
 spec:
@@ -161,7 +232,7 @@ spec:
         spec:
           serviceAccountName: silences-customer-rbac
           containers:
-          - name: silences-customer-delete-{CLUSTER-ID}
+          - name: silences-customer-delete-{CLUSTER-NAME}
             image: quay.io/giantswarm/k8s-initiator
             imagePullPolicy: IfNotPresent
             command:
@@ -169,13 +240,13 @@ spec:
             - -c
             - |
 
-              kubectl patch MachinePool -n {YOUR_ORGANIZATION} {CLUSTER-ID} --type merge -p '{"metadata" : {"annotations": {"cluster.k8s.io/cluster-api-autoscaler-node-group-min-size": "1"}}}'
-              kubectl patch MachinePool -n {YOUR_ORGANIZATION} {CLUSTER-ID} --type merge -p '{"metadata" : {"annotations": {"cluster.k8s.io/cluster-api-autoscaler-node-group-max-size": "3"}}}'
+              kubectl patch MachinePool -n {YOUR_ORGANIZATION-NAMESPACE} {CLUSTER-NAME} --type merge -p '{"metadata" : {"annotations": {"cluster.k8s.io/cluster-api-autoscaler-node-group-min-size": "1"}}}'
+              kubectl patch MachinePool -n {YOUR_ORGANIZATION-NAMESPACE} {CLUSTER-NAME} --type merge -p '{"metadata" : {"annotations": {"cluster.k8s.io/cluster-api-autoscaler-node-group-max-size": "3"}}}'
 
               # Please let the 10minutes in for the workers to appear and initial workloads to be deployed on the cluster.
               sleep 10m
 
-              kubectl delete silence {INSTALLATION}-{CLUSTER-ID}-silence-cluster
+              kubectl delete silence {INSTALLATION}-{CLUSTER-NAME}-silence-cluster
 
           restartPolicy: Never
 ```
