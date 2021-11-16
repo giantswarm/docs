@@ -1,7 +1,7 @@
 ---
 linkTitle: Scaling down
 title: Workload Clusters Scale Down
-description: In order to save costs over the weekends or stale periods some entities would like to scale down the clusters to 0 nodes, this guide describes such process for Giant Swarm clusters.
+description: In order to save costs over the weekends or stale periods some entities would like to scale down the clusters to zero nodes, this guide describes such process for Giant Swarm clusters.
 weight: 100
 menu:
   main:
