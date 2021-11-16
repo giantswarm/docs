@@ -1,5 +1,5 @@
 ---
-linkTitle: Cost-optimization-tools
+linkTitle: Tools
 title: Cost optimization tools
 description: Cost is always a concern when running IT infrastructure. This document is a curated list of cost optimization tools that we have found to be valuable for our customers and ourselves.
 weight: 100
