@@ -56,6 +56,7 @@ The following flags related to creating client certificates for workload cluster
 - `--organization` - The organization that the workload cluster belongs to. Only required if the current user has access to multiple workload clusters with the same name in the same management cluster. Can also be applied if the user does not have permission to list organizations.
 - `--certificate-group` - The RBAC group name to be encoded into the X.509 field "O". It can be specified multiple times in order to set multiple groups at once.
 - `--certificate-ttl` - How long the client certificate should live for. When creating client certificates, we recommend using short expiration periods. Valid time units are "s" (second), "m" (minute), "h" (hour).
+- `--self-contained` - Output file path for a self-contained kubeconfig file. If provided, the client certificate data will be written to an external kubeconfig file instead of the default one. This file can be passed on to other users without management cluster access.
 
 For management cluster access on AWS, the following option is provided:
 
