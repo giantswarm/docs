@@ -103,7 +103,7 @@ Decoded example:
 
 In order for `azure-operator` to manage workload clusters using these credentials, it will need access to your `Subscription` using a `Service Principal`.
 
-We provide a [detailed guide](({{< relref "/getting-started/cloud-provider-accounts/azure" >}})) prepare and obtain this data.
+We provide a [detailed guide]({{< relref "/getting-started/cloud-provider-accounts/azure" >}}) prepare and obtain this data.
 
 {{< /tab >}}
 {{< /tabs >}}
