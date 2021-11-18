@@ -220,6 +220,11 @@ def generate_release_file(repo_shortname, repo_config, release):
     """
     Write a release file with YAML front matter and Markdown body
     """
+
+    if 'version_tag' not in release:
+        print(f'ERROR: {repo_shortname} release has no version tag. Skipping. Details: {release}')
+        return
+
     version = normalize_version(release['version_tag'])
 
     org, repo_id = repo_shortname.split("/", maxsplit=1)
