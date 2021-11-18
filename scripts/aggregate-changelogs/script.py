@@ -227,7 +227,7 @@ def generate_release_file(repo_shortname, repo_config, release):
 
     version = normalize_version(release['version_tag'])
 
-    org, repo_id = repo_shortname.split("/", maxsplit=1)
+    _, repo_id = repo_shortname.split("/", maxsplit=1)
     aliases = None
 
     if repo_shortname == RELEASES_REPO:
