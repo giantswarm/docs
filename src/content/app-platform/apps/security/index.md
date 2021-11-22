@@ -10,6 +10,12 @@ menu:
 #   - /guides/managed-security-stack/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-security
+last_review_date: 2021-11-22
+user_questions:
+  - How do I view and manage vulnerabilities in my cluster?
+  - How do I enforce admission policies in my cluster?
+  - What can I do to keep my clusters secure?
+  - What security services and tools does Giant Swarm offer?
 ---
 
 ## Overview
@@ -132,7 +138,7 @@ Falco is a [CNCF project][falco-upstream] originally created by Sysdig which ena
 
 We include Falco in our managed security stack as a detection mechanism for malicious activity once a Pod has already started. It is deployed from our [Falco App][falco-app], which includes helper components for exposing Prometheus metrics and forwarding events to various other channels, such as Elasticsearch and various messages queues and alerting backends.
 
-[app-platform]: {{< relref "app-platform/overview/" >}}
+[app-platform]: {{< relref "app-platform/overview" >}}
 [efk-app]: https://github.com/giantswarm/efk-stack-app/
 [falco-app]: https://github.com/giantswarm/falco-app
 [falco-upstream]: https://github.com/falcosecurity/falco
@@ -144,10 +150,10 @@ We include Falco in our managed security stack as a detection mechanism for mali
 [linkerd-cni-app]: https://github.com/giantswarm/linkerd2-cni-app
 [linkerd-viz-app]: https://github.com/giantswarm/linkerd-viz-app
 [loki-app]: https://github.com/giantswarm/loki-app
-[net-pols]: {{< relref "/getting-started/network-policies/" >}}
+[net-pols]: {{< relref "/getting-started/network-policies" >}}
 [polaris]: https://github.com/FairwindsOps/polaris
 [policy-reporter-upstream]: https://github.com/kyverno/policy-reporter
-[rbac-psp]: {{< relref "/getting-started/rbac-and-psp/" >}}
+[rbac-psp]: {{< relref "/getting-started/rbac-and-psp" >}}
 [security]: {{< relref "/security/" >}}
 [starboard-app]: https://github.com/giantswarm/starboard-app
 [starboard-exporter]: https://github.com/giantswarm/starboard-exporter/
