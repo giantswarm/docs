@@ -1,20 +1,20 @@
 ---
 linkTitle: Overview
-title: Details on Kubernetes on Giant Swarm
-description: Here you learn how we set up things for you and what we manage, so you don't have to.
+title: Introduction to the Giant Swarm offering
+description: A broad overview of everything you get from Giant Swarm, including links to detailed documentation on specific topics.
 weight: 10
 menu:
   main:
     identifier: general-overview
     parent: general
-last_review_date: 2020-06-17
+last_review_date: 2021-11-22
 user_questions:
   - What's included with Kubernetes run by Giant Swarm?
   - What's not included with Kubernetes run by Giant Swarm?
 aliases:
   - /basics/kubernetes-on-giant-swarm/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-phoenix
+  - https://github.com/orgs/giantswarm/teams/team-horizon
 ---
 
 # Running Kubernetes on Giant Swarm
