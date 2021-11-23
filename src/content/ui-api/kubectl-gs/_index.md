@@ -63,6 +63,10 @@ kubectl krew upgrade gs
 
 Find out more details in our [installation docs]({{< relref "/ui-api/kubectl-gs/installation" >}}).
 
+## Troubleshooting
+
+Otherwise, your Giant Swarm support staff is available for you in case you run into an issue. Also feel free to check our [frequently asked questions]({{< relref "/ui-api/kubectl-gs/faq.md" >}}) on `kubectl-gs`.
+
 ## Contributing
 
 See the [GitHub project](https://github.com/giantswarm/kubectl-gs) for source code, issues and pull requests.
