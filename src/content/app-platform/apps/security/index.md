@@ -114,8 +114,6 @@ Report:
 
 Kubernetes CIS benchmark reports can similarly be retrieved with `$ kubectl get ciskubebenchreport -A` and `kubectl describe`.
 
-
-
 ## Kyverno
 
 Kyverno is a [CNCF project][kyverno-upstream] originally created by Nirmata which acts as an admission controller and enforces policies for Kubernetes resources. It loads policies from Kubernetes custom resources and similarly stores reports about policy violations as additional resources within the cluster. It can be used to enforce a wide range of policies including Kubernetes best practices and Pod Security Standards (PSS), as well as custom user-defined policies.
