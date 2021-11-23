@@ -39,7 +39,7 @@ to list some information on all available public catalogs.
 Here is some example output:
 
 ```nohighlight
-NAME                    NAMESPACE   CATALOG URL                                                   CREATED
+NAME                    NAMESPACE   CATALOG URL                                                   AGE
 giantswarm              default     https://giantswarm.github.io/giantswarm-catalog/              1d
 giantswarm-playground   default     https://giantswarm.github.io/giantswarm-playground-catalog/   1d
 ```
@@ -70,7 +70,7 @@ The standard tabular output format for catalogs features these columns:
 
 - `NAME`: Name of the app catalog.
 - `URL`: URL for the Helm chart repository.
-- `CREATED`: How long ago the catalog was created.
+- `AGE`: How long ago was the catalog created.
 
 When viewing the available apps within a catalog the output format features
 these columns:
@@ -79,7 +79,7 @@ these columns:
 - `APP NAME`: Name of the app.
 - `APP VERSION`: Upstream version of the app.
 - `VERSION`: Latest version of the app.
-- `CREATED`: How long ago the app release was created.
+- `AGE`: How long ago was the app release created.
 
 ## Flags {#flags}
 
