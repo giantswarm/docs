@@ -34,41 +34,7 @@ Yes, please check the [installation]({{< relref "/ui-api/kubectl-gs/installation
 
 ### What commands replace my old `gsctl` command?
 
-Coming from `gsctl` and the deprecated Giant Swarm Rest API, you can rely ony some direct replacement commands in `kubectl gs`. However, not all concepts are comparable, and for some commands, there are ways in `kubectl which don't require a plugin.
-
-Here is a table for all replacements:
-
-| gsctl command | kubectl gs command |
-|---------------|--------------------|
-| gsctl create cluster | kubectl gs template cluster |
-| gsctl create keypair | kubectl gs login |
-| gsctl create kubeconfig | kubectl gs login |
-| gsctl create nodepool | kubectl gs template nodepool |
-| gsctl list clusters | kubectl gs get clusters |
-| gsctl list nodepools | kubectl gs get nodepools |
-| gsctl list releases | kubectl gs get releases |
-| gsctl login | kubectl gs login |
-| gsctl show cluster | kubectl gs get cluster |
-| gsctl show nodepool | kubectl gs get cluster |
-| gsctl show release | kubectl gs get release |
-
-Below is some additional information on commands that don't have a direct replacement.
-
-| gsctl command | Comment |
-|---------------|---------|
-| gsctl completion | `kubectl gs` does not yet provide support for shell completion. |
-| gsctl delete cluster | To delete a cluster, use `kubectl delete` on the cluster's main resource. |
-| gsctl delete nodepool | To delete a node pool, use `kubectl delete` on the node pool's main resource. |
-| gsctl delete endpoint | Handling of context, cluster, and user entries is done via `kubectl config` subcommands |
-| gsctl info | Use `kubectl config current-context` and `kubectl cluster-info`. |
-| gsctl list endpoints | Use `kubectl get-contexts`. |
-| gsctl logout | There is no logout command for `kubectl`. |
-| gsctl ping | Use e. g. `kubectl cluster-info` to test your Kubernetes API connection. |
-| gsctl scale cluster | The Management API only supports clusters with node pools. Scaling clusters without node pools is not supported via the Management API. |
-| gsctl select endpoint | Use `kubectl config use-context`. |
-| gsctl update cluster | Use `kuebctl edit` or `kubectl patch`. |
-| gsctl update organization | |
-| gsctl upgrade cluster | Use `kubectl patch` to modify the `release.giantswarm.io/version` label of the cluster's main resource (`clusters.cluster.x-k8s.io`). |
+Please check the [migration]({{< relref "/ui-api/gsctl/migrate.md" >}}) page.
 
 ## `kubectl gs login`
 
