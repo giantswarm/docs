@@ -73,6 +73,8 @@ Below is a list of the external domains we require access to for our clusters to
     - Opsgenie's API is used to send alerts.
 - `gitlab.com`
     - Grafana may download plugins from repositories hosted by Gitlab.
+- `grafana.com`
+    - Grafana download a plugin directly from its API.
 - `prometheus-us-central1.grafana.net`
     - Some metrics are pushed to our hosted Grafana tenant.
 - `vault.operations.giantswarm.io`
