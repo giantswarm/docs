@@ -53,7 +53,20 @@ Starboard is another open-source project developed by [Aqua Security][starboard-
 
 In our stack, we deploy Starboard alongside Trivy in the cluster to initiate vulnerability scans for running Pods and to perform CIS benchmarks. Users may also choose to enable Polaris configuration scans in addition to our recommended Kyverno policy enforcement. To support monitoring and better observability of the scan results, we have also created a [custom Prometheus exporter][starboard-exporter] which reads the `VulnerabilityReport` and `CISKubeBenchReport` custom resources created by Starboard and exposes the data as Prometheus metrics.
 
-Starboard scan results are stored in the cluster and accessible using `kubectl`:
+### Reporting and Monitoring
+
+The authoritative source of truth for Starboard scans are the in-cluster custom resources. For convenience, the data from these CRs is exported to Prometheus, where it can be queries or included in dashboards.
+
+![Diagram illustrating the flow of data from Starboard's scan through an exporter to Prometheus and Grafana](Starboard-Scanning-Monitoring.svg)
+
+Data flow:
+
+1. Starboard scans a Pod.
+2. Starboard creates a `VulnerabilityReport` CR.
+3. `starboard-exporter` reads the `VulnerabilityReport` CR and exposes metrics.
+4. Prometheus scrapes the metrics from `starboard-exporter`. Data can then be queried in Prometheus or seen in the Grafana vulnerability dashboard.
+
+Scan results are stored in the cluster and can be retrieved using `kubectl`:
 
 ```bash
 $ kubectl get vulnerabilityreport -n argocd
@@ -100,6 +113,8 @@ Report:
 ```
 
 Kubernetes CIS benchmark reports can similarly be retrieved with `$ kubectl get ciskubebenchreport -A` and `kubectl describe`.
+
+
 
 ## Kyverno
 
