@@ -14,42 +14,40 @@ user_questions:
   - What is the replacement for kubectl gs get appcatalogs?
 ---
 
-# Frequently asked questions (FAQ) and troubleshooting
+# Frequently asked questions (FAQ) and troubleshooting for `kubectl gs`
 
 ## General
 
-### How can I create a cluster, node pool, etc.?
+### How can I create a cluster or node pool
 
-`kubectl gs` provides the `template` family of commands, to create manifests for clusters, node pools and more. The resulting manifests are meant to be applied by `kubectl apply` to actually resources.
+`kubectl gs` provides the `template` family of commands, to create manifests for clusters, node pools and more. The resulting manifests are meant to be applied by `kubectl apply` to actually resources. Check the [template cluster]({{< relref "/ui-api/kubectl-gs/template-cluster.md" >}}) and [template nodepool]({{< relref "/ui-api/kubectl-gs/template-cluster.md" >}}) reference pages. We also provide more verbose tutorials for [AWS]({{< relref "/ui-api/management-api/creating-workload-clusters/aws" >}}) and [Azure]({{< relref "/ui-api/management-api/creating-workload-clusters/azure" >}}).
 
-### Can `kubectl gs` work without `kubectl`?
+### How can I install an app in a workload cluster
 
-Yes, you can execute the binary as `kubectl-gs`, too.
+Check the [kubectl gs template app]({{< relref "/ui-api/kubectl-gs/template-app.md" >}}) command. It helps you create an [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) resource manifest, which is what you need to express the desired state "I want app X installed in cluster Y". For more context, we provide an article to help you [get started with apps]({{< relref "/app-platform/getting-started/index.md" >}}).
 
-However, most commands expect a kubectl configuration to be present.
+### Can `kubectl gs` work without `kubectl`
 
-### Do you provide a Docker image for `kubectl gs`?
+Yes, you can execute the binary as `kubectl-gs`, too. However, most commands expect a kubectl configuration to be present.
 
-Yes, please check the [installation]({{< relref "/ui-api/kubectl-gs/installation.md#docker" >}}) page.
+### Do you provide a Docker image for `kubectl gs`
 
-### What commands replace my old `gsctl` command?
+Yes, please check the [installation]({{< relref "/ui-api/kubectl-gs/installation.md#docker" >}}) page for details.
+
+### What commands replace my old `gsctl` command
 
 Please check the [migration]({{< relref "/ui-api/gsctl/migrate.md" >}}) page.
 
 ## `kubectl gs login`
 
-### How can I find out my Management API endpoint?
+### How can I find out my Management API endpoint
 
-You can simply ask your Giant Swarm support contact.
+You can simply ask your Giant Swarm support contact. As an alternative, `kubectl gs login` also accepts the web UI URL as an argument. So if you happen to know that one, simply use that. (The logic behind this is quite simple: The domain prefix `happa.` simply gets removed from the web UI URL, and the result is the Management API endpoint URL.)
 
-`kubectl gs login` also the web UI URL as an alternative to the Management API URL. So if you happen to know that one, simply use that. (The logic behind this is quite simple: The domain prefix `happa.` simply gets removed, and the result is the Management API URL.)
+### What does `Error: Token renewal failed` mean
 
-### What does `Error: Token renewal failed` mean?
+It means that `kubectl gs login` tried to get a fresh ID-token to authenticate with against the Kubernetes API, since the existing one had expired. To resolve this, please check your `kubectl` configuration file (typically in `~/.kube/config`). Do you have several `user` entries for the same management cluster, using the same `client-id`? If yes, please edit your configuration so that there is only one.
 
-It means that `kubectl gs login` tried to get a fresh ID-token to authenticate with against the Kubernetes API, since the existing one had expired.
-
-Please check your `kubectl` configuration file (typically in `~/.kube/config`). Do you have several `user` entries for the same management cluster, using the same `client-id`? If yes, please edit your configuration so that there is only one.
-
-### Why does the command connect to a service called `athena...`?
+### Why does the command connect to a service called `athena`
 
 The Management API uses a TLS certificate signed by a custom certificate authority (CA). In order to communicate with the API, a client (here: `kubectl`) must trust that CA, it must have the CA's certificate. Athena is a public service providing that CA certificate to the client.
