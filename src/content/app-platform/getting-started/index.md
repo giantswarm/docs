@@ -98,9 +98,9 @@ Now we can list the latest version of each app in the catalog.
 ```nohighlight
 kubectl gs get catalog giantswarm
 
-CATALOG      APP NAME                       APP VERSION   VERSION   CREATED
+CATALOG      APP NAME                       APP VERSION   VERSION   AGE
 ...
-giantswarm   nginx-ingress-controller-app   v0.47.0       1.17.0    16 Jun 21 11:54
+giantswarm   nginx-ingress-controller-app   v0.47.0       1.17.0    25d
 ...
 ```
 
