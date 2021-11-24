@@ -43,8 +43,8 @@ Below is some additional information on commands that don't have a direct replac
 | gsctl command | Comment |
 |---------------|---------|
 | gsctl completion | `kubectl-gs` does not yet provide support for shell completion. |
-| gsctl delete cluster | To delete a cluster, use `kubectl delete` on the cluster's main resource. |
-| gsctl delete nodepool | To delete a node pool, use `kubectl delete` on the node pool's main resource. |
+| gsctl delete cluster | To delete a cluster, use `kubectl delete` on the cluster's resources. |
+| gsctl delete nodepool | To delete a node pool, use `kubectl delete` on the node pool's resources. |
 | gsctl delete endpoint | Handling of context, cluster, and user entries is done via `kubectl config` subcommands |
 | gsctl info | Use `kubectl config current-context` and `kubectl cluster-info`. |
 | gsctl list endpoints | Use `kubectl get-contexts`. |
