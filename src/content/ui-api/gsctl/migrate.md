@@ -1,6 +1,6 @@
 ---
-linkTitle: Migration to kubectl gs
-title: Migrating from gsctl to kubectl gs
+linkTitle: Migration to kubectl-gs
+title: Migrating from gsctl to kubectl-gs
 description: gsctl is a CLI for the deprecated Giant Swarm REST API. As you move from the REST API towards the Management API, you'll have to say good bye to gsctl and embrace kubectl-gs, step by step. This page should help you make the transition smoothly.
 weight: 1
 menu:
@@ -14,7 +14,7 @@ owner:
 last_review_date: 2021-11-23
 ---
 
-# Migrating from `gsctl` to `kubectl gs`
+# Migrating from gsctl to kubectl-gs
 
 `gsctl` is a CLI for Giant Swarm's proprietary REST API, which is no longer developed. To make full use of clusters and apps with Giant Swarm, users have to migrate to the [Management API]({{< relref "/ui-api/management-api/" >}}).
 
