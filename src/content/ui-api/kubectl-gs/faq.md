@@ -40,7 +40,7 @@ Yes, you can execute the binary as `kubectl-gs`, too. However, most commands exp
 
 Yes, please check the [installation]({{< relref "/ui-api/kubectl-gs/installation.md#docker" >}}) page for details.
 
-### What commands replace my old `gsctl` command
+### What commands replace my old gsctl command
 
 Please check the [migration]({{< relref "/ui-api/gsctl/migrate.md" >}}) page.
 
@@ -50,10 +50,10 @@ Please check the [migration]({{< relref "/ui-api/gsctl/migrate.md" >}}) page.
 
 You can simply ask your Giant Swarm support contact. As an alternative, `kubectl gs login` also accepts the web UI URL as an argument. So if you happen to know that one, simply use that. (The logic behind this is quite simple: The domain prefix `happa.` simply gets removed from the web UI URL, and the result is the Management API endpoint URL.)
 
-### What does `Error: Token renewal failed` mean
+### What does 'Error: Token renewal failed' mean
 
 It means that `kubectl gs login` tried to get a fresh ID-token to authenticate with against the Kubernetes API, since the existing one had expired. To resolve this, please check your `kubectl` configuration file (typically in `~/.kube/config`). Do you have several `user` entries for the same management cluster, using the same `client-id`? If yes, please edit your configuration so that there is only one.
 
-### Why does the command connect to a service called `athena`
+### Why does the command connect to a service called 'athena'
 
 The Management API uses a TLS certificate signed by a custom certificate authority (CA). In order to communicate with the API, a client (here: `kubectl`) must trust that CA, it must have the CA's certificate. Athena is a public service providing that CA certificate to the client.
