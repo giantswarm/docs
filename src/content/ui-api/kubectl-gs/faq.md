@@ -36,7 +36,7 @@ Check the [kubectl gs template app]({{< relref "/ui-api/kubectl-gs/template-app.
 
 Yes, you can execute the binary as `kubectl-gs`, too. However, most commands expect a kubectl configuration to be present.
 
-### Do you provide a Docker image for kubectl-gs?
+### Do you provide a Docker image for kubectl-gs
 
 Yes, please check the [installation]({{< relref "/ui-api/kubectl-gs/installation.md#docker" >}}) page for details.
 
