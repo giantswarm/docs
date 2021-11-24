@@ -10,8 +10,14 @@ last_review_date: 2021-11-22
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
-  - Why is kubectl gs get appcatalogs no longer used?
-  - What is the replacement for kubectl gs get appcatalogs?
+  - How can I create a cluster or node pool with kubectl-gs?
+  - How can I install an app in a workload cluster with kubectl-gs?
+  - Can kubectl-gs work without kubectl?
+  - Do you provide a Docker image for kubectl-gs?
+  - What commands replace my old gsctl command?
+  - How can I find out my Management API endpoint for 'kubectl gs login'?
+  - "What does 'Error: Token renewal failed' mean?"
+  - Why does the command connect to a service called "athena"?
 ---
 
 # Frequently asked questions (FAQ) and troubleshooting for `kubectl-gs`
