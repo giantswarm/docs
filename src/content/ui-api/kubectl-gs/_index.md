@@ -1,7 +1,7 @@
 ---
-linkTitle: kubectl gs
-title: kubectl gs plugin reference
-description: Main page for documentation on kubectl gs, the Giant Swarm kubectl plugin, with an overview of all commands, plus information on how to install and upgrade.
+linkTitle: kubectl-gs
+title: kubectl-gs reference
+description: Main page for documentation on kubectl-gs, the Giant Swarm kubectl plugin, with an overview of all commands, plus information on how to install and upgrade.
 weight: 30
 
 # layout: single avoids the listing of sub pages at the end
@@ -13,16 +13,16 @@ menu:
     parent: ui-api
 last_review_date: 2021-10-25
 user_questions:
-  - Which commands does kubectl gs offer?
+  - Which commands does kubectl-gs offer?
 aliases:
   - /reference/kubectl-gs/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 ---
 
-# `kubectl gs` plugin reference
+# `kubectl-gs` reference
 
-`kubectl gs` is a [kubectl](https://kubernetes.io/docs/reference/kubectl/kubectl/) plugin for the Giant Swarm [Management API]({{< relref "/ui-api/management-api" >}}).
+`kubectl-gs` is a CLI and a [kubectl](https://kubernetes.io/docs/reference/kubectl/kubectl/) plugin (invoked as `kubectl gs`) for the Giant Swarm [Management API]({{< relref "/ui-api/management-api" >}}).
 
 **Note:** Management API support is under active development. Supported functionality depends on the provider and the workload cluster release used. Please pay attention to the compatibility information given on the individual command reference pages.
 
@@ -71,7 +71,7 @@ Otherwise, your Giant Swarm support staff is available for you in case you run i
 
 See the [GitHub project](https://github.com/giantswarm/kubectl-gs) for source code, issues and pull requests.
 
-As a Giant Swarm customer, feel free to use your Slack channel to give feedback, ask questions and suggest improvements for `kubectl gs`.
+As a Giant Swarm customer, feel free to use your Slack channel to give feedback, ask questions and suggest improvements for `kubectl-gs`.
 
 [1]: {{< relref "/ui-api/kubectl-gs/login" >}}
 [2]: {{< relref "/ui-api/kubectl-gs/get-apps" >}}
