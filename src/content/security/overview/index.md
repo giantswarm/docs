@@ -7,7 +7,7 @@ menu:
   main:
     parent: security
     identifier: security-overview
-last_review_date: 2020-05-18
+last_review_date: 2021-11-23
 user_questions:
   - In which was does Giant Swarm ensure system security?
 aliases:
@@ -120,3 +120,9 @@ We offer SLAs for providing updates to our managed components, thus ensuring our
 ## Vulnerability handling
 
 Please see our [dedicated responsible disclosure page](https://www.giantswarm.io/responsible-disclosure) to learn more or to report an issue.
+
+## Managed Security Tooling
+
+For additional detection, response, and enforcement capabilities within your cluster, Giant Swarm also offers a managed security stack. Details about policy enforcement, anomaly detection, and vulnerability scanning, among others, can be found [in the security stack documentation][security-stack-docs].
+
+[security-stack-docs]: {{< relref "app-platform/apps/security" >}}
