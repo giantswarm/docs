@@ -105,18 +105,20 @@ data:
         idTokens: 30m
       customer:
         enabled: true
-        connectorName: test
-        connectorType: oidc
-        connectorConfig: >-
-          clientID: <CLIENT-ID-SET-IN-YOUR-IdP>
-          clientSecret: <CLIENT-SECRET-SET-IN--YOUR-IdP>
-          insecureEnableGroups: true
-          scopes:
-          - email
-          - groups
-          - profile
-          issuer: https://<IDP_ENDPOINT>/auth/realms/master
-          redirectURI: https://dex.<CLUSTERID>.<BASEDOMAIN>/callback
+        connectors:
+        - id: customer
+          connectorName: test
+          connectorType: oidc
+          connectorConfig: >-
+            clientID: <CLIENT-ID-SET-IN-YOUR-IdP>
+            clientSecret: <CLIENT-SECRET-SET-IN--YOUR-IdP>
+            insecureEnableGroups: true
+            scopes:
+            - email
+            - groups
+            - profile
+            issuer: https://<IDP_ENDPOINT>/auth/realms/master
+            redirectURI: https://dex.<CLUSTERID>.<BASEDOMAIN>/callback
 ```
 
 {{< /tab >}}
@@ -144,13 +146,15 @@ data:
         idTokens: 30m
       customer:
         enabled: true
-        connectorName: test
-        connectorType: microsoft
-        connectorConfig: >-
-          clientID: <CLIENT-ID-SET-IN-YOUR-IdP>
-          clientSecret: <CLIENT-SECRET-SET-IN--YOUR-IdP>
-          tenant: <TENANT-SET-SET-IN--YOUR-IdP>
-          redirectURI: https://dex.<CLUSTERID>.<BASEDOMAIN>/callback
+        connectors:
+        - id: customer
+          connectorName: test
+          connectorType: microsoft
+          connectorConfig: >-
+            clientID: <CLIENT-ID-SET-IN-YOUR-IdP>
+            clientSecret: <CLIENT-SECRET-SET-IN--YOUR-IdP>
+            tenant: <TENANT-SET-SET-IN--YOUR-IdP>
+            redirectURI: https://dex.<CLUSTERID>.<BASEDOMAIN>/callback
 ```
 
 {{< /tab >}}
@@ -178,19 +182,22 @@ data:
         idTokens: 30m
       customer:
         enabled: true
-        connectorName: test
-        connectorType: microsoft
-        connectorConfig: >-
-          clientID: <CLIENT-ID-SET-IN-YOUR-IdP>
-          clientSecret: <CLIENT-SECRET-SET-IN--YOUR-IdP>
-          tenant: <TENANT-SET-SET-IN--YOUR-IdP>
-          redirectURI: https://dex.<CLUSTERID>.<BASEDOMAIN>/callback
+        connectors:
+        - id: customer
+          connectorName: test
+          connectorType: microsoft
+          connectorConfig: >-
+            clientID: <CLIENT-ID-SET-IN-YOUR-IdP>
+            clientSecret: <CLIENT-SECRET-SET-IN--YOUR-IdP>
+            tenant: <TENANT-SET-SET-IN--YOUR-IdP>
+            redirectURI: https://dex.<CLUSTERID>.<BASEDOMAIN>/callback
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
 
 __Note__: In the above snippet you have to replace the `<CLUSTERID>` variable and add the Kubernetes Certificate Authority to ensure Dex can trust the API endpoint. Finally you have to use a connector. Here we show examples for Keycloak, Active Directory, and GitHub.
+You can use more than one connector, but they need to have a different `id` value. We advice to use `- id: customer` for your primary connector.
 
 After you have applied the `ConfigMap` manifest to the Management API you have to submit the App custom resource that defines the intent to install the Dex app in the given cluster.
 
