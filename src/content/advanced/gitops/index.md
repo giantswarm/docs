@@ -87,7 +87,7 @@ flux-multi-tenancy:
   sourceRefNamespace: preconditions not met
 ```
 
-Due to extra security policies enforced by Kyverno, setting `.spec.serviceAccountName` for resources in our Management Clusters is mandatory. Usually, you will want to use `serviceAccountName: "automation"`.
+Due to extra security policies enforced by Kyverno, setting `.spec.serviceAccountName` for `Kustomization`/`HelmRelease` resources in our Management Clusters is mandatory. Usually, you will want to use `serviceAccountName: "automation"`.
 
 ### Setting up sources
 
