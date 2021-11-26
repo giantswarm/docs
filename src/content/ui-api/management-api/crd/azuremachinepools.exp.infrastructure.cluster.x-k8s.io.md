@@ -12,7 +12,7 @@ crd:
   technical_name: azuremachinepools.exp.infrastructure.cluster.x-k8s.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.38.0
+  source_repository_ref: v3.39.0
   versions:
     - v1alpha3
   topics:
@@ -26,7 +26,7 @@ aliases:
   - /reference/cp-k8s-api/azuremachinepools.exp.infrastructure.cluster.x-k8s.io/
 technical_name: azuremachinepools.exp.infrastructure.cluster.x-k8s.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.38.0
+source_repository_ref: v3.39.0
 ---
 
 # AzureMachinePool
