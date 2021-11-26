@@ -74,7 +74,7 @@ In order to follow [Watching for new commits](#watching-for-new-commits) section
 
 We will be using [Flux CLI](https://fluxcd.io/docs/cmd/) and [kubectl-gs](https://github.com/giantswarm/kubectl-gs). Please make sure you have both installed on your machine. If you would rather follow the guide without them, use the example resources provided.
 
-## GiantSwarm Management Cluster notice
+## GiantSwarm Management Cluster security policies
 
 If you are creating any of the resources we talk about in this document on a GiantSwarm Management Cluster, you may see the following error:
 
@@ -87,7 +87,7 @@ flux-multi-tenancy:
   sourceRefNamespace: preconditions not met
 ```
 
-Due to extra security policies, enforced by Kyverno, setting `.spec.serviceAccountName` for resources in our Management Clusters is mandatory. Usually, you will want to use `serviceAccountName: "automation"`.
+Due to extra security policies enforced by Kyverno, setting `.spec.serviceAccountName` for resources in our Management Clusters is mandatory. Usually, you will want to use `serviceAccountName: "automation"`.
 
 ### Setting up sources
 
