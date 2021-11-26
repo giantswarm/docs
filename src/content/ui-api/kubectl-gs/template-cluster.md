@@ -54,8 +54,8 @@ It supports the following flags:
 - `--provider` - The infrastructure provider (either `aws` or `azure`).
 - `--name` - Unique identifier of the cluster.
 - `--organization` - Name of the organization that will "own" the cluster.
-- `--release` - valid workload cluster release version.
-  Can be retrieved with `gsctl list releases` for your installation. Only versions above *10.x.x*+ support cluster CRs.
+- `--release` - The Giant Swarm cluster release version.
+  Can be retrieved with `kubectl get releases` for your installation. Only versions above *10.x.x*+ support cluster CRs.
 - `--description` (optional) - User-friendly description of the cluster's purpose.
 - `--pods-cidr` (optional) - CIDR applied to the pods. If you don't set any, the installation default will be applied. Only versions *11.1.4+ support this feature.
 - `--label` (optional) - workload cluster label in the form of `key=value`. Can be specified multiple times. Only clusters with workload cluster release version above *10.x.x*+ support workload cluster labels.
