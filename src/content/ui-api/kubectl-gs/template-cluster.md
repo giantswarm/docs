@@ -54,7 +54,7 @@ It supports the following flags:
 - `--provider` - The infrastructure provider (either `aws` or `azure`).
 - `--name` - Unique identifier of the cluster.
 - `--organization` - Name of the organization that will "own" the cluster.
-- `--release` - The Giant Swarm cluster release version.
+- `--release` - Workload cluster release version.
   Can be retrieved with `kubectl get releases` for your installation.
 - `--description` (optional) - User-friendly description of the cluster's purpose.
 - `--pods-cidr` (optional) - CIDR applied to the pods. If you don't set any, the installation default will be applied. Only versions *11.1.4+ support this feature.
