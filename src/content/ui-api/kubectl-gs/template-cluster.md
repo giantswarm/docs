@@ -55,10 +55,10 @@ It supports the following flags:
 - `--name` - Unique identifier of the cluster.
 - `--organization` - Name of the organization that will "own" the cluster.
 - `--release` - The Giant Swarm cluster release version.
-  Can be retrieved with `kubectl get releases` for your installation. Only versions above *10.x.x*+ support cluster CRs.
+  Can be retrieved with `kubectl get releases` for your installation.
 - `--description` (optional) - User-friendly description of the cluster's purpose.
 - `--pods-cidr` (optional) - CIDR applied to the pods. If you don't set any, the installation default will be applied. Only versions *11.1.4+ support this feature.
-- `--label` (optional) - workload cluster label in the form of `key=value`. Can be specified multiple times. Only clusters with workload cluster release version above *10.x.x*+ support workload cluster labels.
+- `--label` (optional) - workload cluster label in the form of `key=value`. Can be specified multiple times.
 - `--release-branch` (optional) - The Giant Swarm [releases repository](https://github.com/giantswarm/releases) branch to use to look up the workload cluster release set via the `--release` flag (default: `master`).
 - `--control-plane-az` (optional) - Availability zone(s) of the control plane instance(s).
 
