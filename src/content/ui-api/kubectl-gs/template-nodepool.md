@@ -55,6 +55,7 @@ Here are the supported flags:
 - `--nodes-min` - minimum number of worker nodes for the node pool. (default 3)
 - `--output` - Sets a file path to write the output to. If not set, standard output will be used.
 - `--organization` - Name of the organization owning the cluster.
+- `--release` - The workload cluster release version.
 
 ### AWS specific
 
