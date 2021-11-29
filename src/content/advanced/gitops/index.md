@@ -74,6 +74,21 @@ In order to follow [Watching for new commits](#watching-for-new-commits) section
 
 We will be using [Flux CLI](https://fluxcd.io/docs/cmd/) and [kubectl-gs](https://github.com/giantswarm/kubectl-gs). Please make sure you have both installed on your machine. If you would rather follow the guide without them, use the example resources provided.
 
+## GiantSwarm Management Cluster security policies
+
+If you are creating any of the resources we talk about in this document on a GiantSwarm Management Cluster, you may see the following error:
+
+```nohighlight
+resource Kustomization... was blocked due to the following policies
+
+flux-multi-tenancy:
+  serviceAccountName: 'validation error: .spec.serviceAccountName is required. Rule
+    serviceAccountName failed at path /spec/serviceAccountName/'
+  sourceRefNamespace: preconditions not met
+```
+
+Due to extra security policies enforced by Kyverno, setting `.spec.serviceAccountName` for `Kustomization`/`HelmRelease` resources in our Management Clusters is mandatory. Usually, you will want to use `serviceAccountName: "automation"`.
+
 ### Setting up sources
 
 First things first - create a bare-bones `GitRepository` resource that points to [giantswarm/flux-demo](https://github.com/giantswarm/flux-demo).
