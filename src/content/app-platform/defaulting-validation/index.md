@@ -126,7 +126,8 @@ If you are managing your App CRs with Flux or a similar GitOps tool then the
 validating webhook may block creation of the App CR if it is created before the
 referenced configmap or secret.
 
-To prevent this you can add the label below.
+To prevent this you can add the label `giantswarm.io/managed-by` set to `flux`.
+e.g.
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
