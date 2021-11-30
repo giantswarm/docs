@@ -137,10 +137,10 @@ metadata:
   labels:
     giantswarm.io/managed-by: flux
 ```
- 
+
 app-admission-controller will now allow the App CR to be created. app-operator
 will still perform the validation checks and once the referenced configmap or
-secret exists the app will be installed. 
+secret exists the app will be installed.
 
 ## Retry Logic
 
