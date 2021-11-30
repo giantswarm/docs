@@ -1,6 +1,6 @@
 ---
-linkTitle: Creating an app catalog
-title: Creating an app catalog
+linkTitle: Defaulting and validation
+title: Defaulting and validation of App CRs
 description: How defaulting and validation of app CRs is implemented by app-admission-controller
 weight: 40
 menu:
