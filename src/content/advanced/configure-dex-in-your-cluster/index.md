@@ -9,7 +9,7 @@ menu:
 user_questions:
   - How can I configure OIDC in my cluster?
   - How can I add a new OIDC connector?
-last_review_date: 2021-10-01
+last_review_date: 2021-12-09
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 ---
@@ -92,13 +92,6 @@ metadata:
 data:
   values: |
     isWorkloadCluster: true
-    services:
-      kubernetes:
-        api:
-          caPem: |
-            -----BEGIN CERTIFICATE-----
-            M...=
-            -----END CERTIFICATE-----
     oidc:
       expiry:
         signingKeys: 6h
@@ -133,13 +126,6 @@ metadata:
 data:
   values: |
     isWorkloadCluster: true
-    services:
-      kubernetes:
-        api:
-          caPem: |
-            -----BEGIN CERTIFICATE-----
-            M...=
-            -----END CERTIFICATE-----
     oidc:
       expiry:
         signingKeys: 6h
@@ -149,12 +135,16 @@ data:
         connectors:
         - id: customer
           connectorName: test
-          connectorType: microsoft
+          connectorType: github
           connectorConfig: >-
             clientID: <CLIENT-ID-SET-IN-YOUR-IdP>
             clientSecret: <CLIENT-SECRET-SET-IN--YOUR-IdP>
-            tenant: <TENANT-SET-SET-IN--YOUR-IdP>
+            loadAllGroups: false
             redirectURI: https://dex.<CLUSTERID>.<BASEDOMAIN>/callback
+            orgs:
+            - name: main-customer-org
+              teams:
+              - team-infra
 ```
 
 {{< /tab >}}
@@ -169,13 +159,6 @@ metadata:
 data:
   values: |
     isWorkloadCluster: true
-    services:
-      kubernetes:
-        api:
-          caPem: |
-            -----BEGIN CERTIFICATE-----
-            M...=
-            -----END CERTIFICATE-----
     oidc:
       expiry:
         signingKeys: 6h
@@ -194,7 +177,44 @@ data:
 ```
 
 {{< /tab >}}
+{{< tab title="Okta">}}
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dex-app-user-values
+  namespace: <CLUSTERID>
+data:
+  values: |
+    isWorkloadCluster: true
+    oidc:
+      expiry:
+        signingKeys: 6h
+        idTokens: 30m
+      customer:
+        enabled: true
+        connectors:
+        - id: customer
+          connectorName: test
+          connectorType: oidc
+          connectorConfig: >-
+            clientID: <CLIENT-ID-SET-IN-YOUR-IdP>
+            clientSecret: <CLIENT-SECRET-SET-IN--YOUR-IdP>
+            insecureEnableGroups: true
+            getUserInfo: true
+            scopes:
+            - email
+            - groups
+            - profile
+            issuer: https://<OKTA_OIDC_ENDPOINT>
+            redirectURI: https://dex.<CLUSTERID>.<BASEDOMAIN>/callback
+```
+
+{{< /tab >}}
 {{< /tabs >}}
+
+__Warning__: With `oidc` connector you might need to add `getUserInfo` in the connector configuration to force a second called to IdP in order to get groups (for example required by Okta). More info [here](https://github.com/dexidp/dex/issues/1065).
 
 __Note__: In the above snippet you have to replace the `<CLUSTERID>` variable and add the Kubernetes Certificate Authority to ensure Dex can trust the API endpoint. Finally you have to use a connector. Here we show examples for Keycloak, Active Directory, and GitHub.
 You can use more than one connector, but they need to have a different `id` value. We advice to use `- id: customer` for your primary connector.
