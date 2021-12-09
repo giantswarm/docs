@@ -61,10 +61,10 @@ The standard tabular output format features these columns:
 
 - `VERSION`: Unique identifier of the release.
 - `STATUS`: The state of the release. Possible states are:
-  - `ACTIVE`: A stable release, fully supported.
-  - `PREVIEW`: A preview for testing purposes only, not yet considered stable.
-  - `WIP`: Work in progress, a release in development.
-  - `DEPRECATED`: Has been replaced by a successor release. No longer recommended.
+    - `ACTIVE`: A stable release, fully supported.
+    - `PREVIEW`: A preview for testing purposes only, not yet considered stable.
+    - `WIP`: Work in progress, a release in development.
+    - `DEPRECATED`: Has been replaced by a successor release. No longer recommended.
 - `AGE`: How long ago was the release created.
 - `KUBERNETES`: The version of Kubernetes provided by this release
 - `CONTAINER LINUX`: The version of container linux provided by this release
