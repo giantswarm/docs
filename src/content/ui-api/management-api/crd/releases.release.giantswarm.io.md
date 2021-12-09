@@ -11,8 +11,8 @@ crd:
   group: release.giantswarm.io
   technical_name: releases.release.giantswarm.io
   scope: Cluster
-  source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.39.0
+  source_repository: https://github.com/giantswarm/release-operator
+  source_repository_ref: v3.0.1
   versions:
     - v1alpha1
   topics:
@@ -24,8 +24,8 @@ owner:
 aliases:
   - /reference/cp-k8s-api/releases.release.giantswarm.io/
 technical_name: releases.release.giantswarm.io
-source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.39.0
+source_repository: https://github.com/giantswarm/release-operator
+source_repository_ref: v3.0.1
 ---
 
 # Release
