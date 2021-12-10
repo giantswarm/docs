@@ -215,7 +215,7 @@ data:
 {{< /tab >}}
 {{< /tabs >}}
 
-__Warning__: With `oidc` connector you might need to add `getUserInfo` in the connector configuration to force a second called to IdP in order to get groups (for example required by Okta). More info [here](https://github.com/dexidp/dex/issues/1065).
+__Warning__: With `oidc` connector you might need to add `getUserInfo` in the connector configuration to force a second call to the identity provider in order to get groups. This is required for example by Okta. More info on this can be found in [dexipd/dex#1065](https://github.com/dexidp/dex/issues/1065).
 
 __Note__: In the above snippet you have to replace the `<CLUSTERID>` variable and add the Kubernetes Certificate Authority to ensure Dex can trust the API endpoint. Finally you have to use a connector. Here we show examples for Keycloak, Active Directory, and GitHub.
 You can use more than one connector, but they need to have a different `id` value. We advice to use `- id: customer` for your primary connector.
