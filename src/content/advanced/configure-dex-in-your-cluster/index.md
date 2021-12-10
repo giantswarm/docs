@@ -202,7 +202,6 @@ data:
             clientID: <CLIENT-ID-SET-IN-YOUR-IdP>
             clientSecret: <CLIENT-SECRET-SET-IN--YOUR-IdP>
             insecureEnableGroups: true
-            insecureSkipEmailVerified: true
             getUserInfo: true
             scopes:
             - email
