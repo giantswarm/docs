@@ -6,12 +6,12 @@ changes_categories:
 - Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
-  url: https://github.com/giantswarm/releases/tree/master/openstack/v20.0.0-alpha1
+  url: https://github.com/giantswarm/releases/tree/master/aws/v20.0.0-alpha1
   version: 20.0.0-alpha1
   version_tag: v20.0.0-alpha1
-date: '2021-12-03T12:00:00+00:00'
+date: '2021-05-31T14:50:41+00:00'
 description: Release notes for AWS workload cluster release v20.0.0-alpha1, published
-  on 03 December 2021, 12:00
+  on 31 May 2021, 14:50
 title: Workload cluster release v20.0.0-alpha1 for AWS
 ---
 
