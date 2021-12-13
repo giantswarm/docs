@@ -1,15 +1,21 @@
 ---
+linkTitle: update cluster 
 title: "'kubectl gs update cluster' command reference"
-description: Reference documentation on how to update using 'kubectl gs'.
-type: page
-weight: 10
+description: Reference documentation on how to update update a Cluster using 'kubectl gs'.
+weight: 100
+menu:
+  main:
+    parent: uiapi-kubectlgs
+aliases:
+  - /reference/kubectl-gs/update-cluster/
+last_review_date: 2021-12-13
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-ux
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
+user_questions:
+  - How can I update a cluster from the command line?
 ---
 
 # `kubectl gs update cluster`
-
-{{% kgs_alias_assumption %}}
 
 Updating clusters can be done in two ways. A cluster can be immediately updated or a cluster update can be scheduled in the future.
 
@@ -37,5 +43,5 @@ Supported flags:
 
 ## Related
 
-- [`kubectl gs login`](/reference/kubectl-gs/login/) - Ensure an authenticated kubectl context.
-- [`cluster-upgrades`](/reference/cluster-upgrades) - Cluster upgrades.
+- [`kubectl gs login`]({{< relref "/ui-api/kubectl-gs/login" >}}) - Ensure an authenticated kubectl context.
+- [`cluster-upgrades`]({{< relref "../general/cluster-upgrades) - Cluster upgrades.
