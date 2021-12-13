@@ -24,6 +24,7 @@ owner:
 | [`template appcatalog`][5] | [Create manifests for an AppCatalog][5]                        | all providers        |
 | [`template cluster`][6]    | [Create manifests for a cluster][6]                            | only AWS, Azure      |
 | [`template nodepool`][7]   | [Create manifests for a node pool][7]                          | only AWS, Azure      |
+| [`update cluster`][8]      | [Schedule cluster updates][8]                                  | only AWS, Azure      |
 | `help`                     | Get help for a command                                         | provider independent |
 
 ## Installing and updating {#install}
@@ -51,3 +52,4 @@ As a Giant Swarm customer, feel free to use your Slack channel to give feedback,
 [5]: /reference/kubectl-gs/template-appcatalog/
 [6]: /reference/kubectl-gs/template-cluster/
 [7]: /reference/kubectl-gs/template-nodepool/
+[8]: /reference/kubectl-gs/update-cluster/
