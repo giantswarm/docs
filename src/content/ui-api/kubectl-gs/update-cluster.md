@@ -44,4 +44,4 @@ Supported flags:
 ## Related
 
 - [`kubectl gs login`]({{< relref "/ui-api/kubectl-gs/login" >}}) - Ensure an authenticated kubectl context.
-- [`cluster-upgrades`]({{< relref "../general/cluster-upgrades) - Cluster upgrades.
+- [`cluster-upgrades`]({{< relref "/general/cluster-upgrades" >}}) - Cluster upgrades.
