@@ -3,15 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v9.0.1/
 changes_categories:
-- Workload Cluster Releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v9.0.1
   version: 9.0.1
   version_tag: v9.0.1
 date: '2020-03-27T19:00:00+00:00'
-description: Release notes for AWS release v9.0.1, published on 27 March 2020, 19:00
-title: Workload Cluster Release v9.0.1 for AWS
+description: Release notes for AWS workload cluster release v9.0.1, published on 27
+  March 2020, 19:00
+title: Workload cluster release v9.0.1 for AWS
 ---
 
 This release includes Kubernetes v1.15.11 as well as some reliability and user experience improvements.

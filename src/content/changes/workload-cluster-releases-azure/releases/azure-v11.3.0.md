@@ -3,15 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-azure/releases/azure-v11.3.0/
 changes_categories:
-- Workload Cluster Releases for Azure
+- Workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/azure/archived/v11.3.0
   version: 11.3.0
   version_tag: v11.3.0
 date: '2020-05-05T07:00:00+00:00'
-description: Release notes for Azure release v11.3.0, published on 05 May 2020, 07:00
-title: Workload Cluster Release v11.3.0 for Azure
+description: Release notes for Azure workload cluster release v11.3.0, published on
+  05 May 2020, 07:00
+title: Workload cluster release v11.3.0 for Azure
 ---
 
 This release replaces CoreOS Container Linux that is going [end of life](https://coreos.com/os/eol/) on the 26th of May 2020 with [Flatcar Container Linux](https://www.flatcar-linux.org/). Flatcar is a compatible fork of CoreOS which receives ongoing support, including security updates and fixes. To learn more please read our recent blog post: [Time to Catch a New Train: Flatcar Linux](https://www.giantswarm.io/blog/time-to-catch-a-new-train-flatcar-linux)

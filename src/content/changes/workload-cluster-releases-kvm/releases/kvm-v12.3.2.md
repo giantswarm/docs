@@ -3,16 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-kvm/releases/kvm-v12.3.2/
 changes_categories:
-- Workload Cluster Releases for KVM
+- Workload cluster releases for KVM
 changes_entry:
   repository: giantswarm/releases
-  url: https://github.com/giantswarm/releases/tree/master/kvm/v12.3.2
+  url: https://github.com/giantswarm/releases/tree/master/kvm/archived/v12.3.2
   version: 12.3.2
   version_tag: v12.3.2
 date: '2020-11-02T10:50:00+00:00'
-description: Release notes for KVM release v12.3.2, published on 02 November 2020,
-  10:50
-title: Workload Cluster Release v12.3.2 for KVM
+description: Release notes for KVM workload cluster release v12.3.2, published on
+  02 November 2020, 10:50
+title: Workload cluster release v12.3.2 for KVM
 ---
 
 **Nodes will be rolled during upgrade to this version.**
@@ -25,13 +25,13 @@ Please contact your Solution Engineer before upgrading. The upgrade is automated
 
 **Note for Solution Engineers:**
 
-Before upgrading, please ensure cluster is on [KVM 12.1.x](https://github.com/giantswarm/releases/tree/master/kvm/v12.1.0) platform release first.
+Before upgrading, please ensure cluster is on [KVM 12.1.x](https://github.com/giantswarm/releases/tree/master/kvm/archived/v12.1.0) platform release first.
 
 Please use [Upgrading tenant clusters to Helm 3](https://intranet.giantswarm.io/docs/dev-and-releng/helm/helm3-tenant-cluster-upgrade/) as a guide on the upgrade process for the checks and monitoring steps.
 
 **Note for future 12.x.x releases:**
 
-Please ensure cluster is on [KVM 12.1.x](https://github.com/giantswarm/releases/tree/master/kvm/v12.1.0) platform release first before upgrading to 12.2.0+ Please persist this note until all customers are on KVM 12.1.x and above.
+Please ensure cluster is on [KVM 12.1.x](https://github.com/giantswarm/releases/tree/master/kvm/archived/v12.1.0) platform release first before upgrading to 12.2.0+ Please persist this note until all customers are on KVM 12.1.x and above.
 
 ## Change details
 

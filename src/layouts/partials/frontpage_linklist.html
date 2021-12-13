@@ -1,7 +1,0 @@
-<ul class="linklist linklist-compact">
-  {{ range site.AllPages }}
-    {{ if in .Params.tags $ }}
-      <li><a href="{{ .Permalink | relURL }}">{{ .Title }}</a></li>
-      {{ end }}
-  {{ end }}
-</ul>

@@ -1,0 +1,91 @@
+
+.nav-wrap
+  width: 100%
+
+// hidden fallback
+[hidden]
+  display: none
+  visibility: hidden
+
+$indent: 14px
+
+// accordion nav
+.acnav
+  width: 100%
+  padding-right: 10px
+
+  *
+    font-size: 14px
+
+  li
+    margin-bottom: 0
+    line-height: 18px
+    padding: 0
+
+  // first level items
+  &__list
+    padding: 0 0 14px 0
+    margin: 0
+    list-style: none
+
+  // font awesome icon 'fa-plus'
+  .has-children > &__label a::after
+    content: "\f015"
+    display: inline-block
+    font-family: GiantSwarmHappaAndDocs
+    text-rendering: auto
+    margin-left: 3px
+    pointer-events: all
+
+  &__label.active a::after
+    transform: rotate(90deg)
+
+  &__label
+    display: block
+    margin: 0
+    line-height: 17px
+
+  &__link
+    display: inline-block
+    margin: 0
+    line-height: 17px
+    cursor: pointer
+  
+  &__link
+    padding: 7px 0 7px 0
+  
+  &__label > a
+    display: inline-block
+    padding: 7px 0 7px
+
+  // top level items
+  &__list--level1 > li > .acnav__label,
+  &__list--level1 > li > .acnav__link
+    font-weight: 700
+
+  // second level items
+  &__list--level2 .acnav__link
+    padding: 5px 0 5px 0
+
+  // third level items
+  &__list--level3 .acnav__link,
+  &__list--level3 > li > .acnav__label
+    padding: 4px 0 4px $indent
+
+  // fourth level items
+  &__list--level4 .acnav__link,
+  &__list--level4 > li > .acnav__label
+    padding-left: ($indent * 2)
+  
+  a
+    color: #666
+    &:hover
+      color: #1c91d5
+      text-decoration: none
+    &.current
+      color: #000
+
+.acnav__list--level1
+  padding-bottom: 30px
+  .acnav__list
+    padding-left: 0px

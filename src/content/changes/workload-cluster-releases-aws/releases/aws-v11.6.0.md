@@ -3,16 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v11.6.0/
 changes_categories:
-- Workload Cluster Releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v11.6.0
   version: 11.6.0
   version_tag: v11.6.0
 date: '2020-10-01T09:22:19+00:00'
-description: Release notes for AWS release v11.6.0, published on 01 October 2020,
-  09:22
-title: Workload Cluster Release v11.6.0 for AWS
+description: Release notes for AWS workload cluster release v11.6.0, published on
+  01 October 2020, 09:22
+title: Workload cluster release v11.6.0 for AWS
 ---
 
 This release updates Cert-Manager to `1.1.0` to add support for Route53 using Kiam annotation.

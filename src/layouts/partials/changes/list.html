@@ -5,13 +5,18 @@
 
 <ul class="changelog">
     {{- range .Paginator.Pages }}
-    <li class="changelog">
-        {{ partial "changes/meta.html" . }}
-        {{- with .Content }}
-        <div class="content">{{ . }}</div>
-        {{- end }}
-    </li>
+        {{ $page := . }}
+        <li class="changelog">
+            {{ partial "changes/meta" $page }}
+            {{- with $page.Content }}
+                <div class="content">
+                    {{ if in $page.Params.changes_categories "Highlights" }}<h1 class="highlights">{{ $page.Title }}</h1>{{ end }}
+
+                    {{ . }}
+                </div>
+            {{- end }}
+        </li>
     {{ end }}
 </ul>
 
-{{ partial "pagination.html" . }}
+{{ partial "pagination" . }}

@@ -3,15 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v9.1.0/
 changes_categories:
-- Workload Cluster Releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v9.1.0
   version: 9.1.0
   version_tag: v9.1.0
 date: '2020-01-28T12:00:00+00:00'
-description: Release notes for AWS release v9.1.0, published on 28 January 2020, 12:00
-title: Workload Cluster Release v9.1.0 for AWS
+description: Release notes for AWS workload cluster release v9.1.0, published on 28
+  January 2020, 12:00
+title: Workload cluster release v9.1.0 for AWS
 ---
 
 This is the first Giant Swarm release which includes Kubernetes v1.16. In addition to this update, CPU limits have been removed from several supporting components and priority classes have been adjusted to ensure system reliability under heavy load. Further details about changes to individual components can be found below.

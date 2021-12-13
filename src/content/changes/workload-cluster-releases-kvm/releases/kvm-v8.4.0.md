@@ -3,15 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-kvm/releases/kvm-v8.4.0/
 changes_categories:
-- Workload Cluster Releases for KVM
+- Workload cluster releases for KVM
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/kvm/archived/v8.4.0
   version: 8.4.0
   version_tag: v8.4.0
 date: '2019-08-20T17:00:00+00:00'
-description: Release notes for KVM release v8.4.0, published on 20 August 2019, 17:00
-title: Workload Cluster Release v8.4.0 for KVM
+description: Release notes for KVM workload cluster release v8.4.0, published on 20
+  August 2019, 17:00
+title: Workload cluster release v8.4.0 for KVM
 ---
 
 This release contains Kubernetes 1.14.6 and therefor fixes for CVE-2019-9512 and CVE-2019-9514.

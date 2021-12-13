@@ -1,112 +1,79 @@
-{{ partial "header.html" . }}
+{{ partial "header" . }}
 
 <div id="home">
+
   <div class="row">
-    <div class="col-sm-12">
-      <h2>Learn about Giant Swarm</h2>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-4">
-      <ul class="linklist">
-        <li>
-          <a href="/basics/kubernetes-on-giant-swarm/">Details on Kubernetes on Giant Swarm</a>
-          <div class="meta">Here  you learn how we set up things for you and what we manage for you, so you don't have to.</div>
-        </li>
-      </ul>
-    </div>
-    <div class="col-sm-4">
-      <ul class="linklist">
-        <li>
-          <a href="/basics/aws-architecture/">AWS Architecture</a>
-          <div class="meta">How Giant Swarm is running Kubernetes clusters on AWS infrastructure</div>
-        </li>
-      </ul>
-    </div>
-    <div class="col-sm-4">
-      <ul class="linklist">
-        <li>
-          <a href="/basics/azure-architecture/">Azure Architecture</a>
-          <div class="meta">How Giant Swarm is running Kubernetes clusters on Azure infrastructure</div>
-        </li>
-      </ul>
+    <div class="col-xs-12">
+      <h1>Giant Swarm Documentation</h1>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-sm-4">
-      <ul class="linklist">
-        <li>
-          <a href="/basics/onprem-architecture/">On Premises Architectures</a>
-          <div class="meta">How Giant Swarm is running in your datacenter on the hardware you provide</div>
-        </li>
-      </ul>
-    </div>
-    <div class="col-sm-4">
-      <ul class="linklist">
-        <li>
-          <a href="/basics/security/">Security</a>
-          <div class="meta">Details on security features</div>
-        </li>
-      </ul>
-    </div>
-    <div class="col-sm-4">
-      <ul class="linklist">
-        <li>
-          <a href="/basics/kubernetes-resources/">Kubernetes Resources</a>
-          <div class="meta">Pointers to the best resources about Kubernetes, to get you up to speed with Kubernetes fast</div>
-        </li>
-      </ul>
-    </div>
-  </div>
+    <div class="col-xs-12 home-searchform">
+      <div class="center-block hidden-xs">
+        {{ partial "search_form" }}
+      </div>
 
-  <div class="row">
-    <div class="col-md-12">
+      <div class="visible-xs">
+        <form method="GET" action="/search/" role="search">
+          <div class="form-group">
+            <label class="sr-only" for="searchInputMobile">Find documentation for</label>
+            <input type="search" name="q" class="form-control" id="searchInputMobile"/>
+          </div>
+          <button type="submit" class="btn btn-default"><i class="fa fa-search"></i> Search</button>
+        </form>
+      </div>
+
       <hr />
     </div>
   </div>
 
   <div class="row">
-    <div class="col-md-12">
-      <h2>User Guides</h2>
+    <div class="col-xs-12 col-sm-4">
+      <h3><a href="/general/">General</a></h3>
+      <p class="intro">This is where you find some introductory and high-level description of what to expect with Giant Swarm.</p>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-6">
-      <h3>Tutorials</h3>
-      {{ partial "frontpage_linklist" "tutorial" }}
+    <div class="col-xs-12 col-sm-4">
+      <h3><a href="/getting-started/">Getting started</a></h3>
+      <p class="intro">Guides that help you get going with your new Giant Swarm installation quickly.</p>
     </div>
-    <div class="col-sm-6">
-      <h3>Recipes</h3>
-      {{ partial "frontpage_linklist" "recipe" }}
-    </div>
-  </div> <!-- row -->
-
-  <div class="row">
-    <div class="col-md-12">
-      <hr />
+    <div class="col-xs-12 col-sm-4">
+      <h3><a href="/advanced/">Advanced setup</a></h3>
+      <p class="intro">More advanced guides for optimization and solutions to specific problems.</p>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-sm-12">
-      <h2>Reference Documentation</h2>
-      <ul class="linklist linklist-compact">
-        <li><a href="/reference/gsctl/">gsctl &ndash; The Giant Swarm command line utility</a></li>
-        <li><a href="/reference/kubectl-gs/">kubectl gs &ndash; The Giant Swarm kubectl plugin</a></li>
-        <li><a href="/reference/cluster-definition/">Cluster definition YAML reference</a></li>
-        <li><a href="/reference/cluster-upgrades/">Cluster upgrades</a></li>
-        <li><a href="/api/">The Giant Swarm API</a></li>
-        <li><a href="https://kubernetes.io/docs/reference/kubectl/overview/">kubectl reference <i class="fa fa-open-in-new" aria-hidden="true"></i></a></li>
-        <li><a href="https://kubernetes.io/docs/concepts/overview/kubernetes-api/">Kubernetes API reference <i class="fa fa-open-in-new" aria-hidden="true"></i></a></li>
-      </ul>
+    <div class="col-xs-12 col-sm-4">
+      <h3><a href="/ui-api/">UIs and APIs</a></h3>
+      <p class="intro">Ways to interact with your infrastructure and apps, from the web user interface to CLIs and APIs.</p>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <h3><a href="/app-platform/">App platform</a></h3>
+      <p class="intro">Learn how to manage app catalogs and apps, for simple and standardized deployment of workload in all your clusters.</p>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <h3><a href="/security/">Security</a></h3>
+      <p class="intro">How Giant Swarm keeps your clusters safe by default, and what you can do in addition to protect your resources.</p>
     </div>
   </div>
 
-
-  {{ partial "search_cta.html" . }}
+  <div class="row">
+    <div class="col-xs-12 col-sm-4">
+      <h3><a href="/kubernetes/">Kubernetes basics</a></h3>
+      <p class="intro">Documentation on various Kubernetes topics, plus some pointers to upstream docs, and a collection of best practices.</p>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <h3><a href="/reference/">Reference</a></h3>
+      <p class="intro">Our place for those facts you never want to keep in mind.</p>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <h3><a href="/changes/">Changes and releases</a></h3>
+      <p class="intro">Stay up-to-date on changes and releases in apps, workload cluster components, UIs and even the documentation itself.</p>
+    </div>
+  </div>
 
 
 </div>
 
-{{ partial "footer.html" . }}
+{{ partialCached "footer" . }}

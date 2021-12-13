@@ -3,15 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-azure/releases/azure-v11.3.3/
 changes_categories:
-- Workload Cluster Releases for Azure
+- Workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/azure/archived/v11.3.3
   version: 11.3.3
   version_tag: v11.3.3
 date: '2020-06-18T15:00:00+00:00'
-description: Release notes for Azure release v11.3.3, published on 18 June 2020, 15:00
-title: Workload Cluster Release v11.3.3 for Azure
+description: Release notes for Azure workload cluster release v11.3.3, published on
+  18 June 2020, 15:00
+title: Workload cluster release v11.3.3 for Azure
 ---
 
 **If you are upgrading from 11.3.1 or 11.3.2, upgrading to this release will not roll your nodes. It will only update the apps.**

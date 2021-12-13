@@ -3,15 +3,16 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v11.1.4/
 changes_categories:
-- Workload Cluster Releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v11.1.4
   version: 11.1.4
   version_tag: v11.1.4
 date: '2020-04-19T11:00:00+00:00'
-description: Release notes for AWS release v11.1.4, published on 19 April 2020, 11:00
-title: Workload Cluster Release v11.1.4 for AWS
+description: Release notes for AWS workload cluster release v11.1.4, published on
+  19 April 2020, 11:00
+title: Workload cluster release v11.1.4 for AWS
 ---
 
 This release makes the pod CIDR of a tenant cluster configurable via the control plane Kubernetes API. When using this option to avoid IP address overlap, this enables VPC peering between tenant clusters of the same installation.

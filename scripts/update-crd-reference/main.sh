@@ -1,14 +1,15 @@
 #!/bin/bash
 
-CRD_DOCS_GENERATOR_VERSION=0.2.3
+set -e
 
-DESTINATION=src/content/reference/management-api
+CRD_DOCS_GENERATOR_VERSION=0.8.0
+DESTINATION=src/content/ui-api/management-api/crd
 
 # Clear output folder
 find ${DESTINATION} -type f -not -name "_index.md" | xargs rm
 
 # Generate new content
-docker run \
+docker run --rm \
     -v ${PWD}/${DESTINATION}:/opt/crd-docs-generator/output \
     -v ${PWD}/scripts/update-crd-reference:/opt/crd-docs-generator/config \
     quay.io/giantswarm/crd-docs-generator:${CRD_DOCS_GENERATOR_VERSION} \
