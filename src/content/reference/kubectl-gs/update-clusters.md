@@ -11,7 +11,7 @@ owner:
 
 {{% kgs_alias_assumption %}}
 
-Updating clusters can be done in two ways. A cluster can be immediately updated or a cluster update can be scheduled in the future. 
+Updating clusters can be done in two ways. A cluster can be immediately updated or a cluster update can be scheduled in the future.
 
 ## Usage
 
@@ -21,7 +21,7 @@ Updating clusters can be done in two ways. A cluster can be immediately updated 
 kgs update cluster --name a1b2c --namespace org --release-version 16.1.0 --provider aws
 ```
 
-### Schedule a cluster update 
+### Schedule a cluster update
 
 ```nohighlight
 kgs update cluster --name a1b2c --namespace org --release-version 16.1.0 --scheduled-time "2022-01-01 02:00" --provider aws
