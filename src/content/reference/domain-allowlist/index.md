@@ -86,7 +86,6 @@ These domains are only required for on-premise installations.
     - domains:
         - `api.cloudflare.com`
     - cert-manager may create ACME challenge DNS records.
-
 - api.mailgun.net
     - domains:
       - `api.mailgun.net` 
