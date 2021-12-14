@@ -133,7 +133,6 @@ spec:
       port: 53
     - protocol: UDP
       port: 1053
-```
 __Warning__: By default Giant Swarm clusters run CoreDNS listening on the port 1053 (due to security reasons). So you will need to include port `1053` on the list of ports.
 
 ## Applications
