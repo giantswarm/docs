@@ -112,7 +112,7 @@ The default policy shown above will limit ingress and egress traffic in the name
 
 ## DNS
 
-In case you want to limit the DNS access within the cluster or namespace, you can use a NetworkPolicy that targets just DNS like:
+In case you want to limit pods to only DNS access within the cluster or namespace, you can use a NetworkPolicy that targets just DNS like:
 
 ```yaml
 apiVersion: networking.k8s.io/v1
