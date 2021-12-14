@@ -1,7 +1,7 @@
 ---
 linkTitle: update cluster 
 title: "'kubectl gs update cluster' command reference"
-description: Reference documentation on how to update update a Cluster using 'kubectl gs'.
+description: Reference documentation on how to update a Cluster using 'kubectl gs'.
 weight: 100
 menu:
   main:
