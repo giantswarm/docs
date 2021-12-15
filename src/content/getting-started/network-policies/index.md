@@ -110,31 +110,6 @@ Note that the namespace needs to exist before you apply the NetworkPolicy to it.
 
 The default policy shown above will limit ingress and egress traffic in the namespace applied. You can also restrict only for `egress` or `ingress`.
 
-## DNS
-
-In case you want to limit pods to only DNS access within the cluster or namespace, you can use a NetworkPolicy that targets just DNS like:
-
-```yaml
-apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
-metadata:
-  name: default-deny-all-dns-egress
-spec:
-  podSelector: {}
-  policyTypes:
-    - Egress
-  egress:
-  - to:
-    - namespaceSelector:
-        matchLabels:
-          name: kube-system
-    ports:
-    - protocol: UDP
-      port: 53
-    - protocol: UDP
-      port: 1053
-__Warning__: By default Giant Swarm clusters run CoreDNS listening on the port 1053 (due to security reasons). So you will need to include port `1053` on the list of ports.
-
 ## Applications
 
 ### Allowing specific system pod to talk with your pod
@@ -254,6 +229,34 @@ spec:
 The `allow-external` policy, described above, will allow any traffic (no matter if it's outside or inside your cluster) to the Pods on port 80.
 
 In this guide we discussed different use-cases of limiting Pod communication with network policies, based on our best practices.
+
+## Allowing DNS traffic from my pod
+
+Once you have a default deny egress policy, the DNS traffic is also blocked. When you want to allow egress traffic for a specific application then you will need to allow DNS traffic too. You can use a NetworkPolicy that targets just DNS like:
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-dns-for-my-app
+  podSelector:
+    matchLabels:
+      app: web
+  policyTypes:
+    - Egress
+  egress:
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          name: kube-system
+    ports:
+    - protocol: UDP
+      port: 53
+    - protocol: UDP
+      port: 1053
+```
+
+__Warning__: By default Giant Swarm clusters run CoreDNS listening on the port 1053 (due to security reasons). So you will need to include port `1053` on the list of ports.
 
 ## Further reading
 
