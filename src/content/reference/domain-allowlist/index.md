@@ -28,7 +28,7 @@ Below is a list of the external domains we require access to for our clusters to
 - azurecr.io
     - domains:
         - `giantswarm.azurecr.io`
-    - Container images are hosted on Azure Container Registry. 
+    - Container images are hosted on Azure Container Registry.
 - cloudfront.net
     - domains:
         - `*.cloudfront.net`
@@ -88,5 +88,5 @@ These domains are only required for on-premise installations.
     - cert-manager may create ACME challenge DNS records.
 - api.mailgun.net
     - domains:
-      - `api.mailgun.net` 
+        - `api.mailgun.net`
     - This is the mail service we use to send the invites for our Rest API user accounts.
