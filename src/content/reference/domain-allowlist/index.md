@@ -89,4 +89,4 @@ These domains are only required for on-premise installations.
 - api.mailgun.net
     - domains:
       - `api.mailgun.net` 
-    - This is the mail service we use to send the invites for our UI.
+    - This is the mail service we use to send the invites for our Rest API user accounts.
