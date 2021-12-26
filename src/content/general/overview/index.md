@@ -7,7 +7,7 @@ menu:
   main:
     identifier: general-overview
     parent: general
-last_review_date: 2021-11-22
+last_review_date: 2021-12-26
 user_questions:
   - What's included with Kubernetes run by Giant Swarm?
   - What's not included with Kubernetes run by Giant Swarm?
@@ -19,13 +19,20 @@ owner:
 
 # Running Kubernetes on Giant Swarm
 
-With Giant Swarm you get fully-managed Kubernetes clusters, which you can then use to deploy your containers as you see fit. You have full admin rights to your clusters through their API, so you can change anything that is accessible through the Kubernetes API. Changes that require configuration of the Kubernetes components themselves (e.g. starting the API server or kubelets with specific arguments) need to be set by the Giant Swarm Ops team. If you have specific needs or feedback, don't hesitate to [get in touch](mailto:support@giantswarm.io).
+At Giant Swarm we enable platform teams to move from administartion to innovation. We achieve this by providing you with fully-managed Kubernetes clusters, which you can then use to deploy your containers as you see fit. You have full admin rights to your clusters through their API, so you can change anything that is accessible through the Kubernetes API. Changes that require configuration of the Kubernetes components themselves (e.g. starting the API server or kubelets with specific arguments) need to be set by the Giant Swarm Ops team. If you have specific needs or feedback, don't hesitate to [get in touch](mailto:support@giantswarm.io).
+
+This model aligns with the value we see in providing Open-Source-as-a-Service. Our goal is to encourage experimentation in a safe environment. In this environmenet you can innovate while we provide advice, guardrails and connections to upstream. You reap the benefits of going cloud native easily and quickly by side stepping some of the work of introducing or scaling Kubernetes in your organization.
+
+**__Your Platform = Our Product + Your Config + Your Processes + Your Custome Extensions__**
+
 
 ## What is included
 
+We provide support for [AWS]({{< relref "/general/architecture/aws" >}}), [Azure]({{< relref "/general/architecture/azure" >}}) and [on-premises]({{< relref "/general/architecture/on-premises" >}}) clusters. With the adoption of [Cluster API](https://www.giantswarm.io/blog/its-cluster-api-time-are-you-ready-giant-swarm), our customers will benefit from a growing number of supported clouds.
+
 Your clusters comes out-of-the-box as follows:
 
-- High-availability Kubernetes control plane on AWS with clustered etcd (optional), single node control plane with resilient etcd
+- [High-availability Kubernetes control plane]({{< relref "/advanced/high-availability/control-plane" >}}) with clustered etcd (optional) or single node control plane with resilient etcd
 - Resiliently deployed worker nodes
 - Full end-to-end encryption between Kubernetes components
 - Regularly rolling keys for above-mentioned encryption
@@ -33,38 +40,28 @@ Your clusters comes out-of-the-box as follows:
 - Native CNI plug-ins on AWS and Azure
 - CoreDNS installed
 - All resources and feature gates (incl. alpha) enabled
-- NGINX Ingress Controller - running inside your cluster (optional app)
+- [NGINX Ingress Controller]({{< relref "/getting-started/ingress-controller" >}}) - running inside your cluster (optional app)
 - Monitoring
-- Storage
+- [Storage]({{< relref "/advanced/storage" >}})
+
+As a user of Giant Swarm you can utilize any of our four front ends: [API]({{< relref "/ui-api/management-api/overview" >}}), [CLI]({{< relref "/ui-api/kubectl-gs" >}}), [Web UI]({{< relref "/ui-api/web/overview" >}}) and [GitOps]({{< relref "/advanced/gitops" >}})
+
+## Management and support
+
+Rooted in the DevOps way of thinking, we run what we build. Thus, you get a managed service with 24/7 support. What does this actually mean for you?
+
+It can be broken down into a three step process:
+
+1. We develop the platform
+We provide upgrades, security patches (CVEs) for all components involved. BUT we also build a platform to manage multiple clusters. Upgrades are fully automated. The platform is resilient due to the operator pattern we are using. The platform scales automatically. And we constantly add new cluster orchestration features, new managed apps and app deployment/management features in the app platform.
+2. We operate the platform
+We take the pager on the infrastructure. This includes the cloud resources as well as the kubernetes stack and the managed apps on top. So if something goes wrong we automatically get notified and start acting. We provide RCAs and do post mortems to prevent the same problem from happening again. Customers also alert us, when they discover issues. 
+3. We consult on how to use the platform
+Weekly calls with an Account Engineer. Easy access to knowledge via the shared slack channel. We share experience from other customers and how they solved their problems. We have a lot of experience building a cloud-native stack for enterprises. We speak the language of different departments of an organization (e.g. security, infrastructure and operations, DevOps). We bring experience of building setups over multiple locations.
 
 ## What is not included
 
-There are some things not included in the cluster as managed by us:
+There are some things not included in the cluster managed by us:
 
 - Additional user-space services like dashboards, logging, container registry, etc. are not installed (getting them running is [really easy]({{< relref "/app-platform/overview" >}}), though).
 
-## High availability and resilience
-
-As of workload cluster release v{{% first_aws_ha_controlplane_version %}} for AWS, [multiple control plane nodes]({{< relref "/advanced/high-availability/control-plane" >}}) with one
-etcd cluster member each are active by default on AWS.
-
-On other providers and in older workload cluster release for AWS, your clusters have a single running control plane node. However, the clusters are set up in a way that they keep running even if the control plane node is unavailable for a while (e.g. due to planned upgrades, failure, etc.). The only slight degradation you might notice is that while the control plane node is down, you cannot change the state of your pods and other resources. As soon as the control plane node is up again, you regain full control.
-
-Furthermore, Kubernetes takes care of syncing your cluster with your desired state, so even when a node goes down (e.g. due to planned upgrades, failure, etc.), pods will get restarted/rescheduled if they are not running once it comes up again. If the node was away due to a network partition, the pods might still be running. In that case the scheduler might have added more pods to other nodes while the node was away so it will remove some pods to be consistent with your desired number of replicas.
-
-## Specifics of your cluster
-
-As part of managing your clusters, we need to run some agents (e.g. for monitoring or storage) on them. Due to this fact some host ports might be already in use. Currently, this is limited to ports `10300` and `10301`, which are used by monitoring agents. If you run into issues, please [get in touch](mailto:support@giantswarm.io) and we will find a solution.
-
-Similarly, some parts of the DNS, Ingress Controller, and Calico setups are visible to you inside your cluster. To ensure optimal running clusters, please refrain from manipulating the `kube-system` namespace as well as the pods and other resources running in them if they are not documented.
-
-We customize the audit policy file to eliminate rules which are both low-risk and produce a high volume of log entries. For full details, check the manifest `audit-policy.yaml` in the repository [giantswarm/k8scloudconfig](https://github.com/giantswarm/k8scloudconfig) under `v_X_Y_Z/files/policies`.
-
-### Specifics on AWS
-
-On AWS all resources (besides minor resources on S3 and KMS) pertaining to a cluster carry the two following tags:
-
-- `kubernetes.io/cluster/<clusterid>: owned`
-- `giantswarm.io/cluster: <clusterid>`
-
-Here, `<clusterid>` stands for the unique identifier of the cluster. This enables you to set up reporting to monitor usage and cost.
