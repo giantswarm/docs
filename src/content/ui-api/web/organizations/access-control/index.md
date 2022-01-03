@@ -8,7 +8,7 @@ menu:
     identifier: orgs-accesscontrol
     parent: web-orgs
 owner:
-  - https://github.com/orgs/giantswarm/teams/biscuit
+  - https://github.com/orgs/giantswarm/teams/rainbow
 user_questions:
   - How can I inspect roles and permissions bound to an org-namespace?
   - How can I create a service account in the web interface?
