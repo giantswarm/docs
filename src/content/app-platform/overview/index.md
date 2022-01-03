@@ -39,7 +39,7 @@ We also use app platform to install the apps that are pre-installed in your clus
 
 In short: the _Giant Swarm App Platform_ refers to the whole feature, and an _App Catalog_ is a collection of _Apps_.
 
-We provide two _App Catalogs_, the Giant Swarm Catalog and the Giant Swarm Playground. You are able to set up your own additional catalog(s)
+We provide two _App Catalogs_, the Giant Swarm Catalog and the Giant Swarm Playground. You are able to set up your own [additional catalog(s)]({{< relref "/app-platform/create-catalog" >}})
 to provide for any needs you have at the enterprise level.
 
 ### What makes up the Giant Swarm App Platform

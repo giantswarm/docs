@@ -32,8 +32,7 @@ In general, you can manage App CRs with any tool that can communicate with the K
 
 You can access your management cluster using the [kubectl gs login]({{< relref "/ui-api/kubectl-gs/login" >}})
 command of our kubectl plugin. See [here]({{< relref "/ui-api/kubectl-gs/installation" >}})
-for how to install it. If you already have it installed please upgrade to the
-latest version.
+for how to install it.
 
 In the management cluster your App CRs are stored in a namespace with the same
 name as your workload cluster ID. Let's set an environment variable for this
