@@ -8,7 +8,7 @@ menu:
     identifier: web-orgs
     parent: uiapi-web
 owner:
-  - https://github.com/orgs/giantswarm/teams/biscuit
+  - https://github.com/orgs/giantswarm/teams/rainbow
 last_review_date: 2021-06-16
 ---
 
