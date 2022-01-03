@@ -10,7 +10,7 @@ user_questions:
   - How is a shared installation different from normal Giant Swarm installations?
   - What do I have to do to use a shared installation?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-biscuit
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 last_review_date: 2021-07-15
 ---
 
