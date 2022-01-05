@@ -12,7 +12,7 @@ crd:
   technical_name: apps.application.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions-application
-  source_repository_ref: v0.1.0
+  source_repository_ref: v0.3.0
   versions:
     - v1alpha1
   topics:
@@ -24,7 +24,7 @@ aliases:
   - /reference/cp-k8s-api/apps.application.giantswarm.io/
 technical_name: apps.application.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions-application
-source_repository_ref: v0.1.0
+source_repository_ref: v0.3.0
 ---
 
 # App
@@ -514,7 +514,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Namespace is the namespace where the app should be deployed. e.g. monitoring</p>
+<p>Namespace is the target namespace where the app should be deployed e.g. monitoring, it cannot be changed.</p>
 
 </div>
 

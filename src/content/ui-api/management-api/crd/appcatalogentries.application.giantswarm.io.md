@@ -12,7 +12,7 @@ crd:
   technical_name: appcatalogentries.application.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions-application
-  source_repository_ref: v0.1.0
+  source_repository_ref: v0.3.0
   versions:
     - v1alpha1
   topics:
@@ -24,7 +24,7 @@ aliases:
   - /reference/cp-k8s-api/appcatalogentries.application.giantswarm.io/
 technical_name: appcatalogentries.application.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions-application
-source_repository_ref: v0.1.0
+source_repository_ref: v0.3.0
 ---
 
 # AppCatalogEntry
