@@ -22,7 +22,7 @@ user_questions:
 
 An app catalog is a collection of apps that can be deployed using the Giant Swarm App Platform.
 We fully support Helm and an app catalog is also a Helm [Chart Repository](https://helm.sh/docs/topics/chart_repository/).
-Each app catalog has its own [catalog]({{< relref "/ui-api/management-api/crd/catalogs.application.giantswarm.io.md" >}}) 
+Each app catalog has its own [catalog]({{< relref "/ui-api/management-api/crd/catalogs.application.giantswarm.io.md" >}})
 CR in the management cluster.
 
 The app catalog contains a tarball for each version of an app that has been published.
@@ -49,7 +49,7 @@ management cluster to register it with app platform. This can be done using
 [kubectl gs template catalog]({{< relref "/ui-api/kubectl-gs/template-catalog" >}}).
 
 You should create the catalog CR in the organization namespace where the apps
-will be used. 
+will be used.
 
 ```nohighlight
 kubectl gs template catalog \
