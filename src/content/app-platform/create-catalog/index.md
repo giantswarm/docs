@@ -27,7 +27,7 @@ CR in the management cluster.
 
 The app catalog contains a tarball for each version of an app that has been published.
 As well as an index.yaml that is used to generate metadata that is stored in the management
-cluster in [app catalog entry]({{< relref "/ui-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}) CRs.
+cluster in [app catalog entry]({{< relref "/ui-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}}) CRs.
 
 The catalog needs to be served over HTTP and there are [multiple options](https://helm.sh/docs/topics/chart_repository/#hosting-chart-repositories)
 including GitHub Pages or tools like Harbor or ChartMuseum which run in a
