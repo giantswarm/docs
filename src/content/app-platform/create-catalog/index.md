@@ -21,21 +21,26 @@ user_questions:
 ## Overview
 
 An app catalog is a collection of apps that can be deployed using the Giant Swarm App Platform.
-We fully support Helm and an app catalog is referred to as a [Chart Repository](https://helm.sh/docs/topics/chart_repository/)
-in Helm. Each app catalog has its own [catalog]({{< relref "/ui-api/management-api/crd/catalogs.application.giantswarm.io.md" >}}) 
+We fully support Helm and an app catalog is also a Helm [Chart Repository](https://helm.sh/docs/topics/chart_repository/).
+Each app catalog has its own [catalog]({{< relref "/ui-api/management-api/crd/catalogs.application.giantswarm.io.md" >}}) 
 CR in the management cluster.
 
 The app catalog contains a tarball for each version of an app that has been published.
 As well as an index.yaml that is used to generate metadata that is stored in the management
 cluster in [app catalog entry]({{< relref "/ui-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}) CRs.
 
-The catalog needs to be served over HTTP and there are multiple options including GitHub Pages
-or tools like Harbor or ChartMuseum which run in a Kubernetes cluster. At Giant Swarm we use
-GitHub Pages and this is what we will cover in this guide.
+The catalog needs to be served over HTTP and there are [multiple options](https://helm.sh/docs/topics/chart_repository/#hosting-chart-repositories)
+including GitHub Pages or tools like Harbor or ChartMuseum which run in a
+Kubernetes cluster. At Giant Swarm we use GitHub Pages and this is what we will
+cover in this guide.
 
 ## Creating an app catalog using GitHub Pages
 
+TODO
+
 ## Pushing an app to an app catalog
+
+TODO
 
 ## Create catalog CR
 
