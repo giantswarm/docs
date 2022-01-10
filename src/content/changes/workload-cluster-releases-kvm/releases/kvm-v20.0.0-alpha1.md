@@ -9,9 +9,9 @@ changes_entry:
   url: https://github.com/giantswarm/releases/tree/master/openstack/v20.0.0-alpha1
   version: 20.0.0-alpha1
   version_tag: v20.0.0-alpha1
-date: '2021-11-04T12:00:00+00:00'
+date: '2021-12-03T12:00:00+00:00'
 description: Release notes for KVM workload cluster release v20.0.0-alpha1, published
-  on 04 November 2021, 12:00
+  on 03 December 2021, 12:00
 title: Workload cluster release v20.0.0-alpha1 for KVM
 ---
 

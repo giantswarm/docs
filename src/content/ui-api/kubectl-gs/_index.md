@@ -42,6 +42,7 @@ owner:
 | [`template nodepool`][9]      | [Create manifests for a node pool][9]                          | only AWS, Azure      |
 | [`template organization`][10] | [Create manifest for an organization][10]                      | all providers        |
 | [`update app`][12]            | [Update given App][12]                                         | all providers        |
+| [`update cluster`][13]        | [Schedule a cluster update][13]                                | only AWS, Azure      |
 | `help`                        | Get help for a command                                         | provider independent |
 
 Deprecated commands:
@@ -87,3 +88,4 @@ As a Giant Swarm customer, feel free to use your Slack channel to give feedback,
 [100]: {{< relref "/ui-api/kubectl-gs/get-appcatalogs" >}}
 [101]: {{< relref "/ui-api/kubectl-gs/template-appcatalog" >}}
 [12]: {{< relref "/ui-api/kubectl-gs/update-app" >}}
+[13]: {{< relref "/ui-api/kubectl-gs/update-cluster" >}}

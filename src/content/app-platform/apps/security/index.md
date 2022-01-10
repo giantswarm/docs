@@ -31,11 +31,13 @@ The stack consists of multiple distinct components which are independently insta
 | CIS Benchmarks | Starboard | In Catalog | [Starboard][starboard-app]  |
 | Image Provenance | Notary | Planned |   |
 | Cloud Security Posture | Cloud Custodian | Planned |   |
-| Service Mesh | Linkerd | In Catalog | [Linkerd][linkerd-app] / [Linkerd CNI][linkerd-cni-app] / [Linkerd Visualization][linkerd-viz-app]  |
 | Runtime Anomalies | Falco | In Catalog | [Falco][falco-app]  |
-| Log Alerting | Loki | In Catalog | [Loki][loki-app]  |
 | In-Cluster Registry | Harbor | In Catalog | [Harbor][harbor-app]  |
-| Log Shipping + Storage | EFK | In Catalog | [EFK Stack][efk-app]  |
+| Log Alerting | Supported by our [managed Observability Stack][observability-stack] offering. | In Catalog | [Loki][loki-app]  |
+| Log Shipping + Storage | Supported by our [managed EFK Stack][efk-stack] offering. | In Catalog | [EFK Stack][efk-app]  |
+| Advanced Network Capabilities* | Supported by our managed Connectivity Stack offering. | In Catalog | [Linkerd][linkerd-app] / [Linkerd CNI][linkerd-cni-app] / [Linkerd Visualization][linkerd-viz-app]  |
+
+\* mTLS, DNS-based egress policies, and other advanced network capabilities are available through a separately-managed service mesh.
 
 Components with a state of "In Catalog" are available for installation via our [App Platform][app-platform]. We are working to improve centralized installation and configuration across components.
 
@@ -153,6 +155,7 @@ We include Falco in our managed security stack as a detection mechanism for mali
 
 [app-platform]: {{< relref "app-platform/overview" >}}
 [efk-app]: https://github.com/giantswarm/efk-stack-app/
+[efk-stack]: {{< relref "app-platform/apps/elastic-stack" >}}
 [falco-app]: https://github.com/giantswarm/falco-app
 [falco-upstream]: https://github.com/falcosecurity/falco
 [harbor-app]: https://github.com/giantswarm/harbor-app
@@ -166,6 +169,7 @@ We include Falco in our managed security stack as a detection mechanism for mali
 [net-pols]: {{< relref "/getting-started/network-policies" >}}
 [polaris]: https://github.com/FairwindsOps/polaris
 [policy-reporter-upstream]: https://github.com/kyverno/policy-reporter
+[observability-stack]: {{< relref "app-platform/apps/observability" >}}
 [rbac-psp]: {{< relref "/getting-started/rbac-and-psp" >}}
 [security]: {{< relref "/security/" >}}
 [starboard-app]: https://github.com/giantswarm/starboard-app
