@@ -26,8 +26,9 @@ Each app catalog has its own [catalog]({{< relref "/ui-api/management-api/crd/ca
 CR in the management cluster.
 
 The app catalog contains a tarball for each version of an app that has been published.
-As well as an index.yaml that is used to generate metadata that is stored in the management
-cluster in [app catalog entry]({{< relref "/ui-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}}) CRs.
+As well as an index.yaml and other metadata files that are used to generate
+metadata that is stored in the management cluster in [app catalog entry]({{< relref "/ui-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}})
+CRs.
 
 The catalog needs to be served over HTTP and there are [multiple options](https://helm.sh/docs/topics/chart_repository/#hosting-chart-repositories)
 including GitHub Pages or tools like Harbor or ChartMuseum which run in a
@@ -36,11 +37,30 @@ cover in this guide.
 
 ## Creating an app catalog using GitHub Pages
 
-TODO
+First you should choose a name for your catalog. We recommend using the suffix
+`-catalog` to make it clear this repository hosts an app catalog.
+
+Create the git repository in GitHub and enable [GitHub Pages](https://docs.github.com/en/pages/quickstart)
+for the `main` branch.
+
+Initialize the empty helm index.yaml with `helm repo index .` and commit it to
+the repository.
 
 ## Pushing an app to an app catalog
 
 TODO
+
+I think we should recommend using ABS (app-build-suite) and this means the
+extra metadata gets created.
+
+But I have several questions / concerns.
+
+- Should we link to the ABS [tutorial](https://github.com/giantswarm/app-build-suite/blob/master/docs/tutorial.md)?
+- Or should we create another docs page and link them?
+- ABS doesn't commit the files to the repo (which is intentional) but I think we need a solution for that.
+- We could suggest architect-orb but that feels weird since its mainly internal and customer may not be using
+Circle CI.
+- Should we create a simple GitHub Action for this?
 
 ## Create catalog CR
 
