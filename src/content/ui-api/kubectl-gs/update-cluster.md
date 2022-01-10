@@ -32,8 +32,8 @@ The following example shows how to upgrade a workload cluster to the release spe
 ```nohighlight
 kubectl gs update cluster \
   --provider aws \
-  --name a1b2c \
   --namespace org-acme \
+  --name a1b2c \
   --release-version 16.1.0
 ```
 
@@ -44,8 +44,8 @@ To schedule a workload cluster upgrade in the future, the `--scheduled-time` fla
 ```nohighlight
 kubectl gs update cluster \
   --provider aws \
-  --name a1b2c \
   --namespace org-acme \
+  --name a1b2c \
   --release-version 16.1.0 \
   --scheduled-time "2022-01-01 02:00"
 ```
