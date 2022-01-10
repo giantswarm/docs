@@ -1,7 +1,7 @@
 ---
 linkTitle: Creating an app catalog
 title: Creating an app catalog
-description: How to create a custom app catalog for use with app platform
+description: How to create a custom app catalog for use with app platform and push helm charts to it.
 weight: 40
 menu:
   main:
@@ -50,10 +50,10 @@ the repository.
 
 TODO
 
-I think we should recommend using ABS (app-build-suite) and this means the
-extra metadata gets created.
+I think we should recommend using ABS (app-build-suite) and this also means our
+metadata extensions will work.
 
-But I have several questions / concerns.
+But I have some questions / concerns.
 
 - Should we link to the ABS [tutorial](https://github.com/giantswarm/app-build-suite/blob/master/docs/tutorial.md)?
 - Or should we create another docs page and link them?
