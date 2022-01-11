@@ -62,6 +62,8 @@ repositories:
     category: Managed Apps
   giantswarm/starboard-app:
     category: Managed Apps
+  giantswarm/starboard-exporter:
+    category: Managed Apps
   giantswarm/trivy-app:
     category: Managed Apps
   giantswarm/external-dns-app:
