@@ -37,7 +37,7 @@ kubectl gs update cluster \
   --release-version 16.1.0
 ```
 
-Note that all flags are mandatory. As a result of the command execution, the cluster resource's version label will be updated, which in turn triggers the cluster upgrade.
+Note that all flags are mandatory. As a result of the command execution, the cluster resource's version label (`release.giantswarm.io/version`) will be updated, which in turn triggers the cluster upgrade.
 
 To schedule a workload cluster upgrade in the future, the `--scheduled-time` flag is used, like in the example below:
 
