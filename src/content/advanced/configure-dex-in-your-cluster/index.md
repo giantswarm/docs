@@ -245,7 +245,7 @@ Then submit the resource to the management API and the App operator will manage 
 
 ## Monitoring dex
 
-To get an overview on the authentication success and error rates of your dex instances, we offer a grafana dashboard called `dex` as part of our [monitoring setup]({{< relref "/ui-api/monitoring/" >}}).
+To get an overview on the authentication success and error rates of your dex instances, we offer a grafana dashboard called `dex` as part of our [monitoring setup]({{< relref "/ui-api/monitoring" >}}).
 
 ## Further reading
 
