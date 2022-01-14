@@ -243,6 +243,10 @@ __Note__: When applying the example in the snippet above, please change the `<CL
 
 Then submit the resource to the management API and the App operator will manage it to make the actual installation and configuration. You can log in now into the cluster API with your identity provider using the login endpoint that Dex creates for you. By default, it will be `https://login.<CLUSTERID>.<BASEDOMAIN>`.
 
+## Monitoring Dex
+
+To get an overview on the authentication success and error rates of your Dex instances, we offer a Grafana dashboard named "Dex" as part of our [monitoring setup]({{< relref "/ui-api/monitoring" >}}).
+
 ## Further reading
 
 - [Authenticating with Microsoft Azure Active Directory]({{< relref "/advanced/authentication-azure-ad" >}})
