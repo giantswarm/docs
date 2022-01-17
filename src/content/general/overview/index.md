@@ -30,14 +30,13 @@ This model aligns with the value we see in providing Open-Source-as-a-Service. O
 
 We provide support for [AWS]({{< relref "/general/architecture/aws" >}}), [Azure]({{< relref "/general/architecture/azure" >}}) and [on-premises]({{< relref "/general/architecture/on-premises" >}}) clusters. With the adoption of [Cluster API](https://www.giantswarm.io/blog/its-cluster-api-time-are-you-ready-giant-swarm), our customers will benefit from a growing number of supported clouds.
 
-Your clusters comes out-of-the-box as follows:
+Your Giant Swarm installation comes out-of-the-box as follows:
 
-- [High-availability Kubernetes control plane]({{< relref "/advanced/high-availability/control-plane" >}}) with clustered etcd (optional) or single node control plane with resilient etcd
-- Resiliently deployed worker nodes
-- Full end-to-end encryption between Kubernetes components
-- Regularly rolling keys for above-mentioned encryption
-- Calico networking plugin installed (supports Network Policy API)
-- Native CNI plug-ins on AWS and Azure
+- A [management cluster]({{< relref "/general/management-clusters" >}}) in a specific cloud region or data center which will manage the workload clusters in the same region.
+- Any number of workload clusters according to your needs. (Capacity restrictions apply regarding availability of IPv4 addresses, (virtual) machine availability in the data center.)
+- Workload clusters with [high-availability Kubernetes control planes]({{< relref "/advanced/high-availability/control-plane" >}}) with clustered etcd (available on AWS only currently) or single node control plane with resilient etcd.
+- Full end-to-end encryption between Kubernetes components with regular rolling of keys/certificates.
+- CNI networking (native plug-ins on AWS and Azure) installed and Calico for network policy enforcement. TODO: which providers is this true for?
 - CoreDNS installed
 - All resources and feature gates (incl. alpha) enabled
 - [NGINX Ingress Controller]({{< relref "/getting-started/ingress-controller" >}}) - running inside your cluster (optional app)
