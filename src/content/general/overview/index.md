@@ -23,7 +23,7 @@ At Giant Swarm we enable platform teams to move from administartion to innovatio
 
 This model aligns with the value we see in providing Open-Source-as-a-Service. Our goal is to encourage experimentation in a safe environment. In this environmenet you can innovate while we provide advice, guardrails and connections to upstream. You reap the benefits of going cloud native easily and quickly by side stepping some of the work of introducing or scaling Kubernetes in your organization.
 
-**__Your Platform = Our Product + Your Config + Your Processes + Your Custome Extensions__**
+**__Your Platform = Our Product + Your Config + Your Processes + Your Custom Extensions__**
 
 
 ## What is included
