@@ -50,19 +50,21 @@ It is also possible to create client certificates for a workload cluster, by pro
 
 ### Flags
 
-The following flags related to creating client certificates for workload cluster access:
+For **management cluster** authentication, the following flags are available:
+
+- `--callback-port`: Specify the TCP port number on which the OIDC callback server on localhost will be listening. If not specified, a random port number will be used. Specifying the port is useful when running kubectl-gs inside a container, or behind a firewall.
+
+- `--token`: Use a Bearer token instead of OIDC authentication, e. g. a service account token.
+
+- `--internal-api` - (AWS only) With this flag you use an internal Management API endpoint. It resolves to an internal IP address that is only accessible from within the cluster's virtual private cloud (VPC). The hostname of this endpoint is the same as the normal one, with the prefix `internal-`. Example: if your Management API host name is `g8s.example.yourdomain.tld`, the alternative hostname is `internal-g8s.example.yourdomain.tld`.
+
+The following flags are related to creating client certificates for **workload cluster** access:
 
 - `--workload-cluster` - If present, `kubectl gs` will set up a kubectl context to work with a workload cluster. Otherwise, the command attempts to set up a management cluster context.
 - `--organization` - The organization that the workload cluster belongs to. Only required if the current user has access to multiple workload clusters with the same name in the same management cluster. Can also be applied if the user does not have permission to list organizations.
 - `--certificate-group` - The RBAC group name to be encoded into the X.509 field "O". It can be specified multiple times in order to set multiple groups at once.
 - `--certificate-ttl` - How long the client certificate should live for. When creating client certificates, we recommend using short expiration periods. Valid time units are "s" (second), "m" (minute), "h" (hour).
 - `--self-contained` - Output file path for a self-contained kubeconfig file. If provided, the client certificate data will be written to an external kubeconfig file instead of the default one. This file can be passed on to other users without management cluster access.
-
-For management cluster access on AWS, the following option is provided:
-
-- `--token`: Use a Bearer token instead of OIDC authentication, e. g. a service account token.
-
-- `--internal-api` - With this flag you use an internal Management API endpoint. It resolves to an internal IP address that is only accessible from within the cluster's virtual private cloud (VPC). The hostname of this endpoint is the same as the normal one, with the prefix `internal-`. Example: if your Management API host name is `g8s.example.yourdomain.tld`, the alternative hostname is `internal-g8s.example.yourdomain.tld`.
 
 In addition, there is one flag **only relevant to Giant Swarm staff**:
 
