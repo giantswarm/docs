@@ -61,7 +61,6 @@ aws-operator creates an Auto Scaling Group (ASG) for every node pool. If the cre
 | m6     | `m6a.12xlarge` | `m5a.12xlarge`, `m6a.12xlarge`                |
 | m6     | `m6a.16xlarge` | `m5a.16xlarge`, `m6a.16xlarge`                |
 | m6     | `m6a.24xlarge` | `m5a.24xlarge`, `m6a.24xlarge`                |
-| m6     | `m6a.32xlarge` | `m5a.32xlarge`, `m6a.32xlarge`                |
 | r4     | `r4.xlarge`    | `r4.xlarge`, `r5.xlarge`, `r6i.xlarge`        |
 | r4     | `r4.2xlarge`   | `r4.2xlarge`, `r5.2xlarge`, `r6i.2xlarge`     |
 | r4     | `r4.4xlarge`   | `r4.4xlarge`, `r5.4xlarge`, `r6i.4xlarge`     |
