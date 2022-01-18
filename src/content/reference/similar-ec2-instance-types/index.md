@@ -9,7 +9,7 @@ menu:
 user_questions:
   - Which EC2 instance types are used when I activate the use of similar instance types?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-firecracker
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 last_review_date: 2021-01-01
 ---
 
@@ -23,26 +23,61 @@ Handling of similar instance types is done in [aws-operator](https://github.com/
 
 Read more about the use of similar instance types in our general article about [node pools]({{< relref "/advanced/node-pools#similar-instance-types" >}}).
 
-aws-operator creates an Auto Scaling Group (ASG) for every node pool. If the creator of the node pool activates the use of similar instance types, aws-operator looks up a list of similar instance types and configures the ASG to use all of them. The authoritative lookup list can be found [in the aws-operator source](https://github.com/giantswarm/aws-operator/blob/3ac1cff06b11f73cc5b0491cf3c139714552e7ce/service/controller/key/machine_deployment.go).
+aws-operator creates an Auto Scaling Group (ASG) for every node pool. If the creator of the node pool activates the use of similar instance types, aws-operator looks up a list of similar instance types and configures the ASG to use all of them. 
 
 ## Type mapping
 
-| Series | Selected type | Enabled types              |
-|--------|---------------|----------------------------|
-| m4     | `m4.xlarge`   | `m4.xlarge`, `m5.xlarge`   |
-| m4     | `m4.2xlarge`  | `m4.2xlarge`, `m5.2xlarge` |
-| m4     | `m4.4xlarge`  | `m4.4xlarge`, `m5.4xlarge` |
-| m5     | `m5.xlarge`   | `m4.xlarge` , `m5.xlarge`  |
-| m5     | `m5.2xlarge`  | `m4.2xlarge`, `m5.2xlarge` |
-| m5     | `m5.4xlarge`  | `m4.4xlarge`, `m5.4xlarge` |
-| r4     | `r4.xlarge`   | `r4.xlarge`, `r5.xlarge`   |
-| r4     | `r4.2xlarge`  | `r4.2xlarge`, `r5.2xlarge` |
-| r4     | `r4.4xlarge`  | `r4.4xlarge`, `r5.4xlarge` |
-| r4     | `r4.8xlarge`  | `r4.8xlarge`, `r5.8xlarge` |
-| r5     | `r5.xlarge`   | `r4.xlarge`, `r5.xlarge`   |
-| r5     | `r5.2xlarge`  | `r4.2xlarge`, `r5.2xlarge` |
-| r5     | `r5.4xlarge`  | `r4.4xlarge`, `r5.4xlarge` |
-| r5     | `r5.8xlarge`  | `r4.8xlarge`, `r5.8xlarge` |
+| Series | Selected type  | Enabled types                                 |
+|--------|----------------|-----------------------------------------------|
+| m4     | `m4.xlarge`    | `m4.xlarge`, `m5.xlarge`, `m6i.xlarge`        |
+| m4     | `m4.2xlarge`   | `m4.2xlarge`, `m5.2xlarge`, `m6i.xlarge`      |
+| m4     | `m4.4xlarge`   | `m4.4xlarge`, `m5.4xlarge`, `m6i.xlarge`      |
+| m4     | `m4.16xlarge`  | `m4.16xlarge`, `m5.16xlarge`, `m6i.16xlarge`  |
+| m5     | `m5.xlarge`    | `m4.xlarge` , `m5.xlarge`, `m6i.xlarge`       |
+| m5     | `m5.2xlarge`   | `m4.2xlarge`, `m5.2xlarge`, `m6i.2xlarge`     |
+| m5     | `m5.4xlarge`   | `m4.4xlarge`, `m5.4xlarge`, `m6i.4xlarge`     |
+| m5     | `m5.8xlarge`   | `m5.8xlarge`, `m6i.8xlarge`                   |
+| m5     | `m5.12xlarge`  | `m5.12xlarge`, `m6i.12xlarge`                 |
+| m5     | `m5.16xlarge`  | `m4.16xlarge`, `m5.16xlarge`, `m6i.xlarge`    |
+| m5     | `m5.24xlarge`  | `m5.24xlarge`, `m6i.24xlarge`                 |
+| m6     | `m6i.xlarge`   | `m4.xlarge` , `m5.xlarge` , `m6i.xlarge`      |
+| m6     | `m6i.2xlarge`  | `m4.2xlarge`, `m5.2xlarge`, `m6i.2xlarge`     |
+| m6     | `m6i.4xlarge`  | `m4.4xlarge`, `m5.4xlarge`, `m6i.4xlarge`     |
+| m6     | `m6i.8xlarge`  | `m5.8xlarge`, `m6i.8xlarge`                   |
+| m6     | `m6i.12xlarge` | `m5.12xlarge`, `m6i.12xlarge`                 |
+| m6     | `m6i.16xlarge` | `m4.16xlarge`, `m5.16xlarge`, `m6i.16xlarge`  |
+| m6     | `m6i.24xlarge` | `m5.24xlarge`, `m6i.24xlarge`                 |
+| m5     | `m5a.xlarge`   | `m5a.xlarge` , `m6a.xlarge`                   |
+| m5     | `m5a.2xlarge`  | `m5a.2xlarge`, `m6a.2xlarge`                  |
+| m5     | `m5a.4xlarge`  | `m5a.4xlarge`, `m6a.4xlarge`                  |
+| m5     | `m5a.8xlarge`  | `m5a.4xlarge`, `m6a.4xlarge`                  |
+| m5     | `m5a.12xlarge` | `m5a.4xlarge`, `m6a.4xlarge`                  |
+| m5     | `m5a.16xlarge` | `m5a.4xlarge`, `m6a.4xlarge`                  |
+| m5     | `m5a.24xlarge` | `m5a.4xlarge`, `m6a.4xlarge`                  |
+| m6     | `m6a.xlarge`   | `m5a.xlarge` , `m6a.xlarge`                   |
+| m6     | `m6a.2xlarge`  | `m5a.2xlarge`, `m6a.2xlarge`                  |
+| m6     | `m6a.4xlarge`  | `m5a.4xlarge`, `m6a.4xlarge`                  |
+| m6     | `m6a.8xlarge`  | `m5a.4xlarge`, `m6a.4xlarge`                  |
+| m6     | `m6a.12xlarge` | `m5a.4xlarge`, `m6a.4xlarge`                  |
+| m6     | `m6a.16xlarge` | `m5a.4xlarge`, `m6a.4xlarge`                  |
+| m6     | `m6a.24xlarge` | `m5a.4xlarge`, `m6a.4xlarge`                  |
+| m6     | `m6a.32xlarge` | `m5a.4xlarge`, `m6a.4xlarge`                  |
+| r4     | `r4.xlarge`    | `r4.xlarge`, `r5.xlarge`, `r6i.xlarge`        |
+| r4     | `r4.2xlarge`   | `r4.2xlarge`, `r5.2xlarge`, `r6i.2xlarge`     |
+| r4     | `r4.4xlarge`   | `r4.4xlarge`, `r5.4xlarge`, `r6i.4xlarge`     |
+| r4     | `r4.8xlarge`   | `r4.8xlarge`, `r5.8xlarge`, `r6i.8xlarge`     |
+| r5     | `r5.xlarge`    | `r4.xlarge`, `r5.xlarge`, `r6i.xlarge`        |
+| r5     | `r5.2xlarge`   | `r4.2xlarge`, `r5.2xlarge`, `r6i.2xlarge`     |
+| r5     | `r5.4xlarge`   | `r4.4xlarge`, `r5.4xlarge`, `r6i.4xlarge`     |
+| r5     | `r5.8xlarge`   | `r4.8xlarge`, `r5.8xlarge`, `r6i.8xlarge`     |
+| r5     | `r5.16xlarge`  | `r5.16xlarge`, `r6i.16xlarge`                 |
+| r5     | `r5.24xlarge`  | `r5.24xlarge`, `r6i.24xlarge`                 |
+| r6     | `r6i.xlarge`   | `r4.xlarge`, `r5.xlarge`, `r6i.xlarge`        |
+| r6     | `r6i.2xlarge`  | `r4.2xlarge`, `r5.2xlarge`, `r6i.2xlarge`     |
+| r6     | `r6i.4xlarge`  | `r4.4xlarge`, `r5.4xlarge`, `r6i.4xlarge`     |
+| r6     | `r6i.8xlarge`  | `r4.8xlarge`, `r5.8xlarge`, `r6i.8xlarge`     |
+| r6     | `r6i.16xlarge` | `r5.16xlarge`, `r6i.16xlarge`                 |
+| r6     | `r6i.24xlarge` | `r5.24xlarge`, `r6i.24xlarge`                 |
 
 If the type you are using for your node pool is not contained in the list above, activating the use of similar instance types has no effect.
 
