@@ -30,15 +30,15 @@ aws-operator creates an Auto Scaling Group (ASG) for every node pool. If the cre
 | Series | Selected type  | Enabled types                                 |
 |--------|----------------|-----------------------------------------------|
 | m4     | `m4.xlarge`    | `m4.xlarge`, `m5.xlarge`, `m6i.xlarge`        |
-| m4     | `m4.2xlarge`   | `m4.2xlarge`, `m5.2xlarge`, `m6i.xlarge`      |
-| m4     | `m4.4xlarge`   | `m4.4xlarge`, `m5.4xlarge`, `m6i.xlarge`      |
+| m4     | `m4.2xlarge`   | `m4.2xlarge`, `m5.2xlarge`, `m6i.2xlarge`     |
+| m4     | `m4.4xlarge`   | `m4.4xlarge`, `m5.4xlarge`, `m6i.4xlarge`     |
 | m4     | `m4.16xlarge`  | `m4.16xlarge`, `m5.16xlarge`, `m6i.16xlarge`  |
 | m5     | `m5.xlarge`    | `m4.xlarge` , `m5.xlarge`, `m6i.xlarge`       |
 | m5     | `m5.2xlarge`   | `m4.2xlarge`, `m5.2xlarge`, `m6i.2xlarge`     |
 | m5     | `m5.4xlarge`   | `m4.4xlarge`, `m5.4xlarge`, `m6i.4xlarge`     |
 | m5     | `m5.8xlarge`   | `m5.8xlarge`, `m6i.8xlarge`                   |
 | m5     | `m5.12xlarge`  | `m5.12xlarge`, `m6i.12xlarge`                 |
-| m5     | `m5.16xlarge`  | `m4.16xlarge`, `m5.16xlarge`, `m6i.xlarge`    |
+| m5     | `m5.16xlarge`  | `m4.16xlarge`, `m5.16xlarge`, `m6i.16xlarge`  |
 | m5     | `m5.24xlarge`  | `m5.24xlarge`, `m6i.24xlarge`                 |
 | m6     | `m6i.xlarge`   | `m4.xlarge` , `m5.xlarge` , `m6i.xlarge`      |
 | m6     | `m6i.2xlarge`  | `m4.2xlarge`, `m5.2xlarge`, `m6i.2xlarge`     |
@@ -50,18 +50,18 @@ aws-operator creates an Auto Scaling Group (ASG) for every node pool. If the cre
 | m5     | `m5a.xlarge`   | `m5a.xlarge` , `m6a.xlarge`                   |
 | m5     | `m5a.2xlarge`  | `m5a.2xlarge`, `m6a.2xlarge`                  |
 | m5     | `m5a.4xlarge`  | `m5a.4xlarge`, `m6a.4xlarge`                  |
-| m5     | `m5a.8xlarge`  | `m5a.4xlarge`, `m6a.4xlarge`                  |
-| m5     | `m5a.12xlarge` | `m5a.4xlarge`, `m6a.4xlarge`                  |
-| m5     | `m5a.16xlarge` | `m5a.4xlarge`, `m6a.4xlarge`                  |
-| m5     | `m5a.24xlarge` | `m5a.4xlarge`, `m6a.4xlarge`                  |
+| m5     | `m5a.8xlarge`  | `m5a.8xlarge`, `m6a.8xlarge`                  |
+| m5     | `m5a.12xlarge` | `m5a.12xlarge`, `m6a.12xlarge`                |
+| m5     | `m5a.16xlarge` | `m5a.16xlarge`, `m6a.16xlarge`                |
+| m5     | `m5a.24xlarge` | `m5a.24xlarge`, `m6a.24xlarge`                |
 | m6     | `m6a.xlarge`   | `m5a.xlarge` , `m6a.xlarge`                   |
 | m6     | `m6a.2xlarge`  | `m5a.2xlarge`, `m6a.2xlarge`                  |
 | m6     | `m6a.4xlarge`  | `m5a.4xlarge`, `m6a.4xlarge`                  |
-| m6     | `m6a.8xlarge`  | `m5a.4xlarge`, `m6a.4xlarge`                  |
-| m6     | `m6a.12xlarge` | `m5a.4xlarge`, `m6a.4xlarge`                  |
-| m6     | `m6a.16xlarge` | `m5a.4xlarge`, `m6a.4xlarge`                  |
-| m6     | `m6a.24xlarge` | `m5a.4xlarge`, `m6a.4xlarge`                  |
-| m6     | `m6a.32xlarge` | `m5a.4xlarge`, `m6a.4xlarge`                  |
+| m6     | `m6a.8xlarge`  | `m5a.8xlarge`, `m6a.8xlarge`                  |
+| m6     | `m6a.12xlarge` | `m5a.12xlarge`, `m6a.12xlarge`                |
+| m6     | `m6a.16xlarge` | `m5a.16xlarge`, `m6a.16xlarge`                |
+| m6     | `m6a.24xlarge` | `m5a.24xlarge`, `m6a.24xlarge`                |
+| m6     | `m6a.32xlarge` | `m5a.32xlarge`, `m6a.32xlarge`                |
 | r4     | `r4.xlarge`    | `r4.xlarge`, `r5.xlarge`, `r6i.xlarge`        |
 | r4     | `r4.2xlarge`   | `r4.2xlarge`, `r5.2xlarge`, `r6i.2xlarge`     |
 | r4     | `r4.4xlarge`   | `r4.4xlarge`, `r5.4xlarge`, `r6i.4xlarge`     |
