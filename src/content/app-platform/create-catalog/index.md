@@ -54,7 +54,7 @@ for the `main` branch.
 Initialize the empty helm index.yaml with `helm repo index .` and commit it to
 the repository.
 
-## Create catalog CR
+## Create Catalog CR
 
 Once you've created your app catalog you need to create a Catalog CR in the
 management cluster to register it with app platform. This can be done using
@@ -88,7 +88,7 @@ spec:
   title: example
 ```
 
-## Pushing an app to an app catalog
+## Publishing an app to an app catalog
 
 Now you can configure your apps to be published to your catalog.
 
@@ -97,7 +97,7 @@ TODO
 - Link to ABS [tutorial](https://github.com/giantswarm/app-build-suite/blob/master/docs/tutorial.md)
 - Create simple GitHub Action to run `abs` and commit files to the repo. 
 
-## Referencing an app catalog in an app CR
+## Referencing an app catalog in an App CR
 
 When the Catalog CR is not in the `default` namespace you need to set the catalog
 namespace to the organization namespace where it is stored. This can be done using
