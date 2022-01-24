@@ -54,7 +54,7 @@ will be monitored and managed by us.
 Once you know what app you'd like to install, click on that app, and then on
 "Configure & Install"
 
-![A screenshot of our web interface, showing the detail page for a specific app, in this case grafana](app-detail-page.png)
+![A screenshot of our web interface, showing the detail page for a specific app, in this case Grafana](app-detail-page.png)
 
 That'll bring up a modal where you can choose what cluster you want to install
 the app on, the version you want install, as well as some further steps allowing you to configure the app.
