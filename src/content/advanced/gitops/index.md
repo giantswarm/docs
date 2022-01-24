@@ -17,7 +17,7 @@ aliases:
   - /advanced/gitops/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2021-01-01
+last_review_date: 2022-01-24
 ---
 
 # Managing workload clusters with GitOps
