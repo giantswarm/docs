@@ -21,62 +21,54 @@ user_questions:
 ## Overview
 
 An app catalog is a collection of apps that can be deployed using the Giant Swarm App Platform.
-We fully support Helm and an app catalog is also a Helm [Chart Repository](https://helm.sh/docs/topics/chart_repository/).
-Each app catalog has its own [catalog]({{< relref "/ui-api/management-api/crd/catalogs.application.giantswarm.io.md" >}})
+We extend Helm and an app catalog is also a Helm [Chart Repository](https://helm.sh/docs/topics/chart_repository/).
+Each app catalog has its own [Catalog]({{< relref "/ui-api/management-api/crd/catalogs.application.giantswarm.io.md" >}})
 CR in the management cluster.
 
-The app catalog contains a tarball for each version of an app that has been published.
-As well as an index.yaml and other metadata files that are used to generate
-metadata that is stored in the management cluster in [app catalog entry]({{< relref "/ui-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}})
+The app catalog is a Git repository that contains a Helm `index.yaml` and chart
+tarballs for each version of the app that has been published. These files must
+be served over HTTP.
+
+We recommend using our [app-build-suite](https://github.com/giantswarm/app-build-suite/)
+tool to publish apps to your catalog. It adds additional metadata files that
+allows app platform to extend Helm. Such as only allowing an app to be
+installed once in a cluster.
+
+These files and the Helm `index.yaml` are used to generate app metadata that is
+stored in the management cluster in [App Catalog Entry]({{< relref "/ui-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}})
 CRs.
 
-The catalog needs to be served over HTTP and there are [multiple options](https://helm.sh/docs/topics/chart_repository/#hosting-chart-repositories)
-including GitHub Pages or tools like Harbor or ChartMuseum which run in a
+There are [multiple options](https://helm.sh/docs/topics/chart_repository/#hosting-chart-repositories)
+for serving the catalog over HTTP including GitHub Pages or tools like Harbor or ChartMuseum which run in a
 Kubernetes cluster. At Giant Swarm we use GitHub Pages and this is what we will
 cover in this guide.
 
-## Creating an app catalog using GitHub Pages
+## Creating an app catalog hosted using GitHub Pages
 
 First you should choose a name for your catalog. We recommend using the suffix
-`-catalog` to make it clear this repository hosts an app catalog.
+`-catalog` to make it clear this Git repository hosts an app catalog.
 
-Create the git repository in GitHub and enable [GitHub Pages](https://docs.github.com/en/pages/quickstart)
+Create the Git repository in GitHub and enable [GitHub Pages](https://docs.github.com/en/pages/quickstart)
 for the `main` branch.
 
 Initialize the empty helm index.yaml with `helm repo index .` and commit it to
 the repository.
 
-## Pushing an app to an app catalog
-
-TODO
-
-I think we should recommend using ABS (app-build-suite) and this also means our
-metadata extensions will work.
-
-But I have some questions / concerns.
-
-- Should we link to the ABS [tutorial](https://github.com/giantswarm/app-build-suite/blob/master/docs/tutorial.md)?
-- Or should we create another docs page and link them?
-- ABS doesn't commit the files to the repo (which is intentional) but I think we need a solution for that.
-- We could suggest architect-orb but that feels weird since its mainly internal and customer may not be using
-Circle CI.
-- Should we create a simple GitHub Action for this?
-
 ## Create catalog CR
 
-Once you've created your app catalog you need to create a catalog CR in the
+Once you've created your app catalog you need to create a Catalog CR in the
 management cluster to register it with app platform. This can be done using
 [kubectl gs template catalog]({{< relref "/ui-api/kubectl-gs/template-catalog" >}}).
 
-You should create the catalog CR in the organization namespace where the apps
+You should create the Catalog CR in the organization namespace where the apps
 will be used.
 
 ```nohighlight
 kubectl gs template catalog \
-  --name example-catalog \
+  --name example \
   --namespace org-example \
   --description "An example Catalog" \
-  --url https://example.github.io/my-app-catalog/ \
+  --url https://example.github.io/example-catalog/ \
   --logo https://example.com/logos/example-logo.png
 ```
 
@@ -84,26 +76,36 @@ kubectl gs template catalog \
 apiVersion: application.giantswarm.io/v1alpha1
 kind: Catalog
 metadata:
-  name: example-catalog
+  creationTimestamp: null
+  name: example
   namespace: org-example
 spec:
   description: An example Catalog
   logoURL: https://example.com/logos/example-logo.png
   storage:
-    URL: https://example.github.io/my-app-catalog/
+    URL: https://example.github.io/example-catalog/
     type: helm
-  title: example-catalog
+  title: example
 ```
+
+## Pushing an app to an app catalog
+
+Now you can configure your apps to be published to your catalog.
+
+TODO
+
+- Link to ABS [tutorial](https://github.com/giantswarm/app-build-suite/blob/master/docs/tutorial.md)
+- Create simple GitHub Action to run `abs` and commit files to the repo. 
 
 ## Referencing an app catalog in an app CR
 
-When the catalog CR is not in the `default` namespace you need to set the catalog
+When the Catalog CR is not in the `default` namespace you need to set the catalog
 namespace to the organization namespace where it is stored. This can be done using
 [kubectl gs template app]({{< relref "/ui-api/kubectl-gs/template-app" >}}).
 
 ```nohighlight
 kubectl gs template app \
-  --catalog example-catalog \
+  --catalog example \
   --catalog-namespace org-example \
   --name example-app \
   --namespace default \
@@ -118,11 +120,20 @@ metadata:
   name: example-app
   namespace: 2hr7z
 spec:
-  catalog: example-catalog
+  catalog: example
   catalogNamespace: org-example
   kubeConfig:
     inCluster: false
   name: example-app
   namespace: default
   version: 0.1.0
+```
+
+## Viewing App Catalog Entry CRs
+
+Once you have published apps to your catalog and created a Cataolg CR you can
+view the App Catalog Entry CRs in the management cluster.
+
+```yaml
+kubectl get appcatalogentry -n org-example -l application.giantswarm.io/catalog=example
 ```
