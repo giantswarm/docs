@@ -131,9 +131,9 @@ spec:
 
 ## Viewing App Catalog Entry CRs
 
-Once you have published apps to your catalog and created a Cataolg CR you can
+Once you have published apps to your catalog and created a Catalog CR you can
 view the App Catalog Entry CRs in the management cluster.
 
-```yaml
+```nohighlight
 kubectl get appcatalogentry -n org-example -l application.giantswarm.io/catalog=example
 ```
