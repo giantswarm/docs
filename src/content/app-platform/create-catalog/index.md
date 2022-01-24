@@ -6,7 +6,7 @@ weight: 40
 menu:
   main:
     parent: app-platform
-last_review_date: 2021-12-01
+last_review_date: 2022-01-25
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
