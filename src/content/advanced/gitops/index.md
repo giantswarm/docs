@@ -74,6 +74,16 @@ In order to follow [Watching for new commits](#watching-for-new-commits) section
 
 We will be using [Flux CLI](https://fluxcd.io/docs/cmd/) and [kubectl-gs](https://github.com/giantswarm/kubectl-gs). Please make sure you have both installed on your machine. If you would rather follow the guide without them, use the example resources provided.
 
+## Access control for organizations
+
+To proceed with this tutorial, the organization you belong to has to have a `write-flux-resources` role assigned. To learn how to view and assign roles, please refer to [Access control for organizations in the web user interface]({{< relref "/ui-api/web/organizations/access-control/index.md" >}}).
+
+If the `write-flux-resources` role is not bound to your organization, you may see the following error:
+
+```nohighlight
+Error from server (Forbidden): error when creating "01-source.yaml": gitrepositories.source.toolkit.fluxcd.io is forbidden: User cannot create resource "gitrepositories" in API group "source.toolkit.fluxcd.io" in the namespace "org-example"
+```
+
 ## GiantSwarm Management Cluster security policies
 
 If you are creating any of the resources we talk about in this document on a GiantSwarm Management Cluster, you may see the following error:
