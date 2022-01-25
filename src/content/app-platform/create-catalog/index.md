@@ -95,7 +95,7 @@ Now you can configure your apps to be published to your catalog.
 TODO
 
 - Link to ABS [tutorial](https://github.com/giantswarm/app-build-suite/blob/master/docs/tutorial.md)
-- Create simple GitHub Action to run `abs` and commit files to the repo. 
+- Create simple GitHub Action to run `abs` and commit files to the repo.
 
 ## Referencing an app catalog in an App CR
 
