@@ -47,7 +47,7 @@ cover in this guide.
 
 ## Creating an app catalog hosted using GitHub Pages
 
-First you should choose a name for your catalog. We recommend using the suffix
+First, you should choose a name for your catalog. We recommend using the suffix
 `-catalog` to make it clear this Git repository hosts an app catalog.
 
 Create the Git repository in GitHub as a public repository and enable
@@ -157,5 +157,5 @@ CRs.
 kubectl get appcatalogentry -n org-example -l application.giantswarm.io/catalog=example
 ```
 
-To avoid creating unneccesary load for the management cluster we only store the 5
+To avoid creating excessive load on the management cluster we only store the 5
 most recent versions for each app according to [semantic versioning](https://semver.org/).
