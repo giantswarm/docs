@@ -33,10 +33,11 @@ be served over HTTP.
 We recommend using our [app-build-suite](https://github.com/giantswarm/app-build-suite/)
 tool to publish apps to your catalog. It adds additional metadata files that
 allows app platform to extend Helm. Such as only allowing an app to be
-installed once in a cluster.
+installed once in a cluster. You can learn more about the tool by reading its
+[tutorial](https://github.com/giantswarm/app-build-suite/blob/master/docs/tutorial.md).
 
-These files and the Helm `index.yaml` are used to generate app metadata that is
-stored in the management cluster in [App Catalog Entry]({{< relref "/ui-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}})
+These metadata files and the Helm `index.yaml` are used to generate app metadata
+that is stored in the management cluster in [App Catalog Entry]({{< relref "/ui-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}})
 CRs.
 
 There are [multiple options](https://helm.sh/docs/topics/chart_repository/#hosting-chart-repositories)
