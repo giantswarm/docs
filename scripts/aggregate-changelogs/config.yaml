@@ -112,6 +112,8 @@ repositories:
     category: Playground Apps
   giantswarm/organization-operator:
     category: Management API
+  giantswarm/rbac-bootstrap-app:
+    category: Playground Apps
   giantswarm/rbac-operator:
     category: Management API
   giantswarm/strimzi-kafka-operator-app:
