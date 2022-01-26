@@ -12,8 +12,9 @@ owner:
 user_questions:
   - How can I create an app catalog for my apps?
   - How can I serve an app catalog using GitHub Pages?
+  - How can I publish an app to my app catalog?
   - How can I create a catalog CR for my app catalog?
-  - How can I push an app to my app catalog?
+  - How can I create an app CR for an app in the catalog?
 ---
 
 # Creating an app catalog
@@ -48,20 +49,46 @@ cover in this guide.
 First you should choose a name for your catalog. We recommend using the suffix
 `-catalog` to make it clear this Git repository hosts an app catalog.
 
-Create the Git repository in GitHub and enable [GitHub Pages](https://docs.github.com/en/pages/quickstart)
-for the `main` branch.
+Create the Git repository in GitHub as a public repository and enable
+[GitHub Pages](https://docs.github.com/en/pages/quickstart) for the `main` branch.
 
-Initialize the empty helm index.yaml with `helm repo index .` and commit it to
-the repository.
+## Publishing an app to the app catalog
+
+Now you can configure your apps to be published to your catalog. We have created
+a GitHub Action for `app-build-suite` that will automate this.
+
+```yaml
+# .github/workflows/push-to-app-catalog.yaml
+name: 'Push to App Catalog'
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  push_to_app_catalog:
+    uses: giantswarm/app-build-suite/.github/workflows/push-to-app-catalog.yaml@github-action
+    with:
+      app_catalog: example-catalog
+      chart: hello-world-app
+      organization: rossf7
+    secrets:
+      envPAT: ${{ secrets.PAT }}
+```
+
+To configure the action you need to add a secret called `PAT` to the app's git
+repository. This must contain a [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+that has write permission to the app catalog git repository.
 
 ## Create Catalog CR
 
-Once you've created your app catalog you need to create a Catalog CR in the
-management cluster to register it with app platform. This can be done using
-[kubectl gs template catalog]({{< relref "/ui-api/kubectl-gs/template-catalog" >}}).
+Once you've created your app catalog and published some apps you need to create
+a Catalog CR in the management cluster to register it with app platform. This
+can be done using [kubectl gs template catalog]({{< relref "/ui-api/kubectl-gs/template-catalog" >}}).
 
-You should create the Catalog CR in the organization namespace where the apps
-will be used.
+You should create the Catalog CR in the [organization]({{< relref "/general/organizations" >}})
+namespace where the apps will be used.
 
 ```nohighlight
 kubectl gs template catalog \
@@ -88,18 +115,9 @@ spec:
   title: example
 ```
 
-## Publishing an app to an app catalog
-
-Now you can configure your apps to be published to your catalog.
-
-TODO
-
-- Link to ABS [tutorial](https://github.com/giantswarm/app-build-suite/blob/master/docs/tutorial.md)
-- Create simple GitHub Action to run `abs` and commit files to the repo.
-
 ## Referencing an app catalog in an App CR
 
-When the Catalog CR is not in the `default` namespace you need to set the catalog
+Since the Catalog CR is not in the `default` namespace you need to set the catalog
 namespace to the organization namespace where it is stored. This can be done using
 [kubectl gs template app]({{< relref "/ui-api/kubectl-gs/template-app" >}}).
 
@@ -107,7 +125,7 @@ namespace to the organization namespace where it is stored. This can be done usi
 kubectl gs template app \
   --catalog example \
   --catalog-namespace org-example \
-  --name example-app \
+  --name hello-world-app \
   --namespace default \
   --cluster 2hr7z  \
   --version 0.1.0
@@ -129,11 +147,14 @@ spec:
   version: 0.1.0
 ```
 
-## Viewing App Catalog Entry CRs
+## Viewing app metadata
 
-Once you have published apps to your catalog and created a Catalog CR you can
-view the App Catalog Entry CRs in the management cluster.
+You can see the published apps for a catalog by listing its app catalog entry
+CRs.
 
 ```nohighlight
 kubectl get appcatalogentry -n org-example -l application.giantswarm.io/catalog=example
 ```
+
+To avoid creating unneccesary load for the management cluster we only store the 5
+most recent versions for each app according to [semantic versioning](https://semver.org/).
