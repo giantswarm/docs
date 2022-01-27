@@ -58,7 +58,8 @@ Create the Git repository in GitHub as a public repository and enable
 ## Publish an app to the app catalog
 
 Now you can configure your apps to be published to your catalog. We have created
-a GitHub <span class="x x-first x-last">action</span> for `app-build-suite` that will automate this.
+a GitHub [<span class="x x-first x-last">action</span>](https://github.com/giantswarm/app-build-suite/blob/master/.github/workflows/push-to-app-catalog.yaml)
+for `app-build-suite` that will automate this.
 
 ```yaml
 # .github/workflows/push-to-app-catalog.yaml
