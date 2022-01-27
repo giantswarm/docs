@@ -48,14 +48,14 @@ for serving the catalog over HTTP<span class="x x-first x-last">(S)</span> inclu
 Kubernetes cluster. At Giant Swarm we use GitHub Pages and this is what we will
 cover in this guide.
 
-## Creating an app catalog hosted using GitHub Pages
+## Create an app catalog hosted using GitHub Pages
 
 First, you should choose a name for your catalog Git repository. At Giant Swarm, we follow the convention to have the name end with the `-catalog` suffix, however any name will work.
 
 Create the Git repository in GitHub as a public repository and enable
 [GitHub Pages](https://docs.github.com/en/pages/quickstart) for the `main` branch.
 
-## Publishing an app to the app catalog
+## Publish an app to the app catalog
 
 Now you can configure your apps to be published to your catalog. We have created
 a GitHub <span class="x x-first x-last">action</span> for `app-build-suite` that will automate this.
@@ -87,14 +87,15 @@ that has write permission to the app catalog git repository.
 We recommend using [Dependabot](https://docs.github.com/en/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/keeping-your-actions-up-to-date-with-dependabot)
 to keep the GitHub <span class="x x-first x-last">action</span> up to date.
 
-## Create Catalog CR
+## Register the catalog
 
 Once you've created your app catalog and published some apps you need to create
 a Catalog CR in the management cluster to register it with app platform. This
 can be done using [kubectl gs template catalog]({{< relref "/ui-api/kubectl-gs/template-catalog" >}}).
 
 You should create the Catalog CR in the [organization]({{< relref "/general/organizations" >}})
-namespace where the apps will be used.
+namespace where the apps will be used. Or if it needs to be used in multiple
+organizations it can be created in the `default` namespace.
 
 ```nohighlight
 kubectl gs template catalog \
@@ -121,9 +122,9 @@ spec:
   title: example
 ```
 
-## Referencing an app catalog in an App CR
+## Install an app from the catalog
 
-Since the Catalog CR is not in the `default` namespace you need to set the catalog
+If the Catalog CR is not in the `default` namespace you need to set the catalog
 namespace to the organization namespace where it is stored. This can be done using
 [kubectl gs template app]({{< relref "/ui-api/kubectl-gs/template-app" >}}).
 
@@ -153,7 +154,7 @@ spec:
   version: 0.1.0
 ```
 
-## Viewing app metadata
+## Inspect the catalog
 
 You can see the published apps for a catalog by listing its app catalog entry
 CRs.
