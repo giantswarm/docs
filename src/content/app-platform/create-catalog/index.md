@@ -38,7 +38,7 @@ These files must be served over HTTP(S).
 You can register community Helm chart repositories with app platform or create
 your own app catalog.
 
-You can search for Helm charts from the community using [ArtifactHub.io](https://artifacthub.io/).
+You can search for Helm charts from the community using [Artifact Hub](https://artifacthub.io/).
 Not all community chart repositories are currently supported. If you encounter a
 problem installing an app please let us know. If you're registering a community
 catalog you can skip to the section `Register the catalog`.
