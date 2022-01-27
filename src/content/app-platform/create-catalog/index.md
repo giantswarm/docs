@@ -10,11 +10,13 @@ last_review_date: 2022-01-25
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
+  - How can I install an app from a community Helm repository?
   - How can I create an app catalog for my apps?
   - How can I serve an app catalog using GitHub Pages?
   - How can I publish an app to my app catalog?
-  - How can I create a catalog CR for my app catalog?
-  - How can I create an app CR for an app in the catalog?
+  - How can I register an app catalog with app platform?
+  - How can I install an apps from an app catalog?
+  - How can I inspect the apps in an app catalog?
 ---
 
 # Creating an app catalog
