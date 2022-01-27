@@ -35,7 +35,15 @@ The app catalog is a Git repository that contains
 
 These files must be served over HTTP(S).
 
-We recommend using our [app-build-suite](https://github.com/giantswarm/app-build-suite/)
+You can register community Helm chart repositories with app platform or create
+your own app catalog.
+
+You can search for Helm charts from the community using [ArtifactHub.io](https://artifacthub.io/).
+Not all community chart repositories are currently supported. If you encounter a
+problem installing an app please let us know. If you're registering a community
+catalog you can skip to the section `Register the catalog`.
+
+When creating your own app catalog we recommend using our [app-build-suite](https://github.com/giantswarm/app-build-suite/)
 tool to publish apps to your catalog. It adds additional metadata files that
 allows app platform to extend Helm. Such as only allowing an app to be
 installed once in a cluster. You can learn more about the tool by reading its
@@ -92,9 +100,14 @@ to keep the GitHub <span class="x x-first x-last">action</span> up to date.
 
 ## Register the catalog
 
-Once you've created your app catalog and published some apps you need to create
-a Catalog CR in the management cluster to register it with app platform. This
-can be done using [kubectl gs template catalog]({{< relref "/ui-api/kubectl-gs/template-catalog" >}}).
+To register the catalog with app platform you need to create a Catalog CR in the
+management cluster. This can be done using [kubectl gs template catalog]({{< relref "/ui-api/kubectl-gs/template-catalog" >}}).
+
+For community catalogs the URL should match the URL used for the `helm repo add`
+command and is the location of the Helm `index.yaml`.
+
+When registering your own app catalog served using GitHub Pages the URL is the
+same URL as the GitHub Pages website.
 
 You should create the Catalog CR in the [organization]({{< relref "/general/organizations" >}})
 namespace where the apps will be used. Or if it needs to be used in multiple
