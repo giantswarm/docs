@@ -69,11 +69,11 @@ on:
 
 jobs:
   push_to_app_catalog:
-    uses: giantswarm/app-build-suite/.github/workflows/push-to-app-catalog.yaml@master
+    uses: giantswarm/app-build-suite/.github/workflows/push-to-app-catalog.yaml@v1.1.0
     with:
       app_catalog: example-catalog
       chart: hello-world-app
-      organization: rossf7
+      organization: example-org
     secrets:
       envPAT: ${{ secrets.PAT }}
 ```
@@ -81,6 +81,9 @@ jobs:
 To configure the action you need to add a secret called `PAT` to the app's git
 repository. This must contain a [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 that has write permission to the app catalog git repository.
+
+We recommend using [Dependabot](https://docs.github.com/en/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/keeping-your-actions-up-to-date-with-dependabot)
+to keep the GitHub Action up to date.
 
 ## Create Catalog CR
 
