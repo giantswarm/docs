@@ -87,7 +87,6 @@ If you wish to proceed by creating the resources in one of the Organization name
 - `write-organizations-customer`
 - `write-silences-customer`
 
-
 To learn how to view and assign roles, please refer to [Access control for organizations in the web user interface]({{< relref "/ui-api/web/organizations/access-control/index.md" >}}).
 
 ## GiantSwarm Management Cluster security policies
