@@ -76,7 +76,7 @@ We will be using [Flux CLI](https://fluxcd.io/docs/cmd/) and [kubectl-gs](https:
 
 ## Access control for organizations
 
-To proceed with this tutorial, you need to use a ServiceAccount with a set of permissions that allow you to create and reconcile Flux resources. All the examples are using `default` namespace and `automation` SerivceAccount in that namespace. You will find them in every Management Cluster and they are already assigned with required privileges.
+To proceed with this tutorial, you need to use a ServiceAccount with a set of permissions that allow you to create and reconcile Flux resources. All the examples are using `default` namespace and `automation` ServiceAccount in that namespace. You will find them in every Management Cluster and they are already assigned with required privileges.
 
 If you wish to proceed by creating the resources in one of the Organization namespaces (`org-*`), you will need to create a ServiceAccount there and assign the following roles to it:
 
