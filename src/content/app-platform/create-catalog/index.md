@@ -24,8 +24,8 @@ user_questions:
 ## Overview
 
 An app catalog is a collection of apps that can be deployed using the Giant Swarm App Platform.
-We extend Helm and an app catalog is also a Helm [<span class="x x-first x-last">chart repository</span>](https://helm.sh/docs/topics/chart_repository/).
-Each app catalog has its own [<span class="x x-first x-last">`Catalog`</span>]({{< relref "/ui-api/management-api/crd/catalogs.application.giantswarm.io.md" >}})
+We extend Helm and an app catalog is also a Helm [chart repository](https://helm.sh/docs/topics/chart_repository/).
+Each app catalog has its own [`Catalog`]({{< relref "/ui-api/management-api/crd/catalogs.application.giantswarm.io.md" >}})
 CR in the management cluster.
 
 The app catalog is a Git repository that contains
@@ -54,7 +54,7 @@ that is stored in the management cluster in [App Catalog Entry]({{< relref "/ui-
 CRs.
 
 There are [multiple options](https://helm.sh/docs/topics/chart_repository/#hosting-chart-repositories)
-for serving the catalog over HTTP<span class="x x-first x-last">(S)</span> including GitHub Pages or tools like Harbor or ChartMuseum which run in a
+for serving the catalog over HTTP(S) including GitHub Pages or tools like Harbor or ChartMuseum which run in a
 Kubernetes cluster. At Giant Swarm we use GitHub Pages and this is what we will
 cover in this guide.
 
@@ -68,7 +68,7 @@ Create the Git repository in GitHub as a public repository and enable
 ## Publish an app to the app catalog
 
 Now you can configure your apps to be published to your catalog. We have created
-a GitHub [<span class="x x-first x-last">action</span>](https://github.com/giantswarm/app-build-suite/blob/master/.github/workflows/push-to-app-catalog.yaml)
+a GitHub [action](https://github.com/giantswarm/app-build-suite/blob/master/.github/workflows/push-to-app-catalog.yaml)
 for `app-build-suite` that will automate this.
 
 ```yaml
@@ -91,12 +91,12 @@ jobs:
       envPAT: ${{ secrets.PAT }}
 ```
 
-To configure the action you need to add a secret called `PAT` to the app's <span class="x x-first x-last">Git</span>
-repository. This must contain a [<span class="x x-first x-last">personal access token</span>](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+To configure the action you need to add a secret called `PAT` to the app's Git
+repository. This must contain a [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 that has write permission to the app catalog git repository.
 
 We recommend using [Dependabot](https://docs.github.com/en/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/keeping-your-actions-up-to-date-with-dependabot)
-to keep the GitHub <span class="x x-first x-last">action</span> up to date.
+to keep the GitHub action up to date.
 
 ## Register the catalog
 
