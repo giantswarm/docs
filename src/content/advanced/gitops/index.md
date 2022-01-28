@@ -76,13 +76,19 @@ We will be using [Flux CLI](https://fluxcd.io/docs/cmd/) and [kubectl-gs](https:
 
 ## Access control for organizations
 
-To proceed with this tutorial, the organization you belong to has to have a `write-flux-resources` role assigned. To learn how to view and assign roles, please refer to [Access control for organizations in the web user interface]({{< relref "/ui-api/web/organizations/access-control/index.md" >}}).
+To proceed with this tutorial, you need to use a ServiceAccount with a set of permissions that allow you to create and reconcile Flux resources. All the examples are using `default` namespace and `automation` SerivceAccount in that namespace. You will find them in every Management Cluster and they are already assigned with required privileges.
 
-If the `write-flux-resources` role is not bound to your organization, you may see the following error:
+If you wish to proceed by creating the resources in one of the Organization namespaces (`org-*`), you will need to create a ServiceAccount there and assign the following roles to it:
 
-```nohighlight
-Error from server (Forbidden): error when creating "01-source.yaml": gitrepositories.source.toolkit.fluxcd.io is forbidden: User cannot create resource "gitrepositories" in API group "source.toolkit.fluxcd.io" in the namespace "org-example"
-```
+- `read-all-customer`
+- `write-client-certificates-customer`
+- `write-flux-resources-customer`
+- `write-nodepools-customer`
+- `write-organizations-customer`
+- `write-silences-customer`
+
+
+To learn how to view and assign roles, please refer to [Access control for organizations in the web user interface]({{< relref "/ui-api/web/organizations/access-control/index.md" >}}).
 
 ## GiantSwarm Management Cluster security policies
 
@@ -122,7 +128,7 @@ kubectl create -f 01-source.yaml
 You can see if the change was applied using `kubectl`:
 
 ```nohiglight
-kubectl get gitrepositories -n flux-system flux-demo
+kubectl get gitrepositories -n default flux-demo
 NAME        URL                                       READY   STATUS                                                            AGE
 flux-demo   https://github.com/giantswarm/flux-demo   True    Fetched revision: main/74f8d19cc2ac9bee6f45660236344a054c63b71f   27s
 
@@ -170,7 +176,8 @@ This would be enough to create the Organization on our own. Let's add a `Kustomi
 
 ```nohighlight
 flux create kustomization install-organization \
-        --source=GitRepository/flux-demo.flux-system \
+        --source=GitRepository/flux-demo.default \
+        --service-account=automation \
         --path="./02-organization" \
         --prune=true  \
         --interval=30s \
@@ -183,7 +190,7 @@ For Flux to manage this piece of code, you just have to create the `Kustomizatio
 kubectl create -f 02-organization.yaml
 kustomization.kustomize.toolkit.fluxcd.io/install-organization created
 
-kubectl get kustomizations -n flux-system install-organization
+kubectl get kustomizations -n default install-organization
 NAME                   READY   STATUS                                                            AGE
 install-organization   True    Applied revision: main/17c3d4eac3ffde575c0a799c2bd67bf025389289   61s
 
@@ -263,7 +270,8 @@ curl -s https://raw.githubusercontent.com/giantswarm/flux-demo/main/03-cluster-a
 
 ```nohighlight
 flux create helmrelease install-cluster-aws-chart \
-        --source=GitRepository/flux-demo.flux-system \
+        --source=GitRepository/flux-demo.default \
+        --service-account=automation \
         --chart="./03-cluster-aws" \
         --interval=15s \
         --export > 03-cluster-aws.yaml
@@ -272,22 +280,22 @@ flux create helmrelease install-cluster-aws-chart \
 Let's install the `HelmRelease` resource and watch the cluster come up.
 
 ```nohighlight
-kubectl get gitrepository -n flux-system flux-demo
+kubectl get gitrepository -n default flux-demo
 NAME        URL                                       READY   STATUS                                                            AGE
 flux-demo   https://github.com/giantswarm/flux-demo   True    Fetched revision: main/192bb1a25ea0504fe1ee5cafda128f79a00bce40   2m37s
 
-kubectl get kustomizations -n flux-system install-organization
+kubectl get kustomizations -n default install-organization
 NAME                   READY   STATUS                                                            AGE
 install-organization   True    Applied revision: main/192bb1a25ea0504fe1ee5cafda128f79a00bce40   11s
 
 kubectl create -f 03-cluster-aws.yaml
 helmrelease.helm.toolkit.fluxcd.io/install-cluster-aws-chart created
 
-kubectl get helmreleases -n flux-system
+kubectl get helmreleases -n default
 NAME                        READY     STATUS                       AGE
 install-cluster-aws-chart   Unknown   Reconciliation in progress   2s
 
-kubectl get helmreleases -n flux-system install-cluster-aws-chart
+kubectl get helmreleases -n default install-cluster-aws-chart
 NAME                        READY   STATUS                             AGE
 install-cluster-aws-chart   True    Release reconciliation succeeded   9s
 
@@ -329,7 +337,8 @@ kubectl gs template app \
 
 ```nohighlight
 flux create kustomization install-managed-app \
-        --source=GitRepository/flux-demo.flux-system \
+        --source=GitRepository/flux-demo.default \
+        --service-account=automation \
         --path="./04-managed-app" \
         --prune=true  \
         --interval=30s \
@@ -342,7 +351,7 @@ Install the `Kustomization`:
 kubectl create -f 04-managed-app.yaml
 kustomization.kustomize.toolkit.fluxcd.io/install-managed-app created
 
-kubectl get kustomizations -n flux-system install-organization
+kubectl get kustomizations -n default install-organization
 NAME                  READY   STATUS                                                            AGE
 install-managed-app   True    Applied revision: main/070c352f4949ecaad0d43e31744adf7e864cc754   23s
 
@@ -420,7 +429,7 @@ Note the differences:
  metadata:
 -  name: flux-demo
 +  name: flux-demo-development
-   namespace: flux-system
+   namespace: default
  spec:
    interval: 30s
    ref:
