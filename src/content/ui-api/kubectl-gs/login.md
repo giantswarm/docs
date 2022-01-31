@@ -15,7 +15,7 @@ user_questions:
   - How can I log in with kubectl for the Management API?
   - How can I create a workload cluster client certificate?
   - How do I specify the time to live for a workload cluster client certificate?
-last_review_date: 2021-11-15
+last_review_date: 2022-01-31
 ---
 
 # `kubectl gs login`
@@ -64,7 +64,7 @@ The following flags are related to creating client certificates for **workload c
 - `--organization` - The organization that the workload cluster belongs to. Only required if the current user has access to multiple workload clusters with the same name in the same management cluster. Can also be applied if the user does not have permission to list organizations.
 - `--certificate-group` - The RBAC group name to be encoded into the X.509 field "O". It can be specified multiple times in order to set multiple groups at once.
 - `--certificate-ttl` - How long the client certificate should live for. When creating client certificates, we recommend using short expiration periods. Valid time units are "s" (second), "m" (minute), "h" (hour).
-- `--self-contained` - Output file path for a self-contained kubeconfig file. If provided, the client certificate data will be written to an external kubeconfig file instead of the default one. This file can be passed on to other users without management cluster access.
+- `--self-contained` - Output file path for a self-contained kubectl configuration file. If provided, the client certificate data will be written to an external kubectl configuration file instead of the default one. This file can be passed on to other users without management cluster access.
 
 In addition, there is one flag **only relevant to Giant Swarm staff**:
 
@@ -109,15 +109,64 @@ kubectl gs login example \
   --certificate-group example-group
 ```
 
-Without `--certificate-group` flag, you can still create a valid certificate, however the client presenting the certificate would not get any permissions in the Kubernetes API. The reason is that without that flag, both the `CN` attribute (interpreted as the user name by the Kubernetes API) and the `O` attribute of the certificate (interpreted as group name) will contain random values, so that no role bindings can match these names.
+#### Certificate lifetime {#certificate-ttl}
 
-For automation, you might want to use a **service account token** to authenticate against the management cluster. Here is an example:
+The certificate created in the above way would have the default lifetime of **one hour**.
+
+You can use the `--certificate-ttl` flag to specify a longer lifetime, e. g. `4h` for four hours. Since client certificates cannot be revoked, we recommend to set the lifetime as short as possible.
+
+#### Groups and users
+
+The generated certificate will have a X.509 subject comprising an `O` field and a `CN` field.
+
+Example:
 
 ```nohighlight
-kubectl gs login example \
-  --token SERVICE_ACCOUNT_TOKEN \
-  --workload-cluster gir0y \
-  --certificate-group example-group
+O=73ce775d904da53e,
+CN=73ce775d904da53e.i94nf.k8s.garlic.westeurope.azure.gigantic.io
 ```
 
-Here, `SERVICE_ACCOUNT_TOKEN` has to be replaced with the (pretty darn long) token string.
+When presenting such client certificate to the Kubernetes API server, the `CN` field is interpreted as the user identifier, while the `O` field is interpreted as a list of groups the user is a member of.
+
+With these values defaulting to random strings, we ensure that a client presenting this certificate does not accidentally acquire any permissions based on pre-defined group or user names in any (cluster) role bindings.
+
+To assign specific group memberships, or in other terms, to specify additional `O` values in the created certificate, you'll have to use the `--certificate-group` flag when executing the command. This flag can be set multiple times, with one group name each, as shown in the example below.
+
+Example command:
+
+```nohighlight
+$ kubectl gs login garlic \
+  --workload-cluster i94nf \
+  --certificate-group group1 \
+  --certificate-group group2
+```
+
+The resulting client certificate would have a subject like this:
+
+```nohighlight
+O=group1,
+O=group2,
+O=5ab261600796bef7,
+CN=5ab261600796bef7.i94nf.k8s.garlic.westeurope.azure.gigantic.io
+```
+
+#### Creating a client certificate in automation {#wc-client-cert-automation}
+
+Creating a client certificate for a workload cluster requires access to the management cluster. This is simple for users who can first use `kubectl gs login` against the management cluster and are then authenticated.
+
+In an automation context, an interactive login with a personal authentication, potential using multiple authentication factors, is not possible. In this case, a **service account token** can be used to authenticate against the management cluster.
+
+Giant Swarm provides a `ClusterRole` named `write-client-certificates` which provides the permissions required to create a workload cluster certificate. Bind this role to your service account in the namespace of the organization owning the workload cluster, to grant the required permissions. The [access control]({{< relref "/ui-api/web/organizations/access-control" >}}) user interface makes this simple.
+
+Finally, this example shows how to execute the command using a service account token via the `--token` flag to authenticate:
+
+```nohighlight
+kubectl gs login garlic \
+  --token SERVICE_ACCOUNT_TOKEN \
+  --workload-cluster i94nf \
+  --certificate-ttl 24h \
+  --certificate-group example-group \
+  --self-contained kubeconfig.yaml
+```
+
+Here, `garlic` is the installation codename. `i94nf` is the workload cluster name. And `SERVICE_ACCOUNT_TOKEN` has to be replaced with the token string.
