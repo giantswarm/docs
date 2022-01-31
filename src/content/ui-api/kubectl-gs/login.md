@@ -132,8 +132,6 @@ With these values defaulting to random strings, we ensure that a client presenti
 
 To assign specific group memberships, or in other terms, to specify additional `O` values in the created certificate, you'll have to use the `--certificate-group` flag when executing the command. This flag can be set multiple times, with one group name each, as shown in the example below.
 
-If `--certificate-group` flag, you can still create a valid certificate, however the client presenting the certificate would not get any permissions in the Kubernetes API. The reason is that without that flag, both the `CN` attribute (interpreted as the user name by the Kubernetes API) and the `O` attribute of the certificate (interpreted as group name) will contain random values, so that no role bindings can match these names.
-
 Example command:
 
 ```nohighlight
