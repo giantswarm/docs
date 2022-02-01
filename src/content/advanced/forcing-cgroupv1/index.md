@@ -54,7 +54,8 @@ spec:
 ```
 
 Or you can use `kubectl` command to anotate the CR.
-```
+
+```yaml
 kubectl annotate machinedeployments.cluster.x-k8s.io u6gw3 node.giantswarm.io/cgroupv1=""
 ```
 
@@ -88,7 +89,8 @@ spec:
 ```
 
 Or you can use `kubectl` command to anotate the CR.
-```
+
+```yaml
 kubectl annotate machinepools.exp.cluster.x-k8s.io f8ak0 node.giantswarm.io/cgroupv1=""
 ```
 
