@@ -9,13 +9,16 @@ menu:
 aliases:
   - /reference/gsctl/global-options/
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-ux
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - What options/flags does gsctl offer for all commands?
   - How can I customize the gsctl configuration directory?
+last_review_date: 2021-01-01
 ---
 
-# Global Command Line Options
+# Global command line options
+
+{{% gsctl_deprecation_disclaimer %}}
 
 `gsctl` supports the following global command line options. These are options that can be used in combination with all commands.
 

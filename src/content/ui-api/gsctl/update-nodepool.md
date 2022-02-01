@@ -9,14 +9,17 @@ menu:
 aliases:
   - /reference/gsctl/update-nodepool/
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-ux
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I modify a node pool using gsctl?
+last_review_date: 2021-01-01
 ---
 
 # `gsctl update nodepool`
 
-The `gsctl update nodepool` allows modifying a [node pool]({{< relref "/advanced/node-pools" >}}), such as editing the scaling range and the name.
+{{% gsctl_deprecation_disclaimer %}}
+
+The `gsctl update nodepool` command allows modifying a [node pool]({{< relref "/advanced/node-pools" >}}), such as editing the scaling range and the name.
 
 ## Usage
 

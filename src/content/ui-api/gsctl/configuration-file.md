@@ -9,13 +9,16 @@ menu:
 aliases:
   - /reference/gsctl/configuration-file/
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-ux
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - What settings does gsctl store in its config file?
   - Where can I find gsctl's configuration file?
+last_review_date: 2021-01-01
 ---
 
 # Configuration file
+
+{{% gsctl_deprecation_disclaimer %}}
 
 gsctl by default stores its configuration in a YAML file located at
 `$HOME/.config/gsctl/config.yaml`.

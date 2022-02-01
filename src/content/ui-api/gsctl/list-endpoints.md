@@ -9,12 +9,15 @@ menu:
 aliases:
   - /reference/gsctl/list-endpoints/
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-ux
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I list the API endpoints I have configured in gsctl?
+last_review_date: 2021-01-01
 ---
 
 # `gsctl list endpoints`
+
+{{% gsctl_deprecation_disclaimer %}}
 
 The `gsctl list endpoints` command shows all endpoints you have logged in to so far with additional information.
 

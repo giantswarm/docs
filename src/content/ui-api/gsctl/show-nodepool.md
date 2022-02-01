@@ -9,12 +9,15 @@ menu:
 aliases:
   - /reference/gsctl/show-nodepool/
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-ux
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I inspect a node pool using gsctl?
+last_review_date: 2021-01-01
 ---
 
 # `gsctl show nodepool`
+
+{{% gsctl_deprecation_disclaimer %}}
 
 The `gsctl show nodepool` command shows details on a [node pool]({{< relref "/advanced/node-pools" >}}).
 

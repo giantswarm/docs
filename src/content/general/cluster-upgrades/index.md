@@ -14,8 +14,9 @@ user_questions:
   - What is a major upgrade?
   - What is a minor upgrade?
   - What is a patch upgrade?
+last_review_date: 2021-01-01
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
 # Cluster upgrades
@@ -35,10 +36,10 @@ In this article, we explain how upgrades work in detail and how you should provi
 Among the third party components building a workload cluster stack are
 
 - [Kubernetes](https://kubernetes.io/) with its many sub-components
-- [Flatcar Container Linux](https://docs.flatcar-linux.org/) as the node's operating system
+- [Flatcar Container Linux](https://www.flatcar-linux.org/docs/latest/) as the node's operating system
 - [Docker](https://docs.docker.com/engine/) as a container runtime environment
 - [etcd](https://etcd.io/) as distributed storage for Kubernetes and Vault
-- [Project Calico](https://www.projectcalico.org/) and [AWS CNI](https://github.com/aws/amazon-vpc-cni-k8s)/[Azure CNI](https://github.com/Azure/azure-container-networking)/[Flannel](https://github.com/coreos/flannel) for virtual networking
+- [Project Calico](https://www.tigera.io/project-calico/) and [AWS CNI](https://github.com/aws/amazon-vpc-cni-k8s)/[Azure CNI](https://github.com/Azure/azure-container-networking)/[Flannel](https://github.com/flannel-io/flannel) for virtual networking
 - [CoreDNS](https://coredns.io/) for cluster-internal name resolution
 - [Prometheus node exporter](https://github.com/prometheus/node_exporter) for hardware and OS metrics
 - [NGINX Ingress Controller](https://github.com/kubernetes/ingress-nginx) for connecting services with load balancers
@@ -107,7 +108,7 @@ Note that by default, our user interfaces upgrade to the next active workload cl
 
 - In **gsctl**, the [`upgrade cluster`]({{< relref "/ui-api/gsctl/upgrade-cluster" >}})) command provides an optional flag `--release` which allows to specify the version to upgrade to.
 
-- Alternatively, you can use the [Giant Swarm REST API](/api/#operation/modifyClusterV5) or the [Management API]({{< relref "/ui-api/management-api" >}}) to trigger the upgrade. Please talk to your solution engineer in case you have any questions regarding this.
+- Alternatively, you can use the [Giant Swarm REST API](/api/#operation/modifyClusterV5) or the [Management API]({{< relref "/ui-api/management-api" >}}) to trigger the upgrade. Please talk to your Account Engineer in case you have any questions regarding this.
 
 ## How upgrades work
 
@@ -118,15 +119,15 @@ In particular this means:
 
 - Nodes will be drained, then stopped, then recreated.
 - As a consequence of draining, Pods running on a node will be rescheduled to other nodes.
-- Once the master node is taken down and recreated, the Kubernetes API will be unavailable for a short time.
+- Once the control plane node is taken down and recreated, the Kubernetes API will be unavailable for a short time.
 
-**Note**: By default, workload clusters have one master node each. [Consider using a High Availability masters setup](#checklist-ha-masters) to avoid API downtime during upgrades.
+**Note**: By default, workload clusters have one control plane node each. On AWS, consider using a [high-availability control plane setup](#checklist-ha-masters) to avoid API downtime during upgrades.
 
 ### Specific details for AWS
 
 AWS resources are managed by the [aws-operator](https://github.com/giantswarm/aws-operator) component through a nested CloudFormation stack. For a workload cluster upgrade, the CloudFormation stacks are updated, in several steps.
 
-The master node re-creation is started first. Meanwhile, the recreation of worker nodes starts, where all worker nodes are recreated in batches. During the upgrade, **up to 33 percent of the worker nodes may become unavailable**.
+The control plane node re-creation is started first. Meanwhile, the recreation of worker nodes starts, where all worker nodes are recreated in batches. During the upgrade, **up to 33 percent of the worker nodes may become unavailable**.
 
 From workload cluster release v12.7.0 some of the parameters of the upgrade can be configured. Check [Fine-tuning upgrade disruption on AWS]({{< relref "/advanced/upgrade-disruption" >}}) guide for more details.
 
@@ -142,7 +143,7 @@ For example, we are aware that for larger clusters, one thirds of worker nodes b
 Our [azure-operator](https://github.com/giantswarm/azure-operator) manages workload clusters on Azure via Azure Resource Manager (ARM) templates and Virtual Machine Scale Sets (VMSS).
 
 In an upgrade, all Virtual Machines (VM) are updated by reimaging with a new OS image and then rebooting.
-Master and worker nodes are updated one by one, where each node is first drained (Pods re-scheduled to other nodes) and then reimaged and rebooted.
+Control plane nodes and worker nodes are updated one by one, where each node is first drained (Pods re-scheduled to other nodes) and then reimaged and rebooted.
 
 On Azure, the node names visible to Kubernetes (e. g. `kubectl get nodes`) are not changed in an upgrade.
 
@@ -151,7 +152,7 @@ On Azure, the node names visible to Kubernetes (e. g. `kubectl get nodes`) are n
 ### Specific details for KVM
 
 In a KVM-based cluster, our [kvm-operator](https://github.com/giantswarm/kvm-operator) builds each workload cluster node out of a Kubernetes Deployment and Pod in the management cluster.
-In an upgrade, each of these deployments is updated after the according node has been drained, one after another, starting with the master node.
+In an upgrade, each of these deployments is updated after the according node has been drained, one after another, starting with the control plane node.
 This leads to removal and recreation of the Pods.
 
 ## How to upgrade a cluster {#how-to-upgrade-a-cluster}
@@ -172,7 +173,7 @@ We recommend to work through the following list of checks and best practices bef
 - [Handle termination signals in Pods](#checklist-termination-signals)
 - [Manage disruption budgets](#checklist-disruption-budgets)
 - [Set scheduling priorities](#checklist-scheduling-priorities)
-- [Consider high-availability masters](#checklist-ha-masters)
+- [Consider high-availability control planes](#checklist-ha-masters)
 - [Avoid ephemeral resources](#checklist-avoid-ephemeral-resources)
 - [Configure webhook timeouts](#checklist-webhook-timeouts)
 - [Verify that all your pods are running](#checklist-verify-pods-running)
@@ -216,17 +217,17 @@ Configure [PodDisruptionBudgets](https://kubernetes.io/docs/tasks/run-applicatio
 
 Consider using Pod priority to ensure that higher priority Pods are scheduled favorably in times of resource pressure.
 
-We recommend reading the upstream documentation about [priority classes and pod preemption](https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/) to get a better understanding of how the scheduler works with these.
+We recommend reading the upstream documentation about [priority classes and pod preemption](https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/) to get a better understanding of how the scheduler works with these.
 
 To help the scheduler further with being able to correctly (re-)schedule your Pods, you should [set resource request and limits](https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/). This also sets the Quality of Service of a Pod, which again has influence on scheduling priorities.
 
-### Consider high-availability masters {#checklist-ha-masters}
+### Consider high-availability control planes {#checklist-ha-masters}
 
-Some, but not all, cluster upgrades require nodes to be upgraded. With single master clusters, this causes a downtime of the Kubernetes API that can last a few minutes.
+Some, but not all, cluster upgrades require nodes to be upgraded. With single node control planes, this causes a downtime of the Kubernetes API that can last a few minutes.
 
-If you are running Giant Swarm on AWS, since workload cluster release v{{% first_aws_ha_masters_version %}} you have the option to use [high-availability masters]({{< relref "/advanced/high-availability/masters" >}}) instead. This will keep the Kubernetes API available even during an upgrade where nodes are rolled.
+If you are running Giant Swarm on AWS, since workload cluster release v{{% first_aws_ha_controlplane_version %}} you have the option to use a [high-availability control plane]({{< relref "/advanced/high-availability/control-plane" >}}) instead. This will keep the Kubernetes API available even during an upgrade where nodes are rolled.
 
-Consider this option before performing an upgrade. However, keep in mind that a cluster cannot be converted back from high-availability masters to a single master cluster.
+Consider this option before performing an upgrade. However, keep in mind that a cluster cannot be converted back from using high-availability control plane to a single node control plane.
 
 ### Avoid ephemeral resources {#checklist-avoid-ephemeral-resources}
 

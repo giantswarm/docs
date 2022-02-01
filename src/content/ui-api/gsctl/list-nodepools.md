@@ -9,12 +9,15 @@ menu:
 aliases:
   - /reference/gsctl/list-nodepools/
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-ux
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I see all node pools in a cluster using gsctl?
+last_review_date: 2021-01-01
 ---
 
 # `gsctl list nodepools`
+
+{{% gsctl_deprecation_disclaimer %}}
 
 The `gsctl list nodepools` command lists all [node pools]({{< relref "/advanced/node-pools" >}}) of a cluster.
 

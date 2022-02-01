@@ -2,19 +2,20 @@
 linkTitle: Defaulting and validation
 title: Defaulting and validation of App CRs
 description: How defaulting and validation of app CRs is implemented by app-admission-controller
-weight: 30
+weight: 50
 menu:
   main:
     parent: app-platform
-last_review_date: 2020-12-16
+last_review_date: 2021-11-30
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-batman
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 aliases:
   - /reference/app-defaulting-validation/
 user_questions:
   - Is App CR defaulting and validation logic enabled for my cluster? 
   - How can I use App CR defaulting logic when installing Managed Apps?
   - What fields are validated in App CRs when installing or updating Managed Apps?
+  - How can I ensure Flux is not blocked by the validating webhook?
 ---
 
 # Defaulting and validation of App CRs
@@ -111,13 +112,36 @@ Currently we validate:
 
 - The `app-operator.giantswarm.io/version` label is present.
 - All referenced configmaps and secrets exist.
-- The catalog has a matching AppCatalog CR.
+- The catalog has a matching Catalog CR.
 - There is no App CR with a conflicting annotation or label value for the [target namespace]({{< relref "/app-platform/namespace-configuration" >}}).
 
 If app-operator finds a matching [AppCatalogEntry]({{< relref "/ui-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}}) CR, it will use this to run more validation checks.
 
 - Cloud provider compatibility (e.g. you can’t install the azure-ad-pod-identity app in AWS).
 - Namespace restriction (cluster singleton, namespace singleton, fixed namespace).
+
+## GitOps support for Flux
+
+If you are managing your App CRs with Flux or a similar GitOps tool then the
+validating webhook may block creation of the App CR if it is created before the
+referenced configmap or secret.
+
+To prevent this you can add the label `giantswarm.io/managed-by` set to `flux`.
+e.g.
+
+```yaml
+apiVersion: application.giantswarm.io/v1alpha1
+kind: App
+metadata:
+  name: my-kong
+  namespace: x7jwz
+  labels:
+    giantswarm.io/managed-by: flux
+```
+
+app-admission-controller will now allow the App CR to be created. app-operator
+will still perform the validation checks and once the referenced configmap or
+secret exists the app will be installed.
 
 ## Retry Logic
 

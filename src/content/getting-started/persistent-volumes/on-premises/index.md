@@ -9,8 +9,11 @@ menu:
     parent: gettingstarted-persistentvolumes
 aliases:
   - /guides/using-persistent-volumes-on-baremetal/
+user_questions:
+  - How can I use persistent storage in my KVM clusters on-premises?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
+last_review_date: 2021-01-01
 ---
 
 # Using Persistent Volumes on your on-premise bare metal clusters

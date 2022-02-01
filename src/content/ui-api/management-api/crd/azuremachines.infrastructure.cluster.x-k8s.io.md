@@ -1,15 +1,33 @@
 ---
-title: AzureMachine CRD schema reference
+title: AzureMachine CRD schema reference (group infrastructure.cluster.x-k8s.io)
 linkTitle: AzureMachine
-technical_name: azuremachines.infrastructure.cluster.x-k8s.io
 description: |
   AzureMachine is the Schema for the azuremachines API
 weight: 100
-source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.25.0
+crd:
+  name_camelcase: AzureMachine
+  name_plural: azuremachines
+  name_singular: azuremachine
+  group: infrastructure.cluster.x-k8s.io
+  technical_name: azuremachines.infrastructure.cluster.x-k8s.io
+  scope: Namespaced
+  source_repository: https://github.com/giantswarm/apiextensions
+  source_repository_ref: v3.39.0
+  versions:
+    - v1alpha2
+    - v1alpha3
+  topics:
+    - workloadcluster
+  providers:
+    - azure
 layout: crd
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 aliases:
   - /reference/cp-k8s-api/azuremachines.infrastructure.cluster.x-k8s.io/
+technical_name: azuremachines.infrastructure.cluster.x-k8s.io
+source_repository: https://github.com/giantswarm/apiextensions
+source_repository_ref: v3.39.0
 ---
 
 # AzureMachine

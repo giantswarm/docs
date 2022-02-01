@@ -10,6 +10,13 @@ aliases:
   - /guides/recommendations-and-best-practices/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
+user_questions:
+  - How should I size my control plane nodes?
+  - How should I size my worker nodes?
+  - How should I separate concerns using several clusters?
+  - How many worker nodes should my clusters have?
+  - How many control plane nodes should I run?
+last_review_date: 2021-01-01
 ---
 
 # Recommendations and Best Practices
@@ -35,14 +42,25 @@ You don't want your development environment to be down, because of a minor node 
 
 For production usage the cluster should have at least 5 nodes and a buffer of 2 nodes.
 
+#### Control plane nodes
+
+Control plane nodes are more critical than worker nodes in achieving better availability and performance. Several worker nodes can be replaced at the same time with no downtime but the failure of a control plane node could cause a major issue if it is your only control plane node. [High-availability control planes]({{< relref "/advanced/high-availability/control-plane/index.md" >}}) can be used on AWS to reduce downtime to a minimum but still need to be sized correctly to avoid performance issues.
+
+The control plane nodes host critical components like the API, scheduler, Etcd, and many more. The load of these components will directly depend on the amount of resources they are managing, the number of API requests being served, and the events being generated in the cluster.
+
+In order to size the control plane nodes sufficiently, we recommend:
+
+- Clusters with 50 nodes or 1000 pods should use `m5.2xlarge` (on AWS) or `Standard_D4s_v3` (on Azure) instance types or higher.
+- Clusters with 100 nodes or 2000 pods using single control plane nodes should use `m5.4xlarge` (on AWS) or `Standard_D8s_v3` (on Azure) and with high-availability control planes (AWS only) use `m5.2xlarge`.
+
 #### Worker node size
 
-When it comes to sizing your worker nodes, there should generally be a preference for more smaller nodes vs less bigger ones.
+When it comes to sizing your worker nodes, there should generally be a preference for a greater number of smaller nodes vs. a smaller number of larger nodes.
 However, avoid node sizes of less than 1 core and 2GB RAM.
 
 To determine the right sizing in terms of cores and RAM, you need to know what kind of workloads will be run on the cluster
  and how much resources they need.
-Note that even if average load might be low, you should also account for peak load times as well as startup-peaks (i.e. some apps need a lot of resources just for their startup).
+Note that even if the average load might be low, you should also account for peak load times as well as startup-peaks (i.e. some apps need a lot of resources just for their startup).
 
 ## Multi-cluster and multi-tenant setups
 

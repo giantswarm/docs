@@ -1,6 +1,6 @@
 ---
 linkTitle: Multiple NGINX ingress controllers
-title: Running Multiple NGINX ingress controllers
+title: Running multiple NGINX ingress controllers
 description: Deploy multiple NGINX ingress controllers in a Kubernetes cluster to separate different ingress traffic classes.
 weight: 20
 menu:
@@ -9,20 +9,22 @@ menu:
 aliases:
   - /guides/multi-nginx/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-halo
+  - https://github.com/orgs/giantswarm/teams/team-cabbage
 user_questions:
   - How do I install multiple NGINX Ingress Controllers?
   - How do I separate internal and external Services?
   - How do I configure NGINX Ingress Controller for internal traffic?
   - How do I override the NodePorts on KVM Ingresses?
   - How do I configure NGINX Ingress Controller to allow weak ciphers?
+last_review_date: 2021-09-01
 ---
 
 # Installing and running multiple NGINX ingress controllers
 
 NGINX ingress controller handles [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) resources, routing traffic from outside the Kubernetes cluster to services within the cluster.
 
-Starting with [NGINX IC v1.8.0](https://github.com/giantswarm/nginx-ingress-controller-app/blob/master/CHANGELOG.md#180---2020-07-24), one can install multiple NGINX ingress controllers in a Kubernetes cluster. The optional NGINX Ingress Controller can be [installed as an App on your cluster]({{< relref "/content/getting-started/ingress-controller/index.md" >}}). This Ingress Controller is registered with the default `nginx` Ingress Class.
+Starting with [NGINX IC v1.8.0](https://docs.giantswarm.io/changes/managed-apps/nginx-ingress-controller-app/v1.8.0/), one can install multiple NGINX ingress controllers in a Kubernetes cluster. The optional NGINX Ingress Controller can be [installed as an App on your cluster]({{< relref "/content/getting-started/ingress-controller/index.md" >}}).
+[NGINX IC v2.2.0](https://docs.giantswarm.io/changes/managed-apps/nginx-ingress-controller-app/v2.2.0/) will start installing a IngressClass with default name `nginx` and controller value `k8s.io/ingress-nginx`.
 
 Some use cases for this might be:
 
@@ -32,30 +34,36 @@ Some use cases for this might be:
 
 Most NGINX configuration options have NGINX-wide defaults. They can also be overriden on a per-Ingress resource level.
 
-In each case below, one installs a second NGINX with a different NGINX global-only configuration. Ingress resources managed by this NGINX installation cannot be customized on a per-Ingress resource level.
+In each case below, one installs a second NGINX with a different NGINX global-only configuration and separate IngressClass. Ingress resources managed by this NGINX installation cannot be customized on a per-Ingress resource level.
 
-Further information on configuring NGINX Ingress Controller can be found in the [Services of type LoadBalancer]({{< relref "/content/advanced/ingress/service-type-loadbalancer/index.md" >}}).
+Further information on configuring NGINX Ingress Controller can be found on the [Advanced ingress configuration]({{< relref "/advanced/ingress/configuration/index.md" >}}) page.
 
 ## Quick installation instructions for a second NGINX Ingress controller
 
 1. Install a second NGINX IC app (and subsequent apps) with a different NGINX global-only configuration. Ingress resources managed by this NGINX installation cannot be customized on a per-Ingress resource level.
-2. Annotate each Ingress with the appropriate class. Make sure the Ingress Class of each Ingress Controller do not collide with each other
+2. Change the ingressClassName to the appropriate IngressClass name. Make sure the IngressClass name and controller value of each Ingress Controller do not collide with each other.
 
-## Annotate each Ingress with the appropriate class
+## Set the ingressClassName of each Ingress
 
-__Note__ that if you are running multiple Ingress Controllers you need to annotate each Ingress with the appropriate class, e.g.
+__Note__ that if you are running multiple Ingress Controllers you need to use the appropriate ingressClassName in your Ingress resources, e.g.
 
 ```yaml
-kubernetes.io/ingress.class: "nginx"
+...
+spec:
+  ingressClassName: "nginx"
+...
 ```
 
 or
 
 ```yaml
-kubernetes.io/ingress.class: "nginx-internal"
+...
+spec:
+  ingressClassName: "nginx-internal"
+...
 ```
 
-Not specifying the annotation will lead to multiple ingress controllers claiming the same ingress. Specifying a value which does not match the class of any existing ingress controllers will result in all ingress controllers ignoring the ingress.
+Not specifying the ingressClassName will lead to no ingress controller claiming your Ingress. Specifying a value which does not match the class of any existing ingress controllers will result in all ingress controllers ignoring the ingress.
 
 Additionally, please ensure the Ingress Class of each of your Ingress Controllers do not collide with each other and with the [preinstalled Ingress Controllers in legacy clusters]({{< relref "/content/general/releases/index.md#apps" >}}). For the community supported NGINX Ingress Controller this is described in the [official documentation](https://kubernetes.github.io/ingress-nginx/user-guide/multiple-ingress/).
 
@@ -72,7 +80,9 @@ This is how one can achieve it by using multiple NGINX Ingress Controllers:
 
     ```yaml
     controller:
-      ingressClass: "nginx-internal"
+      ingressClassResource:
+        name: "nginx-internal"
+        controllerValue: "k8s.io/ingress-nginx-internal"
       service:
         public: false
         subdomain: "ingress-internal"
@@ -82,7 +92,9 @@ This is how one can achieve it by using multiple NGINX Ingress Controllers:
 
     ```yaml
     controller:
-      ingressClass: "nginx-internal"
+      ingressClassResource:
+        name: "nginx-internal"
+        controllerValue: "k8s.io/ingress-nginx-internal"
       service:
         # enabled: true
         public: false
@@ -93,9 +105,9 @@ This is how one can achieve it by using multiple NGINX Ingress Controllers:
           https: 31011
     ```
 
-Each NGINX IC App installation has to have unique ingress class. Ingress resources can then declare which ingress controller should be handling their route definition by referencing appropriate ingress class in `kubernetes.io/ingress.class` annotation. Default NGINX IC App ingress class is `nginx`. In the above example we configure `nginx-internal` as the second NGINX IC App installation's ingress class.
+Each NGINX IC App installation has to have an unique IngressClass. Ingress resources can then declare which ingress controller should be handling their route definition by referencing the respective IngressClass in the `ingressClassName` spec field. Default NGINX IC App IngressClass is `nginx`. In the above example we configure `nginx-internal` as the second NGINX IC App installation's IngressClass.
 
-On AWS and Azure, NGINX LoadBalancer Service is fronted by the cloud provider's managed load balancer service. By default,  NGINX IC App will have a public load balancer. Changing `controller.service.public` flag to `false` declares that internal load balancer should be created instead.
+On AWS and Azure, NGINX LoadBalancer Service is fronted by the cloud provider's managed load balancer service. By default, NGINX IC App will have a public load balancer. Changing `controller.service.public` flag to `false` declares that internal load balancer should be created instead.
 
 Similarly, cloud load balancer created for each NGINX installation on AWS and Azure has to have unique host name associated with it. Host name suffix is common for all, and equals to the workload cluster's base domain name. Prefix is configurable via `controller.service.subdomain` configuration property and defaults to `ingress`. In example configuration for second internal NGINX IC app, it is overriden to `ingress-internal`.
 
@@ -118,7 +130,9 @@ Here is how this can be achieved:
 
   ```yaml
   controller:
-    ingressClass: "nginx-weak"
+    ingressClassResource:
+      name: "nginx-weak"
+      controllerValue: "k8s.io/ingress-nginx-weak"
     service:
       subdomain: "ingress-weak"
   configmap:

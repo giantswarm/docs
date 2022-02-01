@@ -1,18 +1,41 @@
 ---
-title: AppCatalog CRD schema reference
+title: AppCatalog CRD schema reference (group application.giantswarm.io)
 linkTitle: AppCatalog
-technical_name: appcatalogs.application.giantswarm.io
 description: |
   Deprecated, use Catalog CRD instead. AppCatalog represents a catalog of managed apps. It stores general information for potential apps to install. It is reconciled by app-operator.
 weight: 100
-source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.25.0
+crd:
+  name_camelcase: AppCatalog
+  name_plural: appcatalogs
+  name_singular: appcatalog
+  group: application.giantswarm.io
+  technical_name: appcatalogs.application.giantswarm.io
+  scope: Cluster
+  source_repository: https://github.com/giantswarm/apiextensions-application
+  source_repository_ref: v0.3.0
+  versions:
+    - v1alpha1
+  topics:
+    - apps
+  deprecation:
+    replaced_by:
+      full_name: catalogs.application.giantswarm.io
+      short_name: Catalog
 layout: crd
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 aliases:
   - /reference/cp-k8s-api/appcatalogs.application.giantswarm.io/
+technical_name: appcatalogs.application.giantswarm.io
+source_repository: https://github.com/giantswarm/apiextensions-application
+source_repository_ref: v0.3.0
 ---
 
 # AppCatalog
+<p class="well disclaimer">
+<i class="fa fa-warning"></i> <b>Deprecation:</b>
+This CRD is being replaced by <a href="../catalogs.application.giantswarm.io/">Catalog</a>.
+</p>
 
 
 <p class="crd-description">Deprecated, use Catalog CRD instead. AppCatalog represents a catalog of managed apps. It stores general information for potential apps to install. It is reconciled by app-operator.</p>

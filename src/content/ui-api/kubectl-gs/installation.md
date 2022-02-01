@@ -1,7 +1,7 @@
 ---
 linkTitle: Installation
 title: kubectl gs installation
-description: How to obtain kubectl gs, the Giant Swarm kubectl plugin and how to keep it up to date.
+description: How to obtain kubectl gs, the Giant Swarm kubectl plugin, how to keep it up to date, and where to find the Docker image.
 weight: 10
 menu:
   main:
@@ -9,20 +9,22 @@ menu:
 aliases:
   - /reference/kubectl-gs/installation/
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-ux
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
+last_review_date: 2021-07-02
 user_questions:
   - Where can I find the Giant Swarm plugin for kubectl?
   - How can I install the Giant Swarm plugin for kubectl?
   - How can I keep the Giant Swarm plugin for kubectl up to date?
-  - What is kubectl gs?
-  - How can I install kubectl gs?
+  - What is kubectl-gs?
+  - How can I install kubectl-gs?
+  - Is there an official Docker image for kubectl-gs?
 ---
 
-# Installing the kubcetl gs plugin
+# Installing the kubectl gs plugin
 
 `kubectl-gs` is the Giant Swarm plug-in for `kubectl` with the official plug-in name `gs`.
 
-The latest version is {{% kubectl_gs_version %}}.
+The latest version is v{{% kubectl_gs_version %}}.
 
 The simplest way to manage `kubectl` plug-ins across platforms is using [Krew](https://krew.sigs.k8s.io/). If you don't have Krew installed, check the [Krew installation docs](https://krew.sigs.k8s.io/docs/user-guide/setup/install/) on how to get it installed.
 
@@ -103,4 +105,22 @@ Follow the Linux installation instructions with or without Krew first. After suc
 
 ```bash
 sudo ln -s $(which wslview) /usr/local/bin/xdg-open
+```
+
+## Docker
+
+We offer a Docker image via our public [Quay](https://quay.io/repository/giantswarm/kubectl-gs?tab=info) repository.
+
+The `latest` tag marks the latest release. In addition, all releases are tagged.
+
+To obtain the image:
+
+```nohighlight
+docker pull quay.io/giantswarm/kubectl-gs:{{% kubectl_gs_version %}}
+```
+
+To execute:
+
+```nohighlight
+docker run --rm -ti quay.io/giantswarm/kubectl-gs:{{% kubectl_gs_version %}} --help
 ```

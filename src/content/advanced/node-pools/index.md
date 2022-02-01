@@ -14,7 +14,8 @@ user_questions:
 aliases:
   - /basics/nodepools/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-firecracker
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
+last_review_date: 2021-01-01
 ---
 
 # Node pools
@@ -143,9 +144,9 @@ See the [`gsctl delete nodepool`]({{< relref "/ui-api/gsctl/delete-nodepool" >}}
 
 ## On-demand and spot instances {#on-demand-spot}
 
-As of workload cluster release v{{% first_aws_spotinstances_version %}} for AWS, node pools can contain a mix of [on-demand](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-on-demand-instances.html) and [spot instances](https://aws.amazon.com/ec2/spot/) that will allow you to optimize your cost.
+As of workload cluster release v{{% first_aws_spotinstances_version %}} for AWS and v{{% first_azure_spotinstances_version %}} for Azure, node pools can contain a mix of [on-demand](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-on-demand-instances.html) and [spot instances/VMs](https://aws.amazon.com/ec2/spot/) that will allow you to optimize your cost.
 
-[Here]({{< relref "/advanced/spot-instances" >}}) you can find more detailed information on using Spot Instances in AWS clusters.
+Please check our dedicated [section on spot instances/VMs]({{< relref "/advanced/spot-instances" >}}) to learn more about using them in your clusters.
 
 ## Using similar instance types {#similar-instance-types}
 
@@ -211,11 +212,11 @@ account owner, you can request an increase of this limit via the AWS console.
 
 - Node pools can span a maximum of four availability zones. This limit affects both the number of availability zones
 a single node pool can cover, as well as the number of different availability zones all node pools of a cluster can
-cover. Once an availability zone has been assigned for use in a cluster, either for the master node or for worker
+cover. Once an availability zone has been assigned for use in a cluster, either for a control plane node or for worker
 nodes, it cannot be unassigned from that cluster. It will remain assigned even if there are no more node pools using
 that availability zone.
 
-    - **Example:** The master node is in availability zone A. Node pool 1 uses availability zones B and C. Node pool 2 uses
+    - **Example:** The control plane node(s) are in availability zone A. Node pool 1 uses availability zones B and C. Node pool 2 uses
   availability zone D. With A, B, C, and D, the limit of four availability zones assigned is reached. New node pools of this
   cluster can only use these four availability zones.
 
@@ -227,4 +228,4 @@ that availability zone.
 
 ## Further reading
 
-- [Assigning Pods to Nodes](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/) from the official Kubernetes documentation
+- [Assigning Pods to Nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/) from the official Kubernetes documentation

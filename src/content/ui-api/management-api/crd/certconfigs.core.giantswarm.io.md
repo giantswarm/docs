@@ -1,19 +1,37 @@
 ---
-title: CertConfig CRD schema reference
+title: CertConfig CRD schema reference (group core.giantswarm.io)
 linkTitle: CertConfig
-technical_name: certconfigs.core.giantswarm.io
 description: |
-  Custom resource definition (CRD) schema reference page for the CertConfig resource (certconfigs.core.giantswarm.io), as part of the Giant Swarm Management API documentation.
+  CertConfig specifies details for an X.509 certificate to be issued, handled by cert-operator.
 weight: 100
-source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.25.0
+crd:
+  name_camelcase: CertConfig
+  name_plural: certconfigs
+  name_singular: certconfig
+  group: core.giantswarm.io
+  technical_name: certconfigs.core.giantswarm.io
+  scope: Namespaced
+  source_repository: https://github.com/giantswarm/apiextensions
+  source_repository_ref: v3.39.0
+  versions:
+    - v1alpha1
+  topics:
+    - managementcluster
+    - workloadcluster
 layout: crd
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-cabbage
 aliases:
   - /reference/cp-k8s-api/certconfigs.core.giantswarm.io/
+technical_name: certconfigs.core.giantswarm.io
+source_repository: https://github.com/giantswarm/apiextensions
+source_repository_ref: v3.39.0
 ---
 
 # CertConfig
 
+
+<p class="crd-description">CertConfig specifies details for an X.509 certificate to be issued, handled by cert-operator.</p>
 <dl class="crd-meta">
 <dt class="fullname">Full name:</dt>
 <dd class="fullname">certconfigs.core.giantswarm.io</dd>
@@ -42,7 +60,7 @@ apiVersion: core.giantswarm.io/v1alpha1
 kind: CertConfig
 metadata:
   annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/reference/cp-k8s-api/certconfigs.core.giantswarm.io/
+    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/certconfigs.core.giantswarm.io/
   creationTimestamp: null
   name: c68pn-prometheus
 spec:
@@ -137,6 +155,11 @@ spec:
 <span class="property-required">Required</span>
 </div>
 
+<div class="property-description">
+<p>Specifies the configurable certificate details.</p>
+
+</div>
+
 </div>
 </div>
 
@@ -160,6 +183,11 @@ spec:
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>Subject Alternative Names to be set in the certificate.</p>
 
 </div>
 
@@ -189,6 +217,11 @@ spec:
 <span class="property-required">Required</span>
 </div>
 
+<div class="property-description">
+<p>Host name of the service to create the certificate for.</p>
+
+</div>
+
 </div>
 </div>
 
@@ -200,6 +233,11 @@ spec:
 <div class="property-meta">
 <span class="property-type">string</span>
 <span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Workload cluster ID to issue the certificate for.</p>
+
 </div>
 
 </div>
@@ -215,6 +253,11 @@ spec:
 <span class="property-required">Required</span>
 </div>
 
+<div class="property-description">
+<p>Full common name (CN).</p>
+
+</div>
+
 </div>
 </div>
 
@@ -228,6 +271,11 @@ spec:
 <span class="property-required">Required</span>
 </div>
 
+<div class="property-description">
+<p>If set, cert-operator will forbid updating this certificate.</p>
+
+</div>
+
 </div>
 </div>
 
@@ -238,6 +286,11 @@ spec:
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>List of IP addresses to be set as SANs (Subject Alternative Names) in the certificate.</p>
 
 </div>
 
@@ -267,6 +320,11 @@ spec:
 
 </div>
 
+<div class="property-description">
+<p>List of organizations to set in the certificate.</p>
+
+</div>
+
 </div>
 </div>
 
@@ -293,6 +351,11 @@ spec:
 <span class="property-required">Required</span>
 </div>
 
+<div class="property-description">
+<p>Expiry time as a Golang duration string, e. g. &ldquo;1d&rdquo; for one day.</p>
+
+</div>
+
 </div>
 </div>
 
@@ -304,6 +367,11 @@ spec:
 <div class="property-meta">
 <span class="property-type">object</span>
 <span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Specifies the cert-operator version to use.</p>
+
 </div>
 
 </div>

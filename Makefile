@@ -54,12 +54,22 @@ lint:
 		--ignore ./src/content/ui-api/management-api/crd \
 		./src
 
+# Validate front matter in all pages.
 validate-front-matter:
 	docker run --rm \
 	  --volume=${PWD}:/workdir:ro \
 	  -w /workdir \
 	  quay.io/giantswarm/docs-scriptrunner:latest \
 	  /workdir/scripts/validate-front-matter/script.py
+
+# Print a report of pages with a last_review_date that's
+# too long ago.
+validate-last-reviewed:
+	docker run --rm \
+	  --volume=${PWD}:/workdir:ro \
+	  -w /workdir \
+	  quay.io/giantswarm/docs-scriptrunner:latest \
+	  /workdir/scripts/validate-front-matter/script.py --validation last-reviewed
 
 docker-build: update-latest-versions
 	docker build -t $(REGISTRY)/$(COMPANY)/$(PROJECT):latest .
@@ -98,9 +108,10 @@ linkcheck-internal:
 	docker kill server
 	docker kill linkchecker
 
-grab-main-site-header-footer:
-	curl -s https://www.giantswarm.io/why-giant-swarm | sed -n '/^<!-- BEGIN SITE_HEADER -->/,/^<!-- END SITE_HEADER -->/p;/^<!-- END SITE_HEADER -->/q' | sed '1d;$d' > src/layouts/partials/gs_header.html
-	curl -s https://www.giantswarm.io/why-giant-swarm | sed -n '/^<!-- BEGIN SITE_FOOTER -->/,/^<!-- END SITE_FOOTER -->/p;/^<!-- END SITE_FOOTER -->/q' | sed '1d;$d' > src/layouts/partials/gs_footer.html
+update-website-content:
+	cd ./scripts/update-website-content && \
+		npm ci && \
+		npm start
 
 # Verify internal and external links
 # based on the currently deployed docs website.
@@ -121,4 +132,3 @@ linkcheck:
 		--ignore-url=".*gigantic\.io.*" \
 		--ignore-url="^https://my-org\.github\.com/.*" \
 		--ignore-url="^https://github\.com/giantswarm/giantswarm/.*"
-

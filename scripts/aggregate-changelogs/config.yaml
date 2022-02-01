@@ -18,13 +18,15 @@ repositories:
     category: Management API
   giantswarm/azure-admission-controller:
     category: Management API
-  giantswarm/aqua-app:
-    category: Managed Apps
   giantswarm/cert-manager-app:
     category: Managed Apps
+  giantswarm/dashboards:
+    category: Dashboards
   giantswarm/docs:
     category: Documentation
   giantswarm/efk-stack-app:
+    category: Managed Apps
+  giantswarm/falco-app:
     category: Managed Apps
   giantswarm/goldilocks-app:
     category: Managed Apps
@@ -32,10 +34,16 @@ repositories:
     category: gsctl
   giantswarm/happa:
     category: Web UI
+  giantswarm/hello-world-app:
+    category: Managed Apps
   giantswarm/kong-app:
     category: Managed Apps
   giantswarm/kubectl-gs:
     category: kubectl gs
+  giantswarm/kyverno-app:
+    category: Managed Apps
+  giantswarm/kyverno-policies:
+    category: Management API
   giantswarm/management-cluster-admission:
     category: Management API
   giantswarm/nginx-ingress-controller-app:
@@ -46,17 +54,31 @@ repositories:
     category: Managed Apps
   giantswarm/loki-app:
     category: Managed Apps
+  giantswarm/oauth2-proxy-app:
+    category: Managed Apps
   giantswarm/promtail-app:
+    category: Managed Apps
+  giantswarm/rook-operator-app:
+    category: Managed Apps
+  giantswarm/starboard-app:
+    category: Managed Apps
+  giantswarm/starboard-exporter:
+    category: Managed Apps
+  giantswarm/trivy-app:
     category: Managed Apps
   giantswarm/external-dns-app:
     category: Managed Apps
   giantswarm/fluent-logshipping-app:
+    category: Managed Apps
+  giantswarm/flux-app:
     category: Managed Apps
   giantswarm/cloudflared-app:
     category: Managed Apps
   giantswarm/app-mesh-app:
     category: Playground Apps
   giantswarm/azure-ad-pod-identity-app:
+    category: Playground Apps
+  giantswarm/dex-app:
     category: Playground Apps
   giantswarm/eventrouter-app:
     category: Playground Apps
@@ -72,6 +94,8 @@ repositories:
     category: Playground Apps
   giantswarm/k8s-initiator-app:
     category: Playground Apps
+  giantswarm/spark-operator:
+    category: Playground Apps
   giantswarm/keda-app:
     category: Playground Apps
   giantswarm/kibana-oss-app:
@@ -79,15 +103,17 @@ repositories:
   giantswarm/kubernetes-gpu:
     category: Playground Apps
   giantswarm/linkerd2-app:
-    category: Playground Apps
+    category: Managed Apps
   giantswarm/linkerd2-cni-app:
-    category: Playground Apps  
+    category: Managed Apps
   giantswarm/loki-stack-app:
     category: Playground Apps
   giantswarm/opencensus-collector-app:
     category: Playground Apps
   giantswarm/organization-operator:
     category: Management API
+  giantswarm/rbac-bootstrap-app:
+    category: Playground Apps
   giantswarm/rbac-operator:
     category: Management API
   giantswarm/strimzi-kafka-operator-app:
@@ -101,10 +127,14 @@ repositories:
 categories:
   - name: Management API
     color: "#b47fb0"
+  - name: Dashboards
+    color: "#e461a9"
   - name: Documentation
     color: "#9aa48e"
   - name: gsctl
     color: "#7cb2b6"
+  - name: Highlights
+    color: "#f1dd55"
   - name: kubectl gs
     color: "#8081b2"
   - name: Managed Apps

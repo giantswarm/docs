@@ -9,14 +9,17 @@ menu:
 aliases:
    /reference/gsctl/update-org-set-credentials/
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-ux
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I set cloud provider credentials for an organization using gsctl?
+last_review_date: 2021-01-01
 ---
 
 # `update organization set-credentials`
 
-Giant Swarm allows you to run clusters in your own cloud provider account/subscription. We refer to this as [Multi Account functionality]({{< relref "/advanced/multi-account" >}}), renamed from Bring Your Own Cloud (BYOC). As a prerequisite, the organization that should own the clusters has to be prepared with cloud provider credentials.
+{{% gsctl_deprecation_disclaimer %}}
+
+Giant Swarm allows you to run clusters in your own cloud provider account/subscription. We refer to this as [multi-account functionality]({{< relref "/advanced/multi-account" >}}). As a prerequisite, the organization that should own the clusters has to be prepared with cloud provider credentials.
 
 Please refer to our detailed guides on how to prepare roles and credentials in your AWS account or Azure subscription:
 

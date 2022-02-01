@@ -1,15 +1,32 @@
 ---
-title: MachinePool CRD schema reference
+title: MachinePool CRD schema reference (group exp.cluster.x-k8s.io)
 linkTitle: MachinePool
-technical_name: machinepools.exp.cluster.x-k8s.io
 description: |
   MachinePool is the Schema for the machinepools API
 weight: 100
-source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.25.0
+crd:
+  name_camelcase: MachinePool
+  name_plural: machinepools
+  name_singular: machinepool
+  group: exp.cluster.x-k8s.io
+  technical_name: machinepools.exp.cluster.x-k8s.io
+  scope: Namespaced
+  source_repository: https://github.com/giantswarm/apiextensions
+  source_repository_ref: v3.39.0
+  versions:
+    - v1alpha3
+  topics:
+    - workloadcluster
+  providers:
+    - azure
 layout: crd
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 aliases:
   - /reference/cp-k8s-api/machinepools.exp.cluster.x-k8s.io/
+technical_name: machinepools.exp.cluster.x-k8s.io
+source_repository: https://github.com/giantswarm/apiextensions
+source_repository_ref: v3.39.0
 ---
 
 # MachinePool
@@ -36,6 +53,58 @@ aliases:
 <div class="crd-schema-version">
 <h2 id="v1alpha3">Version v1alpha3</h2>
 
+
+<h3 id="crd-example-v1alpha3">Example CR</h3>
+
+```yaml
+apiVersion: exp.cluster.x-k8s.io/v1alpha3
+kind: MachinePool
+metadata:
+  annotations:
+    cluster.k8s.io/cluster-api-autoscaler-node-group-max-size: "10"
+    cluster.k8s.io/cluster-api-autoscaler-node-group-min-size: "3"
+    machine-pool.giantswarm.io/name: Unnamed node pool
+    release.giantswarm.io/last-deployed-version: 15.1.1
+  labels:
+    azure-operator.giantswarm.io/version: 5.8.1
+    cluster-operator.giantswarm.io/version: 0.27.1
+    cluster.x-k8s.io/cluster-name: x4j3p
+    giantswarm.io/cluster: x4j3p
+    giantswarm.io/machine-pool: q5k7t
+    giantswarm.io/organization: giantswarm
+    release.giantswarm.io/version: 15.1.1
+  name: q5k7t
+  namespace: org-giantswarm
+spec:
+  clusterName: x4j3p
+  failureDomains:
+  - "2"
+  minReadySeconds: 0
+  providerIDList:
+    - azure:///subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee/resourceGroups/mmh5x/providers/Microsoft.Compute/virtualMachineScaleSets/nodepool-w86vu/virtualMachines/0
+    - azure:///subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee/resourceGroups/mmh5x/providers/Microsoft.Compute/virtualMachineScaleSets/nodepool-w86vu/virtualMachines/1
+    - azure:///subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee/resourceGroups/mmh5x/providers/Microsoft.Compute/virtualMachineScaleSets/nodepool-w86vu/virtualMachines/2
+  replicas: 3
+  template:
+    metadata: {}
+    spec:
+      bootstrap:
+        configRef:
+          apiVersion: core.giantswarm.io/v1alpha1
+          kind: Spark
+          name: q5k7t
+          namespace: org-giantswarm
+          resourceVersion: "374040263"
+          uid: a4f5af79-1354-4c99-a68b-433deaff2ede
+      clusterName: x4j3p
+      infrastructureRef:
+        apiVersion: exp.infrastructure.cluster.x-k8s.io/v1alpha3
+        kind: AzureMachinePool
+        name: q5k7t
+        namespace: org-giantswarm
+        resourceVersion: "374040262"
+        uid: 4d1e7420-53a8-4a38-8a2c-0bd30f93a593
+```
 
 
 <h3 id="property-details-v1alpha3">Properties</h3>
@@ -1543,6 +1612,44 @@ aliases:
 </div>
 
 
+
+
+<h3 id="annotation-details-v1alpha3">Annotations</h3>
+
+
+<div class="annotation">
+<div class="annotation-header">
+<h3 class="annotation-path" id="v1alpha3-cluster.k8s.io/cluster-api-autoscaler-node-group-max-size">cluster.k8s.io/cluster-api-autoscaler-node-group-max-size</h3>
+</div>
+<div class="annotation-body">
+<div class="annotation-meta">
+<span class="annotation-release">Since Azure 13.1.0</span>
+</div>
+
+<div class="annotation-description">
+<p>This annotation allows setting the max size of a node pool for autoscaling purposes. See <a href="https://docs.giantswarm.io/advanced/node-pools/">node pools</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="annotation">
+<div class="annotation-header">
+<h3 class="annotation-path" id="v1alpha3-cluster.k8s.io/cluster-api-autoscaler-node-group-min-size">cluster.k8s.io/cluster-api-autoscaler-node-group-min-size</h3>
+</div>
+<div class="annotation-body">
+<div class="annotation-meta">
+<span class="annotation-release">Since Azure 13.1.0</span>
+</div>
+
+<div class="annotation-description">
+<p>This annotation allows setting the min size of a node pool for autoscaling purposes. See <a href="https://docs.giantswarm.io/advanced/node-pools/">node pools</a></p>
+
+</div>
+
+</div>
+</div>
 
 
 

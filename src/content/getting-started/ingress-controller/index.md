@@ -13,7 +13,8 @@ user_questions:
 aliases:
   - /guides/installing-optional-ingress-controller/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-halo
+  - https://github.com/orgs/giantswarm/teams/team-cabbage
+last_review_date: 2021-09-01
 ---
 
 # Installing an ingress controller
@@ -31,18 +32,26 @@ want to run on your cluster.
 
 Using our Web UI you can install an NGINX ingress controller using our App Catalog.
 
-1. Click "Install App" from the "Apps" tab when viewing your cluster
+1. Click "Install app" from the "Apps" tab when viewing your cluster
   ![Cluster detail screen showing install app button](cluster-detail.png)
 
-2. Click "Browse Apps" from the "Giant Swarm Catalog"
-  ![List of app catalogs including the Giant Swarm Catalog](catalog-list.png)
+2. Search for "nginx-ingress-controller-app" in the list of apps
+  ![List of app catalogs including the Giant Swarm Catalog](app-list.png)
 
-3. Click "nginx-ingress-controller-app" from the list of apps.
-  ![List of apps in the Giant Swarm Catalog](app-list.png)
+3. Select "nginx-ingress-controller-app" from the "Giant Swarm Catalog"
+  ![List of apps in the Giant Swarm Catalog](app-search-result.png)
 
-4. Click "Configure & Install"
+4. Click "Install in cluster"
 
-5. Click "Install App" (In case you want any special configuration, this is where you can also provide a 'values.yaml' with your customized settings)
+5. Click "Install app" (In case you want any special configuration, this is where you can also provide a 'values.yaml' with your customized settings)
   ![App installation modal](install-app-modal.png)
 
 After a few moments, the NGINX ingress controller should be running on your cluster.
+
+More information about the nginx-ingress-controller-app can be found in the [nginx-ingress-controller-app](https://github.com/giantswarm/nginx-ingress-controller-app) repository.
+
+## Further reading
+
+- [Accessing pods and services from the outside]({{< relref "/getting-started/exposing-workloads/index.md" >}})
+- [Running multiple NGINX ingress controllers]({{< relref "/advanced/ingress/multi-nginx-ic/index.md" >}})
+- [Advanced ingress configuration]({{< relref "/advanced/ingress/configuration/index.md" >}})

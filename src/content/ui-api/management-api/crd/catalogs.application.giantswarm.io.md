@@ -1,15 +1,30 @@
 ---
-title: Catalog CRD schema reference
+title: Catalog CRD schema reference (group application.giantswarm.io)
 linkTitle: Catalog
-technical_name: catalogs.application.giantswarm.io
 description: |
   Catalog represents a catalog of managed apps. It stores general information for potential apps to install. It is reconciled by app-operator.
 weight: 100
-source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.25.0
+crd:
+  name_camelcase: Catalog
+  name_plural: catalogs
+  name_singular: catalog
+  group: application.giantswarm.io
+  technical_name: catalogs.application.giantswarm.io
+  scope: Namespaced
+  source_repository: https://github.com/giantswarm/apiextensions-application
+  source_repository_ref: v0.3.0
+  versions:
+    - v1alpha1
+  topics:
+    - apps
 layout: crd
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 aliases:
   - /reference/cp-k8s-api/catalogs.application.giantswarm.io/
+technical_name: catalogs.application.giantswarm.io
+source_repository: https://github.com/giantswarm/apiextensions-application
+source_repository_ref: v0.3.0
 ---
 
 # Catalog

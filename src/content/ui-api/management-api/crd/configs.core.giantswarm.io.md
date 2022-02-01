@@ -1,15 +1,31 @@
 ---
-title: Config CRD schema reference
+title: Config CRD schema reference (group core.giantswarm.io)
 linkTitle: Config
-technical_name: configs.core.giantswarm.io
 description: |
   Config represents configuration of an App.
 weight: 100
-source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.25.0
+crd:
+  name_camelcase: Config
+  name_plural: configs
+  name_singular: config
+  group: core.giantswarm.io
+  technical_name: configs.core.giantswarm.io
+  scope: Namespaced
+  source_repository: https://github.com/giantswarm/config-controller
+  source_repository_ref: v0.5.1
+  versions:
+    - v1alpha1
+  topics:
+    - apps
+    - managementcluster
 layout: crd
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 aliases:
   - /reference/cp-k8s-api/configs.core.giantswarm.io/
+technical_name: configs.core.giantswarm.io
+source_repository: https://github.com/giantswarm/config-controller
+source_repository_ref: v0.5.1
 ---
 
 # Config

@@ -6,6 +6,7 @@ weight: 25
 menu:
   main:
     parent: advanced
+last_review_date: 2021-06-19
 user_questions:
   - How can I override the default CoreDNS configuration?
   - How can I customize the CoreDNS configuration?
@@ -14,7 +15,7 @@ user_questions:
 aliases:
   - /guides/advanced-coredns-configuration/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-ludacris
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
 # Advanced CoreDNS Configuration

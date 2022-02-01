@@ -1,13 +1,18 @@
 ---
-title: "Prepare an Azure subscription to run Giant Swarm workload clusters"
-description: "This guide will walk you through all necessary steps to set up an Azure subscription with approriate Role definition and Service Principal for operating Giant Swarm worload clusters."
-date: "2020-05-19"
-type: page
-weight: 100
-tags: ["tutorial"]
+linkTitle: Azure
+title: Prepare an Azure subscription to run Giant Swarm workload clusters
+description: Learn how to set up an Azure subscription with appropriate Role definition and Service Principal for operating Giant Swarm workload clusters.
+menu:
+  main:
+    identifier: gettingstarted-cloudprovider-azure
+    parent: gettingstarted-cloudprovider
+weight: 20
 user_questions:
   - How do I prepare my Azure subscription for use with Giant Swarm?
   - What do I need to configure in Azure in order to run Giant Swarm clusters?
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
+last_review_date: 2021-01-01
 ---
 
 # Prepare an Azure subscription to run Giant Swarm workload clusters
@@ -122,9 +127,20 @@ az deployment create --name <deploymentName (unique by subscription)> \
 You will have to supply a general Delegated Resource Management [template file](https://raw.githubusercontent.com/giantswarm/azure-operator/master/docs/delegatedResourceManagement.json).
 
 The Delegated Resource Management template uses a [parameters file](https://raw.githubusercontent.com/giantswarm/azure-operator/master/docs/delegatedResourceManagement.parameters.json) to supply the needed variables for configuration.
-Please remember to change the `roleDefinitionId` in case you would like to use your custom role definition. Moreover ask your Solution Engineer so he can provide you the `GiantSwarmPrincipalID` and `GiantSwarmTenantID`
+Please remember to change the `roleDefinitionId` in case you would like to use your custom role definition. Moreover ask your Account Engineer so he can provide you the `GiantSwarmPrincipalID` and `GiantSwarmTenantID`
 
 This command should be run for all subscriptions that are used for Giant Swarm workload clusters as well as the management cluster that orchestrates it all.  
+
+## Accept legal terms for deeployment of Flatcar image
+
+Giant Swarm deploys [Flatcar](https://www.flatcar-linux.org/) image developed by Kinvolk from Azure Marketplace. In order to be able to run the image, it is required by Azure to accept the legal terms.
+Please run the following command prior to creating a cluster on a given subscription:
+
+```nohighlight
+az vm image terms accept --offer flatcar-container-linux-free --plan stable --publisher kinvolk
+```
+
+This acceptance should be performed once for all subscriptions that are used to run Giant Swarm workload clusters.
 
 ## Further reading
 

@@ -12,7 +12,8 @@ user_questions:
   - How does Giant Swarm use Management Clusters?
   - How are Management Clusters kept up to date?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-biscuit
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
+  - https://github.com/orgs/giantswarm/teams/team-rocket
 ---
 
 # Management clusters

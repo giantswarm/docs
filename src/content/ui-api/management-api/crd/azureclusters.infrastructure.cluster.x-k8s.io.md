@@ -1,15 +1,33 @@
 ---
-title: AzureCluster CRD schema reference
+title: AzureCluster CRD schema reference (group infrastructure.cluster.x-k8s.io)
 linkTitle: AzureCluster
-technical_name: azureclusters.infrastructure.cluster.x-k8s.io
 description: |
   AzureCluster is the Schema for the azureclusters API
 weight: 100
-source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.25.0
+crd:
+  name_camelcase: AzureCluster
+  name_plural: azureclusters
+  name_singular: azurecluster
+  group: infrastructure.cluster.x-k8s.io
+  technical_name: azureclusters.infrastructure.cluster.x-k8s.io
+  scope: Namespaced
+  source_repository: https://github.com/giantswarm/apiextensions
+  source_repository_ref: v3.39.0
+  versions:
+    - v1alpha2
+    - v1alpha3
+  topics:
+    - workloadcluster
+  providers:
+    - azure
 layout: crd
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 aliases:
   - /reference/cp-k8s-api/azureclusters.infrastructure.cluster.x-k8s.io/
+technical_name: azureclusters.infrastructure.cluster.x-k8s.io
+source_repository: https://github.com/giantswarm/apiextensions
+source_repository_ref: v3.39.0
 ---
 
 # AzureCluster
@@ -2718,6 +2736,27 @@ spec:
 </div>
 
 
+
+
+<h3 id="annotation-details-v1alpha3">Annotations</h3>
+
+
+<div class="annotation">
+<div class="annotation-header">
+<h3 class="annotation-path" id="v1alpha3-giantswarm.io/workers-egress-external-public-ip">giantswarm.io/workers-egress-external-public-ip</h3>
+</div>
+<div class="annotation-body">
+<div class="annotation-meta">
+<span class="annotation-release">Since 15.1.0</span>
+</div>
+
+<div class="annotation-description">
+<p>This annotation allows reusing an existing public IP address for egress traffic of worker nodes. See <a href="https://docs.giantswarm.io/advanced/egress-ip-address-azure/">Setting an egress IP address on Azure</a></p>
+
+</div>
+
+</div>
+</div>
 
 
 

@@ -1,15 +1,31 @@
 ---
-title: Release CRD schema reference
+title: Release CRD schema reference (group release.giantswarm.io)
 linkTitle: Release
-technical_name: releases.release.giantswarm.io
 description: |
   Release is a Kubernetes resource (CR) representing a Giant Swarm workload cluster release.
 weight: 100
-source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.25.0
+crd:
+  name_camelcase: Release
+  name_plural: releases
+  name_singular: release
+  group: release.giantswarm.io
+  technical_name: releases.release.giantswarm.io
+  scope: Cluster
+  source_repository: https://github.com/giantswarm/release-operator
+  source_repository_ref: v3.0.1
+  versions:
+    - v1alpha1
+  topics:
+    - managementcluster
+    - workloadcluster
 layout: crd
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 aliases:
   - /reference/cp-k8s-api/releases.release.giantswarm.io/
+technical_name: releases.release.giantswarm.io
+source_repository: https://github.com/giantswarm/release-operator
+source_repository_ref: v3.0.1
 ---
 
 # Release
@@ -44,8 +60,8 @@ apiVersion: release.giantswarm.io/v1alpha1
 kind: Release
 metadata:
   annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/reference/cp-k8s-api/releases.release.giantswarm.io/
-    giantswarm.io/release-notes: https://github.com/giantswarm/releases/tree/master/aws/v11.2.0
+    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/releases.release.giantswarm.io/
+    giantswarm.io/release-notes: https://docs.giantswarm.io/changes/workload-cluster-releases-aws/releases/aws-v11.2.0/
   creationTimestamp: null
   name: v11.2.0
 spec:
@@ -417,6 +433,24 @@ spec:
 
 <div class="property-description">
 <p>EndOfLifeDate is the date and time when support for a workload cluster using this release ends. This may not be set at the time of release creation and can be specififed later.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.notice">.spec.notice</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Notice outlines anything worth being aware of in this release.</p>
 
 </div>
 

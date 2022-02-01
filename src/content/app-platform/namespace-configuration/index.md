@@ -2,12 +2,13 @@
 linkTitle: Target namespace metadata
 title: Configure an app's target namespace via its App CR
 description: How to configure metadata for the target namespace of an app via its app CR. So it can be used by other tools such as service meshes.
-weight: 40
+weight: 60
 menu:
   main:
     parent: app-platform
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-batman
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+last_review_date: 2021-07-07
 user_questions:
   - How can I label an app CR's target namespace?
   - How can I annotate an app CR's target namespace?

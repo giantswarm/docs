@@ -3,15 +3,17 @@ linkTitle: App platform
 title: The Giant Swarm App Platform in the web interface
 description: What the Giant Swarm App Platform looks like on our web interface and how to use it.
 last_review_date: 2020-04-22
-weight: 30
+weight: 40
 menu:
   main:
     parent: uiapi-web
 aliases:
   - /reference/web-interface/app-catalog/
   - /reference/web-interface/app-platform/
+user_questions:
+  - How can I browse and install apps via the web interface?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-batman
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
 
 # The Giant Swarm App Platform in the web interface
@@ -52,7 +54,7 @@ will be monitored and managed by us.
 Once you know what app you'd like to install, click on that app, and then on
 "Configure & Install"
 
-![A screenshot of our web interface, showing the detail page for a specific app, in this case grafana](app-detail-page.png)
+![A screenshot of our web interface, showing the detail page for a specific app, in this case Grafana](app-detail-page.png)
 
 That'll bring up a modal where you can choose what cluster you want to install
 the app on, the version you want install, as well as some further steps allowing you to configure the app.

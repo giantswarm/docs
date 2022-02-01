@@ -1,15 +1,32 @@
 ---
-title: AzureMachinePool CRD schema reference
+title: AzureMachinePool CRD schema reference (group exp.infrastructure.cluster.x-k8s.io)
 linkTitle: AzureMachinePool
-technical_name: azuremachinepools.exp.infrastructure.cluster.x-k8s.io
 description: |
   AzureMachinePool is the Schema for the azuremachinepools API
 weight: 100
-source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.25.0
+crd:
+  name_camelcase: AzureMachinePool
+  name_plural: azuremachinepools
+  name_singular: azuremachinepool
+  group: exp.infrastructure.cluster.x-k8s.io
+  technical_name: azuremachinepools.exp.infrastructure.cluster.x-k8s.io
+  scope: Namespaced
+  source_repository: https://github.com/giantswarm/apiextensions
+  source_repository_ref: v3.39.0
+  versions:
+    - v1alpha3
+  topics:
+    - workloadcluster
+  providers:
+    - azure
 layout: crd
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 aliases:
   - /reference/cp-k8s-api/azuremachinepools.exp.infrastructure.cluster.x-k8s.io/
+technical_name: azuremachinepools.exp.infrastructure.cluster.x-k8s.io
+source_repository: https://github.com/giantswarm/apiextensions
+source_repository_ref: v3.39.0
 ---
 
 # AzureMachinePool

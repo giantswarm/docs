@@ -1,7 +1,7 @@
 ---
-linkTitle: Spot instances
-title: Spot instances and spot VMs
-description: Spot instances (also called low-priority VMs on Azure) are a simple way to save on compute cost, if your use case permits it. Here you find documentation for using them with Giant Swarm Kubernetes clusters, both on AWS and Microsoft Azure.
+linkTitle: Spot instances/VMs
+title: Spot instances and spot virtual machines
+description: AWS spot instances and Azure spot virtual machines are a simple way to save on compute cost, if your use case permits it. Here you find documentation for using them with Giant Swarm Kubernetes clusters.
 weight: 40
 menu:
   main:
@@ -9,6 +9,10 @@ menu:
     parent: advanced
 aliases:
   - /basics/spot-instances/
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-celestial
+  - https://github.com/orgs/giantswarm/teams/team-firecracker
+last_review_date: 2021-01-01
 ---
 
 {{< platform_support_table aws="ga=v11.2.0" azure="ga=v14.1.0" >}}

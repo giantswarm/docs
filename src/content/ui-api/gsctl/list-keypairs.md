@@ -9,12 +9,15 @@ menu:
 aliases:
   - /reference/gsctl/list-keypairs/
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-ux
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I show the valid key pairs for a cluster using gsctl?
+last_review_date: 2021-01-01
 ---
 
 # `gsctl list keypairs`
+
+{{% gsctl_deprecation_disclaimer %}}
 
 The `gsctl list keypairs` command lists information on key pairs for a cluster. This is useful to
 understand which key pairs have been issued when and, if details are given,
