@@ -22,10 +22,6 @@ Flatcar version `3033.2.0` and above uses Control Groups v2 by default, which me
 
 To ensure a smooth transition, in case our customers need time to modify applications to make them compatible with Control Groups v2, we introduced a mechanism that will allow using Control Groups v1 on specific node pools.
 
-In order to apply the changes, roll of the nodes is required.
-
-We recommend set the proper the annotation on the node pool before updating to the release `17.0.0`.
-
 ## Configure node pool with cgroup v1
 
 ### AWS
@@ -58,6 +54,10 @@ Or you can use `kubectl` command to anotate the CR.
 ```yaml
 kubectl annotate machinedeployments.cluster.x-k8s.io u6gw3 node.giantswarm.io/cgroupv1=""
 ```
+
+In order to apply the changes, roll of the nodes is required.
+
+We recommend set the proper the annotation on the node pool before updating to the release `17.0.0`.
 
 If you want to disable the feature you must remove the annotation from the [`MachineDeployment`]({{< relref "/ui-api/management-api/crd/machinedeployments.cluster.x-k8s.io.md" >}}) custom resource.
 
@@ -93,5 +93,9 @@ Or you can use `kubectl` command to anotate the CR.
 ```yaml
 kubectl annotate machinepools.exp.cluster.x-k8s.io f8ak0 node.giantswarm.io/cgroupv1=""
 ```
+
+In order to apply the changes, roll of the nodes is required.
+
+We recommend set the proper the annotation on the node pool before updating to the release `17.0.0`.
 
 If you want to disable the feature you must remove the annotation from the [`MachinePool`]({{< relref "/ui-api/management-api/crd/machinepools.exp.cluster.x-k8s.io.md" >}}) custom resource.
