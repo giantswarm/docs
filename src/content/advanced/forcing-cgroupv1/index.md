@@ -9,14 +9,16 @@ menu:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
+
 # Forcing cgroups v1
+
 {{< platform_support_table aws="beta=v17.0.0" azure="beta=v17.0.0" >}}
 
 # Introduction
+
 Flatcar version `3033.2.0` and above is by default using a Control Groups v2 which means all nodes using this version of Flatcar will be by default using cgroups v2 for all kubernetes containers. 
 
 To ensure smooth transition and to give more time for migration, We introduced a configration, that will allow downgrading to legacy cgroup v1 for a specific node pool.
-
 
 ## Configure node pool with cgroup v1
 
