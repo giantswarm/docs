@@ -20,7 +20,7 @@ owner:
 
 Flatcar version `3033.2.0` and above uses Control Groups v2 by default, which means all nodes will be using cgroups v2 for all kubernetes containers, as opposed to Control Groups v1 used on previous versions.
 
-To ensure smooth transition and to give more time for migration, We introduced a configration, that will allow downgrading to legacy cgroup v1 for a specific node pool.
+To ensure a smooth transition, in case our customers need time to modify applications to make them compatible with Control Groups v2, we introduced a mechanism that will allow using Control Groups v1 on specific node pools.
 
 ## Configure node pool with cgroup v1
 
