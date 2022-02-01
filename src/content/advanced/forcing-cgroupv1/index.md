@@ -1,7 +1,7 @@
 ---
-linkTitle: Forcing nodes to use legacy Control Groups v1
+linkTitle: force nodes cgroup v1
 title: Forcing nodes to use legacy Control Groups v1
-description: Thsi artical describes how to force nodes to use legacy  Control Groups v1 instead the default v2.
+description: This article describes how to force nodes to use legacy Control Groups v1 instead the default v2.
 weight: 60
 menu:
   main:
@@ -13,7 +13,7 @@ owner:
 {{< platform_support_table aws="beta=v17.0.0" azure="beta=v17.0.0" >}}
 
 # Introduction
-Flatcar version `3033.2.0` and above is by default using a Control Groups v2 which means all nodes using this version of Flatcar will be be default using cgroups v2 for all kubernetes containers. 
+Flatcar version `3033.2.0` and above is by default using a Control Groups v2 which means all nodes using this version of Flatcar will be by default using cgroups v2 for all kubernetes containers. 
 
 To ensure smooth transition and to give more time for migration, We introduced a configration, that will allow downgrading to legacy cgroup v1 for a specific node pool.
 
