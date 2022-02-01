@@ -13,10 +13,13 @@ user_questions:
   - How to gain access to a cluster using gsctl?
   - How can I configure kubie?
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-ux
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
+last_review_date: 2021-01-01
 ---
 
 # `gsctl create kubeconfig`
+
+{{% gsctl_deprecation_disclaimer %}}
 
 The `gsctl create kubeconfig` command is used to configure [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/) for access to
 a cluster in your Giant Swarm installation. It can operate in multiple modes:
@@ -224,6 +227,7 @@ Passing flag `--output` with value `json` to `gsctl create kubeconfig` changes t
 
 ## Related
 
+- [Creating workload cluster key pairs via the Management API]({{< relref "/ui-api/management-api/wc-key-pairs" >}})
 - [`gsctl create keypair`]({{< relref "/ui-api/gsctl/create-keypair" >}}): Create and download a key pair
 - [kubectl reference](https://kubernetes.io/docs/reference/kubectl/overview/)
 - [API: Create key pair](/api/#operation/addKeyPair)

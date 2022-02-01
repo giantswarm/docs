@@ -8,8 +8,11 @@ menu:
     parent: app-platform-apps
 aliases:
   - /guides/deploying-istio/
+user_questions:
+  - How can I deploy Istio in my clusters?
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
+last_review_date: 2021-01-01
 ---
 
 # How to deploy Istio in your Cluster

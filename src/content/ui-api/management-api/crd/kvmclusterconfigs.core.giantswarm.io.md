@@ -1,15 +1,32 @@
 ---
-title: KVMClusterConfig CRD schema reference
+title: KVMClusterConfig CRD schema reference (group core.giantswarm.io)
 linkTitle: KVMClusterConfig
-technical_name: kvmclusterconfigs.core.giantswarm.io
 description: |
   Custom resource definition (CRD) schema reference page for the KVMClusterConfig resource (kvmclusterconfigs.core.giantswarm.io), as part of the Giant Swarm Management API documentation.
 weight: 100
-source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.25.0
+crd:
+  name_camelcase: KVMClusterConfig
+  name_plural: kvmclusterconfigs
+  name_singular: kvmclusterconfig
+  group: core.giantswarm.io
+  technical_name: kvmclusterconfigs.core.giantswarm.io
+  scope: Namespaced
+  source_repository: https://github.com/giantswarm/apiextensions
+  source_repository_ref: v3.39.0
+  versions:
+    - v1alpha1
+  topics:
+    - workloadcluster
+  providers:
+    - kvm
 layout: crd
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-rocket
 aliases:
   - /reference/cp-k8s-api/kvmclusterconfigs.core.giantswarm.io/
+technical_name: kvmclusterconfigs.core.giantswarm.io
+source_repository: https://github.com/giantswarm/apiextensions
+source_repository_ref: v3.39.0
 ---
 
 # KVMClusterConfig
@@ -386,7 +403,7 @@ aliases:
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">object</span>
-<span class="property-required">Required</span>
+
 </div>
 
 </div>

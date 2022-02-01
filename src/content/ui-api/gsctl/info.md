@@ -9,7 +9,7 @@ menu:
 aliases:
   - /reference/gsctl/info/
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-ux
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I find out my gsctl version?
   - How can I find out my current API endpoint used in gsctl?
@@ -21,9 +21,12 @@ user_questions:
   - How can I find the maximum size of a node pool using gsctl?
   - How can I find the maximum size of a cluster using gsctl?
   - How can I print my current API token using gsctl?
+last_review_date: 2021-01-01
 ---
 
 # `gsctl info`
+
+{{% gsctl_deprecation_disclaimer %}}
 
 The `gsctl info` command lets you display information on your current status
 your configuration, and on the Giant Swarm installation in use.

@@ -9,14 +9,17 @@ menu:
 aliases:
   - /reference/gsctl/delete-cluster/
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-ux
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I delete a cluster using gsctl?
+last_review_date: 2021-01-01
 ---
 
-# Delete a Cluster using `gsctl`
+# Delete a cluster using `gsctl`
 
-Deleting a cluster means that all workloads running on the cluster are terminated. Both master and worker nodes are deprovisioned. All data stored on the nodes will be deleted.
+{{% gsctl_deprecation_disclaimer %}}
+
+Deleting a cluster means that all workloads running on the cluster are terminated. Both control plane and worker nodes are deprovisioned. All data stored on the nodes will be deleted.
 
 __Caution:__ There is no way to undo the deletion of a cluster. All data stored on the nodes will be lost.
 

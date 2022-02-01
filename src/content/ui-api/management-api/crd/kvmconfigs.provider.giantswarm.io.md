@@ -1,15 +1,32 @@
 ---
-title: KVMConfig CRD schema reference
+title: KVMConfig CRD schema reference (group provider.giantswarm.io)
 linkTitle: KVMConfig
-technical_name: kvmconfigs.provider.giantswarm.io
 description: |
   Custom resource definition (CRD) schema reference page for the KVMConfig resource (kvmconfigs.provider.giantswarm.io), as part of the Giant Swarm Management API documentation.
 weight: 100
-source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.25.0
+crd:
+  name_camelcase: KVMConfig
+  name_plural: kvmconfigs
+  name_singular: kvmconfig
+  group: provider.giantswarm.io
+  technical_name: kvmconfigs.provider.giantswarm.io
+  scope: Namespaced
+  source_repository: https://github.com/giantswarm/apiextensions
+  source_repository_ref: v3.39.0
+  versions:
+    - v1alpha1
+  topics:
+    - workloadcluster
+  providers:
+    - kvm
 layout: crd
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-rocket
 aliases:
   - /reference/cp-k8s-api/kvmconfigs.provider.giantswarm.io/
+technical_name: kvmconfigs.provider.giantswarm.io
+source_repository: https://github.com/giantswarm/apiextensions
+source_repository_ref: v3.39.0
 ---
 
 # KVMConfig
@@ -1038,6 +1055,58 @@ aliases:
 
 <div class="property depth-4">
 <div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.kvm.masters[*].hostVolumes">.spec.kvm.masters[*].hostVolumes</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.kvm.masters[*].hostVolumes[*]">.spec.kvm.masters[*].hostVolumes[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-6">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.kvm.masters[*].hostVolumes[*].hostPath">.spec.kvm.masters[*].hostVolumes[*].hostPath</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+</div>
+</div>
+
+<div class="property depth-6">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.kvm.masters[*].hostVolumes[*].mountTag">.spec.kvm.masters[*].hostVolumes[*].mountTag</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
 <h3 class="property-path" id="v1alpha1-.spec.kvm.masters[*].memory">.spec.kvm.masters[*].memory</h3>
 </div>
 <div class="property-body">
@@ -1261,6 +1330,58 @@ aliases:
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">integer</span>
+<span class="property-required">Required</span>
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.kvm.workers[*].hostVolumes">.spec.kvm.workers[*].hostVolumes</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.kvm.workers[*].hostVolumes[*]">.spec.kvm.workers[*].hostVolumes[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-6">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.kvm.workers[*].hostVolumes[*].hostPath">.spec.kvm.workers[*].hostVolumes[*].hostPath</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+</div>
+</div>
+
+<div class="property depth-6">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.kvm.workers[*].hostVolumes[*].mountTag">.spec.kvm.workers[*].hostVolumes[*].mountTag</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
 <span class="property-required">Required</span>
 </div>
 

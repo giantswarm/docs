@@ -9,12 +9,15 @@ menu:
 aliases:
   - /reference/gsctl/upgrade-cluster/
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-ux
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I upgrade a workload cluster using gsctl?
+last_review_date: 2021-01-01
 ---
 
 # `gsctl upgrade cluster`
+
+{{% gsctl_deprecation_disclaimer %}}
 
 In order to upgrade a cluster to the next suitable version, use this command:
 

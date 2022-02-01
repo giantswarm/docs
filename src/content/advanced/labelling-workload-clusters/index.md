@@ -6,11 +6,14 @@ weight: 110
 menu:
   main:
     parent: advanced
+user_questions:
+  - How can I assign metadata to cluster?
 aliases:
   - /guides/tenant-cluster-labelling/
   - /guides/workload-cluster-labelling/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-ludacris
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
+last_review_date: 2021-01-01
 ---
 
 # Labelling workload clusters
@@ -61,7 +64,7 @@ The operation accepts label selectors in the same way that `kubectl get -l` does
 
 The labels of a workload cluster can be modified by issuing a [setClusterLabels](/api/#operation/setClusterLabels) request to the API.
 Keys and labels should adhere to [Kubernetes labels syntax and character set](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#syntax-and-character-set).
-Label changes should be written as a [JSON Merge Patch, RFC 7386](https://tools.ietf.org/html/rfc7386).
+Label changes should be written as a [JSON Merge Patch, RFC 7386](https://datatracker.ietf.org/doc/html/rfc7386).
 Changes to labels with keys containing `giantswarm.io` is forbidden, changes to label `release.giantswarm.io/version` will be validated against available workload cluster releases.
 
 Differing from `gsctl`, listing workload cluster labels with the API will show management labels required for operation.
@@ -101,7 +104,7 @@ The newly created cluster will be managed by your team in your upstate office an
 
 You've decided on using label keys `my-org/team` and `my-org/environment` to specify the clusters designation.
 
-```json
+```nohighlight
 PUT /v5/clusters/7g4di/labels/
 {
   "labels": {
@@ -113,7 +116,7 @@ PUT /v5/clusters/7g4di/labels/
 
 Another cluster from earlier is also managed by your team in the upstate office but is being used for production.
 
-```json
+```nohighlight
 PUT /v5/clusters/g8s2o/labels/
 {
   "labels": {
@@ -125,7 +128,7 @@ PUT /v5/clusters/g8s2o/labels/
 
 From this point on it is possible to select the clusters by label values or label key existence.
 
-```json
+```nohighlight
 POST /v5/clusters/by_label/
 {
   "labels": "my-org/team=upstate"

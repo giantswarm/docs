@@ -1,15 +1,30 @@
 ---
-title: Chart CRD schema reference
+title: Chart CRD schema reference (group application.giantswarm.io)
 linkTitle: Chart
-technical_name: charts.application.giantswarm.io
 description: |
   Chart represents a Helm chart to be deployed as a Helm release. It is reconciled by chart-operator.
 weight: 100
-source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.25.0
+crd:
+  name_camelcase: Chart
+  name_plural: charts
+  name_singular: chart
+  group: application.giantswarm.io
+  technical_name: charts.application.giantswarm.io
+  scope: Namespaced
+  source_repository: https://github.com/giantswarm/apiextensions-application
+  source_repository_ref: v0.3.0
+  versions:
+    - v1alpha1
+  topics:
+    - apps
 layout: crd
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 aliases:
   - /reference/cp-k8s-api/charts.application.giantswarm.io/
+technical_name: charts.application.giantswarm.io
+source_repository: https://github.com/giantswarm/apiextensions-application
+source_repository_ref: v0.3.0
 ---
 
 # Chart

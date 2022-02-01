@@ -12,10 +12,13 @@ user_questions:
 aliases:
   - /advanced/spot-instances/aws/on-demand-fallback/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-firecracker
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
+last_review_date: 2021-01-01
 ---
 
 # Using on-demand instances as fall-back when spot instances are unavailable
+
+{{< platform_support_table aws="ga=v11.2.0" >}}
 
 As of workload cluster release v{{% first_aws_spotinstances_version %}} for AWS, node pools can use [spot instances]({{< relref "/advanced/spot-instances/aws/overview  " >}}). Users can select for each node pool which percentage of nodes should be covered by spot instances and by on-demand instances respectively. And users can define a base amount of on-demand instances that will be used, to ensure at least a certain amount of worker nodes are available at any time.
 
@@ -90,7 +93,7 @@ Now we have to tell cluster-autoscaler to actually use the `priority` expander, 
 
 To switch the expander, we provide a user ConfigMap as described in our guide on [advanced cluster autoscaler configuration]({{< relref "/advanced/cluster-autoscaler" >}}).
 
-In contrast to the previous step, this is not done in the workload cluster, but in the management cluster instead. So this step requires write access to the [Management API]({{< relref "/ui-api/management-api" >}}). Please contact your Giant Swarm Solution Engineer in case you need assistance.
+In contrast to the previous step, this is not done in the workload cluster, but in the management cluster instead. So this step requires write access to the [Management API]({{< relref "/ui-api/management-api" >}}). Please contact your Giant Swarm Account Engineer in case you need assistance.
 
 The user ConfigMap has to reside in the namespace named after the (workload) cluster ID, so make sure to adapt `.metadata.labels.namespace` to your cluster ID.
 

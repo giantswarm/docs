@@ -7,11 +7,13 @@ menu:
   main:
     parent: security
     identifier: security-overview
-last_review_date: 2020-05-18
+last_review_date: 2021-11-23
+user_questions:
+  - In which was does Giant Swarm ensure system security?
 aliases:
   - /basics/security/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-ludacris
+  - https://github.com/orgs/giantswarm/teams/sig-security
 ---
 
 # Security
@@ -52,7 +54,7 @@ This section applies to Azure-based installations only.
 
 #### Local storage {#azure-local-storage}
 
-kubelet data is stored under `/var/lib/kubelet`, Docker images under `/var/lib/docker` and for master nodes etcd data is stored under `/var/lib/etcd`. On Azure, `/var/lib/kubelet`, `/var/lib/docker` and `/var/lib/etcd` are Azure Managed disks (Premium SSD). Azure managed disk automatically encrypts data by default with platform-managed keys (managed by Microsoft). See more details in [Azure managed disk documentation](https://docs.microsoft.com/en-us/azure/virtual-machines/disk-encryption).
+kubelet data is stored under `/var/lib/kubelet`, Docker images under `/var/lib/docker` and for control plane nodes, etcd data is stored under `/var/lib/etcd`. On Azure, `/var/lib/kubelet`, `/var/lib/docker` and `/var/lib/etcd` are Azure Managed disks (Premium SSD). Azure managed disk automatically encrypts data by default with platform-managed keys (managed by Microsoft). See more details in [Azure managed disk documentation](https://docs.microsoft.com/en-us/azure/virtual-machines/disk-encryption).
 
 #### Persistent storage {#azure-persistent-storage}
 
@@ -87,7 +89,7 @@ Giant Swarm customers regularly run penetration tests on their applications, run
 
 #### Compliance audits
 
-[AWS](https://aws.amazon.com/compliance/soc-faqs/) and [Azure](https://docs.microsoft.com/en-us/microsoft-365/compliance/offering-soc?view=o365-worldwide) are compliant with SOC 1,2,3 as well as PCI DSS, GDPR and other compliance frameworks. See the provider pages for details.
+[AWS](https://aws.amazon.com/compliance/soc-faqs/) and [Azure](https://docs.microsoft.com/en-us/compliance/regulatory/offering-home) are compliant with SOC 1, 2, and 3 as well as PCI DSS, GDPR and other compliance frameworks. See the provider pages for details.
 
 ### Kubernetes security
 
@@ -118,3 +120,9 @@ We offer SLAs for providing updates to our managed components, thus ensuring our
 ## Vulnerability handling
 
 Please see our [dedicated responsible disclosure page](https://www.giantswarm.io/responsible-disclosure) to learn more or to report an issue.
+
+## Managed Security Tooling
+
+For additional detection, response, and enforcement capabilities within your cluster, Giant Swarm also offers a managed security stack. Details about policy enforcement, anomaly detection, and vulnerability scanning, among others, can be found [in the security stack documentation][security-stack-docs].
+
+[security-stack-docs]: {{< relref "app-platform/apps/security" >}}

@@ -1,27 +1,27 @@
 ---
 linkTitle: Multiple AZ
 title: Clusters over multiple availability zones
-description: Using multiple availability zones both for worker and for master nodes increases the resilience of the cluster. Here we explain some details regarding support on different cloud providers and releases, plus how to configure workloads to leverage multiple availability zones.
+description: Using multiple availability zones both for worker and control plane nodes increases the resilience of the cluster. Here we explain some details regarding support on different cloud providers and releases, plus how to configure workloads to leverage multiple availability zones.
 weight: 20
 menu:
   main:
     parent: advanced-highavailability
 last_review_date: 2021-02-01
 user_questions:
-- Does Giant Swarm support multiple availibilty zones (AZ)?
-- What are the benefits of using multiple availibilty zones (AZ)?
-- How do I know which availibility zone (AZ) my cluster nodes are running in?
+- Does Giant Swarm support multiple availability zones (AZ)?
+- What are the benefits of using multiple availability zones (AZ)?
+- How do I know which availability zone (AZ) my cluster nodes are running in?
 - Can I influence the scheduling of my pods?
-- How are availibility zones (AZ) selected?
-- Can I move standard volumes across availibility zones (AZ)?
-- What is the alternative to moving volumes across availibility zones (AZ)?
+- How are availability zones (AZ) selected?
+- Can I move standard volumes across availability zones (AZ)?
+- What is the alternative to moving volumes across availability zones (AZ)?
 - How do I ensure my pods and volumes are on the same nodes?
-- Can I spread worker nodes over availibility zones?
-- How do I create clusters in multiple availibility zones (AZ)?
+- Can I spread worker nodes over availability zones?
+- How do I create clusters in multiple availability zones (AZ)?
 aliases:
   - /basics/multiaz/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-celestial
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
 # Clusters over multiple availability zones
@@ -32,7 +32,7 @@ owner:
 
 With Giant Swarm on AWS and Azure you can easily launch clusters with worker nodes spread across multiple availability zones (AZ). This will lower the risk that your cluster will become unavailable due to an incident in a particular AWS or Azure data center.
 
-On AWS, starting with workload cluster release {{% first_aws_ha_masters_version %}}, master nodes of a cluster are spread over different availability zones by default, for high availability of the Kubernetes API. You can chose however to run only a single master node. Read [High availability Kubernetes masters]({{< relref "/advanced/high-availability/masters" >}}) for more information.
+On AWS, starting with workload cluster release {{% first_aws_ha_controlplane_version %}}, control plane nodes of a cluster are spread over different availability zones by default, for high availability of the Kubernetes API. You can choose to run only a single control plane node. Read [High-availability Kubernetes control plane]({{< relref "/advanced/high-availability/control-plane" >}}) for more information.
 
 ## What availability zones are good for {#benefits}
 
@@ -64,7 +64,7 @@ This enables use cases such as:
 
 - To make sure your pods and volumes end up on the same nodes, we recommend to specify `WaitForFirstConsumer` as `volumeBindingMode` in your storage classes. Your clusters come with a default storage class that contains this setting already. See the [Volume Binding Mode](https://kubernetes.io/docs/concepts/storage/storage-classes/#volume-binding-mode) section in the Kubernetes storage documentation for more information.
 
-Spreading worker nodes over multiple availability zones can be configured per [node pool]({{< relref "/advanced/node-pools" >}}) and independent of the choice of a single master node vs. using multiple master nodes (currently multiple master nodes are only supported on AWS).
+Spreading worker nodes over multiple availability zones can be configured per [node pool]({{< relref "/advanced/node-pools" >}}) and independent of the choice of a single control plane node vs. using multiple control plane nodes (currently multiple control plane nodes are only supported on AWS).
 
 ## Get started
 
@@ -78,7 +78,7 @@ When inspecting details of such a cluster, or using the [`gsctl show cluster`]({
 
 Where worker nodes are organized in node pools, the availability zone distribution must be configured when creating a node pool. This is supported both in the web UI as well as the CLI with the [`gsctl create nodepool`]({{< relref "/ui-api/gsctl/create-nodepool" >}}) command. For inspection, both the [`gsctl list nodepools`]({{< relref "/ui-api/gsctl/list-nodepools" >}}) and [`gsctl show nodepool`]({{< relref "/ui-api/gsctl/show-nodepool" >}}) commands provide AZ information.
 
-Also exclusively on AWS, for master nodes, the choice to use high availability (three master nodes, placed in one AZ each) is made on cluster creation. It is also possible to switch from a single master node to high availability after cluster creation, but not vice versa.
+Also exclusively on AWS, for control plane nodes, the choice to use high-availability (three control plane nodes, placed in one AZ each) is made on cluster creation. It is also possible to switch from a single control plane node to high availability after cluster creation, but not vice versa.
 
 ## Further reading
 

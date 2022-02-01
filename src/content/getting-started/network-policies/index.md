@@ -8,8 +8,11 @@ menu:
     parent: getting-started
 aliases:
   - /guides/limiting-pod-communication-with-network-policies/
+user_questions:
+  - How can I restrict a pod's network traffic?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-ludacris
+  - https://github.com/orgs/giantswarm/teams/sig-security
+last_review_date: 2021-12-14
 ---
 
 # Limiting Pod Communication with Network Policies
@@ -226,6 +229,34 @@ spec:
 The `allow-external` policy, described above, will allow any traffic (no matter if it's outside or inside your cluster) to the Pods on port 80.
 
 In this guide we discussed different use-cases of limiting Pod communication with network policies, based on our best practices.
+
+## Allowing DNS traffic from my pod
+
+Once you have a default deny egress policy, the DNS traffic is also blocked. When you want to allow egress traffic for a specific application then you will need to allow DNS traffic too. You can use a NetworkPolicy that targets just DNS like:
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-dns-for-my-app
+  podSelector:
+    matchLabels:
+      app: web
+  policyTypes:
+    - Egress
+  egress:
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          name: kube-system
+    ports:
+    - protocol: UDP
+      port: 53
+    - protocol: UDP
+      port: 1053
+```
+
+__Warning__: By default Giant Swarm clusters run CoreDNS listening on the port 1053 (due to security reasons). So you will need to include port `1053` on the list of ports.
 
 ## Further reading
 

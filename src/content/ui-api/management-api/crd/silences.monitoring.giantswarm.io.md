@@ -1,15 +1,30 @@
 ---
-title: Silence CRD schema reference
+title: Silence CRD schema reference (group monitoring.giantswarm.io)
 linkTitle: Silence
-technical_name: silences.monitoring.giantswarm.io
 description: |
   Silence represents schema for managed silences in Alertmanager. Reconciled by silence-operator.
 weight: 100
-source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.25.0
+crd:
+  name_camelcase: Silence
+  name_plural: silences
+  name_singular: silence
+  group: monitoring.giantswarm.io
+  technical_name: silences.monitoring.giantswarm.io
+  scope: Cluster
+  source_repository: https://github.com/giantswarm/silence-operator
+  source_repository_ref: v0.4.0
+  versions:
+    - v1alpha1
+  topics:
+    - managementcluster
 layout: crd
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-atlas
 aliases:
   - /reference/cp-k8s-api/silences.monitoring.giantswarm.io/
+technical_name: silences.monitoring.giantswarm.io
+source_repository: https://github.com/giantswarm/silence-operator
+source_repository_ref: v0.4.0
 ---
 
 # Silence
@@ -123,6 +138,19 @@ aliases:
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">object</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.matchers[*].isEqual">.spec.matchers[*].isEqual</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
 
 </div>
 

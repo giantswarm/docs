@@ -9,12 +9,15 @@ menu:
 aliases:
   - /reference/gsctl/select-endpoint/
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-ux
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I select an API endpoint for use with gsctl?
+last_review_date: 2021-01-01
 ---
 
 # `gsctl select endpoint`
+
+{{% gsctl_deprecation_disclaimer %}}
 
 The `gsctl select endpoint` command selects a Giant Swarm REST API endpoint for
 usage in subsequent command executions. This defines which endpoint you use,

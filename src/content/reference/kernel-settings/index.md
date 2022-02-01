@@ -1,7 +1,7 @@
 ---
 linkTitle: Kernel settings
 title: Kernel settings
-description: Complete list of the kernel settings we apply to all cluster nodes, be it master or worker.
+description: Complete list of the kernel settings we apply to all cluster nodes, be it control plane or worker.
 weight: 10
 menu:
   main:
@@ -9,7 +9,9 @@ menu:
 user_questions:
   - How is the Linux kernel of cluster nodes configured?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-ludacris
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
+  - https://github.com/orgs/giantswarm/teams/team-rocket
+last_review_date: 2021-01-01
 ---
 
 # Kernel settings

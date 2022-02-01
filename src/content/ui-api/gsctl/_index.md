@@ -2,12 +2,13 @@
 linkTitle: gsctl
 title: gsctl CLI reference
 description: Documentation on gsctl, the Giant Swarm command line utility to create and delete clusters, create key pairs and more.
-weight: 20
+weight: 60
 menu:
   main:
     identifier: uiapi-gsctl
     parent: ui-api
-# TODO: remove "layout: single" and let the page be rendered by a specific section template.
+# Enforce the single page layout here instead of section template,
+# to avoid automatic listing of all sub pages.
 layout: single
 aliases:
   - /reference/gsctl/
@@ -20,12 +21,15 @@ user_questions:
 - Are there known bugs and limitations for gsctl?
 - What are the command line flags of gsctl?
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-ux
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
+last_review_date: 2021-01-01
 ---
 
 # gsctl CLI reference
 
 gsctl is the command line utility to manage your Giant Swarm clusters.
+
+{{% gsctl_deprecation_disclaimer %}}
 
 ## Commands {#commands}
 
@@ -51,7 +55,7 @@ Follow the links below for a detailed documentation, where available. You can al
 | `login`                               | [Sign in as a user](login/)
 | `logout`                              | Sign out
 | `ping`                                | Check API connection
-| `scale cluster`                       | [Add or remove worker nodes of a cluster](scale-cluster/)
+| `scale cluster`                       | [Add or remove worker nodes of a KVM cluster](scale-cluster/)
 | `select endpoint`                     | [Select an endpoint](select-endpoint/)
 | `show cluster`                        | [Show cluster details](show-cluster/)
 | `show nodepool`                       | [Show node pool details](show-nodepool/)
@@ -71,56 +75,68 @@ For finding out which version of `gsctl` you currently have installed, and other
 The current `gsctl` version is **{{% gsctl_version %}}**. Find details in the [release notes](https://github.com/giantswarm/gsctl/releases/tag/{{% gsctl_version %}}).
 <!-- markdownlint-enable no-bare-urls -->
 
-<ul class="nav nav-tabs">
-  <li role="presentation" class="active"><a href="#install-mac" data-toggle="tab">Mac OS</a></li>
-  <li role="presentation"><a href="#install-linux" data-toggle="tab">Linux</a></li>
-  <li role="presentation"><a href="#install-win" data-toggle="tab">Windows</a></li>
-</ul>
+{{< tabs >}}
+{{< tab title="macOS">}}
 
-<div class="tab-content clearfix">
-<div class="tab-pane active" id="install-mac">
+Homebrew provides the most convenient way to install `gsctl` and keep it up to date. To install, use this command:
 
-  <p>Homebrew provides the most convenient way to install <code>gsctl</code> and keep it up to date. To install, use this command:</p>
+```nohighlight
+brew tap giantswarm/giantswarm
+brew install gsctl
+```
 
-  <pre><code class="language-nohighlight">brew tap giantswarm/giantswarm
-brew install gsctl</code></pre>
+For updating:
 
-  <p>For updating:</p>
+```nohighlight
+brew upgrade gsctl
+```
 
-  <pre><code class="language-nohighlight">brew upgrade gsctl</code></pre>
+To install without homebrew, download the latest release [from GitHub](https://github.com/giantswarm/gsctl/releases), unpack the binary and move it to a location covered by your `PATH` environment variable.
 
-  <p>To install without homebrew, download the latest release <a href="https://github.com/giantswarm/gsctl/releases">from GitHub</a>, unpack the binary and move it to a location covered by your `PATH` environment variable.</p>
-</div>
-<div class="tab-pane" id="install-linux">
+{{< /tab >}}
+{{< tab title="Linux">}}
 
-  <h3>Arch Linux</h3>
+<!-- markdownlint-disable no-emphasis-as-heading -->
 
-  <p><code>gsctl</code> can be installed using an AUR helper, such as <code>yay</code> or <code>pacaur</code>:
+**Arch Linux**
 
-  <pre><code class="language-nohighlight">yay -S gsctl-bin</code></pre>
+`gsctl` can be installed using an AUR helper, such as `yay` or `pacaur`:
 
-  <h3>Other Distributions</h3>
+```nohighlight
+yay -S gsctl-bin
+```
 
-  <p>Download the latest release <a href="https://github.com/giantswarm/gsctl/releases" target="_blank" rel="noreferrer noopener">from GitHub</a>, unpack the binary and move it to a location covered by your `PATH` environment variable.</p>
+**Other distributions**
 
-</div>
-<div class="tab-pane" id="install-win">
+Download the latest release [from GitHub](https://github.com/giantswarm/gsctl/releases), unpack the binary and move it to a location covered by your `PATH` environment variable.
 
-  <p><a href="https://scoop.sh/" target="_blank" rel="noreferrer noopener">scoop</a> enables convenient installs and updates for Windows PowerShell users. Before you can install <code>gsctl</code> for the first time, execute this:</p>
+<!-- markdownlint-enable no-emphasis-as-heading -->
 
-  <pre><code class="language-nohighlight">scoop bucket add giantswarm https://github.com/giantswarm/scoop-bucket.git</code></pre>
+{{< /tab >}}
+{{< tab title="Windows">}}
 
-  <p>To install:</p>
+[scoop](https://scoop.sh/) enables convenient installs and updates for Windows PowerShell users. Before you can install `gsctl` for the first time, execute this:
 
-  <pre><code class="language-nohighlight">scoop install gsctl</code></pre>
+```nohighlight
+scoop bucket add giantswarm https://github.com/giantswarm/scoop-bucket.git
+```
 
-  <p>To update:</p>
+To install:
 
-  <pre><code class="language-nohighlight">scoop update gsctl</code></pre>
+```nohighlight
+scoop install gsctl
+```
 
-  <p>To install without scoop, download the latest release <a href="https://github.com/giantswarm/gsctl/releases" target="_blank" rel="noreferrer noopener">from GitHub</a>, unpack the binary and move it to a location covered by your `PATH` environment variable.</p>
-</div>
-</div>
+To update:
+
+```nohighlight
+scoop update gsctl
+```
+
+To install without scoop, download the latest release [from GitHub](https://github.com/giantswarm/gsctl/releases), unpack the binary and move it to a location covered by your `PATH` environment variable.
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Configuration {#configuration}
 
@@ -135,7 +151,7 @@ The following environment variables can be used to affect some behavior:
 - `GSCTL_CAPATH`: Similar to `GSCTL_CAFILE`, but `GSCTL_CAPATH` is expected to point to a directory containing one or more PEM files.
 - `GSCTL_DISABLE_COLORS`: When this variable is set to any non-empty string, all terminal output will be monochrome.
 - `GSCTL_DISABLE_CMDLINE_TRACKING`: When this variable is set to any non-empty string, command lines won't be submitted to the API. Otherwise, command lines are submitted to learn about the tool's usage and find ways to improve.
-- `HTTP_PROXY`, `HTTPS_PROXY` and `NO_PROXY` can be used to define proxy server usage as detailed in the [Go net/http ProxyFromEnvironment docs](https://golang.org/pkg/net/http/#ProxyFromEnvironment).
+- `HTTP_PROXY`, `HTTPS_PROXY` and `NO_PROXY` can be used to define proxy server usage as detailed in the [Go net/http ProxyFromEnvironment docs](https://pkg.go.dev/net/http#ProxyFromEnvironment).
 
 In addition, [global command-line options](global-options/) are available.
 

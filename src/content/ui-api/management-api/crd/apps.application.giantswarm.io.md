@@ -1,15 +1,30 @@
 ---
-title: App CRD schema reference
+title: App CRD schema reference (group application.giantswarm.io)
 linkTitle: App
-technical_name: apps.application.giantswarm.io
 description: |
   App represents a managed app which a user intended to install. It is reconciled by app-operator.
 weight: 100
-source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.25.0
+crd:
+  name_camelcase: App
+  name_plural: apps
+  name_singular: app
+  group: application.giantswarm.io
+  technical_name: apps.application.giantswarm.io
+  scope: Namespaced
+  source_repository: https://github.com/giantswarm/apiextensions-application
+  source_repository_ref: v0.3.0
+  versions:
+    - v1alpha1
+  topics:
+    - apps
 layout: crd
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 aliases:
   - /reference/cp-k8s-api/apps.application.giantswarm.io/
+technical_name: apps.application.giantswarm.io
+source_repository: https://github.com/giantswarm/apiextensions-application
+source_repository_ref: v0.3.0
 ---
 
 # App
@@ -44,12 +59,11 @@ apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
   creationTimestamp: null
-  labels:
-    app-operator.giantswarm.io/version: 1.0.0
   name: prometheus
   namespace: default
 spec:
   catalog: my-playground-catalog
+  catalogNamespace: giantswarm
   config:
     configMap:
       name: f2def-cluster-values
@@ -159,6 +173,24 @@ spec:
 
 <div class="property-description">
 <p>Catalog is the name of the app catalog this app belongs to. e.g. giantswarm</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.catalogNamespace">.spec.catalogNamespace</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>CatalogNamespace is the namespace of the Catalog CR this app belongs to. e.g. giantswarm</p>
 
 </div>
 
@@ -482,7 +514,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Namespace is the namespace where the app should be deployed. e.g. monitoring</p>
+<p>Namespace is the target namespace where the app should be deployed e.g. monitoring, it cannot be changed.</p>
 
 </div>
 

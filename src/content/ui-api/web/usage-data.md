@@ -9,10 +9,11 @@ menu:
 aliases:
    - /reference/web-interface/usage-data/
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-ux
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - What usage data is Giant Swarm recording in the web UI?
   - How is Giant Swarm treating usage data recorded in the web UI?
+last_review_date: 2021-01-01
 ---
 
 # Usage data recording in our web interface
@@ -56,7 +57,7 @@ The data is submitted to a service in the Giant Swarm management cluster.
 
 ## Error data collection
 
-We like to learn about any exceptions (unexpected errors) happening during web interface usage, hence we forward information about exceptions to [Sentry](https://sentry.io/).
+We like to learn about any exceptions (unexpected errors) happening during web interface usage, hence we forward information about exceptions to [Sentry](https://sentry.io/welcome/).
 
 Data submitted to sentry includes:
 

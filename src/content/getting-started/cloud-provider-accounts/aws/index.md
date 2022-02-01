@@ -15,7 +15,8 @@ aliases:
   - /guides/prepare-aws-account-for-tenant-clusters/
   - /guides/prepare-aws-account/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-firecracker
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
+last_review_date: 2021-01-01
 ---
 
 # Prepare an AWS account to run Giant Swarm clusters
@@ -46,101 +47,7 @@ workload cluster IAM roles mentioned above.
 
 We have created a Terraform module to automate the IAM role creation. You can view the code [here](https://github.com/giantswarm/giantswarm-aws-account-prerequisites). You can also use the steps as described in this guide.
 
-## IAM user for aws-operator {#iam-aws-operator-user}
-
-Giant Swarm's service creating and maintaining your workload clusters is
-called [aws-operator](https://github.com/giantswarm/aws-operator). It runs in
-the management cluster. In order to handle resources in your AWS Tenant
-Cluster account, it needs a prepared IAM user allowed to assume IAM roles
-created in managed AWS accounts. IAM roles setup is explained in later sections
-of this guide. This user is usually created in management cluster AWS account but it
-can be created in a different account.
-
-Details of all the required steps to set up this user are explained below:
-
-### 1. Basic user setup {#iam-aws-operator-user-basic}
-
-First, log in to the AWS console for your AWS account. Then open the
-[IAM section](https://console.aws.amazon.com/iam/home) of the AWS console and
-go to the [Users](https://console.aws.amazon.com/iam/home#/users) subsection.
-
-Now hit the **Add user** button. Enter the user name as `aws-operator` and ensure
-only _Programmatic access_ is enabled.
-
-![AWS IAM console: Create user](aws-user-create-user.png)
-
-### 2. Review and create user {#iam-aws-operator-user-review}
-
-You should now review the user. Provided everything is correct, hit the *Create*
-button. On the following page, you will be presented with an *Access key ID* and
-a *Secret access key*. Click the 'show' link to display the access key secret,
-and then copy both the key ID and key secret; these will need to be provided to
-us later.
-
-![AWS IAM console: User secrets](aws-user-secrets.png)
-
-## Service limits in AWS accounts {#limits}
-
-A number of limits apply to an AWS account initially, which are described in the
-[AWS Service Limits documentation](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html).
-The following overview lists the limits that have to be adjusted in order to use
-the account to operate Giant Swarm workload clusters.
-
-Adjusting a service limit requires a support case in the
-[AWS Support Center](https://console.aws.amazon.com/support/home),
-where a specific entry form is provided for this type of case. Each limit type
-requires a separate case. When creating these, make sure to be logged in to the
-AWS account you want to adjust the limits for, and always select the correct
-region.
-
-The screenshot below shows the entry form.
-
-![Screenshot](aws-service-limits.png)
-
-These are the limit increases to be requested, grouped by limit type:
-
-- management cluster account:
-    - VPC
-        - Routes per route table: **200**
-- Workload cluster account:
-    - VPC
-        - VPCs per region: **50**
-        - NAT Gateway per Availability Zone per region: **50**
-        - IPv4 CIDR blocks per VPC: **50**
-    - Elastic IP
-        - New VPC Elastic IP Address Limit per region: **50**
-    - Elastic Load Balancers
-        - Application and Classic Load Balancers per region: **100**
-    - Auto Scaling
-        - Auto Scaling Groups per region: **250**
-        - Launch Configurations per region: **500**
-    - EC2 Instances
-        - m4.xlarge per region: **250**
-        - m4.2xlarge per region: **250**
-        - m5.2xlarge per region: **250**
-        - other instance types to be used as workers: increase accordingly
-    - EC2 Spot Instances
-        - For every primary instance type you tend to use spot instances with, set the limit according to your needs.
-
-(Please extend the list of EC2 instances to also contain the types you need frequently.)
-
-When requesting a service limit increase, you will be asked for a description of your use case. You can use this text for the purpose:
-
-> We intend to run multiple Kubernetes clusters in this account, potentially used
-by various globally distributed teams. We will be creating and deleting new
-clusters frequently.
->
-> Each cluster needs its own VPC for security/isolation reasons and its own
-Elastic IP address for the NAT gateway.
->
-> Each cluster has at least 1 Auto Scaling Group, but can contain multiple ASGs if
-multiple instance types are requested as cluster nodes. If we count 50
-clusters with up to 5 EC2 instances each, as worker nodes, we need up to 250
-ASGs. To update the ASGs in a rolling manner we need to duplicate the ASGs
-for a short time during update, hence the 500 Launch Configurations.
->
-> The number of EC2 instances used as worker nodes is supposed to be scaled
-dynamically based on traffic, hence the high numbers of EC2 instances requested.
+![AWS Setup Diagram](aws_onboarding.png)
 
 ## IAM setup in AWS accounts {#iam}
 
@@ -247,6 +154,102 @@ Name this role:
 ```nohighlight
 GiantSwarmAdmin
 ```
+
+## IAM user for aws-operator {#iam-aws-operator-user}
+
+Giant Swarm's service creating and maintaining your workload clusters is
+called [aws-operator](https://github.com/giantswarm/aws-operator). It runs in
+the management cluster. In order to handle resources in your AWS Tenant
+Cluster account, it needs a prepared IAM user allowed to assume IAM roles
+created in managed AWS accounts. IAM roles setup is explained in later sections
+of this guide. This user is usually created in management cluster AWS account but it
+can be created in a different account.
+
+Details of all the required steps to set up this user are explained below:
+
+### 1. Basic user setup {#iam-aws-operator-user-basic}
+
+First, log in to the AWS console for your AWS account. Then open the
+[IAM section](https://console.aws.amazon.com/iam/home) of the AWS console and
+go to the [Users](https://console.aws.amazon.com/iam/home#/users) subsection.
+
+Now hit the **Add user** button. Enter the user name as `aws-operator` and ensure
+only _Programmatic access_ is enabled.
+
+![AWS IAM console: Create user](aws-user-create-user.png)
+
+### 2. Review and create user {#iam-aws-operator-user-review}
+
+You should now review the user. Provided everything is correct, hit the *Create*
+button. On the following page, you will be presented with an *Access key ID* and
+a *Secret access key*. Click the 'show' link to display the access key secret,
+and then copy both the key ID and key secret; these will need to be provided to
+us later.
+
+![AWS IAM console: User secrets](aws-user-secrets.png)
+
+## Service limits in AWS accounts {#limits}
+
+A number of limits apply to an AWS account initially, which are described in the
+[AWS Service Limits documentation](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html).
+The following overview lists the limits that have to be adjusted in order to use
+the account to operate Giant Swarm workload clusters.
+
+Adjusting a service limit requires a support case in the
+[AWS Support Center](https://console.aws.amazon.com/support/home),
+where a specific entry form is provided for this type of case. Each limit type
+requires a separate case. When creating these, make sure to be logged in to the
+AWS account you want to adjust the limits for, and always select the correct
+region.
+
+The screenshot below shows the entry form.
+
+![Screenshot](aws-service-limits.png)
+
+These are the limit increases to be requested, grouped by limit type:
+
+- management cluster account:
+    - VPC
+        - Routes per route table: **200**
+- Workload cluster account:
+    - VPC
+        - VPCs per region: **50**
+        - NAT Gateway per Availability Zone per region: **50**
+        - IPv4 CIDR blocks per VPC: **50**
+    - Elastic IP
+        - New VPC Elastic IP Address Limit per region: **50**
+    - Elastic Load Balancers
+        - Application and Classic Load Balancers per region: **100**
+    - Auto Scaling
+        - Auto Scaling Groups per region: **250**
+        - Launch Configurations per region: **500**
+    - EC2 Instances
+        - m4.xlarge per region: **250**
+        - m4.2xlarge per region: **250**
+        - m5.2xlarge per region: **250**
+        - other instance types to be used as workers: increase accordingly
+    - EC2 Spot Instances
+        - For every primary instance type you tend to use spot instances with, set the limit according to your needs.
+
+(Please extend the list of EC2 instances to also contain the types you need frequently.)
+
+When requesting a service limit increase, you will be asked for a description of your use case. You can use this text for the purpose:
+
+> We intend to run multiple Kubernetes clusters in this account, potentially used
+by various globally distributed teams. We will be creating and deleting new
+clusters frequently.
+>
+> Each cluster needs its own VPC for security/isolation reasons and its own
+Elastic IP address for the NAT gateway.
+>
+> Each cluster has at least 1 Auto Scaling Group, but can contain multiple ASGs if
+multiple instance types are requested as cluster nodes. If we count 50
+clusters with up to 5 EC2 instances each, as worker nodes, we need up to 250
+ASGs. To update the ASGs in a rolling manner we need to duplicate the ASGs
+for a short time during update, hence the 500 Launch Configurations.
+>
+> The number of EC2 instances used as worker nodes is supposed to be scaled
+dynamically based on traffic, hence the high numbers of EC2 instances requested.
 
 ## Configure the Giant Swarm organization {#configure-org}
 

@@ -9,12 +9,15 @@ menu:
 aliases:
   - /reference/gsctl/create-keypair/
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-ux
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I create a key pair for cluster access with gsctl?
+last_review_date: 2021-01-01
 ---
 
 # `gsctl create keypair`
+
+{{% gsctl_deprecation_disclaimer %}}
 
 The `gsctl create keypair` command creates a key pair and stores the related files in your certificate folder.
 
@@ -78,5 +81,6 @@ __Warning:__ Setting `system:masters` as an organization means the user who uses
 
 ## Related
 
+- [Creating workload cluster key pairs via the Management API]({{< relref "/ui-api/management-api/wc-key-pairs" >}})
 - [`gsctl create kubeconfig`]({{< relref "/ui-api/gsctl/create-kubeconfig" >}}): Create a key pair and prepare your kubectl configuration to access the cluster.
-- [API: Create key pair](/api/#operation/addKeyPair)
+- [Rest API: Create key pair](/api/#operation/addKeyPair)

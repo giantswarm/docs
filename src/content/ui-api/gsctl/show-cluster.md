@@ -9,12 +9,15 @@ menu:
 aliases:
   - /reference/gsctl/show-cluster/
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-ux
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I inspect cluster details using gsctl?
+last_review_date: 2021-01-01
 ---
 
 # `gsctl show cluster`
+
+{{% gsctl_deprecation_disclaimer %}}
 
 The `gsctl show cluster` command displays details of a cluster.
 
@@ -86,8 +89,8 @@ The output lines in detail:
 - **Created:** date and time of cluster creation
 - **Organization:** organization owning the cluster
 - **Kubernetes API endpoint:** URL of the Kubernetes API for this cluster
-- **Masters:** (_only for AWS_) Number of master nodes in the cluster
-- **Master availability zones:** (_only for AWS_) Availability zone(s) of the master node(s)
+- **Masters:** (_only for AWS_) Number of control plane nodes in the cluster
+- **Master availability zones:** (_only for AWS_) Availability zone(s) of the control plane node(s)
 - **Release version:** Version number of the workload cluster release used in this cluster
 - **Worker node scaling**: Scaling limits. Shows either `autoscaling between <min> and <max>` for an autoscaling cluster, or `pinned to <num>` where autoscaling is disabled or where it's not available.
 - **Desired worker node count**: Only shown for autoscaling clusters. The number of worker nodes the autoscaler intends to have running.

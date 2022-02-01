@@ -35,7 +35,7 @@ def get_releases(client, repo_shortname):
         # skip unpublished releases
         if release.published_at is None:
             continue
-        
+
         body = ""
         if release.body is not None:
             body = link_pull_requests(release.body, repo_shortname)
@@ -64,21 +64,21 @@ def parse_changelog(body, repo_shortname):
     except ValueError as e:
         print(f"INFO: snippet '[Unreleased]: ' not found in CHANGELOG.md of {repo_shortname}")
         good = body
-    
+
     # Create chunks based on level 2 headlines
     chunks = re.split(r'\n##\s+', good, flags=re.M)
 
     # Get rid of some bad chunks
     for chunk in chunks:
         lines = re.split(r'\n+', chunk, flags=re.M)
-        
+
         if len(lines) < 2:
             continue
         if lines[0].startswith('[Unreleased]'):
             continue
         if not lines[0].startswith('['):
             continue
-        
+
         # First line must start with semantic version number in square brackets
         match = re.match(r'^\[([^\.]+)\.([^\.]+)\.([^\]]+)\]', lines[0])
         if match is None:
@@ -116,7 +116,9 @@ def parse_release_yaml(data, repo_shortname, provider, relative_path):
         raise Exception('Unexpected release data format. No ".spec" attribute found.')
     if 'date' not in data['spec']:
         raise Exception('Unexpected release data format. No ".spec.date" attribute found.')
-    
+    if provider is None:
+        raise Exception('Unexpected provider.')
+
     creation = data['spec']['date']
     if type(creation) == str:
         creation = parse(creation)
@@ -136,7 +138,7 @@ def get_cluster_releases(repo_shortname):
     """
     with tempfile.TemporaryDirectory() as tmpdir:
         print(f'Cloning to temporary directory {tmpdir}')
-        git.Git(tmpdir).clone(f"git://github.com/{repo_shortname}.git", depth=1)
+        git.Git(tmpdir).clone(f"https://github.com/{repo_shortname}.git", depth=1)
 
         (org, repo) = repo_shortname.split("/", maxsplit=1)
 
@@ -144,7 +146,7 @@ def get_cluster_releases(repo_shortname):
         for root, _, files in os.walk(tmpdir):
             if os.path.basename(root) in ('aws', 'azure', 'kvm'):
                 provider = os.path.basename(root)
-            
+
             relative_dir_path = root[len(tmpdir + "/" + repo):]
 
             for fname in files:
@@ -152,35 +154,35 @@ def get_cluster_releases(repo_shortname):
                     continue
 
                 fpath = path.join(root, fname)
-            
+
                 release = {}
                 data = None
 
                 # Get structured data
                 with open(fpath, 'r') as releasefile:
                     data = load(releasefile, Loader=CLoader)
-                
+
                     try:
                         release = parse_release_yaml(data, repo_shortname, provider, relative_dir_path)
                     except Exception as e:
                         print(f'WARNING: {e}')
-                
+
                 # Add release notes
                 release_notes_path = os.path.join(root, "README.md")
                 if os.path.exists(release_notes_path):
                     with open(release_notes_path, 'r') as release_notes_file:
                         release_notes = release_notes_file.read().strip()
-                        
+
                         # Strip first headline
                         lines = release_notes.split("\n")
                         if len(lines) > 0:
                             if lines[0].startswith('#'):
                                 lines = lines[1:]
-                        
+
                         release['body'] = "\n".join(lines).strip()
-                
+
                 yield release
-                    
+
 
 def normalize_version(v):
     """
@@ -199,7 +201,7 @@ def link_pull_requests(mkdwn, repo_shortname):
     def replace_func(match):
         result = f'{match.group(1)}[{match.group(2)}](https://github.com/{repo_shortname}/pull/{match.group(3)})'
         return result
-    
+
     result = re.sub(r'([^\[a-z0-9])(#([0-9]+))', replace_func, mkdwn)
     return result
 
@@ -210,7 +212,7 @@ def link_commit_hashes(mkdwn, repo_shortname):
     def replace_hash(match):
         result = f'[{match.group(1)[0:7]}](https://github.com/{repo_shortname}/commit/{match.group(1)})'
         return result
-    
+
     result = re.sub(r'\b([a-f0-9]{40})\b', replace_hash, mkdwn)
     return result
 
@@ -218,11 +220,16 @@ def generate_release_file(repo_shortname, repo_config, release):
     """
     Write a release file with YAML front matter and Markdown body
     """
+
+    if 'version_tag' not in release:
+        print(f'ERROR: {repo_shortname} release has no version tag. Skipping. Details: {release}')
+        return
+
     version = normalize_version(release['version_tag'])
 
-    org, repo_id = repo_shortname.split("/", maxsplit=1)
+    _, repo_id = repo_shortname.split("/", maxsplit=1)
     aliases = None
-    
+
     if repo_shortname == RELEASES_REPO:
         provider_label = release['provider'].upper()
         if provider_label == 'AZURE':
@@ -239,7 +246,7 @@ def generate_release_file(repo_shortname, repo_config, release):
         description = f'Changelog entry for {release["repository"]} version {version}, published on {release["date"].strftime("%d %B %Y, %H:%M")}'
         filename = f"{release['version_tag']}.md"
         category_path = repo_config['category'].lower().replace(" ", "-")
-    
+
     filepath = path.join(CONTENT_PATH, category_path, repo_id, filename)
 
     frontmatter = {
@@ -273,7 +280,7 @@ def generate_release_file(repo_shortname, repo_config, release):
 if __name__ == "__main__":
     with open(CONFIG_PATH, 'rb') as configfile:
         conf = load(configfile, Loader=CLoader)
-    
+
     if GITHUB_TOKEN == "":
         print("ERROR: environment variable GITHUB_TOKEN is empty.")
         sys.exit(1)
@@ -291,7 +298,7 @@ if __name__ == "__main__":
     with open(os.path.join(DATA_PATH, 'changes_categories.yaml'), 'w') as catfile:
         catfile.write(WARNING_COMMENT)
         catfile.write(dump(categories, Dumper=CDumper))
-    
+
     # Write changelog items
     for repo_short in conf['repositories']:
         repo_conf = conf['repositories'][repo_short]
@@ -308,7 +315,7 @@ if __name__ == "__main__":
 
             # Attempt to get releas einfo from CHANGELOG.md.
             changelog = get_changelog_file(g, repo_short)
-            
+
             # Match release tags and changelog versions and
             # enhance release data with descriptions from CHANGELOG.md.
             if changelog is None:
@@ -318,14 +325,14 @@ if __name__ == "__main__":
                 for (version, release) in parse_changelog(changelog, repo_short):
                     v = normalize_version(version)
                     changelog_entries[v] = release
-                
+
                 for n in range(len(releases)):
                     v = normalize_version(releases[n]['version_tag'])
 
                     if v not in changelog_entries:
                         print("WARNING: %s version %s not found in CHANGELOG.md" % (repo_short, v))
                         continue
-                    
+
                     releases[n]['url'] = changelog_entries[v]['url']
 
                     if changelog_entries[v]['body'].strip() != "":

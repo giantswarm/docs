@@ -9,18 +9,21 @@ menu:
 aliases:
   - /reference/gsctl/update-cluster/
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-ux
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I modify a cluster using gsctl?
+last_review_date: 2021-01-01
 ---
 
 # `gsctl update cluster`
+
+{{% gsctl_deprecation_disclaimer %}}
 
 The `gsctl update cluster` command allows the modification of some cluster attributes, depending on the workload cluster release version and the provider.
 
 Changing the cluster name is possible on all providers and in all workload cluster release versions.
 
-Cluster labelling is only available for clusters with workload cluster release v{{% first_aws_nodepools_version %}} and above for AWS, or v{{% first_azure_nodepools_version %}} and above for Azure. High availability of master nodes is available on AWS starting at workload cluster release v{{% first_aws_ha_masters_version %}}.
+Cluster labelling is only available for clusters with workload cluster release v{{% first_aws_nodepools_version %}} and above for AWS, or v{{% first_azure_nodepools_version %}} and above for Azure. High-availability control planes are available on AWS starting at workload cluster release v{{% first_aws_ha_controlplane_version %}}.
 
 ## Usage
 
@@ -48,16 +51,16 @@ gsctl update cluster vxvc7 \
 
 will update the labels of cluster `vxvc7`. It will add (or update depending on prior existence) label `environment=testing` and delete the label with key `locked`.
 
-### Switching to high-availability of master nodes {#ex-master-ha}
+### Switching to high-availability control planes {#ex-master-ha}
 
-Starting with workload cluster release v{{% first_aws_ha_masters_version %}} for AWS, a single master node cluster can be converted into using multiple master nodes in multiple availability zones using a command like the following:
+Starting with workload cluster release v{{% first_aws_ha_controlplane_version %}} for AWS, a single control plane node cluster can be converted into using multiple control plane nodes in multiple availability zones using a command like the following:
 
 ```nohighlight
 gsctl update cluster vxvc7 \
   --master-ha=true
 ```
 
-Note that it is not possible to change from multiple master nodes to a single master.
+Note that it is not possible to change from multiple control plane nodes to a single one.
 
 ## Full argument reference {#arguments}
 
@@ -66,7 +69,7 @@ Note that it is not possible to change from multiple master nodes to a single ma
 Allowed multiple times.
 Available on AWS starting at workload cluster release v{{% first_aws_nodepools_version %}}.
 To remove a label, set its key to an empty string (`labeltodelete=`).
-- `--master-ha`: When set to `true`, the cluster should be modified to use multiple master nodes. Available on AWS starting at workload cluster release v{{% first_aws_ha_masters_version %}}.
+- `--master-ha`: When set to `true`, the cluster should be modified to use multiple control plane nodes. Available on AWS starting at workload cluster release v{{% first_aws_ha_controlplane_version %}}.
 
 ## Related
 

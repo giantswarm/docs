@@ -9,8 +9,11 @@ menu:
 last_review_date: 2020-09-23
 aliases:
   - /guides/advanced-cluster-autoscaler-configuration/
+user_questions:
+  - Where can I find the ConfigMap to configure cluster-autoscaler?
+  - What cluster-autoscaler options can I configure?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-firecracker
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
 # Advanced cluster autoscaler configuration

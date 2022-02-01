@@ -7,41 +7,46 @@ menu:
   main:
     identifier: uiapi-managementapi-overview
     parent: uiapi-managementapi
+user_questions:
+  - What is the Management API?
+  - In what development stage is the Management API?
+last_review_date: 2021-08-04
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 ---
 
-# The Management API (preview)
+# The Management API
 
 ## What it is
 
-In a Giant Swarm installation, the management cluster is a Kubernetes cluster that runs all the operational and monitoring workloads which are needed to create and manage the _workload clusters_ (formerly called _tenant clusters_). These are the clusters you create to run your actual workloads.
+In a Giant Swarm installation, the [management cluster]({{< relref "/general/management-clusters/index.md" >}}) is a dedicated Kubernetes cluster that runs all the operational and monitoring workloads which are needed to create and manage the workload clusters. These are the clusters you create to run your actual workloads.
 
-Your workload clusters and other associated resources are represented in the management cluster as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/). To access these, you can use the Kubernetes API of the management cluster, or in short, the Management API.
+Your workload clusters and other associated resources are represented in the management cluster as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) (CRs). To access these, you use the Kubernetes API of the management cluster, or in short, the Management API.
+
+Apart from the CRs and custom resource definitions (CRDs) the Management API provides, its behavior is defined by admission controllers enforcing some policies and providing some defaulting.
 
 ## How to gain access
 
-Access to the Giant Swarm Control Plane API is secured using OIDC. Please contact your Solution Engineer (SE) to sort out the details.
-
-Currently we provide read-only access by default. As we are currently working on a fine-grained way to control permissions to resources, and validation and defaulting are not implemented to the extend we want to, having write access right now means fully unrestricted access and should only be granted to select individuals.
+Access to the Giant Swarm Management API is secured using OIDC. Our [authentication]({{< relref "/ui-api/management-api/authentication" >}}) section provides additional information both for admins and end users. Please contact your Account Engineer to sort out the details.
 
 ## How to use
 
-We recommend using `kubectl` to navigate the resources present on the Management API.
+Currently (as of August 2021) we are in the process of enabling our [web user interface]({{< relref "/ui-api/web" >}}) to interact with the Management API.
 
-To facilitate this we provide a kubectl plugin called [`kubectl gs`]({{< relref "/ui-api/kubectl-gs" >}}).
-Our goal is to have the same great user experience you've become accustomed from `gsctl` and `happa`.
+For now we recommend using `kubectl` to interact with the Management API. To facilitate this we provide a kubectl plug-in called [`kubectl gs`]({{< relref "/ui-api/kubectl-gs" >}}).
 
 Besides general Kubernetes know-how this will require only a bit of structural knowledge:
 
 ### How we organize resources in namespaces
 
-We create one namespace for each workload cluster, where the namespace name is equal to the workload cluster ID. All cluster specific resources reside in the namespace of that workload cluster.
+We are working towards making [organization namespaces]({{< relref "/general/organizations/index.md" >}}) the default location for all resources associated with one organization. Please check [this dedicated section]({{< relref "/general/organizations/index.md" >}}#namespace-use) regarding the current progress towards this on various providers.
 
 ### Which custom resources are used for what purpose
 
 Following are some resources that should help you:
 
-- The guide [Creating workload clusters via the Management API]({{< relref "/ui-api/management-api/creating-workload-clusters" >}}) explains step by step how you can create a cluster and node pools via the Management API. Here you learn about all the custom resources a cluster comprises.
-- The [App Platform]({{< relref "/app-platform" >}}) introduction outlines the several custom resources involved when managing app catalogs and apps.
+- The guide [creating workload clusters via the Management API]({{< relref "/ui-api/management-api/creating-workload-clusters" >}}) explains step by step how you can create a cluster and node pools via the Management API. Here you learn about all the custom resources a cluster comprises.
+- The [app platform]({{< relref "/app-platform" >}}) introduction outlines the several custom resources involved when managing app catalogs and apps.
 - Our [custom resource definitions (CRD) documentation]({{< relref "/ui-api/management-api/crd" >}}) provides details on all the custom resources (CR) we use with the various providers and their versions and schema.
 
 ## Feedback is welcome

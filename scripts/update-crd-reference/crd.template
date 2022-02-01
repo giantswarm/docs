@@ -1,7 +1,6 @@
 ---
-title: {{ .Title }} CRD schema reference
+title: {{ .Title }} CRD schema reference (group {{ .Group }})
 linkTitle: {{ .Title }}
-technical_name: {{ .NamePlural }}.{{ .Group }}
 description: |
 {{- if .Description }}
 {{ .Description | indent 2 }}
@@ -9,14 +8,67 @@ description: |
   Custom resource definition (CRD) schema reference page for the {{ .Title }} resource ({{ .NamePlural }}.{{ .Group }}), as part of the Giant Swarm Management API documentation.
 {{- end }}
 weight: {{ .Weight }}
-source_repository: {{ .SourceRepository }}
-source_repository_ref: {{ .SourceRepositoryRef }}
+crd:
+  name_camelcase: {{ .Title }}
+  name_plural: {{ .NamePlural }}
+  name_singular: {{ .NameSingular }}
+  group: {{ .Group }}
+  technical_name: {{ .NamePlural }}.{{ .Group }}
+  scope: {{ .Scope }}
+  source_repository: {{ .SourceRepository }}
+  source_repository_ref: {{ .SourceRepositoryRef }}
+  versions:
+{{- range .Versions }}
+    - {{ . -}}
+{{- end }}
+  topics:
+{{- with .Metadata.Topics }}
+{{- range . }}
+    - {{ . -}}
+{{- end }}
+{{- end }}
+{{- with .Metadata.Providers }}
+  providers:
+{{- range . }}
+    - {{ . -}}
+{{- end }}
+{{- end }}
+{{- with .Metadata.Deprecation }}
+  deprecation:
+{{- with .Info }}
+    info: {{ . }}
+{{- end }}
+{{- with .ReplacedBy }}
+    replaced_by:
+      full_name: {{ .FullName }}
+      short_name: {{ .ShortName }}
+{{- end }}
+{{- end }}
 layout: crd
+owner:
+{{- range .Metadata.Owners }}
+  - {{ . -}}
+{{- end }}
 aliases:
   - /reference/cp-k8s-api/{{ .NamePlural }}.{{ .Group }}/
+technical_name: {{ .NamePlural }}.{{ .Group }}
+source_repository: {{ .SourceRepository }}
+source_repository_ref: {{ .SourceRepositoryRef }}
 ---
 
 # {{ .Title }}
+
+{{- with .Metadata.Deprecation }}
+<p class="well disclaimer">
+<i class="fa fa-warning"></i> <b>Deprecation:</b>
+{{- with .Info }}
+{{ . }}
+{{- end }}
+{{- with .ReplacedBy }}
+This CRD is being replaced by <a href="../{{ .FullName }}/">{{ .ShortName }}</a>.
+{{- end }}
+</p>
+{{- end }}
 
 {{ with .Description }}
 <p class="crd-description">{{ . }}</p>
@@ -85,7 +137,7 @@ aliases:
 {{ range $versionSchema.Annotations }}
 <div class="annotation">
 <div class="annotation-header">
-<h3 class="annotation-path" id="{{.APIVersion}}-{{.Annotation}}">{{.Annotation}}</h3>
+<h3 class="annotation-path" id="{{.CRDVersion}}-{{.Annotation}}">{{.Annotation}}</h3>
 </div>
 <div class="annotation-body">
 <div class="annotation-meta">
