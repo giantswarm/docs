@@ -54,7 +54,7 @@ Alternatively you can use `kubectl` command to annotate the CR like shown below:
 kubectl annotate machinedeployments.cluster.x-k8s.io u6gw3 node.giantswarm.io/cgroupv1=""
 ```
 
-In order to apply the changes, rolling of the nodes in the modified node pool is required.
+In order to apply the changes, rolling of the nodes in the modified node pool is required. Rolling of the nodes can be triggered either by an update or by manually by terminating each node.
 
 We recommend to set the proper annotation on the node pool before upgrading to release `v17.0.0` or later.
 
@@ -93,7 +93,7 @@ Or you can use `kubectl` command to anotate the CR.
 kubectl annotate machinepools.exp.cluster.x-k8s.io f8ak0 node.giantswarm.io/cgroupv1=""
 ```
 
-In order to apply the changes, roll of the nodes is required.
+In order to apply the changes, rolling of the nodes in the modified node pool is required. Rolling of the nodes can be triggered either by an update or by manually by terminating each node.
 
 We recommend set the proper the annotation on the node pool before updating to the release `17.0.0`.
 
