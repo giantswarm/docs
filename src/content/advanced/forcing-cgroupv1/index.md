@@ -1,7 +1,7 @@
 ---
-linkTitle: force nodes cgroup v1
-title: Forcing nodes to use legacy Control Groups v1
-description: This article describes how to force nodes to use legacy Control Groups v1 instead the default v2.
+linkTitle: Use cgroups v1
+title: Forcing nodes to use legacy control croups (cgroups) v1
+description: This article describes how to force nodes to use legacy control groups (cgroups) v1 instead of the default v2.
 weight: 60
 menu:
   main:
@@ -10,6 +10,7 @@ user_questions:
  -  How can I enable cgroupsv1?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
+last_review_date: 2022-02-01
 ---
 
 # Forcing cgroups v1
@@ -18,15 +19,15 @@ owner:
 
 ## Introduction
 
-Flatcar version `3033.2.0` and above uses Control Groups v2 by default, which means all nodes will be using cgroups v2 for all kubernetes containers, as opposed to Control Groups v1 used on previous versions.
+Flatcar version `3033.2.0` and above uses control groups (cgroups) v2 by default, which means all nodes will be using cgroups v2 for all containers in Kubernetes, as opposed to cgroups v1 used on previous versions.
 
-To ensure a smooth transition, in case our customers need time to modify applications to make them compatible with Control Groups v2, we introduced a mechanism that will allow using Control Groups v1 on specific node pools.
+To ensure a smooth transition, in case you need time to modify applications to make them compatible with cgroups v2, we provide a mechanism that will allow using cgroups v1 on specific node pools.
 
 ## Configure node pool with cgroup v1
 
 ### AWS
 
-To enable it, you have to edit the [`MachineDeployment`]({{< relref "/ui-api/management-api/crd/machinedeployments.cluster.x-k8s.io.md" >}}) resource of your cluster using the [Management API]({{< relref "/ui-api/management-api/" >}}).
+To enable cgroups v1, you have to edit the [`MachineDeployment`]({{< relref "/ui-api/management-api/crd/machinedeployments.cluster.x-k8s.io.md" >}}) resource of your cluster using the [Management API]({{< relref "/ui-api/management-api/" >}}).
 
 Make sure the resource has the `node.giantswarm.io/cgroupv1` annotation. The value can be anything you like, as only the presence of that annotation is checked. Here is an example:
 
@@ -49,21 +50,21 @@ spec:
   ...
 ```
 
-Or you can use `kubectl` command to anotate the CR.
+Alternatively you can use `kubectl` command to annotate the CR like shown below:
 
 ```yaml
 kubectl annotate machinedeployments.cluster.x-k8s.io u6gw3 node.giantswarm.io/cgroupv1=""
 ```
 
-In order to apply the changes, roll of the nodes is required.
+In order to apply the changes, rolling of the nodes in the modified node pool is required.
 
-We recommend set the proper the annotation on the node pool before updating to the release `17.0.0`.
+We recommend to set the proper annotation on the node pool before upgrading to release `v17.0.0` or later.
 
-If you want to disable the feature you must remove the annotation from the [`MachineDeployment`]({{< relref "/ui-api/management-api/crd/machinedeployments.cluster.x-k8s.io.md" >}}) custom resource.
+If you want to disable the feature you must remove the annotation from the [`MachineDeployment`]({{< relref "/ui-api/management-api/crd/machinedeployments.cluster.x-k8s.io.md" >}}) resource.
 
 ### Azure
 
-To enable it, you have to edit the [`MachinePool`]({{< relref "/ui-api/management-api/crd/machinepools.exp.cluster.x-k8s.io.md" >}}) resource of your cluster using the [Management API]({{< relref "/ui-api/management-api/" >}}).
+To enable cgroups v1, you have to edit the [`MachinePool`]({{< relref "/ui-api/management-api/crd/machinepools.exp.cluster.x-k8s.io.md" >}}) resource of your cluster using the [Management API]({{< relref "/ui-api/management-api/" >}}).
 
 Make sure the resource has the `node.giantswarm.io/cgroupv1` annotation. The value can be anything you like, as only the presence of that annotation is checked. Here is an example:
 
