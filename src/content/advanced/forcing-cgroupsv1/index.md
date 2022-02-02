@@ -87,7 +87,7 @@ spec:
   ...
 ```
 
-Or you can use `kubectl` command to anotate the CR.
+Or you can use the `kubectl` command to annotate the CR.
 
 ```yaml
 kubectl annotate machinepools.exp.cluster.x-k8s.io f8ak0 node.giantswarm.io/cgroupv1=""
@@ -95,6 +95,6 @@ kubectl annotate machinepools.exp.cluster.x-k8s.io f8ak0 node.giantswarm.io/cgro
 
 In order to apply the changes, roll of the nodes is required.
 
-We recommend set the proper the annotation on the node pool before updating to the release `17.0.0`.
+We recommend to set the proper annotation on the node pool before updating to the release `17.0.0` or later.
 
 If you want to disable the feature you must remove the annotation from the [`MachinePool`]({{< relref "/ui-api/management-api/crd/machinepools.exp.cluster.x-k8s.io.md" >}}) custom resource.
