@@ -17,8 +17,6 @@ last_review_date: 2022-02-01
 
 {{< platform_support_table aws="beta=v17.0.0" azure="beta=v17.0.0" >}}
 
-## Introduction
-
 Flatcar version `3033.2.0` and above uses control groups (cgroups) v2 by default, which means all nodes will be using cgroups v2 for all containers in Kubernetes, as opposed to cgroups v1 used on previous versions.
 
 To ensure a smooth transition, in case you need time to modify applications to make them compatible with cgroups v2, we provide a mechanism that will allow using cgroups v1 on specific node pools.
