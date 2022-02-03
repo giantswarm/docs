@@ -50,7 +50,22 @@ We use a helm chart to store all the CAPI resources needed to bootstrap the MC.
 
 13. Create `giantswarm` and `ardgocd` namespace in the MC
 
-14. 
+14. Install Vault in the Management cluster. We use operations vault that run in shared installation to configure the autounseal option on the new installation Vault.
+  - We need to first ge the unseal token and create a secret on the cluster with a specific name
+  - We need to grab the etcd certificates for the vault configuration. We use a job that mount the host path of the master and creates another secret with the certificates
+  - Finally we install the vault chart on the management cluster passing the secret references in the values configuration
+
+15. Provision Vault
+  - Init the vault instance to retrieve the Vault token and unseal it
+  - Configure Github auth backend to authenticate via Github GS organization
+  - Create a new service account for Vault and bind it to cluster role auth-delegate
+  - Configure Vault with k8s auth bankend to let konfigure decrypt the secrets in transit, create a role and policy for the controller
+
+16. Run clusterctl delete --all?
+
+17. Ensure (apply) the giant swarm CRDS (app platform, organitzations,...) and the default App Catalogs that all management clusters need (default, giantswarm, ...)
+
+18. Create a branch in `giantswarm/management-clusters-fleet` repo including the argo cd folder with the reference to new installation MC
 
 # The Giant Swarm Openstack Architecture
 
