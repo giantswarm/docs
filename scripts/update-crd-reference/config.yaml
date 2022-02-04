@@ -191,6 +191,13 @@ source_repositories:
           - azure
         topics:
           - workloadcluster
+      azuremachinepools.infrastructure.cluster.x-k8s.io:
+        owner:
+          - https://github.com/orgs/giantswarm/teams/team-phoenix
+        provider:
+          - azure
+        topics:
+          - workloadcluster
       azuremachines.infrastructure.cluster.x-k8s.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-phoenix
@@ -326,6 +333,13 @@ source_repositories:
       machinehealthchecks.cluster.x-k8s.io:
         hidden: true
       machinepools.exp.cluster.x-k8s.io:
+        owner:
+          - https://github.com/orgs/giantswarm/teams/team-phoenix
+        provider:
+          - azure
+        topics:
+          - workloadcluster
+      machinepools.cluster.x-k8s.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-phoenix
         provider:

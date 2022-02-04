@@ -42,7 +42,7 @@ Please be aware that this is an early alpha release. Clusters created using this
 
 - [`MachinePool`]({{< relref "/ui-api/management-api/crd/machinepools.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1beta1`)
 - [`AzureMachinePool`]({{< relref "/ui-api/management-api/crd/azuremachinepools.infrastructure.cluster.x-k8s.io.md" >}}) (API version `infrastructure.cluster.x-k8s.io/v1beta1`)
-- [`KubeadmConfig`]({{< relref "/ui-api/management-api/crd/kubeadmconfig.bootstrap.cluster.x-k8s.io.md" >}}) (API version `bootstrap.cluster.x-k8s.io/v1beta1`)
+- [`KubeadmConfig`]({{< relref "/ui-api/management-api/crd/kubeadmconfigs.bootstrap.cluster.x-k8s.io.md" >}}) (API version `bootstrap.cluster.x-k8s.io/v1beta1`)
 
 {{< /tab >}}
 {{< /tabs >}}
