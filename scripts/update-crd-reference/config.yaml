@@ -201,7 +201,11 @@ source_repositories:
       azuremachinetemplates.infrastructure.cluster.x-k8s.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-phoenix
-        hidden: true
+        provider:
+          - aws
+          - azure
+        topics:
+          - workloadcluster
       azuremanagedclusters.exp.infrastructure.cluster.x-k8s.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-phoenix
@@ -277,7 +281,11 @@ source_repositories:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-phoenix
           - https://github.com/orgs/giantswarm/teams/team-rocket
-        hidden: true
+        provider:
+          - aws
+          - azure
+        topics:
+          - workloadcluster
       kubeadmconfigtemplates.bootstrap.cluster.x-k8s.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-phoenix
@@ -287,7 +295,11 @@ source_repositories:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-phoenix
           - https://github.com/orgs/giantswarm/teams/team-rocket
-        hidden: true
+        provider:
+          - aws
+          - azure
+        topics:
+          - workloadcluster
       kvmclusterconfigs.core.giantswarm.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-rocket
