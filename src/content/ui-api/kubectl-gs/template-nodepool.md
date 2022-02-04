@@ -35,7 +35,7 @@ The resulting resources depend on the provider, set via the `--provider` flag.
 - [`Spark`]({{< relref "/ui-api/management-api/crd/sparks.core.giantswarm.io.md" >}}) (API version `core.giantswarm.io/v1alpha1`)
 
 {{< /tab >}}
-{{< tab id="flags-capz" title="CAPI on Azure">}}
+{{< tab id="flags-capz" title="Cluster API on Azure">}}
 
 We also support creating clusters on Azure using ClusterAPI by selecting our `v20.0.0-alpha1` release  (`--provider azure --release v20.0.0-alpha1`).
 Please be aware that this is an early alpha release. Clusters created using this release won't be monitored by GiantSwarm, and they won't be able to be upgraded to newer stable releases.
