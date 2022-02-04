@@ -56,6 +56,8 @@ For **management cluster** authentication, the following flags are available:
 
 - `--token`: Use a Bearer token instead of OIDC authentication, e. g. a service account token.
 
+- `--keep-context`: Keep the current kubectl context selected after authenticating. If this flag is not set or false, the newly created context will be selected as the current-context.
+
 - `--internal-api` - (AWS only) With this flag you use an internal Management API endpoint. It resolves to an internal IP address that is only accessible from within the cluster's virtual private cloud (VPC). The hostname of this endpoint is the same as the normal one, with the prefix `internal-`. Example: if your Management API host name is `g8s.example.yourdomain.tld`, the alternative hostname is `internal-g8s.example.yourdomain.tld`.
 
 The following flags are related to creating client certificates for **workload cluster** access:
