@@ -9,6 +9,10 @@ source_repositories:
     organization: giantswarm
     short_name: apiextensions-application
     commit_reference: v0.3.0
+    crd_paths:
+      - config/crd
+    cr_paths:
+      - docs/cr
     metadata:
       appcatalogs.application.giantswarm.io:
         owner:
@@ -43,6 +47,10 @@ source_repositories:
     organization: giantswarm
     short_name: config-controller
     commit_reference: v0.5.1
+    crd_paths:
+      - config/crd
+    cr_paths:
+      - docs/cr
     metadata:
       configs.core.giantswarm.io:
         owner:
@@ -54,6 +62,10 @@ source_repositories:
     organization: giantswarm
     short_name: silence-operator
     commit_reference: v0.4.0
+    crd_paths:
+      - config/crd
+    cr_paths:
+      - docs/cr
     metadata:
       silences.monitoring.giantswarm.io:
         owner:
@@ -64,6 +76,10 @@ source_repositories:
     organization: giantswarm
     short_name: release-operator
     commit_reference: v3.0.1
+    crd_paths:
+      - config/crd
+    cr_paths:
+      - docs/cr
     metadata:
       releases.release.giantswarm.io:
         owner:
@@ -74,7 +90,14 @@ source_repositories:
   - url: https://github.com/giantswarm/apiextensions
     organization: giantswarm
     short_name: apiextensions
-    commit_reference: v3.39.0
+    commit_reference: v5.0.0
+    annotations_paths:
+      - pkg/annotation
+    crd_paths:
+      - config/crd
+      - helm
+    cr_paths:
+      - docs/cr
     metadata:
       awsclusters.infrastructure.cluster.x-k8s.io:
         owner:
