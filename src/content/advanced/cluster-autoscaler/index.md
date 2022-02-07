@@ -126,6 +126,19 @@ data:
       skipNodesWithLocalStorage: "true"
 ```
 
+### Balance similar node groups
+
+> Added in release v1.22.2-gs3
+
+The Cluster Autoscaler configuration by default doesn't differentiate between node groups when scaling. In case you want to enable this action, you need to set the following property to `"true"`.
+
+```yaml
+data:
+  values: |
+    configmap:
+      balanceSimilarNodeGroups: "true"
+```
+
 ## Further reading
 
 - [Cluster Autoscaler Github repository](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler)
