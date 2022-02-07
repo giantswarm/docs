@@ -6,7 +6,7 @@ weight: 90
 menu:
   main:
     parent: advanced
-last_review_date: 2020-09-23
+last_review_date: 2022-02-07
 aliases:
   - /guides/advanced-cluster-autoscaler-configuration/
 user_questions:
@@ -128,7 +128,7 @@ data:
 
 ### Balance similar node groups
 
-> Added in release v1.23.0-gs1
+> Added in release v17.0.0
 
 The Cluster Autoscaler configuration by default doesn't differentiate between node groups when scaling. In case you want to enable this action, you need to set the following property to `"true"`.
 
