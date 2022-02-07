@@ -12,7 +12,7 @@ crd:
   technical_name: machinepools.cluster.x-k8s.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.39.0
+  source_repository_ref: v5.0.0
   versions:
     - v1alpha3
     - v1alpha4
@@ -27,7 +27,7 @@ aliases:
   - /reference/cp-k8s-api/machinepools.cluster.x-k8s.io/
 technical_name: machinepools.cluster.x-k8s.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.39.0
+source_repository_ref: v5.0.0
 ---
 
 # MachinePool
