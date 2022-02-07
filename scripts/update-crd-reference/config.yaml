@@ -94,8 +94,8 @@ source_repositories:
     annotations_paths:
       - pkg/annotation
     crd_paths:
-      - helm
       - config/crd
+      - helm
     cr_paths:
       - docs/cr
     metadata:
