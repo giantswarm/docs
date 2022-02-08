@@ -1,15 +1,15 @@
 ---
-title: MachineDeployment CRD schema reference (group cluster.x-k8s.io)
-linkTitle: MachineDeployment
+title: MachinePool CRD schema reference (group cluster.x-k8s.io)
+linkTitle: MachinePool
 description: |
-  MachineDeployment is the Schema for the machinedeployments API.
+  MachinePool is the Schema for the machinepools API.
 weight: 100
 crd:
-  name_camelcase: MachineDeployment
-  name_plural: machinedeployments
-  name_singular: machinedeployment
+  name_camelcase: MachinePool
+  name_plural: machinepools
+  name_singular: machinepool
   group: cluster.x-k8s.io
-  technical_name: machinedeployments.cluster.x-k8s.io
+  technical_name: machinepools.cluster.x-k8s.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions
   source_repository_ref: v5.0.0
@@ -20,32 +20,30 @@ crd:
   topics:
     - workloadcluster
   providers:
-    - aws
-    - vsphere
+    - azure
 layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-  - https://github.com/orgs/giantswarm/teams/team-rocket
 aliases:
-  - /reference/cp-k8s-api/machinedeployments.cluster.x-k8s.io/
-technical_name: machinedeployments.cluster.x-k8s.io
+  - /reference/cp-k8s-api/machinepools.cluster.x-k8s.io/
+technical_name: machinepools.cluster.x-k8s.io
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v5.0.0
 ---
 
-# MachineDeployment
+# MachinePool
 
 
-<p class="crd-description">MachineDeployment is the Schema for the machinedeployments API.</p>
+<p class="crd-description">MachinePool is the Schema for the machinepools API.</p>
 <dl class="crd-meta">
 <dt class="fullname">Full name:</dt>
-<dd class="fullname">machinedeployments.cluster.x-k8s.io</dd>
+<dd class="fullname">machinepools.cluster.x-k8s.io</dd>
 <dt class="groupname">Group:</dt>
 <dd class="groupname">cluster.x-k8s.io</dd>
 <dt class="singularname">Singular name:</dt>
-<dd class="singularname">machinedeployment</dd>
+<dd class="singularname">machinepool</dd>
 <dt class="pluralname">Plural name:</dt>
-<dd class="pluralname">machinedeployments</dd>
+<dd class="pluralname">machinepools</dd>
 <dt class="scope">Scope:</dt>
 <dd class="scope">Namespaced</dd>
 <dt class="versions">Versions:</dt>
@@ -57,6 +55,58 @@ source_repository_ref: v5.0.0
 <div class="crd-schema-version">
 <h2 id="v1alpha3">Version v1alpha3</h2>
 
+
+<h3 id="crd-example-v1alpha3">Example CR</h3>
+
+```yaml
+apiVersion: cluster.x-k8s.io/v1alpha3
+kind: MachinePool
+metadata:
+  annotations:
+    cluster.k8s.io/cluster-api-autoscaler-node-group-max-size: "10"
+    cluster.k8s.io/cluster-api-autoscaler-node-group-min-size: "3"
+    machine-pool.giantswarm.io/name: Unnamed node pool
+    release.giantswarm.io/last-deployed-version: 15.1.1
+  labels:
+    azure-operator.giantswarm.io/version: 5.8.1
+    cluster-operator.giantswarm.io/version: 0.27.1
+    cluster.x-k8s.io/cluster-name: x4j3p
+    giantswarm.io/cluster: x4j3p
+    giantswarm.io/machine-pool: q5k7t
+    giantswarm.io/organization: giantswarm
+    release.giantswarm.io/version: 15.1.1
+  name: q5k7t
+  namespace: org-giantswarm
+spec:
+  clusterName: x4j3p
+  failureDomains:
+    - "2"
+  minReadySeconds: 0
+  providerIDList:
+    - azure:///subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee/resourceGroups/mmh5x/providers/Microsoft.Compute/virtualMachineScaleSets/nodepool-w86vu/virtualMachines/0
+    - azure:///subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee/resourceGroups/mmh5x/providers/Microsoft.Compute/virtualMachineScaleSets/nodepool-w86vu/virtualMachines/1
+    - azure:///subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee/resourceGroups/mmh5x/providers/Microsoft.Compute/virtualMachineScaleSets/nodepool-w86vu/virtualMachines/2
+  replicas: 3
+  template:
+    metadata: {}
+    spec:
+      bootstrap:
+        configRef:
+          apiVersion: core.giantswarm.io/v1alpha1
+          kind: Spark
+          name: q5k7t
+          namespace: org-giantswarm
+          resourceVersion: "374040263"
+          uid: a4f5af79-1354-4c99-a68b-433deaff2ede
+      clusterName: x4j3p
+      infrastructureRef:
+        apiVersion: exp.infrastructure.cluster.x-k8s.io/v1alpha3
+        kind: AzureMachinePool
+        name: q5k7t
+        namespace: org-giantswarm
+        resourceVersion: "374040262"
+        uid: 4d1e7420-53a8-4a38-8a2c-0bd30f93a593
+```
 
 
 <h3 id="property-details-v1alpha3">Properties</h3>
@@ -122,7 +172,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>MachineDeploymentSpec defines the desired state of MachineDeployment.</p>
+<p>MachinePoolSpec defines the desired state of MachinePool.</p>
 
 </div>
 
@@ -149,6 +199,37 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-1">
 <div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.failureDomains">.spec.failureDomains</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>FailureDomains is the list of failure domains this MachinePool should be attached to.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.failureDomains[*]">.spec.failureDomains[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.minReadySeconds">.spec.minReadySeconds</h3>
 </div>
 <div class="property-body">
@@ -158,7 +239,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Minimum number of seconds for which a newly created machine should be ready. Defaults to 0 (machine will be considered available as soon as it is ready)</p>
+<p>Minimum number of seconds for which a newly created machine instances should be ready. Defaults to 0 (machine instance will be considered available as soon as it is ready)</p>
 
 </div>
 
@@ -167,34 +248,29 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.paused">.spec.paused</h3>
+<h3 class="property-path" id="v1alpha3-.spec.providerIDList">.spec.providerIDList</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
+<span class="property-type">array</span>
 
 </div>
 
 <div class="property-description">
-<p>Indicates that the deployment is paused.</p>
+<p>ProviderIDList are the identification IDs of machine instances provided by the provider. This field must match the provider IDs as seen on the node objects corresponding to a machine pool&rsquo;s machine instances.</p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-1">
+<div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.progressDeadlineSeconds">.spec.progressDeadlineSeconds</h3>
+<h3 class="property-path" id="v1alpha3-.spec.providerIDList[*]">.spec.providerIDList[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">integer</span>
-
-</div>
-
-<div class="property-description">
-<p>The maximum time in seconds for a deployment to make progress before it is considered to be failed. The deployment controller will continue to process failed deployments and a condition with a ProgressDeadlineExceeded reason will be surfaced in the deployment status. Note that progress will not be estimated during the time a deployment is paused. Defaults to 600s.</p>
+<span class="property-type">string</span>
 
 </div>
 
@@ -221,163 +297,6 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.revisionHistoryLimit">.spec.revisionHistoryLimit</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">integer</span>
-
-</div>
-
-<div class="property-description">
-<p>The number of old MachineSets to retain to allow rollback. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.selector">.spec.selector</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>Label selector for machines. Existing MachineSets whose machines are selected by this will be the ones affected by this deployment. It must match the machine template&rsquo;s labels.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.selector.matchExpressions">.spec.selector.matchExpressions</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">array</span>
-
-</div>
-
-<div class="property-description">
-<p>matchExpressions is a list of label selector requirements. The requirements are ANDed.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.selector.matchExpressions[*]">.spec.selector.matchExpressions[*]</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.selector.matchExpressions[*].key">.spec.selector.matchExpressions[*].key</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>key is the label key that the selector applies to.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.selector.matchExpressions[*].operator">.spec.selector.matchExpressions[*].operator</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>operator represents a key&rsquo;s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.selector.matchExpressions[*].values">.spec.selector.matchExpressions[*].values</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">array</span>
-
-</div>
-
-<div class="property-description">
-<p>values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-5">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.selector.matchExpressions[*].values[*]">.spec.selector.matchExpressions[*].values[*]</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.selector.matchLabels">.spec.selector.matchLabels</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is &ldquo;key&rdquo;, the operator is &ldquo;In&rdquo;, and the values array contains only &ldquo;value&rdquo;. The requirements are ANDed.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.strategy">.spec.strategy</h3>
 </div>
 <div class="property-body">
@@ -387,7 +306,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>The deployment strategy to use to replace existing machines with new ones.</p>
+<p>The deployment strategy to use to replace existing machine instances with new ones.</p>
 
 </div>
 
@@ -1205,7 +1124,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>MachineDeploymentStatus defines the observed state of MachineDeployment.</p>
+<p>MachinePoolStatus defines the observed state of MachinePool.</p>
 
 </div>
 
@@ -1223,7 +1142,385 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Total number of available machines (ready for at least minReadySeconds) targeted by this deployment.</p>
+<p>The number of available replicas (ready for at least minReadySeconds) for this MachinePool.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.bootstrapReady">.status.bootstrapReady</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>BootstrapReady is the state of the bootstrap provider.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.conditions">.status.conditions</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>Conditions define the current service state of the MachinePool.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.conditions[*]">.status.conditions[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Condition defines an observation of a Cluster API resource operational state.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.conditions[*].lastTransitionTime">.status.conditions[*].lastTransitionTime</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.conditions[*].message">.status.conditions[*].message</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>A human readable message indicating details about the transition. This field may be empty.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.conditions[*].reason">.status.conditions[*].reason</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>The reason for the condition&rsquo;s last transition in CamelCase. The specific API may choose whether or not this field is considered a guaranteed API. This field may not be empty.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.conditions[*].severity">.status.conditions[*].severity</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Severity provides an explicit classification of Reason code, so the users or machines can immediately understand the current situation and act accordingly. The Severity field MUST be set only when Status=False.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.conditions[*].status">.status.conditions[*].status</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Status of the condition, one of True, False, Unknown.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.conditions[*].type">.status.conditions[*].type</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Type of condition in CamelCase or in foo.example.com/CamelCase. Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be useful (see .node.status.conditions), the ability to deconflict is important.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.failureMessage">.status.failureMessage</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>FailureMessage indicates that there is a problem reconciling the state, and will be set to a descriptive error message.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.failureReason">.status.failureReason</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>FailureReason indicates that there is a problem reconciling the state, and will be set to a token value suitable for programmatic interpretation.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.infrastructureReady">.status.infrastructureReady</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>InfrastructureReady is the state of the infrastructure provider.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.nodeRefs">.status.nodeRefs</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>NodeRefs will point to the corresponding Nodes if it they exist.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.nodeRefs[*]">.status.nodeRefs[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>ObjectReference contains enough information to let you inspect or modify the referred object. &mdash; New uses of this type are discouraged because of difficulty describing its usage when embedded in APIs.  1. Ignored fields.  It includes many fields which are not generally honored.  For instance, ResourceVersion and FieldPath are both very rarely valid in actual usage.  2. Invalid usage help.  It is impossible to add specific help for individual usage.  In most embedded usages, there are particular     restrictions like, &ldquo;must refer only to types A and B&rdquo; or &ldquo;UID not honored&rdquo; or &ldquo;name must be restricted&rdquo;.     Those cannot be well described when embedded.  3. Inconsistent validation.  Because the usages are different, the validation rules are different by usage, which makes it hard for users to predict what will happen.  4. The fields are both imprecise and overly precise.  Kind is not a precise mapping to a URL. This can produce ambiguity     during interpretation and require a REST mapping.  In most cases, the dependency is on the group,resource tuple     and the version of the actual struct is irrelevant.  5. We cannot easily change it.  Because this type is embedded in many locations, updates to this type     will affect numerous schemas.  Don&rsquo;t make new APIs embed an underspecified API type they do not control. Instead of using this type, create a locally provided and used type that is well-focused on your reference. For example, ServiceReferences for admission registration: <a href="https://github.com/kubernetes/api/blob/release-1.17/admissionregistration/v1/types.go#L533">https://github.com/kubernetes/api/blob/release-1.17/admissionregistration/v1/types.go#L533</a> .</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.nodeRefs[*].apiVersion">.status.nodeRefs[*].apiVersion</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>API version of the referent.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.nodeRefs[*].fieldPath">.status.nodeRefs[*].fieldPath</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: &ldquo;spec.containers{name}&rdquo; (where &ldquo;name&rdquo; refers to the name of the container that triggered the event) or if no container name is specified &ldquo;spec.containers[2]&rdquo; (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.nodeRefs[*].kind">.status.nodeRefs[*].kind</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Kind of the referent. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.nodeRefs[*].name">.status.nodeRefs[*].name</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Name of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.nodeRefs[*].namespace">.status.nodeRefs[*].namespace</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Namespace of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/">https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.nodeRefs[*].resourceVersion">.status.nodeRefs[*].resourceVersion</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Specific resourceVersion to which this reference is made, if any. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.nodeRefs[*].uid">.status.nodeRefs[*].uid</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>UID of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids</a></p>
 
 </div>
 
@@ -1241,7 +1538,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>The generation observed by the deployment controller.</p>
+<p>ObservedGeneration is the latest generation observed by the controller.</p>
 
 </div>
 
@@ -1259,7 +1556,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Phase represents the current phase of a MachineDeployment (ScalingUp, ScalingDown, Running, Failed, or Unknown).</p>
+<p>Phase represents the current phase of cluster actuation. E.g. Pending, Running, Terminating, Failed etc.</p>
 
 </div>
 
@@ -1277,7 +1574,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Total number of ready machines targeted by this deployment.</p>
+<p>The number of ready replicas for this MachinePool. A machine is considered ready when the node has been created and is &ldquo;Ready&rdquo;.</p>
 
 </div>
 
@@ -1295,25 +1592,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Total number of non-terminated machines targeted by this deployment (their labels match the selector).</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.status.selector">.status.selector</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>Selector is the same as the label selector but in the string format to avoid introspection by clients. The string will be in the same format as the query-param syntax. More info about label selectors: <a href="http://kubernetes.io/docs/user-guide/labels#label-selectors">http://kubernetes.io/docs/user-guide/labels#label-selectors</a></p>
+<p>Replicas is the most recently observed number of replicas.</p>
 
 </div>
 
@@ -1331,25 +1610,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Total number of unavailable machines targeted by this deployment. This is the total number of machines that are still required for the deployment to have 100% available capacity. They may either be machines that are running but not yet available or machines that still have not been created.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.status.updatedReplicas">.status.updatedReplicas</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">integer</span>
-
-</div>
-
-<div class="property-description">
-<p>Total number of non-terminated machines targeted by this deployment that have the desired template spec.</p>
+<p>Total number of unavailable machine instances targeted by this machine pool. This is the total number of machine instances that are still required for the machine pool to have 100% available capacity. They may either be machine instances that are running but not yet available or machine instances that still have not been created.</p>
 
 </div>
 
@@ -1430,7 +1691,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>MachineDeploymentSpec defines the desired state of MachineDeployment.</p>
+<p>MachinePoolSpec defines the desired state of MachinePool.</p>
 
 </div>
 
@@ -1457,6 +1718,37 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-1">
 <div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.failureDomains">.spec.failureDomains</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>FailureDomains is the list of failure domains this MachinePool should be attached to.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.failureDomains[*]">.spec.failureDomains[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.minReadySeconds">.spec.minReadySeconds</h3>
 </div>
 <div class="property-body">
@@ -1466,7 +1758,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Minimum number of seconds for which a newly created machine should be ready. Defaults to 0 (machine will be considered available as soon as it is ready)</p>
+<p>Minimum number of seconds for which a newly created machine instances should be ready. Defaults to 0 (machine instance will be considered available as soon as it is ready)</p>
 
 </div>
 
@@ -1475,34 +1767,29 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.paused">.spec.paused</h3>
+<h3 class="property-path" id="v1alpha4-.spec.providerIDList">.spec.providerIDList</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
+<span class="property-type">array</span>
 
 </div>
 
 <div class="property-description">
-<p>Indicates that the deployment is paused.</p>
+<p>ProviderIDList are the identification IDs of machine instances provided by the provider. This field must match the provider IDs as seen on the node objects corresponding to a machine pool&rsquo;s machine instances.</p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-1">
+<div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.progressDeadlineSeconds">.spec.progressDeadlineSeconds</h3>
+<h3 class="property-path" id="v1alpha4-.spec.providerIDList[*]">.spec.providerIDList[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">integer</span>
-
-</div>
-
-<div class="property-description">
-<p>The maximum time in seconds for a deployment to make progress before it is considered to be failed. The deployment controller will continue to process failed deployments and a condition with a ProgressDeadlineExceeded reason will be surfaced in the deployment status. Note that progress will not be estimated during the time a deployment is paused. Defaults to 600s.</p>
+<span class="property-type">string</span>
 
 </div>
 
@@ -1521,271 +1808,6 @@ source_repository_ref: v5.0.0
 
 <div class="property-description">
 <p>Number of desired machines. Defaults to 1. This is a pointer to distinguish between explicit zero and not specified.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.revisionHistoryLimit">.spec.revisionHistoryLimit</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">integer</span>
-
-</div>
-
-<div class="property-description">
-<p>The number of old MachineSets to retain to allow rollback. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.selector">.spec.selector</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>Label selector for machines. Existing MachineSets whose machines are selected by this will be the ones affected by this deployment. It must match the machine template&rsquo;s labels.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions">.spec.selector.matchExpressions</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">array</span>
-
-</div>
-
-<div class="property-description">
-<p>matchExpressions is a list of label selector requirements. The requirements are ANDed.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*]">.spec.selector.matchExpressions[*]</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*].key">.spec.selector.matchExpressions[*].key</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>key is the label key that the selector applies to.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*].operator">.spec.selector.matchExpressions[*].operator</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>operator represents a key&rsquo;s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*].values">.spec.selector.matchExpressions[*].values</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">array</span>
-
-</div>
-
-<div class="property-description">
-<p>values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-5">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*].values[*]">.spec.selector.matchExpressions[*].values[*]</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.selector.matchLabels">.spec.selector.matchLabels</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is &ldquo;key&rdquo;, the operator is &ldquo;In&rdquo;, and the values array contains only &ldquo;value&rdquo;. The requirements are ANDed.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.strategy">.spec.strategy</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>The deployment strategy to use to replace existing machines with new ones.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.strategy.rollingUpdate">.spec.strategy.rollingUpdate</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>Rolling update config params. Present only if MachineDeploymentStrategyType = RollingUpdate.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.strategy.rollingUpdate.deletePolicy">.spec.strategy.rollingUpdate.deletePolicy</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>DeletePolicy defines the policy used by the MachineDeployment to identify nodes to delete when downscaling. Valid values are &ldquo;Random, &ldquo;Newest&rdquo;, &ldquo;Oldest&rdquo; When no value is supplied, the default DeletePolicy of MachineSet is used</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.strategy.rollingUpdate.maxSurge">.spec.strategy.rollingUpdate.maxSurge</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-
-
-</div>
-
-<div class="property-description">
-<p>The maximum number of machines that can be scheduled above the desired number of machines. Value can be an absolute number (ex: 5) or a percentage of desired machines (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to 1. Example: when this is set to 30%, the new MachineSet can be scaled up immediately when the rolling update starts, such that the total number of old and new machines do not exceed 130% of desired machines. Once old machines have been killed, new MachineSet can be scaled up further, ensuring that total number of machines running at any time during the update is at most 130% of desired machines.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.strategy.rollingUpdate.maxUnavailable">.spec.strategy.rollingUpdate.maxUnavailable</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-
-
-</div>
-
-<div class="property-description">
-<p>The maximum number of machines that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired machines (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to 0. Example: when this is set to 30%, the old MachineSet can be scaled down to 70% of desired machines immediately when the rolling update starts. Once new machines are ready, old MachineSet can be scaled down further, followed by scaling up the new MachineSet, ensuring that the total number of machines available at all times during the update is at least 70% of desired machines.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.strategy.type">.spec.strategy.type</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>Type of deployment. Default is RollingUpdate.</p>
 
 </div>
 
@@ -2307,7 +2329,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>MachineDeploymentStatus defines the observed state of MachineDeployment.</p>
+<p>MachinePoolStatus defines the observed state of MachinePool.</p>
 
 </div>
 
@@ -2325,7 +2347,25 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Total number of available machines (ready for at least minReadySeconds) targeted by this deployment.</p>
+<p>The number of available replicas (ready for at least minReadySeconds) for this MachinePool.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status.bootstrapReady">.status.bootstrapReady</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>BootstrapReady is the state of the bootstrap provider.</p>
 
 </div>
 
@@ -2343,7 +2383,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Conditions defines current service state of the MachineDeployment.</p>
+<p>Conditions define the current service state of the MachinePool.</p>
 
 </div>
 
@@ -2478,6 +2518,222 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-1">
 <div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status.failureMessage">.status.failureMessage</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>FailureMessage indicates that there is a problem reconciling the state, and will be set to a descriptive error message.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status.failureReason">.status.failureReason</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>FailureReason indicates that there is a problem reconciling the state, and will be set to a token value suitable for programmatic interpretation.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status.infrastructureReady">.status.infrastructureReady</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>InfrastructureReady is the state of the infrastructure provider.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status.nodeRefs">.status.nodeRefs</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>NodeRefs will point to the corresponding Nodes if it they exist.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status.nodeRefs[*]">.status.nodeRefs[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>ObjectReference contains enough information to let you inspect or modify the referred object. &mdash; New uses of this type are discouraged because of difficulty describing its usage when embedded in APIs.  1. Ignored fields.  It includes many fields which are not generally honored.  For instance, ResourceVersion and FieldPath are both very rarely valid in actual usage.  2. Invalid usage help.  It is impossible to add specific help for individual usage.  In most embedded usages, there are particular     restrictions like, &ldquo;must refer only to types A and B&rdquo; or &ldquo;UID not honored&rdquo; or &ldquo;name must be restricted&rdquo;.     Those cannot be well described when embedded.  3. Inconsistent validation.  Because the usages are different, the validation rules are different by usage, which makes it hard for users to predict what will happen.  4. The fields are both imprecise and overly precise.  Kind is not a precise mapping to a URL. This can produce ambiguity     during interpretation and require a REST mapping.  In most cases, the dependency is on the group,resource tuple     and the version of the actual struct is irrelevant.  5. We cannot easily change it.  Because this type is embedded in many locations, updates to this type     will affect numerous schemas.  Don&rsquo;t make new APIs embed an underspecified API type they do not control. Instead of using this type, create a locally provided and used type that is well-focused on your reference. For example, ServiceReferences for admission registration: <a href="https://github.com/kubernetes/api/blob/release-1.17/admissionregistration/v1/types.go#L533">https://github.com/kubernetes/api/blob/release-1.17/admissionregistration/v1/types.go#L533</a> .</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status.nodeRefs[*].apiVersion">.status.nodeRefs[*].apiVersion</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>API version of the referent.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status.nodeRefs[*].fieldPath">.status.nodeRefs[*].fieldPath</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: &ldquo;spec.containers{name}&rdquo; (where &ldquo;name&rdquo; refers to the name of the container that triggered the event) or if no container name is specified &ldquo;spec.containers[2]&rdquo; (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status.nodeRefs[*].kind">.status.nodeRefs[*].kind</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Kind of the referent. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status.nodeRefs[*].name">.status.nodeRefs[*].name</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Name of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status.nodeRefs[*].namespace">.status.nodeRefs[*].namespace</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Namespace of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/">https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status.nodeRefs[*].resourceVersion">.status.nodeRefs[*].resourceVersion</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Specific resourceVersion to which this reference is made, if any. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status.nodeRefs[*].uid">.status.nodeRefs[*].uid</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>UID of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
 <h3 class="property-path" id="v1alpha4-.status.observedGeneration">.status.observedGeneration</h3>
 </div>
 <div class="property-body">
@@ -2487,7 +2743,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>The generation observed by the deployment controller.</p>
+<p>ObservedGeneration is the latest generation observed by the controller.</p>
 
 </div>
 
@@ -2505,7 +2761,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Phase represents the current phase of a MachineDeployment (ScalingUp, ScalingDown, Running, Failed, or Unknown).</p>
+<p>Phase represents the current phase of cluster actuation. E.g. Pending, Running, Terminating, Failed etc.</p>
 
 </div>
 
@@ -2523,7 +2779,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Total number of ready machines targeted by this deployment.</p>
+<p>The number of ready replicas for this MachinePool. A machine is considered ready when the node has been created and is &ldquo;Ready&rdquo;.</p>
 
 </div>
 
@@ -2541,25 +2797,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Total number of non-terminated machines targeted by this deployment (their labels match the selector).</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.status.selector">.status.selector</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>Selector is the same as the label selector but in the string format to avoid introspection by clients. The string will be in the same format as the query-param syntax. More info about label selectors: <a href="http://kubernetes.io/docs/user-guide/labels#label-selectors">http://kubernetes.io/docs/user-guide/labels#label-selectors</a></p>
+<p>Replicas is the most recently observed number of replicas.</p>
 
 </div>
 
@@ -2577,25 +2815,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Total number of unavailable machines targeted by this deployment. This is the total number of machines that are still required for the deployment to have 100% available capacity. They may either be machines that are running but not yet available or machines that still have not been created.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.status.updatedReplicas">.status.updatedReplicas</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">integer</span>
-
-</div>
-
-<div class="property-description">
-<p>Total number of non-terminated machines targeted by this deployment that have the desired template spec.</p>
+<p>Total number of unavailable machine instances targeted by this machine pool. This is the total number of machine instances that are still required for the machine pool to have 100% available capacity. They may either be machine instances that are running but not yet available or machine instances that still have not been created.</p>
 
 </div>
 
@@ -2676,7 +2896,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>MachineDeploymentSpec defines the desired state of MachineDeployment.</p>
+<p>MachinePoolSpec defines the desired state of MachinePool.</p>
 
 </div>
 
@@ -2703,6 +2923,37 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-1">
 <div class="property-header">
+<h3 class="property-path" id="v1beta1-.spec.failureDomains">.spec.failureDomains</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>FailureDomains is the list of failure domains this MachinePool should be attached to.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1beta1-.spec.failureDomains[*]">.spec.failureDomains[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
 <h3 class="property-path" id="v1beta1-.spec.minReadySeconds">.spec.minReadySeconds</h3>
 </div>
 <div class="property-body">
@@ -2712,7 +2963,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Minimum number of seconds for which a newly created machine should be ready. Defaults to 0 (machine will be considered available as soon as it is ready)</p>
+<p>Minimum number of seconds for which a newly created machine instances should be ready. Defaults to 0 (machine instance will be considered available as soon as it is ready)</p>
 
 </div>
 
@@ -2721,34 +2972,29 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.paused">.spec.paused</h3>
+<h3 class="property-path" id="v1beta1-.spec.providerIDList">.spec.providerIDList</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
+<span class="property-type">array</span>
 
 </div>
 
 <div class="property-description">
-<p>Indicates that the deployment is paused.</p>
+<p>ProviderIDList are the identification IDs of machine instances provided by the provider. This field must match the provider IDs as seen on the node objects corresponding to a machine pool&rsquo;s machine instances.</p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-1">
+<div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.progressDeadlineSeconds">.spec.progressDeadlineSeconds</h3>
+<h3 class="property-path" id="v1beta1-.spec.providerIDList[*]">.spec.providerIDList[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">integer</span>
-
-</div>
-
-<div class="property-description">
-<p>The maximum time in seconds for a deployment to make progress before it is considered to be failed. The deployment controller will continue to process failed deployments and a condition with a ProgressDeadlineExceeded reason will be surfaced in the deployment status. Note that progress will not be estimated during the time a deployment is paused. Defaults to 600s.</p>
+<span class="property-type">string</span>
 
 </div>
 
@@ -2767,271 +3013,6 @@ source_repository_ref: v5.0.0
 
 <div class="property-description">
 <p>Number of desired machines. Defaults to 1. This is a pointer to distinguish between explicit zero and not specified.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.revisionHistoryLimit">.spec.revisionHistoryLimit</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">integer</span>
-
-</div>
-
-<div class="property-description">
-<p>The number of old MachineSets to retain to allow rollback. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.selector">.spec.selector</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>Label selector for machines. Existing MachineSets whose machines are selected by this will be the ones affected by this deployment. It must match the machine template&rsquo;s labels.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.selector.matchExpressions">.spec.selector.matchExpressions</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">array</span>
-
-</div>
-
-<div class="property-description">
-<p>matchExpressions is a list of label selector requirements. The requirements are ANDed.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.selector.matchExpressions[*]">.spec.selector.matchExpressions[*]</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.selector.matchExpressions[*].key">.spec.selector.matchExpressions[*].key</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>key is the label key that the selector applies to.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.selector.matchExpressions[*].operator">.spec.selector.matchExpressions[*].operator</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>operator represents a key&rsquo;s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.selector.matchExpressions[*].values">.spec.selector.matchExpressions[*].values</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">array</span>
-
-</div>
-
-<div class="property-description">
-<p>values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-5">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.selector.matchExpressions[*].values[*]">.spec.selector.matchExpressions[*].values[*]</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.selector.matchLabels">.spec.selector.matchLabels</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is &ldquo;key&rdquo;, the operator is &ldquo;In&rdquo;, and the values array contains only &ldquo;value&rdquo;. The requirements are ANDed.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.strategy">.spec.strategy</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>The deployment strategy to use to replace existing machines with new ones.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.strategy.rollingUpdate">.spec.strategy.rollingUpdate</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>Rolling update config params. Present only if MachineDeploymentStrategyType = RollingUpdate.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.strategy.rollingUpdate.deletePolicy">.spec.strategy.rollingUpdate.deletePolicy</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>DeletePolicy defines the policy used by the MachineDeployment to identify nodes to delete when downscaling. Valid values are &ldquo;Random, &ldquo;Newest&rdquo;, &ldquo;Oldest&rdquo; When no value is supplied, the default DeletePolicy of MachineSet is used</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.strategy.rollingUpdate.maxSurge">.spec.strategy.rollingUpdate.maxSurge</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-
-
-</div>
-
-<div class="property-description">
-<p>The maximum number of machines that can be scheduled above the desired number of machines. Value can be an absolute number (ex: 5) or a percentage of desired machines (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to 1. Example: when this is set to 30%, the new MachineSet can be scaled up immediately when the rolling update starts, such that the total number of old and new machines do not exceed 130% of desired machines. Once old machines have been killed, new MachineSet can be scaled up further, ensuring that total number of machines running at any time during the update is at most 130% of desired machines.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.strategy.rollingUpdate.maxUnavailable">.spec.strategy.rollingUpdate.maxUnavailable</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-
-
-</div>
-
-<div class="property-description">
-<p>The maximum number of machines that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired machines (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to 0. Example: when this is set to 30%, the old MachineSet can be scaled down to 70% of desired machines immediately when the rolling update starts. Once new machines are ready, old MachineSet can be scaled down further, followed by scaling up the new MachineSet, ensuring that the total number of machines available at all times during the update is at least 70% of desired machines.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.strategy.type">.spec.strategy.type</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>Type of deployment. Default is RollingUpdate.</p>
 
 </div>
 
@@ -3553,7 +3534,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>MachineDeploymentStatus defines the observed state of MachineDeployment.</p>
+<p>MachinePoolStatus defines the observed state of MachinePool.</p>
 
 </div>
 
@@ -3571,7 +3552,25 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Total number of available machines (ready for at least minReadySeconds) targeted by this deployment.</p>
+<p>The number of available replicas (ready for at least minReadySeconds) for this MachinePool.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1beta1-.status.bootstrapReady">.status.bootstrapReady</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>BootstrapReady is the state of the bootstrap provider.</p>
 
 </div>
 
@@ -3589,7 +3588,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Conditions defines current service state of the MachineDeployment.</p>
+<p>Conditions define the current service state of the MachinePool.</p>
 
 </div>
 
@@ -3724,6 +3723,222 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-1">
 <div class="property-header">
+<h3 class="property-path" id="v1beta1-.status.failureMessage">.status.failureMessage</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>FailureMessage indicates that there is a problem reconciling the state, and will be set to a descriptive error message.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1beta1-.status.failureReason">.status.failureReason</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>FailureReason indicates that there is a problem reconciling the state, and will be set to a token value suitable for programmatic interpretation.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1beta1-.status.infrastructureReady">.status.infrastructureReady</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>InfrastructureReady is the state of the infrastructure provider.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1beta1-.status.nodeRefs">.status.nodeRefs</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>NodeRefs will point to the corresponding Nodes if it they exist.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1beta1-.status.nodeRefs[*]">.status.nodeRefs[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>ObjectReference contains enough information to let you inspect or modify the referred object. &mdash; New uses of this type are discouraged because of difficulty describing its usage when embedded in APIs.  1. Ignored fields.  It includes many fields which are not generally honored.  For instance, ResourceVersion and FieldPath are both very rarely valid in actual usage.  2. Invalid usage help.  It is impossible to add specific help for individual usage.  In most embedded usages, there are particular     restrictions like, &ldquo;must refer only to types A and B&rdquo; or &ldquo;UID not honored&rdquo; or &ldquo;name must be restricted&rdquo;.     Those cannot be well described when embedded.  3. Inconsistent validation.  Because the usages are different, the validation rules are different by usage, which makes it hard for users to predict what will happen.  4. The fields are both imprecise and overly precise.  Kind is not a precise mapping to a URL. This can produce ambiguity     during interpretation and require a REST mapping.  In most cases, the dependency is on the group,resource tuple     and the version of the actual struct is irrelevant.  5. We cannot easily change it.  Because this type is embedded in many locations, updates to this type     will affect numerous schemas.  Don&rsquo;t make new APIs embed an underspecified API type they do not control. Instead of using this type, create a locally provided and used type that is well-focused on your reference. For example, ServiceReferences for admission registration: <a href="https://github.com/kubernetes/api/blob/release-1.17/admissionregistration/v1/types.go#L533">https://github.com/kubernetes/api/blob/release-1.17/admissionregistration/v1/types.go#L533</a> .</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1beta1-.status.nodeRefs[*].apiVersion">.status.nodeRefs[*].apiVersion</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>API version of the referent.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1beta1-.status.nodeRefs[*].fieldPath">.status.nodeRefs[*].fieldPath</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: &ldquo;spec.containers{name}&rdquo; (where &ldquo;name&rdquo; refers to the name of the container that triggered the event) or if no container name is specified &ldquo;spec.containers[2]&rdquo; (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1beta1-.status.nodeRefs[*].kind">.status.nodeRefs[*].kind</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Kind of the referent. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1beta1-.status.nodeRefs[*].name">.status.nodeRefs[*].name</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Name of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1beta1-.status.nodeRefs[*].namespace">.status.nodeRefs[*].namespace</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Namespace of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/">https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1beta1-.status.nodeRefs[*].resourceVersion">.status.nodeRefs[*].resourceVersion</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Specific resourceVersion to which this reference is made, if any. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1beta1-.status.nodeRefs[*].uid">.status.nodeRefs[*].uid</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>UID of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
 <h3 class="property-path" id="v1beta1-.status.observedGeneration">.status.observedGeneration</h3>
 </div>
 <div class="property-body">
@@ -3733,7 +3948,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>The generation observed by the deployment controller.</p>
+<p>ObservedGeneration is the latest generation observed by the controller.</p>
 
 </div>
 
@@ -3751,7 +3966,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Phase represents the current phase of a MachineDeployment (ScalingUp, ScalingDown, Running, Failed, or Unknown).</p>
+<p>Phase represents the current phase of cluster actuation. E.g. Pending, Running, Terminating, Failed etc.</p>
 
 </div>
 
@@ -3769,7 +3984,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Total number of ready machines targeted by this deployment.</p>
+<p>The number of ready replicas for this MachinePool. A machine is considered ready when the node has been created and is &ldquo;Ready&rdquo;.</p>
 
 </div>
 
@@ -3787,25 +4002,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Total number of non-terminated machines targeted by this deployment (their labels match the selector).</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.status.selector">.status.selector</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>Selector is the same as the label selector but in the string format to avoid introspection by clients. The string will be in the same format as the query-param syntax. More info about label selectors: <a href="http://kubernetes.io/docs/user-guide/labels#label-selectors">http://kubernetes.io/docs/user-guide/labels#label-selectors</a></p>
+<p>Replicas is the most recently observed number of replicas.</p>
 
 </div>
 
@@ -3823,25 +4020,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Total number of unavailable machines targeted by this deployment. This is the total number of machines that are still required for the deployment to have 100% available capacity. They may either be machines that are running but not yet available or machines that still have not been created.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.status.updatedReplicas">.status.updatedReplicas</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">integer</span>
-
-</div>
-
-<div class="property-description">
-<p>Total number of non-terminated machines targeted by this deployment that have the desired template spec.</p>
+<p>Total number of unavailable machine instances targeted by this machine pool. This is the total number of machine instances that are still required for the machine pool to have 100% available capacity. They may either be machine instances that are running but not yet available or machine instances that still have not been created.</p>
 
 </div>
 
