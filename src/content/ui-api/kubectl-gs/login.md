@@ -52,7 +52,7 @@ It is also possible to create client certificates for a workload cluster, by pro
 
 - `--keep-context`: Keep the current kubectl context selected after authenticating. If this flag is not set or false, the newly created context will be selected as the current-context.
 
-- `--self-contained` - Output file path for a self-contained kubectl configuration file. If provided, the certificate data will be written to an external kubectl configuration file instead of the default one. Please be aware that this starts the login process from the beginning regardless of existing contexts.
+- `--self-contained`: Output file path for a self-contained kubectl configuration file. If provided, the certificate data will be written to an external kubectl configuration file instead of the default one. Please be aware that this starts the login process from the beginning regardless of existing contexts.
 
 For **management cluster** authentication, the following flags are available:
 
