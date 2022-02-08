@@ -9,9 +9,9 @@ changes_entry:
   url: https://github.com/giantswarm/releases/tree/master/azure/v20.0.0-alpha1
   version: 20.0.0-alpha1
   version_tag: v20.0.0-alpha1
-date: '2021-03-02T14:50:41+00:00'
+date: '2022-02-08T10:00:00+00:00'
 description: Release notes for Azure workload cluster release v20.0.0-alpha1, published
-  on 02 March 2021, 14:50
+  on 08 February 2022, 10:00
 title: Workload cluster release v20.0.0-alpha1 for Azure
 ---
 
@@ -24,6 +24,10 @@ This release provides initial support for creating clusters with Cluster API for
 ```
 kubectl get machinepools.exp.cluster.x-k8s.io -A
 ```
+
+Clusters can be created with `kubectl-gs` by following the [documentation](https://docs.giantswarm.io/ui-api/kubectl-gs/template-cluster/#flags-capz).
+
+If you are interested how Cluster API changed our structure and what is coming next, please see our [blog post](https://www.giantswarm.io/blog/a-phoenix-rising-from-cluster-api).
 
 ## Change details
 
