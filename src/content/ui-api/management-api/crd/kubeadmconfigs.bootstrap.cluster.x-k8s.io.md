@@ -6381,7 +6381,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-1">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.ntp.servers[*]">.spec.ntp.servers[*]</h3>
 </div>
@@ -6565,6 +6565,7 @@ source_repository_ref: v5.0.0
 </div>
 
 </div>
+</div>
 
 <div class="property depth-3">
 <div class="property-header">
@@ -6581,7 +6582,11 @@ source_repository_ref: v5.0.0
 
 </div>
 
+<div class="property-description">
+<p>HomeDir specifies the home directory to use for the user</p>
+
 </div>
+
 </div>
 
 <div class="property depth-3">
@@ -6600,6 +6605,7 @@ source_repository_ref: v5.0.0
 </div>
 
 </div>
+</div>
 
 <div class="property depth-3">
 <div class="property-header">
@@ -6616,7 +6622,11 @@ source_repository_ref: v5.0.0
 
 </div>
 
+<div class="property-description">
+<p>LockPassword specifies if password login should be disabled</p>
+
 </div>
+
 </div>
 
 <div class="property depth-3">
@@ -6694,6 +6704,19 @@ source_repository_ref: v5.0.0
 <div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.users[*].sshAuthorizedKeys[*]">.spec.users[*].sshAuthorizedKeys[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.users[*].sudo">.spec.users[*].sudo</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
