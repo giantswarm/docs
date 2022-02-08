@@ -889,7 +889,25 @@ spec:
 </div>
 
 <div class="property-description">
-<p>This encapsulates the topology for the cluster. NOTE: It is required to enable the ClusterTopology feature gate flag to activate managed topologies support; this feature is highly experimental, and parts of it might still be not implemented.</p>
+<p>ControlPlaneEndpoint represents the endpoint used to communicate with the control plane.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.controlPlaneEndpoint.host">.spec.controlPlaneEndpoint.host</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>The hostname on which the API server is serving.</p>
 
 </div>
 
@@ -914,7 +932,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.topology.controlPlane">.spec.topology.controlPlane</h3>
 </div>
@@ -922,7 +940,17 @@ spec:
 <div class="property-meta">
 <span class="property-type">object</span>
 
-<div class="property depth-1">
+</div>
+
+<div class="property-description">
+<p>ControlPlaneRef is an optional reference to a provider-specific resource that holds the details for provisioning the Control Plane for a Cluster.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.controlPlaneRef">.spec.controlPlaneRef</h3>
 </div>
