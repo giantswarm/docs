@@ -6581,6 +6581,11 @@ source_repository_ref: v5.0.0
 
 </div>
 
+<div class="property-description">
+<p>Inactive specifies whether to mark the user as inactive</p>
+
+</div>
+
 </div>
 
 <div class="property depth-3">
