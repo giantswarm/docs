@@ -2115,7 +2115,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -2133,7 +2133,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -2157,6 +2157,11 @@ source_repository_ref: v5.0.0
 
 <div class="property-description">
 <p>The node this Taint is attached to has the &ldquo;effect&rdquo; on any pod that does not tolerate the Taint.</p>
+
+</div>
+
+<div class="property-description">
+<p>Taints specifies the taints the Node API object should be registered with. If this field is unset, i.e. nil, in the <code>kubeadm init</code> process it will be defaulted to []v1.Taint{&lsquo;node-role.kubernetes.io/master=&ldquo;&rdquo;&rsquo;}. If you don&rsquo;t want to taint your control-plane node, set this field to an empty slice, i.e. <code>taints: {}</code> in the YAML file. This field is solely used for Node registration.</p>
 
 </div>
 
@@ -2277,7 +2282,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -2980,7 +2985,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
+<span class="property-type">array</span>
 
 </div>
 
@@ -2989,7 +2994,11 @@ source_repository_ref: v5.0.0
 
 </div>
 
+<div class="property-description">
+<p>HomeDir specifies the home directory to use for the user</p>
+
 </div>
+
 </div>
 
 <div class="property depth-3">
@@ -2998,7 +3007,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -3008,7 +3017,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>HomeDir specifies the home directory to use for the user</p>
+<p>Inactive specifies whether to mark the user as inactive</p>
 
 </div>
 
@@ -3030,11 +3039,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Inactive specifies whether to mark the user as inactive</p>
-
-</div>
-
-</div>
+<p>LockPassword specifies if password login should be disabled</p>
 
 <div class="property depth-3">
 <div class="property-header">
@@ -3042,7 +3047,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">boolean</span>
 
 </div>
 
@@ -3052,7 +3057,11 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>LockPassword specifies if password login should be disabled</p>
+<p>Inactive specifies whether to mark the user as inactive</p>
+
+</div>
+
+</div>
 
 <div class="property depth-3">
 <div class="property-header">
@@ -3070,9 +3079,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Inactive specifies whether to mark the user as inactive</p>
-
-</div>
+<p>HomeDir specifies the home directory to use for the user</p>
 
 </div>
 
@@ -3092,8 +3099,11 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>HomeDir specifies the home directory to use for the user</p>
+<p>Passwd specifies a hashed password for the user</p>
 
+</div>
+
+</div>
 </div>
 
 <div class="property depth-3">
@@ -3120,7 +3130,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -3156,7 +3166,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">array</span>
 
 </div>
 
@@ -3181,13 +3191,13 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.users[*].sudo">.spec.users[*].sudo</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">integer</span>
 
 </div>
 
@@ -3202,19 +3212,6 @@ source_repository_ref: v5.0.0
 <div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.verbosity">.spec.verbosity</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">integer</span>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.users[*].sudo">.spec.users[*].sudo</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
