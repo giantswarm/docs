@@ -140,6 +140,7 @@ data:
             clientID: <CLIENT-ID-SET-IN-YOUR-IdP>
             clientSecret: <CLIENT-SECRET-SET-IN--YOUR-IdP>
             loadAllGroups: false
+            teamNameField: slug
             redirectURI: https://dex.<CLUSTERID>.<BASEDOMAIN>/callback
             orgs:
             - name: main-customer-org
