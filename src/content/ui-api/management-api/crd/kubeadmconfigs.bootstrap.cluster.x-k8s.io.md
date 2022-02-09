@@ -5866,7 +5866,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.joinConfiguration.discovery.bootstrapToken">.spec.joinConfiguration.discovery.bootstrapToken</h3>
+<h3 class="property-path" id="v1alpha3-.spec.initConfiguration.nodeRegistration.criSocket">.spec.initConfiguration.nodeRegistration.criSocket</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -5884,7 +5884,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.joinConfiguration.discovery.bootstrapToken.apiServerEndpoint">.spec.joinConfiguration.discovery.bootstrapToken.apiServerEndpoint</h3>
+<h3 class="property-path" id="v1alpha4-.spec.joinConfiguration.discovery.bootstrapToken">.spec.joinConfiguration.discovery.bootstrapToken</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -5902,7 +5902,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.joinConfiguration.discovery.bootstrapToken.caCertHashes">.spec.joinConfiguration.discovery.bootstrapToken.caCertHashes</h3>
+<h3 class="property-path" id="v1alpha4-.spec.joinConfiguration.discovery.bootstrapToken.apiServerEndpoint">.spec.joinConfiguration.discovery.bootstrapToken.apiServerEndpoint</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -5920,7 +5920,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.joinConfiguration.discovery.bootstrapToken.caCertHashes[*]">.spec.joinConfiguration.discovery.bootstrapToken.caCertHashes[*]</h3>
+<h3 class="property-path" id="v1alpha4-.spec.joinConfiguration.discovery.bootstrapToken.caCertHashes">.spec.joinConfiguration.discovery.bootstrapToken.caCertHashes</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -5938,7 +5938,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.joinConfiguration.discovery.bootstrapToken.token">.spec.joinConfiguration.discovery.bootstrapToken.token</h3>
+<h3 class="property-path" id="v1alpha4-.spec.joinConfiguration.discovery.bootstrapToken.caCertHashes[*]">.spec.joinConfiguration.discovery.bootstrapToken.caCertHashes[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -5956,12 +5956,12 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.joinConfiguration.discovery.bootstrapToken.unsafeSkipCAVerification">.spec.joinConfiguration.discovery.bootstrapToken.unsafeSkipCAVerification</h3>
+<h3 class="property-path" id="v1alpha4-.spec.joinConfiguration.discovery.bootstrapToken.token">.spec.joinConfiguration.discovery.bootstrapToken.token</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
-
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
@@ -5974,12 +5974,12 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.joinConfiguration.discovery.file">.spec.joinConfiguration.discovery.file</h3>
+<h3 class="property-path" id="v1alpha4-.spec.joinConfiguration.discovery.bootstrapToken.unsafeSkipCAVerification">.spec.joinConfiguration.discovery.bootstrapToken.unsafeSkipCAVerification</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
+<span class="property-type">boolean</span>
+
 </div>
 
 <div class="property-description">
@@ -5992,7 +5992,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.joinConfiguration.discovery.file.kubeConfigPath">.spec.joinConfiguration.discovery.file.kubeConfigPath</h3>
+<h3 class="property-path" id="v1alpha4-.spec.joinConfiguration.discovery.file">.spec.joinConfiguration.discovery.file</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -6010,7 +6010,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.joinConfiguration.discovery.timeout">.spec.joinConfiguration.discovery.timeout</h3>
+<h3 class="property-path" id="v1alpha4-.spec.joinConfiguration.discovery.file.kubeConfigPath">.spec.joinConfiguration.discovery.file.kubeConfigPath</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -6028,11 +6028,29 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.joinConfiguration.discovery.tlsBootstrapToken">.spec.joinConfiguration.discovery.tlsBootstrapToken</h3>
+<h3 class="property-path" id="v1alpha4-.spec.joinConfiguration.discovery.timeout">.spec.joinConfiguration.discovery.timeout</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>JoinConfiguration is the kubeadm configuration for the join command</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.joinConfiguration.discovery.tlsBootstrapToken">.spec.joinConfiguration.discovery.tlsBootstrapToken</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
 
 </div>
 
@@ -6055,7 +6073,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources</a></p>
+<p>CACertPath is the path to the SSL certificate authority used to secure comunications between node and control-plane. Defaults to &ldquo;/etc/kubernetes/pki/ca.crt&rdquo;. TODO: revisit when there is defaulting from k/k</p>
 
 </div>
 
@@ -6363,7 +6381,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.ntp.servers[*]">.spec.ntp.servers[*]</h3>
 </div>
@@ -6492,7 +6510,11 @@ source_repository_ref: v5.0.0
 
 </div>
 
+<div class="property-description">
+<p>HomeDir specifies the home directory to use for the user</p>
+
 </div>
+
 </div>
 
 <div class="property depth-3">
@@ -6510,7 +6532,11 @@ source_repository_ref: v5.0.0
 
 </div>
 
+<div class="property-description">
+<p>Inactive specifies whether to mark the user as inactive</p>
+
 </div>
+
 </div>
 
 <div class="property depth-3">
@@ -6529,11 +6555,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>HomeDir specifies the home directory to use for the user</p>
-
-</div>
-
-</div>
+<p>LockPassword specifies if password login should be disabled</p>
 
 <div class="property depth-3">
 <div class="property-header">
@@ -6547,11 +6569,6 @@ source_repository_ref: v5.0.0
 
 <div class="property-description">
 <p>HomeDir specifies the home directory to use for the user</p>
-
-</div>
-
-<div class="property-description">
-<p>Inactive specifies whether to mark the user as inactive</p>
 
 </div>
 
@@ -6572,8 +6589,8 @@ source_repository_ref: v5.0.0
 
 </div>
 
-<div class="property-description">
-<p>LockPassword specifies if password login should be disabled</p>
+</div>
+</div>
 
 <div class="property depth-3">
 <div class="property-header">
@@ -6590,6 +6607,7 @@ source_repository_ref: v5.0.0
 
 </div>
 
+</div>
 </div>
 
 <div class="property depth-3">
@@ -6608,7 +6626,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Shell specifies the user&rsquo;s shell</p>
+<p>Passwd specifies a hashed password for the user</p>
 
 </div>
 
@@ -6693,20 +6711,20 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">integer</span>
+<span class="property-type">object</span>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-0">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.users[*].sudo">.spec.users[*].sudo</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">integer</span>
 
 </div>
 
