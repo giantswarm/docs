@@ -518,8 +518,6 @@ spec:
 <span class="property-type">integer</span>
 <span class="property-required">Required</span>
 </div>
-
-</div>
 </div>
 
 <div class="property depth-3">
