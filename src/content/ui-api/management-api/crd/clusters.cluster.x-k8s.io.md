@@ -518,17 +518,6 @@ spec:
 <span class="property-type">integer</span>
 <span class="property-required">Required</span>
 </div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha2-.status.apiEndpoints[*].port">.status.apiEndpoints[*].port</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">integer</span>
-<span class="property-required">Required</span>
-</div>
 
 <div class="property-description">
 <p>The port on which the API server is serving.</p>
