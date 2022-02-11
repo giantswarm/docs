@@ -2432,11 +2432,6 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>MachineDeploymentStatus defines the observed state of MachineDeployment.</p>
-
-</div>
-
-<div class="property-description">
 <p>Severity provides an explicit classification of Reason code, so the users or machines can immediately understand the current situation and act accordingly. The Severity field MUST be set only when Status=False.</p>
 
 </div>
