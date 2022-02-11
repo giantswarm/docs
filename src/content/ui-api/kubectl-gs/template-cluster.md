@@ -12,7 +12,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I create a cluster manifest for the Management API?
-last_review_date: 2021-01-01
+last_review_date: 2021-02-11
 ---
 
 # `kubectl gs template cluster`
