@@ -2336,6 +2336,24 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
+<p>API version of the referent.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef.fieldPath">.spec.template.spec.infrastructureRef.fieldPath</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
 <p>MachineDeploymentStatus defines the observed state of MachineDeployment.</p>
 
 </div>
