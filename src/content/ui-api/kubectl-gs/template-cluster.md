@@ -120,7 +120,6 @@ It supports the following flags:
 - `--cluster-version` (optional) - Version of `cluster-openstack` helm chart to use. If not provided, the latest version will be used.
 - `--default-apps-version` (optional) - Version of `default-apps-openstack` helm chart to use. If not provided, the latest version will be used.
 - `--dns-nameservers` (optional) - A list of DNS nameservers to be used to resolve external names.
-- `--enable-oidc` (optional) - If `true`, the control plane will be configured to accept OIDC-based authentication and Dex will be deployed in the workload cluster to authenticate with.
 
 ## Examples
 
@@ -161,7 +160,6 @@ kubectl gs template cluster \
 ```nohighlight
 kubectl gs template cluster \
   --provider openstack \
-  --enable-oidc \
   --organization multi-project \
   --failure-domain us-east-1 \
   --cloud openstack \
@@ -423,7 +421,7 @@ data:
       name: default
       replicas: 2
     oidc:
-      enabled: true
+      enabled: false
     organization: multi-project
     rootVolume:
       enabled: true
@@ -470,7 +468,7 @@ data:
   values: |
     clusterName: demo1
     oidc:
-      enabled: true
+      enabled: false
     organization: multi-project
 kind: ConfigMap
 metadata:
