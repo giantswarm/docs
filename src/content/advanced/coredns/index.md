@@ -53,8 +53,8 @@ kind: ConfigMap
 metadata:
   labels:
     app: coredns
-    name: coredns-user-values
-    namespace: abc12
+  name: coredns-user-values
+  namespace: abc12
 data:
   values: |
     configmap:

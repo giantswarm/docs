@@ -50,6 +50,10 @@ It is also possible to create client certificates for a workload cluster, by pro
 
 ### Flags
 
+- `--keep-context`: Keep the current kubectl context selected after authenticating. If this flag is not set or false, the newly created context will be selected as the current-context.
+
+- `--self-contained`: Output file path for a self-contained kubectl configuration file. If provided, the certificate data will be written to an external kubectl configuration file instead of the default one. Please be aware that this starts the login process from the beginning regardless of existing contexts.
+
 For **management cluster** authentication, the following flags are available:
 
 - `--callback-port`: Specify the TCP port number on which the OIDC callback server on localhost will be listening. If not specified, a random port number will be used. Specifying the port is useful when running kubectl-gs inside a container, or behind a firewall.
@@ -64,7 +68,6 @@ The following flags are related to creating client certificates for **workload c
 - `--organization` - The organization that the workload cluster belongs to. Only required if the current user has access to multiple workload clusters with the same name in the same management cluster. Can also be applied if the user does not have permission to list organizations.
 - `--certificate-group` - The RBAC group name to be encoded into the X.509 field "O". It can be specified multiple times in order to set multiple groups at once.
 - `--certificate-ttl` - How long the client certificate should live for. When creating client certificates, we recommend using short expiration periods. Valid time units are "s" (second), "m" (minute), "h" (hour).
-- `--self-contained` - Output file path for a self-contained kubectl configuration file. If provided, the client certificate data will be written to an external kubectl configuration file instead of the default one. This file can be passed on to other users without management cluster access.
 
 In addition, there is one flag **only relevant to Giant Swarm staff**:
 
