@@ -9,7 +9,7 @@ menu:
 user_questions:
   - How can I configure OIDC in my cluster?
   - How can I add a new OIDC connector?
-last_review_date: 2021-12-09
+last_review_date: 2022-02-15
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 ---
@@ -67,6 +67,25 @@ spec:
         username: email
       clientID: dex-k8s-authenticator
       issuerURL: https://dex.<CLUSTER>.<BASEDOMAIN>
+```
+
+{{< /tab >}}
+{{< tab title="Openstack">}}
+
+```yaml
+apiVersion: controlplane.cluster.x-k8s.io/v1beta1
+kind: KubeadmControlPlaneTemplate
+spec:
+  template:
+    spec:
+      kubeadmConfigSpec:
+        clusterConfiguration:
+          apiServer:
+            extraArgs:
+              oidc-issuer-url: https://dex.<CLUSTER>.<BASEDOMAIN>
+              oidc-client-id: dex-k8s-authenticator
+              oidc-username-claim: email
+              oidc-groups-claim: groups
 ```
 
 {{< /tab >}}
@@ -245,6 +264,8 @@ spec:
 __Note__: When applying the example in the snippet above, please replace the `<CLUSTER>` placeholder with the name of the workload cluster you are configuring.
 
 Then submit the resource to the management API and the App operator will manage it to make the actual installation and configuration. You can log in now into the cluster API with your identity provider using the login endpoint that Dex creates for you. By default, it will be `https://login.<CLUSTER>.<BASEDOMAIN>`.
+
+__Warning__: In this explanation we have assumed you have running an ingress controller and cert manager in you cluster in order to make dex available for the callback request made by your identity provider in a secure way. If you supply custom certificates when deploying dex then you can skip cert manager installation. Both apps are offered in our managed app catalog.
 
 ## Monitoring Dex
 
