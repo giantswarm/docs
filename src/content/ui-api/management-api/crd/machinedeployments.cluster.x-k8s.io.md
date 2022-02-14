@@ -1815,37 +1815,37 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
+<span class="property-type">object</span>
 
 </div>
 
 <div class="property-description">
-<p>Indicates that the deployment is paused.</p>
+<p>Standard object&rsquo;s metadata. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata</a></p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-1">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.metadata.annotations">.spec.template.metadata.annotations</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">integer</span>
+<span class="property-type">object</span>
 
 </div>
 
 <div class="property-description">
-<p>The maximum time in seconds for a deployment to make progress before it is considered to be failed. The deployment controller will continue to process failed deployments and a condition with a ProgressDeadlineExceeded reason will be surfaced in the deployment status. Note that progress will not be estimated during the time a deployment is paused. Defaults to 600s.</p>
+<p>Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: <a href="http://kubernetes.io/docs/user-guide/annotations">http://kubernetes.io/docs/user-guide/annotations</a></p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-1">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.metadata.labels">.spec.template.metadata.labels</h3>
 </div>
@@ -1869,7 +1869,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">integer</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -1881,7 +1881,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-1">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.spec.bootstrap">.spec.template.spec.bootstrap</h3>
 </div>
@@ -1942,7 +1942,7 @@ source_repository_ref: v5.0.0
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-<span class="property-required">Required</span>
+
 </div>
 
 <div class="property-description">
@@ -2079,7 +2079,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.spec.failureDomain">.spec.template.spec.failureDomain</h3>
 </div>
@@ -2392,7 +2392,7 @@ source_repository_ref: v5.0.0
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
@@ -2427,7 +2427,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">integer</span>
+<span class="property-type">string</span>
 
 </div>
 
