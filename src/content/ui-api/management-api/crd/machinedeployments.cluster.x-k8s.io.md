@@ -3002,7 +3002,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-5">
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1beta1-.spec.strategy.rollingUpdate.maxUnavailable">.spec.strategy.rollingUpdate.maxUnavailable</h3>
 </div>
@@ -3092,7 +3092,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-4">
+<div class="property depth-5">
 <div class="property-header">
 <h3 class="property-path" id="v1beta1-.spec.template.metadata.labels">.spec.template.metadata.labels</h3>
 </div>
@@ -3110,7 +3110,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1beta1-.spec.template.spec">.spec.template.spec</h3>
 </div>
@@ -3121,7 +3121,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>InfrastructureRef is a required reference to a custom resource offered by an infrastructure provider.</p>
+<p>Specific resourceVersion to which this reference is made, if any. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency</a></p>
 
 </div>
 
@@ -3139,7 +3139,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Name of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names</a></p>
+<p>UID of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids</a></p>
 
 </div>
 
@@ -3164,7 +3164,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-5">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1beta1-.spec.template.spec.bootstrap.configRef.apiVersion">.spec.template.spec.bootstrap.configRef.apiVersion</h3>
 </div>
@@ -3175,7 +3175,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Namespace of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/">https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/</a></p>
+<p>ClusterName is the name of the Cluster this object belongs to.</p>
 
 </div>
 
@@ -3193,25 +3193,25 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Specific resourceVersion to which this reference is made, if any. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency</a></p>
+<p>FailureDomain is the failure domain the machine will be created in. Must match a key in the FailureDomains map stored on the cluster object.</p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-4">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1beta1-.spec.template.spec.bootstrap.configRef.kind">.spec.template.spec.bootstrap.configRef.kind</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
-
+<span class="property-type">object</span>
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
-<p>UID of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids</a></p>
+<p>InfrastructureRef is a required reference to a custom resource offered by an infrastructure provider.</p>
 
 </div>
 
@@ -3278,8 +3278,8 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
-<span class="property-required">Required</span>
+<span class="property-type">integer</span>
+
 </div>
 
 <div class="property-description">
@@ -3326,7 +3326,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-4">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1beta1-.spec.template.spec.failureDomain">.spec.template.spec.failureDomain</h3>
 </div>
@@ -3350,7 +3350,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">integer</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -3398,7 +3398,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-1">
+<div class="property depth-0">
 <div class="property-header">
 <h3 class="property-path" id="v1beta1-.spec.template.spec.infrastructureRef.kind">.spec.template.spec.infrastructureRef.kind</h3>
 </div>
@@ -3422,7 +3422,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">integer</span>
 
 </div>
 
@@ -3440,7 +3440,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">array</span>
 
 </div>
 
@@ -3458,7 +3458,9 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">integer</span>
+<span class="property-type">object</span>
+
+</div>
 
 <div class="property-description">
 <p>Specific resourceVersion to which this reference is made, if any. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency</a></p>
@@ -3502,6 +3504,10 @@ source_repository_ref: v5.0.0
 </div>
 
 </div>
+
+<div class="property-description">
+<p>A human readable message indicating details about the transition. This field may be empty.</p>
+
 </div>
 
 <div class="property depth-3">
