@@ -48,7 +48,7 @@ We use a helm chart to store all the CAPI resources needed to bootstrap the MC.
 
 12. Move MC cluster resources from the kind cluster to the MC cluster (running in the same cluster)
 
-13. Create `giantswarm` and `ardgocd` namespace in the MC
+13. Create `giantswarm` and `argocd` namespace in the MC
 
 14. Install Vault in the Management cluster. We use operations vault that run in shared installation to configure the autounseal option on the new installation Vault.
   - We need to first ge the unseal token and create a secret on the cluster with a specific name
@@ -59,25 +59,43 @@ We use a helm chart to store all the CAPI resources needed to bootstrap the MC.
   - Init the vault instance to retrieve the Vault token and unseal it
   - Configure Github auth backend to authenticate via Github GS organization
   - Create a new service account for Vault and bind it to cluster role auth-delegate
-  - Configure Vault with k8s auth bankend to let konfigure decrypt the secrets in transit, create a role and policy for the controller
+  - Configure Vault with k8s auth backend to let konfigure decrypt the secrets in transit, create a role and policy for the controller
 
-16. Run clusterctl delete --all?
+16. // Run clusterctl delete --all (clusterctl) and install our CAPO chart with the controllers
 
 17. Ensure (apply) the giant swarm CRDS (app platform, organitzations,...) and the default App Catalogs that all management clusters need (default, giantswarm, ...)
 
-18. Create a branch in `giantswarm/management-clusters-fleet` repo including the argo cd folder with the reference to new installation MC
+18. Create a branch in `giantswarm/management-clusters-fleet` repo including the argo cd folder with the reference to new installation MC in right repo branch
+
+19. Clone `config` repo and set the defaults for CAPO and generate an entry for every app that need special configuration
+
+21. Install app and chart operator in MC
+
+22. Deploy Kyverno CRDs
+
+23. Setup Fleet
+
+24. Setup Oauth
+
+25. Setup CAPO test secrets
 
 # The Giant Swarm Openstack Architecture
 
 Giant Swarm's architecture is split into two logical parts. One describes the management cluster and the other describes one or more workload clusters. We prefer running on bare metal machines, but can also work with virtualized infrastructure (e.g. VMWare) in cases where nested virtualization is possible.
 
-
 ## Giant Swarm on-premises management cluster
-
 
 ## Giant Swarm on-premises workload cluster(s)
 
 ## Service architecture
+
+## Networking
+
+How this works (?)
+
+## Storage
+
+OS Image sizing https://gigantic.slack.com/archives/C025SV21RP1/p1644155487565489
 
 ## Further Reading
 
