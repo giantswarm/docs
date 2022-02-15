@@ -2110,8 +2110,13 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
-<span class="property-required">Required</span>
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>The node this Taint is attached to has the &ldquo;effect&rdquo; on any pod that does not tolerate the Taint.</p>
+
 </div>
 
 </div>
@@ -2510,6 +2515,11 @@ source_repository_ref: v5.0.0
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>SSHAuthorizedKeys specifies a list of ssh authorized keys for the user</p>
 
 </div>
 
