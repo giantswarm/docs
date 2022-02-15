@@ -375,7 +375,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
