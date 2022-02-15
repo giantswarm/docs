@@ -37,7 +37,7 @@ Access to the Giant Swarm Management API is secured using OIDC. Our [authenticat
 
 ## How to use
 
-Currently (as of February 2022) most Giant Swarm customers already interact with the Management API when accessing our [web user interface]({{< relref "/ui-api/web" >}}). However, for customers that have not yet switched to single sign-on (SSO) yet, the web interface uses the deprecated REST API.
+Currently (as of February 2022) most Giant Swarm customers already interact with the Management API when accessing our [web user interface]({{< relref "/ui-api/web" >}}). However, for customers that have not yet switched to single sign-on (SSO), the web interface uses the deprecated REST API.
 
 Independent of the switch to SSO, all customers can use the Management API via `kubectl`. To facilitate this we provide a kubectl plug-in called [`kubectl gs`]({{< relref "/ui-api/kubectl-gs" >}}).
 
