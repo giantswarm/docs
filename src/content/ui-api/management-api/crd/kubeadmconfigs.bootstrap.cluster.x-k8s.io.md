@@ -2061,7 +2061,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -2092,8 +2092,8 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
+<span class="property-type">array</span>
+
 </div>
 
 <div class="property-description">
@@ -2114,11 +2114,6 @@ source_repository_ref: v5.0.0
 <span class="property-required">Required</span>
 </div>
 
-<div class="property-description">
-<p>UnsafeSkipCAVerification allows token-based discovery without CA verification via CACertHashes. This can weaken the security of kubeadm since other nodes can impersonate the control-plane.</p>
-
-</div>
-
 </div>
 </div>
 
@@ -2128,8 +2123,8 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
-
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
@@ -2514,7 +2509,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">array</span>
 
 </div>
 
@@ -2539,7 +2534,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha2-.spec.users[*]">.spec.users[*]</h3>
 </div>
