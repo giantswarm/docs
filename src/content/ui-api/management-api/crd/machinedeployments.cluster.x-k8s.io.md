@@ -1935,7 +1935,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-5">
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.spec.bootstrap.configRef.fieldPath">.spec.template.spec.bootstrap.configRef.fieldPath</h3>
 </div>
@@ -1960,6 +1960,24 @@ source_repository_ref: v5.0.0
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>API version of the referent.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template.metadata.ownerReferences[*].blockOwnerDeletion">.spec.template.metadata.ownerReferences[*].blockOwnerDeletion</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
 
 </div>
 
@@ -2072,7 +2090,25 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>ClusterName is the name of the Cluster this object belongs to.</p>
+<p>Bootstrap is a reference to a local struct which encapsulates fields to configure the Machine’s bootstrapping mechanism.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template.spec.bootstrap.configRef">.spec.template.spec.bootstrap.configRef</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>ConfigRef is a reference to a bootstrap provider-specific resource that holds configuration details. The reference is optional to allow users/operators to specify Bootstrap.Data without the need of a controller.</p>
 
 </div>
 
@@ -2103,8 +2139,8 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
-<span class="property-required">Required</span>
+<span class="property-type">string</span>
+
 </div>
 
 <div class="property-description">
@@ -2118,6 +2154,24 @@ source_repository_ref: v5.0.0
 <div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.spec.infrastructureRef.apiVersion">.spec.template.spec.infrastructureRef.apiVersion</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Name of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template.spec.bootstrap.configRef.namespace">.spec.template.spec.bootstrap.configRef.namespace</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2171,6 +2225,25 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template.spec.bootstrap.data">.spec.template.spec.bootstrap.data</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Data contains the bootstrap data, such as cloud-init details scripts. If nil, the Machine should remain in the Pending state.
+ Deprecated: This field has been deprecated in v1alpha3 and will be removed in a future version. Switch to DataSecretName.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.spec.infrastructureRef.name">.spec.template.spec.infrastructureRef.name</h3>
 </div>
 <div class="property-body">
@@ -2197,15 +2270,10 @@ source_repository_ref: v5.0.0
 
 </div>
 
-<div class="property-description">
-<p>ClusterName is the name of the Cluster this object belongs to.</p>
-
-</div>
-
 </div>
 </div>
 
-<div class="property depth-4">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.spec.infrastructureRef.resourceVersion">.spec.template.spec.infrastructureRef.resourceVersion</h3>
 </div>
@@ -2378,24 +2446,6 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable.</p>
-
-</div>
-
-<div class="property-description">
-<p>The reason for the condition&rsquo;s last transition in CamelCase. The specific API may choose whether or not this field is considered a guaranteed API. This field may not be empty.</p>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.status.conditions[*].message">.status.conditions[*].message</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">integer</span>
-
-</div>
-
-<div class="property-description">
 <p>A human readable message indicating details about the transition. This field may be empty.</p>
 
 </div>
@@ -2409,7 +2459,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">string</span>
 
 </div>
 
