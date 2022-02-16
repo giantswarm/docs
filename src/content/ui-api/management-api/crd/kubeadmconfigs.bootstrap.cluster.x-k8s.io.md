@@ -3053,6 +3053,11 @@ source_repository_ref: v5.0.0
 
 </div>
 
+<div class="property-description">
+<p>SSHAuthorizedKeys specifies a list of ssh authorized keys for the user</p>
+
+</div>
+
 </div>
 </div>
 
