@@ -120,14 +120,14 @@ If app-operator finds a matching [AppCatalogEntry]({{< relref "/ui-api/managemen
 - Cloud provider compatibility (e.g. you can’t install the azure-ad-pod-identity app in AWS).
 - Namespace restriction (cluster singleton, namespace singleton, fixed namespace).
 
-## GitOps support for Flux
+## GitOps support
 
 If you are managing your App CRs with Flux or a similar GitOps tool then the
 validating webhook may block creation of the App CR if it is created before the
 referenced configmap or secret.
 
-To prevent this you can add the label `giantswarm.io/managed-by` set to `flux`.
-e.g.
+To prevent this you can add the label `giantswarm.io/managed-by` set the value
+to the tool you're using e.g. `flux`.
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
