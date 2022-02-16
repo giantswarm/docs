@@ -3577,6 +3577,9 @@ source_repository_ref: v5.0.0
 
 </div>
 
+<div class="property-description">
+<p>Total number of available machines (ready for at least minReadySeconds) targeted by this deployment.</p>
+
 </div>
 
 <div class="property depth-1">
