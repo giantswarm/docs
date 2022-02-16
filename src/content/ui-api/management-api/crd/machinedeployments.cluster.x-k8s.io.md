@@ -1685,25 +1685,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.strategy">.spec.strategy</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>The deployment strategy to use to replace existing machines with new ones.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.strategy.rollingUpdate">.spec.strategy.rollingUpdate</h3>
+<h3 class="property-path" id="v1alpha4-.spec.strategy">.spec.strategy</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1762,13 +1744,6 @@ source_repository_ref: v5.0.0
 <div class="property-body">
 <div class="property-meta">
 
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.metadata.ownerReferences[*]">.spec.template.metadata.ownerReferences[*]</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
 
 </div>
 
@@ -1780,7 +1755,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-5">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.strategy.rollingUpdate.maxUnavailable">.spec.strategy.rollingUpdate.maxUnavailable</h3>
 </div>
@@ -1791,14 +1766,14 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>API version of the referent.</p>
+<p>The maximum number of machines that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired machines (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to 0. Example: when this is set to 30%, the old MachineSet can be scaled down to 70% of desired machines immediately when the rolling update starts. Once new machines are ready, old MachineSet can be scaled down further, followed by scaling up the new MachineSet, ensuring that the total number of machines available at all times during the update is at least 70% of desired machines.</p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-5">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.strategy.type">.spec.strategy.type</h3>
 </div>
@@ -1816,7 +1791,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-5">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template">.spec.template</h3>
 </div>
@@ -1834,7 +1809,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-5">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.metadata">.spec.template.metadata</h3>
 </div>
@@ -1852,20 +1827,25 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-5">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.metadata.annotations">.spec.template.metadata.annotations</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: <a href="http://kubernetes.io/docs/user-guide/annotations">http://kubernetes.io/docs/user-guide/annotations</a></p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-5">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.metadata.labels">.spec.template.metadata.labels</h3>
 </div>
@@ -1961,7 +1941,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -2081,7 +2061,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-4">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.spec.clusterName">.spec.template.spec.clusterName</h3>
 </div>
@@ -2099,7 +2079,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.spec.failureDomain">.spec.template.spec.failureDomain</h3>
 </div>
@@ -2118,6 +2098,24 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.template.spec.infrastructureRef">.spec.template.spec.infrastructureRef</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>InfrastructureRef is a required reference to a custom resource offered by an infrastructure provider.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.spec.infrastructureRef.apiVersion">.spec.template.spec.infrastructureRef.apiVersion</h3>
 </div>
@@ -2290,6 +2288,24 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
+<p>Version defines the desired Kubernetes version. This field is meant to be optionally used by bootstrap providers.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-0">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status">.status</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
 <p>MachineDeploymentStatus defines the observed state of MachineDeployment.</p>
 
 </div>
@@ -2297,7 +2313,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.status.availableReplicas">.status.availableReplicas</h3>
 </div>
@@ -2311,6 +2327,35 @@ source_repository_ref: v5.0.0
 <p>Total number of available machines (ready for at least minReadySeconds) targeted by this deployment.</p>
 
 </div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status.conditions">.status.conditions</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>Conditions defines current service state of the MachineDeployment.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status.conditions[*]">.status.conditions[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
 
 </div>
 
@@ -2329,7 +2374,7 @@ source_repository_ref: v5.0.0
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
