@@ -2079,7 +2079,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-5">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.spec.failureDomain">.spec.template.spec.failureDomain</h3>
 </div>
@@ -2126,7 +2126,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>API version of the referent.</p>
+<p>FailureDomain is the failure domain the machine will be created in. Must match a key in the FailureDomains map stored on the cluster object.</p>
 
 </div>
 
@@ -2144,7 +2144,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: <a href="http://kubernetes.io/docs/user-guide/annotations">http://kubernetes.io/docs/user-guide/annotations</a></p>
+<p>InfrastructureRef is a required reference to a custom resource offered by an infrastructure provider.</p>
 
 </div>
 
@@ -2157,12 +2157,12 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">string</span>
 
 </div>
 
 <div class="property-description">
-<p>Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: <a href="http://kubernetes.io/docs/user-guide/labels">http://kubernetes.io/docs/user-guide/labels</a></p>
+<p>API version of the referent.</p>
 
 </div>
 
@@ -2180,7 +2180,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>DataSecretName is the name of the secret that stores the bootstrap data script. If nil, the Machine should remain in the Pending state.</p>
+<p>Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: <a href="http://kubernetes.io/docs/user-guide/annotations">http://kubernetes.io/docs/user-guide/annotations</a></p>
 
 </div>
 
@@ -2198,7 +2198,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>ClusterName is the name of the Cluster this object belongs to.</p>
+<p>Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: <a href="http://kubernetes.io/docs/user-guide/labels">http://kubernetes.io/docs/user-guide/labels</a></p>
 
 </div>
 
@@ -2216,7 +2216,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>FailureDomain is the failure domain the machine will be created in. Must match a key in the FailureDomains map stored on the cluster object.</p>
+<p>DataSecretName is the name of the secret that stores the bootstrap data script. If nil, the Machine should remain in the Pending state.</p>
 
 </div>
 
@@ -2234,7 +2234,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>InfrastructureRef is a required reference to a custom resource offered by an infrastructure provider.</p>
+<p>ClusterName is the name of the Cluster this object belongs to.</p>
 
 </div>
 
@@ -2259,7 +2259,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-4">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.spec.providerID">.spec.template.spec.providerID</h3>
 </div>
@@ -2391,7 +2391,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">integer</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -2401,10 +2401,6 @@ source_repository_ref: v5.0.0
 </div>
 
 </div>
-
-<div class="property-description">
-<p>If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: &ldquo;spec.containers{name}&rdquo; (where &ldquo;name&rdquo; refers to the name of the container that triggered the event) or if no container name is specified &ldquo;spec.containers[2]&rdquo; (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.</p>
-
 </div>
 
 <div class="property depth-3">
@@ -2413,7 +2409,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">integer</span>
 
 </div>
 
@@ -2423,30 +2419,22 @@ source_repository_ref: v5.0.0
 </div>
 
 </div>
-</div>
 
 <div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.status.conditions[*].severity">.status.conditions[*].severity</h3>
 </div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
 
 <div class="property-description">
-<p>Condition defines an observation of a Cluster API resource operational state.</p>
-
-</div>
+<p>If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: &ldquo;spec.containers{name}&rdquo; (where &ldquo;name&rdquo; refers to the name of the container that triggered the event) or if no container name is specified &ldquo;spec.containers[2]&rdquo; (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.</p>
 
 <div class="property-description">
 <p>Severity provides an explicit classification of Reason code, so the users or machines can immediately understand the current situation and act accordingly. The Severity field MUST be set only when Status=False.</p>
 
 </div>
 
-</div>
-</div>
+<div class="property-description">
+<p>The reason for the condition&rsquo;s last transition in CamelCase. The specific API may choose whether or not this field is considered a guaranteed API. This field may not be empty.</p>
 
 <div class="property depth-3">
 <div class="property-header">
