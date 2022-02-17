@@ -2088,11 +2088,6 @@ source_repository_ref: v5.0.0
 <span class="property-required">Required</span>
 </div>
 
-<div class="property-description">
-<p>Token is a token used to validate cluster information fetched from the control-plane.</p>
-
-</div>
-
 </div>
 </div>
 
@@ -2102,8 +2097,13 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
+<span class="property-type">string</span>
 <span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.</p>
+
 </div>
 
 </div>
@@ -2502,6 +2502,11 @@ source_repository_ref: v5.0.0
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>SSHAuthorizedKeys specifies a list of ssh authorized keys for the user</p>
 
 </div>
 
