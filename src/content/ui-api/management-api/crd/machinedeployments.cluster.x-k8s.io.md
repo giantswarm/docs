@@ -1935,7 +1935,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-4">
+<div class="property depth-5">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.spec.bootstrap.configRef.fieldPath">.spec.template.spec.bootstrap.configRef.fieldPath</h3>
 </div>
@@ -1960,24 +1960,6 @@ source_repository_ref: v5.0.0
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>API version of the referent.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-5">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.metadata.ownerReferences[*].blockOwnerDeletion">.spec.template.metadata.ownerReferences[*].blockOwnerDeletion</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">boolean</span>
 
 </div>
 
@@ -2090,32 +2072,14 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Bootstrap is a reference to a local struct which encapsulates fields to configure the Machine’s bootstrapping mechanism.</p>
+<p>ClusterName is the name of the Cluster this object belongs to.</p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.bootstrap.configRef">.spec.template.spec.bootstrap.configRef</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>ConfigRef is a reference to a bootstrap provider-specific resource that holds configuration details. The reference is optional to allow users/operators to specify Bootstrap.Data without the need of a controller.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.spec.failureDomain">.spec.template.spec.failureDomain</h3>
 </div>
@@ -2139,8 +2103,8 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
-
+<span class="property-type">object</span>
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
@@ -2162,7 +2126,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Name of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names</a></p>
+<p>FailureDomain is the failure domain the machine will be created in. Must match a key in the FailureDomains map stored on the cluster object.</p>
 
 </div>
 
@@ -2180,25 +2144,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Name of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names</a></p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-5">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.bootstrap.configRef.namespace">.spec.template.spec.bootstrap.configRef.namespace</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>Namespace of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/">https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/</a></p>
+<p>InfrastructureRef is a required reference to a custom resource offered by an infrastructure provider.</p>
 
 </div>
 
@@ -2216,7 +2162,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Specific resourceVersion to which this reference is made, if any. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency</a></p>
+<p>Name of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names</a></p>
 
 </div>
 
@@ -2234,26 +2180,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>UID of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids</a></p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.bootstrap.data">.spec.template.spec.bootstrap.data</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>Data contains the bootstrap data, such as cloud-init details scripts. If nil, the Machine should remain in the Pending state.
- Deprecated: This field has been deprecated in v1alpha3 and will be removed in a future version. Switch to DataSecretName.</p>
+<p>Name of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names</a></p>
 
 </div>
 
@@ -2271,7 +2198,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>DataSecretName is the name of the secret that stores the bootstrap data script. If nil, the Machine should remain in the Pending state.</p>
+<p>Namespace of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/">https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/</a></p>
 
 </div>
 
@@ -2285,18 +2212,18 @@ source_repository_ref: v5.0.0
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-<span class="property-required">Required</span>
+
 </div>
 
 <div class="property-description">
-<p>ClusterName is the name of the Cluster this object belongs to.</p>
+<p>Specific resourceVersion to which this reference is made, if any. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency</a></p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.spec.infrastructureRef.uid">.spec.template.spec.infrastructureRef.uid</h3>
 </div>
@@ -2307,7 +2234,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>FailureDomain is the failure domain the machine will be created in. Must match a key in the FailureDomains map stored on the cluster object.</p>
+<p>UID of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids</a></p>
 
 </div>
 
@@ -2356,7 +2283,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">integer</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -2446,7 +2373,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">array</span>
 
 </div>
 
@@ -2464,7 +2391,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -2482,7 +2409,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -2500,12 +2427,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>Condition defines an observation of a Cluster API resource operational state.</p>
+<span class="property-type">string</span>
 
 </div>
 
