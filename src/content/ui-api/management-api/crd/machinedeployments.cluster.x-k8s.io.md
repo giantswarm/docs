@@ -1942,7 +1942,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-5">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.strategy.type">.spec.strategy.type</h3>
 </div>
@@ -1966,25 +1966,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>Template describes the machines that will be created.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.metadata">.spec.template.metadata</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -2098,32 +2080,14 @@ spec:
 </div>
 
 <div class="property-description">
-<p>If true, AND if the owner has the &ldquo;foregroundDeletion&rdquo; finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. Defaults to false. To set this field, a user needs &ldquo;delete&rdquo; permission of the owner, otherwise 422 (Unprocessable Entity) will be returned.</p>
+<p>ClusterName is the name of the Cluster this object belongs to.</p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-5">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.metadata.ownerReferences[*].controller">.spec.template.metadata.ownerReferences[*].controller</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">boolean</span>
-
-</div>
-
-<div class="property-description">
-<p>If true, this reference points to the managing controller.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-5">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.template.metadata.ownerReferences[*].kind">.spec.template.metadata.ownerReferences[*].kind</h3>
 </div>
@@ -2147,7 +2111,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 <span class="property-required">Required</span>
 </div>
 
@@ -2170,24 +2134,6 @@ spec:
 </div>
 
 <div class="property-description">
-<p>ClusterName is the name of the Cluster this object belongs to.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-5">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.bootstrap.configRef.apiVersion">.spec.template.spec.bootstrap.configRef.apiVersion</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
 <p>API version of the referent.</p>
 
 </div>
@@ -2197,7 +2143,7 @@ spec:
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.bootstrap.configRef.fieldPath">.spec.template.spec.bootstrap.configRef.fieldPath</h3>
+<h3 class="property-path" id="v1alpha3-.spec.template.spec.bootstrap.configRef.apiVersion">.spec.template.spec.bootstrap.configRef.apiVersion</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2251,7 +2197,7 @@ spec:
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.bootstrap.dataSecretName">.spec.template.spec.bootstrap.dataSecretName</h3>
+<h3 class="property-path" id="v1alpha3-.spec.template.spec.clusterName">.spec.template.spec.clusterName</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2269,7 +2215,7 @@ spec:
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.clusterName">.spec.template.spec.clusterName</h3>
+<h3 class="property-path" id="v1alpha3-.spec.template.spec.failureDomain">.spec.template.spec.failureDomain</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2287,24 +2233,6 @@ spec:
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.failureDomain">.spec.template.spec.failureDomain</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>UID of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids</a></p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef">.spec.template.spec.infrastructureRef</h3>
 </div>
 <div class="property-body">
@@ -2314,7 +2242,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>InfrastructureRef is a required reference to a custom resource offered by an infrastructure provider.</p>
+<p>UID of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids</a></p>
 
 </div>
 
@@ -2339,7 +2267,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-4">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef.fieldPath">.spec.template.spec.infrastructureRef.fieldPath</h3>
 </div>
@@ -2450,6 +2378,24 @@ spec:
 <div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.template.spec.nodeDrainTimeout">.spec.template.spec.nodeDrainTimeout</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>A human readable message indicating details about the transition. This field may be empty.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status.conditions[*].reason">.status.conditions[*].reason</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
