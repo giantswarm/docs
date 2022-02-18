@@ -1070,12 +1070,12 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">integer</span>
 
 </div>
 
 <div class="property-description">
-<p>Specific resourceVersion to which this reference is made, if any. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency</a></p>
+<p>Replicas is the number of control plane nodes. If the value is nil, the ControlPlane object is created without the number of Replicas and it&rsquo;s assumed that the control plane controller does not implement support for this field. When specified against a control plane provider that lacks support for this field, this value will be ignored.</p>
 
 </div>
 
@@ -1111,7 +1111,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>InfrastructureRef is a reference to a provider-specific resource that holds the details for provisioning infrastructure for a cluster in said provider.</p>
+<p>The Kubernetes version of the cluster.</p>
 
 </div>
 
@@ -1160,19 +1160,19 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
 <div class="property-description">
-<p>Kind of the referent. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</a></p>
+<p>MachineDeploymentTopology specifies the different parameters for a set of worker nodes in the topology. This set of nodes is managed by a MachineDeployment object whose lifecycle is managed by the Cluster controller.</p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-5">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.infrastructureRef.name">.spec.infrastructureRef.name</h3>
 </div>
