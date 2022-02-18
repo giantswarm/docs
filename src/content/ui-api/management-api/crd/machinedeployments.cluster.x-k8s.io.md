@@ -2268,7 +2268,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-5">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.template.metadata.namespace">.spec.template.metadata.namespace</h3>
 </div>
@@ -2293,25 +2293,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
-
-</div>
-
-<div class="property-description">
-<p>List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.metadata.ownerReferences[*]">.spec.template.metadata.ownerReferences[*]</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -2424,32 +2406,14 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Specification of the desired behavior of the machine. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status</a></p>
+<p>ClusterName is the name of the Cluster this object belongs to.</p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-5">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.bootstrap">.spec.template.spec.bootstrap</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>API version of the referent.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-5">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.template.spec.bootstrap.configRef.fieldPath">.spec.template.spec.bootstrap.configRef.fieldPath</h3>
 </div>
@@ -2496,7 +2460,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Kind of the referent. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</a></p>
+<p>API version of the referent.</p>
 
 </div>
 
@@ -2511,24 +2475,6 @@ spec:
 <div class="property-meta">
 <span class="property-type">object</span>
 <span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>API version of the referent.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-5">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.bootstrap.configRef.resourceVersion">.spec.template.spec.bootstrap.configRef.resourceVersion</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
 </div>
 
 <div class="property-description">
@@ -2577,7 +2523,7 @@ spec:
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.clusterName">.spec.template.spec.clusterName</h3>
+<h3 class="property-path" id="v1alpha3-.spec.template.spec.failureDomain">.spec.template.spec.failureDomain</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2593,9 +2539,9 @@ spec:
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.failureDomain">.spec.template.spec.failureDomain</h3>
+<h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef">.spec.template.spec.infrastructureRef</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2613,24 +2559,6 @@ spec:
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef">.spec.template.spec.infrastructureRef</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>UID of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids</a></p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef.apiVersion">.spec.template.spec.infrastructureRef.apiVersion</h3>
 </div>
 <div class="property-body">
@@ -2640,7 +2568,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>API version of the referent.</p>
+<p>UID of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids</a></p>
 
 </div>
 
@@ -2665,7 +2593,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-4">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef.kind">.spec.template.spec.infrastructureRef.kind</h3>
 </div>
@@ -2776,6 +2704,24 @@ spec:
 <div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.template.spec.providerID">.spec.template.spec.providerID</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>A human readable message indicating details about the transition. This field may be empty.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status.conditions[*].reason">.status.conditions[*].reason</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
