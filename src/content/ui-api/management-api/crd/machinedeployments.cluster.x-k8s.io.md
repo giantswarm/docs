@@ -2470,19 +2470,6 @@ source_repository_ref: v5.0.0
 <span class="property-required">Required</span>
 </div>
 
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.status.availableReplicas">.status.availableReplicas</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
 <div class="property-description">
 <p>Type of condition in CamelCase or in foo.example.com/CamelCase. Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be useful (see .node.status.conditions), the ability to deconflict is important.</p>
 
