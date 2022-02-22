@@ -2625,11 +2625,6 @@ source_repository_ref: v5.0.0
 
 </div>
 
-<div class="property-description">
-<p>Name is the <code>.Metadata.Name</code> field of the Node API object that will be created in this <code>kubeadm init</code> or <code>kubeadm join</code> operation. This field is also used in the CommonName field of the kubelet&rsquo;s client certificate to the API server. Defaults to the hostname of the node if not provided.</p>
-
-</div>
-
 </div>
 </div>
 
@@ -2654,24 +2649,6 @@ source_repository_ref: v5.0.0
 <div class="property depth-5">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.nodeRegistration.taints">.spec.joinConfiguration.nodeRegistration.taints</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>Required. The taint key to be applied to a node.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-5">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.nodeRegistration.taints[*].timeAdded">.spec.joinConfiguration.nodeRegistration.taints[*].timeAdded</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2765,25 +2742,12 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.postKubeadmCommands">.spec.postKubeadmCommands</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
 <span class="property-type">array</span>
 
 </div>
 
 <div class="property-description">
-<p>PostKubeadmCommands specifies extra commands to run after kubeadm runs</p>
+<p>The taint value corresponding to the taint key.</p>
 
 </div>
 
