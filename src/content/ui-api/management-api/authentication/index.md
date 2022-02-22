@@ -90,6 +90,39 @@ The rest of the page helps you set up `kubectl` manually, adaptable for various 
 
 Our Web UI provides a simple single sign-on mechanism that will simply send a user through your identity provider's authentication process and finally redirect to the web UI. Behind the scenes, the same mechanism is used as in the examples above.
 
+## Details of an ID token {#id-token-details}
+
+Regardless of which login method is used, once this is done, the user's client (web UI, kubectl etc.) will send an ID token with every request to the Management API. The ID token contains information about the user which can then be used in [authorization]({{< relref "/ui-api/management-api/authorization/index.md" >}}) to decide which permissions the user should be granted.
+
+The ID token is a [JSON Web Token](https://datatracker.ietf.org/doc/html/rfc7519) (JWT). The payload part of an ID token issued for the Management API can look like in the following example. Note that we omit some parts that are not relevant for the purpose of this article.
+
+```json
+{
+  "iss": "https://dex.g8s.garlic.eu-west-1.aws.gigantic.io",
+  "exp": 1645533923,
+  "iat": 1645532123,
+  "email": "jane@example.com",
+  "groups": [
+    "customer:GiantSwarmAdmins"
+  ],
+  "name": "Jane Smith",
+  "preferred_username": "janes",
+  ...
+}
+```
+
+Let's go into details for the most relevant properties (also called "claims") of this payload object.
+
+| Claim | Description |
+|-|-|
+| `iss` | The OIDC provider that has issued the token. In our case it is Dex running in the management cluster. The Management API will only|
+| `exp` | When this ID token expires, in seconds since 1970-01-01 00:00. Read [ID token lifetime](##id-token-ttl) below for more information. |
+| `iat` | When this ID token has been issued, in seconds since 1970-01-01 00:00. |
+| `email` | Email address associated with the authenticated user, in case the identity provider delivers it. |
+| `groups` | List of groups the user is a member of, provided by the identity provider. Note that group names are prefixed by Dex, usually prepending `customer:` to the original name of a group as defined in your identity provider. |
+| `name` | Friendly name of the authenticated user. |
+| `preferred_username` | Name to use as an identifier, as an alternative to the user's email address. |
+
 ## Authenticating for programmatic access {#service-auth}
 
 For programmatic access, for example from CI/CD pipelines, you should not rely on the above authentication mechanism. Instead, please use [service accounts](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/).
