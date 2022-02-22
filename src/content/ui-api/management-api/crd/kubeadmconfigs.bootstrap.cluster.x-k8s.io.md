@@ -1553,11 +1553,6 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Overwrite describes whether to skip checks and create the partition if a partition or filesystem is found on the device. Use with caution. Default is &lsquo;false&rsquo;.</p>
-
-</div>
-
-<div class="property-description">
 <p>TableType specifies the tupe of partition table. The following are supported: &lsquo;mbr&rsquo;: default and setups a MS-DOS partition table &lsquo;gpt&rsquo;: setups a GPT partition table</p>
 
 </div>
@@ -1607,12 +1602,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>File defines the input for generating write_files in cloud-init.</p>
+<span class="property-type">string</span>
 
 </div>
 
@@ -1626,7 +1616,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.initConfiguration.nodeRegistration">.spec.initConfiguration.nodeRegistration</h3>
+<h3 class="property-path" id="v1alpha3-.spec.files[*].contentFrom">.spec.files[*].contentFrom</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1644,7 +1634,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.initConfiguration.nodeRegistration.criSocket">.spec.initConfiguration.nodeRegistration.criSocket</h3>
+<h3 class="property-path" id="v1alpha2-.spec.initConfiguration.nodeRegistration">.spec.initConfiguration.nodeRegistration</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1662,7 +1652,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.initConfiguration.nodeRegistration.kubeletExtraArgs">.spec.initConfiguration.nodeRegistration.kubeletExtraArgs</h3>
+<h3 class="property-path" id="v1alpha2-.spec.initConfiguration.nodeRegistration.criSocket">.spec.initConfiguration.nodeRegistration.criSocket</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1680,7 +1670,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.initConfiguration.nodeRegistration.name">.spec.initConfiguration.nodeRegistration.name</h3>
+<h3 class="property-path" id="v1alpha2-.spec.initConfiguration.nodeRegistration.kubeletExtraArgs">.spec.initConfiguration.nodeRegistration.kubeletExtraArgs</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1698,7 +1688,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.initConfiguration.nodeRegistration.taints">.spec.initConfiguration.nodeRegistration.taints</h3>
+<h3 class="property-path" id="v1alpha2-.spec.initConfiguration.nodeRegistration.name">.spec.initConfiguration.nodeRegistration.name</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1716,7 +1706,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.initConfiguration.nodeRegistration.taints[*]">.spec.initConfiguration.nodeRegistration.taints[*]</h3>
+<h3 class="property-path" id="v1alpha2-.spec.initConfiguration.nodeRegistration.taints">.spec.initConfiguration.nodeRegistration.taints</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1726,6 +1716,24 @@ source_repository_ref: v5.0.0
 
 <div class="property-description">
 <p>Owner specifies the ownership of the file, e.g. &ldquo;root:root&rdquo;.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.spec.initConfiguration.nodeRegistration.taints[*]">.spec.initConfiguration.nodeRegistration.taints[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Path specifies the full path on disk where to store the file.</p>
 
 </div>
 
@@ -1743,24 +1751,6 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Path specifies the full path on disk where to store the file.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.initConfiguration.nodeRegistration.taints[*].key">.spec.initConfiguration.nodeRegistration.taints[*].key</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
 <p>Permissions specifies the permissions to assign to the file, e.g. &ldquo;0640&rdquo;.</p>
 
 </div>
@@ -1770,7 +1760,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.initConfiguration.nodeRegistration.taints[*].timeAdded">.spec.initConfiguration.nodeRegistration.taints[*].timeAdded</h3>
+<h3 class="property-path" id="v1alpha2-.spec.initConfiguration.nodeRegistration.taints[*].key">.spec.initConfiguration.nodeRegistration.taints[*].key</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1788,7 +1778,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.initConfiguration.nodeRegistration.taints[*].value">.spec.initConfiguration.nodeRegistration.taints[*].value</h3>
+<h3 class="property-path" id="v1alpha2-.spec.initConfiguration.nodeRegistration.taints[*].timeAdded">.spec.initConfiguration.nodeRegistration.taints[*].timeAdded</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1806,7 +1796,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.joinConfiguration">.spec.joinConfiguration</h3>
+<h3 class="property-path" id="v1alpha2-.spec.initConfiguration.nodeRegistration.taints[*].value">.spec.initConfiguration.nodeRegistration.taints[*].value</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1824,7 +1814,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.joinConfiguration.apiVersion">.spec.joinConfiguration.apiVersion</h3>
+<h3 class="property-path" id="v1alpha2-.spec.joinConfiguration">.spec.joinConfiguration</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1842,7 +1832,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.joinConfiguration.caCertPath">.spec.joinConfiguration.caCertPath</h3>
+<h3 class="property-path" id="v1alpha2-.spec.joinConfiguration.apiVersion">.spec.joinConfiguration.apiVersion</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1860,11 +1850,29 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.joinConfiguration.controlPlane">.spec.joinConfiguration.controlPlane</h3>
+<h3 class="property-path" id="v1alpha2-.spec.joinConfiguration.caCertPath">.spec.joinConfiguration.caCertPath</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Description sets a human-friendly message why this token exists and what it&rsquo;s used for, so other administrators can know its purpose.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.spec.joinConfiguration.controlPlane">.spec.joinConfiguration.controlPlane</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
 
 </div>
 </div>
@@ -1880,24 +1888,6 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Description sets a human-friendly message why this token exists and what it&rsquo;s used for, so other administrators can know its purpose.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.joinConfiguration.controlPlane.localAPIEndpoint.bindPort">.spec.joinConfiguration.controlPlane.localAPIEndpoint.bindPort</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
 <p>Expires specifies the timestamp when this token expires. Defaults to being set dynamically at runtime based on the TTL. Expires and TTL are mutually exclusive.</p>
 
 </div>
@@ -1907,7 +1897,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.joinConfiguration.discovery">.spec.joinConfiguration.discovery</h3>
+<h3 class="property-path" id="v1alpha2-.spec.joinConfiguration.controlPlane.localAPIEndpoint.bindPort">.spec.joinConfiguration.controlPlane.localAPIEndpoint.bindPort</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1925,7 +1915,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.joinConfiguration.discovery.bootstrapToken">.spec.joinConfiguration.discovery.bootstrapToken</h3>
+<h3 class="property-path" id="v1alpha2-.spec.joinConfiguration.discovery">.spec.joinConfiguration.discovery</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1938,7 +1928,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.joinConfiguration.controlPlane.localAPIEndpoint.bindPort">.spec.joinConfiguration.controlPlane.localAPIEndpoint.bindPort</h3>
+<h3 class="property-path" id="v1alpha2-.spec.joinConfiguration.discovery.bootstrapToken">.spec.joinConfiguration.discovery.bootstrapToken</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1956,7 +1946,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.joinConfiguration.discovery">.spec.joinConfiguration.discovery</h3>
+<h3 class="property-path" id="v1alpha2-.spec.joinConfiguration.controlPlane.localAPIEndpoint.bindPort">.spec.joinConfiguration.controlPlane.localAPIEndpoint.bindPort</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1974,7 +1964,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens[*].ttl">.spec.initConfiguration.bootstrapTokens[*].ttl</h3>
+<h3 class="property-path" id="v1alpha2-.spec.joinConfiguration.discovery">.spec.joinConfiguration.discovery</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1992,7 +1982,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens[*].usages">.spec.initConfiguration.bootstrapTokens[*].usages</h3>
+<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens[*].ttl">.spec.initConfiguration.bootstrapTokens[*].ttl</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -3153,7 +3143,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.users[*].inactive">.spec.users[*].inactive</h3>
+<h3 class="property-path" id="v1alpha3-.spec.users[*].primaryGroup">.spec.users[*].primaryGroup</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
