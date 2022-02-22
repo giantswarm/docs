@@ -5436,6 +5436,11 @@ source_repository_ref: v5.0.0
 
 </div>
 
+<div class="property-description">
+<p>CRISocket is used to retrieve container runtime info. This information will be annotated to the Node API object, for later re-use</p>
+
+</div>
+
 </div>
 </div>
 
