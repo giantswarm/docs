@@ -60,7 +60,7 @@ When switching back to this context, it should not be necessary to go through th
 
 You can alternatively initiate the single sign-on authentication directly in a browser, without the need of installing the `kubectl gs` plug-in.
 
-We provide a web-based login helper utility, available under a URL specific for each installation. If you have your installation's Management API endpoint URL, you can construct the utility's URL by prepending `login.` to the host name.
+We provide a web-based login helper utility named [Dex K8s Authenticator](https://github.com/mintel/dex-k8s-authenticator), available under a URL specific for each installation. If you know your installation's Management API endpoint URL, you can construct the utility's URL by prepending `login.` to it.
 
 If, for example, your Management API URL is
 
