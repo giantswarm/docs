@@ -86,6 +86,10 @@ This page will also present your Management API endpoint's certificate authority
 
 The rest of the page helps you set up `kubectl` manually, adaptable for various operating systems.
 
+## Web UI login {#web-ui}
+
+Our Web UI provides a simple single sign-on mechanism that will simply send a user through your identity provider's authentication process and finally redirect to the web UI. Behind the scenes, the same mechanism is used as in the examples above.
+
 ## Authenticating for programmatic access {#service-auth}
 
 For programmatic access, for example from CI/CD pipelines, you should not rely on the above authentication mechanism. Instead, please use [service accounts](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/).
