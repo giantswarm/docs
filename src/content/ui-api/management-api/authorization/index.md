@@ -7,7 +7,7 @@ menu:
   main:
     identifier: uiapi-managementapi-authorization
     parent: uiapi-managementapi
-last_review_date: 2022-02-21
+last_review_date: 2022-02-23
 user_questions:
   - TODO
 owner:
