@@ -9,7 +9,8 @@ menu:
     parent: uiapi-managementapi
 last_review_date: 2022-02-23
 user_questions:
-  - TODO
+  - What automation is working in a management cluster to ensure RBAC permissions?
+  - How can I set up access to resources in the management cluster?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 ---
