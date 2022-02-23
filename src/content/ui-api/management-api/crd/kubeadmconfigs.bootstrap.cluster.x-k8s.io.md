@@ -3070,11 +3070,11 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.users[*].inactive">.spec.users[*].inactive</h3>
+<h3 class="property-path" id="v1alpha4-.spec.users[*].groups">.spec.users[*].groups</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -3088,7 +3088,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.users[*].inactive">.spec.users[*].inactive</h3>
+<h3 class="property-path" id="v1alpha4-.spec.users[*].homeDir">.spec.users[*].homeDir</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -3106,7 +3106,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.users[*].lockPassword">.spec.users[*].lockPassword</h3>
+<h3 class="property-path" id="v1alpha4-.spec.users[*].inactive">.spec.users[*].inactive</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -3124,7 +3124,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.users[*].gecos">.spec.users[*].gecos</h3>
+<h3 class="property-path" id="v1alpha4-.spec.users[*].lockPassword">.spec.users[*].lockPassword</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -3142,7 +3142,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.users[*].groups">.spec.users[*].groups</h3>
+<h3 class="property-path" id="v1alpha4-.spec.users[*].name">.spec.users[*].name</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
