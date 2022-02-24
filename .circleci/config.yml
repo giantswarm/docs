@@ -34,7 +34,7 @@ jobs:
             docker run -d --rm --name docs -p 8080:8080 quay.io/giantswarm/docs:$container_tag
 
             CURL_OUTPUT=$(docker run --link docs quay.io/giantswarm/curl:7.81.0 curl --no-buffer http://docs:8080)
-            echo $CURL_OUTPUT | grep --quiet "Giant Swarm"
+            echo $CURL_OUTPUT | grep -q "Giant Swarm"
 
 workflows:
   version: 2
