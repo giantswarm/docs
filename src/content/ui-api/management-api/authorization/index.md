@@ -44,7 +44,7 @@ We'll explain next which resources are to be found in which scope or namespace.
 In Giant Swarm management clusters in particular, two resource types are cluster-scoped, so they are not residing in any namespace:
 
 - [`Organization`]({{< relref "/ui-api/management-api/crd/organizations.security.giantswarm.io.md" >}}) defines, well, an organization
-- [`Release`]({{< relref "/ui-api/management-api/crd/releases.release.giantswarm.io.md" >}}) defines a workload cluster release to user when creating a new workload cluster, or to upgrade a workload cluster to.
+- [`Release`]({{< relref "/ui-api/management-api/crd/releases.release.giantswarm.io.md" >}}) defines a workload cluster release to use when creating a new workload cluster, or to upgrade a workload cluster to.
 
 ### Namespace `default` {#default-namespace}
 
