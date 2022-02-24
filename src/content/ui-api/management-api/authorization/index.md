@@ -133,7 +133,6 @@ The manifest below shows how the according role bindings could be created.
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  creationTimestamp: null
   name: bind-read-all-to-group
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -147,7 +146,6 @@ subjects:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  creationTimestamp: null
   name: bind-read-in-cluster-ns-to-group
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -172,7 +170,6 @@ The according example manifest:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  creationTimestamp: null
   name: bind-read-all-to-group
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -186,7 +183,6 @@ subjects:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  creationTimestamp: null
   name: bind-write-in-cluster-ns-to-group
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -208,7 +204,6 @@ To grant full permission to a group of users in the context of a particular orga
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  creationTimestamp: null
   name: bind-cluster-admin-to-group
 roleRef:
   apiGroup: rbac.authorization.k8s.io
