@@ -151,12 +151,4 @@ After that period, clients like `kubectl` will automatically attempt to get a fr
 
 It is possible to configure a shorter token lifetime at the cost of more frequent delays due to token refreshing. Please contact your account engineer for assistance.
 
-<!--
-
-TODO: once we recommend assigning groups and users (non-admin MAPI users)
-
 When assigning users to groups in your identity provider, and when removing users from groups, it can take up to {{% mapi_oidc_token_ttl_minutes %}} minutes until the change becomes effective for end users. If a user has authenticated and obtained an ID token before the change, tools like `kubectl` will use that token until it expires.
-
-To force the adoption of up-to-date user information and group assignments, a user can manually remove the `id-token` value from the user entry in their `kubectl` configuration file.
-
--->
