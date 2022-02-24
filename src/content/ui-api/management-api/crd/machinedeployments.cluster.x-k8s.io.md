@@ -1324,7 +1324,6 @@ source_repository_ref: v5.0.0
 <p>Total number of unavailable machines targeted by this deployment. This is the total number of machines that are still required for the deployment to have 100% available capacity. They may either be machines that are running but not yet available or machines that still have not been created.</p>
 
 
-
 </div>
 
 <div class="property depth-1">
@@ -1342,6 +1341,12 @@ source_repository_ref: v5.0.0
 
 </div>
 
+
+
+
+
+
+</div>
 
 
 
@@ -2962,7 +2967,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-5">
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.template.metadata.ownerReferences[*].uid">.spec.template.metadata.ownerReferences[*].uid</h3>
 </div>
@@ -3214,9 +3219,45 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-1">
+<div class="property depth-0">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.template.spec.failureDomain">.spec.template.spec.failureDomain</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>MachineDeploymentStatus defines the observed state of MachineDeployment.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef">.spec.template.spec.infrastructureRef</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>Total number of available machines (ready for at least minReadySeconds) targeted by this deployment.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef.apiVersion">.spec.template.spec.infrastructureRef.apiVersion</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -3234,7 +3275,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef">.spec.template.spec.infrastructureRef</h3>
+<h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef.fieldPath">.spec.template.spec.infrastructureRef.fieldPath</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -3252,42 +3293,6 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef.apiVersion">.spec.template.spec.infrastructureRef.apiVersion</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>Last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef.fieldPath">.spec.template.spec.infrastructureRef.fieldPath</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>NodeDrainTimeout is the total amount of time that the controller will spend on draining a node. The default value is 0, meaning that the node can be drained without any time limitations. NOTE: NodeDrainTimeout is different from <code>kubectl drain --timeout</code></p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef.kind">.spec.template.spec.infrastructureRef.kind</h3>
 </div>
 <div class="property-body">
@@ -3297,7 +3302,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Namespace of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/">https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/</a></p>
+<p>Last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable.</p>
 
 </div>
 
@@ -3405,24 +3410,6 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.providerID">.spec.template.spec.providerID</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
 <p>Severity provides an explicit classification of Reason code, so the users or machines can immediately understand the current situation and act accordingly. The Severity field MUST be set only when Status=False.</p>
 
 </div>
@@ -3450,37 +3437,12 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.version">.spec.template.spec.version</h3>
+<h3 class="property-path" id="v1alpha3-.spec.template.spec.providerID">.spec.template.spec.providerID</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
 <span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>Severity provides an explicit classification of Reason code, so the users or machines can immediately understand the current situation and act accordingly. The Severity field MUST be set only when Status=False.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.status.availableReplicas">.status.availableReplicas</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>Status of the condition, one of True, False, Unknown.</p>
-
-</div>
-
 </div>
 </div>
 

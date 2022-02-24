@@ -308,7 +308,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -477,13 +477,13 @@ spec:
 </div>
 </div>
 
-<div class="property depth-1">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.controlPlaneRef.resourceVersion">.spec.controlPlaneRef.resourceVersion</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -495,7 +495,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.controlPlaneRef.uid">.spec.controlPlaneRef.uid</h3>
 </div>
@@ -675,27 +675,9 @@ spec:
 </div>
 </div>
 
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.status">.status</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>Condition defines an observation of a Cluster API resource operational state.</p>
-
-</div>
-
-</div>
-</div>
-
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.status.conditions">.status.conditions</h3>
+<h3 class="property-path" id="v1alpha3-.status">.status</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -713,7 +695,7 @@ spec:
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.status.conditions[*]">.status.conditions[*]</h3>
+<h3 class="property-path" id="v1alpha3-.status.conditions">.status.conditions</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -731,7 +713,7 @@ spec:
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.status.conditions[*].lastTransitionTime">.status.conditions[*].lastTransitionTime</h3>
+<h3 class="property-path" id="v1alpha3-.status.conditions[*]">.status.conditions[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -749,12 +731,12 @@ spec:
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.status.conditions[*].message">.status.conditions[*].message</h3>
+<h3 class="property-path" id="v1alpha3-.status.conditions[*].lastTransitionTime">.status.conditions[*].lastTransitionTime</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-<span class="property-required">Required</span>
+
 </div>
 
 <div class="property-description">
@@ -767,7 +749,7 @@ spec:
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.status.conditions[*].reason">.status.conditions[*].reason</h3>
+<h3 class="property-path" id="v1alpha3-.status.conditions[*].message">.status.conditions[*].message</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -777,6 +759,24 @@ spec:
 
 <div class="property-description">
 <p>Type of condition in CamelCase or in foo.example.com/CamelCase. Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be useful (see .node.status.conditions), the ability to deconflict is important.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.conditions[*].reason">.status.conditions[*].reason</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>ControlPlaneInitialized defines if the control plane has been initialized.</p>
 
 </div>
 
