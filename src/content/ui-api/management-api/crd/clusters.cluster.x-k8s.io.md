@@ -821,6 +821,24 @@ spec:
 
 <div class="property depth-1">
 <div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.conditions[*].status">.status.conditions[*].status</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>ControlPlaneInitialized defines if the control plane has been initialized.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
 <h3 class="property-path" id="v1alpha3-.status.conditions[*].type">.status.conditions[*].type</h3>
 </div>
 <div class="property-body">
