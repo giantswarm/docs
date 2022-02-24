@@ -18,24 +18,18 @@ jobs:
           name: Check Markdown structure
           command: make lint
 
-      - run:
-          name: Build using architect
-          command: ./architect build
+      - architect/push-to-docker:
+          image: "quay.io/giantswarm/docs"
+          tag-latest-branch: "main"
+          username_envar: "QUAY_USERNAME"
+          password_envar: "QUAY_PASSWORD"
 
       - run:
           name: Launch container for tests
           command: |
-            docker run -d --rm --name docs -p 8080:8080 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
+            docker run -d --rm --name docs -p 8080:8080 quay.io/giantswarm/docs:$(architect project version)
             CURL_OUTPUT=$(curl --no-buffer -s http://localhost:8080)
             echo $CURL_OUTPUT | grep --quiet "Giant Swarm"
-
-      - deploy:
-          name: Deploy (only if in default branch)
-          command: |
-            echo "Deploy only if '${CIRCLE_BRANCH}' == 'main'"
-            if [ "${CIRCLE_BRANCH}" == "main" ]; then
-              ./architect deploy
-            fi
 
 workflows:
   version: 2
