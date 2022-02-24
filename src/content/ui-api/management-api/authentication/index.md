@@ -152,3 +152,7 @@ After that period, clients like `kubectl` will automatically attempt to get a fr
 It is possible to configure a shorter token lifetime at the cost of more frequent delays due to token refreshing. Please contact your account engineer for assistance.
 
 When assigning users to groups in your identity provider, and when removing users from groups, it can take up to {{% mapi_oidc_token_ttl_minutes %}} minutes until the change becomes effective for end users. If a user has authenticated and obtained an ID token before the change, tools like `kubectl` will use that token until it expires.
+
+## Further reading
+
+- [Authorization in the Management API]({{< relref "/ui-api/management-api/authorization" >}}) explains how to assign permissions to authenticated users
