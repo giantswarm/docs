@@ -163,7 +163,7 @@ Make sure to repeat this for all relevant roles.
 
 - **Roles and cluster roles are read-only.** It is currently not possible to add new roles or cluster roles via the web user interface.
 
-  As an admin user of the Management API, you can add roles or cluster roles directly, e. g using `kubectl`. Make sure to add the label `ui.giantswarm.io/display` with the string value `"true"` in order to get the role listed in the access control UI.
+  As an admin user of the Management API, you can add roles or cluster roles directly, e. g using `kubectl create role` and `kubectl create clusterrole`. Make sure to add the label `ui.giantswarm.io/display` with the string value `"true"` in order to get the role listed in the access control UI.
 
 ## Related
 
