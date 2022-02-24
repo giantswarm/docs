@@ -6,7 +6,7 @@ orbs:
 
 jobs:
   build:
-    executor: "architect"
+    executor: "architect/architect"
 
     steps:
       - checkout
