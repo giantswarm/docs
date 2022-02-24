@@ -19,13 +19,6 @@ jobs:
           command: make lint
 
       - run:
-          name: Install architect
-          command: |
-            wget -q $(curl -sS -H "Authorization: token $RELEASE_TOKEN" https://api.github.com/repos/giantswarm/architect/releases/tags/v6.2.0 | grep browser_download_url | head -n 1 | cut -d '"' -f 4)
-            chmod +x ./architect
-            ./architect version
-
-      - run:
           name: Build using architect
           command: ./architect build
 
