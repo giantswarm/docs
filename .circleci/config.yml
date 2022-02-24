@@ -7,6 +7,8 @@ orbs:
 jobs:
   build:
     executor: "architect/architect"
+    environment:
+      DOCKER_BUILDKIT: "1"
 
     steps:
       - checkout
@@ -27,7 +29,9 @@ jobs:
       - run:
           name: Launch container for tests
           command: |
-            docker run -d --rm --name docs -p 8080:8080 quay.io/giantswarm/docs:$(architect project version)
+            container_tag=$(architect project version)
+            echo "$container_tag"
+            docker run -d --rm --name docs -p 8080:8080 quay.io/giantswarm/docs:$container_tag
             CURL_OUTPUT=$(curl --no-buffer -s http://localhost:8080)
             echo $CURL_OUTPUT | grep --quiet "Giant Swarm"
 
