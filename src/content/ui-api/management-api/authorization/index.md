@@ -74,7 +74,7 @@ Giant Swarm provides some pre-defined cluster roles (`ClusterRole` resources) wh
 - **cluster-admin**: Grants all permissions to all resource types.
 - **read-all**: Grants read permissions (verbs: get, list, watch) to most known resource types, with the exception of `Secret` and `ConfigMap`.
 
-These cluster roles are meant to be bound to groups or individual users via role bindings in an organization namespace to set permissions for that organization only or via a cluster role binding (`ClusterRoleBinding` resource) in the cluster scope to set permissions for the entire management cluster.
+Since these are `ClusterRole` resources, they can be bound either in a namespace or in the cluster scope, depending on the use case. In the [typical use cases](#typical-use-cases) section we will show some examples.
 
 In addition there are two special cluster roles which don't define any permissions by themselves, but which allow to assign certain permissions for resources in a [workload cluster namespace](#wc-namespaces).
 
@@ -113,6 +113,7 @@ Next we show how to configure access for these example cases. Please take into a
 
 - You can set the resource names (for `RoleBinding` and `ClusterRoleBinding` resources) to whatever suits you and is available.
 - Make sure to replace `GROUPNAME` with the exact name of your group as defined in your identity provider.
+- Replace `ORGANIZATION` with the name of your organization (without `org-` prefix).
 - To assign a user instead of a group, replace `kind: Group` with `kind: User` in the subject entry and set `name` to ... TODO: email or other handle?
 
 ### Configure access for read-only users {#configure-read-only}
@@ -134,6 +135,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: bind-read-all-to-group
+  namespace: org-ORGANIZATION
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -147,6 +149,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: bind-read-in-cluster-ns-to-group
+  namespace: org-ORGANIZATION
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -171,6 +174,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: bind-read-all-to-group
+  namespace: org-ORGANIZATION
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -184,6 +188,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: bind-write-in-cluster-ns-to-group
+  namespace: org-ORGANIZATION
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -205,6 +210,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: bind-cluster-admin-to-group
+  namespace: org-ORGANIZATION
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
