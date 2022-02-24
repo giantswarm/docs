@@ -203,9 +203,10 @@ Like in the case of the read-only user, these bindings can be set up easily via 
 
 ### Configure access for organization admins {#configure-org-admins}
 
-To grant full permission to a group of users in the context of a particular organization, simply bind the pre-defined `cluster-admin` role to that group. Here is an example manifest:
+To grant full permissions to a group of users in the context of a particular organization, bind the pre-defined `cluster-admin` role and the `write-in-cluster-ns` role to that group. Here is an example manifest:
 
 ```yaml
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
@@ -215,6 +216,20 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
   name: cluster-admin
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: customer:GROUPNAME
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: bind-write-in-cluster-ns-to-group
+  namespace: org-ORGANIZATION
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: write-in-cluster-ns
 subjects:
 - apiGroup: rbac.authorization.k8s.io
   kind: Group
