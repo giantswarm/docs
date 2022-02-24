@@ -118,7 +118,7 @@ Let's go into details for the most relevant properties (also called "claims") of
 | `iss` | The OIDC provider that has issued the token. In our case it is Dex running in the management cluster.|
 | `exp` | When this ID token expires, in seconds since 1970-01-01 00:00. Read [ID token lifetime](##id-token-ttl) below for more information. |
 | `iat` | When this ID token has been issued, in seconds since 1970-01-01 00:00. |
-| `email` | Email address associated with the authenticated user, in case the identity provider delivers it. |
+| `email` | Email address associated with the authenticated user. From the Kubernetes api-server perspective, this is the user name relevant for role-based access control (RBAC). |
 | `groups` | List of groups the user is a member of, provided by the identity provider. Note that group names are prefixed by Dex, usually prepending `customer:` to the original name of a group as defined in your identity provider. |
 | `name` | Friendly name of the authenticated user. |
 | `preferred_username` | Name to use as an identifier, as an alternative to the user's email address. |

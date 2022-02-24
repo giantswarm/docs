@@ -114,7 +114,7 @@ Next we show how to configure access for these example cases. Please take into a
 - You can set the resource names (for `RoleBinding` and `ClusterRoleBinding` resources) to whatever suits you and is available.
 - Make sure to replace `GROUPNAME` with the exact name of your group as defined in your identity provider.
 - Replace `ORGANIZATION` with the name of your organization (without `org-` prefix).
-- To assign a user instead of a group, replace `kind: Group` with `kind: User` in the subject entry and set `name` to ... TODO: email or other handle?
+- To assign a user instead of a group, replace `kind: Group` with `kind: User` in the subject entry and set `name` the exact email address of the users as set in your identity provider.
 
 ### Configure access for read-only users {#configure-read-only}
 
