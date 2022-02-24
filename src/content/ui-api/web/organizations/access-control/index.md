@@ -26,6 +26,8 @@ Granting access means that the users (when associating users or groups) or progr
 
 The access control UI in the web interface provides quick access to a focused set of RBAC resources, with the goal to make it easy for you to give individuals, groups, or service accounts access to resources in an organization's namespace.
 
+To learn more about the subject, please also check out the broader article on [authorization in the Management API]({{< relref "/ui-api/management-api/authorization" >}}).
+
 ## Where to find it {#where-to-find}
 
 1. Log in to the web user interface, using the URL matching your management cluster/installation.
