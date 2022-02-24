@@ -1351,6 +1351,11 @@ source_repository_ref: v5.0.0
 <p>Total number of non-terminated machines targeted by this deployment that have the desired template spec.</p>
 
 
+</div>
+
+
+
+
 
 </div>
 
