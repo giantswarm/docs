@@ -1348,6 +1348,11 @@ source_repository_ref: v5.0.0
 <div class="property-description">
 <p>Total number of non-terminated machines targeted by this deployment that have the desired template spec.</p>
 
+</div>
+
+
+
+
 
 </div>
 
@@ -2564,7 +2569,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-0">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.status.unavailableReplicas">.status.unavailableReplicas</h3>
 </div>
