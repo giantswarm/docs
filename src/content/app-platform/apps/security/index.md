@@ -69,7 +69,7 @@ Scan data can be accessed:
 - from the Starboard Grafana dashboard
 - directly in Prometheus
 - using the [Starboard extension for K8s Lens][lens-extension]
-- using the [Starboard plugin for Octant plugin][octant-plugin]
+- using the [Starboard plugin for Octant][octant-plugin]
 - using the [Trivy extension for VS Code][vscode-trivy] (for working with Trivy scans offline)
 
 #### Using kubectl
