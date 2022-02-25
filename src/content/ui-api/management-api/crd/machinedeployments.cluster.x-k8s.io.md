@@ -1361,18 +1361,16 @@ spec:
 
 </div>
 </div>
-
-</div>
 </div>
 
 <div class="property depth-0">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.clusterName">.spec.clusterName</h3>
+<h3 class="property-path" id="v1alpha4-.kind">.kind</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-<span class="property-required">Required</span>
+
 </div>
 
 <div class="property-description">
