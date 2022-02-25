@@ -6648,7 +6648,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>ErrorReason will be set on non-retryable errors</p>
+<p>DataSecretName is the name of the secret that stores the bootstrap data script.</p>
 
 </div>
 
@@ -6657,7 +6657,61 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.status.ready">.status.ready</h3>
+<h3 class="property-path" id="v1alpha4-.status.failureMessage">.status.failureMessage</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>FailureMessage will be set on non-retryable errors</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status.failureReason">.status.failureReason</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>FailureReason will be set on non-retryable errors</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status.observedGeneration">.status.observedGeneration</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>ObservedGeneration is the latest generation observed by the controller.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status.ready">.status.ready</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
