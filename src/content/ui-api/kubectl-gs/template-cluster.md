@@ -12,7 +12,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I create a cluster manifest for the Management API?
-last_review_date: 2021-02-11
+last_review_date: 2021-02-25
 ---
 
 # `kubectl gs template cluster`
@@ -102,24 +102,29 @@ It supports the following flags:
 
 ### OpenStack specific
 
+- `--cluster-version` (optional) - Version of `cluster-openstack` helm chart to use. If not provided, the latest version will be used.
+- `--default-apps-version` (optional) - Version of `default-apps-openstack` helm chart to use. If not provided, the latest version will be used.
 - `--cloud` - Name of the cloud in the `cloud-config` secret. This is almost always "openstack".
 - `--cloud-config` - Name of the `cloud-config` secret which defines the credentials for the OpenStack project in which the cluster should be created. This must be created in the organization namespace before creating a cluster.
+- `--dns-nameservers` (optional) - A list of DNS nameservers to be used to resolve external names.
 - `--external-network-id` - UUID of the external network to be used. Only required if multiple external networks are available.
 - `--failure-domain` - Failure domain of worker nodes.
 - `--node-cidr` - CIDR defining the IP range of cluster nodes.
-- `--node-image-uuid` - UUID of the root volume image source for the control plane and worker machines.
-- `--bastion-machine-flavor` - Flavor (a.k.a. size) of the worker node machines.
-- `--bastion-disk-size` - Size of root volumes attached to the cluster bastion machine in gigabytes. Must be greater than or equal to the size of the bastion source image (`--bastion-image-uuid`).
-- `--bastion-image-uuid` - UUID of the root volume image source for the bastion machine.
-- `--control-plane-machine-flavor` - Flavor (a.k.a. size) of the worker node machines.
+- `--bastion-boot-from-volume` - If true, bation machine will use a persistent root volume instead of an ephemeral volume.
+- `--bastion-disk-size` - Size of root volume attached to the cluster bastion machine in gigabytes. Must be greater than or equal to the size of the bastion source image (`--bastion-image`).
+- `--bastion-image` - Bastion image name or root volume source UUID if --bastion-boot-from-volume is set.
+- `--bastion-machine-flavor` - Flavor (a.k.a. size) of the bastion machine.
+- `--control-plane-az` - Availability zone control plane machines should be created in. Can be specified multiple times to create a mutli-AZ control plane.
+- `--control-plane-boot-from-volume` - If true, control plane machine(s) will use a persistent root volume instead of an ephemeral volume.
 - `--control-plane-disk-size` - Size of root volumes attached to each control plane node machine in gigabytes. Must be greater than or equal to the size of the node source image.
+- `--control-plane-image` - Control plane image name or root volume source UUID if --control-plane-boot-from-volume is set.
+- `--control-plane-machine-flavor` - Flavor (a.k.a. size) of the worker node machines.
 - `--control-plane-replicas` - Number of control plane replicas. This should be 1 for a non-HA control plane or 3 for an HA control plane (etcd requires an odd number of members).
+- `--worker-boot-from-volume` - If true, worker machines will use a persistent root volume instead of an ephemeral volume.
+- `--worker-disk-size` - Size of root volumes attached to each worker node machine in gigabytes. Must be greater than or equal to the size of the node source image (`--worker-image`).
+- `--worker-image` - Worker image name or root volume source UUID if --worker-boot-from-volume is set.
 - `--worker-machine-flavor` - Flavor (a.k.a. size) of the worker node machines.
-- `--worker-disk-size` - Size of root volumes attached to each worker node machine in gigabytes. Must be greater than or equal to the size of the node source image (`--node-image-uuid`).
 - `--worker-replicas` - Number of replicas in the primary worker node pool.
-- `--cluster-version` (optional) - Version of `cluster-openstack` helm chart to use. If not provided, the latest version will be used.
-- `--default-apps-version` (optional) - Version of `default-apps-openstack` helm chart to use. If not provided, the latest version will be used.
-- `--dns-nameservers` (optional) - A list of DNS nameservers to be used to resolve external names.
 
 ## Examples
 
