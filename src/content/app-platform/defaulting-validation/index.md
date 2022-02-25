@@ -6,7 +6,7 @@ weight: 50
 menu:
   main:
     parent: app-platform
-last_review_date: 2021-11-30
+last_review_date: 2022-02-16
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 aliases:
@@ -120,14 +120,14 @@ If app-operator finds a matching [AppCatalogEntry]({{< relref "/ui-api/managemen
 - Cloud provider compatibility (e.g. you can’t install the azure-ad-pod-identity app in AWS).
 - Namespace restriction (cluster singleton, namespace singleton, fixed namespace).
 
-## GitOps support for Flux
+## GitOps support
 
 If you are managing your App CRs with Flux or a similar GitOps tool then the
 validating webhook may block creation of the App CR if it is created before the
 referenced configmap or secret.
 
-To prevent this you can add the label `giantswarm.io/managed-by` set to `flux`.
-e.g.
+To prevent this you can add the label `giantswarm.io/managed-by` and set the value
+to the tool you're using e.g. `flux`.
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
