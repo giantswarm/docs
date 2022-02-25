@@ -160,20 +160,27 @@ kubectl gs template cluster \
 ```nohighlight
 kubectl gs template cluster \
   --provider openstack \
+  --name demo1 \
   --organization multi-project \
-  --failure-domain us-east-1 \
   --cloud openstack \
   --cloud-config cloud-config-giantswarm-2 \
-  --bastion-image-uuid 4b4bbad1-0eca-4937-9fe5-f5e767b36c5f \
-  --node-image-uuid c3cc570d-cfd5-4cdb-aa46-fa82a6e72ecb \
-  --external-network-id 0d2b02e2-6003-4c09-8457-604d0a963f7a \
+  --external-network-id 12345678-abcd-1234-abcd-1234567890ef \
   --node-cidr 10.6.0.0/24 \
+  --bastion-boot-from-volume \
+  --bastion-disk-size 50 \
+  --bastion-image 12345678-abcd-1234-abcd-1234567890ab \
   --bastion-machine-flavor a1.tiny \
-  --control-plane-machine-flavor a1.small \
-  --worker-machine-flavor a1.small \
+  --control-plane-az us-east-1 \
+  --control-plane-boot-from-volume \
   --control-plane-disk-size 50 \
+  --control-plane-image 12345678-abcd-1234-abcd-1234567890cd \
+  --control-plane-machine-flavor a1.small \
+  --worker-boot-from-volume \
   --worker-disk-size 50 \
-  --name demo1
+  --worker-failure-domain us-east-1 \
+  --worker-image 12345678-abcd-1234-abcd-1234567890gh \
+  --worker-machine-flavor a1.small \
+  --worker-replicas 3
 ```
 
 {{< /tab >}}
@@ -396,48 +403,50 @@ status:
 ```yaml
 ---
 apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: demo1-cluster-userconfig
+  namespace: org-multi-project
 data:
   values: |
     bastion:
+      bootFromVolume: true
+      diskSize: 10
       flavor: a1.tiny
-      image: ""
-      rootVolume:
-        diskSize: 10
-        sourceUUID: 4b4bbad1-0eca-4937-9fe5-f5e767b36c5f
+      image: 12345678-abcd-1234-abcd-1234567890ab
     cloudConfig: cloud-config-giantswarm-2
     cloudName: openstack
+    clusterName: demo1
     controlPlane:
+      bootFromVolume: true
       diskSize: 50
-      machineFlavor: a1.small
+      flavor: a1.small
+      image: 12345678-abcd-1234-abcd-1234567890cd
       replicas: 1
-    externalNetworkID: 0d2b02e2-6003-4c09-8457-604d0a963f7a
+    externalNetworkID: 12345678-abcd-1234-abcd-1234567890ef
+    kubernetesVersion: v1.20.9
     nodeCIDR: 10.6.0.0/24
     nodeClasses:
-    - diskSize: 50
-      machineFlavor: a1.small
+    - bootFromVolume: true
+      diskSize: 50
+      flavor: a1.small
+      image: 12345678-abcd-1234-abcd-1234567890gh
       name: default
     nodePools:
     - class: default
+      failureDomain: us-east-1
       name: default
-      replicas: 2
+      replicas: 3
     oidc:
       enabled: false
     organization: multi-project
-    rootVolume:
-      enabled: true
-      sourceUUID: c3cc570d-cfd5-4cdb-aa46-fa82a6e72ecb
-kind: ConfigMap
-metadata:
-  creationTimestamp: null
-  name: demo1-userconfig
-  namespace: org-multi-project
 ---
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
   labels:
     app-operator.giantswarm.io/version: 0.0.0
-  name: demo1
+  name: demo1-cluster
   namespace: org-multi-project
 spec:
   catalog: giantswarm
@@ -459,22 +468,21 @@ spec:
   namespace: org-multi-project
   userConfig:
     configMap:
-      name: demo1-userconfig
+      name: demo1-cluster-userconfig
       namespace: org-multi-project
   version: 0.4.0
 ---
 apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: demo1-default-apps-userconfig
+  namespace: org-multi-project
 data:
   values: |
     clusterName: demo1
     oidc:
       enabled: false
     organization: multi-project
-kind: ConfigMap
-metadata:
-  creationTimestamp: null
-  name: demo1-default-apps-userconfig
-  namespace: org-multi-project
 ---
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
@@ -505,7 +513,7 @@ spec:
     configMap:
       name: demo1-default-apps-userconfig
       namespace: org-multi-project
-  version: 0.1.0
+  version: 0.1.1
 ```
 
 {{< /tab >}}
