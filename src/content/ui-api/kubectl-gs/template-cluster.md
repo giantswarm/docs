@@ -60,7 +60,7 @@ In this case the outcome is a bit different:
 
 For OpenStack (`--provider openstack`):
 
-- [`App (name=<cluster name>)`]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) (API version `application.giantswarm.io/v1alpha1`) - describes the Giant Swarm App which defines the helm release which in turn creates the actual cluster resources.
+- [`App (name=<cluster name>-cluster)`]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) (API version `application.giantswarm.io/v1alpha1`) - describes the Giant Swarm App which defines the helm release which in turn creates the actual cluster resources.
 - `ConfigMap (name=<cluster name>)` - describes the configuration for the above cluster chart.
 - [`App (name=<cluster name>-default-apps)`]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) (API version `application.giantswarm.io/v1alpha1`) - describes the Giant Swarm App which defines the helm release which in turn creates the preinstalled apps which run in the workload cluster.
 - `ConfigMap (name=<cluster name>-default-apps)` - describes the configuration for the above preinstalled apps charts.
