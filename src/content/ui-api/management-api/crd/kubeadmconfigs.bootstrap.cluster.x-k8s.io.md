@@ -1357,7 +1357,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -1582,7 +1582,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.diskSetup.partitions[*].tableType">.spec.diskSetup.partitions[*].tableType</h3>
+<h3 class="property-path" id="v1alpha3-.spec.files[*].content">.spec.files[*].content</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1604,7 +1604,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -1618,12 +1618,12 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.initConfiguration.nodeRegistration">.spec.initConfiguration.nodeRegistration</h3>
+<h3 class="property-path" id="v1alpha3-.spec.files[*].content">.spec.files[*].content</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">object</span>
-
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
@@ -1636,7 +1636,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.files[*].content">.spec.files[*].content</h3>
+<h3 class="property-path" id="v1alpha2-.spec.initConfiguration.localAPIEndpoint.bindPort">.spec.initConfiguration.localAPIEndpoint.bindPort</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1654,7 +1654,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.initConfiguration.localAPIEndpoint.bindPort">.spec.initConfiguration.localAPIEndpoint.bindPort</h3>
+<h3 class="property-path" id="v1alpha3-.spec.files">.spec.files</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1671,24 +1671,6 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property depth-5">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.files">.spec.files</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">array</span>
-
-</div>
-
-<div class="property-description">
-<p>Files specifies extra files to be passed to user_data upon creation.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.files[*]">.spec.files[*]</h3>
 </div>
@@ -1722,19 +1704,6 @@ source_repository_ref: v5.0.0
 <div class="property depth-5">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.files[*].contentFrom.secret.name">.spec.files[*].contentFrom.secret.name</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>Name of the secret in the KubeadmBootstrapConfig&rsquo;s namespace to use.</p>
-
-</div>
-
-</div>
 </div>
 
 </div>
@@ -6842,6 +6811,22 @@ source_repository_ref: v5.0.0
 <div class="property-description">
 <p>Status of the condition, one of True, False, Unknown.</p>
 
+<div class="property-description">
+<p>Status of the condition, one of True, False, Unknown.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status.conditions[*].type">.status.conditions[*].type</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
 </div>
 
 </div>
