@@ -474,7 +474,7 @@ spec:
     configMap:
       name: demo1-cluster-userconfig
       namespace: org-multi-project
-  version: 0.4.0
+  version: 0.5.0
 ---
 apiVersion: v1
 kind: ConfigMap
