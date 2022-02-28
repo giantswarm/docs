@@ -2476,25 +2476,25 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Enabled specifies whether NTP should be enabled</p>
+<p>UnsafeSkipCAVerification allows token-based discovery without CA verification via CACertHashes. This can weaken the security of kubeadm since other nodes can impersonate the control-plane.</p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.discovery.file">.spec.joinConfiguration.discovery.file</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">object</span>
 
 </div>
 
 <div class="property-description">
-<p>Servers specifies which NTP servers to use</p>
+<p>File is used to specify a file or URL to a kubeconfig file from which to load cluster information BootstrapToken and File are mutually exclusive</p>
 
 </div>
 
@@ -2511,10 +2511,15 @@ source_repository_ref: v5.0.0
 <span class="property-required">Required</span>
 </div>
 
+<div class="property-description">
+<p>Enabled specifies whether NTP should be enabled</p>
+
+</div>
+
 </div>
 </div>
 
-<div class="property depth-1">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.discovery.timeout">.spec.joinConfiguration.discovery.timeout</h3>
 </div>
@@ -2525,14 +2530,14 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>PostKubeadmCommands specifies extra commands to run after kubeadm runs</p>
+<p>Servers specifies which NTP servers to use</p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.discovery.tlsBootstrapToken">.spec.joinConfiguration.discovery.tlsBootstrapToken</h3>
 </div>
@@ -2561,7 +2566,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>PreKubeadmCommands specifies extra commands to run before kubeadm runs</p>
+<p>PostKubeadmCommands specifies extra commands to run after kubeadm runs</p>
 
 </div>
 
@@ -2574,7 +2579,12 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>TLSBootstrapToken is a token used for TLS bootstrapping. If .BootstrapToken is set, this field is defaulted to .BootstrapToken.Token, but can be overridden. If .File is set, this field <strong>must be set</strong> in case the KubeConfigFile does not contain any other authentication information TODO: revisit when there is defaulting from k/k</p>
 
 </div>
 
@@ -2587,19 +2597,19 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">array</span>
 
 </div>
 
 <div class="property-description">
-<p>CRISocket is used to retrieve container runtime info. This information will be annotated to the Node API object, for later re-use</p>
+<p>PreKubeadmCommands specifies extra commands to run before kubeadm runs</p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.nodeRegistration.kubeletExtraArgs">.spec.joinConfiguration.nodeRegistration.kubeletExtraArgs</h3>
 </div>
@@ -3247,12 +3257,13 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
+<span class="property-type">string</span>
 
 </div>
 
 <div class="property-description">
-<p>LockPassword specifies if password login should be disabled</p>
+<p>BootstrapData will be a cloud-init script for now.
+ Deprecated: Switch to DataSecretName.</p>
 
 </div>
 
@@ -3265,12 +3276,12 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
+<span class="property-type">boolean</span>
+
 </div>
 
 <div class="property-description">
-<p>Name specifies the user name</p>
+<p>LockPassword specifies if password login should be disabled</p>
 
 </div>
 
@@ -3288,7 +3299,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Passwd specifies a hashed password for the user</p>
+<p>Name specifies the user name</p>
 
 </div>
 
@@ -3302,11 +3313,11 @@ source_repository_ref: v5.0.0
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
-<p>PrimaryGroup specifies the primary group for the user</p>
+<p>Passwd specifies a hashed password for the user</p>
 
 </div>
 
@@ -3324,7 +3335,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Shell specifies the user&rsquo;s shell</p>
+<p>PrimaryGroup specifies the primary group for the user</p>
 
 </div>
 
@@ -3337,12 +3348,12 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">string</span>
 
 </div>
 
 <div class="property-description">
-<p>SSHAuthorizedKeys specifies a list of ssh authorized keys for the user</p>
+<p>Shell specifies the user&rsquo;s shell</p>
 
 </div>
 
