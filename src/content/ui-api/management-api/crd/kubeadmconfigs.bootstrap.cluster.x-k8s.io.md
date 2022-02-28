@@ -1357,7 +1357,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -6843,9 +6843,20 @@ source_repository_ref: v5.0.0
 <p>Severity provides an explicit classification of Reason code, so the users or machines can immediately understand the current situation and act accordingly. The Severity field MUST be set only when Status=False.</p>
 
 </div>
+</div>
 
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status.conditions[*].status">.status.conditions[*].status</h3>
 </div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
 </div>
+
+<div class="property-description">
+<p>Status of the condition, one of True, False, Unknown.</p>
 
 <div class="property depth-3">
 <div class="property-header">
