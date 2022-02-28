@@ -636,7 +636,9 @@ spec:
 
 </div>
 
-</div>
+<div class="property-description">
+<p>UID of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids</a></p>
+
 </div>
 
 <div class="property depth-2">
@@ -654,10 +656,10 @@ spec:
 
 </div>
 
-</div>
-</div>
+<div class="property-description">
+<p>A human readable message indicating details about the transition. This field may be empty.</p>
 
-<div class="property depth-1">
+<div class="property depth-0">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.paused">.spec.paused</h3>
 </div>
@@ -672,8 +674,8 @@ spec:
 
 </div>
 
-<div class="property-description">
-<p>A human readable message indicating details about the transition. This field may be empty.</p>
+</div>
+</div>
 
 <div class="property depth-0">
 <div class="property-header">
@@ -773,11 +775,6 @@ spec:
 <div class="property-meta">
 <span class="property-type">string</span>
 
-<div class="property-description">
-<p>Status of the condition, one of True, False, Unknown.</p>
-
-</div>
-
 </div>
 
 <div class="property-description">
@@ -812,8 +809,8 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
-
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
@@ -900,9 +897,8 @@ spec:
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.status.failureMessage">.status.failureMessage</h3>
 </div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">integer</span>
+<div class="annotation-body">
+<div class="annotation-meta">
 
 </div>
 
@@ -918,8 +914,9 @@ spec:
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.status.failureReason">.status.failureReason</h3>
 </div>
-<div class="annotation-body">
-<div class="annotation-meta">
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
 
 </div>
 
@@ -971,10 +968,10 @@ spec:
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.status.phase">.status.phase</h3>
 </div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
+<div class="annotation-body">
+<div class="annotation-meta">
 
+</div>
 </div>
 
 <div class="property-description">
@@ -998,7 +995,6 @@ spec:
 <div class="annotation-body">
 <div class="annotation-meta">
 
-</div>
 </div>
 
 <div class="annotation-description">
@@ -1044,7 +1040,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -1062,7 +1058,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">integer</span>
+<span class="property-type">object</span>
 
 </div>
 
