@@ -35,8 +35,8 @@ to list some information on all node pools available to you in the current insta
 Here is some example output:
 
 ```nohighlight
-NAME    CLUSTER NAME   CREATED                         CONDITION   NODES MIN/MAX   NODES DESIRED   NODES READY   DESCRIPTION
-ab12c   s921a          2021-01-02 15:04:32 +0000 UTC   READY       3/10            5               3             Production node pool
+NAME    CLUSTER NAME   AGE  CONDITION   NODES MIN/MAX   NODES DESIRED   NODES READY   DESCRIPTION
+ab12c   s921a          1d   READY       3/10            5               3             Production node pool
 ```
 
 ### Get specific node pool
@@ -55,7 +55,7 @@ The standard tabular output format features these columns:
 
 - `NAME`: Unique identifier of the node pool.
 - `CLUSTER NAME`: Unique identifier of the cluster that the node pool belongs to.
-- `CREATED`: Date and time of the node pool CR creation.
+- `AGE`: How long ago was the node pool created.
 - `CONDITION`: Latest condition reported for the node pool. (Azure only)
 - `NODES MIN/MAX`: Node pool autoscaler settings (if supported).
 - `NODES DESIRED`: The total number of nodes that the node pool should have.

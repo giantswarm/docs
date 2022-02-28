@@ -17,27 +17,76 @@ user_questions:
 
 Below is a list of the external domains we require access to for our clusters to function.
 
-- flatcar.com
-    - `*.flatcar.com`
-- quay.io
-    - `*.quay.io`
-- github.com
-    - `*.github.com`
-- amazonaws.com
-    - `*.amazonaws.com`
-- docker.io
-    - `*.docker.io`
-- cloudfront.net
-    - `*.cloudfront.net`
-- keybase.io
-    - `*.keybase.io`
-- coreos.com
-    - `*.coreos.com`
-- docker.com
-    - `*.docker.com`
 - alpinelinux.org
-    - `*.alpinelinux.org`
-- `vault.operations.giantswarm.io`
+    - domains:
+        - `*.alpinelinux.org`
+    - Alpine container images may update their package index.
+- amazonaws.com
+    - domains:
+        - `*.amazonaws.com`
+    - AWS services are used for a variety of tasks, such as etcd backup storage.
+- azurecr.io
+    - domains:
+        - `giantswarm.azurecr.io`
+    - Container images are hosted on Azure Container Registry.
+- cloudfront.net
+    - domains:
+        - `*.cloudfront.net`
+    - Operators may pull from sites behind Cloudfront.
+- docker.com
+    - domains:
+        - `*.docker.com`
+    - Container images are hosted on Dockerhub.
+- docker.io
+    - domains:
+        - `*.docker.io`
+    - Container images are hosted on Dockerhub.
+- flatcar.com
+    - domains:
+        - `*.flatcar.com`
+    - Flatcar OS images and signing keys.
+- github.com
+    - domains:
+        - `*.github.com`
+    - Various operators need to pull information from GitHub repositories.
+- github.io
+    - domains:
+        - `*.github.io`
+    - Helm chart tarballs are pulled from GitHub Pages.
+- keybase.io
+    - domains:
+        - `*.keybase.io`
+    - Vault initialisation and unsealing requires access to Keybase.
+- letsencrypt.org
+    - domains:
+        - `*.api.letsencrypt.org`
+    - cert-manager will request certificates from Lets Encrypt.
+- quay.io
+    - domains:
+        - `*.quay.io`
+    - Container images are hosted on Quay.
+- sentry.io
+    - domains:
+        - `o346224.ingest.sentry.io`
+    - Monitoring and crash reporting for `happa`.
 - `api.opsgenie.com`
+    - Opsgenie's API is used to send alerts.
+- `grafana.com`
+    - Grafana may download plugins from the Grafana plugin registry.
+- `prometheus-us-central1.grafana.net`
+    - Some metrics are pushed to our hosted Grafana tenant.
+- `vault.operations.giantswarm.io`
+    - Our operations Vault is used for unsealing customer Vault servers.
 
-In the case of on-premise installations, we also need access to the DNS provider. This is likely to be Cloudflare, but may be somewhere else.
+## On-premise installations
+
+These domains are only required for on-premise installations.
+
+- cloudflare.com
+    - domains:
+        - `api.cloudflare.com`
+    - cert-manager may create ACME challenge DNS records.
+- api.mailgun.net
+    - domains:
+        - `api.mailgun.net`
+    - This is the mail service we use to send the invites for our Rest API user accounts.

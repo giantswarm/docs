@@ -11,8 +11,8 @@ crd:
   group: application.giantswarm.io
   technical_name: appcatalogs.application.giantswarm.io
   scope: Cluster
-  source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.35.0
+  source_repository: https://github.com/giantswarm/apiextensions-application
+  source_repository_ref: v0.3.0
   versions:
     - v1alpha1
   topics:
@@ -27,8 +27,8 @@ owner:
 aliases:
   - /reference/cp-k8s-api/appcatalogs.application.giantswarm.io/
 technical_name: appcatalogs.application.giantswarm.io
-source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.35.0
+source_repository: https://github.com/giantswarm/apiextensions-application
+source_repository_ref: v0.3.0
 ---
 
 # AppCatalog

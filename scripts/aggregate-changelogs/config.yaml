@@ -26,18 +26,22 @@ repositories:
     category: Documentation
   giantswarm/efk-stack-app:
     category: Managed Apps
+  giantswarm/falco-app:
+    category: Managed Apps
   giantswarm/goldilocks-app:
     category: Managed Apps
   giantswarm/gsctl:
     category: gsctl
   giantswarm/happa:
     category: Web UI
+  giantswarm/hello-world-app:
+    category: Managed Apps
   giantswarm/kong-app:
     category: Managed Apps
   giantswarm/kubectl-gs:
     category: kubectl gs
   giantswarm/kyverno-app:
-    category: Management API
+    category: Managed Apps
   giantswarm/kyverno-policies:
     category: Management API
   giantswarm/management-cluster-admission:
@@ -50,11 +54,23 @@ repositories:
     category: Managed Apps
   giantswarm/loki-app:
     category: Managed Apps
+  giantswarm/oauth2-proxy-app:
+    category: Managed Apps
   giantswarm/promtail-app:
+    category: Managed Apps
+  giantswarm/rook-operator-app:
+    category: Managed Apps
+  giantswarm/starboard-app:
+    category: Managed Apps
+  giantswarm/starboard-exporter:
+    category: Managed Apps
+  giantswarm/trivy-app:
     category: Managed Apps
   giantswarm/external-dns-app:
     category: Managed Apps
   giantswarm/fluent-logshipping-app:
+    category: Managed Apps
+  giantswarm/flux-app:
     category: Managed Apps
   giantswarm/cloudflared-app:
     category: Managed Apps
@@ -96,6 +112,8 @@ repositories:
     category: Playground Apps
   giantswarm/organization-operator:
     category: Management API
+  giantswarm/rbac-bootstrap-app:
+    category: Playground Apps
   giantswarm/rbac-operator:
     category: Management API
   giantswarm/strimzi-kafka-operator-app:

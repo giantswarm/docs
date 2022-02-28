@@ -11,8 +11,8 @@ crd:
   group: monitoring.giantswarm.io
   technical_name: silences.monitoring.giantswarm.io
   scope: Cluster
-  source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.35.0
+  source_repository: https://github.com/giantswarm/silence-operator
+  source_repository_ref: v0.4.0
   versions:
     - v1alpha1
   topics:
@@ -23,8 +23,8 @@ owner:
 aliases:
   - /reference/cp-k8s-api/silences.monitoring.giantswarm.io/
 technical_name: silences.monitoring.giantswarm.io
-source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.35.0
+source_repository: https://github.com/giantswarm/silence-operator
+source_repository_ref: v0.4.0
 ---
 
 # Silence
@@ -51,25 +51,6 @@ source_repository_ref: v3.35.0
 <div class="crd-schema-version">
 <h2 id="v1alpha1">Version v1alpha1</h2>
 
-
-<h3 id="crd-example-v1alpha1">Example CR</h3>
-
-```yaml
-apiVersion: monitoring.giantswarm.io/v1alpha1
-kind: Silence
-metadata:
-  creationTimestamp: null
-  name: custom-silence
-  namespace: default
-spec:
-  matchers:
-  - isRegex: false
-    name: cluster_id
-    value: my_cluster_id
-  targetTags:
-  - name: installation
-    value: my_installation_name
-```
 
 
 <h3 id="property-details-v1alpha1">Properties</h3>

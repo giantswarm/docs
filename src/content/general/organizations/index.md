@@ -2,7 +2,7 @@
 linkTitle: Organizations
 title: Organizations
 description: Explaining the organization concept in the Giant Swarm Management API, how to use organizations currently, and our future plans to make use of them.
-last_review_date: 2021-05-31
+last_review_date: 2021-10-27
 weight: 40
 menu:
   main:
@@ -12,7 +12,7 @@ user_questions:
   - Do I have to use organizations?
   - What's the benefit of using organizations?
 owner:
-  - https://github.com/orgs/giantswarm/teams/biscuit
+  - https://github.com/orgs/giantswarm/teams/rainbow
 ---
 
 # Organizations
@@ -121,7 +121,7 @@ We recommend to place all resources belonging to an organization into the organi
 
 ### Namespace utilization in different providers {#namespace-use}
 
-Giant Swarm is currently working towards making the organization's namespace the default namespace for all resources owned by the organization: clusters, node pools, apps, and more. We have reached different stages on different providers as of May 2021:
+Giant Swarm is currently working towards making the organization's namespace the default namespace for all resources owned by the organization: clusters, node pools, apps, and more. We have reached different stages on different providers as of October 2021:
 
 - **Azure**: With the latest workload cluster releases for Azure (v14.1.x), all cluster and node pool resources are placed in the organization namespace by default.
 
@@ -131,7 +131,7 @@ Giant Swarm is currently working towards making the organization's namespace the
 
   Resources belonging to apps deployed to workload clusters are not yet placed in the organization namespace. Instead they are placed in a namespace named after the workload cluster ID.
 
-  Note: This applies to newly creaded clusters and upgrading a cluster to v16.x.x will not move it's resources to the org-namespace automatically. GS is currently preparing to move existing clusters.
+  Note: This applies to newly created clusters and upgrading a cluster to v16.x.x will not move it's resources to the org-namespace automatically. GS is currently preparing to move existing clusters.
 
 - **On-premises (KVM)**: With the latest KVM releases, the organization namespace is not yet used by default.
 

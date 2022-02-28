@@ -12,19 +12,19 @@ crd:
   technical_name: organizations.security.giantswarm.io
   scope: Cluster
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.35.0
+  source_repository_ref: v5.0.0
   versions:
     - v1alpha1
   topics:
     - managementcluster
 layout: crd
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-biscuit
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 aliases:
   - /reference/cp-k8s-api/organizations.security.giantswarm.io/
 technical_name: organizations.security.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.35.0
+source_repository_ref: v5.0.0
 ---
 
 # Organization

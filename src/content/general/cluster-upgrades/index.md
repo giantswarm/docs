@@ -36,7 +36,7 @@ In this article, we explain how upgrades work in detail and how you should provi
 Among the third party components building a workload cluster stack are
 
 - [Kubernetes](https://kubernetes.io/) with its many sub-components
-- [Flatcar Container Linux](https://kinvolk.io/docs/flatcar-container-linux/latest/) as the node's operating system
+- [Flatcar Container Linux](https://www.flatcar-linux.org/docs/latest/) as the node's operating system
 - [Docker](https://docs.docker.com/engine/) as a container runtime environment
 - [etcd](https://etcd.io/) as distributed storage for Kubernetes and Vault
 - [Project Calico](https://www.tigera.io/project-calico/) and [AWS CNI](https://github.com/aws/amazon-vpc-cni-k8s)/[Azure CNI](https://github.com/Azure/azure-container-networking)/[Flannel](https://github.com/flannel-io/flannel) for virtual networking

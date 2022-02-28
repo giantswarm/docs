@@ -12,7 +12,7 @@ crd:
   technical_name: awsclusters.infrastructure.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.35.0
+  source_repository_ref: v5.0.0
   versions:
     - v1alpha2
     - v1alpha3
@@ -29,7 +29,7 @@ aliases:
   - /reference/cp-k8s-api/awsclusters.infrastructure.giantswarm.io/
 technical_name: awsclusters.infrastructure.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.35.0
+source_repository_ref: v5.0.0
 ---
 
 # AWSCluster
@@ -932,6 +932,23 @@ spec:
 
 <div class="annotation-description">
 <p>This annotation allows configuration of the MINIMUM_IP_TARGET parameter for AWS CNI. See <a href="https://github.com/aws/amazon-vpc-cni-k8s#cni-configuration-variables">CNI Configuration Variables</a> and <a href="https://github.com/aws/amazon-vpc-cni-k8s/blob/master/docs/eni-and-ip-target.md">ENI and IP Target</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="annotation">
+<div class="annotation-header">
+<h3 class="annotation-path" id="v1alpha2-alpha.cni.aws.giantswarm.io/prefix-delegation">alpha.cni.aws.giantswarm.io/prefix-delegation</h3>
+</div>
+<div class="annotation-body">
+<div class="annotation-meta">
+<span class="annotation-release">Since 16.1.0</span>
+</div>
+
+<div class="annotation-description">
+<p>This annotation allows configuration of the ENABLE_PREFIX_DELEGATION parameter for AWS CNI. See <a href="https://github.com/aws/amazon-vpc-cni-k8s#enable_prefix_delegation-v190">Enable Prefix Delegation</a></p>
 
 </div>
 

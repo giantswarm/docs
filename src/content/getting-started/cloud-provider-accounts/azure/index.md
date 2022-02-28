@@ -1,9 +1,12 @@
 ---
-linkTitle: "Azure"
-title: "Prepare an Azure subscription to run Giant Swarm workload clusters"
-description: "This guide will walk you through all necessary steps to set up an Azure subscription with approriate Role definition and Service Principal for operating Giant Swarm worload clusters."
-date: "2020-05-19"
-weight: 100
+linkTitle: Azure
+title: Prepare an Azure subscription to run Giant Swarm workload clusters
+description: Learn how to set up an Azure subscription with appropriate Role definition and Service Principal for operating Giant Swarm workload clusters.
+menu:
+  main:
+    identifier: gettingstarted-cloudprovider-azure
+    parent: gettingstarted-cloudprovider
+weight: 20
 user_questions:
   - How do I prepare my Azure subscription for use with Giant Swarm?
   - What do I need to configure in Azure in order to run Giant Swarm clusters?
@@ -130,7 +133,7 @@ This command should be run for all subscriptions that are used for Giant Swarm w
 
 ## Accept legal terms for deeployment of Flatcar image
 
-Giant Swarm deploys [Flatcar](https://kinvolk.io/flatcar-container-linux/) image developed by Kinvolk from Azure Marketplace. In order to be able to run the image, it is required by Azure to accept the legal terms.
+Giant Swarm deploys [Flatcar](https://www.flatcar-linux.org/) image developed by Kinvolk from Azure Marketplace. In order to be able to run the image, it is required by Azure to accept the legal terms.
 Please run the following command prior to creating a cluster on a given subscription:
 
 ```nohighlight
