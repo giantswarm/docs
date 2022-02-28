@@ -10,9 +10,11 @@ menu:
 #   - /guides/managed-security-stack/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-security
-last_review_date: 2021-11-22
+last_review_date: 2022-02-25
 user_questions:
   - How do I view and manage vulnerabilities in my cluster?
+  - What UI options are there for vulnerability and policy reports?
+  - What is included in the Security Pack?
   - How do I enforce admission policies in my cluster?
   - What can I do to keep my clusters secure?
   - What security services and tools does Giant Swarm offer?
@@ -29,13 +31,15 @@ The stack consists of multiple distinct components which are independently insta
 | Image Scanning | Trivy + Starboard | In Catalog | [Trivy][trivy-app] / [Starboard][starboard-app]  |
 | Policy Enforcement | Kyverno | In Catalog | [Kyverno][kyverno-app]  |
 | CIS Benchmarks | Starboard | In Catalog | [Starboard][starboard-app]  |
-| Image Provenance | Notary | Planned |   |
+| Image Provenance | Cosign + Fulcio | Planned |   |
 | Cloud Security Posture | Cloud Custodian | Planned |   |
-| Service Mesh | Linkerd | In Catalog | [Linkerd][linkerd-app] / [Linkerd CNI][linkerd-cni-app] / [Linkerd Visualization][linkerd-viz-app]  |
 | Runtime Anomalies | Falco | In Catalog | [Falco][falco-app]  |
-| Log Alerting | Loki | In Catalog | [Loki][loki-app]  |
 | In-Cluster Registry | Harbor | In Catalog | [Harbor][harbor-app]  |
-| Log Shipping + Storage | EFK | In Catalog | [EFK Stack][efk-app]  |
+| Log Alerting | Supported by our [managed Observability Stack][observability-stack] offering. | In Catalog | [Loki][loki-app]  |
+| Log Shipping + Storage | Supported by our [managed EFK Stack][efk-stack] offering. | In Catalog | [EFK Stack][efk-app]  |
+| Advanced Network Capabilities* | Supported by our managed Connectivity Stack offering. | In Catalog | [Linkerd][linkerd-app] / [Linkerd CNI][linkerd-cni-app] / [Linkerd Visualization][linkerd-viz-app]  |
+
+\* mTLS, DNS-based egress policies, and other advanced network capabilities are available through a separately-managed service mesh.
 
 Components with a state of "In Catalog" are available for installation via our [App Platform][app-platform]. We are working to improve centralized installation and configuration across components.
 
@@ -53,20 +57,24 @@ Starboard is another open-source project developed by [Aqua Security][starboard-
 
 In our stack, we deploy Starboard alongside Trivy in the cluster to initiate vulnerability scans for running Pods and to perform CIS benchmarks. Users may also choose to enable Polaris configuration scans in addition to our recommended Kyverno policy enforcement. To support monitoring and better observability of the scan results, we have also created a [custom Prometheus exporter][starboard-exporter] which reads the `VulnerabilityReport` and `CISKubeBenchReport` custom resources created by Starboard and exposes the data as Prometheus metrics.
 
-### Reporting and Monitoring
+### Working with Starboard Scan Results
 
-The authoritative source of truth for Starboard scans are the in-cluster custom resources. For convenience, the data from these CRs is exported to Prometheus, where it can be queries or included in dashboards.
+The authoritative source of truth for Starboard scans are the in-cluster custom resources. However, scan results, especially `VulnerabilityReport`s, can be lengthy and difficult to read.
 
-![Diagram illustrating the flow of data from Starboard's scan through an exporter to Prometheus and Grafana](Starboard-Scanning-Monitoring.svg)
+There are several available options for viewing and distilling the results of Starboard scans as well as UI integrations to make them easier to work with.
 
-Data flow:
+Scan data can be accessed:
 
-1. Starboard scans a Pod.
-2. Starboard creates a `VulnerabilityReport` CR.
-3. `starboard-exporter` reads the `VulnerabilityReport` CR and exposes metrics.
-4. Prometheus scrapes the metrics from `starboard-exporter`. Data can then be queried in Prometheus or seen in the Grafana vulnerability dashboard.
+- using `kubectl`
+- from the Starboard Grafana dashboard
+- directly in Prometheus
+- using the [Starboard extension for K8s Lens][lens-extension]
+- using the [Starboard plugin for Octant][octant-plugin]
+- using the [Trivy extension for VS Code][vscode-trivy] (for working with Trivy scans offline)
 
-Scan results are stored in the cluster and can be retrieved using `kubectl`:
+#### Using kubectl
+
+Authoritative scan results are stored in the cluster and can be retrieved using `kubectl`:
 
 ```bash
 $ kubectl get vulnerabilityreport -n argocd
@@ -114,6 +122,19 @@ Report:
 
 Kubernetes CIS benchmark reports can similarly be retrieved with `$ kubectl get ciskubebenchreport -A` and `kubectl describe`.
 
+### Reporting and Monitoring
+
+For convenience, data from the in-cluster CRs is exported to Prometheus, where it can be queried, used for alerting, or included in dashboards.
+
+![Diagram illustrating the flow of data from Starboard's scan through an exporter to Prometheus and Grafana](Starboard-Scanning-Monitoring.svg)
+
+Data flow:
+
+1. Starboard scans a Pod.
+2. Starboard creates a `VulnerabilityReport` CR.
+3. `starboard-exporter` reads the `VulnerabilityReport` CR and exposes metrics.
+4. Prometheus scrapes the metrics from `starboard-exporter`. Data can then be queried in Prometheus or seen in the Grafana vulnerability dashboard.
+
 ## Kyverno
 
 Kyverno is a [CNCF project][kyverno-upstream] originally created by Nirmata which acts as an admission controller and enforces policies for Kubernetes resources. It loads policies from Kubernetes custom resources and similarly stores reports about policy violations as additional resources within the cluster. It can be used to enforce a wide range of policies including Kubernetes best practices and Pod Security Standards (PSS), as well as custom user-defined policies.
@@ -153,12 +174,14 @@ We include Falco in our managed security stack as a detection mechanism for mali
 
 [app-platform]: {{< relref "app-platform/overview" >}}
 [efk-app]: https://github.com/giantswarm/efk-stack-app/
+[efk-stack]: {{< relref "app-platform/apps/elastic-stack" >}}
 [falco-app]: https://github.com/giantswarm/falco-app
 [falco-upstream]: https://github.com/falcosecurity/falco
 [harbor-app]: https://github.com/giantswarm/harbor-app
 [kube-bench]: https://github.com/aquasecurity/kube-bench
 [kyverno-app]: https://github.com/giantswarm/kyverno-app
 [kyverno-upstream]: https://github.com/kyverno/kyverno/
+[lens-extension]: https://github.com/aquasecurity/starboard-lens-extension
 [linkerd-app]: https://github.com/giantswarm/linkerd2-app
 [linkerd-cni-app]: https://github.com/giantswarm/linkerd2-cni-app
 [linkerd-viz-app]: https://github.com/giantswarm/linkerd-viz-app
@@ -166,6 +189,8 @@ We include Falco in our managed security stack as a detection mechanism for mali
 [net-pols]: {{< relref "/getting-started/network-policies" >}}
 [polaris]: https://github.com/FairwindsOps/polaris
 [policy-reporter-upstream]: https://github.com/kyverno/policy-reporter
+[observability-stack]: {{< relref "app-platform/apps/observability" >}}
+[octant-plugin]: https://github.com/aquasecurity/starboard-octant-plugin
 [rbac-psp]: {{< relref "/getting-started/rbac-and-psp" >}}
 [security]: {{< relref "/security/" >}}
 [starboard-app]: https://github.com/giantswarm/starboard-app
@@ -173,3 +198,4 @@ We include Falco in our managed security stack as a detection mechanism for mali
 [starboard-upstream]: https://github.com/aquasecurity/starboard
 [trivy-app]: https://github.com/giantswarm/trivy-app/
 [trivy-upstream]: https://github.com/aquasecurity/trivy
+[vscode-trivy]: https://github.com/aquasecurity/trivy-vscode-extension
