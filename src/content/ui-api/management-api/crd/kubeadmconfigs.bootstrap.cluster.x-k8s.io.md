@@ -1339,24 +1339,6 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>Filesystem defines the file systems to be created.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.diskSetup.filesystems[*].device">.spec.diskSetup.filesystems[*].device</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
 <span class="property-type">array</span>
 
 </div>
@@ -1371,11 +1353,11 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.diskSetup.filesystems[*].extraOpts[*]">.spec.diskSetup.filesystems[*].extraOpts[*]</h3>
+<h3 class="property-path" id="v1beta1-.spec.diskSetup.filesystems[*].device">.spec.diskSetup.filesystems[*].device</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">array</span>
 
 </div>
 
@@ -1384,7 +1366,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.diskSetup.filesystems[*].filesystem">.spec.diskSetup.filesystems[*].filesystem</h3>
+<h3 class="property-path" id="v1beta1-.spec.diskSetup.filesystems[*].extraOpts[*]">.spec.diskSetup.filesystems[*].extraOpts[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1402,7 +1384,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.diskSetup.filesystems[*].label">.spec.diskSetup.filesystems[*].label</h3>
+<h3 class="property-path" id="v1beta1-.spec.diskSetup.filesystems[*].filesystem">.spec.diskSetup.filesystems[*].filesystem</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1420,7 +1402,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.diskSetup.filesystems[*].overwrite">.spec.diskSetup.filesystems[*].overwrite</h3>
+<h3 class="property-path" id="v1beta1-.spec.diskSetup.filesystems[*].label">.spec.diskSetup.filesystems[*].label</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1438,7 +1420,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.diskSetup.filesystems[*].partition">.spec.diskSetup.filesystems[*].partition</h3>
+<h3 class="property-path" id="v1beta1-.spec.diskSetup.filesystems[*].overwrite">.spec.diskSetup.filesystems[*].overwrite</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1456,7 +1438,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.diskSetup.filesystems[*].replaceFS">.spec.diskSetup.filesystems[*].replaceFS</h3>
+<h3 class="property-path" id="v1beta1-.spec.diskSetup.filesystems[*].partition">.spec.diskSetup.filesystems[*].partition</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1466,6 +1448,24 @@ source_repository_ref: v5.0.0
 
 <div class="property-description">
 <p>ReplaceFS is a special directive, used for Microsoft Azure that instructs cloud-init to replace a file system of <FS_TYPE>. NOTE: unless you define a label, this requires the use of the &lsquo;any&rsquo; partition directive.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.diskSetup.partitions">.spec.diskSetup.partitions</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Partitions specifies the list of the partitions to setup.</p>
 
 </div>
 
@@ -1483,24 +1483,6 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Partitions specifies the list of the partitions to setup.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.diskSetup.partitions[*]">.spec.diskSetup.partitions[*]</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
 <p>Partition defines how to create and layout a partition.</p>
 
 </div>
@@ -1510,7 +1492,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.diskSetup.partitions[*].device">.spec.diskSetup.partitions[*].device</h3>
+<h3 class="property-path" id="v1beta1-.spec.diskSetup.partitions[*]">.spec.diskSetup.partitions[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1528,7 +1510,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.diskSetup.partitions[*].layout">.spec.diskSetup.partitions[*].layout</h3>
+<h3 class="property-path" id="v1beta1-.spec.diskSetup.partitions[*].device">.spec.diskSetup.partitions[*].device</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1546,7 +1528,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.diskSetup.partitions[*].overwrite">.spec.diskSetup.partitions[*].overwrite</h3>
+<h3 class="property-path" id="v1beta1-.spec.diskSetup.partitions[*].layout">.spec.diskSetup.partitions[*].layout</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1582,7 +1564,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.files">.spec.files</h3>
+<h3 class="property-path" id="v1alpha3-.spec.diskSetup.partitions[*].tableType">.spec.diskSetup.partitions[*].tableType</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1600,7 +1582,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.files[*]">.spec.files[*]</h3>
+<h3 class="property-path" id="v1beta1-.spec.files">.spec.files</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -6878,17 +6860,9 @@ source_repository_ref: v5.0.0
 <div class="property-description">
 <p>Status of the condition, one of True, False, Unknown.</p>
 
-<div class="property-description">
-<p>Status of the condition, one of True, False, Unknown.</p>
-
-</div>
-
-</div>
-</div>
-
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.status.conditions[*].type">.status.conditions[*].type</h3>
+<h3 class="property-path" id="v1alpha4-.status.conditions[*].type">.status.conditions[*].type</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
