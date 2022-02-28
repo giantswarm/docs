@@ -2083,24 +2083,6 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">integer</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>BindPort sets the secure port for the API Server to bind to. Defaults to 6443.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.initConfiguration.nodeRegistration.name">.spec.initConfiguration.nodeRegistration.name</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
 <span class="property-type">array</span>
 
 </div>
@@ -2115,7 +2097,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.initConfiguration.nodeRegistration.taints">.spec.initConfiguration.nodeRegistration.taints</h3>
+<h3 class="property-path" id="v1alpha3-.spec.initConfiguration.nodeRegistration.name">.spec.initConfiguration.nodeRegistration.name</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2133,7 +2115,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.initConfiguration.nodeRegistration.taints[*]">.spec.initConfiguration.nodeRegistration.taints[*]</h3>
+<h3 class="property-path" id="v1alpha3-.spec.initConfiguration.nodeRegistration.taints">.spec.initConfiguration.nodeRegistration.taints</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2151,7 +2133,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.initConfiguration.nodeRegistration.taints[*].effect">.spec.initConfiguration.nodeRegistration.taints[*].effect</h3>
+<h3 class="property-path" id="v1alpha3-.spec.initConfiguration.nodeRegistration.taints[*]">.spec.initConfiguration.nodeRegistration.taints[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2169,7 +2151,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.initConfiguration.nodeRegistration.taints[*].key">.spec.initConfiguration.nodeRegistration.taints[*].key</h3>
+<h3 class="property-path" id="v1alpha3-.spec.initConfiguration.nodeRegistration.taints[*].effect">.spec.initConfiguration.nodeRegistration.taints[*].effect</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2187,7 +2169,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.initConfiguration.nodeRegistration.taints[*].timeAdded">.spec.initConfiguration.nodeRegistration.taints[*].timeAdded</h3>
+<h3 class="property-path" id="v1alpha3-.spec.initConfiguration.nodeRegistration.taints[*].key">.spec.initConfiguration.nodeRegistration.taints[*].key</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2205,7 +2187,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.initConfiguration.nodeRegistration.taints[*].value">.spec.initConfiguration.nodeRegistration.taints[*].value</h3>
+<h3 class="property-path" id="v1alpha3-.spec.initConfiguration.nodeRegistration.taints[*].timeAdded">.spec.initConfiguration.nodeRegistration.taints[*].timeAdded</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2223,7 +2205,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.joinConfiguration">.spec.joinConfiguration</h3>
+<h3 class="property-path" id="v1alpha3-.spec.initConfiguration.nodeRegistration.taints[*].value">.spec.initConfiguration.nodeRegistration.taints[*].value</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2241,7 +2223,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.apiVersion">.spec.joinConfiguration.apiVersion</h3>
+<h3 class="property-path" id="v1alpha3-.spec.joinConfiguration">.spec.joinConfiguration</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2259,7 +2241,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.caCertPath">.spec.joinConfiguration.caCertPath</h3>
+<h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.apiVersion">.spec.joinConfiguration.apiVersion</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2277,7 +2259,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.controlPlane">.spec.joinConfiguration.controlPlane</h3>
+<h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.caCertPath">.spec.joinConfiguration.caCertPath</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2295,7 +2277,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.controlPlane.localAPIEndpoint">.spec.joinConfiguration.controlPlane.localAPIEndpoint</h3>
+<h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.controlPlane">.spec.joinConfiguration.controlPlane</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2312,6 +2294,24 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.controlPlane.localAPIEndpoint">.spec.joinConfiguration.controlPlane.localAPIEndpoint</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>LocalAPIEndpoint represents the endpoint of the API server instance to be deployed on this node.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.controlPlane.localAPIEndpoint.advertiseAddress">.spec.joinConfiguration.controlPlane.localAPIEndpoint.advertiseAddress</h3>
 </div>
@@ -2340,25 +2340,25 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>KubeletExtraArgs passes through extra arguments to the kubelet. The arguments here are passed to the kubelet command line via the environment file kubeadm writes at runtime for the kubelet to source. This overrides the generic base-level configuration in the kubelet-config-1.X ConfigMap Flags have higher priority when parsing. These values are local and specific to the node kubeadm is executing on.</p>
+<p>BindPort sets the secure port for the API Server to bind to. Defaults to 6443.</p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.discovery">.spec.joinConfiguration.discovery</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
+<span class="property-type">object</span>
+
 </div>
 
 <div class="property-description">
-<p>Name is the <code>.Metadata.Name</code> field of the Node API object that will be created in this <code>kubeadm init</code> or <code>kubeadm join</code> operation. This field is also used in the CommonName field of the kubelet&rsquo;s client certificate to the API server. Defaults to the hostname of the node if not provided.</p>
+<p>KubeletExtraArgs passes through extra arguments to the kubelet. The arguments here are passed to the kubelet command line via the environment file kubeadm writes at runtime for the kubelet to source. This overrides the generic base-level configuration in the kubelet-config-1.X ConfigMap Flags have higher priority when parsing. These values are local and specific to the node kubeadm is executing on.</p>
 
 </div>
 
@@ -2376,6 +2376,24 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
+<p>Name is the <code>.Metadata.Name</code> field of the Node API object that will be created in this <code>kubeadm init</code> or <code>kubeadm join</code> operation. This field is also used in the CommonName field of the kubelet&rsquo;s client certificate to the API server. Defaults to the hostname of the node if not provided.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.discovery.bootstrapToken.apiServerEndpoint">.spec.joinConfiguration.discovery.bootstrapToken.apiServerEndpoint</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
 <p>Taints specifies the taints the Node API object should be registered with. If this field is unset, i.e. nil, in the <code>kubeadm init</code> process it will be defaulted to []v1.Taint{&lsquo;node-role.kubernetes.io/master=&ldquo;&rdquo;&rsquo;}. If you don&rsquo;t want to taint your control-plane node, set this field to an empty slice, i.e. <code>taints: {}</code> in the YAML file. This field is solely used for Node registration.</p>
 
 </div>
@@ -2385,7 +2403,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.discovery.bootstrapToken.apiServerEndpoint">.spec.joinConfiguration.discovery.bootstrapToken.apiServerEndpoint</h3>
+<h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.discovery.bootstrapToken.caCertHashes">.spec.joinConfiguration.discovery.bootstrapToken.caCertHashes</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2403,7 +2421,20 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.discovery.bootstrapToken.caCertHashes">.spec.joinConfiguration.discovery.bootstrapToken.caCertHashes</h3>
+<h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.discovery.bootstrapToken.caCertHashes[*]">.spec.joinConfiguration.discovery.bootstrapToken.caCertHashes[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.discovery.bootstrapToken.token">.spec.joinConfiguration.discovery.bootstrapToken.token</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2421,11 +2452,11 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.discovery.bootstrapToken.caCertHashes[*]">.spec.joinConfiguration.discovery.bootstrapToken.caCertHashes[*]</h3>
+<h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.discovery.bootstrapToken.unsafeSkipCAVerification">.spec.joinConfiguration.discovery.bootstrapToken.unsafeSkipCAVerification</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">boolean</span>
 <span class="property-required">Required</span>
 </div>
 
@@ -2439,7 +2470,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.discovery.bootstrapToken.token">.spec.joinConfiguration.discovery.bootstrapToken.token</h3>
+<h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.discovery.file">.spec.joinConfiguration.discovery.file</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2457,7 +2488,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.discovery.bootstrapToken.unsafeSkipCAVerification">.spec.joinConfiguration.discovery.bootstrapToken.unsafeSkipCAVerification</h3>
+<h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.discovery.file.kubeConfigPath">.spec.joinConfiguration.discovery.file.kubeConfigPath</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2475,7 +2506,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.discovery.file">.spec.joinConfiguration.discovery.file</h3>
+<h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.discovery.timeout">.spec.joinConfiguration.discovery.timeout</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2501,47 +2532,11 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.discovery.file.kubeConfigPath">.spec.joinConfiguration.discovery.file.kubeConfigPath</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">boolean</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>UnsafeSkipCAVerification allows token-based discovery without CA verification via CACertHashes. This can weaken the security of kubeadm since other nodes can impersonate the control-plane.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.discovery.timeout">.spec.joinConfiguration.discovery.timeout</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>File is used to specify a file or URL to a kubeconfig file from which to load cluster information BootstrapToken and File are mutually exclusive</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.discovery.tlsBootstrapToken">.spec.joinConfiguration.discovery.tlsBootstrapToken</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">boolean</span>
 <span class="property-required">Required</span>
 </div>
 
@@ -2559,26 +2554,26 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
+<span class="property-type">object</span>
+
 </div>
 
 <div class="property-description">
-<p>KubeConfigPath is used to specify the actual file path or URL to the kubeconfig file from which to load cluster information</p>
+<p>File is used to specify a file or URL to a kubeconfig file from which to load cluster information BootstrapToken and File are mutually exclusive</p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.nodeRegistration">.spec.joinConfiguration.nodeRegistration</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
@@ -2600,14 +2595,14 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>TLSBootstrapToken is a token used for TLS bootstrapping. If .BootstrapToken is set, this field is defaulted to .BootstrapToken.Token, but can be overridden. If .File is set, this field <strong>must be set</strong> in case the KubeConfigFile does not contain any other authentication information TODO: revisit when there is defaulting from k/k</p>
+<p>KubeConfigPath is used to specify the actual file path or URL to the kubeconfig file from which to load cluster information</p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.nodeRegistration.kubeletExtraArgs">.spec.joinConfiguration.nodeRegistration.kubeletExtraArgs</h3>
 </div>
@@ -3261,24 +3256,6 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
-
-</div>
-
-<div class="property-description">
-<p>Inactive specifies whether to mark the user as inactive</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.status.conditions[*].lastTransitionTime">.status.conditions[*].lastTransitionTime</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
 <span class="property-type">string</span>
 
 </div>
@@ -3293,6 +3270,24 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.conditions[*].lastTransitionTime">.status.conditions[*].lastTransitionTime</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>Inactive specifies whether to mark the user as inactive</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.status.conditions[*].message">.status.conditions[*].message</h3>
 </div>
@@ -3336,12 +3331,13 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
+<span class="property-type">string</span>
 
 </div>
 
 <div class="property-description">
-<p>LockPassword specifies if password login should be disabled</p>
+<p>BootstrapData will be a cloud-init script for now.
+ Deprecated: Switch to DataSecretName.</p>
 
 </div>
 

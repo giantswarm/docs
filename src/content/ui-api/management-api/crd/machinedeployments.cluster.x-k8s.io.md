@@ -3660,78 +3660,6 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">integer</span>
-
-</div>
-
-<div class="property-description">
-<p>Total number of ready machines targeted by this deployment.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.status.replicas">.status.replicas</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">integer</span>
-
-</div>
-
-<div class="property-description">
-<p>Total number of non-terminated machines targeted by this deployment (their labels match the selector).</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.status.selector">.status.selector</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>Selector is the same as the label selector but in the string format to avoid introspection by clients. The string will be in the same format as the query-param syntax. More info about label selectors: <a href="http://kubernetes.io/docs/user-guide/labels#label-selectors">http://kubernetes.io/docs/user-guide/labels#label-selectors</a></p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.status.unavailableReplicas">.status.unavailableReplicas</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">integer</span>
-
-</div>
-
-<div class="property-description">
-<p>Total number of unavailable machines targeted by this deployment. This is the total number of machines that are still required for the deployment to have 100% available capacity. They may either be machines that are running but not yet available or machines that still have not been created.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.status.updatedReplicas">.status.updatedReplicas</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
 <span class="property-type">array</span>
 
 </div>
@@ -3750,7 +3678,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">integer</span>
 
 </div>
 
@@ -3838,17 +3766,6 @@ source_repository_ref: v5.0.0
 <span class="property-type">object</span>
 
 </div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*].operator">.spec.selector.matchExpressions[*].operator</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
 
 <div class="property-description">
 <p>matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is &ldquo;key&rdquo;, the operator is &ldquo;In&rdquo;, and the values array contains only &ldquo;value&rdquo;. The requirements are ANDed.</p>
@@ -3930,7 +3847,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.strategy.rollingUpdate.maxUnavailable">.spec.strategy.rollingUpdate.maxUnavailable</h3>
 </div>
@@ -4014,6 +3931,29 @@ source_repository_ref: v5.0.0
 
 <div class="property-description">
 <p>Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: <a href="http://kubernetes.io/docs/user-guide/annotations">http://kubernetes.io/docs/user-guide/annotations</a></p>
+
+</div>
+
+<div class="property-description">
+<p>Type of deployment. Default is RollingUpdate.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.template">.spec.template</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Template describes the machines that will be created.</p>
 
 </div>
 
