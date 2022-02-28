@@ -119,6 +119,11 @@ It supports the following flags:
 - `--control-plane-image` - Control plane image name or root volume source UUID if --control-plane-boot-from-volume is set.
 - `--control-plane-machine-flavor` - Flavor (a.k.a. size) of the worker node machines.
 - `--control-plane-replicas` - Number of control plane replicas. This should be 1 for a non-HA control plane or 3 for an HA control plane (etcd requires an odd number of members).
+- `--oidc-issuer-url` (optional) - This is the issuer URL for configuring OpenID connect in the cluster API.
+- `--oidc-ca-file` (optional) - This is the CA file path in case is not used a trusted Certificate Authority for OIDC endpoint.
+- `--oidc-client-id` (optional) - This is the client ID that is configured in the OIDC endpoint.
+- `--oidc-username-claim` (optional) - This is the claim used to map the username identity of the user.
+- `--oidc-groups-claim` (optional) - This is the claim used to map the group identity of the user.
 - `--worker-boot-from-volume` - If true, worker machines will use a persistent root volume instead of an ephemeral volume.
 - `--worker-disk-size` - Size of root volumes attached to each worker node machine in gigabytes. Must be greater than or equal to the size of the node source image (`--worker-image`).
 - `--worker-image` - Worker image name or root volume source UUID if --worker-boot-from-volume is set.
