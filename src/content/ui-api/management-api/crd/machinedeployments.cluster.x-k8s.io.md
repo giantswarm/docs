@@ -1349,14 +1349,23 @@ source_repository_ref: v5.0.0
 
 </div>
 
-<div class="property-description">
-<p>ProviderID is the identification ID of the machine provided by the provider. This field must match the provider ID as seen on the node object corresponding to this machine. This field is required by higher level consumers of cluster-api. Example use case is cluster autoscaler with cluster-api as provider. Clean-up logic in the autoscaler compares machines to nodes to find out machines at provider which could not get registered as Kubernetes nodes. With cluster-api as a generic out-of-tree provider for autoscaler, this field is required by autoscaler to be able to have a provider view of the list of machines. Another list of nodes is queried from the k8s apiserver and then a comparison is done to find out unregistered machines and are marked for delete. This field will be set by the actuators and consumed by higher level entities like autoscaler that will be interfacing with cluster-api as generic provider.</p>
 
 
 
-<div class="property depth-3">
+
+</div>
+
+<div class="crd-schema-version">
+<h2 id="v1alpha4">Version v1alpha4</h2>
+
+
+
+<h3 id="property-details-v1alpha4">Properties</h3>
+
+
+<div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.template.spec.version">.spec.template.spec.version</h3>
+<h3 class="property-path" id="v1alpha4-.apiVersion">.apiVersion</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1385,64 +1394,6 @@ source_repository_ref: v5.0.0
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>Total number of available machines (ready for at least minReadySeconds) targeted by this deployment.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha2-.status.observedGeneration">.status.observedGeneration</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">integer</span>
-
-</div>
-
-<div class="property-description">
-<p>The generation observed by the deployment controller.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha2-.status.readyReplicas">.status.readyReplicas</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">integer</span>
-
-</div>
-
-<div class="property-description">
-<p>Total number of ready machines targeted by this deployment.</p>
-
-
-</div>
-
-
-
-
-
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha2-.status.replicas">.status.replicas</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">integer</span>
 
 </div>
 
@@ -1600,7 +1551,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">integer</span>
 
 </div>
 
@@ -2025,6 +1976,96 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>matchExpressions is a list of label selector requirements. The requirements are ANDed.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*]">.spec.selector.matchExpressions[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*].key">.spec.selector.matchExpressions[*].key</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>key is the label key that the selector applies to.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*].operator">.spec.selector.matchExpressions[*].operator</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>operator represents a key&rsquo;s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*].values">.spec.selector.matchExpressions[*].values</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*].values[*]">.spec.selector.matchExpressions[*].values[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
 <span class="property-type">string</span>
 
 </div>
@@ -2050,7 +2091,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.strategy">.spec.strategy</h3>
 </div>
@@ -2218,7 +2259,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -2236,7 +2277,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -2273,7 +2314,7 @@ source_repository_ref: v5.0.0
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-<span class="property-required">Required</span>
+
 </div>
 
 <div class="property-description">
