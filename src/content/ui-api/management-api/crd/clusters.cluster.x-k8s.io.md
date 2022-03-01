@@ -618,7 +618,9 @@ spec:
 
 </div>
 
-</div>
+<div class="property-description">
+<p>UID of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids</a></p>
+
 </div>
 
 <div class="property depth-2">
@@ -636,9 +638,7 @@ spec:
 
 </div>
 
-<div class="property-description">
-<p>UID of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids</a></p>
-
+</div>
 </div>
 
 <div class="property depth-2">
@@ -656,10 +656,10 @@ spec:
 
 </div>
 
-<div class="property-description">
-<p>A human readable message indicating details about the transition. This field may be empty.</p>
+</div>
+</div>
 
-<div class="property depth-0">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.paused">.spec.paused</h3>
 </div>
@@ -897,8 +897,9 @@ spec:
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.status.failureMessage">.status.failureMessage</h3>
 </div>
-<div class="annotation-body">
-<div class="annotation-meta">
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
 
 </div>
 
@@ -916,7 +917,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -968,10 +969,10 @@ spec:
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.status.phase">.status.phase</h3>
 </div>
-<div class="annotation-body">
-<div class="annotation-meta">
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
 
-</div>
 </div>
 
 <div class="property-description">
@@ -1058,7 +1059,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -1243,7 +1244,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-4">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.controlPlaneEndpoint">.spec.controlPlaneEndpoint</h3>
 </div>
@@ -1423,7 +1424,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-1">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.controlPlaneRef.uid">.spec.controlPlaneRef.uid</h3>
 </div>
@@ -1510,8 +1511,8 @@ spec:
 
 </div>
 
-</div>
-</div>
+<div class="property-description">
+<p>Name of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names</a></p>
 
 <div class="property depth-2">
 <div class="property-header">
@@ -1520,11 +1521,6 @@ spec:
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>Name of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names</a></p>
 
 </div>
 
