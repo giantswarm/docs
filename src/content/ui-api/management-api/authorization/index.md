@@ -71,8 +71,8 @@ For every workload cluster, there is a namespace with a name identical to the wo
 
 Giant Swarm provides some pre-defined cluster roles (`ClusterRole` resources) which allow to grant certain permissions to common sets of resources. The most important ones are:
 
-- **cluster-admin**: Grants all permissions to all resource types. When bound to a subject in an organization namespace, the subject will also get full permissions to resources in all [workload cluster namespaces](#wc-namespaces).
-- **read-all**: Grants read permissions (verbs: get, list, watch) to most known resource types, with the exception of `Secret` and `ConfigMap`. When bound to a subject in an organization namespace, the subject will also get _read_ (get, list, watch) permissions to resources in all [workload cluster namespaces](#wc-namespaces).
+- **cluster-admin**: Grants all permissions to all resource types. When bound to a subject in an organization namespace, the subject will also get full permissions to resources in all [workload cluster namespaces](#wc-namespaces) belonging to that organization.
+- **read-all**: Grants read permissions (verbs: get, list, watch) to most known resource types, with the exception of `Secret` and `ConfigMap`. When bound to a subject in an organization namespace, the subject will also get _read_ (get, list, watch) permissions to resources in all [workload cluster namespaces](#wc-namespaces) belonging to that organization.
 
 Since these are `ClusterRole` resources, they can be bound either in a namespace or in the cluster scope, depending on the use case. In the [typical use cases](#typical-use-cases) section we will show some examples.
 
