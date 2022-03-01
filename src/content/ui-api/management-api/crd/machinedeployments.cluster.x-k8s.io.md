@@ -1031,13 +1031,13 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-4">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef.fieldPath">.spec.template.spec.infrastructureRef.fieldPath</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -1055,7 +1055,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -1078,60 +1078,6 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>UID of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids</a></p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef.namespace">.spec.template.spec.infrastructureRef.namespace</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>DEPRECATED: ObjectMeta has no function and isn&rsquo;t used anywhere.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.template.spec.metadata.annotations">.spec.template.spec.metadata.annotations</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: <a href="http://kubernetes.io/docs/user-guide/annotations">http://kubernetes.io/docs/user-guide/annotations</a></p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef.uid">.spec.template.spec.infrastructureRef.uid</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
 <p>GenerateName is an optional prefix, used by the server, to generate a unique name ONLY IF the Name field has not been provided. If this field is used, the name returned to the client will be different than the name passed. This value will also be combined with a unique suffix. The provided value has the same validation rules as the Name field, and may be truncated by the length of the suffix required to make the value unique on the server.
  If this field is specified and the generated name exists, the server will NOT return a 409 - instead, it will either return 201 Created or 500 with Reason ServerTimeout indicating a unique name could not be found in the time allotted, and the client should retry (optionally after the time indicated in the Retry-After header).
  Applied only if Name is not specified. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#idempotency">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#idempotency</a></p>
@@ -1143,7 +1089,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.nodeDrainTimeout">.spec.template.spec.nodeDrainTimeout</h3>
+<h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef.namespace">.spec.template.spec.infrastructureRef.namespace</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1179,11 +1125,65 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.version">.spec.template.spec.version</h3>
+<h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef.uid">.spec.template.spec.infrastructureRef.uid</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Version defines the desired Kubernetes version. This field is meant to be optionally used by bootstrap providers.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template.spec.nodeDrainTimeout">.spec.template.spec.nodeDrainTimeout</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>NodeDrainTimeout is the total amount of time that the controller will spend on draining a node. The default value is 0, meaning that the node can be drained without any time limitations. NOTE: NodeDrainTimeout is different from <code>kubectl drain --timeout</code></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template.spec.providerID">.spec.template.spec.providerID</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>ProviderID is the identification ID of the machine provided by the provider. This field must match the provider ID as seen on the node object corresponding to this machine. This field is required by higher level consumers of cluster-api. Example use case is cluster autoscaler with cluster-api as provider. Clean-up logic in the autoscaler compares machines to nodes to find out machines at provider which could not get registered as Kubernetes nodes. With cluster-api as a generic out-of-tree provider for autoscaler, this field is required by autoscaler to be able to have a provider view of the list of machines. Another list of nodes is queried from the k8s apiserver and then a comparison is done to find out unregistered machines and are marked for delete. This field will be set by the actuators and consumed by higher level entities like autoscaler that will be interfacing with cluster-api as generic provider.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template.spec.version">.spec.template.spec.version</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
 
 </div>
 
@@ -1282,7 +1282,14 @@ source_repository_ref: v5.0.0
 
 </div>
 
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.updatedReplicas">.status.updatedReplicas</h3>
 </div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
 </div>
 
 <div class="property depth-1">
@@ -1314,7 +1321,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Name of the referent. More info: <a href="http://kubernetes.io/docs/user-guide/identifiers#names">http://kubernetes.io/docs/user-guide/identifiers#names</a></p>
+<p>key is the label key that the selector applies to.</p>
 
 </div>
 
@@ -1336,14 +1343,7 @@ source_repository_ref: v5.0.0
 
 </div>
 
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.status.updatedReplicas">.status.updatedReplicas</h3>
 </div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">integer</span>
-
 </div>
 
 <div class="property depth-1">
@@ -1357,7 +1357,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources</a></p>
+<p>values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.</p>
 
 </div>
 
@@ -1378,116 +1378,13 @@ source_repository_ref: v5.0.0
 <h3 id="property-details-v1alpha4">Properties</h3>
 
 
-<div class="property depth-4">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.apiVersion">.apiVersion</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>key is the label key that the selector applies to.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*].operator">.spec.selector.matchExpressions[*].operator</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">integer</span>
-
-</div>
-
-<div class="property-description">
-<p>operator represents a key&rsquo;s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*].values">.spec.selector.matchExpressions[*].values</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">array</span>
-
-</div>
-
-<div class="property-description">
-<p>values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-5">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*].values[*]">.spec.selector.matchExpressions[*].values[*]</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.selector.matchLabels">.spec.selector.matchLabels</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">integer</span>
-
-</div>
-
-<div class="property-description">
-<p>matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is &ldquo;key&rdquo;, the operator is &ldquo;In&rdquo;, and the values array contains only &ldquo;value&rdquo;. The requirements are ANDed.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.strategy">.spec.strategy</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>The deployment strategy to use to replace existing machines with new ones.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.strategy.rollingUpdate">.spec.strategy.rollingUpdate</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
 
 </div>
 
@@ -1631,6 +1528,96 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>key is the label key that the selector applies to.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*].operator">.spec.selector.matchExpressions[*].operator</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>operator represents a key&rsquo;s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*].values">.spec.selector.matchExpressions[*].values</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*].values[*]">.spec.selector.matchExpressions[*].values[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>matchExpressions is a list of label selector requirements. The requirements are ANDed.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*]">.spec.selector.matchExpressions[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*].key">.spec.selector.matchExpressions[*].key</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
 <span class="property-type">object</span>
 
 </div>
@@ -1710,7 +1697,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.strategy">.spec.strategy</h3>
 </div>
