@@ -1371,27 +1371,9 @@ source_repository_ref: v5.0.0
 <h3 id="property-details-v1alpha4">Properties</h3>
 
 
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.apiVersion">.apiVersion</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>Total number of non-terminated machines targeted by this deployment (their labels match the selector).</p>
-
-</div>
-
-</div>
-</div>
-
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.status.selector">.status.selector</h3>
+<h3 class="property-path" id="v1alpha4-.apiVersion">.apiVersion</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1553,7 +1535,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">integer</span>
 
 </div>
 
@@ -2870,163 +2852,6 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-0">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec">.spec</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>MachineDeploymentSpec defines the desired state of MachineDeployment.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.clusterName">.spec.clusterName</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>ClusterName is the name of the Cluster this object belongs to.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.minReadySeconds">.spec.minReadySeconds</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">integer</span>
-
-</div>
-
-<div class="property-description">
-<p>Minimum number of seconds for which a newly created machine should be ready. Defaults to 0 (machine will be considered available as soon as it is ready)</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.paused">.spec.paused</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">boolean</span>
-
-</div>
-
-<div class="property-description">
-<p>Indicates that the deployment is paused.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.progressDeadlineSeconds">.spec.progressDeadlineSeconds</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">integer</span>
-
-</div>
-
-<div class="property-description">
-<p>The maximum time in seconds for a deployment to make progress before it is considered to be failed. The deployment controller will continue to process failed deployments and a condition with a ProgressDeadlineExceeded reason will be surfaced in the deployment status. Note that progress will not be estimated during the time a deployment is paused. Defaults to 600s.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.replicas">.spec.replicas</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">integer</span>
-
-</div>
-
-<div class="property-description">
-<p>Number of desired machines. Defaults to 1. This is a pointer to distinguish between explicit zero and not specified.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.revisionHistoryLimit">.spec.revisionHistoryLimit</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">integer</span>
-
-</div>
-
-<div class="property-description">
-<p>The number of old MachineSets to retain to allow rollback. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.selector">.spec.selector</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>Label selector for machines. Existing MachineSets whose machines are selected by this will be the ones affected by this deployment. It must match the machine template&rsquo;s labels.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.selector.matchExpressions">.spec.selector.matchExpressions</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
 <span class="property-type">array</span>
 
 </div>
@@ -3041,7 +2866,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.selector.matchExpressions[*]">.spec.selector.matchExpressions[*]</h3>
+<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*]">.spec.selector.matchExpressions[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -3059,7 +2884,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.selector.matchExpressions[*].key">.spec.selector.matchExpressions[*].key</h3>
+<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*].key">.spec.selector.matchExpressions[*].key</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -3077,7 +2902,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.selector.matchExpressions[*].operator">.spec.selector.matchExpressions[*].operator</h3>
+<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*].operator">.spec.selector.matchExpressions[*].operator</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -3095,7 +2920,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.selector.matchExpressions[*].values">.spec.selector.matchExpressions[*].values</h3>
+<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*].values">.spec.selector.matchExpressions[*].values</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -3113,7 +2938,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.selector.matchExpressions[*].values[*]">.spec.selector.matchExpressions[*].values[*]</h3>
+<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*].values[*]">.spec.selector.matchExpressions[*].values[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -3126,7 +2951,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.selector.matchLabels">.spec.selector.matchLabels</h3>
+<h3 class="property-path" id="v1alpha4-.spec.selector.matchLabels">.spec.selector.matchLabels</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -3144,7 +2969,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.strategy">.spec.strategy</h3>
+<h3 class="property-path" id="v1alpha4-.spec.strategy">.spec.strategy</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -3162,7 +2987,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.strategy.rollingUpdate">.spec.strategy.rollingUpdate</h3>
+<h3 class="property-path" id="v1alpha4-.spec.strategy.rollingUpdate">.spec.strategy.rollingUpdate</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -3180,7 +3005,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.strategy.rollingUpdate.deletePolicy">.spec.strategy.rollingUpdate.deletePolicy</h3>
+<h3 class="property-path" id="v1alpha4-.spec.strategy.rollingUpdate.deletePolicy">.spec.strategy.rollingUpdate.deletePolicy</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -3198,7 +3023,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.strategy.rollingUpdate.maxSurge">.spec.strategy.rollingUpdate.maxSurge</h3>
+<h3 class="property-path" id="v1alpha4-.spec.strategy.rollingUpdate.maxSurge">.spec.strategy.rollingUpdate.maxSurge</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -3216,7 +3041,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.strategy.rollingUpdate.maxUnavailable">.spec.strategy.rollingUpdate.maxUnavailable</h3>
+<h3 class="property-path" id="v1alpha4-.spec.strategy.rollingUpdate.maxUnavailable">.spec.strategy.rollingUpdate.maxUnavailable</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -3234,7 +3059,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.strategy.type">.spec.strategy.type</h3>
+<h3 class="property-path" id="v1alpha4-.spec.strategy.type">.spec.strategy.type</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -3252,7 +3077,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.template">.spec.template</h3>
+<h3 class="property-path" id="v1alpha4-.spec.template">.spec.template</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -3270,7 +3095,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.template.metadata">.spec.template.metadata</h3>
+<h3 class="property-path" id="v1alpha4-.spec.template.metadata">.spec.template.metadata</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -3288,7 +3113,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.template.metadata.annotations">.spec.template.metadata.annotations</h3>
+<h3 class="property-path" id="v1alpha4-.spec.template.metadata.annotations">.spec.template.metadata.annotations</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -3306,7 +3131,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.template.metadata.labels">.spec.template.metadata.labels</h3>
+<h3 class="property-path" id="v1alpha4-.spec.template.metadata.labels">.spec.template.metadata.labels</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -3324,7 +3149,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.template.spec">.spec.template.spec</h3>
+<h3 class="property-path" id="v1alpha4-.spec.template.spec">.spec.template.spec</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -3342,7 +3167,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.template.spec.bootstrap">.spec.template.spec.bootstrap</h3>
+<h3 class="property-path" id="v1alpha4-.spec.template.spec.bootstrap">.spec.template.spec.bootstrap</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -3360,7 +3185,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.template.spec.bootstrap.configRef">.spec.template.spec.bootstrap.configRef</h3>
+<h3 class="property-path" id="v1alpha4-.spec.template.spec.bootstrap.configRef">.spec.template.spec.bootstrap.configRef</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -3378,7 +3203,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.template.spec.bootstrap.configRef.apiVersion">.spec.template.spec.bootstrap.configRef.apiVersion</h3>
+<h3 class="property-path" id="v1alpha4-.spec.template.spec.bootstrap.configRef.apiVersion">.spec.template.spec.bootstrap.configRef.apiVersion</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -3396,7 +3221,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.template.spec.bootstrap.configRef.fieldPath">.spec.template.spec.bootstrap.configRef.fieldPath</h3>
+<h3 class="property-path" id="v1alpha4-.spec.template.spec.bootstrap.configRef.fieldPath">.spec.template.spec.bootstrap.configRef.fieldPath</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -3414,7 +3239,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.template.spec.bootstrap.configRef.kind">.spec.template.spec.bootstrap.configRef.kind</h3>
+<h3 class="property-path" id="v1alpha4-.spec.template.spec.bootstrap.configRef.kind">.spec.template.spec.bootstrap.configRef.kind</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
