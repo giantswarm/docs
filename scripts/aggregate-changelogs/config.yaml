@@ -79,7 +79,7 @@ repositories:
   giantswarm/azure-ad-pod-identity-app:
     category: Playground Apps
   giantswarm/dex-app:
-    category: Playground Apps
+    category: Managed Apps
   giantswarm/eventrouter-app:
     category: Playground Apps
   giantswarm/gatling-app:
