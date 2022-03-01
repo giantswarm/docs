@@ -2029,6 +2029,55 @@ source_repository_ref: v5.0.0
 
 </div>
 
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.initConfiguration.kind">.spec.initConfiguration.kind</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.initConfiguration.localAPIEndpoint">.spec.initConfiguration.localAPIEndpoint</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>LocalAPIEndpoint represents the endpoint of the API server instance that&rsquo;s deployed on this control plane node In HA setups, this differs from ClusterConfiguration.ControlPlaneEndpoint in the sense that ControlPlaneEndpoint is the global endpoint for the cluster, which then loadbalances the requests to each individual API server. This configuration object lets you customize what IP/DNS name and port the local API server advertises it&rsquo;s accessible on. By default, kubeadm tries to auto-detect the IP of the default interface and use that, but in case that process fails you may set the desired value here.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.initConfiguration.localAPIEndpoint.advertiseAddress">.spec.initConfiguration.localAPIEndpoint.advertiseAddress</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
 <div class="property-description">
 <p>AdvertiseAddress sets the IP address for the API server to advertise.</p>
 
@@ -2259,7 +2308,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -2271,13 +2320,13 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-1">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.caCertPath">.spec.joinConfiguration.caCertPath</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">boolean</span>
 
 </div>
 
@@ -2295,7 +2344,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
+<span class="property-type">array</span>
 
 </div>
 
@@ -2307,7 +2356,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.controlPlane.localAPIEndpoint">.spec.joinConfiguration.controlPlane.localAPIEndpoint</h3>
 </div>
@@ -2367,7 +2416,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">array</span>
 
 </div>
 
@@ -2379,7 +2428,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-1">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.discovery.bootstrapToken">.spec.joinConfiguration.discovery.bootstrapToken</h3>
 </div>
@@ -2883,11 +2932,6 @@ source_repository_ref: v5.0.0
 
 </div>
 
-<div class="property-description">
-<p>Name is the <code>.Metadata.Name</code> field of the Node API object that will be created in this <code>kubeadm init</code> or <code>kubeadm join</code> operation. This field is also used in the CommonName field of the kubelet&rsquo;s client certificate to the API server. Defaults to the hostname of the node if not provided.</p>
-
-</div>
-
 </div>
 </div>
 
@@ -2985,7 +3029,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -3003,7 +3047,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">array</span>
 
 </div>
 
@@ -3057,7 +3101,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">boolean</span>
 
 </div>
 
@@ -3087,7 +3131,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.users[*].passwd">.spec.users[*].passwd</h3>
 </div>
@@ -3112,11 +3156,6 @@ source_repository_ref: v5.0.0
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>Name specifies the user name</p>
 
 </div>
 
