@@ -2,7 +2,7 @@
 linkTitle: Releases
 title: Workload cluster release versions
 description: Details on the workload cluster release offered by Giant Swarm and ways to look up even more details.
-last_review_date: 2021-07-19
+last_review_date: 2022-03-01
 weight: 30
 menu:
   main:
@@ -13,6 +13,7 @@ user_questions:
   - What is a major workload cluster release?
   - What is a minor workload cluster release?
   - What is a patch workload cluster release?
+  - What is a pre-release?
   - How long are workload cluster releases supported?
   - What does it mean when a workload cluster release is deprecated?
   - How soon does Giant Swarm provide new Kubernetes versions?
@@ -31,7 +32,7 @@ Our workload cluster (formerly: _tenant cluster_) releases define the capabiliti
 
 ## Introduction
 
-Throughout the lifecycle of a cluster, you first have the option to select a workload cluster release when creating the cluster. Later you are likely to upgrade the cluster from release to release. Understanding the differences of Major, Minor and Patch releases and their impact is crucial.
+Throughout the lifecycle of a cluster, you first have the option to select a workload cluster release when creating the cluster. Later you are likely to upgrade the cluster from release to release. Understanding the differences of Major, Minor and Patch releases and their impact is crucial. We sometimes give you access to pre-releases, so understanding their impact and their value will help you decide whether to try them or not.
 
 Each workload cluster release bundles a stack of components with their specific versions. The workload cluster release itself is distinguished by the provider it is made for (AWS, Azure, or KVM) and the version number, which follows the [Semver](https://semver.org/) standard.
 
@@ -89,6 +90,21 @@ Once we provide a new workload cluster release, be it major, minor, or patch, we
 
 Once deprecated, you can still continue to use the workload cluster release with existing clusters. In addition, as long as you have at least one cluster in your installation running the deprecated release, you can also create new clusters using that release. This allows you to create test clusters to test an upgrade from that release.
 
+### Pre-release
+
+Apart from the stable releases described above, we sometimes offer pre-releases. The goal of pre-releases is to give you the option to test new features or use new functionality before the feature is released in a major version. At the same time it helps us evaluate the impact of new features we are planning to release. This hinges on your trying out these versions and coming back to us with feedback and bug reports. This utimately leads to a more robust release. You will have the freeedom to break things, but _should_ not use this release in production, for reasons of stability and an uncertain upgrade path.
+
+Pre-releases can be alpha, beta, or RC depending on the testing needs of the team wanting to test their feature.
+
+#### Use Cases for Pre-Releases:
+
+- New feature with unclear impact is done and the team wants to test and evaluate its impact before deciding the scope of the release. This is an __alpha__ release. Customers get early access to the functionaliy and see if it satisfies their requirements. Customers report back with bugs and additional commentary. This allows the functionality to be evaluated in a less controlled way and to fix bugs that we may have not found. It also may bring about reconsidering the feature/solution in general.
+
+- New high impact feature is done, but needs to wait for the next major release. This is a __beta__ release. Customers get early access to the functionaliy and see that it sits well with their set-up. Customers report back with bugs . This allows us to make fixes to bugs that we may have not found.
+
+- New high impact feature is done and is urgently needed by a customer. This is a __release candidate (rc)__ release. The customer can get a pre-release to test and roll out ASAP. This release is complete and stable. It may not meet the quality bars of a general availaibility (ga) release.
+
+
 ### Inspecting workload cluster releases {#inspecting}
 
 You have several options to inspect workload cluster release details:
@@ -101,30 +117,6 @@ You have several options to inspect workload cluster release details:
 
 - The [Giant Swarm REST API]({{< relref "/ui-api/rest-api" >}}) provides an endpoint to list all workload cluster releases with their details.
 
-## Details about workload cluster releases and features {#release-details}
-
-### Node pools {#nodepools}
-
-[Node pools]({{< relref "/advanced/node-pools" >}}) were introduced by the following workload cluster releases:
-
-- AWS: **{{% first_aws_nodepools_version %}}**.
-
-- Azure: **{{% first_azure_nodepools_version %}}**.
-
-### Preinstalled and optional Apps {#apps}
-
-Depending on your provider (AWS, Azure, or KVM), the apps NGINX IC, External DNS, and Cert Manager may be preinstalled, optional, or not available (n/a).
-
-Preinstalled apps are installed by default upon cluster creation. Optional apps can be installed from App Catalogs. In releases where they are not preinstalled, n/a apps (e.g. External DNS in certain releases) are currently not available to be installed as an optional app.
-
-| Workload cluster release version | NGINX IC      | External DNS  | Cert Manager |
-|:------------------------------:|:-------------:|:-------------:|:------------:|
-| **AWS v10.x.x+**               | optional      | preinstalled  | preinstalled |
-| **AWS legacy**                 | preinstalled  | n/a           | optional     |
-| **Azure v12.x.x+**             | optional      | preinstalled  | optional     |
-| **Azure legacy**               | preinstalled  | preinstalled  | optional     |
-| **KVM 12.2.x+**                | optional      | n/a           | optional     |
-| **KVM legacy**                 | preinstalled  | n/a           | optional     |
 
 ## Further reading
 
