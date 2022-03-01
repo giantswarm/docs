@@ -71,8 +71,8 @@ For every workload cluster, there is a namespace with a name identical to the wo
 
 Giant Swarm provides some pre-defined cluster roles (`ClusterRole` resources) which allow to grant certain permissions to common sets of resources. The most important ones are:
 
-- **cluster-admin**: Grants all permissions to all resource types.
-- **read-all**: Grants read permissions (verbs: get, list, watch) to most known resource types, with the exception of `Secret` and `ConfigMap`.
+- **cluster-admin**: Grants all permissions to all resource types. When bound to a subject in an organization namespace, the subject will also get full permissions to resources in all [workload cluster namespaces](#wc-namespaces).
+- **read-all**: Grants read permissions (verbs: get, list, watch) to most known resource types, with the exception of `Secret` and `ConfigMap`. When bound to a subject in an organization namespace, the subject will also get _read_ (get, list, watch) permissions to resources in all [workload cluster namespaces](#wc-namespaces).
 
 Since these are `ClusterRole` resources, they can be bound either in a namespace or in the cluster scope, depending on the use case. In the [typical use cases](#typical-use-cases) section we will show some examples.
 
@@ -120,12 +120,9 @@ Next we show how to configure access for these example cases. Please take into a
 
 A read-only user in the sense of the Management API is one that can discover or, in the Giant Swarm web UI, browse resources in order to find out about existing clusters and their configuration, as well as apps installed and available.
 
-To enable a group or user for read access to resources of one organization, you only have to bind them to these two cluster roles within the namespace of the organization:
+To enable a group or user for read access to resources of one organization, you only have to bind them to the `read-all` cluster roles within the namespace of the organization.
 
-- `read-all`
-- `read-in-cluster-ns`
-
-More details on these roles are given in the [pre-defined roles](#pre-defined-roles) section.
+More details on this role are given in the [pre-defined roles](#pre-defined-roles) section.
 
 The manifest below shows how the according role bindings could be created.
 
@@ -144,27 +141,13 @@ subjects:
 - apiGroup: rbac.authorization.k8s.io
   kind: Group
   name: customer:GROUPNAME
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  name: bind-read-in-cluster-ns-to-group
-  namespace: org-ORGANIZATION
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: read-in-cluster-ns
-subjects:
-- apiGroup: rbac.authorization.k8s.io
-  kind: Group
-  name: customer:GROUPNAME
 ```
 
 Our [web UI]({{< relref "/ui-api/web/organizations/access-control" >}}) makes it easy to create these role bindings interactively. Go to **Organizations**, select the organization, and navigate to the **Access control** tab. Then, one by one, select the pre-defined roles in the left column and add the user or group in the **Subjects** tab on the right.
 
 ### Configure access for app developers {#configure-app-developer}
 
-Compared to a read-only user, this type of user would gain permission to install apps in workload clusters, change any app's configuration, and remove the app. To achieve this, instead of the `read-in-cluster-ns` role we bind `write-in-cluster-ns`.
+Compared to a read-only user, this type of user would gain permission to install apps in workload clusters, change any app's configuration, and remove the app. To achieve this, we bind the pre-defined role `write-in-cluster-ns` in addition.
 
 The according example manifest:
 
@@ -203,7 +186,7 @@ Like in the case of the read-only user, these bindings can be set up easily via 
 
 ### Configure access for organization admins {#configure-org-admins}
 
-To grant full permissions to a group of users in the context of a particular organization, bind the pre-defined `cluster-admin` role and the `write-in-cluster-ns` role to that group. Here is an example manifest:
+To grant full permissions to a group of users in the context of a particular organization, bind the pre-defined `cluster-admin` role to that group. Here is an example manifest:
 
 ```yaml
 ---
@@ -220,23 +203,9 @@ subjects:
 - apiGroup: rbac.authorization.k8s.io
   kind: Group
   name: customer:GROUPNAME
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  name: bind-write-in-cluster-ns-to-group
-  namespace: org-ORGANIZATION
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: write-in-cluster-ns
-subjects:
-- apiGroup: rbac.authorization.k8s.io
-  kind: Group
-  name: customer:GROUPNAME
 ```
 
-Again, this can be easily created interactively via our web UI.
+Again, this can be achieved easily via our web UI.
 
 ### Configure access for admins {#configure-admins}
 
