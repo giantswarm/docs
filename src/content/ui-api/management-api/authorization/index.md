@@ -56,7 +56,7 @@ Next, the following resources reside in the `default` namespace:
 
 For each [organization]({{< relref "/general/organizations" >}}) there is a namespace to be used as the standard location for storing resources. In these namespaces you will usually find:
 
-- Resources defining [workload clusters and node pools]({{< relref "/ui-api/management-api/creating-workload-clusters" >}}), unless you choose a different namespace for those
+- Resources defining [workload clusters and node pools]({{< relref "/ui-api/management-api/creating-workload-clusters" >}})
 - [Cloud provider credentials]({{< relref "/ui-api/management-api/credentials" >}}) in the form of `Secret` resources
 
 ### Workload cluster namespaces {#wc-namespaces}
