@@ -12,7 +12,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I create a cluster manifest for the Management API?
-last_review_date: 2021-02-25
+last_review_date: 2021-03-01
 ---
 
 # `kubectl gs template cluster`
@@ -110,8 +110,8 @@ It supports the following flags:
 - `--external-network-id` - UUID of the external network to be used. Only required if multiple external networks are available.
 - `--failure-domain` - Failure domain of worker nodes.
 - `--node-cidr` - CIDR defining the IP range of cluster nodes. When used, new network and subnet will be created.
-- `--network-name` - Name of existing network for the cluster. Can be used when `--node-cidr` is empty. 
-- `--subnet-name` - Name of existing subnet for the cluster. Can be used when `--node-cidr` is empty. 
+- `--network-name` (optional) - Name of existing network for the cluster. Can be used when `--node-cidr` is empty. 
+- `--subnet-name` (optional) - Name of existing subnet for the cluster. Can be used when `--node-cidr` is empty. 
 - `--bastion-boot-from-volume` - If true, bation machine will use a persistent root volume instead of an ephemeral volume.
 - `--bastion-disk-size` - Size of root volume attached to the cluster bastion machine in gigabytes. Must be greater than or equal to the size of the bastion source image (`--bastion-image`).
 - `--bastion-image` - Bastion image name or root volume source UUID if --bastion-boot-from-volume is set.
