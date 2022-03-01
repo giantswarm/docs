@@ -119,7 +119,7 @@ repositories:
   giantswarm/strimzi-kafka-operator-app:
     category: Managed Apps
   giantswarm/vertical-pod-autoscaler-app:
-    category: Playground Apps
+    category: Managed Apps
   giantswarm/velero-app:
     category: Playground Apps
 
