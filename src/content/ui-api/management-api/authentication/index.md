@@ -88,7 +88,7 @@ The rest of the page helps you set up `kubectl` manually, adaptable for various 
 
 ## Web UI login {#web-ui}
 
-Our Web UI provides a simple single sign-on mechanism that will simply send a user through your identity provider's authentication process and finally redirect to the web UI. Behind the scenes, the same mechanism is used as in the examples above.
+Our Web UI provides a simple single sign-on mechanism that will send each user through your chosen identity provider's authentication process and finally redirect to the web UI. Behind the scenes, the same mechanism is used as in the examples above.
 
 ## Details of an ID token {#id-token-details}
 
