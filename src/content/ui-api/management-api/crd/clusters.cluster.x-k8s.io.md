@@ -1216,7 +1216,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.clusterNetwork.services.cidrBlocks">.spec.clusterNetwork.services.cidrBlocks</h3>
 </div>
@@ -1456,6 +1456,7 @@ spec:
 </div>
 
 </div>
+</div>
 
 <div class="property depth-2">
 <div class="property-header">
@@ -1619,7 +1620,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.topology.class">.spec.topology.class</h3>
 </div>
