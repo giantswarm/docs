@@ -403,9 +403,6 @@ spec:
 
 
 
-<h3 id="property-details-v1alpha4">Properties</h3>
-
-
 <div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.controlPlaneRef.fieldPath">.spec.controlPlaneRef.fieldPath</h3>
@@ -1181,7 +1178,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.clusterNetwork.serviceDomain">.spec.clusterNetwork.serviceDomain</h3>
 </div>
@@ -1217,7 +1214,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.clusterNetwork.services.cidrBlocks">.spec.clusterNetwork.services.cidrBlocks</h3>
 </div>
@@ -1236,8 +1233,11 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">array</span>
+<span class="property-required">Required</span>
+</div>
 
+</div>
 </div>
 
 </div>
@@ -1619,7 +1619,6 @@ spec:
 </div>
 
 </div>
-</div>
 
 <div class="property depth-2">
 <div class="property-header">
@@ -1730,7 +1729,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.topology.rolloutAfter">.spec.topology.rolloutAfter</h3>
 </div>
@@ -1772,8 +1771,8 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
-
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
@@ -1964,7 +1963,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.status.conditions[*]">.status.conditions[*]</h3>
 </div>
@@ -1988,7 +1987,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -2114,7 +2113,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">boolean</span>
 
 </div>
 
@@ -2186,7 +2185,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">integer</span>
+<span class="property-type">boolean</span>
 
 </div>
 
@@ -2204,7 +2203,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">integer</span>
 
 </div>
 
@@ -2637,13 +2636,13 @@ spec:
 </div>
 </div>
 
-<div class="property depth-1">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1beta1-.spec.infrastructureRef">.spec.infrastructureRef</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -2835,7 +2834,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1beta1-.spec.topology.controlPlane">.spec.topology.controlPlane</h3>
 </div>
