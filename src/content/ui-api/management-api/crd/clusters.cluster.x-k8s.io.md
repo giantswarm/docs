@@ -1422,7 +1422,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.controlPlaneRef.uid">.spec.controlPlaneRef.uid</h3>
 </div>
@@ -1446,7 +1446,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
