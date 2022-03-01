@@ -59,12 +59,12 @@ source_repository_ref: v5.0.0
 
 
 
-<h3 id="property-details-v1alpha3">Properties</h3>
+<h3 id="property-details-v1alpha2">Properties</h3>
 
 
 <div class="property depth-0">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.apiVersion">.apiVersion</h3>
+<h3 class="property-path" id="v1alpha2-.apiVersion">.apiVersion</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -82,7 +82,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-0">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.kind">.kind</h3>
+<h3 class="property-path" id="v1alpha2-.kind">.kind</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -100,7 +100,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-0">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.metadata">.metadata</h3>
+<h3 class="property-path" id="v1alpha2-.metadata">.metadata</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -113,7 +113,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-0">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec">.spec</h3>
+<h3 class="property-path" id="v1alpha2-.spec">.spec</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -131,7 +131,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration">.spec.clusterConfiguration</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration">.spec.clusterConfiguration</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -149,7 +149,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.apiServer">.spec.clusterConfiguration.apiServer</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.apiServer">.spec.clusterConfiguration.apiServer</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -167,7 +167,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.apiServer.certSANs">.spec.clusterConfiguration.apiServer.certSANs</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.apiServer.certSANs">.spec.clusterConfiguration.apiServer.certSANs</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -185,7 +185,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.apiServer.certSANs[*]">.spec.clusterConfiguration.apiServer.certSANs[*]</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.apiServer.certSANs[*]">.spec.clusterConfiguration.apiServer.certSANs[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -198,7 +198,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.apiServer.extraArgs">.spec.clusterConfiguration.apiServer.extraArgs</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.apiServer.extraArgs">.spec.clusterConfiguration.apiServer.extraArgs</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -216,7 +216,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.apiServer.extraVolumes">.spec.clusterConfiguration.apiServer.extraVolumes</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.apiServer.extraVolumes">.spec.clusterConfiguration.apiServer.extraVolumes</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -234,7 +234,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.apiServer.extraVolumes[*]">.spec.clusterConfiguration.apiServer.extraVolumes[*]</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.apiServer.extraVolumes[*]">.spec.clusterConfiguration.apiServer.extraVolumes[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -252,7 +252,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.apiServer.extraVolumes[*].hostPath">.spec.clusterConfiguration.apiServer.extraVolumes[*].hostPath</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.apiServer.extraVolumes[*].hostPath">.spec.clusterConfiguration.apiServer.extraVolumes[*].hostPath</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -270,7 +270,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.apiServer.extraVolumes[*].mountPath">.spec.clusterConfiguration.apiServer.extraVolumes[*].mountPath</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.apiServer.extraVolumes[*].mountPath">.spec.clusterConfiguration.apiServer.extraVolumes[*].mountPath</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -288,7 +288,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.apiServer.extraVolumes[*].name">.spec.clusterConfiguration.apiServer.extraVolumes[*].name</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.apiServer.extraVolumes[*].name">.spec.clusterConfiguration.apiServer.extraVolumes[*].name</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -306,7 +306,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.apiServer.extraVolumes[*].pathType">.spec.clusterConfiguration.apiServer.extraVolumes[*].pathType</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.apiServer.extraVolumes[*].pathType">.spec.clusterConfiguration.apiServer.extraVolumes[*].pathType</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -324,7 +324,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.apiServer.extraVolumes[*].readOnly">.spec.clusterConfiguration.apiServer.extraVolumes[*].readOnly</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.apiServer.extraVolumes[*].readOnly">.spec.clusterConfiguration.apiServer.extraVolumes[*].readOnly</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -342,7 +342,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.apiServer.timeoutForControlPlane">.spec.clusterConfiguration.apiServer.timeoutForControlPlane</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.apiServer.timeoutForControlPlane">.spec.clusterConfiguration.apiServer.timeoutForControlPlane</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -360,7 +360,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.apiVersion">.spec.clusterConfiguration.apiVersion</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.apiVersion">.spec.clusterConfiguration.apiVersion</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -378,7 +378,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.certificatesDir">.spec.clusterConfiguration.certificatesDir</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.certificatesDir">.spec.clusterConfiguration.certificatesDir</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -396,7 +396,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.clusterName">.spec.clusterConfiguration.clusterName</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.clusterName">.spec.clusterConfiguration.clusterName</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -414,7 +414,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.controlPlaneEndpoint">.spec.clusterConfiguration.controlPlaneEndpoint</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.controlPlaneEndpoint">.spec.clusterConfiguration.controlPlaneEndpoint</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -432,7 +432,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.controllerManager">.spec.clusterConfiguration.controllerManager</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.controllerManager">.spec.clusterConfiguration.controllerManager</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -450,7 +450,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.controllerManager.extraArgs">.spec.clusterConfiguration.controllerManager.extraArgs</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.controllerManager.extraArgs">.spec.clusterConfiguration.controllerManager.extraArgs</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -468,7 +468,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.controllerManager.extraVolumes">.spec.clusterConfiguration.controllerManager.extraVolumes</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.controllerManager.extraVolumes">.spec.clusterConfiguration.controllerManager.extraVolumes</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -486,7 +486,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.controllerManager.extraVolumes[*]">.spec.clusterConfiguration.controllerManager.extraVolumes[*]</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.controllerManager.extraVolumes[*]">.spec.clusterConfiguration.controllerManager.extraVolumes[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -504,7 +504,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.controllerManager.extraVolumes[*].hostPath">.spec.clusterConfiguration.controllerManager.extraVolumes[*].hostPath</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.controllerManager.extraVolumes[*].hostPath">.spec.clusterConfiguration.controllerManager.extraVolumes[*].hostPath</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -522,7 +522,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.controllerManager.extraVolumes[*].mountPath">.spec.clusterConfiguration.controllerManager.extraVolumes[*].mountPath</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.controllerManager.extraVolumes[*].mountPath">.spec.clusterConfiguration.controllerManager.extraVolumes[*].mountPath</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -540,7 +540,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.controllerManager.extraVolumes[*].name">.spec.clusterConfiguration.controllerManager.extraVolumes[*].name</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.controllerManager.extraVolumes[*].name">.spec.clusterConfiguration.controllerManager.extraVolumes[*].name</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -558,7 +558,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.controllerManager.extraVolumes[*].pathType">.spec.clusterConfiguration.controllerManager.extraVolumes[*].pathType</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.controllerManager.extraVolumes[*].pathType">.spec.clusterConfiguration.controllerManager.extraVolumes[*].pathType</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -576,7 +576,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.controllerManager.extraVolumes[*].readOnly">.spec.clusterConfiguration.controllerManager.extraVolumes[*].readOnly</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.controllerManager.extraVolumes[*].readOnly">.spec.clusterConfiguration.controllerManager.extraVolumes[*].readOnly</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -594,7 +594,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.dns">.spec.clusterConfiguration.dns</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.dns">.spec.clusterConfiguration.dns</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -612,7 +612,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.dns.imageRepository">.spec.clusterConfiguration.dns.imageRepository</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.dns.imageRepository">.spec.clusterConfiguration.dns.imageRepository</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -630,7 +630,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.dns.imageTag">.spec.clusterConfiguration.dns.imageTag</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.dns.imageTag">.spec.clusterConfiguration.dns.imageTag</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -648,7 +648,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.dns.type">.spec.clusterConfiguration.dns.type</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.dns.type">.spec.clusterConfiguration.dns.type</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -666,7 +666,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.etcd">.spec.clusterConfiguration.etcd</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd">.spec.clusterConfiguration.etcd</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -684,7 +684,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.etcd.external">.spec.clusterConfiguration.etcd.external</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.external">.spec.clusterConfiguration.etcd.external</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -702,7 +702,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.etcd.external.caFile">.spec.clusterConfiguration.etcd.external.caFile</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.external.caFile">.spec.clusterConfiguration.etcd.external.caFile</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -720,7 +720,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.etcd.external.certFile">.spec.clusterConfiguration.etcd.external.certFile</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.external.certFile">.spec.clusterConfiguration.etcd.external.certFile</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -738,7 +738,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.etcd.external.endpoints">.spec.clusterConfiguration.etcd.external.endpoints</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.external.endpoints">.spec.clusterConfiguration.etcd.external.endpoints</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -756,7 +756,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.etcd.external.endpoints[*]">.spec.clusterConfiguration.etcd.external.endpoints[*]</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.external.endpoints[*]">.spec.clusterConfiguration.etcd.external.endpoints[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -769,7 +769,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.etcd.external.keyFile">.spec.clusterConfiguration.etcd.external.keyFile</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.external.keyFile">.spec.clusterConfiguration.etcd.external.keyFile</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -787,7 +787,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.etcd.local">.spec.clusterConfiguration.etcd.local</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.local">.spec.clusterConfiguration.etcd.local</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -805,7 +805,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.etcd.local.dataDir">.spec.clusterConfiguration.etcd.local.dataDir</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.local.dataDir">.spec.clusterConfiguration.etcd.local.dataDir</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -823,7 +823,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.etcd.local.extraArgs">.spec.clusterConfiguration.etcd.local.extraArgs</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.local.extraArgs">.spec.clusterConfiguration.etcd.local.extraArgs</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -841,7 +841,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.etcd.local.imageRepository">.spec.clusterConfiguration.etcd.local.imageRepository</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.local.imageRepository">.spec.clusterConfiguration.etcd.local.imageRepository</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -859,7 +859,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.etcd.local.imageTag">.spec.clusterConfiguration.etcd.local.imageTag</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.local.imageTag">.spec.clusterConfiguration.etcd.local.imageTag</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -877,7 +877,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.etcd.local.peerCertSANs">.spec.clusterConfiguration.etcd.local.peerCertSANs</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.local.peerCertSANs">.spec.clusterConfiguration.etcd.local.peerCertSANs</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -895,7 +895,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.etcd.local.peerCertSANs[*]">.spec.clusterConfiguration.etcd.local.peerCertSANs[*]</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.local.peerCertSANs[*]">.spec.clusterConfiguration.etcd.local.peerCertSANs[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -908,7 +908,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.etcd.local.serverCertSANs">.spec.clusterConfiguration.etcd.local.serverCertSANs</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.local.serverCertSANs">.spec.clusterConfiguration.etcd.local.serverCertSANs</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -926,7 +926,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.etcd.local.serverCertSANs[*]">.spec.clusterConfiguration.etcd.local.serverCertSANs[*]</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.local.serverCertSANs[*]">.spec.clusterConfiguration.etcd.local.serverCertSANs[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -939,7 +939,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.featureGates">.spec.clusterConfiguration.featureGates</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.featureGates">.spec.clusterConfiguration.featureGates</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -957,7 +957,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.imageRepository">.spec.clusterConfiguration.imageRepository</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.imageRepository">.spec.clusterConfiguration.imageRepository</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -975,7 +975,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.kind">.spec.clusterConfiguration.kind</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.kind">.spec.clusterConfiguration.kind</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -993,7 +993,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.kubernetesVersion">.spec.clusterConfiguration.kubernetesVersion</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.kubernetesVersion">.spec.clusterConfiguration.kubernetesVersion</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1011,7 +1011,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.networking">.spec.clusterConfiguration.networking</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.networking">.spec.clusterConfiguration.networking</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1029,7 +1029,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.networking.dnsDomain">.spec.clusterConfiguration.networking.dnsDomain</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.networking.dnsDomain">.spec.clusterConfiguration.networking.dnsDomain</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1047,7 +1047,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.networking.podSubnet">.spec.clusterConfiguration.networking.podSubnet</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.networking.podSubnet">.spec.clusterConfiguration.networking.podSubnet</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1065,7 +1065,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.networking.serviceSubnet">.spec.clusterConfiguration.networking.serviceSubnet</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.networking.serviceSubnet">.spec.clusterConfiguration.networking.serviceSubnet</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1083,7 +1083,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.scheduler">.spec.clusterConfiguration.scheduler</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.scheduler">.spec.clusterConfiguration.scheduler</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1101,7 +1101,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.scheduler.extraArgs">.spec.clusterConfiguration.scheduler.extraArgs</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.scheduler.extraArgs">.spec.clusterConfiguration.scheduler.extraArgs</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1119,7 +1119,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.scheduler.extraVolumes">.spec.clusterConfiguration.scheduler.extraVolumes</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.scheduler.extraVolumes">.spec.clusterConfiguration.scheduler.extraVolumes</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1137,7 +1137,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.scheduler.extraVolumes[*]">.spec.clusterConfiguration.scheduler.extraVolumes[*]</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.scheduler.extraVolumes[*]">.spec.clusterConfiguration.scheduler.extraVolumes[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1155,7 +1155,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.scheduler.extraVolumes[*].hostPath">.spec.clusterConfiguration.scheduler.extraVolumes[*].hostPath</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.scheduler.extraVolumes[*].hostPath">.spec.clusterConfiguration.scheduler.extraVolumes[*].hostPath</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1173,7 +1173,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.scheduler.extraVolumes[*].mountPath">.spec.clusterConfiguration.scheduler.extraVolumes[*].mountPath</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.scheduler.extraVolumes[*].mountPath">.spec.clusterConfiguration.scheduler.extraVolumes[*].mountPath</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1191,7 +1191,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.scheduler.extraVolumes[*].name">.spec.clusterConfiguration.scheduler.extraVolumes[*].name</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.scheduler.extraVolumes[*].name">.spec.clusterConfiguration.scheduler.extraVolumes[*].name</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1209,7 +1209,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.scheduler.extraVolumes[*].pathType">.spec.clusterConfiguration.scheduler.extraVolumes[*].pathType</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.scheduler.extraVolumes[*].pathType">.spec.clusterConfiguration.scheduler.extraVolumes[*].pathType</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1227,7 +1227,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.scheduler.extraVolumes[*].readOnly">.spec.clusterConfiguration.scheduler.extraVolumes[*].readOnly</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.scheduler.extraVolumes[*].readOnly">.spec.clusterConfiguration.scheduler.extraVolumes[*].readOnly</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -6315,7 +6315,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -6488,7 +6488,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -6518,7 +6518,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.users[*].name">.spec.users[*].name</h3>
 </div>
