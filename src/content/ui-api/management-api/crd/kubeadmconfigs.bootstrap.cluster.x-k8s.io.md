@@ -3085,6 +3085,7 @@ source_repository_ref: v5.0.0
 </div>
 
 </div>
+</div>
 
 <div class="property depth-3">
 <div class="property-header">
@@ -3101,7 +3102,11 @@ source_repository_ref: v5.0.0
 
 </div>
 
+<div class="property-description">
+<p>LockPassword specifies if password login should be disabled</p>
+
 </div>
+
 </div>
 
 <div class="property depth-3">
