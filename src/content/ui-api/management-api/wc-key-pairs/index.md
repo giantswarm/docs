@@ -1,5 +1,5 @@
 ---
-linkTitle: Client certificates for workload clusters
+linkTitle: Client certificates for clusters
 title: Creating workload cluster client certificates via the Management API
 description: We recommend OIDC for authentication to the workload cluster Kubernetes API. However, in some scenarios, client certificates are a viable alternative. Here we explain how to create such certificates via the Management API.
 weight: 100
