@@ -19,8 +19,6 @@ owner:
 last_review_date: 2021-01-01
 ---
 
-# Prepare an AWS account to run Giant Swarm clusters
-
 As detailed in the [Architecture]({{< relref "/general/architcture/aws" >}}) docs,
 the workload clusters (the clusters running your Kubernetes workloads) in a Giant
 Swarm installation can run in an AWS account separate from the management cluster.

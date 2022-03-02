@@ -13,8 +13,6 @@ user_questions:
   - What domains do Giant Swarm clusters need access to?
 ---
 
-# External Domains
-
 Below is a list of the external domains we require access to for our clusters to function.
 
 - alpinelinux.org

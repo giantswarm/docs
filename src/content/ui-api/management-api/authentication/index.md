@@ -17,8 +17,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 ---
 
-# Authentication for the Management API
-
 Here we explain how you'll authenticate against the Management API as a user. Also on this page, we provide some information for customer admins regarding the requirements for the initial [single sign-on setup](#sso-requirements) and some [technical details](#technical-details) you might be interested in.
 
 ## Authenticating as a user {#user-auth}

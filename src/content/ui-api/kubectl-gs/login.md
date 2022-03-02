@@ -18,8 +18,6 @@ user_questions:
 last_review_date: 2022-01-31
 ---
 
-# `kubectl gs login`
-
 Use this command to set up a kubectl context to work with:
 
 1. a management cluster, using OIDC authentication

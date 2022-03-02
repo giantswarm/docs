@@ -21,8 +21,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 ---
 
-# Cluster definition reference
-
 {{% gsctl_deprecation_disclaimer %}}
 
 Giant Swarm's cluster definition allows to define the detailed specs for a cluster in a YAML

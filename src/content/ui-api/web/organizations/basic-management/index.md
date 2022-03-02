@@ -17,8 +17,6 @@ user_questions:
   - How can I delete an organization using the web UI?
 ---
 
-# Creating, inspecting and deleting organizations
-
 {{% organization_mgmt_mapi_disclaimer %}}
 
 ## The organizations overview
