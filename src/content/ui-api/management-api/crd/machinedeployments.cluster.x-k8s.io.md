@@ -1647,7 +1647,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">array</span>
 
 </div>
 
@@ -1680,6 +1680,22 @@ spec:
 <div class="property-meta">
 <span class="property-type">object</span>
 
+<div class="property-description">
+<p>A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*].key">.spec.selector.matchExpressions[*].key</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
