@@ -24,6 +24,8 @@ Granting access means that the users (when associating users or groups) or progr
 
 The access control UI in the web interface provides quick access to a focused set of RBAC resources, with the goal to make it easy for you to give individuals, groups, or service accounts access to resources in an organization's namespace.
 
+To learn more about the subject, please also check out the broader article on [authorization in the Management API]({{< relref "/ui-api/management-api/authorization" >}}).
+
 ## Where to find it {#where-to-find}
 
 1. Log in to the web user interface, using the URL matching your management cluster/installation.
@@ -157,11 +159,9 @@ Make sure to repeat this for all relevant roles.
 
 ## Limitations and future plans
 
-- **Users and groups are read-only.** Currently it is not possible to add users or groups to a (cluster) role binding or to remove users or groups from (cluster) role binding. We intend to enable adding and removal of users and groups once the web interface acts fully permission-aware and ensures a seamless user experience even for users with limited permissions.
-
 - **Roles and cluster roles are read-only.** It is currently not possible to add new roles or cluster roles via the web user interface.
 
-  As an admin user of the Management API, you can add roles or cluster roles directly, e. g using `kubectl`. Make sure to add the label `ui.giantswarm.io/display` with the string value `"true"` in order to get the role listed in the access control UI.
+  As an admin user of the Management API, you can add roles or cluster roles directly, e. g using `kubectl create role` and `kubectl create clusterrole`. Make sure to add the label `ui.giantswarm.io/display` with the string value `"true"` in order to get the role listed in the access control UI.
 
 ## Related
 
