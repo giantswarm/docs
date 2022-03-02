@@ -12,7 +12,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I create a cluster manifest for the Management API?
-last_review_date: 2021-02-25
+last_review_date: 2021-03-01
 ---
 
 # `kubectl gs template cluster`
@@ -109,7 +109,9 @@ It supports the following flags:
 - `--dns-nameservers` (optional) - A list of DNS nameservers to be used to resolve external names.
 - `--external-network-id` - UUID of the external network to be used. Only required if multiple external networks are available.
 - `--failure-domain` - Failure domain of worker nodes.
-- `--node-cidr` - CIDR defining the IP range of cluster nodes.
+- `--node-cidr` - CIDR defining the IP range of cluster nodes. When used, new network and subnet will be created.
+- `--network-name` (optional) - Name of existing network for the cluster. Can be used when `--node-cidr` is empty. 
+- `--subnet-name` (optional) - Name of existing subnet for the cluster. Can be used when `--node-cidr` is empty. 
 - `--bastion-boot-from-volume` - If true, bation machine will use a persistent root volume instead of an ephemeral volume.
 - `--bastion-disk-size` - Size of root volume attached to the cluster bastion machine in gigabytes. Must be greater than or equal to the size of the bastion source image (`--bastion-image`).
 - `--bastion-image` - Bastion image name or root volume source UUID if --bastion-boot-from-volume is set.
@@ -119,6 +121,11 @@ It supports the following flags:
 - `--control-plane-image` - Control plane image name or root volume source UUID if --control-plane-boot-from-volume is set.
 - `--control-plane-machine-flavor` - Flavor (a.k.a. size) of the worker node machines.
 - `--control-plane-replicas` - Number of control plane replicas. This should be 1 for a non-HA control plane or 3 for an HA control plane (etcd requires an odd number of members).
+- `--oidc-issuer-url` (optional) - This is the issuer URL for configuring OpenID connect in the cluster API.
+- `--oidc-ca-file` (optional) - This is the CA file path in case is not used a trusted Certificate Authority for OIDC endpoint.
+- `--oidc-client-id` (optional) - This is the client ID that is configured in the OIDC endpoint.
+- `--oidc-username-claim` (optional) - This is the claim used to map the username identity of the user.
+- `--oidc-groups-claim` (optional) - This is the claim used to map the group identity of the user.
 - `--worker-boot-from-volume` - If true, worker machines will use a persistent root volume instead of an ephemeral volume.
 - `--worker-disk-size` - Size of root volumes attached to each worker node machine in gigabytes. Must be greater than or equal to the size of the node source image (`--worker-image`).
 - `--worker-image` - Worker image name or root volume source UUID if --worker-boot-from-volume is set.
