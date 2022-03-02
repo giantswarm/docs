@@ -15,8 +15,6 @@ owner:
 last_review_date: 2021-01-01
 ---
 
-# Prepare an Azure subscription to run Giant Swarm workload clusters
-
 In a Giant Swarm installation the workload clusters (the clusters running your Kubernetes workloads) can run in a separate Azure subscription from the management cluster. This gives greater flexibility depending on the requirements and the use case. For example, it allows the management cluster to be running in one Azure subscription, while workload clusters operate in different Azure subscriptions, depending on the customer entities using them.
 
 Giant Swarm operates workload clusters using a service called `azure-operator` which runs on the management cluster.

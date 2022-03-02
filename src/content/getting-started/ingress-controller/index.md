@@ -17,8 +17,6 @@ owner:
 last_review_date: 2021-09-01
 ---
 
-# Installing an ingress controller
-
 An ingress controller helps you expose your services to the outside world.
 
 ## Which workload cluster releases do not ship with an ingress controller
