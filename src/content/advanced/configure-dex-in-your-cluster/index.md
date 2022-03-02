@@ -233,7 +233,7 @@ metadata:
   name: dex-app
   namespace: <CLUSTER>
 spec:
-  catalog: giantswarm-playground
+  catalog: giantswarm
   name: dex-app
   namespace: dex
   userConfig:
