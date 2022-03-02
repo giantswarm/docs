@@ -16,8 +16,6 @@ user_questions:
 last_review_date: 2021-01-01
 ---
 
-# `gsctl delete endpoint`
-
 {{% gsctl_deprecation_disclaimer %}}
 
 The `gsctl delete endpoint` command deletes a Giant Swarm REST API endpoint that you previously used from your local gsctl configuration file.

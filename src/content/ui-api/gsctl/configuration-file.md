@@ -16,8 +16,6 @@ user_questions:
 last_review_date: 2021-01-01
 ---
 
-# Configuration file
-
 {{% gsctl_deprecation_disclaimer %}}
 
 gsctl by default stores its configuration in a YAML file located at

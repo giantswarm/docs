@@ -17,8 +17,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 ---
 
-# Labelling workload clusters using the web interface
-
 Labels are a mechanism to assign short pieces of additional information to your workload clusters.
 For more information about this feature, check out the [labelling workload clusters]({{< relref "/advanced/labelling-workload-clusters" >}}) user guide.
 
