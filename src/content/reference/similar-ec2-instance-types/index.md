@@ -13,8 +13,6 @@ owner:
 last_review_date: 2022-01-18
 ---
 
-# Similar EC2 Instance Types
-
 {{< platform_support_table aws="ga=11.2.0" >}}
 
 ## Introduction

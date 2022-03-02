@@ -16,8 +16,6 @@ user_questions:
 last_review_date: 2021-01-01
 ---
 
-# `kubectl gs get nodepools`
-
 Like with all `get` commands in `kubectl`, this command can be used to get details on one item, a node pool in this case, or list several of them.
 
 ## Usage

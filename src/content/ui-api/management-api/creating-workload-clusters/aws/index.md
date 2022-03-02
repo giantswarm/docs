@@ -16,8 +16,6 @@ owner:
 last_review_date: 2021-01-01
 ---
 
-# Creating workload clusters on AWS via the Management API
-
 ## How cluster creation works
 
 Starting from version {{% first_aws_nodepools_version %}} on AWS, Giant Swarm introduced a feature to create multiple [node pools]({{< relref "/advanced/node-pools" >}}) on AWS.

@@ -15,8 +15,6 @@ user_questions:
 last_review_date: 2021-08-13
 ---
 
-# `gsctl scale cluster`
-
 {{% gsctl_deprecation_disclaimer %}}
 
 The `gsctl scale cluster` command allows to specify the number of worker nodes for an on-premises (KVM) cluster.

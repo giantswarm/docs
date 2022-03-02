@@ -16,8 +16,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
 ---
 
-# Management clusters
-
 ## Overview
 
 As we are fully convinced of Kubernetes as a platform for building platforms, we build all our management clusters based on Kubernetes. Giant Swarm leverages the concept of [operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) to control all resources that clusters need as [“Custom Resources”](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).

@@ -15,8 +15,6 @@ user_questions:
 last_review_date: 2021-01-01
 ---
 
-# `gsctl show nodepool`
-
 {{% gsctl_deprecation_disclaimer %}}
 
 The `gsctl show nodepool` command shows details on a [node pool]({{< relref "/advanced/node-pools" >}}).
