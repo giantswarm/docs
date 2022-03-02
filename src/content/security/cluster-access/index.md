@@ -25,8 +25,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 ---
 
-# Secure access to clusters for users and Giant Swarm support
-
 It goes without saying that our customers will have secure access to their own workload clusters. In order to provide the best service possible, Giant Swarm staff also needs access to them.
 
 In this document we will explain the nature of this access and the security measures in place to ensure management of your clusters is conducted privately and responsibly.

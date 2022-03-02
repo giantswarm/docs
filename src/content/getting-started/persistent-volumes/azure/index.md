@@ -1,6 +1,6 @@
 ---
 linkTitle: Azure
-title: Using Persistent Volumes on Azure
+title: Using persistent volumes on Azure
 description: Tutorial on how to use dynamically provisioned Persistent Volumes on a cluster running on Azure Cloud
 weight: 20
 menu:
@@ -16,9 +16,7 @@ owner:
 last_review_date: 2021-01-01
 ---
 
-# Using Persistent Volumes on Azure
-
-If your cluster is running in the cloud on Azure, it comes with four dynamic storage provisioners using different flavours of Azure Disks and Azure File shares. This enables you to store data beyond the lifetime of a Pod.
+If your cluster is running in the cloud on Azure, it comes with four dynamic storage provisioners using different flavors of Azure Disks and Azure File shares. This enables you to store data beyond the lifetime of a Pod.
 
 ## Storage Classes
 

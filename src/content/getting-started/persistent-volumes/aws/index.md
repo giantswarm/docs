@@ -1,6 +1,6 @@
 ---
 linkTitle: AWS
-title: Using Persistent Volumes on AWS
+title: Using persistent volumes on AWS
 description: Tutorial on how to use dynamically provisioned Persistent Volumes on a cluster running on Amazon Web Services
 weight: 10
 menu:
@@ -15,8 +15,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 last_review_date: 2021-01-01
 ---
-
-# Using Persistent Volumes on AWS
 
 If your cluster is running in the cloud on Amazon Web Services (AWS), it comes with a dynamic storage provisioner for Elastic Block Storage (EBS). This enables you to store data beyond the lifetime of a Pod.
 

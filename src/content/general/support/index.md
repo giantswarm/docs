@@ -16,8 +16,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-horizon
 ---
 
-# Giant Swarm support
-
 We build and run a platform which lets our customers manage as many clusters as they need with a given set of (managed) applications they decide. We ensure these clusters and applications stay in the same predictable state. This becomes especially important once you need to run multiple clusters and applications for different teams, on different environments, with different configurations or in multiple locations.
 
 We accompany our customers throughout their cloud-native journey. Having someone to contact when problems occur is as important to us as providing a great product. Regardless of where you are in the journey. To us, it is actually the obvious complement to our product. The following is a brief description of our support process.
