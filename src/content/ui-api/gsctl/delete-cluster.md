@@ -15,8 +15,6 @@ user_questions:
 last_review_date: 2021-01-01
 ---
 
-# Delete a cluster using `gsctl`
-
 {{% gsctl_deprecation_disclaimer %}}
 
 Deleting a cluster means that all workloads running on the cluster are terminated. Both control plane and worker nodes are deprovisioned. All data stored on the nodes will be deleted.

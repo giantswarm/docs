@@ -16,8 +16,6 @@ user_questions:
 last_review_date: 2021-06-16
 ---
 
-# Access control for organizations in the web user interface
-
 Learn how to quickly grant and revoke access to an organization's resources via the web user interface, using Kubernetes role based access control (RBAC) mechanisms.
 
 {{% organization_mgmt_mapi_disclaimer %}}

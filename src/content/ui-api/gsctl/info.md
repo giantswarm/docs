@@ -24,8 +24,6 @@ user_questions:
 last_review_date: 2021-01-01
 ---
 
-# `gsctl info`
-
 {{% gsctl_deprecation_disclaimer %}}
 
 The `gsctl info` command lets you display information on your current status

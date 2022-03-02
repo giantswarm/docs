@@ -1,6 +1,6 @@
 ---
-linkTitle: Key pairs for workload clusters
-title: Creating workload cluster key pairs via the Management API
+linkTitle: Client certificates for workload clusters
+title: Creating workload cluster client certificates via the Management API
 description: We recommend OIDC for authentication to the workload cluster Kubernetes API. However, in some scenarios, client certificates are a viable alternative. Here we explain how to create such certificates via the Management API.
 weight: 100
 menu:
@@ -12,8 +12,6 @@ last_review_date: 2021-10-26
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 ---
-
-# Creating workload cluster key pairs via the Management API
 
 As of `kubectl gs` v1.44.0, the [`login`]({{< relref "/ui-api/kubectl-gs/login" >}}) command supports the creation of client certificates for workload clusters.
 
