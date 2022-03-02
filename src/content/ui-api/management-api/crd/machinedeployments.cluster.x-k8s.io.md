@@ -1778,16 +1778,6 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Specification of the desired behavior of the machine. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status</a></p>
-
-</div>
-
-</div>
-</div>
-
-</div>
-
-<div class="property-description">
 <p>Name of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names</a></p>
 
 </div>
