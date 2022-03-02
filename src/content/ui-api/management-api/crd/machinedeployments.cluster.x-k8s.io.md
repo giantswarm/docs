@@ -1372,8 +1372,8 @@ spec:
 <span class="property-required">Required</span>
 </div>
 
-<div class="property-description">
-<p>Label selector for machines. Existing MachineSets whose machines are selected by this will be the ones affected by this deployment. It must match the machine template&rsquo;s labels.</p>
+
+
 
 </div>
 
@@ -1650,6 +1650,78 @@ spec:
 </div>
 </div>
 
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions">.spec.selector.matchExpressions</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>matchExpressions is a list of label selector requirements. The requirements are ANDed.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*]">.spec.selector.matchExpressions[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*].key">.spec.selector.matchExpressions[*].key</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>key is the label key that the selector applies to.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*].operator">.spec.selector.matchExpressions[*].operator</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>operator represents a key&rsquo;s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.</p>
+
+</div>
+
+</div>
+</div>
+
 <div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1beta1-.spec.template.metadata.annotations">.spec.template.metadata.annotations</h3>
@@ -1800,7 +1872,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -1836,7 +1908,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -1885,6 +1957,24 @@ spec:
 </div>
 
 <div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.template.spec.bootstrap.configRef.name">.spec.template.spec.bootstrap.configRef.name</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Kind of the referent. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.spec.bootstrap.configRef.name">.spec.template.spec.bootstrap.configRef.name</h3>
 </div>
@@ -1963,7 +2053,7 @@ spec:
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
@@ -1998,8 +2088,8 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
-
+<span class="property-type">object</span>
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
@@ -2070,7 +2160,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">array</span>
 
 </div>
 
@@ -2082,13 +2172,13 @@ spec:
 </div>
 </div>
 
-<div class="property depth-4">
+<div class="property depth-0">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.spec.infrastructureRef.name">.spec.template.spec.infrastructureRef.name</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -2100,7 +2190,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-0">
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.spec.infrastructureRef.namespace">.spec.template.spec.infrastructureRef.namespace</h3>
 </div>
@@ -2142,7 +2232,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">integer</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -2154,7 +2244,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-0">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.spec.nodeDrainTimeout">.spec.template.spec.nodeDrainTimeout</h3>
 </div>
