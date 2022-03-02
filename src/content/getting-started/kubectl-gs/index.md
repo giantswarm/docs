@@ -6,6 +6,8 @@ weight: 40
 menu:
   main:
     parent: getting-started
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I access the Giant Swarm Management API?
   - How do I use kubectl gs?
