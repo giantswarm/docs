@@ -2883,11 +2883,6 @@ source_repository_ref: v5.0.0
 
 </div>
 
-<div class="property-description">
-<p>Name is the <code>.Metadata.Name</code> field of the Node API object that will be created in this <code>kubeadm init</code> or <code>kubeadm join</code> operation. This field is also used in the CommonName field of the kubelet&rsquo;s client certificate to the API server. Defaults to the hostname of the node if not provided.</p>
-
-</div>
-
 </div>
 </div>
 
@@ -3057,7 +3052,12 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>LockPassword specifies if password login should be disabled</p>
 
 </div>
 
@@ -3079,15 +3079,10 @@ source_repository_ref: v5.0.0
 
 </div>
 
-<div class="property-description">
-<p>LockPassword specifies if password login should be disabled</p>
-
-</div>
-
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.users[*].passwd">.spec.users[*].passwd</h3>
 </div>
@@ -3105,7 +3100,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.users[*].primaryGroup">.spec.users[*].primaryGroup</h3>
 </div>
