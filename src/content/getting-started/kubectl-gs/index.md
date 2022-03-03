@@ -14,8 +14,6 @@ user_questions:
 last_review_date: 2022-02-28
 ---
 
-# Getting started with `kubectl-gs`
-
 As better explained in the [reference]({{< relref "/ui-api/kubectl-gs" >}}), kubectl-gs is a CLI and a kubectl plugin (invoked as kubectl gs) for the Giant Swarm Management API. In this guide, you will learn how to use `kubectl-gs` for your daily tasks on the Giant Swarm installation.
 
 ## Step 1: Installing the necessary tools
