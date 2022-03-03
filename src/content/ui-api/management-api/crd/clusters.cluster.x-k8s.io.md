@@ -677,6 +677,68 @@ spec:
 
 <div class="property depth-3">
 <div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.clusterNetwork.pods.cidrBlocks">.spec.clusterNetwork.pods.cidrBlocks</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+<span class="property-required">Required</span>
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.clusterNetwork.pods.cidrBlocks[*]">.spec.clusterNetwork.pods.cidrBlocks[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.clusterNetwork.serviceDomain">.spec.clusterNetwork.serviceDomain</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Domain name for services.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.clusterNetwork.services">.spec.clusterNetwork.services</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>The network ranges from which service VIPs are allocated.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.clusterNetwork.services.cidrBlocks">.spec.clusterNetwork.services.cidrBlocks</h3>
 </div>
 <div class="property-body">
@@ -736,7 +798,25 @@ spec:
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec">.spec</h3>
+<h3 class="property-path" id="v1alpha4-.spec.controlPlaneRef.resourceVersion">.spec.controlPlaneRef.resourceVersion</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Specific resourceVersion to which this reference is made, if any. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.controlPlaneRef.uid">.spec.controlPlaneRef.uid</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
