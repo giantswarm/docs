@@ -1353,34 +1353,69 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Total number of non-terminated machines targeted by this deployment that have the desired template spec.</p>
+<p>ProviderID is the identification ID of the machine provided by the provider. This field must match the provider ID as seen on the node object corresponding to this machine. This field is required by higher level consumers of cluster-api. Example use case is cluster autoscaler with cluster-api as provider. Clean-up logic in the autoscaler compares machines to nodes to find out machines at provider which could not get registered as Kubernetes nodes. With cluster-api as a generic out-of-tree provider for autoscaler, this field is required by autoscaler to be able to have a provider view of the list of machines. Another list of nodes is queried from the k8s apiserver and then a comparison is done to find out unregistered machines and are marked for delete. This field will be set by the actuators and consumed by higher level entities like autoscaler that will be interfacing with cluster-api as generic provider.</p>
 
 </div>
 
 </div>
 </div>
 
+</div>
 
+</div>
+</div>
 
-
+<div class="property-description">
+<p>Version defines the desired Kubernetes version. This field is meant to be optionally used by bootstrap providers.</p>
 
 </div>
 
-<div class="crd-schema-version">
-<h2 id="v1alpha4">Version v1alpha4</h2>
-
-
-
-<h3 id="property-details-v1alpha4">Properties</h3>
-
+</div>
+</div>
 
 <div class="property depth-0">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.apiVersion">.apiVersion</h3>
+<h3 class="property-path" id="v1alpha2-.status">.status</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>MachineDeploymentStatus defines the observed state of MachineDeployment</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.status.availableReplicas">.status.availableReplicas</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>Total number of available machines (ready for at least minReadySeconds) targeted by this deployment.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-0">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.status.observedGeneration">.status.observedGeneration</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
 
 </div>
 
@@ -1423,7 +1458,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-0">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec">.spec</h3>
 </div>
@@ -1447,8 +1482,8 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
+<span class="property-type">integer</span>
+
 </div>
 
 <div class="property-description">
@@ -1519,6 +1554,109 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-0">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec">.spec</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>MachineDeploymentSpec defines the desired state of MachineDeployment</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.clusterName">.spec.clusterName</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>ClusterName is the name of the Cluster this object belongs to.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.minReadySeconds">.spec.minReadySeconds</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>Minimum number of seconds for which a newly created machine should be ready. Defaults to 0 (machine will be considered available as soon as it is ready)</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.paused">.spec.paused</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>Indicates that the deployment is paused.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.progressDeadlineSeconds">.spec.progressDeadlineSeconds</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>The maximum time in seconds for a deployment to make progress before it is considered to be failed. The deployment controller will continue to process failed deployments and a condition with a ProgressDeadlineExceeded reason will be surfaced in the deployment status. Note that progress will not be estimated during the time a deployment is paused. Defaults to 600s.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.replicas">.spec.replicas</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
 <span class="property-type">integer</span>
 
 </div>
@@ -1533,7 +1671,7 @@ spec:
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.revisionHistoryLimit">.spec.revisionHistoryLimit</h3>
+<h3 class="property-path" id="v1alpha3-.spec.revisionHistoryLimit">.spec.revisionHistoryLimit</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1551,7 +1689,7 @@ spec:
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.selector">.spec.selector</h3>
+<h3 class="property-path" id="v1alpha3-.spec.selector">.spec.selector</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1569,7 +1707,7 @@ spec:
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions">.spec.selector.matchExpressions</h3>
+<h3 class="property-path" id="v1alpha3-.spec.selector.matchExpressions">.spec.selector.matchExpressions</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1838,7 +1976,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -1894,7 +2032,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -1954,6 +2092,60 @@ spec:
 </div>
 
 <div class="property-description">
+<p>API version of the referent.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template.metadata.ownerReferences[*].blockOwnerDeletion">.spec.template.metadata.ownerReferences[*].blockOwnerDeletion</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>If true, AND if the owner has the &ldquo;foregroundDeletion&rdquo; finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. Defaults to false. To set this field, a user needs &ldquo;delete&rdquo; permission of the owner, otherwise 422 (Unprocessable Entity) will be returned.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template.metadata.ownerReferences[*].controller">.spec.template.metadata.ownerReferences[*].controller</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>If true, this reference points to the managing controller.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template.metadata.ownerReferences[*].kind">.spec.template.metadata.ownerReferences[*].kind</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
 <p>Kind of the referent. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</a></p>
 
 </div>
@@ -1963,66 +2155,12 @@ spec:
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.template.spec.bootstrap.configRef.name">.spec.template.spec.bootstrap.configRef.name</h3>
+<h3 class="property-path" id="v1alpha3-.spec.template.metadata.ownerReferences[*].name">.spec.template.metadata.ownerReferences[*].name</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>Name of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names</a></p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-5">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.template.spec.bootstrap.configRef.namespace">.spec.template.spec.bootstrap.configRef.namespace</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>Namespace of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/">https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/</a></p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-5">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.template.spec.bootstrap.configRef.resourceVersion">.spec.template.spec.bootstrap.configRef.resourceVersion</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>Specific resourceVersion to which this reference is made, if any. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency</a></p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-5">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.template.spec.bootstrap.configRef.uid">.spec.template.spec.bootstrap.configRef.uid</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
@@ -2328,6 +2466,14 @@ spec:
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">array</span>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef.namespace">.spec.template.spec.infrastructureRef.namespace</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
 
 </div>
 
