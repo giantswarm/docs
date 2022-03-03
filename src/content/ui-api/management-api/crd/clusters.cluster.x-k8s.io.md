@@ -79,6 +79,18 @@ spec:
     uid: 2dc05fcd-ba76-4135-b9ea-76955e3a7966
 ```
 
+
+<h3 id="property-details-v1alpha2">Properties</h3>
+
+
+<div class="property depth-0">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.apiVersion">.apiVersion</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
 </div>
 
 <h3 id="property-details-v1alpha2">Properties</h3>
@@ -90,7 +102,7 @@ spec:
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.apiVersion">.apiVersion</h3>
+<h3 class="property-path" id="v1alpha2-.kind">.kind</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -108,85 +120,18 @@ spec:
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.kind">.kind</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.controlPlaneEndpoint">.spec.controlPlaneEndpoint</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>ControlPlaneEndpoint represents the endpoint used to communicate with the control plane.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.controlPlaneEndpoint.host">.spec.controlPlaneEndpoint.host</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>The hostname on which the API server is serving.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.controlPlaneEndpoint.port">.spec.controlPlaneEndpoint.port</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">integer</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>The port on which the API server is serving.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
 <h3 class="property-path" id="v1alpha2-.metadata">.metadata</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">string</span>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-0">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha2-.spec">.spec</h3>
 </div>
@@ -210,8 +155,8 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
-
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
@@ -229,18 +174,18 @@ spec:
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">integer</span>
-
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
-<p>APIServerPort specifies the port the API Server should bind to. Defaults to 6443.</p>
+<p>The port on which the API server is serving.</p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha2-.spec.clusterNetwork.pods">.spec.clusterNetwork.pods</h3>
 </div>
@@ -250,34 +195,39 @@ spec:
 
 </div>
 
-<div class="property-description">
-<p>The network ranges from which Pod networks are allocated.</p>
-
-</div>
-
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-0">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha2-.spec.clusterNetwork.pods.cidrBlocks">.spec.clusterNetwork.pods.cidrBlocks</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
-<span class="property-required">Required</span>
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>ClusterSpec defines the desired state of Cluster</p>
+
 </div>
 
 </div>
 </div>
 
-<div class="property depth-4">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha2-.spec.clusterNetwork.pods.cidrBlocks[*]">.spec.clusterNetwork.pods.cidrBlocks[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Cluster network configuration</p>
 
 </div>
 
@@ -290,12 +240,12 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">integer</span>
 
 </div>
 
 <div class="property-description">
-<p>Domain name for services.</p>
+<p>APIServerPort specifies the port the API Server should bind to. Defaults to 6443.</p>
 
 </div>
 
@@ -313,7 +263,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>The network ranges from which service VIPs are allocated.</p>
+<p>The network ranges from which Pod networks are allocated.</p>
 
 </div>
 
@@ -490,7 +440,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-1">
+<div class="property depth-0">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha2-.status">.status</h3>
 </div>
@@ -514,7 +464,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">array</span>
 
 </div>
 
@@ -736,43 +686,6 @@ spec:
 <div class="property-meta">
 <span class="property-type">string</span>
 
-</div>
-
-<div class="property-description">
-<p>Domain name for services.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.clusterNetwork.services">.spec.clusterNetwork.services</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>The network ranges from which service VIPs are allocated.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.clusterNetwork.services.cidrBlocks">.spec.clusterNetwork.services.cidrBlocks</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">array</span>
-<span class="property-required">Required</span>
-</div>
 
 <div class="property-description">
 <p>APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources</a></p>
@@ -849,7 +762,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.clusterNetwork.apiServerPort">.spec.clusterNetwork.apiServerPort</h3>
 </div>
@@ -867,7 +780,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.clusterNetwork.pods">.spec.clusterNetwork.pods</h3>
 </div>
@@ -917,7 +830,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -929,7 +842,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.clusterNetwork.services">.spec.clusterNetwork.services</h3>
 </div>
@@ -1009,14 +922,14 @@ spec:
 </div>
 </div>
 
-<div class="property depth-1">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.controlPlaneEndpoint.port">.spec.controlPlaneEndpoint.port</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
-
+<span class="property-type">integer</span>
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
@@ -1027,7 +940,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.controlPlaneRef">.spec.controlPlaneRef</h3>
 </div>
