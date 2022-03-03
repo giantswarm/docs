@@ -16,8 +16,6 @@ user_questions:
   - How can I add catalog level values or secrets for the apps deployed from this catalog?
 ---
 
-# `kubectl gs template catalog`
-
 The `template catalog` command allows to create an [app catalog]({{< relref "/app-platform" >}}) manifest. The resulting manifest is meant to be applied to the management cluster, for example via `kubectl apply`.
 
 The resulting manifest will define a [`Catalog`]({{< relref "/ui-api/management-api/crd/catalogs.application.giantswarm.io.md" >}}) resource (API group/version `application.giantswarm.io/v1alpha1`).

@@ -16,8 +16,6 @@ owner:
 last_review_date: 2021-01-01
 ---
 
-# The Giant Swarm REST API
-
 The REST API has been designed originally to provide a simple, easy to use interface to the relevant resources for managing clusters, key pairs, etc. while keeping the internals under the hood.
 
 Since its inception at Giant Swarm, we learned that there are always more use cases emerging on our customer's side than we could anticipate in our REST API design. We realized that the best we can do to provide full insight into the state and spec of your infrastructure is by opening up the underlying system itself.

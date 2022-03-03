@@ -26,8 +26,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/sig-product
 ---
 
-# Workload Cluster release versions
-
 Our workload cluster (formerly: _tenant cluster_) releases define the capabilities of the clusters you create in your installations. Here we explain the semantics of our versioning and give details on workload cluster release on certain providers.
 
 ## Introduction

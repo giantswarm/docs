@@ -15,8 +15,6 @@ user_questions:
 last_review_date: 2021-01-01
 ---
 
-# `gsctl list clusters`
-
 {{% gsctl_deprecation_disclaimer %}}
 
 The `gsctl list clusters` command shows all clusters you have access to with a few details like cluster ID, name, creation date, and owner organization.

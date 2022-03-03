@@ -19,8 +19,6 @@ user_questions:
 last_review_date: 2021-01-01
 ---
 
-# Recommendations and Best Practices
-
 Keep in mind that these recommendations are just basic rules-of-thumb that you should adapt to your needs.
 
 ## Creating a cluster

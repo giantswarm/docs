@@ -1,6 +1,6 @@
 ---
 linkTitle: Installation
-title: kubectl gs installation
+title: Installing kubectl-gs
 description: How to obtain kubectl gs, the Giant Swarm kubectl plugin, how to keep it up to date, and where to find the Docker image.
 weight: 10
 menu:
@@ -19,8 +19,6 @@ user_questions:
   - How can I install kubectl-gs?
   - Is there an official Docker image for kubectl-gs?
 ---
-
-# Installing the kubectl gs plugin
 
 `kubectl-gs` is the Giant Swarm plug-in for `kubectl` with the official plug-in name `gs`.
 
