@@ -9,7 +9,7 @@ menu:
 user_questions:
   - How can I configure OIDC in my cluster?
   - How can I add a new OIDC connector?
-last_review_date: 2021-10-01
+last_review_date: 2021-12-09
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 ---
@@ -46,7 +46,7 @@ kind: Cluster
 metadata:
   annotations:  
     oidc.giantswarm.io/client-id: dex-k8s-authenticator
-    oidc.giantswarm.io/issuer-url: https://dex.<CLUSTERID>.<BASEDOMAIN>
+    oidc.giantswarm.io/issuer-url: https://dex.<CLUSTER>.<BASEDOMAIN>
     oidc.giantswarm.io/group-claim: groups
     oidc.giantswarm.io/username-claim: email
   ...
@@ -66,13 +66,13 @@ spec:
         groups: groups
         username: email
       clientID: dex-k8s-authenticator
-      issuerURL: https://dex.<CLUSTERID>.<BASEDOMAIN>
+      issuerURL: https://dex.<CLUSTER>.<BASEDOMAIN>
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
 
-__Note__: In the above snippets you need to change the `<CLUSTERID>` and `<BASEDOMAIN>` variables to the correct values - the cluster ID of the workload cluster you are configuring, and the base domain that you use for your installation, respectively.
+__Note__: In the above snippets you need to replace the `<CLUSTER>` and `<BASEDOMAIN>` placeholder with the correct values, which is the name of the workload cluster you are configuring, and the base domain that you use for your installation.
 
 ## Deploy the app to your cluster
 
@@ -88,70 +88,67 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: dex-app-user-values
-  namespace: <CLUSTERID>
+  namespace: <CLUSTER>
 data:
   values: |
     isWorkloadCluster: true
-    services:
-      kubernetes:
-        api:
-          caPem: |
-            -----BEGIN CERTIFICATE-----
-            M...=
-            -----END CERTIFICATE-----
     oidc:
       expiry:
         signingKeys: 6h
         idTokens: 30m
       customer:
         enabled: true
-        connectorName: test
-        connectorType: oidc
-        connectorConfig: >-
-          clientID: <CLIENT-ID-SET-IN-YOUR-IdP>
-          clientSecret: <CLIENT-SECRET-SET-IN--YOUR-IdP>
-          insecureEnableGroups: true
-          scopes:
-          - email
-          - groups
-          - profile
-          issuer: https://<IDP_ENDPOINT>/auth/realms/master
-          redirectURI: https://dex.<CLUSTERID>.<BASEDOMAIN>/callback
+        connectors:
+        - id: customer
+          connectorName: test
+          connectorType: oidc
+          connectorConfig: >-
+            clientID: <CLIENT-ID-SET-IN-YOUR-IdP>
+            clientSecret: <CLIENT-SECRET-SET-IN--YOUR-IdP>
+            insecureEnableGroups: true
+            scopes:
+            - email
+            - groups
+            - profile
+            issuer: https://<IDP_ENDPOINT>/auth/realms/master
+            redirectURI: https://dex.<CLUSTER>.<BASEDOMAIN>/callback
 ```
 
 {{< /tab >}}
-{{< tab title="Github">}}
+{{< tab title="GitHub">}}
 
 ```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: dex-app-user-values
-  namespace: <CLUSTERID>
+  namespace: <CLUSTER>
 data:
   values: |
     isWorkloadCluster: true
-    services:
-      kubernetes:
-        api:
-          caPem: |
-            -----BEGIN CERTIFICATE-----
-            M...=
-            -----END CERTIFICATE-----
     oidc:
       expiry:
         signingKeys: 6h
         idTokens: 30m
       customer:
         enabled: true
-        connectorName: test
-        connectorType: microsoft
-        connectorConfig: >-
-          clientID: <CLIENT-ID-SET-IN-YOUR-IdP>
-          clientSecret: <CLIENT-SECRET-SET-IN--YOUR-IdP>
-          tenant: <TENANT-SET-SET-IN--YOUR-IdP>
-          redirectURI: https://dex.<CLUSTERID>.<BASEDOMAIN>/callback
+        connectors:
+        - id: customer
+          connectorName: test
+          connectorType: github
+          connectorConfig: >-
+            clientID: <CLIENT-ID-SET-IN-YOUR-IdP>
+            clientSecret: <CLIENT-SECRET-SET-IN--YOUR-IdP>
+            loadAllGroups: false
+            teamNameField: slug
+            redirectURI: https://dex.<CLUSTER>.<BASEDOMAIN>/callback
+            orgs:
+            - name: main-customer-org
+              teams:
+              - team-infra
 ```
+
+Note how you configure access for certain GitHub teams only. Make sure to list the team's _slug_ as it appears in the handle and team URL. In the example above, the team _name_ might be `Team Infra`, but the handle is `@main-customer-org/team-infra` and the slug used in this configuration is `team-infra`.
 
 {{< /tab >}}
 {{< tab title="Active Directory">}}
@@ -161,36 +158,69 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: dex-app-user-values
-  namespace: <CLUSTERID>
+  namespace: <CLUSTER>
 data:
   values: |
     isWorkloadCluster: true
-    services:
-      kubernetes:
-        api:
-          caPem: |
-            -----BEGIN CERTIFICATE-----
-            M...=
-            -----END CERTIFICATE-----
     oidc:
       expiry:
         signingKeys: 6h
         idTokens: 30m
       customer:
         enabled: true
-        connectorName: test
-        connectorType: microsoft
-        connectorConfig: >-
-          clientID: <CLIENT-ID-SET-IN-YOUR-IdP>
-          clientSecret: <CLIENT-SECRET-SET-IN--YOUR-IdP>
-          tenant: <TENANT-SET-SET-IN--YOUR-IdP>
-          redirectURI: https://dex.<CLUSTERID>.<BASEDOMAIN>/callback
+        connectors:
+        - id: customer
+          connectorName: test
+          connectorType: microsoft
+          connectorConfig: >-
+            clientID: <CLIENT-ID-SET-IN-YOUR-IdP>
+            clientSecret: <CLIENT-SECRET-SET-IN--YOUR-IdP>
+            tenant: <TENANT-SET-SET-IN--YOUR-IdP>
+            redirectURI: https://dex.<CLUSTER>.<BASEDOMAIN>/callback
+```
+
+{{< /tab >}}
+{{< tab title="Okta">}}
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dex-app-user-values
+  namespace: <CLUSTER>
+data:
+  values: |
+    isWorkloadCluster: true
+    oidc:
+      expiry:
+        signingKeys: 6h
+        idTokens: 30m
+      customer:
+        enabled: true
+        connectors:
+        - id: customer
+          connectorName: test
+          connectorType: oidc
+          connectorConfig: >-
+            clientID: <CLIENT-ID-SET-IN-YOUR-IdP>
+            clientSecret: <CLIENT-SECRET-SET-IN--YOUR-IdP>
+            insecureEnableGroups: true
+            getUserInfo: true
+            scopes:
+            - email
+            - groups
+            - profile
+            issuer: https://<OKTA_OIDC_ENDPOINT>
+            redirectURI: https://dex.<CLUSTER>.<BASEDOMAIN>/callback
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
 
-__Note__: In the above snippet you have to replace the `<CLUSTERID>` variable and add the Kubernetes Certificate Authority to ensure Dex can trust the API endpoint. Finally you have to use a connector. Here we show examples for Keycloak, Active Directory, and GitHub.
+__Warning__: With `oidc` connector you might need to add `getUserInfo` in the connector configuration to force a second call to the identity provider in order to get groups. This is required for example by Okta. More info on this can be found in [dexipd/dex#1065](https://github.com/dexidp/dex/issues/1065).
+
+__Note__: In the above snippet you have to replace the `<CLUSTER>` variable and select a connector. Here we show examples for Keycloak, Active Directory, and GitHub.
+You can use more than one connector, but they need to have a different `id` value. We advice to use `- id: customer` for your primary connector.
 
 After you have applied the `ConfigMap` manifest to the Management API you have to submit the App custom resource that defines the intent to install the Dex app in the given cluster.
 
@@ -201,20 +231,24 @@ metadata:
   labels:
     app.kubernetes.io/name: dex-app
   name: dex-app
-  namespace: <CLUSTERID>
+  namespace: <CLUSTER>
 spec:
-  catalog: giantswarm-playground
+  catalog: giantswarm
   name: dex-app
   namespace: dex
   userConfig:
     configMap:
       name: dex-app-user-values
-      namespace: <CLUSTERID>
+      namespace: <CLUSTER>
 ```
 
-__Note__: When applying the example in the snippet above, please change the `<CLUSTERID>` variable to the cluster ID of the workload cluster you are configuring,
+__Note__: When applying the example in the snippet above, please replace the `<CLUSTER>` placeholder with the name of the workload cluster you are configuring.
 
-Then submit the resource to the management API and the App operator will manage it to make the actual installation and configuration. You can log in now into the cluster API with your identity provider using the login endpoint that Dex creates for you. By default, it will be `https://login.<CLUSTERID>.<BASEDOMAIN>`.
+Then submit the resource to the management API and the App operator will manage it to make the actual installation and configuration. You can log in now into the cluster API with your identity provider using the login endpoint that Dex creates for you. By default, it will be `https://login.<CLUSTER>.<BASEDOMAIN>`.
+
+## Monitoring Dex
+
+To get an overview on the authentication success and error rates of your Dex instances, we offer a Grafana dashboard named "Dex" as part of our [monitoring setup]({{< relref "/ui-api/monitoring" >}}).
 
 ## Further reading
 

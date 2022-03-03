@@ -16,8 +16,6 @@ user_questions:
 last_review_date: 2021-10-04
 ---
 
-# `kubectl gs get releases`
-
 Like with all `get` commands in `kubectl`, this command can be used to get details on one item, a release in this case, or list several of them.
 
 ## Usage
@@ -35,14 +33,14 @@ to list some information on all releases available to you in the current install
 Here is some example output:
 
 ```nohighlight
-VERSION          STATUS     CREATED                         KUBERNETES  CONTAINER LINUX   COREDNS   CALICO
-v14.2.1          active     2021-06-29 13:41:00 +0000 UTC   1.19.9      2765.2.3          1.6.5     3.15.3
-v14.2.2          active     2021-06-29 13:41:00 +0000 UTC   1.19.9      2605.12.0         1.6.5     3.15.3
-v15.0.0          inactive   2021-07-09 11:54:44 +0000 UTC   1.20.8      2765.2.6          1.6.5     3.15.3
-v15.1.0          inactive   2021-08-04 15:54:57 +0000 UTC   1.20.9      2765.2.6          1.8.3     3.15.5
-v15.1.1          inactive   2021-08-24 15:05:20 +0000 UTC   1.20.9      2765.2.6          1.8.3     3.15.5
-v15.2.0          active     2021-08-23 13:02:03 +0000 UTC   1.20.9      2765.2.6          1.8.3     3.15.5
-v15.2.1          active     2021-08-26 15:55:59 +0000 UTC   1.20.9      2765.2.6          1.8.3     3.15.5
+VERSION          STATUS       AGE   KUBERNETES  CONTAINER LINUX   COREDNS   CALICO
+v14.2.1          ACTIVE       2d    1.19.9      2765.2.3          1.6.5     3.15.3
+v14.2.2          ACTIVE       2d    1.19.9      2605.12.0         1.6.5     3.15.3
+v15.0.0          DEPRECATED   3d    1.20.8      2765.2.6          1.6.5     3.15.3
+v15.1.0          DEPRECATED   4d    1.20.9      2765.2.6          1.8.3     3.15.5
+v15.1.1          DEPRECATED   4d    1.20.9      2765.2.6          1.8.3     3.15.5
+v15.2.0          ACTIVE       20d   1.20.9      2765.2.6          1.8.3     3.15.5
+v15.2.1          ACTIVE       21d   1.20.9      2765.2.6          1.8.3     3.15.5
 ```
 
 ### Get specific release
@@ -60,8 +58,12 @@ Note: As an alternative to `get releases`, `get release` will also work.
 The standard tabular output format features these columns:
 
 - `VERSION`: Unique identifier of the release.
-- `STATUS`: Indication of if the release is currently active.
-- `CREATED`: Date and time of the release CR creation.
+- `STATUS`: The state of the release. Possible states are:
+    - `ACTIVE`: A stable release, fully supported.
+    - `PREVIEW`: A preview for testing purposes only, not yet considered stable.
+    - `WIP`: Work in progress, a release in development.
+    - `DEPRECATED`: Has been replaced by a successor release. No longer recommended.
+- `AGE`: How long ago was the release created.
 - `KUBERNETES`: The version of Kubernetes provided by this release
 - `CONTAINER LINUX`: The version of container linux provided by this release
 - `COREDNS`: The version of CoreDNS provided by this release

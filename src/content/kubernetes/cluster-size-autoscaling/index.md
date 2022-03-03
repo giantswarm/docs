@@ -16,8 +16,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
 ---
 
-# Cluster size and autoscaling
-
 {{< platform_support_table aws="ga=v6.3.0" azure="ga=v13.1.0" >}}
 
 ## Introduction

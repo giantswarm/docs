@@ -16,8 +16,6 @@ user_questions:
 last_review_date: 2021-01-01
 ---
 
-# `kubectl gs get clusters`
-
 Like with all `get` commands in `kubectl`, this command can be used to get details on one item, a cluster in this case, or list several of them.
 
 ## Usage
@@ -35,8 +33,8 @@ to list some information on all clusters available to you in the current install
 Here is some example output:
 
 ```nohighlight
-NAME    CREATED                         CONDITION   RELEASE   ORGANIZATION   DESCRIPTION
-3i99p   2020-09-29 11:51:52 +0000 UTC   CREATED     12.1.4    giantswarm     ced0ps kong pm
+NAME    AGE  CONDITION   RELEASE   ORGANIZATION   DESCRIPTION
+3i99p   1d   CREATED     12.1.4    giantswarm     ced0ps kong pm
 ```
 
 ### Get specific cluster
@@ -54,7 +52,7 @@ Note: As an alternative to `get clusters`, `get cluster` will also work.
 The standard tabular output format features these columns:
 
 - `NAME`: Unique identifier of the cluster.
-- `CREATED`: Date and time of the Cluster CR creation.
+- `AGE`: How long ago was the cluster created.
 - `CONDITION`: Latest condition reported for the cluster. Either of:
     - `CREATING`: The cluster is currently being created.
     - `CREATED`: Cluster creation is finished.

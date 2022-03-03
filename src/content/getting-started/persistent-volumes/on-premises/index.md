@@ -1,6 +1,6 @@
 ---
 linkTitle: On-premises
-title: Using Persistent Volumes on-premises
+title: Using persistent volumes on-premises
 description: "Tutorial on how to use pre-created Persistent Volumes on a cluster running on-premises (on bare metal)"
 weight: 30
 menu:
@@ -15,8 +15,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
 last_review_date: 2021-01-01
 ---
-
-# Using Persistent Volumes on your on-premise bare metal clusters
 
 Persistent Volumes allow you to store data beyond the lifetime of a Pod. Ideally, storage is dynamically provisioned and claiming storage for your pods would not require you to pre-provision storage. However, depending on your installation, your bare metal clusters might not support dynamic storage provisioning.
 

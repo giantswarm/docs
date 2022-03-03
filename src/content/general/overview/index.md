@@ -17,13 +17,9 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-horizon
 ---
 
-# Running Kubernetes on Giant Swarm
-
 At Giant Swarm we enable platform teams to move from administartion to innovation. We achieve this by providing you with fully-managed Kubernetes clusters, which you can then use to deploy your containers as you see fit. You have full admin rights to your clusters through their API, so you can change anything that is accessible through the Kubernetes API. Changes that require configuration of the Kubernetes components themselves (e.g. starting the API server or kubelets with specific arguments) need to be set by the Giant Swarm Ops team. If you have specific needs or feedback, don't hesitate to [get in touch](mailto:support@giantswarm.io).
 
 This model aligns with the value we see in providing Open-Source-as-a-Service. Our goal is to encourage experimentation in a safe environment. In this environmenet you can innovate while we provide advice, guardrails and connections to upstream. You reap the benefits of going cloud native easily and quickly by side stepping some of the work of introducing or scaling Kubernetes in your organization.
-
-
 
 ## What is included
 

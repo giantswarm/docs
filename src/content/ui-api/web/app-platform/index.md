@@ -16,10 +16,8 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
 
-# The Giant Swarm App Platform in the web interface
-
 This page will give you an overview of what parts of the Giant Swarm App Platform
-are managable using our web interface.
+are manageable using our web interface.
 
 The _Giant Swarm App Platform_ refers to a set of features and concepts that allow
 you to browse, install and manage the configurations of apps (such as Prometheus)
@@ -54,7 +52,7 @@ will be monitored and managed by us.
 Once you know what app you'd like to install, click on that app, and then on
 "Configure & Install"
 
-![A screenshot of our web interface, showing the detail page for a specific app, in this case grafana](app-detail-page.png)
+![A screenshot of our web interface, showing the detail page for a specific app, in this case Grafana](app-detail-page.png)
 
 That'll bring up a modal where you can choose what cluster you want to install
 the app on, the version you want install, as well as some further steps allowing you to configure the app.

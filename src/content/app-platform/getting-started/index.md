@@ -32,8 +32,7 @@ In general, you can manage App CRs with any tool that can communicate with the K
 
 You can access your management cluster using the [kubectl gs login]({{< relref "/ui-api/kubectl-gs/login" >}})
 command of our kubectl plugin. See [here]({{< relref "/ui-api/kubectl-gs/installation" >}})
-for how to install it. If you already have it installed please upgrade to the
-latest version.
+for how to install it.
 
 In the management cluster your App CRs are stored in a namespace with the same
 name as your workload cluster ID. Let's set an environment variable for this
@@ -98,9 +97,9 @@ Now we can list the latest version of each app in the catalog.
 ```nohighlight
 kubectl gs get catalog giantswarm
 
-CATALOG      APP NAME                       APP VERSION   VERSION   CREATED
+CATALOG      APP NAME                       APP VERSION   VERSION   AGE
 ...
-giantswarm   nginx-ingress-controller-app   v0.47.0       1.17.0    16 Jun 21 11:54
+giantswarm   nginx-ingress-controller-app   v0.47.0       1.17.0    25d
 ...
 ```
 

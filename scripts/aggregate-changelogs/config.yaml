@@ -62,6 +62,8 @@ repositories:
     category: Managed Apps
   giantswarm/starboard-app:
     category: Managed Apps
+  giantswarm/starboard-exporter:
+    category: Managed Apps
   giantswarm/trivy-app:
     category: Managed Apps
   giantswarm/external-dns-app:
@@ -77,7 +79,7 @@ repositories:
   giantswarm/azure-ad-pod-identity-app:
     category: Playground Apps
   giantswarm/dex-app:
-    category: Playground Apps
+    category: Managed Apps
   giantswarm/eventrouter-app:
     category: Playground Apps
   giantswarm/gatling-app:
@@ -110,12 +112,14 @@ repositories:
     category: Playground Apps
   giantswarm/organization-operator:
     category: Management API
+  giantswarm/rbac-bootstrap-app:
+    category: Playground Apps
   giantswarm/rbac-operator:
     category: Management API
   giantswarm/strimzi-kafka-operator-app:
     category: Managed Apps
   giantswarm/vertical-pod-autoscaler-app:
-    category: Playground Apps
+    category: Managed Apps
   giantswarm/velero-app:
     category: Playground Apps
 

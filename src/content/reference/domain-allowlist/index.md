@@ -13,8 +13,6 @@ user_questions:
   - What domains do Giant Swarm clusters need access to?
 ---
 
-# External Domains
-
 Below is a list of the external domains we require access to for our clusters to function.
 
 - alpinelinux.org
@@ -71,8 +69,8 @@ Below is a list of the external domains we require access to for our clusters to
     - Monitoring and crash reporting for `happa`.
 - `api.opsgenie.com`
     - Opsgenie's API is used to send alerts.
-- `gitlab.com`
-    - Grafana may download plugins from repositories hosted by Gitlab.
+- `grafana.com`
+    - Grafana may download plugins from the Grafana plugin registry.
 - `prometheus-us-central1.grafana.net`
     - Some metrics are pushed to our hosted Grafana tenant.
 - `vault.operations.giantswarm.io`
@@ -86,3 +84,7 @@ These domains are only required for on-premise installations.
     - domains:
         - `api.cloudflare.com`
     - cert-manager may create ACME challenge DNS records.
+- api.mailgun.net
+    - domains:
+        - `api.mailgun.net`
+    - This is the mail service we use to send the invites for our Rest API user accounts.

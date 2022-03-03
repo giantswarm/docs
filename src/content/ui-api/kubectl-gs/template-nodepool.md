@@ -8,29 +8,42 @@ menu:
     parent: uiapi-kubectlgs
 aliases:
   - /reference/kubectl-gs/template-nodepool/
-last_review_date: 2021-07-08
+last_review_date: 2021-11-24
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I create a node pool manifest for the Management API?
 ---
 
-# `kubectl gs template nodepool`
+The `template nodepool` command allows to create [node pools]({{< relref "/advanced/node-pools" >}}), which are groups of worker nodes in a cluster sharing common configuration. The command creates a manifest for the custom resources that define a node pool. These are then meant to be applied to the management cluster, e. g. via `kubectl apply`.
 
-Node pools are groups of worker nodes sharing common configuration. In terms of custom resources they consist of custom resources of type
+The resulting resources depend on the provider, set via the `--provider` flag.
 
-The outcome depends on the provider, set via the `--provider` flag:
-
-For AWS (`--provider aws`):
+{{< tabs >}}
+{{< tab id="flags-aws" title="AWS">}}
 
 - [`MachineDeployment`]({{< relref "/ui-api/management-api/crd/machinedeployments.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1alpha2`)
 - [`AWSMachineDeployment`]({{< relref "/ui-api/management-api/crd/awsmachinedeployments.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha2`)
 
-For Azure (`--provider azure`):
+{{< /tab >}}
+{{< tab id="flags-azure" title="Azure">}}
 
-- [`MachinePool`]({{< relref "/ui-api/management-api/crd/machinepools.exp.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1alpha3`)
+- [`MachinePool`]({{< relref "/ui-api/management-api/crd/machinepools.exp.cluster.x-k8s.io.md" >}}) (API version `exp.cluster.x-k8s.io/v1alpha3`)
 - [`AzureMachinePool`]({{< relref "/ui-api/management-api/crd/azuremachinepools.exp.infrastructure.cluster.x-k8s.io.md" >}}) (API version `exp.infrastructure.cluster.x-k8s.io/v1alpha3`)
 - [`Spark`]({{< relref "/ui-api/management-api/crd/sparks.core.giantswarm.io.md" >}}) (API version `core.giantswarm.io/v1alpha1`)
+
+{{< /tab >}}
+{{< tab id="flags-capz" title="Cluster API on Azure">}}
+
+We also support creating clusters on Azure using ClusterAPI by selecting our `v20.0.0-alpha1` release  (`--provider azure --release v20.0.0-alpha1`).
+Please be aware that this is an early alpha release. Clusters created using this release won't be monitored by GiantSwarm, and they won't be able to be upgraded to newer stable releases.
+
+- [`MachinePool`]({{< relref "/ui-api/management-api/crd/machinepools.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1beta1`)
+- [`AzureMachinePool`]({{< relref "/ui-api/management-api/crd/azuremachinepools.infrastructure.cluster.x-k8s.io.md" >}}) (API version `infrastructure.cluster.x-k8s.io/v1beta1`)
+- [`KubeadmConfig`]({{< relref "/ui-api/management-api/crd/kubeadmconfigs.bootstrap.cluster.x-k8s.io.md" >}}) (API version `bootstrap.cluster.x-k8s.io/v1beta1`)
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Usage
 
@@ -50,6 +63,7 @@ Here are the supported flags:
 - `--nodes-min` - minimum number of worker nodes for the node pool. (default 3)
 - `--output` - Sets a file path to write the output to. If not set, standard output will be used.
 - `--organization` - Name of the organization owning the cluster.
+- `--release` - The workload cluster release version.
 
 ### AWS specific
 
@@ -65,65 +79,89 @@ Here are the supported flags:
 - `--azure-spot-vms` - Whether to use spot VMs for this node pool (defaults to false which means not to use spot VMs).
 - `--azure-spot-vms-max-price` - Max hourly price in USD to pay for one spot VM. If the current price for the VM is exceeded, the VM is deleted. If not set, the on-demand price for the same machine size is used as limit.
 
-## Example
+## Examples
+
+{{< tabs >}}
+{{< tab id="command-examples-aws" title="AWS">}}
 
 ```nohighlight
 kubectl gs template nodepool \
   --provider aws \
+  --organization acme \
   --cluster-name a1b2c \
   --description "General purpose" \
   --availability-zones eu-central-1a \
-  --organization acme \
   --aws-instance-type m5.4xlarge
 ```
+
+{{< /tab >}}
+{{< tab id="command-examples-azure" title="Azure">}}
+
+```nohighlight
+kubectl gs template nodepool \
+  --provider azure \
+  --organization acme \
+  --cluster-name a1b2c \
+  --description "General purpose" \
+  --release 16.0.2
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Output
 
 The above example command would generate the following output:
 
+{{< tabs >}}
+{{< tab id="command-output-aws" title="AWS">}}
+
 ```yaml
-apiVersion: cluster.x-k8s.io/v1alpha2
+apiVersion: cluster.x-k8s.io/v1alpha3
 kind: MachineDeployment
 metadata:
   annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/reference/cp-k8s-api/machinedeployments.cluster.x-k8s.io
+    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/machinedeployments.cluster.x-k8s.io/
   creationTimestamp: null
   labels:
     cluster-operator.giantswarm.io/version: ""
+    cluster.x-k8s.io/cluster-name: a1b2c
     giantswarm.io/cluster: a1b2c
-    giantswarm.io/machine-deployment: fo2xh
+    giantswarm.io/machine-deployment: p3a9q
     giantswarm.io/organization: acme
     release.giantswarm.io/version: ""
-  name: fo2xh
-  namespace: default
+  name: p3a9q
+  namespace: org-acme
 spec:
+  clusterName: a1b2c
   selector: {}
   template:
     metadata: {}
     spec:
       bootstrap: {}
+      clusterName: a1b2c
       infrastructureRef:
-        apiVersion: infrastructure.giantswarm.io/v1alpha2
+        apiVersion: infrastructure.giantswarm.io/v1alpha3
         kind: AWSMachineDeployment
-        name: fo2xh
-        namespace: default
-      metadata: {}
+        name: p3a9q
+        namespace: org-acme
 status: {}
 ---
-apiVersion: infrastructure.giantswarm.io/v1alpha2
+apiVersion: infrastructure.giantswarm.io/v1alpha3
 kind: AWSMachineDeployment
 metadata:
   annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/reference/cp-k8s-api/awsmachinedeployments.infrastructure.giantswarm.io
+    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/awsmachinedeployments.infrastructure.giantswarm.io/
   creationTimestamp: null
   labels:
     aws-operator.giantswarm.io/version: ""
+    cluster.x-k8s.io/cluster-name: a1b2c
     giantswarm.io/cluster: a1b2c
-    giantswarm.io/machine-deployment: fo2xh
+    giantswarm.io/machine-deployment: p3a9q
     giantswarm.io/organization: acme
     release.giantswarm.io/version: ""
-  name: fo2xh
-  namespace: default
+  name: p3a9q
+  namespace: org-acme
 spec:
   nodePool:
     description: General purpose
@@ -146,3 +184,94 @@ status:
   provider:
     worker: {}
 ```
+
+{{< /tab >}}
+{{< tab id="command-output-azure" title="Azure">}}
+
+```yaml
+apiVersion: exp.infrastructure.cluster.x-k8s.io/v1alpha3
+kind: AzureMachinePool
+metadata:
+  creationTimestamp: null
+  labels:
+    cluster.x-k8s.io/cluster-name: a1c2b
+    giantswarm.io/cluster: a1c2b
+    giantswarm.io/machine-pool: bm44c
+    giantswarm.io/organization: giantswarm
+  name: bm44c
+  namespace: org-giantswarm
+spec:
+  location: ""
+  template:
+    osDisk:
+      diskSizeGB: 0
+      managedDisk:
+        storageAccountType: ""
+      osType: ""
+    sshPublicKey: ""
+    vmSize: Standard_D4s_v3
+status:
+  ready: false
+  replicas: 0
+  version: ""
+---
+apiVersion: exp.cluster.x-k8s.io/v1alpha3
+kind: MachinePool
+metadata:
+  annotations:
+    cluster.k8s.io/cluster-api-autoscaler-node-group-max-size: "10"
+    cluster.k8s.io/cluster-api-autoscaler-node-group-min-size: "3"
+    machine-pool.giantswarm.io/name: General purpose
+  creationTimestamp: null
+  labels:
+    cluster.x-k8s.io/cluster-name: a1c2b
+    giantswarm.io/cluster: a1c2b
+    giantswarm.io/machine-pool: bm44c
+    giantswarm.io/organization: giantswarm
+  name: bm44c
+  namespace: org-giantswarm
+spec:
+  clusterName: a1c2b
+  replicas: 3
+  template:
+    metadata: {}
+    spec:
+      bootstrap:
+        configRef:
+          apiVersion: core.giantswarm.io/v1alpha1
+          kind: Spark
+          name: bm44c
+          namespace: org-giantswarm
+      clusterName: a1c2b
+      infrastructureRef:
+        apiVersion: exp.infrastructure.cluster.x-k8s.io/v1alpha3
+        kind: AzureMachinePool
+        name: bm44c
+        namespace: org-giantswarm
+status:
+  bootstrapReady: false
+  infrastructureReady: false
+  replicas: 0
+---
+apiVersion: core.giantswarm.io/v1alpha1
+kind: Spark
+metadata:
+  creationTimestamp: null
+  labels:
+    cluster.x-k8s.io/cluster-name: a1c2b
+    giantswarm.io/cluster: a1c2b
+  name: bm44c
+  namespace: org-giantswarm
+spec: {}
+status:
+  dataSecretName: ""
+  failureMessage: ""
+  failureReason: ""
+  ready: false
+  verification:
+    algorithm: ""
+    hash: ""
+```
+
+{{< /tab >}}
+{{< /tabs >}}

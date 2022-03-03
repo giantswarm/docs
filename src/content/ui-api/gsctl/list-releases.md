@@ -15,8 +15,6 @@ user_questions:
 last_review_date: 2021-01-01
 ---
 
-# `gsctl list releases`
-
 {{% gsctl_deprecation_disclaimer %}}
 
 The `gsctl list releases` command shows all workload cluster releases available in an installation.
