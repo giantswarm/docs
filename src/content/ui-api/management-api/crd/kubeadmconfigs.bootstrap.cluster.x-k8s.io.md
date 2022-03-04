@@ -3061,11 +3061,6 @@ source_repository_ref: v5.0.0
 
 </div>
 
-<div class="property-description">
-<p>LockPassword specifies if password login should be disabled</p>
-
-</div>
-
 </div>
 </div>
 

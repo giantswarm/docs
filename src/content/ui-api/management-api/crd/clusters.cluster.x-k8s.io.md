@@ -472,7 +472,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha2-.status.apiEndpoints[*]">.status.apiEndpoints[*]</h3>
 </div>
@@ -497,7 +497,7 @@ spec:
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-<span class="property-required">Required</span>
+
 </div>
 
 <div class="property-description">
