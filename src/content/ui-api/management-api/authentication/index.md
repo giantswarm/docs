@@ -121,7 +121,7 @@ Let's go into details for the most relevant properties (also called "claims") of
 | `name` | Friendly name of the authenticated user. |
 | `preferred_username` | Name to use as an identifier, as an alternative to the user's email address. |
 
-## Authenticating for programmatic access {#programmatic-access}
+## Authenticating for programmatic access {#service-auth}
 
 For programmatic access, for example from CI/CD pipelines, you should not rely on the above authentication mechanism. Depending on your use case, follow one of the below.
 
@@ -197,9 +197,9 @@ EOF
 kubectl --kubeconfig kubeconfig cluster-info
 ```
 
-### Remote access to the Workload Cluster {#remote-wc}
+### Remote access to the workload cluster {#remote-wc}
 
-Workload Clusters rely on the [TokenRequest API](https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/token-request-v1/#create-create-token-of-a-serviceaccount) for authentication, so the steps from the previous paragraph will not work against them. We strongly encourage you to use the `kubectl-gs` plugin and [client certificate login with a self-contained kubeconfig](https://docs.giantswarm.io/ui-api/kubectl-gs/login/#wc-client-cert-automation) instead.
+Workload clusters rely on the [TokenRequest API](https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/token-request-v1/#create-create-token-of-a-serviceaccount) for authentication, so the steps from the previous paragraph will not work against them. We strongly encourage you to use the `kubectl-gs` plugin and [client certificate login with a self-contained kubeconfig]({{< relref "/ui-api/kubectl-gs/login/#wc-client-cert-automation" >}}) instead.
 
 ### Runners inside a cluster {#inside-runner}
 
