@@ -801,7 +801,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.networking.dnsDomain">.spec.clusterConfiguration.networking.dnsDomain</h3>
+<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.dns.type">.spec.clusterConfiguration.dns.type</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
