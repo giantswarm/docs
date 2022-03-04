@@ -13,8 +13,6 @@ user_questions:
   - How can I customize the public IP address for egress traffic on Azure?
 ---
 
-# Setting an egress IP address on Azure
-
 Giant Swarm's workload clusters on Azure use [NAT gateways](https://docs.microsoft.com/en-us/azure/virtual-network/nat-gateway/nat-overview) to provide internet access to worker nodes.
 
 By default, a new dedicated [public IPv4 address](https://docs.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-addresses) is created during the workload cluster setup process to be used as the public
