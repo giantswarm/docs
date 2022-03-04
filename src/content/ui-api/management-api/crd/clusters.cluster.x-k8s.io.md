@@ -718,7 +718,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">integer</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -728,7 +728,6 @@ spec:
 </div>
 
 </div>
-
 </div>
 
 <div class="property depth-3">

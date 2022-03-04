@@ -16,7 +16,6 @@ crd:
   versions:
     - v1alpha3
     - v1alpha4
-    - v1beta1
   topics:
     - workloadcluster
   providers:
@@ -49,7 +48,7 @@ source_repository_ref: v5.0.0
 <dt class="scope">Scope:</dt>
 <dd class="scope">Namespaced</dd>
 <dt class="versions">Versions:</dt>
-<dd class="versions"><a class="version" href="#v1alpha3" title="Show schema for version v1alpha3">v1alpha3</a><a class="version" href="#v1alpha4" title="Show schema for version v1alpha4">v1alpha4</a><a class="version" href="#v1beta1" title="Show schema for version v1beta1">v1beta1</a></dd>
+<dd class="versions"><a class="version" href="#v1alpha3" title="Show schema for version v1alpha3">v1alpha3</a><a class="version" href="#v1alpha4" title="Show schema for version v1alpha4">v1alpha4</a></dd>
 </dl>
 
 
@@ -119,6 +118,24 @@ source_repository_ref: v5.0.0
 <div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec">.spec</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>MachineDeploymentSpec defines the desired state of MachineDeployment.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.clusterName">.spec.clusterName</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2470,7 +2487,7 @@ source_repository_ref: v5.0.0
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-<span class="property-required">Required</span>
+
 </div>
 
 <div class="property-description">
