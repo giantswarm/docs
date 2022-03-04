@@ -1,6 +1,6 @@
 ---
 linkTitle: Usage data recording
-title: Usage data recording in our web interface
+title: Usage data recording in the web interface
 description: Our goal is to provide a snappy and bug-free experience to you when using our web interface. To achieve that goal, we collect some usage data. Here we explain in detail what we collect and how.
 weight: 1000
 menu:
@@ -15,8 +15,6 @@ user_questions:
   - How is Giant Swarm treating usage data recorded in the web UI?
 last_review_date: 2021-01-01
 ---
-
-# Usage data recording in our web interface
 
 In general, when using the Giant Swarm web interface, usage data is collected on these levels:
 

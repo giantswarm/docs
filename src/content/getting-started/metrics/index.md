@@ -1,6 +1,6 @@
 ---
 linkTitle: Basic metrics
-title: Getting Basic Metrics in your Cluster
+title: Metrics in your clusters
 description: Recipe to enable a core metrics solution running on your Kubernetes cluster.
 weight: 30
 menu:
@@ -14,8 +14,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
 last_review_date: 2021-01-01
 ---
-
-# Metrics in Kubernetes
 
 Getting core metrics like CPU and Memory usage of resources in your cluster is important not only for your own monitoring purposes, but also for extended functionality like horizontal Pod autoscaling.
 

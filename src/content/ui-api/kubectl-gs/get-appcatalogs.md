@@ -14,8 +14,6 @@ user_questions:
   - What is the replacement for kubectl gs get appcatalogs?
 ---
 
-# `kubectl gs get appcatalogs`
-
 This command is replaced by  [`kubectl gs get catalogs`]({{< relref "/ui-api/kubectl-gs/get-catalogs" >}}).
 
 The Catalog CRD is namespace scoped and replaces the [AppCatalog]({{< relref "/ui-api/management-api/crd/appcatalogs.application.giantswarm.io.md" >}})

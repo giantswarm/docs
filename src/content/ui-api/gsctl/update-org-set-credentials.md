@@ -15,8 +15,6 @@ user_questions:
 last_review_date: 2021-01-01
 ---
 
-# `update organization set-credentials`
-
 {{% gsctl_deprecation_disclaimer %}}
 
 Giant Swarm allows you to run clusters in your own cloud provider account/subscription. We refer to this as [multi-account functionality]({{< relref "/advanced/multi-account" >}}). As a prerequisite, the organization that should own the clusters has to be prepared with cloud provider credentials.

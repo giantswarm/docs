@@ -1,6 +1,6 @@
 ---
 linkTitle: Overview
-title: Details on Kubernetes on Giant Swarm
+title: Running Kubernetes on Giant Swarm
 description: Here you learn how we set up things for you and what we manage, so you don't have to.
 weight: 10
 menu:
@@ -16,8 +16,6 @@ aliases:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
-
-# Running Kubernetes on Giant Swarm
 
 With Giant Swarm you get fully-managed Kubernetes clusters, which you can then use to deploy your containers as you see fit. You have full admin rights to your clusters through their API, so you can change anything that is accessible through the Kubernetes API. Changes that require configuration of the Kubernetes components themselves (e.g. starting the API server or kubelets with specific arguments) need to be set by the Giant Swarm Ops team. If you have specific needs or feedback, don't hesitate to [get in touch](mailto:support@giantswarm.io).
 
