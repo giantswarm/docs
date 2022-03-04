@@ -121,26 +121,26 @@ Let's go into details for the most relevant properties (also called "claims") of
 | `name` | Friendly name of the authenticated user. |
 | `preferred_username` | Name to use as an identifier, as an alternative to the user's email address. |
 
-## Authenticating for programmatic access {#service-auth}
+## Authenticating for programmatic access {#programmatic-access}
 
-For programmatic access, for example from CI/CD pipelines, you should not rely on the above authentication mechanism. Depending on your use case, you may follow one of the below scenarios.
+For programmatic access, for example from CI/CD pipelines, you should not rely on the above authentication mechanism. Depending on your use case, follow one of the below.
 
 ### Remote access to the Management Cluster {#remote-mc}
 
-Each Giant Swarm installation provides a service account named `automation` in the `default` namespace that may be used for creating a self-contained `kubeconfig` file. **Note however**, this account comes with a quite powerful set of permissions, thus **we strongly recommend to create a specific service account for each application**, binding it to specific roles granting only the required permissions in the required namespaces.
+Each Giant Swarm installation provides a service account named `automation` in the `default` namespace that may be used for creating a self-contained `kubeconfig` file. **Note however**, this account comes with a powerful set of permissions, thus **we strongly recommend you create a specific service account for each application**, binding it to specific roles granting only the required permissions in the required namespaces.
 
-Regardless of service account you decide to use, and assuming you are currently logged in to the right installation, you can utilize the below instruction to create a config file.
+Regardless of which service account you decide to use. From the management cluster, you can utilize the step below to create a config file.
 
 1. Export the Service Account name:
 
 ```nohighlight
-SANAME=automation
+SA_NAME=automation
 ```
 
 2. Find Kubernetes Secret associated with the service account:
 
 ```nohighlight
-SECRET=$(kubectl get sa $SANAME -o jsonpath='{.secrets[0].name}')
+SECRET=$(kubectl get sa $SA_NAME -o jsonpath='{.secrets[0].name}')
 ```
 
 3. Find the service account's token:
@@ -152,19 +152,19 @@ TOKEN=$(kubectl get secret $SECRET -o jsonpath='{.data.token}' | base64 --decode
 4. Find Kubernetes CA certificate:
 
 ```nohighlight
-CACERT=$(kubectl get secret $SECRET -o jsonpath='{.data.ca\.crt}')
+CA_CERT=$(kubectl get secret $SECRET -o jsonpath='{.data.ca\.crt}')
 ```
 
 5. Grab installation's API endpoint:
 
 ```nohighlight
-APIURL=$(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')
+API_URL=$(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')
 ```
 
 6. Grab installation's name:
 
 ```nohighlight
-CODENAME=$(kubectl config view --minify -o jsonpath='{.clusters[0].name}')
+MC_NAME=$(kubectl config view --minify -o jsonpath='{.clusters[0].name}')
 ```
 
 7. Generate kubectl configuration:
@@ -174,20 +174,20 @@ cat <<EOF > kubeconfig
 apiVersion: v1
 kind: Config
 clusters:
-  - name: $CODENAME
+  - name: $MC_NAME
     cluster:
-      certificate-authority-data: $CACERT
-      server: $APIURL
+      certificate-authority-data: $CA_CERT
+      server: $API_URL
 users:
-  - name: $SANAME
+  - name: $SA_NAME
     user:
       token: $TOKEN
-current-context: $CODENAME
+current-context: $MC_NAME
 contexts:
 - context:
-    cluster: $CODENAME
-    user: $SANAME
-  name: $CODENAME
+    cluster: $MC_NAME
+    user: $SA_NAME
+  name: $MC_NAME
 EOF
 ```
 
@@ -199,11 +199,14 @@ kubectl --kubeconfig kubeconfig cluster-info
 
 ### Remote access to the Workload Cluster {#remote-wc}
 
-Workload Clusters relies on the [TokenRequest API](https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/token-request-v1/#create-create-token-of-a-serviceaccount) for authentication, so instruction from the previous paragraph will not work against them. We strongly encourage you to use the `kubectl-gs` plugin and [client certificate login with a self-contained kubeconfig](https://docs.giantswarm.io/ui-api/kubectl-gs/login/#wc-client-cert-automation) instead.
+Workload Clusters rely on the [TokenRequest API](https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/token-request-v1/#create-create-token-of-a-serviceaccount) for authentication, so the steps from the previous paragraph will not work against them. We strongly encourage you to use the `kubectl-gs` plugin and [client certificate login with a self-contained kubeconfig](https://docs.giantswarm.io/ui-api/kubectl-gs/login/#wc-client-cert-automation) instead.
 
 ### Runners inside a cluster {#inside-runner}
 
-When you deploy any form of automation (e.g. runners) inside a cluster that is intended to perform work against this cluster, then we strongly recommend using [service accounts](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/) directly. Please refer to your automation provider documentation for finding the right configuration steps.
+When you deploy any form of automation (e.g. CI/CD system runners) inside a cluster that access the cluster, we strongly recommend using [service accounts](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/) directly. Please refer to your automation provider documentation for finding the right configuration steps. See examples for:
+
+- [Gitlab CI/CD runners](https://docs.gitlab.com/runner/executors/kubernetes.html#configuring-executor-service-account)
+- [Jenkins Kubernetes plugin](https://plugins.jenkins.io/kubernetes/#plugin-content-pod-template)
 
 ## Single sign-on requirements {#sso-requirements}
 
