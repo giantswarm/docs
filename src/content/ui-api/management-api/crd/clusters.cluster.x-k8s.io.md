@@ -773,6 +773,24 @@ spec:
 </div>
 </div>
 
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.conditions[*].lastTransitionTime">.status.conditions[*].lastTransitionTime</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable.</p>
+
+</div>
+
+</div>
+</div>
+
 <div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.clusterNetwork">.spec.clusterNetwork</h3>
