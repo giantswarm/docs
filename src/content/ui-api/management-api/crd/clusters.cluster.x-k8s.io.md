@@ -2095,12 +2095,12 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">boolean</span>
 
 </div>
 
 <div class="property-description">
-<p>FailureDomains is a slice of failure domain objects synced from the infrastructure provider.</p>
+<p>ControlPlaneReady defines if the control plane is ready.</p>
 
 </div>
 
@@ -2113,12 +2113,12 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
 <div class="property-description">
-<p>FailureMessage indicates that there is a fatal problem reconciling the state, and will be set to a descriptive error message.</p>
+<p>FailureDomains is a slice of failure domain objects synced from the infrastructure provider.</p>
 
 </div>
 
@@ -2136,7 +2136,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>FailureReason indicates that there is a fatal problem reconciling the state, and will be set to a token value suitable for programmatic interpretation.</p>
+<p>FailureMessage indicates that there is a fatal problem reconciling the state, and will be set to a descriptive error message.</p>
 
 </div>
 
@@ -2146,6 +2146,24 @@ spec:
 <div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.status.failureReason">.status.failureReason</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>FailureReason indicates that there is a fatal problem reconciling the state, and will be set to a token value suitable for programmatic interpretation.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status.infrastructureReady">.status.infrastructureReady</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2163,7 +2181,7 @@ spec:
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.status.infrastructureReady">.status.infrastructureReady</h3>
+<h3 class="property-path" id="v1alpha4-.status.observedGeneration">.status.observedGeneration</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2181,7 +2199,7 @@ spec:
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.status.observedGeneration">.status.observedGeneration</h3>
+<h3 class="property-path" id="v1alpha4-.status.phase">.status.phase</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2199,48 +2217,6 @@ spec:
 
 
 
-
-
-</div>
-
-<div class="crd-schema-version">
-<h2 id="v1beta1">Version v1beta1</h2>
-
-
-
-<h3 id="property-details-v1beta1">Properties</h3>
-
-
-<div class="property depth-0">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.status.phase">.status.phase</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources</a></p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-0">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.kind">.kind</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</a></p>
 
 
 </div>
