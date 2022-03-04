@@ -144,6 +144,24 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
+<p>MachineDeploymentSpec defines the desired state of MachineDeployment.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.clusterName">.spec.clusterName</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
 <p>ClusterName is the name of the Cluster this object belongs to.</p>
 
 </div>
