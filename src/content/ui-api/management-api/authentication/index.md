@@ -203,10 +203,7 @@ Workload Clusters rely on the [TokenRequest API](https://kubernetes.io/docs/refe
 
 ### Runners inside a cluster {#inside-runner}
 
-When you deploy any form of automation (e.g. CI/CD system runners) inside a cluster that access the cluster, we strongly recommend using [service accounts](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/) directly. Please refer to your automation provider documentation for finding the right configuration steps. See examples for:
-
-- [Gitlab CI/CD runners](https://docs.gitlab.com/runner/executors/kubernetes.html#configuring-executor-service-account)
-- [Jenkins Kubernetes plugin](https://plugins.jenkins.io/kubernetes/#plugin-content-pod-template)
+When you deploy any form of automation (e.g. CI/CD runners) inside a cluster that access the cluster, we strongly recommend using [service accounts](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/) directly. Please refer to your automation provider documentation for finding the right configuration steps.
 
 ## Single sign-on requirements {#sso-requirements}
 
