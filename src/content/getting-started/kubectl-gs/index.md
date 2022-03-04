@@ -151,7 +151,7 @@ For instance, we can template a cluster with
 ```bash
 ➜  kubectl gs template cluster \
   --provider=azure \
-  --organization=ista-training \
+  --organization=giantswarm \
   --release=16.1.2 \
   > cluster.yaml 
 ```
@@ -165,7 +165,7 @@ We can also template a node pool to be attached to this cluster:
   --provider=azure \
   --cluster-name=${COPY_CLUSTER_NAME_FROM_cluster.yaml} \
   --description="Node pool for previously created cluster" \
-  --organization=ista-training \
+  --organization=giantswarm \
   --release=16.1.2 \
   > nodepool.yaml
 ```
