@@ -726,6 +726,11 @@ spec:
 
 </div>
 
+<div class="property-description">
+<p>Condition defines an observation of a Cluster API resource operational state.</p>
+
+</div>
+
 </div>
 </div>
 
