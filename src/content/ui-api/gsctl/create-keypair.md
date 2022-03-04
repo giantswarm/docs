@@ -15,8 +15,6 @@ user_questions:
 last_review_date: 2021-01-01
 ---
 
-# `gsctl create keypair`
-
 {{% gsctl_deprecation_disclaimer %}}
 
 The `gsctl create keypair` command creates a key pair and stores the related files in your certificate folder.

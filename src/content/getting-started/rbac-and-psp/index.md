@@ -21,8 +21,6 @@ owner:
 last_review_date: 2021-01-01
 ---
 
-# Securing your Cluster with RBAC and PSP
-
 Two of the most central mechanisms to secure your cluster in Kubernetes are Role Based Access Control (RBAC) and Pod Security Policies (PSP). Together, they allow you to create fine-grained roles and policies to manage access control for users and software running on your cluster. Both are enabled by default on Giant Swarm clusters.
 
 ## Role based access control

@@ -15,8 +15,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 ---
 
-# The Management API
-
 ## What it is
 
 In a Giant Swarm installation, the [management cluster]({{< relref "/general/management-clusters/index.md" >}}) is a dedicated Kubernetes cluster that runs all the operational and monitoring workloads which are needed to create and manage the workload clusters. These are the clusters you create to run your actual workloads.

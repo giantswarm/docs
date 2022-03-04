@@ -17,8 +17,6 @@ owner:
 last_review_date: 2021-01-01
 ---
 
-# `gsctl create kubeconfig`
-
 {{% gsctl_deprecation_disclaimer %}}
 
 The `gsctl create kubeconfig` command is used to configure [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/) for access to
