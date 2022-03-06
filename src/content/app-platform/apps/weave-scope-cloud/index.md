@@ -15,8 +15,6 @@ owner:
 last_review_date: 2021-01-01
 ---
 
-# Setting up Weave Scope or Weave Cloud
-
 Weave Scope is a UI that lets you see and interact with distributed applications and their containers in your cluster in real time. Weave Cloud is a hosted version of Weave Scope.
 
 ## Weave Scope

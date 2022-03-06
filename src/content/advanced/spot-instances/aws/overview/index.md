@@ -16,8 +16,6 @@ owner:
 last_review_date: 2021-01-01
 ---
 
-# Overview on spot instances on AWS
-
 {{< platform_support_table aws="ga=v11.2.0" >}}
 
 ## Introduction

@@ -15,8 +15,6 @@ owner:
 last_review_date: 2021-01-01
 ---
 
-# Fine-tuning upgrade disruption on AWS
-
 {{< platform_support_table aws="alpha=v12.7.0" >}}
 
 ## Introduction
