@@ -830,7 +830,6 @@ spec:
 </div>
 
 </div>
-
 </div>
 
 <div class="property depth-3">
@@ -848,7 +847,6 @@ spec:
 
 </div>
 
-</div>
 </div>
 
 <div class="property depth-1">
@@ -903,7 +901,6 @@ spec:
 </div>
 
 </div>
-</div>
 
 <div class="property depth-1">
 <div class="property-header">
@@ -911,7 +908,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -1102,7 +1099,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -1132,7 +1129,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.clusterNetwork.apiServerPort">.spec.clusterNetwork.apiServerPort</h3>
 </div>
@@ -1168,7 +1165,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.clusterNetwork.pods.cidrBlocks">.spec.clusterNetwork.pods.cidrBlocks</h3>
 </div>
@@ -1194,7 +1191,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.clusterNetwork.serviceDomain">.spec.clusterNetwork.serviceDomain</h3>
 </div>
@@ -1250,6 +1247,19 @@ spec:
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.controlPlaneEndpoint">.spec.controlPlaneEndpoint</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
 
 </div>
 
