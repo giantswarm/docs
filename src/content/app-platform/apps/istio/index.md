@@ -15,8 +15,6 @@ owner:
 last_review_date: 2021-01-01
 ---
 
-# How to deploy Istio in your Cluster
-
 After microservices have conquered the world, another dimension of concerns has arisen. The technology has allowed us to build distributed architectures thanks to tools like Kubernetes. Although the orchestrator helps us with the deployment and maintenance of our services, there are a bunch of other concerns we have to deal with. For example, most people use an insecure protocol to communicate their services. For that and many other reasons, service meshes have appeared with the goal of helping to manage these distributed scenarios.
 
 Istio is one of the main players in the arena of service meshes. It stands out because of the project maturity and the ease of adoption. Below we describe how it can be deployed in your cluster, emphasizing how to avoid common mistakes.

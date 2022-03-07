@@ -15,8 +15,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
 ---
 
-# Creating your own admission controller
-
 The Kubernetes API is amazing territory. Thanks to being built around the REST model, it gives us the possibility to manage all our workloads using HTTP requests. Tools like `kubectl` or `Kubernetes dashboard` take advantage of this, helping to manage the different resources. But the Kubernetes API is far more. Let's take a deeper look at how it is composed:
 
 ![API components](api_components.png)

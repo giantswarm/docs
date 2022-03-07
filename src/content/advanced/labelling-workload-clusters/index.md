@@ -16,8 +16,6 @@ owner:
 last_review_date: 2021-01-01
 ---
 
-# Labelling workload clusters
-
 {{< platform_support_table aws="ga=v10.0.0" azure="ga=v13.0.0" >}}
 
 ## Introduction
