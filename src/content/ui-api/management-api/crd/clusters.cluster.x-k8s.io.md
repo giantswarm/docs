@@ -2145,12 +2145,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>FailureDomains is a slice of failure domain objects synced from the infrastructure provider.</p>
+<span class="property-type">boolean</span>
 
 </div>
 
@@ -2299,11 +2294,7 @@ spec:
 
 </div>
 
-<div class="property-description">
-<p>FailureDomains is a slice of failure domain objects synced from the infrastructure provider.</p>
-
 </div>
-
 </div>
 
 <div class="property depth-0">
@@ -2360,7 +2351,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1beta1-.spec.clusterNetwork.pods">.spec.clusterNetwork.pods</h3>
 </div>
@@ -2368,7 +2359,6 @@ spec:
 <div class="property-meta">
 <span class="property-type">object</span>
 
-</div>
 </div>
 
 <div class="property-description">
@@ -2379,7 +2369,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1beta1-.spec.clusterNetwork.pods.cidrBlocks">.spec.clusterNetwork.pods.cidrBlocks</h3>
 </div>
@@ -2423,7 +2413,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1beta1-.spec.clusterNetwork.services">.spec.clusterNetwork.services</h3>
 </div>
@@ -2581,7 +2571,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -2617,7 +2607,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">string</span>
 
 </div>
 

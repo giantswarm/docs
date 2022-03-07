@@ -778,7 +778,7 @@ spec:
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.template.spec.bootstrap">.spec.template.spec.bootstrap</h3>
+<h3 class="property-path" id="v1alpha3-.spec.template.spec.bootstrap">.spec.template.spec.bootstrap</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
