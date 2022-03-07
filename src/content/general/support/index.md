@@ -60,3 +60,4 @@ Our support process is subject to change. As we continuously improve it we disco
 
 - [Giant Swarm Operation Layers]({{< relref "/security/operational-layers" >}})
 - [Giant Swarm Cluster Upgrades]({{< relref "/general/cluster-upgrades" >}})
+- [Giant Swarm Training Catalog]({{< relref "/general/training-catalog" >}})
