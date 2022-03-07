@@ -197,10 +197,6 @@ EOF
 kubectl --kubeconfig kubeconfig cluster-info
 ```
 
-### Remote access to the workload cluster {#remote-wc}
-
-Workload clusters rely on the [TokenRequest API](https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/token-request-v1/#create-create-token-of-a-serviceaccount) for authentication, so the steps from the previous paragraph will not work against them. We strongly encourage you to use the `kubectl-gs` plugin and [client certificate login with a self-contained kubeconfig]({{< relref "/ui-api/kubectl-gs/login.md#wc-client-cert-automation" >}}) instead.
-
 ### Runners inside a cluster {#inside-runner}
 
 When you deploy any form of automation (e.g. CI/CD runners) inside a cluster that access the cluster, we strongly recommend using [service accounts](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/) directly. Please refer to your automation provider documentation for finding the right configuration steps.
