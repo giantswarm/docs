@@ -1,6 +1,6 @@
 ---
 linkTitle: EBS volume troubleshooting
-title: Handling Impaired EBS Volumes
+title: Handling impaired EBS Volumes
 description: This guide will walk you through what happens to a node with impaired EBS volumes, and how to improve your workloads to handle them.
 weight: 10
 menu:
@@ -14,8 +14,6 @@ user_questions:
   - How can I deal with impaired EBS volumes in my AWS cluster?
 last_review_date: 2021-01-01
 ---
-
-# Handling Impaired EBS Volumes
 
 ## What happens when EBS Volumes are impaired
 

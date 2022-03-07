@@ -19,8 +19,6 @@ user_questions:
 last_review_date: 2021-09-01
 ---
 
-# Installing and running multiple NGINX ingress controllers
-
 NGINX ingress controller handles [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) resources, routing traffic from outside the Kubernetes cluster to services within the cluster.
 
 Starting with [NGINX IC v1.8.0](https://docs.giantswarm.io/changes/managed-apps/nginx-ingress-controller-app/v1.8.0/), one can install multiple NGINX ingress controllers in a Kubernetes cluster. The optional NGINX Ingress Controller can be [installed as an App on your cluster]({{< relref "/content/getting-started/ingress-controller/index.md" >}}).

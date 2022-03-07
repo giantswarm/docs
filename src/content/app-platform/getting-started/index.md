@@ -1,6 +1,6 @@
 ---
 linkTitle: Getting started
-title: Getting started with App Platform
+title: Getting started with the App Platform
 description: Guide to deploying apps using kubectl gs and the Giant Swarm Management API.
 weight: 20
 menu:
@@ -14,8 +14,6 @@ user_questions:
   - How can I configure an App CR?
   - How can I see which apps are available using the Management API?
 ---
-
-# Getting started with App Platform
 
 ## Overview
 
