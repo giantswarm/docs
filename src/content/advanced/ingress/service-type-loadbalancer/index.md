@@ -18,8 +18,6 @@ user_questions:
 last_review_date: 2021-09-01
 ---
 
-# Services of type LoadBalancer
-
 Next to using the default NGINX Ingress Controller, on cloud providers (currently AWS and Azure), you can expose services directly outside your cluster by using Services of type `LoadBalancer`.
 
 You can use this to [expose single Services](#service-of-type-lb) to the internet. It is also possible, to [install additional NGINX Ingress Controllers]({{< relref "/content/advanced/ingress/multi-nginx-ic/index.md" >}}) to expose a subset of your Services with a different Ingress Controller configuration.

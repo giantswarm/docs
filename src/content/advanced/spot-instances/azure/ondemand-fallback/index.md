@@ -16,8 +16,6 @@ owner:
 last_review_date: 2021-01-01
 ---
 
-# Using on-demand VMs as fall-back when spot VMs are unavailable on Azure
-
 {{< platform_support_table azure="ga=v14.1.0" >}}
 
 As of workload cluster release v{{% first_azure_spotinstances_version %}} for Azure, node pools can use [spot virtual machines]({{< relref "/advanced/spot-instances/azure/overview" >}}) (VMs). Users can select for each node pool whether nodes should be covered by spot VMs or by on-demand VMs respectively. It is also possible to create a node pool with a dynamic price going up to the price of standard VMs.

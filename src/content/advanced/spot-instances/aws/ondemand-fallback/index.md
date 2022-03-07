@@ -16,8 +16,6 @@ owner:
 last_review_date: 2021-01-01
 ---
 
-# Using on-demand instances as fall-back when spot instances are unavailable
-
 {{< platform_support_table aws="ga=v11.2.0" >}}
 
 As of workload cluster release v{{% first_aws_spotinstances_version %}} for AWS, node pools can use [spot instances]({{< relref "/advanced/spot-instances/aws/overview  " >}}). Users can select for each node pool which percentage of nodes should be covered by spot instances and by on-demand instances respectively. And users can define a base amount of on-demand instances that will be used, to ensure at least a certain amount of worker nodes are available at any time.

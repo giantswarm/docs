@@ -24,8 +24,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
-# Clusters over multiple availability zones
-
 {{< platform_support_table aws="ga" azure="ga" >}}
 
 ## Introduction
