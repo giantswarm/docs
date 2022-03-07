@@ -900,6 +900,11 @@ spec:
 
 </div>
 
+<div class="property-description">
+<p>FailureDomains is a slice of failure domain objects synced from the infrastructure provider.</p>
+
+</div>
+
 </div>
 
 <div class="property depth-1">
