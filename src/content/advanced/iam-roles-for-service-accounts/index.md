@@ -66,12 +66,12 @@ In oder to use the IAM role with a service account you need to create new AWS ro
         {
             "Effect": "Allow",
             "Principal": {
-                "Federated": "arn:aws:iam::$AWS_ACCOUNT:oidc-provider/s3-eu-west-1.amazonaws.com/$AWS_ACCOUNT-g8s-$CLUSTER_ID-oidc-pod-identity"
+                "Federated": "arn:aws:iam::AWS_ACCOUNT:oidc-provider/s3-eu-west-1.amazonaws.com/AWS_ACCOUNT-g8s-CLUSTER_ID-oidc-pod-identity"
             },
             "Action": "sts:AssumeRoleWithWebIdentity",
             "Condition": {
                 "StringEquals": {
-                    "s3-eu-west-1.amazonaws.com/$AWS_ACCOUNT-g8s-$CLUSTER_ID-oidc-pod-identity:sub": "system:serviceaccount:$NAMESPACE:$SA_NAME"
+                    "s3-eu-west-1.amazonaws.com/AWS_ACCOUNT-g8s-CLUSTER_ID-oidc-pod-identity:sub": "system:serviceaccount:NAMESPACE:SA_NAME"
                 }
             }
         }
@@ -80,10 +80,10 @@ In oder to use the IAM role with a service account you need to create new AWS ro
 ```
 
 You need to fill real values for these placeholders:
-* `$AWS_ACCOUNT` - aws account id, where is the cluster running
-* `$CLUSTER_ID` - cluster id
-* `$NAMESPACE` - Kubernetes namespace in cluster, where the pod and service account be used.
-* `$SA_NAME` - Name of the Kubernetes Service Account which wil be using by the pod.
+* `AWS_ACCOUNT` - aws account id, where is the cluster running
+* `CLUSTER_ID` - cluster id
+* `NAMESPACE` - Kubernetes namespace in cluster, where the pod and service account be used.
+* `SA_NAME` - Name of the Kubernetes Service Account which wil be using by the pod.
 
 ### Service account
 The service account has to be annotated with a full ARN of the IAM role, you can get the ARN of the role in AWS console, when you check role details.
