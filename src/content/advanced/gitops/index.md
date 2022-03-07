@@ -20,8 +20,6 @@ owner:
 last_review_date: 2022-01-24
 ---
 
-# Managing workload clusters with GitOps
-
 You can manage infrastructure and applications by utilizing FluxCD - a set of GitOps operators installed in Giant Swarm management clusters.
 
 ## What is GitOps

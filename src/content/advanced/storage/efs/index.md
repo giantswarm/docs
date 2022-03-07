@@ -1,6 +1,6 @@
 ---
 linkTitle: Amazon Elastic File System (EFS)
-title: Using Persistent Volumes on AWS with EFS
+title: Using persistent volumes on AWS with EFS
 description: Tutorial on how to use dynamically provisioned Persistent Volumes on a cluster running on Amazon Web Services with EFS
 weight: 30
 menu:
@@ -18,8 +18,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 last_review_date: 2021-01-01
 ---
-
-# Using persistent volumes on AWS with EFS
 
 If your cluster is running in the cloud on Amazon Web Services (AWS) the most common way to store data is using EBS volumes with the [dynamic provisioner](/guides/using-persistent-volumes-on-aws-with-ebs-csi-driver/). Sometimes EBS is not the optimal solution.
 

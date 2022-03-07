@@ -18,8 +18,6 @@ owner:
 last_review_date: 2021-01-01
 ---
 
-# Using persistent volumes with the EBS CSI driver on AWS
-
 The Container Storage Interface (CSI) has been promoted to general availability (GA) in Kubernetes v1.13 and is becoming the standard to replace the current Kubernetes `in-tree` storage plugin to handle volumes for different providers.
 
 The aws-ebs-csi-driver-app, offered via our [App Platform]({{< relref "/app-platform" >}}) in the Giant Swarm Playground catalog, provides a CSI interface to manage the lifecycle of Amazon EBS volumes.

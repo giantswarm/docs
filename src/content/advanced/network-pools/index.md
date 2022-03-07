@@ -18,8 +18,6 @@ owner:
 last_review_date: 2021-01-01
 ---
 
-# Network pools
-
 {{< platform_support_table aws="ga=v12.7.0" >}}
 
 ## Definition

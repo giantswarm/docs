@@ -12,7 +12,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I create a cluster manifest for the Management API?
-last_review_date: 2021-03-01
+last_review_date: 2021-03-04
 ---
 
 This command helps with creating a cluster by producing a manifest based on user input. This manifest can then optionally be modified and finally be applied to the Management API to create a cluster.
@@ -106,7 +106,6 @@ It supports the following flags:
 - `--cloud-config` - Name of the `cloud-config` secret which defines the credentials for the OpenStack project in which the cluster should be created. This must be created in the organization namespace before creating a cluster.
 - `--dns-nameservers` (optional) - A list of DNS nameservers to be used to resolve external names.
 - `--external-network-id` - UUID of the external network to be used. Only required if multiple external networks are available.
-- `--failure-domain` - Failure domain of worker nodes.
 - `--node-cidr` - CIDR defining the IP range of cluster nodes. When used, new network and subnet will be created.
 - `--network-name` (optional) - Name of existing network for the cluster. Can be used when `--node-cidr` is empty. 
 - `--subnet-name` (optional) - Name of existing subnet for the cluster. Can be used when `--node-cidr` is empty. 
@@ -126,6 +125,7 @@ It supports the following flags:
 - `--oidc-groups-claim` (optional) - This is the claim used to map the group identity of the user.
 - `--worker-boot-from-volume` - If true, worker machines will use a persistent root volume instead of an ephemeral volume.
 - `--worker-disk-size` - Size of root volumes attached to each worker node machine in gigabytes. Must be greater than or equal to the size of the node source image (`--worker-image`).
+- `--worker-failure-domain` - Failure domain of worker nodes.
 - `--worker-image` - Worker image name or root volume source UUID if --worker-boot-from-volume is set.
 - `--worker-machine-flavor` - Flavor (a.k.a. size) of the worker node machines.
 - `--worker-replicas` - Number of replicas in the primary worker node pool.

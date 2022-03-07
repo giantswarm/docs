@@ -25,8 +25,6 @@ user_questions:
  - How can I provide configuration values for apps?
 ---
 
-# App configuration reference
-
 Giant Swarm's [App Platform]({{< relref "/app-platform" >}}) allows you to easily install Apps across your entire
 fleet of clusters. We fully support [Helm](https://helm.sh/) as a general tool to deploy your applications as well as for our general App Catalog, which you can of course also use for your own applications by creating a new Catalog.
 
