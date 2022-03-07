@@ -2025,7 +2025,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-5">
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.spec.bootstrap.configRef.resourceVersion">.spec.template.spec.bootstrap.configRef.resourceVersion</h3>
 </div>
@@ -2097,7 +2097,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.spec.failureDomain">.spec.template.spec.failureDomain</h3>
 </div>
