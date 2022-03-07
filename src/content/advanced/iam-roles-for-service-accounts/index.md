@@ -47,6 +47,7 @@ kubectl annotate \
    awsclusters.infrastructure.giantswarm.io \
    abcl0 \
    alpha.aws.giantswarm.io/iam-roles-for-service-accounts=""
+```
 
 In order to apply the changes, rolling of the master nodes is required. Rolling of the nodes can be triggered either by an update or manually by terminating each node.
 
