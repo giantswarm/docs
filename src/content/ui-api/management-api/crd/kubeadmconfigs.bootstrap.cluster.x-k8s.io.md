@@ -1314,7 +1314,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-5">
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.diskSetup.filesystems[*].device">.spec.diskSetup.filesystems[*].device</h3>
 </div>
@@ -1549,12 +1549,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
-
-</div>
-
-<div class="property-description">
-<p>Files specifies extra files to be passed to user_data upon creation.</p>
+<span class="property-type">string</span>
 
 </div>
 
@@ -1584,7 +1579,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.files[*]">.spec.files[*]</h3>
 </div>
@@ -1692,14 +1687,14 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-5">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.files[*].encoding">.spec.files[*].encoding</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
@@ -1746,7 +1741,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-1">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.files[*].permissions">.spec.files[*].permissions</h3>
 </div>
@@ -1896,7 +1891,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -1928,7 +1923,7 @@ source_repository_ref: v5.0.0
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
@@ -1945,7 +1940,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -1994,7 +1989,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -2138,7 +2133,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -2222,18 +2217,13 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-1">
+<div class="property depth-5">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.initConfiguration.nodeRegistration.taints[*].value">.spec.initConfiguration.nodeRegistration.taints[*].value</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>JoinConfiguration is the kubeadm configuration for the join command</p>
+<span class="property-type">string</span>
 
 </div>
 
@@ -2263,13 +2253,13 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.apiVersion">.spec.joinConfiguration.apiVersion</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -2287,7 +2277,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -2323,8 +2313,8 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
+<span class="property-type">object</span>
+
 </div>
 
 <div class="property-description">
@@ -2377,8 +2367,8 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
-
+<span class="property-type">integer</span>
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
@@ -2389,7 +2379,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-4">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.discovery.bootstrapToken">.spec.joinConfiguration.discovery.bootstrapToken</h3>
 </div>
@@ -2498,7 +2488,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">boolean</span>
 <span class="property-required">Required</span>
 </div>
 
@@ -2535,7 +2525,7 @@ source_repository_ref: v5.0.0
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
@@ -2672,7 +2662,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-5">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.nodeRegistration.taints[*]">.spec.joinConfiguration.nodeRegistration.taints[*]</h3>
 </div>
@@ -2816,7 +2806,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.ntp.enabled">.spec.ntp.enabled</h3>
 </div>
@@ -2852,13 +2842,13 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.ntp.servers[*]">.spec.ntp.servers[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">array</span>
 
 </div>
 
@@ -3008,7 +2998,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -3062,7 +3052,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -5475,6 +5465,19 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.nodeRegistration.criSocket">.spec.initConfiguration.nodeRegistration.criSocket</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.initConfiguration.nodeRegistration.criSocket">.spec.initConfiguration.nodeRegistration.criSocket</h3>
 </div>
