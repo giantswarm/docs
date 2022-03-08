@@ -101,3 +101,6 @@ metadata:
 Once your pod is running with the configured service account, you should see a file in the pod called `/var/run/secrets/eks.amazonaws.com/serviceaccount/token`, which containts a JWT token with details of the role. 
 
 The pod should also have configured enviroment variables `AWS_WEB_IDENTITY_TOKEN_FILE` and `AWS_ROLE_ARN`.
+
+Check the pod using command `kubectl -n NAMESPACE get pod  POD_NAME -o yaml` and search for the enviroment variables or for the volume mounts.
+
