@@ -720,6 +720,11 @@ spec:
 
 </div>
 
+<div class="property-description">
+<p>ClusterStatus defines the observed state of Cluster.</p>
+
+</div>
+
 </div>
 </div>
 
