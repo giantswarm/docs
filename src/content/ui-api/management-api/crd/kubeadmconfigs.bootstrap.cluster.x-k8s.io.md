@@ -640,9 +640,27 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.dns.type">.spec.clusterConfiguration.dns.type</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Type defines the DNS add-on to be used</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.etcd.external">.spec.clusterConfiguration.etcd.external</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -660,7 +678,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.etcd.external">.spec.clusterConfiguration.etcd.external</h3>
+<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.etcd.external.caFile">.spec.clusterConfiguration.etcd.external.caFile</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -678,7 +696,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.etcd.external.caFile">.spec.clusterConfiguration.etcd.external.caFile</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd">.spec.clusterConfiguration.etcd</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -696,7 +714,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd">.spec.clusterConfiguration.etcd</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.external">.spec.clusterConfiguration.etcd.external</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -714,7 +732,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.external">.spec.clusterConfiguration.etcd.external</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.external.caFile">.spec.clusterConfiguration.etcd.external.caFile</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -732,11 +750,11 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.external.caFile">.spec.clusterConfiguration.etcd.external.caFile</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.external.endpoints">.spec.clusterConfiguration.etcd.external.endpoints</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">boolean</span>
 <span class="property-required">Required</span>
 </div>
 
@@ -745,7 +763,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.external.certFile">.spec.clusterConfiguration.etcd.external.certFile</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.external.endpoints[*]">.spec.clusterConfiguration.etcd.external.endpoints[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -763,42 +781,6 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.external.endpoints">.spec.clusterConfiguration.etcd.external.endpoints</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">boolean</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>Local provides configuration knobs for configuring the local etcd instance Local and External are mutually exclusive</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.external.endpoints[*]">.spec.clusterConfiguration.etcd.external.endpoints[*]</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>DataDir is the directory etcd will place its data. Defaults to &ldquo;/var/lib/etcd&rdquo;.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
 <h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.external.keyFile">.spec.clusterConfiguration.etcd.external.keyFile</h3>
 </div>
 <div class="property-body">
@@ -808,7 +790,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>ExtraArgs are extra arguments provided to the etcd binary when run inside a static pod.</p>
+<p>Local provides configuration knobs for configuring the local etcd instance Local and External are mutually exclusive</p>
 
 </div>
 
@@ -826,7 +808,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>ImageRepository sets the container registry to pull images from. if not set, the ImageRepository defined in ClusterConfiguration will be used instead.</p>
+<p>DataDir is the directory etcd will place its data. Defaults to &ldquo;/var/lib/etcd&rdquo;.</p>
 
 </div>
 
@@ -839,12 +821,12 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
 <div class="property-description">
-<p>ImageTag allows to specify a tag for the image. In case this value is set, kubeadm does not change automatically the version of the above components during upgrades.</p>
+<p>ExtraArgs are extra arguments provided to the etcd binary when run inside a static pod.</p>
 
 </div>
 
@@ -862,20 +844,25 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>PeerCertSANs sets extra Subject Alternative Names for the etcd peer signing cert.</p>
+<p>ImageRepository sets the container registry to pull images from. if not set, the ImageRepository defined in ClusterConfiguration will be used instead.</p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-5">
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.local.imageRepository">.spec.clusterConfiguration.etcd.local.imageRepository</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>ImageTag allows to specify a tag for the image. In case this value is set, kubeadm does not change automatically the version of the above components during upgrades.</p>
 
 </div>
 
@@ -893,14 +880,14 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>ServerCertSANs sets extra Subject Alternative Names for the etcd server signing cert.</p>
+<p>PeerCertSANs sets extra Subject Alternative Names for the etcd peer signing cert.</p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-1">
+<div class="property depth-5">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.local.peerCertSANs">.spec.clusterConfiguration.etcd.local.peerCertSANs</h3>
 </div>
@@ -919,12 +906,12 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">array</span>
 
 </div>
 
 <div class="property-description">
-<p>FeatureGates enabled by the user.</p>
+<p>ServerCertSANs sets extra Subject Alternative Names for the etcd server signing cert.</p>
 
 </div>
 
@@ -938,11 +925,6 @@ source_repository_ref: v5.0.0
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>ImageRepository sets the container registry to pull images from. If empty, <code>k8s.gcr.io</code> will be used by default; in case of kubernetes version is a CI build (kubernetes version starts with <code>ci/</code> or <code>ci-cross/</code>) <code>gcr.io/k8s-staging-ci-images</code> will be used as a default for control plane components and for kube-proxy, while <code>k8s.gcr.io</code> will be used for all the other images.</p>
 
 </div>
 
@@ -960,7 +942,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</a></p>
+<p>FeatureGates enabled by the user.</p>
 
 </div>
 
@@ -978,6 +960,42 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
+<p>ImageRepository sets the container registry to pull images from. If empty, <code>k8s.gcr.io</code> will be used by default; in case of kubernetes version is a CI build (kubernetes version starts with <code>ci/</code> or <code>ci-cross/</code>) <code>gcr.io/k8s-staging-ci-images</code> will be used as a default for control plane components and for kube-proxy, while <code>k8s.gcr.io</code> will be used for all the other images.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.featureGates">.spec.clusterConfiguration.featureGates</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.imageRepository">.spec.clusterConfiguration.imageRepository</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
 <p>KubernetesVersion is the target version of the control plane. NB: This value defaults to the Machine object spec.version</p>
 
 </div>
@@ -987,7 +1005,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.featureGates">.spec.clusterConfiguration.featureGates</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.kind">.spec.clusterConfiguration.kind</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1005,7 +1023,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.imageRepository">.spec.clusterConfiguration.imageRepository</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.kubernetesVersion">.spec.clusterConfiguration.kubernetesVersion</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1023,7 +1041,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.kind">.spec.clusterConfiguration.kind</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.networking">.spec.clusterConfiguration.networking</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1039,9 +1057,9 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-5">
+<div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.kubernetesVersion">.spec.clusterConfiguration.kubernetesVersion</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.networking.dnsDomain">.spec.clusterConfiguration.networking.dnsDomain</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1059,7 +1077,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.networking">.spec.clusterConfiguration.networking</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.networking.podSubnet">.spec.clusterConfiguration.networking.podSubnet</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1069,42 +1087,6 @@ source_repository_ref: v5.0.0
 
 <div class="property-description">
 <p>Scheduler contains extra settings for the scheduler control plane component</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.networking.dnsDomain">.spec.clusterConfiguration.networking.dnsDomain</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>ExtraArgs is an extra set of flags to pass to the control plane component. TODO: This is temporary and ideally we would like to switch all components to use ComponentConfig + ConfigMaps.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.networking.podSubnet">.spec.clusterConfiguration.networking.podSubnet</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">array</span>
-
-</div>
-
-<div class="property-description">
-<p>ExtraVolumes is an extra set of host volumes, mounted to the control plane component.</p>
 
 </div>
 
@@ -1122,7 +1104,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>HostPathMount contains elements describing volumes that are mounted from the host.</p>
+<p>ExtraArgs is an extra set of flags to pass to the control plane component. TODO: This is temporary and ideally we would like to switch all components to use ComponentConfig + ConfigMaps.</p>
 
 </div>
 
@@ -1135,30 +1117,30 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
+<span class="property-type">array</span>
+
 </div>
 
 <div class="property-description">
-<p>HostPath is the path in the host that will be mounted inside the pod.</p>
+<p>ExtraVolumes is an extra set of host volumes, mounted to the control plane component.</p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-5">
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.scheduler.extraArgs">.spec.clusterConfiguration.scheduler.extraArgs</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
+<span class="property-type">object</span>
+
 </div>
 
 <div class="property-description">
-<p>MountPath is the path inside the pod where hostPath will be mounted.</p>
+<p>HostPathMount contains elements describing volumes that are mounted from the host.</p>
 
 </div>
 
@@ -1176,7 +1158,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Name of the volume inside the pod template.</p>
+<p>HostPath is the path in the host that will be mounted inside the pod.</p>
 
 </div>
 
@@ -1186,6 +1168,42 @@ source_repository_ref: v5.0.0
 <div class="property depth-5">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.scheduler.extraVolumes[*]">.spec.clusterConfiguration.scheduler.extraVolumes[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>MountPath is the path inside the pod where hostPath will be mounted.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.scheduler.extraVolumes[*].hostPath">.spec.clusterConfiguration.scheduler.extraVolumes[*].hostPath</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Name of the volume inside the pod template.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.useHyperKubeImage">.spec.clusterConfiguration.useHyperKubeImage</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1203,7 +1221,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.scheduler.extraVolumes[*].hostPath">.spec.clusterConfiguration.scheduler.extraVolumes[*].hostPath</h3>
+<h3 class="property-path" id="v1alpha3-.spec.diskSetup">.spec.diskSetup</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1315,7 +1333,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">boolean</span>
 
 </div>
 
@@ -1327,13 +1345,18 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-5">
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.diskSetup.filesystems[*].extraOpts[*]">.spec.diskSetup.filesystems[*].extraOpts[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Partition specifies the partition to use. The valid options are: &ldquo;auto|any&rdquo;, &ldquo;auto&rdquo;, &ldquo;any&rdquo;, &ldquo;none&rdquo;, and <NUM>, where NUM is the actual partition number.</p>
 
 </div>
 
@@ -2913,6 +2936,7 @@ source_repository_ref: v5.0.0
 </div>
 
 </div>
+</div>
 
 <div class="property depth-1">
 <div class="property-header">
@@ -2929,7 +2953,6 @@ source_repository_ref: v5.0.0
 
 </div>
 
-</div>
 </div>
 
 <div class="property depth-2">
@@ -2956,7 +2979,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -3010,7 +3033,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -3028,7 +3051,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">boolean</span>
 
 </div>
 

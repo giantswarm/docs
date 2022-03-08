@@ -943,21 +943,6 @@ spec:
 
 </div>
 
-<div class="property-description">
-<p>FailureMessage indicates that there is a fatal problem reconciling the state, and will be set to a descriptive error message.</p>
-
-</div>
-
-<div class="property-description">
-<p>FailureMessage indicates that there is a fatal problem reconciling the state, and will be set to a descriptive error message.</p>
-
-</div>
-
-<div class="property-description">
-<p>FailureMessage indicates that there is a fatal problem reconciling the state, and will be set to a descriptive error message.</p>
-
-</div>
-
 </div>
 </div>
 
