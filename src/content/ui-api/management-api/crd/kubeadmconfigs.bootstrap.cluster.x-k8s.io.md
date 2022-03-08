@@ -683,7 +683,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd">.spec.clusterConfiguration.etcd</h3>
+<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.etcd.external">.spec.clusterConfiguration.etcd.external</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -719,7 +719,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.external">.spec.clusterConfiguration.etcd.external</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd">.spec.clusterConfiguration.etcd</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -737,7 +737,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.external.caFile">.spec.clusterConfiguration.etcd.external.caFile</h3>
+<h3 class="property-path" id="v1alpha3-.spec.clusterConfiguration.etcd.external.caFile">.spec.clusterConfiguration.etcd.external.caFile</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -755,12 +755,12 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.external.certFile">.spec.clusterConfiguration.etcd.external.certFile</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.external">.spec.clusterConfiguration.etcd.external</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
-
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
 </div>
 
 </div>
@@ -768,7 +768,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.external.endpoints">.spec.clusterConfiguration.etcd.external.endpoints</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.external.caFile">.spec.clusterConfiguration.etcd.external.caFile</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -786,7 +786,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.external.endpoints[*]">.spec.clusterConfiguration.etcd.external.endpoints[*]</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.external.certFile">.spec.clusterConfiguration.etcd.external.certFile</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -804,12 +804,12 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.external.keyFile">.spec.clusterConfiguration.etcd.external.keyFile</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.external.endpoints">.spec.clusterConfiguration.etcd.external.endpoints</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
@@ -822,7 +822,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.local">.spec.clusterConfiguration.etcd.local</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.external.endpoints[*]">.spec.clusterConfiguration.etcd.external.endpoints[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -840,11 +840,11 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.local.dataDir">.spec.clusterConfiguration.etcd.local.dataDir</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.external.keyFile">.spec.clusterConfiguration.etcd.external.keyFile</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -858,7 +858,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.local.extraArgs">.spec.clusterConfiguration.etcd.local.extraArgs</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.local">.spec.clusterConfiguration.etcd.local</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -876,7 +876,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.local.imageRepository">.spec.clusterConfiguration.etcd.local.imageRepository</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.local.dataDir">.spec.clusterConfiguration.etcd.local.dataDir</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -886,6 +886,37 @@ source_repository_ref: v5.0.0
 
 <div class="property-description">
 <p>PeerCertSANs sets extra Subject Alternative Names for the etcd peer signing cert.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.local.extraArgs">.spec.clusterConfiguration.etcd.local.extraArgs</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.local.imageRepository">.spec.clusterConfiguration.etcd.local.imageRepository</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>ServerCertSANs sets extra Subject Alternative Names for the etcd server signing cert.</p>
 
 </div>
 
@@ -905,40 +936,9 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.local.peerCertSANs">.spec.clusterConfiguration.etcd.local.peerCertSANs</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">array</span>
-
-</div>
-
-<div class="property-description">
-<p>ServerCertSANs sets extra Subject Alternative Names for the etcd server signing cert.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-5">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.local.peerCertSANs[*]">.spec.clusterConfiguration.etcd.local.peerCertSANs[*]</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-</div>
-</div>
-
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.local.serverCertSANs">.spec.clusterConfiguration.etcd.local.serverCertSANs</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.local.peerCertSANs">.spec.clusterConfiguration.etcd.local.peerCertSANs</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -956,7 +956,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.local.serverCertSANs[*]">.spec.clusterConfiguration.etcd.local.serverCertSANs[*]</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.local.peerCertSANs[*]">.spec.clusterConfiguration.etcd.local.peerCertSANs[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -974,7 +974,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.featureGates">.spec.clusterConfiguration.featureGates</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.local.serverCertSANs">.spec.clusterConfiguration.etcd.local.serverCertSANs</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -992,7 +992,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.imageRepository">.spec.clusterConfiguration.imageRepository</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.etcd.local.serverCertSANs[*]">.spec.clusterConfiguration.etcd.local.serverCertSANs[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1008,9 +1008,9 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.kind">.spec.clusterConfiguration.kind</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.featureGates">.spec.clusterConfiguration.featureGates</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1028,7 +1028,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.kubernetesVersion">.spec.clusterConfiguration.kubernetesVersion</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.imageRepository">.spec.clusterConfiguration.imageRepository</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1046,7 +1046,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.networking">.spec.clusterConfiguration.networking</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.kind">.spec.clusterConfiguration.kind</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1062,9 +1062,9 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-5">
+<div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.networking.dnsDomain">.spec.clusterConfiguration.networking.dnsDomain</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.kubernetesVersion">.spec.clusterConfiguration.kubernetesVersion</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1082,7 +1082,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.networking.podSubnet">.spec.clusterConfiguration.networking.podSubnet</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.networking">.spec.clusterConfiguration.networking</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1098,9 +1098,9 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.networking.serviceSubnet">.spec.clusterConfiguration.networking.serviceSubnet</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.networking.dnsDomain">.spec.clusterConfiguration.networking.dnsDomain</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1116,9 +1116,9 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.scheduler">.spec.clusterConfiguration.scheduler</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.networking.podSubnet">.spec.clusterConfiguration.networking.podSubnet</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1136,7 +1136,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.scheduler.extraArgs">.spec.clusterConfiguration.scheduler.extraArgs</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.networking.serviceSubnet">.spec.clusterConfiguration.networking.serviceSubnet</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1154,7 +1154,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.scheduler.extraVolumes">.spec.clusterConfiguration.scheduler.extraVolumes</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.scheduler">.spec.clusterConfiguration.scheduler</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1172,7 +1172,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.scheduler.extraVolumes[*]">.spec.clusterConfiguration.scheduler.extraVolumes[*]</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.scheduler.extraArgs">.spec.clusterConfiguration.scheduler.extraArgs</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1190,7 +1190,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.scheduler.extraVolumes[*].hostPath">.spec.clusterConfiguration.scheduler.extraVolumes[*].hostPath</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.scheduler.extraVolumes">.spec.clusterConfiguration.scheduler.extraVolumes</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1208,7 +1208,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.scheduler.extraVolumes[*].mountPath">.spec.clusterConfiguration.scheduler.extraVolumes[*].mountPath</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.scheduler.extraVolumes[*]">.spec.clusterConfiguration.scheduler.extraVolumes[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1226,7 +1226,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.scheduler.extraVolumes[*].name">.spec.clusterConfiguration.scheduler.extraVolumes[*].name</h3>
+<h3 class="property-path" id="v1alpha2-.spec.clusterConfiguration.scheduler.extraVolumes[*].hostPath">.spec.clusterConfiguration.scheduler.extraVolumes[*].hostPath</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1284,7 +1284,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">boolean</span>
 
 </div>
 
@@ -1314,7 +1314,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-4">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.diskSetup.filesystems[*].device">.spec.diskSetup.filesystems[*].device</h3>
 </div>
@@ -1338,8 +1338,8 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
-
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
@@ -1350,7 +1350,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-5">
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.diskSetup.filesystems[*].extraOpts[*]">.spec.diskSetup.filesystems[*].extraOpts[*]</h3>
 </div>
@@ -1940,7 +1940,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">array</span>
 
 </div>
 
@@ -1989,7 +1989,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -2055,7 +2055,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.initConfiguration.nodeRegistration">.spec.initConfiguration.nodeRegistration</h3>
 </div>
@@ -2133,7 +2133,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -2998,7 +2998,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -3016,7 +3016,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -3034,7 +3034,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -3052,7 +3052,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -4536,204 +4536,6 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>ExtraVolumes is an extra set of host volumes, mounted to the control plane component.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.clusterConfiguration.scheduler.extraVolumes[*]">.spec.clusterConfiguration.scheduler.extraVolumes[*]</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>HostPathMount contains elements describing volumes that are mounted from the host.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-5">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.clusterConfiguration.scheduler.extraVolumes[*].hostPath">.spec.clusterConfiguration.scheduler.extraVolumes[*].hostPath</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>HostPath is the path in the host that will be mounted inside the pod.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-5">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.clusterConfiguration.scheduler.extraVolumes[*].mountPath">.spec.clusterConfiguration.scheduler.extraVolumes[*].mountPath</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>MountPath is the path inside the pod where hostPath will be mounted.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-5">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.clusterConfiguration.scheduler.extraVolumes[*].name">.spec.clusterConfiguration.scheduler.extraVolumes[*].name</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>Name of the volume inside the pod template.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-5">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.clusterConfiguration.scheduler.extraVolumes[*].pathType">.spec.clusterConfiguration.scheduler.extraVolumes[*].pathType</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>PathType is the type of the HostPath.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-5">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.clusterConfiguration.scheduler.extraVolumes[*].readOnly">.spec.clusterConfiguration.scheduler.extraVolumes[*].readOnly</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">boolean</span>
-
-</div>
-
-<div class="property-description">
-<p>ReadOnly controls write access to the volume</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.diskSetup">.spec.diskSetup</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>DiskSetup specifies options for the creation of partition tables and file systems on devices.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.diskSetup.filesystems">.spec.diskSetup.filesystems</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">array</span>
-
-</div>
-
-<div class="property-description">
-<p>Filesystems specifies the list of file systems to setup.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.diskSetup.filesystems[*]">.spec.diskSetup.filesystems[*]</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>Filesystem defines the file systems to be created.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.diskSetup.filesystems[*].device">.spec.diskSetup.filesystems[*].device</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>Device specifies the device name</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.diskSetup.filesystems[*].extraOpts">.spec.diskSetup.filesystems[*].extraOpts</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">array</span>
-
-</div>
-
-<div class="property-description">
 <p>ExtraOpts defined extra options to add to the command for creating the file system.</p>
 
 </div>
@@ -4756,7 +4558,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.diskSetup.filesystems[*].filesystem">.spec.diskSetup.filesystems[*].filesystem</h3>
+<h3 class="property-path" id="v1alpha4-.spec.clusterConfiguration.scheduler.extraVolumes[*]">.spec.clusterConfiguration.scheduler.extraVolumes[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -4774,7 +4576,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.diskSetup.filesystems[*].label">.spec.diskSetup.filesystems[*].label</h3>
+<h3 class="property-path" id="v1alpha4-.spec.clusterConfiguration.scheduler.extraVolumes[*].hostPath">.spec.clusterConfiguration.scheduler.extraVolumes[*].hostPath</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -4792,7 +4594,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.diskSetup.filesystems[*].overwrite">.spec.diskSetup.filesystems[*].overwrite</h3>
+<h3 class="property-path" id="v1alpha4-.spec.clusterConfiguration.scheduler.extraVolumes[*].mountPath">.spec.clusterConfiguration.scheduler.extraVolumes[*].mountPath</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -4810,7 +4612,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.diskSetup.filesystems[*].partition">.spec.diskSetup.filesystems[*].partition</h3>
+<h3 class="property-path" id="v1alpha4-.spec.clusterConfiguration.scheduler.extraVolumes[*].name">.spec.clusterConfiguration.scheduler.extraVolumes[*].name</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -4828,7 +4630,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.diskSetup.filesystems[*].replaceFS">.spec.diskSetup.filesystems[*].replaceFS</h3>
+<h3 class="property-path" id="v1alpha4-.spec.clusterConfiguration.scheduler.extraVolumes[*].pathType">.spec.clusterConfiguration.scheduler.extraVolumes[*].pathType</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -4846,7 +4648,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.diskSetup.partitions">.spec.diskSetup.partitions</h3>
+<h3 class="property-path" id="v1alpha4-.spec.clusterConfiguration.scheduler.extraVolumes[*].readOnly">.spec.clusterConfiguration.scheduler.extraVolumes[*].readOnly</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -4862,27 +4664,9 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.diskSetup.partitions[*]">.spec.diskSetup.partitions[*]</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>Partition defines how to create and layout a partition.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.diskSetup.partitions[*].device">.spec.diskSetup.partitions[*].device</h3>
+<h3 class="property-path" id="v1alpha4-.spec.diskSetup">.spec.diskSetup</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -4900,7 +4684,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.diskSetup.partitions[*].layout">.spec.diskSetup.partitions[*].layout</h3>
+<h3 class="property-path" id="v1alpha4-.spec.diskSetup.filesystems">.spec.diskSetup.filesystems</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -4918,7 +4702,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.diskSetup.partitions[*].overwrite">.spec.diskSetup.partitions[*].overwrite</h3>
+<h3 class="property-path" id="v1alpha4-.spec.diskSetup.filesystems[*]">.spec.diskSetup.filesystems[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -4936,7 +4720,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.diskSetup.partitions[*].tableType">.spec.diskSetup.partitions[*].tableType</h3>
+<h3 class="property-path" id="v1alpha4-.spec.diskSetup.filesystems[*].device">.spec.diskSetup.filesystems[*].device</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -4954,7 +4738,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.files">.spec.files</h3>
+<h3 class="property-path" id="v1alpha4-.spec.diskSetup.filesystems[*].extraOpts">.spec.diskSetup.filesystems[*].extraOpts</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -4972,7 +4756,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.files[*]">.spec.files[*]</h3>
+<h3 class="property-path" id="v1alpha4-.spec.diskSetup.filesystems[*].extraOpts[*]">.spec.diskSetup.filesystems[*].extraOpts[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -4990,7 +4774,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.files[*].content">.spec.files[*].content</h3>
+<h3 class="property-path" id="v1alpha4-.spec.diskSetup.filesystems[*].filesystem">.spec.diskSetup.filesystems[*].filesystem</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -5008,7 +4792,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.files[*].contentFrom">.spec.files[*].contentFrom</h3>
+<h3 class="property-path" id="v1alpha4-.spec.diskSetup.filesystems[*].label">.spec.diskSetup.filesystems[*].label</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -5026,7 +4810,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.files[*].contentFrom.secret">.spec.files[*].contentFrom.secret</h3>
+<h3 class="property-path" id="v1alpha4-.spec.diskSetup.filesystems[*].overwrite">.spec.diskSetup.filesystems[*].overwrite</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -5044,7 +4828,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.files[*].contentFrom.secret.key">.spec.files[*].contentFrom.secret.key</h3>
+<h3 class="property-path" id="v1alpha4-.spec.diskSetup.filesystems[*].partition">.spec.diskSetup.filesystems[*].partition</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -5062,7 +4846,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.files[*].contentFrom.secret.name">.spec.files[*].contentFrom.secret.name</h3>
+<h3 class="property-path" id="v1alpha4-.spec.diskSetup.filesystems[*].replaceFS">.spec.diskSetup.filesystems[*].replaceFS</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -5080,7 +4864,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.files[*].encoding">.spec.files[*].encoding</h3>
+<h3 class="property-path" id="v1alpha4-.spec.diskSetup.partitions">.spec.diskSetup.partitions</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -5098,7 +4882,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.files[*].owner">.spec.files[*].owner</h3>
+<h3 class="property-path" id="v1alpha4-.spec.diskSetup.partitions[*]">.spec.diskSetup.partitions[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -5116,7 +4900,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.files[*].path">.spec.files[*].path</h3>
+<h3 class="property-path" id="v1alpha4-.spec.diskSetup.partitions[*].device">.spec.diskSetup.partitions[*].device</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -5147,7 +4931,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens[*].token">.spec.initConfiguration.bootstrapTokens[*].token</h3>
+<h3 class="property-path" id="v1alpha4-.spec.diskSetup.partitions[*].layout">.spec.diskSetup.partitions[*].layout</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -5165,12 +4949,236 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.diskSetup.partitions[*].overwrite">.spec.diskSetup.partitions[*].overwrite</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>IgnorePreflightErrors provides a slice of pre-flight errors to be ignored when the current node is registered.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.diskSetup.partitions[*].tableType">.spec.diskSetup.partitions[*].tableType</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>BindPort sets the secure port for the API Server to bind to. Defaults to 6443.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.files">.spec.files</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>BootstrapToken describes one bootstrap token, stored as a Secret in the cluster.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.files[*]">.spec.files[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>IgnorePreflightErrors provides a slice of pre-flight errors to be ignored when the current node is registered.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.files[*].content">.spec.files[*].content</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>BindPort sets the secure port for the API Server to bind to. Defaults to 6443.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.files[*].contentFrom">.spec.files[*].contentFrom</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>BootstrapToken describes one bootstrap token, stored as a Secret in the cluster.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.files[*].contentFrom.secret">.spec.files[*].contentFrom.secret</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.files[*].contentFrom.secret.key">.spec.files[*].contentFrom.secret.key</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>BootstrapToken describes one bootstrap token, stored as a Secret in the cluster.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.files[*].contentFrom.secret.name">.spec.files[*].contentFrom.secret.name</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>IgnorePreflightErrors provides a slice of pre-flight errors to be ignored when the current node is registered.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.files[*].encoding">.spec.files[*].encoding</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>BindPort sets the secure port for the API Server to bind to. Defaults to 6443.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.files[*].owner">.spec.files[*].owner</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>BootstrapToken describes one bootstrap token, stored as a Secret in the cluster.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.files[*].path">.spec.files[*].path</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.files[*].permissions">.spec.files[*].permissions</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>IgnorePreflightErrors provides a slice of pre-flight errors to be ignored when the current node is registered.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.format">.spec.format</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-<span class="property-required">Required</span>
+
 </div>
 
 <div class="property-description">
@@ -5182,30 +5190,12 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens">.spec.initConfiguration.bootstrapTokens</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">integer</span>
-
-</div>
-
-<div class="property-description">
-<p>BindPort sets the secure port for the API Server to bind to. Defaults to 6443.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.initConfiguration">.spec.initConfiguration</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">array</span>
 
 </div>
 
@@ -5220,212 +5210,6 @@ source_repository_ref: v5.0.0
 <div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.initConfiguration.apiVersion">.spec.initConfiguration.apiVersion</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>IgnorePreflightErrors provides a slice of pre-flight errors to be ignored when the current node is registered.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens">.spec.initConfiguration.bootstrapTokens</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">integer</span>
-
-</div>
-
-<div class="property-description">
-<p>BindPort sets the secure port for the API Server to bind to. Defaults to 6443.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens">.spec.initConfiguration.bootstrapTokens</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">array</span>
-
-</div>
-
-<div class="property-description">
-<p>BootstrapToken describes one bootstrap token, stored as a Secret in the cluster.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens">.spec.initConfiguration.bootstrapTokens</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens[*]">.spec.initConfiguration.bootstrapTokens[*]</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>BootstrapToken describes one bootstrap token, stored as a Secret in the cluster.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens[*].description">.spec.initConfiguration.bootstrapTokens[*].description</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>IgnorePreflightErrors provides a slice of pre-flight errors to be ignored when the current node is registered.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens">.spec.initConfiguration.bootstrapTokens</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">integer</span>
-
-</div>
-
-<div class="property-description">
-<p>BindPort sets the secure port for the API Server to bind to. Defaults to 6443.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens[*]">.spec.initConfiguration.bootstrapTokens[*]</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">array</span>
-
-</div>
-
-<div class="property-description">
-<p>BootstrapToken describes one bootstrap token, stored as a Secret in the cluster.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens[*].description">.spec.initConfiguration.bootstrapTokens[*].description</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.apiVersion">.spec.initConfiguration.apiVersion</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>IgnorePreflightErrors provides a slice of pre-flight errors to be ignored when the current node is registered.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens">.spec.initConfiguration.bootstrapTokens</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>IgnorePreflightErrors provides a slice of pre-flight errors to be ignored when the current node is registered.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens[*]">.spec.initConfiguration.bootstrapTokens[*]</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">array</span>
-
-</div>
-
-<div class="property-description">
-<p>BootstrapToken describes one bootstrap token, stored as a Secret in the cluster.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens[*].description">.spec.initConfiguration.bootstrapTokens[*].description</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -5443,7 +5227,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens[*].expires">.spec.initConfiguration.bootstrapTokens[*].expires</h3>
+<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens">.spec.initConfiguration.bootstrapTokens</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -5461,7 +5245,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens[*].groups">.spec.initConfiguration.bootstrapTokens[*].groups</h3>
+<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens[*]">.spec.initConfiguration.bootstrapTokens[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -5470,7 +5254,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>BindPort sets the secure port for the API Server to bind to. Defaults to 6443.</p>
+<p>BootstrapToken describes one bootstrap token, stored as a Secret in the cluster.</p>
 
 </div>
 
@@ -5479,7 +5263,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens[*].groups[*]">.spec.initConfiguration.bootstrapTokens[*].groups[*]</h3>
+<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens[*].description">.spec.initConfiguration.bootstrapTokens[*].description</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -5492,7 +5276,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens[*].token">.spec.initConfiguration.bootstrapTokens[*].token</h3>
+<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens[*].expires">.spec.initConfiguration.bootstrapTokens[*].expires</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -5510,7 +5294,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens[*].ttl">.spec.initConfiguration.bootstrapTokens[*].ttl</h3>
+<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens[*].groups">.spec.initConfiguration.bootstrapTokens[*].groups</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -5528,11 +5312,55 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens[*].usages">.spec.initConfiguration.bootstrapTokens[*].usages</h3>
+<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens[*].groups[*]">.spec.initConfiguration.bootstrapTokens[*].groups[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">array</span>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens[*].token">.spec.initConfiguration.bootstrapTokens[*].token</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>IgnorePreflightErrors provides a slice of pre-flight errors to be ignored when the current node is registered.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens[*].ttl">.spec.initConfiguration.bootstrapTokens[*].ttl</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>AdvertiseAddress sets the IP address for the API server to advertise.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens[*].usages">.spec.initConfiguration.bootstrapTokens[*].usages</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
 
 </div>
 
@@ -5554,11 +5382,6 @@ source_repository_ref: v5.0.0
 
 </div>
 
-<div class="property-description">
-<p>AdvertiseAddress sets the IP address for the API server to advertise.</p>
-
-</div>
-
 </div>
 </div>
 
@@ -5568,7 +5391,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">integer</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -5586,7 +5409,12 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>BindPort sets the secure port for the API Server to bind to. Defaults to 6443.</p>
 
 </div>
 
