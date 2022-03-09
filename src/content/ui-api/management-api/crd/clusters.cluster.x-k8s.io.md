@@ -716,7 +716,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -735,6 +735,24 @@ spec:
 
 <div class="property-description">
 <p>ClusterSpec defines the desired state of Cluster</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.conditions[*].message">.status.conditions[*].message</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>A human readable message indicating details about the transition. This field may be empty.</p>
 
 </div>
 
@@ -1195,7 +1213,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.clusterNetwork.apiServerPort">.spec.clusterNetwork.apiServerPort</h3>
 </div>
@@ -1203,6 +1221,7 @@ spec:
 <div class="property-meta">
 <span class="property-type">integer</span>
 
+</div>
 </div>
 
 <div class="property-description">
@@ -1231,7 +1250,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.clusterNetwork.pods.cidrBlocks">.spec.clusterNetwork.pods.cidrBlocks</h3>
 </div>
@@ -1257,7 +1276,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.clusterNetwork.serviceDomain">.spec.clusterNetwork.serviceDomain</h3>
 </div>
@@ -1337,7 +1356,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.controlPlaneEndpoint.host">.spec.controlPlaneEndpoint.host</h3>
 </div>
@@ -1416,7 +1435,7 @@ spec:
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
@@ -1434,7 +1453,7 @@ spec:
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
@@ -1445,27 +1464,9 @@ spec:
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.controlPlaneRef.name">.spec.controlPlaneRef.name</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>Status of the condition, one of True, False, Unknown.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.status.conditions[*].type">.status.conditions[*].type</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1478,7 +1479,6 @@ spec:
 
 </div>
 
-</div>
 </div>
 
 <div class="property depth-2">
@@ -1497,28 +1497,11 @@ spec:
 </div>
 
 </div>
+</div>
 
 <div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.controlPlaneRef.resourceVersion">.spec.controlPlaneRef.resourceVersion</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>Type of condition in CamelCase or in foo.example.com/CamelCase. Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be useful (see .node.status.conditions), the ability to deconflict is important.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.controlPlaneRef.uid">.spec.controlPlaneRef.uid</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1672,7 +1655,7 @@ spec:
 <h3 id="annotation-details-v1alpha3">Annotations</h3>
 
 
-<div class="property depth-1">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1beta1-.spec.paused">.spec.paused</h3>
 </div>
@@ -1707,9 +1690,27 @@ spec:
 </div>
 </div>
 
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.topology">.spec.topology</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>This encapsulates the topology for the cluster. NOTE: It is required to enable the ClusterTopology feature gate flag to activate managed topologies support; this feature is highly experimental, and parts of it might still be not implemented.</p>
+
+</div>
+
+</div>
+</div>
+
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.topology.class">.spec.topology.class</h3>
+<h3 class="property-path" id="v1alpha4-.spec.topology.class">.spec.topology.class</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
