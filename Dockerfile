@@ -11,7 +11,8 @@ RUN hugo \
       --gc \
       --minify \
       --source src \
-      --path-warnings \
+      --printPathWarnings \
+      --printUnusedTemplates \
       --destination /public \
       --cleanDestinationDir
 
