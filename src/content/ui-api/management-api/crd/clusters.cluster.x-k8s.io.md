@@ -2493,9 +2493,6 @@ spec:
 <div class="property-description">
 <p>Severity provides an explicit classification of Reason code, so the users or machines can immediately understand the current situation and act accordingly. The Severity field MUST be set only when Status=False.</p>
 
-<h3 id="annotation-details-v1alpha3">Annotations</h3>
-
-
 <div class="annotation">
 <div class="annotation-header">
 <h3 class="annotation-path" id="v1alpha3-alpha.giantswarm.io/update-schedule-target-release">alpha.giantswarm.io/update-schedule-target-release</h3>
@@ -2522,6 +2519,8 @@ spec:
 
 <div class="property-description">
 <p>Status of the condition, one of True, False, Unknown.</p>
+
+</div>
 
 </div>
 
@@ -2596,7 +2595,6 @@ spec:
 </div>
 
 </div>
-</div>
 
 <div class="property depth-1">
 <div class="property-header">
@@ -2604,7 +2602,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -2616,7 +2614,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-0">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.status.failureReason">.status.failureReason</h3>
 </div>
@@ -2670,7 +2668,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.status.phase">.status.phase</h3>
 </div>
@@ -2744,9 +2742,8 @@ spec:
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.apiVersion">.apiVersion</h3>
 </div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
+<div class="annotation-body">
+<div class="annotation-meta">
 
 </div>
 
@@ -2762,9 +2759,8 @@ spec:
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.kind">.kind</h3>
 </div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
+<div class="annotation-body">
+<div class="annotation-meta">
 
 </div>
 
@@ -2825,7 +2821,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-4">
+<div class="property depth-0">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.clusterNetwork.apiServerPort">.spec.clusterNetwork.apiServerPort</h3>
 </div>
@@ -2843,7 +2839,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-1">
+<div class="property depth-0">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.clusterNetwork.pods">.spec.clusterNetwork.pods</h3>
 </div>
@@ -2861,7 +2857,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-6">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.clusterNetwork.pods.cidrBlocks">.spec.clusterNetwork.pods.cidrBlocks</h3>
 </div>
@@ -2887,7 +2883,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-6">
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.clusterNetwork.serviceDomain">.spec.clusterNetwork.serviceDomain</h3>
 </div>
@@ -2905,7 +2901,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.clusterNetwork.services">.spec.clusterNetwork.services</h3>
 </div>
@@ -2967,7 +2963,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-6">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.controlPlaneEndpoint.host">.spec.controlPlaneEndpoint.host</h3>
 </div>
@@ -3012,6 +3008,7 @@ spec:
 <span class="property-type">object</span>
 
 </div>
+</div>
 
 <div class="property-description">
 <p>ControlPlaneRef is an optional reference to a provider-specific resource that holds the details for provisioning the Control Plane for a Cluster.</p>
@@ -3042,6 +3039,78 @@ spec:
 <div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.controlPlaneRef.fieldPath">.spec.controlPlaneRef.fieldPath</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: &ldquo;spec.containers{name}&rdquo; (where &ldquo;name&rdquo; refers to the name of the container that triggered the event) or if no container name is specified &ldquo;spec.containers[2]&rdquo; (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.controlPlaneRef.kind">.spec.controlPlaneRef.kind</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Kind of the referent. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.controlPlaneRef.name">.spec.controlPlaneRef.name</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Name of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.controlPlaneRef.namespace">.spec.controlPlaneRef.namespace</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Namespace of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/">https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.controlPlaneRef.resourceVersion">.spec.controlPlaneRef.resourceVersion</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -3206,7 +3275,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-1">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1beta1-.status.infrastructureReady">.status.infrastructureReady</h3>
 </div>
@@ -3242,13 +3311,13 @@ spec:
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1beta1-.status.phase">.status.phase</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -3258,12 +3327,6 @@ spec:
 </div>
 
 </div>
-</div>
-
-
-
-
-
 </div>
 
 <div class="property depth-2">
