@@ -955,6 +955,11 @@ spec:
 
 </div>
 
+<div class="property-description">
+<p>FailureMessage indicates that there is a fatal problem reconciling the state, and will be set to a descriptive error message.</p>
+
+</div>
+
 </div>
 </div>
 
@@ -1044,7 +1049,6 @@ spec:
 <div class="annotation-meta">
 
 </div>
-</div>
 
 <div class="annotation-description">
 <p>This annotation is used to define the desired target release for a scheduled upgrade of the cluster. The upgrade to the specified version will be applied if the &ldquo;update-schedule-target-time&rdquo; annotation has been set and the time defined there has been reached. The value has to be only the desired release version, e.g &ldquo;15.2.1&rdquo;.</p>
@@ -1089,7 +1093,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -1142,19 +1146,6 @@ spec:
 
 </div>
 
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.controlPlaneEndpoint">.spec.controlPlaneEndpoint</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
 <div class="property-description">
 <p>ClusterSpec defines the desired state of Cluster.</p>
 
@@ -1188,14 +1179,6 @@ spec:
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">integer</span>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.controlPlaneRef">.spec.controlPlaneRef</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
 
 </div>
 </div>
