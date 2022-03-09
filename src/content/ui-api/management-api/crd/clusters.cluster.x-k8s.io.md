@@ -854,9 +854,6 @@ spec:
 
 </div>
 
-<div class="property-description">
-<p>ControlPlaneReady defines if the control plane is ready.</p>
-
 </div>
 
 <div class="property depth-3">
@@ -933,7 +930,6 @@ spec:
 </div>
 
 </div>
-</div>
 
 <div class="property depth-1">
 <div class="property-header">
@@ -941,17 +937,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">integer</span>
-
-</div>
-
-<div class="property-description">
-<p>ObservedGeneration is the latest generation observed by the controller.</p>
-
-</div>
-
-<div class="property-description">
-<p>FailureMessage indicates that there is a fatal problem reconciling the state, and will be set to a descriptive error message.</p>
+<span class="property-type">string</span>
 
 </div>
 
@@ -978,7 +964,14 @@ spec:
 
 </div>
 
+<div class="property-description">
+<p>FailureMessage indicates that there is a fatal problem reconciling the state, and will be set to a descriptive error message.</p>
+
 </div>
+
+<div class="property-description">
+<p>FailureMessage indicates that there is a fatal problem reconciling the state, and will be set to a descriptive error message.</p>
+
 </div>
 
 <div class="property depth-1">
@@ -1017,7 +1010,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-0">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.status.phase">.status.phase</h3>
 </div>
