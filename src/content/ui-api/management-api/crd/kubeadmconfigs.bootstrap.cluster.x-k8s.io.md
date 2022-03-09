@@ -54,7 +54,7 @@ source_repository_ref: v5.0.0
 
 
 <div class="crd-schema-version">
-<h2 id="v1alpha3">Version v1alpha3</h2>
+<h2 id="v1alpha2">Version v1alpha2</h2>
 
 
 
