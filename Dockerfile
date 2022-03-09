@@ -1,4 +1,4 @@
-FROM quay.io/giantswarm/hugo:v0.88.1 AS build
+FROM quay.io/giantswarm/hugo:v0.93.3 AS build
 
 RUN apk --no-cache add findutils gzip
 
@@ -11,7 +11,8 @@ RUN hugo \
       --gc \
       --minify \
       --source src \
-      --path-warnings \
+      --printPathWarnings \
+      --printUnusedTemplates \
       --destination /public \
       --cleanDestinationDir
 
