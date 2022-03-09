@@ -22,8 +22,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
 ---
 
-# The Giant Swarm on-premises architecture
-
 Giant Swarm's architecture is split into two logical parts. One describes the management cluster and the other describes one or more workload clusters. We prefer running on bare metal machines, but can also work with virtualized infrastructure (e.g. VMWare) in cases where nested virtualization is possible.
 
 We require VPN and SSH access to all machines, as well as outbound Internet connectivity from the machines (this can be limited to specific targets), to download images of various forms to automatically provision and update the cluster. All machines are to be configured with one PXE Boot network and a production network (separate VLANs). The machines will be started by us via an ILO-Interface, to boot from the PXE Boot Server in the network for bootstrap, and then restarted into the production network.

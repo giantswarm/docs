@@ -15,8 +15,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
-# Accelerated networking on Azure
-
 ## Synopsis
 
 `Accelerated Networking` (or `AN` for short) is a feature provided by the `Azure Cloud` that allows for

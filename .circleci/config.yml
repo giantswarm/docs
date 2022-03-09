@@ -1,46 +1,40 @@
 version: 2.1
 
 orbs:
-  architect: giantswarm/architect@2.7.0
+  architect: giantswarm/architect@4.13.0
 
 
 jobs:
   build:
-    machine:
-      image: "ubuntu-1604:201903-01"
+    executor: "architect/architect"
+    environment:
+      DOCKER_BUILDKIT: "1"
 
     steps:
       - checkout
+
+      - setup_remote_docker:
+          version: 20.10.11
 
       - run:
           name: Check Markdown structure
           command: make lint
 
-      - run:
-          name: Install architect
-          command: |
-            wget -q $(curl -sS -H "Authorization: token $RELEASE_TOKEN" https://api.github.com/repos/giantswarm/architect/releases/tags/v1.0.0 | grep browser_download_url | head -n 1 | cut -d '"' -f 4)
-            chmod +x ./architect
-            ./architect version
-
-      - run:
-          name: Build using architect
-          command: ./architect build
+      - architect/push-to-docker:
+          image: "quay.io/giantswarm/docs"
+          tag-latest-branch: "main"
+          username_envar: "QUAY_USERNAME"
+          password_envar: "QUAY_PASSWORD"
 
       - run:
           name: Launch container for tests
           command: |
-            docker run -d --rm --name docs -p 8080:8080 quay.io/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
-            CURL_OUTPUT=$(curl --no-buffer -s http://localhost:8080)
-            echo $CURL_OUTPUT | grep --quiet "Giant Swarm"
+            container_tag=$(architect project version)
+            echo "$container_tag"
+            docker run -d --rm --name docs -p 8080:8080 quay.io/giantswarm/docs:$container_tag
 
-      - deploy:
-          name: Deploy (only if in default branch)
-          command: |
-            echo "Deploy only if '${CIRCLE_BRANCH}' == 'main'"
-            if [ "${CIRCLE_BRANCH}" == "main" ]; then
-              ./architect deploy
-            fi
+            CURL_OUTPUT=$(docker run --link docs quay.io/giantswarm/curl:7.81.0 curl --no-buffer http://docs:8080)
+            echo $CURL_OUTPUT | grep -q "Giant Swarm"
 
 workflows:
   version: 2

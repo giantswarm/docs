@@ -16,11 +16,9 @@ user_questions:
   - How can I add labels and annotations to the target namespace of an app?
 ---
 
-# `kubectl gs template app`
+The `template app` command allows to create a manifest for an app to be installed in a workload cluster. The resulting manifest is meant to be applied to the management cluster, for example via `kubectl apply`.
 
-In order to create an App using custom resources, `kubectl gs` will help you create manifests for the resource type:
-
-- [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) (API group/version `application.giantswarm.io/v1alpha1`) - holds the base App specification.
+The resulting manifest of the `template app` defines an [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) resource (API group/version `application.giantswarm.io/v1alpha1`).
 
 ## Usage
 

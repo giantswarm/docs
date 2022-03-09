@@ -17,8 +17,6 @@ owner:
 last_review_date: 2021-01-01
 ---
 
-# Scheduling constraints and resource quality of service (QoS)
-
 Kubernetes provides resource Quality of Service (QoS) to Pods based on what resources they request and what limits are set for them.
 
 The QoS is enforced automatically based on the constraints you set for your Pods in their specification.

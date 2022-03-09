@@ -19,8 +19,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
-# Cluster upgrades
-
 A workload cluster (formerly called _tenant cluster_) in a Giant Swarm installation is running a stack comprising many software components, provided by the Kubernetes project and other open source projects or software vendors, as well as by Giant Swarm.
 In order to keep all components up-to-date, to allow you to benefit from latest improvements, features and security fixes, we provide upgrades for the entire software stack in workload clusters.
 

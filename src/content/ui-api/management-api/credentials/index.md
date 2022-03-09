@@ -15,8 +15,6 @@ user_questions:
   - How can I set cloud provider credentials via the Management API?
 ---
 
-# Handling cloud provider credentials via the Management API
-
 In order to manage workload clusters in your cloud provider accounts/subscriptions, the Giant Swarm controllers require some configuration so they are able to act on your behalf.
 
 In this article we explain how to provide this configuration via the Management API.

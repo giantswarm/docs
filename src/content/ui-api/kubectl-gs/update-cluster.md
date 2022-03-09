@@ -17,8 +17,6 @@ user_questions:
   - How can I schedule a workload cluster upgrade from the command line?
 ---
 
-# `kubectl gs update cluster`
-
 This command's purpose is to modify details of a workload cluster. Currently it allows to upgrade a workload cluster to a newer [release]({{< relref "/general/releases" >}}).
 
 ## Usage

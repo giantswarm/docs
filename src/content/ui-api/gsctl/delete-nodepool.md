@@ -15,8 +15,6 @@ user_questions:
 last_review_date: 2021-01-01
 ---
 
-# `gsctl delete nodepool`
-
 {{% gsctl_deprecation_disclaimer %}}
 
 The `gsctl delete nodepool` command deletes a [node pool]({{< relref "/advanced/node-pools" >}}).

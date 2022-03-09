@@ -29,9 +29,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-horizon
 ---
 
-# Giant Swarm operational layers
-
-A Giant Swarm installation has several operational layers. At Giant Swarm we use the term operational layeres in order to indicate the different layers of code that may require access by different users for different activities. Operational layers in this context are in effect a representation of a separation of concerns both on an operational and on a security level. In this document we will define the layers and explain the operational model.
+A Giant Swarm installation has several operational layers. At Giant Swarm we use the term operational layers in order to indicate the different layers of code that may require access by different users for different activities. Operational layers in this context are in effect a representation of a separation of concerns both on an operational and on a security level. In this document we will define the layers and explain the operational model.
 
 ## Operational layers
 

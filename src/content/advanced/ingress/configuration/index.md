@@ -29,8 +29,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
 ---
 
-# Advanced ingress configuration
-
 The [NGINX-based Ingress Controller](https://github.com/kubernetes/ingress-nginx) has additional configuration options and features that can be customized. The functionality is split into two categories:
 
 - [Per-Service options](#yaml) in each Ingress' YAML definition either directly or via [Annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) ([Complete list of supported Annotations](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/)).

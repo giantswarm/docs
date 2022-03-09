@@ -18,8 +18,6 @@ owner:
 last_review_date: 2021-09-01
 ---
 
-# Accessing pods and services from the outside
-
 Once you have some workload running on your cluster, you might want to access it from outside your cluster. Creating an Ingress resource is the canonical way to do that:
 
 ## Setting up a public ingress {#public-ingress}

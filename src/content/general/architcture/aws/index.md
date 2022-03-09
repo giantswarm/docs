@@ -27,8 +27,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
-# The Giant Swarm AWS platform
-
 The Giant Swarm Platform consists of various components. They can be categorized into three areas: infrastructure, operations, and applications.
 
 For managing all the infrastructure we run a management cluster per cloud and region where you want run your workloads. From that management cluster you can spin up as many individual Kubernetes clusters, called _workload clusters_, as you want. Our operations team works to keep all cluster components healthy, while we release new versions with new features and patches. On top of that Giant Swarm offers a curated catalog with common Cloud Native tools that helps with monitoring, security or API management. Customers can leverage those while we carry the burden of maintain and keep them up to date.

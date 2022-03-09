@@ -20,8 +20,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 ---
 
-# `kubectl-gs` reference
-
 `kubectl-gs` is a CLI and a [kubectl](https://kubernetes.io/docs/reference/kubectl/kubectl/) plugin (invoked as `kubectl gs`) for the Giant Swarm [Management API]({{< relref "/ui-api/management-api" >}}).
 
 **Note:** Management API support is under active development. Supported functionality depends on the provider and the workload cluster release used. Please pay attention to the compatibility information given on the individual command reference pages.

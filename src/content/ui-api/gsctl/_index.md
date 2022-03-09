@@ -25,8 +25,6 @@ owner:
 last_review_date: 2021-01-01
 ---
 
-# gsctl CLI reference
-
 gsctl is the command line utility to manage your Giant Swarm clusters.
 
 {{% gsctl_deprecation_disclaimer %}}
