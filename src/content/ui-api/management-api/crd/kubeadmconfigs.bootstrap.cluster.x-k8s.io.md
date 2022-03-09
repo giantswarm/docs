@@ -760,7 +760,7 @@ source_repository_ref: v5.0.0
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-<span class="property-required">Required</span>
+
 </div>
 
 </div>
@@ -1332,7 +1332,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-4">
+<div class="property depth-5">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.diskSetup.filesystems[*].extraOpts">.spec.diskSetup.filesystems[*].extraOpts</h3>
 </div>
@@ -1350,13 +1350,18 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-5">
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.diskSetup.filesystems[*].extraOpts[*]">.spec.diskSetup.filesystems[*].extraOpts[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Filesystem specifies the file system type.</p>
 
 </div>
 
@@ -2433,7 +2438,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-4">
+<div class="property depth-5">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.discovery.bootstrapToken.caCertHashes[*]">.spec.joinConfiguration.discovery.bootstrapToken.caCertHashes[*]</h3>
 </div>
@@ -2488,8 +2493,8 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
+<span class="property-type">object</span>
+
 </div>
 
 <div class="property-description">
@@ -2980,7 +2985,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -2998,7 +3003,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -3016,7 +3021,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -3034,7 +3039,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">boolean</span>
 
 </div>
 
@@ -3052,7 +3057,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">boolean</span>
 
 </div>
 
@@ -3100,7 +3105,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-1">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.users[*].primaryGroup">.spec.users[*].primaryGroup</h3>
 </div>
@@ -5196,96 +5201,6 @@ source_repository_ref: v5.0.0
 
 </div>
 
-<div class="property-description">
-<p>Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</a></p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens">.spec.initConfiguration.bootstrapTokens</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">integer</span>
-
-</div>
-
-<div class="property-description">
-<p>BindPort sets the secure port for the API Server to bind to. Defaults to 6443.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.apiVersion">.spec.initConfiguration.apiVersion</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>BootstrapToken describes one bootstrap token, stored as a Secret in the cluster.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens">.spec.initConfiguration.bootstrapTokens</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>CRISocket is used to retrieve container runtime info. This information will be annotated to the Node API object, for later re-use</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.bootstrapTokens[*]">.spec.initConfiguration.bootstrapTokens[*]</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>BootstrapToken describes one bootstrap token, stored as a Secret in the cluster.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.apiVersion">.spec.initConfiguration.apiVersion</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
 </div>
 </div>
 
@@ -5547,6 +5462,37 @@ source_repository_ref: v5.0.0
 <div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.initConfiguration.nodeRegistration.criSocket">.spec.initConfiguration.nodeRegistration.criSocket</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.nodeRegistration.ignorePreflightErrors">.spec.initConfiguration.nodeRegistration.ignorePreflightErrors</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>IgnorePreflightErrors provides a slice of pre-flight errors to be ignored when the current node is registered.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.initConfiguration.nodeRegistration.ignorePreflightErrors[*]">.spec.initConfiguration.nodeRegistration.ignorePreflightErrors[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
