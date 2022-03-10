@@ -945,6 +945,11 @@ spec:
 
 </div>
 
+<div class="property-description">
+<p>FailureMessage indicates that there is a fatal problem reconciling the state, and will be set to a descriptive error message.</p>
+
+</div>
+
 </div>
 </div>
 
@@ -1127,7 +1132,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
+<span class="property-type">object</span>
 
 </div>
 
