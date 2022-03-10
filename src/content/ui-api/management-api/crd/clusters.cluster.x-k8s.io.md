@@ -855,7 +855,6 @@ spec:
 </div>
 
 </div>
-
 </div>
 
 <div class="property depth-3">
@@ -870,11 +869,6 @@ spec:
 
 <div class="property-description">
 <p>Type of condition in CamelCase or in foo.example.com/CamelCase. Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be useful (see .node.status.conditions), the ability to deconflict is important.</p>
-
-</div>
-
-<div class="property-description">
-<p>FailureDomains is a slice of failure domain objects synced from the infrastructure provider.</p>
 
 </div>
 
@@ -895,7 +889,11 @@ spec:
 
 </div>
 
+<div class="property-description">
+<p>FailureDomains is a slice of failure domain objects synced from the infrastructure provider.</p>
+
 </div>
+
 </div>
 
 <div class="property depth-1">
@@ -940,7 +938,12 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>FailureDomains is a slice of failure domain objects synced from the infrastructure provider.</p>
 
 </div>
 
@@ -1131,7 +1134,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
+<span class="property-type">object</span>
 
 </div>
 
