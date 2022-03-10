@@ -722,6 +722,11 @@ spec:
 
 </div>
 
+<div class="property-description">
+<p>ClusterStatus defines the observed state of Cluster.</p>
+
+</div>
+
 </div>
 </div>
 
@@ -923,7 +928,6 @@ spec:
 </div>
 
 </div>
-</div>
 
 <div class="property depth-1">
 <div class="property-header">
@@ -931,7 +935,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">string</span>
 
 </div>
 
