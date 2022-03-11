@@ -1894,17 +1894,15 @@ source_repository_ref: v5.0.0
 <span class="property-type">array</span>
 
 </div>
-
-</div>
 </div>
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.initConfiguration.bootstrapTokens[*].token">.spec.initConfiguration.bootstrapTokens[*].token</h3>
+<h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.controlPlane.localAPIEndpoint.bindPort">.spec.joinConfiguration.controlPlane.localAPIEndpoint.bindPort</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">integer</span>
 <span class="property-required">Required</span>
 </div>
 
@@ -1922,7 +1920,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">array</span>
 
 </div>
 
@@ -2020,7 +2018,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -2039,11 +2037,11 @@ source_repository_ref: v5.0.0
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
-<p>AdvertiseAddress sets the IP address for the API server to advertise.</p>
+<p>Token is a token used to validate cluster information fetched from the control-plane.</p>
 
 </div>
 
@@ -2056,19 +2054,19 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">integer</span>
-
+<span class="property-type">boolean</span>
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
-<p>BindPort sets the secure port for the API Server to bind to. Defaults to 6443.</p>
+<p>UnsafeSkipCAVerification allows token-based discovery without CA verification via CACertHashes. This can weaken the security of kubeadm since other nodes can impersonate the control-plane.</p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.initConfiguration.nodeRegistration">.spec.initConfiguration.nodeRegistration</h3>
 </div>
@@ -2146,7 +2144,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -2170,6 +2168,29 @@ source_repository_ref: v5.0.0
 
 <div class="property-description">
 <p>The node this Taint is attached to has the &ldquo;effect&rdquo; on any pod that does not tolerate the Taint.</p>
+
+</div>
+
+<div class="property-description">
+<p>Name is the <code>.Metadata.Name</code> field of the Node API object that will be created in this <code>kubeadm init</code> or <code>kubeadm join</code> operation. This field is also used in the CommonName field of the kubelet&rsquo;s client certificate to the API server. Defaults to the hostname of the node if not provided.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.nodeRegistration.taints">.spec.joinConfiguration.nodeRegistration.taints</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>Taints specifies the taints the Node API object should be registered with. If this field is unset, i.e. nil, in the <code>kubeadm init</code> process it will be defaulted to []v1.Taint{&lsquo;node-role.kubernetes.io/master=&ldquo;&rdquo;&rsquo;}. If you don&rsquo;t want to taint your control-plane node, set this field to an empty slice, i.e. <code>taints: {}</code> in the YAML file. This field is solely used for Node registration.</p>
 
 </div>
 
@@ -3107,6 +3128,11 @@ source_repository_ref: v5.0.0
 
 <div class="property-description">
 <p>Name specifies the user name</p>
+
+</div>
+
+<div class="property-description">
+<p>Passwd specifies a hashed password for the user</p>
 
 </div>
 
