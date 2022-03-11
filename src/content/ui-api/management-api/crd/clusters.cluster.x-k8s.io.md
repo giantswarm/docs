@@ -617,24 +617,6 @@ spec:
 </div>
 </div>
 
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha2-.status.phase">.status.phase</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">boolean</span>
-
-</div>
-
-<div class="property-description">
-<p>Phase represents the current phase of cluster actuation. E.g. Pending, Running, Terminating, Failed etc.</p>
-
-</div>
-
-</div>
-</div>
-
 <div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.infrastructureRef.uid">.spec.infrastructureRef.uid</h3>
@@ -1182,7 +1164,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">boolean</span>
 
 </div>
 
@@ -1231,7 +1213,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -1298,7 +1280,12 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>Paused can be used to prevent controllers from processing the Cluster and all its associated objects.</p>
 
 </div>
 
@@ -1732,6 +1719,7 @@ spec:
 <div class="property-meta">
 <span class="property-type">string</span>
 
+</div>
 
 <div class="property-description">
 <p>RolloutAfter performs a rollout of the entire cluster one component at a time, control plane first and then machine deployments.</p>
@@ -1765,7 +1753,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -1857,7 +1845,6 @@ spec:
 <div class="property-meta">
 <span class="property-type">object</span>
 
-</div>
 
 <div class="property-description">
 <p>Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: <a href="http://kubernetes.io/docs/user-guide/annotations">http://kubernetes.io/docs/user-guide/annotations</a></p>
@@ -1921,7 +1908,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-5">
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.status">.status</h3>
 </div>
@@ -1939,9 +1926,27 @@ spec:
 </div>
 </div>
 
-<div class="property depth-6">
+<div class="property depth-5">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.status.conditions">.status.conditions</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Class is the name of the MachineDeploymentClass used to create the set of worker nodes. This should match one of the deployment classes defined in the ClusterClass object mentioned in the <code>Cluster.Spec.Class</code> field.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.topology.workers.machineDeployments[*].metadata">.spec.topology.workers.machineDeployments[*].metadata</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1950,7 +1955,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: <a href="http://kubernetes.io/docs/user-guide/annotations">http://kubernetes.io/docs/user-guide/annotations</a></p>
+<p>Metadata is the metadata applied to the machines of the MachineDeployment. At runtime this metadata is merged with the corresponding metadata from the ClusterClass.</p>
 
 </div>
 
@@ -1968,6 +1973,24 @@ spec:
 </div>
 
 <div class="property-description">
+<p>Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: <a href="http://kubernetes.io/docs/user-guide/annotations">http://kubernetes.io/docs/user-guide/annotations</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-6">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status.conditions[*].lastTransitionTime">.status.conditions[*].lastTransitionTime</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
 <p>Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: <a href="http://kubernetes.io/docs/user-guide/labels">http://kubernetes.io/docs/user-guide/labels</a></p>
 
 </div>
@@ -1977,7 +2000,7 @@ spec:
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.status.conditions[*].lastTransitionTime">.status.conditions[*].lastTransitionTime</h3>
+<h3 class="property-path" id="v1alpha4-.status.conditions[*].message">.status.conditions[*].message</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2013,7 +2036,7 @@ spec:
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.status.conditions[*].message">.status.conditions[*].message</h3>
+<h3 class="property-path" id="v1alpha4-.status.conditions[*].reason">.status.conditions[*].reason</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2031,7 +2054,7 @@ spec:
 
 <div class="property depth-6">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.status.conditions[*].reason">.status.conditions[*].reason</h3>
+<h3 class="property-path" id="v1alpha4-.status.conditions[*].severity">.status.conditions[*].severity</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2049,7 +2072,7 @@ spec:
 
 <div class="property depth-6">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.status.conditions[*].severity">.status.conditions[*].severity</h3>
+<h3 class="property-path" id="v1alpha4-.status.conditions[*].status">.status.conditions[*].status</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2067,7 +2090,79 @@ spec:
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.status.conditions[*].status">.status.conditions[*].status</h3>
+<h3 class="property-path" id="v1alpha4-.status.conditions[*].type">.status.conditions[*].type</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Name is the unique identifier for this MachineDeploymentTopology. The value is used with other unique identifiers to create a MachineDeployment&rsquo;s Name (e.g. cluster&rsquo;s name, etc). In case the name is greater than the allowed maximum length, the values are hashed together.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status.controlPlaneReady">.status.controlPlaneReady</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>ClusterStatus defines the observed state of Cluster.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-6">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status.failureDomains">.status.failureDomains</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: <a href="http://kubernetes.io/docs/user-guide/annotations">http://kubernetes.io/docs/user-guide/annotations</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-6">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status.failureMessage">.status.failureMessage</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: <a href="http://kubernetes.io/docs/user-guide/labels">http://kubernetes.io/docs/user-guide/labels</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status.failureReason">.status.failureReason</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2103,7 +2198,7 @@ spec:
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.status.controlPlaneReady">.status.controlPlaneReady</h3>
+<h3 class="property-path" id="v1alpha4-.status.infrastructureReady">.status.infrastructureReady</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2121,7 +2216,7 @@ spec:
 
 <div class="property depth-6">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.status.failureDomains">.status.failureDomains</h3>
+<h3 class="property-path" id="v1alpha4-.status.observedGeneration">.status.observedGeneration</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2139,7 +2234,7 @@ spec:
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.status.failureMessage">.status.failureMessage</h3>
+<h3 class="property-path" id="v1alpha4-.status.phase">.status.phase</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2167,83 +2262,6 @@ spec:
 
 <div class="property-description">
 <p>ClusterStatus defines the observed state of Cluster.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.status.infrastructureReady">.status.infrastructureReady</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>Condition defines an observation of a Cluster API resource operational state.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.status.observedGeneration">.status.observedGeneration</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>Last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.status.phase">.status.phase</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>The reason for the condition&rsquo;s last transition in CamelCase. The specific API may choose whether or not this field is considered a guaranteed API. This field may not be empty.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.status.infrastructureReady">.status.infrastructureReady</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>Severity provides an explicit classification of Reason code, so the users or machines can immediately understand the current situation and act accordingly. The Severity field MUST be set only when Status=False.</p>
-
-</div>
-
-</div>
-</div>
 
 
 </div>
