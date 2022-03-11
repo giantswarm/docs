@@ -3128,6 +3128,11 @@ source_repository_ref: v5.0.0
 
 </div>
 
+<div class="property-description">
+<p>Passwd specifies a hashed password for the user</p>
+
+</div>
+
 </div>
 
 </div>
