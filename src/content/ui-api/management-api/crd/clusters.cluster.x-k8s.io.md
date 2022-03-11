@@ -759,6 +759,132 @@ spec:
 </div>
 </div>
 
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.infrastructureRef.uid">.spec.infrastructureRef.uid</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>UID of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.paused">.spec.paused</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>Paused can be used to prevent controllers from processing the Cluster and all its associated objects.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-0">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status">.status</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>ClusterStatus defines the observed state of Cluster.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.conditions">.status.conditions</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>Conditions defines current service state of the cluster.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.conditions[*]">.status.conditions[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Condition defines an observation of a Cluster API resource operational state.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.conditions[*].lastTransitionTime">.status.conditions[*].lastTransitionTime</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.conditions[*].message">.status.conditions[*].message</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>A human readable message indicating details about the transition. This field may be empty.</p>
+
+</div>
+
+</div>
+</div>
+
 <div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.status.conditions[*].reason">.status.conditions[*].reason</h3>
