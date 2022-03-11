@@ -15,6 +15,7 @@ user_questions:
   - How can I serve an app catalog using GitHub Pages?
   - How can I publish an app to my app catalog?
   - How can I register an app catalog with app platform?
+  - How can I hide or show an app catalog in the web UI?
   - How can I install an apps from an app catalog?
   - How can I inspect the apps in an app catalog?
 ---
