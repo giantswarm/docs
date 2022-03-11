@@ -2004,7 +2004,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>BootstrapToken describes one bootstrap token, stored as a Secret in the cluster.</p>
+<p>BootstrapToken describes one bootstrap token, stored as a Secret in the cluster</p>
 
 </div>
 
@@ -2084,7 +2084,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 <span class="property-required">Required</span>
 </div>
 
@@ -2390,7 +2390,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>The taint value corresponding to the taint key.</p>
+<p>Required. The taint value corresponding to the taint key.</p>
 
 </div>
 
@@ -2907,7 +2907,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>The taint value corresponding to the taint key.</p>
+<p>Required. The taint value corresponding to the taint key.</p>
 
 </div>
 
