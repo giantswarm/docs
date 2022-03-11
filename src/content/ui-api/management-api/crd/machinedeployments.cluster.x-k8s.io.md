@@ -1773,7 +1773,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.strategy.type">.spec.strategy.type</h3>
 </div>
@@ -1827,14 +1827,14 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-1">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.metadata.annotations">.spec.template.metadata.annotations</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">object</span>
-<span class="property-required">Required</span>
+
 </div>
 
 <div class="property-description">
@@ -1845,7 +1845,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-5">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.metadata.labels">.spec.template.metadata.labels</h3>
 </div>
@@ -1881,7 +1881,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-5">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.spec.bootstrap">.spec.template.spec.bootstrap</h3>
 </div>
@@ -1899,7 +1899,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.spec.bootstrap.configRef">.spec.template.spec.bootstrap.configRef</h3>
 </div>
@@ -1917,7 +1917,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-5">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.spec.bootstrap.configRef.apiVersion">.spec.template.spec.bootstrap.configRef.apiVersion</h3>
 </div>
@@ -1928,14 +1928,14 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>Bootstrap is a reference to a local struct which encapsulates fields to configure the Machine’s bootstrapping mechanism.</p>
+<p>Kind of the referent. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</a></p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-4">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.spec.bootstrap.configRef.fieldPath">.spec.template.spec.bootstrap.configRef.fieldPath</h3>
 </div>
@@ -2007,7 +2007,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-5">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.spec.bootstrap.configRef.resourceVersion">.spec.template.spec.bootstrap.configRef.resourceVersion</h3>
 </div>
@@ -2043,7 +2043,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-5">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.spec.bootstrap.dataSecretName">.spec.template.spec.bootstrap.dataSecretName</h3>
 </div>
@@ -2085,8 +2085,8 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
+<span class="property-type">integer</span>
+
 </div>
 
 <div class="property-description">
@@ -2121,8 +2121,8 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
-<span class="property-required">Required</span>
+<span class="property-type">string</span>
+
 </div>
 
 <div class="property-description">
@@ -2139,7 +2139,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">integer</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -2241,7 +2241,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-4">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.template.spec.nodeDrainTimeout">.spec.template.spec.nodeDrainTimeout</h3>
 </div>
@@ -2374,7 +2374,7 @@ source_repository_ref: v5.0.0
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-<span class="property-required">Required</span>
+
 </div>
 
 <div class="property-description">
