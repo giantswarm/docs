@@ -15,8 +15,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/rainbow
 ---
 
-# Organizations
-
 <div class="well disclaimer">
 
 <i class="fa fa-warning"></i> This article covers organizations as defined in the [Management API]({{< relref "/ui-api/management-api/_index.md" >}}). These are replacing the organizations as used with the [REST API]({{< relref "/ui-api/rest-api/index.md">}}). Please make sure you read the details about this transition carefully, especially the [roadmap](#roadmap) section, to understand the ramifications for you and your end users.

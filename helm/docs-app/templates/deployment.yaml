@@ -24,9 +24,6 @@ spec:
           # Public image required
           image: quay.io/giantswarm/{{ .Values.image.name }}:{{ .Values.image.tag }}
           imagePullPolicy: Always
-          env:
-            - name: HUGO_DOCS_VERSION
-              value: {{ .Values.image.tag }}
           ports:
             - containerPort: 8080
               name: http
