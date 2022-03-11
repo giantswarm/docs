@@ -2052,7 +2052,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.template.metadata.namespace">.spec.template.metadata.namespace</h3>
 </div>
@@ -2082,14 +2082,14 @@ spec:
 </div>
 
 <div class="property-description">
-<p>List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.</p>
+<p>API version of the referent.</p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-4">
+<div class="property depth-5">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.template.metadata.ownerReferences[*]">.spec.template.metadata.ownerReferences[*]</h3>
 </div>
@@ -2197,7 +2197,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-5">
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.template.metadata.ownerReferences[*].uid">.spec.template.metadata.ownerReferences[*].uid</h3>
 </div>
@@ -2435,24 +2435,6 @@ spec:
 <div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.template.spec.clusterName">.spec.template.spec.clusterName</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>ClusterName is the name of the Cluster this object belongs to.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.failureDomain">.spec.template.spec.failureDomain</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
