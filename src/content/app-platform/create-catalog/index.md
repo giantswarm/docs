@@ -118,8 +118,7 @@ kubectl gs template catalog \
   --namespace org-example \
   --description "An example Catalog" \
   --url https://example.github.io/example-catalog/ \
-  --logo https://example.com/logos/example-logo.png \
-  --visibility public
+  --logo https://example.com/logos/example-logo.png
 ```
 
 ```yaml
