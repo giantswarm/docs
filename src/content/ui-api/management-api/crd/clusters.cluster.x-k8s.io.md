@@ -1211,7 +1211,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">boolean</span>
 
 </div>
 
@@ -1278,12 +1278,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
-
-</div>
-
-<div class="property-description">
-<p>Paused can be used to prevent controllers from processing the Cluster and all its associated objects.</p>
+<span class="property-type">object</span>
 
 </div>
 
@@ -1474,7 +1469,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.infrastructureRef.kind">.spec.infrastructureRef.kind</h3>
 </div>
@@ -1492,7 +1487,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.infrastructureRef.name">.spec.infrastructureRef.name</h3>
 </div>
@@ -1526,6 +1521,7 @@ spec:
 </div>
 
 </div>
+</div>
 
 <div class="property depth-2">
 <div class="property-header">
@@ -1539,6 +1535,186 @@ spec:
 
 <div class="property-description">
 <p>Specific resourceVersion to which this reference is made, if any. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.infrastructureRef.uid">.spec.infrastructureRef.uid</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>UID of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.paused">.spec.paused</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>Paused can be used to prevent controllers from processing the Cluster and all its associated objects.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.topology">.spec.topology</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>This encapsulates the topology for the cluster. NOTE: It is required to enable the ClusterTopology feature gate flag to activate managed topologies support; this feature is highly experimental, and parts of it might still be not implemented.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.topology.class">.spec.topology.class</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>The name of the ClusterClass object to create the topology.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.topology.controlPlane">.spec.topology.controlPlane</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>ControlPlane describes the cluster control plane.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.topology.controlPlane.metadata">.spec.topology.controlPlane.metadata</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Metadata is the metadata applied to the machines of the ControlPlane. At runtime this metadata is merged with the corresponding metadata from the ClusterClass.
+ This field is supported if and only if the control plane provider template referenced in the ClusterClass is Machine based.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.topology.controlPlane.metadata.annotations">.spec.topology.controlPlane.metadata.annotations</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: <a href="http://kubernetes.io/docs/user-guide/annotations">http://kubernetes.io/docs/user-guide/annotations</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.topology.controlPlane.metadata.labels">.spec.topology.controlPlane.metadata.labels</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: <a href="http://kubernetes.io/docs/user-guide/labels">http://kubernetes.io/docs/user-guide/labels</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.topology.controlPlane.replicas">.spec.topology.controlPlane.replicas</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>Replicas is the number of control plane nodes. If the value is nil, the ControlPlane object is created without the number of Replicas and it&rsquo;s assumed that the control plane controller does not implement support for this field. When specified against a control plane provider that lacks support for this field, this value will be ignored.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.topology.rolloutAfter">.spec.topology.rolloutAfter</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+
+<div class="property-description">
+<p>RolloutAfter performs a rollout of the entire cluster one component at a time, control plane first and then machine deployments.</p>
 
 </div>
 
@@ -1636,97 +1812,6 @@ spec:
 </div>
 
 <div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.topology.controlPlane.metadata">.spec.topology.controlPlane.metadata</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>Metadata is the metadata applied to the machines of the ControlPlane. At runtime this metadata is merged with the corresponding metadata from the ClusterClass.
- This field is supported if and only if the control plane provider template referenced in the ClusterClass is Machine based.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.topology.controlPlane.metadata.annotations">.spec.topology.controlPlane.metadata.annotations</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: <a href="http://kubernetes.io/docs/user-guide/annotations">http://kubernetes.io/docs/user-guide/annotations</a></p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.topology.controlPlane.metadata.labels">.spec.topology.controlPlane.metadata.labels</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: <a href="http://kubernetes.io/docs/user-guide/labels">http://kubernetes.io/docs/user-guide/labels</a></p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.topology.controlPlane.replicas">.spec.topology.controlPlane.replicas</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">integer</span>
-
-</div>
-
-<div class="property-description">
-<p>Replicas is the number of control plane nodes. If the value is nil, the ControlPlane object is created without the number of Replicas and it&rsquo;s assumed that the control plane controller does not implement support for this field. When specified against a control plane provider that lacks support for this field, this value will be ignored.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.topology.rolloutAfter">.spec.topology.rolloutAfter</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">boolean</span>
-
-</div>
-
-<div class="property-description">
-<p>RolloutAfter performs a rollout of the entire cluster one component at a time, control plane first and then machine deployments.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.topology.version">.spec.topology.version</h3>
 </div>
@@ -1906,7 +1991,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-4">
+<div class="property depth-5">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.status">.status</h3>
 </div>
@@ -1924,9 +2009,99 @@ spec:
 </div>
 </div>
 
-<div class="property depth-5">
+<div class="property depth-6">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.status.conditions">.status.conditions</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: <a href="http://kubernetes.io/docs/user-guide/annotations">http://kubernetes.io/docs/user-guide/annotations</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-6">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status.conditions[*]">.status.conditions[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: <a href="http://kubernetes.io/docs/user-guide/labels">http://kubernetes.io/docs/user-guide/labels</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status.conditions[*].lastTransitionTime">.status.conditions[*].lastTransitionTime</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Name is the unique identifier for this MachineDeploymentTopology. The value is used with other unique identifiers to create a MachineDeployment&rsquo;s Name (e.g. cluster&rsquo;s name, etc). In case the name is greater than the allowed maximum length, the values are hashed together.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.spec.topology.workers.machineDeployments[*].replicas">.spec.topology.workers.machineDeployments[*].replicas</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>Replicas is the number of worker nodes belonging to this set. If the value is nil, the MachineDeployment is created without the number of Replicas (defaulting to zero) and it&rsquo;s assumed that an external entity (like cluster autoscaler) is responsible for the management of this value.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status.conditions[*].message">.status.conditions[*].message</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>ClusterStatus defines the observed state of Cluster.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status.conditions[*].reason">.status.conditions[*].reason</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1962,7 +2137,7 @@ spec:
 
 <div class="property depth-6">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.status.conditions[*]">.status.conditions[*]</h3>
+<h3 class="property-path" id="v1alpha4-.status.conditions[*].severity">.status.conditions[*].severity</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1980,7 +2155,7 @@ spec:
 
 <div class="property depth-6">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.status.conditions[*].lastTransitionTime">.status.conditions[*].lastTransitionTime</h3>
+<h3 class="property-path" id="v1alpha4-.status.conditions[*].status">.status.conditions[*].status</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1998,7 +2173,7 @@ spec:
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.status.conditions[*].message">.status.conditions[*].message</h3>
+<h3 class="property-path" id="v1alpha4-.status.conditions[*].type">.status.conditions[*].type</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2016,25 +2191,7 @@ spec:
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.topology.workers.machineDeployments[*].replicas">.spec.topology.workers.machineDeployments[*].replicas</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">integer</span>
-
-</div>
-
-<div class="property-description">
-<p>Replicas is the number of worker nodes belonging to this set. If the value is nil, the MachineDeployment is created without the number of Replicas (defaulting to zero) and it&rsquo;s assumed that an external entity (like cluster autoscaler) is responsible for the management of this value.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-0">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.status.conditions[*].reason">.status.conditions[*].reason</h3>
+<h3 class="property-path" id="v1alpha4-.status.controlPlaneReady">.status.controlPlaneReady</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2052,25 +2209,7 @@ spec:
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.status.conditions[*].severity">.status.conditions[*].severity</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">array</span>
-
-</div>
-
-<div class="property-description">
-<p>Conditions defines current service state of the cluster.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.status.conditions[*].status">.status.conditions[*].status</h3>
+<h3 class="property-path" id="v1alpha4-.status.failureDomains">.status.failureDomains</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2088,7 +2227,7 @@ spec:
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.status.conditions[*].type">.status.conditions[*].type</h3>
+<h3 class="property-path" id="v1alpha4-.status.failureMessage">.status.failureMessage</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2106,7 +2245,7 @@ spec:
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.status.controlPlaneReady">.status.controlPlaneReady</h3>
+<h3 class="property-path" id="v1alpha4-.status.failureReason">.status.failureReason</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2124,7 +2263,7 @@ spec:
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.status.failureDomains">.status.failureDomains</h3>
+<h3 class="property-path" id="v1alpha4-.status.infrastructureReady">.status.infrastructureReady</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2142,7 +2281,7 @@ spec:
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.status.failureMessage">.status.failureMessage</h3>
+<h3 class="property-path" id="v1alpha4-.status.observedGeneration">.status.observedGeneration</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2178,7 +2317,7 @@ spec:
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.status.failureReason">.status.failureReason</h3>
+<h3 class="property-path" id="v1alpha4-.status.phase">.status.phase</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2206,62 +2345,6 @@ spec:
 
 <div class="property-description">
 <p>FailureDomains is a slice of failure domain objects synced from the infrastructure provider.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.status.observedGeneration">.status.observedGeneration</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>FailureMessage indicates that there is a fatal problem reconciling the state, and will be set to a descriptive error message.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.status.phase">.status.phase</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>FailureReason indicates that there is a fatal problem reconciling the state, and will be set to a token value suitable for programmatic interpretation.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.status.infrastructureReady">.status.infrastructureReady</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">boolean</span>
-
-</div>
-
-<div class="property-description">
-<p>InfrastructureReady is the state of the infrastructure provider.</p>
-
-
 
 
 </div>
