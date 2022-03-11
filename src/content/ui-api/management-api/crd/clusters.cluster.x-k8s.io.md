@@ -975,7 +975,6 @@ spec:
 </div>
 
 </div>
-</div>
 
 <div class="property depth-2">
 <div class="property-header">
