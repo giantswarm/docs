@@ -1910,7 +1910,7 @@ source_repository_ref: v5.0.0
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-<span class="property-required">Required</span>
+
 </div>
 
 </div>
@@ -1983,7 +1983,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-5">
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.initConfiguration.kind">.spec.initConfiguration.kind</h3>
 </div>
@@ -2007,8 +2007,8 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
+<span class="property-type">object</span>
+
 </div>
 
 <div class="property-description">
@@ -2026,11 +2026,11 @@ source_repository_ref: v5.0.0
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
-<p>TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.</p>
+<p>KubeConfigPath is used to specify the actual file path or URL to the kubeconfig file from which to load cluster information</p>
 
 </div>
 
@@ -2048,14 +2048,50 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>The taint value corresponding to the taint key.</p>
+<p>Timeout modifies the discovery timeout</p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-1">
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.discovery.tlsBootstrapToken">.spec.joinConfiguration.discovery.tlsBootstrapToken</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>TLSBootstrapToken is a token used for TLS bootstrapping. If .BootstrapToken is set, this field is defaulted to .BootstrapToken.Token, but can be overridden. If .File is set, this field <strong>must be set</strong> in case the KubeConfigFile does not contain any other authentication information TODO: revisit when there is defaulting from k/k</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.kind">.spec.joinConfiguration.kind</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.initConfiguration.nodeRegistration">.spec.initConfiguration.nodeRegistration</h3>
 </div>
@@ -2091,7 +2127,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.initConfiguration.nodeRegistration.kubeletExtraArgs">.spec.initConfiguration.nodeRegistration.kubeletExtraArgs</h3>
 </div>
@@ -2133,8 +2169,8 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
+<span class="property-type">array</span>
+
 </div>
 
 <div class="property-description">
@@ -2170,7 +2206,7 @@ source_repository_ref: v5.0.0
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
@@ -2260,7 +2296,7 @@ source_repository_ref: v5.0.0
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-<span class="property-required">Required</span>
+
 </div>
 
 <div class="property-description">
@@ -2271,14 +2307,14 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.caCertPath">.spec.joinConfiguration.caCertPath</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">integer</span>
-<span class="property-required">Required</span>
+<span class="property-type">array</span>
+
 </div>
 
 <div class="property-description">
@@ -2295,7 +2331,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -2307,7 +2343,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.controlPlane.localAPIEndpoint">.spec.joinConfiguration.controlPlane.localAPIEndpoint</h3>
 </div>
@@ -2379,7 +2415,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.discovery.bootstrapToken">.spec.joinConfiguration.discovery.bootstrapToken</h3>
 </div>
@@ -2403,7 +2439,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">boolean</span>
 
 </div>
 
@@ -2980,7 +3016,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -3034,7 +3070,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">array</span>
 
 </div>
 
@@ -3046,18 +3082,23 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.users[*].lockPassword">.spec.users[*].lockPassword</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">boolean</span>
 
 </div>
 
 <div class="property-description">
 <p>LockPassword specifies if password login should be disabled</p>
+
+</div>
+
+<div class="property-description">
+<p>PrimaryGroup specifies the primary group for the user</p>
 
 </div>
 
@@ -3080,7 +3121,6 @@ source_repository_ref: v5.0.0
 </div>
 
 </div>
-</div>
 
 <div class="property depth-3">
 <div class="property-header">
@@ -3088,7 +3128,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -3124,12 +3164,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>Discovery specifies the options for the kubelet to use during the TLS Bootstrap process TODO: revisit when there is defaulting from k/k</p>
+<span class="property-type">string</span>
 
 </div>
 
@@ -3147,7 +3182,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">array</span>
 
 </div>
 
@@ -3172,13 +3207,13 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-4">
+<div class="property depth-0">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.users[*].sudo">.spec.users[*].sudo</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -3243,7 +3278,6 @@ source_repository_ref: v5.0.0
 </div>
 
 </div>
-</div>
 
 <div class="property depth-1">
 <div class="property-header">
@@ -3279,13 +3313,11 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>LockPassword specifies if password login should be disabled</p>
+<p>Last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable.</p>
 
 </div>
 
-<div class="property-description">
-<p>LockPassword specifies if password login should be disabled</p>
-
+</div>
 </div>
 
 <div class="property depth-3">
@@ -3295,11 +3327,6 @@ source_repository_ref: v5.0.0
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>Name specifies the user name</p>
 
 </div>
 
@@ -3377,19 +3404,6 @@ source_repository_ref: v5.0.0
 
 <div class="property-description">
 <p>Status of the condition, one of True, False, Unknown.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.users[*].sshAuthorizedKeys[*]">.spec.users[*].sshAuthorizedKeys[*]</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
 
 </div>
 
