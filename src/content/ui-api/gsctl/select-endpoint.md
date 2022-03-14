@@ -15,8 +15,6 @@ user_questions:
 last_review_date: 2021-01-01
 ---
 
-# `gsctl select endpoint`
-
 {{% gsctl_deprecation_disclaimer %}}
 
 The `gsctl select endpoint` command selects a Giant Swarm REST API endpoint for

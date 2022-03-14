@@ -19,8 +19,6 @@ user_questions:
   - How can I inspect the apps in an app catalog?
 ---
 
-# Creating an app catalog
-
 ## Overview
 
 An app catalog is a collection of apps that can be deployed using the Giant Swarm App Platform.

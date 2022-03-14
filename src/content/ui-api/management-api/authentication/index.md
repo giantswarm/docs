@@ -17,8 +17,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 ---
 
-# Authentication for the Management API
-
 Here we explain how you'll authenticate against the Management API as a user. Also on this page, we provide some information for customer admins regarding the requirements for the initial [single sign-on setup](#sso-requirements) and some [technical details](#technical-details) you might be interested in.
 
 ## Authenticating as a user {#user-auth}
@@ -60,7 +58,7 @@ When switching back to this context, it should not be necessary to go through th
 
 You can alternatively initiate the single sign-on authentication directly in a browser, without the need of installing the `kubectl gs` plug-in.
 
-We provide a web-based login helper utility, available under a URL specific for each installation. If you have your installation's Management API endpoint URL, you can construct the utility's URL by prepending `login.` to the host name.
+We provide a web-based login helper utility named [Dex K8s Authenticator](https://github.com/mintel/dex-k8s-authenticator), available under a URL specific for each installation. If you know your installation's Management API endpoint URL, you can construct the utility's URL by prepending `login.` to it.
 
 If, for example, your Management API URL is
 
@@ -86,13 +84,122 @@ This page will also present your Management API endpoint's certificate authority
 
 The rest of the page helps you set up `kubectl` manually, adaptable for various operating systems.
 
+## Web UI login {#web-ui}
+
+Our Web UI provides a simple single sign-on mechanism that will send each user through your chosen identity provider's authentication process and finally redirect to the web UI. Behind the scenes, the same mechanism is used as in the examples above.
+
+## Details of an ID token {#id-token-details}
+
+Regardless of which login method is used, once this is done, the user's client (web UI, kubectl etc.) will send an ID token with every request to the Management API. The ID token contains information about the user which can then be used in [authorization]({{< relref "/ui-api/management-api/authorization/index.md" >}}) to decide which permissions the user should be granted.
+
+The ID token is a [JSON Web Token](https://datatracker.ietf.org/doc/html/rfc7519) (JWT). The payload part of an ID token issued for the Management API can look like in the following example. Note that we omit some parts that are not relevant for the purpose of this article.
+
+```json
+{
+  "iss": "https://dex.g8s.garlic.eu-west-1.aws.gigantic.io",
+  "exp": 1645533923,
+  "iat": 1645532123,
+  "email": "jane@example.com",
+  "groups": [
+    "customer:GiantSwarmAdmins"
+  ],
+  "name": "Jane Smith",
+  "preferred_username": "janes",
+  ...
+}
+```
+
+Let's go into details for the most relevant properties (also called "claims") of this payload object.
+
+| Claim | Description |
+|-|-|
+| `iss` | The OIDC provider that has issued the token. In our case it is Dex running in the management cluster.|
+| `exp` | When this ID token expires, in seconds since 1970-01-01 00:00. Read [ID token lifetime](##id-token-ttl) below for more information. |
+| `iat` | When this ID token has been issued, in seconds since 1970-01-01 00:00. |
+| `email` | Email address associated with the authenticated user. From the Kubernetes api-server perspective, this is the user name relevant for role-based access control (RBAC). |
+| `groups` | List of groups the user is a member of, provided by the identity provider. Note that group names are prefixed by Dex, usually prepending `customer:` to the original name of a group as defined in your identity provider. |
+| `name` | Friendly name of the authenticated user. |
+| `preferred_username` | Name to use as an identifier, as an alternative to the user's email address. |
+
 ## Authenticating for programmatic access {#service-auth}
 
-For programmatic access, for example from CI/CD pipelines, you should not rely on the above authentication mechanism. Instead, please use [service accounts](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/).
+For programmatic access, for example from CI/CD pipelines, you should not rely on the above authentication mechanism. Depending on your use case, follow one of the below.
 
-Each Giant Swarm installation provides a service account named `automation` in the `default` namespace.
+### Remote access to the Management Cluster {#remote-mc}
 
-**Note:** This service account comes with a quite powerful set permissions. **We strongly recommend to create a specific service account for each application**, binding it to specific roles granting only the required permissions in the required namespaces.
+Each Giant Swarm installation provides a service account named `automation` in the `default` namespace that may be used for creating a self-contained `kubeconfig` file. **Note however**, this account comes with a powerful set of permissions, thus **we strongly recommend you create a specific service account for each application**, binding it to specific roles granting only the required permissions in the required namespaces.
+
+Regardless of which service account you decide to use. From the management cluster, you can utilize the step below to create a config file.
+
+1. Export the Service Account name:
+
+```nohighlight
+SA_NAME=automation
+```
+
+2. Find Kubernetes Secret associated with the service account:
+
+```nohighlight
+SECRET=$(kubectl get sa $SA_NAME -o jsonpath='{.secrets[0].name}')
+```
+
+3. Find the service account's token:
+
+```nohighlight
+TOKEN=$(kubectl get secret $SECRET -o jsonpath='{.data.token}' | base64 --decode)
+```
+
+4. Find Kubernetes CA certificate:
+
+```nohighlight
+CA_CERT=$(kubectl get secret $SECRET -o jsonpath='{.data.ca\.crt}')
+```
+
+5. Grab installation's API endpoint:
+
+```nohighlight
+API_URL=$(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')
+```
+
+6. Grab installation's name:
+
+```nohighlight
+MC_NAME=$(kubectl config view --minify -o jsonpath='{.clusters[0].name}')
+```
+
+7. Generate kubectl configuration:
+
+```nohighlight
+cat <<EOF > kubeconfig
+apiVersion: v1
+kind: Config
+clusters:
+  - name: $MC_NAME
+    cluster:
+      certificate-authority-data: $CA_CERT
+      server: $API_URL
+users:
+  - name: $SA_NAME
+    user:
+      token: $TOKEN
+current-context: $MC_NAME
+contexts:
+- context:
+    cluster: $MC_NAME
+    user: $SA_NAME
+  name: $MC_NAME
+EOF
+```
+
+8. Test newly created file:
+
+```nohighlight
+kubectl --kubeconfig kubeconfig cluster-info
+```
+
+### Runners inside a cluster {#inside-runner}
+
+When you deploy any form of automation (e.g. CI/CD runners) inside a cluster that access the cluster, we strongly recommend using [service accounts](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/) directly. Please refer to your automation provider documentation for finding the right configuration steps.
 
 ## Single sign-on requirements {#sso-requirements}
 
@@ -114,12 +221,8 @@ After that period, clients like `kubectl` will automatically attempt to get a fr
 
 It is possible to configure a shorter token lifetime at the cost of more frequent delays due to token refreshing. Please contact your account engineer for assistance.
 
-<!--
-
-TODO: once we recommend assigning groups and users (non-admin MAPI users)
-
 When assigning users to groups in your identity provider, and when removing users from groups, it can take up to {{% mapi_oidc_token_ttl_minutes %}} minutes until the change becomes effective for end users. If a user has authenticated and obtained an ID token before the change, tools like `kubectl` will use that token until it expires.
 
-To force the adoption of up-to-date user information and group assignments, a user can manually remove the `id-token` value from the user entry in their `kubectl` configuration file.
+## Further reading
 
--->
+- [Authorization in the Management API]({{< relref "/ui-api/management-api/authorization" >}}) explains how to assign permissions to authenticated users

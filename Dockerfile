@@ -1,4 +1,4 @@
-FROM quay.io/giantswarm/hugo:v0.88.1 AS build
+FROM quay.io/giantswarm/hugo:v0.93.3 AS build
 
 RUN apk --no-cache add findutils gzip
 
@@ -6,12 +6,16 @@ WORKDIR /docs
 
 COPY . /docs
 
+# Expose the release version in content
+ENV HUGO_DOCS_VERSION $CIRCLE_TAG
+
 RUN hugo \
       --verbose \
       --gc \
       --minify \
       --source src \
-      --path-warnings \
+      --printPathWarnings \
+      --printUnusedTemplates \
       --destination /public \
       --cleanDestinationDir
 

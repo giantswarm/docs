@@ -18,8 +18,6 @@ user_questions:
   - How can I ensure Flux is not blocked by the validating webhook?
 ---
 
-# Defaulting and validation of App CRs
-
 ## Overview
 
 For Giant Swarm releases using app-operator version 3.0.0 and upwards the

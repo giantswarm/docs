@@ -16,8 +16,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
-# Advanced cluster autoscaler configuration
-
 Your Giant Swarm installation comes with a default configuration for the [Cluster Autoscaler addon](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler)
 
 You can override these defaults in a ConfigMap named `cluster-autoscaler-user-values`.

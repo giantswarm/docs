@@ -16,9 +16,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
 ---
 
-# Kubernetes Resources
-
-As your Giant Swarm cluster offers you fully-managed Kubernetes, the fundamentals you need are basically summarized by the userside documentation of Kubernetes. We have compiled a list of the best resources to get you started fast.
+As your Giant Swarm cluster offers you fully-managed Kubernetes, the fundamentals you need are basically summarized by the user side documentation of Kubernetes. We have compiled a list of the best resources to get you started fast.
 
 ## Official Kubernetes documentation
 
