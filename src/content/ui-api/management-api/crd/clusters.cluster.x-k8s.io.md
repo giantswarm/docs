@@ -494,32 +494,6 @@ spec:
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.status.apiEndpoints[*]">.status.apiEndpoints[*]</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha2-.status.apiEndpoints[*].port">.status.apiEndpoints[*].port</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">integer</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>APIEndpoint represents a reachable Kubernetes API endpoint.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
 <h3 class="property-path" id="v1alpha2-.status.apiEndpoints[*].host">.status.apiEndpoints[*].host</h3>
 </div>
 <div class="property-body">
@@ -578,8 +552,8 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
-
+<span class="property-type">integer</span>
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
@@ -596,12 +570,48 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">boolean</span>
 
 </div>
 
 <div class="property-description">
 <p>ErrorReason indicates that there is a problem reconciling the state, and will be set to a token value suitable for programmatic interpretation.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.status.infrastructureReady">.status.infrastructureReady</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>InfrastructureReady is the state of the infrastructure provider.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.status.phase">.status.phase</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Phase represents the current phase of cluster actuation. E.g. Pending, Running, Terminating, Failed etc.</p>
 
 </div>
 
