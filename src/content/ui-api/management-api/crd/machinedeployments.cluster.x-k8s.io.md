@@ -701,16 +701,6 @@ spec:
 <div class="property-meta">
 <span class="property-type">string</span>
 
-</div>
-
-<div class="property-description">
-<p>If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: &ldquo;spec.containers{name}&rdquo; (where &ldquo;name&rdquo; refers to the name of the container that triggered the event) or if no container name is specified &ldquo;spec.containers[2]&rdquo; (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.</p>
-
-</div>
-
-</div>
-</div>
-
 <div class="property depth-5">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha2-.spec.template.metadata.ownerReferences[*].name">.spec.template.metadata.ownerReferences[*].name</h3>
@@ -718,11 +708,11 @@ spec:
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
-<p>Kind of the referent. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</a></p>
+<p>If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: &ldquo;spec.containers{name}&rdquo; (where &ldquo;name&rdquo; refers to the name of the container that triggered the event) or if no container name is specified &ldquo;spec.containers[2]&rdquo; (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.</p>
 
 </div>
 
@@ -736,47 +726,47 @@ spec:
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
-<p>Name of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names</a></p>
+<p>UID of the referent. More info: <a href="http://kubernetes.io/docs/user-guide/identifiers#uids">http://kubernetes.io/docs/user-guide/identifiers#uids</a></p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-5">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha2-.spec.template.spec">.spec.template.spec</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
 <div class="property-description">
-<p>Namespace of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/">https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/</a></p>
+<p>Specification of the desired behavior of the machine. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status</a></p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-5">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha2-.spec.template.spec.bootstrap">.spec.template.spec.bootstrap</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
-
+<span class="property-type">object</span>
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
-<p>Specific resourceVersion to which this reference is made, if any. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency</a></p>
+<p>Kind of the referent. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</a></p>
 
 </div>
 
@@ -794,6 +784,60 @@ spec:
 </div>
 
 <div class="property-description">
+<p>Name of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.spec.template.spec.bootstrap.configRef.apiVersion">.spec.template.spec.bootstrap.configRef.apiVersion</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Namespace of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/">https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.spec.template.spec.bootstrap.configRef.fieldPath">.spec.template.spec.bootstrap.configRef.fieldPath</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Specific resourceVersion to which this reference is made, if any. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.spec.template.spec.bootstrap.configRef.kind">.spec.template.spec.bootstrap.configRef.kind</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
 <p>UID of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids</a></p>
 
 </div>
@@ -803,7 +847,7 @@ spec:
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.template.spec.bootstrap.configRef.apiVersion">.spec.template.spec.bootstrap.configRef.apiVersion</h3>
+<h3 class="property-path" id="v1alpha2-.spec.template.spec.bootstrap.configRef.name">.spec.template.spec.bootstrap.configRef.name</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -821,7 +865,7 @@ spec:
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.template.spec.bootstrap.configRef.fieldPath">.spec.template.spec.bootstrap.configRef.fieldPath</h3>
+<h3 class="property-path" id="v1alpha2-.spec.template.spec.bootstrap.configRef.namespace">.spec.template.spec.bootstrap.configRef.namespace</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -839,7 +883,7 @@ spec:
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.template.spec.bootstrap.configRef.kind">.spec.template.spec.bootstrap.configRef.kind</h3>
+<h3 class="property-path" id="v1alpha2-.spec.template.spec.bootstrap.configRef.resourceVersion">.spec.template.spec.bootstrap.configRef.resourceVersion</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -857,7 +901,7 @@ spec:
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.template.spec.bootstrap.configRef.name">.spec.template.spec.bootstrap.configRef.name</h3>
+<h3 class="property-path" id="v1alpha2-.spec.template.spec.bootstrap.configRef.uid">.spec.template.spec.bootstrap.configRef.uid</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -867,60 +911,6 @@ spec:
 
 <div class="property-description">
 <p>InfrastructureRef is a required reference to a custom resource offered by an infrastructure provider.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.template.spec.bootstrap.configRef.namespace">.spec.template.spec.bootstrap.configRef.namespace</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>API version of the referent.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.template.spec.bootstrap.configRef.resourceVersion">.spec.template.spec.bootstrap.configRef.resourceVersion</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: &ldquo;spec.containers{name}&rdquo; (where &ldquo;name&rdquo; refers to the name of the container that triggered the event) or if no container name is specified &ldquo;spec.containers[2]&rdquo; (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.template.spec.bootstrap.configRef.uid">.spec.template.spec.bootstrap.configRef.uid</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>Kind of the referent. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</a></p>
 
 </div>
 
@@ -1017,7 +1007,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha2-.spec.template.spec.infrastructureRef.name">.spec.template.spec.infrastructureRef.name</h3>
 </div>
@@ -1035,7 +1025,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha2-.spec.template.spec.infrastructureRef.namespace">.spec.template.spec.infrastructureRef.namespace</h3>
 </div>
@@ -1053,13 +1043,13 @@ spec:
 </div>
 </div>
 
-<div class="property depth-0">
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha2-.spec.template.spec.infrastructureRef.resourceVersion">.spec.template.spec.infrastructureRef.resourceVersion</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -1071,13 +1061,13 @@ spec:
 </div>
 </div>
 
-<div class="property depth-1">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha2-.spec.template.spec.infrastructureRef.uid">.spec.template.spec.infrastructureRef.uid</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">integer</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -1107,7 +1097,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-0">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha2-.spec.template.spec.metadata.annotations">.spec.template.spec.metadata.annotations</h3>
 </div>
@@ -1125,14 +1115,14 @@ spec:
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha2-.spec.template.spec.metadata.generateName">.spec.template.spec.metadata.generateName</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
+<span class="property-type">integer</span>
+
 </div>
 
 <div class="property-description">
@@ -1169,7 +1159,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -1188,7 +1178,7 @@ spec:
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
@@ -1876,60 +1866,6 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>Rolling update config params. Present only if MachineDeploymentStrategyType = RollingUpdate.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.strategy.rollingUpdate.maxSurge">.spec.strategy.rollingUpdate.maxSurge</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-
-
-</div>
-
-<div class="property-description">
-<p>The maximum number of machines that can be scheduled above the desired number of machines. Value can be an absolute number (ex: 5) or a percentage of desired machines (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to 1. Example: when this is set to 30%, the new MachineSet can be scaled up immediately when the rolling update starts, such that the total number of old and new machines do not exceed 130% of desired machines. Once old machines have been killed, new MachineSet can be scaled up further, ensuring that total number of machines running at any time during the update is at most 130% of desired machines.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.strategy.rollingUpdate.maxUnavailable">.spec.strategy.rollingUpdate.maxUnavailable</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-
-
-</div>
-
-<div class="property-description">
-<p>The maximum number of machines that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired machines (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to 0. Example: when this is set to 30%, the old MachineSet can be scaled down to 70% of desired machines immediately when the rolling update starts. Once new machines are ready, old MachineSet can be scaled down further, followed by scaling up the new MachineSet, ensuring that the total number of machines available at all times during the update is at least 70% of desired machines.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.strategy.type">.spec.strategy.type</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
 <span class="property-type">string</span>
 
 </div>
@@ -1944,25 +1880,7 @@ spec:
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template">.spec.template</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>Template describes the machines that will be created.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.metadata">.spec.template.metadata</h3>
+<h3 class="property-path" id="v1alpha3-.spec.strategy.rollingUpdate.maxSurge">.spec.strategy.rollingUpdate.maxSurge</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1980,7 +1898,7 @@ spec:
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.metadata.annotations">.spec.template.metadata.annotations</h3>
+<h3 class="property-path" id="v1alpha3-.spec.strategy.rollingUpdate.maxUnavailable">.spec.strategy.rollingUpdate.maxUnavailable</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1990,6 +1908,79 @@ spec:
 
 <div class="property-description">
 <p>Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: <a href="http://kubernetes.io/docs/user-guide/annotations">http://kubernetes.io/docs/user-guide/annotations</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.strategy.type">.spec.strategy.type</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Type of deployment. Currently the only supported strategy is &ldquo;RollingUpdate&rdquo;. Default is RollingUpdate.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template">.spec.template</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: <a href="http://kubernetes.io/docs/user-guide/labels">http://kubernetes.io/docs/user-guide/labels</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template.metadata">.spec.template.metadata</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: <a href="http://kubernetes.io/docs/user-guide/identifiers#names">http://kubernetes.io/docs/user-guide/identifiers#names</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template.metadata.annotations">.spec.template.metadata.annotations</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Namespace defines the space within each name must be unique. An empty namespace is equivalent to the &ldquo;default&rdquo; namespace, but &ldquo;default&rdquo; is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty.
+ Must be a DNS_LABEL. Cannot be updated. More info: <a href="http://kubernetes.io/docs/user-guide/namespaces">http://kubernetes.io/docs/user-guide/namespaces</a></p>
 
 </div>
 
@@ -2107,7 +2098,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-5">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.template.metadata.ownerReferences[*].apiVersion">.spec.template.metadata.ownerReferences[*].apiVersion</h3>
 </div>
@@ -2125,13 +2116,13 @@ spec:
 </div>
 </div>
 
-<div class="property depth-4">
+<div class="property depth-5">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.template.metadata.ownerReferences[*].blockOwnerDeletion">.spec.template.metadata.ownerReferences[*].blockOwnerDeletion</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">boolean</span>
 
 </div>
 
@@ -2143,7 +2134,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-5">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.template.metadata.ownerReferences[*].controller">.spec.template.metadata.ownerReferences[*].controller</h3>
 </div>
@@ -2154,7 +2145,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>API version of the referent.</p>
+<p>If true, this reference points to the managing controller.</p>
 
 </div>
 
@@ -2179,7 +2170,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-5">
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.template.metadata.ownerReferences[*].name">.spec.template.metadata.ownerReferences[*].name</h3>
 </div>
@@ -2269,81 +2260,9 @@ spec:
 </div>
 </div>
 
-<div class="property depth-4">
+<div class="property depth-5">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.template.spec.bootstrap.configRef.apiVersion">.spec.template.spec.bootstrap.configRef.apiVersion</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>API version of the referent.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-5">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.bootstrap.configRef.fieldPath">.spec.template.spec.bootstrap.configRef.fieldPath</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: &ldquo;spec.containers{name}&rdquo; (where &ldquo;name&rdquo; refers to the name of the container that triggered the event) or if no container name is specified &ldquo;spec.containers[2]&rdquo; (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-5">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.bootstrap.configRef.kind">.spec.template.spec.bootstrap.configRef.kind</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>Kind of the referent. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</a></p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-5">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.bootstrap.configRef.name">.spec.template.spec.bootstrap.configRef.name</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>Name of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names</a></p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-5">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.bootstrap.configRef.namespace">.spec.template.spec.bootstrap.configRef.namespace</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2361,7 +2280,7 @@ spec:
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.bootstrap.configRef.resourceVersion">.spec.template.spec.bootstrap.configRef.resourceVersion</h3>
+<h3 class="property-path" id="v1alpha3-.spec.template.spec.bootstrap.configRef.fieldPath">.spec.template.spec.bootstrap.configRef.fieldPath</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2379,7 +2298,7 @@ spec:
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.bootstrap.configRef.uid">.spec.template.spec.bootstrap.configRef.uid</h3>
+<h3 class="property-path" id="v1alpha3-.spec.template.spec.bootstrap.configRef.kind">.spec.template.spec.bootstrap.configRef.kind</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2395,14 +2314,87 @@ spec:
 </div>
 </div>
 
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template.spec.bootstrap.configRef.name">.spec.template.spec.bootstrap.configRef.name</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Data contains the bootstrap data, such as cloud-init details scripts. If nil, the Machine should remain in the Pending state.
+ Deprecated: This field has been deprecated in v1alpha3 and will be removed in a future version. Switch to DataSecretName.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template.spec.bootstrap.configRef.namespace">.spec.template.spec.bootstrap.configRef.namespace</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>DataSecretName is the name of the secret that stores the bootstrap data script. If nil, the Machine should remain in the Pending state.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template.spec.bootstrap.configRef.resourceVersion">.spec.template.spec.bootstrap.configRef.resourceVersion</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>ClusterName is the name of the Cluster this object belongs to.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template.spec.bootstrap.configRef.uid">.spec.template.spec.bootstrap.configRef.uid</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>FailureDomain is the failure domain the machine will be created in. Must match a key in the FailureDomains map stored on the cluster object.</p>
+
+</div>
+
+</div>
+</div>
+
 <div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.template.spec.bootstrap.data">.spec.template.spec.bootstrap.data</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
-
+<span class="property-type">object</span>
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
@@ -2432,7 +2424,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.template.spec.clusterName">.spec.template.spec.clusterName</h3>
 </div>
@@ -2565,7 +2557,7 @@ spec:
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-<span class="property-required">Required</span>
+
 </div>
 
 <div class="property-description">
@@ -2630,7 +2622,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-0">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.template.spec.providerID">.spec.template.spec.providerID</h3>
 </div>
@@ -2648,7 +2640,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.template.spec.version">.spec.template.spec.version</h3>
 </div>
