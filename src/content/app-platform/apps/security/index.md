@@ -10,7 +10,7 @@ menu:
 #   - /guides/managed-security-stack/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-security
-last_review_date: 2022-02-25
+last_review_date: 2022-03-15
 user_questions:
   - How do I view and manage vulnerabilities in my cluster?
   - What UI options are there for vulnerability and policy reports?
