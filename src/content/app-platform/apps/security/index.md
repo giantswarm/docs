@@ -1,6 +1,6 @@
 ---
 linkTitle: Security
-title: Managed Security Stack Overview
+title: Managed Security Pack Overview
 description: Architecture and configuration information for the collection of managed security tools.
 weight: 120
 menu:
