@@ -1970,7 +1970,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-4">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha2-.spec.joinConfiguration.controlPlane.localAPIEndpoint.bindPort">.spec.joinConfiguration.controlPlane.localAPIEndpoint.bindPort</h3>
 </div>
@@ -2012,12 +2012,12 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
-
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
-<p>BootstrapToken is used to set the options for bootstrap token based discovery BootstrapToken and File are mutually exclusive</p>
+<p>AdvertiseAddress sets the IP address for the API server to advertise.</p>
 
 </div>
 
@@ -2030,12 +2030,12 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
-
+<span class="property-type">integer</span>
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
-<p>APIServerEndpoint is an IP or domain name to the API server from which info will be fetched.</p>
+<p>BindPort sets the secure port for the API Server to bind to. Defaults to 6443.</p>
 
 </div>
 
@@ -2084,8 +2084,8 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">integer</span>
-<span class="property-required">Required</span>
+<span class="property-type">object</span>
+
 </div>
 
 <div class="property-description">
@@ -2160,11 +2160,6 @@ source_repository_ref: v5.0.0
 
 </div>
 
-<div class="property-description">
-<p>Timeout modifies the discovery timeout</p>
-
-</div>
-
 </div>
 </div>
 
@@ -2175,7 +2170,7 @@ source_repository_ref: v5.0.0
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
@@ -2277,7 +2272,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -2289,7 +2284,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-4">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha2-.spec.joinConfiguration.nodeRegistration.taints[*]">.spec.joinConfiguration.nodeRegistration.taints[*]</h3>
 </div>
@@ -2313,8 +2308,8 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
+<span class="property-type">object</span>
+
 </div>
 
 <div class="property-description">
@@ -2325,7 +2320,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha2-.spec.joinConfiguration.nodeRegistration.taints[*].key">.spec.joinConfiguration.nodeRegistration.taints[*].key</h3>
 </div>
@@ -2397,7 +2392,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha2-.spec.ntp.enabled">.spec.ntp.enabled</h3>
 </div>
