@@ -298,7 +298,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -310,27 +310,9 @@ spec:
 </div>
 </div>
 
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.infrastructureRef.apiVersion">.spec.infrastructureRef.apiVersion</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>APIEndpoint represents a reachable Kubernetes API endpoint.</p>
-
-</div>
-
-</div>
-</div>
-
 <div class="property depth-0">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.infrastructureRef.fieldPath">.spec.infrastructureRef.fieldPath</h3>
+<h3 class="property-path" id="v1alpha2-.spec.infrastructureRef.apiVersion">.spec.infrastructureRef.apiVersion</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -340,6 +322,24 @@ spec:
 
 <div class="property-description">
 <p>ClusterStatus defines the observed state of Cluster</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.spec.infrastructureRef.fieldPath">.spec.infrastructureRef.fieldPath</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>APIEndpoints represents the endpoints to communicate with the control plane.</p>
 
 </div>
 
@@ -352,24 +352,6 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
-
-</div>
-
-<div class="property-description">
-<p>APIEndpoints represents the endpoints to communicate with the control plane.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.infrastructureRef.name">.spec.infrastructureRef.name</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
 <span class="property-type">object</span>
 
 </div>
@@ -384,7 +366,7 @@ spec:
 
 <div class="property depth-0">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.infrastructureRef.namespace">.spec.infrastructureRef.namespace</h3>
+<h3 class="property-path" id="v1alpha2-.spec.infrastructureRef.name">.spec.infrastructureRef.name</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -402,7 +384,7 @@ spec:
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.infrastructureRef.resourceVersion">.spec.infrastructureRef.resourceVersion</h3>
+<h3 class="property-path" id="v1alpha2-.spec.infrastructureRef.namespace">.spec.infrastructureRef.namespace</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -420,7 +402,7 @@ spec:
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.infrastructureRef.uid">.spec.infrastructureRef.uid</h3>
+<h3 class="property-path" id="v1alpha2-.spec.infrastructureRef.resourceVersion">.spec.infrastructureRef.resourceVersion</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -436,13 +418,31 @@ spec:
 </div>
 </div>
 
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.spec.infrastructureRef.uid">.spec.infrastructureRef.uid</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>The hostname on which the API server is serving.</p>
+
+</div>
+
+</div>
+</div>
+
 <div class="property depth-0">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha2-.status">.status</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">integer</span>
 <span class="property-required">Required</span>
 </div>
 
@@ -586,7 +586,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">boolean</span>
 
 </div>
 
@@ -1130,10 +1130,8 @@ spec:
 <div class="property-description">
 <p>If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: &ldquo;spec.containers{name}&rdquo; (where &ldquo;name&rdquo; refers to the name of the container that triggered the event) or if no container name is specified &ldquo;spec.containers[2]&rdquo; (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.</p>
 
-</div>
+<h3 id="property-details-v1beta1">Properties</h3>
 
-</div>
-</div>
 
 <div class="property depth-2">
 <div class="property-header">
@@ -1166,8 +1164,10 @@ spec:
 <div class="property-description">
 <p>Name of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names</a></p>
 
-<h3 id="property-details-v1beta1">Properties</h3>
+</div>
 
+</div>
+</div>
 
 <div class="property depth-2">
 <div class="property-header">
@@ -1241,13 +1241,13 @@ spec:
 </div>
 </div>
 
-<div class="property depth-1">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.status">.status</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -1259,63 +1259,9 @@ spec:
 </div>
 </div>
 
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.status.conditions">.status.conditions</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>APIServerPort specifies the port the API Server should bind to. Defaults to 6443.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.status.conditions[*]">.status.conditions[*]</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>The network ranges from which Pod networks are allocated.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.status.conditions[*].lastTransitionTime">.status.conditions[*].lastTransitionTime</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>Type of condition in CamelCase or in foo.example.com/CamelCase. Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be useful (see .node.status.conditions), the ability to deconflict is important.</p>
-
-</div>
-
-</div>
-</div>
-
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.status.conditions[*].message">.status.conditions[*].message</h3>
+<h3 class="property-path" id="v1alpha3-.status.conditions">.status.conditions</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1333,7 +1279,7 @@ spec:
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.status.conditions[*].reason">.status.conditions[*].reason</h3>
+<h3 class="property-path" id="v1alpha3-.status.conditions[*]">.status.conditions[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1350,6 +1296,60 @@ spec:
 </div>
 
 <div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.conditions[*].lastTransitionTime">.status.conditions[*].lastTransitionTime</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>ControlPlaneInitialized defines if the control plane has been initialized.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.conditions[*].message">.status.conditions[*].message</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>FailureDomains is a slice of failure domain objects synced from the infrastructure provider.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.status.conditions[*].reason">.status.conditions[*].reason</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Domain name for services.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.status.conditions[*].severity">.status.conditions[*].severity</h3>
 </div>
@@ -1378,32 +1378,31 @@ spec:
 </div>
 
 <div class="property-description">
-<p>FailureDomains is a slice of failure domain objects synced from the infrastructure provider.</p>
+<p>The network ranges from which service VIPs are allocated.</p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.status.conditions[*].type">.status.conditions[*].type</h3>
 </div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
+<div class="annotation-body">
+<div class="annotation-meta">
 
 </div>
 
-<div class="property-description">
-<p>Domain name for services.</p>
+<div class="annotation-description">
+<p>This annotation is used to define the desired target time for a scheduled upgrade of the cluster. The upgrade will be applied at the specified time if the &ldquo;update-schedule-target-release&rdquo; annotation has been set to the target release version. The value has to be in RFC822 Format and UTC time zone. e.g. &ldquo;30 Jan 21 15:04 UTC&rdquo;</p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.status.controlPlaneInitialized">.status.controlPlaneInitialized</h3>
 </div>
@@ -1425,21 +1424,20 @@ spec:
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.status.controlPlaneReady">.status.controlPlaneReady</h3>
 </div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
+<div class="annotation-body">
+<div class="annotation-meta">
 
 </div>
 
-<div class="property-description">
-<p>The network ranges from which service VIPs are allocated.</p>
+<div class="annotation-description">
+<p>This annotation is used to define the desired target release for a scheduled upgrade of the cluster. The upgrade to the specified version will be applied if the &ldquo;update-schedule-target-time&rdquo; annotation has been set and the time defined there has been reached. The value has to be only the desired release version, e.g &ldquo;15.2.1&rdquo;.</p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.status.failureDomains">.status.failureDomains</h3>
 </div>
