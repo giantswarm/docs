@@ -6,7 +6,7 @@ weight: 20
 menu:
   main:
     parent: advanced-highavailability
-last_review_date: 2021-02-01
+last_review_date: 2022-03-16
 user_questions:
 - Does Giant Swarm support multiple availability zones (AZ)?
 - What are the benefits of using multiple availability zones (AZ)?
@@ -18,6 +18,7 @@ user_questions:
 - How do I ensure my pods and volumes are on the same nodes?
 - Can I spread worker nodes over availability zones?
 - How do I create clusters in multiple availability zones (AZ)?
+- How do I make sure my workload is distributed evenly over availability zones (AZ)?
 aliases:
   - /basics/multiaz/
 owner:
@@ -39,6 +40,7 @@ Both AWS and Azure support AZ within their regions. These zones still have good 
 Your cluster nodes have labels that indicate which availability zone they are running in. You can influence the scheduling of your pods via node affinity and/or inter-pod affinity or anti-affinity.
 
 - [Affinity and anti-affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity)
+- [Pod Topology Spread Constraints](https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/)
 
 This enables use cases such as:
 
@@ -63,6 +65,43 @@ This enables use cases such as:
 - To make sure your pods and volumes end up on the same nodes, we recommend to specify `WaitForFirstConsumer` as `volumeBindingMode` in your storage classes. Your clusters come with a default storage class that contains this setting already. See the [Volume Binding Mode](https://kubernetes.io/docs/concepts/storage/storage-classes/#volume-binding-mode) section in the Kubernetes storage documentation for more information.
 
 Spreading worker nodes over multiple availability zones can be configured per [node pool]({{< relref "/advanced/node-pools" >}}) and independent of the choice of a single control plane node vs. using multiple control plane nodes (currently multiple control plane nodes are only supported on AWS).
+
+## Example Pod Topology Spread Constraints and Affinity
+
+To make sure your workload gets scheduled over available worker nodes over availability zones you can make use of [Pod Topology Spread Constraints](https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/) and [Affinity and anti-affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity).
+
+In this example, the two constraints make sure, pods with the given labels are distributed across available zones. The first constraint makes sure the number of Pods across Nodes with the same `topology.kubernetes.io/zone` label is one at max. The second constraint picks the Node with the lowest number of Pods still across all nodes and all zones. This might collide with the first constraint and no schedule would happen at all unless `whenUnsatisfiable` is set to `ScheduleAnyway`. The `affinity` makes sure to not schedule any Pods on `master` Nodes.
+
+The following fields are part of the `spec.template.spec` of Deployments, StatefulSets, and DaemonSets:
+
+```
+topologySpreadConstraints:
+  - maxSkew: 1
+    topologyKey: topology.kubernetes.io/zone
+    whenUnsatisfiable: DoNotSchedule
+    labelSelector:
+      matchLabels:
+        app.kubernetes.io/name: hello-world-app
+        app.kubernetes.io/version: 0.1.0
+  - maxSkew: 1
+    topologyKey: kubernetes.io/hostname
+    whenUnsatisfiable: ScheduleAnyway
+    labelSelector:
+      matchLabels:
+        app.kubernetes.io/name: hello-world-app
+        app.kubernetes.io/version: 0.1.0
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/role
+          operator: NotIn
+          values:
+          - master
+```
+
+These constraints are checked during scheduling of new Pods. In case some dis-balancing happened because of other reasons, [Descheduler for Kubernetes](https://github.com/kubernetes-sigs/descheduler) can be used to re-schedule Pods to be more balanced.
 
 ## Get started
 
