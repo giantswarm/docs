@@ -295,42 +295,6 @@ spec:
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.infrastructureRef">.spec.infrastructureRef</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>InfrastructureRef is a reference to a provider-specific resource that holds the details for provisioning infrastructure for a cluster in said provider.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-0">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha2-.spec.infrastructureRef.apiVersion">.spec.infrastructureRef.apiVersion</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>ClusterStatus defines the observed state of Cluster</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
 <h3 class="property-path" id="v1alpha2-.spec.infrastructureRef.fieldPath">.spec.infrastructureRef.fieldPath</h3>
 </div>
 <div class="property-body">
@@ -2266,68 +2230,11 @@ spec:
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.clusterNetwork.serviceDomain">.spec.clusterNetwork.serviceDomain</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>Domain name for services.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.clusterNetwork.services">.spec.clusterNetwork.services</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>The network ranges from which service VIPs are allocated.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.clusterNetwork.services.cidrBlocks">.spec.clusterNetwork.services.cidrBlocks</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">array</span>
 <span class="property-required">Required</span>
 </div>
 
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.clusterNetwork.services.cidrBlocks[*]">.spec.clusterNetwork.services.cidrBlocks[*]</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
+<div class="property-description">
+<p>Type of condition in CamelCase or in foo.example.com/CamelCase. Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be useful (see .node.status.conditions), the ability to deconflict is important.</p>
 
 </div>
 
@@ -2336,52 +2243,16 @@ spec:
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.controlPlaneEndpoint">.spec.controlPlaneEndpoint</h3>
+<h3 class="property-path" id="v1alpha4-.status.controlPlaneReady">.status.controlPlaneReady</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">boolean</span>
 
 </div>
 
 <div class="property-description">
-<p>ControlPlaneEndpoint represents the endpoint used to communicate with the control plane.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.controlPlaneEndpoint.host">.spec.controlPlaneEndpoint.host</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>The hostname on which the API server is serving.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.controlPlaneEndpoint.port">.spec.controlPlaneEndpoint.port</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">integer</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>The port on which the API server is serving.</p>
+<p>ControlPlaneReady defines if the control plane is ready.</p>
 
 </div>
 
@@ -2389,179 +2260,17 @@ spec:
 </div>
 
 <div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.controlPlaneRef">.spec.controlPlaneRef</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>ControlPlaneRef is an optional reference to a provider-specific resource that holds the details for provisioning the Control Plane for a Cluster.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.controlPlaneRef.apiVersion">.spec.controlPlaneRef.apiVersion</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>API version of the referent.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.controlPlaneRef.fieldPath">.spec.controlPlaneRef.fieldPath</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: &ldquo;spec.containers{name}&rdquo; (where &ldquo;name&rdquo; refers to the name of the container that triggered the event) or if no container name is specified &ldquo;spec.containers[2]&rdquo; (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.controlPlaneRef.kind">.spec.controlPlaneRef.kind</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>Kind of the referent. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</a></p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.controlPlaneRef.name">.spec.controlPlaneRef.name</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>Name of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names</a></p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.controlPlaneRef.namespace">.spec.controlPlaneRef.namespace</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>Namespace of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/">https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/</a></p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.controlPlaneRef.resourceVersion">.spec.controlPlaneRef.resourceVersion</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>Specific resourceVersion to which this reference is made, if any. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency</a></p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.controlPlaneRef.uid">.spec.controlPlaneRef.uid</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>UID of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids</a></p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1beta1-.spec.infrastructureRef">.spec.infrastructureRef</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>InfrastructureRef is a reference to a provider-specific resource that holds the details for provisioning infrastructure for a cluster in said provider.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.status.failureDomains">.status.failureDomains</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
 <div class="property-description">
-<p>API version of the referent.</p>
+<p>FailureDomains is a slice of failure domain objects synced from the infrastructure provider.</p>
 
 </div>
 
@@ -2579,7 +2288,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: &ldquo;spec.containers{name}&rdquo; (where &ldquo;name&rdquo; refers to the name of the container that triggered the event) or if no container name is specified &ldquo;spec.containers[2]&rdquo; (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.</p>
+<p>Domain name for services.</p>
 
 </div>
 
@@ -2592,19 +2301,19 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
 <div class="property-description">
-<p>Kind of the referent. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</a></p>
+<p>The network ranges from which service VIPs are allocated.</p>
 
 </div>
 
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.status.infrastructureReady">.status.infrastructureReady</h3>
 </div>
