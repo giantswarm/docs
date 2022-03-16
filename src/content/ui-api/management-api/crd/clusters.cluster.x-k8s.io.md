@@ -2074,8 +2074,10 @@ spec:
 <div class="property-description">
 <p>InfrastructureReady is the state of the infrastructure provider.</p>
 
-</div>
 
+<div class="annotation">
+<div class="annotation-header">
+<h3 class="annotation-path" id="v1alpha3-alpha.giantswarm.io/update-schedule-target-release">alpha.giantswarm.io/update-schedule-target-release</h3>
 </div>
 </div>
 
@@ -2089,8 +2091,8 @@ spec:
 
 </div>
 
-<div class="property-description">
-<p>ObservedGeneration is the latest generation observed by the controller.</p>
+<div class="annotation-description">
+<p>This annotation is used to define the desired target release for a scheduled upgrade of the cluster. The upgrade to the specified version will be applied if the &ldquo;update-schedule-target-time&rdquo; annotation has been set and the time defined there has been reached. The value has to be only the desired release version, e.g &ldquo;15.2.1&rdquo;.</p>
 
 </div>
 
@@ -2100,47 +2102,6 @@ spec:
 <div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.status.phase">.status.phase</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>Phase represents the current phase of cluster actuation. E.g. Pending, Running, Terminating, Failed etc.</p>
-
-</div>
-
-</div>
-</div>
-
-
-
-
-<h3 id="annotation-details-v1alpha3">Annotations</h3>
-
-
-<div class="annotation">
-<div class="annotation-header">
-<h3 class="annotation-path" id="v1alpha3-alpha.giantswarm.io/update-schedule-target-release">alpha.giantswarm.io/update-schedule-target-release</h3>
-</div>
-<div class="annotation-body">
-<div class="annotation-meta">
-
-</div>
-
-<div class="annotation-description">
-<p>This annotation is used to define the desired target release for a scheduled upgrade of the cluster. The upgrade to the specified version will be applied if the &ldquo;update-schedule-target-time&rdquo; annotation has been set and the time defined there has been reached. The value has to be only the desired release version, e.g &ldquo;15.2.1&rdquo;.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="annotation">
-<div class="annotation-header">
-<h3 class="annotation-path" id="v1alpha3-alpha.giantswarm.io/update-schedule-target-time">alpha.giantswarm.io/update-schedule-target-time</h3>
 </div>
 <div class="annotation-body">
 <div class="annotation-meta">
