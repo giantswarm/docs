@@ -1543,7 +1543,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-0">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.kind">.kind</h3>
 </div>
@@ -1592,7 +1592,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-4">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.clusterName">.spec.clusterName</h3>
 </div>
@@ -1610,13 +1610,13 @@ spec:
 </div>
 </div>
 
-<div class="property depth-4">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.minReadySeconds">.spec.minReadySeconds</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">integer</span>
 
 </div>
 
@@ -1628,7 +1628,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-5">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.paused">.spec.paused</h3>
 </div>
@@ -1646,7 +1646,7 @@ spec:
 </div>
 </div>
 
-<div class="property depth-6">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.progressDeadlineSeconds">.spec.progressDeadlineSeconds</h3>
 </div>
@@ -1664,13 +1664,13 @@ spec:
 </div>
 </div>
 
-<div class="property depth-6">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.replicas">.spec.replicas</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
+<span class="property-type">integer</span>
 
 </div>
 
@@ -1682,13 +1682,13 @@ spec:
 </div>
 </div>
 
-<div class="property depth-6">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.revisionHistoryLimit">.spec.revisionHistoryLimit</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">boolean</span>
+<span class="property-type">integer</span>
 
 </div>
 
@@ -1863,7 +1863,7 @@ spec:
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">integer</span>
+<span class="property-type">object</span>
 
 </div>
 
