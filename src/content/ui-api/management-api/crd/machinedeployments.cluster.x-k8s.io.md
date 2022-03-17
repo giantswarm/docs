@@ -1478,16 +1478,6 @@ spec:
 <div class="property-meta">
 <span class="property-type">string</span>
 
-</div>
-
-<div class="property-description">
-<p>key is the label key that the selector applies to.</p>
-
-</div>
-
-</div>
-</div>
-
 <div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*].operator">.spec.selector.matchExpressions[*].operator</h3>
