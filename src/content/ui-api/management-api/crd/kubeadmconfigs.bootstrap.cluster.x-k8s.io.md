@@ -1983,7 +1983,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-5">
+<div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.initConfiguration.kind">.spec.initConfiguration.kind</h3>
 </div>
@@ -2007,7 +2007,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -2019,7 +2019,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.initConfiguration.localAPIEndpoint.advertiseAddress">.spec.initConfiguration.localAPIEndpoint.advertiseAddress</h3>
 </div>
@@ -2030,7 +2030,7 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property-description">
-<p>LocalAPIEndpoint represents the endpoint of the API server instance that&rsquo;s deployed on this control plane node In HA setups, this differs from ClusterConfiguration.ControlPlaneEndpoint in the sense that ControlPlaneEndpoint is the global endpoint for the cluster, which then loadbalances the requests to each individual API server. This configuration object lets you customize what IP/DNS name and port the local API server advertises it&rsquo;s accessible on. By default, kubeadm tries to auto-detect the IP of the default interface and use that, but in case that process fails you may set the desired value here.</p>
+<p>NodeRegistration holds fields that relate to registering the new control-plane node to the cluster. When used in the context of control plane nodes, NodeRegistration should remain consistent across both InitConfiguration and JoinConfiguration</p>
 
 </div>
 
@@ -2145,18 +2145,18 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-3">
+<div class="property depth-5">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.initConfiguration.nodeRegistration.taints[*]">.spec.initConfiguration.nodeRegistration.taints[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">array</span>
+<span class="property-type">object</span>
 
 </div>
 
 <div class="property-description">
-<p>Taints specifies the taints the Node API object should be registered with. If this field is unset, i.e. nil, in the <code>kubeadm init</code> process it will be defaulted to []v1.Taint{&lsquo;node-role.kubernetes.io/master=&ldquo;&rdquo;&rsquo;}. If you don&rsquo;t want to taint your control-plane node, set this field to an empty slice, i.e. <code>taints: {}</code> in the YAML file. This field is solely used for Node registration.</p>
+<p>Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.</p>
 
 </div>
 
@@ -2169,8 +2169,8 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
-
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
@@ -2206,7 +2206,7 @@ source_repository_ref: v5.0.0
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-<span class="property-required">Required</span>
+
 </div>
 
 <div class="property-description">
@@ -2259,7 +2259,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
+<span class="property-type">string</span>
 
 </div>
 
@@ -2295,7 +2295,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -2307,7 +2307,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-2">
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.controlPlane.localAPIEndpoint">.spec.joinConfiguration.controlPlane.localAPIEndpoint</h3>
 </div>
@@ -2331,8 +2331,8 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">object</span>
-
+<span class="property-type">integer</span>
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
@@ -2367,7 +2367,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -2379,7 +2379,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-4">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.discovery.bootstrapToken">.spec.joinConfiguration.discovery.bootstrapToken</h3>
 </div>
@@ -2440,6 +2440,11 @@ source_repository_ref: v5.0.0
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Taints specifies the taints the Node API object should be registered with. If this field is unset, i.e. nil, in the <code>kubeadm init</code> process it will be defaulted to []v1.Taint{&lsquo;node-role.kubernetes.io/master=&ldquo;&rdquo;&rsquo;}. If you don&rsquo;t want to taint your control-plane node, set this field to an empty slice, i.e. <code>taints: {}</code> in the YAML file. This field is solely used for Node registration.</p>
 
 </div>
 
@@ -2557,289 +2562,6 @@ source_repository_ref: v5.0.0
 <div class="property depth-2">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.joinConfiguration.kind">.spec.joinConfiguration.kind</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>CRISocket is used to retrieve container runtime info. This information will be annotated to the Node API object, for later re-use</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.joinConfiguration.nodeRegistration.ignorePreflightErrors">.spec.joinConfiguration.nodeRegistration.ignorePreflightErrors</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">array</span>
-
-</div>
-
-<div class="property-description">
-<p>IgnorePreflightErrors provides a slice of pre-flight errors to be ignored when the current node is registered.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.joinConfiguration.nodeRegistration.ignorePreflightErrors[*]">.spec.joinConfiguration.nodeRegistration.ignorePreflightErrors[*]</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.joinConfiguration.nodeRegistration.kubeletExtraArgs">.spec.joinConfiguration.nodeRegistration.kubeletExtraArgs</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>KubeletExtraArgs passes through extra arguments to the kubelet. The arguments here are passed to the kubelet command line via the environment file kubeadm writes at runtime for the kubelet to source. This overrides the generic base-level configuration in the kubelet-config-1.X ConfigMap Flags have higher priority when parsing. These values are local and specific to the node kubeadm is executing on.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.joinConfiguration.nodeRegistration.name">.spec.joinConfiguration.nodeRegistration.name</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>Name is the <code>.Metadata.Name</code> field of the Node API object that will be created in this <code>kubeadm init</code> or <code>kubeadm join</code> operation. This field is also used in the CommonName field of the kubelet&rsquo;s client certificate to the API server. Defaults to the hostname of the node if not provided.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.joinConfiguration.nodeRegistration.taints">.spec.joinConfiguration.nodeRegistration.taints</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">array</span>
-
-</div>
-
-<div class="property-description">
-<p>Taints specifies the taints the Node API object should be registered with. If this field is unset, i.e. nil, in the <code>kubeadm init</code> process it will be defaulted to []v1.Taint{&lsquo;node-role.kubernetes.io/master=&ldquo;&rdquo;&rsquo;}. If you don&rsquo;t want to taint your control-plane node, set this field to an empty slice, i.e. <code>taints: {}</code> in the YAML file. This field is solely used for Node registration.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-4">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.joinConfiguration.nodeRegistration.taints[*]">.spec.joinConfiguration.nodeRegistration.taints[*]</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>The node this Taint is attached to has the &ldquo;effect&rdquo; on any pod that does not tolerate the Taint.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-5">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.joinConfiguration.nodeRegistration.taints[*].effect">.spec.joinConfiguration.nodeRegistration.taints[*].effect</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-5">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.joinConfiguration.nodeRegistration.taints[*].key">.spec.joinConfiguration.nodeRegistration.taints[*].key</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>Required. The taint key to be applied to a node.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-5">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.joinConfiguration.nodeRegistration.taints[*].timeAdded">.spec.joinConfiguration.nodeRegistration.taints[*].timeAdded</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-5">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.joinConfiguration.nodeRegistration.taints[*].value">.spec.joinConfiguration.nodeRegistration.taints[*].value</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>The taint value corresponding to the taint key.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.mounts">.spec.mounts</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">array</span>
-
-</div>
-
-<div class="property-description">
-<p>Mounts specifies a list of mount points to be setup.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.mounts[*]">.spec.mounts[*]</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">array</span>
-
-</div>
-
-<div class="property-description">
-<p>MountPoints defines input for generated mounts in cloud-init.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.ntp">.spec.ntp</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>NTP specifies NTP configuration</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.ntp.enabled">.spec.ntp.enabled</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">boolean</span>
-
-</div>
-
-<div class="property-description">
-<p>Enabled specifies whether NTP should be enabled</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.ntp.servers">.spec.ntp.servers</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">array</span>
-
-</div>
-
-<div class="property-description">
-<p>Servers specifies which NTP servers to use</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.ntp.servers[*]">.spec.ntp.servers[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -3254,7 +2976,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-0">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.users[*].sshAuthorizedKeys">.spec.users[*].sshAuthorizedKeys</h3>
+<h3 class="property-path" id="v1alpha3-.spec.users[*].groups">.spec.users[*].groups</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -3272,7 +2994,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.users[*].sshAuthorizedKeys[*]">.spec.users[*].sshAuthorizedKeys[*]</h3>
+<h3 class="property-path" id="v1alpha3-.spec.users[*].homeDir">.spec.users[*].homeDir</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -3291,7 +3013,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.users[*].sudo">.spec.users[*].sudo</h3>
+<h3 class="property-path" id="v1alpha3-.spec.users[*].inactive">.spec.users[*].inactive</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -3309,7 +3031,80 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.verbosity">.spec.verbosity</h3>
+<h3 class="property-path" id="v1alpha3-.spec.users[*].lockPassword">.spec.users[*].lockPassword</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>Verbosity is the number for the kubeadm log level verbosity. It overrides the <code>--v</code> flag in kubeadm commands.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-0">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.users[*].name">.spec.users[*].name</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>KubeadmConfigStatus defines the observed state of KubeadmConfig.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.users[*].passwd">.spec.users[*].passwd</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>BootstrapData will be a cloud-init script for now.
+ Deprecated: Switch to DataSecretName.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.users[*].primaryGroup">.spec.users[*].primaryGroup</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>Conditions defines current service state of the KubeadmConfig.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.users[*].shell">.spec.users[*].shell</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
