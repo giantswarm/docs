@@ -348,6 +348,10 @@ This feature is implemented by the third party module [nginx-sticky-module-ng](h
 
 The NGINX Ingress Controller creates an NGINX configuration file. You can directly pass chunks of configuration, so-called _configuration snippets_, into any ingress manifest. These snippets will be added to the NGINX configuration.
 
+The _configuration snippets_ through Ingress annotations is disabled by default. To enable parsing of _configuration snippets_, you'll need to set `controller.allowSnippetAnnotations: true` in the [App configuration]({{< relref "/app-platform/app-configuration/index.md" >}}).
+
+Warning: We recommend enabling this option only if you TRUST users with permission to create Ingress objects, as this may allow a user to add restricted configurations to the final nginx.conf file.
+
 Here is an example adding an `Expires` header to every response:
 
 ```yaml
