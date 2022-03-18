@@ -97,6 +97,9 @@ In this guide, we will use a single app deployment for each cluster that you wan
 
 We'll use the [app platform](https://docs.giantswarm.io/app-platform/) to deploy the app, as it allows us to deploy apps across workload clusters using a single API endpoint. In this example, we create an `App` custom resource (CR) with the parameters to install our [`dex-app`](https://github.com/giantswarm/dex-app) in the desired cluster, and a `ConfigMap` with the configuration values.
 
+The `connectorConfig` format can look different depending on the oidc provider you want to use. Some examples can be found below. 
+Details on all connectors and their respective configuration is available in the [Dex documentation](https://dexidp.io/docs/connectors/).
+
 {{< tabs >}}
 {{< tab title="Keycloak">}}
 
@@ -237,9 +240,11 @@ data:
 __Warning__: With `oidc` connector you might need to add `getUserInfo` in the connector configuration to force a second call to the identity provider in order to get groups. This is required for example by Okta. More info on this can be found in [dexipd/dex#1065](https://github.com/dexidp/dex/issues/1065).
 
 __Note__: In the above snippet you have to replace the `<CLUSTER>` variable and select a connector. Here we show examples for Keycloak, Active Directory, and GitHub.
-You can use more than one connector, but they need to have a different `id` value. We advice to use `- id: customer` for your primary connector.
+You can use more than one connector, but they need to have a different `id` value. We advice you to use `- id: customer` for your primary connector.
 
 After you have applied the `ConfigMap` manifest to the Management API you have to submit the App custom resource that defines the intent to install the Dex app in the given cluster.
+The easiest way to do this is [through our Web-UI](https://docs.giantswarm.io/ui-api/web/app-platform/)
+Alternatively, you can directly apply it to the Management Cluster.
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
@@ -251,15 +256,22 @@ metadata:
   namespace: <CLUSTER>
 spec:
   catalog: giantswarm
+  kubeConfig:
+    context:
+      name: <CLUSTER>
+    secret:
+      name: <CLUSTER>-kubeconfig
+      namespace: <CLUSTER>
   name: dex-app
   namespace: dex
   userConfig:
     configMap:
       name: dex-app-user-values
       namespace: <CLUSTER>
+  version: 1.22.2
 ```
 
-__Note__: When applying the example in the snippet above, please replace the `<CLUSTER>` placeholder with the name of the workload cluster you are configuring.
+__Note__: When applying the example in the snippet above, please replace the `<CLUSTER>` placeholder with the name of the workload cluster which you are configuring.
 
 Then submit the resource to the management API and the App operator will manage it to make the actual installation and configuration. You can log in now into the cluster API with your identity provider using the login endpoint that Dex creates for you. By default, it will be `https://login.<CLUSTER>.<BASEDOMAIN>`.
 
