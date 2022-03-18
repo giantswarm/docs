@@ -16,6 +16,7 @@ crd:
   versions:
     - v1alpha3
     - v1alpha4
+    - v1beta1
   topics:
     - workloadcluster
   providers:
@@ -48,7 +49,7 @@ source_repository_ref: v5.0.0
 <dt class="scope">Scope:</dt>
 <dd class="scope">Namespaced</dd>
 <dt class="versions">Versions:</dt>
-<dd class="versions"><a class="version" href="#v1alpha3" title="Show schema for version v1alpha3">v1alpha3</a><a class="version" href="#v1alpha4" title="Show schema for version v1alpha4">v1alpha4</a></dd>
+<dd class="versions"><a class="version" href="#v1alpha3" title="Show schema for version v1alpha3">v1alpha3</a><a class="version" href="#v1alpha4" title="Show schema for version v1alpha4">v1alpha4</a><a class="version" href="#v1beta1" title="Show schema for version v1beta1">v1beta1</a></dd>
 </dl>
 
 
@@ -959,7 +960,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-4">
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.template.spec.clusterName">.spec.template.spec.clusterName</h3>
 </div>
@@ -1001,60 +1002,6 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>DataSecretName is the name of the secret that stores the bootstrap data script. If nil, the Machine should remain in the Pending state.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef.apiVersion">.spec.template.spec.infrastructureRef.apiVersion</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
-</div>
-
-<div class="property-description">
-<p>ClusterName is the name of the Cluster this object belongs to.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef.fieldPath">.spec.template.spec.infrastructureRef.fieldPath</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>FailureDomain is the failure domain the machine will be created in. Must match a key in the FailureDomains map stored on the cluster object.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef.kind">.spec.template.spec.infrastructureRef.kind</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
 <span class="property-type">object</span>
 <span class="property-required">Required</span>
 </div>
@@ -1069,7 +1016,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef.name">.spec.template.spec.infrastructureRef.name</h3>
+<h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef.apiVersion">.spec.template.spec.infrastructureRef.apiVersion</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1087,7 +1034,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef.namespace">.spec.template.spec.infrastructureRef.namespace</h3>
+<h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef.fieldPath">.spec.template.spec.infrastructureRef.fieldPath</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1105,7 +1052,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef.resourceVersion">.spec.template.spec.infrastructureRef.resourceVersion</h3>
+<h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef.kind">.spec.template.spec.infrastructureRef.kind</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1123,7 +1070,7 @@ source_repository_ref: v5.0.0
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef.uid">.spec.template.spec.infrastructureRef.uid</h3>
+<h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef.name">.spec.template.spec.infrastructureRef.name</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1140,6 +1087,60 @@ source_repository_ref: v5.0.0
 </div>
 
 <div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef.namespace">.spec.template.spec.infrastructureRef.namespace</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Namespace of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/">https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef.resourceVersion">.spec.template.spec.infrastructureRef.resourceVersion</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Specific resourceVersion to which this reference is made, if any. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template.spec.infrastructureRef.uid">.spec.template.spec.infrastructureRef.uid</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>UID of the referent. More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids">https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha3-.spec.template.spec.nodeDrainTimeout">.spec.template.spec.nodeDrainTimeout</h3>
 </div>
@@ -1199,7 +1200,7 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
+<span class="property-type">object</span>
 
 </div>
 
@@ -1454,7 +1455,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-0">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.minReadySeconds">.spec.minReadySeconds</h3>
 </div>
@@ -1472,7 +1473,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-0">
+<div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.paused">.spec.paused</h3>
 </div>
@@ -1496,8 +1497,8 @@ source_repository_ref: v5.0.0
 </div>
 <div class="property-body">
 <div class="property-meta">
-<span class="property-type">string</span>
-<span class="property-required">Required</span>
+<span class="property-type">integer</span>
+
 </div>
 
 <div class="property-description">
@@ -1634,7 +1635,7 @@ source_repository_ref: v5.0.0
 </div>
 </div>
 
-<div class="property depth-1">
+<div class="property depth-4">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*].values">.spec.selector.matchExpressions[*].values</h3>
 </div>
