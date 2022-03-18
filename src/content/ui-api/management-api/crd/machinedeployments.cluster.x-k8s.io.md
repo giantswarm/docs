@@ -1369,7 +1369,183 @@ spec:
 
 <div class="property depth-6">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.kind">.kind</h3>
+<h3 class="property-path" id="v1alpha2-.status">.status</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>MachineDeploymentStatus defines the observed state of MachineDeployment</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.status.availableReplicas">.status.availableReplicas</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>Total number of available machines (ready for at least minReadySeconds) targeted by this deployment.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.status.observedGeneration">.status.observedGeneration</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>The generation observed by the deployment controller.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.status.readyReplicas">.status.readyReplicas</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>Total number of ready machines targeted by this deployment.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.status.replicas">.status.replicas</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>Total number of non-terminated machines targeted by this deployment (their labels match the selector).</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.status.selector">.status.selector</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Selector is the same as the label selector but in the string format to avoid introspection by clients. The string will be in the same format as the query-param syntax. More info about label selectors: <a href="http://kubernetes.io/docs/user-guide/labels#label-selectors">http://kubernetes.io/docs/user-guide/labels#label-selectors</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.status.unavailableReplicas">.status.unavailableReplicas</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>Total number of unavailable machines targeted by this deployment. This is the total number of machines that are still required for the deployment to have 100% available capacity. They may either be machines that are running but not yet available or machines that still have not been created.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.status.updatedReplicas">.status.updatedReplicas</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>Total number of non-terminated machines targeted by this deployment that have the desired template spec.</p>
+
+</div>
+
+</div>
+</div>
+
+
+
+
+
+</div>
+
+<div class="crd-schema-version">
+<h2 id="v1alpha3">Version v1alpha3</h2>
+
+
+
+<h3 id="property-details-v1alpha3">Properties</h3>
+
+
+<div class="property depth-0">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.apiVersion">.apiVersion</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-0">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.kind">.kind</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1387,7 +1563,7 @@ spec:
 
 <div class="property depth-0">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.metadata">.metadata</h3>
+<h3 class="property-path" id="v1alpha3-.metadata">.metadata</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1400,7 +1576,7 @@ spec:
 
 <div class="property depth-0">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec">.spec</h3>
+<h3 class="property-path" id="v1alpha3-.spec">.spec</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1409,7 +1585,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>MachineDeploymentSpec defines the desired state of MachineDeployment.</p>
+<p>MachineDeploymentSpec defines the desired state of MachineDeployment</p>
 
 </div>
 
@@ -1418,7 +1594,7 @@ spec:
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.clusterName">.spec.clusterName</h3>
+<h3 class="property-path" id="v1alpha3-.spec.clusterName">.spec.clusterName</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1436,7 +1612,7 @@ spec:
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.minReadySeconds">.spec.minReadySeconds</h3>
+<h3 class="property-path" id="v1alpha3-.spec.minReadySeconds">.spec.minReadySeconds</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1454,7 +1630,7 @@ spec:
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.paused">.spec.paused</h3>
+<h3 class="property-path" id="v1alpha3-.spec.paused">.spec.paused</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1472,7 +1648,7 @@ spec:
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.progressDeadlineSeconds">.spec.progressDeadlineSeconds</h3>
+<h3 class="property-path" id="v1alpha3-.spec.progressDeadlineSeconds">.spec.progressDeadlineSeconds</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1490,7 +1666,7 @@ spec:
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.replicas">.spec.replicas</h3>
+<h3 class="property-path" id="v1alpha3-.spec.replicas">.spec.replicas</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1508,7 +1684,7 @@ spec:
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.revisionHistoryLimit">.spec.revisionHistoryLimit</h3>
+<h3 class="property-path" id="v1alpha3-.spec.revisionHistoryLimit">.spec.revisionHistoryLimit</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1526,7 +1702,7 @@ spec:
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.selector">.spec.selector</h3>
+<h3 class="property-path" id="v1alpha3-.spec.selector">.spec.selector</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1544,7 +1720,7 @@ spec:
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions">.spec.selector.matchExpressions</h3>
+<h3 class="property-path" id="v1alpha3-.spec.selector.matchExpressions">.spec.selector.matchExpressions</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1562,7 +1738,7 @@ spec:
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*]">.spec.selector.matchExpressions[*]</h3>
+<h3 class="property-path" id="v1alpha3-.spec.selector.matchExpressions[*]">.spec.selector.matchExpressions[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1580,7 +1756,7 @@ spec:
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*].key">.spec.selector.matchExpressions[*].key</h3>
+<h3 class="property-path" id="v1alpha3-.spec.selector.matchExpressions[*].key">.spec.selector.matchExpressions[*].key</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1598,7 +1774,7 @@ spec:
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*].operator">.spec.selector.matchExpressions[*].operator</h3>
+<h3 class="property-path" id="v1alpha3-.spec.selector.matchExpressions[*].operator">.spec.selector.matchExpressions[*].operator</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1616,7 +1792,7 @@ spec:
 
 <div class="property depth-4">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*].values">.spec.selector.matchExpressions[*].values</h3>
+<h3 class="property-path" id="v1alpha3-.spec.selector.matchExpressions[*].values">.spec.selector.matchExpressions[*].values</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1634,7 +1810,7 @@ spec:
 
 <div class="property depth-5">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.selector.matchExpressions[*].values[*]">.spec.selector.matchExpressions[*].values[*]</h3>
+<h3 class="property-path" id="v1alpha3-.spec.selector.matchExpressions[*].values[*]">.spec.selector.matchExpressions[*].values[*]</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1647,7 +1823,7 @@ spec:
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.selector.matchLabels">.spec.selector.matchLabels</h3>
+<h3 class="property-path" id="v1alpha3-.spec.selector.matchLabels">.spec.selector.matchLabels</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1665,7 +1841,7 @@ spec:
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.strategy">.spec.strategy</h3>
+<h3 class="property-path" id="v1alpha3-.spec.strategy">.spec.strategy</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1683,7 +1859,7 @@ spec:
 
 <div class="property depth-2">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.strategy.rollingUpdate">.spec.strategy.rollingUpdate</h3>
+<h3 class="property-path" id="v1alpha3-.spec.strategy.rollingUpdate">.spec.strategy.rollingUpdate</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -1701,12 +1877,66 @@ spec:
 
 <div class="property depth-3">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha4-.spec.strategy.rollingUpdate.deletePolicy">.spec.strategy.rollingUpdate.deletePolicy</h3>
+<h3 class="property-path" id="v1alpha3-.spec.strategy.rollingUpdate.maxSurge">.spec.strategy.rollingUpdate.maxSurge</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+
+
+</div>
+
+<div class="property-description">
+<p>The maximum number of machines that can be scheduled above the desired number of machines. Value can be an absolute number (ex: 5) or a percentage of desired machines (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to 1. Example: when this is set to 30%, the new MachineSet can be scaled up immediately when the rolling update starts, such that the total number of old and new machines do not exceed 130% of desired machines. Once old machines have been killed, new MachineSet can be scaled up further, ensuring that total number of machines running at any time during the update is at most 130% of desired machines.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.strategy.rollingUpdate.maxUnavailable">.spec.strategy.rollingUpdate.maxUnavailable</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+
+
+</div>
+
+<div class="property-description">
+<p>The maximum number of machines that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired machines (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to 0. Example: when this is set to 30%, the old MachineSet can be scaled down to 70% of desired machines immediately when the rolling update starts. Once new machines are ready, old MachineSet can be scaled down further, followed by scaling up the new MachineSet, ensuring that the total number of machines available at all times during the update is at least 70% of desired machines.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.strategy.type">.spec.strategy.type</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
 
+</div>
+
+<div class="property-description">
+<p>Type of deployment. Currently the only supported strategy is &ldquo;RollingUpdate&rdquo;. Default is RollingUpdate.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template">.spec.template</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+<span class="property-required">Required</span>
 </div>
 
 <div class="property-description">
