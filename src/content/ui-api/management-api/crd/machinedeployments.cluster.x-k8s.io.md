@@ -2480,7 +2480,25 @@ spec:
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.status.readyReplicas">.status.readyReplicas</h3>
+<h3 class="property-path" id="v1alpha4-.status.phase">.status.phase</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Phase represents the current phase of a MachineDeployment (ScalingUp, ScalingDown, Running, Failed, or Unknown).</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha4-.status.readyReplicas">.status.readyReplicas</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2498,7 +2516,7 @@ spec:
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.status.replicas">.status.replicas</h3>
+<h3 class="property-path" id="v1alpha4-.status.replicas">.status.replicas</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2516,7 +2534,7 @@ spec:
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.status.selector">.status.selector</h3>
+<h3 class="property-path" id="v1alpha4-.status.selector">.status.selector</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2534,7 +2552,7 @@ spec:
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.status.unavailableReplicas">.status.unavailableReplicas</h3>
+<h3 class="property-path" id="v1alpha4-.status.unavailableReplicas">.status.unavailableReplicas</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
@@ -2552,7 +2570,7 @@ spec:
 
 <div class="property depth-1">
 <div class="property-header">
-<h3 class="property-path" id="v1alpha2-.status.updatedReplicas">.status.updatedReplicas</h3>
+<h3 class="property-path" id="v1alpha4-.status.updatedReplicas">.status.updatedReplicas</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
