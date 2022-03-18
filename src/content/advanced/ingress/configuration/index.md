@@ -362,7 +362,7 @@ metadata:
   namespace: mynamespace
   annotations:
     nginx.ingress.kubernetes.io/configuration-snippet: |
-      expires 24h;
+   expires 24h;
 spec:
   ingressClassName: nginx
   rules:
