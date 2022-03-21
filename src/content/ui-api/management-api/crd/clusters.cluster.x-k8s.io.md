@@ -104,7 +104,7 @@ spec:
 ```
 
 
-<h3 id="property-details-v1alpha3">Properties</h3>
+<h3 id="property-details-v1alpha2">Properties</h3>
 
 
 <div class="property depth-0">
