@@ -2279,15 +2279,7 @@ spec:
 </div>
 </div>
 
-<div class="property-description">
-<p>ClusterSpec defines the desired state of Cluster.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
+<div class="property depth-0">
 <div class="property-header">
 <h3 class="property-path" id="v1beta1-.spec">.spec</h3>
 </div>
