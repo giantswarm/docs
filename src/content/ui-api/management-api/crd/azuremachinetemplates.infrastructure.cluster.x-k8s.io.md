@@ -1109,7 +1109,6 @@ source_repository_ref: v5.0.0
 
 
 </div>
-
 <div class="crd-schema-version">
 <h2 id="v1alpha4">Version v1alpha4</h2>
 
@@ -2191,7 +2190,6 @@ source_repository_ref: v5.0.0
 
 
 </div>
-
 <div class="crd-schema-version">
 <h2 id="v1beta1">Version v1beta1</h2>
 
