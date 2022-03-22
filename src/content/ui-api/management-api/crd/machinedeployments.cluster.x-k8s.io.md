@@ -55,38 +55,7 @@ source_repository_ref: v5.0.0
 
 
 <div class="crd-schema-version">
-<h2 id="v1alpha2">Version v1alpha2</h2>
-
-
-<h3 id="crd-example-v1alpha2">Example CR</h3>
-
-```yaml
-apiVersion: infrastructure.giantswarm.io/v1alpha2
-kind: MachineDeployment
-metadata:
-  annotations:
-    giantswarm.io/docs: https://pkg.go.dev/sigs.k8s.io/cluster-api/api/v1alpha2?tab=doc#MachineDeployment
-  creationTimestamp: null
-  name: e3z8q
-spec:
-  replicas: 10
-  selector: {}
-  template:
-    metadata: {}
-    spec:
-      bootstrap: {}
-      infrastructureRef:
-        apiVersion: infrastructure.giantswarm.io/v1alpha2
-        kind: AWSMachineDeployment
-        name: e3z8q
-        namespace: default
-        resourceVersion: "58776588"
-        uid: b5fdf153-6f10-462b-a49f-0e821873d16b
-      metadata: {}
-```
-
-
-<h3 id="property-details-v1alpha2">Properties</h3>
+<h2 id="v1alpha3">Version v1alpha3</h2>
 
 
 
