@@ -49,6 +49,7 @@ Before installing the provisioner in Kubernetes we will need to create the EFS i
 4. Select the availability zone with the subnets your instances are located on and the security groups of your node pools. Subnets and security groups can be identified by you cluster ID.
 5. Choose the [throughput](https://docs.aws.amazon.com/efs/latest/ug/performance.html#throughput-modes) and [performance mode](https://docs.aws.amazon.com/efs/latest/ug/performance.html#performancemodes). Setting a file system policy or access points is optional.
 6. Create the instance and note the EFS instance ID.
+7. In case of dynamic provisioning, you need to [add the roles](https://github.com/kubernetes-sigs/aws-efs-csi-driver/blob/master/docs/iam-policy-example.json) to the instance profile or use service account annotation in controller to enable access to AWS EFS.
 
 ## Installing the EFS CSI driver
 
@@ -60,39 +61,34 @@ To install the EFS CSI driver in the workload cluster, you will need to follow t
 4. Select the Giant Swarm Playground catalog.
 5. Select the App named `aws-efs-csi-driver`.
 6. Click the Configure & Install button. Make sure that the correct cluster is selected.
-7. Click the Install App button.
+7. Create and submit a configuration values file in case you want to deploy the storage class and controller (by default disable to allow a smooth transitation to CSI driver)
 
-## Storage classes
+Example configuration:
+```yaml
+storageClasses:
+- name: efs-sc
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+  mountOptions:
+  - tls
+  parameters:
+    provisioningMode: efs-ap
+    fileSystemId: fs-92107666
+    directoryPerms: "700"
+    gidRangeStart: "1000"
+    gidRangeEnd: "2000"
+    
+controller:
+  create: true
+```
 
-Once you installed the `aws-efs-csi-driver` from _Giant Swarm Playground_ catalog, you workload cluster will have a storage class `efs-csi` deployed.
+8. Click the Install App button.
 
 ## Deploy a sample application
 
 In order to verify that the EFS CSI driver works as expected, we suggest to deploy a test workload based on the following manifests.
 
-First we apply a persistent volume with a capacity of 5 GB storage. Make sure to apply your EFS instance ID (noted before) as `.spec.csi. volumeHandle` value!
-
-```yaml
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: efs-pv
-spec:
-  capacity:
-    storage: 5Gi
-  volumeMode: Filesystem
-  accessModes:
-    - ReadWriteMany
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: efs-csi
-  csi:
-    driver: efs.csi.aws.com
-    volumeHandle: fs-xxxxxxxx
-```
-
-**Note:** `.spec.storage.capacity` is a required field. You must specify a valid value, however that value is not used when creating the file system. It's important to note that EFS is an elastic file system, which does not enforce any file system capacity limits.
-
-Additionally we need a persistent volume claim with a storage request matching the size of the persistent volume defined above:
+First we apply a persistent volume claim with a capacity of 5 GB storage.
 
 ```yaml
 apiVersion: v1
@@ -102,7 +98,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: efs-csi
+  storageClassName: efs-sc
   resources:
     requests:
       storage: 5Gi
