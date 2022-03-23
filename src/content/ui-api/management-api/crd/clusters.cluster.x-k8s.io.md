@@ -59,50 +59,6 @@ source_repository_ref: v5.0.0
 <h2 id="v1alpha3">Version v1alpha3</h2>
 
 
-<h3 id="crd-example-v1alpha3">Example CR</h3>
-
-```yaml
-apiVersion: cluster.x-k8s.io/v1alpha4
-kind: Cluster
-metadata:
-  annotations:
-    cluster.giantswarm.io/description: production
-    release.giantswarm.io/last-deployed-version: 15.1.1
-  labels:
-    azure-operator.giantswarm.io/version: 5.8.1
-    cluster-operator.giantswarm.io/version: 0.27.1
-    cluster.x-k8s.io/cluster-name: x4j3p
-    giantswarm.io/cluster: x4j3p
-    giantswarm.io/organization: giantswarm
-    release.giantswarm.io/version: 15.1.1
-  name: x4j3p
-  namespace: org-giantswarm
-spec:
-  clusterNetwork:
-    apiServerPort: 443
-    serviceDomain: cluster.local
-    services:
-      cidrBlocks:
-      - 172.31.0.0/16
-  controlPlaneEndpoint:
-    host: api.example.com
-    port: 443
-  controlPlaneRef:
-    apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
-    kind: AzureMachine
-    name: x4j3p-master-0
-    namespace: org-giantswarm
-    resourceVersion: "374040211"
-    uid: 177991ca-5de0-48f6-a956-47abcb218a3b
-  infrastructureRef:
-    apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
-    kind: AzureCluster
-    name: x4j3p
-    namespace: org-giantswarm
-    resourceVersion: "374040188"
-    uid: 01d6767e-c394-43a7-bf17-2eaf11e80dcb
-```
-
 
 <h3 id="property-details-v1alpha3">Properties</h3>
 
@@ -1025,7 +981,6 @@ spec:
 
 
 </div>
-
 <div class="crd-schema-version">
 <h2 id="v1alpha4">Version v1alpha4</h2>
 
@@ -2221,7 +2176,6 @@ spec:
 
 
 </div>
-
 <div class="crd-schema-version">
 <h2 id="v1beta1">Version v1beta1</h2>
 
@@ -2279,15 +2233,7 @@ spec:
 </div>
 </div>
 
-<div class="property-description">
-<p>ClusterSpec defines the desired state of Cluster.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-1">
+<div class="property depth-0">
 <div class="property-header">
 <h3 class="property-path" id="v1beta1-.spec">.spec</h3>
 </div>

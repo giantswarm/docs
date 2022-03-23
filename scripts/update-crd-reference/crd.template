@@ -94,11 +94,14 @@ This CRD is being replaced by <a href="../{{ .FullName }}/">{{ .ShortName }}</a>
 </dl>
 
 {{ if .VersionSchemas }}
-{{ range $versionName, $versionSchema := .VersionSchemas }}
+{{ $versionSchemas := .VersionSchemas }}
+{{ range .Versions -}}
+{{ $versionName := . -}}
+{{ $versionSchema := (index $versionSchemas $versionName) -}}
 <div class="crd-schema-version">
 <h2 id="{{$versionName}}">Version {{$versionName}}</h2>
 
-{{with .ExampleCR}}
+{{ with $versionSchema.ExampleCR }}
 <h3 id="crd-example-{{$versionName}}">Example CR</h3>
 
 ```yaml
@@ -131,7 +134,7 @@ This CRD is being replaced by <a href="../{{ .FullName }}/">{{ .ShortName }}</a>
 {{ end }}
 
 
-{{ if .Annotations }}
+{{ if $versionSchema.Annotations }}
 <h3 id="annotation-details-{{$versionName}}">Annotations</h3>
 
 {{ range $versionSchema.Annotations }}
