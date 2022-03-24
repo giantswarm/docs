@@ -1599,7 +1599,6 @@ spec:
 
 
 </div>
-
 <div class="crd-schema-version">
 <h2 id="v1alpha4">Version v1alpha4</h2>
 
@@ -3662,7 +3661,6 @@ spec:
 
 
 </div>
-
 <div class="crd-schema-version">
 <h2 id="v1beta1">Version v1beta1</h2>
 
