@@ -36,6 +36,7 @@ It supports the following required flags:
 - `--description` - Description of the purpose of the catalog.
 - `--url` - URL where the helm repository lives.
 - `--logo` - URL of the catalog logo image.
+- `--visibility` - Defaults to `public` in which case the catalog appears in the web UI. Any other value will hide the catalog.
 
 Example command:
 
@@ -69,6 +70,8 @@ kind: Catalog
 metadata:
   name: example-catalog
   namespace: example-org
+  labels:
+    application.giantswarm.io/catalog-visibility: public
 spec:
   description: An example App Catalog
   logoURL: https://example.com/logos/example-logo.png
