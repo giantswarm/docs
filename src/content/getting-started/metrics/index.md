@@ -12,7 +12,7 @@ user_questions:
   - How can I activate metrics-server in my clusters?
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
-last_review_date: 2021-01-01
+last_review_date: 2022-03-31
 ---
 
 Getting core metrics like CPU and Memory usage of resources in your cluster is important not only for your own monitoring purposes, but also for extended functionality like horizontal Pod autoscaling.
