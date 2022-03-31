@@ -87,6 +87,15 @@ source_repositories:
         topics:
           - managementcluster
           - workloadcluster
+  - url: https://github.com/giantswarm/organization-operator
+    organization: giantswarm
+    short_name: organization-operator
+    commit_reference: v1.0.1
+    crd_paths:
+      - config/crd
+    cr_paths:
+      - docs/cr
+    metadata:
   - url: https://github.com/giantswarm/apiextensions
     organization: giantswarm
     short_name: apiextensions
