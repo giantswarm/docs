@@ -96,6 +96,11 @@ source_repositories:
     cr_paths:
       - docs/cr
     metadata:
+      organizations.security.giantswarm.io:
+        owner:
+          - https://github.com/orgs/giantswarm/teams/team-rainbow
+        topics:
+          - managementcluster
   - url: https://github.com/giantswarm/apiextensions
     organization: giantswarm
     short_name: apiextensions
@@ -421,11 +426,6 @@ source_repositories:
           - openstack
         topics:
           - workloadcluster
-      organizations.security.giantswarm.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-rainbow
-        topics:
-          - managementcluster
       releasecycles.release.giantswarm.io:
         hidden: true
       sparks.core.giantswarm.io:
