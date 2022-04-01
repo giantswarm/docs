@@ -87,6 +87,20 @@ source_repositories:
         topics:
           - managementcluster
           - workloadcluster
+  - url: https://github.com/giantswarm/organization-operator
+    organization: giantswarm
+    short_name: organization-operator
+    commit_reference: v1.0.2
+    crd_paths:
+      - config/crd
+    cr_paths:
+      - docs/cr
+    metadata:
+      organizations.security.giantswarm.io:
+        owner:
+          - https://github.com/orgs/giantswarm/teams/team-rainbow
+        topics:
+          - managementcluster
   - url: https://github.com/giantswarm/apiextensions
     organization: giantswarm
     short_name: apiextensions
@@ -412,11 +426,6 @@ source_repositories:
           - openstack
         topics:
           - workloadcluster
-      organizations.security.giantswarm.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-rainbow
-        topics:
-          - managementcluster
       releasecycles.release.giantswarm.io:
         hidden: true
       sparks.core.giantswarm.io:
