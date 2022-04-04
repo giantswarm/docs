@@ -20,6 +20,8 @@ This release downgrades the version of the Flatcar AMI from `3033.2.2` to `3033.
 * [Giant Swarm roadmap issue](https://github.com/giantswarm/roadmap/issues/891)
 * [Upstream bug issue](https://github.com/flatcar-linux/Flatcar/issues/665)
 
+**Note when upgrading from v16 to v17:** Existing `Vertical Pod Autoscaler` app installations need to be removed from the workload cluster prior to upgrading to v17 because the `Vertical Pod Autscaler` is provided as a default application. The two applications have different names which leads to them fighting each other.
+
 ## Change details
 
 ### containerlinux [3033.2.0](https://www.flatcar-linux.org/releases/#release-3033.2.0)
