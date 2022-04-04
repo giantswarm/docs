@@ -30,6 +30,8 @@ This release improves the performance of `etcd` by using `gp3` volumes with prov
   * 1 openssl CVE;
   * 1 ignition
 
+**Note when upgrading from v16 to v17:** Existing `Vertical Pod Autoscaler` app installations need to be removed from the workload cluster prior to upgrading to v17 because the `Vertical Pod Autscaler` is provided as a default application. The two applications have different names which leads to them fighting each other.
+
 ## Change details
 
 
