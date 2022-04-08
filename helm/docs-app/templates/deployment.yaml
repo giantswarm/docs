@@ -17,6 +17,15 @@ spec:
       labels:
         app: {{ .Values.name }}
     spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  app: {{ .Values.name }}
+              topologyKey: kubernetes.io/hostname
+            weight: 100
       securityContext:
         runAsUser: 1000
       containers:
