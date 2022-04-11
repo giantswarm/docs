@@ -82,7 +82,7 @@ You need to fill real values for these placeholders:
 * `CLUSTER_ID` - cluster id
 * `NAMESPACE` - Kubernetes namespace in cluster, where the pod and service account be used.
 * `SA_NAME` - Name of the Kubernetes Service Account which wil be using by the pod.
-* `REGION` - aws region the oidc provider is located.
+* `REGION` - AWS region the OIDC provider is located in.
 
 ### Service account
 The service account has to be annotated with a full ARN of the IAM role. You can get the ARN of the role in the AWS console, when you check role details.
