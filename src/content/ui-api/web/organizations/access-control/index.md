@@ -132,7 +132,7 @@ Done. You have successfully assigned subjects to one specific role for one speci
 As a result of the action above, there will be new role bindings (`RoleBinding` resources) in the organization's namespace. These resources follow the naming convention
 
 ```nohighlight
-<role-name>-<timestamp>
+ROLE_NAME-TIMESTAMP
 ```
 
 As an example, a `RoleBinding` for a `Role` or `ClusterRole` named `read-all` could be named `read-all-1618868398846`.
