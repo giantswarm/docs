@@ -26,6 +26,9 @@ This release introduces IAM roles for service accounts (IRSA) as an alternative 
 
 All the AWS prerequisites are available in the [giantswarm-aws-account-prerequisites repository](https://github.com/giantswarm/giantswarm-aws-account-prerequisites).
 
+**Note when upgrading from v16 to v17:** Existing `Vertical Pod Autoscaler` app installations need to be removed from the workload cluster prior to upgrading to v17 because the `Vertical Pod Autscaler` is provided as a default application. The two applications have different names which leads to them fighting each other.
+
+
 ## Change details
 
 

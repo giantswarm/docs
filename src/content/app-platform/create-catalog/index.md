@@ -15,6 +15,7 @@ user_questions:
   - How can I serve an app catalog using GitHub Pages?
   - How can I publish an app to my app catalog?
   - How can I register an app catalog with app platform?
+  - How can I hide or show an app catalog in the web UI?
   - How can I install an apps from an app catalog?
   - How can I inspect the apps in an app catalog?
 ---
@@ -127,6 +128,8 @@ metadata:
   creationTimestamp: null
   name: example
   namespace: org-example
+  labels:
+    application.giantswarm.io/catalog-visibility: public
 spec:
   description: An example Catalog
   logoURL: https://example.com/logos/example-logo.png
@@ -135,6 +138,10 @@ spec:
     type: helm
   title: example
 ```
+
+The `--visibility` flag is used to set the label `application.giantswarm.io/catalog-visibility`.
+If its value is `public` it will appear in the web UI. If the label is missing or
+has any other value it will be hidden in the web UI.
 
 ## Install an app from the catalog
 

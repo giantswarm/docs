@@ -16,6 +16,11 @@
     <meta name="twitter:site" content="@giantswarm">
     <meta name="twitter:creator" content="@giantswarm">
     <meta name="twitter:domain" content="giantswarm.io">
+    {{- if eq .Params.search false }}
+    <meta name="robots" content="noindex,follow">
+    {{- else }}
+    <meta name="robots" content="index,follow">
+    {{- end }}
     {{ with (getenv "HUGO_DOCS_VERSION") -}}
     <meta name="version" content="{{ . }}">
     {{ end -}}

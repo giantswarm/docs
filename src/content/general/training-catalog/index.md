@@ -7,11 +7,11 @@ weight: 60
 menu:
   main:
     parent: general
-last_review_date: 2022-03-07
+last_review_date: 2022-03-28
 user_questions:
   - Which trainings does Giant Swarm offer?
   - How can I learn about Cloud Native topics?
-  - How can I fully exploit my Giant Swarm setup?
+  - How can I fully fully utilize my Giant Swarm setup?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-teddyfriends
 ---
@@ -19,20 +19,20 @@ owner:
 _____________________________________
 
 ### Getting Started with Giant Swarm 
-_Team Teddyfriends_
+[_Team Teddyfriends_](https://www.giantswarm.io/about)
 
 - Who is Giant Swarm?
 - What is the Support model?
-- Onboarding into Happa and `kubectl gs`
-- How does GS help platform teams service application teams?
-- What are best practices that we should aim together for?
+- Onboarding into the web UI and the CLI - `kubectl gs`
+- How does GS help platform teams serve application teams?
+- What are best practices that we should aim for together?
 - What is some useful "technical" knowledge? What differentiates Giant Swarm from other providers?
 
 _____________________________________
 
 ### Kubernetes 101
 
-_Team Phoenix & Team Rocket_
+[_Team Phoenix & Team Rocket_](https://www.giantswarm.io/about)
 
 - High level overview of microservices
 - What is Kubernetes and what are the reasons to use it 
@@ -43,19 +43,19 @@ _____________________________________
 
 ### GitOps 101
 
-_Team Honeybadger_
+[_Team Honeybadger_](https://www.giantswarm.io/about)
 
 - What is GitOps?
 - What are the advantages and reasons to work towards this method?
 - Tooling - our recommendations
-- Internal tour of how GS automation and pipeline is setup
+- Internal tour of how Giant Swarm automation and pipeline is setup
 - An example of GitOps in action
 
 _____________________________________
 
-### Management API and User Authentication (SSO) 101
+### Management API and User Authentication (Single Sign On) 101
 
-_Team Rainbow_
+[_Team Rainbow_](https://www.giantswarm.io/about)
 
 - What is the Giant Swarm Management API and why is it important?
 - Examples of Management API best practices
@@ -66,7 +66,7 @@ _____________________________________
 
 ### Cloud Native Security 101
 
-_Team Zachurity_ 
+[_Team Zachurity_ ](https://www.giantswarm.io/about)
 
 - What does security mean in a cloud-native world?
 - What are PSPs, NetworkPolicies, RBAC, etc.?
@@ -77,7 +77,7 @@ _____________________________________
 
 ### Monitoring and Observability 101
 
-_Team Atlas_
+[_Team Atlas_](https://www.giantswarm.io/about)
 
 - What is the advantage of observability on Kubernetes?
 - Which tools do we provide and recommend? Why?

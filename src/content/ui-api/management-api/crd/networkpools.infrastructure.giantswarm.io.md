@@ -166,7 +166,6 @@ spec:
 
 
 </div>
-
 <div class="crd-schema-version">
 <h2 id="v1alpha3">Version v1alpha3</h2>
 
