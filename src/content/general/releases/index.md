@@ -93,7 +93,7 @@ Once deprecated, you can still continue to use the workload cluster release with
 
 ### Pre-releases
 
-Pre-releases (when available) give you the option to test new features or use new functionality before the feature is released in a major version. At the same time helps the us release new features and test them in a realworld scenario with your help. When you test out a pre-release it helps find bugs or evaluate the impact of new functionality on the system. 
+Pre-releases (when available) give you the option to test new features or use new functionality before the feature is released. At the same time helps the us release new features and test them in a realworld scenario with your help. When you test out a pre-release it helps find bugs or evaluate the impact of new functionality on the system. 
 
 Currently not all Giant Swarm releases become available as pre-releases. We communicate pre-releases, when they are available for customer testing.
 
