@@ -31,10 +31,10 @@ Note that `2` implies `1`. When setting up workload cluster access, management c
 The command is called with the general syntax
 
 ```nohighlight
-kubectl gs login <management-cluster> [flags]
+kubectl gs login [MANAGEMENT_CLUSTER] [FLAGS]
 ```
 
-where `management-cluster` can be either:
+For the `MANAGEMENT_CLUSTER` argument there are several options:
 
 - **Empty:** If the current kubectl context is a Giant Swarm management cluster, this ensures that the OIDC auth token will be refreshed and show the name of the current context.
 
