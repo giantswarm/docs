@@ -101,7 +101,7 @@ Pre-releases can be alpha, beta, or release candidates (RC). This depends on the
 
 Use Cases for Pre-Releases:
 
-- A new feature with unclear impact is done and the team wants to test and evaluate its impact before deciding the scope of the release (alpha). Customers get early access to the functionaliy and see if it satisfies their requirements. Customers report back with bugs and additional commentary. This allows the functionality to be evaluated in a less controlled way than in our testing environments. It also identifies bugs that we may have not found, allowing us to fix them early. It also may bring about reconsidering the feature/solution in general.
+- A new feature with unclear impact is done and the team wants to test and evaluate its impact before deciding the scope of the release (alpha). Customers get early access to the functionality and see if it satisfies their requirements. Customers report back with bugs and additional commentary. This allows the functionality to be evaluated in a less controlled way than in our testing environments. It also identifies bugs that we may have not found, allowing us to fix them early. It also may bring about reconsidering the feature/solution in general.
 
 - A new high impact feature is done, but needs to wait for the next major release (beta). Customers get early access to the functionaliy and see that it sits well with their set-up. Customers report back with bugs as necessary. This allows us to make fixes to bugs that we may have not found.
 
