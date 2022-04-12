@@ -111,7 +111,7 @@ In order to assign a role to a service account, follow these steps:
 
 Find and select the role or cluster role to assign within the list on the left hand side. Select the role that defines the permissions you want to grant.
 
-For example, the `cluster-admin` ClusterRole, when assigned here, will grant all permissions within this organization's namespace. The `read-all` ClusterRole instead gives read-only access to all resources in this namespace.
+For example, the `cluster-admin` ClusterRole, when assigned here, will grant all permissions within this organization's namespace. The `read-all` ClusterRole instead gives read-only access to most resources in this namespace.
 
 ### 2. Double-check permissions
 
@@ -129,7 +129,7 @@ Done. You have successfully assigned subjects to one specific role for one speci
 
 ### Resulting resources
 
-As a result of the action above, there will be new role bindings (`RoleBinding` resources) in the organization's namespace. These resources follow the naming convention
+As a result of the action above, there will be new role bindings (`RoleBinding` resources) in the organization's namespace. These resources' names follow the convention
 
 ```nohighlight
 ROLE_NAME-TIMESTAMP
