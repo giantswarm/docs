@@ -1,3 +1,4 @@
 ---
 title: Meta
+search: false
 ---
