@@ -75,7 +75,7 @@ For platform-specific instuctions, please select a platform below.
     ```
 
 {{< /tab >}}
-{{< tab id="linux-amd64" title="Linux (ARM)">}}
+{{< tab id="linux-arm64" title="Linux (ARM)">}}
 
 1. Download the release binary
 
