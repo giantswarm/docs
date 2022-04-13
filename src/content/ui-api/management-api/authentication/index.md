@@ -47,8 +47,10 @@ In order to complete the authentication flow, `kubectl gs` will open your defaul
 As a result of running the command, your `kubectl` configuration has a new context, user, and cluster entry. The context is named according to the pattern
 
 ```nohighlight
-gs-<installation-name>
+gs-INSTALLATION_NAME
 ```
+
+`INSTALLATION_NAME` is the unique name of your Giant Swarm installation.
 
 This context is selected automatically as the current context, so you are ready to use kubectl with the Management API.
 
@@ -63,13 +65,13 @@ We provide a web-based login helper utility named [Dex K8s Authenticator](https:
 If, for example, your Management API URL is
 
 ```nohighlight
-https://g8s.base.domain.tld
+https://g8s.example.domain.tld
 ```
 
 then the login utility can be accessed via
 
 ```nohighlight
-https://login.g8s.base.domain.tld
+https://login.g8s.example.domain.tld
 ```
 
 The tool will immediately redirect you to your identity provider's authentication flow where you proceed providing your credentials as usual. After that, or if you are already authenticated in the current browser, you will be redirected to a resulting page.
