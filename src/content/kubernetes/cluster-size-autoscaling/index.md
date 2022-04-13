@@ -13,7 +13,7 @@ user_questions:
   - How should I size my clusters?
   - How can clusters or node pools get scaled automatically?
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
+  - https://github.com/orgs/giantswarm/teams/team-teddyfriends
 ---
 
 {{< platform_support_table aws="ga=v6.3.0" azure="ga=v13.1.0" >}}
