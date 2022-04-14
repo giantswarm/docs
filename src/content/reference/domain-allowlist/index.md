@@ -6,7 +6,7 @@ menu:
   main:
     parent: reference
 owner:
-  - https://github.com/orgs/giantswarm/teams/se
+  - https://github.com/orgs/giantswarm/teams/team-teddyfriends
 title: Domain allowlist
 weight: 10
 user_questions:
