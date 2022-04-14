@@ -142,7 +142,7 @@ For platform-specific instuctions, please select a platform below.
 
 1. Install the kubectl-gs binary for Linux first. You can use the instructions using Krew shown above, or follow the Linux instructions without Krew.
 
-3. Run the following command so that `kubectl gs login` can open your browser:
+2. Run the following command so that `kubectl gs login` can open your browser:
 
     ```nohighlight
     sudo ln -s $(which wslview) /usr/local/bin/xdg-open
