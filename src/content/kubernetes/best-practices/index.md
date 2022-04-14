@@ -9,7 +9,7 @@ menu:
 aliases:
   - /guides/recommendations-and-best-practices/
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
+  - https://github.com/orgs/giantswarm/teams/team-teddyfriends
 user_questions:
   - How should I size my control plane nodes?
   - How should I size my worker nodes?

@@ -15,7 +15,7 @@ user_questions:
   - How can I log in with kubectl for the Management API?
   - How can I create a workload cluster client certificate?
   - How do I specify the time to live for a workload cluster client certificate?
-last_review_date: 2022-01-31
+last_review_date: 2022-04-12
 ---
 
 Use this command to set up a kubectl context to work with:
@@ -31,18 +31,18 @@ Note that `2` implies `1`. When setting up workload cluster access, management c
 The command is called with the general syntax
 
 ```nohighlight
-kubectl gs login <management-cluster> [flags]
+kubectl gs login [MANAGEMENT_CLUSTER] [FLAGS]
 ```
 
-where `management-cluster` can be either:
+For the `MANAGEMENT_CLUSTER` argument there are several options:
 
-- **Empty:** If the current kubectl context is a Giant Swarm management cluster, this ensures that the OIDC auth token will be refreshed and show the name of the current context.
+1. **Management API endpoint URL:** The URL of the management cluster's Kubernetes API endpoint.
 
-- **Web interface URL:** The URL of the management cluster's [web UI]({{< relref "/ui-api/web/" >}}) instance.
+2. **Web interface URL:** The URL of the management cluster's [web UI]({{< relref "/ui-api/web/" >}}) instance.
 
-- **Management API endpoint:** The URL of the management cluster's Kubernetes API endpoint.
+3. **Context name:** Name of a Giant Swarm kubectl context, generated via one of the two methods above. The context name normally starts with the `gs-` prefix, however that prefix can be omitted for convenience.
 
-- **Context name:** Name of a Giant Swarm kubectl context, with or without `gs-` prefix.
+4. **Empty:** By leaving the argument empty, the command will check if the current kubectl context points to a Giant Swarm management cluster. In addition, an OIDC auth token will be refreshed and the name of the current context will be printed.
 
 It is also possible to create client certificates for a workload cluster, by providing the right configuration flags. Please be aware that the recommended way to authenticate users for workload clusters is OIDC. Client certificates should only be a temporary replacement.
 
@@ -56,7 +56,7 @@ For **management cluster** authentication, the following flags are available:
 
 - `--callback-port`: Specify the TCP port number on which the OIDC callback server on localhost will be listening. If not specified, a random port number will be used. Specifying the port is useful when running kubectl-gs inside a container, or behind a firewall.
 
-- `--token`: Use a Bearer token instead of OIDC authentication, e. g. a service account token.
+- `--token`: Use a bearer token instead of OIDC authentication, e. g. a service account token.
 
 - `--internal-api` - (AWS only) With this flag you use an internal Management API endpoint. It resolves to an internal IP address that is only accessible from within the cluster's virtual private cloud (VPC). The hostname of this endpoint is the same as the normal one, with the prefix `internal-`. Example: if your Management API host name is `g8s.example.yourdomain.tld`, the alternative hostname is `internal-g8s.example.yourdomain.tld`.
 
