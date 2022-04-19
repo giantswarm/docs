@@ -22,7 +22,7 @@ Use this command to set up a kubectl context to work with:
 
 1. a management cluster, using OIDC authentication
 
-2. a workload cluster on AWS or Azure, using client certificate auth
+2. a workload cluster, using client certificate auth (Not supported on KVM)
 
 Note that `2` implies `1`. When setting up workload cluster access, management cluster access will be set up as well, if that is not yet done.
 
