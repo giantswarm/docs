@@ -75,7 +75,7 @@ For platform-specific instuctions, please select a platform below.
     ```
 
 {{< /tab >}}
-{{< tab id="linux-arm64" title="Linux (ARM)">}}
+{{< tab id="linux-arm64" title="Linux ARM">}}
 
 1. Download the release binary
 
@@ -117,7 +117,7 @@ For platform-specific instuctions, please select a platform below.
     ```
 
 {{< /tab >}}
-{{< tab id="darwin-arm64" title="macOS (M1)">}}
+{{< tab id="darwin-arm64" title="macOS M1">}}
 
 1. Download the release binary
 
@@ -138,6 +138,21 @@ For platform-specific instuctions, please select a platform below.
     ```
 
 {{< /tab >}}
+{{< tab id="windows-amd64" title="Windows">}}
+
+Please note that we only provide a 64bit release.
+
+1. Download the [release ZIP file](https://github.com/giantswarm/kubectl-gs/releases/download/v{{% kubectl_gs_version %}}/kubectl-gs-v{{% kubectl_gs_version %}}-windows-amd64.zip)
+
+2. Extract the downloaded ZIP file
+
+2. Copy `kubectl-gs.exe` to a location that is included in your `%PATH%`. For example:
+
+    ```nohighlight
+    C:\Users\USERNAME\AppData\Local\Microsoft\WindowsApps
+    ```
+
+{{< /tab >}}
 {{< tab id="windows-wsl2" title="WSL2">}}
 
 1. Install the kubectl-gs binary for Linux first. You can use the instructions using Krew shown above, or follow the Linux instructions without Krew.
@@ -149,7 +164,9 @@ For platform-specific instuctions, please select a platform below.
     ```
 
 {{< /tab >}}
-{{< tab id="docker" title="Docker">}}
+{{< /tabs >}}
+
+## Docker
 
 We offer a Docker image via our public [Quay](https://quay.io/repository/giantswarm/kubectl-gs?tab=info) repository. The semantic release version number is used to tag images.
 
@@ -164,6 +181,3 @@ We offer a Docker image via our public [Quay](https://quay.io/repository/giantsw
     ```nohighlight
     docker run --rm -ti quay.io/giantswarm/kubectl-gs:{{% kubectl_gs_version %}} help
     ```
-
-{{< /tab >}}
-{{< /tabs >}}
