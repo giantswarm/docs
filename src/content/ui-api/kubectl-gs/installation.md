@@ -149,7 +149,7 @@ Please note that we only provide a 64bit release.
 2. Copy `kubectl-gs.exe` to a location that is included in your `%PATH%`. For example:
 
     ```nohighlight
-    C:\Users\USERNAME\AppData\Local\Microsoft\WindowsApps
+    %USERPROFILE%\AppData\Local\Microsoft\WindowsApps
     ```
 
 {{< /tab >}}
