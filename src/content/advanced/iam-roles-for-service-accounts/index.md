@@ -64,12 +64,12 @@ In oder to use the IAM role with a service account you need to create new AWS ro
         {
             "Effect": "Allow",
             "Principal": {
-                "Federated": "arn:aws:iam::AWS_ACCOUNT:oidc-provider/s3-REGION.amazonaws.com/AWS_ACCOUNT-g8s-CLUSTER_ID-oidc-pod-identity"
+                "Federated": "arn:aws:iam::AWS_ACCOUNT:oidc-provider/s3.REGION.amazonaws.com/AWS_ACCOUNT-g8s-CLUSTER_ID-oidc-pod-identity"
             },
             "Action": "sts:AssumeRoleWithWebIdentity",
             "Condition": {
                 "StringEquals": {
-                    "s3-REGION.amazonaws.com/AWS_ACCOUNT-g8s-CLUSTER_ID-oidc-pod-identity:sub": "system:serviceaccount:NAMESPACE:SA_NAME"
+                    "s3.REGION.amazonaws.com/AWS_ACCOUNT-g8s-CLUSTER_ID-oidc-pod-identity:sub": "system:serviceaccount:NAMESPACE:SA_NAME"
                 }
             }
         }
