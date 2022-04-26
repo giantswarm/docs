@@ -1,6 +1,6 @@
 ---
 linkTitle: IAM roles for service accounts
-title: AWS IAM roles for service accounts 
+title: AWS IAM roles for service accounts
 description: This article describes how to use a new feature that allows binding of specific AWS IAM roles to a service account of a pod.
 weight: 60
 menu:
@@ -64,12 +64,12 @@ In oder to use the IAM role with a service account you need to create new AWS ro
         {
             "Effect": "Allow",
             "Principal": {
-                "Federated": "arn:aws:iam::AWS_ACCOUNT:oidc-provider/s3-eu-west-1.amazonaws.com/AWS_ACCOUNT-g8s-CLUSTER_ID-oidc-pod-identity"
+                "Federated": "arn:aws:iam::AWS_ACCOUNT:oidc-provider/s3.REGION.amazonaws.com/AWS_ACCOUNT-g8s-CLUSTER_ID-oidc-pod-identity"
             },
             "Action": "sts:AssumeRoleWithWebIdentity",
             "Condition": {
                 "StringEquals": {
-                    "s3-eu-west-1.amazonaws.com/AWS_ACCOUNT-g8s-CLUSTER_ID-oidc-pod-identity:sub": "system:serviceaccount:NAMESPACE:SA_NAME"
+                    "s3.REGION.amazonaws.com/AWS_ACCOUNT-g8s-CLUSTER_ID-oidc-pod-identity:sub": "system:serviceaccount:NAMESPACE:SA_NAME"
                 }
             }
         }
@@ -82,6 +82,7 @@ You need to fill real values for these placeholders:
 * `CLUSTER_ID` - cluster id
 * `NAMESPACE` - Kubernetes namespace in cluster, where the pod and service account be used.
 * `SA_NAME` - Name of the Kubernetes Service Account which wil be using by the pod.
+* `REGION` - AWS region the OIDC provider is located in.
 
 ### Service account
 The service account has to be annotated with a full ARN of the IAM role. You can get the ARN of the role in the AWS console, when you check role details.
@@ -98,9 +99,8 @@ metadata:
 ```
 
 ## Verify your configuration is correct
-Once your pod is running with the configured service account, you should see a file in the pod called `/var/run/secrets/eks.amazonaws.com/serviceaccount/token`, which containts a JWT token with details of the role. 
+Once your pod is running with the configured service account, you should see a file in the pod called `/var/run/secrets/eks.amazonaws.com/serviceaccount/token`, which containts a JWT token with details of the role.
 
 The pod should also have configured enviroment variables `AWS_WEB_IDENTITY_TOKEN_FILE` and `AWS_ROLE_ARN`.
 
 Check the pod using command `kubectl -n NAMESPACE get pod  POD_NAME -o yaml` and search for the enviroment variables or for the volume mounts.
-
