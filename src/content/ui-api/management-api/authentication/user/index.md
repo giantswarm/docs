@@ -29,10 +29,13 @@ Assuming that you want to work with the API using `kubectl`, we recommend you in
 To set up your `kubectl` configuration with a context for your Giant Swarm installation's Management API, execute the following command:
 
 ```nohighlight
-kubectl gs login <URL>
+kubectl gs login URL
 ```
 
-As a URL, use the Management API endpoint URL (normally starting with `https://g8s.`) or the web user interface URL (normally starting with `https://happa.g8s.`) of the installation.
+As a `URL`, use either
+
+- the Management API endpoint URL (normally starting with `https://g8s.`) or
+- the web user interface URL (normally starting with `https://happa.g8s.`) of the installation.
 
 More information can be found in the [`kubectl gs login`]({{< relref "/ui-api/kubectl-gs/login/index.md" >}}) manual page.
 
