@@ -14,97 +14,146 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 ---
 
-Outline
-
-- Inside cluster: cross reference to https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/
-- Assumption that this is happening outside the management cluster.
-- Basic explanation of what's happening
-  - Service account
-  - Service account token
-- Example for applying the token to a kubectl command
-
----
-
-Using the Management API from an automation requires a hands-free way to provide credentials to kubectl or any Kubernetes client. This article explains how to obtain a service account token to use in such a scenario.
+Using the Management API from an automation requires a hands-free way to provide credentials to kubectl or any Kubernetes client. This article explains how to make use of a service account and create a self-contained kubeconfig file to use in such a scenario.
 
 To learn about authentication as a user who can complete an interactive authentication flow in the browser, please head to our [according article]({{< relref "/ui-api/management-api/authentication/user" >}}).
 
-### Remote access to the management cluster {#remote-mc}
+**Note:** In the context of this article we are assuming that you want to connect to the Management API from outside the management cluster. In case your automation is running in the management cluster, using a service for authentication becomes much simpler. TODO: explain how or point to upstream docs.
 
-Each Giant Swarm management cluster provides a service account named `automation` in the `default` namespace that may be used for creating a self-contained `kubeconfig` file. **Note however**, this account comes with a powerful set of permissions, thus **we strongly recommend you create a specific service account for each application**, binding it to specific roles granting only the required permissions in the required namespaces.
+## Step by step
 
-Regardless of which service account you decide to use. From the management cluster, you can utilize the step below to create a config file.
+**Note:** If you want to skip the lengthy explanations, you can jump directly to the section below where we [put it all together](#script) in a script.
 
-1. Export the Service Account name:
+Each Giant Swarm management cluster provides a service account named `automation` in the `default` namespace. This service account's token and additional information as the API endpoint and CA certificate can then be extracted into a self-contained kubectl configuration file.
 
-```bash
-SA_NAME=automation
+**Note:** This `automation` service account comes with a powerful set of permissions, thus **we strongly recommend you create a specific service account for each application**, binding it to specific roles granting only the required permissions in the required namespaces.
+
+These instructions assume the `automation` service account name. You'll have to replace this one with the name of the service account you are using.
+
+### 1. Authenticate for the Management API
+
+Make sure that you have an authenticated `kubectl` context for your Management API. We provide extensive documentation on [how to authenticate as a user]({{< relref "/ui-api/management-api/authentication/user" >}}).
+
+### 2. Find the service account's secret
+
+Every service account comes with a `Secret` resource that contains the credentials some additional details we need. To obtain that resource, we must look up its name first.
+
+Here, `INSTALLATION` is a placeholder for the name of your installation. `SERVICE_ACCOUNT_NAME` is the name of the service account you want to use.
+
+```nohighlight
+kubectl --context gs-INSTALLATION --namespace default get serviceaccount SERVICE_ACCOUNT_NAME -o jsonpath='{.secrets[0].name}'
 ```
 
-2. Find Kubernetes Secret associated with the service account:
+### 3. Extract details from the service account secret
 
-```bash
-SECRET=$(kubectl get sa $SA_NAME -o jsonpath='{.secrets[0].name}')
+With `SECRET_NAME` being the name of the service account secret found in the previous step, we now extract the authentication token ...
+
+```nohighlight
+kubectl --context gs-INSTALLATION --namespace default get secret SECRET_NAME -o jsonpath='{.data.token}' | base64 --decode
 ```
 
-3. Find the service account's token:
+... and the CA certificate, which we store in a file.
 
-```bash
-TOKEN=$(kubectl get secret $SECRET -o jsonpath='{.data.token}' | base64 --decode)
+```nohighlight
+kubectl --context gs-INSTALLATION --namespace default get secret SECRET_NAME -o jsonpath='{.data.ca\.crt}' | base64 --decode > ca.pem
 ```
 
-4. Find Kubernetes CA certificate:
+### 4. Get your Management API endpoint
 
-```bash
-CA_CERT=$(kubectl get secret $SECRET -o jsonpath='{.data.ca\.crt}')
+It's already in your kubectl configuration and can be extracted from there like this:
+
+```nohighlight
+kubectl --context gs-INSTALLATION config view --minify -o jsonpath='{.clusters[0].cluster.server}'
 ```
 
-5. Grab installation's API endpoint:
+### 5. Create a self-contained kubeconfig
 
-```bash
-API_URL=$(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')
+Here, let `FILE` be the path of a file that does not yet exist, e. g. `kubeconfig.yaml`. `API_ENDPOINT` is the Management API endpoint from step 4. `CA_CERTIFICATE_PATH` is the path of the CA file created in step 3.
+
+```nohighlight
+kubectl --kubeconfig FILE config set-cluster default \
+  --server API_ENDPOINT \
+  --embed-certs \
+  --certificate-authority CA_CERTIFICATE_PATH
 ```
 
-6. Grab installation's name:
+Now replace `TOKEN` with the service account token obtained in step 3 and execute:
 
-```bash
-MC_NAME=$(kubectl config view --minify -o jsonpath='{.clusters[0].name}')
+```nohighlight
+kubectl --kubeconfig FILE config set-credentials default \
+  --token TOKEN
 ```
 
-7. Generate kubectl configuration:
+Last, execute this command with `INSTALLATION` being your installation's name, as in all the previous steps.
+
+```nohighlight
+kubectl --kubeconfig FILE config set-context gs-INSTALLATION \
+  --cluster default \
+  --user default \
+  --current
+```
+
+As a result, in the path `FILE` you have a self-contained kubeconfig file for the Management API. This file includes the service account's authentication token.
+
+
+### 8. Test the new kubeconfig
+
+```nohighlight
+kubectl --kubeconfig FILE cluster-info
+```
+
+That command should give you some cluster details and should not result in any errors.
+
+## Security considerations
+
+Service account tokens do not expire automatically. So the self-contained kubeconfig file you are creating could become a security thread. To avoid this, you can take these precautions:
+
+- Create servicee accounts specifically for each use case. By the use of RBAC, grant only the permissions required for that use case.
+- Rotate service account credentials regularly. This can be done simply by deleting the service account's secret.
+
+## Putting it all together {#script}
+
+Our step by step instructions above might give you a good understanding of what has to be done to create a self-contained kubeconfig for an automation. To make that fast and more fail-safe, you can use this script.
+
+Make sure to be logged in with the Management API, and set the variables `INSTALLATION` and `SERVICE_ACCOUNT_NAME`, before executing this script.
 
 ```bash
-cat <<EOF > kubeconfig
+#!/bin/bash
+
+# Adapt these two variables:
+INSTALLATION=example
+SERVICE_ACCOUNT_NAME=example-sa
+
+# Find the secret associated with the service account
+SECRET=$(kubectl --context gs-$INSTALLATION --namespace default get sa $SERVICE_ACCOUNT_NAME -o jsonpath='{.secrets[0].name}')
+
+# Fetch the service account token and the Kubernetes CA certificate from the secret
+TOKEN=$(kubectl --context gs-$INSTALLATION --namespace default get secret $SECRET -o jsonpath='{.data.token}' | base64 --decode)
+CA_CERT=$(kubectl --context gs-$INSTALLATION --namespace default get secret $SECRET -o jsonpath='{.data.ca\.crt}')
+
+# Fetch the Management API endpoint
+API_URL=$(kubectl --context gs-$INSTALLATION config view --minify -o jsonpath='{.clusters[0].cluster.server}')
+
+# Generate kubectl configuration
+cat <<EOF > kubeconfig_$INSTALLATION.yaml
 apiVersion: v1
 kind: Config
 clusters:
-  - name: $MC_NAME
-    cluster:
+- name: default
+   cluster:
       certificate-authority-data: $CA_CERT
       server: $API_URL
 users:
-  - name: $SA_NAME
-    user:
+- name: default
+   user:
       token: $TOKEN
-current-context: $MC_NAME
+current-context: gs-$INSTALLATION
 contexts:
 - context:
-    cluster: $MC_NAME
-    user: $SA_NAME
-  name: $MC_NAME
+   cluster: default
+   user: default
+name: gs-$INSTALLATION
 EOF
-```
-
-8. Test newly created file:
-
-```nohighlight
-kubectl --kubeconfig kubeconfig cluster-info
-```
-
-## Full script
-
-```bash
-
 ```
 
 ## Further reading
