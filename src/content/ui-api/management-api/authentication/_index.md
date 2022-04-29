@@ -9,8 +9,7 @@ menu:
     parent: uiapi-managementapi
 last_review_date: 2021-05-31
 user_questions:
-  - How can I inspect the ID token issued for authenticating to the Management API?
-  - What requirements are there to use single sign-on with the Management API?
+  - How does authentication for the Management API work?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 ---
