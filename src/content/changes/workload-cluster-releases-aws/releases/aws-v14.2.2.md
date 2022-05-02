@@ -6,7 +6,7 @@ changes_categories:
 - Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
-  url: https://github.com/giantswarm/releases/tree/master/aws/v14.2.2
+  url: https://github.com/giantswarm/releases/tree/master/aws/archived/v14.2.2
   version: 14.2.2
   version_tag: v14.2.2
 date: '2021-06-15T07:27:27+00:00'
