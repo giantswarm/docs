@@ -18,7 +18,7 @@ Using the Management API from an automation requires a hands-free way to provide
 
 To learn about authentication as a user who can complete an interactive authentication flow in the browser, please head to our [according article]({{< relref "/ui-api/management-api/authentication/user" >}}).
 
-**Note:** In the context of this article we are assuming that you want to connect to the Management API from outside the management cluster. In case your automation is running in the management cluster, using a service for authentication becomes much simpler. TODO: explain how or point to upstream docs.
+**Note:** In the context of this article we are assuming that you want to connect to the Management API from outside the management cluster. In case your automation is running in the management cluster, using a service for authentication becomes much simpler.
 
 ## Step by step
 
