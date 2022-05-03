@@ -106,9 +106,9 @@ That command should give you some cluster details and should not result in any e
 
 ## Security considerations
 
-Service account tokens do not expire automatically. So the self-contained kubeconfig file you are creating could become a security thread. To avoid this, you can take these precautions:
+Service account tokens do not expire automatically. So the self-contained kubeconfig file you are creating could become a security threat. To avoid this, you can take these precautions:
 
-- Create servicee accounts specifically for each use case. By the use of RBAC, grant only the permissions required for that use case.
+- Create service accounts specifically for each use case. By the use of RBAC, grant only the permissions required for that use case.
 - Rotate service account credentials regularly. This can be done simply by deleting the service account's secret.
 
 ## Putting it all together {#script}
