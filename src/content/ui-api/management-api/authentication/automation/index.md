@@ -134,26 +134,21 @@ CA_CERT=$(kubectl --context gs-$INSTALLATION --namespace default get secret $SEC
 # Fetch the Management API endpoint
 API_URL=$(kubectl --context gs-$INSTALLATION config view --minify -o jsonpath='{.clusters[0].cluster.server}')
 
-# Generate kubectl configuration
-cat <<EOF > kubeconfig_$INSTALLATION.yaml
-apiVersion: v1
-kind: Config
-clusters:
-- name: default
-   cluster:
-      certificate-authority-data: $CA_CERT
-      server: $API_URL
-users:
-- name: default
-   user:
-      token: $TOKEN
-current-context: gs-$INSTALLATION
-contexts:
-- context:
-   cluster: default
-   user: default
-name: gs-$INSTALLATION
-EOF
+# Create the kubeconfig file
+
+kubectl --kubeconfig kubeconfig_$INSTALLATION.yaml config set-cluster default \
+  --server $API_URL \
+  --embed-certs \
+  --certificate-authority $INSTALLATION-ca.pem
+
+kubectl --kubeconfig kubeconfig_$INSTALLATION.yaml config set-credentials default \
+  --token $TOKEN
+
+kubectl --kubeconfig kubeconfig_$INSTALLATION.yaml config set-context gs-$INSTALLATION \
+  --cluster default \
+  --user default
+
+kubectl --kubeconfig kubeconfig_$INSTALLATION.yaml config use-context gs-$INSTALLATION
 ```
 
 ## Further reading
