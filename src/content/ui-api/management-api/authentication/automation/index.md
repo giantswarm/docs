@@ -84,13 +84,18 @@ kubectl --kubeconfig FILE config set-credentials default \
   --token TOKEN
 ```
 
-Last, execute this command with `INSTALLATION` being your installation's name, as in all the previous steps.
+Then execute this command with `INSTALLATION` being your installation's name, as in all the previous steps.
 
 ```nohighlight
 kubectl --kubeconfig FILE config set-context gs-INSTALLATION \
   --cluster default \
-  --user default \
-  --current
+  --user default
+```
+
+Last, select the only context in the kubeconfig as the current one.
+
+```nohighlight
+kubectl --kubeconfig FILE config use-context gs-INSTALLATION
 ```
 
 As a result, in the path `FILE` you have a self-contained kubeconfig file for the Management API. This file includes the service account's authentication token.
