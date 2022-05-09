@@ -9,6 +9,7 @@ menu:
 last_review_date: 2022-01-25
 aliases:
   - /basics/azure-architecture/
+  - /general/architcture/azure/
 user_questions:
   - What's the high level architecture of a Giant Swarm installation on Azure?
 owner:

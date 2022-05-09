@@ -23,6 +23,7 @@ user_questions:
   - Why does Giant Swarm run a monitoring stack on my AWS management cluster?
 aliases:
   - /basics/aws-architecture/
+  - /general/architcture/aws/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
