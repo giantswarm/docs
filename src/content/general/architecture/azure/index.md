@@ -109,7 +109,7 @@ Right now we have several managed apps to control the Ingress traffic ([NGINX In
 
 But at the same time we open the catalog to our customers and employees to use for their own apps. That is why, for instance, we are running a proof of concept for Loki, the “coolest” log collector. If you trust in a Cloud Native app and operating it does not add any value to your business, talk to us and we might take over its management for you, too.
 
-Please note, while this document went into extensive details with regards to how Giant Swarm runs Kubernetes on [Azure]({{< relref "/general/architcture/azure" >}}), we support [AWS]({{< relref "/general/architcture/aws" >}}) as well as [Bare Metal]({{< relref "/general/architcture/on-premises" >}}). For more details, please [contact us](https://www.giantswarm.io/contact).
+Please note, while this document went into extensive details with regards to how Giant Swarm runs Kubernetes on [Azure]({{< relref "/general/architecture/azure" >}}), we support [AWS]({{< relref "/general/architecture/aws" >}}) as well as [Bare Metal]({{< relref "/general/architecture/on-premises" >}}). For more details, please [contact us](https://www.giantswarm.io/contact).
 
 ## Further reading
 
