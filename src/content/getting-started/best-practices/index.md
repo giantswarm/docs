@@ -2,12 +2,13 @@
 linkTitle: Best practices
 title: Recommendations and best practices
 description: Recommendations and best practices around cluster and node sizing as well as multi-tenant setups
-weight: 50
+weight: 110
 menu:
   main:
-    parent: kubernetes
+    parent: getting-started
 aliases:
   - /guides/recommendations-and-best-practices/
+  - /kubernetes/best-practices/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-teddyfriends
 user_questions:
