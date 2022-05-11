@@ -5,7 +5,7 @@ description: This article explains options you have for defining the size of a K
 weight: 100
 menu:
   main:
-    parent: kubernetes
+    parent: getting-started
 last_review_date: 2020-10-07
 aliases:
   - /basics/cluster-size-autoscaling/
