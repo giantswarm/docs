@@ -2,7 +2,7 @@
 linkTitle: Kubernetes resources
 title: Kubernetes resources
 description: Pointers to the best resources about Kubernetes to get you up to speed with Kubernetes fast.
-weight: 100
+weight: 110
 menu:
   main:
     parent: kubernetes
