@@ -1,14 +1,15 @@
 ---
-linkTitle: Resources
+linkTitle: Kubernetes resources
 title: Kubernetes resources
-description: Pointers to the best resources about Kubernetes to get you up to speed with Kubernetes fast
-weight: 10
+description: Pointers to the best resources about Kubernetes to get you up to speed with Kubernetes fast.
+weight: 100
 menu:
   main:
     parent: kubernetes
 last_review_date: 2020-03-31
 aliases:
   - /basics/kubernetes-resources/
+  - /kubernetes/resources/
 user_questions:
   - Where can I find more Kubernetes documentation?
 owner:
@@ -107,4 +108,4 @@ We have also written some more detailed out blog posts about the basic Kubernete
 
 ## Extended reading
 
-For more extensive and deeper information on Kubernetes you should check out the [Reference Documentation](https://kubernetes.io/docs/reference/), which includes among others the [API documentation](https://kubernetes.io/docs/concepts/overview/kubernetes-api/), [CLI documentation](https://kubernetes.io/docs/reference/kubectl/overview/), and a Glossary with deeper explanations of all resources.
+For more extensive and deeper information on Kubernetes you should check out the [Reference Documentation](https://kubernetes.io/docs/reference/), which includes among others the [API documentation](https://kubernetes.io/docs/concepts/overview/kubernetes-api/), [CLI documentation](https://kubernetes.io/docs/reference/kubectl/overview/), and a glossary with deeper explanations of all resources.
