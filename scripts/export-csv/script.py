@@ -27,16 +27,21 @@ def export_paths(paths):
     """Export data on the list of paths provided"""
     with open('./export.csv', 'w') as csvfile:
         writer = csv.writer(csvfile, quoting=csv.QUOTE_MINIMAL)
-        writer.writerow(['path', 'path_l1', 'path_l2', 'path_l3', 'title'])
+        writer.writerow(['title', 'path_l1', 'path_l2', 'path_l3', 'url'])
 
         for p in paths:
-            relpath = os.path.relpath(p, PATH)
             frontmatter = frontmatter_for_path(p)
+
+            relpath = os.path.relpath(p, PATH)
+            relpath = relpath.rstrip('_index.md')
+            relpath = relpath.rstrip('index.md')
+
             writer.writerow([
-                relpath, path_level(relpath, 0),
+                frontmatter['title'],
+                path_level(relpath, 0),
                 path_level(relpath, 1),
                 path_level(relpath, 2),
-                frontmatter['title'],
+                f'https://docs.giantswarm.io/{relpath}',
             ])
 
 
