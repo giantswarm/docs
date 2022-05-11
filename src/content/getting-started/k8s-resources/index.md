@@ -10,6 +10,7 @@ last_review_date: 2020-03-31
 aliases:
   - /basics/kubernetes-resources/
   - /kubernetes/resources/
+  - /kubernetes/resource-qos/
 user_questions:
   - Where can I find more Kubernetes documentation?
 owner:
@@ -80,6 +81,18 @@ A daemon set ensures that an instance of a specific pod is running on all (or a 
 With namespaces you can split up your cluster into smaller separate environments. These environments are separate in terms of Kubernetes objects that they contain. They do not completely isolate from the rest of the cluster by default.
 
 [Namespaces Reference](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)
+
+### Managing and resources for containers
+
+To limit usage of resources like RAM and CPU, Kubernetes offer the resource limits.
+
+[Managing resources for containers](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+
+### Scheduling priority and QoS
+
+Based on how resource limits and resource requests are configured, Kubernetes classifies pods by quality of service and decides which pods are scheduled in the case of unsifficient resources.
+
+[Pod quality of service in Kubernetes](https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/)
 
 ### DNS
 
