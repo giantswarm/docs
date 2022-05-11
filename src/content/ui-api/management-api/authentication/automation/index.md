@@ -84,13 +84,18 @@ kubectl --kubeconfig FILE config set-credentials default \
   --token TOKEN
 ```
 
-Last, execute this command with `INSTALLATION` being your installation's name, as in all the previous steps.
+Then execute this command with `INSTALLATION` being your installation's name, as in all the previous steps.
 
 ```nohighlight
 kubectl --kubeconfig FILE config set-context gs-INSTALLATION \
   --cluster default \
-  --user default \
-  --current
+  --user default
+```
+
+Last, select the only context in the kubeconfig as the current one.
+
+```nohighlight
+kubectl --kubeconfig FILE config use-context gs-INSTALLATION
 ```
 
 As a result, in the path `FILE` you have a self-contained kubeconfig file for the Management API. This file includes the service account's authentication token.
@@ -106,9 +111,9 @@ That command should give you some cluster details and should not result in any e
 
 ## Security considerations
 
-Service account tokens do not expire automatically. So the self-contained kubeconfig file you are creating could become a security thread. To avoid this, you can take these precautions:
+Service account tokens do not expire automatically. So the self-contained kubeconfig file you are creating could become a security threat. To avoid this, you can take these precautions:
 
-- Create servicee accounts specifically for each use case. By the use of RBAC, grant only the permissions required for that use case.
+- Create service accounts specifically for each use case. By the use of RBAC, grant only the permissions required for that use case.
 - Rotate service account credentials regularly. This can be done simply by deleting the service account's secret.
 
 ## Putting it all together {#script}
@@ -134,26 +139,21 @@ CA_CERT=$(kubectl --context gs-$INSTALLATION --namespace default get secret $SEC
 # Fetch the Management API endpoint
 API_URL=$(kubectl --context gs-$INSTALLATION config view --minify -o jsonpath='{.clusters[0].cluster.server}')
 
-# Generate kubectl configuration
-cat <<EOF > kubeconfig_$INSTALLATION.yaml
-apiVersion: v1
-kind: Config
-clusters:
-- name: default
-   cluster:
-      certificate-authority-data: $CA_CERT
-      server: $API_URL
-users:
-- name: default
-   user:
-      token: $TOKEN
-current-context: gs-$INSTALLATION
-contexts:
-- context:
-   cluster: default
-   user: default
-name: gs-$INSTALLATION
-EOF
+# Create the kubeconfig file
+
+kubectl --kubeconfig kubeconfig_$INSTALLATION.yaml config set-cluster default \
+  --server $API_URL \
+  --embed-certs \
+  --certificate-authority $INSTALLATION-ca.pem
+
+kubectl --kubeconfig kubeconfig_$INSTALLATION.yaml config set-credentials default \
+  --token $TOKEN
+
+kubectl --kubeconfig kubeconfig_$INSTALLATION.yaml config set-context gs-$INSTALLATION \
+  --cluster default \
+  --user default
+
+kubectl --kubeconfig kubeconfig_$INSTALLATION.yaml config use-context gs-$INSTALLATION
 ```
 
 ## Further reading
