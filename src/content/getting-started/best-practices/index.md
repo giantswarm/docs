@@ -2,12 +2,13 @@
 linkTitle: Best practices
 title: Recommendations and best practices
 description: Recommendations and best practices around cluster and node sizing as well as multi-tenant setups
-weight: 50
+weight: 110
 menu:
   main:
-    parent: kubernetes
+    parent: getting-started
 aliases:
   - /guides/recommendations-and-best-practices/
+  - /kubernetes/best-practices/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-teddyfriends
 user_questions:
@@ -110,7 +111,7 @@ The downside to the multi-tenant single cluster approach is that it, as mentione
 ## Further reading
 
 - [Creating clusters with gsctl]({{< relref "/ui-api/gsctl/create-cluster" >}})
-- [Cluster Size and Autoscaling]({{< relref "/kubernetes/cluster-size-autoscaling" >}})
+- [Cluster Size and Autoscaling]({{< relref "/getting-started/cluster-size-autoscaling" >}})
 - [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
 - [Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/)
 - [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)
