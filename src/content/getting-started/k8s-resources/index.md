@@ -1,14 +1,16 @@
 ---
-linkTitle: Resources
+linkTitle: Kubernetes resources
 title: Kubernetes resources
-description: Pointers to the best resources about Kubernetes to get you up to speed with Kubernetes fast
-weight: 10
+description: Pointers to the best resources about Kubernetes to get you up to speed with Kubernetes fast.
+weight: 110
 menu:
   main:
-    parent: kubernetes
+    parent: getting-started
 last_review_date: 2020-03-31
 aliases:
   - /basics/kubernetes-resources/
+  - /kubernetes/resources/
+  - /kubernetes/resource-qos/
 user_questions:
   - Where can I find more Kubernetes documentation?
 owner:
@@ -80,6 +82,18 @@ With namespaces you can split up your cluster into smaller separate environments
 
 [Namespaces Reference](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)
 
+### Managing and resources for containers
+
+To limit usage of resources like RAM and CPU, Kubernetes offer the resource limits.
+
+[Managing resources for containers](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+
+### Scheduling priority and QoS
+
+Based on how resource limits and resource requests are configured, Kubernetes classifies pods by quality of service and decides which pods are scheduled in the case of unsifficient resources.
+
+[Pod quality of service in Kubernetes](https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/)
+
 ### DNS
 
 Giant Swarm clusters come with CoreDNS installed by default. You can use DNS to discover services and communicate between them.
@@ -107,4 +121,4 @@ We have also written some more detailed out blog posts about the basic Kubernete
 
 ## Extended reading
 
-For more extensive and deeper information on Kubernetes you should check out the [Reference Documentation](https://kubernetes.io/docs/reference/), which includes among others the [API documentation](https://kubernetes.io/docs/concepts/overview/kubernetes-api/), [CLI documentation](https://kubernetes.io/docs/reference/kubectl/overview/), and a Glossary with deeper explanations of all resources.
+For more extensive and deeper information on Kubernetes you should check out the [Reference Documentation](https://kubernetes.io/docs/reference/), which includes among others the [API documentation](https://kubernetes.io/docs/concepts/overview/kubernetes-api/), [CLI documentation](https://kubernetes.io/docs/reference/kubectl/overview/), and a glossary with deeper explanations of all resources.

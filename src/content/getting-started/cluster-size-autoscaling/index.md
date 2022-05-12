@@ -2,13 +2,14 @@
 linkTitle: Cluster size and autoscaling
 title: Cluster size and autoscaling
 description: This article explains options you have for defining the size of a Kubernetes cluster with Giant Swarm, and automatically scaling it
-weight: 30
+weight: 100
 menu:
   main:
-    parent: kubernetes
+    parent: getting-started
 last_review_date: 2020-10-07
 aliases:
   - /basics/cluster-size-autoscaling/
+  - /kubernetes/cluster-size-autoscaling/
 user_questions:
   - How should I size my clusters?
   - How can clusters or node pools get scaled automatically?
@@ -84,7 +85,7 @@ In workload clusters without autoscaling support, the number of Ingress Controll
 ## See also
 
 - [Cluster Autoscaler advanced configuration]({{< relref "/advanced/cluster-autoscaler" >}})
-- [Recommendations and Best Practices regarding cluster size]({{< relref "/kubernetes/best-practices#cluster-sizing" >}})
+- [Recommendations and Best Practices regarding cluster size]({{< relref "/getting-started/best-practices#cluster-sizing" >}})
 - [`gsctl create cluster`]({{< relref "/ui-api/gsctl/create-cluster" >}}): Creating a cluster
 - [`gsctl scale cluster`]({{< relref "/ui-api/gsctl/scale-cluster" >}}): Scaling a cluster
 - [`gsctl show cluster`]({{< relref "/ui-api/gsctl/show-cluster" >}}): Inspecting a cluster

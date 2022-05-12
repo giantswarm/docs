@@ -23,6 +23,7 @@ user_questions:
   - Why does Giant Swarm run a monitoring stack on my AWS management cluster?
 aliases:
   - /basics/aws-architecture/
+  - /general/architcture/aws/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
@@ -96,7 +97,7 @@ Further, to enforce the definition of resources, [Limit Ranges](https://kubernet
 
 ### Cluster scalability
 
-Our clusters are crafted with the [cluster autoscaling component]({{< relref "/kubernetes/cluster-size-autoscaling" >}}) included as a managed app. This means that a users can define the size of the cluster by defining a minimum and maximum number of nodes per node pool. The cluster autoscaling component will scale the node pools up and down based on the capacity needed. Although we manage the component, we also allow for some customization in order to adapt the autoscaling behaviour to your needs.
+Our clusters are crafted with the [cluster autoscaling component]({{< relref "/getting-started/cluster-size-autoscaling" >}}) included as a managed app. This means that a users can define the size of the cluster by defining a minimum and maximum number of nodes per node pool. The cluster autoscaling component will scale the node pools up and down based on the capacity needed. Although we manage the component, we also allow for some customization in order to adapt the autoscaling behaviour to your needs.
 
 ### Cluster authentication
 
@@ -114,7 +115,7 @@ Since we provide a **managed** Kubernetes platform, Giant Swarm has to be aware 
 
 Our on-call engineers will be paged in case anything happens to the cluster or its base components and they will respond to the incident based on the run-books we have created based on years of operating Cloud Native systems. In case there is an improvement to be made, a post mortem is created and a solution will be implemented before long. Any patch or fix added to the platform will be released to all customers.
 
-Please note, while this document went into extensive details with regards to how Giant Swarm runs Kubernetes on AWS, we support [Azure]({{< relref "/general/architcture/azure" >}}) as well as [Bare Metal]({{< relref "/general/architcture/on-premises" >}}). For more details, please [contact us](https://www.giantswarm.io/contact).
+Please note, while this document went into extensive details with regards to how Giant Swarm runs Kubernetes on AWS, we support [Azure]({{< relref "/general/architecture/azure" >}}) as well as [Bare Metal]({{< relref "/general/architecture/on-premises" >}}). For more details, please [contact us](https://www.giantswarm.io/contact).
 
 ## Further reading
 
