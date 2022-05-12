@@ -13,7 +13,7 @@ owner:
 user_questions:
   - How can I list clusters using kubectl?
   - How can I inspect clusters using kubectl?
-last_review_date: 2021-01-01
+last_review_date: 2022-05-13
 ---
 
 Like with all `get` commands in `kubectl`, this command can be used to get details on one item, a cluster in this case, or list several of them.
@@ -88,7 +88,7 @@ $ kubectl gs get clusters --output yaml
 apiVersion: v1
 kind: List
 items:
-- apiVersion: cluster.x-k8s.io/v1alpha3
+- apiVersion: cluster.x-k8s.io/v1beta1
   kind: Cluster
 ...
 ```
