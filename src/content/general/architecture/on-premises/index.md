@@ -18,6 +18,7 @@ user_questions:
   - What makes up the service architecture?
 aliases:
   - /basics/onprem-architecture/
+  - /general/architcture/on-premises/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
 ---
