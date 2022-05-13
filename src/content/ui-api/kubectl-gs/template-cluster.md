@@ -12,7 +12,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I create a cluster manifest for the Management API?
-last_review_date: 2021-03-04
+last_review_date: 2022-05-13
 ---
 
 This command helps with creating a cluster by producing a manifest based on user input. This manifest can then optionally be modified and finally be applied to the Management API to create a cluster.
@@ -24,25 +24,25 @@ The outcome depends on the provider, set via the `--provider` flag.
 
 For AWS (`--provider aws`):
 
-- [`Cluster`]({{< relref "/ui-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1alpha2`) - holds the base cluster specification.
-- [`AWSCluster`]({{< relref "/ui-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha2`) - holds AWS-specific configuration.
-- [`G8sControlPlane`]({{< relref "/ui-api/management-api/crd/g8scontrolplanes.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha2`) - specifies the control plane nodes
-- [`AWSControlPlane`]({{< relref "/ui-api/management-api/crd/awscontrolplanes.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha2`) - specifies the control plane nodes with AWS-specific details
+- [`Cluster`]({{< relref "/ui-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1beta1`) - holds the base cluster specification.
+- [`AWSCluster`]({{< relref "/ui-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`) - holds AWS-specific configuration.
+- [`G8sControlPlane`]({{< relref "/ui-api/management-api/crd/g8scontrolplanes.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`) - specifies the control plane nodes
+- [`AWSControlPlane`]({{< relref "/ui-api/management-api/crd/awscontrolplanes.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`) - specifies the control plane nodes with AWS-specific details
 
 {{< /tab >}}
 {{< tab id="flags-azure" title="Azure">}}
 
 For Azure (`--provider azure`):
 
-- [`Cluster`]({{< relref "/ui-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1alpha3`) - holds the base cluster specification.
-- [`AzureCluster`]({{< relref "/ui-api/management-api/crd/azureclusters.infrastructure.cluster.x-k8s.io.md" >}}) (API version `infrastructure.cluster.x-k8s.io/v1alpha3`) - holds Azure-specific configuration.
-- [`AzureMachine`]({{< relref "/ui-api/management-api/crd/azuremachines.infrastructure.cluster.x-k8s.io.md" >}}) (API version `infrastructure.cluster.x-k8s.io/v1alpha3`) - specifies the control plane nodes.
+- [`Cluster`]({{< relref "/ui-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1beta1`) - holds the base cluster specification.
+- [`AzureCluster`]({{< relref "/ui-api/management-api/crd/azureclusters.infrastructure.cluster.x-k8s.io.md" >}}) (API version `infrastructure.cluster.x-k8s.io/v1beta1`) - holds Azure-specific configuration.
+- [`AzureMachine`]({{< relref "/ui-api/management-api/crd/azuremachines.infrastructure.cluster.x-k8s.io.md" >}}) (API version `infrastructure.cluster.x-k8s.io/v1beta1`) - specifies the control plane nodes.
 
 {{< /tab >}}
 {{< tab id="flags-capz" title="Cluster API on Azure">}}
 
 We also support creating clusters on Azure using ClusterAPI by selecting our `v20.0.0-alpha1` release  (`--provider azure --release v20.0.0-alpha1`).
-Please be aware that this is an early alpha release. Clusters created using this release won't be monitored by GiantSwarm and, they won't be able to be upgraded to newer stable releases.
+Please be aware that this is an early alpha release. Clusters created using this release won't be monitored by Giant Swarm and, they won't be able to be upgraded to newer stable releases.
 
 In this case the outcome is a bit different:
 
@@ -145,7 +145,7 @@ kubectl gs template cluster \
   --description "Cluster #2" \
   --pods-cidr 10.2.0.0/16 \
   --organization acme \
-  --release 16.0.0 \
+  --release 17.0.0 \
   --label environment=testing \
   --label team=upstate
 ```
@@ -157,7 +157,7 @@ kubectl gs template cluster \
 kubectl gs template cluster \
   --provider azure \
   --organization acme \
-  --release 16.0.0 \
+  --release 17.0.0 \
   --description "Test cluster" \
   --label environment=testing \
   --label team=upstate
@@ -203,18 +203,19 @@ The above example command would generate the following output:
 {{< tab id="command-output-aws" title="AWS">}}
 
 ```yaml
-apiVersion: cluster.x-k8s.io/v1alpha3
+apiVersion: cluster.x-k8s.io/v1beta1
 kind: Cluster
 metadata:
   annotations:
     giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/clusters.cluster.x-k8s.io/
   creationTimestamp: null
   labels:
-    cluster-operator.giantswarm.io/version: ""
+    cluster-operator.giantswarm.io/version: 3.13.0
+    cluster.x-k8s.io/cluster-name: x5g6e
     environment: testing
     giantswarm.io/cluster: x5g6e
     giantswarm.io/organization: acme
-    release.giantswarm.io/version: 16.0.0
+    release.giantswarm.io/version: 17.0.0
     team: upstate
   name: x5g6e
   namespace: org-acme
@@ -238,11 +239,11 @@ metadata:
     giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/awsclusters.infrastructure.giantswarm.io/
   creationTimestamp: null
   labels:
-    aws-operator.giantswarm.io/version: ""
+    aws-operator.giantswarm.io/version: 10.17.0
     cluster.x-k8s.io/cluster-name: x5g6e
     giantswarm.io/cluster: x5g6e
     giantswarm.io/organization: acme
-    release.giantswarm.io/version: 16.0.0
+    release.giantswarm.io/version: 17.0.0
   name: x5g6e
   namespace: org-acme
 spec:
@@ -277,11 +278,12 @@ metadata:
     giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/g8scontrolplanes.infrastructure.giantswarm.io/
   creationTimestamp: null
   labels:
-    cluster-operator.giantswarm.io/version: ""
+    cluster-operator.giantswarm.io/version: 3.13.0
+    cluster.x-k8s.io/cluster-name: x5g6e
     giantswarm.io/cluster: x5g6e
     giantswarm.io/control-plane: wy76e
     giantswarm.io/organization: acme
-    release.giantswarm.io/version: 16.0.0
+    release.giantswarm.io/version: 17.0.0
   name: wy76e
   namespace: org-acme
 spec:
@@ -300,11 +302,12 @@ metadata:
     giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/awscontrolplanes.infrastructure.giantswarm.io/
   creationTimestamp: null
   labels:
-    aws-operator.giantswarm.io/version: ""
+    aws-operator.giantswarm.io/version: 10.17.0
+    cluster.x-k8s.io/cluster-name: x5g6e
     giantswarm.io/cluster: x5g6e
     giantswarm.io/control-plane: wy76e
     giantswarm.io/organization: acme
-    release.giantswarm.io/version: 16.0.0
+    release.giantswarm.io/version: 17.0.0
   name: wy76e
   namespace: org-acme
 spec:
@@ -317,18 +320,20 @@ spec:
 {{< tab id="command-output-azure" title="Azure">}}
 
 ```yaml
-apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
 kind: AzureCluster
 metadata:
   creationTimestamp: null
   labels:
+    azure-operator.giantswarm.io/version: 5.17.0
     cluster.x-k8s.io/cluster-name: tt0m5
     giantswarm.io/cluster: tt0m5
     giantswarm.io/organization: acme
-    release.giantswarm.io/version: 16.0.0
+    release.giantswarm.io/version: 17.0.0
   name: tt0m5
   namespace: org-acme
 spec:
+  bastionSpec: {}
   controlPlaneEndpoint:
     host: ""
     port: 0
@@ -346,17 +351,19 @@ spec:
 status:
   ready: false
 ---
-apiVersion: cluster.x-k8s.io/v1alpha3
+apiVersion: cluster.x-k8s.io/v1beta1
 kind: Cluster
 metadata:
   annotations:
     cluster.giantswarm.io/description: Test cluster
   creationTimestamp: null
   labels:
+    azure-operator.giantswarm.io/version: 5.17.0
+    cluster-operator.giantswarm.io/version: 3.12.0
     cluster.x-k8s.io/cluster-name: tt0m5
     giantswarm.io/cluster: tt0m5
     giantswarm.io/organization: acme
-    release.giantswarm.io/version: 16.0.0
+    release.giantswarm.io/version: 17.0.0
   name: tt0m5
   namespace: org-acme
 spec:
@@ -364,7 +371,7 @@ spec:
     host: ""
     port: 0
   infrastructureRef:
-    apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
+    apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
     kind: AzureCluster
     name: tt0m5
     namespace: org-acme
@@ -372,20 +379,20 @@ status:
   controlPlaneInitialized: false
   infrastructureReady: false
 ---
-apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
 kind: AzureMachine
 metadata:
   creationTimestamp: null
   labels:
+    azure-operator.giantswarm.io/version: 5.17.0
     cluster.x-k8s.io/cluster-name: tt0m5
     cluster.x-k8s.io/control-plane: "true"
     giantswarm.io/cluster: tt0m5
     giantswarm.io/organization: acme
-    release.giantswarm.io/version: 16.0.0
+    release.giantswarm.io/version: 17.0.0
   name: tt0m5-master-0
   namespace: org-acme
 spec:
-  availabilityZone: {}
   image:
     marketplace:
       offer: flatcar-container-linux-free
@@ -393,7 +400,6 @@ spec:
       sku: stable
       thirdPartyImage: false
       version: 2345.3.1
-  location: ""
   osDisk:
     cachingType: ReadWrite
     diskSizeGB: 50
