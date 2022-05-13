@@ -9,6 +9,7 @@ menu:
 last_review_date: 2022-01-25
 aliases:
   - /basics/azure-architecture/
+  - /general/architcture/azure/
 user_questions:
   - What's the high level architecture of a Giant Swarm installation on Azure?
 owner:
@@ -82,7 +83,7 @@ Further, to enforce the definition of resources, [Limit Ranges](https://kubernet
 
 ### Cluster scalability
 
-Our clusters are crafted with the [cluster autoscaling component]({{< relref "/kubernetes/cluster-size-autoscaling" >}}) included as a managed app. This means that a users can define the size of the cluster by defining a minimum and maximum number of nodes per node pool. The cluster autoscaling component will scale the node pools up and down based on the capacity needed. Although we manage the component, we also allow for some customization in order to adapt the autoscaling behaviour to your needs.
+Our clusters are crafted with the [cluster autoscaling component]({{< relref "/getting-started/cluster-size-autoscaling" >}}) included as a managed app. This means that a users can define the size of the cluster by defining a minimum and maximum number of nodes per node pool. The cluster autoscaling component will scale the node pools up and down based on the capacity needed. Although we manage the component, we also allow for some customization in order to adapt the autoscaling behaviour to your needs.
 
 ### Cluster authentication
 
@@ -108,7 +109,7 @@ Right now we have several managed apps to control the Ingress traffic ([NGINX In
 
 But at the same time we open the catalog to our customers and employees to use for their own apps. That is why, for instance, we are running a proof of concept for Loki, the “coolest” log collector. If you trust in a Cloud Native app and operating it does not add any value to your business, talk to us and we might take over its management for you, too.
 
-Please note, while this document went into extensive details with regards to how Giant Swarm runs Kubernetes on [Azure]({{< relref "/general/architcture/azure" >}}), we support [AWS]({{< relref "/general/architcture/aws" >}}) as well as [Bare Metal]({{< relref "/general/architcture/on-premises" >}}). For more details, please [contact us](https://www.giantswarm.io/contact).
+Please note, while this document went into extensive details with regards to how Giant Swarm runs Kubernetes on [Azure]({{< relref "/general/architecture/azure" >}}), we support [AWS]({{< relref "/general/architecture/aws" >}}) as well as [Bare Metal]({{< relref "/general/architecture/on-premises" >}}). For more details, please [contact us](https://www.giantswarm.io/contact).
 
 ## Further reading
 
