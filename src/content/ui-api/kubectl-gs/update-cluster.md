@@ -15,6 +15,7 @@ owner:
 user_questions:
   - How can I upgrade a workload cluster from the command line?
   - How can I schedule a workload cluster upgrade from the command line?
+  - How can I remove the schedule of a workload cluster from the command line?
 ---
 
 This command's purpose is to modify details of a workload cluster. Currently it allows to upgrade a workload cluster to a newer [release]({{< relref "/general/releases" >}}).
@@ -50,12 +51,25 @@ kubectl gs update cluster \
 
 This adds annotations to the cluster resource, triggering the upgrade to the specified version at the scheduled time.
 
+To remove a schedule from a workload cluster, the `--remove-schedule` flag is used, like in the example below:
+
+```nohighlight
+kubectl gs update cluster \
+  --provider aws \
+  --namespace org-acme \
+  --name a1b2c \
+  --remove-schedule \
+```
+
+This removes annotations from the cluster resources.
+
 ## Flags
 
 - `--provider` - The infrastructure provider of the installation, either `aws` or `azure`.
 - `--name` - Name of the cluster.
 - `--namespace` - Namespace of the cluster resource.
 - `--release-version` - Version of the release the cluster should be upgraded to.
+- `--remove-schedule` (optional): Remove the scheduled time from the cluster.
 - `--scheduled-time` (optional): Scheduled time when the cluster should be updated, in the format `YYYY-MM-DD HH:MM`. Timezone UTC is assumed. If not given, the upgrade happens as soon as possible.
 
 ## Related
