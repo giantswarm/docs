@@ -9,7 +9,7 @@ menu:
     parent: uiapi-kubectlgs
 aliases:
   - /reference/kubectl-gs/update-cluster/
-last_review_date: 2021-12-13
+last_review_date: 2022-05-17
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 user_questions:
