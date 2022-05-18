@@ -8,7 +8,7 @@ menu:
     parent: uiapi-kubectlgs
 aliases:
   - /reference/kubectl-gs/template-nodepool/
-last_review_date: 2021-11-24
+last_review_date: 2022-05-13
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
@@ -22,8 +22,8 @@ The resulting resources depend on the provider, set via the `--provider` flag.
 {{< tabs >}}
 {{< tab id="flags-aws" title="AWS">}}
 
-- [`MachineDeployment`]({{< relref "/ui-api/management-api/crd/machinedeployments.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1alpha2`)
-- [`AWSMachineDeployment`]({{< relref "/ui-api/management-api/crd/awsmachinedeployments.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha2`)
+- [`MachineDeployment`]({{< relref "/ui-api/management-api/crd/machinedeployments.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1beta1`)
+- [`AWSMachineDeployment`]({{< relref "/ui-api/management-api/crd/awsmachinedeployments.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`)
 
 {{< /tab >}}
 {{< tab id="flags-azure" title="Azure">}}
@@ -91,7 +91,8 @@ kubectl gs template nodepool \
   --cluster-name a1b2c \
   --description "General purpose" \
   --availability-zones eu-central-1a \
-  --aws-instance-type m5.4xlarge
+  --aws-instance-type m5.4xlarge \
+  --release 17.0.0
 ```
 
 {{< /tab >}}
@@ -117,19 +118,19 @@ The above example command would generate the following output:
 {{< tab id="command-output-aws" title="AWS">}}
 
 ```yaml
-apiVersion: cluster.x-k8s.io/v1alpha3
+apiVersion: cluster.x-k8s.io/v1beta1
 kind: MachineDeployment
 metadata:
   annotations:
     giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/machinedeployments.cluster.x-k8s.io/
   creationTimestamp: null
   labels:
-    cluster-operator.giantswarm.io/version: ""
+    cluster-operator.giantswarm.io/version: 3.13.0
     cluster.x-k8s.io/cluster-name: a1b2c
     giantswarm.io/cluster: a1b2c
     giantswarm.io/machine-deployment: p3a9q
     giantswarm.io/organization: acme
-    release.giantswarm.io/version: ""
+    release.giantswarm.io/version: 17.0.0
   name: p3a9q
   namespace: org-acme
 spec:
@@ -154,12 +155,12 @@ metadata:
     giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/awsmachinedeployments.infrastructure.giantswarm.io/
   creationTimestamp: null
   labels:
-    aws-operator.giantswarm.io/version: ""
+    aws-operator.giantswarm.io/version: 10.7.0
     cluster.x-k8s.io/cluster-name: a1b2c
     giantswarm.io/cluster: a1b2c
     giantswarm.io/machine-deployment: p3a9q
     giantswarm.io/organization: acme
-    release.giantswarm.io/version: ""
+    release.giantswarm.io/version: 17.0.0
   name: p3a9q
   namespace: org-acme
 spec:
@@ -194,12 +195,14 @@ kind: AzureMachinePool
 metadata:
   creationTimestamp: null
   labels:
+    azure-operator.giantswarm.io/version: 5.10.0
     cluster.x-k8s.io/cluster-name: a1c2b
     giantswarm.io/cluster: a1c2b
     giantswarm.io/machine-pool: bm44c
-    giantswarm.io/organization: giantswarm
+    giantswarm.io/organization: acme
+    release.giantswarm.io/version: 16.0.2
   name: bm44c
-  namespace: org-giantswarm
+  namespace: org-acme
 spec:
   location: ""
   template:
@@ -224,12 +227,14 @@ metadata:
     machine-pool.giantswarm.io/name: General purpose
   creationTimestamp: null
   labels:
+    azure-operator.giantswarm.io/version: 5.10.0
     cluster.x-k8s.io/cluster-name: a1c2b
     giantswarm.io/cluster: a1c2b
     giantswarm.io/machine-pool: bm44c
-    giantswarm.io/organization: giantswarm
+    giantswarm.io/organization: acme
+    release.giantswarm.io/version: 16.0.2
   name: bm44c
-  namespace: org-giantswarm
+  namespace: org-acme
 spec:
   clusterName: a1c2b
   replicas: 3
@@ -241,13 +246,13 @@ spec:
           apiVersion: core.giantswarm.io/v1alpha1
           kind: Spark
           name: bm44c
-          namespace: org-giantswarm
+          namespace: org-acme
       clusterName: a1c2b
       infrastructureRef:
         apiVersion: exp.infrastructure.cluster.x-k8s.io/v1alpha3
         kind: AzureMachinePool
         name: bm44c
-        namespace: org-giantswarm
+        namespace: org-acme
 status:
   bootstrapReady: false
   infrastructureReady: false
@@ -260,8 +265,9 @@ metadata:
   labels:
     cluster.x-k8s.io/cluster-name: a1c2b
     giantswarm.io/cluster: a1c2b
+    release.giantswarm.io/version: 16.0.2
   name: bm44c
-  namespace: org-giantswarm
+  namespace: org-acme
 spec: {}
 status:
   dataSecretName: ""
