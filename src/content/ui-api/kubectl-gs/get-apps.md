@@ -47,7 +47,7 @@ NAME                 VERSION   LAST DEPLOYED   STATUS     NOTES
 cert-exporter        1.6.1     11m             deployed   Deployment failed for `1.7.0` with `not-installed`: `pulling chart <TARBALL-URL> failed`
 ```
 
-Note: The `VERSION`, `LAST DEPLOYED` and `STATUS` columns always contain the actual, current status of the deployment. The `NOTES` column contains information on the status of the last attempted deployment. Taking the above example output version `1.6.1` of `cert-exporter` was successfully deployed. At some point App was updated to use version `1.7.0` which is the current desired state. However, the deployment for version `1.7.0` failed to deploy because the chart tarball failed to pull. Therefore the actual status of our App is that version `1.6.1` is still deployed and the status of the last attempted deployment is visible in the `NOTES` column. If all is well, the `NOTES` column is empty for the given App.
+The `VERSION`, `LAST DEPLOYED` and `STATUS` columns always contain the actual, current status of the deployment. The `NOTES` column contains information on the status of the last attempted deployment. Taking the above example output version `1.6.1` of `cert-exporter` was successfully deployed. At some point App was updated to use version `1.7.0` which is the current desired state. However, the deployment for version `1.7.0` failed to deploy because the chart tarball failed to pull. Therefore the actual status of our App is that version `1.6.1` is still deployed and the status of the last attempted deployment is visible in the `NOTES` column. If all is well, the `NOTES` column is empty for the given App.
 
 ### Get a specific app
 
