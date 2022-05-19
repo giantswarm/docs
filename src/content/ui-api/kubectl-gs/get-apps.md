@@ -69,7 +69,7 @@ The standard tabular output format features these columns:
 - `STATUS`: Status of the app.
 - `NOTES`: Notes on the last attempted deployment in case there was an error, empty otherwise.
 
-Note: The `NOTES` column is available since `TODO-ADD-KUBECTL-GS-VERSION`.
+Note: The `NOTES` column is available since `v2.11.0`.
 
 ## Flags {#flags}
 
