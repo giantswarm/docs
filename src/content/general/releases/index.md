@@ -2,7 +2,7 @@
 linkTitle: Releases
 title: Workload cluster release versions
 description: Details on the workload cluster release offered by Giant Swarm and ways to look up even more details.
-last_review_date: 2021-07-19
+last_review_date: 2022-04-12
 weight: 30
 menu:
   main:
@@ -17,6 +17,10 @@ user_questions:
   - What does it mean when a workload cluster release is deprecated?
   - How soon does Giant Swarm provide new Kubernetes versions?
   - How are workload cluster releases announced?
+  - What is a pre-release?
+  - What is an alpha release?
+  - What is a beta release?
+  - What is a release candidate?
 aliases:
   - /reference/release-versions/
   - /reference/tenant-cluster-release-versions/
@@ -60,7 +64,7 @@ The following table shows which of our major releases contain which Kubernetes r
 We test every new major workload cluster release, bringing a new Kubernetes minor release, against the CNCF [conformance test suite](https://github.com/cncf/k8s-conformance).
 Every workload cluster release, from patch to major, also undergoes automated integration testing.
 
-A major workload cluster release may contain more important changes, apart from a new Kubernetes release. Check the [Details about releases and features](#release-details) section for more information.
+A major workload cluster release may contain other important changes, apart from a new Kubernetes release. Check the [Details about releases and features](#release-details) section for more information.
 
 ### Minor version {#minor}
 
@@ -72,11 +76,11 @@ We use patch releases to publish bug fixes, security fixes, or to make changes t
 
 ### Lifecycle {#lifecycle}
 
-For every provider, we maintain **two different major versions** of workload cluster releases at the same time, which means that you have two different Kubernetes minor versions to chose from.
+For every provider, we maintain **two major versions** of workload cluster releases at the same time, which means that you have two different Kubernetes minor versions to chose from.
 
 With our development of **new functionality** we focus on our latest major version. The older major version is mostly maintained to fix security issues and stability problems.
 
-Old workload cluster release get [deprecated](#deprecation) when replaced by newer ones. After deprecation, and once no longer in use by any customer, a workload cluster release gets archived, which means that it is no longer accessible to you.
+Old workload cluster releases get [deprecated](#deprecation) when replaced by newer ones. After deprecation, and once no longer in use by any customer, a workload cluster release gets archived, which means that it is no longer accessible to you.
 
 ### Deprecation {#deprecation}
 
@@ -87,13 +91,29 @@ Once we provide a new workload cluster release, be it major, minor, or patch, we
 
 Once deprecated, you can still continue to use the workload cluster release with existing clusters. In addition, as long as you have at least one cluster in your installation running the deprecated release, you can also create new clusters using that release. This allows you to create test clusters to test an upgrade from that release.
 
+### Pre-releases
+
+Pre-releases (when available) give you the option to test new features or use new functionality before the feature is released. At the same time helps the us release new features and test them in a realworld scenario with your help. When you test out a pre-release it helps find bugs or evaluate the impact of new functionality on the system. 
+
+Currently not all Giant Swarm releases become available as pre-releases. We communicate pre-releases, when they are available for customer testing.
+
+Pre-releases can be alpha, beta, or release candidates (RC). This depends on the needs of the team wanting to test their feature.
+
+Use Cases for Pre-Releases:
+
+- A new feature with unclear impact is done and the team wants to test and evaluate its impact before deciding the scope of the release (alpha). Customers get early access to the functionality and see if it satisfies their requirements. Customers report back with bugs and additional commentary. This allows the functionality to be evaluated in a less controlled way than in our testing environments. It also identifies bugs that we may have not found, allowing us to fix them early. It also may bring about reconsidering the feature/solution in general.
+
+- A new high impact feature is done, but needs to wait for the next major release (beta). Customers get early access to the functionaliy and see that it sits well with their set-up. Customers report back with bugs as necessary. This allows us to make fixes to bugs that we may have not found.
+
+- A new high impact feature is done and is urgently needed by a customer (release candidate (rc)). The customer can get a pre-release to test and roll out ASAP. This release is complete and stable. It may not meet the quality bars of a general availaibility (GA) release.
+
 ### Inspecting workload cluster releases {#inspecting}
 
 You have several options to inspect workload cluster release details:
 
-- We announce new workload cluster releases in your Slack support channel. In each announcement, you will find a link to the corresponding release notes in our [changes and releases]({{< relref "/changes" >}}) section here on the docs site, where you also find comprehensive release notes.
+- We announce new workload cluster releases in your Slack support channel. In each announcement, you will find a link to the corresponding release notes in our [changes and releases]({{< relref "/changes" >}}) section here on the docs site, where you can also find comprehensive release notes.
 
-- In the [web UI]({{< relref "/ui-api/web/" >}}), the cluster overview and the cluster details page show the release version number of the workload cluster. In the cluster details page you can click the release version number to get more information about a workload cluster release. Additionally, the web UI will soon provide more ways to browse workload cluster releases and inspect changes between versions.
+- In the [web UI]({{< relref "/ui-api/web/" >}}), the cluster overview and the cluster details page show the release version number of the workload cluster. In the cluster details page you can click the release version number to get more information about a workload cluster release. 
 
 - In `gsctl`, our command line interface, commands like [`gsctl list clusters`]({{< relref "/ui-api/gsctl/list-clusters" >}}) and [`gsctl show cluster`]({{< relref "/ui-api/gsctl/show-cluster" >}}) reveal the release version number of an existing cluster. To get information on all available releases, use the [`gsctl list releases`]({{< relref "/ui-api/gsctl/list-releases" >}}) command. The command `gsctl show release` gives you more details on a specific workload cluster release.
 

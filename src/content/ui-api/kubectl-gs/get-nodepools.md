@@ -13,7 +13,7 @@ owner:
 user_questions:
   - How can I list node pools in a cluster using kubectl?
   - How can I inspect node pools using kubectl?
-last_review_date: 2021-01-01
+last_review_date: 2022-05-13
 ---
 
 Like with all `get` commands in `kubectl`, this command can be used to get details on one item, a node pool in this case, or list several of them.
@@ -90,7 +90,7 @@ $ kubectl gs get nodepools --output yaml
 apiVersion: v1
 kind: List
 items:
-- apiVersion: cluster.x-k8s.io/v1alpha2
+- apiVersion: cluster.x-k8s.io/v1beta1
   kind: MachineDeployment
 ...
 ```
