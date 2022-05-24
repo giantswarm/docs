@@ -2,16 +2,18 @@
 linkTitle: Kernel settings
 title: Kernel settings
 description: Complete list of the kernel settings we apply to all cluster nodes, be it control plane or worker.
-weight: 10
+weight: 200
 menu:
   main:
-    parent: reference
+    parent: advanced
 user_questions:
   - How is the Linux kernel of cluster nodes configured?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
   - https://github.com/orgs/giantswarm/teams/team-rocket
 last_review_date: 2021-01-01
+aliases:
+  - /reference/kernel-settings/
 ---
 
 We adjust some kernel settings of Flatcar Container Linux machines used as Kubernetes nodes to non-standard values. Here is a complete reference. For information on other Linux kernel settings, please refer to the [official documentation](https://www.kernel.org/doc/html/latest/).

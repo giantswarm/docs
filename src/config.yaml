@@ -47,14 +47,6 @@ menu:
     name: Security
     url: /security/
     weight: 60
-  - identifier: kubernetes
-    name: Kubernetes basics
-    url: /kubernetes/
-    weight: 70
-  - identifier: reference
-    name: Reference
-    url: /reference/
-    weight: 80
   - identifier: changes
     name: Changes and releases
     url: /changes/

@@ -2,15 +2,17 @@
 linkTitle: Similar EC2 instance types
 title: Similar AWS EC2 instance types reference
 description: Here you find our reference regarding what is considered a similar instance type.
-weight: 20
+weight: 50
 menu:
   main:
-    parent: reference
+    parent: advanced-spotinstances-aws
 user_questions:
   - Which EC2 instance types are used when I activate the use of similar instance types?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 last_review_date: 2022-01-18
+aliases:
+  - /reference/similar-ec2-instance-types/
 ---
 
 {{< platform_support_table aws="ga=11.2.0" >}}
