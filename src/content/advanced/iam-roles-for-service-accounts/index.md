@@ -133,7 +133,6 @@ The pod should also have configured enviroment variables `AWS_WEB_IDENTITY_TOKEN
 
 Check the pod using command `kubectl -n NAMESPACE get pod POD_NAME -o yaml` and search for the enviroment variables or for the volume mounts.
 
-
 ## Migration from kiam to IAM roles for service accounts
 
 If you have followed the steps above you can switch from kiam to IAM roles for service accounts by following the steps:
