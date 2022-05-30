@@ -6,7 +6,7 @@ changes_categories:
 - Workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
-  url: https://github.com/giantswarm/releases/tree/master/azure/v17.0.0-alpha1
+  url: https://github.com/giantswarm/releases/tree/master/azure/archived/v17.0.0-alpha1
   version: 17.0.0-alpha1
   version_tag: v17.0.0-alpha1
 date: '2022-02-24T10:00:00+00:00'
