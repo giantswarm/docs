@@ -46,6 +46,7 @@ Please first ensure having the following permissions added on the [`GiantSwarmAW
       ],
       "Resource": "arn:aws:s3:::*-g8s-*"
   },
+ ...
 ```
 
 ## Enable the feature on your cluster
