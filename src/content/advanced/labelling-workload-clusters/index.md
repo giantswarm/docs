@@ -13,7 +13,7 @@ aliases:
   - /guides/workload-cluster-labelling/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2022-05-24
+last_review_date: 2022-05-31
 ---
 
 {{< platform_support_table aws="ga=v10.0.0" azure="ga=v13.0.0" >}}
