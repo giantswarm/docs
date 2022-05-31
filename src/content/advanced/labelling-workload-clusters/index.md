@@ -26,9 +26,16 @@ Workload clusters are defined by a main Cluster resource ([`clusters.cluster.x-k
 
 ## Special purpose labels
 
-Some of the controllers we use to manage clusters rely on the presence of certain labels. Hence we ask you be careful not to override or delete labels you find on the cluster resources. (For an exception to this rule, see [the service priority label](#service-priority).)
+Some of the controllers we use to manage clusters rely on the presence of certain labels. Hence we restrict the creation, modification, or deletion of certain labels you find on the cluster resources.
 
-For your own labelling purposes, we strongly recommend to introduce a unique prefix, ideally based on a domain name. Example:
+As a rule of thumb, labels containing the following patterns in their key are restricted:
+
+- `giantswarm.io`
+- `x-k8s.io`
+
+The complete ruleset is implemented in our provider specific admission controllers ([AWS](https://github.com/giantswarm/aws-admission-controller), [Azure](https://github.com/giantswarm/azure-admission-controller)).
+
+For your own labelling purposes, we strongly recommend to introduce a unique key prefix, ideally based on a domain name. Example:
 
 ```yaml
 example.tld/my-label: my-value
@@ -70,79 +77,20 @@ kubectl gs template cluster \
 To modify labels on a cluster, several methods are supported:
 
 - Our [web UI]({{< relref "/ui-api/web/workload-cluster-labelling" >}}) allows adding, modifying, and deleting labels interactively.
-- The `kubectl label` command can be used with the cluster resource. See below for details.
-- The deprecated [Rest API](https://docs.giantswarm.io/api/#tag/cluster-labels) and our CLI for it, [`gsctl`]({{< relref "/ui-api/gsctl/update-cluster">}}), allow modifying labels.
+- The `kubectl label` command can be used with the cluster resource. See below for details. See below for details.
 
-## Working with workload cluster labels using `kubectl`
+### Modify cluster labels using `kubectl` {#modify-using-kubectl}
 
 With access to the management cluster, you are able to use `kubectl` to manage workload cluster labels.
 The underlying resource to operate on is [`clusters.cluster.x-k8s.io`]({{< relref "/ui-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) from the upstream [cluster-api](https://cluster-api.sigs.k8s.io/) project.
 
-Detailed documentation and examples of `kubectl label` and other commands used here can be found in the [Kubectl Reference Docs](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands).
+The [`kubectl label`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#label) command is the most convenient way to set, modify, and delete labels of a cluster resource.
 
-### Modify workload cluster labels
-
-All means of modifying cluster resources can be used to modify labels of a `clusters.cluster.x-k8s.io` resource.
-
-Interactively, cluster labels can be modified using `kubectl edit`. Just edit the `metadata.labels` property.
-
-```nohighlight
-kubectl edit clusters.cluster.x-k8s.io/7g4di
-```
-
-It is also possible to modify workload cluster labels with `kubectl patch`.
-More information about `kubectl patch` is available on the [Update API Objects in Place Using kubectl patch](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/) page.
-
-```nohighlight
-kubectl patch clusters.cluster.x-k8s.io/7g4di --type merge -p '{"metadata":{"labels":{"my-org/team":"upstate"}}}'
-```
-
-Additionally, [`kubectl label`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#label) can be used to modify workload cluster labels.
+The following example shows how to set a label `my-org/team` with value `upstate` on a cluster named `7g4di`:
 
 ```nohighlight
 kubectl label clusters.cluster.x-k8s.io/7g4di my-org/team=upstate
 ```
 
-### Show workload cluster labels
+Note that if the label already exists on the cluster, the `--overwrite` flag must be set. Otherwise the attempt to overwrite a label will result in n error.
 
-Differing from `gsctl`, listing workload cluster labels with `kubectl` will show management labels required for operation. These usually contain `giantswarm.io` in its label keys and cannot be changed.
-
-Labels of all workload clusters:
-
-```nohighlight
-$ kubectl labels --list --all clusters.cluster.x-k8s.io
-Listing labels for Cluster.cluster.x-k8s.io/7g4di:
- giantswarm.io/cluster=7g4di
- giantswarm.io/organization=my-org
- release.giantswarm.io/version=11.2.0
- cluster-operator.giantswarm.io/version=2.1.9
- my-org/team=upstate
- my-org/environment=testing
-Listing labels for Cluster.cluster.x-k8s.io/zv86a:
- cluster-operator.giantswarm.io/version=2.1.9
- giantswarm.io/cluster=q84ct
- giantswarm.io/organization=my-org
- release.giantswarm.io/version=11.3.0
- my-org/team=upstate
- my-org/environment=production
-```
-
-Labels of a single workload cluster:
-
-```nohighlight
-$ kubectl labels --list clusters.cluster.x-k8s.io/7g4di
-giantswarm.io/cluster=7g4di
-giantswarm.io/organization=my-org
-release.giantswarm.io/version=11.2.0
-cluster-operator.giantswarm.io/version=2.1.9
-my-org/team=upstate
-my-org/environment=testing
-```
-
-### Select workload clusters by label selector
-
-Many `kubectl` commands support the `-l, --selector` flag, which allows to limit the selected resources based on given [Kubernetes Label selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors).
-
-```nohighlight
-kubectl get clusters.cluster.x-k8s.io -l 'my-org/team=upstate'
-```
