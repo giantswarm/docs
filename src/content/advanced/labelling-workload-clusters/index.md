@@ -1,7 +1,7 @@
 ---
 linkTitle: Labelling clusters
 title: Labelling workload clusters
-description: Complete guide on using labels with workload clusters for the purpose of grouping, categorization and selection.
+description: Guide on using labels with workload clusters for the purpose of grouping, categorization and selection.
 weight: 110
 menu:
   main:
@@ -13,129 +13,65 @@ aliases:
   - /guides/workload-cluster-labelling/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2021-01-01
+last_review_date: 2022-05-24
 ---
 
 {{< platform_support_table aws="ga=v10.0.0" azure="ga=v13.0.0" >}}
 
 ## Introduction
 
-It is possible to assign *key value labels* to Giant Swarm workload clusters with workload cluster release v{{% first_aws_nodepools_version %}} and above on AWS.
+Workload clusters, like any other Kubernetes resource, can be enriched with [labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/). Labels are key-value-pairs, where each key can be used only once per object (here: per workload cluster).
 
-Labels are a mechanism to assign short pieces of additional information to your Giant Swarm workload clusters.
-Under the hood, workload cluster labels are Kubernetes labels attached to [`Cluster`]({{< relref "/ui-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) (`clusters.cluster.x-k8s.io`) resources.
-Therefore, all means of listing workload cluster labels will return all Kubernetes labels attached to [`Cluster`]({{< relref "/ui-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) resources requested.
-Label keys and values are freely modifiable except labels with keys containing `giantswarm.io`.
+Workload clusters are defined by a main Cluster resource ([`clusters.cluster.x-k8s.io`]({{< relref "/ui-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}})). Accordingly, the labels we refer to in this article are those on that resource type only.
 
-Working with workload cluster labels works likewise as working with Kubernetes labels.
-More information about Kubernetes Labels can be found in the [Kubernetes Labels and Selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/) and our [cluster labels API documentation](/api/#tag/cluster-labels).
+## Special purpose labels
 
-Note: You can also [manage cluster labels directly through `happa`]({{< relref "/ui-api/web/workload-cluster-labelling" >}}), our web user interface.
+Some of the controllers we use to manage clusters rely on the presence of certain labels. Hence we ask you be careful not to override or delete labels you find on the cluster resources. (For an exception to this rule, see [the service priority label](#service-priority).)
 
-## Working with workload cluster labels using `gsctl`
+For your own labelling purposes, we strongly recommend to introduce a unique prefix, ideally based on a domain name. Example:
 
-With `gsctl`, our [CLI](https://github.com/giantswarm/gsctl), cluster labels can be modified by executing [`gsctl update cluster`]({{< relref "/ui-api/gsctl/update-cluster" >}}) by setting label changes using one or multiple `--label` flag.
+```yaml
+example.tld/my-label: my-value
+```
 
-Deleting a label can be accomplished by setting its value to an empty string. `--label labeltodelete=`.
+### Service priority {#service-priority}
+
+Giant Swarm recommends to assign a _service priority_ to a cluster, using the following label:
 
 ```nohighlight
-$ gsctl update cluster 7g4di --label my-org/team=upstate --label my-org/environment=testing
-Cluster '7g4di' has been modified.
-New cluster labels:
-my-org/environment=testing
-my-org/team=upstate
+giantswarm.io/service-priority
 ```
 
-Once clusters are labelled, the output of [`gsctl list clusters`]({{< relref "/ui-api/gsctl/list-clusters" >}}) can be augmented by setting flag `--selector` (or `-l`)
-It takes a [Kubernetes Label selector](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors) to specify requirements on cluster labels to select.
+Service priority is a relative ranking of the importance of clusters. It helps Giant Swarm staff and potentially, if your organization decides so, also your stakeholders to vet the priority of clusters in case of problems in several clusters. The possible label values are:
 
-The output of [`gsctl show cluster`]({{< relref "/ui-api/gsctl/show-cluster" >}}) will contain all labels currently attached to the selected cluster.
+- `highest`: Clusters with this label value are considered the most important ones. We expect customers to use this class for clusters serving user-facing applications, production traffic, etc.
+- `lowest`: The lowest priority class. We recommend this value for clusters that are not relied on, or which can be replaced easily and quickly. A typical case would be a cluster created for temporary testing purposes.
+- `medium`: Clusters carrying this label value are considered less important than those with `highest`, but more important than clusters classified as `lowest`. Typical use cases would be staging clusters, clusters handling batch workloads, or development clusters that cannot be replaced easily by creating a new cluster.
 
-## Working with workload cluster labels using the Giant Swarm REST API
+If a cluster resource does not carry the `giantswarm.io/service-priority` label, we consider it's service priority to be `highest`.
 
-Workload cluster labels of clusters with workload cluster release v{{% first_aws_nodepools_version %}} and above for AWS are returned by executing a [getClusters](/api/#operation/getClusters) request.
-The field `labels` of suitable workload clusters contains the labels currently attached to the cluster.
-Labels of a single workload cluster can be retrieved using the [getClusterLabels](/api/#operation/getClusterLabels) endpoint.
+Other values than the three mentioned above are not permitted and will be rejected by the Management API's admission controller. Also note that the label is only meant to be used on the main cluster resource. It will be ignored on other resource types, and we may also prevent setting it on other resource types in the future.
 
-Selecting workload clusters based on a set of labels can be achieved through the [getV5ClustersByLabel](/api/#operation/getV5ClustersByLabel) operation.
-The operation accepts label selectors in the same way that `kubectl get -l` does ([Kubernetes Label selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors)) for listing clusters based on their labels.
+## Setting labels when creating a cluster
 
-The labels of a workload cluster can be modified by issuing a [setClusterLabels](/api/#operation/setClusterLabels) request to the API.
-Keys and labels should adhere to [Kubernetes labels syntax and character set](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#syntax-and-character-set).
-Label changes should be written as a [JSON Merge Patch, RFC 7386](https://datatracker.ietf.org/doc/html/rfc7386).
-Changes to labels with keys containing `giantswarm.io` is forbidden, changes to label `release.giantswarm.io/version` will be validated against available workload cluster releases.
+Depending on the method you use to create a cluster, you can specify labels when creating your cluster.
 
-Differing from `gsctl`, listing workload cluster labels with the API will show management labels required for operation.
-These usually contain `giantswarm.io` in its label keys and cannot be changed.
-
-### Example
-
-Let's play through a simple workflow of assigning labels to a newly created workload cluster and selecting it based on the given label.
-
-For brevity authentication and unrelated parts of requests and responses are left out.
-
-After creation, a workload cluster will already have some labels containing information about the workload cluster release and operator version.
-
-```json
-GET /v5/clusters/7g4di
-{
-  "api_endpoint": "...",
-  "create_date": "...",
-  "id": "7g4di",
-  "master": {...},
-  "name": "...",
-  "owner": "my-org",
-  "release_version": "11.2.0",
-  "conditions": [...],
-  "labels": {
-    "cluster-operator.giantswarm.io/version": "2.1.9",
-    "giantswarm.io/cluster": "7g4di",
-    "giantswarm.io/organization": "my-org",
-    "release.giantswarm.io/version": "11.2.0"
-  }
-}
-```
-
-In our example, the cluster `7g4di` already has four labels (`cluster-operator.giantswarm.io/version`, `giantswarm.io/cluster`, `giantswarm.io/organization`, `release.giantswarm.io/version`).
-
-The newly created cluster will be managed by your team in your upstate office and is planned to be used for testing purposes.
-
-You've decided on using label keys `my-org/team` and `my-org/environment` to specify the clusters designation.
+If you use [`kubectl gs template cluster`]({{< relref "/ui-api/kubectl-gs/template-cluster" >}}) to create a cluster manifest, you can apply the `--label` flag with your initial command, as often as required. You are also free to modify the created manifest before applying it. Example:
 
 ```nohighlight
-PUT /v5/clusters/7g4di/labels/
-{
-  "labels": {
-    "my-org/team": "upstate",
-    "my-org/environment": "testing"
-  }
-}
+kubectl gs template cluster \
+  --label giantswarm.io/service-priority lowest \
+  --label example.tld/environment testing \
+  ...
 ```
 
-Another cluster from earlier is also managed by your team in the upstate office but is being used for production.
+## Modifying cluster labels
 
-```nohighlight
-PUT /v5/clusters/g8s2o/labels/
-{
-  "labels": {
-    "my-org/team": "upstate",
-    "my-org/environment": "production"
-  }
-}
-```
+To modify labels on a cluster, several methods are supported:
 
-From this point on it is possible to select the clusters by label values or label key existence.
-
-```nohighlight
-POST /v5/clusters/by_label/
-{
-  "labels": "my-org/team=upstate"
-}
-```
-
-will return all clusters managed by the upstate office team regardless of other label values.
-
-The full documentation about label selectors can be found on the [Kubernetes Labels and Selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/) page.
+- Our [web UI]({{< relref "/ui-api/web/workload-cluster-labelling" >}}) allows adding, modifying, and deleting labels interactively.
+- The `kubectl label` command can be used with the cluster resource. See below for details.
+- The deprecated [Rest API](https://docs.giantswarm.io/api/#tag/cluster-labels) and our CLI for it, [`gsctl`]({{< relref "/ui-api/gsctl/update-cluster">}}), allow modifying labels.
 
 ## Working with workload cluster labels using `kubectl`
 
