@@ -15,7 +15,7 @@ user_questions:
   - How can I log in with kubectl for the Management API?
   - How can I create a workload cluster client certificate?
   - How do I specify the time to live for a workload cluster client certificate?
-last_review_date: 2022-04-12
+last_review_date: 2022-05-20
 ---
 
 Use this command to set up a kubectl context to work with:
@@ -42,7 +42,7 @@ For the `MANAGEMENT_CLUSTER` argument there are several options:
 
 3. **Context name:** Name of a Giant Swarm kubectl context, generated via one of the two methods above. The context name normally starts with the `gs-` prefix, however that prefix can be omitted for convenience.
 
-4. **Empty:** By leaving the argument empty, the command will check if the current kubectl context points to a Giant Swarm management cluster. In addition, an OIDC auth token will be refreshed and the name of the current context will be printed.
+4. **Empty:** By leaving the argument empty, the command will use the current selected kubectl context. In addition, an OIDC auth token will be refreshed and the name of the current context will be printed.
 
 It is also possible to create client certificates for a workload cluster, by providing the right configuration flags. Please be aware that the recommended way to authenticate users for workload clusters is OIDC. Client certificates should only be a temporary replacement.
 

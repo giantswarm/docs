@@ -8,12 +8,13 @@ menu:
     parent: advanced
 user_questions:
  -  How can I use IAM roles for service accounts?
+ -  How can I migrate from KIAM to IAM roles for service accounts?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 last_review_date: 2022-03-04
 ---
 
-{{< platform_support_table aws="alpha=v17.1.0" >}}
+{{< platform_support_table aws="alpha=v17.2.0" >}}
 
 You can associate an IAM role with a Kubernetes service account. This service account can then provide AWS permissions to the containers in any pod that uses that service account. With this feature, you no longer need to provide extended permissions to the Giant Swarm node IAM role so that pods on that node can call AWS APIs.
 
@@ -21,10 +22,38 @@ Applications must sign their AWS API requests with AWS credentials. This feature
 
 The official documentation from AWS: [IAM roles for service accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html).
 
+## Additional IAM role permissions on `GiantSwarmAWSOperator` needed
+
+Please first ensure having the following permissions added on the [`GiantSwarmAWSOperator` IAM role]({{< relref "/getting-started/cloud-provider-accounts/aws" >}}):
+
+```json
+...
+  {
+      "Effect": "Allow",
+      "Action": [
+          "iam:CreateOpenIDConnectProvider",
+          "iam:DeleteOpenIDConnectProvider",
+          "iam:ListOpenIDConnectProviderTags",
+          "iam:TagOpenIDConnectProvider",
+          "iam:UntagOpenIDConnectProvider"
+      ],
+      "Resource": "*"
+  },
+...
+  {
+      "Effect": "Allow",
+      "Action": [
+          "s3:PutObjectAcl"
+      ],
+      "Resource": "arn:aws:s3:::*-g8s-*"
+  },
+ ...
+```
+
 ## Enable the feature on your cluster
 This is an alpha feature that has to be enabled by setting an annotation on the  [`AWSCluster`]({{< relref "/ui-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) resource.
 
-Make sure the resource has the `alpha.aws.giantswarm.io/iam-roles-for-service-accounts` annotation. The value can be anything you like, as only the presence of that annotation is checked. Here is an example:
+Make sure the resource has the `alpha.aws.giantswarm.io/iam-roles-for-service-accounts` annotation **before applying a new cluster or before upgrading to the latest AWS release**. The value can be anything you like, as only the presence of that annotation is checked. Here is an example:
 
 ```yaml
 apiVersion: infrastructure.giantswarm.io/v1alpha3
@@ -55,7 +84,7 @@ In order to apply the changes, rolling of the master nodes is required. Rolling 
 
 ### IAM role
 
-In oder to use the IAM role with a service account you need to create new AWS role and configure **trusted entities** with following statement:
+To use the IAM role with a service account you need to create new or modify an existing AWS role and configure **trusted entities** with following statement:
 
 ```json
 {
@@ -103,4 +132,14 @@ Once your pod is running with the configured service account, you should see a f
 
 The pod should also have configured enviroment variables `AWS_WEB_IDENTITY_TOKEN_FILE` and `AWS_ROLE_ARN`.
 
-Check the pod using command `kubectl -n NAMESPACE get pod  POD_NAME -o yaml` and search for the enviroment variables or for the volume mounts.
+Check the pod using command `kubectl -n NAMESPACE get pod POD_NAME -o yaml` and search for the enviroment variables or for the volume mounts.
+
+## Migration from kiam to IAM roles for service accounts
+
+If you have followed the steps above you can switch from kiam to IAM roles for service accounts by following the steps:
+
+- Remove the all the kiam annotation `iam.amazonaws.com/role` from your deployment and set the `eks.amazonaws.com/role-arn` on the service account. **Important** - you need set the whole ARN of the role, not just the name of the role, see the service account example above.
+
+- Verify that your application is working correctly.
+
+In case your application is not working you can always remove the annotation on the service account and add the kiam annotation on your deployment again.
