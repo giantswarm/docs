@@ -55,7 +55,7 @@ Service priority is a relative ranking of the importance of clusters. It helps G
 - `lowest`: The lowest priority class. We recommend this value for clusters that are not relied on, or which can be replaced easily and quickly. A typical case would be a cluster created for temporary testing purposes.
 - `medium`: Clusters carrying this label value are considered less important than those with `highest`, but more important than clusters classified as `lowest`. Typical use cases would be staging clusters, clusters handling batch workloads, or development clusters that cannot be replaced easily by creating a new cluster.
 
-If a cluster resource does not carry the `giantswarm.io/service-priority` label, we consider it's service priority to be `highest`.
+If a cluster resource does not carry the `giantswarm.io/service-priority` label, we consider its service priority to be `highest`.
 
 Other values than the three mentioned above are not permitted and will be rejected by the Management API's admission controller. Also note that the label is only meant to be used on the main cluster resource. It will be ignored on other resource types, and we may also prevent setting it on other resource types in the future.
 
@@ -77,7 +77,7 @@ kubectl gs template cluster \
 To modify labels on a cluster, several methods are supported:
 
 - Our [web UI]({{< relref "/ui-api/web/workload-cluster-labelling" >}}) allows adding, modifying, and deleting labels interactively.
-- The `kubectl label` command can be used with the cluster resource. See below for details. See below for details.
+- The `kubectl label` command can be used with the cluster resource. See below for details.
 
 ### Modify cluster labels using `kubectl` {#modify-using-kubectl}
 
@@ -92,5 +92,5 @@ The following example shows how to set a label `my-org/team` with value `upstate
 kubectl label clusters.cluster.x-k8s.io/7g4di my-org/team=upstate
 ```
 
-Note that if the label already exists on the cluster, the `--overwrite` flag must be set. Otherwise the attempt to overwrite a label will result in n error.
+Note that if the label already exists on the cluster, the `--overwrite` flag must be set. Otherwise the attempt to overwrite a label will result in an error.
 
