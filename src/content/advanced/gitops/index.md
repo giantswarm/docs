@@ -111,6 +111,7 @@ flux create source git flux-demo \
         --url=https://github.com/giantswarm/flux-demo \
         --branch=main \
         --interval=30s \
+        --namespace=default \
         --export > 01-source.yaml
 ```
 
