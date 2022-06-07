@@ -13,7 +13,7 @@ user_questions:
   - How can I check a user's permissions for the Management API?
   - How can I check a group's permissions for the Management API?
   - How can I check a service account's permissions for the Management API?
-last_review_date: 2022-06-10
+last_review_date: 2022-06-07
 ---
 
 <abbr title="Role based access control">RBAC</abbr> enables administrators to fine-tune access to various resources in the Giant Swarm [Management API]({{< relref "/ui-api/management-api" >}}), restricting access to a variety of use cases.
