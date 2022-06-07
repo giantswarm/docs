@@ -54,6 +54,8 @@ Permissions are shown in a tabbed view, with tabs labelled **Global** and **For 
 
 ## Use cases
 
+![Use cases displayed](usecases.png)
+
 Permissions are evaluated based on use cases, and use cases are grouped for better overview.
 
 For each use case, the evaluation result can be either of
