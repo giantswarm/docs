@@ -13,7 +13,7 @@ owner:
 user_questions:
   - How can I list clusters using kubectl?
   - How can I inspect clusters using kubectl?
-last_review_date: 2022-05-13
+last_review_date: 2022-06-08
 ---
 
 Like with all `get` commands in `kubectl`, this command can be used to get details on one item, a cluster in this case, or list several of them.
@@ -33,8 +33,8 @@ to list some information on all clusters available to you in the current install
 Here is some example output:
 
 ```nohighlight
-NAME    AGE  CONDITION   RELEASE   ORGANIZATION   DESCRIPTION
-3i99p   1d   CREATED     12.1.4    giantswarm     ced0ps kong pm
+NAME    AGE  CONDITION   RELEASE   SERVICE PRIORITY   ORGANIZATION   DESCRIPTION
+3i99p   1d   CREATED     12.1.4    highest            giantswarm     ced0ps kong pm
 ```
 
 ### Get specific cluster
@@ -60,6 +60,7 @@ The standard tabular output format features these columns:
     - `UPDATED`: The cluster update is finished.
     - `DELETING`: The cluster is being deleted.
 - `RELEASE`: Workload cluster release version of the cluster.
+- `SERVICE PRIORITY`: [Service priority]({{< relref "/advanced/labelling-workload-clusters.html#service-priority" >}}) of the cluster.
 - `ORGANIZATION`: Organization owning the cluster.
 - `DESCRIPTION`: User-friendly description for the cluster.
 
