@@ -40,7 +40,7 @@ What do these options mean, exactly?
 
 - **User**: Similar to the Group mode, this mode lets you specify a user identifier to query permissions for. Again, the identifier must match some subject definition in your RBAC role bindings in the management cluster. With Giant Swarm, user identifiers are typically configured to be email address. Just like group names, these are case sensitive. In contrast to the group names, there is no prefixing required.
 
-  **Note**: You might be thinking of a person in your identity provider, which is member of a number of groups, and want to query the permissions as a result of the persons's various group memberships (and potentially individual permissions in addition to those). Be aware that this is not possible. When querying permissions for a user e. g. names `jane@acme.com`, there is no way to know which groups the user is a member of.
+  **Note**: You might be thinking of a person in your identity provider, which is member of a number of groups, and want to query the permissions as a result of the persons's various group memberships (and potentially individual permissions in addition to those). Be aware that this is not possible. When querying permissions e. g. for a user named `jane@acme.com`, there is no way to know which groups the user is a member of.
 
 - **Service account**: This mode allows to specify a service account name. Here, the format `system:serviceaccount:NAMESPACE:NAME` must be used. As with the other subject types, the exact case sensitive spelling must be used.
 
