@@ -3,7 +3,7 @@ linkTitle: Labelling clusters
 title: Labelling workload clusters using the web interface
 description: Here we explain how you can manage labels for workload cluster in our web user interface.
 last_review_date: 2021-08-25
-weight: 30
+weight: 100
 menu:
   main:
     identifier: uiapi-web-labelling
