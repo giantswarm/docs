@@ -129,13 +129,16 @@ metadata:
 
 ## Cross Account Roles
 
-In order to assume roles cross AWS accounts you will need to create an AWS Identity Provider (OpenID Connect) in the AWS account where the role is located.
+In order to assume roles cross AWS accounts you will need to create a new AWS Identity Provider (OpenID Connect) in the AWS account where the IAM role is located.
 
 ![Creating AWS Identity Provider](identity-provider.png)
 
-The parameters to create the Identity Provider are:
-- Set Provider URL to the `OpenID Connect provider URL` of the kubernetes where you want to assumer the role from and looks like `https://s3.REGION.amazonaws.com/AWS_ACCOUNT-g8s-CLUSTER_ID-oidc-pod-identity`. Once the URL is set-up, click the `Get thumbprint` to import the OIDC keys.
-- Set the audience to sts.amazonaws.com
+Login into the AWS on the account where the cluster is running:
+- Grab the URL of the Identity Provider in your current cluster `IAM > Identity Providers`. It will look like `https://s3.REGION.amazonaws.com/AWS_ACCOUNT-g8s-CLUSTER_ID-oidc-pod-identity`.
+
+Login into the account where the IAM role is located and create an Identity Provider in `IAM > Identity Providers`:
+- Set `Provider URL` to the to the previously gathered URL and click the `Get thumbprint` to import the OIDC keys.
+- Set the `audience` to `sts.amazonaws.com`
 
 ### IAM role cross account
 
@@ -162,11 +165,11 @@ To use the IAM role on a different account than your cluster you need to create 
 ```
 
 You need to fill real values for these placeholders:
-* `CLUSTER_AWS_ACCOUNT` - aws account id, where is the cluster running
+* `CLUSTER_AWS_ACCOUNT` - AWS account id, where is the cluster running
 * `CLUSTER_ID` - cluster id
-* `CLUSTER_REGION` - AWS Region where the cluster is located
+* `CLUSTER_REGION` - AWS region where the cluster is located
 * `ROLE_REGION` - AWS region of the role
-* `ROLE_AWSACCOUNT` - AWS Account where the role is located
+* `ROLE_AWSACCOUNT` - AWS account where the role is located
 
 ## Verify your configuration is correct
 Once your pod is running with the configured service account, you should see a file in the pod called `/var/run/secrets/eks.amazonaws.com/serviceaccount/token`, which containts a JWT token with details of the role.
