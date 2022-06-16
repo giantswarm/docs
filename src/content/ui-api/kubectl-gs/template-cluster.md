@@ -148,7 +148,8 @@ kubectl gs template cluster \
   --organization acme \
   --release 17.0.0 \
   --label environment=testing \
-  --label team=upstate
+  --label team=upstate \
+  --service-priority lowest
 ```
 
 {{< /tab >}}
@@ -161,7 +162,8 @@ kubectl gs template cluster \
   --release 17.0.0 \
   --description "Test cluster" \
   --label environment=testing \
-  --label team=upstate
+  --label team=upstate \
+  --service-priority lowest
 ```
 
 {{< /tab >}}
@@ -216,6 +218,7 @@ metadata:
     environment: testing
     giantswarm.io/cluster: x5g6e
     giantswarm.io/organization: acme
+    giantswarm.io/service-priority: lowest
     release.giantswarm.io/version: 17.0.0
     team: upstate
   name: x5g6e
@@ -364,6 +367,7 @@ metadata:
     cluster.x-k8s.io/cluster-name: tt0m5
     giantswarm.io/cluster: tt0m5
     giantswarm.io/organization: acme
+    giantswarm.io/service-priority: lowest
     release.giantswarm.io/version: 17.0.0
   name: tt0m5
   namespace: org-acme
