@@ -136,6 +136,9 @@ spec:
   storage:
     URL: https://example.github.io/example-catalog/
     type: helm
+  repositories:
+  - URL: https://example.github.io/example-catalog/
+    type: helm
   title: example
 ```
 
