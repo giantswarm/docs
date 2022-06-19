@@ -12,7 +12,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I create a cluster manifest for the Management API?
-last_review_date: 2022-05-13
+last_review_date: 2022-06-16
 ---
 
 This command helps with creating a cluster by producing a manifest based on user input. This manifest can then optionally be modified and finally be applied to the Management API to create a cluster.
@@ -82,6 +82,7 @@ It supports the following flags:
 - `--description` (optional) - User-friendly description of the cluster's purpose.
 - `--pods-cidr` (optional) - CIDR applied to the pods. If this isn't provided, the installation default will be applied.
 - `--label` (optional) - workload cluster label in the form of `key=value`. Can be specified multiple times.
+- `--service-priority` (optional) - [Service priority]({{< relref "/advanced/labelling-workload-clusters#service-priority" >}}) of the cluster (one of: `highest`, `medium`, or `lowest`; default: `highest`).
 - `--release-branch` (optional, AWS and Azure only) - The Giant Swarm [releases repository](https://github.com/giantswarm/releases) branch to use to look up the workload cluster release set via the `--release` flag (default: `master`).
 - `--control-plane-az` (optional) - Availability zone(s) of the control plane instance(s).
 - `--output` (optional) - The name of the file to write the output to instead of stdout.
@@ -147,7 +148,8 @@ kubectl gs template cluster \
   --organization acme \
   --release 17.0.0 \
   --label environment=testing \
-  --label team=upstate
+  --label team=upstate \
+  --service-priority lowest
 ```
 
 {{< /tab >}}
@@ -160,7 +162,8 @@ kubectl gs template cluster \
   --release 17.0.0 \
   --description "Test cluster" \
   --label environment=testing \
-  --label team=upstate
+  --label team=upstate \
+  --service-priority lowest
 ```
 
 {{< /tab >}}
@@ -215,6 +218,7 @@ metadata:
     environment: testing
     giantswarm.io/cluster: x5g6e
     giantswarm.io/organization: acme
+    giantswarm.io/service-priority: lowest
     release.giantswarm.io/version: 17.0.0
     team: upstate
   name: x5g6e
@@ -363,6 +367,7 @@ metadata:
     cluster.x-k8s.io/cluster-name: tt0m5
     giantswarm.io/cluster: tt0m5
     giantswarm.io/organization: acme
+    giantswarm.io/service-priority: lowest
     release.giantswarm.io/version: 17.0.0
   name: tt0m5
   namespace: org-acme
