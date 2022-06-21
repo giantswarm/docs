@@ -34,7 +34,8 @@ It supports the following required flags:
 - `--name` - Catalog name.
 - `--namespace` - Namespace where the catalog will be created.
 - `--description` - Description of the purpose of the catalog.
-- `--url` - URL where the helm repository lives.
+- `--url` - URL where the helm repository lives. Can be defined multiple times if you want to utilize repository mirroring.
+- `--type` - Label containing a type of the helm repository. Defaults to `helm`. Can be defined multiple times.
 - `--logo` - URL of the catalog logo image.
 - `--visibility` - Defaults to `public` in which case the catalog appears in the web UI. Any other value will hide the catalog.
 
@@ -46,6 +47,20 @@ kubectl gs template catalog \
   --namespace example-org \
   --description "An example Catalog" \
   --url https://example.github.io/my-app-catalog/ \
+  --logo https://example.com/logos/example-logo.png
+```
+
+Example command with multiple repositories defined:
+
+```nohighlight
+kubectl gs template catalog \
+  --name example-catalog \
+  --namespace example-org \
+  --description "An example Catalog" \
+  --type helm \
+  --url https://example.github.io/my-app-catalog/ \
+  --type helm-mirror \
+  --url https://example.com/my-app-catalog/ \
   --logo https://example.com/logos/example-logo.png
 ```
 
@@ -78,5 +93,8 @@ spec:
   storage:
     URL: https://example.github.io/my-app-catalog/
     type: helm
+  repositories:
+    - URL: https://example.github.io/my-app-catalog/
+      type: helm
   title: example-catalog
 ```

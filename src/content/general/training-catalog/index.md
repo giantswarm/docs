@@ -66,7 +66,7 @@ _____________________________________
 
 ### Cloud Native Security 101
 
-[_Team Zachurity_ ](https://www.giantswarm.io/about)
+[_Team Shield ](https://www.giantswarm.io/about)
 
 - What does security mean in a cloud-native world?
 - What are PSPs, NetworkPolicies, RBAC, etc.?
