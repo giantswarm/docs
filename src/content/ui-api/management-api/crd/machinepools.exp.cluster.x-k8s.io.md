@@ -22,6 +22,7 @@ crd:
 layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
+  - https://github.com/orgs/giantswarm/teams/team-hydra
 aliases:
   - /reference/cp-k8s-api/machinepools.exp.cluster.x-k8s.io/
 technical_name: machinepools.exp.cluster.x-k8s.io
@@ -1654,6 +1655,3 @@ spec:
 
 
 </div>
-
-
-
