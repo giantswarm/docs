@@ -25,7 +25,6 @@ crd:
 layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-  - https://github.com/orgs/giantswarm/teams/team-hydra
 aliases:
   - /reference/cp-k8s-api/azuremachinetemplates.infrastructure.cluster.x-k8s.io/
 technical_name: azuremachinetemplates.infrastructure.cluster.x-k8s.io
@@ -3330,3 +3329,6 @@ source_repository_ref: v5.0.0
 
 
 </div>
+
+
+
