@@ -16,7 +16,7 @@ aliases:
   - /guides/prepare-aws-account/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2021-01-01
+last_review_date: 2022-06-28
 ---
 
 As detailed in the [Architecture]({{< relref "/general/architecture/aws" >}}) docs,
@@ -228,6 +228,8 @@ These are the limit increases to be requested, grouped by limit type:
         - other instance types to be used as workers: increase accordingly
     - EC2 Spot Instances
         - For every primary instance type you tend to use spot instances with, set the limit according to your needs.
+    - S3
+        - Buckets per Account: **1000**
 
 (Please extend the list of EC2 instances to also contain the types you need frequently.)
 
