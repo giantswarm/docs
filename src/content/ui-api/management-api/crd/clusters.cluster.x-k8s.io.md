@@ -26,7 +26,6 @@ crd:
 layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-  - https://github.com/orgs/giantswarm/teams/team-hydra
   - https://github.com/orgs/giantswarm/teams/team-rocket
 aliases:
   - /reference/cp-k8s-api/clusters.cluster.x-k8s.io/
@@ -3372,3 +3371,6 @@ source_repository_ref: v5.0.0
 
 
 </div>
+
+
+
