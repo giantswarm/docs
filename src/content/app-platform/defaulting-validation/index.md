@@ -12,7 +12,7 @@ owner:
 aliases:
   - /reference/app-defaulting-validation/
 user_questions:
-  - Is App CR defaulting and validation logic enabled for my cluster? 
+  - Is App CR defaulting and validation logic enabled for my cluster?
   - How can I use App CR defaulting logic when installing Managed Apps?
   - What fields are validated in App CRs when installing or updating Managed Apps?
   - How can I ensure Flux is not blocked by the validating webhook?
@@ -118,28 +118,34 @@ If app-operator finds a matching [AppCatalogEntry]({{< relref "/ui-api/managemen
 - Cloud provider compatibility (e.g. you can’t install the azure-ad-pod-identity app in AWS).
 - Namespace restriction (cluster singleton, namespace singleton, fixed namespace).
 
-## GitOps support
+## Skipping Configuration Validation
 
-If you are managing your App CRs with Flux or a similar GitOps tool then the
+If you are managing your App CRs by the means of a third party tool (e.g. Flux) then the
 validating webhook may block creation of the App CR if it is created before the
-referenced configmap or secret.
+referenced ConfigMap or Secret.
 
 To prevent this you can add the label `giantswarm.io/managed-by` and set the value
-to the tool you're using e.g. `flux`.
+to the tool you're using e.g. `flux` or `helm`, see example below (some fields have
+been removed for brevity).
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
-  name: my-kong
-  namespace: x7jwz
+  name: my-app
+  namespace: w0xyz
   labels:
     giantswarm.io/managed-by: flux
+spec:
+  userConfig:
+    configMap:
+      name: my-app-userconfig
+      namespace: w0xyz
 ```
 
-app-admission-controller will now allow the App CR to be created. app-operator
-will still perform the validation checks and once the referenced configmap or
-secret exists the app will be installed.
+The `app-admission-controller` will now allow the App CR to be created despite the referenced
+`my-app-userconfig` does not exist. The `app-operator` will still perform the validation checks
+and once the referenced ConfigMap or Secret exists the app will be installed.
 
 ## Retry Logic
 
