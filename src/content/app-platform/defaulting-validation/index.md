@@ -124,9 +124,11 @@ If you are managing your App CRs by the means of a third party tool (e.g. Flux) 
 validating webhook may block creation of the App CR if it is created before the
 referenced ConfigMap or Secret.
 
-To prevent this you can add the label `giantswarm.io/managed-by` and set the value
-to the tool you're using e.g. `flux` or `helm`, see example below (some fields have
-been removed for brevity).
+To prevent this you can add the label `giantswarm.io/managed-by` and set the value to the tool
+you're using e.g. `flux` or `helm`. If you are not using a particular tool to deploy your
+resources but find the validation blocking you, you may also set this to some other value,
+for example `external`, to allow your CRs to be created regardless. See example below, note,
+some fields have been removed for brevity.
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
