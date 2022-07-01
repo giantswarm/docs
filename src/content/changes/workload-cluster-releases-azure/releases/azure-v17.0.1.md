@@ -9,9 +9,9 @@ changes_entry:
   url: https://github.com/giantswarm/releases/tree/master/azure/v17.0.1
   version: 17.0.1
   version_tag: v17.0.1
-date: '2022-05-19T11:39:38+00:00'
+date: '2022-06-06T11:39:38+00:00'
 description: Release notes for Azure workload cluster release v17.0.1, published on
-  19 May 2022, 11:39
+  06 June 2022, 11:39
 title: Workload cluster release v17.0.1 for Azure
 ---
 

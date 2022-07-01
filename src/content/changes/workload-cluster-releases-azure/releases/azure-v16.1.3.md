@@ -9,9 +9,9 @@ changes_entry:
   url: https://github.com/giantswarm/releases/tree/master/azure/v16.1.3
   version: 16.1.3
   version_tag: v16.1.3
-date: '2022-05-19T11:27:23+00:00'
+date: '2022-06-06T11:27:23+00:00'
 description: Release notes for Azure workload cluster release v16.1.3, published on
-  19 May 2022, 11:27
+  06 June 2022, 11:27
 title: Workload cluster release v16.1.3 for Azure
 ---
 
