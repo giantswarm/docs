@@ -9,7 +9,7 @@ owner:
 
 ## General
 
-Introduced in `gitops-template` repository the `out-of-band` delivery feature that allow resources to be delivered directly to the Workload Cluster with Flux, skipping the App Platform components.
+Introduced in `gitops-template` repository the `out-of-band` delivery feature that allow resources that are not included into helm charts to be delivered directly to the Workload Cluster with Flux, bypassing the App Platform components.
 
 ## Apps
 
