@@ -17,6 +17,8 @@ Introduced in `gitops-template` repository the [`out-of-band` delivery feature](
 
 ## User interfaces
 
+The web UI's new permission inspection feature now also shows whether someone has the permissions required to use the web UI. Yes, we do think that makes sense.
+
 ## Management API
 
 ## Documentation
