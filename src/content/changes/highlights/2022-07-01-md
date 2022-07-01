@@ -9,7 +9,7 @@ owner:
 
 ## General
 
-Introduced in `gitops-template` repository the `out-of-band` delivery feature that allow resources that are not included into helm charts to be delivered directly to Workload Clusters via Flux, bypassing the App Platform components.
+Introduced in `gitops-template` repository the [`out-of-band` delivery feature](https://github.com/giantswarm/gitops-template/blob/main/docs/repo_structure.md#mapi-and-out-of-band) that allow resources that are not included into helm charts to be delivered directly to Workload Clusters via Flux, bypassing the App Platform components.
 
 ## Apps
 
