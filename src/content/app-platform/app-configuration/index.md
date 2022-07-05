@@ -212,6 +212,8 @@ values are kept, as a String of valid YAML. For Secrets, the string must be
 base64 encoded, as is required by Kubernetes. When uploading values via the
 Giant Swarm REST API, the base64 encoding is done for you.
 
+> In this context, the secret is used to populate the values file with secret information, it is not used to create secrets on the workload cluster.
+
 ### Example ConfigMap
 
 ```yaml
