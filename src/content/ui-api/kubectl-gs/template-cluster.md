@@ -114,7 +114,7 @@ It supports the following flags:
 - `--gcp-project` - The Google Cloud Platform project where the cluster will be deployed.
 - `--region` - The Google Cloud Platform region where the cluster will be deployed.
 - `--gcp-failure-domains` - The Google Cloud Platform zones where the cluster's control-plane nodes will be deployed.
-- `--gcp-control-plane-sa-email` (optional) - The Google Cloud Platform Service Account which the control-plane nodes will use (default: "default")
+- `--gcp-control-plane-sa-email` (optional) - The Google Cloud Platform Service Account which the control-plane nodes will use (default: "default").
 - `--gcp-control-plane-sa-scopes` (optional) - The Google Cloud Platform API scopes the control-plane will have access to (default: "https://www.googleapis.com/auth/compute")
 - `--gcp-machine-deployment-name` (optional) - The name of the MachineDeployment (default: "worker1")
 - `--gcp-machine-deployment-instance-type` (optional) - The Google Cloud Platform Instance Type for the worker node isntances (default: "n1-standard-2")
