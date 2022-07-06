@@ -111,7 +111,7 @@ It supports the following flags:
 
 ### GCP specific
 
-- `--gcp-project` - The Google Cloud Platform project where the cluster will be deployed
+- `--gcp-project` - The Google Cloud Platform project where the cluster will be deployed.
 - `--region` - The Google Cloud Platform region where the cluster will be deployed
 - `--gcp-failure-domains` - The Google Cloud Platform zones where the cluster's control-plane nodes will be deployed.
 - `--gcp-control-plane-sa-email` (optional) - The Google Cloud Platform Service Account which the control-plane nodes will use (default: "default")
