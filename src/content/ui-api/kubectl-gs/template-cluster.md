@@ -118,7 +118,7 @@ It supports the following flags:
 - `--gcp-control-plane-sa-scopes` (optional) - The Google Cloud Platform API scopes the control-plane will have access to (default: "https://www.googleapis.com/auth/compute").
 - `--gcp-machine-deployment-name` (optional) - The name of the MachineDeployment (default: "worker1").
 - `--gcp-machine-deployment-instance-type` (optional) - The Google Cloud Platform Instance Type for the worker node isntances (default: "n1-standard-2").
-- `--gcp-machine-deployment-failure-domain` (optional) - The Google Cloud Platform zones where the cluster's worker nodes will be deployed. (default: "europe-west6-a")
+- `--gcp-machine-deployment-failure-domain` (optional) - The Google Cloud Platform zones where the cluster's worker nodes will be deployed. (default: "europe-west6-a").
 - `--gcp-machine-deployment-replicas` (optional) - The number of worker nodes (default: 3)
 - `--gcp-machine-deployment-disk-size` (optional) - The worker node disk size in GB (default: 100).
 
