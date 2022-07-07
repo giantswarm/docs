@@ -98,7 +98,7 @@ kubectl gs login https://happa.g8s.example.westeurope.azure.gigantic.io
 ... or the Management API endpoint URL.
 
 ```nohighlight
-kubectl gs login https://g8s.example.westeurope.azure.gigantic.io
+kubectl gs login https://api.g8s.example.westeurope.azure.gigantic.io
 ```
 
 As a result, a context will be created with prefix `gs-` and a shorthand for this installation. Watch the command's output:
@@ -118,7 +118,7 @@ kubectl gs login example
 If OIDC is set up on a workload cluster, the initial login can be done via the Management API endpoint URL as well.
 
 ```nohighlight
-kubectl gs login https://test.g8s.example.westeurope.azure.gigantic.io
+kubectl gs login https://api.test.g8s.example.westeurope.azure.gigantic.io
 ```
 
 As a result, a context will be created with prefix `gs-` and a codename consisting of management cluster and workload cluster handles.
