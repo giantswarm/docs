@@ -38,9 +38,12 @@ There are three levels of configuration:
 2. **Cluster**: Configuration provided by the cluster admin.
 3. **User**: Configuration provided by the user installing an App.
 
-Each level overrides the previous one. As a user you are not expected to edit configuration at the `catalog` or `cluster` level. However user level configuration can override both catalog and cluster level configuration.
+Each level overrides the previous one. As a user you are not expected to edit configuration at the `catalog` or `cluster` level. However, user level configuration can override both catalog and cluster level configuration.
 
-Each level of configuration has two types of values that you can provide:
+Since `app-operator` version `APP_OPERATOR_VERSION` you can set a list of extra configuration layers with special `priority` field
+you can control the level around which they will be applied to the core configurations. Head to the [Extra configuration layers](#extra-configs) section to learn more about them.
+
+Each level of configuration - same applies to extra configuration layers - has two types of values that you can provide:
 
 1. **Config values**: Configuration provided as a ConfigMap resource.
 2. **Secret values**: Configuration and credentials provided as a Secret resource.
@@ -62,7 +65,7 @@ If no value is provided then the default in the chart's values file (`values.yam
 **Note:** Attempting to change configuration at any other level is risky because your changes
 might be overwritten by an operator. That is why our web interface is only able to set user level configuration values.
 
-## Example of values merging
+## Example of values merging {#basic-values-merging-example}
 
 Given a chart with a `values.yaml` that contains the following content:
 
@@ -202,8 +205,68 @@ looking like the desired state. More information is available in our [general ov
 |||`.spec.userConfig.secret.namespace`|
 
 When setting user level configuration using the Giant Swarm REST API or our [web interface]({{< relref "/ui-api/web/" >}}),
-the fields in the App CR are edited automatically for you while creating
-the `ConfigMap` or `Secret`.
+the fields in the App CR are edited automatically for you while creating the `ConfigMap` or `Secret`.
+
+## Extra configuration layers {#extra-configs}
+
+This feature is available since `app-operator` version `APP_OPERATOR_VERSION`.
+
+You can set a list of extra configuration layers via `.spec.extraConfigs`. For example:
+
+```yaml
+spec:
+  catalog: giantswarm-test
+  extraConfigs:
+    - name: hello-world-extra-values-pre-cluster
+      namespace: i5h93
+    - kind: secret
+      name: hello-world-extra-secrets-pre-cluster
+      namespace: i5h93
+    - name: hello-world-extra-values-pre-user
+      namespace: i5h93
+      priority: 75
+    - kind: secret
+      name: hello-world-extra-secrets-pre-user
+      namespace: i5h93
+      priority: 75
+    - name: hello-world-extra-values-post-user
+      namespace: i5h93
+      priority: 125
+    - kind: secret
+      name: hello-world-extra-secrets-post-user
+      namespace: i5h93
+      priority: 125
+```
+
+The `name` and `namespace` fields are required for each entry.
+However, note that it is optional to set `kind`. It defaults to `configMap`.
+It is also optional to set `priority`. It defaults to `25`.
+
+The three configuration levels all have an assigned priority value bound to them behind the scenes:
+
+1. **Catalog** has priority `0`.
+2. **Cluster** has priority `50`.
+3. **User** has priority `100`.
+
+The `priority` field for `spec.extraConfigs` entries must be set to a numerical value between (inclusively) `1` and `150`.
+
+This extends the [Example of values merging](#basic-values-merging-example) section.
+
+The base upon we merge all other layers is always the `Catalog` layer. That is why it has `priority` set to `0` and you can
+only set `piority` value starting from `1`.
+
+Then for each `kind` (`configMap`, `secret`) we look up each entry and merge them in the following way:
+
+1. The **Catalog** is the base.
+2. All `spec.extraConfigs` entry with `priority` greater than the **Catalog** level and lower than or equal to the **Cluster** level are merged.
+3. The **Cluster** level configurations are merged.
+4. All `spec.extraConfigs` entry with `priority` greater than the **Cluster** level and lower than or equal to the **User** level are merged.
+5. The **User** level configurations are merged.
+6. All `spec.extraConfigs` entry with `priority` greater than the **User** level and lower than or equal to the maximum level of `150` are merged.
+
+In case of multiple `spec.extraConfigs` entries with the same `priority` level, the order on the list is binding, with the item lower on the list being merged later (overriding those higher on the list).
+
+For more details and concrete example, please refer to the [Multi layer app configuration RFC](https://github.com/giantswarm/rfc/tree/main/multi-layer-app-config#enhancing-app-cr).
 
 ## Format of values in ConfigMap and Secret {#values-format}
 
