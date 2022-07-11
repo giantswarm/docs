@@ -40,7 +40,7 @@ There are three levels of configuration:
 
 Each level overrides the previous one. As a user you are not expected to edit configuration at the `catalog` or `cluster` level. However, user level configuration can override both catalog and cluster level configuration.
 
-Since `app-operator` version `APP_OPERATOR_VERSION` you can set a list of extra configuration layers with special `priority` field
+Since `app-operator` version `v6.2.0` you can set a list of extra configuration layers with special `priority` field
 you can control the level around which they will be applied to the core configurations. Head to the [Extra configuration layers](#extra-configs) section to learn more about them.
 
 Each level of configuration - same applies to extra configuration layers - has two types of values that you can provide:
@@ -211,7 +211,7 @@ the fields in the App CR are edited automatically for you while creating the `Co
 
 ## Extra configuration layers {#extra-configs}
 
-This feature is available since `app-operator` version `APP_OPERATOR_VERSION`.
+This feature is available since `app-operator` version `v6.2.0`.
 
 You can set a list of extra configuration layers via `.spec.extraConfigs`. For example:
 
