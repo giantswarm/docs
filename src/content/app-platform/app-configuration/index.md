@@ -163,7 +163,9 @@ metadata:
 data:
   background: {{.Values.colors.background}}
   foreground: {{.Values.colors.foreground}}
+```
 
+```yaml
 # hello-world-app/helm/chart/hello-world-app/templates/colors-secret.yaml
 apiVersion: v1
 kind: Secret
@@ -226,13 +228,6 @@ spec:
       namespace: i5h93
       priority: 75
     - kind: secret
-      name: hello-world-extra-secrets-pre-user
-      namespace: i5h93
-      priority: 75
-    - name: hello-world-extra-values-post-user
-      namespace: i5h93
-      priority: 125
-    - kind: secret
       name: hello-world-extra-secrets-post-user
       namespace: i5h93
       priority: 125
@@ -266,7 +261,60 @@ Then for each `kind` (`configMap`, `secret`) we look up each entry and merge the
 
 In case of multiple `spec.extraConfigs` entries with the same `priority` level, the order on the list is binding, with the item lower on the list being merged later (overriding those higher on the list).
 
-For more details and concrete example, please refer to the [Multi layer app configuration RFC](https://github.com/giantswarm/rfc/tree/main/multi-layer-app-config#enhancing-app-cr).
+### Example of merging extra configs {#complex-values-merging-example}
+
+Let's take the following example with just config maps to make it simple. The same merging algorithm applies for secrets as well.
+
+```yaml
+apiVersion: application.giantswarm.io/v1alpha1
+kind: App
+metadata:
+  name: hello-world
+  namespace: i5h93
+spec:
+   name: hello-world-app
+   namespace: kube-system
+   catalog: giantswarm
+   config:
+      configMap:
+         name: hello-world-values
+         namespace: i5h93
+   configs:
+      - kind: configMap
+        name: hello-world-post-user
+        namespace: i5h93
+        priority: 125
+      - kind: configMap
+        name: hello-world-pre-user
+        namespace: i5h93
+        priority: 75
+      - kind: configMap
+        name: hello-world-pre-cluster
+        namespace: i5h93
+      - kind: configMap
+        name: hello-world-final
+        namespace: i5h93
+        priority: 125
+      - kind: configMap
+        name: hello-world-high-priority
+        namespace: i5h93
+        priority: 10
+   userConfig:
+      configMap:
+         name: hello-world-app-user-values
+         namespace: i5h93
+```
+
+The merge order for config maps (with P as the indicated or calculated priority) will be:
+
+1. Catalog (P = 0)
+2. Config map: hello-world-high-priority (P = 10)
+3. Config map: hello-world-pre-cluster (P = 25)
+4. Config map: hello-world-values (P = 50)
+5. Config map: hello-world-pre-user (P = 75)
+6. Config map: hello-world-app-user-values (P = 100)
+7. Config map: hello-world-post-user (P = 125, position in the list: 1)
+8. Config map: hello-world-final (P = 125, position in the list: 4)
 
 ## Format of values in ConfigMap and Secret {#values-format}
 
@@ -346,7 +394,7 @@ colors:
 
 The [Giant Swarm REST API]({{< relref "/ui-api/rest-api" >}}) acts as an interface between you and the [Management
 API]({{< relref "/ui-api/management-api" >}}). It is deprecated since we are currently in the process of allowing you direct
-access to the Management API. However for the time being, our web interface makes use of the Giant Swarm REST API.
+access to the Management API. However, for the time being, our web interface makes use of the Giant Swarm REST API.
 
 By supplying a JSON body with the values you would like to set, the Giant Swarm REST API will
 create a ConfigMap or Secret in the right format and wire it up correctly for you.
