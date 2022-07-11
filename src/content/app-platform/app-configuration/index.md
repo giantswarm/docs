@@ -8,7 +8,7 @@ menu:
 weight: 30
 aliases:
  - /reference/app-configuration/
-last_review_date: 2021-07-07
+last_review_date: 2022-07-11
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
