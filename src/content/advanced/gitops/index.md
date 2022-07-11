@@ -17,7 +17,7 @@ aliases:
   - /advanced/gitops/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2022-11-07
+last_review_date: 2022-07-11
 ---
 
 In this document you will learn how to manage infrastructure and applications by utilizing FluxCD - a set of GitOps operators installed in Giant Swarm management clusters.
