@@ -78,7 +78,7 @@ kubectl annotate \
    alpha.aws.giantswarm.io/iam-roles-for-service-accounts=""
 ```
 
-In order to apply the changes, rolling of the master nodes is required. Rolling of the nodes can be triggered either by an update or manually by terminating each node.
+In order to apply the changes, rolling of the master nodes is required. Rolling of the nodes can be triggered either by an update or manually by terminating each node. Unfortunately manual application of the changes will also result in a neccessity of rolling worker nodes. Thus we **highly** recommend to apply changes **only** prior to upgrading clusters. For more details please talk with your Account Engineer or ask in support channel.
 
 ## Using IAM roles for service accounts
 
