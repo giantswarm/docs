@@ -55,3 +55,10 @@ We adjust some kernel settings of Flatcar Container Linux machines used as Kuber
 | `net.core.somaxconn`           | 32768        | [Ingress controller performance improvements](https://github.com/kubernetes/ingress-nginx/issues/1939)     |
 | `net.ipv4.ip_local_port_range` | 1024 - 65535 | [Ingress controller performance improvements](https://github.com/kubernetes/ingress-nginx/issues/1939)     |
 | `vm.max_map_count`             | 262144       | Increased max_map_count because some applications, like Elasticsearch, need higher limit to start properly |
+
+## Unified cgroup hierarchy - cgroups v1 enforcement
+| Setting                        | Value        | Description                                                                                                |
+| ---                            | ---          | ---                                                                                                        |
+| `systemd.unified_cgroup_hierarchy` | 0        | [Switching to unified cgroups]([https://github.com/kubernetes/ingress-nginx/issues/1939](https://flatcar-linux.org/docs/latest/container-runtimes/switching-to-unified-cgroups/))     |
+| `systemd.legacy_systemd_cgroup_controller` | null | [Switching to unified cgroups]([https://github.com/kubernetes/ingress-nginx/issues/1939](https://flatcar-linux.org/docs/latest/container-runtimes/switching-to-unified-cgroups/)) |
+
