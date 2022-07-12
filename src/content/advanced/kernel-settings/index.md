@@ -11,7 +11,7 @@ user_questions:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
   - https://github.com/orgs/giantswarm/teams/team-rocket
-last_review_date: 2021-01-01
+last_review_date: 2022-07-12
 aliases:
   - /reference/kernel-settings/
 ---
@@ -59,6 +59,6 @@ We adjust some kernel settings of Flatcar Container Linux machines used as Kuber
 ## Unified cgroup hierarchy - cgroups v1 enforcement
 | Setting                        | Value        | Description                                                                                                |
 | ---                            | ---          | ---                                                                                                        |
-| `systemd.unified_cgroup_hierarchy` | 0        | [Switching to unified cgroups]([https://github.com/kubernetes/ingress-nginx/issues/1939](https://flatcar-linux.org/docs/latest/container-runtimes/switching-to-unified-cgroups/))     |
-| `systemd.legacy_systemd_cgroup_controller` | null | [Switching to unified cgroups]([https://github.com/kubernetes/ingress-nginx/issues/1939](https://flatcar-linux.org/docs/latest/container-runtimes/switching-to-unified-cgroups/)) |
+| `systemd.unified_cgroup_hierarchy` | 0        | [Switching to unified cgroups](https://flatcar-linux.org/docs/latest/container-runtimes/switching-to-unified-cgroups/)  |
+| `systemd.legacy_systemd_cgroup_controller` | null | [Switching to unified cgroups](https://flatcar-linux.org/docs/latest/container-runtimes/switching-to-unified-cgroups/) |
 
