@@ -11,6 +11,8 @@ owner:
 
 
 ## Apps
+- [jiralert-app](https://github.com/giantswarm/jiralert-app) [v0.0.3](https://github.com/giantswarm/jiralert-app/blob/main/CHANGELOG.md#003---2022-07-08) updates to Jiralert version 1.2, supporting automatic resolution of Jira issues when an alert closes.
+- [starboard-exporter](https://github.com/giantswarm/starboard-exporter) version [v0.5.1](https://github.com/giantswarm/starboard-exporter/blob/main/CHANGELOG.md#051---2022-07-13) allows users to control which resource types are watched by the exporter, so that it can be deployed with either `trivy-operator` or `starboard`.
 
 
 ## User interfaces
