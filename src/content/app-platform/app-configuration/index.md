@@ -8,7 +8,7 @@ menu:
 weight: 30
 aliases:
  - /reference/app-configuration/
-last_review_date: 2021-07-07
+last_review_date: 2022-07-11
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -38,9 +38,12 @@ There are three levels of configuration:
 2. **Cluster**: Configuration provided by the cluster admin.
 3. **User**: Configuration provided by the user installing an App.
 
-Each level overrides the previous one. As a user you are not expected to edit configuration at the `catalog` or `cluster` level. However user level configuration can override both catalog and cluster level configuration.
+Each level overrides the previous one. As a user you are not expected to edit configuration at the `catalog` or `cluster` level. However, user level configuration can override both catalog and cluster level configuration.
 
-Each level of configuration has two types of values that you can provide:
+Since `app-operator` version `v6.2.0` you can set a list of extra configuration layers with special `priority` field
+you can control the level around which they will be applied to the core configurations. Head to the [Extra configuration layers](#extra-configs) section to learn more about them.
+
+Each level of configuration - same applies to extra configuration layers - has two types of values that you can provide:
 
 1. **Config values**: Configuration provided as a ConfigMap resource.
 2. **Secret values**: Configuration and credentials provided as a Secret resource.
@@ -62,7 +65,7 @@ If no value is provided then the default in the chart's values file (`values.yam
 **Note:** Attempting to change configuration at any other level is risky because your changes
 might be overwritten by an operator. That is why our web interface is only able to set user level configuration values.
 
-## Example of values merging
+## Example of values merging {#basic-values-merging-example}
 
 Given a chart with a `values.yaml` that contains the following content:
 
@@ -160,7 +163,9 @@ metadata:
 data:
   background: {{.Values.colors.background}}
   foreground: {{.Values.colors.foreground}}
+```
 
+```yaml
 # hello-world-app/helm/chart/hello-world-app/templates/colors-secret.yaml
 apiVersion: v1
 kind: Secret
@@ -202,8 +207,114 @@ looking like the desired state. More information is available in our [general ov
 |||`.spec.userConfig.secret.namespace`|
 
 When setting user level configuration using the Giant Swarm REST API or our [web interface]({{< relref "/ui-api/web/" >}}),
-the fields in the App CR are edited automatically for you while creating
-the `ConfigMap` or `Secret`.
+the fields in the App CR are edited automatically for you while creating the `ConfigMap` or `Secret`.
+
+## Extra configuration layers {#extra-configs}
+
+This feature is available since `app-operator` version `v6.2.0`.
+
+You can set a list of extra configuration layers via `.spec.extraConfigs`. For example:
+
+```yaml
+spec:
+  catalog: giantswarm-test
+  extraConfigs:
+    - name: hello-world-extra-values-pre-cluster
+      namespace: i5h93
+    - kind: secret
+      name: hello-world-extra-secrets-pre-cluster
+      namespace: i5h93
+    - name: hello-world-extra-values-pre-user
+      namespace: i5h93
+      priority: 75
+    - kind: secret
+      name: hello-world-extra-secrets-post-user
+      namespace: i5h93
+      priority: 125
+```
+
+The `name` and `namespace` fields are required for each entry.
+However, note that it is optional to set `kind`. It defaults to `configMap`.
+It is also optional to set `priority`. It defaults to `25`.
+
+The three configuration levels all have an assigned priority value bound to them behind the scenes:
+
+1. **Catalog** has priority `0`.
+2. **Cluster** has priority `50`.
+3. **User** has priority `100`.
+
+The `priority` field for `spec.extraConfigs` entries must be set to a numerical value between (inclusively) `1` and `150`.
+
+This extends the [Example of values merging](#basic-values-merging-example) section.
+
+The base upon we merge all other layers is always the `Catalog` layer. That is why it has `priority` set to `0` and you can
+only set `piority` value starting from `1`.
+
+Then for each `kind` (`configMap`, `secret`) we look up each entry and merge them in the following way:
+
+1. The **Catalog** is the base.
+2. All `spec.extraConfigs` entry with `priority` greater than the **Catalog** level and lower than or equal to the **Cluster** level are merged.
+3. The **Cluster** level configurations are merged.
+4. All `spec.extraConfigs` entry with `priority` greater than the **Cluster** level and lower than or equal to the **User** level are merged.
+5. The **User** level configurations are merged.
+6. All `spec.extraConfigs` entry with `priority` greater than the **User** level and lower than or equal to the maximum level of `150` are merged.
+
+In case of multiple `spec.extraConfigs` entries with the same `priority` level, the order on the list is binding, with the item lower on the list being merged later (overriding those higher on the list).
+
+### Example of merging extra configs {#complex-values-merging-example}
+
+Let's take the following example with just config maps to make it simple. The same merging algorithm applies for secrets as well.
+
+```yaml
+apiVersion: application.giantswarm.io/v1alpha1
+kind: App
+metadata:
+  name: hello-world
+  namespace: i5h93
+spec:
+   name: hello-world-app
+   namespace: kube-system
+   catalog: giantswarm
+   config:
+      configMap:
+         name: hello-world-values
+         namespace: i5h93
+   configs:
+      - kind: configMap
+        name: hello-world-post-user
+        namespace: i5h93
+        priority: 125
+      - kind: configMap
+        name: hello-world-pre-user
+        namespace: i5h93
+        priority: 75
+      - kind: configMap
+        name: hello-world-pre-cluster
+        namespace: i5h93
+      - kind: configMap
+        name: hello-world-final
+        namespace: i5h93
+        priority: 125
+      - kind: configMap
+        name: hello-world-high-priority
+        namespace: i5h93
+        priority: 10
+   userConfig:
+      configMap:
+         name: hello-world-app-user-values
+         namespace: i5h93
+```
+
+The merge order for config maps (with P as the indicated or calculated priority) will be:
+
+1. Catalog (P = 0)
+2. Config map: hello-world-high-priority (P = 10)
+3. Config map: hello-world-pre-cluster (P = 25)
+4. Config map: hello-world-values (P = 50)
+5. Config map: hello-world-pre-user (P = 75)
+6. Config map: hello-world-app-user-values (P = 100)
+7. Config map: hello-world-post-user (P = 125, position in the list: 1)
+8. Config map: hello-world-final (P = 125, position in the list: 4)
 
 ## Format of values in ConfigMap and Secret {#values-format}
 
@@ -283,7 +394,7 @@ colors:
 
 The [Giant Swarm REST API]({{< relref "/ui-api/rest-api" >}}) acts as an interface between you and the [Management
 API]({{< relref "/ui-api/management-api" >}}). It is deprecated since we are currently in the process of allowing you direct
-access to the Management API. However for the time being, our web interface makes use of the Giant Swarm REST API.
+access to the Management API. However, for the time being, our web interface makes use of the Giant Swarm REST API.
 
 By supplying a JSON body with the values you would like to set, the Giant Swarm REST API will
 create a ConfigMap or Secret in the right format and wire it up correctly for you.

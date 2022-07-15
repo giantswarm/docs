@@ -12,7 +12,7 @@ crd:
   technical_name: apps.application.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions-application
-  source_repository_ref: v0.3.0
+  source_repository_ref: v0.5.1
   versions:
     - v1alpha1
   topics:
@@ -24,7 +24,7 @@ aliases:
   - /reference/cp-k8s-api/apps.application.giantswarm.io/
 technical_name: apps.application.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions-application
-source_repository_ref: v0.3.0
+source_repository_ref: v0.5.1
 ---
 
 # App
@@ -317,6 +317,109 @@ spec:
 
 <div class="property-description">
 <p>Namespace is the namespace of the secret, e.g. kube-system.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.extraConfigs">.spec.extraConfigs</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>ExtraConfigs is a list of configurations to merge together based on the priority and order in the list. See: <a href="https://github.com/giantswarm/rfc/tree/main/multi-layer-app-config#enhancing-app-cr">https://github.com/giantswarm/rfc/tree/main/multi-layer-app-config#enhancing-app-cr</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.extraConfigs[*]">.spec.extraConfigs[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.extraConfigs[*].kind">.spec.extraConfigs[*].kind</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Kind of configuration to look up that should be applied to the app when deployed.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.extraConfigs[*].name">.spec.extraConfigs[*].name</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Name of the resource of the given kind to look up.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.extraConfigs[*].namespace">.spec.extraConfigs[*].namespace</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Namespace where the resource with the given name and kind to look up is located.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.extraConfigs[*].priority">.spec.extraConfigs[*].priority</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>Priority is used to indicate at which stage the extra configuration should be merged. See: <a href="https://github.com/giantswarm/rfc/tree/main/multi-layer-app-config#enhancing-app-cr">https://github.com/giantswarm/rfc/tree/main/multi-layer-app-config#enhancing-app-cr</a></p>
 
 </div>
 

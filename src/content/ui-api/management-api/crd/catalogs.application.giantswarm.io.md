@@ -12,7 +12,7 @@ crd:
   technical_name: catalogs.application.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions-application
-  source_repository_ref: v0.3.0
+  source_repository_ref: v0.5.1
   versions:
     - v1alpha1
   topics:
@@ -24,7 +24,7 @@ aliases:
   - /reference/cp-k8s-api/catalogs.application.giantswarm.io/
 technical_name: catalogs.application.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions-application
-source_repository_ref: v0.3.0
+source_repository_ref: v0.5.1
 ---
 
 # Catalog
@@ -302,6 +302,73 @@ spec:
 
 <div class="property depth-1">
 <div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.repositories">.spec.repositories</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Repositories is an array of objects defining catalog repositories.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.repositories[*]">.spec.repositories[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.repositories[*].URL">.spec.repositories[*].URL</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>URL is the link to where this Catalog&rsquo;s repository is located e.g. <a href="https://example.com/app-catalog/">https://example.com/app-catalog/</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.repositories[*].type">.spec.repositories[*].type</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Type indicates which repository type would be used for this Catalog. e.g. helm</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
 <h3 class="property-path" id="v1alpha1-.spec.storage">.spec.storage</h3>
 </div>
 <div class="property-body">
@@ -311,7 +378,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Storage references a map containing values that should be applied to the catalog.</p>
+<p>Storage references an object defining catalog repository. This field is deprecated and replaced by Repositories.</p>
 
 </div>
 
