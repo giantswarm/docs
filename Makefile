@@ -9,6 +9,14 @@ include Makefile.*.mk
 
 default: docker-build
 
+# Export CSV on article metadata
+export-csv:
+	docker run --rm \
+	  --volume=${PWD}:/workdir \
+	  -w /workdir \
+	  quay.io/giantswarm/docs-scriptrunner:latest \
+	  /workdir/scripts/export-csv/script.py
+
 # Update content from external repositories that gets copied in here.
 update-external-repos:
 	./scripts/update-external-repos/main.sh

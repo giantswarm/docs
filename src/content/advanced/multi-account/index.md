@@ -17,8 +17,6 @@ owner:
 last_review_date: 2021-01-01
 ---
 
-# Multi-account support
-
 The Giant Swarm architecture distinguishes between the management cluster and workload clusters. The management cluster enables the creation and operation of workload clusters and the workload cluster(s) run your Kubernetes workloads.
 
 {{< platform_support_table aws="ga" azure="ga" >}}
@@ -82,5 +80,5 @@ When inspecting details of such a cluster, or using the [`gsctl show cluster`]({
 
 ## Further reading
 
-- [The Giant Swarm AWS Architecture]({{< relref "/general/architcture/aws" >}}) explains the setup of Giant Swarm on AWS, in more detail.
-- [The Giant Swarm Azure Architecture]({{< relref "/general/architcture/azure" >}}) explains the setup of Giant Swarm on Azure, in more detail.
+- [The Giant Swarm AWS Architecture]({{< relref "/general/architecture/aws" >}}) explains the setup of Giant Swarm on AWS, in more detail.
+- [The Giant Swarm Azure Architecture]({{< relref "/general/architecture/azure" >}}) explains the setup of Giant Swarm on Azure, in more detail.

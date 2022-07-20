@@ -16,12 +16,10 @@ aliases:
   - /guides/prepare-aws-account/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2021-01-01
+last_review_date: 2022-06-28
 ---
 
-# Prepare an AWS account to run Giant Swarm clusters
-
-As detailed in the [Architecture]({{< relref "/general/architcture/aws" >}}) docs,
+As detailed in the [Architecture]({{< relref "/general/architecture/aws" >}}) docs,
 the workload clusters (the clusters running your Kubernetes workloads) in a Giant
 Swarm installation can run in an AWS account separate from the management cluster.
 This gives great flexibility depending on requirements and usage
@@ -230,6 +228,8 @@ These are the limit increases to be requested, grouped by limit type:
         - other instance types to be used as workers: increase accordingly
     - EC2 Spot Instances
         - For every primary instance type you tend to use spot instances with, set the limit according to your needs.
+    - S3
+        - Buckets per Account: **1000**
 
 (Please extend the list of EC2 instances to also contain the types you need frequently.)
 
@@ -281,7 +281,7 @@ organization. These clusters' resources will be created in your AWS account.
 - [Basics and Concepts: Multi Account Support]({{< relref "/advanced/multi-account" >}})
 - [gsctl Reference: `update organization set-credentials`]({{< relref "/ui-api/gsctl/update-org-set-credentials" >}})
 - [API: Set credentials](/api/#operation/addCredentials)
-- [Giant Swarm Architecture]({{< relref "/general/architcture/aws" >}})
+- [Giant Swarm Architecture]({{< relref "/general/architecture/aws" >}})
 - [Giant Swarm REST API documentation](/api/)
 - [AWS Service Limits](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)
 - [AWS Support Center](https://console.aws.amazon.com/support/home)

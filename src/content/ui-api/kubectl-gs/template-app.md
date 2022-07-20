@@ -16,11 +16,9 @@ user_questions:
   - How can I add labels and annotations to the target namespace of an app?
 ---
 
-# `kubectl gs template app`
+The `template app` command allows to create a manifest for an app to be installed in a workload cluster. The resulting manifest is meant to be applied to the management cluster, for example via `kubectl apply`.
 
-In order to create an App using custom resources, `kubectl gs` will help you create manifests for the resource type:
-
-- [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) (API group/version `application.giantswarm.io/v1alpha1`) - holds the base App specification.
+The resulting manifest of the `template app` defines an [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) resource (API group/version `application.giantswarm.io/v1alpha1`).
 
 ## Usage
 
@@ -70,6 +68,7 @@ It also supports the following optional flags:
 - `--user-secret`: Path to the user secrets YAML file.
 - `--namespace-annotations`: Additional annotations to be appended to the metadata of the target namespace (through [`spec.namespaceConfig.annotations`]({{< relref "/app-platform/namespace-configuration/index.md" >}}) of [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) CR) in form `key=value`. To specify multiple annotations, either separate annotation pairs with commata (,) or specify the flag multiple times.
 - `--namespace-labels`: Additional labels to be appended to the metadata of the target namespace (through [`spec.namespaceConfig.labels`]({{< relref "/app-platform/namespace-configuration/index.md" >}}) of [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) CR) in form `key=value`. To specify multiple labels, either separate label pairs with commata (,) or specify the flag multiple times.
+- `--in-cluster`: Creates in-cluster app by setting `.spec.kubeConfig.inCluster` field of the [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) CR to `true`. This is necessary for installing collection of apps, for example [Security Pack]({{< relref "/app-platform/apps/security" >}}).
 
 Only required fields are templated. Other fields are are set by the
 [defaulting webhook]({{< relref "/app-platform/defaulting-validation" >}}).

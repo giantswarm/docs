@@ -6,7 +6,7 @@ weight: 90
 menu:
   main:
     parent: advanced
-last_review_date: 2020-09-23
+last_review_date: 2022-02-07
 aliases:
   - /guides/advanced-cluster-autoscaler-configuration/
 user_questions:
@@ -16,9 +16,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
-# Advanced cluster autoscaler configuration
-
-Your Giant Swarm installation comes with a default configuration for the [Cluster Autoscaler addon](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler)
+Your Giant Swarm installation comes with a default configuration for the [cluster-autoscaler addon](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler)
 
 You can override these defaults in a ConfigMap named `cluster-autoscaler-user-values`.
 
@@ -38,13 +36,13 @@ cluster-autoscaler-user-values         0         11m
 
 __Warning:__
 
-Please do not edit any other cluster autoscaler related ConfigMaps.
+Please do not edit any other cluster-autoscaler related ConfigMaps.
 
 Only the user values ConfigMap is safe to edit.
 
 -----
 
-On cluster creation the user values ConfigMap is empty (or might not exist yet) and the following defaults will be applied to the final Cluster Autoscaler deployment. To customize any of the configuration options, you just need to add the respective line(s) in the data field of the user ConfigMap.
+On cluster creation the user values ConfigMap is empty (or might not exist yet) and the following defaults will be applied to the final cluster-autoscaler deployment. To customize any of the configuration options, you just need to add the respective line(s) in the data field of the user ConfigMap.
 
 ## How to set configuration options using the user values ConfigMap
 
@@ -77,7 +75,7 @@ the [values.yaml](https://github.com/giantswarm/cluster-autoscaler-app/blob/v1.1
 
 ### Scale down utilization threshold
 
-The `scaleDownUtilizationThreshold` defines the proportion between requested resources and capacity, which under the value Cluster Autoscaler will trigger the scaling down action.
+The `scaleDownUtilizationThreshold` defines the proportion between requested resources and capacity, which under the value cluster-autoscaler will trigger the scaling down action.
 
 Our default value is 65%, which means in order to scale down, one of the nodes has to have less utilization (CPU/memory) than this threshold.
 
@@ -106,7 +104,7 @@ data:
 
 ### Skip system pods
 
-By default, the Cluster Autoscaler will never delete nodes which run pods of the `kube-system` namespace (except `daemonset` pods). It can be modified by setting following property to `"false"`.
+By default, the cluster-autoscaler will never delete nodes which run pods of the `kube-system` namespace (except `daemonset` pods). It can be modified by setting following property to `"false"`.
 
 ```yaml
 data:
@@ -117,7 +115,7 @@ data:
 
 ### Skip pods with local storage
 
-The Cluster Autoscaler configuration by default deletes nodes with pods using local storage (`hostPath` or `emptyDir`). In case you want to disable this action, you need to set the following property to `"true"`.
+The cluster-autoscaler configuration by default deletes nodes with pods using local storage (`hostPath` or `emptyDir`). In case you want to disable this action, you need to set the following property to `"true"`.
 
 ```yaml
 data:
@@ -126,7 +124,20 @@ data:
       skipNodesWithLocalStorage: "true"
 ```
 
+### Balance similar node groups
+
+> Added in release v17.0.0
+
+The cluster-autoscaler configuration by default doesn't differentiate between node groups when scaling. In case you want to enable this action, you need to set the following property to `"true"`.
+
+```yaml
+data:
+  values: |
+    configmap:
+      balanceSimilarNodeGroups: "true"
+```
+
 ## Further reading
 
-- [Cluster Autoscaler Github repository](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler)
+- [cluster-autoscaler Github repository](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler)
 - [Kubernetes autoscaler FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md)

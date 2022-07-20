@@ -7,6 +7,7 @@ services:
 
   sitesearch-app:
     image: elasticsearch:6.8.6
+    platform: linux/amd64
     environment:
       - cluster.name=sitesearch
       - node.name=sitesearch1

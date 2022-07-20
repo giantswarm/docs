@@ -10,12 +10,10 @@ menu:
 user_questions:
   - What is the Management API?
   - In what development stage is the Management API?
-last_review_date: 2021-08-04
+last_review_date: 2022-02-15
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 ---
-
-# The Management API
 
 ## What it is
 
@@ -23,7 +21,13 @@ In a Giant Swarm installation, the [management cluster]({{< relref "/general/man
 
 Your workload clusters and other associated resources are represented in the management cluster as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) (CRs). To access these, you use the Kubernetes API of the management cluster, or in short, the Management API.
 
+![Schema showing the Management API](management-api-diagram.png)
+
+<!-- Original: https://docs.google.com/drawings/d/1pt6_ExX2FVyFCI7mj_KuFWaVjqAGgAlqKfAFYNjKKgk/edit -->
+
 Apart from the CRs and custom resource definitions (CRDs) the Management API provides, its behavior is defined by admission controllers enforcing some policies and providing some defaulting.
+
+The concept of [organizations]({{<relref "/general/organizations" >}}) and the way namespaces are used play an important role for access control in the Management API. Together with our RBAC automation, they allow simple isolation of resources between tenants (or environments, teams, projects, purposes).
 
 ## How to gain access
 
@@ -31,9 +35,9 @@ Access to the Giant Swarm Management API is secured using OIDC. Our [authenticat
 
 ## How to use
 
-Currently (as of August 2021) we are in the process of enabling our [web user interface]({{< relref "/ui-api/web" >}}) to interact with the Management API.
+Currently (as of February 2022) most Giant Swarm customers already interact with the Management API when accessing our [web user interface]({{< relref "/ui-api/web" >}}). However, for customers that have not yet switched to single sign-on (SSO), the web interface uses the deprecated REST API.
 
-For now we recommend using `kubectl` to interact with the Management API. To facilitate this we provide a kubectl plug-in called [`kubectl gs`]({{< relref "/ui-api/kubectl-gs" >}}).
+Independent of the switch to SSO, all customers can use the Management API via `kubectl`. To facilitate this we provide a kubectl plug-in called [`kubectl gs`]({{< relref "/ui-api/kubectl-gs" >}}).
 
 Besides general Kubernetes know-how this will require only a bit of structural knowledge:
 

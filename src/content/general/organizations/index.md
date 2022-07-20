@@ -12,10 +12,8 @@ user_questions:
   - Do I have to use organizations?
   - What's the benefit of using organizations?
 owner:
-  - https://github.com/orgs/giantswarm/teams/rainbow
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 ---
-
-# Organizations
 
 <div class="well disclaimer">
 

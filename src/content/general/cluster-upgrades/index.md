@@ -14,12 +14,10 @@ user_questions:
   - What is a major upgrade?
   - What is a minor upgrade?
   - What is a patch upgrade?
-last_review_date: 2021-01-01
+last_review_date: 2021-05-17
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
-
-# Cluster upgrades
 
 A workload cluster (formerly called _tenant cluster_) in a Giant Swarm installation is running a stack comprising many software components, provided by the Kubernetes project and other open source projects or software vendors, as well as by Giant Swarm.
 In order to keep all components up-to-date, to allow you to benefit from latest improvements, features and security fixes, we provide upgrades for the entire software stack in workload clusters.
@@ -83,7 +81,7 @@ As always we provide release notes with all the information needed. Under this n
 #### Considerations {#considerations}
 
 Once we publish a new major release, we deprecate the oldest major release.
-This means that new clusters with deprecated releases can only be created using `gsctl`.
+This means that new clusters with deprecated releases can only be created using `kubectl-gs`.
 Existing clusters, however, are not affected.
 
 Creating clusters with deprecated releases is not recommended. Testing workload cluster upgrades in a separate cluster should be the only use case.
@@ -106,7 +104,7 @@ Note that by default, our user interfaces upgrade to the next active workload cl
 
 - In the **web interface**, open the details page for a cluster. Click the release version of the cluster. If upgrades are available for this release, they will be listed in the dialog. Simply click the desired target version in order to start the upgrade process. You will have an additional step for reviewing the changes before actually triggering the cluster upgrade.
 
-- In **gsctl**, the [`upgrade cluster`]({{< relref "/ui-api/gsctl/upgrade-cluster" >}})) command provides an optional flag `--release` which allows to specify the version to upgrade to.
+- In **kubectl-gs**, the [`update cluster`]({{< relref "/ui-api/kubectl-gs/update-cluster" >}})) command provides an optional flag `--release-version` which allows to specify the version to upgrade to.
 
 - Alternatively, you can use the [Giant Swarm REST API](/api/#operation/modifyClusterV5) or the [Management API]({{< relref "/ui-api/management-api" >}}) to trigger the upgrade. Please talk to your Account Engineer in case you have any questions regarding this.
 
@@ -157,7 +155,7 @@ This leads to removal and recreation of the Pods.
 
 ## How to upgrade a cluster {#how-to-upgrade-a-cluster}
 
-As an authenticated user you can upgrade the cluster to the **next active workload cluster release**, using the web UI or the CLI. The web UI shows a yellow link next to the version information if there is an upgrade available. For the CLI you can use the command [`gsctl upgrade cluster`]({{< relref "/ui-api/gsctl/upgrade-cluster" >}})) for the same purpose.
+As an authenticated user you can upgrade the cluster to the **next active workload cluster release**, using the web UI or the CLI. The web UI shows a yellow link next to the version information if there is an upgrade available. For the CLI you can use the command [`kubectl-gs update cluster`]({{< relref "/ui-api/kubectl-gs/update-cluster" >}})) for the same purpose.
 
 When the upgrade process is managed by our tools, the workload cluster release version chosen is selected by Giant Swarm according to best practices. It means it will not upgrade a cluster by more than one major version at a time. In case you use the raw API to upgrade your cluster please test the process against a non-production cluster first.
 

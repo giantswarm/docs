@@ -14,8 +14,6 @@ user_questions:
   - How can I annotate an app CR's target namespace?
 ---
 
-# App CR's target namespace configuration
-
 ## Overview
 
 At some point, you might want to add specific labels or annotations to an app's target namespace to enable other tools such as `linkerd` or `kiam`. For example, to include all pods in a namespace in the `linkerd` service mesh. Or, to tell `kiam` you do allow Loki to get logs from pods running in this namespace.

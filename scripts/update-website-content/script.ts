@@ -7,6 +7,7 @@ const websiteURL = "https://www.giantswarm.io/why-giant-swarm";
 
 const headerElementSelector = ".header-container-wrapper";
 const footerElementSelector = ".footer-container-wrapper";
+const cookiesBannerElementSelector = "#hs-eu-cookie-confirmation-inner";
 
 const sectionTemplatesPath = path.join(
   __dirname,
@@ -19,6 +20,7 @@ const sectionTemplatesPath = path.join(
 const headerPath = path.join(sectionTemplatesPath, "gs_header.html");
 const footerPath = path.join(sectionTemplatesPath, "gs_footer.html");
 const stylesPath = path.join(sectionTemplatesPath, "gs_styles.html");
+const cookiesBannerStylesPath = path.join(sectionTemplatesPath, "gs_cookies_banner_styles.html");
 
 const cssOverridesPath = path.join(__dirname, "overrides.css");
 
@@ -71,6 +73,19 @@ const generatedFileDisclaimer =
   log("Writing common CSS file.");
   await writeGeneratedFile(
     stylesPath,
+    `<style>\n${commonCSS.join("\n")}\n</style>`
+  );
+
+  // Cookie Consent Banner.
+  log("Extracting cookies consent banner HTML.");
+  const cookiesBanner = await extractElementContents(page, cookiesBannerElementSelector);
+
+  log("Applying custom CSS.");
+  commonCSS = await applyCSSOverrides(Array.from(new Set(cookiesBanner.css)));
+
+  log("Writing cookies consent banner CSS file.");
+  await writeGeneratedFile(
+    cookiesBannerStylesPath,
     `<style>\n${commonCSS.join("\n")}\n</style>`
   );
 
