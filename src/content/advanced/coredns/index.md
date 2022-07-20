@@ -18,8 +18,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
-# Advanced CoreDNS Configuration
-
 Your Giant Swarm installation comes with a default configuration for the [CoreDNS addon](https://github.com/coredns/coredns)
 
 You can override these defaults in a ConfigMap named `coredns-user-values` in the management cluster.
@@ -53,8 +51,8 @@ kind: ConfigMap
 metadata:
   labels:
     app: coredns
-    name: coredns-user-values
-    namespace: abc12
+  name: coredns-user-values
+  namespace: abc12
 data:
   values: |
     configmap:

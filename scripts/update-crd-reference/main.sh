@@ -2,11 +2,11 @@
 
 set -e
 
-CRD_DOCS_GENERATOR_VERSION=0.8.0
+CRD_DOCS_GENERATOR_VERSION=0.10.0
 DESTINATION=src/content/ui-api/management-api/crd
 
 # Clear output folder
-find ${DESTINATION} -type f -not -name "_index.md" | xargs rm
+find ${DESTINATION} -type f -not -name "_index.md" | xargs -I '{}' rm '{}'
 
 # Generate new content
 docker run --rm \

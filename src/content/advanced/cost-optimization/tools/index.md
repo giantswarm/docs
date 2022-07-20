@@ -15,13 +15,11 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-horizon
 ---
 
-# Cost optimization in Kubernetes
-
 Adoption of Kubernetes still requires monitoring cost drivers. Improving resource utilization allows you to get the most out of your infrastructure, while maintaining your budget. This document is comprised of a curated list of helpful tools on the journey to cost optimization. The list is based on our experience building and running our own infrastructure, in addition to learnings we gained from working with large global enterprise.
 
 ## Visualization and Optimization
 
-- [Kubecost](https://www.kubecost.com/), an open core cost visualization tool (now with a nice [plugin](https://blog.kubecost.com/blog/kubectl-cost-kubernetes-monitoring-cli/) included)
+- [Kubecost](https://www.kubecost.com/), an open source cost visualization tool, with a kubectl [plugin](https://blog.kubecost.com/blog/kubectl-cost-kubernetes-monitoring-cli/) included. Requires a daemon to be running in the cluster.
 - Cloud Provider tooling:
     - [AWS Cost Explorer](https://aws.amazon.com/es/aws-cost-management/aws-cost-explorer/)
     - [Azure Cost Management and Billing Service](https://azure.microsoft.com/en-us/services/cost-management/)

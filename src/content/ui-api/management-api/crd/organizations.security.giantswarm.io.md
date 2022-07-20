@@ -11,8 +11,8 @@ crd:
   group: security.giantswarm.io
   technical_name: organizations.security.giantswarm.io
   scope: Cluster
-  source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v3.39.0
+  source_repository: https://github.com/giantswarm/organization-operator
+  source_repository_ref: v1.0.2
   versions:
     - v1alpha1
   topics:
@@ -23,8 +23,8 @@ owner:
 aliases:
   - /reference/cp-k8s-api/organizations.security.giantswarm.io/
 technical_name: organizations.security.giantswarm.io
-source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v3.39.0
+source_repository: https://github.com/giantswarm/organization-operator
+source_repository_ref: v1.0.2
 ---
 
 # Organization
@@ -60,10 +60,8 @@ kind: Organization
 metadata:
   annotations:
     giantswarm.io/docs: https://docs.giantswarm.io/reference/cp-k8s-api/organizations.security.giantswarm.io/
-  creationTimestamp: null
   name: example-inc
-spec:
-  {}
+spec: {}
 ```
 
 

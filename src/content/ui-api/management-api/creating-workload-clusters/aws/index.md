@@ -12,11 +12,9 @@ aliases:
 user_questions:
   - How can I create an AWS cluster via the Management API?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-firecracker
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 last_review_date: 2021-01-01
 ---
-
-# Creating workload clusters on AWS via the Management API
 
 ## How cluster creation works
 

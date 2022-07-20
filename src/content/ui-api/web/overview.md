@@ -18,8 +18,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 ---
 
-# The web user interface
-
 If we did our job well then our web interface is so intuitive and
 easy to use that this reference isn't necessary.
 

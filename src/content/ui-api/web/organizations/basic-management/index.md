@@ -8,7 +8,7 @@ menu:
     identifier: orgs-basicmanagement
     parent: web-orgs
 owner:
-  - https://github.com/orgs/giantswarm/teams/rainbow
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
 last_review_date: 2021-06-16
 user_questions:
   - Where can I manage organizations in the web UI?
@@ -16,8 +16,6 @@ user_questions:
   - How can I check organization details using the web UI?
   - How can I delete an organization using the web UI?
 ---
-
-# Creating, inspecting and deleting organizations
 
 {{% organization_mgmt_mapi_disclaimer %}}
 

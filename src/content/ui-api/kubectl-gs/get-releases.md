@@ -16,8 +16,6 @@ user_questions:
 last_review_date: 2021-10-04
 ---
 
-# `kubectl gs get releases`
-
 Like with all `get` commands in `kubectl`, this command can be used to get details on one item, a release in this case, or list several of them.
 
 ## Usage

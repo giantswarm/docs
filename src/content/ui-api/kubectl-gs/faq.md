@@ -20,8 +20,6 @@ user_questions:
   - Why does the command connect to a service called "athena"?
 ---
 
-# Frequently asked questions (FAQ) and troubleshooting for `kubectl-gs`
-
 ## General
 
 ### How can I create a cluster or node pool

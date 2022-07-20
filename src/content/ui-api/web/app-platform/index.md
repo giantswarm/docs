@@ -3,7 +3,7 @@ linkTitle: App platform
 title: The Giant Swarm App Platform in the web interface
 description: What the Giant Swarm App Platform looks like on our web interface and how to use it.
 last_review_date: 2020-04-22
-weight: 40
+weight: 50
 menu:
   main:
     parent: uiapi-web
@@ -16,10 +16,8 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
 
-# The Giant Swarm App Platform in the web interface
-
 This page will give you an overview of what parts of the Giant Swarm App Platform
-are managable using our web interface.
+are manageable using our web interface.
 
 The _Giant Swarm App Platform_ refers to a set of features and concepts that allow
 you to browse, install and manage the configurations of apps (such as Prometheus)

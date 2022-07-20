@@ -8,7 +8,11 @@ source_repositories:
   - url: https://github.com/giantswarm/apiextensions-application
     organization: giantswarm
     short_name: apiextensions-application
-    commit_reference: v0.3.0
+    commit_reference: v0.5.1
+    crd_paths:
+      - config/crd
+    cr_paths:
+      - docs/cr
     metadata:
       appcatalogs.application.giantswarm.io:
         owner:
@@ -43,6 +47,10 @@ source_repositories:
     organization: giantswarm
     short_name: config-controller
     commit_reference: v0.5.1
+    crd_paths:
+      - config/crd
+    cr_paths:
+      - docs/cr
     metadata:
       configs.core.giantswarm.io:
         owner:
@@ -54,6 +62,10 @@ source_repositories:
     organization: giantswarm
     short_name: silence-operator
     commit_reference: v0.4.0
+    crd_paths:
+      - config/crd
+    cr_paths:
+      - docs/cr
     metadata:
       silences.monitoring.giantswarm.io:
         owner:
@@ -64,6 +76,10 @@ source_repositories:
     organization: giantswarm
     short_name: release-operator
     commit_reference: v3.0.1
+    crd_paths:
+      - config/crd
+    cr_paths:
+      - docs/cr
     metadata:
       releases.release.giantswarm.io:
         owner:
@@ -71,10 +87,31 @@ source_repositories:
         topics:
           - managementcluster
           - workloadcluster
+  - url: https://github.com/giantswarm/organization-operator
+    organization: giantswarm
+    short_name: organization-operator
+    commit_reference: v1.0.2
+    crd_paths:
+      - config/crd
+    cr_paths:
+      - docs/cr
+    metadata:
+      organizations.security.giantswarm.io:
+        owner:
+          - https://github.com/orgs/giantswarm/teams/team-rainbow
+        topics:
+          - managementcluster
   - url: https://github.com/giantswarm/apiextensions
     organization: giantswarm
     short_name: apiextensions
-    commit_reference: v3.39.0
+    commit_reference: v5.0.0
+    annotations_paths:
+      - pkg/annotation
+    crd_paths:
+      - config/crd
+      - helm
+    cr_paths:
+      - docs/cr
     metadata:
       awsclusters.infrastructure.cluster.x-k8s.io:
         owner:
@@ -191,6 +228,13 @@ source_repositories:
           - azure
         topics:
           - workloadcluster
+      azuremachinepools.infrastructure.cluster.x-k8s.io:
+        owner:
+          - https://github.com/orgs/giantswarm/teams/team-phoenix
+        provider:
+          - azure
+        topics:
+          - workloadcluster
       azuremachines.infrastructure.cluster.x-k8s.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-phoenix
@@ -201,7 +245,11 @@ source_repositories:
       azuremachinetemplates.infrastructure.cluster.x-k8s.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-phoenix
-        hidden: true
+        provider:
+          - aws
+          - azure
+        topics:
+          - workloadcluster
       azuremanagedclusters.exp.infrastructure.cluster.x-k8s.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-phoenix
@@ -277,7 +325,11 @@ source_repositories:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-phoenix
           - https://github.com/orgs/giantswarm/teams/team-rocket
-        hidden: true
+        provider:
+          - aws
+          - azure
+        topics:
+          - workloadcluster
       kubeadmconfigtemplates.bootstrap.cluster.x-k8s.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-phoenix
@@ -287,7 +339,11 @@ source_repositories:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-phoenix
           - https://github.com/orgs/giantswarm/teams/team-rocket
-        hidden: true
+        provider:
+          - aws
+          - azure
+        topics:
+          - workloadcluster
       kvmclusterconfigs.core.giantswarm.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-rocket
@@ -314,6 +370,13 @@ source_repositories:
       machinehealthchecks.cluster.x-k8s.io:
         hidden: true
       machinepools.exp.cluster.x-k8s.io:
+        owner:
+          - https://github.com/orgs/giantswarm/teams/team-phoenix
+        provider:
+          - azure
+        topics:
+          - workloadcluster
+      machinepools.cluster.x-k8s.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-phoenix
         provider:
@@ -363,11 +426,6 @@ source_repositories:
           - openstack
         topics:
           - workloadcluster
-      organizations.security.giantswarm.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-rainbow
-        topics:
-          - managementcluster
       releasecycles.release.giantswarm.io:
         hidden: true
       sparks.core.giantswarm.io:

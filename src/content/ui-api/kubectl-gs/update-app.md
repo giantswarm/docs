@@ -15,8 +15,6 @@ user_questions:
   - How can I update an app version from the command line?
 ---
 
-# `kubectl gs update app`
-
 This command helps with updating [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) custom resources.
 
 ## Usage

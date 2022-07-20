@@ -16,8 +16,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
-# Preparing a Kubernetes cluster for the use of GPUs
-
 {{< platform_support_table aws="ga=v11.3.0" azure="ga=v13.0.0" >}}
 
 In order to have GPU instances running Flatcar we need to follow these steps to install and configure the right libraries and drivers on the host machine.

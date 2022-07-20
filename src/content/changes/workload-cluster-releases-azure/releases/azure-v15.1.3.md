@@ -6,7 +6,7 @@ changes_categories:
 - Workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
-  url: https://github.com/giantswarm/releases/tree/master/azure/v15.1.3
+  url: https://github.com/giantswarm/releases/tree/master/azure/archived/v15.1.3
   version: 15.1.3
   version_tag: v15.1.3
 date: '2021-11-09T12:54:25+00:00'

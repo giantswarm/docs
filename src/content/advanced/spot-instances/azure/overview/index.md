@@ -17,8 +17,6 @@ owner:
 last_review_date: 2021-01-01
 ---
 
-# Overview on spot VMs on Azure
-
 {{< platform_support_table azure="ga=v14.1.0" >}}
 
 ## Introduction

@@ -1,0 +1,47 @@
+{{ partial "header" . }}
+
+<div class="row">
+  <div class="col-md-3 col-lg-2 hidden-sm hidden-xs "></div>
+  <div class="col-sm-12 col-md-8 col-lg-7 list-content">
+    <h1 id="title">{{ .LinkTitle }}</h1>
+
+    <p class="intro">This page is generated for organizational purposes only and should not appear in search results.</p>
+
+    {{ $owners := slice }}
+    {{ range .Site.RegularPages }}
+      {{ range .Param "owner" }}
+        {{ if in $owners . }}
+        {{ else }}
+          {{ $owners = $owners | append . }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+
+    <p>All owners:</p>
+    <ul>
+      {{ range sort $owners }}
+      <li><a href="#{{ . | urlize }}">{{ . }}</a></li>
+      {{ end }}
+    </ul>
+    
+    {{ range sort $owners }}
+      {{ $owner := . }}
+      <h2 id="{{ $owner | urlize }}">{{ $owner }}</h2>
+
+      <ul class="linklist">
+      {{ range $.Site.RegularPages.ByTitle }}
+        {{ if in (.Param "owner") $owner }}
+        <li>
+          <div><a href="{{ .RelPermalink }}">{{ .Title }}</a></div>
+          <div><code>{{ .RelPermalink }}</code></div>
+        </li>
+        {{ end }}
+      {{ end }}
+      </ul>
+
+    {{ end }}
+
+  </div>
+</div>
+
+{{ partialCached "footer" . }}

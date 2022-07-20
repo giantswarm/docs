@@ -3,7 +3,7 @@ linkTitle: Labelling clusters
 title: Labelling workload clusters using the web interface
 description: Here we explain how you can manage labels for workload cluster in our web user interface.
 last_review_date: 2021-08-25
-weight: 30
+weight: 100
 menu:
   main:
     identifier: uiapi-web-labelling
@@ -16,8 +16,6 @@ user_questions:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 ---
-
-# Labelling workload clusters using the web interface
 
 Labels are a mechanism to assign short pieces of additional information to your workload clusters.
 For more information about this feature, check out the [labelling workload clusters]({{< relref "/advanced/labelling-workload-clusters" >}}) user guide.

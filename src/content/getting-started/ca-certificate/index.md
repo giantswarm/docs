@@ -16,8 +16,6 @@ owner:
 last_review_date: 2021-01-01
 ---
 
-# Establishing Trust to Your Cluster's CA and Importing Certificates
-
 In this tutorial we explain to you how to establish trust to your cluster's Certificate Authority (CA) and how to import a key pair to enable client authentication against the API to enable access to the Kubernetes API of your cluster.
 
 This is not only useful for developing applications accessing the API, but for authenticated access to services via the API proxy. For example, the Kubernetes Dashboard is usually accessed in this way.

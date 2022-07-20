@@ -16,8 +16,6 @@ user_questions:
 last_review_date: 2021-01-01
 ---
 
-# Global command line options
-
 {{% gsctl_deprecation_disclaimer %}}
 
 `gsctl` supports the following global command line options. These are options that can be used in combination with all commands.

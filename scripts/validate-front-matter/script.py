@@ -197,6 +197,7 @@ valid_keys = set((
     'linkTitle',
     'menu',
     'owner',
+    'search',
     'source_repository',
     'source_repository_ref',
     'technical_name',

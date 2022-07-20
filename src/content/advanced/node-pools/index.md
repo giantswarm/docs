@@ -18,8 +18,6 @@ owner:
 last_review_date: 2021-01-01
 ---
 
-# Node pools
-
 {{< platform_support_table aws="beta=v10.0.0,ga=v11.0.0" azure="ga=v13.0.0" kvm="roadmap=https://github.com/giantswarm/roadmap/issues/209" >}}
 
 ## Definition
@@ -158,7 +156,7 @@ Using multiple instance types in a node pool has some benefits:
 
 - Even without spot instances, AWS has a limited number of instances per type in each Availability Zone. It can happen that your selected instance type is temporarily out of stock just in the moment you are in demand of more worker nodes. Allowing the node pool to use multiple instance types reduces this risk and increases the likelihood that your node pool can grow when in need.
 
-Instances that contain the same amount of CPU and RAM are considered similar. We provide more information regarding which instance types are considered similar in our [reference]({{< relref "/reference/similar-ec2-instance-types" >}}).
+Instances that contain the same amount of CPU and RAM are considered similar. We provide more information regarding which instance types are considered similar in our [reference]({{< relref "/advanced/spot-instances/aws/similar-instance-types" >}}).
 
 ## Node pools and the Giant Swarm REST API {#restapi}
 

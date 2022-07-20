@@ -1,6 +1,6 @@
 ---
 linkTitle: Basic metrics
-title: Getting Basic Metrics in your Cluster
+title: Metrics in your clusters
 description: Recipe to enable a core metrics solution running on your Kubernetes cluster.
 weight: 30
 menu:
@@ -11,11 +11,9 @@ aliases:
 user_questions:
   - How can I activate metrics-server in my clusters?
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-customer-happiness
-last_review_date: 2021-01-01
+  - https://github.com/orgs/giantswarm/teams/team-teddyfriends
+last_review_date: 2022-03-31
 ---
-
-# Metrics in Kubernetes
 
 Getting core metrics like CPU and Memory usage of resources in your cluster is important not only for your own monitoring purposes, but also for extended functionality like horizontal Pod autoscaling.
 
@@ -33,24 +31,13 @@ kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/late
 
 __Note__: For Metrics Server to work you need to have Kubernetes API Aggregator enabled on your cluster. This is enabled by default on clusters started after February 14th 2018. For older clusters you can use Heapster as described below.
 
-## Adding metrics with Heapster (standalone) {#heapster}
-
-In clusters with Kubernetes version under 1.9, Heapster can be deployed as a standalone solution.
-
-Deploying Heapster is very straight forward.
-
-```nohighlight
-kubectl apply --filename https://raw.githubusercontent.com/kubernetes/heapster/master/deploy/kube-config/rbac/heapster-rbac.yaml
-kubectl apply --filename https://raw.githubusercontent.com/kubernetes/heapster/master/deploy/kube-config/standalone/heapster-controller.yaml
-```
-
 ## Use cases
 
 There are some common cases where Core Metrics are used by Kubernetes:
 
 - Horizontal Pod Autoscaler: it scales pods automatically based on CPU or custom metrics (not explained here). More information [here](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/).
 - `kubectl top`: the command `top` of our beloved Kubernetes CLI display metrics directly in the terminal.
-- Kubernetes dashboard: see Pod and Nodes metrics integrated into the main Kubernetes UI dashboard. More info [here]({{< relref "/app-platform/apps/kubernetes-dashboard" >}})
+- Kubernetes dashboard: see Pod and Nodes metrics integrated into the main Kubernetes UI dashboard. 
 - Scheduler: in the future, core metrics will be considered in order to schedule best-effort Pods.
 
 ## Further reading
