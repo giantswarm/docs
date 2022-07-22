@@ -53,7 +53,7 @@ Please first ensure having the following permissions added on the [`GiantSwarmAW
 ## Enable the feature on your cluster
 This is an alpha feature that has to be enabled by setting an annotation on the  [`AWSCluster`]({{< relref "/ui-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) resource.
 
-Make sure the resource has the `alpha.aws.giantswarm.io/iam-roles-for-service-accounts` annotation **only right before applying a new cluster or just before upgrading to the latest AWS release. This is important to remember as the lingering annotation without the activation can cause troubles in external-dns that also uses IRSA**. The value can be anything you like, as only the presence of that annotation is checked. Here is an example:
+Make sure the resource has the `alpha.aws.giantswarm.io/iam-roles-for-service-accounts` annotation **only right before** applying a new cluster or **just before** upgrading to the latest AWS release. **This is important** to remember as the lingering annotation without the activation can cause troubles in external-dns that also uses IRSA. The value can be anything you like, as only the presence of that annotation is checked. Here is an example:
 
 ```yaml
 apiVersion: infrastructure.giantswarm.io/v1alpha3
