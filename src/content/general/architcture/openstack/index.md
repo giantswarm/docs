@@ -49,33 +49,63 @@ The initial deployment entails the creation of that management cluster in a defi
 
 Giant Swarm leverages the concept of “Operators" to control all resources that clusters need as “Custom Resources”. At the same time customers can also use the Kubernetes Control Plane API to manage their clusters and/or applications.
 
+#### Organization operator
+
+This operator is in charge of reconcile `Organization` custom resources. The functionality of the operator is pretty straightforward, just take care of create and delete organization namespace when the given resource is created.
+
+To know more about organization please read [this documentation](https://docs.giantswarm.io/general/organizations/). 
+
 #### RBAC operator
+
+We have created RBAC operator with the goal of maintain permissions up to date between the different organization and users on the management cluster.
 
 #### App operator
 
-#### Cluster operators
+The [App Platform](https://docs.giantswarm.io/app-platform/) is a system we have created to deliver app in multi cluster fashion. App operator is the main piece running in management cluster to manage App custom resource and make sure the applications and configuration are delivered correctly across the different workload clusters.
 
-#### Cluster app operator
+#### Cluster API operators
 
+In [Cluster API]() there is a set of generic operators that all Cluster API providers runs to address the common bootstrap and management actions on a Kubernetes cluster lifecycle. There is `Kubeadm Bootstrap`controller which is in charge of provider a cloud init configuration to turn a machine into a Kubernetes node. Also there is a `Kubeadm Control Plane` controller that manages the lifecycle of the control plane nodes and provide access to the API. And finally we have `CAPI manager` controller that manages cluster and machine resources.
+
+#### Cluster OpenStack controller
+
+A part of the generic controllers we have an special one that act as a bridge and reconcile the provider specific configuration to create the necessary infrastructure for a Kubernetes cluster. This controller provision, update and delete all resources on the provider API.
+
+#### Cluster apps operator
+
+This simple operator takes care of the default apps has to be created for a cluster and the right configuration that need to be created. Assets like the certificate authority or the domain base are provided by it via a configmap.
 
 ## Giant Swarm on-premises workload cluster(s)
 
 ### Components
 
-#### CPI
+#### Cloud Provider OpenStack
+
+This is the controller that is deployed inside all OpenStack clusters in order to provide Kubernetes integration. It listen to services and ingresses to provide load balancers dynamically for the workload clusters. 
 
 #### Kube State Metrics
 
-#### Cillium
+kube-state-metrics (KSM) is a simple service that listens to the Kubernetes API server and generates metrics about the state of the objects. (See examples in the Metrics section below.) It is not focused on the health of the individual Kubernetes components, but rather on the health of the various objects inside, such as deployments, nodes and pods.
+
+#### Cilium
+
+Cilium is open source software for providing and transparently network connectivity in Kubernetes clusters. Cilium operates at Layer 3/4 to provide traditional networking and security services. Additionally it protects and secure applications offering different enhanced features on top. In the workload cluster is used as container network only.
 
 #### Cert exporter
 
+It is a Prometheus exporter that exposes a set of metrics regarding certificates and tokens so we can be aware in case any of those expire.
+
 #### Net exporter
+
+Net exporter is a Prometheus exporter for exposing network information in that runs as daemon set in every node and track network and DNS errors.
 
 #### Metric server
 
+Metrics Server is a component that implements the [Kubernetes Metrics API](https://kubernetes.io/docs/tasks/debug/debug-cluster/resource-metrics-pipeline/#metrics-api) to provide basic data of the container running in the cluster.
+
 #### Node exporter
 
+It is a Prometheus exporter for hardware and OS metrics exposed by *NIX kernels.
 
 ## Workload segregation and account model
 
