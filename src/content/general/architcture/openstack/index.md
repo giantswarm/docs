@@ -31,9 +31,9 @@ By default the machines are split in three different failure domains or zones to
 
 There is a machine created as bastion that help us with the operations. It is the single entrypoint to the running infrastructure so that way all cluster machines can live in a private network and expose the services running on them via explicit configuration.
 
-The setup requires a external network configured in the project to allow the machines to pull images or route requests from containers to Internet.
+The setup requires an external network configured in the project to allow the machines to pull images or route requests from containers to Internet.
 
-We used an internal network which interconnects all master and worker hosts allowing internal communication of all containers in the cluster. At the same time it allocates the load balancers that are created dinamically as result of exposing a service in the cluster. The load balancer, in case of being external, allocates a floating IP to make possible the connection with external endpoints.
+We used an internal network which interconnects all master and worker hosts allowing internal communication of all containers in the cluster. At the same time it allocates the load balancers that are created dynamically as result of exposing a service in the cluster. The load balancer, in case of being external, allocates a floating IP to make possible the connection with external endpoints.
 
 Internally Cluster API (CAPI) use kubeadm to configure all the machines according to the standards. It use a template defined as yaml, part of CAPI, where we have harden the different parameters for the API and other controllers running in the master machine.
 
@@ -51,17 +51,17 @@ Giant Swarm leverages the concept of “Operators" to control all resources that
 
 #### Organization operator
 
-This operator is in charge of reconcile `Organization` custom resources. The functionality of the operator is pretty straightforward, just take care of create and delete organization namespace when the given resource is created.
+This operator is in charge of reconcile `Organization` custom resources. The functionality of the operator is pretty straightforward. It takes care of create and delete the organization namespace when the given resource is created.
 
-To know more about organization please read [this documentation](https://docs.giantswarm.io/general/organizations/). 
+To learn more about organizations please read [the related documentation](https://docs.giantswarm.io/general/organizations/). 
 
 #### RBAC operator
 
-We have created RBAC operator with the goal of maintain permissions up to date between the different organization and users on the management cluster.
+We have created a RBAC operator with the goal of maintaining up to date  permissions  between the different organization and users on the management cluster.
 
 #### App operator
 
-The [App Platform](https://docs.giantswarm.io/app-platform/) is a system we have created to deliver app in multi cluster fashion. App operator is the main piece running in management cluster to manage App custom resource and make sure the applications and configuration are delivered correctly across the different workload clusters.
+The [App Platform](https://docs.giantswarm.io/app-platform/) is a system we have created to deliver cloud native apps in multi cluster fashion. App operator is the main code running in management cluster to manage App custom resource and make sure the applications and configuration are delivered correctly across the different workload clusters.
 
 #### Cluster API operators
 
@@ -69,11 +69,11 @@ In [Cluster API]() there is a set of generic operators that all Cluster API prov
 
 #### Cluster OpenStack controller
 
-A part of the generic controllers we have an special one that act as a bridge and reconcile the provider specific configuration to create the necessary infrastructure for a Kubernetes cluster. This controller provision, update and delete all resources on the provider API.
+As part of the generic controllers we have this special one. It acts as a bridge and reconciles the provider specific configuration to create the necessary infrastructure for a Kubernetes cluster. This controller provisions, updates and deletes all resources on the provider API.
 
 #### Cluster apps operator
 
-This simple operator takes care of the default apps has to be created for a cluster and the right configuration that need to be created. Assets like the certificate authority or the domain base are provided by it via a configmap.
+This simple operator takes care of the default apps required for a cluster and the right configuration for their creation. Assets like the certificate authority or the domain base are provided by it via a configmap.
 
 ## Giant Swarm on-premises workload cluster(s)
 
@@ -81,7 +81,7 @@ This simple operator takes care of the default apps has to be created for a clus
 
 #### Cloud Provider OpenStack
 
-This is the controller that is deployed inside all OpenStack clusters in order to provide Kubernetes integration. It listen to services and ingresses to provide load balancers dynamically for the workload clusters. 
+This is the controller that is deployed inside all OpenStack clusters in order to provide Kubernetes integration. It listens to services and ingresses to provide load balancers dynamically for the workload clusters. 
 
 #### Kube State Metrics
 
