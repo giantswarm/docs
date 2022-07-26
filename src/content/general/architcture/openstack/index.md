@@ -85,7 +85,7 @@ This is the controller that is deployed inside all OpenStack clusters in order t
 
 #### Kube State Metrics
 
-kube-state-metrics (KSM) is a simple service that listens to the Kubernetes API server and generates metrics about the state of the objects. (See examples in the Metrics section below.) It is not focused on the health of the individual Kubernetes components, but rather on the health of the various objects inside, such as deployments, nodes and pods.
+kube-state-metrics (KSM) is a simple service that listens to the Kubernetes API server and generates metrics about the state of the objects (see examples in the Metrics section below). It does not focus on the health of the individual Kubernetes components, but rather on the health of the various objects inside, such as deployments, nodes and pods.
 
 #### Cilium
 
@@ -93,11 +93,11 @@ Cilium is open source software for providing and transparently network connectiv
 
 #### Cert exporter
 
-It is a Prometheus exporter that exposes a set of metrics regarding certificates and tokens so we can be aware in case any of those expire.
+It is a Prometheus exporter that exposes a set of metrics regarding certificates and tokens. It enables us to stay ahead of certificates expiration and take care of them in a timely fashion..
 
 #### Net exporter
 
-Net exporter is a Prometheus exporter for exposing network information in that runs as daemon set in every node and track network and DNS errors.
+Net exporter is a Prometheus exporter for exposing network information. It that runs as a daemon set in every node and tracks network and DNS errors.
 
 #### Metric server
 
@@ -109,9 +109,9 @@ It is a Prometheus exporter for hardware and OS metrics exposed by *NIX kernels.
 
 ## Workload segregation and account model
 
-When starting out with our platform many of our customers are at the beginning of their journey to a distributed and highly resilient micro-service architecture. This is often a radically different approach to organizing and managing computing resources. This is mostly about abstracting the complexity of cluster creation and management. It opens up new possibilities on how to isolate applications and access to the infrastructure. The two most common reasons for customers to segregate applications over different clusters and/or accounts are security and separation of concerns.
+When starting out with our platform many of our customers are at the beginning of their journey to a distributed and highly resilient micro-service architecture. This is often a radically different approach to organizing and managing computing resources than the one used in the past. It is mostly about abstracting the complexity of cluster creation and management. It opens up new possibilities on isolating applications and gaining access to the infrastructure. The two most common reasons for customers to segregate applications over different clusters and/or accounts are security and separation of concerns.
 
-Once Kubernetes arrived on the scene, the promise of having all your applications in a single cluster seemed invaluable, as container isolation, namespaces, and other Kubernetes features allow you to isolate the workloads. But as time passed several drawbacks were found that discourage this approach. Container isolation is not perfect, in the end workloads still share a kernel and some cluster components that can affect each other. Though it can be mitigated using Role-Based Access Control (RBAC), Network Policies or Pod Security Policies, it requires expertise and knowledge. At the same time, as you continue to add more and more applications into the cluster, the traffic increases. This potentially affects DNS latency, ingress handling, or the attack surface. In addition, having multiple tenants in the cluster increases the possibility to affect each other when a central component is tuned for a specific scenario. Potentially, it can significantly impact the cluster lifecycle, i.e. upgrades, due to the extra effort in communication and planning across various teams.
+Once Kubernetes arrived on the scene, the promise of having all your applications in a single cluster seemed invaluable, as container isolation, namespaces, and other Kubernetes features allow you to isolate the workloads. But as time passed several drawbacks were found that discourage this approach. Container isolation is not perfect, in the end workloads still share a kernel and some cluster components that can affect each other. Though it can be mitigated using Role-Based Access Control (RBAC), Network Policies or Pod Security standards (and the Pod Security Policies they are replacing), it requires expertise and knowledge. At the same time, as you continue to add more and more applications into the cluster, the traffic increases. This potentially affects DNS latency, ingress handling, or the attack surface. In addition, having multiple tenants in the cluster increases the possibility to affect each other when a central component is tuned for a specific scenario. Potentially, it can significantly impact the cluster lifecycle, i.e. upgrades, due to the extra effort in communication and planning across various teams.
 
 All of this is not to say that segregation inside a cluster should be avoided but to emphasize that there are considerations that need to be weighed, before deciding on how to group tenants, applications and technical requirements.
 
@@ -129,7 +129,7 @@ Having said that, there is no general rule to split workloads between AWS accoun
 
 ### Worker node size
 
-When it comes to sizing your worker nodes, there should generally be a preference for more, smaller nodes vs less, bigger ones. However, avoid node sizes of less than 4 cores and 8 GB RAM.
+When it comes to sizing your worker nodes, there should generally be a preference for more, smaller nodes vs bigger ones. However, avoid node sizes of less than 4 cores and 8 GB RAM.
 
 To determine the right sizing in terms of cores and RAM, you need to know what kind of workloads will be run on the cluster and how much resources they need. Note that even if average load might be low, you should also account for peak load times as well as startup-peaks (i.e. some apps need a lot of resources just for their startup).
 
@@ -137,7 +137,7 @@ To determine the right sizing in terms of cores and RAM, you need to know what k
 
 One of the golden rules of Kubernetes is proper resource assignment. This is hard to do, especially for developers which are not used to profiling their applications under different scenarios. But the resource definition is a [key configuration](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) part that allows Kubernetes to schedule, limit, control and scale the applications. So our recommendation [is to define resources](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) for most of your applications running in the clusters. That said, there is some controversy about defining CPU limits due to how Kernels manage the CPU quota assigned to the containers. There have been some fixes in the latest Kernel versions which improve the situation. To learn more, we encourage you to [check this Kubecon video](https://www.youtube.com/watch?v=UE7QX98-kO0) or talk to your Account Engineer.
 
-Further, to enforce the definition of resources, [Limit Ranges](https://kubernetes.io/docs/concepts/policy/limit-range/) helps to set the defaults once a user forgets to add those. At the same time, [Resource Quotas](https://kubernetes.io/docs/concepts/policy/resource-quotas/) enables cluster operators to assign a predetermined amount of resources to each namespace. Thus, protecting other workloads.
+Further, to enforce the definition of resources, [Limit Ranges](https://kubernetes.io/docs/concepts/policy/limit-range/) helps set the defaults if a user forgets to add those. At the same time, [Resource Quotas](https://kubernetes.io/docs/concepts/policy/resource-quotas/) enables cluster operators to assign a predetermined amount of resources to each namespace. Thus, protecting other workloads.
 
 ## Cluster authentication
 
