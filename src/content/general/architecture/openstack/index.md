@@ -39,11 +39,27 @@ Internally, Cluster API (CAPI) use kubeadm to configure all the machines accordi
 
 ## Giant Swarm Management Cluster
 
-As we are fully convinced of Kubernetes as a platform for building platforms, we build all our management clusters based on Kubernetes.
+As we are fully convinced of Kubernetes as a platform for building platforms, we build all our management clusters based on Kubernetes. Here we are going to explain the way those are provisioned and managed, and the different components we run on top of them.
 
 ### Bootstrapping
 
-The initial deployment entails the creation of that management cluster in a defined region. After the management cluster is ready we deploy all our automation taking advantage of Kubernetes primitives and using the same philosophy we advocate to our customers.
+The initial deployment entails the creation of that management cluster in a defined region. We have a built a tool that performs all steps need to create a cluster and convert into a management cluster.
+
+The process involves several phase that we resume briefly in the following list:
+
+1. Configure the credentials for the provider chose.
+2. Add the installation details into the config management system (Github repo).
+3. Create a bootstrap cluster using [kind]().
+4. Install the Cluster API (CAPI) controllers on it.
+5. Create the management CAPI resources on the bootstrapping cluster to trigger the provision of the real infrastructure on the provider. It creates the actual Kubernetes cluster in the customer infrastructure.
+6. Move the Cluster API controllers and resources to the real management cluster in the end provider.
+7. Deploy our App platform on top of the management cluster.
+8. Deploy our monitoring system on top of the management cluster.
+9. Deploy all additional operators that enhances the API (organizations, RBAC, etc).
+10. Configure and harden the cluster.
+11. Run and test the management cluster functionality.
+
+After the management cluster is ready we deliver all the details to allow the customer to access the Management API.
 
 ### Components
 
