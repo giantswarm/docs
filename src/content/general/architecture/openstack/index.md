@@ -1,6 +1,6 @@
 ---
-linkTitle: Openstack
-title: The Giant Swarm Openstack architecture
+linkTitle: OpenStack
+title: The Giant Swarm OpenStack architecture
 description: Architecture overview explaining how OpenStack Cluster API implementation is done.
 weight: 30
 menu:
@@ -8,7 +8,7 @@ menu:
     parent: general-architecture
 last_review_date: 2022-02-02
 user_questions:
-  - Do you run Openstack?
+  - Do you run OpenStack?
 aliases:
   - /basics/openstack-architecture/
 owner:
@@ -63,7 +63,7 @@ After the management cluster is ready we deliver all the details to allow the cu
 
 ### Components
 
-Giant Swarm leverages the concept of “Operators" to control all resources that clusters need as “Custom Resources”. At the same time customers can also use the Kubernetes Control Plane API to manage their clusters and/or applications.
+There are three types of components running in the management cluster. The first one is the "operators" that extend the API allowing us to manage new entities (like a Cluster or an App) as if they were built-in resources. Second ones are the admission controllers that validate and default the resources our customer manage in the platform. Last one are the operations services (monitoring, security, ...) that enable our staff to maintain all the workload cluster and applications up and running seamlessly.
 
 #### Organization operator
 
@@ -73,15 +73,15 @@ To learn more about organizations please read [the related documentation](https:
 
 #### RBAC operator
 
-We have created a RBAC operator with the goal of maintaining up to date  permissions  between the different organization and users on the management cluster.
+We have created an RBAC operator with the goal of maintaining up to date permissions between the different organization and users on the management cluster so [you can isolate your teams and ensure access level in granular way](https://docs.giantswarm.io/ui-api/management-api/authorization/).
 
 #### App operator
 
-The [App Platform](https://docs.giantswarm.io/app-platform/) is a system we have created to deliver cloud native apps in multi cluster fashion. App operator is the main code running in management cluster to manage App custom resource and make sure the applications and configuration are delivered correctly across the different workload clusters.
+The [App Platform](https://docs.giantswarm.io/app-platform/) is a system we have built to deliver cloud native apps in multi cluster fashion. App operator is the main code running in management cluster to manage App custom resource and make sure the applications and configuration are delivered correctly across the different workload clusters.
 
 #### Cluster API operators
 
-In [Cluster API]() there is a set of generic operators that all Cluster API providers runs to address the common bootstrap and management actions on a Kubernetes cluster lifecycle. There is `Kubeadm Bootstrap`controller which is in charge of provider a cloud init configuration to turn a machine into a Kubernetes node. Also there is a `Kubeadm Control Plane` controller that manages the lifecycle of the control plane nodes and provide access to the API. And finally we have `CAPI manager` controller that manages cluster and machine resources.
+In [Cluster API](https://cluster-api.sigs.k8s.io/) there is a set of generic operators that all Cluster API providers runs to address the common bootstrap and management actions on a Kubernetes cluster lifecycle. There is `Kubeadm Bootstrap`controller which is in charge of provider a cloud init configuration to turn a machine into a Kubernetes node. Also there is a `Kubeadm Control Plane` controller that manages the lifecycle of the control plane nodes and provide access to the API. And finally we have `CAPI manager` controller that manages cluster and machine resources.
 
 #### Cluster OpenStack controller
 
@@ -135,9 +135,9 @@ Hence, the key is to find the right balance between the new Cloud Native approac
 
 Above, we see several isolation layers in one place. Our automation creates a single VPC by cluster, with private subnets for the worker nodes and secure configuration by default. At the same time, the nodes run a container-ready operating system created with security and reliability in mind. Next, our base Kubernetes setup provides [Network Polices](https://kubernetes.io/docs/concepts/services-networking/network-policies/) and [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) to restrict communication to core components accompanying with a very strict policy to ensure containers do not gain extended privileges unintentionally.
 
-Having said that, there is no general rule to split workloads between AWS accounts, clusters or namespaces. It highly depends on the customers policies in effect and access requirements among others. However, we can give some advice on where to start.
+Having said that, there is no general rule to split workloads between Open Stack projects, clusters or namespaces. It highly depends on the customers policies in effect and access requirements among others. However, we can give some advice on where to start.
 
-- Use AWS accounts (and other AWS tools) to establish different access models based on environments. You could have an account **A** for production, where users have no rights, and audit policies and logging systems track every single action. And you could have an account **B**, where developers can get access to debug and test their applications or understand the infrastructure that holds it.
+- Use OpenStack projects to establish different access models based on environments. You could have an account **A** for production, where users have no rights, and audit policies and logging systems track every single action. And you could have an account **B**, where developers can get access to debug and test their applications or understand the infrastructure that holds it.
 - Segregate applications based on responsibility and volume of services included. If a team or department owns a service platform composed of several components, it makes sense to use a single cluster for it. That way, upgrades to the cluster or its shared components, like Ingress Controller or DNS servers, do not interfere with other applications which reduces overall complexity.
 - Divide different services of single systems into different [namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/). It allows to control resources, network communication and access to those in finer granularity.
 - Automate and abstract your workload lifecycle. Defining the configuration of applications and the underlying [infrastructure as code](https://en.wikipedia.org/wiki/Infrastructure_as_code) has become the de facto standard to manage complex systems. There are plenty of tools nowadays to declare your application configuration as code, rely on them and discard manual changes. Think about the possibility of having to migrate your application from one cluster to another. Ideally, such a change should imply just a single config line change. Kubernetes helps to define [Cloud Native Applications](https://12factor.net/) but there are some parts that still reside on the developer side.
@@ -171,7 +171,7 @@ Since we provide a **managed** Kubernetes platform, Giant Swarm has to be aware 
 
 Our on-call engineers will be paged in case anything happens to the cluster or its base components and they will respond to the incident based on the run-books we have created based on years of operating Cloud Native systems. In case there is an improvement to be made, a post mortem is created and a solution will be implemented before long. Any patch or fix added to the platform will be released to all customers.
 
-Please note, while this document went into extensive details with regards to how Giant Swarm runs Kubernetes on AWS, we support [Azure]({{< relref "/general/architecture/azure" >}}) as well as [Bare Metal]({{< relref "/general/architecture/on-premises" >}}). For more details, please [contact us](https://www.giantswarm.io/contact).
+Please note, while this document went into extensive details with regards to how Giant Swarm runs Kubernetes on OpenStack, we support [other providers]({{< relref "/general/architecture" >}}) as well. For more details, please [contact us](https://www.giantswarm.io/contact).
 
 ## Further Reading
 
