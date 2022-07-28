@@ -15,10 +15,10 @@ description: Release notes for AWS workload cluster release v16.5.1, published o
 title: Workload cluster release v16.5.1 for AWS
 ---
 
-This is a patch release to downgrade Cert Manager to release 2.13.0 due to breaking changes fo API Versions for older k8s releases.
+This is a patch release to downgrade Cert Manager to release 2.11.0 due to breaking changes fo API Versions for older k8s releases.
 
 ## Change details
 
-### cert-manager [2.13.0](https://github.com/giantswarm/cert-manager-app/releases/tag/v2.13.0)
+### cert-manager [2.11.0](https://github.com/giantswarm/cert-manager-app/releases/tag/v2.11.0)
 
 #### Revert breaking changes from Cert Manager `2.15.0` update with API versions
