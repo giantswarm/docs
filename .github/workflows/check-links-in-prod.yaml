@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Pull images
-        run: docker pull linkchecker/linkchecker
+        run: docker pull ghcr.io/linkchecker/linkchecker:latest
 
       - name: Check links
         run: |
