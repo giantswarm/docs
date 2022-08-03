@@ -61,67 +61,108 @@ After the management cluster is ready we deliver all the details to the customer
 
 ### Components
 
-There are three types of components running in the management cluster: the operators, the admission controllers and the operational services. The first one, operators, extend the API allowing our customers to manage new entities (like a Cluster or an App) as if they were built-in resources. The second one, admission controllers, validate and default the resources to make better the user experience. And the last one, the operational services like monitoring or security, enable our staff to maintain all the workload cluster and applications up and running securely and seamlessly.
+There are two type of components...
 
-#### Organization operator
+#### Generic Components
+
+The generic components run in all of our clusters does not matter if it is a management cluster or a workload cluster.
+
+##### Container Network Interface (CNI)
+
+The Container Network Interface is the standard for writing plugins to configure network interfaces in Linux containers, and hence Kubernetes.
+
+We have chosen Cilium as CNI implementation for several reasons. It is open source solution that provides connectivity between container in reliable and secure way. Cilium operates at Layer 3/4 providing traditional networking and security services. Additionally it protects and secure applications offering different enhanced features on top. In the workload cluster is used as container network only.
+
+##### Kube State Metrics
+
+kube-state-metrics (KSM) is a simple service that listens to the Kubernetes API server and generates metrics about the state of the objects (see examples in the Metrics section below). It does not focus on the health of the individual Kubernetes components, but rather on the health of the various objects inside, such as deployments, nodes and pods.
+
+
+##### Cert exporter
+
+It is a Prometheus exporter that exposes a set of metrics regarding certificates and tokens. It enables us to stay ahead of certificates expiration and take care of them in a timely fashion..
+
+##### Net exporter
+
+Net exporter is a Prometheus exporter for exposing network information. It that runs as a daemon set in every node and tracks network and DNS errors.
+
+##### Metric server
+
+Metrics Server is a component that implements the [Kubernetes Metrics API](https://kubernetes.io/docs/tasks/debug/debug-cluster/resource-metrics-pipeline/#metrics-api) to provide basic data of the container running in the cluster.
+
+##### Node exporter
+
+It is a Prometheus exporter for hardware and OS metrics exposed by *NIX kernels.
+
+#### Giant Swarm Components
+
+Giant Swarm has developed a full fledged platform that enhances customer experience managing cluster and apps in top of Kubernetes. 
+
+There are three types of components running on top of the management clusters: the operators, the admission controllers and the operational services. The first one, operators, extend the API allowing our customers to manage new entities (like a Cluster or an App) as if they were built-in resources. The second one, admission controllers, validate and default the resources to make better the user experience. And the last one, the operational services like monitoring or security, enable our staff to maintain all the workload cluster and applications up and running securely and seamlessly.
+
+##### Operators (Custom Resource plus controller)
+
+<TODO: Explain Kubernetes pattern>
+
+*Organization operator*
 
 This operator is in charge of reconcile `Organization` custom resources. The functionality of the operator is pretty straightforward. It takes care of create and delete the organization namespace when the given resource is created.
 
 To learn more about organizations please read [the related documentation](https://docs.giantswarm.io/general/organizations/). 
 
-#### RBAC operator
+*RBAC operator*
 
 We have created an RBAC operator with the goal of maintaining up to date permissions between the different organization and users on the management cluster so [you can isolate your teams and ensure access level in granular way](https://docs.giantswarm.io/ui-api/management-api/authorization/).
 
-#### App operator
+*DNS operator*
+
+*Deletion Blocker Operator*
+
+*App operator*
 
 The [App Platform](https://docs.giantswarm.io/app-platform/) is a system we have built to deliver cloud native apps in multi cluster fashion. App operator is the main code running in management cluster to manage App custom resource and make sure the applications and configuration are delivered correctly across the different workload clusters.
 
-#### Cluster API operators
+*Cluster API operators*
 
-In [Cluster API](https://cluster-api.sigs.k8s.io/) there is a set of generic operators that all Cluster API providers runs to address the common bootstrap and management actions on a Kubernetes cluster lifecycle. There is `Kubeadm Bootstrap`controller which is in charge of provider a cloud init configuration to turn a machine into a Kubernetes node. Also there is a `Kubeadm Control Plane` controller that manages the lifecycle of the control plane nodes and provide access to the API. And finally we have `CAPI manager` controller that manages cluster and machine resources.
+In [Cluster API](https://cluster-api.sigs.k8s.io/) there is a set of generic operators that all Cluster API providers run to address the common bootstrap and management actions on a Kubernetes cluster lifecycle which include: 
 
-#### Cluster OpenStack controller
+- `Kubeadm Bootstrap`controller which is in charge of providing a cloud init configuration to turn a machine into a Kubernetes node. 
+- `Kubeadm Control Plane` controller that manages the lifecycle of the control plane nodes and provides access to the API. 
+- `CAPI manager` controller that manages cluster and machine resources.
 
-As part of the generic controllers we have this special one. It acts as a bridge and reconciles the provider specific configuration to create the necessary infrastructure for a Kubernetes cluster. This controller provisions, updates and deletes all resources on the provider API.
+*Cluster OpenStack controller*
 
-#### Cluster apps operator
+As part of the generic controllers we have this special one. It acts as a bridge and reconciles the provider specific configuration to create the necessary infrastructure for a Kubernetes cluster. This controller provisions, updates and deletes all resources on the provider API. It also enriches Kubernetes node info with infrastructure relevant information. This is helpful for application administrators to implement affinity/ anti-affinity rules which reflect underlying availability zone metadata. It is mandatory for the Cluster API provisioning workflow to get known infrastructure specific machine metadata.
+
+*Cluster apps operator*
 
 This simple operator takes care of the default apps required for a cluster and the right configuration for their creation. Assets like the certificate authority or the domain base are provided by it via a configmap.
 
-## Giant Swarm on-premises workload cluster(s)
+##### Admission controllers
 
-### Components
+<TODO: Fill it with the different admission controllers>
 
-#### Cloud Provider OpenStack
+##### Operational services
 
-This is the controller that is deployed inside all OpenStack clusters in order to provide Kubernetes integration. It listens to services and ingresses to provide load balancers dynamically for the workload clusters. 
+*Authentication services*
 
-#### Kube State Metrics
+Giant Swarm configures the clusters in a secure way. [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) is enabled by default and our customers can create their own roles or use the ones predefined in the cluster to gain access to manage their workloads. The concept of authenticating users and groups does not exist in Kubernetes, so it relies on an external solution to authenticate the users (e.g. via X.509 certificates or [OIDC](https://en.wikipedia.org/wiki/OpenID_Connect)). Although our platform allows users to access the cluster using certificates, we recommend using an OIDC compliant Identity Provider, such as Active Directory, to provide authentication. There are several advantages to using an OIDC provider, such as short lived tokens or taking advantage of existing user and group information. Once authentication is sorted out, the authorization part is handled with RBAC. RBAC, along with namespaces, lets users define granular permissions for each user or group (given by OIDC or certs). This [guide]({{< relref "/getting-started/rbac-and-psp" >}}) will walk you through it.
 
-kube-state-metrics (KSM) is a simple service that listens to the Kubernetes API server and generates metrics about the state of the objects (see examples in the Metrics section below). It does not focus on the health of the individual Kubernetes components, but rather on the health of the various objects inside, such as deployments, nodes and pods.
+*Secure services*
 
-#### Cilium
+Within the cluster, Giant Swarm has set up a secure baseline using [Pod Security Policies (PSPs)](https://kubernetes.io/docs/concepts/policy/pod-security-policy/), currently phased out and moving to [Pod Security Admission(PSA)](https://kubernetes.io/docs/concepts/security/pod-security-admission/) and [Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/). Both Pod Security Policies and Pod Security Admission are the Kubernetes resource that configures the sensitive aspects of your applications. By default, users and workloads running in Giant Swarm clusters, are assigned a restrictive policy that disallows running containers as root or mounting host path volumes (these are just two examples). Cluster operators must enable applications to have higher security privileges on a case by case basis. In the aforementioned [guide]({{< relref "/getting-started/rbac-and-psp#pod-security-policies" >}}) we also explain how to configure tailored PSPs for you applications.
 
-Cilium is open source software for providing and transparently network connectivity in Kubernetes clusters. Cilium operates at Layer 3/4 to provide traditional networking and security services. Additionally it protects and secure applications offering different enhanced features on top. In the workload cluster is used as container network only.
+In addition to the security policies, Network Policies define the communication policies to and from the applications in each namespace. All components to run a cluster provided by Giant Swarm come with strict policies by default. Our managed namespaces (“kube-system” and “giantswarm”) block all traffic in general, so only expected and specifically configured routes and ports are enabled. Customers can follow this approach and deny all communications by default in their application namespaces forcing each workload to define which communications are allowed. This [guide]({{< relref "/getting-started/network-policies" >}}) helps to understand how such a dynamic firewall works.
 
-#### Cert exporter
+*Monitoring services*
 
-It is a Prometheus exporter that exposes a set of metrics regarding certificates and tokens. It enables us to stay ahead of certificates expiration and take care of them in a timely fashion..
+Since we provide a **managed** Kubernetes platform, Giant Swarm has to be aware of state and unexpected events regarding the platform. For that reason our management clusters run a [monitoring stack](https://www.giantswarm.io/blog/monitoring-on-demand-kubernetes-clusters-with-prometheus) to watch all workload clusters and ensure all managed components are healthy. In each workload cluster there are several [exporters](https://prometheus.io/docs/instrumenting/exporters/) that gather and forward the metrics for each component.
 
-#### Net exporter
+Our on-call engineers will be paged in case anything happens to the cluster or its base components and they will respond to the incident based on the run-books we have created based on years of operating Cloud Native systems. In case there is an improvement to be made, a post mortem is created and a solution will be implemented before long. Any patch or fix added to the platform will be released to all customers.
 
-Net exporter is a Prometheus exporter for exposing network information. It that runs as a daemon set in every node and tracks network and DNS errors.
+Please note, while this document went into extensive details with regards to how Giant Swarm runs Kubernetes on OpenStack, we support [other providers]({{< relref "/general/architecture" >}}) as well. For more details, please [contact us](https://www.giantswarm.io/contact).
 
-#### Metric server
-
-Metrics Server is a component that implements the [Kubernetes Metrics API](https://kubernetes.io/docs/tasks/debug/debug-cluster/resource-metrics-pipeline/#metrics-api) to provide basic data of the container running in the cluster.
-
-#### Node exporter
-
-It is a Prometheus exporter for hardware and OS metrics exposed by *NIX kernels.
-
-## Workload segregation and account model
+## Workload segregation and account model <I AM THINKING ON MOVING TO A STANDALONE PAGE AND UPDATE IT>
 
 When starting out with our platform many of our customers are at the beginning of their journey to a distributed and highly resilient micro-service architecture. This is often a radically different approach to organizing and managing computing resources than the one used in the past. It is mostly about abstracting the complexity of cluster creation and management. It opens up new possibilities on isolating applications and gaining access to the infrastructure. The two most common reasons for customers to segregate applications over different clusters and/or accounts are security and separation of concerns.
 
@@ -146,29 +187,15 @@ When it comes to sizing your worker nodes, there should generally be a preferenc
 
 To determine the right sizing in terms of cores and RAM, you need to know what kind of workloads will be run on the cluster and how much resources they need. Note that even if average load might be low, you should also account for peak load times as well as startup-peaks (i.e. some apps need a lot of resources just for their startup).
 
-## Control resource assignment
+
+
+## Control resource assignment <I AM THINKING ON MOVING TO A STANDALONE PAGE AND UPDATE IT>
 
 One of the golden rules of Kubernetes is proper resource assignment. This is hard to do, especially for developers which are not used to profiling their applications under different scenarios. But the resource definition is a [key configuration](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) part that allows Kubernetes to schedule, limit, control and scale the applications. So our recommendation [is to define resources](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) for most of your applications running in the clusters. That said, there is some controversy about defining CPU limits due to how Kernels manage the CPU quota assigned to the containers. There have been some fixes in the latest Kernel versions which improve the situation. To learn more, we encourage you to [check this Kubecon video](https://www.youtube.com/watch?v=UE7QX98-kO0) or talk to your Account Engineer.
 
 Further, to enforce the definition of resources, [Limit Ranges](https://kubernetes.io/docs/concepts/policy/limit-range/) helps set the defaults if a user forgets to add those. At the same time, [Resource Quotas](https://kubernetes.io/docs/concepts/policy/resource-quotas/) enables cluster operators to assign a predetermined amount of resources to each namespace. Thus, protecting other workloads.
 
-## Cluster authentication
 
-Giant Swarm configures the clusters in a secure way. [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) is enabled by default and our customers can create their own roles or use the ones predefined in the cluster to gain access to manage their workloads. The concept of authenticating users and groups does not exist in Kubernetes, so it relies on an external solution to authenticate the users (e.g. via X.509 certificates or [OIDC](https://en.wikipedia.org/wiki/OpenID_Connect)). Although our platform allows users to access the cluster using certificates, we recommend using an OIDC compliant Identity Provider, such as Active Directory, to provide authentication. There are several advantages to using an OIDC provider, such as short lived tokens or taking advantage of existing user and group information. Once authentication is sorted out, the authorization part is handled with RBAC. RBAC, along with namespaces, lets users define granular permissions for each user or group (given by OIDC or certs). This [guide]({{< relref "/getting-started/rbac-and-psp" >}}) will walk you through it.
-
-## Secure your workloads
-
-Within the cluster, Giant Swarm has set up a secure baseline using [Pod Security Policies (PSPs)](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) and [Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/). Pod Security Policies are the Kubernetes resource that configures the sensitive aspects of your applications. By default, users and workloads running in Giant Swarm clusters, are assigned a restrictive policy that disallows running containers as root or mounting host path volumes (these are just two examples). Cluster operators must enable applications to have higher security privileges on a case by case basis. In the aforementioned [guide]({{< relref "/getting-started/rbac-and-psp#pod-security-policies" >}}) we also explain how to configure tailored PSPs for you applications.
-
-In addition to the security policies, Network Policies define the communication policies to and from the applications in each namespace. All components to run a cluster provided by Giant Swarm come with strict policies by default. Our managed namespaces (“kube-system” and “giantswarm”) block all traffic in general, so only expected and specifically configured routes and ports are enabled. Customers can follow this approach and deny all communications by default in their application namespaces forcing each workload to define which communications are allowed. This [guide]({{< relref "/getting-started/network-policies" >}}) helps to understand how such a dynamic firewall works.
-
-## Observability
-
-Since we provide a **managed** Kubernetes platform, Giant Swarm has to be aware of state and unexpected events regarding the platform. For that reason our management clusters run a [monitoring stack](https://www.giantswarm.io/blog/monitoring-on-demand-kubernetes-clusters-with-prometheus) to watch all workload clusters and ensure all managed components are healthy. In each workload cluster there are several [exporters](https://prometheus.io/docs/instrumenting/exporters/) that gather and forward the metrics for each component.
-
-Our on-call engineers will be paged in case anything happens to the cluster or its base components and they will respond to the incident based on the run-books we have created based on years of operating Cloud Native systems. In case there is an improvement to be made, a post mortem is created and a solution will be implemented before long. Any patch or fix added to the platform will be released to all customers.
-
-Please note, while this document went into extensive details with regards to how Giant Swarm runs Kubernetes on OpenStack, we support [other providers]({{< relref "/general/architecture" >}}) as well. For more details, please [contact us](https://www.giantswarm.io/contact).
 
 ## Further Reading
 
