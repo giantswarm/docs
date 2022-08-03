@@ -61,7 +61,7 @@ After the management cluster is ready we deliver all the details to the customer
 
 ### Components
 
-There are three types of components running in the management cluster. The first one is the "operators" that extend the API allowing us to manage new entities (like a Cluster or an App) as if they were built-in resources. Second ones are the admission controllers that validate and default the resources our customer manage in the platform. Last one are the operations services (monitoring, security, ...) that enable our staff to maintain all the workload cluster and applications up and running seamlessly.
+There are three types of components running in the management cluster: the operators, the admission controllers and the operational services. The first one, operators, extend the API allowing our customers to manage new entities (like a Cluster or an App) as if they were built-in resources. The second one, admission controllers, validate and default the resources to make better the user experience. And the last one, the operational services like monitoring or security, enable our staff to maintain all the workload cluster and applications up and running securely and seamlessly.
 
 #### Organization operator
 
@@ -131,15 +131,14 @@ All of this is not to say that segregation inside a cluster should be avoided bu
 
 Hence, the key is to find the right balance between the new Cloud Native approach and the old school hard isolation.
 
-Above, we see several isolation layers in one place. Our automation creates a single VPC by cluster, with private subnets for the worker nodes and secure configuration by default. At the same time, the nodes run a container-ready operating system created with security and reliability in mind. Next, our base Kubernetes setup provides [Network Polices](https://kubernetes.io/docs/concepts/services-networking/network-policies/) and [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) to restrict communication to core components accompanying with a very strict policy to ensure containers do not gain extended privileges unintentionally.
+Above, we see several isolation layers in one place. Our automation can use a single project by cluster, with private subnets for the worker nodes and secure configuration by default. At the same time, the nodes run a container-ready operating system created with security and reliability in mind. Next, our base Kubernetes setup provides [Network Polices](https://kubernetes.io/docs/concepts/services-networking/network-policies/) and [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) to restrict communication to core components accompanying with a very strict policy to ensure containers do not gain extended privileges unintentionally.
 
 Having said that, there is no general rule to split workloads between Open Stack projects, clusters or namespaces. It highly depends on the customers policies in effect and access requirements among others. However, we can give some advice on where to start.
 
-- Use OpenStack projects to establish different access models based on environments. You could have an account **A** for production, where users have no rights, and audit policies and logging systems track every single action. And you could have an account **B**, where developers can get access to debug and test their applications or understand the infrastructure that holds it.
+- Use OpenStack projects to establish different access models based on environments. You could have a project **A** for production, where users have no rights, and audit policies and logging systems track every single action. And you could have a project **B**, where developers can get access to debug and test their applications or understand the infrastructure that holds it.
 - Segregate applications based on responsibility and volume of services included. If a team or department owns a service platform composed of several components, it makes sense to use a single cluster for it. That way, upgrades to the cluster or its shared components, like Ingress Controller or DNS servers, do not interfere with other applications which reduces overall complexity.
 - Divide different services of single systems into different [namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/). It allows to control resources, network communication and access to those in finer granularity.
 - Automate and abstract your workload lifecycle. Defining the configuration of applications and the underlying [infrastructure as code](https://en.wikipedia.org/wiki/Infrastructure_as_code) has become the de facto standard to manage complex systems. There are plenty of tools nowadays to declare your application configuration as code, rely on them and discard manual changes. Think about the possibility of having to migrate your application from one cluster to another. Ideally, such a change should imply just a single config line change. Kubernetes helps to define [Cloud Native Applications](https://12factor.net/) but there are some parts that still reside on the developer side.
-
 
 ### Worker node size
 
