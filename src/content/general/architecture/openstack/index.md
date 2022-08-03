@@ -84,7 +84,7 @@ It is a Prometheus exporter that exposes a set of metrics regarding certificates
 
 ##### Net exporter
 
-Net exporter is a Prometheus exporter for exposing network information. It that runs as a daemon set in every node and tracks network and DNS errors.
+Net exporter is a Prometheus exporter for exposing network information. It runs as a daemonset in every node to track network and DNS errors.
 
 ##### Metric server
 
@@ -172,7 +172,11 @@ All of this is not to say that segregation inside a cluster should be avoided bu
 
 Hence, the key is to find the right balance between the new Cloud Native approach and the old school hard isolation.
 
-Above, we see several isolation layers in one place. Our automation can use a single project by cluster, with private subnets for the worker nodes and secure configuration by default. At the same time, the nodes run a container-ready operating system created with security and reliability in mind. Next, our base Kubernetes setup provides [Network Polices](https://kubernetes.io/docs/concepts/services-networking/network-policies/) and [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) to restrict communication to core components accompanying with a very strict policy to ensure containers do not gain extended privileges unintentionally.
+In order to address these concerns, we offer several isolation layers in one place: 
+
+- **Network**: Our automation creates a single VPC by cluster, with private subnets for the worker nodes and secure configuration by default. 
+- **Operating System**: The nodes run a container-ready operating system created with security and reliability in mind. 
+- **Kubernetes**: Our base Kubernetes setup provides [Network Polices](https://kubernetes.io/docs/concepts/services-networking/network-policies/) and [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) to restrict communication to core components accompanying with a very strict policy to ensure containers do not gain extended privileges unintentionally.
 
 Having said that, there is no general rule to split workloads between Open Stack projects, clusters or namespaces. It highly depends on the customers policies in effect and access requirements among others. However, we can give some advice on where to start.
 
@@ -187,15 +191,11 @@ When it comes to sizing your worker nodes, there should generally be a preferenc
 
 To determine the right sizing in terms of cores and RAM, you need to know what kind of workloads will be run on the cluster and how much resources they need. Note that even if average load might be low, you should also account for peak load times as well as startup-peaks (i.e. some apps need a lot of resources just for their startup).
 
-
-
 ## Control resource assignment <I AM THINKING ON MOVING TO A STANDALONE PAGE AND UPDATE IT>
 
-One of the golden rules of Kubernetes is proper resource assignment. This is hard to do, especially for developers which are not used to profiling their applications under different scenarios. But the resource definition is a [key configuration](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) part that allows Kubernetes to schedule, limit, control and scale the applications. So our recommendation [is to define resources](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) for most of your applications running in the clusters. That said, there is some controversy about defining CPU limits due to how Kernels manage the CPU quota assigned to the containers. There have been some fixes in the latest Kernel versions which improve the situation. To learn more, we encourage you to [check this Kubecon video](https://www.youtube.com/watch?v=UE7QX98-kO0) or talk to your Account Engineer.
+One of the golden rules of Kubernetes is proper resource assignment. This is hard to do, especially for developers who are not used to profiling their applications under different scenarios. Regardless, the [resource definition](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) is a key configuration part that allows Kubernetes to schedule, limit, control and scale the applications. So our recommendation [is to define resources](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) for most of your applications running in the clusters. That said, there is some controversy about defining CPU limits due to how Kernels manage the CPU quota assigned to the containers. There have been fixes in the latest Kernel versions which improve the situation. To learn more, we encourage you to [check this Kubecon video](https://www.youtube.com/watch?v=UE7QX98-kO0) or talk to your Account Engineer.
 
-Further, to enforce the definition of resources, [Limit Ranges](https://kubernetes.io/docs/concepts/policy/limit-range/) helps set the defaults if a user forgets to add those. At the same time, [Resource Quotas](https://kubernetes.io/docs/concepts/policy/resource-quotas/) enables cluster operators to assign a predetermined amount of resources to each namespace. Thus, protecting other workloads.
-
-
+Furthermore, to enforce the definition of resources, [Limit Ranges](https://kubernetes.io/docs/concepts/policy/limit-range/) helps set the defaults if a user forgets to add those. At the same time, [Resource Quotas](https://kubernetes.io/docs/concepts/policy/resource-quotas/) enable cluster operators to assign a predetermined amount of resources to each namespace, thus, protecting other workloads.
 
 ## Further Reading
 
