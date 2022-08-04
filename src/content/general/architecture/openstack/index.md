@@ -1,16 +1,16 @@
 ---
 linkTitle: OpenStack
-title: The Giant Swarm OpenStack Architecture
-description: Architecture overview explaining how OpenStack Cluster API implementation is done.
+title: The Giant Swarm Platform Architecture
+description: Architecture overview explaining how our Platform is built it.
 weight: 30
 menu:
   main:
     parent: general-architecture
-last_review_date: 2022-02-02
+last_review_date: 2022-08-12
 user_questions:
-  - Do you run OpenStack?
+  - Do you run a Developer Platform?
 aliases:
-  - /basics/openstack-architecture/
+  - /basics/platform-architecture/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
 ---
@@ -35,9 +35,11 @@ The setup requires an external network configured in the project to allow the ma
 
 Internally, Cluster API (CAPI) use kubeadm to configure all the machines according to the standards. It uses a template defined as yaml, part of CAPI, where we have hardened the different parameters for the API and other controllers running in the master machine.
 
-## Giant Swarm Management Cluster
+## Giant Swarm Platform
 
-As we are fully convinced of Kubernetes as a platform for building platforms, we build all our management clusters based on Kubernetes. Here we are going to explain the way those are provisioned and managed, and the different components we run on top of them.
+The Giant Swarm Platform consists in the management cluster, which exposes its Kubernetes API as entry point. The main reason is nowadays Kubernetes is the standard defacto for managing infrastructure in a modern way. Its extensibility makes easy to transform a cluster in a Platform adding the sugar to make user experience great.
+
+Our platform let us the customer manage (workload) clusters and applications in a Cloud Native fashion. Here we are going to explain the bootstrapping process of a cluster, how it is managed in the entire lifecycle and which components the cluster run based on the role, workload or management.
 
 ### Bootstrapping
 
@@ -57,7 +59,10 @@ The process involves several steps that we resume briefly in the following list:
 10. Configure and harden the cluster.
 11. Run and test the management cluster functionality.
 
-After the management cluster is ready we deliver all the details to the customer to allow them the access to the Management API.
+After the management cluster is ready we deliver all the details to the customer to allow them the access to the Management API. From this very moment we use the same mechanism to control the cluster lifecycle as we use for workload clusters. 
+
+
+Cluster API offers a set of customer resources that ...
 
 ### Components
 
