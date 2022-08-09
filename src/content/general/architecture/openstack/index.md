@@ -23,7 +23,7 @@ Giant Swarm's architecture is split into two logical parts. One comprehends the 
 
 ## Cluster Architecture
 
-As explained previously, both the management cluster and the workload cluster have the same cluster structure and configuration. In Giant Swarm we rely on [Cluster API](https://cluster-api.sigs.k8s.io/) to bootstrap and configure the cluster infrastructure and set up all the components needed for a cluster to function. 
+As explained previously, both the management cluster and the workload cluster have the same cluster structure and configuration. In Giant Swarm we rely on [Cluster API](https://cluster-api.sigs.k8s.io/) to bootstrap and configure the cluster infrastructure and set up all the components needed for a cluster to function.
 
 [Cluster Architecture Image](./CAPO_architecture.png)!
 
@@ -59,7 +59,7 @@ The process involves several steps that we resume briefly in the following list:
 10. Configure and harden the cluster.
 11. Run and test the management cluster functionality.
 
-After the management cluster is ready we deliver all the details to the customer to allow them the access to the Management API. From this very moment we use the same mechanism to control the cluster lifecycle as we use for workload clusters. 
+After the management cluster is ready we deliver all the details to the customer to allow them the access to the Management API. From this very moment we use the same mechanism to control the cluster lifecycle as we use for workload clusters.
 
 
 Cluster API offers a set of customer resources that ...
@@ -101,7 +101,7 @@ It is a Prometheus exporter for hardware and OS metrics exposed by *NIX kernels.
 
 #### Giant Swarm Components
 
-Giant Swarm has developed a full fledged platform that enhances customer experience managing cluster and apps in top of Kubernetes. 
+Giant Swarm has developed a full fledged platform that enhances customer experience managing cluster and apps in top of Kubernetes.
 
 There are three types of components running on top of the management clusters: the operators, the admission controllers and the operational services. The first one, operators, extend the API allowing our customers to manage new entities (like a Cluster or an App) as if they were built-in resources. The second one, admission controllers, validate and default the resources to make better the user experience. And the last one, the operational services like monitoring or security, enable our staff to maintain all the workload cluster and applications up and running securely and seamlessly.
 
@@ -113,7 +113,7 @@ There are three types of components running on top of the management clusters: t
 
 This operator is in charge of reconcile `Organization` custom resources. The functionality of the operator is pretty straightforward. It takes care of create and delete the organization namespace when the given resource is created.
 
-To learn more about organizations please read [the related documentation](https://docs.giantswarm.io/general/organizations/). 
+To learn more about organizations please read [the related documentation](https://docs.giantswarm.io/general/organizations/).
 
 *RBAC operator*
 
@@ -129,10 +129,10 @@ The [App Platform](https://docs.giantswarm.io/app-platform/) is a system we have
 
 *Cluster API operators*
 
-In [Cluster API](https://cluster-api.sigs.k8s.io/) there is a set of generic operators that all Cluster API providers run to address the common bootstrap and management actions on a Kubernetes cluster lifecycle which include: 
+In [Cluster API](https://cluster-api.sigs.k8s.io/) there is a set of generic operators that all Cluster API providers run to address the common bootstrap and management actions on a Kubernetes cluster lifecycle which include:
 
-- `Kubeadm Bootstrap`controller which is in charge of providing a cloud init configuration to turn a machine into a Kubernetes node. 
-- `Kubeadm Control Plane` controller that manages the lifecycle of the control plane nodes and provides access to the API. 
+- `Kubeadm Bootstrap`controller which is in charge of providing a cloud init configuration to turn a machine into a Kubernetes node.
+- `Kubeadm Control Plane` controller that manages the lifecycle of the control plane nodes and provides access to the API.
 - `CAPI manager` controller that manages cluster and machine resources.
 
 *Cluster OpenStack controller*
@@ -177,10 +177,10 @@ All of this is not to say that segregation inside a cluster should be avoided bu
 
 Hence, the key is to find the right balance between the new Cloud Native approach and the old school hard isolation.
 
-In order to address these concerns, we offer several isolation layers in one place: 
+In order to address these concerns, we offer several isolation layers in one place:
 
-- **Network**: Our automation creates a single VPC by cluster, with private subnets for the worker nodes and secure configuration by default. 
-- **Operating System**: The nodes run a container-ready operating system created with security and reliability in mind. 
+- **Network**: Our automation creates a single VPC by cluster, with private subnets for the worker nodes and secure configuration by default.
+- **Operating System**: The nodes run a container-ready operating system created with security and reliability in mind.
 - **Kubernetes**: Our base Kubernetes setup provides [Network Polices](https://kubernetes.io/docs/concepts/services-networking/network-policies/) and [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) to restrict communication to core components accompanying with a very strict policy to ensure containers do not gain extended privileges unintentionally.
 
 Having said that, there is no general rule to split workloads between Open Stack projects, clusters or namespaces. It highly depends on the customers policies in effect and access requirements among others. However, we can give some advice on where to start.
@@ -207,3 +207,4 @@ Furthermore, to enforce the definition of resources, [Limit Ranges](https://kube
 - [Giant Swarm support model]({{< relref "/general/support" >}})
 - [Giant Swarm operational layers]({{< relref "/security/operational-layers" >}})
 - [Giant Swarm VPN and secure cluster access]({{< relref "/security/cluster-access" >}})
+
