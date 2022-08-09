@@ -3,11 +3,14 @@ linkTitle: TLS certificates with cert-manager
 title: Obtaining TLS certificates for Ingresses with cert-manager
 description: Configure cert-manager to automatically obtain TLS certificates for Ingresses
 weight: 20
-owner:
-  - https://github.com/orgs/giantswarm/teams/team-cabbage
+menu:
+  main:
+    parent: advanced
 user_questions:
   - How do I install cert-manager?
   - How do I obtain TLS certificates?
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-cabbage
 last_review_date: 2022-07-19
 ---
 
