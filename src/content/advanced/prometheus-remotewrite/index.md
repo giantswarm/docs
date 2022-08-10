@@ -41,6 +41,8 @@ metadata:
   namespace: monitoring
 spec:
   ## Defines the cluster to configure prometheus remote write for
+  ## It select the Prometheus resource to be configured using a label selector
+  ## see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#labelselector-v1-meta
   clusterSelector: {}
   remoteWrite:
     ## Configure the authentication to use using the values from the grafana-cloud secret
