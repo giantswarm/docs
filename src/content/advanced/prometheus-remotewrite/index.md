@@ -27,7 +27,7 @@ To enable this behavior, Prometheus needs to be configured using [remote_write c
 ## What is the Giant Swarm Prometheus RemoteWrite feature
 
 The Prometheus `RemoteWrite` feature allows you to configure remote write targets in the Giant Swarm managed prometheus running on your management cluster.
-That way, you can replicate and send metrics to your own 3rd party system and use the data as you see fit for the component running on the management clusters such as Flux
+That way, you can replicate and send metrics to your own 3rd party system and use the data as you see fit.
 
 Giant Swarm provides and uses a `RemoteWrite` Custom Resource Definition that you can use to configure `remote_write` targets.
 
