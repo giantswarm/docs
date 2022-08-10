@@ -31,7 +31,7 @@ That way, you can replicate and send metrics to your own 3rd party system and us
 
 Giant Swarm provides and uses a `RemoteWrite` Custom Resource Definition that you can use to configure `remote_write` targets.
 
-For example, this "RemoteWrite" Custom Resource indicates that we configure the remote write feature for all clusters (`clusterSelector: {}`) to send the data to grafana cloud (`url: https://prometheus-us-central1.grafana.net/api/prom/push`)
+For example, this `RemoteWrite` Custom Resource indicates that we configure the remote write feature for all clusters (`clusterSelector: {}`) to send the data to grafana cloud (`url: https://prometheus-us-central1.grafana.net/api/prom/push`)
 
 ```yaml
 apiVersion: monitoring.giantswarm.io/v1alpha1
