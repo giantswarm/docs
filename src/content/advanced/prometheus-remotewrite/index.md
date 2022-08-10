@@ -19,7 +19,7 @@ last_review_date: 2022-07-19
 
 In this document you will learn how to use the Prometheus RemoteWrite feature provided out of the box by Giant Swarm.
 
-## Introduction to remote write is Prometheus RemoteWrite
+## Introduction to Prometheus RemoteWrite
 
 Prometheus allows users to replicate it's data into 3rd party systems like Cortex or even another Prometheus using its [remote APIs](https://prometheus.io/blog/2019/10/10/remote-read-meets-streaming/#remote-apis).
 To enable this behavior, Prometheus needs to be configured using [remote_write config](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#remote_write) to define which endpoints to send data to.
