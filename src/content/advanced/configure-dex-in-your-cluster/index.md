@@ -289,7 +289,59 @@ __Warning__: It is assumed that you have an [ingress controller and cert-manager
 
 To get an overview on the authentication success and error rates of your Dex instances, we offer a Grafana dashboard named "Dex" as part of our [monitoring setup]({{< relref "/ui-api/monitoring" >}}).
 
+## Logging into your workload cluster via `kubectl gs` with `Athena`
+
+Once Dex is set up in your workload cluster, you can enable access via OIDC through our `kubectl` plugin [kubectl gs](https://docs.giantswarm.io/ui-api/kubectl-gs/).
+
+
+In order to communicate with the API, `kubectl gs` needs the clusters CA certificate as well as some cluster specific information, such as the management cluster name and the dex issuer URL. 
+On all Giant Swarm management clusters we use a public service called `Athena` to expose the CA certificate and some information on the installation to the client.
+For easy integration with `kubectl gs` you can install [Athena](https://github.com/giantswarm/athena) on your workload cluster via the [app platform](https://docs.giantswarm.io/app-platform/).
+
+Other than the app itself, you will need to provide a `values.yaml` configuration.
+
+The management cluster name is needed as minimal configuration for `Athena`.
+
+```yaml
+managementCluster:
+  name: test
+```
+
+It is also possible to override the api and issuer addresses, CA as well as the cluster name and provider in case it is needed:
+```yaml
+managementCluster:
+  name: test
+clusterID: example
+provider:
+  kind: aws
+kubernetes:
+  caPem: |
+    -----BEGIN CERTIFICATE-----
+    M...=
+    -----END CERTIFICATE-----
+  api:
+    address: https://api.test.example.io
+oidc:
+  issuerAddress: https://dex.test.example.io
+```
+Access to Athena can be restricted to certain CIDRs.
+```yaml
+security:
+  subnet:
+    customer:
+      public: x.x.x.x/x,x.x.x.x/x
+      private: x.x.x.x/x
+    restrictAccess:
+      gsAPI: true
+```
+
+If both `Dex` and `Athena` are configured correctly and you have installed `kubectl gs` on your machine, you should be able to create a kubectl context using the management API URL.
+```
+kubectl gs login https://api.test.example.io
+``` 
+
 ## Further reading
 
 - [Authenticating with Microsoft Azure Active Directory]({{< relref "/advanced/authentication-azure-ad" >}})
 - [App platform overview](https://docs.giantswarm.io/app-platform/)
+- [kubectl gs](https://docs.giantswarm.io/ui-api/kubectl-gs/)

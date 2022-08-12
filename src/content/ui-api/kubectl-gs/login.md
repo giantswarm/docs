@@ -15,36 +15,50 @@ user_questions:
   - How can I log in with kubectl for the Management API?
   - How can I create a workload cluster client certificate?
   - How do I specify the time to live for a workload cluster client certificate?
-last_review_date: 2022-04-12
+last_review_date: 2022-05-20
 ---
 
 Use this command to set up a kubectl context to work with:
 
 1. a management cluster, using OIDC authentication
 
-2. a workload cluster, using client certificate auth (Not supported on KVM)
+2. a workload cluster, using OIDC authentication
 
-Note that `2` implies `1`. When setting up workload cluster access, management cluster access will be set up as well, if that is not yet done.
+3. a workload cluster, using client certificate auth (Not supported on KVM)
+
+Note that `3` implies `1`. When setting up workload cluster access via client certificate, management cluster access will be set up as well, if that is not yet done.
 
 ## Usage
 
 The command is called with the general syntax
 
 ```nohighlight
-kubectl gs login [MANAGEMENT_CLUSTER] [FLAGS]
+kubectl gs login [MANAGEMENT_CLUSTER] [WORKLOAD_CLUSTER] [FLAGS]
 ```
 
-For the `MANAGEMENT_CLUSTER` argument there are several options:
+Both Arguments are optional so the command can take several shapes.
 
-1. **Management API endpoint URL:** The URL of the management cluster's Kubernetes API endpoint.
+### a) `kubectl gs login`
+
+No arguments.
+
+- By leaving the argument empty, the command will use the current selected kubectl context. In addition, an OIDC auth token will be refreshed and the name of the current context will be printed.
+
+### b) `kubectl gs login [MANAGEMENT_CLUSTER]`
+For the `MANAGEMENT_CLUSTER` argument there are several options.
+
+1. **Management API endpoint URL:** The URL of the cluster's Kubernetes API endpoint. This can be also be a workload cluster, if OIDC has been set up for it.
 
 2. **Web interface URL:** The URL of the management cluster's [web UI]({{< relref "/ui-api/web/" >}}) instance.
 
-3. **Context name:** Name of a Giant Swarm kubectl context, generated via one of the two methods above. The context name normally starts with the `gs-` prefix, however that prefix can be omitted for convenience.
+3. **Context name:** Name of a Giant Swarm kubectl context, generated via one of the two methods above. The context name normally starts with the `gs-` prefix, however that prefix can be omitted for convenience. If no OIDC context can be found, an attempt to select a client certificate will be made.
 
-4. **Empty:** By leaving the argument empty, the command will check if the current kubectl context points to a Giant Swarm management cluster. In addition, an OIDC auth token will be refreshed and the name of the current context will be printed.
+### c) `kubectl gs login [MANAGEMENT_CLUSTER] [WORKLOAD_CLUSTER]`
+The `MANAGEMENT_CLUSTER` and `WORKLOAD_CLUSTER` names are used to find an existing context for a workload cluster.
+- **Context name:** Name of a Giant Swarm kubectl context. If no OIDC context can be found, an attempt to select a client certificate will be made.
 
 It is also possible to create client certificates for a workload cluster, by providing the right configuration flags. Please be aware that the recommended way to authenticate users for workload clusters is OIDC. Client certificates should only be a temporary replacement.
+When selecting client certificate contexts via the method above, please be aware that they will not be refreshed if they are expired.
 
 ### Flags
 
@@ -52,7 +66,7 @@ It is also possible to create client certificates for a workload cluster, by pro
 
 - `--self-contained`: Output file path for a self-contained kubectl configuration file. If provided, the certificate data will be written to an external kubectl configuration file instead of the default one. Please be aware that this starts the login process from the beginning regardless of existing contexts.
 
-For **management cluster** authentication, the following flags are available:
+For **OIDC** authentication, the following flags are available:
 
 - `--callback-port`: Specify the TCP port number on which the OIDC callback server on localhost will be listening. If not specified, a random port number will be used. Specifying the port is useful when running kubectl-gs inside a container, or behind a firewall.
 
@@ -60,9 +74,9 @@ For **management cluster** authentication, the following flags are available:
 
 - `--internal-api` - (AWS only) With this flag you use an internal Management API endpoint. It resolves to an internal IP address that is only accessible from within the cluster's virtual private cloud (VPC). The hostname of this endpoint is the same as the normal one, with the prefix `internal-`. Example: if your Management API host name is `g8s.example.yourdomain.tld`, the alternative hostname is `internal-g8s.example.yourdomain.tld`.
 
-The following flags are related to creating client certificates for **workload cluster** access:
+The following flags are related to creating **client certificates** for workload cluster access:
 
-- `--workload-cluster` - If present, `kubectl gs` will set up a kubectl context to work with a workload cluster. Otherwise, the command attempts to set up a management cluster context.
+- `--workload-cluster` - If present, `kubectl gs` will set up a kubectl context to work with a workload cluster via client certificate creation.
 - `--organization` - The organization that the workload cluster belongs to. Only required if the current user has access to multiple workload clusters with the same name in the same management cluster. Can also be applied if the user does not have permission to list organizations.
 - `--certificate-group` - The RBAC group name to be encoded into the X.509 field "O". It can be specified multiple times in order to set multiple groups at once.
 - `--certificate-ttl` - How long the client certificate should live for. When creating client certificates, we recommend using short expiration periods. Valid time units are "s" (second), "m" (minute), "h" (hour).
@@ -84,14 +98,14 @@ kubectl gs login https://happa.g8s.example.westeurope.azure.gigantic.io
 ... or the Management API endpoint URL.
 
 ```nohighlight
-kubectl gs login https://g8s.example.westeurope.azure.gigantic.io
+kubectl gs login https://api.g8s.example.westeurope.azure.gigantic.io
 ```
 
 As a result, a context will be created with prefix `gs-` and a shorthand for this installation. Watch the command's output:
 
 ```nohighlight
 Switched to context 'gs-example'.
-You are logged in to the management cluster of installation 'example'.
+You are logged in to the cluster 'example'.
 ```
 
 For subsequent logins, you can use that shorthand to easily select which installation to log in to. Example:
@@ -99,8 +113,28 @@ For subsequent logins, you can use that shorthand to easily select which install
 ```nohighlight
 kubectl gs login example
 ```
-
 ### Workload cluster
+
+If OIDC is set up on a workload cluster, the initial login can be done via the Management API endpoint URL as well.
+
+```nohighlight
+kubectl gs login https://api.test.g8s.example.westeurope.azure.gigantic.io
+```
+
+As a result, a context will be created with prefix `gs-` and a codename consisting of management cluster and workload cluster handles.
+
+```nohighlight
+Switched to context 'gs-example-test'.
+You are logged in to the cluster 'example-test'.
+```
+
+For subsequent logins, you can use that shorthand to easily select which workload cluster to log in to. Example:
+
+```nohighlight
+kubectl gs login example test
+```
+
+### Workload cluster client certificate
 
 Given that a context `gs-example` already exists from previous management cluster log-ins to that installation, the following command would create a client certificate with specific group assignment:
 

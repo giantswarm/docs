@@ -17,28 +17,28 @@ aliases:
   - /advanced/gitops/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2022-01-24
+last_review_date: 2022-07-11
 ---
 
-You can manage infrastructure and applications by utilizing FluxCD - a set of GitOps operators installed in Giant Swarm management clusters.
+In this document you will learn how to manage infrastructure and applications by utilizing FluxCD - a set of GitOps operators installed in Giant Swarm management clusters.
 
 ## What is GitOps
 
-GitOps Working Group [defines GitOps as a set of principles](https://github.com/open-gitops/documents/blob/release-v1.0.0/PRINCIPLES.md):
+The GitOps Working Group [defines GitOps as a set of principles](https://github.com/open-gitops/documents/blob/release-v1.0.0/PRINCIPLES.md):
 > GitOps is a set of principles for operating and managing software systems. These principles are derived from modern software operations, but are also rooted in pre-existing and widely adopted best practices.
 > The desired state of a GitOps managed system must be:
 > **Declarative**
 > A system managed by GitOps must have its desired state expressed declaratively.
 > **Versioned and Immutable**
-> Desired state is stored in a way that enforces immutability, versioning and retains a complete version history.
+> The desired state is stored in a way that enforces immutability, versioning and retains a complete version history.
 > **Pulled Automatically**
 > Software agents automatically pull the desired state declarations from the source.
 > **Continuously Reconciled**
-> Software agents continuously observe actual system state and attempt to apply the desired state.
+> Software agents continuously observe the actual system state and attempt to apply the desired state.
 
-How those principles translate into workings of popular tools, such as FluxCD or ArgoCD can be summarized as this:
+The way these principles manifest in popular tools, such as FluxCD or ArgoCD can be summarized as follows:
 
-The cluster's desired state, or manifest, is kept in Git repositories (or Helm repositories, S3 buckets, and so on). GitOps operators are deployed to clusters and configured to watch the manifest. The operators are tasked with periodically comparing the desired and actual states of the cluster's resources and reconciling them in case any discrepancies are found.
+The cluster's desired state, or manifest, is kept in Git repositories (or Helm repositories, S3 buckets, and so on). GitOps operators are deployed to clusters and configured to watch the manifest. The operators are tasked with periodically comparing the desired and actual states of the cluster's resources and reconciling them in case discrepancies are found.
 
 If the cluster's state changes in a way that is not reflected in the code, the change will be reverted. If the code is updated with a new configuration and/or resources, the cluster will be instantly updated to match the desired state.
 
@@ -46,12 +46,12 @@ This way of managing Kubernetes comes with all the benefits and best practices o
 
 ## What is FluxCD
 
-[FluxCD](https://fluxcd.io) website says:
+The [FluxCD](https://fluxcd.io) website states:
 > Flux is a set of continuous and progressive delivery solutions for Kubernetes that are open and extensible.
 
 What it is from a developer perspective is a set of operators and Custom Resources designed to apply GitOps in a Kubernetes environment. The operators, configured with the Custom Resources, will be watching Git repositories, Helm repositories, or even S3 buckets and reconciling their contents with the state of the cluster to make sure they both match.
 
-To get started with FluxCD, you will need to bootstrap FluxCD to your cluster of choice and create at least one of each:
+To get started with FluxCD, you will need to bootstrap FluxCD to your cluster of choice and create at least one of each of the following:
 
 1. `source.toolkit.fluxcd.io` resources - they tell the `source-controller` where to look for the manifests
 2. `helmrelease.helm.toolkit.fluxcd.io` or `kustomization.kustomize.toolkit.fluxcd.io` resources - they are meant for `helm-controller` and `kustomize-controller` respectively and govern how the manifests found in sources will be applied
@@ -68,13 +68,13 @@ If want to learn more about FluxCD and its capabilities, here are a couple of us
 
 In this section, we will guide you through an example Flux setup on a Giant Swarm Management Cluster. You will create resources locally. Mentions of _example resources_ or _example repository_ refers to [giantswarm/flux-demo](https://github.com/giantswarm/flux-demo), where you can find all resources used in this section in full, unabbreviated forms and Flux will use these to sync with.
 
-In order to follow [Watching for new commits](#watching-for-new-commits) section, you should fork the repository and work on your fork instead.
+In order to follow the [Watching for new commits](#watching-for-new-commits) section, you should fork the repository and work on your fork instead.
 
 We will be using [Flux CLI](https://fluxcd.io/docs/cmd/) and [kubectl-gs](https://github.com/giantswarm/kubectl-gs). Please make sure you have both installed on your machine. If you would rather follow the guide without them, use the example resources provided.
 
 ## Access control for organizations
 
-To proceed with this tutorial, you need to use a ServiceAccount with a set of permissions that allow you to create and reconcile Flux resources. All the examples are using `default` namespace and `automation` ServiceAccount in that namespace. You will find them in every Management Cluster and they are already assigned with required privileges.
+To proceed with this tutorial, you need to use a ServiceAccount with a set of permissions that allows you to create and reconcile Flux resources. All the examples are using `default` namespace and `automation` ServiceAccount in that namespace. You will find them in every Management Cluster and they are already assigned with the required privileges.
 
 If you wish to proceed by creating the resources in one of the Organization namespaces (`org-*`), you will need to create a ServiceAccount there and assign the following roles to it:
 
@@ -104,13 +104,14 @@ Due to extra security policies enforced by Kyverno, setting `.spec.serviceAccoun
 
 ### Setting up sources
 
-First things first - create a bare-bones `GitRepository` resource that points to [giantswarm/flux-demo](https://github.com/giantswarm/flux-demo).
+First thing's first - create a bare-bones `GitRepository` resource that points to [giantswarm/flux-demo](https://github.com/giantswarm/flux-demo).
 
 ```nohighlight
 flux create source git flux-demo \
         --url=https://github.com/giantswarm/flux-demo \
         --branch=main \
         --interval=30s \
+        --namespace=default \
         --export > 01-source.yaml
 ```
 
@@ -169,7 +170,7 @@ kubectl gs template organization --name flux-demo > 02-organization/resources.ya
 
 > Note: To learn more about Giant Swarm's kubectl plugin, visit [kubectl-gs documentation]({{< relref "/ui-api/kubectl-gs/" >}}).
 
-This would be enough to create the Organization on our own. Let's add a `Kustomization` CR, so that Flux knows how to work with `02-organization/` directory.
+This is enough to create the Organization on our own. Let's add a `Kustomization` CR, so that Flux knows how to work with `02-organization/` directory.
 
 ```nohighlight
 flux create kustomization install-organization \
@@ -181,7 +182,7 @@ flux create kustomization install-organization \
         --export > 02-organization.yaml
 ```
 
-For Flux to manage this piece of code, you just have to create the `Kustomization` resource. Contents of `02-organization` will be reconciled automatically.
+For Flux to manage this piece of code, you need to create the `Kustomization` resource. The contents of `02-organization` will be reconciled automatically.
 
 ```nohighlight
 kubectl create -f 02-organization.yaml
@@ -236,7 +237,7 @@ mkdir -p 03-cluster-aws/templates
 kubectl gs template cluster --provider aws --name demo0 --organization flux-demo --description flux-demo > 03-cluster-aws/templates/cluster-resources.yaml
 ```
 
-> Note: There is some parameterization and hooks already added in the demo repository. You can copy from there if you don't want to do it on your own.
+> Note: There are some parameterization and hooks already added in the demo repository. You can copy from there if you don't want to create your own.
 > Otherwise please:
 >
 > - parameterize common variables and put them in `values.yaml`: cluster ID, organization name, namespace, control plane ID, etc.
@@ -378,7 +379,7 @@ git add . && \
     git push
 ```
 
-Flux will pick it up after an interval you have set up in `Kustomization` and you should see the following result:
+Flux will pick it up after the interval you  set up in `Kustomization` and you should see the following result:
 
 ```nohighlight
 kubectl get organizations
@@ -390,7 +391,7 @@ new-commit  17s
 
 ### Test or development branches
 
-Flux enables developers to deploy work-in-progress code in many ways, one of the most useful is deploying code from development branches. To do that, we will create a new `GitRepository` resource. It will be pointing to `development` branch of demo repository, instead of `main` branch. Then we will patch the `Kustomization` created in [Managing organizations](#managing-organizations) section so that it uses the new source instead.
+Flux enables developers to deploy work-in-progress code in many ways. One of the most useful ways is deploying code from development branches. To do that, we will create a new `GitRepository` resource. It will be pointing to `development` branch of demo repository, instead of `main` branch. Then we will patch the `Kustomization` created in [Managing organizations](#managing-organizations) section so that it uses the new source instead.
 
 The `development` branch contains an extra Organization in `02-organization/resources.yaml`, which will be instantly created.
 
