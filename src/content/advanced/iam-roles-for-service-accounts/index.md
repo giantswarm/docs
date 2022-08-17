@@ -71,6 +71,7 @@ Please set the following permissons on the [`GiantSwarmAWSOperator` IAM role]({{
       ],
       "Resource": "*"
 },
+...
 ```
 
 ## Enable the feature on your cluster
