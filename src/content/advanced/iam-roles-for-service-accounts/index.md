@@ -197,7 +197,7 @@ Login into the account where the IAM role is located and create an Identity Prov
 - Set the `audience` to `sts.amazonaws.com` OR `sts.amazonaws.com.cn` for China regions.
 
 
-#### AWS Release v17.x.x
+#### AWS Release v17.x.x or China regions
 
 To use the IAM role on a different account than your cluster you need to create new or modify an existing AWS role and configure **trusted entities** with following statement:
 
