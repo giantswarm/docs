@@ -50,7 +50,7 @@ Please first ensure having the following permissions added on the [`GiantSwarmAW
  ...
 ```
 
-With AWS release v18.0.0 we additionally need permissions for managing Cloudfront (**only non-China regions**). By upgrading to the release the S3 bucket including the S3 objects will be protected and become private, therefore we ensure only traffic through Cloudfront.
+With AWS release v18.0.0 we additionally need permissions for managing Cloudfront (**only non-China regions**). By upgrading to this AWS release the S3 bucket which contains the OIDC configuration and public keys will be protected and direct traffic will be blocked. We only allow traffic through Cloudfront.
 
 Please set the following permissons on the [`GiantSwarmAWSOperator` IAM role]({{< relref "/getting-started/cloud-provider-accounts/aws" >}}):
 
