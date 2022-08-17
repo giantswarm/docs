@@ -108,7 +108,7 @@ In order to apply the changes, rolling of the master nodes is required. Rolling 
 
 ### IAM role
 
-#### AWS Release v17.x.x
+#### AWS Release v17.x.x or China regions
 
 To use the IAM role with a service account you need to create new or modify an existing AWS role and configure **trusted entities** with following statement:
 
