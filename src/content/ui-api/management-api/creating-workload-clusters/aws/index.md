@@ -78,7 +78,7 @@ spec:
   cluster:
     description: Demo cluster
     dns:
-      domain: gorilla.eu-central-1.aws.gigantic.io
+      domain: example.eu-central-1.aws.gigantic.io
     oidc:
       claims: {}
   provider:

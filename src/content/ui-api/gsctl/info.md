@@ -45,8 +45,8 @@ gsctl version:        0.11.2
 gsctl build:          2018-04-26T07:33:33Z
 Config path:          /Users/marian/.config/gsctl/config.yaml
 kubectl config path:  /Users/marian/.kube/config
-API endpoint:         https://api.g8s.gollum.westeurope.azure.gigantic.io
-API endpoint alias:   gollum
+API endpoint:         https://api.g8s.example.westeurope.azure.gigantic.io
+API endpoint alias:   example
 Email:                somebody@example.com
 Logged in:            no
 Provider:             n/a

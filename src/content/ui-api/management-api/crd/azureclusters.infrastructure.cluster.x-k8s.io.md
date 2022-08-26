@@ -73,7 +73,7 @@ metadata:
   namespace: org-giantswarm
 spec:
   controlPlaneEndpoint:
-    host: api.mmh5x.k8s.ghost.westeurope.azure.gigantic.io
+    host: api.mmh5x.k8s.example.westeurope.azure.gigantic.io
     port: 443
   location: westeurope
   networkSpec:
