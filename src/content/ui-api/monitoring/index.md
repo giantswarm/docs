@@ -36,11 +36,11 @@ In case you want to construct the URL to the Grafana web application in your ins
 
 For example, if your web interface URL is
 
-    https://happa.g8s.gollum.westeurope.azure.gigantic.io/
+    https://happa.g8s.example.westeurope.azure.gigantic.io/
 
 then simply replace `happa` with `grafana` to get to your Grafana URL:
 
-    https://grafana.g8s.gollum.westeurope.azure.gigantic.io/
+    https://grafana.g8s.example.westeurope.azure.gigantic.io/
 
 ## Authentication and authorization
 

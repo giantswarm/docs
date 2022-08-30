@@ -158,7 +158,7 @@ Example:
 
 ```nohighlight
 O=73ce775d904da53e,
-CN=73ce775d904da53e.i94nf.k8s.garlic.westeurope.azure.gigantic.io
+CN=73ce775d904da53e.i94nf.k8s.example.westeurope.azure.gigantic.io
 ```
 
 When presenting such client certificate to the Kubernetes API server, the `CN` field is interpreted as the user identifier, while the `O` field is interpreted as a list of groups the user is a member of.
@@ -182,7 +182,7 @@ The resulting client certificate would have a subject like this:
 O=group1,
 O=group2,
 O=5ab261600796bef7,
-CN=5ab261600796bef7.i94nf.k8s.garlic.westeurope.azure.gigantic.io
+CN=5ab261600796bef7.i94nf.k8s.example.westeurope.azure.gigantic.io
 ```
 
 #### Creating a client certificate in automation {#wc-client-cert-automation}
