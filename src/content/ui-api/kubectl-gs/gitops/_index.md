@@ -1,7 +1,7 @@
 ---
 linkTitle: gitops
 title: "The 'kubectl gs gitops' command family reference"
-description: Main page for documentation on the 'kubectl' GitOps support.
+description: Main page for documentation on the 'kubectl' GitOps support, with an overview of all commands.
 weight: 50
 layout: single
 menu:

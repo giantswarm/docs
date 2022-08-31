@@ -1,7 +1,7 @@
 ---
 linkTitle: init
 title: "'kubectl gs gitops init' command reference"
-description: Reference documentation on how to initialize the GitOps repository.
+description: Reference documentation on how to initialize an empty GitOps repository, so that it can be used with `kubectl-gs` plugin.
 weight: 10
 menu:
   main:
