@@ -26,7 +26,7 @@ Other command this commad depends on:
 
 ## Description
 
-The structure created by this command is presented below. Resources enclosed in a square brackets `[]` are considered optional.
+The structure created by this command is presented below. Resources enclosed in square brackets `[]` are considered optional.
 
 ```nohighlight
 management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters/[mapi/]
