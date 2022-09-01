@@ -30,7 +30,7 @@ behaviour can be controlled with the `--local-path <path_to_repository_dir>` fla
 
 The command supports the dry-run mode of operation that offers a preview of the changes that are going to be applied to the
 repository. The behaviour can be controlled with the `--dry-run` flag. In this mode the command solely prints the list of
-directories, files in these directories, and content of the files, that are to be craeted and modified, as indicated by
+directories, files in these directories, and content of the files, that are to be created and modified, as indicated by
 the `## CREATE ##` and `## MODIFY ##` sections of the output respectively.
 
 The commands will not re-create already existing files to prevent overriding users, or other commands, changes.
