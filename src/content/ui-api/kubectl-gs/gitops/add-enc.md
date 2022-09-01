@@ -294,7 +294,7 @@ Please run
 
 gpg --import /tmp/gitops-demo/management-clusters/demomc/.sops.keys/demowc.5ee3687ce2ef2ee94dc671d11483c46dbf667bf2.asc
 
-to load the public key into the keychain for SOPS to work
+to load the public key into the keychain for SOPS to work.
 ```
 
 {{< /tab >}}
