@@ -235,7 +235,7 @@ resources:
 {{< /tab >}}
 {{< tab id="base-config" title="Indirect & Config" >}}
 
-When adding app from a base, it can still be customized with user configuration. **Note, files referenced by these flags should
+When adding app from a base, it can still be customised with user configuration. **Note, files referenced by these flags should
 carry a valid values YAML configuration conforming the values schema of the given the app version.**
 
 Below is the example of `values.yaml` configuring number of replicas and overriding the app's name.
