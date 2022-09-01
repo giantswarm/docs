@@ -11,7 +11,7 @@ user_questions:
  -  How can I migrate from KIAM to IAM roles for service accounts?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2022-06-13
+last_review_date: 2022-08-17
 ---
 
 {{< platform_support_table aws="alpha=v17.2.0" aws="ga=v17.4.0">}}
@@ -50,6 +50,30 @@ Please first ensure having the following permissions added on the [`GiantSwarmAW
  ...
 ```
 
+With AWS release v18.0.0 we additionally need permissions for managing Cloudfront (**only non-China regions**). By upgrading to this AWS release the S3 bucket which contains the OIDC configuration and public keys will be protected and direct traffic will be blocked. We only allow traffic through Cloudfront.
+
+Please set the following permissons on the [`GiantSwarmAWSOperator` IAM role]({{< relref "/getting-started/cloud-provider-accounts/aws" >}}):
+
+```json
+...
+  {
+      "Effect": "Allow",
+      "Action": [
+          "cloudfront:TagResource",
+          "cloudfront:UntagResource",
+          "cloudfront:GetCloudFrontOriginAccessIdentity",
+          "cloudfront:CreateCloudFrontOriginAccessIdentity",
+          "cloudfront:DeleteCloudFrontOriginAccessIdentity",
+          "cloudfront:GetDistribution",
+          "cloudfront:CreateDistribution",
+          "cloudfront:UpdateDistribution",
+          "cloudfront:DeleteDistribution"
+      ],
+      "Resource": "*"
+},
+...
+```
+
 ## Enable the feature on your cluster
 This is an alpha feature that has to be enabled by setting an annotation on the  [`AWSCluster`]({{< relref "/ui-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) resource.
 
@@ -84,6 +108,8 @@ In order to apply the changes, rolling of the master nodes is required. Rolling 
 
 ### IAM role
 
+#### AWS Release v17.x.x or China regions
+
 To use the IAM role with a service account you need to create new or modify an existing AWS role and configure **trusted entities** with following statement:
 
 ```json
@@ -113,6 +139,34 @@ You need to fill real values for these placeholders:
 * `SA_NAME` - Name of the Kubernetes Service Account which wil be using by the pod.
 * `REGION` - AWS region the OIDC provider is located in.
 
+#### AWS Release v18.x.x or higher for non-China regions
+
+To use the IAM role with a service account you need to create new or modify an existing AWS role and configure **trusted entities** with following statement:
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Federated": "arn:aws:iam::AWS_ACCOUNT:oidc-provider/CLOUDFRONT_DOMAIN"
+            },
+            "Action": "sts:AssumeRoleWithWebIdentity",
+            "Condition": {
+                "StringEquals": {
+                    "CLOUDFRONT_DOMAIN:sub": "system:serviceaccount:NAMESPACE:SA_NAME"
+                }
+            }
+        }
+    ]
+}
+```
+
+You need to fill real values for these placeholders:
+* `AWS_ACCOUNT` - aws account id, where is the cluster running
+* `CLOUDFRONT_DOMAIN` - cloudfront domain of the cluster, you can find the information in the ConfigMap `clusterID-irsa-cloudfront` in the organization namespace inside the management cluster or via AWS console in `Cloudfront`
+
 ### Service account
 The service account has to be annotated with a full ARN of the IAM role. You can get the ARN of the role in the AWS console, when you check role details.
 The annotation key has to be `eks.amazonaws.com/role-arn`.
@@ -129,18 +183,21 @@ metadata:
 
 ## Cross Account Roles
 
+### IAM role cross account
+
 In order to assume roles cross AWS accounts you will need to create a new AWS Identity Provider (OpenID Connect) in the AWS account where the IAM role is located.
 
 ![Creating AWS Identity Provider](identity-provider.png)
 
 Login into the AWS on the account where the cluster is running:
-- Grab the URL of the Identity Provider in your current cluster `IAM > Identity Providers`. It will look like `https://s3.REGION.amazonaws.com/AWS_ACCOUNT-g8s-CLUSTER_ID-oidc-pod-identity`.
+- Grab the URL of the Identity Provider in your current cluster `IAM > Identity Providers`. It will look like `https://s3.REGION.amazonaws.com/AWS_ACCOUNT-g8s-CLUSTER_ID-oidc-pod-identity` or `https://CLOUDFRONT_ID.cloudfront.net`.
 
 Login into the account where the IAM role is located and create an Identity Provider in `IAM > Identity Providers`:
-- Set `Provider URL` to the to the previously gathered URL and click the `Get thumbprint` to import the OIDC keys.
-- Set the `audience` to `sts.amazonaws.com`
+- Set `Provider URL` to the previously gathered URL and click the `Get thumbprint` to import the certificate.
+- Set the `audience` to `sts.amazonaws.com` OR `sts.amazonaws.com.cn` for China regions.
 
-### IAM role cross account
+
+#### AWS Release v17.x.x or China regions
 
 To use the IAM role on a different account than your cluster you need to create new or modify an existing AWS role and configure **trusted entities** with following statement:
 
@@ -170,6 +227,37 @@ You need to fill real values for these placeholders:
 * `CLUSTER_REGION` - AWS region where the cluster is located
 * `ROLE_REGION` - AWS region of the role
 * `ROLE_AWSACCOUNT` - AWS account where the role is located
+
+#### AWS Release v18.x.x or higher for non-China regions
+
+To use the IAM role on a different account than your cluster you need to create new or modify an existing AWS role and configure **trusted entities** with following statement:
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Federated": "arn:aws:iam::ROLE_AWSACCOUNT:oidc-provider/CLOUDFRONT_DOMAIN"
+            },
+            "Action": "sts:AssumeRoleWithWebIdentity",
+            "Condition": {
+                "StringEquals": {
+                    "CLOUDFRONT_DOMAIN:aud": "sts.amazonaws.com"
+                }
+            }
+        }
+    ]
+}
+```
+
+You need to fill real values for these placeholders:
+* `ROLE_AWSACCOUNT` - AWS account where the role is located
+* `CLOUDFRONT_DOMAIN` - cloudfront domain of the cluster, you can find the information in the ConfigMap `clusterID-irsa-cloudfront` in the organization namespace inside the management cluster or via AWS console in `Cloudfront`
+
+
+
 
 ## Verify your configuration is correct
 Once your pod is running with the configured service account, you should see a file in the pod called `/var/run/secrets/eks.amazonaws.com/serviceaccount/token`, which containts a JWT token with details of the role.
