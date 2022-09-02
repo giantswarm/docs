@@ -20,7 +20,10 @@ Furthermore, this release is the first to use out-of-tree controller manager and
 
 ## Change details
 
-### azure-operator [6.0.1](https://github.com/giantswarm/azure-operator/releases/tag/v6.0.1)
+### azure-operator [6.0.2](https://github.com/giantswarm/azure-operator/releases/tag/v6.0.2)
+
+#### Fixed
+- Ensure giantswarm system user is always created first.
 
 #### Changed
 - Support for k8s 1.23.
