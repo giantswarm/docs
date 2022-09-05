@@ -43,7 +43,7 @@ Below is a list of the external domains we require access to for our clusters to
     - Container images are hosted on Dockerhub.
 - flatcar.com
     - domains:
-        - `*.flatcar.com`
+        - `*.flatcar-linux.org`
     - Flatcar OS images and signing keys.
 - github.com
     - domains:

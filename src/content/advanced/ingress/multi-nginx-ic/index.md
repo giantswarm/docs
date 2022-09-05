@@ -16,7 +16,7 @@ user_questions:
   - How do I configure NGINX Ingress Controller for internal traffic?
   - How do I override the NodePorts on KVM Ingresses?
   - How do I configure NGINX Ingress Controller to allow weak ciphers?
-last_review_date: 2021-09-01
+last_review_date: 2022-07-19
 ---
 
 NGINX ingress controller handles [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) resources, routing traffic from outside the Kubernetes cluster to services within the cluster.
@@ -112,6 +112,20 @@ Similarly, cloud load balancer created for each NGINX installation on AWS and Az
 For NGINX IC running on on-prem (KVM) workload clusters there's no out-of-the-box `LoadBalancer` Service type support. Therefore, NGINX Service type defaults to `NodePort`. For every NGINX IC App installation, one must assign a set of unique http and https node ports. The default NGINX http and https node ports are `30010` and `30011`. The example sets `31010` and `31011` as overrides for the internal NGINX.
 
 More information on this topic can be found in document [Services of type LoadBalancer]({{< relref "/content/advanced/ingress/service-type-loadbalancer/index.md" >}}).
+
+It is also possible to only install a single Nginx Ingress Controller App and to delegate both internal and external traffic to it. Here is a minimal working example on how to achieve this goal.
+
+```yaml
+controller:
+  service:
+    public: true  # default value
+    subdomain: "ingress"  # default value
+    internal: 
+      enabled: true  # default is `false`
+      subdomain: "ingress-internal"  # default value
+```
+
+In other words, it is sufficient to set `controller.service.internal.enabled` to `true` to create two services: one for public traffic and one for private one. On cloud providers, the Services we create will be of type `LoadBalancer`; on premise, depending on the platform, they might be either of type `LoadBalancer` or `NodePort`.
 
 ## Using weak ciphers for legacy clients
 

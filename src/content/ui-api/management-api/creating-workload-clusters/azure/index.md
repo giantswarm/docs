@@ -56,7 +56,7 @@ spec:
     namespace: default
     name: nzr5z
   controlPlaneEndpoint:
-    host: api.nzr5z.k8s.ghost.westeurope.azure.gigantic.io
+    host: api.nzr5z.k8s.example.westeurope.azure.gigantic.io
     port: 443
 ```
 
@@ -86,7 +86,7 @@ spec:
   location: westeurope
   resourceGroup: nzr5z
   controlPlaneEndpoint:
-    host: api.nzr5z.k8s.ghost.westeurope.azure.gigantic.io
+    host: api.nzr5z.k8s.example.westeurope.azure.gigantic.io
     port: 443
 ```
 

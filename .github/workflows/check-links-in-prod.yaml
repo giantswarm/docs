@@ -10,12 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Pull images
-        run: docker pull linkchecker/linkchecker
+        run: docker pull ghcr.io/linkchecker/linkchecker:latest
 
       - name: Check links
         run: |
           docker run --rm --name linkchecker \
-            linkchecker/linkchecker \
+            ghcr.io/linkchecker/linkchecker:latest \
               https://docs.giantswarm.io/ \
               --check-extern \
               -t 1 \
