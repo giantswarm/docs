@@ -279,7 +279,7 @@ spec:
       configMap:
          name: hello-world-values
          namespace: i5h93
-   configs:
+   extraConfigs:
       - kind: configMap
         name: hello-world-post-user
         namespace: i5h93
