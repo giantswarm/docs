@@ -34,6 +34,7 @@ owner:
 | [`get clusters`][4]           | [List clusters or get details on a single cluster][4]          | only AWS, Azure      |
 | [`get nodepools`][5]          | [List node pools or get details on a single node pool][5]      | only AWS, Azure      |
 | [`get releases`][11]          | [List releases or get details on a single release][11]         | all providers        |
+| [`gitops`][14]                | [Gathers GitOps related subcommand][11]                        | N/A                  |
 | [`template app`][6]           | [Create manifests for an app][6]                               | all providers        |
 | [`template catalog`][7]       | [Create manifests for a catalog][7]                            | all providers        |
 | [`template cluster`][8]       | [Create manifests for a cluster][8]                            | only AWS, Azure      |
@@ -87,3 +88,4 @@ As a Giant Swarm customer, feel free to use your Slack channel to give feedback,
 [101]: {{< relref "/ui-api/kubectl-gs/template-appcatalog" >}}
 [12]: {{< relref "/ui-api/kubectl-gs/update-app" >}}
 [13]: {{< relref "/ui-api/kubectl-gs/update-cluster" >}}
+[14]: {{< relref "/ui-api/kubectl-gs/gitops" >}}

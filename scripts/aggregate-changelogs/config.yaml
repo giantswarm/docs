@@ -88,8 +88,6 @@ repositories:
     category: Playground Apps
   giantswarm/inlets-operator-app:
     category: Playground Apps
-  giantswarm/istio-operator:
-    category: Playground Apps
   giantswarm/jaeger-operator-app:
     category: Playground Apps
   giantswarm/k8s-initiator-app:
