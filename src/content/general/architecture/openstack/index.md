@@ -86,7 +86,7 @@ We have created a [kubectl plugin](https://docs.giantswarm.io/ui-api/kubectl-gs/
 
 ### Components
 
-There are two type of components...
+There are two type of components: generics and self-developed.
 
 #### Generic Components
 
@@ -96,28 +96,27 @@ The generic components run in all of our clusters does not matter if it is a man
 
 The Container Network Interface is the standard for writing plugins to configure network interfaces in Linux containers, and hence Kubernetes.
 
-We have chosen Cilium as CNI implementation for several reasons. It is open source solution that provides connectivity between container in reliable and secure way. Cilium operates at Layer 3/4 providing traditional networking and security services. Additionally it protects and secure applications offering different enhanced features on top. In the workload cluster is used as container network only.
+We have chosen Cilium as CNI implementation for several reasons. It is open source solution that provides connectivity between containers in reliable and secure way. Cilium operates at Layer 3/4 providing traditional networking and security services. Additionally it protects and secure applications offering different enhanced features on top. In the workload cluster is used as container network only by now.
 
 ##### Kube State Metrics
 
-kube-state-metrics (KSM) is a simple service that listens to the Kubernetes API server and generates metrics about the state of the objects (see examples in the Metrics section below). It does not focus on the health of the individual Kubernetes components, but rather on the health of the various objects inside, such as deployments, nodes and pods.
-
+Kube State Metrics (KSM) is a upstream project that watches to the Kubernetes API and provide metrics about the state of the built-in resources. It is used by our monitoring service to scrape the metrics of the core components so we can be paged when something is not working on the cluster. At the same time the customer can scrape that metrics to create their own dashboards and alerts.
 
 ##### Cert exporter
 
-It is a Prometheus exporter that exposes a set of metrics regarding certificates and tokens. It enables us to stay ahead of certificates expiration and take care of them in a timely fashion..
+It is a Prometheus exporter that exposes a set of metrics regarding certificates and tokens. It enables us to stay ahead of certificates expiration and take care of them in a timely fashion.
 
 ##### Net exporter
 
-Net exporter is a Prometheus exporter for exposing network information. It runs as a daemonset in every node to track network and DNS errors.
+Net exporter is also a Prometheus exporter for exposing network information. It runs in every node to track network and DNS errors. We have created some dashboards to help us debug issue on the cluster and also some of our alerts are based on the metrics exported by it.
 
 ##### Metric server
 
-Metrics Server is a component that implements the [Kubernetes Metrics API](https://kubernetes.io/docs/tasks/debug/debug-cluster/resource-metrics-pipeline/#metrics-api) to provide basic data of the container running in the cluster.
+Metrics Server is an upstream component that implements the [Kubernetes Metrics API](https://kubernetes.io/docs/tasks/debug/debug-cluster/resource-metrics-pipeline/#metrics-api) to provide basic data of the container running in the cluster. It gives us information about CPU and memory of every pod and it used by other components,like Horizontal Pod Autoscaler, to take scaling decisions. 
 
 ##### Node exporter
 
-It is a Prometheus exporter for hardware and OS metrics exposed by *NIX kernels.
+It is an upstream Prometheus exporter for tracking hardware and operating system metrics exposed by *NIX kernels. It completes our monitoring service giving us the possibility to track resources used in the nodes and let us create alerts based on that information.
 
 #### Giant Swarm Components
 
