@@ -18,7 +18,7 @@ owner:
 last_review_date: 2021-01-01
 ---
 
-{{< platform_support_table aws="beta=v10.0.0,ga=v11.0.0" azure="ga=v13.0.0" kvm="roadmap=https://github.com/giantswarm/roadmap/issues/209" >}}
+{{< platform_support_table aws="beta=v10.0.0,ga=v11.0.0" azure="ga=v13.0.0" kvm="Not planned" >}}
 
 ## Definition
 
