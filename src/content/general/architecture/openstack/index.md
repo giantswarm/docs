@@ -1,5 +1,5 @@
 ---
-linkTitle: OpenStack
+linkTitle: Cluster-API-Architecture
 title: The Giant Swarm Platform Architecture
 description: Architecture overview explaining how our Platform is built it.
 weight: 30
@@ -17,7 +17,7 @@ owner:
 
 The Giant Swarm Platform consists of various systems. They can be categorized into three areas: infrastructure, applications, and operations.
 
-For managing all the infrastructure we run a management cluster per provider and region wherever you want run your workloads. From that management cluster you can spin up as many individual Kubernetes clusters, called workload clusters, as you want. Our operations team works to maintain all cluster components healthy, while we release new versions with new features and patches. On top of that, Giant Swarm offers a curated catalog with the most common Cloud Native tools that helps to monitor, secure or manage your applications. Customers can leverage those while we carry the burden of maintain and keep them up to date.
+For managing the infrastructure we run a management cluster per provider and region wherever you want to have your workloads. From that management cluster you can spin up as many individual Kubernetes clusters, called workload clusters, as you want. Our operations team works to maintain all cluster components healthy, while we release new versions with new features and patches. On top of that, Giant Swarm offers a curated catalog with the most common Cloud Native tools that helps to monitor, secure or manage your applications. Customers can leverage those while we carry the burden of maintain and keep them up to date.
 
 Giant Swarm's architecture is split into two logical parts. One comprehends the management cluster and all the components running there. On the other side we have the workload clusters that are created dynamically by the users and they serve to run their business workloads. In principle the management cluster and workload cluster are the equal in terms of infrastructure and configuration. The difference comes with the additional layers we deployed on top of the management cluster that helps to manage your users and permissions, workload clusters or the applications running on the workload clusters.
 
@@ -29,15 +29,30 @@ As explained previously, both the management cluster and the workload cluster ha
 
 By default, the machines are split into three different failure domains or zones to ensure the availability of the API and workloads running on the there. In our setup, three control plane machines hold the Kubernetes API and the other controllers, and a variable number of worker machines contain the regular services.
 
-There is a machine created as a bastion that helps us with the operations. It is the single entry point to the running infrastructure so that way all cluster machines can live in a private network and expose the services running on them via explicit configuration.
+There is a machine created as a bastion that helps us with the operations. It is the single entry point to the running infrastructure so that way all the cluster machines can live in a private network and expose the services running on them via explicit configuration.
+
+{{< tabs >}}
+{{< tab id="flags-aws" title="AWS">}}
+
+{{< /tab >}}
+{{< tab id="flags-capz" title="Azure">}}
+
+{{< /tab >}}
+{{< tab id="flags-gcp" title="GCP">}}
+
+{{< /tab >}}
+{{< tab id="flags-openstack" title="OpenStack">}}
 
 The setup requires an external network configured in the project to allow the machines to pull images or route requests from containers to Internet. On the other side, there is an internal network which interconnects all master and worker machines allowing the internal communication of all containers within the cluster. At the same time, it allocates the load balancers that are created dynamically as result of exposing a service in the cluster. The load balancer, in case of being external, allocates a floating IP to make possible the connection with external endpoints.
+
+{{< /tab >}}
+{{< /tabs >}}
 
 Internally, Cluster API (CAPI) use kubeadm to configure all the machines according to the standards. It uses a template defined as yaml, part of CAPI, where we have hardened the different parameters for the API and other controllers running in the master machine.
 
 ## Giant Swarm Platform
 
-The Giant Swarm Platform consists in the management cluster, which exposes its Kubernetes API as entry point. The main reason is nowadays Kubernetes is the standard defacto for managing infrastructure in a modern way. Its extensibility makes easy to transform a cluster in a Platform adding the sugar to make user experience great.
+The Giant Swarm Platform revolves around the the management cluster API. The main reason is nowadays Kubernetes is the standard defacto for managing infrastructure in a modern way. Its extensibility makes easy to transform a cluster in a Platform adding the sugar to make user experience great.
 
 Our platform let us the customer manage (workload) clusters and applications in a Cloud Native fashion. Here we are going to explain the bootstrapping process of a cluster, how it is managed in the entire lifecycle and which components the cluster run based on the role, workload or management.
 
@@ -59,10 +74,15 @@ The process involves several steps that we resume briefly in the following list:
 10. Configure and harden the cluster.
 11. Run and test the management cluster functionality.
 
-After the management cluster is ready we deliver all the details to the customer to allow them the access to the Management API. From this very moment we use the same mechanism to control the cluster lifecycle as we use for workload clusters.
+After the management cluster is ready we deliver all the details to the customer to allow them the access to the Management API. From this very moment we use the same mechanisms to control the management cluster lifecycle as we use for workload clusters.
 
+Cluster API offers a set of custom resources that define all the details of a cluster infrastructure and its configuration. 
 
-Cluster API offers a set of customer resources that ...
+[Cluster API Resources](./CAPI_resources.png)!
+
+Usually we have generic resources that define common configuration of the clusters and its components, and some infrastructure specific resources which will be tied to the provider we select. 
+
+We have created a [kubectl plugin](https://docs.giantswarm.io/ui-api/kubectl-gs/template-cluster/) to help you template all the needed resources.
 
 ### Components
 
