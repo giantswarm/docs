@@ -11,7 +11,7 @@ menu:
   main:
     identifier: uiapi-kubectlgs
     parent: ui-api
-last_review_date: 2021-10-25
+last_review_date: 2022-09-07
 user_questions:
   - Which commands does kubectl-gs offer?
 aliases:
@@ -26,23 +26,24 @@ owner:
 
 ## Commands {#commands}
 
-| Command                       | Description                                                    | Provider info        |
-| ----------------------------- | -------------------------------------------------------------- | -------------------- |
-| [`login`][1]                  | [Ensure an authenticated kubectl context][1]                   | all providers        |
-| [`get apps`][2]               | [List apps or get details on a single app][2]                  | all providers        |
-| [`get catalogs`][3]           | [List catalogs or get details on a single catalog][3]          | all providers        |
-| [`get clusters`][4]           | [List clusters or get details on a single cluster][4]          | only AWS, Azure      |
-| [`get nodepools`][5]          | [List node pools or get details on a single node pool][5]      | only AWS, Azure      |
-| [`get releases`][11]          | [List releases or get details on a single release][11]         | all providers        |
-| [`gitops`][14]                | [Gathers GitOps related subcommand][11]                        | N/A                  |
-| [`template app`][6]           | [Create manifests for an app][6]                               | all providers        |
-| [`template catalog`][7]       | [Create manifests for a catalog][7]                            | all providers        |
-| [`template cluster`][8]       | [Create manifests for a cluster][8]                            | only AWS, Azure      |
-| [`template nodepool`][9]      | [Create manifests for a node pool][9]                          | only AWS, Azure      |
-| [`template organization`][10] | [Create manifest for an organization][10]                      | all providers        |
-| [`update app`][12]            | [Update given App][12]                                         | all providers        |
-| [`update cluster`][13]        | [Schedule a cluster update][13]                                | only AWS, Azure      |
-| `help`                        | Get help for a command                                         | provider independent |
+| Command                       | Description                                                      | Provider info        |
+|-------------------------------|------------------------------------------------------------------| -------------------- |
+| [`login`][1]                  | [Ensure an authenticated kubectl context][1]                     | all providers        |
+| [`get apps`][2]               | [List apps or get details on a single app][2]                    | all providers        |
+| [`get catalogs`][3]           | [List catalogs or get details on a single catalog][3]            | all providers        |
+| [`get clusters`][4]           | [List clusters or get details on a single cluster][4]            | only AWS, Azure      |
+| [`get nodepools`][5]          | [List node pools or get details on a single node pool][5]        | only AWS, Azure      |
+| [`get organizations`][11]     | [List organizations or get details on a single organization][11] | all providers        |
+| [`get releases`][11]          | [List releases or get details on a single release][11]           | all providers        |
+| [`gitops`][14]                | [Gathers GitOps related subcommand][11]                          | N/A                  |
+| [`template app`][6]           | [Create manifests for an app][6]                                 | all providers        |
+| [`template catalog`][7]       | [Create manifests for a catalog][7]                              | all providers        |
+| [`template cluster`][8]       | [Create manifests for a cluster][8]                              | only AWS, Azure      |
+| [`template nodepool`][9]      | [Create manifests for a node pool][9]                            | only AWS, Azure      |
+| [`template organization`][10] | [Create manifest for an organization][10]                        | all providers        |
+| [`update app`][12]            | [Update given App][12]                                           | all providers        |
+| [`update cluster`][13]        | [Schedule a cluster update][13]                                  | only AWS, Azure      |
+| `help`                        | Get help for a command                                           | provider independent |
 
 Deprecated commands:
 
