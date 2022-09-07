@@ -11,7 +11,7 @@ aliases:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
-  - How can I list organizations in a cluster using kubectl?
+  - How can I list organizations in the management API using kubectl?
   - How can I inspect organizations using kubectl?
 last_review_date: 2022-09-07
 ---
