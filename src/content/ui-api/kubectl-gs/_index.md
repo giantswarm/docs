@@ -33,7 +33,7 @@ owner:
 | [`get catalogs`][3]           | [List catalogs or get details on a single catalog][3]            | all providers        |
 | [`get clusters`][4]           | [List clusters or get details on a single cluster][4]            | only AWS, Azure      |
 | [`get nodepools`][5]          | [List node pools or get details on a single node pool][5]        | only AWS, Azure      |
-| [`get organizations`][15]     | [List organizations or get details on a single organization][11] | all providers        |
+| [`get organizations`][15]     | [List organizations or get details on a single organization][15] | all providers        |
 | [`get releases`][11]          | [List releases or get details on a single release][11]           | all providers        |
 | [`gitops`][14]                | [Gathers GitOps related subcommand][11]                          | N/A                  |
 | [`template app`][6]           | [Create manifests for an app][6]                                 | all providers        |
