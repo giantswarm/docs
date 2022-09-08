@@ -11,7 +11,7 @@ menu:
   main:
     identifier: uiapi-kubectlgs
     parent: ui-api
-last_review_date: 2022-09-07
+last_review_date: 2022-09-08
 user_questions:
   - Which commands does kubectl-gs offer?
 aliases:
@@ -35,7 +35,7 @@ owner:
 | [`get nodepools`][5]          | [List node pools or get details on a single node pool][5]        | only AWS, Azure      |
 | [`get organizations`][15]     | [List organizations or get details on a single organization][15] | all providers        |
 | [`get releases`][11]          | [List releases or get details on a single release][11]           | all providers        |
-| [`gitops`][14]                | [Gathers GitOps related subcommand][11]                          | N/A                  |
+| [`gitops`][14]                | [Gathers GitOps related subcommand][14]                          | N/A                  |
 | [`template app`][6]           | [Create manifests for an app][6]                                 | all providers        |
 | [`template catalog`][7]       | [Create manifests for a catalog][7]                              | all providers        |
 | [`template cluster`][8]       | [Create manifests for a cluster][8]                              | only AWS, Azure      |
