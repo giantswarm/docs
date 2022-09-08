@@ -1,14 +1,14 @@
 ---
 linkTitle: Prometheus RemoteWrite
 title: Prometheus RemoteWrite
-description: A guide explainig what the Giant Swarm Prometheus Remote Write feature is and how to use it.
+description: A guide explaining how to set up your Prometheus remote write integration.
 weight: 50
 menu:
   main:
     parent: advanced
 user_questions:
-  - What is a Prometheus RemoteWrite?
-  - How Prometheus RemoteWrite work?
+  - What is Prometheus RemoteWrite?
+  - How Prometheus RemoteWrite works?
   - How do I get access to management cluster metrics?
 aliases:
   - /advanced/remotewrite/
@@ -17,7 +17,9 @@ owner:
 last_review_date: 2022-07-19
 ---
 
-In this document you will learn how to use the Prometheus RemoteWrite feature provided out of the box by Giant Swarm.
+In this document you will learn how to set up your Prometheus remote write integration.
+
+__Warning:__ This feature and the documentation is quite new, so do not hesitate to ask for support or help us improve this documentation.
 
 ## Introduction to Prometheus RemoteWrite
 
@@ -66,3 +68,7 @@ spec:
       username: ...
     name: grafana-cloud
 ```
+
+## RemoteWrite CRD
+
+The RemoteWrite CRD documentation can be found [here](https://doc.crds.dev/github.com/giantswarm/prometheus-meta-operator/monitoring.giantswarm.io/RemoteWrite/v1alpha1@v4.5.1) or on any management cluster using `kubectl explain`.

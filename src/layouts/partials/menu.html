@@ -19,7 +19,21 @@
                                         {{ if $currentPage.IsDescendant $pageForItem2 }}
                                             <ul class="acnav__list acnav__list--level3">
                                                 {{ range .Children }}
-                                                <li><a class="acnav__link{{ if $currentPage.IsMenuCurrent "main" . }} current{{ end }}" href="{{ .URL }}">{{ .Name }}</a></li>
+													{{ $pageForItem3 := $site.GetPage .URL }}
+													{{ if .HasChildren }}
+														<li class="has-children">
+															<div class="acnav__label{{ if or ($currentPage.HasMenuCurrent "main" .) ($currentPage.IsMenuCurrent "main" . ) }} active{{ end }}"><a class="{{ if $currentPage.IsMenuCurrent "main" . }} current{{ end }}" href="{{ .URL }}">{{ .Name }}</a></div>
+															{{ if $currentPage.IsDescendant $pageForItem3 }}
+																<ul class="acnav__list acnav__list--level4">
+																	{{ range .Children }}
+																	<li><a class="acnav__link{{ if $currentPage.IsMenuCurrent "main" . }} current{{ end }}" href="{{ .URL }}">{{ .Name }}</a></li>
+																	{{ end }}
+																</ul>
+															{{ end }}
+														</li>
+													{{ else }}
+														<li><a class="acnav__link{{ if $currentPage.IsMenuCurrent "main" . }} current{{ end }}" href="{{ .URL }}">{{ .Name }}</a></li>
+													{{ end }}
                                                 {{ end }}
                                             </ul>
                                         {{ end }}
@@ -38,4 +52,3 @@
 		</ul>
 	</nav>
 </section>
-
