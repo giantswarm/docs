@@ -27,7 +27,7 @@ As explained previously, both the management cluster and the workload cluster(s)
 
 [Cluster Architecture Image](./CAPI_architecture.png)!
 
-By default, the machines are split into three different failure domains or zones to ensure the availability of the API and workloads running . In our setup, three control plane machines hold the Kubernetes API and the other controllers, and a variable number of worker machines contain the regular services.
+By default, the machines are split into three different failure domains or zones to ensure the availability of the API and workloads running. In our setup, three control plane machines hold the Kubernetes API and the other controllers, and a variable number of worker machines contain the regular services.
 
 There is a machine created as a bastion that helps us with the operations. It is the single entry point to the running infrastructure. This way all the cluster machines can live in a private network and expose the services running on them via explicit configuration.
 
@@ -58,7 +58,7 @@ Our platform let's customers manage (workload) clusters and applications in a Cl
 
 ### Bootstrapping
 
-The initial deployment entails the creation of that management cluster in a defined region. We have built a tool that performs all steps need to create a cluster and convert into a management cluster.
+The initial deployment entails the creation of that management cluster in a defined region. We built a tool that performs all steps need to create a cluster and convert it to a management cluster.
 
 The process involves several steps that we will review briefly in the following list:
 
@@ -160,7 +160,7 @@ In [Cluster API](https://cluster-api.sigs.k8s.io/) there is a set of generic ope
 - `Kubeadm Control Plane` controller that manages the lifecycle of the control plane nodes and provides access to the API.
 - `CAPI manager` controller that manages cluster and machine resources.
 
-*Cluster OpenStack controller*
+*Cluster OpenStack operator*
 
 As part of the generic controllers we have this special one. It acts as a bridge and reconciles the provider specific configuration to create the necessary infrastructure for a Kubernetes cluster. This controller provisions, updates and deletes all resources on the provider API. It also enriches Kubernetes node info with infrastructure relevant information. This is helpful for application administrators to implement affinity/ anti-affinity rules which reflect underlying availability zone metadata. It is mandatory for the Cluster API provisioning workflow to get known infrastructure specific machine metadata.
 
@@ -190,7 +190,7 @@ As we described before, organizations are used to organize clusters and apps, bu
 
 ##### Operational services
 
-Aside from operators and admission controllers we also deploy a set of tooling that ensure we have a nice delivery system, good hardening and decent observability.  
+Aside from operators and admission controllers we also deploy a set of tooling that ensure we have a nice delivery system, good hardening and clear observability.  
 
 *Authentication Features of the Platform*
 
