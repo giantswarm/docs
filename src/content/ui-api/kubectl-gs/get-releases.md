@@ -6,8 +6,6 @@ weight: 50
 menu:
   main:
     parent: uiapi-kubectlgs
-aliases:
-  - /reference/kubectl-gs/get-releases/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
