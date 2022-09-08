@@ -35,7 +35,7 @@ We provide a GitHub repository with [installation name candidates](https://githu
 
 To select a name for your new installation, please
 
-1. Browse the available names in the `.txt` files within the [installation-names](https://github.com/giantswarm/installation-names) repository and decide for a name. Feel free to pick the one you like best, for whatever reason.
+1. Browse the available names in the `.txt` files within the [installation-names](https://github.com/giantswarm/installation-names) repository and decide on a name. Feel free to pick the one you like best, for whatever reason.
 2. Fork the repository.
 3. In your fork, remove the name you decided for.
 4. Provide a pull request to our source repository. Please inform your Giant Swarm account engineer (AE) or site reliability engineer (SRE) about the pull request.
