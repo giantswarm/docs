@@ -21,7 +21,7 @@ Every Giant Swarm installation has a unique name. This name is part of the DNS z
 
 When we set up a new installation for you, we want you to pick a name for it. Think of this name as your handy alias for everything you do with Giant Swarm in a specific cloud provider region, e.g. _Google Cloud Finland (europe-north1)_.
 
-Once a name is decided on, you will use it often on your communication with Giant Swarm. Of course, we encourage you to also use it in internal communication.
+Once a name is decided on, you will use it often in your communication with Giant Swarm. Of course, we encourage you to also use it in internal communication.
 
 ## Criteria for good installation names
 
