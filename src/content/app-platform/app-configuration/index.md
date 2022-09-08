@@ -8,7 +8,7 @@ menu:
 weight: 30
 aliases:
  - /reference/app-configuration/
-last_review_date: 2022-07-11
+last_review_date: 2022-08-18
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -64,6 +64,22 @@ If no value is provided then the default in the chart's values file (`values.yam
 
 **Note:** Attempting to change configuration at any other level is risky because your changes
 might be overwritten by an operator. That is why our web interface is only able to set user level configuration values.
+
+## General notes about App CR configuration
+
+When using App Platform, it is important to remember, that most of the configuration changes in Kubernetes are asynchronous
+and only eventually consistent. This also applies to App CRs and theirs configuration. To better understand that, let's use an example
+where you update the application version in the App CR from version `v1.0.0` to `v2.0.0` and at roughly the same time you update the
+Config Map referenced by the App CR (let's call the Config Map before the change `configMap v1` and after the change `configMap v2`).
+As these changes are completely independent for Kubernetes, the following scenario is possible:
+
+- App CR is in version `v1.0.0` and configMap is in `v1`
+- both App CR and the referenced Config Map are edited
+- the application's version change is already processed, so the application runs in `v2.0.0` with a Config Map `v1`
+- after some time, the Config Map change is processed, the application will now run in `v2.0.0` with a Config Map in version `v2`
+
+Obviously, it can also happen that the Config Map is updated first, then the application version. The time between one and the
+other change being processed is usually very short, still it's important to understand, that such situations might and will happen.
 
 ## Example of values merging {#basic-values-merging-example}
 
@@ -279,7 +295,7 @@ spec:
       configMap:
          name: hello-world-values
          namespace: i5h93
-   configs:
+   extraConfigs:
       - kind: configMap
         name: hello-world-post-user
         namespace: i5h93
