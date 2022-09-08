@@ -37,9 +37,9 @@ Here is some example output:
 ```nohighlight
 NAME                  ORG NAMESPACE             AGE
 acme                  org-acme                  20d
-conformance-testing   org-team-rainbow          185d
+conformance-testing   org-conformance-testing   185d
 giantswarm            org-giantswarm            489d
-multi-project         org-party-org             379d
+multi-project         org-multi-project         379d
 ```
 
 ### Get specific organization
