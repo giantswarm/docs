@@ -17,7 +17,7 @@ A Giant Swarm installation includes a management cluster, bastion hosts, the wor
 
 ## Why an installation name
 
-Every Giant Swarm installations has a unique name. This name is part of the DNS zone used for all endpoints of this installation.
+Every Giant Swarm installation has a unique name. This name is part of the DNS zone used for all endpoints of this installation.
 
 When we set up a new installation for you, we want you to pick a name for it. Think of this name as your handy alias for everything you do with Giant Swarm in a specific cloud provider region, e. g. _Google Cloud Finland (europe-north1)_.
 
