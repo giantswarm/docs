@@ -2,7 +2,7 @@
 linkTitle: Shared installations
 title: Getting started on a shared installation
 description: Giant Swarm customers usually work with their own installation(s). However, we also provide shared installations for trials and proof of concept (PoC) projects. This article explains the differences and what to do as a customer to get started on a shared installation.
-weight: 90
+weight: 10
 menu:
   main:
     parent: getting-started
