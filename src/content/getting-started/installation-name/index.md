@@ -25,7 +25,7 @@ Once a name is decided on, you will use it often in your communication with Gian
 
 ## Criteria for good installation names
 
-Besides being usable in DNS, there are many criteria which distinguish a good installation name. It should be easy to pronounce in an english language context, easy to type, and ideally easy to memorize. On the other hand, it should not reveal information about you as a customer.
+Besides being usable in DNS, there are many criteria which distinguish a good installation name. It should be easy to pronounce in an English language context, easy to type, and ideally easy to memorize. On the other hand, it should not reveal information about you as a customer.
 
 Installation names cannot be changed. So the best names are long-lasting, even in the case of context changes. For example, changing the purpose of the installation, or even a company name change.
 
