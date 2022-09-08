@@ -67,10 +67,10 @@ spec:
   cert:
     allowBareDomains: false
     altNames:
-    - api.c68pn.example.westeurope.azure.gigantic.io
+    - api.c68pn.gollum.westeurope.azure.gigantic.io
     clusterComponent: prometheus
     clusterID: c68pn
-    commonName: api.c68pn.k8s.example.westeurope.azure.gigantic.io
+    commonName: api.c68pn.k8s.gollum.westeurope.azure.gigantic.io
     disableRegeneration: false
     organizations:
     - giantswarm
