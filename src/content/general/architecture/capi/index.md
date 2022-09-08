@@ -160,13 +160,13 @@ In [Cluster API](https://cluster-api.sigs.k8s.io/) there is a set of generic ope
 - `Kubeadm Control Plane` controller that manages the lifecycle of the control plane nodes and provides access to the API.
 - `CAPI manager` controller that manages cluster and machine resources.
 
-*Cluster OpenStack operator*
+*Cluster Provider operator*
 
-As part of the generic controllers we have this special one. It acts as a bridge and reconciles the provider specific configuration to create the necessary infrastructure for a Kubernetes cluster. This controller provisions, updates and deletes all resources on the provider API. It also enriches Kubernetes node info with infrastructure relevant information. This is helpful for application administrators to implement affinity/ anti-affinity rules which reflect underlying availability zone metadata. It is mandatory for the Cluster API provisioning workflow to get known infrastructure specific machine metadata.
+In Cluster API there is a set of common providers defined above, but to manage the real infrastructure we need to run an specific controller that knows about the provider API. It acts as a bridge and reconciles the provider specific configuration to create the necessary infrastructure for a Kubernetes cluster. This controller provisions, updates and deletes all resources through API. Every provider has its own lingo and methods to create a machine or provision a network. The operator reconciles the `Infrastructure` custom resources of the specific provider parsing the desired state into API requests and ensuring the provider resources are always in sync with the resource definitions stored in the management cluster.
 
-*Cluster apps operator*
+*Cluster Apps operator*
 
-This simple operator takes care of providing the basic configuration for our managed apps. Assets like the certificate authority or the domain base are provided by it via a configmap so the different apps can rely on those values to configure themselves.
+This simple operator takes care of providing the basic configuration for our managed Apps. Assets like the certificate authority or the domain base are provided by it via a configmap so the different Apps can rely on those values to configure themselves.
 
 ##### Admission controllers
 
@@ -174,7 +174,7 @@ The [Admission Controller](https://kubernetes.io/docs/reference/access-authn-aut
 
 *App Admission Controller*
 
-This admission controller gives the ability to our App Platform to ensure an App is created properly, with all required files and points to an existing app in the Catalog. At the same time allow our customers to only passed the minimum spec and default the rest automatically.
+This admission controller gives the ability to our App Platform to ensure an App is created properly, with all required files and points to an existing App in the Catalog. At the same time allow our customers to only passed the minimum spec and default the rest automatically.
 
 *Cluster API admission controllers*
 
