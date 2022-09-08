@@ -71,4 +71,4 @@ spec:
 
 ## RemoteWrite CRD
 
-The RemoteWrite CRD documentation can be found [here](https://github.com/giantswarm/prometheus-meta-operator/blob/master/config/crd/monitoring.giantswarm.io_remotewrites.yaml) or on any management cluster using `kubectl explain`.
+The RemoteWrite CRD documentation can be found [here](https://doc.crds.dev/github.com/giantswarm/prometheus-meta-operator/monitoring.giantswarm.io/RemoteWrite/v1alpha1@v4.5.1) or on any management cluster using `kubectl explain`.
