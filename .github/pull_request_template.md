@@ -2,7 +2,7 @@
 
 (Please set a descriptive PR title. Use this space for additional explanations.)
 
-### How does it look like?
+### What does it look like?
 
 (If this is more than a textual change, a screenshot can help in some cases to speed up the review process.)
 
