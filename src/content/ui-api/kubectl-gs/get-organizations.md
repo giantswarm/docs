@@ -18,6 +18,8 @@ last_review_date: 2022-09-07
 
 Like with all `get` commands in `kubectl`, this command can be used to get details on one item, an organization in this case, or list several of them.
 
+The command is an improvement over `kubectl get organizations`, for several reasons. First, it is usable by all users who have access to the management API, not only admins, as it does not require permission to list Organization resources on the cluster scope. Second, it provides slightly more details in the list output.
+
 ## Usage
 
 ### Get a list of organizations {#list}
