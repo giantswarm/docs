@@ -30,9 +30,7 @@ Adoption of Kubernetes still requires monitoring cost drivers. Improving resourc
     - [Azure Monitor data source integration](https://grafana.com/grafana/plugins/grafana-azure-monitor-datasource/)
 - [Goldilocks](https://github.com/FairwindsOps/goldilocks), a tool for refine and discover the right application resource settings
 - There are a lot of payed solutions offering dashboard oriented services that track costs of Kubernetes Applications like:
-    - [Replex](https://www.replex.io/)
     - [Cloudability](https://www.apptio.com/products/cloudability/)
-    - [Opsani](https://opsani.com/) (Also manages resource assignation using AI)
     - [Kubernetes Opex Analytics](https://github.com/rchakode/kube-opex-analytics)
     - [CloudHealth](https://www.cloudhealthtech.com/)
 
