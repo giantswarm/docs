@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-azure/releases/azure-v16.1.3/
 changes_categories:
-- workload cluster releases for Azure
+- Workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/azure/v16.1.3
@@ -12,7 +12,7 @@ changes_entry:
 date: '2022-06-06T11:27:23+00:00'
 description: Release notes for Azure workload cluster release v16.1.3, published on
   06 June 2022, 11:27
-title: workload cluster release v16.1.3 for Azure
+title: Workload cluster release v16.1.3 for Azure
 ---
 
 This release provides security hardening of app-operator to tighten RBAC permissions as well as honoring write contexts more accurately.

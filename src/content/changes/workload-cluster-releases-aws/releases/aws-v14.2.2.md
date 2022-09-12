@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v14.2.2/
 changes_categories:
-- workload cluster releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v14.2.2
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-06-15T07:27:27+00:00'
 description: Release notes for AWS workload cluster release v14.2.2, published on
   15 June 2021, 07:27
-title: workload cluster release v14.2.2 for AWS
+title: Workload cluster release v14.2.2 for AWS
 ---
 
 This release fixes the issue which caused Kubernetes nodes to lose network connectivity in certain situations by reverting Flatcar Container Linux to an older version.

@@ -89,7 +89,7 @@ on your management clusters.
 
 #### The Giant Swarm Catalog
 
-This catalog contains our stable, fully Managed Apps, with SLA (e.g. the NGINX Ingress Controller). It also contain apps that we are developing towards that level of commitment (e.g. Kong, EFK).
+This catalog contains our stable, fully managed apps, with SLA (e.g. the NGINX Ingress Controller). It also contain apps that we are developing towards that level of commitment (e.g. Kong, EFK).
 
 Maturity levels of apps in this catalog are expressed through semantic versioning as follows:
 

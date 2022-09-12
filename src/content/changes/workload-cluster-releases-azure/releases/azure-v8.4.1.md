@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-azure/releases/azure-v8.4.1/
 changes_categories:
-- workload cluster releases for Azure
+- Workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/azure/archived/v8.4.1
@@ -12,7 +12,7 @@ changes_entry:
 date: '2019-09-26T17:00:00+00:00'
 description: Release notes for Azure workload cluster release v8.4.1, published on
   26 September 2019, 17:00
-title: workload cluster release v8.4.1 for Azure
+title: Workload cluster release v8.4.1 for Azure
 ---
 
 This release adds the following service endpoints to the worker VNET:

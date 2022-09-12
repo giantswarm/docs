@@ -1,7 +1,7 @@
 ---
-linkTitle: management clusters
-title: management clusters
-description: The role management clusters perform in the Giant Swarm architecture and how they are updated.
+linkTitle: Management clusters
+title: Management clusters
+description: The role Management Clusters perform in the Giant Swarm architecture and how they are updated.
 weight: 50
 menu:
   main:
@@ -9,8 +9,8 @@ menu:
     parent: general
 last_review_date: 2021-02-19
 user_questions:
-  - How does Giant Swarm use management clusters?
-  - How are management clusters kept up to date?
+  - How does Giant Swarm use Management Clusters?
+  - How are Management Clusters kept up to date?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
   - https://github.com/orgs/giantswarm/teams/team-rocket
@@ -26,7 +26,7 @@ Users have direct access to the Kubernetes API of the management cluster. The gi
 
 We do not support the upstream Cluster API for all our providers yet, but are fully committed to supporting this open standard soon.
 
-## workload cluster releases
+## Workload Cluster releases
 
 Our workload clusters are versioned using [workload cluster releases]({{< relref "/general/releases" >}}). From a workload cluster point of view, upgrades are described in [cluster upgrades]({{< relref "/general/cluster-upgrades" >}}).
 
@@ -36,7 +36,7 @@ When we publish a new workload cluster release, we create a new [Release]({{< re
 
 To make sure that existing workload clusters aren't affected by new versions, our operators are immutable. With each new release, we deploy new instances of the operators with the new version, via the [release-operator](https://github.com/giantswarm/release-operator/), which avoids impacting existing workload clusters. These new operators will not become active until existing workload clusters are upgraded or a new cluster is created. Overall, this entails that the operators are versioned together with the cloud provider infrastructure and component versions (e.g: Kubernetes, CoreDNS, etc.) of the cluster itself, with the new operators taking over when the cluster is upgraded to the new version.
 
-## management cluster-only components
+## Management cluster-only components
 
 There are a number of components that are not a part of a workload cluster release, such as our monitoring stack, or web UI. These components are deployed exclusively to the management cluster, and do not affect workload clusters.
 

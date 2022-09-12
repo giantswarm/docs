@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v15.1.0/
 changes_categories:
-- workload cluster releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v15.1.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-08-03T10:00:00+00:00'
 description: Release notes for AWS workload cluster release v15.1.0, published on
   03 August 2021, 10:00
-title: workload cluster release v15.1.0 for AWS
+title: Workload cluster release v15.1.0 for AWS
 ---
 
 This release provides stability improvements and bug fixes for various components.

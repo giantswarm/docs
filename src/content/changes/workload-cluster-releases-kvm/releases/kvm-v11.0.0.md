@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-kvm/releases/kvm-v11.0.0/
 changes_categories:
-- workload cluster releases for KVM
+- Workload cluster releases for KVM
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/kvm/archived/v11.0.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2020-01-10T12:00:00+00:00'
 description: Release notes for KVM workload cluster release v11.0.0, published on
   10 January 2020, 12:00
-title: workload cluster release v11.0.0 for KVM
+title: Workload cluster release v11.0.0 for KVM
 ---
 
 This is the first Giant Swarm release which includes Kubernetes v1.16. In addition, CPU limits have been removed from several supporting components and priority classes have been adjusted to ensure system reliability under heavy load. Further details about changes to individual components can be found below.

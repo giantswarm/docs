@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v16.5.0/
 changes_categories:
-- workload cluster releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v16.5.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2022-07-05T08:53:31+00:00'
 description: Release notes for AWS workload cluster release v16.5.0, published on
   05 July 2022, 08:53
-title: workload cluster release v16.5.0 for AWS
+title: Workload cluster release v16.5.0 for AWS
 ---
 
 This is a security release featuring the latest version of Kubernetes 1.21 (1.21.14) and all of Giant Swarm applications.

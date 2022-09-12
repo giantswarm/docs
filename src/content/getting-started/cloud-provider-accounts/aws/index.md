@@ -209,7 +209,7 @@ These are the limit increases to be requested, grouped by limit type:
 - management cluster account:
     - VPC
         - Routes per route table: **200**
-- workload cluster account:
+- Workload cluster account:
     - VPC
         - VPCs per region: **50**
         - NAT Gateway per Availability Zone per region: **50**

@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-kvm/releases/kvm-v14.1.1/
 changes_categories:
-- workload cluster releases for KVM
+- Workload cluster releases for KVM
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/kvm/archived/v14.1.1
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-06-23T05:24:59+00:00'
 description: Release notes for KVM workload cluster release v14.1.1, published on
   23 June 2021, 05:24
-title: workload cluster release v14.1.1 for KVM
+title: Workload cluster release v14.1.1 for KVM
 ---
 
 This release fixes a rare bug encountered when deleting clusters using host volumes.

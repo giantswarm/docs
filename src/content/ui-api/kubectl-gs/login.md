@@ -87,7 +87,7 @@ In addition, there is one flag **only relevant to Giant Swarm staff**:
 
 ## Examples
 
-### management cluster
+### Management cluster
 
 To set up a context initially, you'll have to use either the web UI URL as an argument ...
 
@@ -113,7 +113,7 @@ For subsequent logins, you can use that shorthand to easily select which install
 ```nohighlight
 kubectl gs login example
 ```
-### workload cluster
+### Workload cluster
 
 If OIDC is set up on a workload cluster, the initial login can be done via the Management API endpoint URL as well.
 
@@ -134,7 +134,7 @@ For subsequent logins, you can use that shorthand to easily select which workloa
 kubectl gs login example test
 ```
 
-### workload cluster client certificate
+### Workload cluster client certificate
 
 Given that a context `gs-example` already exists from previous management cluster log-ins to that installation, the following command would create a client certificate with specific group assignment:
 

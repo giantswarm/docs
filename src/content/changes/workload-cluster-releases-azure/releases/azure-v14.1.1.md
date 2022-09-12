@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-azure/releases/azure-v14.1.1/
 changes_categories:
-- workload cluster releases for Azure
+- Workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/azure/archived/v14.1.1
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-02-22T07:35:53+00:00'
 description: Release notes for Azure workload cluster release v14.1.1, published on
   22 February 2021, 07:35
-title: workload cluster release v14.1.1 for Azure
+title: Workload cluster release v14.1.1 for Azure
 ---
 
 This is a bugfix release to resolve a few bugs related to the cluster autoscaler.

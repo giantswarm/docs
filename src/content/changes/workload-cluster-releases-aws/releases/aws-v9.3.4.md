@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v9.3.4/
 changes_categories:
-- workload cluster releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v9.3.4
@@ -12,14 +12,14 @@ changes_entry:
 date: '2020-07-13T15:00:00+00:00'
 description: Release notes for AWS workload cluster release v9.3.4, published on 13
   July 2020, 15:00
-title: workload cluster release v9.3.4 for AWS
+title: Workload cluster release v9.3.4 for AWS
 ---
 
 This release makes security fixes for 2 CVEs:
 - IPv6 rogue router advertisement vulnerability [CVE-2020-13597](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-13597)
 - [CVE-2020-8558](https://github.com/kubernetes/kubernetes/issues/92315) which allows for neighboring hosts to bypass localhost boundary
 
-It also updates Managed Apps to the latest releases.
+It also updates managed apps to the latest releases.
 
 Below, you can find more details on components that were changed with this release.
 

@@ -252,7 +252,7 @@ You can use more than one connector, but they need to have a different `id` valu
 
 After you have applied the `ConfigMap` manifest to the Management API you have to submit the App custom resource that defines the intent to install the Dex app in the given cluster.
 The easiest way to do this is [through our Web-UI](https://docs.giantswarm.io/ui-api/web/app-platform/)
-Alternatively, you can directly apply it to the management cluster.
+Alternatively, you can directly apply it to the Management Cluster.
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1

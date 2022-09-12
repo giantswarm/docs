@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v15.0.0/
 changes_categories:
-- workload cluster releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v15.0.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-07-09T09:00:00+00:00'
 description: Release notes for AWS workload cluster release v15.0.0, published on
   09 July 2021, 09:00
-title: workload cluster release v15.0.0 for AWS
+title: Workload cluster release v15.0.0 for AWS
 ---
 
 This release provides support for Kubernetes 1.20. It also enables the Container Storage Interface (CSI) and the automatic termination of unhealthy nodes by default.
@@ -42,7 +42,7 @@ This release provides support for Kubernetes 1.20. It also enables the Container
 - Emit events when config maps and secrets referenced in App CRs are updated;
 - Cache k8sclient, helmclient for later use;
 - Apply the namespaceConfig to the desired chart;
-- Install apps in CAPI workload clusters;
+- Install apps in CAPI Workload Clusters;
 - Apply `compatibleProvider`, `namespace` metadata validation based on the relevant `AppCatalogEntry` CR;
 - Add annotations from Helm charts to AppCatalogEntry CRs;
 - Enable Vertical Pod Autoscaler.

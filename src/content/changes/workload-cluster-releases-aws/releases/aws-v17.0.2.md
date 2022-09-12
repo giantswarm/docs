@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v17.0.2/
 changes_categories:
-- workload cluster releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/v17.0.2
@@ -12,7 +12,7 @@ changes_entry:
 date: '2022-03-10T11:21:44+00:00'
 description: Release notes for AWS workload cluster release v17.0.2, published on
   10 March 2022, 11:21
-title: workload cluster release v17.0.2 for AWS
+title: Workload cluster release v17.0.2 for AWS
 ---
 
 This release downgrades the version of the Flatcar AMI from `3033.2.2` to `3033.2.0` due to a bug in version `3033.2.1` -> `3033.2.3` preventing successful boot on some EC2 instance type families. (Notably the `m4` instance types)

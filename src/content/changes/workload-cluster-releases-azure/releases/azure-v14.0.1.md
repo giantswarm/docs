@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-azure/releases/azure-v14.0.1/
 changes_categories:
-- workload cluster releases for Azure
+- Workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/azure/archived/v14.0.1
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-03-11T11:40:35+00:00'
 description: Release notes for Azure workload cluster release v14.0.1, published on
   11 March 2021, 11:40
-title: workload cluster release v14.0.1 for Azure
+title: Workload cluster release v14.0.1 for Azure
 ---
 
 This releases increases the Azure Events Termination timeout from 5 to 15 minutes for better upgrade experience while workloads are moved to new nodes.

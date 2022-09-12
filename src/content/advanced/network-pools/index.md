@@ -35,7 +35,7 @@ The main advantages of using NetworkPools are:
 
 ## Lifecycle
 
-NetworkPools must be created before the cluster is created via management cluster Kubernetes API.
+NetworkPools must be created before the cluster is created via Management Cluster Kubernetes API.
 
 NetworkPools can be modified as long as the CIDR doesn't overlap with other NetworkPools and contains the original CIDR. For example 10.0.0.0/16 could be modified to 10.0.0.0/15 but not to 10.0.0.0/17.
 

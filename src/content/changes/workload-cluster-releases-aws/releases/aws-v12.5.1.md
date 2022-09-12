@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v12.5.1/
 changes_categories:
-- workload cluster releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v12.5.1
@@ -12,7 +12,7 @@ changes_entry:
 date: '2020-10-22T06:40:57+00:00'
 description: Release notes for AWS workload cluster release v12.5.1, published on
   22 October 2020, 06:40
-title: workload cluster release v12.5.1 for AWS
+title: Workload cluster release v12.5.1 for AWS
 ---
 
 This release fixes an issue that prevented upgrades of the Control Planes.

@@ -56,10 +56,10 @@ keychain.
 | Name                 | Description                                                              | Required |
 | -------------------- | ------------------------------------------------------------------------ | -------- |
 | `generate`           | Generate new key pair.                                                   | true     |
-| `management-cluster` | management cluster to configure the encryption for.                      | true     |
-| `organization`       | Organization in the management cluster to configure the encryption for.  | false    |
+| `management-cluster` | Management cluster to configure the encryption for.                      | true     |
+| `organization`       | Organization in the Management Cluster to configure the encryption for.  | false    |
 | `target`             | Relative directory to configure the encryption for. (default "secrets/") | false    |
-| `workload-cluster`   | workload cluster in the Organization to configure the encryption for.    | false    |
+| `workload-cluster`   | Workload Cluster in the Organization to configure the encryption for.    | false    |
 
 ## Usage
 
@@ -70,7 +70,7 @@ To preview the objects to be created by the command, run it with the `--dry-run`
 In each of the examples below it is assumed the `protected-dir` directory exists at the layer being configured.
 
 {{< tabs >}}
-{{< tab id="mc-enc" title="management cluster" >}}
+{{< tab id="mc-enc" title="Management Cluster" >}}
 
 ```nohighlight
 kubectl gs gitops add enc \
@@ -217,7 +217,7 @@ to load the public key into the keychain for SOPS to work.
 ```
 
 {{< /tab >}}
-{{< tab id="wc-enc" title="workload cluster" >}}
+{{< tab id="wc-enc" title="Workload Cluster" >}}
 
 ```nohighlight
 kubectl gs gitops add enc \

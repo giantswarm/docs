@@ -87,7 +87,7 @@ It supports the following flags:
 - `--provider` - The infrastructure provider (one of: `aws`, `azure`, or `openstack`).
 - `--name` - Unique name of the cluster. If not provided, a random alphanumeric name will be generated.
 - `--organization` - Name of the organization that will own the cluster. Determines the namespace where resources will be created.
-- `--release` (AWS and Azure only) - workload cluster release version.
+- `--release` (AWS and Azure only) - Workload cluster release version.
   Can be retrieved with `kubectl get releases` for your installation.
 - `--description` (optional) - User-friendly description of the cluster's purpose.
 - `--pods-cidr` (optional) - CIDR applied to the pods. If this isn't provided, the installation default will be applied.

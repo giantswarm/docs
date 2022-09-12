@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v10.1.1/
 changes_categories:
-- workload cluster releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v10.1.1
@@ -12,7 +12,7 @@ changes_entry:
 date: '2020-01-10T08:00:00+00:00'
 description: Release notes for AWS workload cluster release v10.1.1, published on
   10 January 2020, 08:00
-title: workload cluster release v10.1.1 for AWS
+title: Workload cluster release v10.1.1 for AWS
 ---
 
 This Node Pools release fixes a problem with CoreDNS in clusters using custom

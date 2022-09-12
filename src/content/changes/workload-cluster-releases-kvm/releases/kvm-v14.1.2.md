@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-kvm/releases/kvm-v14.1.2/
 changes_categories:
-- workload cluster releases for KVM
+- Workload cluster releases for KVM
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/kvm/archived/v14.1.2
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-07-16T12:13:26+00:00'
 description: Release notes for KVM workload cluster release v14.1.2, published on
   16 July 2021, 12:13
-title: workload cluster release v14.1.2 for KVM
+title: Workload cluster release v14.1.2 for KVM
 ---
 
 This release reverts to Linux kernel 5.4 to mitigate issues with node deadlocks on large clusters with many pods.

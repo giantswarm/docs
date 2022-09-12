@@ -1,7 +1,7 @@
 ---
 linkTitle: add management-cluster
 title: "'kubectl gs gitops add mc' command reference"
-description: Reference documentation on how to add a new management cluster to the GitOps repository.
+description: Reference documentation on how to add a new Management Cluster to the GitOps repository.
 weight: 15
 menu:
   main:
@@ -12,10 +12,10 @@ last_review_date: 2022-08-31
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
-  - How do I configure management cluster in the GitOps repository?
+  - How do I configure Management Cluster in the GitOps repository?
 ---
 
-This command adds a new management cluster to the GitOps repository.
+This command adds a new Management Cluster to the GitOps repository.
 
 Other command this commad depends on:
 - [gitops init]({{< relref "/ui-api/kubectl-gs/gitops/init" >}})
@@ -45,8 +45,8 @@ command.
 
 | Name              | Description                                          | Required |
 | ----------------- | ---------------------------------------------------- | -------- |
-| `gen-master-key`  | Generate management cluster master GPG key for SOPS. | false    |
-| `name`            | Codename of the management cluster.                  | true     |
+| `gen-master-key`  | Generate Management Cluster master GPG key for SOPS. | false    |
+| `name`            | Codename of the Management Cluster.                  | true     |
 | `repository-name` | Name of the GitOps repository.                       | true     |
 
 

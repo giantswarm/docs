@@ -24,7 +24,7 @@ The following tutorial describes a way to silence periodically alerts from speci
 ## Silences
 
 Internally Giant Swarm introduced a concept of Silence Custom Resources. They are utilized to silence either particular alerts or whole clusters in case of known persistent issues or alerts that can be omitted for a while.
-The resource consists of constraints and filters which define the silencing rules on defined alerts and clusters. Those are placed in a private github repository and are synced with every management cluster via [silence-operator](https://github.com/giantswarm/silence-operator).
+The resource consists of constraints and filters which define the silencing rules on defined alerts and clusters. Those are placed in a private github repository and are synced with every Management Cluster via [silence-operator](https://github.com/giantswarm/silence-operator).
 
 The main determinant for the Cluster selection is the name of the Cluster Custom Resource that is a unique identified of the cluster itself. You can see the example of such Custom Resource below:
 
@@ -46,7 +46,7 @@ spec:
 Such Custom Resource if created manually, would be overwritten by the operator at the syncing time, meaning that there would be no option to set such silence manually.
 In order to enable the manual configurability, we have introduced an annotation in order to instruct silence-operator to omit such resources.
 
-The manually created Silence directly on management cluster looks then as following:
+The manually created Silence directly on Management Cluster looks then as following:
 
 ```yaml
 apiVersion: monitoring.giantswarm.io/v1alpha1
@@ -74,7 +74,7 @@ Taking into the consideration the use case of scaling down and silencing cluster
 ### Scale down and silence clusters
 
 Following Cron Job will scale down and silence the clusters. You can apply the Cron Job by using the `automation` Service Account that can be found in your Organization namespace. You will have to adjust the Service Account token accordingly to the Organization the Cron Job should run in.
-Please consider using the syntax for naming and namespaces as listed in the following example that has been prepare for Azure workload clusters:
+Please consider using the syntax for naming and namespaces as listed in the following example that has been prepare for Azure Workload Clusters:
 
 ```yaml
 apiVersion: batch/v1beta1
@@ -181,12 +181,12 @@ This CronJob will first patch the minimum and maximum values for scaling. After 
 - Please remember to use the same name of the silence for deletion in order to have your cluster fully monitored.
 - Please remember to adjust the Min and Max for scaling up back the cluster, if the requirements in terms of values on your side have changed in between as well.
 - Created silences will not be adjusted or maintained by GiantSwarm, meaning that the sole maintenance is at hands of customers.
-- It is advised to use the silencing CronJobs only for non-production workload clusters.
+- It is advised to use the silencing CronJobs only for non-production Workload Clusters.
 
 ## Summary
 
 Provided solution introduces a way to scale down and silence clusters for specifiied period of time, such as weekends to offload the costs of running resources.
-The silences themselves can be also created by hand in case of testing workload clusters in order to exclude them from the monitoring loop at Giant Swarm and unnecessary pages towards Oncall.
+The silences themselves can be also created by hand in case of testing Workload Clusters in order to exclude them from the monitoring loop at Giant Swarm and unnecessary pages towards Oncall.
 
 ## Further reading
 

@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v12.5.0/
 changes_categories:
-- workload cluster releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v12.5.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2020-10-16T14:00:00+00:00'
 description: Release notes for AWS workload cluster release v12.5.0, published on
   16 October 2020, 14:00
-title: workload cluster release v12.5.0 for AWS
+title: Workload cluster release v12.5.0 for AWS
 ---
 
 This release offers the possibility to add additional Network Pools to the Control Plane and flexibly choose the IP range for new Tenant Clusters from these pools. It also upgrades Kubernetes to v1.17.13.

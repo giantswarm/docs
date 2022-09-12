@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v11.5.3/
 changes_categories:
-- workload cluster releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v11.5.3
@@ -12,7 +12,7 @@ changes_entry:
 date: '2020-08-27T13:00:00+00:00'
 description: Release notes for AWS workload cluster release v11.5.3, published on
   27 August 2020, 13:00
-title: workload cluster release v11.5.3 for AWS
+title: Workload cluster release v11.5.3 for AWS
 ---
 
 This release provides a new cluster-operator which fixes preventing release upgrade when reference id does not align with the G8sControlPlane id or MachineDeployment id and cluster status condition not being changed during cluster upgrade.

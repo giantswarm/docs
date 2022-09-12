@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-azure/releases/azure-v11.2.3/
 changes_categories:
-- workload cluster releases for Azure
+- Workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/azure/archived/v11.2.3
@@ -12,7 +12,7 @@ changes_entry:
 date: '2020-04-09T12:00:00+00:00'
 description: Release notes for Azure workload cluster release v11.2.3, published on
   09 April 2020, 12:00
-title: workload cluster release v11.2.3 for Azure
+title: Workload cluster release v11.2.3 for Azure
 ---
 
 This release improves the way upgrades handle Azure VMSS Instances to make them more reliable in the Germany West Central location. This does not affect any existing functionality.

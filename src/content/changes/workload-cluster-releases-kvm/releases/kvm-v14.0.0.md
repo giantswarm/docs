@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-kvm/releases/kvm-v14.0.0/
 changes_categories:
-- workload cluster releases for KVM
+- Workload cluster releases for KVM
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/kvm/archived/v14.0.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-05-05T12:00:00+00:00'
 description: Release notes for KVM workload cluster release v14.0.0, published on
   05 May 2021, 12:00
-title: workload cluster release v14.0.0 for KVM
+title: Workload cluster release v14.0.0 for KVM
 ---
 
 This release upgrades Kubernetes to 1.19. A summary of relevant changes is included in these release notes. The release also includes other minor component updates summarized below the list of Kubernetes changes.

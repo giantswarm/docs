@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v8.2.0/
 changes_categories:
-- workload cluster releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v8.2.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2019-06-03T10:00:00+00:00'
 description: Release notes for AWS workload cluster release v8.2.0, published on 03
   June 2019, 10:00
-title: workload cluster release v8.2.0 for AWS
+title: Workload cluster release v8.2.0 for AWS
 ---
 
 

@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v16.4.0/
 changes_categories:
-- workload cluster releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v16.4.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2022-02-03T10:00:00+00:00'
 description: Release notes for AWS workload cluster release v16.4.0, published on
   03 February 2022, 10:00
-title: workload cluster release v16.4.0 for AWS
+title: Workload cluster release v16.4.0 for AWS
 ---
 
 This release provides a new feature to automatically rotate the Kubernetes API key used to encrypt secret data in etcd. It also includes the latest version of Calico.

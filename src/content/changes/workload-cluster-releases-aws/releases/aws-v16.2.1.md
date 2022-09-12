@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v16.2.1/
 changes_categories:
-- workload cluster releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v16.2.1
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-12-21T16:16:03+00:00'
 description: Release notes for AWS workload cluster release v16.2.1, published on
   21 December 2021, 16:16
-title: workload cluster release v16.2.1 for AWS
+title: Workload cluster release v16.2.1 for AWS
 ---
 
 This release downgrades Flatcar to version `2905.2.6` to restore version 1 of the kernel cgroups feature.

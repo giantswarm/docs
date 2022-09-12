@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v12.3.0/
 changes_categories:
-- workload cluster releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v12.3.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2020-09-30T18:00:00+00:00'
 description: Release notes for AWS workload cluster release v12.3.0, published on
   30 September 2020, 18:00
-title: workload cluster release v12.3.0 for AWS
+title: Workload cluster release v12.3.0 for AWS
 ---
 
 **If you are upgrading from 12.2.0, upgrading to this release will not roll your nodes. It will only update the apps.**

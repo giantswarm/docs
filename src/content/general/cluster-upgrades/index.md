@@ -1,6 +1,6 @@
 ---
 linkTitle: Cluster upgrades
-title: workload cluster upgrades
+title: Workload cluster upgrades
 description: How Kubernetes and other components are upgraded in a Giant Swarm workload cluster, and how to prepare your cluster and workloads to facilitate robust upgrades.
 weight: 40
 menu:
@@ -268,4 +268,4 @@ Furthermore, you should make your containers are as lightweight (in terms of siz
 
 ## Further reading
 
-- [workload cluster releases]({{< relref "/general/releases" >}}) explains the semantics of workload cluster releases.
+- [Workload cluster releases]({{< relref "/general/releases" >}}) explains the semantics of workload cluster releases.

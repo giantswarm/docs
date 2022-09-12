@@ -1,7 +1,7 @@
 ---
 linkTitle: Cost-optimization
 title: Cost-optimization
-description: How to optimize costs of workload clusters resources with available tools on Giant Swarm  
+description: How to optimize costs of Workload Clusters resources with available tools on Giant Swarm  
 weight: 30
 menu:
   main:

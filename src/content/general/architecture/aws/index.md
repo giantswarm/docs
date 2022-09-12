@@ -34,7 +34,7 @@ For managing all the infrastructure we run a management cluster per cloud and re
 
 When it comes to planning and designing your cluster architecture and its adaption to our infrastructure requirements, there are many moving parts to consider. Based on our experience with various customers over the last 6 years, we have gathered best practices and general advice to help with some of the initial critical decisions.
 
-## management cluster
+## Management cluster
 
 As we are fully convinced of Kubernetes as a platform for building platforms, we build all our management clusters based on Kubernetes. The initial deployment entails the creation of that management cluster in a defined cloud provider region. After the management cluster is ready we deploy all our automation taking advantage of Kubernetes primitives and using the same philosophy we advocate to our customers.
 
@@ -71,7 +71,7 @@ Having said that, there is no general rule to split workloads between AWS accoun
 - Divide different services of single systems into different [namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/). It allows to control resources, network communication and access to those in finer granularity.
 - Automate and abstract your workload lifecycle. Defining the configuration of applications and the underlying [infrastructure as code](https://en.wikipedia.org/wiki/Infrastructure_as_code) has become the de facto standard to manage complex systems. There are plenty of tools nowadays to declare your application configuration as code, rely on them and discard manual changes. Think about the possibility of having to migrate your application from one cluster to another. Ideally, such a change should imply just a single config line change. Kubernetes helps to define [Cloud Native Applications](https://12factor.net/) but there are some parts that still reside on the developer side.
 
-## workload cluster
+## Workload Cluster
 
 ### Architecture
 

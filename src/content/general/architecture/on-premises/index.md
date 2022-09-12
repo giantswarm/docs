@@ -31,7 +31,7 @@ We require VPN and SSH access to all machines, as well as outbound Internet conn
 
 ![On-premises Control Plane architecture](architecture-onprem-control-plane.png)
 
-Think of the management cluster as the Giant Swarm team’s Kubernetes cluster. The worker nodes of this cluster are where your workload clusters will be run. workload cluster nodes are deployed as separate virtual machine instances and controlled by our [kvm-operator](https://github.com/giantswarm/kvm-operator/) running inside the management cluster. The diagram above shows the conceptual setup. Depending on the node's available resources, in most environments, the management cluster components (including monitoring) fit on 3 or fewer machines. Based on the number and sizes of workload clusters, our management cluster adapts accordingly and will deploy or remove monitoring or management components as needed. As a matter of best practice, we recommend having at least 5 worker machines to host your workload clusters. Any additional machines will also be set up as worker nodes and made available for workload clusters to be used by end users.
+Think of the management cluster as the Giant Swarm team’s Kubernetes cluster. The worker nodes of this cluster are where your workload clusters will be run. Workload cluster nodes are deployed as separate virtual machine instances and controlled by our [kvm-operator](https://github.com/giantswarm/kvm-operator/) running inside the management cluster. The diagram above shows the conceptual setup. Depending on the node's available resources, in most environments, the management cluster components (including monitoring) fit on 3 or fewer machines. Based on the number and sizes of workload clusters, our management cluster adapts accordingly and will deploy or remove monitoring or management components as needed. As a matter of best practice, we recommend having at least 5 worker machines to host your workload clusters. Any additional machines will also be set up as worker nodes and made available for workload clusters to be used by end users.
 
 We access all machines, as well as the Kubernetes API of the management cluster, through VPN (and optionally via a bastion host). Your load balancer is configured to allow access to the Giant Swarm REST API, our Web User Interface, and our monitoring components, optionally adding your Identity Management System for authentication. Traffic towards all workload clusters is routed via the management cluster first, as it knows exactly where all the workload clusters are at any point in time.
 
@@ -53,7 +53,7 @@ We have three main parts:
 
 * Core infrastructure services
 * Infrastructure monitoring (used by Giant Swarm)
-* workload clusters running your application workloads
+* Workload clusters running your application workloads
 
 All of these are geared towards enabling you to run multiple projects independently and consistently in your data centers.
 

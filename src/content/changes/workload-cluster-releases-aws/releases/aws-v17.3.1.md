@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v17.3.1/
 changes_categories:
-- workload cluster releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v17.3.1
@@ -12,7 +12,7 @@ changes_entry:
 date: '2022-05-02T11:17:02+00:00'
 description: Release notes for AWS workload cluster release v17.3.1, published on
   02 May 2022, 11:17
-title: workload cluster release v17.3.1 for AWS
+title: Workload cluster release v17.3.1 for AWS
 ---
 
 This release fixes a bug in AWS CNI when external SNAT is enabled. 

@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-azure/releases/azure-v13.0.2/
 changes_categories:
-- workload cluster releases for Azure
+- Workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/azure/archived/v13.0.2
@@ -12,12 +12,12 @@ changes_entry:
 date: '2020-12-16T08:16:50+00:00'
 description: Release notes for Azure workload cluster release v13.0.2, published on
   16 December 2020, 08:16
-title: workload cluster release v13.0.2 for Azure
+title: Workload cluster release v13.0.2 for Azure
 ---
 
 This is a patch release that resolves a problem during the upgrade of multi-AZ clusters from 12.x release to 13.x release.
 
-It also brings security-related updates for Container Linux and some Managed Apps.
+It also brings security-related updates for Container Linux and some managed apps.
 
 ### azure-operator [5.0.1](https://github.com/giantswarm/aws-operator/releases/tag/v5.0.1)
 

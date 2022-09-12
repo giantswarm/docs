@@ -94,7 +94,7 @@ Such users have access to all clusters in the organizations they belong to. They
 
 ### User space {#userspace}
 
-The user space layer is defined as the layer pertaining to a single workload cluster Kubernetes API. workload clusters are the Kubernetes clusters that run your workloads.
+The user space layer is defined as the layer pertaining to a single workload cluster Kubernetes API. Workload clusters are the Kubernetes clusters that run your workloads.
 
 Users on this level are either created by a Giant Swarm REST API user (in form of key pairs) or managed in an external identity provider (IdP), like [Azure Active Directory]({{< relref "/advanced/authentication-azure-ad" >}}) or any other OIDC-compliant IdP.
 

@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v17.4.0/
 changes_categories:
-- workload cluster releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v17.4.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2022-07-05T14:27:03+00:00'
 description: Release notes for AWS workload cluster release v17.4.0, published on
   05 July 2022, 14:27
-title: workload cluster release v17.4.0 for AWS
+title: Workload cluster release v17.4.0 for AWS
 ---
 
 This is a security release featuring the latest version of Kubernetes 1.22 (1.22.11), Flatcar Container Linux (3139.2.3) and all of Giant Swarm applications.

@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v14.1.0/
 changes_categories:
-- workload cluster releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v14.1.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-03-30T07:22:09+00:00'
 description: Release notes for AWS workload cluster release v14.1.0, published on
   30 March 2021, 07:22
-title: workload cluster release v14.1.0 for AWS
+title: Workload cluster release v14.1.0 for AWS
 ---
 
 This release provides security and bug fixes for various components.

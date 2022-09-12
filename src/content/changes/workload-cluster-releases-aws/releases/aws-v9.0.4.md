@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v9.0.4/
 changes_categories:
-- workload cluster releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v9.0.4
@@ -12,7 +12,7 @@ changes_entry:
 date: '2020-05-06T13:00:00+00:00'
 description: Release notes for AWS workload cluster release v9.0.4, published on 06
   May 2020, 13:00
-title: workload cluster release v9.0.4 for AWS
+title: Workload cluster release v9.0.4 for AWS
 ---
 
 **Note** If you are upgrading from 8.5.0 or 9.0.0:

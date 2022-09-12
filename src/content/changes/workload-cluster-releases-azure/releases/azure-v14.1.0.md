@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-azure/releases/azure-v14.1.0/
 changes_categories:
-- workload cluster releases for Azure
+- Workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/azure/archived/v14.1.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-02-04T12:34:27+00:00'
 description: Release notes for Azure workload cluster release v14.1.0, published on
   04 February 2021, 12:34
-title: workload cluster release v14.1.0 for Azure
+title: Workload cluster release v14.1.0 for Azure
 ---
 
 This is the first workload cluster release to support [spot VMs](https://azure.microsoft.com/en-us/pricing/spot/) on Azure. Please refer to [Giant Swarm Azure Spot documentation](https://docs.giantswarm.io/advanced/spot-instances/azure/) for more information.

@@ -212,7 +212,7 @@ That's why we offer a [kubectl plugin]({{< relref "/ui-api/kubectl-gs" >}}), whi
 
 The utility supports rendering CRs:
 
-- workload cluster:
+- Workload cluster:
     - `Cluster` (API version `cluster.x-k8s.io/v1alpha2`)
     - `AWSCluster` (API version `infrastructure.giantswarm.io/v1alpha2`)
     - `G8sControlPlane` (API version `infrastructure.giantswarm.io/v1alpha2`)

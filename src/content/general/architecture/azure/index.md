@@ -22,7 +22,7 @@ For managing all the infrastructure we run a management cluster per cloud and re
 
 When it comes to planning and designing your cluster architecture and its adaption to our infrastructure requirements, there are many moving parts to consider. Based on our experience with various customers over the last 6 years, we have gathered best practices and general advice to help with some of the initial critical decisions.
 
-## management cluster
+## Management cluster
 
 As we are fully convinced of Kubernetes as a platform for building platforms, we built all our management clusters based on Kubernetes. The initial deployment entails the creation of that management cluster in a defined cloud provider region. After the management cluster is ready we deploy all our automation taking advantage of Kubernetes primitives and using the same philosophy we advocate to our customers.
 
@@ -57,13 +57,13 @@ Having said that, there is no general rule to split workloads between Azure subs
 - Divide different services of single systems into different [namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/). It allows to control resources, network communication and access to those in finer granularity.
 - Automate and abstract your workload lifecycle. Defining the configuration of applications and the underlying [infrastructure as code](https://en.wikipedia.org/wiki/Infrastructure_as_code) has become the de facto standard to manage complex systems. There are plenty of tools nowadays to declare your application configuration as code, rely on them and discard manual changes. Think about the possibility of having to migrate your application from one cluster to another. Ideally, such a change should imply just a single config line change. Kubernetes helps to define [Cloud Native Applications](https://12factor.net/) but there are some parts that still reside on the developer side.
 
-## workload cluster
+## Workload Cluster
 
 ### Architecture
 
 Our Azure Operator creates a single Virtual Network per cluster and one subnet for each of the node pools defined in the configuration. There is no overlay network thanks to Azure CNI in place, so that pods run in the same IP range as nodes. For each subnet there is a NAT Gateway, which is in charge of routing traffic from nodes or pods to the Internet. Once a workload is exposed to the Internet, a Load Balancer is placed in the public subnet to balance the request over the different backends.
 
-![workload cluster architecture](architecture-azure-tenant-cluster.png)
+![Workload cluster architecture](architecture-azure-tenant-cluster.png)
 
 In Azure the [node pool]({{< relref "/advanced/node-pools" >}}) concept is mapped to an Virtual Machine Scale Set, which defines a launch configuration and scaling properties of the worker nodes located in it.
 
@@ -105,7 +105,7 @@ Our on-call engineers will be paged in case anything happens to the cluster or i
 
 Giant Swarm [has designed a system](https://www.giantswarm.io/app-platform) to ease the use of some common Cloud Native apps. The amount of components available in the landscape is huge, and [we have decided to include some of the projects in our catalog](https://www.giantswarm.io/blog/announcing-the-giant-swarm-app-platform) for our customers to rely on.
 
-Right now we have several Managed Apps to control the Ingress traffic ([NGINX Ingress Controller](https://github.com/giantswarm/nginx-ingress-controller-app) and [Kong](https://github.com/giantswarm/kong-app)), collect and process logs ([EFK](https://github.com/giantswarm/efk-stack-app)) or automate the DNS setup ([external DNS](https://github.com/giantswarm/external-dns-app)).
+Right now we have several managed apps to control the Ingress traffic ([NGINX Ingress Controller](https://github.com/giantswarm/nginx-ingress-controller-app) and [Kong](https://github.com/giantswarm/kong-app)), collect and process logs ([EFK](https://github.com/giantswarm/efk-stack-app)) or automate the DNS setup ([external DNS](https://github.com/giantswarm/external-dns-app)).
 
 But at the same time we open the catalog to our customers and employees to use for their own apps. That is why, for instance, we are running a proof of concept for Loki, the “coolest” log collector. If you trust in a Cloud Native app and operating it does not add any value to your business, talk to us and we might take over its management for you, too.
 

@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v12.2.0/
 changes_categories:
-- workload cluster releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v12.2.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2020-09-15T15:00:00+00:00'
 description: Release notes for AWS workload cluster release v12.2.0, published on
   15 September 2020, 15:00
-title: workload cluster release v12.2.0 for AWS
+title: Workload cluster release v12.2.0 for AWS
 ---
 
 This release includes a number of stability and security fixes, improvements, and picks up various component and app upgrades.

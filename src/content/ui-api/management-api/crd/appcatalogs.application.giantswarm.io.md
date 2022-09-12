@@ -2,7 +2,7 @@
 title: AppCatalog CRD schema reference (group application.giantswarm.io)
 linkTitle: AppCatalog
 description: |
-  Deprecated, use Catalog CRD instead. AppCatalog represents a catalog of Managed Apps. It stores general information for potential apps to install. It is reconciled by app-operator.
+  Deprecated, use Catalog CRD instead. AppCatalog represents a catalog of managed apps. It stores general information for potential apps to install. It is reconciled by app-operator.
 weight: 100
 crd:
   name_camelcase: AppCatalog
@@ -38,7 +38,7 @@ This CRD is being replaced by <a href="../catalogs.application.giantswarm.io/">C
 </p>
 
 
-<p class="crd-description">Deprecated, use Catalog CRD instead. AppCatalog represents a catalog of Managed Apps. It stores general information for potential apps to install. It is reconciled by app-operator.</p>
+<p class="crd-description">Deprecated, use Catalog CRD instead. AppCatalog represents a catalog of managed apps. It stores general information for potential apps to install. It is reconciled by app-operator.</p>
 <dl class="crd-meta">
 <dt class="fullname">Full name:</dt>
 <dd class="fullname">appcatalogs.application.giantswarm.io</dd>

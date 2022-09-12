@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-kvm/releases/kvm-v16.1.1/
 changes_categories:
-- workload cluster releases for KVM
+- Workload cluster releases for KVM
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/kvm/v16.1.1
@@ -12,7 +12,7 @@ changes_entry:
 date: '2022-01-28T20:55:00+00:00'
 description: Release notes for KVM workload cluster release v16.1.1, published on
   28 January 2022, 20:55
-title: workload cluster release v16.1.1 for KVM
+title: Workload cluster release v16.1.1 for KVM
 ---
 
 This patch release updates `kvm-operator` to fix a bug that caused multiple nodes to be upgraded simultaneously.

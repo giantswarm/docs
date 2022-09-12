@@ -181,7 +181,7 @@ That's why we offer a [kubectl plugin]({{< relref "/ui-api/kubectl-gs" >}}), whi
 
 The utility supports rendering CRs:
 
-- workload clusters:
+- Workload clusters:
     - `Cluster` (API version `cluster.x-k8s.io/v1alpha3`)
     - `AzureCluster` (API version `infrastructure.cluster.x-k8s.io/v1alpha3`)
     - `AzureMachine` (API version `infrastructure.cluster.x-k8s.io/v1alpha3`)

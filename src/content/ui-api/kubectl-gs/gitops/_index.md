@@ -53,9 +53,9 @@ document.
 | Command                       | Description                                                        |
 | ----------------------------- | ------------------------------------------------------------------ |
 | [`init`][1]                   | [Pre-configure GitOps repository with basic structure][1]          |
-| [`add mc`][2]                 | [Adds a new management cluster to the repository structure][2]     |
+| [`add mc`][2]                 | [Adds a new Management Cluster to the repository structure][2]     |
 | [`add org`][3]                | [Adds a new Organization to the repository structure][3]           |
-| [`add wc`][4]                 | [Adds a new workload cluster to the repository structure][4]       |
+| [`add wc`][4]                 | [Adds a new Workload Cluster to the repository structure][4]       |
 | [`add app`][5]                | [Adds a new Application to your GitOps directory structure][5]     |
 | [`add update`][6]             | [Enable automatic updates for an app.][6]                          |
 | [`add enc`][7]                | [Adds a new GPG key pair to the SOPS repository configuration.][7] |

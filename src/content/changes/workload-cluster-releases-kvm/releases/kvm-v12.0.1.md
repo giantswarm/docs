@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-kvm/releases/kvm-v12.0.1/
 changes_categories:
-- workload cluster releases for KVM
+- Workload cluster releases for KVM
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/kvm/archived/v12.0.1
@@ -12,7 +12,7 @@ changes_entry:
 date: '2020-07-21T15:00:00+00:00'
 description: Release notes for KVM workload cluster release v12.0.1, published on
   21 July 2020, 15:00
-title: workload cluster release v12.0.1 for KVM
+title: Workload cluster release v12.0.1 for KVM
 ---
 
 **If you are upgrading from 12.0.0, upgrading to this release will not roll your nodes. It will only update the apps.**

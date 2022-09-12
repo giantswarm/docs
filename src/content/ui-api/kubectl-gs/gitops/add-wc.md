@@ -1,7 +1,7 @@
 ---
 linkTitle: add workload-cluster
 title: "'kubectl gs gitops add wc' command reference"
-description: Reference documentation on how to add a new workload cluster to the GitOps repository.
+description: Reference documentation on how to add a new Workload Cluster to the GitOps repository.
 weight: 25
 menu:
   main:
@@ -12,10 +12,10 @@ last_review_date: 2022-08-31
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
-  - How do I configure workload cluster in the GitOps repository?
+  - How do I configure Workload Cluster in the GitOps repository?
 ---
 
-This command adds a new workload cluster to the GitOps repository.
+This command adds a new Workload Cluster to the GitOps repository.
 
 Other command this commad depends on:
 - [gitops init]({{< relref "/ui-api/kubectl-gs/gitops/init" >}})
@@ -65,9 +65,9 @@ nevertheless mandatory, and hence this flag is planned to be removed from `kubec
 | `cluster-user-config`      | Cluster app user configuration to patch the base with.                  | false    |
 | `default-apps-release`     | Default apps app version.                                               | true     |
 | `default-apps-user-config` | Default apps app user configuration to patch the base with.             | false    |
-| `management-cluster`       | Codename of the management cluster the workload cluster belongs to.     | true     |
-| `name`                     | Name of the workload cluster.                                           | true     |
-| `organization`             | Name of the Organization the workload cluster belongs to.               | true     |
+| `management-cluster`       | Codename of the Management Cluster the Workload Cluster belongs to.     | true     |
+| `name`                     | Name of the Workload Cluster.                                           | true     |
+| `organization`             | Name of the Organization the Workload Cluster belongs to.               | true     |
 | `repository-name`          | Name of the GitOps repository.                                          | true     |
 | `skip-mapi`                | Skip mapi directory when adding the app.                                | false    |
 
@@ -81,7 +81,7 @@ To preview the objects to be created by the command, run it with the `--dry-run`
 {{< tabs >}}
 {{< tab id="no-definition" title="No Definition" >}}
 
-In the most basic form the GitOps repository may be populated with workload cluster-related structure, yet
+In the most basic form the GitOps repository may be populated with Workload Cluster-related structure, yet
 without the cluster-related CRs.
 
 ```nohighlight

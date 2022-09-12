@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-kvm/releases/kvm-v11.3.1/
 changes_categories:
-- workload cluster releases for KVM
+- Workload cluster releases for KVM
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/kvm/archived/v11.3.1
@@ -12,7 +12,7 @@ changes_entry:
 date: '2020-05-04T12:00:00+00:00'
 description: Release notes for KVM workload cluster release v11.3.1, published on
   04 May 2020, 12:00
-title: workload cluster release v11.3.1 for KVM
+title: Workload cluster release v11.3.1 for KVM
 ---
 
 This release fixes a problem that prevented clusters with OIDC user and group prefix settings to work as expected in `11.3.0`.

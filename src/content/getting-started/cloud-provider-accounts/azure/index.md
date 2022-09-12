@@ -100,8 +100,8 @@ Now you need to give Giant Swarm's Service Principal permission to access resour
 In your subscription, go to "Access Control (IAM)" and click the "Add Role" button, then select "Add role assignment".
 In the right sidebar that pops up, please select the `azure-operator` role.
 
-If the `Subscription` where the `management cluster` is deployed is not the same as the one that will host workload clusters,
-you also need to give `Network Contributor` role to the Service Principal on the `management cluster` subscription.
+If the `Subscription` where the `Management Cluster` is deployed is not the same as the one that will host Workload Clusters,
+you also need to give `Network Contributor` role to the Service Principal on the `Management Cluster` subscription.
 
 ## Configure Subscription to allow access for Giant Swarm Support
 

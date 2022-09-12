@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v17.4.3/
 changes_categories:
-- workload cluster releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/v17.4.3
@@ -12,7 +12,7 @@ changes_entry:
 date: '2022-07-28T13:37:47+00:00'
 description: Release notes for AWS workload cluster release v17.4.3, published on
   28 July 2022, 13:37
-title: workload cluster release v17.4.3 for AWS
+title: Workload cluster release v17.4.3 for AWS
 ---
 
 This release brings improvements to the aws-ebs-csi-driver app. It is especially important for customers running AWS clusters in China due to image pull issues.

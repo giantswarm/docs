@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-azure/releases/azure-v16.0.0/
 changes_categories:
-- workload cluster releases for Azure
+- Workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/azure/archived/v16.0.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-09-13T09:02:39+00:00'
 description: Release notes for Azure workload cluster release v16.0.0, published on
   13 September 2021, 09:02
-title: workload cluster release v16.0.0 for Azure
+title: Workload cluster release v16.0.0 for Azure
 ---
 
 This is the first Giant Swarm Azure stable release featuring Kubernetes 1.21.

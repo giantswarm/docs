@@ -42,9 +42,9 @@ A new kubectl context has been created named 'gs-wombat' and selected. To switch
   kubectl config use-context gs-wombat
 ```
 
-## Step 3: Sneaking around the management cluster
+## Step 3: Sneaking around the Management Cluster
 
-The command run in the previous step logs the user in the management cluster (MC). As the name suggests, this cluster is used for managing all the workload clusters (WCs), which are the clusters doing the "actual" work.
+The command run in the previous step logs the user in the Management Cluster (MC). As the name suggests, this cluster is used for managing all the Workload Clusters (WCs), which are the clusters doing the "actual" work.
 
 Let's run some commands and understand what's happening under the hood.
 
@@ -62,7 +62,7 @@ ip-10-0-5-5.eu-central-1.compute.internal     Ready    worker   19h   v1.21.9
 ip-10-0-5-53.eu-central-1.compute.internal    Ready    worker   19h   v1.21.9
 ```
 
-We can see that there are two kinds of roles: `master` and `worker`. Note that this still relates to the management cluster. In other words, the MC has some master nodes working on the cluster's "bureaucracy" and some worker nodes doing the actual work needed to manage the workload clusters.
+We can see that there are two kinds of roles: `master` and `worker`. Note that this still relates to the Management Cluster. In other words, the MC has some master nodes working on the cluster's "bureaucracy" and some worker nodes doing the actual work needed to manage the Workload Clusters.
 
 The second command we suggest running is `kubectl get orgs`. This will show us the organizations that are defined in our installation.
 
@@ -87,7 +87,7 @@ org-production     jn88t   91d    CREATED     16.0.1    production
 
 We can notice two important points:
 
-1. A cluster belonging to an organization called `x` will be represented in the Kubernetes namespace `org-x` in the management cluster (that's why we use the `-A` flag to see all the namespaces)
+1. A cluster belonging to an organization called `x` will be represented in the Kubernetes namespace `org-x` in the Management Cluster (that's why we use the `-A` flag to see all the namespaces)
 2. Some organizations can have no clusters attached to them. Of course, some clusters can be created in those organizations whenever needed. In other words, an organization can "contain" any number of clusters, including zero.
 
 Finally, you can see the YAML definition of a cluster (in this example, of cluster `rfjh2` in organization `training`) by running:
@@ -96,9 +96,9 @@ Finally, you can see the YAML definition of a cluster (in this example, of clust
 ➜  kubectl gs get cluster rfjh2  --namespace org-giantswarm-hiring -o yaml
 ```
 
-## Step 4: A look at the workload clusters
+## Step 4: A look at the Workload Clusters
 
-In Happa, by clicking on the cluster's name, you can see its details. The string on the top-left (in our case, gh3o2) is the workload cluster's name. 
+In Happa, by clicking on the cluster's name, you can see its details. The string on the top-left (in our case, gh3o2) is the Workload Cluster's name. 
 
 In case the WC has no node pools attached to it, you can easily add one node pool by clicking on the "Add node pool" button.
 
@@ -118,7 +118,7 @@ In our case, therefore, we will run
   --certificate-ttl 3h
 ```
 
-At this point, you are logged in the workload cluster. As a matter of fact, some of the custom resource definitions available in the management cluster are not available in the WC because those concepts do not exist in workload clusters. 
+At this point, you are logged in the Workload Cluster. As a matter of fact, some of the custom resource definitions available in the Management Cluster are not available in the WC because those concepts do not exist in Workload Clusters. 
 
 For instance, if we try to get the organizations, we get an error, because they are a concept that makes sense in the MC but not in the WC:
 
@@ -132,7 +132,7 @@ The WCs are where the "actual" work happens, i.e. where applications are deploye
 
 ## Step 5: Templating resources
 
-The commands in this section should be run in the management cluster's context.
+The commands in this section should be run in the Management Cluster's context.
 
 Since you have already logged in the MC, you can simply run:
 
@@ -140,7 +140,7 @@ Since you have already logged in the MC, you can simply run:
 
 For instance: `➜  kubectl config use-context gs-wombat`
 
-In order to go back to the workload cluster's context, you can add the `-WC_NAME` suffix to the previous command, for instance: `➜  kubectl config use-context gs-wombat-rfjh2`.
+In order to go back to the Workload Cluster's context, you can add the `-WC_NAME` suffix to the previous command, for instance: `➜  kubectl config use-context gs-wombat-rfjh2`.
 
 ### Templating infrastructure
 
@@ -177,7 +177,7 @@ Learning how to template resources can be useful for a number of reasons. We enc
 You can create the resources by running `kubectl apply -f FILENAME.yaml` and delete them by running `kubectl delete -f FILENAME.yaml`
 
 ### Templating applications
-In addition to workload clusters and nodepools, you can also template applications. Apps belong to catalogs. While you can define your own catalogs, we already provide two: `giantswarm` and `giantswarm-playground`. The former contains applications that we know how to manage; the latter contains applications that we have integrated but are not managed by us.
+In addition to Workload Clusters and nodepools, you can also template applications. Apps belong to catalogs. While you can define your own catalogs, we already provide two: `giantswarm` and `giantswarm-playground`. The former contains applications that we know how to manage; the latter contains applications that we have integrated but are not managed by us.
 
 You can easily surf catalogs from the Apps section in Happa:
 
@@ -215,7 +215,7 @@ Updating an application can either be done in Happa, or by using `kubectl gs`.
 
 Beware: before performing any updates, verify that there are no breaking changes! If there are breaking changes, prepare for the upgrade accordingly.
 
-You can update an application by running the following command in the management cluster:
+You can update an application by running the following command in the Management Cluster:
 
 ```
 ➜ kubectl gs update app \

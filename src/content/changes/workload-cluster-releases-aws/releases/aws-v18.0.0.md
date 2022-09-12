@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v18.0.0/
 changes_categories:
-- workload cluster releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v18.0.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2022-08-18T07:24:06+00:00'
 description: Release notes for AWS workload cluster release v18.0.0, published on
   18 August 2022, 07:24
-title: workload cluster release v18.0.0 for AWS
+title: Workload cluster release v18.0.0 for AWS
 ---
 
 This release provides support for Kubernetes 1.23, replaces the use of AWS CNI with Cilium and upgrades most components. CloudFront and a private S3 bucket are now used by IRSA in non-China regions.

@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-kvm/releases/kvm-v15.0.0/
 changes_categories:
-- workload cluster releases for KVM
+- Workload cluster releases for KVM
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/kvm/archived/v15.0.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-09-01T12:00:00+00:00'
 description: Release notes for KVM workload cluster release v15.0.0, published on
   01 September 2021, 12:00
-title: workload cluster release v15.0.0 for KVM
+title: Workload cluster release v15.0.0 for KVM
 ---
 
 This is the first release for KVM with Kubernetes 1.20 and Calico 3.19. It also migrates the Calico datastore from etcd to Kubernetes.

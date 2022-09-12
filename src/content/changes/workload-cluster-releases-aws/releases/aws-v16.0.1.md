@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v16.0.1/
 changes_categories:
-- workload cluster releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v16.0.1
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-10-18T09:51:09+00:00'
 description: Release notes for AWS workload cluster release v16.0.1, published on
   18 October 2021, 09:51
-title: workload cluster release v16.0.1 for AWS
+title: Workload cluster release v16.0.1 for AWS
 ---
 
 This release provides a fix for `cert-operator` to ensure `certConfig` is in the same org namespace as the `Cluster` resource.

@@ -236,7 +236,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>workload cluster ID to issue the certificate for.</p>
+<p>Workload cluster ID to issue the certificate for.</p>
 
 </div>
 

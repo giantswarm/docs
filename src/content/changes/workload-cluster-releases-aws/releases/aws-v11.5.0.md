@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v11.5.0/
 changes_categories:
-- workload cluster releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v11.5.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2020-07-17T10:00:00+00:00'
 description: Release notes for AWS workload cluster release v11.5.0, published on
   17 July 2020, 10:00
-title: workload cluster release v11.5.0 for AWS
+title: Workload cluster release v11.5.0 for AWS
 ---
 
 This release includes a number of fixes, improvements, and picks up various component and app upgrades.

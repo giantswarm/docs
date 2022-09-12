@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v9.0.7/
 changes_categories:
-- workload cluster releases for AWS
+- Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v9.0.7
@@ -12,10 +12,10 @@ changes_entry:
 date: '2020-07-15T12:00:00+00:00'
 description: Release notes for AWS workload cluster release v9.0.7, published on 15
   July 2020, 12:00
-title: workload cluster release v9.0.7 for AWS
+title: Workload cluster release v9.0.7 for AWS
 ---
 
-This release updates Managed Apps to the latest releases.
+This release updates managed apps to the latest releases.
 
 **Note to SEs when upgrading from 8.5.0 or 9.0.0:** Existing customer automation or processes that manage the configuration of coredns, nginx-ingress-controller, or cluster-autoscaler must be modified in order to work with the changed location and format of the *-user-values configmaps. Please see our docs on [Tenant Cluster Release Versions: Versions that use the App Platform](https://docs.giantswarm.io/reference/release-versions/#versions-that-use-the-app-platform) for more details.
 

@@ -57,7 +57,7 @@ For each [organization]({{< relref "/general/organizations" >}}) there is a name
 - Resources defining [workload clusters and node pools]({{< relref "/ui-api/management-api/creating-workload-clusters" >}})
 - [Cloud provider credentials]({{< relref "/ui-api/management-api/credentials" >}}) in the form of `Secret` resources
 
-### workload cluster namespaces {#wc-namespaces}
+### Workload cluster namespaces {#wc-namespaces}
 
 For every workload cluster, there is a namespace with a name identical to the workload cluster name. In this namespace, resources related to apps installed in the workload cluster are located. The resources are of these types:
 
