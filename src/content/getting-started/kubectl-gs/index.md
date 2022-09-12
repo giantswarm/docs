@@ -48,7 +48,7 @@ The command run in the previous step logs the user in the Management Cluster (MC
 
 Let's run some commands and understand what's happening under the hood.
 
-The first command is `kubectl get nodes`. This will show us the nodes making up our management cluster.
+The first command is `kubectl get nodes`. This will show us the nodes making up our Management Cluster.
 
 ```bash
 ➜  kubectl get nodes

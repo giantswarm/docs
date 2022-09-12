@@ -13,7 +13,7 @@ owner:
 last_review_date: 2022-09-08
 ---
 
-A Giant Swarm installation includes a management cluster, bastion hosts, the workload clusters (depending on your viewpoint) and a few more components specific to the cloud provider used.
+A Giant Swarm installation includes a Management Cluster, bastion hosts, the workload clusters (depending on your viewpoint) and a few more components specific to the cloud provider used.
 
 ## Why an installation name
 

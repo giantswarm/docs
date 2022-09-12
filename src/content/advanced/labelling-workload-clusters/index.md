@@ -81,7 +81,7 @@ To modify labels on a cluster, several methods are supported:
 
 ### Modify cluster labels using `kubectl` {#modify-using-kubectl}
 
-With access to the management cluster, you are able to use `kubectl` to manage workload cluster labels.
+With access to the Management Cluster, you are able to use `kubectl` to manage workload cluster labels.
 The underlying resource to operate on is [`clusters.cluster.x-k8s.io`]({{< relref "/ui-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) from the upstream [cluster-api](https://cluster-api.sigs.k8s.io/) project.
 
 The [`kubectl label`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#label) command is the most convenient way to set, modify, and delete labels of a cluster resource.

@@ -50,7 +50,7 @@ You can simply ask your Giant Swarm support contact. As an alternative, `kubectl
 
 ### What does 'Error: Token renewal failed' mean
 
-It means that `kubectl gs login` tried to get a fresh ID-token to authenticate with against the Kubernetes API, since the existing one had expired. To resolve this, please check your `kubectl` configuration file (typically in `~/.kube/config`). Do you have several `user` entries for the same management cluster, using the same `client-id`? If yes, please edit your configuration so that there is only one.
+It means that `kubectl gs login` tried to get a fresh ID-token to authenticate with against the Kubernetes API, since the existing one had expired. To resolve this, please check your `kubectl` configuration file (typically in `~/.kube/config`). Do you have several `user` entries for the same Management Cluster, using the same `client-id`? If yes, please edit your configuration so that there is only one.
 
 ### Why does the command connect to a service called 'athena'
 

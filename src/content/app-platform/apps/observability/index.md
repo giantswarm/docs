@@ -21,9 +21,9 @@ Observability is based on three main data sources: logs, metrics and tracing\*. 
 
 In brief, super fast response times from engineers, 24//7 monitoring and alerting by us, and in general, having shared goals and responsibilities to keep services up and get them up when they go down.
 
-In addition, we strive to uphold our "30 Day Upgrade Promise," our commitment to keep all managed apps within 30 days of latest upstream releases.
+In addition, we strive to uphold our "30 Day Upgrade Promise," our commitment to keep all Managed Apps within 30 days of latest upstream releases.
 
-To summarize, for observability, we recommend and provide these four managed apps:
+To summarize, for observability, we recommend and provide these four Managed Apps:
 
 ## Prometheus for monitoring/metrics
 
@@ -43,6 +43,6 @@ To get request metrics and for service discovery, as well as automatic mTLS encr
 
 To analyze, visualize, and correlate metrics from Prometheus and Linkerd as well as logs from Loki.
 
-These pieces can be separately or together. Adopting them together and as fully managed apps from Giant Swarm gives you the benefit of using vetted open source tools that you know work together to provide you with consistency and coverage.
+These pieces can be separately or together. Adopting them together and as fully Managed Apps from Giant Swarm gives you the benefit of using vetted open source tools that you know work together to provide you with consistency and coverage.
 
 We are currently not offering a fully managed app for tracing due to the low priority it has with our customers. We believe that at this time the [tracing options provided by Linkerd](https://www.giantswarm.io/blog/part-5-traces-of-your-microservices-0) (that require no code changes) are sufficient.

@@ -386,7 +386,7 @@ In case you want to set up a general http snippet you can define it at [NGINX Co
 
 Your Giant Swarm installation comes with a default configuration for the Ingress Controller.
 
-You can override these defaults by setting your per cluster configuration in the form of a ConfigMap named `nginx-ingress-controller-user-values` in the management cluster.
+You can override these defaults by setting your per cluster configuration in the form of a ConfigMap named `nginx-ingress-controller-user-values` in the Management Cluster.
 
 The page [App configuration reference]({{< relref "/app-platform/app-configuration/index.md" >}}) contains more information how to set user defined configuration for the nginx-ingress-controller-app.
 
@@ -394,7 +394,7 @@ The page [App configuration reference]({{< relref "/app-platform/app-configurati
 
 Given the cluster you are trying to configure has id: `123ab`
 
-You will find the `nginx-ingress-controller-user-values` ConfigMap on the management cluster in the `123ab` namespace:
+You will find the `nginx-ingress-controller-user-values` ConfigMap on the Management Cluster in the `123ab` namespace:
 
 ```nohighlight
 $ kubectl -n 123ab get cm nginx-ingress-controller-user-values
@@ -415,7 +415,7 @@ Only the user ConfigMap is safe to edit.
 You are able to set any value from the [upstream documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/) by including them in the user values ConfigMap under the `data.values` field like so:
 
 ```yaml
-# On the management cluster, in the abc12 namespace
+# On the Management Cluster, in the abc12 namespace
 
 apiVersion: v1
 kind: ConfigMap

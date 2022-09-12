@@ -24,4 +24,4 @@ There is no need to upgrade existing workload clusters to this release.
 ### azure-operator [5.2.1](https://github.com/giantswarm/azure-operator/releases/tag/v5.2.1)
 
 #### Fixed
-- Ensure the management cluster's network space is never used for workload clusters.
+- Ensure the Management Cluster's network space is never used for workload clusters.

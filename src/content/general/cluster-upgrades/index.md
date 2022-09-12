@@ -149,7 +149,7 @@ On Azure, the node names visible to Kubernetes (e. g. `kubectl get nodes`) are n
 
 ### Specific details for KVM
 
-In a KVM-based cluster, our [kvm-operator](https://github.com/giantswarm/kvm-operator) builds each workload cluster node out of a Kubernetes Deployment and Pod in the management cluster.
+In a KVM-based cluster, our [kvm-operator](https://github.com/giantswarm/kvm-operator) builds each workload cluster node out of a Kubernetes Deployment and Pod in the Management Cluster.
 In an upgrade, each of these deployments is updated after the according node has been drained, one after another, starting with the control plane node.
 This leads to removal and recreation of the Pods.
 

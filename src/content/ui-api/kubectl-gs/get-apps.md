@@ -30,7 +30,7 @@ kubectl gs get apps -n ab12c
 ```
 
 to list some information on all apps available to you in the current namespace.
-Your apps are stored in a namespace in the management cluster with the same
+Your apps are stored in a namespace in the Management Cluster with the same
 name as your cluster ID.
 
 Here is some example output:

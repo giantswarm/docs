@@ -17,7 +17,7 @@ title: Workload cluster release v13.0.2 for Azure
 
 This is a patch release that resolves a problem during the upgrade of multi-AZ clusters from 12.x release to 13.x release.
 
-It also brings security-related updates for Container Linux and some managed apps.
+It also brings security-related updates for Container Linux and some Managed Apps.
 
 ### azure-operator [5.0.1](https://github.com/giantswarm/aws-operator/releases/tag/v5.0.1)
 

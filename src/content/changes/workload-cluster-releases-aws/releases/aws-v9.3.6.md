@@ -15,7 +15,7 @@ description: Release notes for AWS workload cluster release v9.3.6, published on
 title: Workload cluster release v9.3.6 for AWS
 ---
 
-This release updates managed apps to the latest releases, updates Calico to version `3.13.4`, and Flatcar Container Linux to `2512.2.1`.
+This release updates Managed Apps to the latest releases, updates Calico to version `3.13.4`, and Flatcar Container Linux to `2512.2.1`.
 
 Below, you can find more details on components that were changed with this release.
 

@@ -9,8 +9,8 @@ menu:
     parent: uiapi-managementapi
 last_review_date: 2022-02-24
 user_questions:
-  - What automation is working in a management cluster to ensure RBAC permissions?
-  - How can I set up access to resources in the management cluster?
+  - What automation is working in a Management Cluster to ensure RBAC permissions?
+  - How can I set up access to resources in the Management Cluster?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 ---
@@ -19,18 +19,18 @@ Once your users are [authenticated]({{< relref "/ui-api/management-api/authentic
 
 Some remarks before we dive in:
 
-As authorization in the management cluster is based on some fundamental Kubernetes concepts, we assume basic knowledge of:
+As authorization in the Management Cluster is based on some fundamental Kubernetes concepts, we assume basic knowledge of:
 
 - [Namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/) and
 - [Role-based access control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/).
 
-Also be aware that this article deals with permissions **in the management cluster only**. Handling authorization in workload clusters is not covered here, however we provide a comprehensive article on [RBAC and PSPs in workload clusters]({{< relref "/getting-started/rbac-and-psp" >}}).
+Also be aware that this article deals with permissions **in the Management Cluster only**. Handling authorization in workload clusters is not covered here, however we provide a comprehensive article on [RBAC and PSPs in workload clusters]({{< relref "/getting-started/rbac-and-psp" >}}).
 
 If you are mostly interested in how to set up access for certain types of users, we recommend to skip to the [typical use cases](#typical-use-cases) section. You can always catch up on the basics later, as needed. Alternatively, if you work through this page from top to bottom, you'll pick up the pieces in a more logical order and put them together later.
 
 ## Where resources reside
 
-For controlling access to resources in a management cluster, it is vital to understand
+For controlling access to resources in a Management Cluster, it is vital to understand
 
 1. whether a resource is **cluster-scoped** or **namespace-scoped**
 2. if it is namespace-scoped, **in which namespace** they are to be found
@@ -39,7 +39,7 @@ We'll explain next which resources are to be found in which scope or namespace.
 
 ### Cluster scope
 
-In Giant Swarm management clusters in particular, two resource types are cluster-scoped, so they are not residing in any namespace:
+In Giant Swarm Management Clusters in particular, two resource types are cluster-scoped, so they are not residing in any namespace:
 
 - [`Organization`]({{< relref "/ui-api/management-api/crd/organizations.security.giantswarm.io.md" >}}) defines, well, an organization
 - [`Release`]({{< relref "/ui-api/management-api/crd/releases.release.giantswarm.io.md" >}}) defines a workload cluster release to use when creating a new workload cluster, or to upgrade a workload cluster to.
@@ -83,7 +83,7 @@ We'll explain the effect of binding these roles in the next section on RBAC auto
 
 ## RBAC automation {#rbac-automation}
 
-As explained previously, various resources reside in different scopes and namespaces, and in the case of the workload cluster namespaces, they even come and go as clusters are created and deleted. To simplify authorization under these circumstances, we have some automation in place, provided by [rbac-operator](https://github.com/giantswarm/rbac-operator) running in the management cluster. Here is what it does.
+As explained previously, various resources reside in different scopes and namespaces, and in the case of the workload cluster namespaces, they even come and go as clusters are created and deleted. To simplify authorization under these circumstances, we have some automation in place, provided by [rbac-operator](https://github.com/giantswarm/rbac-operator) running in the Management Cluster. Here is what it does.
 
 **Grant admin permissions to a default group**. Where customers own a Giant Swarm installation exclusively (which is the opposite case of using a [shared installation]({{< relref "/getting-started/shared-installation" >}})), they name a group from their identity provider to gain admin permissions. This group will automatically be bound to the `cluster-admin` role in all namespaces and in the cluster scope.
 
@@ -105,7 +105,7 @@ For the purpose of this documentation article we'll introduce a few example case
 
 3. **Organization admin**: users who have full permissions to resources belonging to a specific [organization]({{< relref "/general/organizations" >}}).
 
-4. **Admin**: a type of user that has permission to create, modify, and delete most types of resources in the management cluster.
+4. **Admin**: a type of user that has permission to create, modify, and delete most types of resources in the Management Cluster.
 
 Next we show how to configure access for these example cases. Please take into account these remarks for all example manifests:
 

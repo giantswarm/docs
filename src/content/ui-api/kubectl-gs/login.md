@@ -20,13 +20,13 @@ last_review_date: 2022-05-20
 
 Use this command to set up a kubectl context to work with:
 
-1. a management cluster, using OIDC authentication
+1. a Management Cluster, using OIDC authentication
 
 2. a workload cluster, using OIDC authentication
 
 3. a workload cluster, using client certificate auth (Not supported on KVM)
 
-Note that `3` implies `1`. When setting up workload cluster access via client certificate, management cluster access will be set up as well, if that is not yet done.
+Note that `3` implies `1`. When setting up workload cluster access via client certificate, Management Cluster access will be set up as well, if that is not yet done.
 
 ## Usage
 
@@ -49,7 +49,7 @@ For the `MANAGEMENT_CLUSTER` argument there are several options.
 
 1. **Management API endpoint URL:** The URL of the cluster's Kubernetes API endpoint. This can be also be a workload cluster, if OIDC has been set up for it.
 
-2. **Web interface URL:** The URL of the management cluster's [web UI]({{< relref "/ui-api/web/" >}}) instance.
+2. **Web interface URL:** The URL of the Management Cluster's [web UI]({{< relref "/ui-api/web/" >}}) instance.
 
 3. **Context name:** Name of a Giant Swarm kubectl context, generated via one of the two methods above. The context name normally starts with the `gs-` prefix, however that prefix can be omitted for convenience. If no OIDC context can be found, an attempt to select a client certificate will be made.
 
@@ -77,17 +77,17 @@ For **OIDC** authentication, the following flags are available:
 The following flags are related to creating **client certificates** for workload cluster access:
 
 - `--workload-cluster` - If present, `kubectl gs` will set up a kubectl context to work with a workload cluster via client certificate creation.
-- `--organization` - The organization that the workload cluster belongs to. Only required if the current user has access to multiple workload clusters with the same name in the same management cluster. Can also be applied if the user does not have permission to list organizations.
+- `--organization` - The organization that the workload cluster belongs to. Only required if the current user has access to multiple workload clusters with the same name in the same Management Cluster. Can also be applied if the user does not have permission to list organizations.
 - `--certificate-group` - The RBAC group name to be encoded into the X.509 field "O". It can be specified multiple times in order to set multiple groups at once.
 - `--certificate-ttl` - How long the client certificate should live for. When creating client certificates, we recommend using short expiration periods. Valid time units are "s" (second), "m" (minute), "h" (hour).
 
 In addition, there is one flag **only relevant to Giant Swarm staff**:
 
-- `--cluster-admin` - This flag enables the use of a Giant Swarm identity provider instead of the customer's one when authenticating for the management cluster.
+- `--cluster-admin` - This flag enables the use of a Giant Swarm identity provider instead of the customer's one when authenticating for the Management Cluster.
 
 ## Examples
 
-### Management cluster
+### Management Cluster
 
 To set up a context initially, you'll have to use either the web UI URL as an argument ...
 
@@ -121,7 +121,7 @@ If OIDC is set up on a workload cluster, the initial login can be done via the M
 kubectl gs login https://api.test.g8s.example.westeurope.azure.gigantic.io
 ```
 
-As a result, a context will be created with prefix `gs-` and a codename consisting of management cluster and workload cluster handles.
+As a result, a context will be created with prefix `gs-` and a codename consisting of Management Cluster and workload cluster handles.
 
 ```nohighlight
 Switched to context 'gs-example-test'.
@@ -136,7 +136,7 @@ kubectl gs login example test
 
 ### Workload cluster client certificate
 
-Given that a context `gs-example` already exists from previous management cluster log-ins to that installation, the following command would create a client certificate with specific group assignment:
+Given that a context `gs-example` already exists from previous Management Cluster log-ins to that installation, the following command would create a client certificate with specific group assignment:
 
 ```nohighlight
 kubectl gs login example \
@@ -187,9 +187,9 @@ CN=5ab261600796bef7.i94nf.k8s.example.westeurope.azure.gigantic.io
 
 #### Creating a client certificate in automation {#wc-client-cert-automation}
 
-Creating a client certificate for a workload cluster requires access to the management cluster. This is simple for users who can first use `kubectl gs login` against the management cluster and are then authenticated.
+Creating a client certificate for a workload cluster requires access to the Management Cluster. This is simple for users who can first use `kubectl gs login` against the Management Cluster and are then authenticated.
 
-In an automation context, an interactive login with a personal authentication, potential using multiple authentication factors, is not possible. In this case, a **service account token** can be used to authenticate against the management cluster.
+In an automation context, an interactive login with a personal authentication, potential using multiple authentication factors, is not possible. In this case, a **service account token** can be used to authenticate against the Management Cluster.
 
 Giant Swarm provides a `ClusterRole` named `write-client-certificates` which provides the permissions required to create a workload cluster certificate. Bind this role to your service account in the namespace of the organization owning the workload cluster, to grant the required permissions. The [access control]({{< relref "/ui-api/web/organizations/access-control" >}}) user interface makes this simple.
 

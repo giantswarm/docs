@@ -28,7 +28,7 @@ To learn more about the subject, please also check out the broader article on [a
 
 ## Where to find it {#where-to-find}
 
-1. Log in to the web user interface, using the URL matching your management cluster/installation.
+1. Log in to the web user interface, using the URL matching your Management Cluster/installation.
 2. Click **Organizations** in the main menu in the top.
 3. Click the organization you want to manage access for.
 4. Select the **Access control** tab.

@@ -15,7 +15,7 @@ description: Release notes for AWS workload cluster release v14.2.1, published o
 title: Workload cluster release v14.2.1 for AWS
 ---
 
-This release fixes the issue which prevented clusters being created on some management clusters with the AWS v14.2.0 release.
+This release fixes the issue which prevented clusters being created on some Management Clusters with the AWS v14.2.0 release.
 
 > **_Warning:_** The nginx app needs to be updated to `v1.14.0+` because a new version of `external-dns` is included in this release.
 

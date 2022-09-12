@@ -20,7 +20,7 @@ owner:
 last_review_date: 2022-07-11
 ---
 
-In this document you will learn how to manage infrastructure and applications by utilizing FluxCD - a set of GitOps operators installed in Giant Swarm management clusters.
+In this document you will learn how to manage infrastructure and applications by utilizing FluxCD - a set of GitOps operators installed in Giant Swarm Management Clusters.
 
 ## What is GitOps
 
@@ -56,7 +56,7 @@ To get started with FluxCD, you will need to bootstrap FluxCD to your cluster of
 1. `source.toolkit.fluxcd.io` resources - they tell the `source-controller` where to look for the manifests
 2. `helmrelease.helm.toolkit.fluxcd.io` or `kustomization.kustomize.toolkit.fluxcd.io` resources - they are meant for `helm-controller` and `kustomize-controller` respectively and govern how the manifests found in sources will be applied
 
-Luckily, FluxCD is bootstrapped and running in Giant Swarm management clusters, so you can start using it immediately.
+Luckily, FluxCD is bootstrapped and running in Giant Swarm Management Clusters, so you can start using it immediately.
 
 If want to learn more about FluxCD and its capabilities, here are a couple of useful links:
 
@@ -302,9 +302,9 @@ NAME    PHASE
 demo0
 ```
 
-### Installing managed apps
+### Installing Managed Apps
 
-It is just as easy to install managed apps in existing workload clusters. In this part of the guide we will assume you have completed the previous steps and have both an organization and a cluster running.
+It is just as easy to install Managed Apps in existing workload clusters. In this part of the guide we will assume you have completed the previous steps and have both an organization and a cluster running.
 
 File structure
 

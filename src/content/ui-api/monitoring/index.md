@@ -18,7 +18,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 ---
 
-Giant Swarm runs a monitoring stack in each installation, based on [Prometheus](https://prometheus.io/), collecting data from most management cluster components, as well as many workload cluster metrics.
+Giant Swarm runs a monitoring stack in each installation, based on [Prometheus](https://prometheus.io/), collecting data from most Management Cluster components, as well as many workload cluster metrics.
 
 For accessing these metrics, both for you as customers and for our staff we provide a [Grafana](https://grafana.com/) instance per installation.
 

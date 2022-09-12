@@ -133,7 +133,7 @@ Upgraded from version 2.24.1.
 
 ### Fixed
 
-- Fix handling of managed apps renamed to renove the `-app` suffix.
+- Fix handling of Managed Apps renamed to renove the `-app` suffix.
  
 
 ### calico [3.21.6](https://github.com/projectcalico/calico/releases/tag/v3.21.6)

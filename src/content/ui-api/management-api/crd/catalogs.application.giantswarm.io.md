@@ -2,7 +2,7 @@
 title: Catalog CRD schema reference (group application.giantswarm.io)
 linkTitle: Catalog
 description: |
-  Catalog represents a catalog of managed apps. It stores general information for potential apps to install. It is reconciled by app-operator.
+  Catalog represents a catalog of Managed Apps. It stores general information for potential apps to install. It is reconciled by app-operator.
 weight: 100
 crd:
   name_camelcase: Catalog
@@ -30,7 +30,7 @@ source_repository_ref: v0.5.1
 # Catalog
 
 
-<p class="crd-description">Catalog represents a catalog of managed apps. It stores general information for potential apps to install. It is reconciled by app-operator.</p>
+<p class="crd-description">Catalog represents a catalog of Managed Apps. It stores general information for potential apps to install. It is reconciled by app-operator.</p>
 <dl class="crd-meta">
 <dt class="fullname">Full name:</dt>
 <dd class="fullname">catalogs.application.giantswarm.io</dd>

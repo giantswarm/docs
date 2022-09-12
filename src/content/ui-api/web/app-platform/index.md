@@ -21,7 +21,7 @@ are manageable using our web interface.
 
 The _Giant Swarm App Platform_ refers to a set of features and concepts that allow
 you to browse, install and manage the configurations of apps (such as Prometheus)
-from a single place; the management cluster.
+from a single place; the Management Cluster.
 
 Using this platform, we are providing a collection of curated _Apps_. These _Apps_ are grouped into _App Catalogs_, which are browsable through our web interface.
 We also use app platform to install the apps that are pre-installed in your cluster (such as CoreDNS).

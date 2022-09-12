@@ -28,7 +28,7 @@ As we are dealing with two cloud providers here which use different vocabulary i
 
 ## Credential secrets explained
 
-Credentials are stored in the management cluster in the form of a `Secret` resource.
+Credentials are stored in the Management Cluster in the form of a `Secret` resource.
 
 In the `metadata`, credential secrets _must_ provide the `giantswarm.io/managed-by: credentiald` and `app: credentiald` labels. We also _recommend_ to choose a resource name starting with `credential-`.
 

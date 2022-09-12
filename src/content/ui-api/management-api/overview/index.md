@@ -1,7 +1,7 @@
 ---
 linkTitle: Overview
 title: Management API overview
-description: Introduction to the Giant Swarm Management API, the Kubernetes API of the management cluster in your Giant Swarm installation.
+description: Introduction to the Giant Swarm Management API, the Kubernetes API of the Management Cluster in your Giant Swarm installation.
 weight: 10
 menu:
   main:
@@ -17,9 +17,9 @@ owner:
 
 ## What it is
 
-In a Giant Swarm installation, the [management cluster]({{< relref "/general/management-clusters/index.md" >}}) is a dedicated Kubernetes cluster that runs all the operational and monitoring workloads which are needed to create and manage the workload clusters. These are the clusters you create to run your actual workloads.
+In a Giant Swarm installation, the [Management Cluster]({{< relref "/general/management-clusters/index.md" >}}) is a dedicated Kubernetes cluster that runs all the operational and monitoring workloads which are needed to create and manage the workload clusters. These are the clusters you create to run your actual workloads.
 
-Your workload clusters and other associated resources are represented in the management cluster as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) (CRs). To access these, you use the Kubernetes API of the management cluster, or in short, the Management API.
+Your workload clusters and other associated resources are represented in the Management Cluster as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) (CRs). To access these, you use the Kubernetes API of the Management Cluster, or in short, the Management API.
 
 ![Schema showing the Management API](management-api-diagram.png)
 

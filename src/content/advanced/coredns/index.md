@@ -20,11 +20,11 @@ owner:
 
 Your Giant Swarm installation comes with a default configuration for the [CoreDNS addon](https://github.com/coredns/coredns)
 
-You can override these defaults in a ConfigMap named `coredns-user-values` in the management cluster.
+You can override these defaults in a ConfigMap named `coredns-user-values` in the Management Cluster.
 
 ## Where is the user values ConfigMap
 
-Given the cluster you are trying to configure has id: `123ab` then you will find the `coredns-user-values` ConfigMap in the management cluster in the `123ab` namespace:
+Given the cluster you are trying to configure has id: `123ab` then you will find the `coredns-user-values` ConfigMap in the Management Cluster in the `123ab` namespace:
 
 ```nohighlight
 $ kubectl -n 123ab get cm coredns-user-values --context=control-plane
@@ -42,7 +42,7 @@ Only the user values ConfigMap is safe to edit.
 
 ## How to set configuration options using the user values ConfigMap
 
-On the management cluster, create or edit a ConfigMap named `coredns-user-values`
+On the Management Cluster, create or edit a ConfigMap named `coredns-user-values`
 in the workload cluster namespace as described above:
 
 ```yaml

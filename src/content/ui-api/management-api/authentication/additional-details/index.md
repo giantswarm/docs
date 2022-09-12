@@ -42,7 +42,7 @@ Let's go into details for the most relevant properties (also called "claims") of
 
 | Claim | Description |
 |-|-|
-| `iss` | The OIDC provider that has issued the token. In our case it is Dex running in the management cluster.|
+| `iss` | The OIDC provider that has issued the token. In our case it is Dex running in the Management Cluster.|
 | `exp` | When this ID token expires, in seconds since 1970-01-01 00:00. Read [ID token lifetime](##id-token-ttl) below for more information. |
 | `iat` | When this ID token has been issued, in seconds since 1970-01-01 00:00. |
 | `email` | Email address associated with the authenticated user. From the Kubernetes api-server perspective, this is the user name relevant for role-based access control (RBAC). |

@@ -25,7 +25,7 @@ In the web user interface top navigation menu you can easily find the **Organiza
 
 ![Organizations overview](organizations-overview.png)
 
-This page shows all organizations existing in the management cluster of your installation.
+This page shows all organizations existing in the Management Cluster of your installation.
 
 <!-- TODO: Mention that as a non-admin user, you see the organizations you have access to, when non-admin users gain access. -->
 

@@ -165,7 +165,7 @@ To use the IAM role with a service account you need to create new or modify an e
 
 You need to fill real values for these placeholders:
 * `AWS_ACCOUNT` - aws account id, where is the cluster running
-* `CLOUDFRONT_DOMAIN` - cloudfront domain of the cluster, you can find the information in the ConfigMap `clusterID-irsa-cloudfront` in the organization namespace inside the management cluster or via AWS console in `Cloudfront`
+* `CLOUDFRONT_DOMAIN` - cloudfront domain of the cluster, you can find the information in the ConfigMap `clusterID-irsa-cloudfront` in the organization namespace inside the Management Cluster or via AWS console in `Cloudfront`
 
 ### Service account
 The service account has to be annotated with a full ARN of the IAM role. You can get the ARN of the role in the AWS console, when you check role details.
@@ -254,7 +254,7 @@ To use the IAM role on a different account than your cluster you need to create 
 
 You need to fill real values for these placeholders:
 * `ROLE_AWSACCOUNT` - AWS account where the role is located
-* `CLOUDFRONT_DOMAIN` - cloudfront domain of the cluster, you can find the information in the ConfigMap `clusterID-irsa-cloudfront` in the organization namespace inside the management cluster or via AWS console in `Cloudfront`
+* `CLOUDFRONT_DOMAIN` - cloudfront domain of the cluster, you can find the information in the ConfigMap `clusterID-irsa-cloudfront` in the organization namespace inside the Management Cluster or via AWS console in `Cloudfront`
 
 
 

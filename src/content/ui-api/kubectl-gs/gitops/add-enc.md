@@ -56,7 +56,7 @@ keychain.
 | Name                 | Description                                                              | Required |
 | -------------------- | ------------------------------------------------------------------------ | -------- |
 | `generate`           | Generate new key pair.                                                   | true     |
-| `management-cluster` | Management cluster to configure the encryption for.                      | true     |
+| `management-cluster` | Management Cluster to configure the encryption for.                      | true     |
 | `organization`       | Organization in the Management Cluster to configure the encryption for.  | false    |
 | `target`             | Relative directory to configure the encryption for. (default "secrets/") | false    |
 | `workload-cluster`   | Workload Cluster in the Organization to configure the encryption for.    | false    |
