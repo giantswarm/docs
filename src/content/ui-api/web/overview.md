@@ -37,13 +37,10 @@ the application.
 Our web interface let's you do the following things. Some topics link to more
 detailed information:
 
-- View and manage clusters
-- View and manage key pairs for your clusters
 - View and manage organizations
-- Manage your own account and password
-- Learn how to get started with your Kubernetes clusters by following a guide
+- View and manage clusters
+- Learn how to get started with your workload clusters by following a guide
 - [Add, remove and configure Apps on your clusters]({{< relref "/ui-api/web/app-platform" >}})
-- [View and manage workload cluster labels]({{< relref "/ui-api/web/workload-cluster-labelling" >}})
 
 ## Usage data recording
 
