@@ -52,13 +52,13 @@ Internally, Cluster API (CAPI) uses kubeadm to configure all the machines accord
 
 ## Giant Swarm Platform
 
-The Giant Swarm Platform is based on the management cluster API. The main reason is that Kubernetes has become the de-facto standard for managing infrastructure in a modern way. Its extensibility makes it easy to transform a cluster in a Platform with a secret sauce that makes the experience great.
+The Giant Swarm Platform is based on the API of the management cluster. The main reason is that Kubernetes has become the de-facto standard for managing infrastructure in a modern way. Its extensibility makes it easy to transform a cluster in a Platform with a secret sauce that makes the experience great.
 
 Our platform let's customers manage (workload) clusters and applications in a Cloud Native fashion. Following is an explanation of the bootstrapping process of a cluster, how it is managed throughout its lifecycle and which cluster components run based on its role (i.e. workload cluster or management cluster).
 
 ### Bootstrapping
 
-The initial deployment entails the creation of that management cluster in a defined region. We built a tool that performs all steps need to create a cluster and convert it to a management cluster.
+The initial deployment entails the creation of that management cluster in a defined region. We built a tool that performs all steps needed to create a cluster and convert it to a management cluster.
 
 The process involves several steps that we will review briefly in the following list:
 
@@ -67,7 +67,7 @@ The process involves several steps that we will review briefly in the following 
 3. Create a bootstrap cluster using [kind](https://kind.sigs.k8s.io/).
 4. Install the Cluster API (CAPI) controllers on it.
 5. Create the management CAPI resources on the bootstrapping cluster to trigger the provision of the real infrastructure on the provider. It creates the actual Kubernetes cluster in the customer infrastructure.
-6. Move the Cluster API controllers and resources to the real management cluster in the end provider.
+6. Install the Cluster API controllers on the real management cluster and move the resources to it.
 7. Deploy our App platform on top of the management cluster.
 8. Deploy our monitoring system on top of the management cluster.
 9. Deploy all additional operators that enhances the API (organizations, RBAC, etc).
@@ -90,7 +90,7 @@ There are two types of components: generic and self-developed.
 
 #### Generic Components
 
-The generic components run in all of our regardless of whether it is a management cluster or a workload cluster.
+The generic components run in all of our clusters regardless of whether it is a management cluster or a workload cluster.
 
 ##### Container Network Interface (CNI)
 
@@ -100,7 +100,7 @@ We have chosen Cilium as the CNI implementation for several reasons. It is an op
 
 ##### Kube State Metrics
 
-Kube State Metrics (KSM) is a an upstream project that watches to the Kubernetes API and provide metrics about the state of the built-in resources. It is used by our monitoring service to scrape the metrics of the core components so we can be paged when something is wrong with the cluster. At the same time customers can scrape that metrics to create their own dashboards and alerts.
+Kube State Metrics (KSM) is an upstream project that watches the Kubernetes API and provides metrics about the state of built-in resources. It is used by our monitoring service to scrape the metrics of the core components so we can be paged when something is wrong with the cluster. At the same time customers can scrape these metrics to create their own dashboards and alerts.
 
 ##### Cert exporter
 
@@ -110,7 +110,7 @@ It is a Prometheus exporter that exposes a set of metrics regarding certificates
 
 Net exporter is also a Prometheus exporter for exposing network information. It runs on every node to track network and DNS errors. We created dashboards to help us debug issues on the cluster. In addition some of our alerts are based on the metrics exported by it.
 
-##### Metric server
+##### Metrics server
 
 Metrics Server is an upstream component that implements the [Kubernetes Metrics API](https://kubernetes.io/docs/tasks/debug/debug-cluster/resource-metrics-pipeline/#metrics-api) to provide basic data of the container running in the cluster. It gives us information about CPU and memory usage of every pod. It is also used by other components, like Horizontal Pod Autoscaler, for scaling decisions. 
 
@@ -132,7 +132,7 @@ In Giant Swarm we leverage the operator pattern to extend the management cluster
 
 *Organization operator*
 
-This operator is in charge of reconciling `Organization` custom resources. The functionality of the operator is pretty straightforward. It takes creates and delete the organization namespace when the given resource is created.
+This operator is in charge of reconciling `Organization` custom resources. The functionality of the operator is pretty straightforward. It creates and deletes the organization namespace when the given resource is created.
 
 To learn more about organizations please read [the related documentation](https://docs.giantswarm.io/general/organizations/).
 
@@ -146,7 +146,7 @@ We built an operator to manage the DNS entries for all the endpoints we need to 
 
 *Deletion Blocker Operator*
 
-As a Kubernetes user, you have most likely experienced a case in which a resource block deletion. This typically happens because the back-end resource is not there or it is in `failed` state. This operator ensure all leftovers are cleaned up after a cluster is marked for deletion. 
+Kubernetes ensures resources are deleted in the right order by using `finalizers`, a way to create dependencies between resources. In specific cases, some CRs don't leverage finalizers, which can stop the deletion process when they are deleted too early and leave the cluster in an inconsistent state. Deletion Blocker Operator ensure that specific CRs aren't deleted until specific conditions are met.
 
 *App operator*
 
@@ -162,7 +162,7 @@ In [Cluster API](https://cluster-api.sigs.k8s.io/) there is a set of generic ope
 
 *Cluster Provider operator*
 
-In Cluster API there is a set of common providers defined above, but to manage the real infrastructure we need to run an specific controller that knows about the provider API. It acts as a bridge and reconciles the provider specific configuration to create the necessary infrastructure for a Kubernetes cluster. This controller provisions, updates and deletes all resources through API. Every provider has its own lingo and methods to create a machine or provision a network. The operator reconciles the `Infrastructure` custom resources of the specific provider parsing the desired state into API requests and ensuring the provider resources are always in sync with the resource definitions stored in the management cluster.
+In Cluster API there is a set of common providers defined above, but to manage the real infrastructure we need to run a specific controller that knows about the cloud provider's API. It acts as a bridge and reconciles the provider specific configuration to create the necessary infrastructure for a Kubernetes cluster (i.e. VMs, Load Balancers...). This controller provisions, updates and deletes all resources through API. Every provider has its own lingo and methods to create a machine or provision a network. The operator reconciles the `Infrastructure` custom resources of the specific provider parsing the desired state into API requests and ensuring the provider resources are always in sync with the resource definitions stored in the management cluster.
 
 *Cluster Apps operator*
 
@@ -174,7 +174,7 @@ The [Admission Controller](https://kubernetes.io/docs/reference/access-authn-aut
 
 *App Admission Controller*
 
-This admission controller gives the ability to our App Platform to ensure an App is created properly, with all required files and points to an existing App in the Catalog. At the same time allow our customers to only passed the minimum spec and default the rest automatically.
+This admission controller gives the ability to our App Platform to ensure an App is created properly, with all required files and points to an existing App in the Catalog. At the same time, it allows our customers to pass the bare minimum required spec and will default the rest automatically.
 
 *Cluster API admission controllers*
 
@@ -186,7 +186,7 @@ As we described before, organizations are used to organize clusters and apps, bu
 
 *Kyverno admission controller*
 
-[Pod Security Policies are deprecated](https://kubernetes.io/blog/2021/04/06/podsecuritypolicy-deprecation-past-present-and-future/) and from Kubernetes `1.25` they will not be valid anymore. In the past relied on this functionality to harden the cluster and ensure containers run with the least privileges as possible. As a replacement we implemented the same policies in [Kyverno](https://kyverno.io/). 
+[Pod Security Policies are deprecated](https://kubernetes.io/blog/2021/04/06/podsecuritypolicy-deprecation-past-present-and-future/) and from Kubernetes `1.25` they will not be valid anymore. In the past we relied on this functionality to harden the cluster and ensure containers run with the least privileges required. As a replacement we implemented equivalent policies in [Kyverno](https://kyverno.io/). 
 
 ##### Operational services
 
@@ -206,7 +206,7 @@ In addition to the security policies, [Network Policies](https://kubernetes.io/d
 
 Since we provide a **managed** Kubernetes platform, Giant Swarm has to be aware of state and unexpected events regarding the platform. For that reason our management clusters run a [monitoring stack](https://www.giantswarm.io/blog/monitoring-on-demand-kubernetes-clusters-with-prometheus) to watch all workload clusters and ensure all managed components are healthy. In each workload cluster there are several [exporters](https://prometheus.io/docs/instrumenting/exporters/) that gather and forward the metrics for each component.
 
-Our engineers are that are on-call are paged in case anything happens to the cluster or its base components. They respond to the incident based on our run-books. The ones we have written (and continue to update) over years operating Cloud Native systems. In case there is an improvement to be made, a post mortem is created and a solution will be implemented before long. Any patch or fix added to the platform is released to all customers.
+Our on-call engineers are paged in case anything happens to the cluster or its base components. They respond to the incident based on our run-books, the ones we have written (and continue to update) over years operating Cloud Native systems. In case there is an improvement to be made, a post mortem is created and a solution will be implemented before long. Any patch or fix added to the platform is released to all customers.
 
 *CI/CD Features of the Platform*
 
