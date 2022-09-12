@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v17.2.0/
 changes_categories:
-- Workload cluster releases for AWS
+- workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/v17.2.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2022-04-04T08:00:00+00:00'
 description: Release notes for AWS workload cluster release v17.2.0, published on
   04 April 2022, 08:00
-title: Workload cluster release v17.2.0 for AWS
+title: workload cluster release v17.2.0 for AWS
 ---
 
 This release improves the performance of `etcd` by using `gp3` volumes with provisioned IOPS. It also provides stability improvements, bug fixes and security fixes for various components.

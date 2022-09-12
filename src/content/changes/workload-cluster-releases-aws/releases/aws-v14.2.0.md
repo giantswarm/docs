@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v14.2.0/
 changes_categories:
-- Workload cluster releases for AWS
+- workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v14.2.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-05-28T08:00:00+00:00'
 description: Release notes for AWS workload cluster release v14.2.0, published on
   28 May 2021, 08:00
-title: Workload cluster release v14.2.0 for AWS
+title: workload cluster release v14.2.0 for AWS
 ---
 
 This release provides security and bug fixes for various components. It also fixes an issue that can cause an IP conflict to occur in certain situations when a node pool is created.
@@ -77,7 +77,7 @@ This release provides security and bug fixes for various components. It also fix
 - Emit events when config maps and secrets referenced in App CRs are updated.
 - Cache k8sclient, helmclient for later use.
 - Apply the namespaceConfig to the desired chart.
-- Install apps in CAPI Workload Clusters.
+- Install apps in CAPI workload clusters.
 - Apply `compatibleProvider`,`namespace` metadata validation based on the relevant `AppCatalogEntry` CR.
 - Add annotations from Helm charts to AppCatalogEntry CRs.
 - Enable Vertical Pod Autoscaler.

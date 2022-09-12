@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-azure/releases/azure-v11.2.6/
 changes_categories:
-- Workload cluster releases for Azure
+- workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/azure/archived/v11.2.6
@@ -12,7 +12,7 @@ changes_entry:
 date: '2020-04-28T14:00:00+00:00'
 description: Release notes for Azure workload cluster release v11.2.6, published on
   28 April 2020, 14:00
-title: Workload cluster release v11.2.6 for Azure
+title: workload cluster release v11.2.6 for Azure
 ---
 
 This release adds two instance types to the list of supported instance types and fixes an error that was interrupting cluster creation.

@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v17.4.1/
 changes_categories:
-- Workload cluster releases for AWS
+- workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/v17.4.1
@@ -12,7 +12,7 @@ changes_entry:
 date: '2022-07-07T11:08:42+00:00'
 description: Release notes for AWS workload cluster release v17.4.1, published on
   07 July 2022, 11:08
-title: Workload cluster release v17.4.1 for AWS
+title: workload cluster release v17.4.1 for AWS
 ---
 
 This is a patch release bringing improvements to app-operator and chart-operator such as pod and container security contexts for PSS and more. It also contains a change in cert-manager to automatically upgrade stored custom resources stored in deprecated apiversions.

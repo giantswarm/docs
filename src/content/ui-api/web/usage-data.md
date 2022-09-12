@@ -51,7 +51,7 @@ The data recorded consists of:
 - The URL viewed.
 - Performance related data related to network transfers, content rendering, application readiness.
 
-The data is submitted to a service in the Giant Swarm Management Cluster.
+The data is submitted to a service in the Giant Swarm management cluster.
 
 ## Error data collection
 

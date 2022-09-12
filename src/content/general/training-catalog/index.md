@@ -59,7 +59,7 @@ _____________________________________
 
 - What is the Giant Swarm Management API and why is it important?
 - Examples of Management API best practices
-- Overview of connecting identity providers to Management API as well as Workload Clusters
+- Overview of connecting identity providers to Management API as well as workload clusters
 
 
 _____________________________________

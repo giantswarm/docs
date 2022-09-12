@@ -731,7 +731,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Workload cluster release versions the cluster used so far.</p>
+<p>workload cluster release versions the cluster used so far.</p>
 
 </div>
 
@@ -1649,7 +1649,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Workload cluster release versions the cluster used so far.</p>
+<p>workload cluster release versions the cluster used so far.</p>
 
 </div>
 

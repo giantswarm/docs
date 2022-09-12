@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-kvm/releases/kvm-v11.1.0/
 changes_categories:
-- Workload cluster releases for KVM
+- workload cluster releases for KVM
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/kvm/archived/v11.1.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2020-01-29T12:00:00+00:00'
 description: Release notes for KVM workload cluster release v11.1.0, published on
   29 January 2020, 12:00
-title: Workload cluster release v11.1.0 for KVM
+title: workload cluster release v11.1.0 for KVM
 ---
 
 This release upgrades the NGINX Ingress Controller app to upstream v0.28.0. It contains several non-breaking changes that fix a few issues. We also enabled the metrics service. This allows prometheus-operator to scrape for metrics and improves monitoring of the app.

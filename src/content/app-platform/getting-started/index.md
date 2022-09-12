@@ -20,7 +20,7 @@ user_questions:
 The _Giant Swarm App Platform_ is built on top of [Helm](https://helm.sh/) and allows you to manage apps and their configurations represented by App Custom Resources (CRs) for multiple clusters, from a single place: the [Management API]({{< relref "/ui-api/management-api/overview" >}}).
 
 In this guide, we will install the NGINX Ingress Controller app. We will do this by using kubectl, to create
-an [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) CR using the Kubernetes API of your Management Cluster.
+an [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) CR using the Kubernetes API of your management cluster.
 
 App CRs can be created this way via your automation or our Web UI (See: [guide]({{< relref "/getting-started/ingress-controller" >}})).
 
@@ -28,11 +28,11 @@ In general, you can manage App CRs with any tool that can communicate with the K
 
 ## Setting up
 
-You can access your Management Cluster using the [kubectl gs login]({{< relref "/ui-api/kubectl-gs/login" >}})
+You can access your management cluster using the [kubectl gs login]({{< relref "/ui-api/kubectl-gs/login" >}})
 command of our kubectl plugin. See [here]({{< relref "/ui-api/kubectl-gs/installation" >}})
 for how to install it.
 
-In the Management Cluster your App CRs are stored in a namespace with the same
+In the management cluster your App CRs are stored in a namespace with the same
 name as your workload cluster ID. Let's set an environment variable for this
 which we will use in the later steps.
 
@@ -69,13 +69,13 @@ net-exporter         1.10.1    07 Jul 21 14:39 CEST   deployed
 node-exporter        1.7.2     07 Jul 21 14:39 CEST   deployed
 ```
 
-app-operator is running in the Management Cluster and the rest of the apps are
+app-operator is running in the management cluster and the rest of the apps are
 installed in your workload cluster.
 
 ## Finding the ingress controller version
 
 You can browse the apps in our catalog using our [web UI]({{< relref "/ui-api/web" >}})
-but this information is also available in the Management Cluster. We create
+but this information is also available in the management cluster. We create
 [AppCatalogEntry]({{< relref "/ui-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}})
 CRs for the apps that are available.
 

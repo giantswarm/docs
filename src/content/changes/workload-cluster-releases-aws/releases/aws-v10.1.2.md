@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v10.1.2/
 changes_categories:
-- Workload cluster releases for AWS
+- workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v10.1.2
@@ -12,7 +12,7 @@ changes_entry:
 date: '2020-02-06T08:00:00+00:00'
 description: Release notes for AWS workload cluster release v10.1.2, published on
   06 February 2020, 08:00
-title: Workload cluster release v10.1.2 for AWS
+title: workload cluster release v10.1.2 for AWS
 ---
 
 This release fixes a problem with the cluster role for chart-operator, which is responsible for installing and updating Managed Apps. The changes affect only Managed Apps and upgrading to this release will not cause cluster nodes to be rolled. **To prevent encountering problems when installing or updating an app, please upgrade to this release.**

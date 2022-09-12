@@ -15,9 +15,9 @@ owner:
 last_review_date: 2021-01-01
 ---
 
-In a Giant Swarm installation the workload clusters (the clusters running your Kubernetes workloads) can run in a separate Azure subscription from the Management Cluster. This gives greater flexibility depending on the requirements and the use case. For example, it allows the Management Cluster to be running in one Azure subscription, while workload clusters operate in different Azure subscriptions, depending on the customer entities using them.
+In a Giant Swarm installation the workload clusters (the clusters running your Kubernetes workloads) can run in a separate Azure subscription from the management cluster. This gives greater flexibility depending on the requirements and the use case. For example, it allows the management cluster to be running in one Azure subscription, while workload clusters operate in different Azure subscriptions, depending on the customer entities using them.
 
-Giant Swarm operates workload clusters using a service called `azure-operator` which runs on the Management Cluster.
+Giant Swarm operates workload clusters using a service called `azure-operator` which runs on the management cluster.
 
 ## Overview
 
@@ -100,8 +100,8 @@ Now you need to give Giant Swarm's Service Principal permission to access resour
 In your subscription, go to "Access Control (IAM)" and click the "Add Role" button, then select "Add role assignment".
 In the right sidebar that pops up, please select the `azure-operator` role.
 
-If the `Subscription` where the `Management Cluster` is deployed is not the same as the one that will host Workload Clusters,
-you also need to give `Network Contributor` role to the Service Principal on the `Management Cluster` subscription.
+If the `Subscription` where the `management cluster` is deployed is not the same as the one that will host workload clusters,
+you also need to give `Network Contributor` role to the Service Principal on the `management cluster` subscription.
 
 ## Configure Subscription to allow access for Giant Swarm Support
 
@@ -127,7 +127,7 @@ You will have to supply a general Delegated Resource Management [template file](
 The Delegated Resource Management template uses a [parameters file](https://raw.githubusercontent.com/giantswarm/azure-operator/master/docs/delegatedResourceManagement.parameters.json) to supply the needed variables for configuration.
 Please remember to change the `roleDefinitionId` in case you would like to use your custom role definition. Moreover ask your Account Engineer so he can provide you the `GiantSwarmPrincipalID` and `GiantSwarmTenantID`
 
-This command should be run for all subscriptions that are used for Giant Swarm workload clusters as well as the Management Cluster that orchestrates it all.  
+This command should be run for all subscriptions that are used for Giant Swarm workload clusters as well as the management cluster that orchestrates it all.  
 
 ## Accept legal terms for deeployment of Flatcar image
 

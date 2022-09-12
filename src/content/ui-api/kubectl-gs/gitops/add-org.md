@@ -37,7 +37,7 @@ management-clusters/MC_NAME/organizations
 
 | Name              | Description                                        | Required |
 | ----------------- | -------------------------------------------------- | -------- |
-| `management-cluster` | Management Cluster the Organization belongs to. | true     |
+| `management-cluster` | management cluster the Organization belongs to. | true     |
 | `name`            | Organization name.                                 | true     |
 
 ## Usage

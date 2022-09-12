@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-kvm/releases/kvm-v16.1.0/
 changes_categories:
-- Workload cluster releases for KVM
+- workload cluster releases for KVM
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/kvm/v16.1.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-10-14T12:51:02+00:00'
 description: Release notes for KVM workload cluster release v16.1.0, published on
   14 October 2021, 12:51
-title: Workload cluster release v16.1.0 for KVM
+title: workload cluster release v16.1.0 for KVM
 ---
 
 This release includes changes in calico and etcd that should lead to better performance.

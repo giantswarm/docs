@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-kvm/releases/kvm-v14.1.0/
 changes_categories:
-- Workload cluster releases for KVM
+- workload cluster releases for KVM
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/kvm/archived/v14.1.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-06-08T17:54:06+00:00'
 description: Release notes for KVM workload cluster release v14.1.0, published on
   08 June 2021, 17:54
-title: Workload cluster release v14.1.0 for KVM
+title: workload cluster release v14.1.0 for KVM
 ---
 
 This release introduces a new feature that allows KVM clusters to run behind a proxy. It also adds support for host volumes.

@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v10.1.0/
 changes_categories:
-- Workload cluster releases for AWS
+- workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v10.1.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2019-12-18T14:00:00+00:00'
 description: Release notes for AWS workload cluster release v10.1.0, published on
   18 December 2019, 14:00
-title: Workload cluster release v10.1.0 for AWS
+title: workload cluster release v10.1.0 for AWS
 ---
 
 We are pleased to announce that the new release v10.1.0 contains the much anticipated Node Pools feature.

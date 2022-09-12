@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-azure/releases/azure-v13.0.2/
 changes_categories:
-- Workload cluster releases for Azure
+- workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/azure/archived/v13.0.2
@@ -12,7 +12,7 @@ changes_entry:
 date: '2020-12-16T08:16:50+00:00'
 description: Release notes for Azure workload cluster release v13.0.2, published on
   16 December 2020, 08:16
-title: Workload cluster release v13.0.2 for Azure
+title: workload cluster release v13.0.2 for Azure
 ---
 
 This is a patch release that resolves a problem during the upgrade of multi-AZ clusters from 12.x release to 13.x release.

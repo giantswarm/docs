@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-azure/releases/azure-v16.1.1/
 changes_categories:
-- Workload cluster releases for Azure
+- workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/azure/archived/v16.1.1
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-12-14T08:14:17+00:00'
 description: Release notes for Azure workload cluster release v16.1.1, published on
   14 December 2021, 08:14
-title: Workload cluster release v16.1.1 for Azure
+title: workload cluster release v16.1.1 for Azure
 ---
 
 This is a bug fix release to handle a problem during upgrades we found in release 16.1.0.

@@ -1,6 +1,6 @@
 ---
 linkTitle: Cluster upgrades
-title: Workload cluster upgrades
+title: workload cluster upgrades
 description: How Kubernetes and other components are upgraded in a Giant Swarm workload cluster, and how to prepare your cluster and workloads to facilitate robust upgrades.
 weight: 40
 menu:
@@ -149,7 +149,7 @@ On Azure, the node names visible to Kubernetes (e. g. `kubectl get nodes`) are n
 
 ### Specific details for KVM
 
-In a KVM-based cluster, our [kvm-operator](https://github.com/giantswarm/kvm-operator) builds each workload cluster node out of a Kubernetes Deployment and Pod in the Management Cluster.
+In a KVM-based cluster, our [kvm-operator](https://github.com/giantswarm/kvm-operator) builds each workload cluster node out of a Kubernetes Deployment and Pod in the management cluster.
 In an upgrade, each of these deployments is updated after the according node has been drained, one after another, starting with the control plane node.
 This leads to removal and recreation of the Pods.
 
@@ -268,4 +268,4 @@ Furthermore, you should make your containers are as lightweight (in terms of siz
 
 ## Further reading
 
-- [Workload cluster releases]({{< relref "/general/releases" >}}) explains the semantics of workload cluster releases.
+- [workload cluster releases]({{< relref "/general/releases" >}}) explains the semantics of workload cluster releases.

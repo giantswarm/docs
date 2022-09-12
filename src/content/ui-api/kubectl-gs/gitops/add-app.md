@@ -12,7 +12,7 @@ last_review_date: 2022-08-31
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
-  - How do I add App to my Workload Cluster with the GitOps repository?
+  - How do I add App to my workload cluster with the GitOps repository?
 ---
 
 This command adds a new App to the GitOps repository.
@@ -50,15 +50,15 @@ working base to reference with the `--base` flag. In any case, user may provide 
 | `app`                | App name in the catalog.                                                | false    |
 | `base`               | Path to the base directory. It must be relative to the repository root. | false    |
 | `catalog`            | Catalog to install the app from.                                        | false    |
-| `management-cluster` | Codename of the Management Cluster the Workload Cluster belongs to.     | true     |
+| `management-cluster` | Codename of the management cluster the workload cluster belongs to.     | true     |
 | `name`               | Name of the app to use for creating the repository directory structure. | false    |
 | `namespace`          | Namespace to install app into.                                          | false    |
-| `organization`       | Name of the Organization the Workload Cluster belongs to.               | true     |
+| `organization`       | Name of the Organization the workload cluster belongs to.               | true     |
 | `skip-mapi`          | Skip mapi directory when adding the app.                                | false    |
 | `user-configmap`     | Values YAML to customize the app with. Will get turn into a ConfigMap.  | false    |
 | `user-secret`        | Values YAML to customize the app with. Will get turn into a Secret.     | false    |
 | `version`            | App version to install.                                                 | false    |
-| `workload-cluster`   | Name of the Workload Cluster to configure the app for.                  | true     |
+| `workload-cluster`   | Name of the workload cluster to configure the app for.                  | true     |
 
 ## Usage
 

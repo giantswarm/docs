@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-azure/releases/azure-v15.1.0/
 changes_categories:
-- Workload cluster releases for Azure
+- workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/azure/archived/v15.1.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-07-19T09:07:48+00:00'
 description: Release notes for Azure workload cluster release v15.1.0, published on
   19 July 2021, 09:07
-title: Workload cluster release v15.1.0 for Azure
+title: workload cluster release v15.1.0 for Azure
 ---
 
 This is the first Giant Swarm Azure stable release featuring Kubernetes [1.20.8](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.20.md#v1208).

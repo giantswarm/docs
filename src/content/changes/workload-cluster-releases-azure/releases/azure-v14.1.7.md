@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-azure/releases/azure-v14.1.7/
 changes_categories:
-- Workload cluster releases for Azure
+- workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/azure/archived/v14.1.7
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-06-30T09:00:00+00:00'
 description: Release notes for Azure workload cluster release v14.1.7, published on
   30 June 2021, 09:00
-title: Workload cluster release v14.1.7 for Azure
+title: workload cluster release v14.1.7 for Azure
 ---
 
 This release upgrades Kubernetes to [v1.19.12](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.19.md#v11912).

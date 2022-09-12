@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-azure/releases/azure-v17.2.0/
 changes_categories:
-- Workload cluster releases for Azure
+- workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/azure/v17.2.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2022-07-04T11:38:01+00:00'
 description: Release notes for Azure workload cluster release v17.2.0, published on
   04 July 2022, 11:38
-title: Workload cluster release v17.2.0 for Azure
+title: workload cluster release v17.2.0 for Azure
 ---
 
 This is a security release featuring the latest version of Flatcar Container Linux (3139.2.3), Kubernetes (1.22.11), and all of Giant Swarm applications.

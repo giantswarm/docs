@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v15.2.2/
 changes_categories:
-- Workload cluster releases for AWS
+- workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v15.2.2
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-10-01T11:49:41+00:00'
 description: Release notes for AWS workload cluster release v15.2.2, published on
   01 October 2021, 11:49
-title: Workload cluster release v15.2.2 for AWS
+title: workload cluster release v15.2.2 for AWS
 ---
 
 This release provides a security fix for [CVE-2021-25741](https://nvd.nist.gov/vuln/detail/CVE-2021-25741).

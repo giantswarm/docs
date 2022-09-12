@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-kvm/releases/kvm-v8.2.0/
 changes_categories:
-- Workload cluster releases for KVM
+- workload cluster releases for KVM
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/kvm/archived/v8.2.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2019-06-24T10:00:00+00:00'
 description: Release notes for KVM workload cluster release v8.2.0, published on 24
   June 2019, 10:00
-title: Workload cluster release v8.2.0 for KVM
+title: workload cluster release v8.2.0 for KVM
 ---
 
 

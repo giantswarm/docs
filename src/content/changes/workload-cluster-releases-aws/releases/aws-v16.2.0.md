@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v16.2.0/
 changes_categories:
-- Workload cluster releases for AWS
+- workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v16.2.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-12-09T10:14:45+00:00'
 description: Release notes for AWS workload cluster release v16.2.0, published on
   09 December 2021, 10:14
-title: Workload cluster release v16.2.0 for AWS
+title: workload cluster release v16.2.0 for AWS
 ---
 
 This is a security release featuring the latest Flatcar Linux version as well as various updates to Giant Swarm applications.

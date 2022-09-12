@@ -49,11 +49,11 @@ coming from a base updates must be configured in the base instead, what is outsi
 | Name                 | Description                                                         | Required |
 | -------------------- | ------------------------------------------------------------------- | -------- |
 | `app`                |  App in the repository to configure automatic update for.           | true     |
-| `management-cluster` | Codename of the Management Cluster the Workload Cluster belongs to. | true     |
-| `organization`       | Name of the Organization the Workload Cluster belongs to.           | true     |
+| `management-cluster` | Codename of the management cluster the workload cluster belongs to. | true     |
+| `organization`       | Name of the Organization the workload cluster belongs to.           | true     |
 | `skip-mapi`          | Skip mapi directory when adding the app.                            | false    |
 | `version-repository` | The OCR repository to update the version from.                      | true     |
-| `workload-cluster`   | Name of the Workload Cluster to configure the app for.              | true     |
+| `workload-cluster`   | Name of the workload cluster to configure the app for.              | true     |
 
 ## Usage
 

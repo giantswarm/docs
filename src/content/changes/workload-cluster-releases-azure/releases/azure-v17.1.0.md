@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-azure/releases/azure-v17.1.0/
 changes_categories:
-- Workload cluster releases for Azure
+- workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/azure/v17.1.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2022-06-23T10:00:00+00:00'
 description: Release notes for Azure workload cluster release v17.1.0, published on
   23 June 2022, 10:00
-title: Workload cluster release v17.1.0 for Azure
+title: workload cluster release v17.1.0 for Azure
 ---
 
 This maintenance Azure workload cluster release provides the latest Kubernetes 1.22 version as well as the latest version of all Giant Swarm components.

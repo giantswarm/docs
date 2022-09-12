@@ -23,9 +23,9 @@ owner:
 
 ## Introduction
 
-Organizations are a means to organize resources like clusters and apps in a way that different entities are isolated from each other. You can use organizations to separate resource for different projects, business units, teams etc. within the same Giant Swarm Management Cluster.
+Organizations are a means to organize resources like clusters and apps in a way that different entities are isolated from each other. You can use organizations to separate resource for different projects, business units, teams etc. within the same Giant Swarm management cluster.
 
-The organization concept makes use of some well-known building blocks of Kubernetes in the [Management Cluster]({{< relref "/general/management-clusters/index.md" >}}), such as:
+The organization concept makes use of some well-known building blocks of Kubernetes in the [management cluster]({{< relref "/general/management-clusters/index.md" >}}), such as:
 
 - Namespaces
 - Role based access control (RBAC)
@@ -38,7 +38,7 @@ Typical use cases for organizations are:
 
 - Isolating teams, business units, or even legal entities.
 
-At Giant Swarm, for example, we run several shared installations where we allow different customers access to a single organization only, usually before they get their own installation. This way we can ensure that each customer, while using the same Management Cluster, can only access their own workload clusters and resources.
+At Giant Swarm, for example, we run several shared installations where we allow different customers access to a single organization only, usually before they get their own installation. This way we can ensure that each customer, while using the same management cluster, can only access their own workload clusters and resources.
 
 ### Visual overview {#intro-visual}
 
@@ -58,7 +58,7 @@ Organizations are transitioning from being managed completely by microservices b
 
 - **2019: introduction of the Management API**
 
-    - In order to give customers full access to Management Clusters, workload cluster and app resources, we provide experimental access to the Kubernetes API of Management Clusters, which we now call the Management API. (We used to call it the _Control Plane API_ back then.)
+    - In order to give customers full access to management clusters, workload cluster and app resources, we provide experimental access to the Kubernetes API of management clusters, which we now call the Management API. (We used to call it the _Control Plane API_ back then.)
     - For authentication we introduce OpenID Connect (OIDC), using the customer's own identity provider. We decide to abandon the proprietary Giant Swarm user account, used for the REST API, in the long run.
     - In the beginning, the concept of the organization does not exist in the Management API.
     - Cluster resources carry an annotation `giantswarm.io/organization` to indicate which organization they are assigned to via the REST API.
@@ -66,7 +66,7 @@ Organizations are transitioning from being managed completely by microservices b
 - **2020: introduction of the organization concept in the Management API**
 
     - With the [Organization CRD]({{< relref "/ui-api/management-api/crd/organizations.security.giantswarm.io.md" >}}) we introduce an entity in the Management API to represent an organization.
-    - Operators ensure that a namespace exists for each organization in the Management Cluster.
+    - Operators ensure that a namespace exists for each organization in the management cluster.
     - Starting with workload cluster release v13.0.0 for Azure, cluster resources are created in the owner organization's namespace by default (meaning: unless the resource is placed in a different namespaces explicitly).
 
 - **2021: synchronization of organizations in REST API and Management API**
@@ -88,7 +88,7 @@ Organizations are transitioning from being managed completely by microservices b
 
 If the concept of custom resources (CR) and custom resource definitions (CRD) is new to you: Kubernetes allows to define [arbitrary objects](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) to be handled via the Kubernetes API. The schema of such an object is specified by a custom resource definition. The actual objects are called the custom resources.
 
-Giant Swarm Management Clusters provide a CRD named `Organization` (long form: `organizations.security.giantswarm.io`). An organization is defined simply by a custom resource using that CRD, which we'll call an "organization CR" here for brevity.
+Giant Swarm management clusters provide a CRD named `Organization` (long form: `organizations.security.giantswarm.io`). An organization is defined simply by a custom resource using that CRD, which we'll call an "organization CR" here for brevity.
 
 > An organization is defined by an organization CR.
 
@@ -100,7 +100,7 @@ Once an organization CR is created, our automation ([organization-operator](http
 
 Organization names (technically: organization CR names) must follow these rules:
 
-- Must be unique within the Management Cluster
+- Must be unique within the management cluster
 - Must contain at most 59 characters.
 - Has to conform the same convention as Kubernetes namespaces additionally (i. e. the [DNS label names convention](https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-label-names)), which means:
     - contain only lowercase alphanumeric characters or '-'
@@ -111,9 +111,9 @@ Since there will be a namespace created for each organization, prefixed with `or
 
 ## Organization namespace {#namespace}
 
-For each organization there is a namespace created in the Management Cluster. The namespace is named after the organization CR name, prefixed with `org-`.
+For each organization there is a namespace created in the management cluster. The namespace is named after the organization CR name, prefixed with `org-`.
 
-For example, for an organization `acme`, there is the defining organization CR named `acme`. In addition, organization-operator ensures the existence of the namespace `org-acme` in the Management Cluster.
+For example, for an organization `acme`, there is the defining organization CR named `acme`. In addition, organization-operator ensures the existence of the namespace `org-acme` in the management cluster.
 
 We recommend to place all resources belonging to an organization into the organization's namespace. Our user interfaces and admission controllers are moving towards supporting this as a default.
 

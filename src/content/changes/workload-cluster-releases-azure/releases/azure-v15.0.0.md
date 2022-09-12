@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-azure/releases/azure-v15.0.0/
 changes_categories:
-- Workload cluster releases for Azure
+- workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/azure/archived/v15.0.0
@@ -12,14 +12,14 @@ changes_entry:
 date: '2021-06-14T11:40:38+00:00'
 description: Release notes for Azure workload cluster release v15.0.0, published on
   14 June 2021, 11:40
-title: Workload cluster release v15.0.0 for Azure
+title: workload cluster release v15.0.0 for Azure
 ---
 
 This is the first Giant Swarm Azure stable release featuring Kubernetes 1.20.
 
 This release includes improvements to make the upgrade process even more reliable with additional focus on Spot Instances Node Pools upgrades.
 
-This release also uses Vnet peering in place of VPN Gateway to connect the Workload Clusters with the Management Cluster.
+This release also uses Vnet peering in place of VPN Gateway to connect the workload clusters with the management cluster.
 There should be no impact in terms of connectivity from the workload point of view. Prior to upgrades please check with your Solution Engineer if your Service Principals are correctly configured.
 
 ## Change details

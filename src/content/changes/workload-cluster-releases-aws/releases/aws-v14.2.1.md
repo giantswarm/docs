@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v14.2.1/
 changes_categories:
-- Workload cluster releases for AWS
+- workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v14.2.1
@@ -12,10 +12,10 @@ changes_entry:
 date: '2021-06-07T07:00:00+00:00'
 description: Release notes for AWS workload cluster release v14.2.1, published on
   07 June 2021, 07:00
-title: Workload cluster release v14.2.1 for AWS
+title: workload cluster release v14.2.1 for AWS
 ---
 
-This release fixes the issue which prevented clusters being created on some Management Clusters with the AWS v14.2.0 release.
+This release fixes the issue which prevented clusters being created on some management clusters with the AWS v14.2.0 release.
 
 > **_Warning:_** The nginx app needs to be updated to `v1.14.0+` because a new version of `external-dns` is included in this release.
 

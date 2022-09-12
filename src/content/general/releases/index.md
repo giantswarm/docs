@@ -1,6 +1,6 @@
 ---
 linkTitle: Releases
-title: Workload cluster release versions
+title: workload cluster release versions
 description: Details on the workload cluster release offered by Giant Swarm and ways to look up even more details.
 last_review_date: 2022-04-12
 weight: 30
@@ -53,7 +53,7 @@ The Kubernetes project provides the most important component of our workload clu
 
 The following table shows which of our major releases contain which Kubernetes release.
 
-| Workload cluster release version | Kubernetes version | Availability |
+| workload cluster release version | Kubernetes version | Availability |
 |:---------------------------:|:------------------:|:------------:|
 | **12.x.x**                  | 1.17.x             | Available    |
 | **13.x.x**                  | 1.18.x             | Available    |
@@ -135,7 +135,7 @@ Depending on your provider (AWS, Azure, or KVM), the apps NGINX IC, External DNS
 
 Preinstalled apps are installed by default upon cluster creation. Optional apps can be installed from App Catalogs. In releases where they are not preinstalled, n/a apps (e.g. External DNS in certain releases) are currently not available to be installed as an optional app.
 
-| Workload cluster release version | NGINX IC      | External DNS  | Cert Manager |
+| workload cluster release version | NGINX IC      | External DNS  | Cert Manager |
 |:------------------------------:|:-------------:|:-------------:|:------------:|
 | **AWS v10.x.x+**               | optional      | preinstalled  | preinstalled |
 | **AWS legacy**                 | preinstalled  | n/a           | optional     |

@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v15.1.1/
 changes_categories:
-- Workload cluster releases for AWS
+- workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v15.1.1
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-08-20T10:09:07+00:00'
 description: Release notes for AWS workload cluster release v15.1.1, published on
   20 August 2021, 10:09
-title: Workload cluster release v15.1.1 for AWS
+title: workload cluster release v15.1.1 for AWS
 ---
 
 This release provides a bug fix for `ebs-csi-driver` to enable it to resize EBS volumes.

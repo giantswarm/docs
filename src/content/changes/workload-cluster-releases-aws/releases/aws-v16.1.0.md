@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v16.1.0/
 changes_categories:
-- Workload cluster releases for AWS
+- workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v16.1.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-12-02T08:00:00+00:00'
 description: Release notes for AWS workload cluster release v16.1.0, published on
   02 December 2021, 08:00
-title: Workload cluster release v16.1.0 for AWS
+title: workload cluster release v16.1.0 for AWS
 ---
 
 This release provides stability improvements, bug fixes and security fixes for various components. It also adds AWS CNI prefix delegation support.

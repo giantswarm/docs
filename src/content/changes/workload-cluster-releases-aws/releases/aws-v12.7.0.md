@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v12.7.0/
 changes_categories:
-- Workload cluster releases for AWS
+- workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v12.7.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2020-11-19T08:00:00+00:00'
 description: Release notes for AWS workload cluster release v12.7.0, published on
   19 November 2020, 08:00
-title: Workload cluster release v12.7.0 for AWS
+title: workload cluster release v12.7.0 for AWS
 ---
 
 This release offers the possibility to configure the subnet size of Network Pools, the size and wait time of batches during tenant cluster upgrades. More details about the upgrade improvements can be found in our [Fine-tuning upgrade disruption on AWS](https://docs.giantswarm.io/guides/fine-tuning-upgrade-disruption-on-aws/) guide.

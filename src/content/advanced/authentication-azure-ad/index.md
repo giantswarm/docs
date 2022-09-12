@@ -18,7 +18,7 @@ owner:
 
 The Kubernetes API of workload clusters, by default, uses key pairs (X.509 private key and certificate) for authentication.
 
-In order to use Microsoft Azure Active Directory (AAD) for authentication instead, Giant Swarm can configure your Management Cluster(s) so that all workload clusters use the same settings and users can authenticate `kubectl` using their common identity (single sign-on, SSO) via OpenID Connect (OIDC).
+In order to use Microsoft Azure Active Directory (AAD) for authentication instead, Giant Swarm can configure your management cluster(s) so that all workload clusters use the same settings and users can authenticate `kubectl` using their common identity (single sign-on, SSO) via OpenID Connect (OIDC).
 
 ## Setting up `kubectl` for Azure auth
 

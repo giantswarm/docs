@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v12.7.2/
 changes_categories:
-- Workload cluster releases for AWS
+- workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v12.7.2
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-04-26T13:51:04+00:00'
 description: Release notes for AWS workload cluster release v12.7.2, published on
   26 April 2021, 13:51
-title: Workload cluster release v12.7.2 for AWS
+title: workload cluster release v12.7.2 for AWS
 ---
 
 This release fixes an issue that can cause an IP conflict to occur in certain situations when a node pool is created.

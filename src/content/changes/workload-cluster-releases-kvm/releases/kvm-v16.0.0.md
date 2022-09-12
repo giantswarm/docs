@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-kvm/releases/kvm-v16.0.0/
 changes_categories:
-- Workload cluster releases for KVM
+- workload cluster releases for KVM
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/kvm/archived/v16.0.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-09-10T09:12:19+00:00'
 description: Release notes for KVM workload cluster release v16.0.0, published on
   10 September 2021, 09:12
-title: Workload cluster release v16.0.0 for KVM
+title: workload cluster release v16.0.0 for KVM
 ---
 
 This release upgrades Kubernetes to version 1.21 and containerlinux to 2905.2.3.

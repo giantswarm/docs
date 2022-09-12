@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-azure/releases/azure-v16.0.1/
 changes_categories:
-- Workload cluster releases for Azure
+- workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/azure/archived/v16.0.1
@@ -12,10 +12,10 @@ changes_entry:
 date: '2021-10-05T14:31:38+00:00'
 description: Release notes for Azure workload cluster release v16.0.1, published on
   05 October 2021, 14:31
-title: Workload cluster release v16.0.1 for Azure
+title: workload cluster release v16.0.1 for Azure
 ---
 
-This Workload Cluster release upgrades Kubernetes to 1.21.5 in order to fix [CVE-2021-25741](https://github.com/kubernetes/kubernetes/issues/104980) where Symlink Exchange Can Allow Host Filesystem Access.
+This workload cluster release upgrades Kubernetes to 1.21.5 in order to fix [CVE-2021-25741](https://github.com/kubernetes/kubernetes/issues/104980) where Symlink Exchange Can Allow Host Filesystem Access.
 
 ## Change details
 

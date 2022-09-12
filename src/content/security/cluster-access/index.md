@@ -64,9 +64,9 @@ Certificate management is backed by Hashicorp Vault, using the Giant Swarm GitHu
 
 ![SSH access process diagram](ssh_access_process.svg)
 
-Customer workload clusters are accessible only via SSH access to the Giant Swarm Management Cluster. The Management Cluster contains Giant Swarm's cluster automation and operations platform, and controls our access to the underlying workload clusters for diagnostic and "Day 2" operational reasons.
+Customer workload clusters are accessible only via SSH access to the Giant Swarm management cluster. The management cluster contains Giant Swarm's cluster automation and operations platform, and controls our access to the underlying workload clusters for diagnostic and "Day 2" operational reasons.
 
-- **Management API** - Usage of the Kubernetes API on the Management Cluster is also secured with SSH.
+- **Management API** - Usage of the Kubernetes API on the management cluster is also secured with SSH.
 
 ### General VPN connection schema
 

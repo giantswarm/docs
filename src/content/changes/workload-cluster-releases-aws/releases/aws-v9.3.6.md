@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v9.3.6/
 changes_categories:
-- Workload cluster releases for AWS
+- workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v9.3.6
@@ -12,7 +12,7 @@ changes_entry:
 date: '2020-07-31T15:00:00+00:00'
 description: Release notes for AWS workload cluster release v9.3.6, published on 31
   July 2020, 15:00
-title: Workload cluster release v9.3.6 for AWS
+title: workload cluster release v9.3.6 for AWS
 ---
 
 This release updates Managed Apps to the latest releases, updates Calico to version `3.13.4`, and Flatcar Container Linux to `2512.2.1`.

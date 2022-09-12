@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-azure/releases/azure-v11.2.1/
 changes_categories:
-- Workload cluster releases for Azure
+- workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/azure/archived/v11.2.1
@@ -12,7 +12,7 @@ changes_entry:
 date: '2020-03-30T12:00:00+00:00'
 description: Release notes for Azure workload cluster release v11.2.1, published on
   30 March 2020, 12:00
-title: Workload cluster release v11.2.1 for Azure
+title: workload cluster release v11.2.1 for Azure
 ---
 
 ### This release contains Kubernetes ```1.16.8``` and other changes that increase cluster resiliency against API Throttling (error 429). Additional improvements include:

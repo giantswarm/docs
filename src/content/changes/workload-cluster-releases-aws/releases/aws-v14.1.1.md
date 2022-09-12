@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v14.1.1/
 changes_categories:
-- Workload cluster releases for AWS
+- workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v14.1.1
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-04-06T09:27:22+00:00'
 description: Release notes for AWS workload cluster release v14.1.1, published on
   06 April 2021, 09:27
-title: Workload cluster release v14.1.1 for AWS
+title: workload cluster release v14.1.1 for AWS
 ---
 
 This release provides a bug fix for the external-dns-app.

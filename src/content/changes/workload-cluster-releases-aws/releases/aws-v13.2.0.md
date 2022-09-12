@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v13.2.0/
 changes_categories:
-- Workload cluster releases for AWS
+- workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v13.2.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-05-14T06:00:00+00:00'
 description: Release notes for AWS workload cluster release v13.2.0, published on
   14 May 2021, 06:00
-title: Workload cluster release v13.2.0 for AWS
+title: workload cluster release v13.2.0 for AWS
 ---
 
 This release fixes an issue that can cause an IP conflict to occur in certain situations when a node pool is created. It also contains a newer version of Cert Manager to mitigate failed cert-manager-app installations due to Custom Resource Definition conversion issues.

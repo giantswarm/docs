@@ -91,7 +91,7 @@ Now we have to tell cluster-autoscaler to actually use the `priority` expander, 
 
 To switch the expander, we provide a user ConfigMap as described in our guide on [advanced cluster autoscaler configuration]({{< relref "/advanced/cluster-autoscaler" >}}).
 
-In contrast to the previous step, this is not done in the workload cluster, but in the Management Cluster instead. So this step requires write access to the [Management API]({{< relref "/ui-api/management-api" >}}). Please contact your Giant Swarm Account Engineer in case you need assistance.
+In contrast to the previous step, this is not done in the workload cluster, but in the management cluster instead. So this step requires write access to the [Management API]({{< relref "/ui-api/management-api" >}}). Please contact your Giant Swarm Account Engineer in case you need assistance.
 
 The user ConfigMap has to reside in the namespace named after the (workload) cluster ID, so make sure to adapt `.metadata.labels.namespace` to your cluster ID.
 

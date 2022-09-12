@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v12.7.1/
 changes_categories:
-- Workload cluster releases for AWS
+- workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v12.7.1
@@ -12,7 +12,7 @@ changes_entry:
 date: '2020-12-24T10:20:34+00:00'
 description: Release notes for AWS workload cluster release v12.7.1, published on
   24 December 2020, 10:20
-title: Workload cluster release v12.7.1 for AWS
+title: workload cluster release v12.7.1 for AWS
 ---
 
 This release fixes an issue that causes `ImagePullBackOff` errors when new nodes are becoming ready.

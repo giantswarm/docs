@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-azure/releases/azure-v14.0.2/
 changes_categories:
-- Workload cluster releases for Azure
+- workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/azure/archived/v14.0.2
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-03-31T07:53:08+00:00'
 description: Release notes for Azure workload cluster release v14.0.2, published on
   31 March 2021, 07:53
-title: Workload cluster release v14.0.2 for Azure
+title: workload cluster release v14.0.2 for Azure
 ---
 
 This release improves draining of the nodes with fixes on azure-scheduled-events app.

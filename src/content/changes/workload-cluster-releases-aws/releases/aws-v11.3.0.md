@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v11.3.0/
 changes_categories:
-- Workload cluster releases for AWS
+- workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v11.3.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2020-05-11T15:00:00+00:00'
 description: Release notes for AWS workload cluster release v11.3.0, published on
   11 May 2020, 15:00
-title: Workload cluster release v11.3.0 for AWS
+title: workload cluster release v11.3.0 for AWS
 ---
 
 This release includes Kubernetes v1.16.9 as well as reliability and user experience improvements.

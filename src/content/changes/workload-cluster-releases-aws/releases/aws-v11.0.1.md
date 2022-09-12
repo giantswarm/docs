@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v11.0.1/
 changes_categories:
-- Workload cluster releases for AWS
+- workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v11.0.1
@@ -12,7 +12,7 @@ changes_entry:
 date: '2020-02-05T12:00:00+00:00'
 description: Release notes for AWS workload cluster release v11.0.1, published on
   05 February 2020, 12:00
-title: Workload cluster release v11.0.1 for AWS
+title: workload cluster release v11.0.1 for AWS
 ---
 
 This release fixes an issue with network traffic between node pools in 10.x and

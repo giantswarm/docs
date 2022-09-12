@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v17.1.0/
 changes_categories:
-- Workload cluster releases for AWS
+- workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/v17.1.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2022-03-15T08:00:00+00:00'
 description: Release notes for AWS workload cluster release v17.1.0, published on
   15 March 2022, 08:00
-title: Workload cluster release v17.1.0 for AWS
+title: workload cluster release v17.1.0 for AWS
 ---
 
 This release introduces IAM roles for service accounts (IRSA) as an alternative to Kiam. More details are available in the [documentation](https://docs.giantswarm.io/advanced/iam-roles-for-service-accounts/).

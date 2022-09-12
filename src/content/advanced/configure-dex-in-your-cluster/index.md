@@ -16,7 +16,7 @@ owner:
 
 ## Introduction
 
-At Giant Swarm, we automatically configure Dex in Management Clusters to allow you to authenticate using your own identity providers, towards allowing you to manage your infrastructure using the Management Cluster's Kubernetes API.
+At Giant Swarm, we automatically configure Dex in management clusters to allow you to authenticate using your own identity providers, towards allowing you to manage your infrastructure using the management cluster's Kubernetes API.
 
 For workload clusters - where you run your applications - we do not enforce any specific OpenID Connect (OIDC) tool to enable single sign-on (SSO). Here, we're going to detail how to configure [Dex](https://dexidp.io/) in those clusters, to provide SSO using OIDC.
 
@@ -252,7 +252,7 @@ You can use more than one connector, but they need to have a different `id` valu
 
 After you have applied the `ConfigMap` manifest to the Management API you have to submit the App custom resource that defines the intent to install the Dex app in the given cluster.
 The easiest way to do this is [through our Web-UI](https://docs.giantswarm.io/ui-api/web/app-platform/)
-Alternatively, you can directly apply it to the Management Cluster.
+Alternatively, you can directly apply it to the management cluster.
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
@@ -294,13 +294,13 @@ To get an overview on the authentication success and error rates of your Dex ins
 Once Dex is set up in your workload cluster, you can enable access via OIDC through our `kubectl` plugin [kubectl gs](https://docs.giantswarm.io/ui-api/kubectl-gs/).
 
 
-In order to communicate with the API, `kubectl gs` needs the clusters CA certificate as well as some cluster specific information, such as the Management Cluster name and the dex issuer URL. 
-On all Giant Swarm Management Clusters we use a public service called `Athena` to expose the CA certificate and some information on the installation to the client.
+In order to communicate with the API, `kubectl gs` needs the clusters CA certificate as well as some cluster specific information, such as the management cluster name and the dex issuer URL. 
+On all Giant Swarm management clusters we use a public service called `Athena` to expose the CA certificate and some information on the installation to the client.
 For easy integration with `kubectl gs` you can install [Athena](https://github.com/giantswarm/athena) on your workload cluster via the [app platform](https://docs.giantswarm.io/app-platform/).
 
 Other than the app itself, you will need to provide a `values.yaml` configuration.
 
-The Management Cluster name is needed as minimal configuration for `Athena`.
+The management cluster name is needed as minimal configuration for `Athena`.
 
 ```yaml
 managementCluster:

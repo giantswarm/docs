@@ -20,7 +20,7 @@ owner:
 last_review_date: 2022-07-11
 ---
 
-In this document you will learn how to manage infrastructure and applications by utilizing FluxCD - a set of GitOps operators installed in Giant Swarm Management Clusters.
+In this document you will learn how to manage infrastructure and applications by utilizing FluxCD - a set of GitOps operators installed in Giant Swarm management clusters.
 
 ## What is GitOps
 
@@ -56,7 +56,7 @@ To get started with FluxCD, you will need to bootstrap FluxCD to your cluster of
 1. `source.toolkit.fluxcd.io` resources - they tell the `source-controller` where to look for the manifests
 2. `helmrelease.helm.toolkit.fluxcd.io` or `kustomization.kustomize.toolkit.fluxcd.io` resources - they are meant for `helm-controller` and `kustomize-controller` respectively and govern how the manifests found in sources will be applied
 
-Luckily, FluxCD is bootstrapped and running in Giant Swarm Management Clusters, so you can start using it immediately.
+Luckily, FluxCD is bootstrapped and running in Giant Swarm management clusters, so you can start using it immediately.
 
 If want to learn more about FluxCD and its capabilities, here are a couple of useful links:
 
@@ -66,7 +66,7 @@ If want to learn more about FluxCD and its capabilities, here are a couple of us
 
 ## Managing resources with Flux
 
-In this section, we will guide you through an example Flux setup on a Giant Swarm Management Cluster. You will create resources locally. Mentions of _example resources_ or _example repository_ refers to [giantswarm/flux-demo](https://github.com/giantswarm/flux-demo), where you can find all resources used in this section in full, unabbreviated forms and Flux will use these to sync with.
+In this section, we will guide you through an example Flux setup on a Giant Swarm management cluster. You will create resources locally. Mentions of _example resources_ or _example repository_ refers to [giantswarm/flux-demo](https://github.com/giantswarm/flux-demo), where you can find all resources used in this section in full, unabbreviated forms and Flux will use these to sync with.
 
 In order to follow the [Watching for new commits](#watching-for-new-commits) section, you should fork the repository and work on your fork instead.
 
@@ -74,7 +74,7 @@ We will be using [Flux CLI](https://fluxcd.io/docs/cmd/) and [kubectl-gs](https:
 
 ## Access control for organizations
 
-To proceed with this tutorial, you need to use a ServiceAccount with a set of permissions that allows you to create and reconcile Flux resources. All the examples are using `default` namespace and `automation` ServiceAccount in that namespace. You will find them in every Management Cluster and they are already assigned with the required privileges.
+To proceed with this tutorial, you need to use a ServiceAccount with a set of permissions that allows you to create and reconcile Flux resources. All the examples are using `default` namespace and `automation` ServiceAccount in that namespace. You will find them in every management cluster and they are already assigned with the required privileges.
 
 If you wish to proceed by creating the resources in one of the Organization namespaces (`org-*`), you will need to create a ServiceAccount there and assign the following roles to it:
 
@@ -87,9 +87,9 @@ If you wish to proceed by creating the resources in one of the Organization name
 
 To learn how to view and assign roles, please refer to [Access control for organizations in the web user interface]({{< relref "/ui-api/web/organizations/access-control/index.md" >}}).
 
-## GiantSwarm Management Cluster security policies
+## GiantSwarm management cluster security policies
 
-If you are creating any of the resources we talk about in this document on a GiantSwarm Management Cluster, you may see the following error:
+If you are creating any of the resources we talk about in this document on a GiantSwarm management cluster, you may see the following error:
 
 ```nohighlight
 resource Kustomization... was blocked due to the following policies
@@ -100,7 +100,7 @@ flux-multi-tenancy:
   sourceRefNamespace: preconditions not met
 ```
 
-Due to extra security policies enforced by Kyverno, setting `.spec.serviceAccountName` for `Kustomization`/`HelmRelease` resources in our Management Clusters is mandatory. Usually, you will want to use `serviceAccountName: "automation"`.
+Due to extra security policies enforced by Kyverno, setting `.spec.serviceAccountName` for `Kustomization`/`HelmRelease` resources in our management clusters is mandatory. Usually, you will want to use `serviceAccountName: "automation"`.
 
 ### Setting up sources
 

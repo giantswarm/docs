@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-azure/releases/azure-v18.0.0/
 changes_categories:
-- Workload cluster releases for Azure
+- workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/azure/v18.0.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2022-08-31T08:39:04+00:00'
 description: Release notes for Azure workload cluster release v18.0.0, published on
   31 August 2022, 08:39
-title: Workload cluster release v18.0.0 for Azure
+title: workload cluster release v18.0.0 for Azure
 ---
 
 This is the first Azure release featuring Kubernetes 1.23.

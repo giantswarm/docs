@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v9.2.5/
 changes_categories:
-- Workload cluster releases for AWS
+- workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v9.2.5
@@ -12,7 +12,7 @@ changes_entry:
 date: '2020-04-24T12:00:00+00:00'
 description: Release notes for AWS workload cluster release v9.2.5, published on 24
   April 2020, 12:00
-title: Workload cluster release v9.2.5 for AWS
+title: workload cluster release v9.2.5 for AWS
 ---
 
 **If you are upgrading from 9.2.4, upgrading to this release will not roll your nodes. It will only update the apps.**

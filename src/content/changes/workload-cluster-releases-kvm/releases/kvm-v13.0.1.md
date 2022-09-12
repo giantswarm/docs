@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-kvm/releases/kvm-v13.0.1/
 changes_categories:
-- Workload cluster releases for KVM
+- workload cluster releases for KVM
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/kvm/archived/v13.0.1
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-02-23T12:00:00+00:00'
 description: Release notes for KVM workload cluster release v13.0.1, published on
   23 February 2021, 12:00
-title: Workload cluster release v13.0.1 for KVM
+title: workload cluster release v13.0.1 for KVM
 ---
 
 **Nodes will be rolled when upgrading to this version.**

@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v15.2.0/
 changes_categories:
-- Workload cluster releases for AWS
+- workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v15.2.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-08-23T10:00:00+00:00'
 description: Release notes for AWS workload cluster release v15.2.0, published on
   23 August 2021, 10:00
-title: Workload cluster release v15.2.0 for AWS
+title: workload cluster release v15.2.0 for AWS
 ---
 
 This release adds support to `aws-operator` to comply with the following additional AWS S3 policies:

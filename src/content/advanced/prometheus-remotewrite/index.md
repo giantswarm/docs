@@ -9,7 +9,7 @@ menu:
 user_questions:
   - What is Prometheus RemoteWrite?
   - How Prometheus RemoteWrite works?
-  - How do I get access to Management Cluster metrics?
+  - How do I get access to management cluster metrics?
 aliases:
   - /advanced/remotewrite/
 owner:
@@ -28,7 +28,7 @@ To enable this behavior, Prometheus needs to be configured using [remote_write c
 
 ## What is the Giant Swarm Prometheus RemoteWrite feature
 
-The Prometheus `RemoteWrite` feature allows you to configure remote write targets in the Giant Swarm managed prometheus running on your Management Cluster.
+The Prometheus `RemoteWrite` feature allows you to configure remote write targets in the Giant Swarm managed prometheus running on your management cluster.
 That way, you can replicate and send metrics to your own 3rd party system and use the data as you see fit.
 
 Giant Swarm provides and uses a `RemoteWrite` Custom Resource Definition that you can use to configure `remote_write` targets.
@@ -71,4 +71,4 @@ spec:
 
 ## RemoteWrite CRD
 
-The RemoteWrite CRD documentation can be found [here](https://doc.crds.dev/github.com/giantswarm/prometheus-meta-operator/monitoring.giantswarm.io/RemoteWrite/v1alpha1@v4.5.1) or on any Management Cluster using `kubectl explain`.
+The RemoteWrite CRD documentation can be found [here](https://doc.crds.dev/github.com/giantswarm/prometheus-meta-operator/monitoring.giantswarm.io/RemoteWrite/v1alpha1@v4.5.1) or on any management cluster using `kubectl explain`.

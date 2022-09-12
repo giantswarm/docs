@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v18.0.2/
 changes_categories:
-- Workload cluster releases for AWS
+- workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/v18.0.2
@@ -12,7 +12,7 @@ changes_entry:
 date: '2022-08-31T13:42:44+00:00'
 description: Release notes for AWS workload cluster release v18.0.2, published on
   31 August 2022, 13:42
-title: Workload cluster release v18.0.2 for AWS
+title: workload cluster release v18.0.2 for AWS
 ---
 
 This release fixes incompability with Cgroups V1 that was introduced in v18.0.0. The issue came from dropping dockershim and switching to containerd.

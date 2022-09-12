@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v17.3.2/
 changes_categories:
-- Workload cluster releases for AWS
+- workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/v17.3.2
@@ -12,7 +12,7 @@ changes_entry:
 date: '2022-05-11T10:00:00+00:00'
 description: Release notes for AWS workload cluster release v17.3.2, published on
   11 May 2022, 10:00
-title: Workload cluster release v17.3.2 for AWS
+title: workload cluster release v17.3.2 for AWS
 ---
 
 This release reintroduces tagging private subnets on node pools to enable autodiscovery for internal ELBs by setting the annotation `alpha.aws.giantswarm.io/internal-elb: ""` on AWSMachineDeployment CR's.

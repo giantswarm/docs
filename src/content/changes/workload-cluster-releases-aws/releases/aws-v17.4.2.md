@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v17.4.2/
 changes_categories:
-- Workload cluster releases for AWS
+- workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v17.4.2
@@ -12,7 +12,7 @@ changes_entry:
 date: '2022-07-28T07:19:36+00:00'
 description: Release notes for AWS workload cluster release v17.4.2, published on
   28 July 2022, 07:19
-title: Workload cluster release v17.4.2 for AWS
+title: workload cluster release v17.4.2 for AWS
 ---
 
 This is a patch release bringing improvements to cert-manager, fixing an issue which can occur during upgrades to `v17.4.1`. Fresh installations of `v17.4.1` still work, existing workload clusters should be upgraded to this release.

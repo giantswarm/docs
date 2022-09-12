@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v13.1.0/
 changes_categories:
-- Workload cluster releases for AWS
+- workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v13.1.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-03-29T06:34:36+00:00'
 description: Release notes for AWS workload cluster release v13.1.0, published on
   29 March 2021, 06:34
-title: Workload cluster release v13.1.0 for AWS
+title: workload cluster release v13.1.0 for AWS
 ---
 
 This release provides security and bug fixes for various components.

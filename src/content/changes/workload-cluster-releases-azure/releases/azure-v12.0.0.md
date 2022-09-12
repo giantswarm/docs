@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-azure/releases/azure-v12.0.0/
 changes_categories:
-- Workload cluster releases for Azure
+- workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/azure/archived/v12.0.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2020-07-28T15:00:00+00:00'
 description: Release notes for Azure workload cluster release v12.0.0, published on
   28 July 2020, 15:00
-title: Workload cluster release v12.0.0 for Azure
+title: workload cluster release v12.0.0 for Azure
 ---
 
 This is the first release to support **Kubernetes 1.17** on Azure.

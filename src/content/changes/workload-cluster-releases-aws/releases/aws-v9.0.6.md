@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v9.0.6/
 changes_categories:
-- Workload cluster releases for AWS
+- workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v9.0.6
@@ -12,7 +12,7 @@ changes_entry:
 date: '2020-06-02T11:00:00+00:00'
 description: Release notes for AWS workload cluster release v9.0.6, published on 02
   June 2020, 11:00
-title: Workload cluster release v9.0.6 for AWS
+title: workload cluster release v9.0.6 for AWS
 ---
 
 This release [replaces CoreOS with Flatcar Container Linux](https://www.giantswarm.io/blog/time-to-catch-a-new-train-flatcar-linux).

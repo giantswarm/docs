@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-kvm/releases/kvm-v16.2.1/
 changes_categories:
-- Workload cluster releases for KVM
+- workload cluster releases for KVM
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/kvm/v16.2.1
@@ -12,7 +12,7 @@ changes_entry:
 date: '2022-07-01T06:54:28+00:00'
 description: Release notes for KVM workload cluster release v16.2.1, published on
   01 July 2022, 06:54
-title: Workload cluster release v16.2.1 for KVM
+title: workload cluster release v16.2.1 for KVM
 ---
 
 This release enables the workload clusters to define multiple registry mirrors.

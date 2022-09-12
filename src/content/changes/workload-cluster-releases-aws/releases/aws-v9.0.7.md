@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v9.0.7/
 changes_categories:
-- Workload cluster releases for AWS
+- workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v9.0.7
@@ -12,7 +12,7 @@ changes_entry:
 date: '2020-07-15T12:00:00+00:00'
 description: Release notes for AWS workload cluster release v9.0.7, published on 15
   July 2020, 12:00
-title: Workload cluster release v9.0.7 for AWS
+title: workload cluster release v9.0.7 for AWS
 ---
 
 This release updates Managed Apps to the latest releases.

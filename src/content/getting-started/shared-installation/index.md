@@ -22,15 +22,15 @@ Giant Swarm customers usually work with their own installation(s). However, we a
 
 **Note:** Shared installations are available both on AWS and Azure. While we use the term _account_ here for the sake of simplicity, on Azure the according concept is called a _subscription_.
 
-A Giant Swarm installation normally is used by only one customer. Both Management Cluster and workload clusters run in cloud provider account owned by the customer.
+A Giant Swarm installation normally is used by only one customer. Both management cluster and workload clusters run in cloud provider account owned by the customer.
 
-In a shared installation, the Management Cluster runs in an account owned by Giant Swarm. The workload clusters however are created using the customer's account.
+In a shared installation, the management cluster runs in an account owned by Giant Swarm. The workload clusters however are created using the customer's account.
 
 Find instructions regarding the setup below.
 
 ### Organizations
 
-In a normal Giant Swarm installation, [organizations]({{< relref "/general/organizations" >}}) are used to isolate different concerns, teams, business units from each other. Admin users can create as many organizations as they need and use the organization's namespace in the Management Clusters and role-based access control (RBAC) to control access to these resources.
+In a normal Giant Swarm installation, [organizations]({{< relref "/general/organizations" >}}) are used to isolate different concerns, teams, business units from each other. Admin users can create as many organizations as they need and use the organization's namespace in the management clusters and role-based access control (RBAC) to control access to these resources.
 
 In a shared installation, each customer is mapped to exactly one organization. You cannot create additional organizations.
 
@@ -58,7 +58,7 @@ It's up to you to decide for an organization name that represents you as a compa
 
 To create and manage workload clusters on your behalf, we ask you to prepare some configuration, roles, and quotas in your cloud provider account.
 
-We provide detailed guides both for [AWS]({{< relref "/getting-started/cloud-provider-accounts/aws" >}}) and [Azure]({{< relref "/getting-started/cloud-provider-accounts/azure" >}}). Note that we **only need an account for the workload clusters**, but not for a Management Cluster in the case of a shared installation.
+We provide detailed guides both for [AWS]({{< relref "/getting-started/cloud-provider-accounts/aws" >}}) and [Azure]({{< relref "/getting-started/cloud-provider-accounts/azure" >}}). Note that we **only need an account for the workload clusters**, but not for a management cluster in the case of a shared installation.
 
 When done, hand the account information to your Account Engineer at Giant Swarm.
 

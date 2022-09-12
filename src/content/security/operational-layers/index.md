@@ -12,16 +12,16 @@ user_questions:
   - Why does Giant Swarm use several operational layers?
   - What is the Giant Swarm infrastructure layer?
   - Who has access to the infrastructure layer?
-  - What is the Giant Swarm Management Cluster?
-  - Who has access to the Giant Swarm Management Cluster?
+  - What is the Giant Swarm management cluster?
+  - Who has access to the Giant Swarm management cluster?
   - What is the Giant Swarm REST API?
   - Who has access to the Giant Swarm REST API?
   - What is the Giant Swarm user space?
   - Who has access to the Giant Swarm user space?
   - How is the Giant Swarm infrastructure layer accessed?
   - What are the security safeguards around access to the Giant Swarm infrastructure layer?
-  - What are the security safeguards around access to the Giant Swarm Management Cluster?
-  - How is access to the Management Cluster authorized?
+  - What are the security safeguards around access to the Giant Swarm management cluster?
+  - How is access to the management cluster authorized?
   - How do users access workload clusters?
 aliases:
   - /basics/giant-swarm-operational-layers/
@@ -36,7 +36,7 @@ A Giant Swarm installation has several operational layers. At Giant Swarm we use
 We will go through the operational layers one by one from the bottom (infrastructure) to the top (user space) and explain the intended operational model by defining (typical) users and permission levels. The layers are:
 
 1. [Infrastructure](#infrastructure)
-2. [Giant Swarm Management Cluster](#management-cluster)
+2. [Giant Swarm management cluster](#management-cluster)
 3. [Giant Swarm REST API](#giant-swarm-api)
 4. [User Space](#userspace)
 
@@ -48,9 +48,9 @@ This layer does not include the actual hardware and maintenance of the data cent
 
 On this layer, Giant Swarm SREs have root level SSH access to everything that pertains to a Giant Swarm installation. This is facilitated by a Single Sign On (SSO) mechanism including MFA (multi-factor authentication). On the cloud they additionally have access to the cloud account/subscription through a role to set up and manage the cloud resources.
 
-### Giant Swarm Management Cluster {#management-cluster}
+### Giant Swarm management cluster {#management-cluster}
 
-The Giant Swarm Management Cluster consists mainly of services running inside the Management Cluster.
+The Giant Swarm management cluster consists mainly of services running inside the management cluster.
 
 Network access to the Management API is allowed only through Giant Swarm VPN and customer VPN.
 
@@ -60,7 +60,7 @@ A customer has *tenant admin* and *view* access via OpenID Connect (OIDC), confi
 
 #### Management API access for Customers
 
-The Kubernetes API on every Management Cluster has [dex](https://github.com/dexidp/dex) installed as an OIDC issuer. Dex is configured with an identity provider chosen by the customer. A list of supported providers can be found in the [dex github repository](https://github.com/dexidp/dex/tree/master/connector).
+The Kubernetes API on every management cluster has [dex](https://github.com/dexidp/dex) installed as an OIDC issuer. Dex is configured with an identity provider chosen by the customer. A list of supported providers can be found in the [dex github repository](https://github.com/dexidp/dex/tree/master/connector).
 [dex-k8s-authenticator](https://github.com/mintel/dex-k8s-authenticator) is also installed, it is a web app that helps in JWT token retrieval and kubectl configuration
 
 ##### Authorization
@@ -68,10 +68,10 @@ The Kubernetes API on every Management Cluster has [dex](https://github.com/dexi
 With a valid *jwt* token, received from your chosen identity provider, customers can have two levels of access:
 
 - *view*
-    - *get*/*list*/*watch* access to all resources in the Management Cluster, except for `configmaps` and `secrets`.
+    - *get*/*list*/*watch* access to all resources in the management cluster, except for `configmaps` and `secrets`.
     - *get*/*list*/*watch* access to all resources (including `configmaps` and `secrets`) in workload cluster namespaces.
 - *admin*
-    - full access, to the `cluster`, `node pool`, `appcatalogs` and `apps` resources of Management Cluster Kubernetes.
+    - full access, to the `cluster`, `node pool`, `appcatalogs` and `apps` resources of management cluster Kubernetes.
     - includes *view* level access.
   
 ### Giant Swarm REST API {#giant-swarm-api}
@@ -94,7 +94,7 @@ Such users have access to all clusters in the organizations they belong to. They
 
 ### User space {#userspace}
 
-The user space layer is defined as the layer pertaining to a single workload cluster Kubernetes API. Workload clusters are the Kubernetes clusters that run your workloads.
+The user space layer is defined as the layer pertaining to a single workload cluster Kubernetes API. workload clusters are the Kubernetes clusters that run your workloads.
 
 Users on this level are either created by a Giant Swarm REST API user (in form of key pairs) or managed in an external identity provider (IdP), like [Azure Active Directory]({{< relref "/advanced/authentication-azure-ad" >}}) or any other OIDC-compliant IdP.
 

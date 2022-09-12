@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v16.3.0/
 changes_categories:
-- Workload cluster releases for AWS
+- workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/v16.3.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2022-01-05T07:55:50+00:00'
 description: Release notes for AWS workload cluster release v16.3.0, published on
   05 January 2022, 07:55
-title: Workload cluster release v16.3.0 for AWS
+title: workload cluster release v16.3.0 for AWS
 ---
 
 This version provides the latest releases of aws-cni, coredns, kiam and kube-state-metrics as well as the latest version

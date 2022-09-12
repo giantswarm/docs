@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-azure/releases/azure-v13.1.1/
 changes_categories:
-- Workload cluster releases for Azure
+- workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/azure/archived/v13.1.1
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-01-20T10:29:29+00:00'
 description: Release notes for Azure workload cluster release v13.1.1, published on
   20 January 2021, 10:29
-title: Workload cluster release v13.1.1 for Azure
+title: workload cluster release v13.1.1 for Azure
 ---
 
 This is a bug fix release aimed at solving a bug that was affecting CIDR selection during workload clusters creation.
@@ -24,4 +24,4 @@ There is no need to upgrade existing workload clusters to this release.
 ### azure-operator [5.2.1](https://github.com/giantswarm/azure-operator/releases/tag/v5.2.1)
 
 #### Fixed
-- Ensure the Management Cluster's network space is never used for workload clusters.
+- Ensure the management cluster's network space is never used for workload clusters.

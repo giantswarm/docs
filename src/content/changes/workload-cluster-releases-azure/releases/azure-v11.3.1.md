@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-azure/releases/azure-v11.3.1/
 changes_categories:
-- Workload cluster releases for Azure
+- workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/azure/archived/v11.3.1
@@ -12,7 +12,7 @@ changes_entry:
 date: '2020-05-21T07:00:00+00:00'
 description: Release notes for Azure workload cluster release v11.3.1, published on
   21 May 2020, 07:00
-title: Workload cluster release v11.3.1 for Azure
+title: workload cluster release v11.3.1 for Azure
 ---
 
 This release brings improvements to the upgrade process from clusters using CoreOS image to Flatcar image.

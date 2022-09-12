@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-azure/releases/azure-v11.2.0/
 changes_categories:
-- Workload cluster releases for Azure
+- workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/azure/archived/v11.2.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2020-02-26T12:00:00+00:00'
 description: Release notes for Azure workload cluster release v11.2.0, published on
   26 February 2020, 12:00
-title: Workload cluster release v11.2.0 for Azure
+title: workload cluster release v11.2.0 for Azure
 ---
 
 **If you are upgrading from 11.1.0, upgrading to this release merely updates the app. It will *not* roll your nodes.**

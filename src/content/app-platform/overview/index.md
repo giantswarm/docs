@@ -29,7 +29,7 @@ user_questions:
 
 The _Giant Swarm App Platform_ refers to a set of features and concepts that allow
 you to browse, install and manage the configurations of apps (such as Prometheus)
-from a single place; the Management Cluster.
+from a single place; the management cluster.
 
 We fully support [Helm](https://helm.sh/) as a general tool to deploy your applications as well as for our general App Catalog. Apps are packaged as Helm charts and can be configured with _values_. We provide a recommended
 [app configuration]({{< relref "/app-platform/app-configuration" >}}) which you can override to meet your needs.
@@ -45,7 +45,7 @@ to provide for any needs you have at the enterprise level.
 ### What makes up the Giant Swarm App Platform
 
 Technically the App Platform is implemented as a set of operators
-running on your Management Cluster and workload clusters. These operators watch various
+running on your management cluster and workload clusters. These operators watch various
 Custom Resources, some created by us, and others created by you. Together, they make up
 the desired state of the App Platform.
 
@@ -85,7 +85,7 @@ together to enable the features of the Giant Swarm App Platform:
 ### What kind of App Catalogs are there
 
 By default you will have the Giant Swarm Catalog and the Giant Swarm Playground installed
-on your Management Clusters.
+on your management clusters.
 
 #### The Giant Swarm Catalog
 
@@ -107,7 +107,7 @@ We encourage you to try out this playground catalog and the different apps offer
 
 ### Installing your own App Catalog
 
-It’s possible to create your own App Catalog. This is useful if you want to create a set of apps available to your company. Currently, this functionality is only available through direct access to the Giant Swarm Management API. You can request access from your Account Engineer. Prerequisite for this is a standard Helm chart repository. It should be served through HTTP and accessible to the Management Cluster and your workload clusters.
+It’s possible to create your own App Catalog. This is useful if you want to create a set of apps available to your company. Currently, this functionality is only available through direct access to the Giant Swarm Management API. You can request access from your Account Engineer. Prerequisite for this is a standard Helm chart repository. It should be served through HTTP and accessible to the management cluster and your workload clusters.
 
 ### How can I interact with the Giant Swarm App Platform
 
@@ -117,7 +117,7 @@ You can interact with the Giant Swarm App Platform through creating App custom r
 - [Web Interface Reference: The Giant Swarm App Platform]({{< relref "/ui-api/web/app-platform" >}})
 - [Apps and App Configs in the API reference](/api/#tag/apps)
 
-Both our web interface and REST API are used to create (or update) a set of App Custom Resources on your Kubernetes Management Cluster.
+Both our web interface and REST API are used to create (or update) a set of App Custom Resources on your Kubernetes management cluster.
 
 As we are giving you direct access to the Management API you can also interact with the above mentioned resources using `kubectl`, and automate them just as you have been automating other parts of your stack.
 And as Kubernetes resources and especially some CRDs require lots of boilerplate and conventions, we built a [kubectl plugin]({{< relref "/ui-api/kubectl-gs" >}}) to help you with that.

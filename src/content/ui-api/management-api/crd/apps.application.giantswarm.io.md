@@ -743,7 +743,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Namespace is the namespace of the user values config map on the Management Cluster, e.g. 123ab.</p>
+<p>Namespace is the namespace of the user values config map on the management cluster, e.g. 123ab.</p>
 
 </div>
 

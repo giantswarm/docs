@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-kvm/releases/kvm-v13.1.0/
 changes_categories:
-- Workload cluster releases for KVM
+- workload cluster releases for KVM
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/kvm/archived/v13.1.0
@@ -12,7 +12,7 @@ changes_entry:
 date: '2021-03-10T14:26:09+00:00'
 description: Release notes for KVM workload cluster release v13.1.0, published on
   10 March 2021, 14:26
-title: Workload cluster release v13.1.0 for KVM
+title: workload cluster release v13.1.0 for KVM
 ---
 
 This release upgrades QEMU to version 5.2.0 which results in scheduling improvements and better CPU limits enforcement.
