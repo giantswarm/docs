@@ -6,7 +6,7 @@ weight: 30
 menu:
   main:
     parent: general-architecture
-last_review_date: 2022-08-12
+last_review_date: 2022-09-12
 user_questions:
   - Do you run a Developer Platform?
 aliases:
