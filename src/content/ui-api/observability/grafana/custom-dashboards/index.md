@@ -50,7 +50,7 @@ __Beware__ that the dashboard name must be unique so do not override one of your
 
 ## How is this feature implemented?
 
-We install grafana through [our fork](https://github.com/giantswarm/grafana-app) of the [upstream Grafana helm chart](https://github.com/grafana/helm-charts/tree/main/charts/grafana)
+We install Grafana through [our fork](https://github.com/giantswarm/grafana-app) of the [upstream Grafana helm chart](https://github.com/grafana/helm-charts/tree/main/charts/grafana)
 
 The chart supports the use of [sidecar containers](https://github.com/grafana/helm-charts/blob/dcc1c7d1b830259c4d208fcddb6fd8ec7e56682f/charts/grafana/values.yaml#L740) to load dashboards, datasources, plugins and notifiers dynamically.
 
