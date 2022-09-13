@@ -25,7 +25,7 @@ Sometimes, the dashboards we provide are not enough for your use case so we offe
 
 ## Creating your own dashboard
 
-To create your own dashboard, you can create a configmap in the management cluster in any namespace you want (preferably the one you use for automation) and create a configmap with containing the dashboard
+To create your own dashboard, you can create a configmap in the management cluster in any namespace you want (preferably the one you use for automation) and create a configmap containing the dashboard. For example:
 
 ```yaml
 apiVersion: v1
