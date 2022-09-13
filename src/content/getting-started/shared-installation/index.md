@@ -42,7 +42,7 @@ In a shared installation, all customers use GitHub as an identity provider and c
 
 ### Observability
 
-A shared installation is monitored and managed by Giant Swarm staff, just like any other installation. However, we currently do not provide access to our [Observability]({{< relref "/ui-api/observability" >}}) for users of a shared installation.
+A shared installation is monitored and managed by Giant Swarm staff, just like any other installation. However, we currently do not provide access to our standard [observability features]({{< relref "/ui-api/observability" >}}) for users of a shared installation.
 
 ## Getting started
 
