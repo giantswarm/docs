@@ -1,6 +1,6 @@
 ---
 linkTitle: Access to Grafana
-title: Accessing grafana dashboards
+title: Accessing Grafana dashboards
 description: Guide explaining how to get access to the data we collect on your management and workload clusters.
 menu:
   main:
