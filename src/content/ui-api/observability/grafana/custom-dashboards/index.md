@@ -21,7 +21,7 @@ __Beware__ that the access to this feature is experimental and the implementatio
 
 As explained in our guide explaining [how to access Grafana]({{< relref "/ui-api/observability/grafana/access" >}}), we provide a subset of dashboards accessible by our customers.
 
-Sometimes, the dashboards we provide are not enough for your use case so we offer you the capability of creating your own (e.g. you are deploying your own apps on the management cluster, you want custom dashboard for your clusters).
+Sometimes, the dashboards we provide are not enough for your use case so we offer you the capability of creating your own (e.g. you are deploying your own apps on the management cluster, or you want custom dashboards for your clusters).
 
 ## Creating your own dashboard
 
