@@ -17,7 +17,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 ---
 
-__Beware__ that the access to this feature is experimental and the implementation specifics can change at a later time (e.g. grafana operator)
+__Beware__ that the access to this feature is experimental and the implementation specifics can change at a later time (e.g. in favor of Grafana Operator)
 
 As explained in our guide explaining [how to access Grafana]({{< relref "/ui-api/observability/grafana/access" >}}), we provide a subset of dashboards accessible by our customers.
 
