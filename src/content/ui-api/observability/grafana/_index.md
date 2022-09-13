@@ -1,7 +1,7 @@
 ---
 linkTitle: Observability
 title: Observability
-description: Guide explaning how to interact with our installation level grafana (accessing the metrics, creating custom dashboards).
+description: Guide explaining how to interact with our installation-level Grafana (accessing the metrics, creating custom dashboards).
 menu:
   main:
     identifier: uiapi-observability-grafana
