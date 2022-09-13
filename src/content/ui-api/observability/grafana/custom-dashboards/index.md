@@ -1,7 +1,7 @@
 ---
 linkTitle: Custom Grafana dashboards
 title: Creating custom Grafana dashboards
-description: Guide explaining how to manage custom grafana dashboards in our management cluster grafana.
+description: Guide explaining how to manage custom Grafana dashboards in our management cluster Grafana.
 menu:
   main:
     identifier: uiapi-observability-grafana-custom-dashboards
