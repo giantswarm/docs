@@ -1,5 +1,5 @@
 ---
-linkTitle: Rolling nodes on AWS
+linkTitle: Rolling nodes on AWS WCs
 title: Rolling nodes in a workload cluster on AWS
 description: This article describes how to roll nodes in a workload cluster on AWS without doing a cluster upgrade.
 weight: 60
