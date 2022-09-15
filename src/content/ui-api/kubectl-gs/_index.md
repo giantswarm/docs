@@ -11,7 +11,7 @@ menu:
   main:
     identifier: uiapi-kubectlgs
     parent: ui-api
-last_review_date: 2022-09-08
+last_review_date: 2022-09-14
 user_questions:
   - Which commands does kubectl-gs offer?
 aliases:
@@ -49,6 +49,37 @@ Deprecated commands:
 
 - [`get appcatalogs`][100] -- replaced by [`get catalogs`][3]
 - [`template appcatalog`][101] -- replaced by [`template catalog`][7]
+
+## Flags {#flags}
+
+| Name               | Description             |
+|--------------------|-------------------------|
+| `--v`, `--version` | Version for kubectl gs. |
+
+## Global flags {#global-flags}
+
+| Name                         | Description                                                                                                                                                                                                     |
+|------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `--as`                       | Username to impersonate for the operation. User could be a regular user or a service account in a namespace.                                                                                                    |
+| `--as-group`                 | Group to impersonate for the operation, this flag can be repeated to specify multiple groups.                                                                                                                   |
+| `--as-uid`                   | UID to impersonate for the operation.                                                                                                                                                                           |
+| `--cache-dir`                | Default cache directory.                                                                                                                                                                                        |
+| `--certificate-authority`    | Path to a cert file for the certificate authority.                                                                                                                                                              |
+| `--client-certificate`       | Path to a client certificate file for TLS.                                                                                                                                                                      |
+| `--client-key`               | Path to a client key file for TLS.                                                                                                                                                                              |
+| `--cluster`                  | The name of the kubeconfig cluster to use.                                                                                                                                                                      |
+| `--context`                  | The name of the kubeconfig context to use.                                                                                                                                                                      |
+| `--debug`                    | Toggle debug mode, for seeing full error output.                                                                                                                                                                |
+| `--disable-version-check`    | Disable self-update version check.                                                                                                                                                                              |
+| `-h`, `--help`               | Help for kubectl gs.                                                                                                                                                                                            |
+| `--insecure-skip-tls-verify` | If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure.                                                                                             |
+| `--kubeconfig`               | Path to the kubeconfig file to use for CLI requests.                                                                                                                                                            |
+| `-n`, `--namespace`          | If present, the namespace scope for this CLI request.                                                                                                                                                           |
+| `--request-timeout`          | The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don't timeout requests. (default "0") |
+| `-s`, `--server`             | The address and port of the Kubernetes API server                                                                                                                                                               |
+| `--tls-server-name`          | Server name to use for server certificate validation. If it is not provided, the hostname used to contact the server is used                                                                                    |
+| `--token`                    | Bearer token for authentication to the API server                                                                                                                                                               |
+| `--user`                     | The name of the kubeconfig user to use                                                                                                                                                                          |
 
 ## Installing and updating {#install}
 
