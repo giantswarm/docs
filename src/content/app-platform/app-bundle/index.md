@@ -10,7 +10,7 @@ last_review_date: 2022-09-14
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
- - What is the App Bundle?
+ - What is an app bundle?
  - How does the App Bundle installation work?
  - How to properly configure the App Bundle?
  - Are there any caveats in using app bundles?
