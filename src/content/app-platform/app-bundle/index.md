@@ -12,7 +12,7 @@ owner:
 user_questions:
  - What is an app bundle?
  - How does installation of an app bundle work?
- - How to properly configure the App Bundle?
+ - How to properly configure an app bundle?
  - Are there any caveats in using app bundles?
 ---
 
