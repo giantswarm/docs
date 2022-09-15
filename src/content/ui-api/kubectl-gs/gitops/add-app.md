@@ -8,7 +8,7 @@ menu:
     parent: kubectlgs-gitops
 aliases:
   - /reference/kubectl-gs/gitops/add-app/
-last_review_date: 2022-08-31
+last_review_date: 2022-09-14
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -45,20 +45,28 @@ working base to reference with the `--base` flag. In any case, user may provide 
 
 ## Flags
 
-| Name              | Description                                                                | Required |
-| ----------------- | -------------------------------------------------------------------------- | -------- |
+| Name                 | Description                                                             | Required |
+|----------------------| ----------------------------------------------------------------------- | -------- |
 | `app`                | App name in the catalog.                                                | false    |
 | `base`               | Path to the base directory. It must be relative to the repository root. | false    |
 | `catalog`            | Catalog to install the app from.                                        | false    |
 | `management-cluster` | Codename of the Management Cluster the Workload Cluster belongs to.     | true     |
 | `name`               | Name of the app to use for creating the repository directory structure. | false    |
-| `namespace`          | Namespace to install app into.                                          | false    |
+| `target-namespace`   | Namespace to install app into.                                          | false    |
 | `organization`       | Name of the Organization the Workload Cluster belongs to.               | true     |
 | `skip-mapi`          | Skip mapi directory when adding the app.                                | false    |
 | `user-configmap`     | Values YAML to customize the app with. Will get turn into a ConfigMap.  | false    |
 | `user-secret`        | Values YAML to customize the app with. Will get turn into a Secret.     | false    |
 | `version`            | App version to install.                                                 | false    |
 | `workload-cluster`   | Name of the Workload Cluster to configure the app for.                  | true     |
+
+### Deprecated flags
+
+To maintain backward compatibility the command also supports an older flag variation:
+
+- `--namespace` - replaced by `--target-namespace`
+
+This older flag variation is marked as deprecated and will be removed in the next major version of `kubectl gs`.
 
 ## Usage
 
@@ -78,7 +86,7 @@ kubectl gs gitops add app \
 --app hello-world \
 --catalog giantswarm \
 --version 0.3.0 \
---namespace default \
+--target-namespace default \
 --name hello-world \
 --dry-run
 
@@ -138,7 +146,7 @@ kubectl gs gitops add app \
 --app hello-world \
 --catalog giantswarm \
 --version 0.3.0 \
---namespace default \
+--target-namespace default \
 --name hello-world \
 --user-configmap /tmp/values.yaml \
 --dry-run

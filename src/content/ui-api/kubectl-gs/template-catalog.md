@@ -8,7 +8,7 @@ menu:
     parent: uiapi-kubectlgs
 aliases:
   - /reference/kubectl-gs/template-catalog/
-last_review_date: 2021-07-20
+last_review_date: 2022-09-14
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -32,19 +32,25 @@ The command to execute is `kubectl gs template catalog`.
 It supports the following required flags:
 
 - `--name` - Catalog name.
-- `--namespace` - Namespace where the catalog will be created.
+- `--target-namespace` - Namespace where the catalog will be created.
 - `--description` - Description of the purpose of the catalog.
 - `--url` - URL where the helm repository lives. Can be defined multiple times if you want to utilize repository mirroring.
 - `--type` - Label containing a type of the helm repository. Defaults to `helm`. Can be defined multiple times.
 - `--logo` - URL of the catalog logo image.
 - `--visibility` - Defaults to `public` in which case the catalog appears in the web UI. Any other value will hide the catalog.
 
+It also supports an older flag variation to maintain backward compatibility:
+
+- `--namespace` - replaced by `--target-namespace`.
+
+This older flag variation is marked as deprecated and will be removed in the next major version of `kubectl gs`.
+
 Example command:
 
 ```nohighlight
 kubectl gs template catalog \
   --name example-catalog \
-  --namespace example-org \
+  --target-namespace example-org \
   --description "An example Catalog" \
   --url https://example.github.io/my-app-catalog/ \
   --logo https://example.com/logos/example-logo.png
@@ -55,7 +61,7 @@ Example command with multiple repositories defined:
 ```nohighlight
 kubectl gs template catalog \
   --name example-catalog \
-  --namespace example-org \
+  --target-namespace example-org \
   --description "An example Catalog" \
   --type helm \
   --url https://example.github.io/my-app-catalog/ \
