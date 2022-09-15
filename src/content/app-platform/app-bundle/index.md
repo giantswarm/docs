@@ -1,7 +1,7 @@
 ---
 linkTitle: App Bundle
 title: App Bundle reference
-description: Documentation on the App Bundle concept.
+description: Overview of the the App Bundle concept, how it works, and how to configure it.
 menu:
   main:
     parent: app-platform
