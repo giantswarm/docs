@@ -234,7 +234,7 @@ metadata:
   namespace: wc1
 ```
 
-Please refer to the [App Configuration]({{< relref "/app-platform/app-configuration" >}}) to understand how the
+Please refer to [App Configuration]({{< relref "/app-platform/app-configuration" >}}) to understand how the
 user configuration works, and to the [kubectl gs template app]({{< relref "/ui-api/kubectl-gs/template-app.md" >}}) to get of how you can automate this process.
 
 At this point, the bundle's App CR carries all the information to be successfully installed.
