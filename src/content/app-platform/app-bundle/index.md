@@ -6,8 +6,6 @@ menu:
   main:
     parent: app-platform
 weight: 30
-aliases:
- - /reference/app-bundle/
 last_review_date: 2022-09-14
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
