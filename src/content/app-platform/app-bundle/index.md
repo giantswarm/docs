@@ -19,10 +19,10 @@ user_questions:
 ## App Bundle Definition {#app-bundle-definition}
 
 As stated in the [App Platform overview]({{< relref "/app-platform/overview/index.md" >}}) all managed apps are
-packaged, maintained and offered as Helm Charts and it is no different for the App Bundles. What makes them
+packaged, maintained and offered as Helm Charts and it is no different for the app bundles. What makes them
 special in comparison to solitary apps is that the bundle Helm Chart instead of carrying a regular resources
 composing the actual application, it carries the [App CRs]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) that, once delivered and consumed by the App Platform, install the
-expected applications and their resources. In other words, the App Bundle can be thought of a middleman, not
+expected applications and their resources. In other words, the app bundle can be thought of a middleman, not
 installing anything in the Workload Cluster on its own, but requesting installation of certain pre-defined
 applications.
 
@@ -50,7 +50,7 @@ Bundle installation](#app-bundle-installation).
 The solitary app installation process has been already well depicted in the [App Platform Overview]({{< relref "/app-platform/overview#what-makes-up-the-app-platform" >}}). The bundle installation process is very similar,
 except it involves one extra layer, and hence extra controllers. This layer be the Management Cluster's App and   Chart Operators. It shouldn't come as a surprise that Management Clusters, same as the Workload Clusters, run
 their own App and Chart Operators that let the Giantswarm staff to install the applications. Now these controllers
-can also be laveraged for installing the App Bundles.
+can also be laveraged for installing the app bundles.
 
 The figure below depicts the process briefly. Note however, some parts present in the [App Platform Overview]({{< relref "/app-platform/overview" >}}) figure, like pulling the tarball archive, have been omitted for
 brevity.
@@ -66,8 +66,8 @@ in the Workload Cluster namespace. Once delivered, the nested App CRs are picked
 
 <div class="feedback well">
 
-<h5><i class="fa fa-help-outline"></i> Is it possible to install App Bundles without involving the Management
-Cluster layer?</h5> No, at least not in the current implementation form. The reason is, App Bundles install App
+<h5><i class="fa fa-help-outline"></i> Is it possible to install app bundles without involving the Management
+Cluster layer?</h5> No, at least not in the current implementation form. The reason is, app bundles install App
 Custom Resource(s) that are understood only by the Management Clusters. Attempt to install them directly to the
 Workload Cluster would result in an error because correponding App CRD is not available there, resulting in the
 Kubernetes not understanding the submitted objects.
@@ -83,7 +83,7 @@ certain way which is slightly different in comparison to the solitary apps. Find
 #### Naming the bundle's App CR
 
 The first, not so obvious, consequence of installing a bundle in a Management Cluster before its nested apps are
-installed in the Workload Cluster, is the requirement for name uniqueness. When certain App Bundle is to be
+installed in the Workload Cluster, is the requirement for name uniqueness. When certain app bundle is to be
 installed for more than one Workload Cluster, each App CR instance of this bundle must be given a unique name
 within the Management Cluster.
 
@@ -104,7 +104,7 @@ Bundle for the `WC1` cluster. Everything works perfectly so far, see the figure 
 ![User installs a bundle once](app-bundle-naming-conflict-step-1.png)
 
 The flow of actions can be thought of as an unbroken link. The continuity of this link is guarantee of delivering
-end resources. Now let's assume user wants to install the same App Bundle, but for the `WC2` cluster this time.
+end resources. Now let's assume user wants to install the same app bundle, but for the `WC2` cluster this time.
 He creates App CR in the `WC2` namespace and names it `bundle` as well. This is a problem, because globally, the
 `bundle` app is already installed in the Management Cluster, hence corresponding Chart CR of the name `bundle`
 already exists. Creating another app of the same name results in unique App Operator to re-assign this Chart CR to
@@ -189,7 +189,7 @@ spec:
   ...
 ```
 
-Secondly, each App Bundle Helm Chart exposes the `clusterName` and `organization` configuration options in its
+Secondly, each app bundle Helm Chart exposes the `clusterName` and `organization` configuration options in its
 `values.yaml` file, see below.
 
 ```yaml
