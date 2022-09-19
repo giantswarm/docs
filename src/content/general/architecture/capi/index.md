@@ -1,5 +1,5 @@
 ---
-linkTitle: Cluster-API-Architecture
+linkTitle: Cluster API architecture
 title: The Giant Swarm Platform Architecture
 description: Architecture overview explaining how our Platform is built and what services do we offer.
 weight: 30
