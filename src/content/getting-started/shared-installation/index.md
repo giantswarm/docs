@@ -11,7 +11,7 @@ user_questions:
   - What do I have to do to use a shared installation?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2021-07-15
+last_review_date: 2022-09-12
 ---
 
 Giant Swarm customers usually work with their own installation(s). However, we also provide shared installations for trials and proof of concept (PoC) projects. This article explains the differences and what to do as a customer to get started on a shared installation.
@@ -40,9 +40,9 @@ For normal Giant Swarm installations, the customer can decide which identity pro
 
 In a shared installation, all customers use GitHub as an identity provider and configure a team in a Github organization to include all the users who need access to the Giant Swarm Management API and user interfaces. Find instructions regarding the setup of your organization and team below.
 
-### Monitoring
+### Observability
 
-A shared installation is monitored and managed by Giant Swarm staff, just like any other installation. However, we currently do not provide access to our [Monitoring]({{< relref "/ui-api/monitoring" >}}) for users of a shared installation.
+A shared installation is monitored and managed by Giant Swarm staff, just like any other installation. However, we currently do not provide access to our standard [observability features]({{< relref "/ui-api/observability" >}}) for users of a shared installation.
 
 ## Getting started
 

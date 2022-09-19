@@ -5,16 +5,17 @@ description: A guide explaining how to set up your Prometheus remote write integ
 weight: 50
 menu:
   main:
-    parent: advanced
+    identifier: uiapi-observability-prometheusremotewrite
+    parent: uiapi-observability
 user_questions:
   - What is Prometheus RemoteWrite?
   - How Prometheus RemoteWrite works?
   - How do I get access to management cluster metrics?
 aliases:
-  - /advanced/remotewrite/
+  - /observability/remotewrite/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
-last_review_date: 2022-07-19
+last_review_date: 2022-09-12
 ---
 
 In this document you will learn how to set up your Prometheus remote write integration.

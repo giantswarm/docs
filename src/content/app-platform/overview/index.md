@@ -42,7 +42,7 @@ In short: the _Giant Swarm App Platform_ refers to the whole feature, and an _Ap
 We provide two _App Catalogs_, the Giant Swarm Catalog and the Giant Swarm Playground. You are able to set up your own [additional catalog(s)]({{< relref "/app-platform/create-catalog" >}})
 to provide for any needs you have at the enterprise level.
 
-### What makes up the Giant Swarm App Platform
+### What makes up the Giant Swarm App Platform {#what-makes-up-the-app-platform}
 
 Technically the App Platform is implemented as a set of operators
 running on your management cluster and workload clusters. These operators watch various

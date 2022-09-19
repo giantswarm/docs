@@ -129,7 +129,7 @@ linkcheck:
 	docker run --rm -ti --name linkchecker \
 		-v ${PWD}/volumes/linkchecker:/workdir:rw \
 		-w /workdir \
-		linkchecker \
+		ghcr.io/linkchecker/linkchecker \
 		https://docs.giantswarm.io \
 		-t 1 \
 		--file-output csv/linkcheck.csv \

@@ -19,7 +19,11 @@
 
       <hr />
 
-      <p>This documentation page shows information based on <a href="{{ $.Params.crd.source_repository }}/tree/{{ $.Params.crd.source_repository_ref }}" target="_blank" rel="noopener noreferrer">apiextensions {{ $.Params.crd.source_repository_ref }}</a>.
+      {{ $nameparts := split $.Params.crd.source_repository "/" }}
+      {{ $nameparts := last 1 $nameparts }}
+      {{ $shortname := index $nameparts 0 }}
+
+      <p>This documentation page shows information based on <a href="{{ $.Params.crd.source_repository }}/tree/{{ $.Params.crd.source_repository_ref }}" target="_blank" rel="noopener noreferrer">{{ $shortname }} {{ $.Params.crd.source_repository_ref }}</a>.
 
       <div class="feedback well">
         <h5><i class="fa fa-help-outline"></i> Need help with the Management API?</h5>
