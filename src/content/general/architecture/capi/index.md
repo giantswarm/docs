@@ -1,6 +1,6 @@
 ---
 linkTitle: Cluster API architecture
-title: The Giant Swarm Platform Architecture
+title: The Giant Swarm platform architecture using Cluster API
 description: Architecture overview explaining how our Platform is built and what services do we offer.
 weight: 30
 menu:
@@ -9,8 +9,6 @@ menu:
 last_review_date: 2022-09-12
 user_questions:
   - Do you run a Developer Platform?
-aliases:
-  - /basics/platform-architecture/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
 ---
@@ -25,7 +23,7 @@ Giant Swarm's architecture is split into two logical parts. One encompasses the 
 
 As explained previously, both the management cluster and the workload cluster(s) have the same structure and configuration. In Giant Swarm we rely on [Cluster API](https://cluster-api.sigs.k8s.io/) to bootstrap and configure the cluster infrastructure and set up all the components needed for a cluster to function.
 
-[Cluster Architecture Image](./CAPI_architecture.png)!
+![Cluster architecture image](CAPI_architecture.png)
 
 By default, the machines are split into three different failure domains or zones to ensure the availability of the API and workloads running. In our setup, three control plane machines hold the Kubernetes API and the other controllers, and a variable number of worker machines contain the regular services.
 
@@ -58,7 +56,7 @@ Internally, Cluster API (CAPI) uses kubeadm to configure all the machines accord
 
 The Giant Swarm Platform is based on the API of the management cluster. The main reason is that Kubernetes has become the de-facto standard for managing infrastructure in a modern way. Its extensibility makes it easy to transform a cluster in a Platform with a secret sauce that makes the experience great.
 
-Our platform let's customers manage (workload) clusters and applications in a Cloud Native fashion. Following is an explanation of the bootstrapping process of a cluster, how it is managed throughout its lifecycle and which cluster components run based on its role (i.e. workload cluster or management cluster).
+Our platform lets customers manage (workload) clusters and applications in a Cloud Native fashion. Following is an explanation of the bootstrapping process of a cluster, how it is managed throughout its lifecycle and which cluster components run based on its role (i.e. workload cluster or management cluster).
 
 ### Bootstrapping
 
@@ -82,11 +80,11 @@ After the management cluster is ready we deliver all the details to customers to
 
 Cluster API offers a set of custom resources that define all the details of a cluster infrastructure and its configuration. 
 
-[Cluster API Resources](./CAPI_resources.png)!
+![Cluster API resources](CAPI_resources.png)
 
 Usually we have generic resources that define common configuration of the clusters and its components, and some infrastructure specific resources which will be tied to the provider we select. 
 
-We have created a [kubectl plugin](https://docs.giantswarm.io/ui-api/kubectl-gs/template-cluster/) to help you template all the needed resources.
+We have created a [kubectl plugin]({{< relref "/ui-api/kubectl-gs/template-cluster" >}}) to help you template all the needed resources.
 
 ### Components
 
@@ -160,13 +158,13 @@ The [App Platform](https://docs.giantswarm.io/app-platform/) is a system we buil
 
 In [Cluster API](https://cluster-api.sigs.k8s.io/) there is a set of generic operators that all Cluster API providers run to address the common bootstrap and management actions on a Kubernetes cluster lifecycle which include:
 
-- `Kubeadm Bootstrap`controller which is in charge of providing a cloud init configuration to turn a machine into a Kubernetes node.
+- `Kubeadm Bootstrap` controller which is in charge of providing a cloud init configuration to turn a machine into a Kubernetes node.
 - `Kubeadm Control Plane` controller that manages the lifecycle of the control plane nodes and provides access to the API.
 - `CAPI manager` controller that manages cluster and machine resources.
 
 *Cluster Provider operator*
 
-In Cluster API there is a set of common providers defined above, but to manage the real infrastructure we need to run a specific controller that knows about the cloud provider's API. It acts as a bridge and reconciles the provider specific configuration to create the necessary infrastructure for a Kubernetes cluster (i.e. VMs, Load Balancers...). This controller provisions, updates and deletes all resources through API. Every provider has its own lingo and methods to create a machine or provision a network. The operator reconciles the `Infrastructure` custom resources of the specific provider parsing the desired state into API requests and ensuring the provider resources are always in sync with the resource definitions stored in the management cluster.
+In Cluster API there is a set of common providers defined above, but to manage the real infrastructure we need to run a specific controller that knows about the cloud provider's API. It acts as a bridge and reconciles the provider specific configuration to create the necessary infrastructure for a Kubernetes cluster (i.e. VMs, Load Balancers...). This controller provisions, updates and deletes all resources through API. Every provider has its own lingo and methods to create a machine or provision a network. The operator reconciles the infrastructure resources of the specific provider parsing the desired state into API requests and ensuring the provider resources are always in sync with the resource definitions stored in the management cluster.
 
 *Cluster Apps operator*
 
