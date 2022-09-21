@@ -1,21 +1,23 @@
 ---
 linkTitle: Cluster API architecture
 title: The Giant Swarm Platform Architecture
-description: Architecture overview explaining how our Platform is built and what services do we offer.
+description: Architecture overview explaining how our platform is built and what services do we offer.
 weight: 30
 menu:
   main:
     parent: general-architecture
 last_review_date: 2022-09-12
 user_questions:
-  - Do you run a Developer Platform?
+  - How do you run a developer platform based on Cluster API?
+  - How Giant Swarm has built a platform to built platforms with Cluster API?
 aliases:
   - /basics/platform-architecture/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
+  - https://github.com/orgs/giantswarm/teams/team-hydra
 ---
 
-The Giant Swarm Platform consists of various systems. They can be categorized into three areas: infrastructure, applications, and operations.
+The Giant Swarm platform consists of various systems. They can be categorized into three areas: infrastructure, applications, and operations.
 
 For managing the infrastructure we run a management cluster per provider and region wherever you want to have your workloads. From that management cluster you can spin up as many individual Kubernetes clusters, called workload clusters, as you want. Our operations team works to maintain all cluster components' health, while we release new versions with new features and patches. On top of that, Giant Swarm offers a curated catalog with the most common Cloud Native tools that helps to monitor, secure or manage your applications. Customers can leverage those while we carry the burden of maintaining, securing and keeping them up to date.
 
@@ -56,7 +58,7 @@ Internally, Cluster API (CAPI) uses kubeadm to configure all the machines accord
 
 ## Giant Swarm Platform
 
-The Giant Swarm Platform is based on the API of the management cluster. The main reason is that Kubernetes has become the de-facto standard for managing infrastructure in a modern way. Its extensibility makes it easy to transform a cluster in a Platform with a secret sauce that makes the experience great.
+The Giant Swarm platform is based on the API of the management cluster. The main reason is that Kubernetes has become the de-facto standard for managing infrastructure in a modern way. Its extensibility makes it easy to transform a cluster in a platform with a secret sauce that makes the experience great.
 
 Our platform let's customers manage (workload) clusters and applications in a Cloud Native fashion. Following is an explanation of the bootstrapping process of a cluster, how it is managed throughout its lifecycle and which cluster components run based on its role (i.e. workload cluster or management cluster).
 
@@ -138,11 +140,11 @@ In Giant Swarm we leverage the operator pattern to extend the management cluster
 
 This operator is in charge of reconciling `Organization` custom resources. The functionality of the operator is pretty straightforward. It creates and deletes the organization namespace when the given resource is created.
 
-To learn more about organizations please read [the related documentation](https://docs.giantswarm.io/general/organizations/).
+To learn more about organizations please read [the related documentation]({{< relref "/general/organizations/" >}}).
 
 *RBAC operator*
 
-We have built an RBAC operator with the goal of maintaining up to date permissions between the different organizations and users on the management cluster so [you can isolate your teams and ensure access level in a granular way](https://docs.giantswarm.io/ui-api/management-api/authorization/).
+We have built an RBAC operator with the goal of maintaining up to date permissions between the different organizations and users on the management cluster so [you can isolate your teams and ensure access level in a granular way]({{< relref "/ui-api/management-api/authorization/" >}}).
 
 *DNS operator*
 
@@ -154,7 +156,7 @@ Kubernetes ensures resources are deleted in the right order by using `finalizers
 
 *App operator*
 
-The [App Platform](https://docs.giantswarm.io/app-platform/) is a system we built to deliver Cloud Native Apps in a multi cluster fashion. App operator is the main code running in management clusters to manage App custom resources and make sure the applications and configuration are delivered correctly across the different workload clusters.
+The [App Platform]({{< relref "/app-platform/" >}}) is a system we built to deliver Cloud Native Apps in a multi cluster fashion. App operator is the main code running in management clusters to manage App custom resources and make sure the applications and configuration are delivered correctly across the different workload clusters.
 
 *Cluster API operators*
 
