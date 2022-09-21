@@ -9,7 +9,7 @@ menu:
 last_review_date: 2022-09-12
 user_questions:
   - How do you run a developer platform based on Cluster API?
-  - How Giant Swarm has built a platform to built platforms with Cluster API?
+  - How has Giant Swarm built a platform to build platforms with Cluster API?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
   - https://github.com/orgs/giantswarm/teams/team-hydra
