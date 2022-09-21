@@ -21,7 +21,7 @@ For managing the infrastructure we run a management cluster per provider and reg
 
 Giant Swarm's architecture is split into two logical parts. One encompasses the management cluster and all the components running there. The second part  refers to the workload clusters that are created dynamically by the users to run their business workloads. In principle the management cluster and workload cluster(s) are analogous in terms of infrastructure and configuration. The difference comes with the additional layers we deployed on top of the management cluster that helps manage your users and permissions, workload clusters or the applications running on the workload clusters.
 
-## Cluster Architecture
+# Cluster Architecture
 
 As explained previously, both the management cluster and the workload cluster(s) have the same structure and configuration. In Giant Swarm we rely on [Cluster API](https://cluster-api.sigs.k8s.io/) to bootstrap and configure the cluster infrastructure and set up all the components needed for a cluster to function.
 
@@ -54,13 +54,13 @@ The setup uses the default network if none has been created upfront for the purp
 
 Internally, Cluster API (CAPI) uses kubeadm to configure all the machines according to current standards. It uses a template defined as yaml, part of CAPI, where we have hardened the different parameters for the API and other controllers running in the master machine.
 
-## Giant Swarm Platform
+# Giant Swarm Platform
 
 The Giant Swarm platform is based on the API of the management cluster. The main reason is that Kubernetes has become the de-facto standard for managing infrastructure in a modern way. Its extensibility makes it easy to transform a cluster in a platform with a secret sauce that makes the experience great.
 
 Our platform lets customers manage (workload) clusters and applications in a Cloud Native fashion. Following is an explanation of the bootstrapping process of a cluster, how it is managed throughout its lifecycle and which cluster components run based on its role (i.e. workload cluster or management cluster).
 
-### Bootstrapping
+## Bootstrapping
 
 The initial deployment entails the creation of that management cluster in a defined region. We built a tool that performs all steps needed to create a cluster and convert it to a management cluster.
 
@@ -88,47 +88,47 @@ Usually we have generic resources that define common configuration of the cluste
 
 We have created a [kubectl plugin]({{< relref "/ui-api/kubectl-gs/template-cluster" >}}) to help you template all the needed resources.
 
-### Components
+## Components
 
 There are two types of components: generic and self-developed.
 
-#### Generic Components
+### Generic Components
 
 The generic components run in all of our clusters regardless of whether it is a management cluster or a workload cluster.
 
-##### Container Network Interface (CNI)
+#### Container Network Interface (CNI)
 
 The Container Network Interface is the standard for writing plugins to configure network interfaces in Linux containers, and hence Kubernetes.
 
 We have chosen Cilium as the CNI implementation for several reasons. It is an open source solution that provides connectivity between containers in reliable and secure way. Cilium operates at Layer 3/4 providing traditional networking and security services. Additionally it protects and secures applications offering different enhanced features on top. For now, it is used only as container network in workload clusters.
 
-##### Kube State Metrics
+#### Kube State Metrics
 
 Kube State Metrics (KSM) is an upstream project that watches the Kubernetes API and provides metrics about the state of built-in resources. It is used by our monitoring service to scrape the metrics of the core components so we can be paged when something is wrong with the cluster. At the same time customers can scrape these metrics to create their own dashboards and alerts.
 
-##### Cert exporter
+#### Cert exporter
 
 It is a Prometheus exporter that exposes a set of metrics regarding certificates and tokens. It enables us to stay ahead of certificates expiration and take care of them in a timely fashion.
 
-##### Net exporter
+#### Net exporter
 
 Net exporter is also a Prometheus exporter for exposing network information. It runs on every node to track network and DNS errors. We created dashboards to help us debug issues on the cluster. In addition some of our alerts are based on the metrics exported by it.
 
-##### Metrics server
+#### Metrics server
 
 Metrics Server is an upstream component that implements the [Kubernetes Metrics API](https://kubernetes.io/docs/tasks/debug/debug-cluster/resource-metrics-pipeline/#metrics-api) to provide basic data of the container running in the cluster. It gives us information about CPU and memory usage of every pod. It is also used by other components, like Horizontal Pod Autoscaler, for scaling decisions. 
 
-##### Node exporter
+#### Node exporter
 
 It is an upstream Prometheus exporter for tracking hardware and operating system metrics exposed by *NIX kernels. It completes our monitoring service giving us the possibility to track resources used in the nodes and let us create alerts based on that information.
 
-#### Giant Swarm Components
+### Giant Swarm Components
 
 In addition to generic components, we deploy a set of controllers and extensions to the management API. The purpose of which is to enhance the user experience of managing clusters and apps on top of Kubernetes.
 
 There are three types of Giant Swarm components running on the management clusters: the operators, the admission controllers and the operational services. The first one, operators, extend the API allowing our customers to manage new entities (like a Cluster or an App) as if they were built-in resources. The second one, admission controllers, validate and default the resources to create a better user experience. And the last one, the operational services, monitoring or security, enable our staff to ensure all the workload clusters and applications are up and running securely and seamlessly.
 
-##### Operators (Custom Resource plus controller)
+#### Operators (Custom Resource plus controller)
 
 The most common pattern to extend Kubernetes is called [Operator](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/). It allows to define a new [Kubernetes resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) (called Custom Resource) and apply functionality to it. 
 
@@ -138,11 +138,11 @@ In Giant Swarm we leverage the operator pattern to extend the management cluster
 
 This operator is in charge of reconciling `Organization` custom resources. The functionality of the operator is pretty straightforward. It creates and deletes the organization namespace when the given resource is created.
 
-To learn more about organizations please read [the related documentation]({{< relref "/general/organizations/" >}}).
+To learn more about organizations please read [the related documentation]({{< relref "/general/organizations" >}}).
 
 *RBAC operator*
 
-We have built an RBAC operator with the goal of maintaining up to date permissions between the different organizations and users on the management cluster so [you can isolate your teams and ensure access level in a granular way]({{< relref "/ui-api/management-api/authorization/" >}}).
+We have built an RBAC operator with the goal of maintaining up to date permissions between the different organizations and users on the management cluster so [you can isolate your teams and ensure access level in a granular way]({{< relref "/ui-api/management-api/authorization" >}}).
 
 *DNS operator*
 
@@ -172,7 +172,7 @@ In Cluster API there is a set of common providers defined above, but to manage t
 
 This simple operator takes care of providing the basic configuration for our Managed Apps. Assets like the certificate authority or the domain base are provided by it via a Config Map so the different apps can rely on those values to configure themselves.
 
-##### Admission controllers
+#### Admission controllers
 
 The [Admission Controller](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) is another feature Kubernetes offers to extend its functionality. This time the idea is to intercept the API requests for validating or mutating the content. The main reason is to block users from submitting wrong data or  to default some of the properties for custom resources. 
 
@@ -192,7 +192,7 @@ As we described before, organizations are used to organize clusters and apps, bu
 
 [Pod Security Policies are deprecated](https://kubernetes.io/blog/2021/04/06/podsecuritypolicy-deprecation-past-present-and-future/) and from Kubernetes `1.25` they will not be valid anymore. In the past we relied on this functionality to harden the cluster and ensure containers run with the least privileges required. As a replacement we implemented equivalent policies in [Kyverno](https://kyverno.io/). 
 
-##### Operational services
+#### Operational services
 
 Aside from operators and admission controllers we also deploy a set of tooling that ensure we have a nice delivery system, good hardening and clear observability.  
 
@@ -220,7 +220,7 @@ In our setup we have two Flux instances running, one managing the resources spec
 
 To support customers in their use of Flux and the CI/CD features available to the platform, we provide a common template structure [gitops-template](https://github.com/giantswarm/gitops-template/) which presents structures, ideas and best practices on how to use flux within the Giant Swarm eco-system.
 
-## Further Reading
+# Further Reading
 
 - [Giant Swarm support model]({{< relref "/general/support" >}})
 - [Giant Swarm operational layers]({{< relref "/security/operational-layers" >}})
