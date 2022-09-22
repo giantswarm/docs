@@ -72,6 +72,29 @@ In order to follow the [Watching for new commits](#watching-for-new-commits) sec
 
 We will be using [Flux CLI](https://fluxcd.io/docs/cmd/) and [kubectl-gs](https://github.com/giantswarm/kubectl-gs). Please make sure you have both installed on your machine. If you would rather follow the guide without them, use the example resources provided.
 
+## Restrictions in the web UI {#web-ui-restrictions}
+
+The [Giant Swarm web UI]({{<relref "/ui-api/web">}}) allows editing and deleting resources like clusters and apps in an interactive way. However, for resources managed through GitOps, these capabilities are restricted. Otherwise changes and even deletions would get reverted through FluxCD.
+
+The UI will indicate this by showing something like this:
+
+<img src="managed-through-gitops.png" alt="" width="339" height="47" />
+
+The restrictions in particular are:
+
+- **Organizations** managed by FluxCD cannot be deleted via the web UI.
+
+- **Clusters** managed by FluxCD cannot be edited, upgraded, or deleted via the web UI.
+
+- **Node pools** managed by FluxCD cannot be edited or deleted via the web UI.
+
+- **Apps** managed by FluxCD cannot be edited or uninstalled via the web UI.
+
+As a signal that a resource is managed through FluxCD, the web UI relies on the existence of these two resource labels:
+
+- `kustomize.toolkit.fluxcd.io/name`
+- `kustomize.toolkit.fluxcd.io/namespace`
+
 ## Access control for organizations
 
 To proceed with this tutorial, you need to use a ServiceAccount with a set of permissions that allows you to create and reconcile Flux resources. All the examples are using `default` namespace and `automation` ServiceAccount in that namespace. You will find them in every Management Cluster and they are already assigned with the required privileges.
