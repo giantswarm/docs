@@ -1,13 +1,15 @@
 ---
-linkTitle: Monitoring
-title: Monitoring and dashboards
-description: Giant Swarm runs a monitoring stack in each installation, comprising Prometheus, Grafana, and more. Learn how to get access to the data we collect.
+linkTitle: Access to Grafana
+title: Accessing Grafana dashboards
+description: Guide explaining how to get access to the data we collect on your management and workload clusters.
 menu:
   main:
-    identifier: uiapi-monitoring
-    parent: ui-api
+    identifier: uiapi-observability-grafana-access
+    parent: uiapi-observability-grafana
 weight: 40
-last_review_date: 2021-06-28
+aliases:
+  - /observability/grafana/access
+last_review_date: 2022-09-12
 user_questions:
   - How can I access Grafana for my installation?
   - How can I access metrics from my installation?
@@ -36,11 +38,11 @@ In case you want to construct the URL to the Grafana web application in your ins
 
 For example, if your web interface URL is
 
-    https://happa.g8s.gollum.westeurope.azure.gigantic.io/
+    https://happa.g8s.example.westeurope.azure.gigantic.io/
 
 then simply replace `happa` with `grafana` to get to your Grafana URL:
 
-    https://grafana.g8s.gollum.westeurope.azure.gigantic.io/
+    https://grafana.g8s.example.westeurope.azure.gigantic.io/
 
 ## Authentication and authorization
 

@@ -302,7 +302,7 @@ Setting a Common Name Prefix results in a username like the following:
 <cn-prefix>.user.api.<cluster-domain>
 ```
 
-where `<cn-prefix>` is a username of your choice and `<cluster-domain>` is your cluster's domain, e.g. `w6wn8.k8s.ginger.eu-central-1.aws.gigantic.io`.
+where `<cn-prefix>` is a username of your choice and `<cluster-domain>` is your cluster's domain, e.g. `w6wn8.k8s.example.eu-central-1.aws.gigantic.io`.
 
 When binding roles to a user you need to use the full username mentioned above.
 
@@ -352,7 +352,7 @@ metadata:
   namespace: development
 subjects:
   - kind: User
-    name: jane.w6wn8.k8s.ginger.eu-central-1.aws.gigantic.io
+    name: jane.w6wn8.k8s.example.eu-central-1.aws.gigantic.io
     apiGroup: rbac.authorization.k8s.io
   - kind: Group
     name: dev-admin
@@ -390,7 +390,7 @@ metadata:
   name: cluster-viewer
 subjects:
   - kind: User
-    name: jane.w6wn8.k8s.ginger.eu-central-1.aws.gigantic.io
+    name: jane.w6wn8.k8s.example.eu-central-1.aws.gigantic.io
     apiGroup: rbac.authorization.k8s.io
   - kind: Group
     name: cluster-view

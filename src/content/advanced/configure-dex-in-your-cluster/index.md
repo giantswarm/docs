@@ -285,9 +285,9 @@ Then submit the resource to the management API and the App operator will manage 
 
 __Warning__: It is assumed that you have an [ingress controller and cert-manager](https://docs.giantswarm.io/app-platform/getting-started/) running in your cluster in order to make dex available for the callback request made by your identity provider securely. If you supply custom certificates when deploying dex, then you can skip cert-manager installation. Both of these apps are offered in our managed app catalog.
 
-## Monitoring Dex
+## Dex Observability
 
-To get an overview on the authentication success and error rates of your Dex instances, we offer a Grafana dashboard named "Dex" as part of our [monitoring setup]({{< relref "/ui-api/monitoring" >}}).
+To get an overview on the authentication success and error rates of your Dex instances, we offer a Grafana dashboard named "Dex" as part of our [observability setup]({{< relref "/ui-api/observability/grafana/access" >}}).
 
 ## Logging into your workload cluster via `kubectl gs` with `Athena`
 

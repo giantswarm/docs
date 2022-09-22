@@ -8,7 +8,7 @@ menu:
     parent: uiapi-kubectlgs
 aliases:
   - /reference/kubectl-gs/template-app/
-last_review_date: 2021-06-29
+last_review_date: 2022-09-14
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -27,10 +27,17 @@ The command to execute is `kubectl gs template app`.
 It supports the following required flags:
 
 - `--name`: Name of the app in the catalog. This is also the name of the App CR unless `--app-name` is set.
-- `--namespace`: Namespace where the app will be deployed.
+- `--target-namespace`: Namespace where the app will be deployed.
 - `--catalog`: Catalog name where the app package is stored. `Catalog` CR for this catalog must exist in the cluster.
-- `--cluster`: Name of the cluster the app will be deployed to.
+- `--cluster-name`: Name of the cluster the app will be deployed to.
 - `--version`: Version of the app to be installed. The version package must exist in the `Catalog` storage.
+
+It also supports older flag variations to maintain backward compatibility:
+
+- `--namespace` - replaced by `--target-namespace`.
+- `--cluster` - replaced by `--cluster-name`.
+
+These older flag variations are marked as deprecated and will be removed in the next major version of `kubectl gs`.
 
 The example command
 
@@ -38,8 +45,8 @@ The example command
 kubectl gs template app \
   --catalog giantswarm-playground \
   --name keda \
-  --namespace default \
-  --cluster 2hr7z  \
+  --target-namespace default \
+  --cluster-name 2hr7z  \
   --version 0.1.0
 ```
 
