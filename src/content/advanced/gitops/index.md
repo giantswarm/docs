@@ -90,7 +90,10 @@ The restrictions in particular are:
 
 - **Apps** managed by FluxCD cannot be edited or uninstalled via the web UI.
 
-As a signal that a resource is managed through FluxCD, the web UI relies on the resource label TODO.
+As a signal that a resource is managed through FluxCD, the web UI relies on the existence of these two resource labels:
+
+- `kustomize.toolkit.fluxcd.io/name`
+- `kustomize.toolkit.fluxcd.io/namespace`
 
 ## Access control for organizations
 
