@@ -80,6 +80,7 @@ The following flags are related to creating **client certificates** for workload
 - `--organization` - The organization that the workload cluster belongs to. Only required if the current user has access to multiple workload clusters with the same name in the same management cluster. Can also be applied if the user does not have permission to list organizations.
 - `--certificate-group` - The RBAC group name to be encoded into the X.509 field "O". It can be specified multiple times in order to set multiple groups at once.
 - `--certificate-ttl` - How long the client certificate should live for. When creating client certificates, we recommend using short expiration periods. Valid time units are "s" (second), "m" (minute), "h" (hour).
+- `--cn-prefix` - The CN prefix of the common name to be encoded into the X.509 field "CN".
 
 In addition, there is one flag **only relevant to Giant Swarm staff**:
 

@@ -6,7 +6,7 @@ changes_categories:
 - Workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
-  url: https://github.com/giantswarm/releases/tree/master/azure/v16.1.3
+  url: https://github.com/giantswarm/releases/tree/master/azure/archived/v16.1.3
   version: 16.1.3
   version_tag: v16.1.3
 date: '2022-06-06T11:27:23+00:00'
