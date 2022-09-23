@@ -12,7 +12,7 @@ crd:
   technical_name: charts.application.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions-application
-  source_repository_ref: v0.5.1
+  source_repository_ref: v0.6.0
   versions:
     - v1alpha1
   topics:
@@ -24,7 +24,7 @@ aliases:
   - /reference/cp-k8s-api/charts.application.giantswarm.io/
 technical_name: charts.application.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions-application
-source_repository_ref: v0.5.1
+source_repository_ref: v0.6.0
 ---
 
 # Chart
@@ -75,12 +75,19 @@ spec:
       resourceVersion: ""
   install:
     skipCRDs: true
+    timeout: 6m0s
   name: prometheus
   namespace: monitoring
   namespaceConfig:
     annotations:
       linkerd.io/inject: enabled
+  rollback:
+    timeout: 7m0s
   tarballURL: prometheus-1.0.1.tgz
+  uninstall:
+    timeout: 8m0s
+  upgrade:
+    timeout: 9m0s
   version: 1.0.1
 ```
 
@@ -348,6 +355,24 @@ spec:
 </div>
 </div>
 
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.install.timeout">.spec.install.timeout</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Timeout for the Helm install. When not set the default timeout of 5 minutes is being enforced.</p>
+
+</div>
+
+</div>
+</div>
+
 <div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha1-.spec.name">.spec.name</h3>
@@ -440,6 +465,42 @@ spec:
 
 <div class="property depth-1">
 <div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.rollback">.spec.rollback</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Rollback is the config used to rollback the app and is passed to Helm.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.rollback.timeout">.spec.rollback.timeout</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Timeout for the Helm rollback. When not set the default timeout of 5 minutes is being enforced.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
 <h3 class="property-path" id="v1alpha1-.spec.tarballURL">.spec.tarballURL</h3>
 </div>
 <div class="property-body">
@@ -450,6 +511,78 @@ spec:
 
 <div class="property-description">
 <p>TarballURL is the URL for the Helm chart tarball to be deployed. e.g. <a href="https://example.com/path/to/prom-1-0-0.tgz">https://example.com/path/to/prom-1-0-0.tgz</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.uninstall">.spec.uninstall</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Uninstall is the config used to uninstall the app and is passed to Helm.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.uninstall.timeout">.spec.uninstall.timeout</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Timeout for the Helm uninstall. When not set the default timeout of 5 minutes is being enforced.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.upgrade">.spec.upgrade</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Upgrade is the config used to upgrade the app and is passed to Helm.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.upgrade.timeout">.spec.upgrade.timeout</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Timeout for the Helm upgrade. When not set the default timeout of 5 minutes is being enforced.</p>
 
 </div>
 
