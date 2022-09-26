@@ -12,7 +12,7 @@ crd:
   technical_name: catalogs.application.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions-application
-  source_repository_ref: v0.5.1
+  source_repository_ref: v0.6.0
   versions:
     - v1alpha1
   topics:
@@ -24,7 +24,7 @@ aliases:
   - /reference/cp-k8s-api/catalogs.application.giantswarm.io/
 technical_name: catalogs.application.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions-application
-source_repository_ref: v0.5.1
+source_repository_ref: v0.6.0
 ---
 
 # Catalog
@@ -71,6 +71,7 @@ spec:
       namespace: my-namespace
   description: A catalog to store all new application packages.
   logoURL: https://my-org.github.com/logo.png
+  repositories: null
   storage:
     URL: https://my-org.github.com/my-playground-catalog/
     type: helm

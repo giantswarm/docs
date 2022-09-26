@@ -33,6 +33,9 @@ from a single place; the management cluster.
 
 We fully support [Helm](https://helm.sh/) as a general tool to deploy your applications as well as for our general App Catalog. Apps are packaged as Helm charts and can be configured with _values_. We provide a recommended
 [app configuration]({{< relref "/app-platform/app-configuration" >}}) which you can override to meet your needs.
+The App Platform then, underneath, installs these Helm Charts whenever an app installation is requested by you.
+The Helm execution is mostly not configurable for you, with the exception to the options presented in 
+[installation configuration]({{< relref "/app-platform/installation-configuration" >}}).
 
 Using this platform, we are providing a collection of curated _Apps_. These _Apps_ are grouped into _App Catalogs_, which are browsable through our web interface.
 We also use app platform to install the apps that are pre-installed in your cluster (such as CoreDNS).
@@ -81,6 +84,8 @@ together to enable the features of the Giant Swarm App Platform:
 
 ![A diagram showing an overview of various components and concepts that make up the Giant Swarm App Platform](app-platform-overview.png)
 <!-- Original version: https://docs.google.com/drawings/d/1V3KcUImxRdrrb2v_nIQnkapHiRkRM6t8PoYGCqWebYY/edit -->
+
+
 
 ### What kind of App Catalogs are there
 
