@@ -30,6 +30,17 @@ For AWS (`--provider aws`):
 - [`AWSControlPlane`]({{< relref "/ui-api/management-api/crd/awscontrolplanes.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`) - specifies the control plane nodes with AWS-specific details
 
 {{< /tab >}}
+{{< tab id="flags-aws-capa" title="AWS CAPA (Beta)">}}
+
+For AWS CAPI (`--provider capa`):
+
+- [`Cluster`]({{< relref "/ui-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1beta1`) - holds the base cluster specification.
+- [`KubeadmControlPlane`]({{< relref "/ui-api/management-api/crd/kubeadmcontrolplanes.controlplane.cluster.x-k8s.io.md" >}}) (API version `controlplane.cluster.x-k8s.io/v1beta1`) - specifies the control plane nodes.
+- [`MachineDeployment`]({{< relref "/ui-api/management-api/crd/machinedeployments.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1beta1`) - holds the bastion host specification.
+- [`MachinePool`]({{< relref "/ui-api/management-api/crd/machinepools.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1beta1`) - worker nodes machine pools.
+
+
+{{< /tab >}}
 {{< tab id="flags-azure" title="Azure">}}
 
 For Azure (`--provider azure`):
@@ -84,16 +95,16 @@ The command to execute is `kubectl gs template cluster`.
 
 It supports the following flags:
 
-- `--provider` - The infrastructure provider (one of: `aws`, `azure`, or `openstack`).
+- `--provider` - The infrastructure provider (one of: `capa`, `aws`, `azure`, or `openstack`).
 - `--name` - Unique name of the cluster. If not provided, a random alphanumeric name will be generated.
 - `--organization` - Name of the organization that will own the cluster. Determines the namespace where resources will be created.
-- `--release` (AWS and Azure only) - Workload cluster release version.
+- `--release` (non CAPI AWS and Azure only) - Workload cluster release version.
   Can be retrieved with `kubectl get releases` for your installation.
 - `--description` (optional) - User-friendly description of the cluster's purpose.
-- `--pods-cidr` (optional) - CIDR applied to the pods. If this isn't provided, the installation default will be applied.
-- `--label` (optional) - workload cluster label in the form of `key=value`. Can be specified multiple times.
-- `--service-priority` (optional) - [Service priority]({{< relref "/advanced/labelling-workload-clusters#service-priority" >}}) of the cluster (one of: `highest`, `medium`, or `lowest`; default: `highest`).
-- `--release-branch` (optional, AWS and Azure only) - The Giant Swarm [releases repository](https://github.com/giantswarm/releases) branch to use to look up the workload cluster release set via the `--release` flag (default: `master`).
+- `--pods-cidr` (optional and non CAPI AWS) - CIDR applied to the pods. If this isn't provided, the installation default will be applied.
+- `--label` (optional and non CAPI AWS) - workload cluster label in the form of `key=value`. Can be specified multiple times.
+- `--service-priority` (optional and non CAPI AWS) - [Service priority]({{< relref "/advanced/labelling-workload-clusters#service-priority" >}}) of the cluster (one of: `highest`, `medium`, or `lowest`; default: `highest`).
+- `--release-branch` (optional, non CAPI AWS and Azure only) - The Giant Swarm [releases repository](https://github.com/giantswarm/releases) branch to use to look up the workload cluster release set via the `--release` flag (default: `master`).
 - `--control-plane-az` (optional) - Availability zone(s) of the control plane instance(s).
 - `--output` (optional) - The name of the file to write the output to instead of stdout.
 
@@ -105,7 +116,11 @@ It supports the following flags:
   specify three distinct availability zones instead (AWS only). This can be done by separating AZ names with comma or using the flag
   three times with a single AZ name.
 
-### AWS specific
+### AWS specific (CAPI)
+
+ - `--name` must only contain alphanumeric characters, start with a letter, and be no longer than 5 characters in length
+
+### AWS specific (non CAPI)
 
 - `--external-snat` - AWS CNI configuration to disable (is enabled by default) the [external source network address translation](https://docs.aws.amazon.com/eks/latest/userguide/external-snat.html).
 
@@ -175,6 +190,20 @@ kubectl gs template cluster \
   --label environment=testing \
   --label team=upstate \
   --service-priority lowest
+```
+
+{{< /tab >}}
+{{< tab id="command-examples-aws-capi" title="AWS CAPA">}}
+
+Example command for an AWS CAPI cluster:
+
+```nohighlight
+kubectl gs template cluster \
+  --provider capa \  
+  --control-plane-az eu-central-1a \  
+  --description "Development Cluster" \  
+  --name dev01
+  --organization acme
 ```
 
 {{< /tab >}}
@@ -361,6 +390,113 @@ spec:
   instanceType: m5.xlarge
 ```
 
+{{< /tab >}}
+{{< tab id="command-output-aws-capi" title="AWS CAPI">}}
+```yaml
+---
+apiVersion: v1
+data:
+  values: |
+    aws: {}
+    bastion: {}
+    clusterDescription: Test Cluster
+    clusterName: dev01
+    controlPlane:
+      replicas: 3
+    machinePools:
+    - availabilityZones:
+      - eu-central-1a
+      instanceType: m5.xlarge
+      maxSize: 10
+      minSize: 3
+      name: machine-pool0
+      rootVolumeSizeGB: 300
+    network:
+      availabilityZoneUsageLimit: 3
+    organization: acme
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  labels:
+    giantswarm.io/cluster: dev01
+  name: dev01-userconfig
+  namespace: org-acme
+---
+apiVersion: application.giantswarm.io/v1alpha1
+kind: App
+metadata:
+  labels:
+    app-operator.giantswarm.io/version: 0.0.0
+  name: dev01
+  namespace: org-acme
+spec:
+  catalog: cluster
+  config:
+    configMap:
+      name: ""
+      namespace: ""
+    secret:
+      name: ""
+      namespace: ""
+  kubeConfig:
+    context:
+      name: ""
+    inCluster: true
+    secret:
+      name: ""
+      namespace: ""
+  name: cluster-aws
+  namespace: org-acme
+  userConfig:
+    configMap:
+      name: dev01-userconfig
+      namespace: org-acme
+  version: 0.9.2
+---
+apiVersion: v1
+data:
+  values: |
+    clusterName: dev01
+    organization: acme
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  labels:
+    giantswarm.io/cluster: dev01
+  name: dev01-default-apps-userconfig
+  namespace: org-acme
+---
+apiVersion: application.giantswarm.io/v1alpha1
+kind: App
+metadata:
+  labels:
+    app-operator.giantswarm.io/version: 0.0.0
+  name: dev01-default-apps
+  namespace: org-acme
+spec:
+  catalog: cluster
+  config:
+    configMap:
+      name: ""
+      namespace: ""
+    secret:
+      name: ""
+      namespace: ""
+  kubeConfig:
+    context:
+      name: ""
+    inCluster: true
+    secret:
+      name: ""
+      namespace: ""
+  name: default-apps-aws
+  namespace: org-acme
+  userConfig:
+    configMap:
+      name: dev01-default-apps-userconfig
+      namespace: org-acme
+  version: 0.5.4
+```
 {{< /tab >}}
 {{< tab id="command-output-azure" title="Azure">}}
 
