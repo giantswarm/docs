@@ -12,7 +12,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I create a cluster manifest for the Management API?
-last_review_date: 2022-06-16
+last_review_date: 2022-09-26
 ---
 
 This command helps with creating a cluster by producing a manifest based on user input. This manifest can then optionally be modified and finally be applied to the Management API to create a cluster.
