@@ -30,7 +30,7 @@ For AWS (`--provider aws`):
 - [`AWSControlPlane`]({{< relref "/ui-api/management-api/crd/awscontrolplanes.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`) - specifies the control plane nodes with AWS-specific details
 
 {{< /tab >}}
-{{< tab id="flags-aws-capa" title="AWS CAPA (Beta)">}}
+{{< tab id="flags-aws-capa" title="AWS CAPI">}}
 
 For AWS CAPI (`--provider capa`):
 
