@@ -193,7 +193,7 @@ kubectl gs template cluster \
 ```
 
 {{< /tab >}}
-{{< tab id="command-examples-aws-capi" title="AWS CAPA">}}
+{{< tab id="command-examples-aws-capi" title="AWS CAPI">}}
 
 Example command for an AWS CAPI cluster:
 
