@@ -99,18 +99,19 @@ The command to execute is `kubectl gs template cluster`.
 
 It supports the following flags:
 
-- `--provider` - The infrastructure provider (one of: `capa`, `aws`, `azure`, or `openstack`).
+- `--provider` - The infrastructure provider (one of: `aws`, `azure`, `capa`, `gcp` or `openstack`).
 - `--name` - Unique name of the cluster. If not provided, a random alphanumeric name will be generated.
 - `--organization` - Name of the organization that will own the cluster. Determines the namespace where resources will be created.
 - `--release` (non CAPI AWS and Azure only) - Workload cluster release version.
   Can be retrieved with `kubectl get releases` for your installation.
 - `--description` (optional) - User-friendly description of the cluster's purpose.
-- `--pods-cidr` (optional and non CAPI AWS) - CIDR applied to the pods. If this isn't provided, the installation default will be applied.
-- `--label` (optional and non CAPI AWS) - workload cluster label in the form of `key=value`. Can be specified multiple times.
-- `--service-priority` (optional and non CAPI AWS) - [Service priority]({{< relref "/advanced/labelling-workload-clusters#service-priority" >}}) of the cluster (one of: `highest`, `medium`, or `lowest`; default: `highest`).
+- `--pods-cidr` (optional, only non CAPI AWS) - CIDR applied to the pods. If this isn't provided, the installation default will be applied.
+- `--label` (optional, only non CAPI AWS) - workload cluster label in the form of `key=value`. Can be specified multiple times.
+- `--service-priority` (optional, only non CAPI AWS) - [Service priority]({{< relref "/advanced/labelling-workload-clusters#service-priority" >}}) of the cluster (one of: `highest`, `medium`, or `lowest`; default: `highest`).
 - `--release-branch` (optional, non CAPI AWS and Azure only) - The Giant Swarm [releases repository](https://github.com/giantswarm/releases) branch to use to look up the workload cluster release set via the `--release` flag (default: `master`).
 - `--control-plane-az` (optional) - Availability zone(s) of the control plane instance(s).
 - `--output` (optional) - The name of the file to write the output to instead of stdout.
+
 
   On AWS, it must be configured with AZ of the installation region. E.g. for region `eu-central-1`, a valid value is `eu-central-1a`.
 
@@ -120,7 +121,7 @@ It supports the following flags:
   specify three distinct availability zones instead (AWS only). This can be done by separating AZ names with comma or using the flag
   three times with a single AZ name.
 
-### AWS CAPI flags
+### AWS CAPI specific flags
 
  - `--name` must only contain alphanumeric characters, start with a letter, and be no longer than 5 characters in length
 
