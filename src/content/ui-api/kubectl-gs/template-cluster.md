@@ -95,7 +95,7 @@ The command to execute is `kubectl gs template cluster`.
 
 It supports the following flags:
 
-- `--provider` - The infrastructure provider (one of: `capa`, `aws`, `azure`, or `openstack`).
+- `--provider` - The infrastructure provider (one of: `aws`, `azure`, `capa`, `gcp`, or `openstack`).
 - `--name` - Unique name of the cluster. If not provided, a random alphanumeric name will be generated.
 - `--organization` - Name of the organization that will own the cluster. Determines the namespace where resources will be created.
 - `--release` (non CAPI AWS and Azure only) - Workload cluster release version.
