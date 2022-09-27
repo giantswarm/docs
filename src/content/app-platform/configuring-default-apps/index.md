@@ -1,6 +1,6 @@
 ---
-linkTitle: Customizing Preinstalled Apps configuration
-title: Customizing Preinstalled Apps configuration
+linkTitle: Customizing Preinstalled Apps config
+title: Customizing Preinstalled Apps configuration using configmaps
 description: How to customize preinstalled apps configuration. 
 weight: 40
 menu:
