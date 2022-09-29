@@ -201,7 +201,7 @@ This upgrade provides an improved helm chart.
 Please refer to the [changelog](https://github.com/giantswarm/azure-scheduled-events/blob/master/CHANGELOG.md) for all the details.
 
 
-### vertical-pod-autoscaler [2.4.0](https://github.com/giantswarm/vertical-pod-autoscaler-app/releases/tag/v2.4.0)
+### vertical-pod-autoscaler [2.4.1](https://github.com/giantswarm/vertical-pod-autoscaler-app/releases/tag/v2.4.1)
 
 Upgraded from 2.1.1.
 

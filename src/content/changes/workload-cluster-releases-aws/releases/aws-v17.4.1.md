@@ -47,3 +47,10 @@ This is a patch release bringing improvements to app-operator and chart-operator
 
 #### Fixed
 - Automatically try to execute `cmctl upgrade migrate-api-version` in crd install job to upgrade stored apiversions ([#245](https://github.com/giantswarm/cert-manager-app/pull/245))
+
+
+
+### vertical-pod-autoscaler [2.4.1](https://github.com/giantswarm/vertical-pod-autoscaler-app/releases/tag/v2.4.1)
+
+#### Fixed
+- Correct selector in admission controller PDB
