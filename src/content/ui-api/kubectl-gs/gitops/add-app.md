@@ -6,8 +6,6 @@ weight: 30
 menu:
   main:
     parent: kubectlgs-gitops
-aliases:
-  - /reference/kubectl-gs/gitops/add-app/
 last_review_date: 2022-09-14
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
