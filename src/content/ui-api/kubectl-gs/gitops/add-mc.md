@@ -15,7 +15,7 @@ user_questions:
 
 This command adds a new Management Cluster to the GitOps repository.
 
-Other command this command depends on:
+Other commands this command depends on:
 
 - [gitops init]({{< relref "/ui-api/kubectl-gs/gitops/init" >}})
 
