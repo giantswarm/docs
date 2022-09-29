@@ -59,6 +59,8 @@ keychain.
 | `target`             | Relative directory to configure the encryption for. (default "secrets/") | false    |
 | `workload-cluster`   | Workload Cluster in the Organization to configure the encryption for.    | false    |
 
+{{% kubectl_gs_gitops_common_flags %}}
+
 ## Usage
 
 The command to execute is the `kubectl gs gitops add enc`.

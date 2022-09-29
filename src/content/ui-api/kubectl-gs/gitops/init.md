@@ -40,6 +40,7 @@ the `init` command each time they clone the repository.
 ## Usage
 
 The command to execute is the `kubectl gs gitops init`.
+{{% kubectl_gs_gitops_common_flags %}}
 
 To preview the objects to be created by the command, run it with the `--dry-run` flag. Example:
 

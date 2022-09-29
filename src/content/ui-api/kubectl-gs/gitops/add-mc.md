@@ -47,6 +47,7 @@ command.
 | `name`            | Codename of the Management Cluster.                  | true     |
 | `repository-name` | Name of the GitOps repository.                       | true     |
 
+{{% kubectl_gs_gitops_common_flags %}}
 
 ## Usage
 

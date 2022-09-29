@@ -38,6 +38,8 @@ management-clusters/MC_NAME/organizations
 | `management-cluster` | Management Cluster the Organization belongs to. | true     |
 | `name`            | Organization name.                                 | true     |
 
+{{% kubectl_gs_gitops_common_flags %}}
+
 ## Usage
 
 The command to execute is the `kubectl gs gitops add org`.

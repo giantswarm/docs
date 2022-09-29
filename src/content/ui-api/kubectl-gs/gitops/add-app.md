@@ -58,6 +58,8 @@ working base to reference with the `--base` flag. In any case, user may provide 
 | `version`            | App version to install.                                                 | false    |
 | `workload-cluster`   | Name of the Workload Cluster to configure the app for.                  | true     |
 
+{{% kubectl_gs_gitops_common_flags %}}
+
 ### Deprecated flags
 
 To maintain backward compatibility the command also supports an older flag variation:

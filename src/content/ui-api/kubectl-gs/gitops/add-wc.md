@@ -73,6 +73,7 @@ nevertheless mandatory, and hence this flag is planned to be removed from `kubec
 ## Usage
 
 The command to execute is the `kubectl gs gitops add wc`.
+{{% kubectl_gs_gitops_common_flags %}}
 
 To preview the objects to be created by the command, run it with the `--dry-run` flag. Fine example below.
 

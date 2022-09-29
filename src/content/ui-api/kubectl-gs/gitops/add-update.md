@@ -53,6 +53,8 @@ coming from a base updates must be configured in the base instead, what is outsi
 | `version-repository` | The OCR repository to update the version from.                      | true     |
 | `workload-cluster`   | Name of the Workload Cluster to configure the app for.              | true     |
 
+{{% kubectl_gs_gitops_common_flags %}}
+
 ## Usage
 
 The command to execute is the `kubectl gs gitops add update`.
