@@ -53,12 +53,12 @@ Refer to the subcommand documentation for details.
 | Command                       | Description                                                        |
 | ----------------------------- | ------------------------------------------------------------------ |
 | [`init`][1]                   | [Set up a GitOps repository with its basic structure][1]           |
-| [`add mc`][2]                 | [Add a new management cluster to the GitOps repository][2]         |
-| [`add org`][3]                | [Add a new organization to the GitOps repository][3]               |
-| [`add wc`][4]                 | [Add a new workload cluster to the GitOps repository][4]           |
+| [`add management-cluster`][2] | [Add a new management cluster to the GitOps repository][2]         |
+| [`add organization`][3]       | [Add a new organization to the GitOps repository][3]               |
+| [`add workload-cluster`][4]   | [Add a new workload cluster to the GitOps repository][4]           |
 | [`add app`][5]                | [Add a new app to the GitOps repository][5]                        |
-| [`add update`][6]             | [Enable automatic updates for an app][6]                           |
-| [`add enc`][7]                | [Add a new GPG key pair to the SOPS repository configuration][7]   |
+| [`add automatic-update`][6]   | [Enable automatic updates for an app][6]                           |
+| [`add encryption`][7]         | [Add a new GPG key pair to the SOPS repository configuration][7]   |
 
 [1]: {{< relref "/ui-api/kubectl-gs/gitops/init" >}}
 [2]: {{< relref "/ui-api/kubectl-gs/gitops/add-mc" >}}
