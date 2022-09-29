@@ -6,7 +6,7 @@ weight: 15
 menu:
   main:
     parent: kubectlgs-gitops
-last_review_date: 2022-08-31
+last_review_date: 2022-09-29
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -15,9 +15,11 @@ user_questions:
 
 This command adds a new Management Cluster to the GitOps repository.
 
-Other commands this command depends on:
+## Prerequisites
 
-- [gitops init]({{< relref "/ui-api/kubectl-gs/gitops/init" >}})
+Your GitOps repository should provide the following structural layers:
+
+- Basic structure (see [`init`]({{< relref "/ui-api/kubectl-gs/gitops/init" >}}))
 
 ## Description
 

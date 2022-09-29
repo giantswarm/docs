@@ -6,7 +6,7 @@ weight: 20
 menu:
   main:
     parent: kubectlgs-gitops
-last_review_date: 2022-08-31
+last_review_date: 2022-09-29
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -15,10 +15,12 @@ user_questions:
 
 This command adds a new Organization to the GitOps repository.
 
-Other commands this command depends on:
+## Prerequisites
 
-- [gitops init]({{< relref "/ui-api/kubectl-gs/gitops/init" >}})
-- [gitops add management-cluster]({{< relref "/ui-api/kubectl-gs/gitops/add-mc" >}})
+Your GitOps repository should provide the following structural layers:
+
+- Basic structure (see [`init`]({{< relref "/ui-api/kubectl-gs/gitops/init" >}}))
+- Management cluster (see [`add management-cluster`]({{< relref "/ui-api/kubectl-gs/gitops/add-mc" >}}))
 
 ## Description
 

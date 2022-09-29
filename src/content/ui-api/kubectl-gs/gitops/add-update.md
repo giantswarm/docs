@@ -6,7 +6,7 @@ weight: 35
 menu:
   main:
     parent: kubectlgs-gitops
-last_review_date: 2022-08-31
+last_review_date: 2022-09-29
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -15,13 +15,15 @@ user_questions:
 
 This command adds configuration to automatically update an App into a GitOps repository.
 
-Other commands this command depends on:
+## Prerequisites
 
-- [gitops init]({{< relref "/ui-api/kubectl-gs/gitops/init" >}})
-- [gitops add management-cluster]({{< relref "/ui-api/kubectl-gs/gitops/add-mc" >}})
-- [gitops add organization]({{< relref "/ui-api/kubectl-gs/gitops/add-org" >}})
-- [gitops add workload-cluster]({{< relref "/ui-api/kubectl-gs/gitops/add-wc" >}})
-- [gitops add app]({{< relref "/ui-api/kubectl-gs/gitops/add-app" >}})
+Your GitOps repository should provide the following structural layers:
+
+- Basic structure (see [`init`]({{< relref "/ui-api/kubectl-gs/gitops/init" >}}))
+- Management cluster (see [`add management-cluster`]({{< relref "/ui-api/kubectl-gs/gitops/add-mc" >}}))
+- Organization (see [`add organization`]({{< relref "/ui-api/kubectl-gs/gitops/add-org" >}}))
+- Workload cluster (see [`add workload-cluster`]({{< relref "/ui-api/kubectl-gs/gitops/add-wc" >}}))
+- Apps (see [`add app`]({{< relref "/ui-api/kubectl-gs/gitops/add-app" >}}))
 
 ## Description
 
