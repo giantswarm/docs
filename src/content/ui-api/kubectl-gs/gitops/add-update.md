@@ -51,7 +51,7 @@ Basic command syntax: `kubectl gs gitops add automatic-update FLAGS`.
 - `--app` -- name of the App in the repository to configure automatic update for (required)
 - `--management-cluster` -- name of the management cluster the workload cluster belongs to (required)
 - `--organization` -- name of the organization the workload cluster belongs to (required)
-- `--version-repository` -- the OCR repository to update the version from. (required)
+- `--version-repository` -- the container image repository to update the version from. (required)
 - `--workload-cluster` -- name of the workload cluster to configure the app for (required)
 - `--skip-mapi` -- skip mapi directory when adding the app
 
