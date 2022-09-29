@@ -1,7 +1,7 @@
 ---
-linkTitle: add application
+linkTitle: add app
 title: "'kubectl gs gitops add app' command reference"
-description: Reference documentation on how to add a new Application to the GitOps repository.
+description: Reference documentation on how to add a new App to the GitOps repository.
 weight: 30
 menu:
   main:
@@ -15,11 +15,12 @@ user_questions:
 
 This command adds a new App to the GitOps repository.
 
-Other command this commad depends on:
+Other commands this command depends on:
+
 - [gitops init]({{< relref "/ui-api/kubectl-gs/gitops/init" >}})
-- [gitops add mc]({{< relref "/ui-api/kubectl-gs/gitops/add-mc" >}})
-- [gitops add org]({{< relref "/ui-api/kubectl-gs/gitops/add-org" >}})
-- [gitops add wc]({{< relref "/ui-api/kubectl-gs/gitops/add-wc" >}})
+- [gitops add management-cluster]({{< relref "/ui-api/kubectl-gs/gitops/add-mc" >}})
+- [gitops add organization]({{< relref "/ui-api/kubectl-gs/gitops/add-org" >}})
+- [gitops add workload-cluster]({{< relref "/ui-api/kubectl-gs/gitops/add-wc" >}})
 
 ## Description
 
@@ -41,55 +42,49 @@ from a base, resulting in the `kustomization.yaml` creation, which then referenc
 working base to reference with the `--base` flag. In any case, user may provide configuration to the application with the
 `--user-configmap` and the `--user-secret` flags.
 
-## Flags
+## Usage
 
-| Name                 | Description                                                             | Required |
-|----------------------| ----------------------------------------------------------------------- | -------- |
-| `app`                | App name in the catalog.                                                | false    |
-| `base`               | Path to the base directory. It must be relative to the repository root. | false    |
-| `catalog`            | Catalog to install the app from.                                        | false    |
-| `management-cluster` | Codename of the Management Cluster the Workload Cluster belongs to.     | true     |
-| `name`               | Name of the app to use for creating the repository directory structure. | false    |
-| `target-namespace`   | Namespace to install app into.                                          | false    |
-| `organization`       | Name of the Organization the Workload Cluster belongs to.               | true     |
-| `skip-mapi`          | Skip mapi directory when adding the app.                                | false    |
-| `user-configmap`     | Values YAML to customize the app with. Will get turn into a ConfigMap.  | false    |
-| `user-secret`        | Values YAML to customize the app with. Will get turn into a Secret.     | false    |
-| `version`            | App version to install.                                                 | false    |
-| `workload-cluster`   | Name of the Workload Cluster to configure the app for.                  | true     |
+Basic command syntax: `kubectl gs gitops add app FLAGS`.
+
+### Flags
+
+- `--management-cluster` -- name of the management cluster the workload cluster belongs to (required)
+- `--organization` -- name of the organization the workload cluster belongs to (required)
+- `--workload-cluster` -- name of the workload cluster to configure the app for (required)
+- `--app` -- app name in the catalog
+- `--base` -- path to the base directory; must be relative to the repository root
+- `--catalog` -- catalog to install the app from
+- `--name` -- name of the app to use for creating the repository directory structure
+- `--target-namespace` -- namespace to install app into
+- `--skip-mapi` -- skip mapi directory when adding the app
+- `--user-configmap` -- values YAML to customize the app with; will get inserted into a ConfigMap.
+- `--user-secret` -- values YAML to customize the app with; will get inserted into a Secret.
+- `--version` -- app version to install.
 
 {{% kubectl_gs_gitops_common_flags %}}
 
-### Deprecated flags
-
-To maintain backward compatibility the command also supports an older flag variation:
-
-- `--namespace` - replaced by `--target-namespace`
-
-This older flag variation is marked as deprecated and will be removed in the next major version of `kubectl gs`.
-
-## Usage
-
-The command to execute is the `kubectl gs gitops add app`.
-
-To preview the objects to be created by the command, run it with the `--dry-run` flag. Find examples below.
+### Examples
 
 {{< tabs >}}
 {{< tab id="no-base" title="Direct" >}}
 
 ```nohighlight
 kubectl gs gitops add app \
---local-path /tmp/gitops-demo \
---management-cluster demomc \
---organization demoorg \
---workload-cluster demowc \
---app hello-world \
---catalog giantswarm \
---version 0.3.0 \
---target-namespace default \
---name hello-world \
---dry-run
+  --local-path /tmp/gitops-demo \
+  --management-cluster demomc \
+  --organization demoorg \
+  --workload-cluster demowc \
+  --app hello-world \
+  --catalog giantswarm \
+  --version 0.3.0 \
+  --target-namespace default \
+  --name hello-world \
+  --dry-run
+```
 
+Output:
+
+```nohighlight
 ## CREATE ##
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters/demowc/mapi/apps
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters/demowc/mapi/apps/hello-world
@@ -139,18 +134,22 @@ After saving this into `/tmp/values.yaml`, it can be referenced when adding an a
 
 ```nohighlight
 kubectl gs gitops add app \
---local-path /tmp/gitops-demo \
---management-cluster demomc \
---organization demoorg \
---workload-cluster demowc \
---app hello-world \
---catalog giantswarm \
---version 0.3.0 \
---target-namespace default \
---name hello-world \
---user-configmap /tmp/values.yaml \
---dry-run
+  --local-path /tmp/gitops-demo \
+  --management-cluster demomc \
+  --organization demoorg \
+  --workload-cluster demowc \
+  --app hello-world \
+  --catalog giantswarm \
+  --version 0.3.0 \
+  --target-namespace default \
+  --name hello-world \
+  --user-configmap /tmp/values.yaml \
+  --dry-run
+```
 
+Output:
+
+```nohighlight
 ## CREATE ##
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters/demowc/mapi/apps
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters/demowc/mapi/apps/hello-world
@@ -205,14 +204,18 @@ In order to add app from a base the `--base` flag should be used instead of spec
 
 ```nohighlight
 kubectl gs gitops add app \
---local-path /tmp/gitops-demo \
---management-cluster demomc \
---organization demoorg \
---workload-cluster demowc \
---base bases/apps/hello-world \
---name hello-world \
---dry-run
+  --local-path /tmp/gitops-demo \
+  --management-cluster demomc \
+  --organization demoorg \
+  --workload-cluster demowc \
+  --base bases/apps/hello-world \
+  --name hello-world \
+  --dry-run
+```
 
+Output:
+
+```nohighlight
 ## CREATE ##
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters/demowc/mapi/apps
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters/demowc/mapi/apps/hello-world
@@ -243,7 +246,7 @@ resources:
 {{< /tab >}}
 {{< tab id="base-config" title="Indirect & Config" >}}
 
-When adding app from a base, it can still be customised with user configuration. **Note, files referenced by these flags should
+When adding app from a base, it can still be customized with user configuration. **Note, files referenced by these flags should
 carry a valid values YAML configuration conforming the values schema of the given the app version.**
 
 Below is the example of `values.yaml` configuring number of replicas and overriding the app's name.
@@ -257,15 +260,19 @@ After saving this into `/tmp/values.yaml`, it can be referenced when adding an a
 
 ```nohighlight
 kubectl gs gitops add app \
---local-path /tmp/gitops-demo \
---management-cluster demomc \
---organization demoorg \
---workload-cluster demowc \
---base bases/apps/hello-world \
---name hello-world \
---user-configmap /tmp/values.yaml \
---dry-run
+  --local-path /tmp/gitops-demo \
+  --management-cluster demomc \
+  --organization demoorg \
+  --workload-cluster demowc \
+  --base bases/apps/hello-world \
+  --name hello-world \
+  --user-configmap /tmp/values.yaml \
+  --dry-run
+```
 
+Output:
+
+```nohighlight
 ## CREATE ##
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters/demowc/mapi/apps
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters/demowc/mapi/apps/hello-world
