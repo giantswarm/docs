@@ -21,7 +21,7 @@ Basic command syntax:
 
 ```nohighlight
 kubectl gs template cluster \
-  --provider capo \
+  --provider openstack \
   FLAGS
 ```
 

@@ -1,0 +1,8 @@
+- `--organization` -- Name of the organization that will own the cluster. Determines the namespace where resources will be created. (required)
+- `--name` -- Cluster name. If not provided, a random alphanumeric name will be generated.
+- `--description` -- User-friendly description of the cluster's purpose.
+- `--pods-cidr` -- CIDR applied to the pods. If this isn't provided, the installation default will be applied.
+- `--label` -- workload cluster label in the form of `key=value`. Can be specified multiple times.
+- `--service-priority` -- Service priority of the cluster (one of: `highest`, `medium`, or `lowest`; default `highest`).
+- `--control-plane-az` -- Availability zone(s) to place the control plane node(s) in.
+- `--output` -- The name of the file to write the output to instead of stdout.

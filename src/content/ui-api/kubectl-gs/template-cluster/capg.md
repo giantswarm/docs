@@ -27,16 +27,17 @@ kubectl gs template cluster \
 
 ### Flags
 
-- `--gcp-project` - The Google Cloud Platform project where the cluster will be deployed.
-- `--region` - The Google Cloud Platform region where the cluster will be deployed.
-- `--gcp-failure-domains` - The Google Cloud Platform zones where the cluster's control-plane nodes will be deployed.
-- `--gcp-control-plane-sa-email` (optional) - The Google Cloud Platform Service Account which the control-plane nodes will use (default: "default").
-- `--gcp-control-plane-sa-scopes` (optional) - The Google Cloud Platform API scopes the control-plane will have access to (default: `https://www.googleapis.com/auth/compute`).
-- `--gcp-machine-deployment-name` (optional) - The name of the MachineDeployment (default: `worker1`).
-- `--gcp-machine-deployment-instance-type` (optional) - The Google Cloud Platform Instance Type for the default nodepool instances (default: `n1-standard-2`).
-- `--gcp-machine-deployment-failure-domain` (optional) - The Google Cloud Platform zones where the cluster's default nodepool will be deployed. (default: `europe-west6-a`).
-- `--gcp-machine-deployment-replicas` (optional) - The number of nodes in the default nodepool (default: 3).
-- `--gcp-machine-deployment-disk-size` (optional) - The node disk size in GB for the default nodepool (default: 100).
+- `--gcp-project` -- Google Cloud Platform project where the cluster will be deployed. (required)
+- `--region` -- Google Cloud Platform region where the cluster will be deployed. (required)
+- `--gcp-failure-domains` -- Google Cloud Platform zones where the cluster's control-plane nodes will be deployed. (required)
+- `--gcp-control-plane-sa-email` -- The Google Cloud Platform Service Account which the control-plane nodes will use (default: "default").
+- `--gcp-control-plane-sa-scopes` -- The Google Cloud Platform API scopes the control-plane will have access to (default: `https://www.googleapis.com/auth/compute`).
+- `--gcp-machine-deployment-name` -- The name of the MachineDeployment (default: `worker1`).
+- `--gcp-machine-deployment-instance-type` -- The Google Cloud Platform Instance Type for the default node pool instances (default: `n1-standard-2`).
+- `--gcp-machine-deployment-failure-domain` -- The Google Cloud Platform zones where the cluster's default node pool will be deployed. (default: `europe-west6-a`).
+- `--gcp-machine-deployment-replicas` -- The number of nodes in the default node pool (default: 3).
+- `--gcp-machine-deployment-disk-size` -- The node disk size in GB for the default node pool (default: 100).
+- `--version` -- Version of the [cluster-gcp](https://github.com/giantswarm/cluster-gcp/releases) app to use. If not specified, the one will be used. In this case, an authenticated kubectl context is required for communication with the management API.
 
 **Note:** The zones where the worker and control-plane nodes are deployed must be in the same region specified in the `--region` flag.
 

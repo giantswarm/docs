@@ -29,7 +29,9 @@ kubectl gs template cluster \
 
 ### Flags
 
-- `--external-snat` - AWS CNI configuration to disable (is enabled by default) the [external source network address translation](https://docs.aws.amazon.com/eks/latest/userguide/external-snat.html).
+{{% kubectl-gs/template_cluster_common_flags %}}
+{{% kubectl-gs/template_cluster_common_flags_vintage %}}
+- `--external-snat` -- AWS CNI configuration to disable the [external source network address translation](https://docs.aws.amazon.com/eks/latest/userguide/external-snat.html). Enabled by default.
 
 ### Examples
 
