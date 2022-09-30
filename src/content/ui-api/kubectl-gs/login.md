@@ -72,7 +72,7 @@ For **OIDC** authentication, the following flags are available:
 
 - `--token`: Use a bearer token instead of OIDC authentication, e. g. a service account token.
 
-- `--internal-api` - (AWS only) With this flag you use an internal Management API endpoint. It resolves to an internal IP address that is only accessible from within the cluster's virtual private cloud (VPC). The hostname of this endpoint is the same as the normal one, with the prefix `internal-`. Example: if your Management API host name is `g8s.example.yourdomain.tld`, the alternative hostname is `internal-g8s.example.yourdomain.tld`.
+- `--internal-api` - (AWS only) With this flag you use an internal Management API endpoint. It resolves to an internal IP address that is only accessible from within the cluster's virtual private cloud (VPC). The hostname of this endpoint is usually the same as the normal one, with the prefix `internal-`. Example: if your Management API host name is `g8s.example.yourdomain.tld`, the alternative hostname is `internal-g8s.example.yourdomain.tld`. This flag works with API hostnames of management clusters and workload clusters as well.
 
 The following flags are related to creating **client certificates** for workload cluster access:
 
