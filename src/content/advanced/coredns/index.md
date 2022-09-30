@@ -22,7 +22,7 @@ Your Giant Swarm installation comes with a default configuration for the [CoreDN
 
 You can override these defaults in a ConfigMap named `coredns-user-values` in the management cluster.
 
-__Note__: In Cluster API CoreDNS is part of default apps `<provider>` chart (example [Cluster API for Openstack](https://github.com/giantswarm/default-apps-openstack/). In order to extend the app you need to patch the App to use `coredns-user-values` configmap. [Check out this example](link).
+__Note__: In Cluster API CoreDNS is part of default apps `<provider>` chart (example [Cluster API for Openstack](https://github.com/giantswarm/default-apps-openstack/). In order to extend the app you need to patch the App to use `coredns-user-values` configmap. [Check out this example](https://github.com/giantswarm/gitops-template/pull/74/files).
 
 ## Where is the user values ConfigMap
 
