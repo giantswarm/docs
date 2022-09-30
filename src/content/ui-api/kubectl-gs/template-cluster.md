@@ -207,7 +207,7 @@ kubectl gs template cluster \
   --provider capa \  
   --control-plane-az eu-central-1a \  
   --description "Development Cluster" \  
-  --name dev01
+  --name dev01 \
   --organization acme
 ```
 
