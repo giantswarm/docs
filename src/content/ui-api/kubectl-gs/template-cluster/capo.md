@@ -77,17 +77,17 @@ kubectl gs template cluster \
   --node-cidr 10.6.0.0/24 \
   --bastion-boot-from-volume \
   --bastion-disk-size 50 \
-  --bastion-image 12345678-abcd-1234-abcd-1234567890ab \
+  --bastion-image ubuntu-2004-kube-v1.22.9 \
   --bastion-machine-flavor a1.tiny \
   --control-plane-az us-east-1 \
   --control-plane-boot-from-volume \
   --control-plane-disk-size 50 \
-  --control-plane-image 12345678-abcd-1234-abcd-1234567890cd \
+  --control-plane-image ubuntu-2004-kube-v1.22.9 \
   --control-plane-machine-flavor a1.small \
   --worker-boot-from-volume \
   --worker-disk-size 50 \
   --worker-failure-domain us-east-1 \
-  --worker-image 12345678-abcd-1234-abcd-1234567890gh \
+  --worker-image ubuntu-2004-kube-v1.22.9 \
   --worker-machine-flavor a1.small \
   --worker-replicas 3
 ```
