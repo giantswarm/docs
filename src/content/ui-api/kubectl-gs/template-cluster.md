@@ -404,7 +404,7 @@ data:
   values: |
     aws: {}
     bastion: {}
-    clusterDescription: Test Cluster
+    clusterDescription: Development Cluster
     clusterName: dev01
     controlPlane:
       replicas: 3
