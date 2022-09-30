@@ -108,7 +108,7 @@ data:
       bootFromVolume: true
       diskSize: 10
       flavor: a1.tiny
-      image: 12345678-abcd-1234-abcd-1234567890ab
+      image: ubuntu-2004-kube-v1.22.9
     cloudConfig: cloud-config-giantswarm-2
     cloudName: openstack
     clusterName: demo1
@@ -116,7 +116,7 @@ data:
       bootFromVolume: true
       diskSize: 50
       flavor: a1.small
-      image: 12345678-abcd-1234-abcd-1234567890cd
+      image: ubuntu-2004-kube-v1.22.9
       replicas: 1
     externalNetworkID: 12345678-abcd-1234-abcd-1234567890ef
     kubernetesVersion: v1.20.9
@@ -125,7 +125,7 @@ data:
     - bootFromVolume: true
       diskSize: 50
       flavor: a1.small
-      image: 12345678-abcd-1234-abcd-1234567890gh
+      image: ubuntu-2004-kube-v1.22.9
       name: default
     nodePools:
     - class: default
