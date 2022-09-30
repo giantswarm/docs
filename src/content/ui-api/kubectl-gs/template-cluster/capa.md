@@ -1,6 +1,6 @@
 ---
 linkTitle: Cluster API AWS
-title: "'kubectl gs template cluster' command reference for CAPA"
+title: "'kubectl gs template cluster' reference for Cluster API provider AWS"
 description: How to create a manifest for a workload cluster using Cluster API provider AWS (CAPA) via 'kubectl gs'.
 menu:
   main:
