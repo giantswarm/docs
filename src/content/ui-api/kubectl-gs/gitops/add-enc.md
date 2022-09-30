@@ -1,14 +1,12 @@
 ---
 linkTitle: add encryption
-title: "'kubectl gs gitops add enc' command reference"
+title: "'kubectl gs gitops add encryption' command reference"
 description: Reference documentation on how to configure encryption for the GitOps repository.
 weight: 40
 menu:
   main:
     parent: kubectlgs-gitops
-aliases:
-  - /reference/kubectl-gs/gitops/add-enc/
-last_review_date: 2022-08-31
+last_review_date: 2022-09-29
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -17,12 +15,15 @@ user_questions:
 
 This command configures encryption for the GitOps repository.
 
-Other command this commad depends on:
-- [gitops init]({{< relref "/ui-api/kubectl-gs/gitops/init" >}})
-- [gitops add mc]({{< relref "/ui-api/kubectl-gs/gitops/add-mc" >}})
-- [gitops add org]({{< relref "/ui-api/kubectl-gs/gitops/add-org" >}})
-- [gitops add wc]({{< relref "/ui-api/kubectl-gs/gitops/add-wc" >}})
-- [gitops add app]({{< relref "/ui-api/kubectl-gs/gitops/add-app" >}})
+## Prerequisites
+
+Your GitOps repository should provide the following structural layers:
+
+- Basic structure (see [`init`]({{< relref "/ui-api/kubectl-gs/gitops/init" >}}))
+- Management cluster (see [`add management-cluster`]({{< relref "/ui-api/kubectl-gs/gitops/add-mc" >}}))
+- Organization (see [`add organization`]({{< relref "/ui-api/kubectl-gs/gitops/add-org" >}}))
+- Workload cluster (see [`add workload-cluster`]({{< relref "/ui-api/kubectl-gs/gitops/add-wc" >}}))
+- Apps (see [`add app`]({{< relref "/ui-api/kubectl-gs/gitops/add-app" >}}))
 
 ## Description
 
@@ -43,29 +44,29 @@ The structure created by this command is presented below. Resources enclosed in 
         └── ORG_NAME
             └── workload-clusters
                 └── [WC_NAME.yaml]
-
 ```
 
 Encryption can be configured for multiple layers of the repository depending on the set of the flags passed to the command.
-As stated in the [init command](#init.md), the `kubectl-gs` does not perform encryption on behalf of the user, hence user is
+As stated in the [init command]({{< relref "/ui-api/kubectl-gs/gitops/init" >}}), the `kubectl-gs` does not perform encryption on behalf of the user, hence user is
 obliged to run the `sops` binary on his own. The command will however instruct user of how to import the public key into his
 keychain.
 
-## Flags
-
-| Name                 | Description                                                              | Required |
-| -------------------- | ------------------------------------------------------------------------ | -------- |
-| `generate`           | Generate new key pair.                                                   | true     |
-| `management-cluster` | Management cluster to configure the encryption for.                      | true     |
-| `organization`       | Organization in the Management Cluster to configure the encryption for.  | false    |
-| `target`             | Relative directory to configure the encryption for. (default "secrets/") | false    |
-| `workload-cluster`   | Workload Cluster in the Organization to configure the encryption for.    | false    |
-
 ## Usage
 
-The command to execute is the `kubectl gs gitops add enc`.
+Basic command syntax: `kubectl gs gitops add encryption FLAGS`
 
-To preview the objects to be created by the command, run it with the `--dry-run` flag. Find examples below.
+### Flags
+
+- `--generate` -- generate new key pair (required)
+- `--management-cluster` -- management cluster to configure the encryption for (required)
+- `--organization` -- organization in the management cluster to configure the encryption for
+- `--target` -- relative directory to configure the encryption for (default "secrets/")
+- `--workload-cluster` -- workload cluster in the Organization to configure the encryption for
+
+{{% kubectl_gs_gitops_common_flags %}}
+
+
+### Examples
 
 In each of the examples below it is assumed the `protected-dir` directory exists at the layer being configured.
 
@@ -73,13 +74,17 @@ In each of the examples below it is assumed the `protected-dir` directory exists
 {{< tab id="mc-enc" title="Management Cluster" >}}
 
 ```nohighlight
-kubectl gs gitops add enc \
---local-path /tmp/gitops-demo \
---generate \
---management-cluster demomc \
---target protected-dir \
---dry-run
+kubectl gs gitops add encryption \
+  --local-path /tmp/gitops-demo \
+  --generate \
+  --management-cluster demomc \
+  --target protected-dir \
+  --dry-run
+```
 
+Output:
+
+```nohighlight
 ## CREATE ##
 /tmp/gitops-demo/management-clusters/demomc/.sops.keys/demomc.25c90481570b4a46176dc453f7bf506e0ad50d47.asc
 -----BEGIN PGP PUBLIC KEY BLOCK-----
@@ -146,14 +151,18 @@ to load the public key into the keychain for SOPS to work.
 {{< tab id="org-enc" title="Organization" >}}
 
 ```nohighlight
-kubectl gs gitops add enc \
---local-path /tmp/gitops-demo \
---generate \
---management-cluster demomc \
---organization demoorg \
---target protected-dir \
---dry-run
+kubectl gs gitops add encryption \
+  --local-path /tmp/gitops-demo \
+  --generate \
+  --management-cluster demomc \
+  --organization demoorg \
+  --target protected-dir \
+  --dry-run
+```
 
+Output:
+
+```nohighlight
 ## CREATE ##
 /tmp/gitops-demo/management-clusters/demomc/.sops.keys/demomc.5286137ee4a4890c0cae093a3df892dbc5f532ca.asc
 -----BEGIN PGP PUBLIC KEY BLOCK-----
@@ -220,15 +229,19 @@ to load the public key into the keychain for SOPS to work.
 {{< tab id="wc-enc" title="Workload Cluster" >}}
 
 ```nohighlight
-kubectl gs gitops add enc \
---local-path /tmp/gitops-demo \
---generate \
---management-cluster demomc \
---organization demoorg \
---workload-cluster demowc \
---target protected-dir \
---dry-run
+kubectl gs gitops add encryption \
+  --local-path /tmp/gitops-demo \
+  --generate \
+  --management-cluster demomc \
+  --organization demoorg \
+  --workload-cluster demowc \
+  --target protected-dir \
+  --dry-run
+```
 
+Output:
+
+```nohighlight
 ## CREATE ##
 /tmp/gitops-demo/management-clusters/demomc/.sops.keys/demowc.5ee3687ce2ef2ee94dc671d11483c46dbf667bf2.asc
 -----BEGIN PGP PUBLIC KEY BLOCK-----

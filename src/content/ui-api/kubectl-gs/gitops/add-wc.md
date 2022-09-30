@@ -1,26 +1,27 @@
 ---
 linkTitle: add workload-cluster
-title: "'kubectl gs gitops add wc' command reference"
-description: Reference documentation on how to add a new Workload Cluster to the GitOps repository.
+title: "'kubectl gs gitops add workload-cluster' command reference"
+description: Reference documentation on how to add a new workload cluster to a GitOps repository.
 weight: 25
 menu:
   main:
     parent: kubectlgs-gitops
-aliases:
-  - /reference/kubectl-gs/gitops/add-wc/
-last_review_date: 2022-08-31
+last_review_date: 2022-09-29
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
-  - How do I configure Workload Cluster in the GitOps repository?
+  - How do I add a workload cluster to a GitOps repository?
 ---
 
-This command adds a new Workload Cluster to the GitOps repository.
+This command adds a new workload cluster to the GitOps repository.
 
-Other command this commad depends on:
-- [gitops init]({{< relref "/ui-api/kubectl-gs/gitops/init" >}})
-- [gitops add mc]({{< relref "/ui-api/kubectl-gs/gitops/add-mc" >}})
-- [gitops add org]({{< relref "/ui-api/kubectl-gs/gitops/add-org" >}})
+## Prerequisites
+
+Your GitOps repository should provide the following structural layers:
+
+- Basic structure (see [`init`]({{< relref "/ui-api/kubectl-gs/gitops/init" >}}))
+- Management cluster (see [`add management-cluster`]({{< relref "/ui-api/kubectl-gs/gitops/add-mc" >}}))
+- Organization (see [`add organization`]({{< relref "/ui-api/kubectl-gs/gitops/add-org" >}}))
 
 ## Description
 
@@ -46,37 +47,36 @@ management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters
             └── [patch_default_apps_userconfig.yaml]
 ```
 
-Content of the `cluster` directory is optional because in its most basic form the GitOps repository does not oblige user to
-put the cluster definition in there, this can be added later by re-running the command with additional flags. Re-running works
-in such case, because `cluster` directory is initially empty. Note however, in order to populate it user must have a
-working base and reference it by the `--base` flag when running the command. User may customize the referenced base with
+The content of the `cluster` directory is optional because in its most basic form, the GitOps repository does not require you to
+put the cluster definition in there. It can be added later by re-running the command with additional flags. Re-running works
+in such case, because `cluster` directory is initially empty. Note however, in order to populate it, you must have a
+working base and reference it by the `--base` flag when running the command. You may customize the referenced base with
 the `--cluster-user-config` and `--default-apps-user-config` flags when needed.
 
-**Note**, the latest recommendation mandates creation of the `mapi` directory. However, users who have not yet migrated to it,
-but still want to use automation for their repositories, may skip `mapi` layer by using the `--skip-mapi` flag. Migration is
+**Note:** the latest recommendation mandates creation of the `mapi` directory. However, users who have not yet migrated to it,
+but still want to use automation for their repositories, may skip the `mapi` layer by using the `--skip-mapi` flag. Migration is
 nevertheless mandatory, and hence this flag is planned to be removed from `kubectl-gs` at some point.
-
-## Flags
-
-| Name                       | Description                                                             | Required |
-| -------------------------- | ----------------------------------------------------------------------- | -------- |
-| `base`                     | Path to the base directory. It must be relative to the repository root. | false    |
-| `cluster-release`          | Cluster app version.                                                    | true     |
-| `cluster-user-config`      | Cluster app user configuration to patch the base with.                  | false    |
-| `default-apps-release`     | Default apps app version.                                               | true     |
-| `default-apps-user-config` | Default apps app user configuration to patch the base with.             | false    |
-| `management-cluster`       | Codename of the Management Cluster the Workload Cluster belongs to.     | true     |
-| `name`                     | Name of the Workload Cluster.                                           | true     |
-| `organization`             | Name of the Organization the Workload Cluster belongs to.               | true     |
-| `repository-name`          | Name of the GitOps repository.                                          | true     |
-| `skip-mapi`                | Skip mapi directory when adding the app.                                | false    |
-
 
 ## Usage
 
-The command to execute is the `kubectl gs gitops add wc`.
+Basic command syntax: `kubectl gs gitops add workload-cluster FLAGS`
 
-To preview the objects to be created by the command, run it with the `--dry-run` flag. Fine example below.
+### Flags
+
+- `--cluster-release` -- cluster-app version (required)
+- `--default-apps-release` -- default apps version (required)
+- `--management-cluster` -- name of the management cluster the workload cluster belongs to (required)
+- `--name` -- name of the workload cluster (required)
+- `--organization` -- name of the organization the workload cluster belongs to (required)
+- `--repository-name` -- name of the GitOps repository (required)
+- `--base` -- path to the base directory; must be relative to the repository root
+- `--cluster-user-config` -- cluster app user configuration to patch the base with
+- `--default-apps-user-config` -- default apps app user configuration to patch the base with
+- `--skip-mapi` -- skip mapi directory when adding the app
+
+{{% kubectl_gs_gitops_common_flags %}}
+
+### Examples
 
 {{< tabs >}}
 {{< tab id="no-definition" title="No Definition" >}}
@@ -85,14 +85,18 @@ In the most basic form the GitOps repository may be populated with Workload Clus
 without the cluster-related CRs.
 
 ```nohighlight
-kubectl gs gitops add wc \
---local-path /tmp/gitops-demo \
---name demowc \
---management-cluster demomc \
---organization demoorg \
---repository-name gitops-demo \
---dry-run
+kubectl gs gitops add workload-cluster \
+  --local-path /tmp/gitops-demo \
+  --name demowc \
+  --management-cluster demomc \
+  --organization demoorg \
+  --repository-name gitops-demo \
+  --dry-run
+```
 
+Output:
+
+```nohighlight
 ## CREATE ##
 /tmp/gitops-demo/management-clusters/demomc/secrets/demowc.gpgkey.enc.yaml
 apiVersion: v1
@@ -168,17 +172,21 @@ When desired to manage cluster definition from GitOps repository, it can be adde
 `--cluster-release`, and the `--default-apps-release` flags.
 
 ```nohighlight
-kubectl gs gitops add wc \
---local-path /tmp/gitops-demo \
---name demowc \
---management-cluster demomc \
---organization demoorg \
---repository-name gitops-demo \
---base bases/cluster/capi \
---cluster-release 1.0.0 \
---default-apps-release 2.0.0 \
---dry-run
+kubectl gs gitops add workload-cluster \
+  --local-path /tmp/gitops-demo \
+  --name demowc \
+  --management-cluster demomc \
+  --organization demoorg \
+  --repository-name gitops-demo \
+  --base bases/cluster/capi \
+  --cluster-release 1.0.0 \
+  --default-apps-release 2.0.0 \
+  --dry-run
+```
 
+Output:
+
+```nohighlight
 ## CREATE ##
 /tmp/gitops-demo/management-clusters/demomc/secrets/demowc.gpgkey.enc.yaml
 apiVersion: v1
@@ -296,18 +304,22 @@ cloudConfig: demo-cloud-config
 After saving this into `/tmp/values.yaml`, it can be referenced when adding a cluster.
 
 ```nohighlight
-kubectl gs gitops add wc \
---local-path /tmp/gitops-demo \
---name demowc \
---management-cluster demomc \
---organization demoorg \
---repository-name gitops-demo \
---base bases/cluster/capi \
---cluster-release 1.0.0 \
---default-apps-release 2.0.0 \
---cluster-user-config /tmp/values.yaml
---dry-run
+kubectl gs gitops add workload-cluster \
+  --local-path /tmp/gitops-demo \
+  --name demowc \
+  --management-cluster demomc \
+  --organization demoorg \
+  --repository-name gitops-demo \
+  --base bases/cluster/capi \
+  --cluster-release 1.0.0 \
+  --default-apps-release 2.0.0 \
+  --cluster-user-config /tmp/values.yaml
+  --dry-run
+```
 
+Output:
+
+```nohighlight
 ## CREATE ##
 /tmp/gitops-demo/management-clusters/demomc/secrets/demowc.gpgkey.enc.yaml
 apiVersion: v1

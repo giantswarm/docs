@@ -1,14 +1,12 @@
 ---
 linkTitle: add management-cluster
-title: "'kubectl gs gitops add mc' command reference"
+title: "'kubectl gs gitops add management-cluster' command reference"
 description: Reference documentation on how to add a new Management Cluster to the GitOps repository.
 weight: 15
 menu:
   main:
     parent: kubectlgs-gitops
-aliases:
-  - /reference/kubectl-gs/gitops/add-mc/
-last_review_date: 2022-08-31
+last_review_date: 2022-09-29
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -17,8 +15,11 @@ user_questions:
 
 This command adds a new Management Cluster to the GitOps repository.
 
-Other command this commad depends on:
-- [gitops init]({{< relref "/ui-api/kubectl-gs/gitops/init" >}})
+## Prerequisites
+
+Your GitOps repository should provide the following structural layers:
+
+- Basic structure (see [`init`]({{< relref "/ui-api/kubectl-gs/gitops/init" >}}))
 
 ## Description
 
@@ -38,23 +39,22 @@ management-clusters
 
 **Note**, in a default mode the creation of SOPS GPG key pair is skipped. It is because in its most basic form GitOps
 repository can be driven without encryption. To enable the keys creation pass the `--gen-master-key` flag
-when adding the cluster. When skipped at this point, encryption can still be added later by the [`add enc`](#add-enc.mc)
+when adding the cluster. When skipped at this point, encryption can still be added later by the [`add encryption`]({{< relref "/ui-api/kubectl-gs/gitops/add-enc" >}})
 command.
-
-## Flags
-
-| Name              | Description                                          | Required |
-| ----------------- | ---------------------------------------------------- | -------- |
-| `gen-master-key`  | Generate Management Cluster master GPG key for SOPS. | false    |
-| `name`            | Codename of the Management Cluster.                  | true     |
-| `repository-name` | Name of the GitOps repository.                       | true     |
-
 
 ## Usage
 
-The command to execute is the `kubectl gs gitops add mc`.
+Basic command syntax: `kubectl gs gitops add management-cluster FLAGS`.
 
-To preview the objects to be created by the command, run it with the `--dry-run` flag. Find examples below.
+### Flags
+
+- `--name` -- name of the management cluster (required)
+- `--repository-name` -- name of the GitOps repository (required)
+- `--gen-master-key` -- generate a master GPG key for SOPS for this management cluster
+
+{{% kubectl_gs_gitops_common_flags %}}
+
+### Examples
 
 {{< tabs >}}
 {{< tab id="no-encryption" title="No Encryption" >}}
@@ -62,12 +62,16 @@ To preview the objects to be created by the command, run it with the `--dry-run`
 By default command configures basic directory structure without any encryption.
 
 ```nohighlight
-kubectl gs gitops add mc \
---local-path /tmp/gitops-demo \
---name demomc \
---repository-name gitops-demo \
---dry-run
+kubectl gs gitops add management-cluster \
+  --local-path /tmp/gitops-demo \
+  --name demomc \
+  --repository-name gitops-demo \
+  --dry-run
+```
 
+Output:
+
+```nohighlight
 ## CREATE ##
 /tmp/gitops-demo/management-clusters/demomc
 /tmp/gitops-demo/management-clusters/demomc/demomc.yaml
@@ -103,13 +107,17 @@ metadata:
 Upon passing the `--gen-master-key` flag, the output will get enriched with the GPG key pair, see example:
 
 ```nohighlight
-kubectl gs gitops add mc \
---local-path /tmp/gitops-demo \
---name demomc \
---repository-name gitops-demo \
---gen-master-key \
---dry-run
+kubectl gs gitops add management-cluster \
+  --local-path /tmp/gitops-demo \
+  --name demomc \
+  --repository-name gitops-demo \
+  --gen-master-key \
+  --dry-run
+```
 
+Output:
+
+```nohighlight
 ## CREATE ##
 /tmp/gitops-demo/management-clusters/demomc
 /tmp/gitops-demo/management-clusters/demomc/demomc.yaml

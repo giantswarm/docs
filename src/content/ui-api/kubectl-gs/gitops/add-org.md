@@ -1,25 +1,26 @@
 ---
 linkTitle: add organization
-title: "'kubectl gs gitops add org' command reference"
-description: Reference documentation on how to add a new Organization to the GitOps repository.
+title: "'kubectl gs gitops add organization' command reference"
+description: Reference documentation on how to add a new organization to a GitOps repository.
 weight: 20
 menu:
   main:
     parent: kubectlgs-gitops
-aliases:
-  - /reference/kubectl-gs/gitops/add-org/
-last_review_date: 2022-08-31
+last_review_date: 2022-09-29
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
-  - How do I configure Organization in the GitOps repository?
+  - How do I add an organization to a GitOps repository?
 ---
 
 This command adds a new Organization to the GitOps repository.
 
-Other command this commad depends on:
-- [gitops init]({{< relref "/ui-api/kubectl-gs/gitops/init" >}})
-- [gitops add mc]({{< relref "/ui-api/kubectl-gs/gitops/add-mc" >}})
+## Prerequisites
+
+Your GitOps repository should provide the following structural layers:
+
+- Basic structure (see [`init`]({{< relref "/ui-api/kubectl-gs/gitops/init" >}}))
+- Management cluster (see [`add management-cluster`]({{< relref "/ui-api/kubectl-gs/gitops/add-mc" >}}))
 
 ## Description
 
@@ -33,26 +34,30 @@ management-clusters/MC_NAME/organizations
         └── kustomization.yaml
 ```
 
-## Flags
-
-| Name              | Description                                        | Required |
-| ----------------- | -------------------------------------------------- | -------- |
-| `management-cluster` | Management Cluster the Organization belongs to. | true     |
-| `name`            | Organization name.                                 | true     |
-
 ## Usage
 
-The command to execute is the `kubectl gs gitops add org`.
+Basic command syntax: `kubectl gs gitops add organization FLAGS`.
 
-To preview the objects to be created by the command, run it with the `--dry-run` flag. Example:
+### Flags
+
+- `--management-cluster` -- management cluster the organization belongs to (required)
+- `--name` -- organization name (required)
+
+{{% kubectl_gs_gitops_common_flags %}}
+
+### Examples
 
 ```nohighlight
-kubectl gs gitops add org \
---local-path /tmp/gitops-demo \
---name demoorg \
---management-cluster demomc \
---dry-run
+kubectl gs gitops add organization \
+  --local-path /tmp/gitops-demo \
+  --name demoorg \
+  --management-cluster demomc \
+  --dry-run
+```
 
+Output:
+
+```nohighlight
 ## CREATE##
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/demoorg.yaml
