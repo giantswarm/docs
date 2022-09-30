@@ -2,7 +2,7 @@
 linkTitle: update app
 title: "'kubectl gs update app' command reference"
 description: Reference documentation on how to update an App CR using 'kubectl gs'.
-weight: 100
+weight: 120
 menu:
   main:
     parent: uiapi-kubectlgs
