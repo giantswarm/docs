@@ -1,6 +1,6 @@
 ---
 linkTitle: Cluster API OpenStack
-title: "'kubectl gs template cluster' command reference for CAPO"
+title: "'kubectl gs template cluster' command reference for OpenStack"
 description: How to create a manifest for a workload cluster using Cluster API provider OpenStack (CAPO) via 'kubectl gs'.
 menu:
   main:
@@ -27,35 +27,42 @@ kubectl gs template cluster \
 
 ### Flags
 
-- `--cluster-version` (optional) - Version of `cluster-openstack` helm chart to use. If not provided, the latest version will be used.
-- `--default-apps-version` (optional) - Version of `default-apps-openstack` helm chart to use. If not provided, the latest version will be used.
-- `--cloud` - Name of the cloud in the `cloud-config` secret. This is almost always "openstack".
-- `--cloud-config` - Name of the `cloud-config` secret which defines the credentials for the OpenStack project in which the cluster should be created. This must be created in the organization namespace before creating a cluster.
-- `--dns-nameservers` (optional) - A list of DNS nameservers to be used to resolve external names.
-- `--external-network-id` - UUID of the external network to be used. Only required if multiple external networks are available.
-- `--node-cidr` - CIDR defining the IP range of cluster nodes. When used, new network and subnet will be created.
-- `--network-name` (optional) - Name of existing network for the cluster. Can be used when `--node-cidr` is empty. 
-- `--subnet-name` (optional) - Name of existing subnet for the cluster. Can be used when `--node-cidr` is empty. 
-- `--bastion-boot-from-volume` - If true, bation machine will use a persistent root volume instead of an ephemeral volume.
-- `--bastion-disk-size` - Size of root volume attached to the cluster bastion machine in gigabytes. Must be greater than or equal to the size of the bastion source image (`--bastion-image`).
-- `--bastion-image` - Bastion image name or root volume source UUID if --bastion-boot-from-volume is set.
-- `--bastion-machine-flavor` - Flavor (a.k.a. size) of the bastion machine.
-- `--control-plane-boot-from-volume` - If true, control plane machine(s) will use a persistent root volume instead of an ephemeral volume.
-- `--control-plane-disk-size` - Size of root volumes attached to each control plane node machine in gigabytes. Must be greater than or equal to the size of the node source image.
-- `--control-plane-image` - Control plane image name or root volume source UUID if --control-plane-boot-from-volume is set.
-- `--control-plane-machine-flavor` - Flavor (a.k.a. size) of the worker node machines.
-- `--control-plane-replicas` - Number of control plane replicas. This should be 1 for a non-HA control plane or 3 for an HA control plane (etcd requires an odd number of members).
-- `--oidc-issuer-url` (optional) - This is the issuer URL for configuring OpenID connect in the cluster API.
-- `--oidc-ca-file` (optional) - This is the CA file path in case is not used a trusted Certificate Authority for OIDC endpoint.
-- `--oidc-client-id` (optional) - This is the client ID that is configured in the OIDC endpoint.
-- `--oidc-username-claim` (optional) - This is the claim used to map the username identity of the user.
-- `--oidc-groups-claim` (optional) - This is the claim used to map the group identity of the user.
-- `--worker-boot-from-volume` - If true, worker machines will use a persistent root volume instead of an ephemeral volume.
-- `--worker-disk-size` - Size of root volumes attached to each worker node machine in gigabytes. Must be greater than or equal to the size of the node source image (`--worker-image`).
-- `--worker-failure-domain` - Failure domain of worker nodes.
-- `--worker-image` - Worker image name or root volume source UUID if --worker-boot-from-volume is set.
-- `--worker-machine-flavor` - Flavor (a.k.a. size) of the worker node machines.
-- `--worker-replicas` - Number of replicas in the primary worker node pool.
+Common flags:
+
+{{% kubectl-gs/template_cluster_common_flags %}}
+
+Flags specific to OpenStack:
+
+- `--bastion-image` -- Bastion image name or root volume source UUID if `--bastion-boot-from-volume` is set. (required)
+- `--bastion-machine-flavor` -- Flavor (a.k.a. size) of the bastion machine. (required)
+- `--cloud` -- Name of the cloud in the `cloud-config` secret. This is almost always `openstack`. (required)
+- `--cloud-config` -- Name of the `cloud-config` secret which defines the credentials for the OpenStack project in which the cluster. (required)
+- `--control-plane-image` -- Control plane image name or root volume source UUID if --control-plane-boot-from-volume is set. (required)
+- `--control-plane-machine-flavor` -- Flavor (a.k.a. size) of the worker node machines. (required)
+- `--external-network-id` -- UUID of the external network to be used. Only required if multiple external networks are available.
+- `--worker-failure-domain` -- Failure domain of worker nodes.
+- `--worker-image` -- Worker image name or root volume source UUID if --worker-boot-from-volume is set.
+- `--worker-machine-flavor` -- Flavor (a.k.a. size) of the worker node machines.
+- `--worker-replicas` -- Number of replicas in the primary worker node pool.
+- `--bastion-boot-from-volume` -- If true, bastion machine will use a persistent root volume instead of an ephemeral volume.
+- `--bastion-disk-size` -- Size of root volume attached to the cluster bastion machine in gigabytes. Must be greater than or equal to the size of the bastion source image (`--bastion-image`).
+should be created. This must be created in the organization namespace before creating a cluster.
+- `--cluster-version` -- Version of the [cluster-openstack](https://github.com/giantswarm/cluster-openstack) app to use. If not provided, the latest version will be used. In this case, an authenticated kubectl context is required for communication with the management API.
+- `--control-plane-boot-from-volume` -- If true, control plane machine(s) will use a persistent root volume instead of an ephemeral volume.
+- `--control-plane-disk-size` -- Size of root volumes attached to each control plane node machine in gigabytes. Must be greater than or equal to the size of the node source image.
+- `--control-plane-replicas` -- Number of control plane replicas. This should be 1 for a non-HA control plane or 3 for an HA control plane (Etcd requires an odd number of members).
+- `--default-apps-version` -- Version of the [default-apps-openstack](https://github.com/giantswarm/default-apps-openstack/releases) app to use. If not provided, the latest version will be used. In this case, an authenticated kubectl context is required for communication with the management API.
+- `--dns-nameservers` -- A list of DNS name servers to be used to resolve external names.
+- `--network-name` -- Name of existing network for the cluster. Can be used when `--node-cidr` is empty.
+- `--node-cidr` -- CIDR defining the IP range of cluster nodes. When used, new network and subnet will be created.
+- `--oidc-ca-file` -- This is the CA file path in case is not used a trusted Certificate Authority for OIDC endpoint.
+- `--oidc-client-id` -- This is the client ID that is configured in the OIDC endpoint.
+- `--oidc-groups-claim` -- This is the claim used to map the group identity of the user.
+- `--oidc-issuer-url` -- This is the issuer URL for configuring OpenID connect in the cluster API.
+- `--oidc-username-claim` -- This is the claim used to map the username identity of the user.
+- `--subnet-name` -- Name of existing subnet for the cluster. Can be used when `--node-cidr` is empty.
+- `--worker-boot-from-volume` -- If true, worker machines will use a persistent root volume instead of an ephemeral volume.
+- `--worker-disk-size` -- Size of root volumes attached to each worker node machine in gigabytes. Must be greater than or equal to the size of the node source image (`--worker-image`).
 
 ### Examples
 

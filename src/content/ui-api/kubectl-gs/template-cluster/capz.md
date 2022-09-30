@@ -1,6 +1,6 @@
 ---
 linkTitle: Cluster API Azure
-title: "'kubectl gs template cluster' command reference for CAPZ"
+title: "'kubectl gs template cluster' command reference for Cluster API provider Azure"
 description: How to create a manifest for a workload cluster using Cluster API provider Azure (CAPZ) via 'kubectl gs'.
 menu:
   main:
@@ -15,7 +15,7 @@ last_review_date: 2022-09-29
 
 Here we explain how to use [`kubectl gs template cluster`]({{< relref "/ui-api/kubectl-gs/template-cluster" >}}) with Cluster API provider Azure (also known as CAPZ).
 
-**Note:* Please be aware that this is an early alpha release. Clusters created using this release won't be monitored by Giant Swarm and, they won't be able to be upgraded to newer stable releases.
+**Note:** Please be aware that Cluster API on Azure is in an alpha stage. Clusters created using this release won't be monitored by Giant Swarm, and they won't be able to be upgraded to newer stable releases.
 
 To enable Cluster API compatible resources, you have to select release version `v20.0.0-alpha1` via the `--release` flag and set the provider name to `azure` via the `--provider` flag.
 
@@ -32,11 +32,9 @@ kubectl gs template cluster \
 
 ### Flags
 
-TODO
+{{% kubectl-gs/template_cluster_common_flags %}}
 
-### Examples
-
-TODO
+<!-- ### Examples -->
 
 ## Output
 
