@@ -24,11 +24,11 @@ Usage depends on the provider, set via the `--provider` flag. Please refer to th
 | Provider | `--provider` flag value |
 |-|-|
 | [AWS]({{< relref "/ui-api/kubectl-gs/template-cluster/aws" >}}) | `aws` |
-| [Azure]({{< relref "/ui-api/kubectl-gs/template-cluster/aws" >}}) | `azure` |
-| [Cluster API provider AWS]({{< relref "/ui-api/kubectl-gs/template-cluster/aws" >}}) | `capa` |
-| [Cluster API provider Azure]({{< relref "/ui-api/kubectl-gs/template-cluster/aws" >}}) | `azure` |
-| [Cluster API provider GCP]({{< relref "/ui-api/kubectl-gs/template-cluster/aws" >}}) | `gcp` |
-| [Cluster API provider OpenStack]({{< relref "/ui-api/kubectl-gs/template-cluster/aws" >}}) | `capo` |
+| [Azure]({{< relref "/ui-api/kubectl-gs/template-cluster/azure" >}}) | `azure` |
+| [Cluster API provider AWS]({{< relref "/ui-api/kubectl-gs/template-cluster/capa" >}}) | `capa` |
+| [Cluster API provider Azure]({{< relref "/ui-api/kubectl-gs/template-cluster/capz" >}}) | `capz` |
+| [Cluster API provider GCP]({{< relref "/ui-api/kubectl-gs/template-cluster/capg" >}}) | `capg` |
+| [Cluster API provider OpenStack]({{< relref "/ui-api/kubectl-gs/template-cluster/capo" >}}) | `capo` |
 
 On AWS, it must be configured with AZ of the installation region. E.g. for region `eu-central-1`, a valid value is `eu-central-1a`.
 
