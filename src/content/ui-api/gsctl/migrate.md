@@ -24,7 +24,7 @@ Here is a table for all replacements:
 
 | gsctl command           | kubectl gs command |
 |-------------------------|--------------------|
-| gsctl create cluster    | [kubectl gs template cluster]({{< relref "/ui-api/kubectl-gs/template-cluster.md" >}}) |
+| gsctl create cluster    | [kubectl gs template cluster]({{< relref "/ui-api/kubectl-gs/template-cluster" >}}) |
 | gsctl create keypair    | [kubectl gs login]({{< relref "/ui-api/kubectl-gs/login.md" >}}) |
 | gsctl create kubeconfig | [kubectl gs login]({{< relref "/ui-api/kubectl-gs/login.md" >}}) |
 | gsctl create nodepool   | [kubectl gs template nodepool]({{< relref "/ui-api/kubectl-gs/template-nodepool.md" >}}) |

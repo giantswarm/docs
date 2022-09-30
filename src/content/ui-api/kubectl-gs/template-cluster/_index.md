@@ -6,54 +6,31 @@ weight: 90
 menu:
   main:
     parent: uiapi-kubectlgs
-aliases:
-  - /reference/kubectl-gs/template-cluster/
+    identifier: uiapi-kubectlgs-templatecluster
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I create a cluster manifest for the Management API?
-last_review_date: 2022-06-16
+last_review_date: 2022-09-29
 ---
 
-This command helps with creating a cluster by producing a manifest based on user input. This manifest can then optionally be modified and finally be applied to the Management API to create a cluster.
+The `template cluster` command creates manifests for all the resources required to create a workload cluster. Actual cluster creation happens after submitting the manifests to the management API, e. g. via `kubectl apply`.
 
-The outcome depends on the provider, set via the `--provider` flag.
+## Providers
+
+Usage depends on the provider, set via the `--provider` flag. Please refer to the provider-specific pages for more details.
+
+| Provider | `--provider` flag value |
+|-|-|
+| [AWS]({{< relref "/ui-api/kubectl-gs/template-cluster/aws" >}}) | `aws` |
+| [Azure]({{< relref "/ui-api/kubectl-gs/template-cluster/aws" >}}) | `azure` |
+| [Cluster API provider AWS]({{< relref "/ui-api/kubectl-gs/template-cluster/aws" >}}) | `capa` |
+| [Cluster API provider Azure]({{< relref "/ui-api/kubectl-gs/template-cluster/aws" >}}) | `azure` |
+| [Cluster API provider GCP]({{< relref "/ui-api/kubectl-gs/template-cluster/aws" >}}) | `gcp` |
+| [Cluster API provider OpenStack]({{< relref "/ui-api/kubectl-gs/template-cluster/aws" >}}) | `capo` |
 
 {{< tabs >}}
-{{< tab id="flags-aws" title="AWS">}}
 
-For AWS (`--provider aws`):
-
-- [`Cluster`]({{< relref "/ui-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1beta1`) - holds the base cluster specification.
-- [`AWSCluster`]({{< relref "/ui-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`) - holds AWS-specific configuration.
-- [`G8sControlPlane`]({{< relref "/ui-api/management-api/crd/g8scontrolplanes.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`) - specifies the control plane nodes
-- [`AWSControlPlane`]({{< relref "/ui-api/management-api/crd/awscontrolplanes.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`) - specifies the control plane nodes with AWS-specific details
-
-{{< /tab >}}
-{{< tab id="flags-azure" title="Azure">}}
-
-For Azure (`--provider azure`):
-
-- [`Cluster`]({{< relref "/ui-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1beta1`) - holds the base cluster specification.
-- [`AzureCluster`]({{< relref "/ui-api/management-api/crd/azureclusters.infrastructure.cluster.x-k8s.io.md" >}}) (API version `infrastructure.cluster.x-k8s.io/v1beta1`) - holds Azure-specific configuration.
-- [`AzureMachine`]({{< relref "/ui-api/management-api/crd/azuremachines.infrastructure.cluster.x-k8s.io.md" >}}) (API version `infrastructure.cluster.x-k8s.io/v1beta1`) - specifies the control plane nodes.
-
-{{< /tab >}}
-{{< tab id="flags-capz" title="Cluster API on Azure">}}
-
-We also support creating clusters on Azure using ClusterAPI by selecting our `v20.0.0-alpha1` release  (`--provider azure --release v20.0.0-alpha1`).
-Please be aware that this is an early alpha release. Clusters created using this release won't be monitored by Giant Swarm and, they won't be able to be upgraded to newer stable releases.
-
-In this case the outcome is a bit different:
-
-- [`Cluster`]({{< relref "/ui-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1beta1`) - holds the base cluster specification.
-- [`AzureCluster`]({{< relref "/ui-api/management-api/crd/azureclusters.infrastructure.cluster.x-k8s.io.md" >}}) (API version `infrastructure.cluster.x-k8s.io/v1beta1`) - holds Azure-specific configuration.
-- [`KubeadmControlPlane`]({{< relref "/ui-api/management-api/crd/kubeadmcontrolplanes.controlplane.cluster.x-k8s.io.md" >}}) (API version `controlplane.cluster.x-k8s.io/v1beta1`) - specifies the control plane nodes.
-- [`AzureMachineTemplate`]({{< relref "/ui-api/management-api/crd/azuremachinetemplates.infrastructure.cluster.x-k8s.io.md" >}}) (API version `infrastructure.cluster.x-k8s.io/v1beta1`) - holds Azure-specific configuration for the control plane nodes.
-- [`MachineDeployment`]({{< relref "/ui-api/management-api/crd/machinedeployments.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1beta1`) - holds the bastion host specification.
-- [`AzureMachineTemplate`]({{< relref "/ui-api/management-api/crd/azuremachinetemplates.infrastructure.cluster.x-k8s.io.md" >}}) (API version `infrastructure.cluster.x-k8s.io/v1beta1`) - holds Azure-specific configuration for the bastion host.
-
-{{< /tab >}}
 {{< tab id="flags-gcp" title="GCP (alpha)">}}
 
 For Google Cloud Platform (`--provider gcp`):

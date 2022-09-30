@@ -24,7 +24,7 @@ user_questions:
 
 ### How can I create a cluster or node pool
 
-`kubectl-gs` provides the `template` family of commands, to create manifests for clusters, node pools and more. The resulting manifests are meant to be applied by `kubectl apply` to actually resources. Check the [template cluster]({{< relref "/ui-api/kubectl-gs/template-cluster.md" >}}) and [template nodepool]({{< relref "/ui-api/kubectl-gs/template-cluster.md" >}}) reference pages. We also provide more verbose tutorials for [AWS]({{< relref "/ui-api/management-api/creating-workload-clusters/aws" >}}) and [Azure]({{< relref "/ui-api/management-api/creating-workload-clusters/azure" >}}).
+`kubectl-gs` provides the `template` family of commands, to create manifests for clusters, node pools and more. The resulting manifests are meant to be applied by `kubectl apply` to actually resources. Check the [template cluster]({{< relref "/ui-api/kubectl-gs/template-cluster" >}}) and [template nodepool]({{< relref "/ui-api/kubectl-gs/template-nodepool" >}}) reference pages. We also provide more verbose tutorials for [AWS]({{< relref "/ui-api/management-api/creating-workload-clusters/aws" >}}) and [Azure]({{< relref "/ui-api/management-api/creating-workload-clusters/azure" >}}).
 
 ### How can I install an app in a workload cluster
 
