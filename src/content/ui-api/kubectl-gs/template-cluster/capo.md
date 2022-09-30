@@ -208,7 +208,7 @@ spec:
     configMap:
       name: demo1-default-apps-userconfig
       namespace: org-multi-project
-  version: 0.1.1
+  version: 0.7.2
 ```
 
 </details>
