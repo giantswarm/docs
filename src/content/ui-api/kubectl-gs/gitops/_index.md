@@ -11,8 +11,6 @@ menu:
 last_review_date: 2022-09-29
 user_questions:
   - Which GitOps commands does the kubectl-gs plugin offer?
-aliases:
-  - /reference/kubectl-gs/gitops/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---

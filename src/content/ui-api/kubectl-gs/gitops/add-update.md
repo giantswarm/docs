@@ -1,28 +1,29 @@
 ---
 linkTitle: add automatic-update
-title: "'kubectl gs gitops add update' command reference"
+title: "'kubectl gs gitops add automatic-update' command reference"
 description: Reference documentation on how to configure automatic updates for an App to the GitOps repository.
 weight: 35
 menu:
   main:
     parent: kubectlgs-gitops
-aliases:
-  - /reference/kubectl-gs/gitops/add-update/
-last_review_date: 2022-08-31
+last_review_date: 2022-09-29
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How do I configure automatic updates for an App with the GitOps repository?
 ---
 
-This command adds a new App to the GitOps repository.
+This command adds configuration to automatically update an App into a GitOps repository.
 
-Other command this commad depends on:
-- [gitops init]({{< relref "/ui-api/kubectl-gs/gitops/init" >}})
-- [gitops add mc]({{< relref "/ui-api/kubectl-gs/gitops/add-mc" >}})
-- [gitops add org]({{< relref "/ui-api/kubectl-gs/gitops/add-org" >}})
-- [gitops add wc]({{< relref "/ui-api/kubectl-gs/gitops/add-wc" >}})
-- [gitops add app]({{< relref "/ui-api/kubectl-gs/gitops/add-app" >}})
+## Prerequisites
+
+Your GitOps repository should provide the following structural layers:
+
+- Basic structure (see [`init`]({{< relref "/ui-api/kubectl-gs/gitops/init" >}}))
+- Management cluster (see [`add management-cluster`]({{< relref "/ui-api/kubectl-gs/gitops/add-mc" >}}))
+- Organization (see [`add organization`]({{< relref "/ui-api/kubectl-gs/gitops/add-org" >}}))
+- Workload cluster (see [`add workload-cluster`]({{< relref "/ui-api/kubectl-gs/gitops/add-wc" >}}))
+- Apps (see [`add app`]({{< relref "/ui-api/kubectl-gs/gitops/add-app" >}}))
 
 ## Description
 
@@ -38,43 +39,46 @@ management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters/[mapi/]
         ├── appcr.yaml
         ├── imagepolicy.yaml
         └── imagerepository.yaml
-
 ```
 
 **Note, automatic update requires the `appcr.yaml` file and hence can only be configured for directly added apps**. For apps
 coming from a base updates must be configured in the base instead, what is outside of the command's scope.
 
-## Flags
-
-| Name                 | Description                                                         | Required |
-| -------------------- | ------------------------------------------------------------------- | -------- |
-| `app`                |  App in the repository to configure automatic update for.           | true     |
-| `management-cluster` | Codename of the Management Cluster the Workload Cluster belongs to. | true     |
-| `organization`       | Name of the Organization the Workload Cluster belongs to.           | true     |
-| `skip-mapi`          | Skip mapi directory when adding the app.                            | false    |
-| `version-repository` | The OCR repository to update the version from.                      | true     |
-| `workload-cluster`   | Name of the Workload Cluster to configure the app for.              | true     |
-
 ## Usage
 
-The command to execute is the `kubectl gs gitops add update`.
+Basic command syntax: `kubectl gs gitops add automatic-update FLAGS`.
 
-To preview the objects to be created by the command, run it with the `--dry-run` flag. Find examples below.
+### Flags
+
+- `--app` -- name of the App in the repository to configure automatic update for (required)
+- `--management-cluster` -- name of the management cluster the workload cluster belongs to (required)
+- `--organization` -- name of the organization the workload cluster belongs to (required)
+- `--version-repository` -- the container image repository to update the version from. (required)
+- `--workload-cluster` -- name of the workload cluster to configure the app for (required)
+- `--skip-mapi` -- skip mapi directory when adding the app
+
+{{% kubectl_gs_gitops_common_flags %}}
+
+### Examples
 
 {{< tabs >}}
 {{< tab id="direct" title="Direct App" >}}
 
 ```nohighlight
-kubectl gs gitops add update \
---local-path /tmp/gitops-demo \
---management-cluster demomc \
---organization demoorg \
---workload-cluster demowc \
---app hello-world \
---version-repository giantswarmpublic.azurecr.io/giantswarm-catalog/hello-world-app \
---repository gitops-demo \
---dry-run
+kubectl gs gitops add automatic-update \
+  --local-path /tmp/gitops-demo \
+  --management-cluster demomc \
+  --organization demoorg \
+  --workload-cluster demowc \
+  --app hello-world \
+  --version-repository giantswarmpublic.azurecr.io/giantswarm-catalog/hello-world-app \
+  --repository gitops-demo \
+  --dry-run
+```
 
+Output:
+
+```nohighlight
 ## CREATE ##
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters/demowc/mapi/automatic-updates
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters/demowc/mapi/automatic-updates/imageupdate.yaml
@@ -164,16 +168,20 @@ resources:
 Upon trying to configure automatic updates for app coming from a base, the command will return an error.
 
 ```nohighlight
-kubectl gs gitops add update \
---local-path /tmp/gitops-demo \
---management-cluster demomc \
---organization demoorg \
---workload-cluster demowc \
---app hello-world \
---version-repository giantswarmpublic.azurecr.io/giantswarm-catalog/hello-world-app \
---repository gitops-demo \
---dry-run
+kubectl gs gitops add automatic-update \
+  --local-path /tmp/gitops-demo \
+  --management-cluster demomc \
+  --organization demoorg \
+  --workload-cluster demowc \
+  --app hello-world \
+  --version-repository giantswarmpublic.azurecr.io/giantswarm-catalog/hello-world-app \
+  --repository gitops-demo \
+  --dry-run
+```
 
+Output:
+
+```nohighlight
 validation error: Operation cannot be fulfilled on directory missing the `appcr.yaml` file.
 ```
 
