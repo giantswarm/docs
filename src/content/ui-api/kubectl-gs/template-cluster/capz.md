@@ -19,12 +19,24 @@ Here we explain how to use [`kubectl gs template cluster`]({{< relref "/ui-api/k
 
 To enable Cluster API compatible resources, you have to select release version `v20.0.0-alpha1` via the `--release` flag and set the provider name to `azure` via the `--provider` flag.
 
-
 ## Usage
+
+Basic command syntax:
+
+```nohighlight
+kubectl gs template cluster \
+  --provider azure \
+  --release v20.0.0-alpha1 \
+  FLAGS
+```
 
 ### Flags
 
+TODO
+
 ### Examples
+
+TODO
 
 ## Output
 
@@ -36,3 +48,5 @@ Manifests for the following resources will be created:
 - [`AzureMachineTemplate`]({{< relref "/ui-api/management-api/crd/azuremachinetemplates.infrastructure.cluster.x-k8s.io.md" >}}) (API version `infrastructure.cluster.x-k8s.io/v1beta1`) - holds Azure-specific configuration for the control plane nodes.
 - [`MachineDeployment`]({{< relref "/ui-api/management-api/crd/machinedeployments.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1beta1`) - holds the bastion host specification.
 - [`AzureMachineTemplate`]({{< relref "/ui-api/management-api/crd/azuremachinetemplates.infrastructure.cluster.x-k8s.io.md" >}}) (API version `infrastructure.cluster.x-k8s.io/v1beta1`) - holds Azure-specific configuration for the bastion host.
+
+**Note:** The cluster created based on these resources **won't have any worker nodes**. Please see the [template nodepool]({{< relref "/ui-api/kubectl-gs/template-nodepool" >}}) command for instructions on how to create node pools.
