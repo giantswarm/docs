@@ -2,11 +2,11 @@
 linkTitle: update cluster 
 title: "'kubectl gs update cluster' command reference"
 description: Reference documentation on how to upgrade a workload cluster using kubectl-gs.
-weight: 100
+weight: 130
 menu:
   main:
-    identifier: kubectl-gs-update-cluster
     parent: uiapi-kubectlgs
+    identifier: uiapi-kubectlgs-updatecluster
 aliases:
   - /reference/kubectl-gs/update-cluster/
 last_review_date: 2021-12-13
