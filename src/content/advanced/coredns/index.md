@@ -6,7 +6,7 @@ weight: 25
 menu:
   main:
     parent: advanced
-last_review_date: 2021-06-19
+last_review_date: 2022-10-04
 user_questions:
   - How can I override the default CoreDNS configuration?
   - How can I customize the CoreDNS configuration?
@@ -21,6 +21,8 @@ owner:
 Your Giant Swarm installation comes with a default configuration for the [CoreDNS addon](https://github.com/coredns/coredns)
 
 You can override these defaults in a ConfigMap named `coredns-user-values` in the management cluster.
+
+__Note__: In Cluster API, CoreDNS is part of default apps `<provider>` chart (example [Cluster API for Openstack](https://github.com/giantswarm/default-apps-openstack/). In order to extend the app, you need to patch the App Custom Resource to use `coredns-user-values` configmap. [Check out this example](https://github.com/giantswarm/gitops-template/pull/74/files).
 
 ## Where is the user values ConfigMap
 
