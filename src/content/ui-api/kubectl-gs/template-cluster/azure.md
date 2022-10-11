@@ -29,6 +29,13 @@ kubectl gs template cluster \
 
 ### Flags
 
+{{% kubectl-gs/template_cluster_common_flags %}}
+{{% kubectl-gs/template_cluster_common_flags_vintage %}}
+
+TODO: Verify if all these flags are usable on Azure.
+
+**Note:** Please use these numbers to specify availability zones: `1`, `2`, `3`.
+
 ### Examples
 
 ```nohighlight

@@ -30,8 +30,4 @@ Usage depends on the provider, set via the `--provider` flag. Please refer to th
 | [Cluster API provider GCP]({{< relref "/ui-api/kubectl-gs/template-cluster/capg" >}}) | `capg` |
 | [Cluster API provider OpenStack]({{< relref "/ui-api/kubectl-gs/template-cluster/capo" >}}) | `capo` |
 
-On AWS, it must be configured with AZ of the installation region. E.g. for region `eu-central-1`, a valid value is `eu-central-1a`.
-
-On Azure, it can be any of the 3 zones: `1`, `2`, `3`.
-
 Use the flag once with a single value to create a cluster with one control plane node (on both Azure and AWS). For high-availability control planes, specify three distinct availability zones instead (AWS only). This can be done by separating AZ names with comma or using the flag three times with a single AZ name.

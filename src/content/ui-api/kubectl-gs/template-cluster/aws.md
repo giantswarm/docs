@@ -33,6 +33,8 @@ kubectl gs template cluster \
 {{% kubectl-gs/template_cluster_common_flags_vintage %}}
 - `--external-snat` -- AWS CNI configuration to disable the [external source network address translation](https://docs.aws.amazon.com/eks/latest/userguide/external-snat.html). Enabled by default.
 
+**Note:** The availability zones configured via `--control-plane-az` must match the installation region. E.g. for region `eu-central-1`, a valid value is `eu-central-1a`.
+
 ### Examples
 
 ```nohighlight
