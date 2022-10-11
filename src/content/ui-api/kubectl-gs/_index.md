@@ -26,24 +26,24 @@ owner:
 
 ## Commands {#commands}
 
-| Command                       | Description                                                      | Provider info        |
-|-------------------------------|------------------------------------------------------------------| -------------------- |
-| [`login`][1]                  | [Ensure an authenticated kubectl context][1]                     | all providers        |
-| [`get apps`][2]               | [List apps or get details on a single app][2]                    | all providers        |
-| [`get catalogs`][3]           | [List catalogs or get details on a single catalog][3]            | all providers        |
-| [`get clusters`][4]           | [List clusters or get details on a single cluster][4]            | only AWS, Azure      |
-| [`get nodepools`][5]          | [List node pools or get details on a single node pool][5]        | only AWS, Azure      |
-| [`get organizations`][15]     | [List organizations or get details on a single organization][15] | all providers        |
-| [`get releases`][11]          | [List releases or get details on a single release][11]           | all providers        |
-| [`gitops`][14]                | [Gathers GitOps related subcommand][14]                          | N/A                  |
-| [`template app`][6]           | [Create manifests for an app][6]                                 | all providers        |
-| [`template catalog`][7]       | [Create manifests for a catalog][7]                              | all providers        |
-| [`template cluster`][8]       | [Create manifests for a cluster][8]                              | only AWS, Azure      |
-| [`template nodepool`][9]      | [Create manifests for a node pool][9]                            | only AWS, Azure      |
-| [`template organization`][10] | [Create manifest for an organization][10]                        | all providers        |
-| [`update app`][12]            | [Update given App][12]                                           | all providers        |
-| [`update cluster`][13]        | [Schedule a cluster update][13]                                  | only AWS, Azure      |
-| `help`                        | Get help for a command                                           | provider independent |
+| Command                       | Description                                                      |
+|-------------------------------|------------------------------------------------------------------|
+| [`login`][1]                  | [Ensure an authenticated kubectl context][1]                     |
+| [`get apps`][2]               | [List apps or get details on a single app][2]                    |
+| [`get catalogs`][3]           | [List catalogs or get details on a single catalog][3]            |
+| [`get clusters`][4]           | [List clusters or get details on a single cluster][4]            |
+| [`get nodepools`][5]          | [List node pools or get details on a single node pool][5]        |
+| [`get organizations`][15]     | [List organizations or get details on a single organization][15] |
+| [`get releases`][11]          | [List releases or get details on a single release][11]           |
+| [`gitops`][14]                | [Gathers GitOps related subcommand][14]                          |
+| [`template app`][6]           | [Create manifests for an app][6]                                 |
+| [`template catalog`][7]       | [Create manifests for a catalog][7]                              |
+| [`template cluster`][8]       | [Create manifests for a cluster][8]                              |
+| [`template nodepool`][9]      | [Create manifests for a node pool][9]                            |
+| [`template organization`][10] | [Create manifest for an organization][10]                        |
+| [`update app`][12]            | [Update given App][12]                                           |
+| [`update cluster`][13]        | [Schedule a cluster update][13]                                  |
+| `help`                        | Get help for a command                                           |
 
 Deprecated commands:
 
@@ -54,7 +54,7 @@ Deprecated commands:
 
 | Name               | Description             |
 |--------------------|-------------------------|
-| `--v`, `--version` | Version for kubectl gs. |
+| `--v`, `--version` | Version for kubectl gs. |
 
 ## Global flags {#global-flags}
 
@@ -71,7 +71,7 @@ Deprecated commands:
 | `--context`                  | The name of the kubeconfig context to use.                                                                                                                                                                      |
 | `--debug`                    | Toggle debug mode, for seeing full error output.                                                                                                                                                                |
 | `--disable-version-check`    | Disable self-update version check.                                                                                                                                                                              |
-| `-h`, `--help`               | Help for kubectl gs.                                                                                                                                                                                            |
+| `-h`, `--help`               | Help for kubectl gs.                                                                                                                                                                                            |
 | `--insecure-skip-tls-verify` | If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure.                                                                                             |
 | `--kubeconfig`               | Path to the kubeconfig file to use for CLI requests.                                                                                                                                                            |
 | `-n`, `--namespace`          | If present, the namespace scope for this CLI request.                                                                                                                                                           |
