@@ -8,7 +8,7 @@ menu:
     parent: uiapi-kubectlgs
 aliases:
   - /reference/kubectl-gs/template-nodepool/
-last_review_date: 2022-05-13
+last_review_date: 2022-10-12
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
