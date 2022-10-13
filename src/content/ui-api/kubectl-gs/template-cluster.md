@@ -141,6 +141,9 @@ It supports the following flags:
 - `--gcp-machine-deployment-failure-domain` (optional) - The Google Cloud Platform zones where the cluster's default nodepool will be deployed. (default: `europe-west6-a`).
 - `--gcp-machine-deployment-replicas` (optional) - The number of nodes in the default nodepool (default: 3).
 - `--gcp-machine-deployment-disk-size` (optional) - The node disk size in GB for the default nodepool (default: 100).
+- `--gcp-machine-deployment-sa-email` (optional) - The Google Cloud Platform Service Account which the machine deployments will use (default: "default").
+- `--gcp-machine-deployment-sa-scopes` (optional) - The Google Cloud Platform API scopes the machine deployments will have access to (default: `https://www.googleapis.com/auth/compute`).
+
 
 **Note:** The zones where the worker and control-plane nodes are deployed must be in the same region specified in the `--region` flag.
 
@@ -237,7 +240,8 @@ kubectl gs template cluster \
   --gcp-failure-domains europe-west3-a \
   --gcp-machine-deployment-failure-domain europe-west3-a \
   --description "a test cluster" \
-  --gcp-control-plane-sa-email "test-service-account@project-1234.iam.gserviceaccount.com"
+  --gcp-control-plane-sa-email "test-service-account@project-1234.iam.gserviceaccount.com" \
+  --gcp-machine-deployment-sa-email "test-service-account@project-1234.iam.gserviceaccount.com"
 ```
 
 {{< /tab >}}
@@ -626,6 +630,10 @@ data:
       name: worker0
       replicas: 3
       rootVolumeSizeGB: 100
+      serviceAccount:
+        email: test-service-account@project-1234.iam.gserviceaccount.com
+        scopes:
+        - https://www.googleapis.com/auth/compute
     organization: demo
 kind: ConfigMap
 metadata:
