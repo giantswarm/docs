@@ -8,7 +8,7 @@ menu:
     parent: uiapi-kubectlgs
 aliases:
   - /reference/kubectl-gs/template-nodepool/
-last_review_date: 2022-05-13
+last_review_date: 2022-10-12
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
@@ -16,6 +16,17 @@ user_questions:
 ---
 
 The `template nodepool` command allows to create [node pools]({{< relref "/advanced/node-pools" >}}), which are groups of worker nodes in a cluster sharing common configuration. The command creates a manifest for the custom resources that define a node pool. These are then meant to be applied to the management cluster, e. g. via `kubectl apply`.
+
+## Provider support
+
+This command **does not support Cluster API** (CAPI) based workload clusters. It only supports AWS and Azure before CAPI. Adding a node pool to a CAPI workload cluster requires modification of the cluster app configuration values.
+
+| Provider | `--provider` flag value |
+|-|-|
+| AWS | `aws` |
+| Azure | `azure` |
+
+## Resources generated
 
 The resulting resources depend on the provider, set via the `--provider` flag.
 
@@ -31,16 +42,6 @@ The resulting resources depend on the provider, set via the `--provider` flag.
 - [`MachinePool`]({{< relref "/ui-api/management-api/crd/machinepools.exp.cluster.x-k8s.io.md" >}}) (API version `exp.cluster.x-k8s.io/v1alpha3`)
 - [`AzureMachinePool`]({{< relref "/ui-api/management-api/crd/azuremachinepools.exp.infrastructure.cluster.x-k8s.io.md" >}}) (API version `exp.infrastructure.cluster.x-k8s.io/v1alpha3`)
 - [`Spark`]({{< relref "/ui-api/management-api/crd/sparks.core.giantswarm.io.md" >}}) (API version `core.giantswarm.io/v1alpha1`)
-
-{{< /tab >}}
-{{< tab id="flags-capz" title="Cluster API on Azure">}}
-
-We also support creating clusters on Azure using ClusterAPI by selecting our `v20.0.0-alpha1` release  (`--provider azure --release v20.0.0-alpha1`).
-Please be aware that this is an early alpha release. Clusters created using this release won't be monitored by GiantSwarm, and they won't be able to be upgraded to newer stable releases.
-
-- [`MachinePool`]({{< relref "/ui-api/management-api/crd/machinepools.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1beta1`)
-- [`AzureMachinePool`]({{< relref "/ui-api/management-api/crd/azuremachinepools.infrastructure.cluster.x-k8s.io.md" >}}) (API version `infrastructure.cluster.x-k8s.io/v1beta1`)
-- [`KubeadmConfig`]({{< relref "/ui-api/management-api/crd/kubeadmconfigs.bootstrap.cluster.x-k8s.io.md" >}}) (API version `bootstrap.cluster.x-k8s.io/v1beta1`)
 
 {{< /tab >}}
 {{< /tabs >}}
