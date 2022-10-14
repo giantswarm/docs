@@ -20,7 +20,6 @@ crd:
   topics:
     - workloadcluster
   providers:
-    - capa
     - aws
     - azure
     - capa
