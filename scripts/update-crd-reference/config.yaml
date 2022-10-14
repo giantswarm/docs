@@ -284,11 +284,13 @@ source_repositories:
         hidden: true
       clusters.cluster.x-k8s.io:
         owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
+          - https://github.com/orgs/giantswarm/teams/team-hydra
           - https://github.com/orgs/giantswarm/teams/team-rocket
+          - https://github.com/orgs/giantswarm/teams/team-phoenix
         provider:
           - aws
           - azure
+          - capa
           - vsphere
         topics:
           - workloadcluster
