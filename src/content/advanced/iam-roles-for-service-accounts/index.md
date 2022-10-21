@@ -11,7 +11,7 @@ user_questions:
  -  How can I migrate from KIAM to IAM roles for service accounts?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2022-08-17
+last_review_date: 2022-10-21
 ---
 
 {{< platform_support_table aws="alpha=v17.2.0" aws="ga=v17.4.0">}}
@@ -50,7 +50,7 @@ Please first ensure having the following permissions added on the [`GiantSwarmAW
  ...
 ```
 
-With AWS release v18.0.0 we additionally need permissions for managing Cloudfront (**only non-China regions**). By upgrading to this AWS release the S3 bucket which contains the OIDC configuration and public keys will be protected and direct traffic will be blocked. We only allow traffic through Cloudfront.
+With AWS release v18.0.0 we additionally need permissions for managing Cloudfront and ACM (**only non-China regions**). By upgrading to this AWS release the S3 bucket which contains the OIDC configuration and public keys will be protected and direct traffic will be blocked. We only allow traffic through Cloudfront.
 
 Please set the following permissons on the [`GiantSwarmAWSOperator` IAM role]({{< relref "/getting-started/cloud-provider-accounts/aws" >}}):
 
@@ -69,8 +69,19 @@ Please set the following permissons on the [`GiantSwarmAWSOperator` IAM role]({{
           "cloudfront:UpdateDistribution",
           "cloudfront:DeleteDistribution"
       ],
+      "Resource": "*",
+  },
+  {
+      "Effect": "Allow",
+      "Action": [
+          "acm:RequestCertificate",
+          "acm:AddTagsToCertificate",
+          "acm:DescribeCertificate",
+          "acm:ListCertificates",
+          "acm:DeleteCertificate"
+      ],
       "Resource": "*"
-},
+  }
 ...
 ```
 
