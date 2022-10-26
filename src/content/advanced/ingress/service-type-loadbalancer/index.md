@@ -179,6 +179,17 @@ metadata:
     service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
 ```
 
+Network load balancers will use [Subnet Discovery](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/deploy/subnet_discovery/) to attache to a suitable subnet.
+With the following annotation the subnet can be specified either by nameTag or subnetID:
+
+```
+metadata:
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-xxxx, mySubnet
+```
+
+Multiple subnets can be specified but each has to be in it's own availability zone.
+
 #### Other AWS ELB configuration options
 
 There are more annotations to manage Classic ELBs that are described below.
@@ -216,5 +227,6 @@ metadata:
 
 - [Running Multiple NGINX Ingress Controllers]({{< relref "/content/advanced/ingress/multi-nginx-ic/index.md" >}})
 - [Services of type LoadBalancer](https://kubernetes.io/docs/concepts/services-networking/service/#type-loadbalancer)
+- [AWS Load Balancer Controller - Annotations](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/guide/service/annotations/)
 - [Running Multiple Ingress Controllers](https://github.com/kubernetes/ingress-nginx#running-multiple-ingress-controllers)
 - [Deploying the NGINX Ingress Controller]({{< relref "/getting-started/ingress-controller/index.md" >}})
