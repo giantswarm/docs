@@ -8,7 +8,7 @@ menu:
     identifier: uiapi-observability-prometheusvolumesize
     parent: uiapi-observability-prometheus
 user_questions:
-  - How can I downsize the persistent volume of the Giant Swarm managed Prometheus?
+  - How can I shrink the persistent volume of the Giant Swarm managed Prometheus?
   - How can I expand the persistent volume of the Giant Swarm managed Prometheus?
   - Why would I resize the Giant Swarm managed Prometheus persistent volume ?
 aliases:
@@ -20,7 +20,7 @@ last_review_date: 2022-10-26
 
 In this document you will learn how to size the Prometheus persistent volume.
 
-Prometheus uses a persistent volume to store its recorded metrics and for historical reasons, we decided to define the needed capacity to 100Gi per cluster (Workload and management clusters alike).
+Prometheus uses a persistent volume to store its recorded metrics and, for historical reasons, we decided to define the needed capacity to 100Gi per cluster (Workload and management clusters alike).
 
 
 __Warning:__ 
@@ -28,15 +28,15 @@ __Warning:__
 
 
 ## Why would I like to resize the volume
-Our observability architecture is based on one Prometheus instance by workload cluster.
-As mentioned above, Prometheus volume is set to 100Gi.
+Our observability architecture is based on one Prometheus instance per workload cluster.
+As mentioned above, the Prometheus volume is set to 100Gi.
 This capacity is the same for a small or a large cluster.
 
 Imagine that you want to create multiple testing clusters for a training.
 You don't need to have 100Gi reserved for each cluster.
-It will be interesting to set a smaller size for each Prometheus volume.
+It would be useful to set a smaller size for each Prometheus volume.
 
-In an other hand, if you have large clusters with lots of traffic, and so lots of metrics to store, you might like to set a larger size for each Prometheus volume.
+On the other hand, if you have large clusters with lots of traffic, and so lots of metrics to store, you might like to set a larger size for each Prometheus volume.
 
 ## How can I resize Prometheus volume
 The Prometheus volume size can be set on the cluster CR using the dedicated annotation `monitoring.giantswarm.io/prometheus-volume-size`
@@ -46,7 +46,7 @@ Three values are possible:
 * `medium` = 100 Gi
 * `large` = 200 Gi
 
-`medium` is the default value, so if the annotation is not set, so the volume size will be created a size of 100Gi.
+`medium` is the default value, so if the annotation is not set, so the volume size will be created with a size of 100Gi.
 
 Below is an example of a cluster CR defining a small Prometheus volume:
 ```
@@ -75,9 +75,9 @@ spec:
 
 ## Limitations
 
-* __Expanding__: It is currently impossible to expand volume size on Openstack. We are working on a fix and will adjust the documentation accordingly when available. 
+* __Expanding__: It is currently impossible to expand the Prometheus volume on OpenStack. We are working on a fix and will adjust the documentation accordingly when available. 
 
-* __Downsizing__: be aware that reducing the volume size will cause a data loss.
+* __Downsizing__: be aware that reducing the volume size will cause data loss.
 
 
 
