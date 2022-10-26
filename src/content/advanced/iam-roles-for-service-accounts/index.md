@@ -11,7 +11,7 @@ user_questions:
  -  How can I migrate from KIAM to IAM roles for service accounts?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2022-08-17
+last_review_date: 2022-10-26
 ---
 
 {{< platform_support_table aws="alpha=v17.2.0" aws="ga=v17.4.0">}}
