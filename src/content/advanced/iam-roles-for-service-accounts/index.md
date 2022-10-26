@@ -39,7 +39,6 @@ Please first ensure having the following permissions added on the [`GiantSwarmAW
       ],
       "Resource": "*"
   },
-...
   {
       "Effect": "Allow",
       "Action": [
@@ -47,15 +46,16 @@ Please first ensure having the following permissions added on the [`GiantSwarmAW
       ],
       "Resource": "arn:aws:s3:::*-g8s-*"
   },
- ...
-```
-
-With AWS release v18.0.0 we additionally need permissions for managing Cloudfront (**only non-China regions**). By upgrading to this AWS release the S3 bucket which contains the OIDC configuration and public keys will be protected and direct traffic will be blocked. We only allow traffic through Cloudfront.
-
-Please set the following permissons on the [`GiantSwarmAWSOperator` IAM role]({{< relref "/getting-started/cloud-provider-accounts/aws" >}}):
-
-```json
-...
+  {
+      "Effect": "Allow",
+      "Action": [
+          "acm:ListCertificates",
+          "acm:RequestCertificate",
+          "acm:AddTagsToCertificate",
+          "acm:DescribeCertificate"
+      ],
+      "Resource": "*"
+  },
   {
       "Effect": "Allow",
       "Action": [
@@ -68,6 +68,8 @@ Please set the following permissons on the [`GiantSwarmAWSOperator` IAM role]({{
           "cloudfront:CreateDistribution",
           "cloudfront:UpdateDistribution",
           "cloudfront:DeleteDistribution"
+          "cloudfront:ListDistributions"
+
       ],
       "Resource": "*"
 },
@@ -103,6 +105,8 @@ kubectl annotate \
 ```
 
 In order to apply the changes, rolling of the master nodes is required. Rolling of the nodes can be triggered either by an update or manually by terminating each node. Unfortunately manual application of the changes will also result in a neccessity of rolling worker nodes. Thus we **highly** recommend to apply changes **only** prior to upgrading clusters. For more details please talk with your Account Engineer or ask in support channel.
+
+If you have deployed additional ExternalDNS you have to make sure the role's **trusted entities** are prepared beforehand or it will stop working due to the switch to IRSA. If you want to continue using KIAM until release 19 you can set the value `aws.irsa=false` in the user values configmap.
 
 ## Using IAM roles for service accounts
 
