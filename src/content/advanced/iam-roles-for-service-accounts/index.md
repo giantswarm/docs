@@ -35,7 +35,9 @@ Please first ensure having the following permissions added on the [`GiantSwarmAW
           "iam:DeleteOpenIDConnectProvider",
           "iam:ListOpenIDConnectProviderTags",
           "iam:TagOpenIDConnectProvider",
-          "iam:UntagOpenIDConnectProvider"
+          "iam:UntagOpenIDConnectProvider",
+          "iam:ListOpenIDConnectProviders",
+          "iam:GetOpenIDConnectProvider"
       ],
       "Resource": "*"
   },
