@@ -20,11 +20,11 @@ last_review_date: 2022-10-26
 
 In this document you will learn how to size the Prometheus persistent volume.
 
+Prometheus uses a persistent volume to store its recorded metrics and for historical reasons, we decided to define the needed capacity to 100Gi per cluster (Workload and management clusters alike).
+
+
 __Warning:__ 
 * This feature and the documentation is quite new, so do not hesitate to ask for support or help us improve this documentation.
-
-## Introduction to persistent volume
-Prometheus uses a persistent volume to store its recorded metrics and for historical reasons, we decided to define the needed capacity to 100Gi per cluster (Workload and management clusters alike).
 
 
 ## Why would I like to resize the volume
