@@ -10,8 +10,6 @@ repositories:
   giantswarm/releases:
     # The repo 'giantswarm/releases' gets special treatment, so no
     # config needed
-  giantswarm/api-spec:
-    category: REST API
   giantswarm/apiextensions:
     category: Management API
   giantswarm/aws-admission-controller:
@@ -30,8 +28,6 @@ repositories:
     category: Managed Apps
   giantswarm/goldilocks-app:
     category: Managed Apps
-  giantswarm/gsctl:
-    category: gsctl
   giantswarm/happa:
     category: Web UI
   giantswarm/hello-world-app:
@@ -129,8 +125,6 @@ categories:
     color: "#e461a9"
   - name: Documentation
     color: "#9aa48e"
-  - name: gsctl
-    color: "#7cb2b6"
   - name: Highlights
     color: "#f1dd55"
   - name: kubectl gs
@@ -139,8 +133,6 @@ categories:
     color: "#7ac271"
   - name: Playground Apps
     color: "#bfffb8"
-  - name: REST API
-    color: "#919ea1"
   - name: Workload cluster releases for AWS
     color: "#ff9900"
   - name: Workload cluster releases for Azure
