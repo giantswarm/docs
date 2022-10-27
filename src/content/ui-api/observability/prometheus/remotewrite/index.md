@@ -6,16 +6,16 @@ weight: 50
 menu:
   main:
     identifier: uiapi-observability-prometheusremotewrite
-    parent: uiapi-observability
+    parent: uiapi-observability-prometheus
 user_questions:
   - What is Prometheus RemoteWrite?
   - How Prometheus RemoteWrite works?
   - How do I get access to management cluster metrics?
 aliases:
-  - /observability/remotewrite/
+  - /observability/prometheus/remotewrite
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
-last_review_date: 2022-09-12
+last_review_date: 2022-10-26
 ---
 
 In this document you will learn how to set up your Prometheus remote write integration.
