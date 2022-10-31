@@ -18,8 +18,20 @@ repositories:
     category: Management API
   giantswarm/cert-manager-app:
     category: Managed Apps
+  giantswarm/cluster-aws:
+    category: Cluster apps for AWS
+  giantswarm/cluster-gcp:
+    category: Cluster apps for GCP
+  giantswarm/cluster-openstack:
+    category: Cluster apps for OpenStack
   giantswarm/dashboards:
     category: Dashboards
+  giantswarm/default-apps-aws:
+    category: Cluster apps for AWS
+  giantswarm/default-apps-gcp:
+    category: Cluster apps for GCP
+  giantswarm/default-apps-openstack:
+    category: Cluster apps for OpenStack
   giantswarm/docs:
     category: Documentation
   giantswarm/efk-stack-app:
@@ -121,6 +133,12 @@ repositories:
 categories:
   - name: Management API
     color: "#b47fb0"
+  - name: Cluster apps for AWS
+    color: "#e4dcd4"
+  - name: Cluster apps for GCP
+    color: "#e4dcd4"
+  - name: Cluster apps for OpenStack
+    color: "#e4dcd4"
   - name: Dashboards
     color: "#e461a9"
   - name: Documentation
