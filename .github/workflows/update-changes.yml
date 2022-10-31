@@ -19,7 +19,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Aggregate releases
         env:
@@ -33,7 +33,7 @@ jobs:
         run: make update-latest-versions
 
       - name: Create or update pull request
-        uses: gr2m/create-or-update-pull-request-action@v1.3.1
+        uses: gr2m/create-or-update-pull-request-action@v1.9.1
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
