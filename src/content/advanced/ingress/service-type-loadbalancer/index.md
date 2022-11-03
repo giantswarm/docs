@@ -180,7 +180,7 @@ metadata:
 ```
 
 Network load balancers will use [Subnet Discovery](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/deploy/subnet_discovery/) to attache to a suitable subnet.
-With the following annotation the subnet can be specified either by nameTag or subnetID:
+With the following [annotation](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/guide/service/annotations/#subnets) the subnet can be specified either by nameTag or subnetID:
 
 ```
 metadata:
