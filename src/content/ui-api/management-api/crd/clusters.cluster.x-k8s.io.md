@@ -20,16 +20,15 @@ crd:
   topics:
     - workloadcluster
   providers:
-    - capa
     - aws
     - azure
+    - capa
     - vsphere
 layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-hydra
   - https://github.com/orgs/giantswarm/teams/team-rocket
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-
 aliases:
   - /reference/cp-k8s-api/clusters.cluster.x-k8s.io/
 technical_name: clusters.cluster.x-k8s.io
