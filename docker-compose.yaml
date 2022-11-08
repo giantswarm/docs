@@ -52,4 +52,4 @@ services:
       - sitesearch-app
     environment:
       ELASTICSEARCH_ENDPOINT: http://sitesearch-app:9200
-      HUBSPOT_API_KEY: ${HUBSPOT_API_KEY}
+      HUBSPOT_ACCESS_TOKEN: ${HUBSPOT_ACCESS_TOKEN}
