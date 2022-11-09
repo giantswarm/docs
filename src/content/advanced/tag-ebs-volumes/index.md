@@ -1,7 +1,7 @@
 ---
 linkTitle: Tag Persistent Volumes on AWS
 title: Tag Persistent Volumes on AWS
-description: This article describes how tag persistent volumes on AWS.
+description: This article describes how tag Persistent Volumes using a EBS Storage Class on AWS.
 weight: 60
 menu:
   main:
