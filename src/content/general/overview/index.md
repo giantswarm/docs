@@ -43,7 +43,7 @@ There are some things not included in the cluster as managed by us:
 
 ## High availability and resilience
 
-As of workload cluster release v{{% first_aws_ha_controlplane_version %}} for AWS, [multiple control plane nodes]({{< relref "/advanced/high-availability/control-plane" >}}) with one
+As of [workload cluster release](https://docs.giantswarm.io/changes/workload-cluster-releases-for-aws/) v{{% first_aws_ha_controlplane_version %}} for AWS, [multiple control plane nodes]({{< relref "/advanced/high-availability/control-plane" >}}) with one
 etcd cluster member each are active by default on AWS.
 
 On other providers and in older workload cluster release for AWS, your clusters have a single running control plane node. However, the clusters are set up in a way that they keep running even if the control plane node is unavailable for a while (e.g. due to planned upgrades, failure, etc.). The only slight degradation you might notice is that while the control plane node is down, you cannot change the state of your pods and other resources. As soon as the control plane node is up again, you regain full control.
