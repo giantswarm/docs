@@ -1,7 +1,7 @@
 ---
 linkTitle: Developer Platform
 title: Developer Platform
-description: Documentation for the developer platform features of Giant Swarm.
+description: Documentation for the developer platform features of Giant Swarm. This includes the app platform, connectivity, observability and security.
 last_review_date: 2022-11-12
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
