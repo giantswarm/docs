@@ -1,6 +1,6 @@
 ---
 linkTitle: Observability
-title: Developer Platform Observability Features (monitoring, logging, tracing)
+title: Developer Platform Observability Features
 description: Overview of the observability related platform features, which includes monitoring, logging, and tracing
 weight: 30
 menu:
