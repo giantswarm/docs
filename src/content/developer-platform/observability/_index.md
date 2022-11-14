@@ -1,7 +1,7 @@
 ---
 linkTitle: Observability
 title: Developer Platform Observability Features
-description: Overview of the observability related platform features, which includes monitoring, logging, and tracing
+description: Overview of the observability related platform features to help you operate and improve your platform and applications.
 weight: 30
 menu:
   main:
