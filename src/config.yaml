@@ -39,9 +39,9 @@ menu:
     name: UIs and APIs
     url: /ui-api/
     weight: 40
-  - identifier: app-platform
-    name: App platform
-    url: /app-platform/
+  - identifier: developer-platform
+    name: Developer platform
+    url: /developer-platform/
     weight: 50
   - identifier: security
     name: Security

@@ -39,7 +39,7 @@ Your clusters comes out-of-the-box as follows:
 
 There are some things not included in the cluster as managed by us:
 
-- Additional user-space services like dashboards, logging, container registry, etc. are not installed (getting them running is [really easy]({{< relref "/app-platform/overview" >}}), though).
+- Additional user-space services like dashboards, logging, container registry, etc. are not installed (getting them running is [really easy]({{< relref "/developer-platform/app-platform/overview" >}}), though).
 
 ## High availability and resilience
 

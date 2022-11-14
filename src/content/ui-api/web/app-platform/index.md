@@ -7,6 +7,7 @@ weight: 50
 menu:
   main:
     parent: uiapi-web
+    identifier: uiapi-web-app-platform
 aliases:
   - /reference/web-interface/app-catalog/
   - /reference/web-interface/app-platform/
@@ -29,7 +30,7 @@ We also use app platform to install the apps that are pre-installed in your clus
 We fully support [Helm](https://helm.sh/) as a general tool to deploy these _Apps_. Apps are packaged as Helm charts and can be configured with _values_. We provide a recommended configuration which you can override to meet your needs.
 
 If you'd like to know more about the App Platform in general, go here for an
-[overview of the Giant Swarm App Platform]({{< relref "/app-platform" >}}) instead.
+[overview of the Giant Swarm App Platform]({{< relref "/developer-platform/app-platform" >}}) instead.
 
 ## Viewing all App Catalogs
 
@@ -80,7 +81,7 @@ When you upload a file the API creates a ConfigMap or a secret respectively
 and sets the `userConfig` values in the App CR to reference the ConfigMap or secret
 that was just created.
 
-See our [app configuration reference page]({{< relref "/app-platform/app-configuration" >}}) for more details and examples.
+See our [app configuration reference page]({{< relref "/developer-platform/app-platform/app-configuration" >}}) for more details and examples.
 
 ## Editing the version of an App
 

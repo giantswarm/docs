@@ -28,7 +28,7 @@ user_questions:
 
 ### How can I install an app in a workload cluster
 
-Check the [kubectl gs template app]({{< relref "/ui-api/kubectl-gs/template-app.md" >}}) command. It helps you create an [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) resource manifest, which is what you need to express the desired state "I want app X installed in cluster Y". For more context, we provide an article to help you [get started with apps]({{< relref "/app-platform/getting-started/index.md" >}}).
+Check the [kubectl gs template app]({{< relref "/ui-api/kubectl-gs/template-app.md" >}}) command. It helps you create an [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) resource manifest, which is what you need to express the desired state "I want app X installed in cluster Y". For more context, we provide an article to help you [get started with apps]({{< relref "/developer-platform/app-platform/getting-started/index.md" >}}).
 
 ### Can kubectl-gs work without kubectl
 
