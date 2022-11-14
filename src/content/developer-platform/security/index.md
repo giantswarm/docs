@@ -1,6 +1,6 @@
 ---
 linkTitle: Security
-title: Developer Platform Security Features
+title: Security
 description: Architecture and configuration information for the collection of security related platform features.
 weight: 40
 menu:
