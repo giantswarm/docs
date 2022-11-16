@@ -141,8 +141,8 @@ It supports the following flags:
 - `--gcp-machine-deployment-failure-domain` (optional) - The Google Cloud Platform zones where the cluster's default nodepool will be deployed. (default: `europe-west6-a`).
 - `--gcp-machine-deployment-replicas` (optional) - The number of nodes in the default nodepool (default: 3).
 - `--gcp-machine-deployment-disk-size` (optional) - The node disk size in GB for the default nodepool (default: 100).
-- `--gcp-machine-deployment-sa-email` (optional) - The Google Cloud Platform Service Account which the machine deployments will use (default: "default").
-- `--gcp-machine-deployment-sa-scopes` (optional) - The Google Cloud Platform API scopes the machine deployments will have access to (default: `https://www.googleapis.com/auth/compute`).
+- `--gcp-machine-deployment-sa-email` (optional) - The Google Cloud Platform Service Account which the worker nodes will use (default: "default").
+- `--gcp-machine-deployment-sa-scopes` (optional) - The Google Cloud Platform API scopes the worker nodes will have access to (default: `https://www.googleapis.com/auth/compute`).
 
 
 **Note:** The zones where the worker and control-plane nodes are deployed must be in the same region specified in the `--region` flag.
