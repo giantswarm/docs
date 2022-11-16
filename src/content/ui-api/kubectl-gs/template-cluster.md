@@ -158,7 +158,7 @@ It supports the following flags:
 - `--node-cidr` - CIDR defining the IP range of cluster nodes. When used, new network and subnet will be created.
 - `--network-name` (optional) - Name of existing network for the cluster. Can be used when `--node-cidr` is empty. 
 - `--subnet-name` (optional) - Name of existing subnet for the cluster. Can be used when `--node-cidr` is empty. 
-- `--bastion-boot-from-volume` - If true, bation machine will use a persistent root volume instead of an ephemeral volume.
+- `--bastion-boot-from-volume` - If true, bastion machine will use a persistent root volume instead of an ephemeral volume.
 - `--bastion-disk-size` - Size of root volume attached to the cluster bastion machine in gigabytes. Must be greater than or equal to the size of the bastion source image (`--bastion-image`).
 - `--bastion-image` - Bastion image name or root volume source UUID if --bastion-boot-from-volume is set.
 - `--bastion-machine-flavor` - Flavor (a.k.a. size) of the bastion machine.
