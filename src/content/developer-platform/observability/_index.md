@@ -16,6 +16,7 @@ user_questions:
   - What app do you recommend for logging?
   - What app do you recommend for tracing?
 last_review_date: 2022-11-18
+---
 
 Observability is based on three main data sources: logs, metrics and tracing\*. To cover these needs Giant Swarm provides its customers with a managed observability stack. The apps included in this stack are listed below. We chose these apps based on our general principles of preferring open source over proprietary solutions, as well as simplicity, performance, and speed over complexity.
 
