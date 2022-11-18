@@ -11,7 +11,7 @@ user_questions:
  -  How can I migrate from KIAM to IAM roles for service accounts?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2022-11-08
+last_review_date: 2022-11-17
 ---
 
 {{< platform_support_table aws="alpha=v17.2.0" aws="ga=v17.4.0">}}
@@ -37,7 +37,10 @@ Please first ensure having the following permissions added on the [`GiantSwarmAW
           "iam:TagOpenIDConnectProvider",
           "iam:UntagOpenIDConnectProvider",
           "iam:ListOpenIDConnectProviders",
-          "iam:GetOpenIDConnectProvider"
+          "iam:GetOpenIDConnectProvider",
+          "iam:UpdateOpenIDConnectProviderThumbprint",
+          "iam:RemoveClientIDFromOpenIDConnectProvider",
+          "iam:AddClientIDToOpenIDConnectProvider",
       ],
       "Resource": "*"
   },
