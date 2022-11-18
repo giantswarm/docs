@@ -136,8 +136,11 @@ It supports the following flags:
 - `--gcp-failure-domains` - The Google Cloud Platform zones where the cluster's control-plane nodes will be deployed.
 - `--gcp-control-plane-sa-email` (optional) - The Google Cloud Platform Service Account which the control-plane nodes will use (default: "default").
 - `--gcp-control-plane-sa-scopes` (optional) - The Google Cloud Platform API scopes the control-plane will have access to (default: `https://www.googleapis.com/auth/compute`).
+- `--gcp-machine-deployment-sa-email` (optional) - The Google Cloud Platform Service Account used by the worker nodes (default "default").
+- `--gcp-machine-deployment-sa-scopes` (optional) - The Scope of the worker nodes' Google Cloud Platform Service Account (default [https://www.googleapis.com/auth/compute]).
+
 - `--gcp-machine-deployment-name` (optional) - The name of the MachineDeployment (default: `worker1`).
-- `--gcp-machine-deployment-instance-type` (optional) - The Google Cloud Platform Instance Type for the default nodepool isntances (default: `n1-standard-2`).
+- `--gcp-machine-deployment-instance-type` (optional) - The Google Cloud Platform Instance Type for the default nodepool isntances (default: `n1-standard-4`).
 - `--gcp-machine-deployment-failure-domain` (optional) - The Google Cloud Platform zones where the cluster's default nodepool will be deployed. (default: `europe-west6-a`).
 - `--gcp-machine-deployment-replicas` (optional) - The number of nodes in the default nodepool (default: 3).
 - `--gcp-machine-deployment-disk-size` (optional) - The node disk size in GB for the default nodepool (default: 100).
