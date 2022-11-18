@@ -7,7 +7,7 @@ menu:
   main:
     identifier: general-overview
     parent: general
-last_review_date: 2020-06-17
+last_review_date: 2022-11-18
 user_questions:
   - What's included with Kubernetes run by Giant Swarm?
   - What's not included with Kubernetes run by Giant Swarm?

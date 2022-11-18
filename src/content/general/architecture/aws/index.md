@@ -6,7 +6,7 @@ weight: 10
 menu:
   main:
     parent: general-architecture
-last_review_date: 2020-10-28
+last_review_date: 2022-11-18
 user_questions:
   - What areas are covered in the Giant Swarm AWS platform?
   - Do I need a management cluster per AWS region?

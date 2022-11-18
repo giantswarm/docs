@@ -10,7 +10,7 @@ aliases:
   - /app-platform/installation-configuration
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2021-07-07
+last_review_date: 2022-11-18
 user_questions:
   - How can I configure custom timeouts for installations and upgrades?
 ---

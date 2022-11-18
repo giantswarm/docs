@@ -7,7 +7,7 @@ menu:
   main:
     identifier: management-clusters
     parent: general
-last_review_date: 2021-02-19
+last_review_date: 2022-11-18
 user_questions:
   - How does Giant Swarm use Management Clusters?
   - How are Management Clusters kept up to date?

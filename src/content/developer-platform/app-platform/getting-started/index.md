@@ -6,7 +6,7 @@ weight: 20
 menu:
   main:
     parent: developer-platform-app-platform
-last_review_date: 2021-07-07
+last_review_date: 2022-11-18
 aliases:
   - /app-platform/getting-started
 owner:
