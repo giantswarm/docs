@@ -26,7 +26,7 @@ When it comes to planning and designing your cluster architecture and its adapti
 
 As we are fully convinced of Kubernetes as a platform for building platforms, we built all our management clusters based on Kubernetes. The initial deployment entails the creation of that management cluster in a defined cloud provider region. After the management cluster is ready we deploy all our automation taking advantage of Kubernetes primitives and using the same philosophy we advocate to our customers.
 
-Giant Swarm leverages the concept of [“Operators"](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) to control all resources that clusters need as [“Custom Resources”](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/). At the same time customers can also use the Kubernetes Control Plane API to [manage their clusters]({{< relref "/ui-api/management-api/creating-workload-clusters" >}}) and/or [applications]({{< relref "/app-platform" >}}).
+Giant Swarm leverages the concept of [“Operators"](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) to control all resources that clusters need as [“Custom Resources”](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/). At the same time customers can also use the Kubernetes Control Plane API to [manage their clusters]({{< relref "/ui-api/management-api/creating-workload-clusters" >}}) and/or [applications]({{< relref "/developer-platform/app-platform" >}}).
 
 ![Azure management cluster architecture](architecture-azure-control-plane.png)
 
@@ -115,5 +115,5 @@ Please note, while this document went into extensive details with regards to how
 
 - [Giant Swarm support model]({{< relref "/general/support" >}})
 - [Giant Swarm operational layers]({{< relref "/security/operational-layers" >}})
-- [Giant Swarm App Catalog]({{< relref "/app-platform" >}})
+- [Giant Swarm App Catalog]({{< relref "/developer-platform/app-platform" >}})
 - [Giant Swarm VPN and secure cluster access]({{< relref "/security/cluster-access" >}})
