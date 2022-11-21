@@ -26,12 +26,12 @@ custom resource in this case, or list several of them.
 Simply execute
 
 ```nohighlight
-kubectl gs get apps -n ab12c
+kubectl gs get apps -n NAMESPACE
 ```
 
-to list some information on all apps available to you in the current namespace.
+To list some information on all apps available to you in the specified namespace.
 Your apps are stored in a namespace in the management cluster with the same
-name as your cluster ID.
+name as your cluster ID, e.g. `ab12c`.
 
 Here is some example output:
 
@@ -51,10 +51,10 @@ The `VERSION`, `LAST DEPLOYED` and `STATUS` columns always contain the actual, c
 
 ### Get a specific app
 
-When used with an app name as additional argument, the command will show details for a single app. Example:
+When used with an app name as additional argument, the command will show details for a single app.
 
 ```nohighlight
-kubectl gs get apps -n ab12c cert-exporter
+kubectl gs get apps -n NAMESPACE APP_NAME
 ```
 
 Note: As an alternative to `get apps`, `get app` will also work.

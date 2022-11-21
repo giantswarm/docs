@@ -37,7 +37,7 @@ name as your workload cluster ID. Let's set an environment variable for this
 which we will use in the later steps.
 
 ```nohighlight
-export CLUSTER=** your cluster id**
+export CLUSTER=CLUSTER_ID
 ```
 
 ## Checking if your cluster has an ingress controller
