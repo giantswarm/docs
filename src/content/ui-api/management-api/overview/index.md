@@ -50,7 +50,7 @@ We are working towards making [organization namespaces]({{< relref "/general/org
 Following are some resources that should help you:
 
 - The guide [creating workload clusters via the Management API]({{< relref "/ui-api/management-api/creating-workload-clusters" >}}) explains step by step how you can create a cluster and node pools via the Management API. Here you learn about all the custom resources a cluster comprises.
-- The [app platform]({{< relref "/app-platform" >}}) introduction outlines the several custom resources involved when managing app catalogs and apps.
+- The [app platform]({{< relref "/developer-platform/app-platform" >}}) introduction outlines the several custom resources involved when managing app catalogs and apps.
 - Our [custom resource definitions (CRD) documentation]({{< relref "/ui-api/management-api/crd" >}}) provides details on all the custom resources (CR) we use with the various providers and their versions and schema.
 
 ## Feedback is welcome

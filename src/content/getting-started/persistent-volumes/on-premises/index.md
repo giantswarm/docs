@@ -96,7 +96,7 @@ First we create a PVC:
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: myclaim
+  name: MY_CLAIM
 spec:
   accessModes:
     - ReadWriteOnce
@@ -113,18 +113,18 @@ Now we can create a Pod that uses our PVC:
 kind: Pod
 apiVersion: v1
 metadata:
-  name: mypod
+  name: MY_POD
 spec:
   containers:
     - name: myfrontend
       image: nginx
       volumeMounts:
       - mountPath: "/var/www/html"
-        name: mypd
+        name: MY_VOLUME
   volumes:
-    - name: mypd
+    - name: MY_VOLUME
       persistentVolumeClaim:
-        claimName: myclaim
+        claimName: MY_CLAIM
 ```
 
 Now we have an NGINX Pod which serves the contents of our Volume.
