@@ -121,6 +121,6 @@ Please see our [dedicated responsible disclosure page](https://www.giantswarm.io
 
 ## Managed Security Tooling
 
-For additional detection, response, and enforcement capabilities within your cluster, Giant Swarm also offers a managed security stack. Details about policy enforcement, anomaly detection, and vulnerability scanning, among others, can be found [in the security stack documentation][security-stack-docs].
+For additional detection, response, and enforcement capabilities within your cluster, Giant Swarm also offers a managed security stack. Details about policy enforcement, anomaly detection, and vulnerability scanning, among others, can be found [in the security platform documentation][security-platform-docs].
 
-[security-stack-docs]: {{< relref "app-platform/apps/security" >}}
+[security-platform-docs]: {{< relref "/developer-platform/security" >}}

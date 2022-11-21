@@ -7,7 +7,7 @@ menu:
   main:
     identifier: management-clusters
     parent: general
-last_review_date: 2021-02-19
+last_review_date: 2022-11-18
 user_questions:
   - How does Giant Swarm use Management Clusters?
   - How are Management Clusters kept up to date?
@@ -20,7 +20,7 @@ owner:
 
 As we are fully convinced of Kubernetes as a platform for building platforms, we build all our management clusters based on Kubernetes. Giant Swarm leverages the concept of [operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) to control all resources that clusters need as [“Custom Resources”](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
 
-As well as operators, our management clusters run supporting components such as our monitoring stack and our [web UI]({{< relref "/ui-api/web" >}}). All components are deployed using the Giant Swarm [App Platform]({{< relref "/app-platform/overview" >}}).
+As well as operators, our management clusters run supporting components such as our monitoring stack and our [web UI]({{< relref "/ui-api/web" >}}). All components are deployed using the Giant Swarm [App Platform]({{< relref "/developer-platform/app-platform/overview" >}}).
 
 Users have direct access to the Kubernetes API of the management cluster. The gives full access to the automation we've built into our operators, as well as visibility into the components running within the management cluster. Documentation can be found [here]({{< relref "/ui-api/management-api/" >}}).
 

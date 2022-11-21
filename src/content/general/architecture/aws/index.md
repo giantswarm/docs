@@ -6,7 +6,7 @@ weight: 10
 menu:
   main:
     parent: general-architecture
-last_review_date: 2020-10-28
+last_review_date: 2022-11-18
 user_questions:
   - What areas are covered in the Giant Swarm AWS platform?
   - Do I need a management cluster per AWS region?
@@ -38,7 +38,7 @@ When it comes to planning and designing your cluster architecture and its adapti
 
 As we are fully convinced of Kubernetes as a platform for building platforms, we build all our management clusters based on Kubernetes. The initial deployment entails the creation of that management cluster in a defined cloud provider region. After the management cluster is ready we deploy all our automation taking advantage of Kubernetes primitives and using the same philosophy we advocate to our customers.
 
-Giant Swarm leverages the concept of [“Operators"](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) to control all resources that clusters need as [“Custom Resources”](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/). At the same time customers can also use the Kubernetes Control Plane API to [manage their clusters]({{< relref "/ui-api/management-api/creating-workload-clusters/aws" >}}) and/or [applications]({{< relref "/app-platform" >}}).
+Giant Swarm leverages the concept of [“Operators"](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) to control all resources that clusters need as [“Custom Resources”](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/). At the same time customers can also use the Kubernetes Control Plane API to [manage their clusters]({{< relref "/ui-api/management-api/creating-workload-clusters/aws" >}}) and/or [applications]({{< relref "/developer-platform/app-platform" >}}).
 
 ![AWS management cluster architecture](aws-cp-cluster-architecture.png)
 
