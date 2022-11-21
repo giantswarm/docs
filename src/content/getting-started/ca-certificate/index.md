@@ -48,11 +48,11 @@ openssl pkcs12 -export -clcerts \
   -inkey client.key \
   -in client.crt \
   -out client.p12 \
-  -passout pass:giantswarm \
+  -passout pass:YOUR_PASSWORD \
   -name "Key pair for Giant Swarm cluster"
 ```
 
-The `-passout` argument sets a password to encrypt the bundle. In our examples here, we use the password `giantswarm`. Feel free to pick your own password when following the tutorial, but make sure to prepend the `pass:` prefix as shown above. If you prefer to enter a password via a prompt instead of passing it as a clear text argument, you can completely omit the `-passout pass:<your-password>` part.
+The `-passout` argument sets a password to encrypt the bundle. Make sure to prepend the `pass:` prefix to the password as shown above. If you prefer to enter a password via a prompt instead of passing it as a clear text argument, you can completely omit the `-passout pass:YOUR_PASSWORD` part.
 
 Also note that we give a freely chosen name for the bundle using the `-name` argument. You can pick whatever name suits you. However, most platforms don't display this name in any meaningful place, so don't put too much effort in coming up with a good name.
 
@@ -114,7 +114,7 @@ Now to importing your client certificate. With `path/to/bundle.p12` being the pa
 security import \
   path/to/bundle.p12 \
   -k "$HOME/Library/Keychains/login.keychain" \
-  -P giantswarm
+  -P YOUR_PASSWORD
 ```
 
 #### Firefox on macOS {#mac-os-firefox}
@@ -167,7 +167,7 @@ Now we can import the PKCS12 key bundle. The example below again assumes the PKC
 ```nohighlight
 pk12util -i path/to/bundle.p12 \
   -d sql:$HOME/.pki/nssdb \
-  -W giantswarm
+  -W YOUR_PASSWORD
 ```
 
 #### Firefox on Linux {#linux-firefox}
@@ -205,7 +205,7 @@ Now we can import the PKCS12 key bundle. The example below again assumes your Fi
 ```nohighlight
 pk12util -i path/to/bundle.p12 \
   -d ~/.mozilla/firefox/6eozd6kv.default \
-  -W giantswarm
+  -W YOUR_PASSWORD
 ```
 
 ### Windows
