@@ -14,7 +14,7 @@ owner:
 last_review_date: 2022-11-21
 ---
 
-In this document you will learn how you can disable monitoring for your cluster.
+In this article you will learn how you can disable monitoring for your cluster.
 
 ## Introduction to monitoring
 
