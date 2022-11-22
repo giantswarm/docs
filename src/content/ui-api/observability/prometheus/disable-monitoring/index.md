@@ -56,7 +56,7 @@ cluster.cluster.x-k8s.io/myclustername labeled
 
 Below is an example of a Cluster CR with monitoring disabled:
 
-```
+```yaml
 apiVersion: cluster.x-k8s.io/v1alpha2
 kind: Cluster
 metadata:
