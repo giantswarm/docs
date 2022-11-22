@@ -20,7 +20,7 @@ In this document you will learn how you can disable monitoring for your cluster.
 
 ## Introduction to monitoring
 
-Each cluster created on the Giantswarm Platform benefits from our monitoring which allow us to provide you with 24/7 support to ensure best quality of service.
+Each cluster created on the Giant Swarm Platform benefits from our monitoring which allow us to provide you with 24/7 support to ensure best quality of service.
 
 Each cluster is monitored by a dedicated Prometheus instance.
 This comes by default and storage is reserved for data retention, storage size can be adjusted via [Prometheus Volume Sizing](https://docs.giantswarm.io/ui-api/observability/prometheus/volume-size/) feature.
