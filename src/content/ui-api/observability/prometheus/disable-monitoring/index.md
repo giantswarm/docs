@@ -5,7 +5,7 @@ description: This article explains how to turn off all monitoring for an entire 
 weight: 50
 menu:
   main:
-    identifier: uiapi-observability-clustermonitoring
+    identifier: uiapi-observability-prometheus-disable
     parent: uiapi-observability-prometheus
 user_questions:
   - How can I disable monitoring on my cluster ?
