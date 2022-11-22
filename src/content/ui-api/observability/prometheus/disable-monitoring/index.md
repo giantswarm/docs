@@ -50,7 +50,7 @@ giantswarm.io/monitoring: false
 You can achieve this by running the following command :
 
 ```
-$ k label cl nzr8z giantswarm.io/monitoring=false
+$ kubectl label cl nzr8z giantswarm.io/monitoring=false
 cluster.cluster.x-k8s.io/nzr8z labeled
 ```
 
