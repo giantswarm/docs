@@ -65,7 +65,7 @@ metadata:
     cluster.giantswarm.io/description: Playground test Cluster
   labels:
     giantswarm.io/cluster: myclustername
-    giantswarm.io/monitoring: false
+    giantswarm.io/monitoring: "false"
     giantswarm.io/organization: acme
     release.giantswarm.io/version: 11.4.0
   name: nzr5z
