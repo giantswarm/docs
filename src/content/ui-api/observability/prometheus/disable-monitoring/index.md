@@ -8,7 +8,7 @@ menu:
     identifier: uiapi-observability-prometheus-disable
     parent: uiapi-observability-prometheus
 user_questions:
-  - How can I disable monitoring on my cluster ?
+  - How can I disable monitoring on my cluster?
 aliases:
   - /observability/prometheus/disable-monitoring
 owner:
