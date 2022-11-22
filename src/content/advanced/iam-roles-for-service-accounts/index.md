@@ -73,12 +73,12 @@ Please set the following permissons on the [`GiantSwarmAWSOperator` IAM role]({{
           "cloudfront:GetDistribution",
           "cloudfront:CreateDistribution",
           "cloudfront:UpdateDistribution",
-          "cloudfront:DeleteDistribution"
+          "cloudfront:DeleteDistribution",
           "cloudfront:ListDistributions",
           "cloudfront:ListTagsForResource"
 
       ],
-      "Resource": "*",
+      "Resource": "*"
   },
   {
       "Effect": "Allow",
