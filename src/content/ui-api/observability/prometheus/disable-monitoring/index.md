@@ -9,8 +9,6 @@ menu:
     parent: uiapi-observability-prometheus
 user_questions:
   - How can I disable monitoring on my cluster?
-aliases:
-  - /observability/prometheus/disable-monitoring
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 last_review_date: 2022-11-21
