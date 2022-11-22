@@ -50,8 +50,8 @@ giantswarm.io/monitoring: false
 You can achieve this by running the following command :
 
 ```
-$ kubectl label cl nzr8z giantswarm.io/monitoring=false --overwrite
-cluster.cluster.x-k8s.io/nzr8z labeled
+$ kubectl label cl myclustername giantswarm.io/monitoring=false --overwrite
+cluster.cluster.x-k8s.io/myclustername labeled
 ```
 
 Below is an example of a cluster CR with monitoring disabled :
@@ -64,7 +64,7 @@ metadata:
   annotations:
     cluster.giantswarm.io/description: Playground test Cluster
   labels:
-    giantswarm.io/cluster: nzr8z
+    giantswarm.io/cluster: myclustername
     giantswarm.io/monitoring: false
     giantswarm.io/organization: acme
     release.giantswarm.io/version: 11.4.0
@@ -74,7 +74,7 @@ spec:
   infrastructureRef:
     apiVersion: infrastructure.giantswarm.io/v1alpha2
     kind: AWSCluster
-    name: nzr8z:
+    name: myclustername:
     namespace: default
 ```
 
