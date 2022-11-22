@@ -16,6 +16,8 @@ last_review_date: 2022-11-17
 
 {{< platform_support_table aws="alpha=v17.2.0" aws="ga=v17.4.0">}}
 
+*Basic knowledge about how service accounts work in Kubernetes is necessary for understanding what this page is about. If you could use a quick refresher, we strongly suggest taking a look at [this article](https://learnk8s.io/authentication-kubernetes).*
+
 You can associate an IAM role with a Kubernetes service account. This service account can then provide AWS permissions to the containers in any pod that uses that service account. With this feature, you no longer need to provide extended permissions to the Giant Swarm node IAM role so that pods on that node can call AWS APIs.
 
 Applications must sign their AWS API requests with AWS credentials. This feature provides a strategy for managing credentials for your applications, similar to the way that Amazon EC2 instance profiles provide credentials to Amazon EC2 instances. Instead of creating and distributing your AWS credentials to the containers or using the Amazon EC2 instance’s role, you can associate an IAM role with a Kubernetes service account. The applications in the pod’s containers can then use an AWS SDK or the AWS CLI to make API requests to authorized AWS services.
