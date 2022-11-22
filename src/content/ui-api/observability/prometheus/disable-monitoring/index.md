@@ -1,5 +1,5 @@
 ---
-linkTitle: Disable Monitoring
+linkTitle: Disable monitoring
 title: Disable Monitoring
 description: A guide explaining how to disable monitoring for a cluster
 weight: 50
