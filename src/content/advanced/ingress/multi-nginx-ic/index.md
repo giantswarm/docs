@@ -21,8 +21,8 @@ last_review_date: 2022-07-19
 
 NGINX ingress controller handles [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) resources, routing traffic from outside the Kubernetes cluster to services within the cluster.
 
-Starting with [NGINX IC v1.8.0](https://docs.giantswarm.io/changes/managed-apps/nginx-ingress-controller-app/v1.8.0/), one can install multiple NGINX ingress controllers in a Kubernetes cluster. The optional NGINX Ingress Controller can be [installed as an App on your cluster]({{< relref "/content/getting-started/ingress-controller/index.md" >}}).
-[NGINX IC v2.2.0](https://docs.giantswarm.io/changes/managed-apps/nginx-ingress-controller-app/v2.2.0/) will start installing a IngressClass with default name `nginx` and controller value `k8s.io/ingress-nginx`.
+Starting with [NGINX IC v1.8.0](/changes/managed-apps/nginx-ingress-controller-app/v1.8.0/), one can install multiple NGINX ingress controllers in a Kubernetes cluster. The optional NGINX Ingress Controller can be [installed as an App on your cluster]({{< relref "/content/getting-started/ingress-controller/index.md" >}}).
+[NGINX IC v2.2.0](/changes/managed-apps/nginx-ingress-controller-app/v2.2.0/) will start installing a IngressClass with default name `nginx` and controller value `k8s.io/ingress-nginx`.
 
 Some use cases for this might be:
 

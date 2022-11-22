@@ -46,30 +46,30 @@ You can aggregate several Ingress rules into a single Ingress definition like fo
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: <ingress-name>
+  name: INGRESS_NAME
 spec:
   ingressClassName: nginx
   rules:
-  - host: <yourchoice1>.<cluster-id>.k8s.gigantic.io
+  - host: YOUR_CHOICE_1.CLUSTER_ID.k8s.gigantic.io
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: <service1-name>
+            name: SERVICE_1_NAME
             port:
-              number: <service1-port>
-  - host: <yourchoice2>.<cluster-id>.k8s.gigantic.io
+              number: SERVICE_1_PORT
+  - host: YOUR_CHOICE_2.CLUSTER_ID.k8s.gigantic.io
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: <service2-name>
+            name: SERVICE_2_NAME
             port:
-              number: <service2-port>
+              number: SERVICE_2_PORT
 ```
 
 __Note:__ If you are using TLS you also need each of the hosts in the `tls` section (see below) of the yaml.
@@ -82,27 +82,27 @@ You can route an Ingress to different Services based on the path:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: <ingress-name>
+  name: INGRESS_NAME
 spec:
   ingressClassName: nginx
   rules:
-  - host: <yourchoice>.<cluster-id>.k8s.gigantic.io
+  - host: YOUR_CHOICE_1.CLUSTER_ID.k8s.gigantic.io
     http:
       paths:
       - path: /foo
         pathType: Prefix
         backend:
           service:
-            name: <service1-name>
+            name: SERVICE_1_NAME
             port:
-              number: <service1-port>
+              number: SERVICE_1_PORT
       - path: /bar
         pathType: Prefix
         backend:
           service:
-            name: <service2-name>
+            name: SERVICE_2_NAME
             port:
-              number: <service2-port>
+              number: SERVICE_2_PORT
 ```
 
 __Note:__ Your applications need to be capable of running on a non-root path either by default or by setting the base path in their configuration.
@@ -121,25 +121,25 @@ For SSL passthrough you need to set an annotation and enable TLS for the host:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: <ingress-name>
+  name: INGRESS_NAME
   annotations:
     nginx.ingress.kubernetes.io/ssl-passthrough: "true"
 spec:
   ingressClassName: nginx
    tls:
    - hosts:
-     - <yourchoice>.<cluster-id>.k8s.gigantic.io
+     - YOUR_CHOICE.CLUSTER_ID.k8s.gigantic.io
   rules:
-  - host: <yourchoice>.<cluster-id>.k8s.gigantic.io
+  - host: YOUR_CHOICE.CLUSTER_ID.k8s.gigantic.io
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: <service-name>
+            name: SERVICE_NAME
             port:
-              number: <service-port>
+              number: SERVICE_PORT
 ```
 
 __Note:__ SSL passthrough cannot work with path based routing based on the nature of SSL.
@@ -153,10 +153,10 @@ apiVersion: v1
 kind: Secret
 type: kubernetes.io/tls
 metadata:
-  name: mytlssecret
+  name: TLS_SECRET
 data:
-  tls.crt: <base64 encoded cert>
-  tls.key: <base64 encoded key>
+  tls.crt: BASE64_ENCODED_CERT
+  tls.key: BASE64_ENCODED_KEY
 ```
 
 __Note:__ the data keys must be named `tls.crt` and `tls.key`!
@@ -167,24 +167,24 @@ Referencing this secret in an Ingress will tell the Ingress Controller to secure
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: <ingress-name>
+  name: INGRESS_NAME
 spec:
   ingressClassName: nginx
    tls:
    - hosts:
-     - <yourchoice>.<cluster-id>.k8s.gigantic.io
-     secretName: mytlssecret
+     - YOUR_CHOICE.CLUSTER_ID.k8s.gigantic.io
+     secretName: TLS_SECRET
   rules:
-  - host: <yourchoice>.<cluster-id>.k8s.gigantic.io
+  - host: YOUR_CHOICE.CLUSTER_ID.k8s.gigantic.io
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: <service-name>
+            name: SERVICE_NAME
             port:
-              number: <service-port>
+              number: SERVICE_PORT
 ```
 
 __Tip:__ If you want to use [Let’s Encrypt](https://letsencrypt.org/) certificates with your domains you can automate their creation and renewal with the help of [cert-manager](https://cert-manager.io/docs/). After configuring cert-manager there is only an annotation with your Ingresses needed and your web page will be secured by a valid `TLS` certificate. You can learn more about this behavior [here]({{< relref "/advanced/tls-certificates" >}}).
@@ -197,7 +197,7 @@ First, you need to create a file called `auth` containing your usernames and pas
 
 ```nohighlight
 $ htpasswd -c auth foo1
-New password: <bar>
+New password: PASSWORD
 New password:
 Re-type new password:
 Adding password for user foo1
@@ -207,7 +207,7 @@ You can add users to the same file with:
 
 ```nohighlight
 $ htpasswd auth foo2
-New password: <bar>
+New password: PASSWORD
 New password:
 Re-type new password:
 Adding password for user foo2
@@ -220,9 +220,9 @@ apiVersion: v1
 kind: Secret
 type: Opaque
 metadata:
-  name: myauthsecret
+  name: AUTH_SECRET
 data:
-  auth: <base64 encoded auth>
+  auth: BASE64_ENCODED_AUTH
 ```
 
 Last, we create the Ingress with the according annotations:
@@ -231,27 +231,27 @@ Last, we create the Ingress with the according annotations:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: <ingress-name>
+  name: INGRESS_NAME
   annotations:
     # type of authentication [basic|digest]
     nginx.ingress.kubernetes.io/auth-type: basic
     # name of the secret that contains the user/password definitions
-    nginx.ingress.kubernetes.io/auth-secret: myauthsecret
+    nginx.ingress.kubernetes.io/auth-secret: AUTH_SECRET
     # message to display with an appropiate context why the authentication is required
     nginx.ingress.kubernetes.io/auth-realm: "Authentication Required - foo"
 spec:
   ingressClassName: nginx
   rules:
-  - host: <yourchoice>.<cluster-id>.k8s.gigantic.io
+  - host: YOUR_CHOICE.CLUSTER_ID.k8s.gigantic.io
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: <service-name>
+            name: SERVICE_NAME
             port:
-              number: <service-port>
+              number: SERVICE_PORT
 ```
 
 ### External Authentication
@@ -274,22 +274,22 @@ This can for example be used together with path based routing, when the applicat
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: <ingress-name>
+  name: INGRESS_NAME
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
   rules:
-  - host: <yourchoice>.<cluster-id>.k8s.gigantic.io
+  - host: YOUR_CHOICE.CLUSTER_ID.k8s.gigantic.io
     http:
       paths:
       - path: /foo
         pathType: Prefix
         backend:
           service:
-            name: <service-name>
+            name: SERVICE_NAME
             port:
-              number: <service-port>
+              number: SERVICE_PORT
 ```
 
 If the application contains relative links it is possible to add an additional annotation `ingress.kubernetes.io/add-base-url` that will prepend a [`base` tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base) in the header of the returned HTML from the backend.
@@ -348,7 +348,7 @@ This feature is implemented by the third party module [nginx-sticky-module-ng](h
 
 The NGINX Ingress Controller creates an NGINX configuration file. You can directly pass chunks of configuration, so-called _configuration snippets_, into any ingress manifest. These snippets will be added to the NGINX configuration.
 
-The _configuration snippets_ through Ingress annotations is disabled by default. To enable parsing of _configuration snippets_, you'll need to set `controller.allowSnippetAnnotations: true` in the [App configuration]({{< relref "/app-platform/app-configuration/index.md" >}}).
+The _configuration snippets_ through Ingress annotations is disabled by default. To enable parsing of _configuration snippets_, you'll need to set `controller.allowSnippetAnnotations: true` in the [App configuration]({{< relref "/developer-platform/app-platform/app-configuration/index.md" >}}).
 
 Warning: We recommend enabling this option only if you TRUST users with permission to create Ingress objects, as this may allow a user to add restricted configurations to the final nginx.conf file.
 
@@ -358,8 +358,8 @@ Here is an example adding an `Expires` header to every response:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: myingress
-  namespace: mynamespace
+  name: INGRESS_NAME
+  namespace: NAMESPACE
   annotations:
     nginx.ingress.kubernetes.io/configuration-snippet: |
    expires 24h;
@@ -388,7 +388,7 @@ Your Giant Swarm installation comes with a default configuration for the Ingress
 
 You can override these defaults by setting your per cluster configuration in the form of a ConfigMap named `nginx-ingress-controller-user-values` in the management cluster.
 
-The page [App configuration reference]({{< relref "/app-platform/app-configuration/index.md" >}}) contains more information how to set user defined configuration for the nginx-ingress-controller-app.
+The page [App configuration reference]({{< relref "/developer-platform/app-platform/app-configuration/index.md" >}}) contains more information how to set user defined configuration for the nginx-ingress-controller-app.
 
 ### Where is the user values ConfigMap
 
@@ -415,13 +415,13 @@ Only the user ConfigMap is safe to edit.
 You are able to set any value from the [upstream documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/) by including them in the user values ConfigMap under the `data.values` field like so:
 
 ```yaml
-# On the management cluster, in the abc12 namespace
+# On the management cluster
 
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: nginx-ingress-controller-app-user-values
-  namespace: abc12
+  namespace: NAMESPACE
 data:
   values: |
     configmap:
@@ -439,7 +439,7 @@ spec:
   userConfig:
     configMap:
       name: nginx-ingress-controller-app-user-values
-      namespace: abc12
+      namespace: NAMESPACE
 ```
 
 Any defaults that we override are visible in the following `values.yaml` file, under the `configmap` key. [Check this values.yaml file in v2.2.0](https://github.com/giantswarm/nginx-ingress-controller-app/blob/v2.2.0/helm/nginx-ingress-controller-app/values.yaml) as an example.

@@ -7,7 +7,7 @@ menu:
   main:
     identifier: general-overview
     parent: general
-last_review_date: 2020-06-17
+last_review_date: 2022-11-18
 user_questions:
   - What's included with Kubernetes run by Giant Swarm?
   - What's not included with Kubernetes run by Giant Swarm?
@@ -39,7 +39,7 @@ Your clusters comes out-of-the-box as follows:
 
 There are some things not included in the cluster as managed by us:
 
-- Additional user-space services like dashboards, logging, container registry, etc. are not installed (getting them running is [really easy]({{< relref "/app-platform/overview" >}}), though).
+- Additional user-space services like dashboards, logging, container registry, etc. are not installed (getting them running is [really easy]({{< relref "/developer-platform/app-platform/overview" >}}), though).
 
 ## High availability and resilience
 
