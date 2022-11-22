@@ -11,10 +11,12 @@ user_questions:
  -  How can I migrate from KIAM to IAM roles for service accounts?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2022-11-17
+last_review_date: 2022-11-22
 ---
 
 {{< platform_support_table aws="alpha=v17.2.0" aws="ga=v17.4.0">}}
+
+*Basic knowledge about how service accounts work in Kubernetes is necessary for understanding what this page is about. If you could use a quick refresher, we strongly suggest taking a look at [this article](https://learnk8s.io/authentication-kubernetes).*
 
 You can associate an IAM role with a Kubernetes service account. This service account can then provide AWS permissions to the containers in any pod that uses that service account. With this feature, you no longer need to provide extended permissions to the Giant Swarm node IAM role so that pods on that node can call AWS APIs.
 
