@@ -34,7 +34,7 @@ You might as well have storage constraints and therefore would like to turn moni
 
 When you turn off monitoring this has several implication:
 
-- Giantswarm will not actively provide support on this cluster, as we will not be receiving alerts for this cluster.
+- Giant Swarm will not actively provide support on this cluster, as we will not be receiving alerts for this cluster.
 - Giantswarm will not be able to provide detailed investigation, as we will not have monitoring data over time to read from.
 
 But nevertheless we are still here to help and support you in case you need it.
