@@ -41,7 +41,7 @@ But nevertheless we are still here to help and support you in case you need it.
 
 ## How to disable monitoring?
 
-To disable monitoring for a cluster you need to label the Cluster CR with :
+To disable monitoring for a cluster you need to label the Cluster CR with:
 
 ```yaml
 giantswarm.io/monitoring: false
