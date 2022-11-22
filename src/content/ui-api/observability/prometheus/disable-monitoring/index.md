@@ -1,7 +1,7 @@
 ---
 linkTitle: Disable monitoring
 title: Disable Monitoring
-description: A guide explaining how to disable monitoring for a cluster
+description: This article explains how to turn off all monitoring for an entire workload cluster.
 weight: 50
 menu:
   main:
