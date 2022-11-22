@@ -54,7 +54,7 @@ $ kubectl label cl myclustername giantswarm.io/monitoring=false --overwrite
 cluster.cluster.x-k8s.io/myclustername labeled
 ```
 
-Below is an example of a cluster CR with monitoring disabled :
+Below is an example of a Cluster CR with monitoring disabled:
 
 ```
 apiVersion: cluster.x-k8s.io/v1alpha2
