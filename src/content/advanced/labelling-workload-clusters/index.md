@@ -63,7 +63,7 @@ Other values than the three mentioned above are not permitted and will be reject
 
 By default each cluster is being monitored by Giant Swarm to ensure 24/7 support.
 
-This can be disabled using the following label :
+This can be disabled using the following label:
 
 ```yaml
 giantswarm.io/monitoring: "false"
