@@ -48,7 +48,7 @@ giantswarm.io/monitoring: "false"
 You can achieve this by running the following command :
 
 ```nohighlight
-$ kubectl label cl myclustername giantswarm.io/monitoring=false --overwrite
+$ kubectl label clusters.cluster.x-k8s.io myclustername giantswarm.io/monitoring=false --overwrite
 cluster.cluster.x-k8s.io/myclustername labeled
 ```
 
