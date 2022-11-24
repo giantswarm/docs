@@ -41,9 +41,9 @@ As of writing: Opendistro security cannot map nested values in the JWT-token to 
 To setup a new "App registration" refer to the [official guide](https://docs.microsoft.com/en-us/Azure/active-directory/develop/quickstart-register-app).
 
 The **redirect URI** pattern is:
-`https://<your.kibana.url>/auth/openid/login`
+`https://KIBANA_URL/auth/openid/login`
 
-*This can be changed later.*
+_This can be changed later._
 
 (Note: Depends on the backend provider. Generally, there should be a mechanism that defines an object that represents the app with attributes to control who has which permissions. In Azure, this is "App registration".)
 
@@ -126,8 +126,9 @@ config:
         authentication_backend:
           type: noop
     authz: {}
+```
 
-- Check if secret was created correctly:
+2. Check if secret was created correctly:
 
 ```bash=
 kubectl get secret -n efk-stack-app opendistro-security-config -o yaml
@@ -165,7 +166,7 @@ It requires hashed passwords. Use `https://bcrypt-generator.com/` or refer to th
 
 (Note: You will use these hashes as the admin password to be defined in the last section: "Configure OIDC backend for Kibana")
 
-- Generate and deploy the secret to the efk-stack-app namespace:
+2. Generate and deploy the secret to the efk-stack-app namespace:
 
 ```bash=
 kubectl create secret generic -n efk-stack-app opendistro-internal-users --from-file=./internal_users.yml
@@ -196,7 +197,7 @@ logstash:
   description: "Demo logstash user"
 ```
 
-- Check if the secret was created correctly:
+3. Check if the secret was created correctly:
 
 ```bash=
 kubectl get secret -n efk-stack-app opendistro-internal-users -o yaml
@@ -310,8 +311,8 @@ kibana_server:
   and_backend_roles: []
 ```
 
-- Generate and deploy the secret to the efk-stack-app namespace:
-- Check if the secret was created correctly:
+2. Generate and deploy the secret to the efk-stack-app namespace:
+3. Check if the secret was created correctly:
 
 ```bash=
 kubectl get secret -n efk-stack-app opendistro-roles-mapping -o yaml
@@ -354,16 +355,15 @@ opendistro-es:
       configSecret: "opendistro-security-config"
       rolesMappingSecret: "opendistro-roles-mapping"
 
-
   kibana:
     username: admin
-    password: <kibana-admin-password>
+    password: KIBANA_ADMIN_PASSWORD
 
     config:
-      opendistro_security.openid.base_redirect_url: <your.kibana.url>
+      opendistro_security.openid.base_redirect_url: KIBANA_URL
       opendistro_security.auth.type: openid
-      opendistro_security.openid.client_id: <your client ID>
-      opendistro_security.openid.client_secret: <your client secret>
+      opendistro_security.openid.client_id: CLIENT_ID
+      opendistro_security.openid.client_secret: CLIENT_SECRET
       opendistro_security.openid.connect_url: https://login.microsoftonline.com/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/v2.0/.well-known/openid-configuration
 
     ingress:
@@ -373,12 +373,12 @@ opendistro-es:
         cert-manager.io/cluster-issuer: letsencrypt-giantswarm # This requires cert-manager to be installed.
       enabled: true
       hosts:
-      - https://<your.kibana.url>
+        - https://KIBANA_URL
       path: /
       tls:
-      - hosts:
-        - https://<your.kibana.url>
-        secretName: kibana.tls
+        - hosts:
+            - https://KIBANA_URL
+          secretName: kibana.tls
     ssl:
       kibana:
         enabled: false
