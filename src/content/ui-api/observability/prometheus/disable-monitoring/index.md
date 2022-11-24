@@ -26,7 +26,7 @@ This comes by default and storage is reserved for data retention, storage size c
 ## Why would I like to disable monitoring?
 
 You might create clusters where you do not need support from our operations team, for instance because you might just want to try something new for a while, or you are running a playground cluster where you know what you are doing.
-You might as well have storage constraints and therefore would like to turn monitoring off.
+You may also have storage constraints and therefore would like to turn monitoring off.
 
 ## What does disabling monitoring involve?
 
