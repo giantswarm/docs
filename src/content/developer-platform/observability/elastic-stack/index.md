@@ -43,7 +43,7 @@ To setup a new "App registration" refer to the [official guide](https://docs.mic
 The **redirect URI** pattern is:
 `https://KIBANA_URL/auth/openid/login`
 
-*This can be changed later.*
+_This can be changed later._
 
 (Note: Depends on the backend provider. Generally, there should be a mechanism that defines an object that represents the app with attributes to control who has which permissions. In Azure, this is "App registration".)
 
@@ -166,7 +166,7 @@ It requires hashed passwords. Use `https://bcrypt-generator.com/` or refer to th
 
 (Note: You will use these hashes as the admin password to be defined in the last section: "Configure OIDC backend for Kibana")
 
-- Generate and deploy the secret to the efk-stack-app namespace:
+2. Generate and deploy the secret to the efk-stack-app namespace:
 
 ```bash=
 kubectl create secret generic -n efk-stack-app opendistro-internal-users --from-file=./internal_users.yml
@@ -197,7 +197,7 @@ logstash:
   description: "Demo logstash user"
 ```
 
-- Check if the secret was created correctly:
+3. Check if the secret was created correctly:
 
 ```bash=
 kubectl get secret -n efk-stack-app opendistro-internal-users -o yaml
