@@ -17,7 +17,7 @@ aliases:
   - /advanced/gitops/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2022-07-11
+last_review_date: 2022-11-25
 ---
 
 In this document you will learn how to manage infrastructure and applications by utilizing FluxCD - a set of GitOps operators installed in Giant Swarm management clusters.
@@ -66,9 +66,7 @@ If want to learn more about FluxCD and its capabilities, here are a couple of us
 
 ## Managing resources with Flux
 
-In this section, we will guide you through an example Flux setup on a Giant Swarm Management Cluster. You will create resources locally. Mentions of _example resources_ or _example repository_ refers to [giantswarm/flux-demo](https://github.com/giantswarm/flux-demo), where you can find all resources used in this section in full, unabbreviated forms and Flux will use these to sync with.
-
-In order to follow the [Watching for new commits](#watching-for-new-commits) section, you should fork the repository and work on your fork instead.
+In this section, we will guide you through an example Flux setup on a Giant Swarm Management Cluster. You will create resources locally. Mentions of _example resources_ or _example repository_ refers to [giantswarm/gitops-template](https://github.com/giantswarm/gitops-template), where you can find all resources used in this section in full, unabbreviated forms and Flux will use these to sync with.
 
 We will be using [Flux CLI](https://fluxcd.io/docs/cmd/) and [kubectl-gs](https://github.com/giantswarm/kubectl-gs). Please make sure you have both installed on your machine. If you would rather follow the guide without them, use the example resources provided.
 
@@ -126,10 +124,14 @@ flux-multi-tenancy:
 Due to extra security policies enforced by Kyverno, setting `.spec.serviceAccountName` for `Kustomization`/`HelmRelease` resources in our Management Clusters is mandatory. Usually, you will want to use `serviceAccountName: "automation"`.
 
 ## Creating your repo structure
+
 A gitops repository can have any arbitrary structure. This provides flexibility to adapt the repo to your own infra sructure. In giant swarm we have a clear hierarchical structure and we recommend to use this structure. This provides some advantages:
-  - It's easy to locate things and know what and where is being deployed
-  - If you need support from us, our engineers will easily understand the structure
+
+- It's easy to locate things and know what and where is being deployed
+- If you need support from us, our engineers will easily understand the structure
+
 The recommended structure (simplified) is:
+
 ```text
 bases
 ├── clusters
@@ -152,16 +154,19 @@ management-clusters
 We provide a template repository where this structure is elaborated and explained in detail in [giantswarm/gitops-template](https://github.com/giantswarm/gitops-template).
 It's not necessary to clone that repo to follow this guide, but it can provide a good reference for every possible usecase.
 We recommend to copy, at least, the bases folder from that repository to your own repo because cluster creation uses them as templates as we will see later in this document.
+
 ### Setting up sources
 
 First thing's first - create a bare-bones repository where we will store the resources that will be deployed. In this repository we need to create the structure described in the last section, and copy the bases for workload clusters and other apps in the Giant Swarm catalog. Follow these steps:
   
 1. Copy bases folder from [giantswarm/gitops-template](https://github.com/giantswarm/gitops-template)
 
-1. Init the repository in order to create the first part of the structure and some git hooks. This will create a folder `management-clusters`. Use the command:
+2. Init the repository in order to create the first part of the structure and some git hooks. This will create a folder `management-clusters`. Use the command:
+
 ```nohighlight
 kubectl gs gitops init
 ```
+
 > Note: To learn more about Giant Swarm's kubectl plugin, visit [kubectl-gs documentation]({{< relref "/ui-api/kubectl-gs/" >}}).
 
 ### Attach the repo to a management cluster
@@ -225,6 +230,7 @@ To import the private key (replace X's by the specific file name):
 ```nohighlight
 gpg --import ./management-clusters/grizzly/.sops.keys/master.XXXXXXXXXXXXXXXXXXXX.asc
 ```
+
 > Important! You must safely store the private key and keep it secret!
 
 To create the secret in the cluster we run:
@@ -239,7 +245,7 @@ Now, in order to safely store the key in the repo we can encode the yaml file us
 sops --encrypt --in-place management-clusters/MC_NAME/secrets/${MC_NAME}.gpgkey.enc.yaml
 ```
 
-Now we are applying the `Kustomization` file to the management cluster so the files in this repo will be monitored and the resources created accordingly. After this, any resource creation in the cluster doesn't need kubectl access. Now, if you add any more CRs inside the folders managed by the `Kustomization` they will be picked up by Flux automatically once it's committed and pushed. This is covered in the [Watching for new commits](#watching-for-new-commits) section.
+Now we are applying the `Kustomization` file to the management cluster so the files in this repo will be monitored and the resources created accordingly. After this, any resource creation in the cluster doesn't need kubectl access. Now, if you add any more CRs inside the folders managed by the `Kustomization` they will be picked up by Flux automatically once it's committed and pushed.
 
 ```nohighlight
 kubectl create -f management-clusters/MC_NAME/MC_NAME.yaml
