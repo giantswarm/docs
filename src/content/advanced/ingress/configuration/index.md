@@ -450,7 +450,7 @@ Do make sure you look at the right tag of that repository, when reading this fil
 corresponds to the version of the nginx-ingress-controller-app running on your cluster.
 
 ---
-### Enable Proxy Protocol
+### Configure Proxy Protocol
 
 __Warning:__
 
