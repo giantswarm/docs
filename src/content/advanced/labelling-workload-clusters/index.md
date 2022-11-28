@@ -59,6 +59,18 @@ If a cluster resource does not carry the `giantswarm.io/service-priority` label,
 
 Other values than the three mentioned above are not permitted and will be rejected by the Management API's admission controller. Also note that the label is only meant to be used on the main cluster resource. It will be ignored on other resource types, and we may also prevent setting it on other resource types in the future.
 
+### Monitoring
+
+By default each cluster is being monitored by Giant Swarm to ensure 24/7 support.
+
+This can be disabled using the following label:
+
+```yaml
+giantswarm.io/monitoring: "false"
+```
+
+You can find more details about this in the [Disable Monitoring]({{< relref "ui-api/observability/prometheus/disable-monitoring" >}}) article.
+
 ## Setting labels when creating a cluster
 
 Depending on the method you use to create a cluster, you can specify labels when creating your cluster.
