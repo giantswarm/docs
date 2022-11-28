@@ -474,8 +474,8 @@ data:
     configmap:
       use-proxy-protocol: "true"
     controller:
-      internal:
-        service:
+      service:
+        internal:
           annotations:
             service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: "*"
       service:
