@@ -450,10 +450,57 @@ Do make sure you look at the right tag of that repository, when reading this fil
 corresponds to the version of the nginx-ingress-controller-app running on your cluster.
 
 ---
+### Configure Proxy Protocol
 
 __Warning:__
 
-We also allow setting `use-proxy-protocol: "true"/"false"`. This setting always applies globally for the `nginx-ingress-controller`. All applications providing services behind ingresses need to understand this protocol or they will fail. Furthermore, the load balancer in front of the ingress controller also needs to be set up correctly. So currently, customizing this setting only makes sense on bare metal installations and will require a matching configuration on the load balancers.
+We also allow setting `use-proxy-protocol: "true"/"false"`. This setting always applies globally for the `nginx-ingress-controller`. All applications providing services behind ingresses need to understand this protocol or they will fail. Furthermore, the load balancer in front of the ingress controller also needs to be set up correctly.
+
+#### CAPA
+
+The use of the proxy protocol requires to configure the `LoadBalancer` associated with the `Service` in front of Nginx IC with the right annotation. It's possible to do this by setting the `controller.service.annotations` value in the user values ConfigMap.
+
+Here is an example adding the annotations `service.beta.kubernetes.io/aws-load-balancer-proxy-protocol` to the public and the internal services:
+```yaml
+# On the management cluster
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-ingress-controller-app-user-values
+  namespace: NAMESPACE
+data:
+  values: |
+    configmap:
+      use-proxy-protocol: "true"
+    controller:
+      service:
+        internal:
+          annotations:
+            service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: "*"
+      service:
+        annotations:
+          service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: "*"
+```
+
+#### AWS
+
+The proxy protocol is enabled by default. It can be disabled by setting the `use-proxy-protocol` to `false`.
+
+For example:
+```yaml
+# On the management cluster
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-ingress-controller-app-user-values
+  namespace: NAMESPACE
+data:
+  values: |
+    configmap:
+      use-proxy-protocol: "false"
+```
 
 ---
 
