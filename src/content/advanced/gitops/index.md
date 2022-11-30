@@ -151,9 +151,7 @@ management-clusters
                 └── WC_NAME2                     
 ```
 
-We provide a template repository where this structure is elaborated and explained in detail in [giantswarm/gitops-template](https://github.com/giantswarm/gitops-template).
-It's not necessary to clone that repo to follow this guide, but it can provide a good reference for every possible usecase.
-We recommend to copy, at least, the bases folder from that repository to your own repo because cluster creation uses them as templates as we will see later in this document.
+We provide a template repository where this structure is elaborated and explained in detail in [giantswarm/gitops-template](https://github.com/giantswarm/gitops-template). It is not necessary to clone the repository to follow this guide, but it can provide a good reference for every possible use case. We recommend copying, at least, the bases folder from that repository to your own repository because cluster creation uses them as templates as we will see later in this document.
 
 ### Setting up sources
 
