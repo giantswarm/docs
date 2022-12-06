@@ -1,7 +1,7 @@
 ---
 linkTitle: External DNS
 title: Advanced External DNS configuration
-description: Advanced configuration of the External DNS service in your clusters
+description: How to customize advanced configuration of the External DNS service in your clusters.
 weight: 25
 menu:
   main:
@@ -19,7 +19,7 @@ External DNS in Giant Swarm is configured to authenticate against the AWS using 
 
 There are 2 different possible configurations.
 
-### Use an existing secret (recommended).
+### Use an existing secret (recommended)
 
 This method configures the App to mount the credentials file from an existing `external-dns-route53` secret.
 
@@ -54,7 +54,7 @@ extraVolumes:
     secretName: external-dns-route53
 ```
 
-### Inject access key as values.
+### Inject access key as values
 
 This configuration directly injects the `aws_access_key_id` and `aws_secret_access_key` into the App.
 
