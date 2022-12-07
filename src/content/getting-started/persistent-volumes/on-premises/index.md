@@ -13,7 +13,7 @@ user_questions:
   - How can I use persistent storage in my KVM clusters on-premises?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
-last_review_date: 2021-01-01
+last_review_date: 2022-12-07
 ---
 
 Persistent Volumes allow you to store data beyond the lifetime of a Pod. Ideally, storage is dynamically provisioned and claiming storage for your pods would not require you to pre-provision storage. However, depending on your installation, your bare metal clusters might not support dynamic storage provisioning.

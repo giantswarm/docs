@@ -16,7 +16,7 @@ aliases:
   - /guides/using-persistent-volumes-on-aws-with-efs-csi-driver/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2021-01-01
+last_review_date: 2022-12-07
 ---
 
 If your cluster is running in the cloud on Amazon Web Services (AWS) the most common way to store data is using EBS volumes with the [dynamic provisioner](/guides/using-persistent-volumes-on-aws-with-ebs-csi-driver/). Sometimes EBS is not the optimal solution.

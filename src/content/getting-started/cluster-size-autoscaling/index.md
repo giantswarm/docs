@@ -6,7 +6,7 @@ weight: 100
 menu:
   main:
     parent: getting-started
-last_review_date: 2020-10-07
+last_review_date: 2022-12-07
 aliases:
   - /basics/cluster-size-autoscaling/
   - /kubernetes/cluster-size-autoscaling/

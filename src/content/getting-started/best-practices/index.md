@@ -17,7 +17,7 @@ user_questions:
   - How should I separate concerns using several clusters?
   - How many worker nodes should my clusters have?
   - How many control plane nodes should I run?
-last_review_date: 2021-01-01
+last_review_date: 2022-12-07
 ---
 
 Keep in mind that these recommendations are just basic rules-of-thumb that you should adapt to your needs.

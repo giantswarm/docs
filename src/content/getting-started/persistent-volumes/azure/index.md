@@ -13,7 +13,7 @@ user_questions:
   - How can I use persistent volumes in my Azure clusters?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2021-01-01
+last_review_date: 2022-12-07
 ---
 
 If your cluster is running in the cloud on Azure, it comes with four dynamic storage provisioners using different flavors of Azure Disks and Azure File shares. This enables you to store data beyond the lifetime of a Pod.

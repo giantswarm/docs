@@ -12,7 +12,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I scale an on-premises (KVM) cluster using gsctl?
-last_review_date: 2021-08-13
+last_review_date: 2022-12-07
 ---
 
 {{% gsctl_deprecation_disclaimer %}}
