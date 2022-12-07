@@ -1,7 +1,7 @@
 ---
 linkTitle: CoreDNS
 title: Advanced CoreDNS configuration
-description: Here we describe how you can customize the configuration of the managed CoreDNS service in your clusters
+description: Here we describe how you can customize the configuration of the managed CoreDNS service in your clusters.
 weight: 25
 menu:
   main:

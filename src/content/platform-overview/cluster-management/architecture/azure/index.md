@@ -1,7 +1,7 @@
 ---
 linkTitle: Azure
 title: The Giant Swarm Azure architecture
-description: Description of the Azure Giant Swarm platform, how it looks like and which features offers
+description: Description of the Azure Giant Swarm platform, how it looks like and which features offers.
 weight: 20
 menu:
   main:
