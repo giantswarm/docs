@@ -1,30 +1,30 @@
 ---
-linkTitle: External DNS
-title: Advanced External DNS configuration
-description: How to customize advanced configuration of the External DNS service in your clusters.
+linkTitle: External DNS using static credentials
+title: External DNS with AWS Route 53 and static credentials 
+description: How to configure the External DNS service to use AWS Route 53 with static credentials.
 weight: 25
 menu:
   main:
     parent: advanced
-last_review_date: 2022-12-06
+last_review_date: 2022-12-07
 user_questions:
-  - How can I customize the External DNS service configuration?
+  - How can I customize the External DNS AWS authentication method?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
 ---
 
-## Integrate External DNS with AWS Route53 with access key
+External DNS in Giant Swarm is configured to authenticate against AWS using the method available on the cluster (KIAM or IRSA). But there are cases where this is no possible, for example, if you try to manage your DNS records in AWS Route 53 from a cluster running on a different provider.
 
-External DNS in Giant Swarm is configured to authenticate against the AWS using the method available on the cluster (KIAM or IRSA). But there are cases where this is no possible, for example, if you try to manage your DNS records in AWS Route53 from a cluster running on a different provider.
+There are two different possible configurations.
 
-There are 2 different possible configurations.
+## Configuration
 
 ### Use an existing secret (recommended)
 
 This method configures the App to mount the credentials file from an existing `external-dns-route53` secret.
 
 The secret must contain a file with the following format:
-```
+```nohighlight
 [default]
 aws_access_key_id = _REPLACE_WITH_ACCESS_KEY_ID_
 aws_secret_access_key = _REPLACE_WITH_ACCESS_KEY_SECRET_
@@ -56,6 +56,8 @@ extraVolumes:
 
 ### Inject access key as values
 
+__Warning:__ This method is not recommended and will be deprecated in future versions.
+
 This configuration directly injects the `aws_access_key_id` and `aws_secret_access_key` into the App.
 
 ```yaml
@@ -70,9 +72,6 @@ externalDNS:
   aws_secret_access_key: <secret>
 ```
 
-__Warning:__
-
-This method is not recommended and will be deprecated in future versions.
 
 ---
 
