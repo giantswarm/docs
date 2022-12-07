@@ -75,8 +75,6 @@ spec:
 
 ## Limitations
 
-* __Expanding__: It is currently impossible to expand the Prometheus volume on OpenStack. We are working on a fix and will adjust the documentation accordingly when available. 
-
 * __Downsizing__: be aware that reducing the volume size will cause data loss.
 
 
