@@ -3,7 +3,7 @@ linkTitle: Support
 title: Giant Swarm support
 description: The support we provide is an essential part of our offering. Here we explain various support service processes and workflows.
 weight: 60
-last_review_date: 2021-08-20
+last_review_date: 2022-12-07
 user_questions:
   - What should I know when working with Giant Swarm's support staff?
   - How is Giant Swarm organizing support?

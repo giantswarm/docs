@@ -6,7 +6,7 @@ weight: 20
 menu:
   main:
     parent: platform-overview-security
-last_review_date: 2020-11-22
+last_review_date: 2022-12-07
 user_questions:
   - What are the Giant Swarm operational layers?
   - Why does Giant Swarm use several operational layers?

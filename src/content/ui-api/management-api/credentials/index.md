@@ -8,7 +8,7 @@ menu:
     parent: uiapi-managementapi
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
-last_review_date: 2021-11-02
+last_review_date: 2022-12-07
 user_questions:
   - How can I provide AWS identity details to use with my workload clusters?
   - How can I provide Azure identity details to use with my workload clusters?
