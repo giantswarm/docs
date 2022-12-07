@@ -1,7 +1,7 @@
 ---
 linkTitle: Advanced configuration
 title: Advanced ingress configuration
-description: Here we describe how you can customize and enable specific features for the NGINX-based Ingress
+description: Here we describe how you can customize and enable specific features for the NGINX-based Ingress.
 last_review_date: 2022-03-18
 weight: 10
 menu:

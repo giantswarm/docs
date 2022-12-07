@@ -1,7 +1,7 @@
 ---
 linkTitle: login
 title: "'gsctl login' command reference"
-description: "The 'gsctl login' command ensures an authenticated session with a Giant Swarm installation's REST API."
+description: The 'gsctl login' command ensures an authenticated session with a Giant Swarm installation's REST API.
 weight: 170
 menu:
   main:
@@ -14,7 +14,7 @@ aliases:
   - /reference/gsctl/login/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
-last_review_date: 2021-01-01
+last_review_date: 2022-12-07
 ---
 
 {{% gsctl_deprecation_disclaimer %}}
