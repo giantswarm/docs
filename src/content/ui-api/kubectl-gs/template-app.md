@@ -73,12 +73,12 @@ It also supports the following optional flags:
 - `--defaulting-enabled`: Only include fields that differ from the default value (default true). When false, a much longer template is created.
 - `--user-configmap`: Path to the user values configmap YAML file.
 - `--user-secret`: Path to the user secrets YAML file.
-- `--namespace-annotations`: Additional annotations to be appended to the metadata of the target namespace (through [`spec.namespaceConfig.annotations`]({{< relref "/developer-platform/app-platform/namespace-configuration/index.md" >}}) of [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) CR) in form `key=value`. To specify multiple annotations, either separate annotation pairs with commata (,) or specify the flag multiple times.
-- `--namespace-labels`: Additional labels to be appended to the metadata of the target namespace (through [`spec.namespaceConfig.labels`]({{< relref "/developer-platform/app-platform/namespace-configuration/index.md" >}}) of [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) CR) in form `key=value`. To specify multiple labels, either separate label pairs with commata (,) or specify the flag multiple times.
-- `--in-cluster`: Creates in-cluster app by setting `.spec.kubeConfig.inCluster` field of the [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) CR to `true`. This is necessary for installing collection of apps, for example [Security Pack]({{< relref "/developer-platform/security" >}}).
+- `--namespace-annotations`: Additional annotations to be appended to the metadata of the target namespace (through [`spec.namespaceConfig.annotations`]({{< relref "/platform-overview/app-platform/namespace-configuration/index.md" >}}) of [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) CR) in form `key=value`. To specify multiple annotations, either separate annotation pairs with commata (,) or specify the flag multiple times.
+- `--namespace-labels`: Additional labels to be appended to the metadata of the target namespace (through [`spec.namespaceConfig.labels`]({{< relref "/platform-overview/app-platform/namespace-configuration/index.md" >}}) of [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) CR) in form `key=value`. To specify multiple labels, either separate label pairs with commata (,) or specify the flag multiple times.
+- `--in-cluster`: Creates in-cluster app by setting `.spec.kubeConfig.inCluster` field of the [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) CR to `true`. This is necessary for installing collection of apps, for example [Security Pack]({{< relref "/platform-overview/security" >}}).
 
 Only required fields are templated. Other fields are are set by the
-[defaulting webhook]({{< relref "/developer-platform/app-platform/defaulting-validation" >}}).
+[defaulting webhook]({{< relref "/platform-overview/app-platform/defaulting-validation" >}}).
 
 This is enabled for the Giant Swarm releases shown below. For older releases you can set the `--defaulting-enabled` flag to false.
 

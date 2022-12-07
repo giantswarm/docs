@@ -8,7 +8,7 @@ menu:
     parent: uiapi-managementapi
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
-last_review_date: 2021-11-02
+last_review_date: 2022-12-07
 user_questions:
   - How can I provide AWS identity details to use with my workload clusters?
   - How can I provide Azure identity details to use with my workload clusters?
@@ -129,7 +129,7 @@ Both options are explained in further detail below.
 
 ### Organization default credentials {#organization-default}
 
-Any workload cluster in Giant Swarm belongs to an [organization]({{< relref "/general/organizations" >}}) as encoded in the `giantswarm.io/organization` label of the cluster's [`Cluster`]({{< relref "/ui-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) resource.
+Any workload cluster in Giant Swarm belongs to an [organization]({{< relref "/platform-overview/organizations" >}}) as encoded in the `giantswarm.io/organization` label of the cluster's [`Cluster`]({{< relref "/ui-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) resource.
 
 For each organization you can also deposit a credential secret which will be used automatically for any new workload cluster that does not specify credentials explicitly (as explained [above](#explicit)). To be looked up as the organization's default credentials, your `Secret` resource must match the following requirements:
 

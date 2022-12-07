@@ -52,7 +52,7 @@ Next, the following resources reside in the `default` namespace:
 
 ### Organization namespaces {#org-namespaces}
 
-For each [organization]({{< relref "/general/organizations" >}}) there is a namespace to be used as the standard location for storing resources. In these namespaces you will usually find:
+For each [organization]({{< relref "/platform-overview/organizations" >}}) there is a namespace to be used as the standard location for storing resources. In these namespaces you will usually find:
 
 - Resources defining [workload clusters and node pools]({{< relref "/ui-api/management-api/creating-workload-clusters" >}})
 - [Cloud provider credentials]({{< relref "/ui-api/management-api/credentials" >}}) in the form of `Secret` resources
@@ -103,7 +103,7 @@ For the purpose of this documentation article we'll introduce a few example case
 
 2. **App developer**: allowed to install, configure, upgrade and uninstall certain apps in/from workload clusters of a certain organization. In order to discovers clusters and navigate the web UI, users of this type also require read permission to various resources like clusters, node pools, releases, and app catalogs.
 
-3. **Organization admin**: users who have full permissions to resources belonging to a specific [organization]({{< relref "/general/organizations" >}}).
+3. **Organization admin**: users who have full permissions to resources belonging to a specific [organization]({{< relref "/platform-overview/organizations" >}}).
 
 4. **Admin**: a type of user that has permission to create, modify, and delete most types of resources in the management cluster.
 

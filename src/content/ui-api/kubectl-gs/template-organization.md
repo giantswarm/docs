@@ -8,14 +8,14 @@ menu:
     parent: uiapi-kubectlgs
 aliases:
   - /reference/kubectl-gs/template-organization/
-last_review_date: 2021-09-09
+last_review_date: 2022-12-07
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I create an organization manifest for the Management API?
 ---
 
-The `template organization` command creates an [organization]({{< relref "/general/organizations/index.md" >}}) manifest which can applied to a management cluster, e. g. via `kubectl apply`. The manifest will define an [`Organization`]({{< relref "/ui-api/management-api/crd/organizations.security.giantswarm.io.md" >}}) resource (API group/version `security.giantswarm.io/v1alpha1`).
+The `template organization` command creates an [organization]({{< relref "/platform-overview/organizations/index.md" >}}) manifest which can applied to a management cluster, e. g. via `kubectl apply`. The manifest will define an [`Organization`]({{< relref "/ui-api/management-api/crd/organizations.security.giantswarm.io.md" >}}) resource (API group/version `security.giantswarm.io/v1alpha1`).
 
 ## Usage
 
