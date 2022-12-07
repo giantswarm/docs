@@ -9,7 +9,7 @@ menu:
     parent: web-orgs
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
-last_review_date: 2021-06-16
+last_review_date: 2022-12-07
 user_questions:
   - Where can I manage organizations in the web UI?
   - How can I add an organization using the web UI?

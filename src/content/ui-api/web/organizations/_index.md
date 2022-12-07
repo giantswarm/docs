@@ -9,7 +9,7 @@ menu:
     parent: uiapi-web
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
-last_review_date: 2021-06-16
+last_review_date: 2022-12-07
 ---
 
 {{% organization_mgmt_mapi_disclaimer %}}

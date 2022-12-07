@@ -2,7 +2,8 @@
 linkTitle: Cluster Security
 title: Cluster Security
 description: Information on how Giant Swarm keeps your clusters safe by default, and what you can do in addition to secure access.
-last_review_date: 2021-01-01
+last_review_date: 2022-12-07
+weight: 20d
 aliases:
   - /security
 menu:

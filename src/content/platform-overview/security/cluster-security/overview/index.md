@@ -7,7 +7,7 @@ menu:
   main:
     parent: platform-overview-security-cluster
     identifier: security-overview
-last_review_date: 2021-11-23
+last_review_date: 2022-12-07
 user_questions:
   - In which was does Giant Swarm ensure system security?
 aliases:

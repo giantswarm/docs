@@ -6,7 +6,7 @@ weight: 30
 menu:
   main:
     parent: platform-overview-security-cluster
-last_review_date: 2021-02-11
+last_review_date: 2022-12-07
 aliases:
   - /security/cluster-access
   - /basics/secured-access-to-clusters/

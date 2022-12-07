@@ -6,7 +6,7 @@ weight: 15
 menu:
   main:
     parent: uiapi-kubectlgs
-last_review_date: 2021-11-22
+last_review_date: 2022-12-07
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:

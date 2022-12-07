@@ -1,7 +1,7 @@
 ---
 linkTitle: Cluster Management
 title: Cluster Management
-description: Learn about Giant Swarm's cluster management
+description: All the details on the cluster management features offered by Giant Swarm.
 last_review_date: 2022-11-12
 weight: 30
 aliases:

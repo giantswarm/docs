@@ -15,7 +15,7 @@ user_questions:
   - What is a major upgrade?
   - What is a minor upgrade?
   - What is a patch upgrade?
-last_review_date: 2021-05-17
+last_review_date: 2022-12-07
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
