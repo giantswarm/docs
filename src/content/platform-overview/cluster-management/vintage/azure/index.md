@@ -5,7 +5,7 @@ description: Description of the Azure Giant Swarm platform, how it looks like an
 weight: 20
 menu:
   main:
-    parent: platform-overview-architecture
+    parent: cluster-management-vintage
 last_review_date: 2022-01-25
 aliases:
   - /basics/azure-architecture/

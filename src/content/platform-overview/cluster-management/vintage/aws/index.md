@@ -5,7 +5,7 @@ description: Description of the Giant Swarm platform on Amazon Web Services (AWS
 weight: 10
 menu:
   main:
-    parent: platform-overview-architecture
+    parent: cluster-management-vintage
 last_review_date: 2022-11-18
 user_questions:
   - What areas are covered in the Giant Swarm AWS platform?
