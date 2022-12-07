@@ -5,8 +5,8 @@ description: A guide explaining how to resize the Prometheus persistent volume t
 weight: 50
 menu:
   main:
-    identifier: uiapi-observability-prometheusvolumesize
-    parent: uiapi-observability-prometheus
+    identifier: getting-started-observability-prometheusvolumesize
+    parent: getting-started-observability-prometheus
 user_questions:
   - How can I shrink the persistent volume of the Giant Swarm managed Prometheus?
   - How can I expand the persistent volume of the Giant Swarm managed Prometheus?

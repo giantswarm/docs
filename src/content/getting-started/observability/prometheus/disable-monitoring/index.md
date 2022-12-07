@@ -5,8 +5,8 @@ description: This article explains how to turn off all monitoring for an entire 
 weight: 50
 menu:
   main:
-    identifier: uiapi-observability-prometheus-disable
-    parent: uiapi-observability-prometheus
+    identifier: getting-started-observability-prometheus-disable
+    parent: getting-started-observability-prometheus
 user_questions:
   - How can I disable monitoring on my cluster?
 owner:
@@ -21,7 +21,7 @@ In this article you will learn how you can disable monitoring for your cluster.
 Each cluster created on the Giant Swarm platform benefits from our monitoring which allow us to provide you with 24/7 support to ensure best quality of service.
 
 Each cluster is monitored by a dedicated Prometheus instance.
-This comes by default and storage is reserved for data retention, storage size can be adjusted via [Prometheus Volume Sizing](https://docs.giantswarm.io/ui-api/observability/prometheus/volume-size/) feature.
+This comes by default and storage is reserved for data retention, storage size can be adjusted via [Prometheus Volume Sizing](https://docs.giantswarm.io/getting-started/observability/prometheus/volume-size/) feature.
 
 ## Why would I like to disable monitoring?
 

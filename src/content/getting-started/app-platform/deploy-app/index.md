@@ -1,11 +1,12 @@
 ---
-linkTitle: Getting started
-title: Getting started with the App Platform
+linkTitle: Deploying an app
+title: Getting started deploying an app with the App Platform
 description: Guide to deploying apps using kubectl gs and the Giant Swarm Management API.
 weight: 20
 menu:
   main:
-    parent: platform-overview-app-platform
+    parent: getting-started-app-platform
+    identifier: getting-started-app-platform-deploy-app
 last_review_date: 2022-11-18
 aliases:
   - /developer-platform/app-platform/getting-started
@@ -153,7 +154,7 @@ kubectl gs -n ${CLUSTER} get app nginx-ingress-controller-app -o yaml
 
 The labels, cluster config and kubeconfig have been all defaulted to the correct
 values for your cluster. You can read more about defaulting and validation for
-App CRs [here]({{< relref "/platform-overview/app-platform/defaulting-validation" >}}).
+App CRs [here]({{< relref "/getting-started/app-platform/defaulting-validation" >}}).
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
@@ -255,7 +256,7 @@ spec:
   version: 1.17.0
 ```
 
-You can read more about app platform configuration [here]({{< relref "/platform-overview/app-platform/app-configuration" >}})
+You can read more about app platform configuration [here]({{< relref "/getting-started/app-platform/app-configuration" >}})
 and about advanced ingress configuration [here]({{< relref "/advanced/ingress" >}}).
 
 ## Deleting an App CR

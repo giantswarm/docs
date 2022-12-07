@@ -4,8 +4,8 @@ title: Creating custom Grafana dashboards
 description: Guide explaining how to manage custom Grafana dashboards in our management cluster Grafana.
 menu:
   main:
-    identifier: uiapi-observability-grafana-custom-dashboards
-    parent: uiapi-observability-grafana
+    identifier: getting-started-observability-grafana-custom-dashboards
+    parent: getting-started-observability-grafana
 weight: 40
 aliases:
   - /observability/grafana/custom-dashboards
@@ -19,7 +19,7 @@ owner:
 
 __Beware__ that the access to this feature is experimental and the implementation specifics can change at a later time (e.g. in favor of Grafana Operator)
 
-As explained in our guide explaining [how to access Grafana]({{< relref "/ui-api/observability/grafana/access" >}}), we provide a subset of dashboards accessible by our customers.
+As explained in our guide explaining [how to access Grafana]({{< relref "/getting-started/observability/grafana/access" >}}), we provide a subset of dashboards accessible by our customers.
 
 Sometimes, the dashboards we provide are not enough for your use case so we offer you the capability of creating your own (e.g. you are deploying your own apps on the management cluster, or you want custom dashboards for your clusters).
 

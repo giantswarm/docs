@@ -75,5 +75,5 @@ spec:
 
 ### Validation
 
-The [validation logic]({{< relref "/platform-overview/app-platform/defaulting-validation" >}}) in app-admission-controller checks whether multiple app CRs are updating the same namespace
+The [validation logic]({{< relref "/getting-started/app-platform/defaulting-validation" >}}) in app-admission-controller checks whether multiple app CRs are updating the same namespace
 with different values. The validation webhook will prevent the conflicting value from being added.

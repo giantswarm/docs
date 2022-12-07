@@ -1,18 +1,18 @@
 ---
-linkTitle: Basic metrics
-title: Metrics in your clusters
+linkTitle: Metric server
+title: Activate metrics-server in your clusters
 description: Recipe to enable a core metrics solution running on your Kubernetes cluster.
-weight: 30
+weight: 20
 menu:
   main:
-    parent: getting-started
+    parent: getting-started-observability
 aliases:
   - /guides/kubernetes-heapster/
 user_questions:
   - How can I activate metrics-server in my clusters?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-teddyfriends
-last_review_date: 2022-03-31
+last_review_date: 2022-12-07
 ---
 
 Getting core metrics like CPU and Memory usage of resources in your cluster is important not only for your own monitoring purposes, but also for extended functionality like horizontal Pod autoscaling.

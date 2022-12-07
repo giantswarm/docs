@@ -2,11 +2,11 @@
 linkTitle: Prometheus
 title: Prometheus
 description: Guide explaning how to interact with our installation level Prometheus.
-weight: 40
+weight: 30
 menu:
   main:
-    identifier: uiapi-observability-prometheus
-    parent: uiapi-observability
+    identifier: getting-started-observability-prometheus
+    parent: getting-started-observability
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 last_review_date: 2022-10-26

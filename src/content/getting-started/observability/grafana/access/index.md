@@ -4,8 +4,8 @@ title: Accessing Grafana dashboards
 description: Guide explaining how to get access to the data we collect on your management and workload clusters.
 menu:
   main:
-    identifier: uiapi-observability-grafana-access
-    parent: uiapi-observability-grafana
+    identifier: getting-started-observability-grafana-access
+    parent: getting-started-observability-grafana
 weight: 40
 aliases:
   - /observability/grafana/access

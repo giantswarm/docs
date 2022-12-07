@@ -5,8 +5,8 @@ description: A guide explaining how to set up your Prometheus remote write integ
 weight: 50
 menu:
   main:
-    identifier: uiapi-observability-prometheusremotewrite
-    parent: uiapi-observability-prometheus
+    identifier: getting-started-observability-prometheusremotewrite
+    parent: getting-started-observability-prometheus
 user_questions:
   - What is Prometheus RemoteWrite?
   - How Prometheus RemoteWrite works?

@@ -69,7 +69,7 @@ This can be disabled using the following label:
 giantswarm.io/monitoring: "false"
 ```
 
-You can find more details about this in the [Disable Monitoring]({{< relref "ui-api/observability/prometheus/disable-monitoring" >}}) article.
+You can find more details about this in the [Disable Monitoring]({{< relref "getting-started/observability/prometheus/disable-monitoring" >}}) article.
 
 ## Setting labels when creating a cluster
 

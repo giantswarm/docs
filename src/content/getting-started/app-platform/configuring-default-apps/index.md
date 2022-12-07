@@ -99,4 +99,4 @@ have multiple configmaps and secrets for the same app.
 
 In order to specify a priority order in case of multiple configmaps or secrets, you can use the `cluster-operator.giantswarm.io/app-config-priority` annotation.
 
-Please refer to the [App configuration]({{< relref "/platform-overview/app-platform/app-configuration#extra-configs" >}}) page for more details.
+Please refer to the [App configuration]({{< relref "/getting-started/app-platform/app-configuration#extra-configs" >}}) page for more details.

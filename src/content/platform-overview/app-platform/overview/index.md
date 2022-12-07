@@ -34,17 +34,17 @@ you to browse, install and manage the configurations of apps (such as Prometheus
 from a single place; the management cluster.
 
 We fully support [Helm](https://helm.sh/) as a general tool to deploy your applications as well as for our general App Catalog. Apps are packaged as Helm charts and can be configured with _values_. We provide a recommended
-[app configuration]({{< relref "/platform-overview/app-platform/app-configuration" >}}) which you can override to meet your needs.
+[app configuration]({{< relref "/getting-started/app-platform/app-configuration" >}}) which you can override to meet your needs.
 The App Platform then, underneath, installs these Helm Charts whenever an app installation is requested by you.
 The Helm execution is mostly not configurable for you, with the exception to the options presented in 
-[installation configuration]({{< relref "/platform-overview/app-platform/installation-configuration" >}}).
+[installation configuration]({{< relref "/getting-started/app-platform/installation-configuration" >}}).
 
 Using this platform, we are providing a collection of curated _Apps_. These _Apps_ are grouped into _App Catalogs_, which are browsable through our web interface.
 We also use app platform to install the apps that are pre-installed in your cluster (such as CoreDNS).
 
 In short: the _Giant Swarm App Platform_ refers to the whole feature, and an _App Catalog_ is a collection of _Apps_.
 
-We provide two _App Catalogs_, the Giant Swarm Catalog and the Giant Swarm Playground. You are able to set up your own [additional catalog(s)]({{< relref "/platform-overview/app-platform/create-catalog" >}})
+We provide two _App Catalogs_, the Giant Swarm Catalog and the Giant Swarm Playground. You are able to set up your own [additional catalog(s)]({{< relref "/getting-started/app-platform/create-catalog" >}})
 to provide for any needs you have at the enterprise level.
 
 ### What makes up the Giant Swarm App Platform {#what-makes-up-the-app-platform}
@@ -55,7 +55,7 @@ Custom Resources, some created by us, and others created by you. Together, they 
 the desired state of the App Platform.
 
 For example, this "App" Custom Resource indicates that you want Kong installed
-on a specific workload cluster. We [default]({{< relref "/platform-overview/app-platform/defaulting-validation" >}})
+on a specific workload cluster. We [default]({{< relref "/getting-started/app-platform/defaulting-validation" >}})
 some additional values for the workload cluster you select.
 
 ```yaml

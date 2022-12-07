@@ -81,7 +81,7 @@ When you upload a file the API creates a ConfigMap or a secret respectively
 and sets the `userConfig` values in the App CR to reference the ConfigMap or secret
 that was just created.
 
-See our [app configuration reference page]({{< relref "/platform-overview/app-platform/app-configuration" >}}) for more details and examples.
+See our [app configuration reference page]({{< relref "/getting-started/app-platform/app-configuration" >}}) for more details and examples.
 
 ## Editing the version of an App
 
