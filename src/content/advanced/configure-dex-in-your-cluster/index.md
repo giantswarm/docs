@@ -95,7 +95,7 @@ __Note__: In the above snippets you need to replace the `CLUSTER_NAME` and `BASE
 
 In this guide, we will use a single app deployment for each cluster that you want to authenticate towards. There are different ways to set up how you authenticate towards your Kubernetes API with Dex, but in our opinion, using a single deployment per cluster is more resilient than having a common Dex deployment for all your workload clusters.
 
-We'll use the [app platform]({{< relref "/developer-platform/app-platform" >}}) to deploy the app, as it allows us to deploy apps across workload clusters using a single API endpoint. In this example, we create an `App` custom resource (CR) with the parameters to install our [`dex-app`](https://github.com/giantswarm/dex-app) in the desired cluster, and a `ConfigMap` with the configuration values.
+We'll use the [app platform]({{< relref "/platform-overview/app-platform" >}}) to deploy the app, as it allows us to deploy apps across workload clusters using a single API endpoint. In this example, we create an `App` custom resource (CR) with the parameters to install our [`dex-app`](https://github.com/giantswarm/dex-app) in the desired cluster, and a `ConfigMap` with the configuration values.
 
 The `connectorConfig` format can look different depending on the oidc provider you want to use. Some examples can be found below. 
 Details on all connectors and their respective configuration is available in the [Dex documentation](https://dexidp.io/docs/connectors/).
@@ -283,7 +283,7 @@ __Note__: When applying the example in the snippet above, please replace the `CL
 
 Then submit the resource to the management API and the App operator will manage it to make the actual installation and configuration. You can log in now into the cluster API with your identity provider using the login endpoint that Dex creates for you. By default, it will be `https://login.CLUSTER_NAME.BASE_DOMAIN`.
 
-__Warning__: It is assumed that you have an [ingress controller and cert-manager]({{< relref "/developer-platform/app-platform/getting-started" >}}) running in your cluster in order to make dex available for the callback request made by your identity provider securely. If you supply custom certificates when deploying dex, then you can skip cert-manager installation. Both of these apps are offered in our managed app catalog.
+__Warning__: It is assumed that you have an [ingress controller and cert-manager]({{< relref "/platform-overview/app-platform/getting-started" >}}) running in your cluster in order to make dex available for the callback request made by your identity provider securely. If you supply custom certificates when deploying dex, then you can skip cert-manager installation. Both of these apps are offered in our managed app catalog.
 
 ## Dex Observability
 
@@ -296,7 +296,7 @@ Once Dex is set up in your workload cluster, you can enable access via OIDC thro
 
 In order to communicate with the API, `kubectl gs` needs the clusters CA certificate as well as some cluster specific information, such as the management cluster name and the dex issuer URL. 
 On all Giant Swarm management clusters we use a public service called `Athena` to expose the CA certificate and some information on the installation to the client.
-For easy integration with `kubectl gs` you can install [Athena](https://github.com/giantswarm/athena) on your workload cluster via the [app platform]({{< relref "/developer-platform/app-platform" >}}).
+For easy integration with `kubectl gs` you can install [Athena](https://github.com/giantswarm/athena) on your workload cluster via the [app platform]({{< relref "/platform-overview/app-platform" >}}).
 
 Other than the app itself, you will need to provide a `values.yaml` configuration.
 
@@ -343,5 +343,5 @@ kubectl gs login https://api.test.example.io
 ## Further reading
 
 - [Authenticating with Microsoft Azure Active Directory]({{< relref "/advanced/authentication-azure-ad" >}})
-- [App platform overview]({{< relref "/developer-platform/app-platform" >}})
+- [App platform overview]({{< relref "/platform-overview/app-platform" >}})
 - [kubectl gs]({{< relref "/ui-api/kubectl-gs" >}})

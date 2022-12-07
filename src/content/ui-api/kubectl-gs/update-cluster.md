@@ -17,7 +17,7 @@ user_questions:
   - How can I schedule a workload cluster upgrade from the command line?
 ---
 
-This command's purpose is to modify details of a workload cluster. Currently it allows to upgrade a workload cluster to a newer [release]({{< relref "/general/releases" >}}).
+This command's purpose is to modify details of a workload cluster. Currently it allows to upgrade a workload cluster to a newer [release]({{< relref "/platform-overview/cluster-management/releases" >}}).
 
 ## Usage
 
@@ -61,4 +61,4 @@ This adds annotations to the cluster resource, triggering the upgrade to the spe
 ## Related
 
 - [`kubectl gs login`]({{< relref "/ui-api/kubectl-gs/login" >}}) - Ensure an authenticated kubectl context.
-- [`cluster-upgrades`]({{< relref "/general/cluster-upgrades" >}}) - Cluster upgrades.
+- [`cluster-upgrades`]({{< relref "/platform-overview/cluster-management/cluster-upgrades" >}}) - Cluster upgrades.

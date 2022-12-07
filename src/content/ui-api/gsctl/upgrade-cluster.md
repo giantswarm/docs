@@ -29,7 +29,7 @@ You can also use the cluster's name for identifying the cluster:
 gsctl upgrade cluster "Cluster name"
 ```
 
-A message will be output showing the version to be upgraded, and a list of changelogs for the components that will be upgraded. Before confirming this action ensure you know the [upgrade process]({{< relref "/general/cluster-upgrades" >}})] and the impact it entails.
+A message will be output showing the version to be upgraded, and a list of changelogs for the components that will be upgraded. Before confirming this action ensure you know the [upgrade process]({{< relref "/platform-overview/cluster-management/cluster-upgrades" >}})] and the impact it entails.
 
 To prevent the interactive confirmation, you can use the `--force` flag. This will simplify the use in a non-interactive scenario. Example:
 
@@ -47,7 +47,7 @@ You can list available workload cluster releases with `gsctl list releases`.
 
 ## Related
 
-- [Upgrade cluster general documentation]({{< relref "/general/cluster-upgrades" >}})
+- [Upgrade cluster general documentation]({{< relref "/platform-overview/cluster-management/cluster-upgrades" >}})
 - [`gsctl create cluster`]({{< relref "/ui-api/gsctl/create-cluster" >}}): Reference for creating a cluster
 - [`gsctl delete cluster`]({{< relref "/ui-api/gsctl/delete-cluster" >}}): Reference for deleting a cluster
 - [`gsctl list releases`]({{< relref "/ui-api/gsctl/list-releases" >}}): Reference for listing available workload cluster releases

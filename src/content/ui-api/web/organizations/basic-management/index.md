@@ -35,7 +35,7 @@ To learn more about an individual organization, and to find more management func
 
 Below the organization overview you find the option to create a new organization.
 
-All you have to do here is to enter the name of the new organization. Please take the [naming conventions and restrictions]({{< relref "/general/organizations/index.md#naming-conventions" >}}) into account.
+All you have to do here is to enter the name of the new organization. Please take the [naming conventions and restrictions]({{< relref "/platform-overview/organizations/index.md#naming-conventions" >}}) into account.
 
 ## Deleting an organization
 

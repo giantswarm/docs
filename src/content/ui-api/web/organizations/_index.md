@@ -14,4 +14,4 @@ last_review_date: 2021-06-16
 
 {{% organization_mgmt_mapi_disclaimer %}}
 
-[Organizations]({{< relref "/general/organizations/index.md" >}}) are a way to group resources like clusters and apps in a way that different entities are isolated from each other. You can use organizations to separate projects, business units, teams etc.
+[Organizations]({{< relref "/platform-overview/organizations/index.md" >}}) are a way to group resources like clusters and apps in a way that different entities are isolated from each other. You can use organizations to separate projects, business units, teams etc.

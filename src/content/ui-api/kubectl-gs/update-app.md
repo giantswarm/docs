@@ -24,7 +24,7 @@ The command to execute is `kubectl gs update app`.
 It supports the following required flags:
 
 - `--name`: Name of the App CR to update.
-- `--version`: New version to update the app to. The version must exist in the [Catalog]({{< relref "/developer-platform/app-platform/overview/index.md#what-kind-of-app-catalogs-are-there" >}}).
+- `--version`: New version to update the app to. The version must exist in the [Catalog]({{< relref "/platform-overview/app-platform/overview/index.md#what-kind-of-app-catalogs-are-there" >}}).
 
 **Important:** ensure you have selected the correct namespace for your cluster with the `--namespace` flag.
 
