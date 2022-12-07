@@ -125,10 +125,11 @@ Due to extra security policies enforced by Kyverno, setting `.spec.serviceAccoun
 
 ## Creating your repo structure
 
-A gitops repository can have any arbitrary structure. This provides flexibility to adapt the repo to your own infra sructure. In giant swarm we have a clear hierarchical structure and we recommend to use this structure. This provides some advantages:
+Whilst a gitops repository can have any arbitrary layout which provides flexibility in adapting the repo to your own infrastructure, At giant swarm we recommend a clear hierarchical structure for your repository which provides a number of advantages:
 
-- It's easy to locate things and know what and where is being deployed
-- If you need support from us, our engineers will easily understand the structure
+- The general layout of the repository closely mirrors infrastructure defined within giant swarm.
+- It's easy to locate resources and know what they are and where they are deployed.
+- Our engineers are familiar with the layout which saves time during support requests.
 
 The recommended structure (simplified) is:
 
@@ -165,7 +166,7 @@ First thing's first - create a bare-bones repository where we will store the res
 kubectl gs gitops init
 ```
 
-> Note: To learn more about Giant Swarm's kubectl plugin, visit [kubectl-gs documentation]({{< relref "/ui-api/kubectl-gs/" >}}).
+__Note__: To learn more about Giant Swarm's kubectl plugin, visit [kubectl-gs documentation]({{< relref "/ui-api/kubectl-gs/" >}}).
 
 ### Attach the repo to a management cluster
 
@@ -177,9 +178,9 @@ kubectl gs gitops add management-cluster --name MC_NAME --repository-name MC_NAM
 
 This commands creates the folder for the management cluster, the `Kustomization` file for the MC, `organizations` folder and `secrets` folder, already populated with an encoding key.
 
-Then, we create `GitRepository` resource that points to the repository. We will need a resource for every management cluster, so we filter the files to be retrieved.
+Then, we create a Flux `GitRepository` resource that points to the repository. We need a `GitRepository` resource for every management cluster we want to manage. In the `GitRepository` resource we define the URL where our repository is stored.
 
-First, we need to crate a secret (we will refer to it as GIT_CREDENTIALS_SECRET, please, replace with the chosen name) with the credentials to access the repository. This will allow Flux to download the repo files in order to apply all resources. If your repo is public you don't need the secret and can safely delete the parameter `secret-ref` of the next command.
+Now, we need to crate a secret (we will refer to it as GIT_CREDENTIALS_SECRET, please, replace with the chosen name) with the credentials to access the repository. This will allow Flux to download the repo files in order to apply all resources. If your repo is public you don't need the secret and can safely delete the parameter `secret-ref` of the next command.
 This process is different depending on the git platform used (ssh-keys, token, user/password). Check documentation of every provider to create the secret.
 
 ```nohighlight
@@ -193,7 +194,7 @@ flux create source git MC_NAME-git-repo \
         --export > management-clusters/MC_NAME/MC_NAME-git-repo.yaml
 ```
 
-This command creates the Custom Resource for us and exports it to a yaml file in the management-cluster folder.
+This command creates the Custom Resource for us and exports it to a yaml file in the `management-cluster` folder.
 
 Time to apply the generated YAML:
 
@@ -219,9 +220,9 @@ flux-demo       True    Fetched revision: main/74f8d19cc2ac9bee6f45660236344a054
 
 Next, we configure the keys that will be used in the management cluster flux to decypher secrets so they can be safely stored in the repo.
 
-In this example we are using the simplest for of `sops` key management, we are creating a master key for all the kustomizations in this management cluster.
+In this example we are using `sops` with `pgp` key management and creating a master key for all the kustomizations in this management cluster.
 
-The key was already created for us in the `kubectl gs gitops add management-cluster` command so we only need to apply the secret in the cluster and safely store the private gpg key so we can use it to encrypt files before pushing them to the repo.
+This master key is created automatically by the `kubectl gs gitops add management-cluster` command so we only need to apply the secret in the cluster and safely store the private gpg key so we can use it to encrypt files before pushing them to the repo.
 
 To import the private key (replace X's by the specific file name):
 
@@ -251,15 +252,15 @@ kubectl create -f management-clusters/MC_NAME/MC_NAME.yaml
 
 ### Managing organizations
 
-The first Giant Swarm custom resource you can create is an [Organization]({{< relref "/ui-api/management-api/crd/organizations.security.giantswarm.io.md" >}}).
+The higher level Giant Swarm custom resource you can create is an [Organization]({{< relref "/ui-api/management-api/crd/organizations.security.giantswarm.io.md" >}}).
 
-In order to create the files in the repo, run the command (in the root of the repo):
+In order to create the files in the repository, run the command (in the root of the repo):
 
 ```nohighlight
 kubectl gs gitops add organization --name ORG_NAME --management-cluster MC_NAME
 ```
 
-This is enough to create the Organization on our own.
+This is enough to create the Organization on our own. It creates automatically the organization namespace where your cluster resources will be applied.
 
 ```nohighlight
 kubectl get namespaces (names will difer)
@@ -269,23 +270,22 @@ org-acme   Active   2m29s
 
 ### Managing workload clusters
 
-Next step, once we have an organization is to create workload clusters to run apps.
-In giant swarm there are several providers to create those clusters. The yaml file of the resource is different for every one so we have created some `bases`, templates that help to create the proper configuration for the clusters.
+In the next step, we have the organization created so now we can define some workload clusters inside it to run our applications. In Giant Swarm, we have developed several providers where clusters can be provisioned. Every provider has a different syntax for the infrastructure definition and to reduce the complexity we have defined some [`bases`](https://github.com/giantswarm/gitops-template/tree/main/bases) that helps to configure the clusters.
 
-The configuration structures in layer so every upper layer can modify the conifguration and create a custom and very powerful structure. The different possible layers would be:
+The configuration is structured in such a way that each layer can modify the configuration and create a custom and very powerful structure. The different possible layers would be:
 
 - Base with fundamental cluster creation manifests
 - Base versions with different modifications
 - Environments that implement config modifications in the bases
 - Clusters that implement specific configuirations
 
-We can create a cluster starting from a base (using different versions) and an environment. The advantages of this are:
+There are a bunch of advantages to createing clusters starting from a base (using different versions):
 
 - We can group clusters in logical groups that match our infra (dev,pre,prod...)
 - Modifiying the base, we modify all the clusters that implement it (batch update)
 - We can change the clusters between different environments easily
 
-In this tutorial we are implementing the simpliest form, which is, implement a cluster from a base without applying any extra configuration.
+In this tutorial we are implementing a cluster from a base without applying any extra configuration.
 
 In order to create a workload cluster in our repository we run the command:
 
@@ -295,19 +295,21 @@ kubectl gs gitops add workload-cluster --management-cluster MC_NAME --name WL_NA
 
 This will create the folders and the files needed. If you already applied the management cluster `Kustomization`, the cluster will start to be created as you commit and push the files.
 
-You can add user configurations to the cluster created including different config maps and adding them to the manifests.
+You can add user configurations to the cluster created including different config maps and add them to the manifests.
 
 ### Installing managed apps
 
-It is just as easy to install managed apps in existing workload clusters. In this part of the guide we will assume you have completed the previous steps and have both an organization and a cluster running.
+It is just as easy to install managed apps in existing workload clusters. In this part of the guide, we will assume you have completed the previous steps and have both an organization and a cluster running.
 
 We are showing the process installing `Grafana` from the `GiantSwarm` app catalog in the namespace `monitoring`.
-In order to add the app files to the repo, run the command (check version numbers for latest releases):
+In order to add the manifest files to the repo, we run the command (check version numbers for latest releases):
 
 ```nohighlight
 kubectl gs gitops add app --management-cluster MC_NAME --workload-cluster WL_NAME --organization ORG_NAME --app grafana --catalog giantswarm --target-namespace monitoring --version 2.0.2
 ```
 
-This has created the files and folders needed and the app will be deployed as these files are committed and pushed.
+The latest version number can be retrieved from the catalog using `helm search repo giantswarm/grafana`
+
+Commit the newly generated files back to your git repository and push the changes to the remote. After a few minutes you should see the application resources appear on your workload cluster.
 
 This completes the guide. If you no longer need them you can delete the organization and cluster.
