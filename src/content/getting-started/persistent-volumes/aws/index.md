@@ -1,7 +1,7 @@
 ---
 linkTitle: AWS
 title: Using persistent volumes on AWS
-description: Tutorial on how to use dynamically provisioned Persistent Volumes on a cluster running on Amazon Web Services
+description: Tutorial on how to use dynamically provisioned Persistent Volumes on a cluster running on Amazon Web Services.
 weight: 10
 menu:
   main:

@@ -1,7 +1,7 @@
 ---
 linkTitle: scale cluster
 title: "'gsctl scale cluster' command reference"
-description: "The 'gsctl scale cluster' command allows to add or remove worker nodes to an on-premises cluster (KVM)."
+description: The 'gsctl scale cluster' command allows to add or remove worker nodes to an on-premises cluster (KVM).
 weight: 180
 menu:
   main:

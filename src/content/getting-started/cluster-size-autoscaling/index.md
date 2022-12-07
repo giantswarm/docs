@@ -1,7 +1,7 @@
 ---
 linkTitle: Cluster size and autoscaling
 title: Cluster size and autoscaling
-description: This article explains options you have for defining the size of a Kubernetes cluster with Giant Swarm, and automatically scaling it
+description: This article explains options you have for defining the size of a Kubernetes cluster with Giant Swarm, and automatically scaling it.
 weight: 100
 menu:
   main:

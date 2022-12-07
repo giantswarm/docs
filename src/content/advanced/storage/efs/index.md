@@ -1,7 +1,7 @@
 ---
 linkTitle: Amazon Elastic File System (EFS)
 title: Using persistent volumes on AWS with EFS
-description: Tutorial on how to use dynamically provisioned Persistent Volumes on a cluster running on Amazon Web Services with EFS
+description: Tutorial on how to use dynamically provisioned Persistent Volumes on a cluster running on Amazon Web Services with EFS.
 weight: 30
 menu:
   main:

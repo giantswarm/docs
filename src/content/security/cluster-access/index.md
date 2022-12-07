@@ -1,7 +1,7 @@
 ---
 linkTitle: Secure access to clusters
 title: Secure access to clusters - Users and Giant Swarm support
-description: This documentation explains security measures for users and Giant Swarm support to access your infrastructure
+description: This documentation explains security measures for users and Giant Swarm support to access your infrastructure.
 weight: 30
 menu:
   main:

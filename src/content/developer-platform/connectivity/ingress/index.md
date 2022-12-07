@@ -1,7 +1,7 @@
 ---
 linkTitle: Ingress
 title: nginx Ingress Controller
-description: An overview of how and what Giant Swarm offers with the nginx Ingress Controller
+description: An overview of how and what Giant Swarm offers with the nginx Ingress Controller.
 weight: 10
 menu:
   main:

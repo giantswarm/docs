@@ -1,7 +1,7 @@
 ---
 linkTitle: Best practices
 title: Recommendations and best practices
-description: Recommendations and best practices around cluster and node sizing as well as multi-tenant setups
+description: Recommendations and best practices around cluster and node sizing as well as multi-tenant setups.
 weight: 110
 menu:
   main:

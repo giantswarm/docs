@@ -1,7 +1,7 @@
 ---
 linkTitle: Azure
 title: Using persistent volumes on Azure
-description: Tutorial on how to use dynamically provisioned Persistent Volumes on a cluster running on Azure Cloud
+description: Tutorial on how to use dynamically provisioned Persistent Volumes on a cluster running on Azure Cloud.
 weight: 20
 menu:
   main:
