@@ -18,7 +18,7 @@ user_questions:
 
 ## Overview
 
-As stated in the [App Platform overview]({{< relref "/platform-overview/app-platform/overview/index.md" >}}) all managed apps are
+As stated in the [App Platform overview]({{< relref "/platform-overview/app-platform/index.md" >}}) all managed apps are
 Helm Charts underneath. This of course means that at the very bottom the platform must trigger the Helm-related
 actions, like installation or upgrade, against the requested application. This process, mostly, cannot be
 influenced by a user as we try to well-tune it universally to all the apps. Yet, we anticipate that apps not

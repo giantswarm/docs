@@ -21,7 +21,7 @@ user_questions:
 
 ## App Bundle Definition {#app-bundle-definition}
 
-As stated in the [App Platform overview]({{< relref "/platform-overview/app-platform/overview/index.md" >}}) all managed apps are
+As stated in the [App Platform overview]({{< relref "/platform-overview/app-platform/index.md" >}}) all managed apps are
 packaged, maintained and offered as Helm Charts and it is no different for the app bundles. What makes them
 special in comparison to solitary apps is that the bundle Helm Chart instead of carrying a regular resources
 composing the actual application, it carries the [App CRs]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) that, once delivered and consumed by the App Platform, install the
@@ -50,12 +50,12 @@ Bundle installation](#app-bundle-installation).
 
 ### High Overview
 
-The solitary app installation process has been already well depicted in the [App Platform Overview]({{< relref "/platform-overview/app-platform/overview#what-makes-up-the-app-platform" >}}). The bundle installation process is very similar,
+The solitary app installation process has been already well depicted in the [App Platform Overview]({{< relref "/platform-overview/app-platform#what-makes-up-the-app-platform" >}}). The bundle installation process is very similar,
 except it involves one extra layer, and hence extra controllers. This layer be the Management Cluster's App and   Chart Operators. It shouldn't come as a surprise that Management Clusters, same as the Workload Clusters, run
 their own App and Chart Operators that let the Giantswarm staff to install the applications. Now these controllers
 can also be laveraged for installing the app bundles.
 
-The figure below depicts the process briefly. Note however, some parts present in the [App Platform Overview]({{< relref "/platform-overview/app-platform/overview" >}}) figure, like pulling the tarball archive, have been omitted for
+The figure below depicts the process briefly. Note however, some parts present in the [App Platform Overview]({{< relref "/platform-overview/app-platform" >}}) figure, like pulling the tarball archive, have been omitted for
 brevity.
 
 ![App Bundle installation process](app-bundle-installation.png)

@@ -1,17 +1,19 @@
 ---
-linkTitle: Overview
-title: The Giant Swarm App Platform
-description: Overview of the Giant Swarm App Platform, how it works and what to expect.
-weight: 10
-menu:
-  main:
-    parent: platform-overview-app-platform
-    identifier: app-platform-overview
-last_review_date: 2022-11-18
+linkTitle: App platform
+title: App platform
+description: The app platform allows to manage app catalogs and apps, for simple and standardized deployment in all your workload clusters.
+last_review_date: 2022-11-12
+weight: 50
 aliases:
-  - /basics/app-catalog/
+  - /developer-platform/app-platform/
+  - /basics/app-platform/
+  - /app-platform
   - /developer-platform/app-platform/overview
   - /app-platform/overview
+menu:
+  main:
+    parent: platform-overview
+    identifier: platform-overview-app-platform
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:

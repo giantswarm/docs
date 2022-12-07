@@ -126,7 +126,7 @@ Kubernetes ensures resources are deleted in the right order by using `finalizers
 
 *App operator*
 
-The [App Platform]({{< relref "/platform-overview/app-platform/" >}}) is a system we built to deliver Cloud Native Apps in a multi cluster fashion. App operator is the main code running in management clusters to manage App custom resources and make sure the applications and configuration are delivered correctly across the different workload clusters.
+The [App Platform]({{< relref "/platform-overview/app-platform" >}}) is a system we built to deliver Cloud Native Apps in a multi cluster fashion. App operator is the main code running in management clusters to manage App custom resources and make sure the applications and configuration are delivered correctly across the different workload clusters.
 
 *Cluster API operators*
 

@@ -381,7 +381,7 @@ NAME                                VERSION      LAST DEPLOYED   STATUS
 nginx-ingress-controller-app        2.4.0        31s             deployed
 ```
 
-Now the managed application will be installed in your workload cluster. To learn more about how to utilize and configure Managed Apps, please refer to [the documentation]({{< relref "/platform-overview/app-platform/overview">}}).
+Now the managed application will be installed in your workload cluster. To learn more about how to utilize and configure Managed Apps, please refer to [the documentation]({{< relref "/platform-overview/app-platform">}}).
 
 ### Watching for new commits
 
