@@ -23,9 +23,9 @@ markup:
 
 menu:
   main:
-  - identifier: general
-    name: General
-    url: /general/
+  - identifier: platform-overview
+    name: Platform Overview
+    url: /platform-overview/
     weight: 10
   - identifier: getting-started
     name: Getting started
@@ -39,14 +39,10 @@ menu:
     name: UIs and APIs
     url: /ui-api/
     weight: 40
-  - identifier: developer-platform
-    name: Developer platform
-    url: /developer-platform/
+  - identifier: support-training
+    name: Support & Training
+    url: /support-training/
     weight: 50
-  - identifier: security
-    name: Security
-    url: /security/
-    weight: 60
   - identifier: changes
     name: Changes and releases
     url: /changes/

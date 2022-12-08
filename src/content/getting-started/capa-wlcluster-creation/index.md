@@ -1,7 +1,7 @@
 ---
 linkTitle: Create a workload cluster in CAPA
 title: Create a cluster using cluster API in AWS (CAPA)
-description: This guide will walk you through all necessary steps to create a workload cluster with cluster API in AWS environments. 
+description: This guide will walk you through all necessary steps to create a workload cluster with cluster API in AWS environments.
 weight: 100
 menu:
   main:

@@ -1,7 +1,7 @@
 ---
 linkTitle: Prometheus Volume Size
 title: Prometheus Volume Sizing
-description: A guide explaining how to resize the Prometheus persistent volume to fit your needs
+description: A guide explaining how to resize the Prometheus persistent volume to fit your needs.
 weight: 50
 menu:
   main:
