@@ -15,7 +15,9 @@ owner:
 
 External DNS in Giant Swarm is configured to authenticate against AWS using the method available on the cluster (KIAM or IRSA). But there are cases where this is no possible, for example, if you try to manage your DNS records in AWS Route 53 from a cluster running on a different provider.
 
-There are two different possible configurations.
+There are two different possible configurations. 
+
+__Important:__ Independently on the cloud provider, you must set the `provider` value as `aws`, as shown in the examples.
 
 ## Configuration
 
