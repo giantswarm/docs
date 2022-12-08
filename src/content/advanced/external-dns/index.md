@@ -6,7 +6,7 @@ weight: 25
 menu:
   main:
     parent: advanced
-last_review_date: 2022-12-07
+last_review_date: 2022-12-08
 user_questions:
   - How can I customize the External DNS AWS authentication method?
 owner:
@@ -35,6 +35,8 @@ Use the following values to set up the external-dns-app:
 ```yaml
 # values.yaml
 
+provider: aws
+
 aws:
   access: external
   baseDomain: <domain>
@@ -61,8 +63,10 @@ __Warning:__ This method is not recommended and will be deprecated in future ver
 This configuration directly injects the `aws_access_key_id` and `aws_secret_access_key` into the App.
 
 ```yaml
-
 # values.yaml
+
+provider: aws
+
 aws:
   access: external
   baseDomain: <domain>
