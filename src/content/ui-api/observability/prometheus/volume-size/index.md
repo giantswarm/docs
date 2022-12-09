@@ -1,7 +1,7 @@
 ---
 linkTitle: Prometheus Volume Size
 title: Prometheus Volume Sizing
-description: A guide explaining how to resize the Prometheus persistent volume to fit your needs
+description: A guide explaining how to resize the Prometheus persistent volume to fit your needs.
 weight: 50
 menu:
   main:
@@ -74,8 +74,6 @@ spec:
 ```
 
 ## Limitations
-
-* __Expanding__: It is currently impossible to expand the Prometheus volume on OpenStack. We are working on a fix and will adjust the documentation accordingly when available. 
 
 * __Downsizing__: be aware that reducing the volume size will cause data loss.
 

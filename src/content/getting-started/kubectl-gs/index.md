@@ -74,7 +74,7 @@ testing                 97d
 giantswarm              97d
 ```
 
-You can see organizations as "buckets" for different entities. More information can be found [here]({{< relref "/general/organizations" >}}), but in general we can say that they are a way to isolate clusters, apps, etc. between different teams or environments.
+You can see organizations as "buckets" for different entities. More information can be found [here]({{< relref "/platform-overview/organizations" >}}), but in general we can say that they are a way to isolate clusters, apps, etc. between different teams or environments.
 
 Finally, run the `kubectl gs get clusters -A` command, which will show you all the clusters managed by your installation. The `-A` flag stands for *all namespaces*.
 

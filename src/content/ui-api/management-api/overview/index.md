@@ -17,7 +17,7 @@ owner:
 
 ## What it is
 
-In a Giant Swarm installation, the [management cluster]({{< relref "/general/management-clusters/index.md" >}}) is a dedicated Kubernetes cluster that runs all the operational and monitoring workloads which are needed to create and manage the workload clusters. These are the clusters you create to run your actual workloads.
+In a Giant Swarm installation, the [management cluster]({{< relref "/platform-overview/management-clusters/index.md" >}}) is a dedicated Kubernetes cluster that runs all the operational and monitoring workloads which are needed to create and manage the workload clusters. These are the clusters you create to run your actual workloads.
 
 Your workload clusters and other associated resources are represented in the management cluster as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) (CRs). To access these, you use the Kubernetes API of the management cluster, or in short, the Management API.
 
@@ -27,7 +27,7 @@ Your workload clusters and other associated resources are represented in the man
 
 Apart from the CRs and custom resource definitions (CRDs) the Management API provides, its behavior is defined by admission controllers enforcing some policies and providing some defaulting.
 
-The concept of [organizations]({{<relref "/general/organizations" >}}) and the way namespaces are used play an important role for access control in the Management API. Together with our RBAC automation, they allow simple isolation of resources between tenants (or environments, teams, projects, purposes).
+The concept of [organizations]({{<relref "/platform-overview/organizations" >}}) and the way namespaces are used play an important role for access control in the Management API. Together with our RBAC automation, they allow simple isolation of resources between tenants (or environments, teams, projects, purposes).
 
 ## How to gain access
 
@@ -43,14 +43,14 @@ Besides general Kubernetes know-how this will require only a bit of structural k
 
 ### How we organize resources in namespaces
 
-We are working towards making [organization namespaces]({{< relref "/general/organizations/index.md" >}}) the default location for all resources associated with one organization. Please check [this dedicated section]({{< relref "/general/organizations/index.md" >}}#namespace-use) regarding the current progress towards this on various providers.
+We are working towards making [organization namespaces]({{< relref "/platform-overview/organizations/index.md" >}}) the default location for all resources associated with one organization. Please check [this dedicated section]({{< relref "/platform-overview/organizations/index.md" >}}#namespace-use) regarding the current progress towards this on various providers.
 
 ### Which custom resources are used for what purpose
 
 Following are some resources that should help you:
 
 - The guide [creating workload clusters via the Management API]({{< relref "/ui-api/management-api/creating-workload-clusters" >}}) explains step by step how you can create a cluster and node pools via the Management API. Here you learn about all the custom resources a cluster comprises.
-- The [app platform]({{< relref "/developer-platform/app-platform" >}}) introduction outlines the several custom resources involved when managing app catalogs and apps.
+- The [app platform]({{< relref "/platform-overview/app-platform" >}}) introduction outlines the several custom resources involved when managing app catalogs and apps.
 - Our [custom resource definitions (CRD) documentation]({{< relref "/ui-api/management-api/crd" >}}) provides details on all the custom resources (CR) we use with the various providers and their versions and schema.
 
 ## Feedback is welcome

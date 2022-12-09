@@ -1,7 +1,7 @@
 ---
 linkTitle: Advanced configuration
 title: Advanced ingress configuration
-description: Here we describe how you can customize and enable specific features for the NGINX-based Ingress
+description: Here we describe how you can customize and enable specific features for the NGINX-based Ingress.
 last_review_date: 2022-03-18
 weight: 10
 menu:
@@ -348,7 +348,7 @@ This feature is implemented by the third party module [nginx-sticky-module-ng](h
 
 The NGINX Ingress Controller creates an NGINX configuration file. You can directly pass chunks of configuration, so-called _configuration snippets_, into any ingress manifest. These snippets will be added to the NGINX configuration.
 
-The _configuration snippets_ through Ingress annotations is disabled by default. To enable parsing of _configuration snippets_, you'll need to set `controller.allowSnippetAnnotations: true` in the [App configuration]({{< relref "/developer-platform/app-platform/app-configuration/index.md" >}}).
+The _configuration snippets_ through Ingress annotations is disabled by default. To enable parsing of _configuration snippets_, you'll need to set `controller.allowSnippetAnnotations: true` in the [App configuration]({{< relref "/platform-overview/app-platform/app-configuration/index.md" >}}).
 
 Warning: We recommend enabling this option only if you TRUST users with permission to create Ingress objects, as this may allow a user to add restricted configurations to the final nginx.conf file.
 
@@ -388,7 +388,7 @@ Your Giant Swarm installation comes with a default configuration for the Ingress
 
 You can override these defaults by setting your per cluster configuration in the form of a ConfigMap named `nginx-ingress-controller-user-values` in the management cluster.
 
-The page [App configuration reference]({{< relref "/developer-platform/app-platform/app-configuration/index.md" >}}) contains more information how to set user defined configuration for the nginx-ingress-controller-app.
+The page [App configuration reference]({{< relref "/platform-overview/app-platform/app-configuration/index.md" >}}) contains more information how to set user defined configuration for the nginx-ingress-controller-app.
 
 ### Where is the user values ConfigMap
 

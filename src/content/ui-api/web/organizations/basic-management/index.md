@@ -9,7 +9,7 @@ menu:
     parent: web-orgs
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
-last_review_date: 2021-06-16
+last_review_date: 2022-12-07
 user_questions:
   - Where can I manage organizations in the web UI?
   - How can I add an organization using the web UI?
@@ -35,7 +35,7 @@ To learn more about an individual organization, and to find more management func
 
 Below the organization overview you find the option to create a new organization.
 
-All you have to do here is to enter the name of the new organization. Please take the [naming conventions and restrictions]({{< relref "/general/organizations/index.md#naming-conventions" >}}) into account.
+All you have to do here is to enter the name of the new organization. Please take the [naming conventions and restrictions]({{< relref "/platform-overview/organizations/index.md#naming-conventions" >}}) into account.
 
 ## Deleting an organization
 
