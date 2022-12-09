@@ -11,7 +11,7 @@ changes_entry:
   version_tag: v20.0.0-alpha1
 date: '2021-05-31T14:50:41+00:00'
 description: Release notes for AWS workload cluster release v20.0.0-alpha1, published
-  on 31 May 2021, 14:50
+  on 31 May 2021, 14:50.
 title: Workload cluster release v20.0.0-alpha1 for AWS
 ---
 

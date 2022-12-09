@@ -11,7 +11,7 @@ changes_entry:
   version_tag: v13.1.0
 date: '2021-03-10T14:26:09+00:00'
 description: Release notes for KVM workload cluster release v13.1.0, published on
-  10 March 2021, 14:26
+  10 March 2021, 14:26.
 title: Workload cluster release v13.1.0 for KVM
 ---
 

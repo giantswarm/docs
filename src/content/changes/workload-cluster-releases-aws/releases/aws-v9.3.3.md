@@ -11,7 +11,7 @@ changes_entry:
   version_tag: v9.3.3
 date: '2020-06-05T15:00:00+00:00'
 description: Release notes for AWS workload cluster release v9.3.3, published on 05
-  June 2020, 15:00
+  June 2020, 15:00.
 title: Workload cluster release v9.3.3 for AWS
 ---
 
