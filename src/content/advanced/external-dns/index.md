@@ -15,11 +15,17 @@ owner:
 
 External DNS in Giant Swarm is configured to authenticate against AWS using the method available on the cluster (KIAM or IRSA). But there are cases where this is no possible, for example, if you try to manage your DNS records in AWS Route 53 from a cluster running on a different provider.
 
-There are two different possible configurations. 
+## Credentials
 
-__Important:__ Independently on the cloud provider, you must set the `provider` value as `aws`, as shown in the examples.
+This method requires pre-created credentials to authenticate with its respective policy attached.
+
+You can find more information in the [AWS Route 53 - IAM Policy](https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/aws.md#iam-policy) and the [AWS Route 53 - Static Credentials](https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/aws.md#static-credentials) tutorials.
 
 ## Configuration
+
+There are two possible configurations described in this section. 
+
+__Important:__ Independently of the cloud provider where the App is running, you must set the `provider` value as `aws`, as shown in the examples.
 
 ### Use an existing secret (recommended)
 
