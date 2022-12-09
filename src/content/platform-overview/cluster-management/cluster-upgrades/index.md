@@ -105,9 +105,9 @@ Note that by default, our user interfaces upgrade to the next active workload cl
 
 - In the **web interface**, open the details page for a cluster. Click the release version of the cluster. If upgrades are available for this release, they will be listed in the dialog. Simply click the desired target version in order to start the upgrade process. You will have an additional step for reviewing the changes before actually triggering the cluster upgrade.
 
-- In **kubectl-gs**, the [`update cluster`]({{< relref "/ui-api/kubectl-gs/update-cluster" >}})) command provides an optional flag `--release-version` which allows to specify the version to upgrade to.
+- In **kubectl-gs**, the [`update cluster`]({{< relref "/use-the-api/kubectl-gs/update-cluster" >}})) command provides an optional flag `--release-version` which allows to specify the version to upgrade to.
 
-- Alternatively, you can use the [Giant Swarm REST API](/api/#operation/modifyClusterV5) or the [Management API]({{< relref "/ui-api/management-api" >}}) to trigger the upgrade. Please talk to your Account Engineer in case you have any questions regarding this.
+- Alternatively, you can use the [Giant Swarm REST API](/api/#operation/modifyClusterV5) or the [Management API]({{< relref "/use-the-api/management-api" >}}) to trigger the upgrade. Please talk to your Account Engineer in case you have any questions regarding this.
 
 ## How upgrades work
 
@@ -156,7 +156,7 @@ This leads to removal and recreation of the Pods.
 
 ## How to upgrade a cluster {#how-to-upgrade-a-cluster}
 
-As an authenticated user you can upgrade the cluster to the **next active workload cluster release**, using the web UI or the CLI. The web UI shows a yellow link next to the version information if there is an upgrade available. For the CLI you can use the command [`kubectl-gs update cluster`]({{< relref "/ui-api/kubectl-gs/update-cluster" >}})) for the same purpose.
+As an authenticated user you can upgrade the cluster to the **next active workload cluster release**, using the web UI or the CLI. The web UI shows a yellow link next to the version information if there is an upgrade available. For the CLI you can use the command [`kubectl-gs update cluster`]({{< relref "/use-the-api/kubectl-gs/update-cluster" >}})) for the same purpose.
 
 When the upgrade process is managed by our tools, the workload cluster release version chosen is selected by Giant Swarm according to best practices. It means it will not upgrade a cluster by more than one major version at a time. In case you use the raw API to upgrade your cluster please test the process against a non-production cluster first.
 

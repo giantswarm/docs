@@ -74,7 +74,7 @@ We will be using [Flux CLI](https://fluxcd.io/docs/cmd/) and [kubectl-gs](https:
 
 ## Restrictions in the web UI {#web-ui-restrictions}
 
-The [Giant Swarm web UI]({{<relref "/ui-api/web">}}) allows editing and deleting resources like clusters and apps in an interactive way. However, for resources managed through GitOps, these capabilities are restricted. Otherwise changes and even deletions would get reverted through FluxCD.
+The [Giant Swarm web UI]({{<relref "/platform-overview/web-interface">}}) allows editing and deleting resources like clusters and apps in an interactive way. However, for resources managed through GitOps, these capabilities are restricted. Otherwise changes and even deletions would get reverted through FluxCD.
 
 The UI will indicate this by showing something like this:
 
@@ -108,7 +108,7 @@ If you wish to proceed by creating the resources in one of the Organization name
 - `write-organizations-customer`
 - `write-silences-customer`
 
-To learn how to view and assign roles, please refer to [Access control for organizations in the web user interface]({{< relref "/ui-api/web/organizations/access-control/index.md" >}}).
+To learn how to view and assign roles, please refer to [Access control for organizations in the web user interface]({{< relref "/platform-overview/web-interface/organizations/access-control/index.md" >}}).
 
 ## GiantSwarm Management Cluster security policies
 
@@ -165,7 +165,7 @@ flux-demo       True    Fetched revision: main/74f8d19cc2ac9bee6f45660236344a054
 
 ### Managing organizations
 
-The first Giant Swarm custom resource you can create is an [Organization]({{< relref "/ui-api/management-api/crd/organizations.security.giantswarm.io.md" >}}). We will use `Kustomization` resource to tell Flux where to find YAML files defining resources and where to install them.
+The first Giant Swarm custom resource you can create is an [Organization]({{< relref "/use-the-api/management-api/crd/organizations.security.giantswarm.io.md" >}}). We will use `Kustomization` resource to tell Flux where to find YAML files defining resources and where to install them.
 
 File structure
 
@@ -191,7 +191,7 @@ echo -e 'resources:\n- resources.yaml' > 02-organization/kustomization.yaml
 kubectl gs template organization --name flux-demo > 02-organization/resources.yaml
 ```
 
-> Note: To learn more about Giant Swarm's kubectl plugin, visit [kubectl-gs documentation]({{< relref "/ui-api/kubectl-gs/" >}}).
+> Note: To learn more about Giant Swarm's kubectl plugin, visit [kubectl-gs documentation]({{< relref "/use-the-api/kubectl-gs/" >}}).
 
 This is enough to create the Organization on our own. Let's add a `Kustomization` CR, so that Flux knows how to work with `02-organization/` directory.
 

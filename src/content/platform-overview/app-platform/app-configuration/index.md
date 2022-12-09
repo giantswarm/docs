@@ -97,7 +97,7 @@ colors:
   secretColor: ""
 ```
 
-Now you create an [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) resource that references a user level ConfigMap and a `user`
+Now you create an [App]({{< relref "/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) resource that references a user level ConfigMap and a `user`
 level Secret:
 
 ```yaml
@@ -202,7 +202,7 @@ templated Secret, then you have to base64 encode it to comply with how Kubernete
 ## How configuration values are stored and referenced in the Control Plane {#storage-referencing}
 
 Configuration for Apps are stored as ConfigMaps and Secrets, which are
-referenced by `name` and `namespace` in various `spec` fields of the [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) and [Catalog]({{< relref "/ui-api/management-api/crd/catalogs.application.giantswarm.io.md" >}}) Custom Resource (CR).
+referenced by `name` and `namespace` in various `spec` fields of the [App]({{< relref "/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) and [Catalog]({{< relref "/use-the-api/management-api/crd/catalogs.application.giantswarm.io.md" >}}) Custom Resource (CR).
 
 Our operators act on those resources to ensure the actual state ends up
 looking like the desired state. More information is available in our [general overview of the App Platform]({{< relref "/platform-overview/app-platform" >}}).
@@ -224,7 +224,7 @@ looking like the desired state. More information is available in our [general ov
 |||`.spec.userConfig.secret.name`|
 |||`.spec.userConfig.secret.namespace`|
 
-When setting user level configuration using the Giant Swarm REST API or our [web interface]({{< relref "/ui-api/web/" >}}),
+When setting user level configuration using the Giant Swarm REST API or our [web interface]({{< relref "/platform-overview/web-interface/" >}}),
 the fields in the App CR are edited automatically for you while creating the `ConfigMap` or `Secret`.
 
 ## Extra configuration layers {#extra-configs}
@@ -379,11 +379,11 @@ There are three ways to provide configuration values:
 
 ### Through the web interface
 
-Our [web interface]({{< relref "/ui-api/web/" >}}) allows you to upload configuration and secret values for the
+Our [web interface]({{< relref "/platform-overview/web-interface/" >}}) allows you to upload configuration and secret values for the
 user configuration level. You can do this by uploading a YAML file consisting
 of just the keys and values you would like to set.
 
-For a general explanation on the web interface functionality related to Apps, check [our overview]({{< relref "/ui-api/web/app-platform" >}}).
+For a general explanation on the web interface functionality related to Apps, check [our overview]({{< relref "/platform-overview/web-interface/app-platform" >}}).
 
 The web interface currently talks to the Giant Swarm REST API and will do the right
 calls to create a ConfigMap or Secret and will wire it up correctly in the App CR
@@ -410,8 +410,8 @@ colors:
 
 ### Using the REST API (deprecated) {#giant-swarm-api}
 
-The [Giant Swarm REST API]({{< relref "/ui-api/rest-api" >}}) acts as an interface between you and the [Management
-API]({{< relref "/ui-api/management-api" >}}). It is deprecated since we are currently in the process of allowing you direct
+The [Giant Swarm REST API]({{< relref "/use-the-api/rest-api" >}}) acts as an interface between you and the [Management
+API]({{< relref "/use-the-api/management-api" >}}). It is deprecated since we are currently in the process of allowing you direct
 access to the Management API. However, for the time being, our web interface makes use of the Giant Swarm REST API.
 
 By supplying a JSON body with the values you would like to set, the Giant Swarm REST API will

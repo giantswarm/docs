@@ -114,7 +114,7 @@ To learn more about organizations please read [the related documentation]({{< re
 
 *RBAC operator*
 
-We have built an RBAC operator with the goal of maintaining up to date permissions between the different organizations and users on the management cluster so [you can isolate your teams and ensure access level in a granular way]({{< relref "/ui-api/management-api/authorization" >}}).
+We have built an RBAC operator with the goal of maintaining up to date permissions between the different organizations and users on the management cluster so [you can isolate your teams and ensure access level in a granular way]({{< relref "/use-the-api/management-api/authorization" >}}).
 
 *DNS operator*
 
@@ -218,7 +218,7 @@ Cluster API offers a set of custom resources that define all the details of a cl
 
 Usually we have generic resources that define common configuration of the clusters and its components, and some infrastructure specific resources which will be tied to the provider we select. 
 
-We have created a [kubectl plugin]({{< relref "/ui-api/kubectl-gs/template-cluster" >}}) to help you template all the needed resources.
+We have created a [kubectl plugin]({{< relref "/use-the-api/kubectl-gs/template-cluster" >}}) to help you template all the needed resources.
 
 ## Further Reading
 

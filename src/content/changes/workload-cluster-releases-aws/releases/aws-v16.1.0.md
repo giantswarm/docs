@@ -19,7 +19,7 @@ This release provides stability improvements, bug fixes and security fixes for v
 
 **Highlights**
 - Kubernetes 1.21.7 support;
-- [AWS CNI prefix delegation](https://docs.giantswarm.io/ui-api/management-api/crd/awsclusters.infrastructure.giantswarm.io/#v1alpha2-alpha.cni.aws.giantswarm.io/prefix-delegation);
+- [AWS CNI prefix delegation](https://docs.giantswarm.io/use-the-api/management-api/crd/awsclusters.infrastructure.giantswarm.io/#v1alpha2-alpha.cni.aws.giantswarm.io/prefix-delegation);
 - AWS EBS CSI driver with volume snapshot support;
 - Security fixes:
     * 10 Linux CVEs;

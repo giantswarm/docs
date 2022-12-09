@@ -27,7 +27,7 @@ user_questions:
 
 An app catalog is a collection of apps that can be deployed using the Giant Swarm App Platform.
 We extend Helm and an app catalog is also a Helm [chart repository](https://helm.sh/docs/topics/chart_repository/).
-Each app catalog has its own [`Catalog`]({{< relref "/ui-api/management-api/crd/catalogs.application.giantswarm.io.md" >}})
+Each app catalog has its own [`Catalog`]({{< relref "/use-the-api/management-api/crd/catalogs.application.giantswarm.io.md" >}})
 CR in the management cluster.
 
 The app catalog is a Git repository that contains
@@ -52,7 +52,7 @@ installed once in a cluster. You can learn more about the tool by reading its
 [tutorial](https://github.com/giantswarm/app-build-suite/blob/master/docs/tutorial.md).
 
 These metadata files and the Helm `index.yaml` are used to generate app metadata
-that is stored in the management cluster in [App Catalog Entry]({{< relref "/ui-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}})
+that is stored in the management cluster in [App Catalog Entry]({{< relref "/use-the-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}})
 CRs.
 
 There are [multiple options](https://helm.sh/docs/topics/chart_repository/#hosting-chart-repositories)
@@ -103,7 +103,7 @@ to keep the GitHub action up to date.
 ## Register the catalog
 
 To register the catalog with app platform you need to create a Catalog CR in the
-management cluster. This can be done using [kubectl gs template catalog]({{< relref "/ui-api/kubectl-gs/template-catalog" >}}).
+management cluster. This can be done using [kubectl gs template catalog]({{< relref "/use-the-api/kubectl-gs/template-catalog" >}}).
 
 For community catalogs the URL should match the URL used for the `helm repo add`
 command and is the location of the Helm `index.yaml`.
@@ -153,7 +153,7 @@ has any other value it will be hidden in the web UI.
 
 If the Catalog CR is not in the `default` namespace you need to set the catalog
 namespace to the organization namespace where it is stored. This can be done using
-[kubectl gs template app]({{< relref "/ui-api/kubectl-gs/template-app" >}}).
+[kubectl gs template app]({{< relref "/use-the-api/kubectl-gs/template-app" >}}).
 
 ```nohighlight
 kubectl gs template app \

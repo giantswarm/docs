@@ -23,7 +23,7 @@ user_questions:
 ## Overview
 
 For Giant Swarm releases using app-operator version 3.0.0 and upwards the
-defaulting and validation logic of [App CRs]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) is enabled.
+defaulting and validation logic of [App CRs]({{< relref "/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) is enabled.
 This is the following releases:
 
 - AWS >= v14.0.0
@@ -115,7 +115,7 @@ Currently we validate:
 - The catalog has a matching Catalog CR.
 - There is no App CR with a conflicting annotation or label value for the [target namespace]({{< relref "/platform-overview/app-platform/namespace-configuration" >}}).
 
-If app-operator finds a matching [AppCatalogEntry]({{< relref "/ui-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}}) CR, it will use this to run more validation checks.
+If app-operator finds a matching [AppCatalogEntry]({{< relref "/use-the-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}}) CR, it will use this to run more validation checks.
 
 - Cloud provider compatibility (e.g. you can’t install the azure-ad-pod-identity app in AWS).
 - Namespace restriction (cluster singleton, namespace singleton, fixed namespace).

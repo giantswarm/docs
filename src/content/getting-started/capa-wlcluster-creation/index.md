@@ -24,7 +24,7 @@ In order to create a cluster in an installation using the new cluster API in AWS
   ```nohighlight
   $ kubectl gs template cluster --provider capa --organization YOUR_ORG > cluster.yaml
   ```
-  You can check all the available parameters in the [command reference]({{< relref "/ui-api/kubectl-gs/template-cluster" >}})
+  You can check all the available parameters in the [command reference]({{< relref "/use-the-api/kubectl-gs/template-cluster" >}})
 
   - This command will return several objects that you need to create in your management cluster to create your cluster. You can now edit the file to include your preferred options. Some interesting things you can customize here are:
     - instance type: default value m5.xlarge

@@ -9,6 +9,7 @@ user_questions:
   - How is Giant Swarm organizing support?
 menu:
   main:
+    identifier: support-overview
     parent: support-training
 aliases:
   - /general/support

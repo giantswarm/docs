@@ -14,7 +14,7 @@ user_questions:
 last_review_date: 2022-02-28
 ---
 
-As better explained in the [reference]({{< relref "/ui-api/kubectl-gs" >}}), kubectl-gs is a CLI and a kubectl plugin (invoked as kubectl gs) for the Giant Swarm Management API. In this guide, you will learn how to use `kubectl-gs` for your daily tasks on the Giant Swarm installation.
+As better explained in the [reference]({{< relref "/use-the-api/kubectl-gs" >}}), kubectl-gs is a CLI and a kubectl plugin (invoked as kubectl gs) for the Giant Swarm Management API. In this guide, you will learn how to use `kubectl-gs` for your daily tasks on the Giant Swarm installation.
 
 ## Step 1: Installing the necessary tools
 
@@ -237,4 +237,4 @@ For instance:
 
 Cluster updates can be easily performed straight away or scheduled for a specific moment in time. The latter is a feature that many customers find very useful because it allows them to schedule updates without the need to physically be there to "press the button".
 
-More information on updating a cluster can be found [here](https://docs.giantswarm.io/ui-api/kubectl-gs/update-cluster/).
+More information on updating a cluster can be found [here](https://docs.giantswarm.io/use-the-api/kubectl-gs/update-cluster/).

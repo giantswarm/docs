@@ -2,7 +2,7 @@
 linkTitle: Security
 title: Security
 description: Overview of security related features and approaches using the Giant Swarm Developer Platform
-weight: 80
+weight: 100
 menu:
   main:
     parent: platform-overview
