@@ -236,14 +236,14 @@ def generate_release_file(repo_shortname, repo_config, release):
             provider_label = 'Azure'
         categories = [f'Workload cluster releases for {provider_label}']
         title = f'Workload cluster release v{version} for {provider_label}'
-        description = f'Release notes for {provider_label} workload cluster release v{version}, published on {release["date"].strftime("%d %B %Y, %H:%M")}'
+        description = f'Release notes for {provider_label} workload cluster release v{version}, published on {release["date"].strftime("%d %B %Y, %H:%M")}.'
         filename = f"{release['provider']}-{release['version_tag']}.md"
         category_path = f"workload-cluster-releases-{provider_label.lower()}"
         aliases = [f"/changes/tenant-cluster-releases-{provider_label.lower()}/releases/{provider_label.lower()}-{release['version_tag']}/"]
     else:
         categories = [repo_config['category']]
         title = f'{repo_id} release v{version}'
-        description = f'Changelog entry for {release["repository"]} version {version}, published on {release["date"].strftime("%d %B %Y, %H:%M")}'
+        description = f'Changelog entry for {release["repository"]} version {version}, published on {release["date"].strftime("%d %B %Y, %H:%M")}.'
         filename = f"{release['version_tag']}.md"
         category_path = repo_config['category'].lower().replace(" ", "-")
 

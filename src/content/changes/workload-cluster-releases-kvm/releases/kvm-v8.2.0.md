@@ -11,7 +11,7 @@ changes_entry:
   version_tag: v8.2.0
 date: '2019-06-24T10:00:00+00:00'
 description: Release notes for KVM workload cluster release v8.2.0, published on 24
-  June 2019, 10:00
+  June 2019, 10:00.
 title: Workload cluster release v8.2.0 for KVM
 ---
 
