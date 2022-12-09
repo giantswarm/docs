@@ -1,7 +1,7 @@
 ---
-linkTitle: UIs and APIs
-title: User interfaces and APIs
-description: Ways to interact with your infrastructure and apps, from the web user interface to CLIs and APIs.
+linkTitle: Use the API
+title: How to use the API
+description: Ways to interact with your infrastructure and apps, from CLIs and APIs.
 aliases:
   - /basics/api/
 last_review_date: 2021-01-01
