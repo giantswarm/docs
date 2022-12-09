@@ -11,7 +11,7 @@ changes_entry:
   version_tag: v8.3.0
 date: '2019-07-11T10:00:00+00:00'
 description: Release notes for Azure workload cluster release v8.3.0, published on
-  11 July 2019, 10:00
+  11 July 2019, 10:00.
 title: Workload cluster release v8.3.0 for Azure
 ---
 
