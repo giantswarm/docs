@@ -17,6 +17,25 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-horizon
 ---
 
+
+We build and run a platform which lets our customers manage as many clusters as they need with a given set of (managed) applications they decide. We ensure these clusters and applications stay in the same predictable state. This becomes especially important once you need to run multiple clusters and applications for different teams, on different environments, with different configurations or in multiple locations.
+
+## Direct Support Slack
+
+## Project Management
+
+We build the platform together, since you are the best expert in your company domain we help you to build the optimal developer platform together. We have opinions but dont block you...
+
+## Operational support
+
+### Fully monitor platform
+
+### Incident handling
+
+### Postmortem process
+
+
+
 Our customer support relies on close interactions via Slack, to ensure bi-directional feedback as quickly as possible. This is our first line of contact to customers. This interaction channel is also used to answer a variety of questions. The conversations are not limited to the platform itself, but can go broader and include the anything cloud-native.
 
 Our support shifts run from 08:00 to 18:00 (CET) on Monday-Friday. While production support goes without saying, we  often answer questions well outside those times. We rotate support shifts across our team, which is why we focus on support channels with clear internal handovers.

@@ -18,6 +18,8 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-teddyfriends
 ---
 
+We do see the Cloud Native Landscape as a journey and it takes time and effort to get across it successfully. Based on lessons learnt through these years helping customers we have built a set of trainings that touch several steps of the journey and help customer teams to improve their skills and become good Cloud Native practitioners. 
+
 _____________________________________
 
 ### Getting Started with Giant Swarm 
