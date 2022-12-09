@@ -25,7 +25,7 @@ You can find more information in the [AWS Route 53 - IAM Policy](https://github.
 
 There are two possible configurations described in this section. 
 
-__Important:__ Independently of the cloud provider where the App is running, you must set the `provider` value as `aws`, as shown in the examples.
+__Important:__ Independent of the cloud provider where the App is running, you must set the `provider` value as `aws`, as shown in the examples.
 
 ### Use an existing secret (recommended)
 
