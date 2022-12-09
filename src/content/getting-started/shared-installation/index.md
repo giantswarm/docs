@@ -30,7 +30,7 @@ Find instructions regarding the setup below.
 
 ### Organizations
 
-In a normal Giant Swarm installation, [organizations]({{< relref "/general/organizations" >}}) are used to isolate different concerns, teams, business units from each other. Admin users can create as many organizations as they need and use the organization's namespace in the management clusters and role-based access control (RBAC) to control access to these resources.
+In a normal Giant Swarm installation, [organizations]({{< relref "/platform-overview/organizations" >}}) are used to isolate different concerns, teams, business units from each other. Admin users can create as many organizations as they need and use the organization's namespace in the management clusters and role-based access control (RBAC) to control access to these resources.
 
 In a shared installation, each customer is mapped to exactly one organization. You cannot create additional organizations.
 
@@ -52,7 +52,7 @@ We talked. Together, you and Giant Swarm agree on a project. You have an Account
 
 ### Pick an organization name
 
-It's up to you to decide for an organization name that represents you as a company, business unit, or team. Please take our [naming conventions]({{< relref "/general/organizations#naming-conventions" >}}) into account.
+It's up to you to decide for an organization name that represents you as a company, business unit, or team. Please take our [naming conventions]({{< relref "/platform-overview/organizations#naming-conventions" >}}) into account.
 
 ### Prepare a cloud provider account
 

@@ -9,9 +9,9 @@ menu:
     parent: uiapi-web
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
-last_review_date: 2021-06-16
+last_review_date: 2022-12-07
 ---
 
 {{% organization_mgmt_mapi_disclaimer %}}
 
-[Organizations]({{< relref "/general/organizations/index.md" >}}) are a way to group resources like clusters and apps in a way that different entities are isolated from each other. You can use organizations to separate projects, business units, teams etc.
+[Organizations]({{< relref "/platform-overview/organizations/index.md" >}}) are a way to group resources like clusters and apps in a way that different entities are isolated from each other. You can use organizations to separate projects, business units, teams etc.

@@ -11,7 +11,7 @@ changes_entry:
   version_tag: v15.0.0
 date: '2021-07-09T09:00:00+00:00'
 description: Release notes for AWS workload cluster release v15.0.0, published on
-  09 July 2021, 09:00
+  09 July 2021, 09:00.
 title: Workload cluster release v15.0.0 for AWS
 ---
 

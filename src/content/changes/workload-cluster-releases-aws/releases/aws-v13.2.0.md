@@ -11,7 +11,7 @@ changes_entry:
   version_tag: v13.2.0
 date: '2021-05-14T06:00:00+00:00'
 description: Release notes for AWS workload cluster release v13.2.0, published on
-  14 May 2021, 06:00
+  14 May 2021, 06:00.
 title: Workload cluster release v13.2.0 for AWS
 ---
 

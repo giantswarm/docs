@@ -31,6 +31,7 @@ INVALID_DESCRIPTION      = 'INVALID_DESCRIPTION'
 INVALID_LAST_REVIEW_DATE = 'INVALID_LAST_REVIEW_DATE'
 INVALID_OWNER            = 'INVALID_OWNER'
 LONG_DESCRIPTION         = 'LONG_DESCRIPTION'
+NO_FULL_STOP_DESCRIPTION = 'NO_FULL_STOP_DESCRIPTION'
 LONG_LINK_TITLE          = 'LONG_LINK_TITLE'
 LONG_TITLE               = 'LONG_TITLE'
 LONG_USER_QUESTION       = 'LONG_USER_QUESTION'
@@ -100,6 +101,13 @@ checks = (
     {
         'id': LONG_DESCRIPTION,
         'description': 'The description should be less than 300 characters',
+        'ignore_paths': [crds_path],
+        'severity': SEVERITY_FAIL,
+        'has_value': True,
+    },
+    {
+        'id': NO_FULL_STOP_DESCRIPTION,
+        'description': 'The description should end with a full stop',
         'ignore_paths': [crds_path],
         'severity': SEVERITY_FAIL,
         'has_value': True,
@@ -486,6 +494,12 @@ def validate(content, fpath, validation):
                 if not ignored_path(fpath, LONG_DESCRIPTION):
                     result['checks'].append({
                         'check': LONG_DESCRIPTION,
+                        'value': fm['description'],
+                    })
+            elif not fm['description'].endswith('.'):
+                if not ignored_path(fpath, NO_FULL_STOP_DESCRIPTION):
+                    result['checks'].append({
+                        'check': NO_FULL_STOP_DESCRIPTION,
                         'value': fm['description'],
                     })
             elif "\n" in fm['description'].strip():
