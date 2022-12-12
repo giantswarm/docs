@@ -1,7 +1,7 @@
 ---
 linkTitle: Why do you need a Developer Platform?
 title: Why do you need a Developer Platform?
-description: Self-service developer platforms enable your organization and 
+description: Self-service developer platforms enable your organization and this page helps you to understand why.
 weight: 10
 menu:
   main:
@@ -10,7 +10,7 @@ last_review_date: 2022-12-07
 user_questions:
   - Why do you need a developer platform?
   - Why should a developer platform be self-service?
-  - Why should a developer platform be open-source
+  - Why should a developer platform be open-source?
   - Why do you need a good team of SREs?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-horizon
