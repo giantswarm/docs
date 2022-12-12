@@ -283,8 +283,8 @@ The configuration is structured in such a way that each layer can modify the con
 
 There are a bunch of advantages to createing clusters starting from a base (using different versions):
 
-- We can group clusters in logical groups that match our infra (dev,pre,prod...)
-- Modifiying the base, we modify all the clusters that implement it (batch update)
+- We can group clusters in logical groups that match our infra (dev, pre, prod...)
+- Modifying the base, we modify all the clusters that implement it (batch update)
 - We can change the clusters between different environments easily
 
 In this tutorial we are implementing a cluster from a base without applying any extra configuration.
