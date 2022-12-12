@@ -11,7 +11,7 @@ owner:
 user_questions:
   - How do I share a secret with Giant Swarm?
   - How do I share cloud provider credentials with Giant Swarm?
-last_review_date: 2022-06-30
+last_review_date: 2022-12-14
 ---
 
 Getting started with Giant Swarm involves an initial setup that includes sharing some credentials with us. It can also happen that some other secrets need to be shared along our partnership, as customers progress in their cloud-native journey. We want our customers to be able to share secrets in the easiest and most secure ways: hence, in this page we suggest two approaches which we think get the best of both worlds.

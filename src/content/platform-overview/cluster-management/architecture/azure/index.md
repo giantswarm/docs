@@ -114,7 +114,7 @@ Please note, while this document went into extensive details with regards to how
 
 ## Further reading
 
-- [Giant Swarm support model]({{< relref "/support-training" >}})
+- [Giant Swarm support model]({{< relref "/support" >}})
 - [Giant Swarm operational layers]({{< relref "/platform-overview/security/operational-layers" >}})
 - [Giant Swarm App Catalog]({{< relref "/platform-overview/app-platform" >}})
 - [Giant Swarm VPN and secure cluster access]({{< relref "/platform-overview/security/cluster-security/cluster-access" >}})
