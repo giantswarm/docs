@@ -270,8 +270,6 @@ org-acme   Active   2m29s
 
 ### Managing workload clusters
 
-Now the managed application will be installed in your workload cluster. To learn more about how to utilize and configure Managed Apps, please refer to [the documentation]({{< relref "/platform-overview/app-platform/overview">}}).
-
 In the next step, we have the organization created so now we can define some workload clusters inside it to run our applications. In Giant Swarm, we have developed several providers where clusters can be provisioned. Every provider has a different syntax for the infrastructure definition and to reduce the complexity we have defined some [`bases`](https://github.com/giantswarm/gitops-template/tree/main/bases) that helps to configure the clusters.
 
 The configuration is structured in such a way that each layer can modify the configuration and create a custom and very powerful structure. The different possible layers would be:
@@ -313,5 +311,7 @@ kubectl gs gitops add app --management-cluster MC_NAME --workload-cluster WL_NAM
 The latest version number can be retrieved from the catalog using `helm search repo giantswarm/grafana`
 
 Commit the newly generated files back to your git repository and push the changes to the remote. After a few minutes you should see the application resources appear on your workload cluster.
+
+To learn more about how to utilize and configure Managed Apps, please refer to [the documentation]({{< relref "/platform-overview/app-platform/overview">}}).
 
 This completes the guide. If you no longer need them you can delete the organization and cluster.
