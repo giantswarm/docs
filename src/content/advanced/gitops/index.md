@@ -218,7 +218,7 @@ NAME            READY   MESSAGE                                                 
 flux-demo       True    Fetched revision: main/74f8d19cc2ac9bee6f45660236344a054c63b71f main/74f8d19cc2ac9bee6f45660236344a054c63b71f   False
 ```
 
-Next, we configure the keys that will be used in the management cluster flux to decipher secrets so they can be safely stored in the repo.
+Next, we configure the keys that will be used in the management cluster Flux to decipher secrets so they can be safely stored in the repository.
 
 In this example we are using `sops` with `pgp` key management and creating a master key for all the kustomizations in this management cluster.
 
