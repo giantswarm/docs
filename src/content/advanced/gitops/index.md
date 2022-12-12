@@ -127,7 +127,7 @@ Due to extra security policies enforced by Kyverno, setting `.spec.serviceAccoun
 
 Whilst a GitOps repository can have any arbitrary layout, which provides flexibility in adapting the repository to your own infrastructure, at Giant Swarm we recommend a clear hierarchical structure which provides a number of advantages:
 
-- The general layout of the repository closely mirrors infrastructure defined within giant swarm.
+- The general layout of the repository closely mirrors the infrastructure defined within Giant Swarm.
 - It's easy to locate resources and know what they are and where they are deployed.
 - Our engineers are familiar with the layout which saves time during support requests.
 
