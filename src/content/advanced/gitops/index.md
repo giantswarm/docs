@@ -194,7 +194,7 @@ flux create source git MC_NAME-git-repo \
         --export > management-clusters/MC_NAME/MC_NAME-git-repo.yaml
 ```
 
-This command creates the Custom Resource for us and exports it to a yaml file in the `management-cluster` folder.
+This command creates the Custom Resource for us and exports it to a YAML file in the `management-clusters` folder.
 
 Time to apply the generated YAML:
 
