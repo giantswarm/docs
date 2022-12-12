@@ -11,7 +11,7 @@ changes_entry:
   version_tag: v15.0.0
 date: '2021-09-01T12:00:00+00:00'
 description: Release notes for KVM workload cluster release v15.0.0, published on
-  01 September 2021, 12:00
+  01 September 2021, 12:00.
 title: Workload cluster release v15.0.0 for KVM
 ---
 
