@@ -238,7 +238,7 @@ To create the secret in the cluster we run:
 kubectl create -f management-clusters/MC_NAME/secrets/MC_NAME.gpgkey.enc.yaml
 ```
 
-Now, in order to safely store the key in the repo we can encode the yaml file using `sops`:
+Now, in order to safely store the key in the repo we can encode the YAML file using `sops`:
 
 ```nohighlight
 sops --encrypt --in-place management-clusters/MC_NAME/secrets/${MC_NAME}.gpgkey.enc.yaml
