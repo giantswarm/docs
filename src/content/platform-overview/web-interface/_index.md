@@ -1,7 +1,7 @@
 ---
 linkTitle: Web interface
 title: Web interface
-description: Documentation on our web interface, a visual way to manage your Giant Swarm platform
+description: Documentation on our web interface, a visual way to manage your Giant Swarm platform.
 weight: 110
 menu:
   main:
