@@ -11,7 +11,7 @@ changes_entry:
   version_tag: v14.1.0
 date: '2021-02-04T12:34:27+00:00'
 description: Release notes for Azure workload cluster release v14.1.0, published on
-  04 February 2021, 12:34
+  04 February 2021, 12:34.
 title: Workload cluster release v14.1.0 for Azure
 ---
 

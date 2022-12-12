@@ -11,7 +11,7 @@ changes_entry:
   version_tag: v17.0.0
 date: '2022-02-17T10:00:00+00:00'
 description: Release notes for AWS workload cluster release v17.0.0, published on
-  17 February 2022, 10:00
+  17 February 2022, 10:00.
 title: Workload cluster release v17.0.0 for AWS
 ---
 

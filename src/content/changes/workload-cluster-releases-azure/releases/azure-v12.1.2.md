@@ -11,7 +11,7 @@ changes_entry:
   version_tag: v12.1.2
 date: '2020-11-02T13:00:00+00:00'
 description: Release notes for Azure workload cluster release v12.1.2, published on
-  02 November 2020, 13:00
+  02 November 2020, 13:00.
 title: Workload cluster release v12.1.2 for Azure
 ---
 

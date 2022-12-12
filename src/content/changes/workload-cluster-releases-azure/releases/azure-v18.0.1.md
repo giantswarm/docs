@@ -11,7 +11,7 @@ changes_entry:
   version_tag: v18.0.1
 date: '2022-09-12T12:49:54+00:00'
 description: Release notes for Azure workload cluster release v18.0.1, published on
-  12 September 2022, 12:49
+  12 September 2022, 12:49.
 title: Workload cluster release v18.0.1 for Azure
 ---
 

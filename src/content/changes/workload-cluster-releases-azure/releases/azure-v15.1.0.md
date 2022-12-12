@@ -11,7 +11,7 @@ changes_entry:
   version_tag: v15.1.0
 date: '2021-07-19T09:07:48+00:00'
 description: Release notes for Azure workload cluster release v15.1.0, published on
-  19 July 2021, 09:07
+  19 July 2021, 09:07.
 title: Workload cluster release v15.1.0 for Azure
 ---
 
