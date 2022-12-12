@@ -279,7 +279,7 @@ The configuration is structured in such a way that each layer can modify the con
 - Base with fundamental cluster creation manifests
 - Base versions with different modifications
 - Environments that implement config modifications in the bases
-- Clusters that implement specific configuirations
+- Clusters that implement specific configurations
 
 There are a bunch of advantages to createing clusters starting from a base (using different versions):
 
