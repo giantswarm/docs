@@ -5,7 +5,8 @@ description: Giant Swarm customers usually work with their own installation(s). 
 weight: 10
 menu:
   main:
-    parent: getting-started
+    parent: support-training
+    weight: 15
 user_questions:
   - How is a shared installation different from normal Giant Swarm installations?
   - What do I have to do to use a shared installation?

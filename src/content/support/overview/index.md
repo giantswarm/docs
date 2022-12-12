@@ -10,6 +10,7 @@ user_questions:
 menu:
   main:
     parent: support-training
+    weight: 1
 aliases:
   - /general/support
   - /basics/giant-swarm-support/

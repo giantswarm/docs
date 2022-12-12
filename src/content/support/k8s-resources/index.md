@@ -5,8 +5,8 @@ description: Pointers to the best resources about Kubernetes to get you up to sp
 weight: 110
 menu:
   main:
-    parent: getting-started
-last_review_date: 2020-03-31
+    parent: support-training
+last_review_date: 2022-12-14
 aliases:
   - /basics/kubernetes-resources/
   - /kubernetes/resources/

@@ -1,11 +1,11 @@
 ---
-linkTitle: Sharing secrets with Giant Swarm
+linkTitle: Sharing secrets with us
 title: Sharing secrets with Giant Swarm
 description: When getting started with Giant Swarm, some secrets will need to be shared. In this page, we describe how to do it safely and effectively.
 weight: 40
 menu:
   main:
-    parent: getting-started
+    parent: support-training
 owner:
   - https://github.com/orgs/giantswarm/teams/team-teddyfriends
 user_questions:

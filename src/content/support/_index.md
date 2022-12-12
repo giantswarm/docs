@@ -1,9 +1,9 @@
 ---
-linkTitle: Support
+linkTitle: Support and Training
 title: Giant Swarm support
-description:  In Giant Swarm we aim to be an extension of your IT team and for that reason our support is built with care and effort.
+description:  In Giant Swarm we aim to be an extension of your IT team and for that reason our support is built with care and effort. Discover how.
 weight: 60
-last_review_date: 2022-12-07
+last_review_date: 2022-12-14
 user_questions:
   - What should I know when working with Giant Swarm's support staff?
   - How is Giant Swarm organizing support?
