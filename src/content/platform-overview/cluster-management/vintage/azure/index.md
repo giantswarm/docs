@@ -5,7 +5,7 @@ description: Description of the Azure Giant Swarm platform, how it looks like an
 weight: 20
 menu:
   main:
-    parent: platform-overview-architecture
+    parent: cluster-management-vintage
 last_review_date: 2022-01-25
 aliases:
   - /basics/azure-architecture/
@@ -110,7 +110,7 @@ Right now we have several managed apps to control the Ingress traffic ([NGINX In
 
 But at the same time we open the catalog to our customers and employees to use for their own apps. That is why, for instance, we are running a proof of concept for Loki, the “coolest” log collector. If you trust in a Cloud Native app and operating it does not add any value to your business, talk to us and we might take over its management for you, too.
 
-Please note, while this document went into extensive details with regards to how Giant Swarm runs Kubernetes on [Azure]({{< relref "/platform-overview/cluster-management/architecture/azure" >}}), we support [AWS]({{< relref "/platform-overview/cluster-management/architecture/aws" >}}) as well as [Bare Metal]({{< relref "/platform-overview/cluster-management/architecture/on-premises" >}}). For more details, please [contact us](https://www.giantswarm.io/contact).
+Please note, while this document went into extensive details with regards to how Giant Swarm runs Kubernetes on [Azure]({{< relref "/platform-overview/cluster-management/vintage/azure" >}}), we support [AWS]({{< relref "/platform-overview/cluster-management/vintage/aws" >}}) as well as [Bare Metal]({{< relref "/platform-overview/cluster-management/vintage/on-premises" >}}). For more details, please [contact us](https://www.giantswarm.io/contact).
 
 ## Further reading
 
