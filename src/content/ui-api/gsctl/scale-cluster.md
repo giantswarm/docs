@@ -23,7 +23,7 @@ For clusters on AWS and Azure, instead of scaling an entire cluster, please see 
 
 ## Notes on worker node removal {#node-removal}
 
-When reducing the worker node count, you have no influence in which exact order worker nodes are removed. Your workloads have to be configured in a way that single pods can be removed any time. See our article on [recommendations and best practices]({{< relref "/support/best-practices" >}}) for details on how to achieve that.
+When reducing the worker node count, you have no influence in which exact order worker nodes are removed. Your workloads have to be configured in a way that single pods can be removed any time. See our article on [recommendations and best practices]({{< relref "/getting-started/best-practices" >}}) for details on how to achieve that.
 
 ## Command usage {#usage}
 
