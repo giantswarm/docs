@@ -1,12 +1,12 @@
 ---
-linkTitle: Cluster API overview
-title: The Giant Swarm platform architecture using Cluster API
-description: Architecture overview explaining how our platform is built and what services do we offer.
+linkTitle: Cluster API Architecture
+title: Cluster API Architecture
+description: Architecture overview explaining how our platform is built and what services we offer with Cluster API.
 weight: 30
 menu:
   main:
-    parent: platform-overview-architecture
-last_review_date: 2022-09-23
+    parent: cluster-management-cluster-api
+last_review_date: 2022-12-07
 user_questions:
   - How do you run a developer platform based on Cluster API?
   - How has Giant Swarm built a platform to build platforms with Cluster API?

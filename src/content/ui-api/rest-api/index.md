@@ -1,9 +1,7 @@
 ---
 linkTitle: REST API
 title: The Giant Swarm REST API
-description: An overview of the APIs that provide you with programmatic access to
-  resources like your workload clusters in a Giant Swarm installation. Namely the Rest
-  API and the Management API.
+description: An overview of the APIs that provide you with programmatic access to resources like your workload clusters in a Giant Swarm installation. Namely the Rest API and the Management API.
 weight: 50
 menu:
   main:
@@ -13,7 +11,7 @@ user_questions:
   - How can I manage clusters via an API?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
-last_review_date: 2021-01-01
+last_review_date: 2022-12-07
 ---
 
 The REST API has been designed originally to provide a simple, easy to use interface to the relevant resources for managing clusters, key pairs, etc. while keeping the internals under the hood.

@@ -11,7 +11,7 @@ changes_entry:
   version_tag: v18.0.3
 date: '2022-11-02T09:34:12+00:00'
 description: Release notes for AWS workload cluster release v18.0.3, published on
-  02 November 2022, 09:34
+  02 November 2022, 09:34.
 title: Workload cluster release v18.0.3 for AWS
 ---
 

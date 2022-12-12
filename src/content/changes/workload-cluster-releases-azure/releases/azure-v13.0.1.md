@@ -11,7 +11,7 @@ changes_entry:
   version_tag: v13.0.1
 date: '2020-12-03T13:19:55+00:00'
 description: Release notes for Azure workload cluster release v13.0.1, published on
-  03 December 2020, 13:19
+  03 December 2020, 13:19.
 title: Workload cluster release v13.0.1 for Azure
 ---
 

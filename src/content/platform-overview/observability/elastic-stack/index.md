@@ -1,7 +1,7 @@
 ---
 linkTitle: Elastic stack
 title: Set up OIDC to authenticate with Kibana and EFK Stack App
-description: Configure authentication with kibana and the efk-stack-app through OIDC
+description: Configure authentication with kibana and the efk-stack-app through OIDC.
 weight: 50
 menu:
   main:

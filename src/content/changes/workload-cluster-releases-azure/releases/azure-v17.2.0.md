@@ -11,7 +11,7 @@ changes_entry:
   version_tag: v17.2.0
 date: '2022-07-04T11:38:01+00:00'
 description: Release notes for Azure workload cluster release v17.2.0, published on
-  04 July 2022, 11:38
+  04 July 2022, 11:38.
 title: Workload cluster release v17.2.0 for Azure
 ---
 

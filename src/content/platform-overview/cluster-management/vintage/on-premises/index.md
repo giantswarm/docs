@@ -5,7 +5,7 @@ description: Architecture overview showing how Giant Swarm is set up within a cu
 weight: 30
 menu:
   main:
-    parent: platform-overview-architecture
+    parent: cluster-management-vintage
 last_review_date: 2022-12-07
 user_questions:
   - Do you run on bare metal?

@@ -11,7 +11,7 @@ changes_entry:
   version_tag: v16.1.1
 date: '2022-01-28T20:55:00+00:00'
 description: Release notes for KVM workload cluster release v16.1.1, published on
-  28 January 2022, 20:55
+  28 January 2022, 20:55.
 title: Workload cluster release v16.1.1 for KVM
 ---
 
