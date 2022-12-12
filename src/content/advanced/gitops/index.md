@@ -194,7 +194,7 @@ flux create source git MC_NAME-git-repo \
         --export > management-clusters/MC_NAME/MC_NAME-git-repo.yaml
 ```
 
-This command creates the Custom Resource for us and exports it to a yaml file in the `management-cluster` folder.
+This command creates the Custom Resource for us and exports it to a YAML file in the `management-clusters` folder.
 
 Time to apply the generated YAML:
 
@@ -218,7 +218,7 @@ NAME            READY   MESSAGE                                                 
 flux-demo       True    Fetched revision: main/74f8d19cc2ac9bee6f45660236344a054c63b71f main/74f8d19cc2ac9bee6f45660236344a054c63b71f   False
 ```
 
-Next, we configure the keys that will be used in the management cluster flux to decipher secrets so they can be safely stored in the repo.
+Next, we configure the keys that will be used in the management cluster Flux to decipher secrets so they can be safely stored in the repository.
 
 In this example we are using `sops` with `pgp` key management and creating a master key for all the kustomizations in this management cluster.
 
@@ -281,8 +281,8 @@ The configuration is structured in such a way that each layer can modify the con
 
 There are a bunch of advantages to createing clusters starting from a base (using different versions):
 
-- We can group clusters in logical groups that match our infra (dev,pre,prod...)
-- Modifiying the base, we modify all the clusters that implement it (batch update)
+- We can group clusters in logical groups that match our infra (dev, pre, prod...)
+- Modifying the base, we modify all the clusters that implement it (batch update)
 - We can change the clusters between different environments easily
 
 In this tutorial we are implementing a cluster from a base without applying any extra configuration.
