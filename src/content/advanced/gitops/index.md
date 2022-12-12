@@ -176,7 +176,7 @@ Now we create the structure for the management clusters we are going to deploy t
 kubectl gs gitops add management-cluster --name MC_NAME --repository-name MC_NAME-git-repo --gen-master-key
 ```
 
-This commands creates the folder for the management cluster, the `Kustomization` file for the MC, `organizations` folder and `secrets` folder, already populated with an encoding key.
+This command creates the folder for the management cluster, the `Kustomization` file for the MC, `organizations` folder and `secrets` folder, already populated with an encoding key.
 
 Then, we create a Flux `GitRepository` resource that points to the repository. We need a `GitRepository` resource for every management cluster we want to manage. In the `GitRepository` resource we define the URL where our repository is stored.
 
