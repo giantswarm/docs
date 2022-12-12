@@ -11,7 +11,7 @@ changes_entry:
   version_tag: v8.5.0
 date: '2019-09-02T13:30:00+00:00'
 description: Release notes for AWS workload cluster release v8.5.0, published on 02
-  September 2019, 13:30
+  September 2019, 13:30.
 title: Workload cluster release v8.5.0 for AWS
 ---
 

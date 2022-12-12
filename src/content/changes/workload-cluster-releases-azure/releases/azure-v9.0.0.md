@@ -11,7 +11,7 @@ changes_entry:
   version_tag: v9.0.0
 date: '2019-10-25T10:00:00+00:00'
 description: Release notes for Azure workload cluster release v9.0.0, published on
-  25 October 2019, 10:00
+  25 October 2019, 10:00.
 title: Workload cluster release v9.0.0 for Azure
 ---
 

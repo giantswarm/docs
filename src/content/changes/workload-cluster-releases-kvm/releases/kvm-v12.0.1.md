@@ -11,7 +11,7 @@ changes_entry:
   version_tag: v12.0.1
 date: '2020-07-21T15:00:00+00:00'
 description: Release notes for KVM workload cluster release v12.0.1, published on
-  21 July 2020, 15:00
+  21 July 2020, 15:00.
 title: Workload cluster release v12.0.1 for KVM
 ---
 

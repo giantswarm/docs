@@ -11,7 +11,7 @@ changes_entry:
   version_tag: v14.0.0
 date: '2021-02-09T13:00:00+00:00'
 description: Release notes for AWS workload cluster release v14.0.0, published on
-  09 February 2021, 13:00
+  09 February 2021, 13:00.
 title: Workload cluster release v14.0.0 for AWS
 ---
 

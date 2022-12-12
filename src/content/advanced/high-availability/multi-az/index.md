@@ -119,5 +119,5 @@ Also exclusively on AWS, for control plane nodes, the choice to use high-availab
 
 ## Further reading
 
-- [The Giant Swarm AWS Architecture]({{< relref "/platform-overview/cluster-management/architecture/aws" >}}) explains in more detail the setup of Giant Swarm on AWS.
-- [The Giant Swarm Azure Architecture]({{< relref "/platform-overview/cluster-management/architecture/azure" >}}) explains in more detail the setup of Giant Swarm on Azure.
+- [The Giant Swarm AWS Architecture]({{< relref "/platform-overview/cluster-management/vintage/aws" >}}) explains in more detail the setup of Giant Swarm on AWS.
+- [The Giant Swarm Azure Architecture]({{< relref "/platform-overview/cluster-management/vintage/azure" >}}) explains in more detail the setup of Giant Swarm on Azure.
