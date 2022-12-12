@@ -22,7 +22,7 @@ In Giant Swarm we have developed a custom support model. In order to offer a gre
 
 ## Direct Support via Slack
 
-Our first level support relies on close interactions via Slack, to ensure bi-directional feedback as quickly as possible. This interaction channel is also used to answer a variety of questions. The conversations are not limited to the platform itself, but can go broader and include the anything cloud-native.
+Our first level support relies on close interactions via Slack, to ensure bi-directional feedback as quickly as possible. This interaction channel is also used to answer a variety of questions. The conversations are not limited to the platform itself, but can go broader and include anything cloud-native.
 
 Our first level support shifts run from 08:00 to 18:00 (CET) on Monday-Friday. While production support goes without saying, we  often answer questions well outside those times. We rotate support shifts across our teams, which is why we focus on support channels with clear internal handovers.
 
