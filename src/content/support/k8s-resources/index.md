@@ -6,7 +6,7 @@ weight: 110
 menu:
   main:
     parent: support-training
-last_review_date: 2022-12-14
+last_review_date: 2022-12-13
 aliases:
   - /basics/kubernetes-resources/
   - /kubernetes/resources/

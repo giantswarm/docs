@@ -7,7 +7,7 @@ menu:
   main:
     parent: support-training
     weight: 10
-last_review_date: 2022-12-14
+last_review_date: 2022-12-13
 user_questions:
   - Which trainings does Giant Swarm offer?
   - How can I learn about Cloud Native topics?
