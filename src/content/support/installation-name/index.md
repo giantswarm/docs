@@ -2,7 +2,7 @@
 linkTitle: Installation names
 title: Picking an installation name
 description: Every Giant Swarm installation has a unique name. Learn here how to select a name for your new installation.
-weight: 10
+weight: 100
 menu:
   main:
     parent: support-training

@@ -16,14 +16,14 @@ user_questions:
   - How can I add catalog level values or secrets for the apps deployed from this catalog?
 ---
 
-The `template catalog` command allows to create an [app catalog]({{< relref "/platform-overview/app-platform" >}}) manifest. The resulting manifest is meant to be applied to the management cluster, for example via `kubectl apply`.
+The `template catalog` command allows to create an [app catalog]({{< relref "/getting-started/app-platform" >}}) manifest. The resulting manifest is meant to be applied to the management cluster, for example via `kubectl apply`.
 
 The resulting manifest will define a [`Catalog`]({{< relref "/use-the-api/management-api/crd/catalogs.application.giantswarm.io.md" >}}) resource (API group/version `application.giantswarm.io/v1alpha1`).
 
 **Note:** The `Catalog` CRD is namespace scoped and replaces the [AppCatalog]({{< relref "/use-the-api/management-api/crd/appcatalogs.application.giantswarm.io.md" >}})
 CRD which is cluster scoped. This is to improve multi-tenancy support when used with the [Management API]({{< relref "/platform-overview/management-api" >}}).
 
-The Catalog CRD supports having a related `ConfigMap` and/or `Secret` resource with values YAML. These values are merged with the rest of the [configuration]({{< relref "/platform-overview/app-platform/app-configuration/index.md" >}}) when Apps are deployed from this App Catalog.
+The Catalog CRD supports having a related `ConfigMap` and/or `Secret` resource with values YAML. These values are merged with the rest of the [configuration]({{< relref "/getting-started/app-platform/app-configuration/index.md" >}}) when Apps are deployed from this App Catalog.
 
 ## Usage
 

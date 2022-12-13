@@ -2,7 +2,7 @@
 linkTitle: Shared installations
 title: Getting started on a shared installation
 description: Giant Swarm customers usually work with their own installation(s). However, we also provide shared installations for trials and proof of concept (PoC) projects. This article explains the differences and what to do as a customer to get started on a shared installation.
-weight: 10
+weight: 100
 menu:
   main:
     parent: support-training
@@ -43,7 +43,7 @@ In a shared installation, all customers use GitHub as an identity provider and c
 
 ### Observability
 
-A shared installation is monitored and managed by Giant Swarm staff, just like any other installation. However, we currently do not provide access to our standard [observability features]({{< relref "/use-the-api/observability" >}}) for users of a shared installation.
+A shared installation is monitored and managed by Giant Swarm staff, just like any other installation. However, we currently do not provide access to our standard [observability features]({{< relref "/getting-started/observability" >}}) for users of a shared installation.
 
 ## Getting started
 

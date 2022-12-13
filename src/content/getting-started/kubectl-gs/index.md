@@ -2,7 +2,7 @@
 linkTitle: kubectl-gs introduction
 title: Getting started with kubectl-gs
 description: The Giant Swarm Management API is easily accessible by means of kubectl-gs, a kubectl plugin developed by Giant Swarm. This tutorial guides you throughout some of the most important features of the tool.
-weight: 40
+weight: 30
 menu:
   main:
     parent: getting-started
