@@ -4,7 +4,8 @@ title: App configuration reference
 description: Documentation on the various levels of App configuration and how they get merged into a final values object.
 menu:
   main:
-    parent: platform-overview-app-platform
+    parent: getting-started-app-platform
+    identifier: getting-started-app-platform-app-config
 weight: 30
 aliases:
  - /reference/app-configuration/

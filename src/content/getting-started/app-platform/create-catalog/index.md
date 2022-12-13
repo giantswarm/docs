@@ -5,7 +5,8 @@ description: How to create a custom app catalog for use with app platform and pu
 weight: 40
 menu:
   main:
-    parent: platform-overview-app-platform
+    parent: getting-started-app-platform
+    identifier: getting-started-app-platform-app-catalog
 last_review_date: 2022-01-25
 aliases:
   - /app-platform/create-catalog

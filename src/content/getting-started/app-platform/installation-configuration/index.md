@@ -5,7 +5,8 @@ description: Which options for the Helm execution are currently supported by the
 weight: 60
 menu:
   main:
-    parent: platform-overview-app-platform
+    parent: getting-started-app-platform
+    identifier: getting-started-app-platform-config-install
 aliases:
   - /developer-platform/app-platform/installation-configuration
   - /app-platform/installation-configuration

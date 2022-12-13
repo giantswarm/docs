@@ -312,6 +312,6 @@ The latest version number can be retrieved from the catalog using `helm search r
 
 Commit the newly generated files back to your git repository and push the changes to the remote. After a few minutes you should see the application resources appear on your workload cluster.
 
-To learn more about how to utilize and configure Managed Apps, please refer to [the documentation]({{< relref "/platform-overview/app-platform/overview">}}).
+To learn more about how to utilize and configure Managed Apps, please refer to [the documentation]({{< relref "/platform-overview/app-platform">}}).
 
 This completes the guide. If you no longer need them you can delete the organization and cluster.

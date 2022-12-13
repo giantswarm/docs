@@ -5,7 +5,8 @@ description: How to customize preinstalled apps configuration using configmaps o
 weight: 40
 menu:
   main:
-    parent: platform-overview-app-platform
+    parent: getting-started-app-platform
+    identifier: getting-started-app-platform-app-default-apps
 last_review_date: 2022-09-26
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix

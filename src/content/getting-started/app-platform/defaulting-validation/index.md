@@ -5,7 +5,8 @@ description: How defaulting and validation of app CRs is implemented by app-admi
 weight: 50
 menu:
   main:
-    parent: platform-overview-app-platform
+    parent: getting-started-app-platform
+    identifier: getting-started-app-platform-default-validation
 last_review_date: 2022-02-16
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger

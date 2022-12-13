@@ -4,7 +4,8 @@ title: App Bundle reference
 description: Overview of the the App Bundle concept, how it works, and how to configure it.
 menu:
   main:
-    parent: platform-overview-app-platform
+    parent: getting-started-app-platform
+    identifier: getting-started-app-platform-app-bundle
 weight: 30
 last_review_date: 2022-09-14
 aliases:

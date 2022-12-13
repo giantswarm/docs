@@ -5,7 +5,8 @@ description: How to configure metadata for the target namespace of an app via it
 weight: 60
 menu:
   main:
-    parent: platform-overview-app-platform
+    parent: getting-started-app-platform
+    identifier: getting-started-app-platform-namespace-config
 aliases:
   - /developer-platform/app-platform/namespace-configuration
   - /app-platform/namespace-configuration
