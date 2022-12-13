@@ -1,7 +1,7 @@
 ---
 linkTitle: list nodepools
 title: "'gsctl list nodepools' command reference"
-description: "The 'gsctl list nodepools' command shows a list of all node pools in a workload cluster."
+description: The 'gsctl list nodepools' command shows a list of all node pools in a workload cluster.
 weight: 150
 menu:
   main:
@@ -12,7 +12,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I see all node pools in a cluster using gsctl?
-last_review_date: 2021-01-01
+last_review_date: 2022-12-07
 ---
 
 {{% gsctl_deprecation_disclaimer %}}

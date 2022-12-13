@@ -80,5 +80,5 @@ When inspecting details of such a cluster, or using the [`gsctl show cluster`]({
 
 ## Further reading
 
-- [The Giant Swarm AWS Architecture]({{< relref "/platform-overview/cluster-management/architecture/aws" >}}) explains the setup of Giant Swarm on AWS, in more detail.
-- [The Giant Swarm Azure Architecture]({{< relref "/platform-overview/cluster-management/architecture/azure" >}}) explains the setup of Giant Swarm on Azure, in more detail.
+- [The Giant Swarm AWS Architecture]({{< relref "/platform-overview/cluster-management/vintage/aws" >}}) explains the setup of Giant Swarm on AWS, in more detail.
+- [The Giant Swarm Azure Architecture]({{< relref "/platform-overview/cluster-management/vintage/azure" >}}) explains the setup of Giant Swarm on Azure, in more detail.

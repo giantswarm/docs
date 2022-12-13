@@ -11,7 +11,7 @@ changes_entry:
   version_tag: v16.1.0
 date: '2021-12-02T08:00:00+00:00'
 description: Release notes for AWS workload cluster release v16.1.0, published on
-  02 December 2021, 08:00
+  02 December 2021, 08:00.
 title: Workload cluster release v16.1.0 for AWS
 ---
 

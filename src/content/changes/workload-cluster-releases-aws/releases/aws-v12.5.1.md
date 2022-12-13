@@ -11,7 +11,7 @@ changes_entry:
   version_tag: v12.5.1
 date: '2020-10-22T06:40:57+00:00'
 description: Release notes for AWS workload cluster release v12.5.1, published on
-  22 October 2020, 06:40
+  22 October 2020, 06:40.
 title: Workload cluster release v12.5.1 for AWS
 ---
 

@@ -1,7 +1,7 @@
 ---
 linkTitle: list keypairs
 title: "'gsctl list keypairs' command reference"
-description: "Documentation of the 'gsctl list keypairs' command, which prints a list of all key pairs currently valid for accessing a workload cluster."
+description: Documentation of the 'gsctl list keypairs' command, which prints a list of all key pairs currently valid for accessing a workload cluster.
 weight: 140
 menu:
   main:
@@ -12,7 +12,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I show the valid key pairs for a cluster using gsctl?
-last_review_date: 2021-01-01
+last_review_date: 2022-12-07
 ---
 
 {{% gsctl_deprecation_disclaimer %}}
