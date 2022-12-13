@@ -268,7 +268,7 @@ source_repositories:
         hidden: true
       certconfigs.core.giantswarm.io:
         owner:
-          - https://github.com/orgs/giantswarm/teams/team-cabbage
+          - https://github.com/orgs/giantswarm/teams/team-phoenix
         topics:
           - managementcluster
           - workloadcluster

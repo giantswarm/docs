@@ -42,4 +42,4 @@ Our current automated test plan can be summarised as follows:
 
 Our aim is to constantly improve this test suite over time, as we discover more relevant integration tests to add.
 
-See [our test suite itself](https://github.com/giantswarm/kong-app/tree/master/tests) for specific details.
+See [our test suite itself](https://github.com/giantswarm/kong-app/tree/main/tests) for specific details.
