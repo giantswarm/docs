@@ -8,3 +8,7 @@ aliases:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-horizon
 ---
+
+An effective self-service and cloud-native developer platform enables developers to quickly and easily deploy and manage their applications in the cloud. To get the most out of this platform, it should be open-source and managed by a good team of Site Reliability Engineers (SREs). 
+
+Giant Swarm operates developer platforms in the datacenters and clouds of their customers. Keeping them secure, stable, and up to date, ensuring that developers have the best experience possible.

@@ -20,10 +20,10 @@ user_questions:
 
 ## Overview
 
-The _Giant Swarm App Platform_ is built on top of [Helm](https://helm.sh/) and allows you to manage apps and their configurations represented by App Custom Resources (CRs) for multiple clusters, from a single place: the [Management API]({{< relref "/ui-api/management-api/overview" >}}).
+The _Giant Swarm App Platform_ is built on top of [Helm](https://helm.sh/) and allows you to manage apps and their configurations represented by App Custom Resources (CRs) for multiple clusters, from a single place: the [Management API]({{< relref "/platform-overview/management-api" >}}).
 
 In this guide, we will install the NGINX Ingress Controller app. We will do this by using kubectl, to create
-an [App]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) CR using the Kubernetes API of your management cluster.
+an [App]({{< relref "/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) CR using the Kubernetes API of your management cluster.
 
 App CRs can be created this way via your automation or our Web UI (See: [guide]({{< relref "/getting-started/ingress-controller" >}})).
 
@@ -31,8 +31,8 @@ In general, you can manage App CRs with any tool that can communicate with the K
 
 ## Setting up
 
-You can access your management cluster using the [kubectl gs login]({{< relref "/ui-api/kubectl-gs/login" >}})
-command of our kubectl plugin. See [here]({{< relref "/ui-api/kubectl-gs/installation" >}})
+You can access your management cluster using the [kubectl gs login]({{< relref "/use-the-api/kubectl-gs/login" >}})
+command of our kubectl plugin. See [here]({{< relref "/use-the-api/kubectl-gs/installation" >}})
 for how to install it.
 
 In the management cluster your App CRs are stored in a namespace with the same
@@ -77,12 +77,12 @@ installed in your workload cluster.
 
 ## Finding the ingress controller version
 
-You can browse the apps in our catalog using our [web UI]({{< relref "/ui-api/web" >}})
+You can browse the apps in our catalog using our [web UI]({{< relref "/platform-overview/web-interface" >}})
 but this information is also available in the management cluster. We create
-[AppCatalogEntry]({{< relref "/ui-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}})
+[AppCatalogEntry]({{< relref "/use-the-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}})
 CRs for the apps that are available.
 
-First let's list the available [Catalog]({{< relref "/ui-api/management-api/crd/catalogs.application.giantswarm.io.md" >}})
+First let's list the available [Catalog]({{< relref "/use-the-api/management-api/crd/catalogs.application.giantswarm.io.md" >}})
 CRs.
 
 ```nohighlight
@@ -106,7 +106,7 @@ giantswarm   nginx-ingress-controller-app   v0.47.0       1.17.0    25d
 
 ## Creating an App CR
 
-We can use the [kubectl gs template app]({{< relref "/ui-api/kubectl-gs/login" >}})
+We can use the [kubectl gs template app]({{< relref "/use-the-api/kubectl-gs/login" >}})
 command to generate the App CR using the latest version from the previous command.
 
 ```nohighlight

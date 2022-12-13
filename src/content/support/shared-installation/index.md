@@ -37,13 +37,13 @@ In a shared installation, each customer is mapped to exactly one organization. Y
 
 ### Access control
 
-For normal Giant Swarm installations, the customer can decide which identity provider to use for [authentication]({{< relref "/ui-api/management-api/authentication" >}}) to the Management API.
+For normal Giant Swarm installations, the customer can decide which identity provider to use for [authentication]({{< relref "/use-the-api/management-api/authentication" >}}) to the Management API.
 
 In a shared installation, all customers use GitHub as an identity provider and configure a team in a Github organization to include all the users who need access to the Giant Swarm Management API and user interfaces. Find instructions regarding the setup of your organization and team below.
 
 ### Observability
 
-A shared installation is monitored and managed by Giant Swarm staff, just like any other installation. However, we currently do not provide access to our standard [observability features]({{< relref "/ui-api/observability" >}}) for users of a shared installation.
+A shared installation is monitored and managed by Giant Swarm staff, just like any other installation. However, we currently do not provide access to our standard [observability features]({{< relref "/use-the-api/observability" >}}) for users of a shared installation.
 
 ## Getting started
 

@@ -59,7 +59,7 @@ lint:
 	    --config .markdownlint.yaml \
 	    --ignore README.md \
 		--ignore ./src/content/changes \
-		--ignore ./src/content/ui-api/management-api/crd \
+		--ignore ./src/content/use-the-api/management-api/crd \
 		./src
 
 # Validate front matter in all pages.

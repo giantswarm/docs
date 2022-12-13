@@ -72,7 +72,7 @@ We will be using [Flux CLI](https://fluxcd.io/docs/cmd/) and [kubectl-gs](https:
 
 ## Restrictions in the web UI {#web-ui-restrictions}
 
-The [Giant Swarm web UI]({{<relref "/ui-api/web">}}) allows editing and deleting resources like clusters and apps in an interactive way. However, for resources managed through GitOps, these capabilities are restricted. Otherwise changes and even deletions would get reverted through FluxCD.
+The [Giant Swarm web UI]({{<relref "/platform-overview/web-interface">}}) allows editing and deleting resources like clusters and apps in an interactive way. However, for resources managed through GitOps, these capabilities are restricted. Otherwise changes and even deletions would get reverted through FluxCD.
 
 The UI will indicate this by showing something like this:
 
@@ -106,7 +106,7 @@ If you wish to proceed by creating the resources in one of the Organization name
 - `write-organizations-customer`
 - `write-silences-customer`
 
-To learn how to view and assign roles, please refer to [Access control for organizations in the web user interface]({{< relref "/ui-api/web/organizations/access-control/index.md" >}}).
+To learn how to view and assign roles, please refer to [Access control for organizations in the web user interface]({{< relref "/platform-overview/web-interface/organizations/access-control/index.md" >}}).
 
 ## GiantSwarm Management Cluster security policies
 
@@ -166,7 +166,7 @@ First thing's first - create a bare-bones repository where we will store the res
 kubectl gs gitops init
 ```
 
-__Note__: To learn more about Giant Swarm's kubectl plugin, visit [kubectl-gs documentation]({{< relref "/ui-api/kubectl-gs/" >}}).
+__Note__: To learn more about Giant Swarm's kubectl plugin, visit [kubectl-gs documentation]({{< relref "/use-the-api/kubectl-gs/" >}}).
 
 ### Attach the repo to a management cluster
 
@@ -252,7 +252,7 @@ kubectl create -f management-clusters/MC_NAME/MC_NAME.yaml
 
 ### Managing organizations
 
-The highest level Giant Swarm custom resource you can create is an [Organization]({{< relref "/ui-api/management-api/crd/organizations.security.giantswarm.io.md" >}}).
+The highest level Giant Swarm custom resource you can create is an [Organization]({{< relref "/use-the-api/management-api/crd/organizations.security.giantswarm.io.md" >}}).
 
 In order to create the files in the repository, run the command (in the root of the repo):
 
