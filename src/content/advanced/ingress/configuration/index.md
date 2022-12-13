@@ -442,7 +442,7 @@ spec:
       namespace: NAMESPACE
 ```
 
-Any defaults that we override are visible in the following `values.yaml` file, under the `configmap` key. [Check this values.yaml file in v2.2.0](https://github.com/giantswarm/nginx-ingress-controller-app/blob/v2.2.0/helm/nginx-ingress-controller-app/values.yaml) as an example.
+Any defaults that we override are visible in the following `values.yaml` file, under the `configmap` key. [Check this values.yaml file in v2.20.0](https://github.com/giantswarm/nginx-ingress-controller-app/blob/v2.20.0/helm/nginx-ingress-controller-app/values.yaml) as an example.
 
 Do not copy all the defaults if you do not need to change them, that way we can adjust them in case they need to change.
 
@@ -530,4 +530,4 @@ data:
 
 - [Official Kubernetes documentation for the Ingress Resource](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 - [Configuration documentation for the NGINX Ingress Controller](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)
-- [Official ingress-nginx configuration snippets example](https://github.com/kubernetes/ingress-nginx/tree/master/docs/examples/customization/configuration-snippets)
+- [Official ingress-nginx configuration snippets example](https://github.com/kubernetes/ingress-nginx/tree/main/docs/examples/customization/configuration-snippets)
