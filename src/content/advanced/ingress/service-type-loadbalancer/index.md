@@ -170,8 +170,7 @@ metadata:
 
 AWS is in the process of replacing ELBs with NLBs (Network Load Balancers) and ALBs (Application Load
 Balancers). NLBs have a number of benefits over "classic" ELBs including scaling to many more requests.
-Alpha support for NLBs was added in Kubernetes 1.9. As it's an alpha feature it's not yet recommended
-for production workloads but you can start trying it out.
+To be able to fully controll all NLB features, we're strongly recommend installing [AWS Load Balancer Controller](https://github.com/giantswarm/aws-load-balancer-controller-app) as the Kubernetes in-tree AWS Load Balancer implementation only supports [annotations for classic ELBs](https://github.com/kubernetes/kubernetes/blob/v1.26.0/staging/src/k8s.io/legacy-cloud-providers/aws/aws.go#L105-L246).
 
 ```yaml
 metadata:

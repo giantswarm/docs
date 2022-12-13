@@ -120,7 +120,7 @@ controller:
   service:
     public: true  # default value
     subdomain: "ingress"  # default value
-    internal: 
+    internal:
       enabled: true  # default is `false`
       subdomain: "ingress-internal"  # default value
 ```
@@ -129,7 +129,7 @@ In other words, it is sufficient to set `controller.service.internal.enabled` to
 
 ## Using weak ciphers for legacy clients
 
-In [NGINX IC App v1.2.0](https://github.com/giantswarm/nginx-ingress-controller-app/blob/master/CHANGELOG.md#120-2020-01-21), there was a notable security improvement: weak SSL ciphers were removed from the default configuration. Some older clients (like web browsers, http libraries in apps) could no longer establish secure connections with cluster services exposed via new NGINX. This is because these clients only supported SSL ciphers that got removed.
+In [NGINX IC App v1.2.0](https://github.com/giantswarm/nginx-ingress-controller-app/blob/main/CHANGELOG.md#120-2020-01-21), there was a notable security improvement: weak SSL ciphers were removed from the default configuration. Some older clients (like web browsers, http libraries in apps) could no longer establish secure connections with cluster services exposed via new NGINX. This is because these clients only supported SSL ciphers that got removed.
 
 With single NGINX, one could restore weak SSL ciphers configuration in order to support services with older clients until clients get upgraded. Problem with this approach, since SSL ciphers are global settings, was that changing default SSL ciphers back by restoring weak ciphers would apply to all Ingresses and service behind them, not just the one with old clients.
 
@@ -157,6 +157,6 @@ For the second NGINX IC App installation, ingress class and host name subdomain 
 
 - [Services of type LoadBalancer]({{< relref "/content/advanced/ingress/service-type-loadbalancer/index.md" >}})
 - [Installing an Ingress Controller]({{< relref "/content/getting-started/ingress-controller/index.md" >}})
-- [NGINX IC App configuration options](https://github.com/giantswarm/nginx-ingress-controller-app/blob/master/helm/nginx-ingress-controller-app/values.yaml)
+- [NGINX IC App configuration options](https://github.com/giantswarm/nginx-ingress-controller-app/blob/main/helm/nginx-ingress-controller-app/values.yaml)
 - [Upstream ingress-nginx configuration documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)
 - [Upstream ingress-nginx multi-nginx documentation](https://kubernetes.github.io/ingress-nginx/user-guide/multiple-ingress/)

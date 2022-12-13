@@ -13,10 +13,9 @@ user_questions:
   - How do I install linkerd?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
-last_review_date: 2022-02-23
+last_review_date: 2022-12-13
 ---
 
 We offer linkerd for service mesh functionality in the platform. You can still use other service meshes within the platform but linkerd comes managed by Giant Swarm.
 
-To install, go to [Linkerd 2 Quickstart Guide](https://github.com/giantswarm/linkerd2-app/blob/master/README.md).
-
+To install, go to [Linkerd Quickstart Guide](https://github.com/giantswarm/linkerd-control-plane-app/blob/main/README.md#quickstart-guide).
