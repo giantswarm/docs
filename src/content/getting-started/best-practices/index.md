@@ -5,7 +5,7 @@ description: Recommendations and best practices around cluster and node sizing a
 weight: 110
 menu:
   main:
-    parent: getting-started
+    parent: support-training
 aliases:
   - /guides/recommendations-and-best-practices/
   - /kubernetes/best-practices/

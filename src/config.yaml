@@ -41,7 +41,7 @@ menu:
     weight: 40
   - identifier: support-training
     name: Support & Training
-    url: /support-training/
+    url: /support/
     weight: 50
   - identifier: changes
     name: Changes and releases

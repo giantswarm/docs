@@ -5,7 +5,8 @@ description: Every Giant Swarm installation has a unique name. Learn here how to
 weight: 10
 menu:
   main:
-    parent: getting-started
+    parent: support-training
+    weight: 20
 user_questions:
   - How do I determine the name for my Giant Swarm installation?
 owner:

@@ -5,13 +5,14 @@ description: Giant Swarm customers usually work with their own installation(s). 
 weight: 10
 menu:
   main:
-    parent: getting-started
+    parent: support-training
+    weight: 15
 user_questions:
   - How is a shared installation different from normal Giant Swarm installations?
   - What do I have to do to use a shared installation?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2022-09-12
+last_review_date: 2022-12-13
 ---
 
 Giant Swarm customers usually work with their own installation(s). However, we also provide shared installations for trials and proof of concept (PoC) projects. This article explains the differences and what to do as a customer to get started on a shared installation.
