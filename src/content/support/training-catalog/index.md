@@ -6,7 +6,8 @@ weight: 20
 menu:
   main:
     parent: support-training
-last_review_date: 2022-03-28
+    weight: 10
+last_review_date: 2022-12-13
 user_questions:
   - Which trainings does Giant Swarm offer?
   - How can I learn about Cloud Native topics?
@@ -16,6 +17,8 @@ aliases:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-teddyfriends
 ---
+
+In Giant Swarm we perceive the Cloud Native Landscape as a journey and it takes time and effort to get across it successfully. Based on the lessons learnt through these years helping our customers, we have built a set of trainings that develop several areas of the journey that guide the teams to understand the principles and the tools. 
 
 _____________________________________
 

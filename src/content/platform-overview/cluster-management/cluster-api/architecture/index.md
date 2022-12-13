@@ -222,7 +222,7 @@ We have created a [kubectl plugin]({{< relref "/ui-api/kubectl-gs/template-clust
 
 ## Further Reading
 
-- [Giant Swarm support model]({{< relref "/support-training" >}})
+- [Giant Swarm support model]({{< relref "/support" >}})
 - [Giant Swarm operational layers]({{< relref "/platform-overview/security/operational-layers" >}})
 - [Giant Swarm VPN and secure cluster access]({{< relref "/platform-overview/security/cluster-security/cluster-access" >}})
 
