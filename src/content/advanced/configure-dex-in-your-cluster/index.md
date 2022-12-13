@@ -251,7 +251,7 @@ __Note__: In the above snippet you have to replace the `CLUSTER_NAME` variable a
 You can use more than one connector, but they need to have a different `id` value. We advice you to use `- id: customer` for your primary connector.
 
 After you have applied the `ConfigMap` manifest to the Management API you have to submit the App custom resource that defines the intent to install the Dex app in the given cluster.
-The easiest way to do this is [through our Web-UI]({{< relref "/ui-api/web/app-platform" >}})
+The easiest way to do this is [through our Web-UI]({{< relref "/platform-overview/web-interface/app-platform" >}})
 Alternatively, you can directly apply it to the Management Cluster.
 
 ```yaml
@@ -291,7 +291,7 @@ To get an overview on the authentication success and error rates of your Dex ins
 
 ## Logging into your workload cluster via `kubectl gs` with `Athena`
 
-Once Dex is set up in your workload cluster, you can enable access via OIDC through our `kubectl` plugin [kubectl gs]({{< relref "/ui-api/kubectl-gs" >}}).
+Once Dex is set up in your workload cluster, you can enable access via OIDC through our `kubectl` plugin [kubectl gs]({{< relref "/use-the-api/kubectl-gs" >}}).
 
 
 In order to communicate with the API, `kubectl gs` needs the clusters CA certificate as well as some cluster specific information, such as the management cluster name and the dex issuer URL. 
@@ -344,4 +344,4 @@ kubectl gs login https://api.test.example.io
 
 - [Authenticating with Microsoft Azure Active Directory]({{< relref "/advanced/authentication-azure-ad" >}})
 - [App platform overview]({{< relref "/platform-overview/app-platform" >}})
-- [kubectl gs]({{< relref "/ui-api/kubectl-gs" >}})
+- [kubectl gs]({{< relref "/use-the-api/kubectl-gs" >}})

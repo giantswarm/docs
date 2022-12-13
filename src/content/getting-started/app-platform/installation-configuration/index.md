@@ -27,7 +27,7 @@ matching these universal rules may exist, hence we offer a way to tweak some of 
 
 Next paragraphs introduce the options currently supported for each of the major Helm action, along the version of
 App Operator and Chart Operator they have started to be supported with. Each paragraph comes with a short
-explanation and [App CR]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) code snippet with most of the fields removed for brevity.
+explanation and [App CR]({{< relref "/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) code snippet with most of the fields removed for brevity.
 
 ## Install
 

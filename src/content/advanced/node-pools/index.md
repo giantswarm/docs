@@ -47,13 +47,13 @@ administrator.
 Node pools can be created when creating a cluster
 
 - via the Giant Swarm web interface
-- via the CLI command [`gsctl create cluster`]({{< relref "/ui-api/gsctl/create-cluster" >}})
+- via the CLI command [`gsctl create cluster`]({{< relref "/use-the-api/gsctl/create-cluster" >}})
 
 or any time after the cluster has been created
 
 - via the Giant Swarm web interface
-- via the CLI command [`gsctl create nodepool`]({{< relref "/ui-api/gsctl/create-nodepool" >}})
-- via `kubectl` with the help of the [`gs` plugin]({{< relref "/ui-api/kubectl-gs/template-nodepool" >}})
+- via the CLI command [`gsctl create nodepool`]({{< relref "/use-the-api/gsctl/create-nodepool" >}})
+- via `kubectl` with the help of the [`gs` plugin]({{< relref "/use-the-api/kubectl-gs/template-nodepool" >}})
 
 Node pools can be modified and deleted using `gsctl` or the web interface.
 
@@ -79,7 +79,7 @@ Some details of a node pool can be modified after creation:
 
 Other settings like the availability zone assignment cannot be changed after creation.
 
-See the [`gsctl update nodepool`]({{< relref "/ui-api/gsctl/update-nodepool" >}}) reference for instructions how to scale and rename a node pool using the CLI.
+See the [`gsctl update nodepool`]({{< relref "/use-the-api/gsctl/update-nodepool" >}}) reference for instructions how to scale and rename a node pool using the CLI.
 
 ## Assigning workloads to node pools {#assigning-workloads}
 
@@ -138,7 +138,7 @@ If you are deleting a node pool running critical workloads, we recommend taking 
 
 Pay close attention to the workloads being rescheduled on other nodes once nodes are drained.
 
-See the [`gsctl delete nodepool`]({{< relref "/ui-api/gsctl/delete-nodepool" >}}) reference for how to delete a node pool using the CLI.
+See the [`gsctl delete nodepool`]({{< relref "/use-the-api/gsctl/delete-nodepool" >}}) reference for how to delete a node pool using the CLI.
 
 ## On-demand and spot instances {#on-demand-spot}
 
@@ -175,10 +175,10 @@ Using the v5 API endpoints, you can
 ## Node pools and the cluster definition YAML format
 
 Just as the Giant Swarm REST API schema for v4 (without node pools) and v5 (with node pools) clusters are different, the
-[cluster definition format]({{< relref "/ui-api/gsctl/cluster-definition" >}}) is different between the two versions.
+[cluster definition format]({{< relref "/use-the-api/gsctl/cluster-definition" >}}) is different between the two versions.
 
 The new definition schema for v5 allows for defining cluster and node pool details in one file,
-to be submitted for creation via the [`gsctl create cluster`]({{< relref "/ui-api/gsctl/create-cluster" >}}) command.
+to be submitted for creation via the [`gsctl create cluster`]({{< relref "/use-the-api/gsctl/create-cluster" >}}) command.
 
 ## Node pools and autoscaling {#autoscaling}
 

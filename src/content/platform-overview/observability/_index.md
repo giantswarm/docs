@@ -2,7 +2,7 @@
 linkTitle: Observability
 title: Observability Features
 description: Overview of the observability related platform features to help you operate and improve your platform and applications.
-weight: 60
+weight: 70
 menu:
   main:
     parent: platform-overview

@@ -30,7 +30,7 @@ We aim to provide a useful set of dashboards for you to quickly explore all metr
 
 ## Accessing dashboards
 
-If you have access to the Giant Swarm [web interface]({{< relref "/ui-api/web" >}}), the easiest way to get to Grafana is to click the **Monitoring** link in the top menu when logged in.
+If you have access to the Giant Swarm [web interface]({{< relref "/platform-overview/web-interface" >}}), the easiest way to get to Grafana is to click the **Monitoring** link in the top menu when logged in.
 
 In case you don't have access to the Giant Swarm web interface, you can ask your Giant Swarm support contact for the URL.
 
@@ -46,7 +46,7 @@ then simply replace `happa` with `grafana` to get to your Grafana URL:
 
 ## Authentication and authorization
 
-Access to Grafana is controlled via **single sign-on** (SSO), using the same identity provider you use for the [Management API]({{< relref "/ui-api/management-api/authentication" >}}).
+Access to Grafana is controlled via **single sign-on** (SSO), using the same identity provider you use for the [Management API]({{< relref "/use-the-api/management-api/authentication" >}}).
 
 In order to access Grafana as a customer, you must be a member of the admin group. Specifically, that's a group in your identity provider selected to specify which users have admin permissions in the Giant Swarm installation.
 

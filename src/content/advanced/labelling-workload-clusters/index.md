@@ -22,7 +22,7 @@ last_review_date: 2022-05-31
 
 Workload clusters, like any other Kubernetes resource, can be enriched with [labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/). Labels are key-value-pairs, where each key can be used only once per object (here: per workload cluster).
 
-Workload clusters are defined by a main Cluster resource ([`clusters.cluster.x-k8s.io`]({{< relref "/ui-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}})). Accordingly, the labels we refer to in this article are those on that resource type only.
+Workload clusters are defined by a main Cluster resource ([`clusters.cluster.x-k8s.io`]({{< relref "/use-the-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}})). Accordingly, the labels we refer to in this article are those on that resource type only.
 
 ## Special purpose labels
 
@@ -75,7 +75,7 @@ You can find more details about this in the [Disable Monitoring]({{< relref "get
 
 Depending on the method you use to create a cluster, you can specify labels when creating your cluster.
 
-If you use [`kubectl gs template cluster`]({{< relref "/ui-api/kubectl-gs/template-cluster" >}}) to create a cluster manifest, you can apply the `--label` flag with your initial command, as often as required. You are also free to modify the created manifest before applying it. Example:
+If you use [`kubectl gs template cluster`]({{< relref "/use-the-api/kubectl-gs/template-cluster" >}}) to create a cluster manifest, you can apply the `--label` flag with your initial command, as often as required. You are also free to modify the created manifest before applying it. Example:
 
 ```nohighlight
 kubectl gs template cluster \
@@ -88,13 +88,13 @@ kubectl gs template cluster \
 
 To modify labels on a cluster, several methods are supported:
 
-- Our [web UI]({{< relref "/ui-api/web" >}}) allows adding, modifying, and deleting labels interactively.
+- Our [web UI]({{< relref "/platform-overview/web-interface" >}}) allows adding, modifying, and deleting labels interactively.
 - The `kubectl label` command can be used with the cluster resource. See below for details.
 
 ### Modify cluster labels using `kubectl` {#modify-using-kubectl}
 
 With access to the management cluster, you are able to use `kubectl` to manage workload cluster labels.
-The underlying resource to operate on is [`clusters.cluster.x-k8s.io`]({{< relref "/ui-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) from the upstream [cluster-api](https://cluster-api.sigs.k8s.io/) project.
+The underlying resource to operate on is [`clusters.cluster.x-k8s.io`]({{< relref "/use-the-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) from the upstream [cluster-api](https://cluster-api.sigs.k8s.io/) project.
 
 The [`kubectl label`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#label) command is the most convenient way to set, modify, and delete labels of a cluster resource.
 

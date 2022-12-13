@@ -25,7 +25,7 @@ user_questions:
 As stated in the [App Platform overview]({{< relref "/platform-overview/app-platform/index.md" >}}) all managed apps are
 packaged, maintained and offered as Helm Charts and it is no different for the app bundles. What makes them
 special in comparison to solitary apps is that the bundle Helm Chart instead of carrying a regular resources
-composing the actual application, it carries the [App CRs]({{< relref "/ui-api/management-api/crd/apps.application.giantswarm.io.md" >}}) that, once delivered and consumed by the App Platform, install the
+composing the actual application, it carries the [App CRs]({{< relref "/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) that, once delivered and consumed by the App Platform, install the
 expected applications and their resources. In other words, the app bundle can be thought of a middleman, not
 installing anything in the Workload Cluster on its own, but requesting installation of certain pre-defined
 applications.
@@ -64,7 +64,7 @@ brevity.
 When App CR for the bundle is created within the Management Cluster, it is first picked up by the Management
 Cluster's App Operator which we call, by convention, `unique`. It lives under the protected `giantwarm` namespace,
 but in principle operates the same way the Workload Clusters App Operators do. So it reconciles the App CR by
-creating a corresponding [Chart CR]({{< relref "/ui-api/management-api/crd/charts.application.giantswarm.io.md" >}}) in the `giantswarm` namespace, which is then picked up by the Management Cluster's Chart Operator also
+creating a corresponding [Chart CR]({{< relref "/use-the-api/management-api/crd/charts.application.giantswarm.io.md" >}}) in the `giantswarm` namespace, which is then picked up by the Management Cluster's Chart Operator also
 living in that namespace. It then installs the app resources, which in this case are nested App CRs to be created
 in the Workload Cluster namespace. Once delivered, the nested App CRs are picked up by the Workload Cluster's App Operator and installed in the well known way.
 
@@ -153,7 +153,7 @@ spec:
 
 These two settings ensure this App CR is picked up and reconciled by the unique App Operator. Fortunately, when
 the `kubectl-gs` is used then both of these fields are set correctly when templating an app, when the
-`--in-cluster` flag is used, see [kubectl gs template app]({{< relref "/ui-api/kubectl-gs/template-app.md" >}}),
+`--in-cluster` flag is used, see [kubectl gs template app]({{< relref "/use-the-api/kubectl-gs/template-app.md" >}}),
 so that there is no need to remember about it.
 
 <div class="feedback well">
