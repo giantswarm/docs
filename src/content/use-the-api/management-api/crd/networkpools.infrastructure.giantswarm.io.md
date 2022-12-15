@@ -62,7 +62,7 @@ apiVersion: infrastructure.giantswarm.io/v1alpha2
 kind: NetworkPool
 metadata:
   annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/use-the-api/management-api/crd/networkpools.infrastructure.giantswarm.io/
+    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/networkpools.infrastructure.giantswarm.io/
   creationTimestamp: null
   labels:
     giantswarm.io/organization: giantswarm
@@ -177,7 +177,7 @@ apiVersion: infrastructure.giantswarm.io/v1alpha3
 kind: NetworkPool
 metadata:
   annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/use-the-api/management-api/crd/networkpools.infrastructure.giantswarm.io/
+    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/networkpools.infrastructure.giantswarm.io/
   creationTimestamp: null
   labels:
     giantswarm.io/organization: giantswarm

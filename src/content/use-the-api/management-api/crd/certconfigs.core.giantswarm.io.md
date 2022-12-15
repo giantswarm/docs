@@ -60,7 +60,7 @@ apiVersion: core.giantswarm.io/v1alpha1
 kind: CertConfig
 metadata:
   annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/use-the-api/management-api/crd/certconfigs.core.giantswarm.io/
+    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/certconfigs.core.giantswarm.io/
   creationTimestamp: null
   name: c68pn-prometheus
 spec:

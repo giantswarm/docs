@@ -68,7 +68,7 @@ apiVersion: infrastructure.giantswarm.io/v1alpha2
 kind: AWSControlPlane
 metadata:
   annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/use-the-api/management-api/crd/awscontrolplanes.infrastructure.giantswarm.io/
+    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/awscontrolplanes.infrastructure.giantswarm.io/
   creationTimestamp: null
   name: ier2s
 spec:
@@ -215,7 +215,7 @@ apiVersion: infrastructure.giantswarm.io/v1alpha3
 kind: AWSControlPlane
 metadata:
   annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/use-the-api/management-api/crd/awscontrolplanes.infrastructure.giantswarm.io/
+    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/awscontrolplanes.infrastructure.giantswarm.io/
   creationTimestamp: null
   name: ier2s
 spec:
