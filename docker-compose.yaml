@@ -51,6 +51,19 @@ services:
       APIDOCS_BASE_PATH: /api/
       API_SPEC_FILES: yaml/spec.yaml,yaml/definitions.yaml,yaml/parameters.yaml,yaml/responses.yaml
 
+  indexer-intranet:
+    image: quay.io/giantswarm/docs-indexer:latest
+    command: hugo
+    restart: "no"
+    depends_on:
+      - sitesearch-app
+    environment:
+      ELASTICSEARCH_ENDPOINT: http://sitesearch-app:9200
+      REPOSITORY_HANDLE: giantswarm/giantswarm
+      REPOSITORY_BRANCH: main
+      REPOSITORY_SUBFOLDER: content/docs
+      INDEX_NAME: intranet
+      GITHUB_TOKEN: ${GITHUB_TOKEN}
 
   indexer-blog:
     image: quay.io/giantswarm/docs-indexer:latest
