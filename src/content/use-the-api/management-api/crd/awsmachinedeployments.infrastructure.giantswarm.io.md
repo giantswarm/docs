@@ -62,7 +62,7 @@ apiVersion: infrastructure.giantswarm.io/v1alpha2
 kind: AWSMachineDeployment
 metadata:
   annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/use-the-api/management-api/crd/awsmachinedeployments.infrastructure.giantswarm.io/
+    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/awsmachinedeployments.infrastructure.giantswarm.io/
   creationTimestamp: null
   labels:
     aws-operator.giantswarm.io/version: 8.7.0
@@ -639,7 +639,7 @@ apiVersion: infrastructure.giantswarm.io/v1alpha3
 kind: AWSMachineDeployment
 metadata:
   annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/use-the-api/management-api/crd/awsmachinedeployments.infrastructure.giantswarm.io/
+    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/awsmachinedeployments.infrastructure.giantswarm.io/
   creationTimestamp: null
   labels:
     aws-operator.giantswarm.io/version: 8.7.0

@@ -68,7 +68,7 @@ apiVersion: infrastructure.giantswarm.io/v1alpha2
 kind: G8sControlPlane
 metadata:
   annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/use-the-api/management-api/crd/g8scontrolplanes.infrastructure.giantswarm.io/
+    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/g8scontrolplanes.infrastructure.giantswarm.io/
   creationTimestamp: null
   name: 0p8h5
 spec:
@@ -162,7 +162,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Reference to a provider-specific resource. On AWS, this would be of kind <a href="https://docs.giantswarm.io/use-the-api/management-api/crd/awscontrolplanes.infrastructure.giantswarm.io/">AWSControlPlane</a>.</p>
+<p>Reference to a provider-specific resource. On AWS, this would be of kind <a href="https://docs.giantswarm.io/ui-api/management-api/crd/awscontrolplanes.infrastructure.giantswarm.io/">AWSControlPlane</a>.</p>
 
 </div>
 
@@ -383,7 +383,7 @@ apiVersion: infrastructure.giantswarm.io/v1alpha3
 kind: G8sControlPlane
 metadata:
   annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/use-the-api/management-api/crd/g8scontrolplanes.infrastructure.giantswarm.io/
+    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/g8scontrolplanes.infrastructure.giantswarm.io/
   creationTimestamp: null
   name: 0p8h5
 spec:
@@ -477,7 +477,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Reference to a provider-specific resource. On AWS, this would be of kind <a href="https://docs.giantswarm.io/use-the-api/management-api/crd/awscontrolplanes.infrastructure.giantswarm.io/">AWSControlPlane</a>.</p>
+<p>Reference to a provider-specific resource. On AWS, this would be of kind <a href="https://docs.giantswarm.io/ui-api/management-api/crd/awscontrolplanes.infrastructure.giantswarm.io/">AWSControlPlane</a>.</p>
 
 </div>
 
