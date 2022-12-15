@@ -65,6 +65,19 @@ services:
       INDEX_NAME: intranet
       GITHUB_TOKEN: ${GITHUB_TOKEN}
 
+  indexer-handbook:
+    image: quay.io/giantswarm/docs-indexer:latest
+    command: hugo
+    restart: "no"
+    depends_on:
+      - sitesearch-app
+    environment:
+      ELASTICSEARCH_ENDPOINT: http://sitesearch-app:9200
+      REPOSITORY_HANDLE: giantswarm/handbook
+      REPOSITORY_BRANCH: main
+      REPOSITORY_SUBFOLDER: content
+      INDEX_NAME: handbook
+
   indexer-blog:
     image: quay.io/giantswarm/docs-indexer:latest
     command: blog
