@@ -348,7 +348,7 @@ This feature is implemented by the third party module [nginx-sticky-module-ng](h
 
 The NGINX Ingress Controller creates an NGINX configuration file. You can directly pass chunks of configuration, so-called _configuration snippets_, into any ingress manifest. These snippets will be added to the NGINX configuration.
 
-The _configuration snippets_ through Ingress annotations is disabled by default. To enable parsing of _configuration snippets_, you'll need to set `controller.allowSnippetAnnotations: true` in the [App configuration]({{< relref "/platform-overview/app-platform/app-configuration/index.md" >}}).
+The _configuration snippets_ through Ingress annotations is disabled by default. To enable parsing of _configuration snippets_, you'll need to set `controller.allowSnippetAnnotations: true` in the [App configuration]({{< relref "/getting-started/app-platform/app-configuration/index.md" >}}).
 
 Warning: We recommend enabling this option only if you TRUST users with permission to create Ingress objects, as this may allow a user to add restricted configurations to the final nginx.conf file.
 
@@ -388,7 +388,7 @@ Your Giant Swarm installation comes with a default configuration for the Ingress
 
 You can override these defaults by setting your per cluster configuration in the form of a ConfigMap named `nginx-ingress-controller-user-values` in the management cluster.
 
-The page [App configuration reference]({{< relref "/platform-overview/app-platform/app-configuration/index.md" >}}) contains more information how to set user defined configuration for the nginx-ingress-controller-app.
+The page [App configuration reference]({{< relref "/getting-started/app-platform/app-configuration/index.md" >}}) contains more information how to set user defined configuration for the nginx-ingress-controller-app.
 
 ### Where is the user values ConfigMap
 
@@ -442,7 +442,7 @@ spec:
       namespace: NAMESPACE
 ```
 
-Any defaults that we override are visible in the following `values.yaml` file, under the `configmap` key. [Check this values.yaml file in v2.2.0](https://github.com/giantswarm/nginx-ingress-controller-app/blob/v2.2.0/helm/nginx-ingress-controller-app/values.yaml) as an example.
+Any defaults that we override are visible in the following `values.yaml` file, under the `configmap` key. [Check this values.yaml file in v2.20.0](https://github.com/giantswarm/nginx-ingress-controller-app/blob/v2.20.0/helm/nginx-ingress-controller-app/values.yaml) as an example.
 
 Do not copy all the defaults if you do not need to change them, that way we can adjust them in case they need to change.
 
@@ -530,4 +530,4 @@ data:
 
 - [Official Kubernetes documentation for the Ingress Resource](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 - [Configuration documentation for the NGINX Ingress Controller](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)
-- [Official ingress-nginx configuration snippets example](https://github.com/kubernetes/ingress-nginx/tree/master/docs/examples/customization/configuration-snippets)
+- [Official ingress-nginx configuration snippets example](https://github.com/kubernetes/ingress-nginx/tree/main/docs/examples/customization/configuration-snippets)

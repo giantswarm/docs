@@ -3,7 +3,7 @@ linkTitle: Organizations
 title: Organizations
 description: Explaining the organization concept in the Giant Swarm Management API, how to use organizations currently, and our future plans to make use of them.
 last_review_date: 2022-12-07
-weight: 40
+weight: 50
 menu:
   main:
     parent: platform-overview
@@ -17,7 +17,7 @@ owner:
 
 <div class="well disclaimer">
 
-<i class="fa fa-warning"></i> This article covers organizations as defined in the [Management API]({{< relref "/ui-api/management-api/_index.md" >}}). These are replacing the organizations as used with the [REST API]({{< relref "/ui-api/rest-api/index.md">}}). Please make sure you read the details about this transition carefully, especially the [roadmap](#roadmap) section, to understand the ramifications for you and your end users.
+<i class="fa fa-warning"></i> This article covers organizations as defined in the [Management API]({{< relref "/platform-overview/management-api" >}}). These are replacing the organizations as used with the [REST API]({{< relref "/use-the-api/rest-api/index.md">}}). Please make sure you read the details about this transition carefully, especially the [roadmap](#roadmap) section, to understand the ramifications for you and your end users.
 
 </div>
 
@@ -25,7 +25,7 @@ owner:
 
 Organizations are a means to organize resources like clusters and apps in a way that different entities are isolated from each other. You can use organizations to separate resource for different projects, business units, teams etc. within the same Giant Swarm management cluster.
 
-The organization concept makes use of some well-known building blocks of Kubernetes in the [management cluster]({{< relref "/platform-overview/management-clusters/index.md" >}}), such as:
+The organization concept makes use of some well-known building blocks of Kubernetes in the [management api]({{< relref "/platform-overview/management-api" >}}), such as:
 
 - Namespaces
 - Role based access control (RBAC)
@@ -65,7 +65,7 @@ Organizations are transitioning from being managed completely by microservices b
 
 - **2020: introduction of the organization concept in the Management API**
 
-    - With the [Organization CRD]({{< relref "/ui-api/management-api/crd/organizations.security.giantswarm.io.md" >}}) we introduce an entity in the Management API to represent an organization.
+    - With the [Organization CRD]({{< relref "/use-the-api/management-api/crd/organizations.security.giantswarm.io.md" >}}) we introduce an entity in the Management API to represent an organization.
     - Operators ensure that a namespace exists for each organization in the management cluster.
     - Starting with workload cluster release v13.0.0 for Azure, cluster resources are created in the owner organization's namespace by default (meaning: unless the resource is placed in a different namespaces explicitly).
 
@@ -79,7 +79,7 @@ Organizations are transitioning from being managed completely by microservices b
 
 - **Further plans**
 
-    - We are migrating our [web user interface]({{< relref "/ui-api/web" >}}) from using the REST API to the Management API. This also brings a switch from authentication via proprietary Giant Swarm user accounts to single sign-on (SSO), using your own identity provider. Once the switch is made, you will work with Management API organizations directly and there will be no longer such a thing as "membership" for an organization.
+    - We are migrating our [web user interface]({{< relref "/platform-overview/web-interface" >}}) from using the REST API to the Management API. This also brings a switch from authentication via proprietary Giant Swarm user accounts to single sign-on (SSO), using your own identity provider. Once the switch is made, you will work with Management API organizations directly and there will be no longer such a thing as "membership" for an organization.
     - All resources related to workload clusters and apps should reside in the owner organization's namespace. See [roadmap#103](https://github.com/giantswarm/roadmap/issues/103) for details. As a next step, this will be implemented on-premises/KVM.
     For details regarding the state on the different providers, see [namespace use in different providers](#namespace-use) further down.
     - Once the web user interface only relies on the Management API as a backend, we will start supporting a variety of different user permissions. For example, based on RBAC it will be possible to admit users who have read permissions only. The web user interface will adapt to these restricted permissions and provide a good user experience, regardless of the permissions a user has. This will allow you to permit more users access to the web UI, using identities (user groups and individuals) from your own identity provider, authenticating via single-sign-on.
@@ -92,7 +92,7 @@ Giant Swarm management clusters provide a CRD named `Organization` (long form: `
 
 > An organization is defined by an organization CR.
 
-Our CRD schema documentation provides details about the [Organization CRD]({{< relref "/ui-api/management-api/crd/organizations.security.giantswarm.io.md" >}}). But before you raise your eyebrows in disappointment, be warned: there isn't much to document. The single most important aspect of an organization CR is it's name. But there is more to it, of course.
+Our CRD schema documentation provides details about the [Organization CRD]({{< relref "/use-the-api/management-api/crd/organizations.security.giantswarm.io.md" >}}). But before you raise your eyebrows in disappointment, be warned: there isn't much to document. The single most important aspect of an organization CR is it's name. But there is more to it, of course.
 
 Once an organization CR is created, our automation ([organization-operator](https://github.com/giantswarm/organization-operator), to be precise) ensures that a namespace exists for the organization. More about that [in a minute](#namespace).
 
@@ -137,10 +137,10 @@ Giant Swarm is currently working towards making the organization's namespace the
 
 Organizations can be managed in several ways.
 
-- The [web user interface]({{< relref "/ui-api/web/organizations/_index.md" >}}) allows to create and delete organizations interactively. Since organizations are synchronized, this affects both the REST API as well as the Management API.
+- The [web user interface]({{< relref "/platform-overview/web-interface/organizations/_index.md" >}}) allows to create and delete organizations interactively. Since organizations are synchronized, this affects both the REST API as well as the Management API.
 
-- The [Management API]({{< relref "/ui-api/management-api/_index.md" >}}) provides full, native support for managing all organization-related resources.
+- The [Management API]({{< relref "/use-the-api/management-api/_index.md" >}}) provides full, native support for managing all organization-related resources.
 
-In addition, we plan to enhance the `kubectl` user experience for organization management via our [`gs`]({{< relref "/ui-api/kubectl-gs/_index.md" >}}) plug-in.
+In addition, we plan to enhance the `kubectl` user experience for organization management via our [`gs`]({{< relref "/use-the-api/kubectl-gs/_index.md" >}}) plug-in.
 
 <!-- TODO: set links to more organization-specific sub sections once they are published -->

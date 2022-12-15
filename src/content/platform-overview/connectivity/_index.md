@@ -2,7 +2,7 @@
 linkTitle: Connectivity
 title: Developer Platform Connectivity Features (ingress, api gateways, service mesh)
 description: Overview of the connectivity related platform features, which includes ingress controllers, api gateways, and service meshes.
-weight: 70
+weight: 80
 menu:
   main:
     parent: platform-overview

@@ -29,7 +29,7 @@ In order to do so:
 
 1. Create a public IPv4 address in the same subscription the workload cluster will be created into. The IP address can
 be in any resource group, but it needs to use the `Standard` SKU and be in the same region as the workload cluster.
-2. Edit the workload cluster's [`AzureCluster`]({{< relref "/ui-api/management-api/crd/azureclusters.infrastructure.cluster.x-k8s.io.md" >}}) resource via the Management API and set the resource ID of the public IP address as a value for the `giantswarm.io/workers-egress-external-public-ip` annotation, as in the following example:
+2. Edit the workload cluster's [`AzureCluster`]({{< relref "/use-the-api/management-api/crd/azureclusters.infrastructure.cluster.x-k8s.io.md" >}}) resource via the Management API and set the resource ID of the public IP address as a value for the `giantswarm.io/workers-egress-external-public-ip` annotation, as in the following example:
 
 ```yaml
 apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3

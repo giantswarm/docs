@@ -20,13 +20,13 @@ last_review_date: 2022-11-14
 
 The Container Storage Interface (CSI) has been promoted to general availability (GA) in Kubernetes v1.13 and is becoming the standard to replace the current Kubernetes `in-tree` storage plugin to handle volumes for different providers.
 
-The aws-ebs-csi-driver-app, offered via our [App Platform]({{< relref "/platform-overview/app-platform" >}}) in the Giant Swarm Playground catalog, provides a CSI interface to manage the lifecycle of Amazon EBS volumes.
+The aws-ebs-csi-driver-app, offered via our [App Platform]({{< relref "/getting-started/app-platform" >}}) in the Giant Swarm Playground catalog, provides a CSI interface to manage the lifecycle of Amazon EBS volumes.
 
 ## Installing the EBS CSI driver
 
 To install the EBS CSI driver you will need to follow these steps:
 
-1. Access the [web interface]({{< relref "/ui-api/web/" >}}) and select the cluster on which you want to install the EBS CSI driver.
+1. Access the [web interface]({{< relref "/platform-overview/web-interface/" >}}) and select the cluster on which you want to install the EBS CSI driver.
 2. Open the Apps tab.
 3. Click the Install App button
 4. Select the Giant Swarm Playground catalog.
