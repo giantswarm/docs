@@ -68,7 +68,7 @@ apiVersion: infrastructure.giantswarm.io/v1alpha2
 kind: AWSCluster
 metadata:
   annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/use-the-api/management-api/crd/awsclusters.infrastructure.giantswarm.io/
+    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/awsclusters.infrastructure.giantswarm.io/
   creationTimestamp: null
   name: g8kw3
 spec:
@@ -986,7 +986,7 @@ apiVersion: infrastructure.giantswarm.io/v1alpha3
 kind: AWSCluster
 metadata:
   annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/use-the-api/management-api/crd/awsclusters.infrastructure.giantswarm.io/
+    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/awsclusters.infrastructure.giantswarm.io/
   creationTimestamp: null
   name: g8kw3
 spec:
