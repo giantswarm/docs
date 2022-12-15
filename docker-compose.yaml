@@ -37,12 +37,20 @@ services:
 
   indexer-docs:
     image: quay.io/giantswarm/docs-indexer:latest
-    command: docs
+    command: hugo
     restart: "no"
     depends_on:
       - sitesearch-app
     environment:
       ELASTICSEARCH_ENDPOINT: http://sitesearch-app:9200
+      REPOSITORY_HANDLE: giantswarm/docs
+      REPOSITORY_BRANCH: main
+      REPOSITORY_SUBFOLDER: src/content
+      INDEX_NAME: docs
+      APIDOCS_BASE_URI: https://docs.giantswarm.io/api/
+      APIDOCS_BASE_PATH: /api/
+      API_SPEC_FILES: yaml/spec.yaml,yaml/definitions.yaml,yaml/parameters.yaml,yaml/responses.yaml
+
 
   indexer-blog:
     image: quay.io/giantswarm/docs-indexer:latest
