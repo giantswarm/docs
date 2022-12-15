@@ -145,8 +145,6 @@ function doSearch(q) {
         // Display zero hits
         $("h1").text("No results for '" + q + "', sorry.");
 
-        
-
         if (typeof ga !== 'undefined') {
           ga('send', 'event', 'search', 'zerohits', q, 0);
         }
@@ -185,6 +183,9 @@ function doSearch(q) {
  */
 function renderSerpEntry(index, hit) {
   d = $("<a class='item'></>").attr("href", hit._source.uri);
+  if (hit._source.url) {
+    d.attr("href", hit._source.url);
+  }
   if (typeof hit.highlight !== "undefined" && typeof hit.highlight.title !== "undefined") {
     d.append($("<h4></h4>").html((index + 1) + ". " + hit.highlight.title));
   } else {
