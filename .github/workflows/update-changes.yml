@@ -2,6 +2,8 @@
 # generated content in these sections:
 # - Changes and releases
 # - CRDs (Management API)
+# - CLI versions
+# - Website header and footer
 name: Update generated content
 
 # Trigger by cronjob
@@ -32,7 +34,7 @@ jobs:
       - name: Update CLI versions
         run: make update-latest-versions
 
-      - name: Update header and footer
+      - name: Update website header and footer
         run: make update-website-content
 
       - name: Create or update pull request
@@ -49,6 +51,7 @@ jobs:
             - Changes and releases
             - CLI versions
             - CRD pages
+            - Website header and footer
 
             up-to-date.
 
