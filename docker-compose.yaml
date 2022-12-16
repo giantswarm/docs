@@ -65,7 +65,8 @@ services:
       REPOSITORY_BRANCH: main
       REPOSITORY_SUBFOLDER: src/content
       INDEX_NAME: docs
-      BASE_URL: https://docs.giantswarm.io/
+      TYPE_LABEL: Documentation
+      BASE_URL: https://docs.giantswarm.io
       APIDOCS_BASE_URI: https://docs.giantswarm.io/api/
       APIDOCS_BASE_PATH: /api/
       API_SPEC_FILES: yaml/spec.yaml,yaml/definitions.yaml,yaml/parameters.yaml,yaml/responses.yaml
@@ -82,8 +83,9 @@ services:
       REPOSITORY_BRANCH: main
       REPOSITORY_SUBFOLDER: content/docs
       INDEX_NAME: intranet
+      TYPE_LABEL: Intranet
       GITHUB_TOKEN: ${GITHUB_TOKEN}
-      BASE_URL: https://intranet.giantswarm.io/
+      BASE_URL: https://intranet.giantswarm.io
 
   indexer-handbook:
     image: quay.io/giantswarm/docs-indexer:latest
@@ -97,7 +99,8 @@ services:
       REPOSITORY_BRANCH: main
       REPOSITORY_SUBFOLDER: content
       INDEX_NAME: handbook
-      BASE_URL: https://handbook.giantswarm.io/
+      TYPE_LABEL: Handbook
+      BASE_URL: https://handbook.giantswarm.io
 
   indexer-blog:
     image: quay.io/giantswarm/docs-indexer:latest
