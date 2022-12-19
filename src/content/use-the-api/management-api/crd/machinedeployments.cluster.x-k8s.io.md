@@ -4,6 +4,9 @@ linkTitle: MachineDeployment
 description: |
   MachineDeployment is the Schema for the machinedeployments API.
 weight: 100
+menu:
+  main:
+    parent: uiapi-managementapi-crd
 crd:
   name_camelcase: MachineDeployment
   name_plural: machinedeployments
@@ -28,6 +31,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
 aliases:
   - /reference/cp-k8s-api/machinedeployments.cluster.x-k8s.io/
+  - /ui-api/cp-k8s-api/machinedeployments.cluster.x-k8s.io/
 technical_name: machinedeployments.cluster.x-k8s.io
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v5.0.0

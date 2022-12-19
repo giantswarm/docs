@@ -4,6 +4,9 @@ linkTitle: CertConfig
 description: |
   CertConfig specifies details for an X.509 certificate to be issued, handled by cert-operator.
 weight: 100
+menu:
+  main:
+    parent: uiapi-managementapi-crd
 crd:
   name_camelcase: CertConfig
   name_plural: certconfigs
@@ -23,6 +26,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 aliases:
   - /reference/cp-k8s-api/certconfigs.core.giantswarm.io/
+  - /ui-api/cp-k8s-api/certconfigs.core.giantswarm.io/
 technical_name: certconfigs.core.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v5.0.0

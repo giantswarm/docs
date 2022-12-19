@@ -4,6 +4,9 @@ linkTitle: Release
 description: |
   Release is a Kubernetes resource (CR) representing a Giant Swarm workload cluster release.
 weight: 100
+menu:
+  main:
+    parent: uiapi-managementapi-crd
 crd:
   name_camelcase: Release
   name_plural: releases
@@ -23,6 +26,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 aliases:
   - /reference/cp-k8s-api/releases.release.giantswarm.io/
+  - /ui-api/cp-k8s-api/releases.release.giantswarm.io/
 technical_name: releases.release.giantswarm.io
 source_repository: https://github.com/giantswarm/release-operator
 source_repository_ref: v3.0.1

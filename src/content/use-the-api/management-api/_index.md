@@ -12,4 +12,5 @@ owner:
 last_review_date: 2021-08-03
 aliases:
   - /reference/management-api/
+  - /ui-api/management-api/
 ---

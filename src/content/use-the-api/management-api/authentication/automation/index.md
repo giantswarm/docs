@@ -8,6 +8,9 @@ menu:
     identifier: uiapi-managementapi-authentication-automation
     parent: uiapi-managementapi-authentication
 last_review_date: 2022-04-28
+aliases:
+  - /reference/management-api/authentication/automation
+  - /ui-api/management-api/authentication/automation
 user_questions:
   - How can I use the Management API in a programmatic way?
 owner:

@@ -11,6 +11,9 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How do I add App to my Workload Cluster with the GitOps repository?
+aliases:
+  - /reference/kubectl-gs/gitops/add-app
+  - /ui-api/kubectl-gs/gitops/add-app
 ---
 
 This command adds a new App to the GitOps repository.

@@ -4,6 +4,9 @@ linkTitle: Config
 description: |
   Config represents configuration of an App.
 weight: 100
+menu:
+  main:
+    parent: uiapi-managementapi-crd
 crd:
   name_camelcase: Config
   name_plural: configs
@@ -23,6 +26,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 aliases:
   - /reference/cp-k8s-api/configs.core.giantswarm.io/
+  - /ui-api/cp-k8s-api/configs.core.giantswarm.io/
 technical_name: configs.core.giantswarm.io
 source_repository: https://github.com/giantswarm/config-controller
 source_repository_ref: v0.5.1

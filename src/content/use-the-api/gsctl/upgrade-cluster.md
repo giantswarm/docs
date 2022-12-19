@@ -8,6 +8,7 @@ menu:
     parent: uiapi-gsctl
 aliases:
   - /reference/gsctl/upgrade-cluster/
+  - /ui-api/gsctl/upgrade-cluster/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:

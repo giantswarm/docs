@@ -8,6 +8,7 @@ menu:
     parent: uiapi-kubectlgs
 aliases:
   - /reference/kubectl-gs/update-app/
+  - /ui-api/kubectl-gs/update-app/
 last_review_date: 2022-11-18
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger

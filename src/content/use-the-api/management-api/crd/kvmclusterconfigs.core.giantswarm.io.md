@@ -4,6 +4,9 @@ linkTitle: KVMClusterConfig
 description: |
   Custom resource definition (CRD) schema reference page for the KVMClusterConfig resource (kvmclusterconfigs.core.giantswarm.io), as part of the Giant Swarm Management API documentation.
 weight: 100
+menu:
+  main:
+    parent: uiapi-managementapi-crd
 crd:
   name_camelcase: KVMClusterConfig
   name_plural: kvmclusterconfigs
@@ -24,6 +27,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
 aliases:
   - /reference/cp-k8s-api/kvmclusterconfigs.core.giantswarm.io/
+  - /ui-api/cp-k8s-api/kvmclusterconfigs.core.giantswarm.io/
 technical_name: kvmclusterconfigs.core.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v5.0.0

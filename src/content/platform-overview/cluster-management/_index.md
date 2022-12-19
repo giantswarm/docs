@@ -6,6 +6,8 @@ last_review_date: 2022-11-12
 weight: 40
 aliases:
   - /general/overview
+  - /platform-overview/cluster-management/architecture/
+  - /platform-overview/cluster-management/overview/
 menu:
   main:
     parent: platform-overview
