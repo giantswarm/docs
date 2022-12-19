@@ -10,6 +10,8 @@ menu:
 last_review_date: 2021-01-01
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
+aliases:
+  - /ui-api/observability/prometheus/remotewrite
 ---
 
 For more documentation related to persistent volumes and storage, please refer to our advanced section on [storage]({{< relref "/advanced/storage/" >}}).

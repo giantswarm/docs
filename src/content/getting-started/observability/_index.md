@@ -10,4 +10,6 @@ weight: 60
 last_review_date: 2022-09-12
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
+aliases:
+  - /ui-api/observability/
 ---
