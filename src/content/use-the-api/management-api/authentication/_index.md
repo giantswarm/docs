@@ -8,6 +8,9 @@ menu:
     identifier: uiapi-managementapi-authentication
     parent: uiapi-managementapi
 last_review_date: 2022-04-29
+aliases:
+  - /reference/management-api/authentication/
+  - /ui-api/management-api/authentication/
 user_questions:
   - How does authentication for the Management API work?
 owner:

@@ -8,6 +8,7 @@ menu:
     parent: uiapi-gsctl
 aliases:
   - /reference/gsctl/update-nodepool/
+  - /ui-api/gsctl/update-nodepool/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:

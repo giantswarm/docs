@@ -8,6 +8,7 @@ menu:
     parent: uiapi-gsctl
 aliases:
   - /reference/gsctl/list-nodepools/
+  - /ui-api/gsctl/list-nodepools/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:

@@ -4,6 +4,9 @@ linkTitle: Organization
 description: |
   Organization represents schema for managed Kubernetes namespace. Reconciled by organization-operator.
 weight: 100
+menu:
+  main:
+    parent: uiapi-managementapi-crd
 crd:
   name_camelcase: Organization
   name_plural: organizations
@@ -22,6 +25,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 aliases:
   - /reference/cp-k8s-api/organizations.security.giantswarm.io/
+  - /ui-api/cp-k8s-api/organizations.security.giantswarm.io/
 technical_name: organizations.security.giantswarm.io
 source_repository: https://github.com/giantswarm/organization-operator
 source_repository_ref: v1.0.2

@@ -12,6 +12,9 @@ user_questions:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 last_review_date: 2021-11-23
+aliases:
+  - /reference/gsctl/migrate/
+  - /ui-api/gsctl/migrate/
 ---
 
 `gsctl` is a CLI for Giant Swarm's proprietary REST API, which is no longer developed. To make full use of clusters and apps with Giant Swarm, users have to migrate to the [Management API]({{< relref "/use-the-api/management-api/" >}}).

@@ -8,6 +8,7 @@ menu:
     parent: uiapi-gsctl
 aliases:
   - /reference/gsctl/info/
+  - /ui-api/gsctl/info/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:

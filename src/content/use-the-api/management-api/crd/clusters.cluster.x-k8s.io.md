@@ -4,6 +4,9 @@ linkTitle: Cluster
 description: |
   Cluster is the Schema for the clusters API.
 weight: 100
+menu:
+  main:
+    parent: uiapi-managementapi-crd
 crd:
   name_camelcase: Cluster
   name_plural: clusters
@@ -31,6 +34,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 aliases:
   - /reference/cp-k8s-api/clusters.cluster.x-k8s.io/
+  - /ui-api/cp-k8s-api/clusters.cluster.x-k8s.io/
 technical_name: clusters.cluster.x-k8s.io
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v5.0.0

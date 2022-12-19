@@ -11,6 +11,7 @@ aliases:
   - /basics/kubernetes-resources/
   - /kubernetes/resources/
   - /kubernetes/resource-qos/
+  - /getting-started/k8s-resources/
 user_questions:
   - Where can I find more Kubernetes documentation?
 owner:

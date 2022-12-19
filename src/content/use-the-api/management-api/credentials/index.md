@@ -9,6 +9,8 @@ menu:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 last_review_date: 2022-12-07
+aliases:
+  - /ui-api/management-api/credentials/
 user_questions:
   - How can I provide AWS identity details to use with my workload clusters?
   - How can I provide Azure identity details to use with my workload clusters?

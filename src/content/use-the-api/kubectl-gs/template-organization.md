@@ -8,6 +8,7 @@ menu:
     parent: uiapi-kubectlgs
 aliases:
   - /reference/kubectl-gs/template-organization/
+  - /ui-api/kubectl-gs/template-organization/
 last_review_date: 2022-12-07
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow

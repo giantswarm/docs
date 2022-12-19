@@ -9,6 +9,7 @@ menu:
     identifier: uiapi-kubectlgs-updatecluster
 aliases:
   - /reference/kubectl-gs/update-cluster/
+  - /ui-api/kubectl-gs/update-cluster/
 last_review_date: 2021-12-13
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix

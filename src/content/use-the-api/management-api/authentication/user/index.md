@@ -8,6 +8,9 @@ menu:
     identifier: uiapi-managementapi-authentication-user
     parent: uiapi-managementapi-authentication
 last_review_date: 2022-04-28
+aliases:
+  - /reference/management-api/authentication/user
+  - /ui-api/management-api/authentication/user
 user_questions:
   - How can I authenticate as a user to the Management API?
   - How can I authenticate to the Management API without kubectl-gs?

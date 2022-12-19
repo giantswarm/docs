@@ -4,6 +4,9 @@ linkTitle: AWSMachineDeployment
 description: |
   AWSMachineDeployment is the infrastructure provider referenced in Kubernetes Cluster API MachineDeployment resources. It contains provider-specific specification and status for a node pool. In use on AWS since workload cluster release v10.x.x and reconciled by aws-operator.
 weight: 100
+menu:
+  main:
+    parent: uiapi-managementapi-crd
 crd:
   name_camelcase: AWSMachineDeployment
   name_plural: awsmachinedeployments
@@ -25,6 +28,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 aliases:
   - /reference/cp-k8s-api/awsmachinedeployments.infrastructure.giantswarm.io/
+  - /ui-api/cp-k8s-api/awsmachinedeployments.infrastructure.giantswarm.io/
 technical_name: awsmachinedeployments.infrastructure.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v5.0.0

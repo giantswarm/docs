@@ -4,6 +4,9 @@ linkTitle: Spark
 description: |
   Spark is a placeholder resource to allow for the creation of ignition templates in Azure workload clusters, as of workload cluster release v13.0.0. Reconciled by azure-operator.
 weight: 100
+menu:
+  main:
+    parent: uiapi-managementapi-crd
 crd:
   name_camelcase: Spark
   name_plural: sparks
@@ -24,6 +27,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 aliases:
   - /reference/cp-k8s-api/sparks.core.giantswarm.io/
+  - /ui-api/cp-k8s-api/sparks.core.giantswarm.io/
 technical_name: sparks.core.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v5.0.0

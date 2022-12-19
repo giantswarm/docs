@@ -9,6 +9,7 @@ menu:
     parent: gettingstarted-persistentvolumes
 aliases:
   - /guides/using-persistent-volumes-on-aws/
+  - /ui-api/observability/prometheus/persistent-volumes/aws/
 user_questions:
   - How can I use persistent volumes in my AWS clusters?
 owner:

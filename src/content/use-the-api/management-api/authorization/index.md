@@ -8,6 +8,9 @@ menu:
     identifier: uiapi-managementapi-authorization
     parent: uiapi-managementapi
 last_review_date: 2022-02-24
+aliases:
+  - /reference/management-api/authorization/
+  - /ui-api/management-api/authorization/
 user_questions:
   - What automation is working in a management cluster to ensure RBAC permissions?
   - How can I set up access to resources in the management cluster?

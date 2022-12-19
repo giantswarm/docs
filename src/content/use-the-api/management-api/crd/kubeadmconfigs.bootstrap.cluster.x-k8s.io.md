@@ -4,6 +4,9 @@ linkTitle: KubeadmConfig
 description: |
   KubeadmConfig is the Schema for the kubeadmconfigs API.
 weight: 100
+menu:
+  main:
+    parent: uiapi-managementapi-crd
 crd:
   name_camelcase: KubeadmConfig
   name_plural: kubeadmconfigs
@@ -28,6 +31,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
 aliases:
   - /reference/cp-k8s-api/kubeadmconfigs.bootstrap.cluster.x-k8s.io/
+  - /ui-api/cp-k8s-api/kubeadmconfigs.bootstrap.cluster.x-k8s.io/
 technical_name: kubeadmconfigs.bootstrap.cluster.x-k8s.io
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v5.0.0

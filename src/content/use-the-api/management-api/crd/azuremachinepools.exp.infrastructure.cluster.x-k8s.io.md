@@ -4,6 +4,9 @@ linkTitle: AzureMachinePool
 description: |
   AzureMachinePool is the Schema for the azuremachinepools API
 weight: 100
+menu:
+  main:
+    parent: uiapi-managementapi-crd
 crd:
   name_camelcase: AzureMachinePool
   name_plural: azuremachinepools
@@ -24,6 +27,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 aliases:
   - /reference/cp-k8s-api/azuremachinepools.exp.infrastructure.cluster.x-k8s.io/
+  - /ui-api/cp-k8s-api/azuremachinepools.exp.infrastructure.cluster.x-k8s.io/
 technical_name: azuremachinepools.exp.infrastructure.cluster.x-k8s.io
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v5.0.0

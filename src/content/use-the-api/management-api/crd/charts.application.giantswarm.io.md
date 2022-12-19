@@ -4,6 +4,9 @@ linkTitle: Chart
 description: |
   Chart represents a Helm chart to be deployed as a Helm release. It is reconciled by chart-operator.
 weight: 100
+menu:
+  main:
+    parent: uiapi-managementapi-crd
 crd:
   name_camelcase: Chart
   name_plural: charts
@@ -22,6 +25,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 aliases:
   - /reference/cp-k8s-api/charts.application.giantswarm.io/
+  - /ui-api/cp-k8s-api/charts.application.giantswarm.io/
 technical_name: charts.application.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions-application
 source_repository_ref: v0.6.0

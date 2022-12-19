@@ -9,6 +9,7 @@ menu:
     parent: gettingstarted-persistentvolumes
 aliases:
   - /guides/using-persistent-volumes-on-azure/
+  - /ui-api/observability/prometheus/persistent-volumes/azure
 user_questions:
   - How can I use persistent volumes in my Azure clusters?
 owner:
