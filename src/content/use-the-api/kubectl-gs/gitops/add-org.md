@@ -7,6 +7,9 @@ menu:
   main:
     parent: kubectlgs-gitops
 last_review_date: 2022-09-29
+aliases:
+  - /reference/kubectl-gs/gitops/add-org
+  - /ui-api/kubectl-gs/gitops/add-org
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:

@@ -5,13 +5,15 @@ description: This article explains how to turn off all monitoring for an entire 
 weight: 50
 menu:
   main:
-    identifier: getting-started-observability-prometheus-disable
+    identifier: getting-started-observability-prometheus-disable-monitoring
     parent: getting-started-observability-prometheus
 user_questions:
   - How can I disable monitoring on my cluster?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 last_review_date: 2022-11-21
+aliases:
+  - /ui-api/observability/prometheus/disable-monitoring
 ---
 
 In this article you will learn how you can disable monitoring for your cluster.

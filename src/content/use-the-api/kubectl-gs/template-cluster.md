@@ -8,6 +8,7 @@ menu:
     parent: uiapi-kubectlgs
 aliases:
   - /reference/kubectl-gs/template-cluster/
+  - /ui-api/kubectl-gs/template-cluster/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:

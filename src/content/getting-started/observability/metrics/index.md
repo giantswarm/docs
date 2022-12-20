@@ -8,6 +8,7 @@ menu:
     parent: getting-started-observability
 aliases:
   - /guides/kubernetes-heapster/
+  - /getting-started/metrics/  
 user_questions:
   - How can I activate metrics-server in my clusters?
 owner:

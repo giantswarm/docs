@@ -13,6 +13,7 @@ user_questions:
   - Why would I resize the Giant Swarm managed Prometheus persistent volume ?
 aliases:
   - /observability/prometheus/volume-size
+  - /ui-api/observability/prometheus/volume-size
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 last_review_date: 2022-10-26

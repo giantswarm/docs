@@ -12,6 +12,8 @@ user_questions:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 last_review_date: 2022-09-08
+aliases:
+  - /getting-started/installation-name/
 ---
 
 A Giant Swarm installation includes a management cluster, bastion hosts, the workload clusters (depending on your viewpoint) and a few more components specific to the cloud provider used.

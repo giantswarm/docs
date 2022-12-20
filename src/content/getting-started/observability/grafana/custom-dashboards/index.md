@@ -9,6 +9,7 @@ menu:
 weight: 40
 aliases:
   - /observability/grafana/custom-dashboards
+  - /ui-api/observability/grafana/custom-dashboards
 last_review_date: 2022-09-12
 user_questions:
   - How can customize dashboards?

@@ -12,6 +12,9 @@ user_questions:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 last_review_date: 2022-12-07
+aliases:
+  - /reference/rest-api/
+  - /ui-api/rest-api/
 ---
 
 The REST API has been designed originally to provide a simple, easy to use interface to the relevant resources for managing clusters, key pairs, etc. while keeping the internals under the hood.

@@ -7,7 +7,8 @@ menu:
   main:
     parent: uiapi-gsctl
 aliases:
-   /reference/gsctl/update-org-set-credentials/
+  - /reference/gsctl/update-org-set-credentials/
+  - /ui-api/gsctl/update-org-set-credentials/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:

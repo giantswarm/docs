@@ -8,6 +8,7 @@ menu:
     parent: uiapi-gsctl
 aliases:
   - /reference/cluster-definition/
+  - /ui-api/gsctl/cluster-definition/
 user_questions:
   - What additional configuration options are available for node pool clusters?
   - What are node definition keys I need to specify for a non-node pool cluster definition?

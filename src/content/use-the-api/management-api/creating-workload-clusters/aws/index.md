@@ -9,6 +9,7 @@ menu:
     parent: uiapi-managementapi-creatingclusters
 aliases:
   - /guides/creating-clusters-via-crs-on-aws/
+  - /ui-api/management-api/creating-workload-clusters/aws
 user_questions:
   - How can I create an AWS cluster via the Management API?
 owner:

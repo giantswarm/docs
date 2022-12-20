@@ -9,6 +9,7 @@ menu:
     parent: uiapi-managementapi
 aliases:
   - /guides/creating-clusters-via-crs/
+  - /ui-api/management-api/creating-workload-clusters/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 last_review_date: 2021-01-01

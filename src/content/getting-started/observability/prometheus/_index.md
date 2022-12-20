@@ -10,4 +10,6 @@ menu:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 last_review_date: 2022-10-26
+aliases:
+  - /ui-api/observability/prometheus/
 ---

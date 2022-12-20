@@ -8,6 +8,7 @@ menu:
     parent: uiapi-kubectlgs
 aliases:
   - /reference/kubectl-gs/get-catalogs/
+  - /ui-api/kubectl-gs/get-catalogs/
 last_review_date: 2021-06-30
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger

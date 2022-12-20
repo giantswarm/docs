@@ -9,6 +9,7 @@ menu:
     parent: uiapi-managementapi-creatingclusters
 aliases:
   - /guides/creating-clusters-via-crs-on-azure/
+  - /ui-api/management-api/creating-workload-clusters/azure
 user_questions:
   - How can I create an Azure cluster via the Management API?
 owner:

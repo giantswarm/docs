@@ -13,6 +13,7 @@ user_questions:
   - How do I get access to management cluster metrics?
 aliases:
   - /observability/prometheus/remotewrite
+  - /ui-api/observability/prometheus/remotewrite
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 last_review_date: 2022-10-26
