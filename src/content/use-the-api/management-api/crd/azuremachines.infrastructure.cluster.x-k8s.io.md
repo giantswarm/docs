@@ -4,9 +4,6 @@ linkTitle: AzureMachine
 description: |
   AzureMachine is the Schema for the azuremachines API.
 weight: 100
-menu:
-  main:
-    parent: uiapi-managementapi-crd
 crd:
   name_camelcase: AzureMachine
   name_plural: azuremachines
@@ -29,7 +26,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 aliases:
   - /reference/cp-k8s-api/azuremachines.infrastructure.cluster.x-k8s.io/
-  - /ui-api/cp-k8s-api/azuremachines.infrastructure.cluster.x-k8s.io/
 technical_name: azuremachines.infrastructure.cluster.x-k8s.io
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v5.0.0

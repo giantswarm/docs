@@ -4,9 +4,6 @@ linkTitle: AppCatalog
 description: |
   Deprecated, use Catalog CRD instead. AppCatalog represents a catalog of managed apps. It stores general information for potential apps to install. It is reconciled by app-operator.
 weight: 100
-menu:
-  main:
-    parent: uiapi-managementapi-crd
 crd:
   name_camelcase: AppCatalog
   name_plural: appcatalogs
@@ -29,7 +26,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 aliases:
   - /reference/cp-k8s-api/appcatalogs.application.giantswarm.io/
-  - /ui-api/cp-k8s-api/appcatalogs.application.giantswarm.io/
 technical_name: appcatalogs.application.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions-application
 source_repository_ref: v0.6.0
