@@ -2,7 +2,7 @@
 linkTitle: External DNS
 title: Advanced external-dns setup
 description: This section provides configuration guides for advanced use cases of the External DNS App.
-weight: 10
+weight: 30
 menu:
   main:
     identifier: advanced-external-dns
