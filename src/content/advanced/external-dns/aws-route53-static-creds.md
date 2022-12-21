@@ -1,5 +1,5 @@
 ---
-linkTitle: External DNS using static credentials
+linkTitle: AWS Route 53 with static credentials
 title: External DNS with AWS Route 53 and static credentials 
 description: How to configure the External DNS service to use AWS Route 53 with static credentials.
 weight: 25

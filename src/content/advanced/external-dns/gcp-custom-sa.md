@@ -1,6 +1,6 @@
 ---
-linkTitle: Using dedicated GCP service account
-title: Using dedicated GCP service account
+linkTitle: Using a dedicated GCP service account
+title: External DNS using a dedicated GCP service account
 description: This document describes how to configure External DNS to use a dedicated GCP Service Account.
 weight: 25
 menu:
