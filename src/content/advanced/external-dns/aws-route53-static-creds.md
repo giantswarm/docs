@@ -5,7 +5,7 @@ description: How to configure the External DNS service to use AWS Route 53 with 
 weight: 25
 menu:
   main:
-    parent: advanced
+    parent: advanced-external-dns
 last_review_date: 2022-12-09
 user_questions:
   - How can I customize the External DNS AWS authentication method?
