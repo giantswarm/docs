@@ -11,7 +11,7 @@ user_questions:
  -  How can I migrate from KIAM to IAM roles for service accounts?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2022-11-22
+last_review_date: 2022-12-29
 ---
 
 {{< platform_support_table aws="alpha=v17.2.0" aws="ga=v17.4.0">}}
@@ -266,8 +266,6 @@ To use the IAM role on a different account than your cluster you need to create 
 }
 ```
 
-**Note**
-
 Instead of using `"s3.CLUSTER_REGION.amazonaws.com/CLUSTER_AWS_ACCOUNT-g8s-CLUSTER_ID-oidc-pod-identity:aud": "sts.amazonaws.com` you can use `"s3.CLUSTER_REGION.amazonaws.com/CLUSTER_AWS_ACCOUNT-g8s-CLUSTER_ID-oidc-pod-identity:sub": "system:serviceaccount:NAMESPACE:SA_NAME"` to make the permission more restrictive.
 
 You need to fill real values for these placeholders:
@@ -303,7 +301,7 @@ To use the IAM role on a different account than your cluster you need to create 
 }
 ```
 
-**Note**: Instead of using `"CLOUDFRONT_DOMAIN:aud": "sts.amazonaws.com"` you can use `"CLOUDFRONT_DOMAIN:sub": "system:serviceaccount:NAMESPACE:SA_NAME"` to make the permission more restrictive.
+Instead of using `"CLOUDFRONT_DOMAIN:aud": "sts.amazonaws.com"` you can use `"CLOUDFRONT_DOMAIN:sub": "system:serviceaccount:NAMESPACE:SA_NAME"` to make the permission more restrictive.
 
 You need to fill real values for these placeholders:
 * `ROLE_AWSACCOUNT` - AWS account where the role is located
