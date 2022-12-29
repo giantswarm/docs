@@ -130,6 +130,29 @@ If you have deployed additional ExternalDNS you have to make sure the role's **t
 
 ### IAM role
 
+#### IAM Role Trusted Entity
+
+The **trusted entity** of a IAM role need to contain a condition like the `sub` service account name of a JSON Web token (JWT). You need to ensure one of those conditions match against the JWT, which is used by one of your applications.
+
+This is a example JWT from `external-dns` which is verified against the `external-dns` IAM role.
+```
+{
+  "aud": [
+    "sts.amazonaws.com"
+  ],
+  "kubernetes.io": {
+    "namespace": "kube-system",
+    "pod": {
+      "name": "external-dns-7dfdc97c55-v5spg",
+    },
+    "serviceaccount": {
+      "name": "external-dns",
+    }
+  },
+  "sub": "system:serviceaccount:kube-system:external-dns"
+}
+```
+
 #### AWS Release v17.x.x or China regions
 
 To use the IAM role with a service account you need to create new or modify an existing AWS role and configure **trusted entities** with following statement:
@@ -235,7 +258,7 @@ To use the IAM role on a different account than your cluster you need to create 
             "Action": "sts:AssumeRoleWithWebIdentity",
             "Condition": {
                 "StringEquals": {
-                    "s3.CLUSTER_REGION.amazonaws.com/CLUSTER_AWS_ACCOUNT-g8s-CLUSTER_ID-oidc-pod-identity:aud": "sts.amazonaws.com"
+                    "s3.CLUSTER_REGION.amazonaws.com/CLUSTER_AWS_ACCOUNT-g8s-CLUSTER_ID-oidc-pod-identity:aud": "sts.amazonaws.com" # Use sts.amazonaws.com.cn for AWS China
                 }
             }
         }
@@ -243,12 +266,18 @@ To use the IAM role on a different account than your cluster you need to create 
 }
 ```
 
+**Note**
+
+Instead of using `"s3.CLUSTER_REGION.amazonaws.com/CLUSTER_AWS_ACCOUNT-g8s-CLUSTER_ID-oidc-pod-identity:aud": "sts.amazonaws.com` you can use `"s3.CLUSTER_REGION.amazonaws.com/CLUSTER_AWS_ACCOUNT-g8s-CLUSTER_ID-oidc-pod-identity:sub": "system:serviceaccount:NAMESPACE:SA_NAME"` to make the permission more restrictive.
+
 You need to fill real values for these placeholders:
 * `CLUSTER_AWS_ACCOUNT` - AWS account id, where is the cluster running
 * `CLUSTER_ID` - cluster id
 * `CLUSTER_REGION` - AWS region where the cluster is located
 * `ROLE_REGION` - AWS region of the role
 * `ROLE_AWSACCOUNT` - AWS account where the role is located
+* `NAMESPACE` - Kubernetes namespace in cluster, where the pod and service account be used.
+* `SA_NAME` - Name of the Kubernetes Service Account which wil be using by the pod.
 
 #### AWS Release v18.x.x or higher for non-China regions
 
@@ -274,9 +303,13 @@ To use the IAM role on a different account than your cluster you need to create 
 }
 ```
 
+**Note**: Instead of using `"CLOUDFRONT_DOMAIN:aud": "sts.amazonaws.com"` you can use `"CLOUDFRONT_DOMAIN:sub": "system:serviceaccount:NAMESPACE:SA_NAME"` to make the permission more restrictive.
+
 You need to fill real values for these placeholders:
 * `ROLE_AWSACCOUNT` - AWS account where the role is located
 * `CLOUDFRONT_DOMAIN` - cloudfront domain of the cluster, you can find the information in the ConfigMap `clusterID-irsa-cloudfront` in the organization namespace inside the management cluster or via AWS console in `Cloudfront`
+* `NAMESPACE` - Kubernetes namespace in cluster, where the pod and service account be used.
+* `SA_NAME` - Name of the Kubernetes Service Account which wil be using by the pod.
 
 
 
