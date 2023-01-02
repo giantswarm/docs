@@ -1,7 +1,7 @@
 ---
 linkTitle: Using a dedicated GCP service account
 title: External DNS using a dedicated GCP service account
-description: This document describes how to configure External DNS to use a dedicated GCP Service Account.
+description: This document describes how to configure External DNS to use a dedicated GCP service account.
 weight: 25
 menu:
   main:
@@ -15,11 +15,11 @@ owner:
 
 ## Overview
 
-By default, our External DNS App uses the `gcpProject` value to compose the right Service account annotation to correctly authenticate against GCP.
+By default, our External DNS App uses the `gcpProject` value to compose the right annotation for the `ServiceAccount` to correctly authenticate against GCP.
 
 ## Configuration
 
-To override the default configuration, use the following values with the external-dns-app:
+To override the default configuration, use the following values with the `external-dns-app`:
 
 ```yaml
 # values.yaml
