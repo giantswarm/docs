@@ -78,6 +78,8 @@ Below is a list of the external domains we require access to for our clusters to
     - Some metrics are pushed to our hosted Grafana tenant.
 - `vault.operations.giantswarm.io`
     - Our operations Vault is used for unsealing customer Vault servers.
+- `giantswarm.eu.auth0.com`
+    - Used to secure access to Grafana and Prometheus.
 
 ## On-premise installations
 
