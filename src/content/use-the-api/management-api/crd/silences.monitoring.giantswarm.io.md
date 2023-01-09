@@ -4,9 +4,6 @@ linkTitle: Silence
 description: |
   Silence represents schema for managed silences in Alertmanager. Reconciled by silence-operator.
 weight: 100
-menu:
-  main:
-    parent: uiapi-managementapi-crd
 crd:
   name_camelcase: Silence
   name_plural: silences
@@ -25,7 +22,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 aliases:
   - /reference/cp-k8s-api/silences.monitoring.giantswarm.io/
-  - /ui-api/cp-k8s-api/silences.monitoring.giantswarm.io/
 technical_name: silences.monitoring.giantswarm.io
 source_repository: https://github.com/giantswarm/silence-operator
 source_repository_ref: v0.4.0

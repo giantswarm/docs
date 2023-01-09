@@ -4,9 +4,6 @@ linkTitle: AWSControlPlane
 description: |
   AWSControlPlane is the infrastructure provider referenced in ControlPlane CRs. Represents the master nodes (also called Control Plane) of a workload cluster on AWS. Reconciled by aws-operator.
 weight: 100
-menu:
-  main:
-    parent: uiapi-managementapi-crd
 crd:
   name_camelcase: AWSControlPlane
   name_plural: awscontrolplanes
@@ -30,7 +27,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 aliases:
   - /reference/cp-k8s-api/awscontrolplanes.infrastructure.giantswarm.io/
-  - /ui-api/cp-k8s-api/awscontrolplanes.infrastructure.giantswarm.io/
 technical_name: awscontrolplanes.infrastructure.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v5.0.0
