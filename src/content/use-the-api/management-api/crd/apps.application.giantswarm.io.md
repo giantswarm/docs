@@ -4,9 +4,6 @@ linkTitle: App
 description: |
   App represents a managed app which a user intended to install. It is reconciled by app-operator.
 weight: 100
-menu:
-  main:
-    parent: uiapi-managementapi-crd
 crd:
   name_camelcase: App
   name_plural: apps
@@ -25,7 +22,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 aliases:
   - /reference/cp-k8s-api/apps.application.giantswarm.io/
-  - /ui-api/cp-k8s-api/apps.application.giantswarm.io/
 technical_name: apps.application.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions-application
 source_repository_ref: v0.6.0

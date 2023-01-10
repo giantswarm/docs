@@ -4,9 +4,6 @@ linkTitle: G8sControlPlane
 description: |
   The G8sControlPlane resource defines the Control Plane nodes (Kubernetes master nodes) of a Giant Swarm workload cluster. It is reconciled by cluster-operator.
 weight: 100
-menu:
-  main:
-    parent: uiapi-managementapi-crd
 crd:
   name_camelcase: G8sControlPlane
   name_plural: g8scontrolplanes
@@ -30,7 +27,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 aliases:
   - /reference/cp-k8s-api/g8scontrolplanes.infrastructure.giantswarm.io/
-  - /ui-api/cp-k8s-api/g8scontrolplanes.infrastructure.giantswarm.io/
 technical_name: g8scontrolplanes.infrastructure.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v5.0.0
