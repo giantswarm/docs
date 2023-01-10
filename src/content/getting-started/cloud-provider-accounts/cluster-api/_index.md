@@ -10,3 +10,4 @@ menu:
 last_review_date: 2023-01-06
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
+---
