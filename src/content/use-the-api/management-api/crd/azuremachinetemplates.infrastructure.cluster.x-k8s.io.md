@@ -4,9 +4,6 @@ linkTitle: AzureMachineTemplate
 description: |
   AzureMachineTemplate is the Schema for the azuremachinetemplates API.
 weight: 100
-menu:
-  main:
-    parent: uiapi-managementapi-crd
 crd:
   name_camelcase: AzureMachineTemplate
   name_plural: azuremachinetemplates
@@ -30,7 +27,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 aliases:
   - /reference/cp-k8s-api/azuremachinetemplates.infrastructure.cluster.x-k8s.io/
-  - /ui-api/cp-k8s-api/azuremachinetemplates.infrastructure.cluster.x-k8s.io/
 technical_name: azuremachinetemplates.infrastructure.cluster.x-k8s.io
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v5.0.0
