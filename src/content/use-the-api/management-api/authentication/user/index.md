@@ -46,13 +46,10 @@ More information can be found in the [`kubectl gs login`]({{< relref "/use-the-a
 
 In order to complete the authentication flow, `kubectl gs` will open your default web browser. The page in the browser will prompt you to select an identity provider you want to use for the authentication. If you are authenticated with the identity provider you select (determined e.g. via a cookie), you will see a confirmation page and can close the browser window again. However, if you weren't authenticated with your identity provider yet, you'll have to go through the authentication process you are used to. When this is done, a confirmation page will be shown.
 
-You can also execute the `login` command with the `--connector-id` flag, and specify an identifier of your preferred identity provider for the authentication:
+You can also execute the `login` command with the `--connector-id` flag, and specify an identifier of the desired connector (related to your preferred identity provider) for the authentication:
 
 ```nohighlight
-kubectl gs login URL --connector-id INDENTITY_PROVIDER_ID
-```
-
-When executed with this flag the `login` command does not display the prompt to select an identity provider. Instead, it uses the provider with the specified identifier. In case the provider does not exist, the authentication ends with an error.
+kubectl gs login URL --connector-id CONNECTOR_ID
 
 As a result of running the command, your `kubectl` configuration has a new context, user, and cluster entry. The context is named according to the pattern
 
