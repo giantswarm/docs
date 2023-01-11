@@ -18,12 +18,8 @@ owner:
 last_review_date: 2023-01-10
 ---
 
-The Cluster API workload clusters (the clusters running your Kubernetes workloads) in a Giant
-Swarm installation can run in an AWS account separate from the management cluster.
-This gives great flexibility depending on requirements and usage
-scenarios. For example, it allows the management cluster to be running in an AWS account
-dedicated to it, whilst workload clusters operate in several different AWS accounts, depending
-on the customer needs.
+The Cluster API workload clusters (the clusters running your Kubernetes workloads) in a Giant Swarm installation can run in an AWS account separate from the management cluster. This gives great flexibility depending on requirements and usage scenarios. For example, it allows the management cluster to be running in an AWS account dedicated to it, whilst workload clusters operate in several different AWS accounts, depending
+on the customer's needs.
 
 ## Overview
 
