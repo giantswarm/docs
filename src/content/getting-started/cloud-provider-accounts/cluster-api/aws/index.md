@@ -26,7 +26,7 @@ on the customer's needs.
 In order to run Giant Swarm Cluster API clusters, all AWS account(s) need to fulfil these requirements (there is [repository](https://github.com/giantswarm/giantswarm-aws-account-prerequisites) that can help with creating the necessary resources in AWS)
 
 - Create [GiantSwarmAdmin](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/tree/master/admin-role) IAM role, which is used by Giant Swarm employees to support and debug Cluster API workload clusters via AWS console.
-- Create [capa-controller-role](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/tree/master/capa-controller-role) IAM role, which is used the controllers and operators to create necessary AWS resources for the Cluster API workload clusters.
+- Create [capa-controller-role](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/tree/master/capa-controller-role) IAM role, which is used by the controllers and operators to create necessary AWS resources for the Cluster API workload clusters.
 - Service limits are set according to requirements.
 
 We have created a Terraform module to automate the IAM role creation. You can view the code [here](https://github.com/giantswarm/giantswarm-aws-account-prerequisites). You can also use the steps as described in this guide.
