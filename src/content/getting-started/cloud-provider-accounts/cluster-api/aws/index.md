@@ -23,27 +23,19 @@ on the customer's needs.
 
 ## Overview
 
-In order to run Giant Swarm Cluster API clusters, the all AWS account(s) need to fulfill
-these requirements (there is [repository](https://github.com/giantswarm/giantswarm-aws-account-prerequisites) that can help with creating the necessery resources in AWS)
-- create [GiantSwarmAdmin](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/tree/master/admin-role) IAM role, which is used by Giant Swarm employees to support and debug Cluster API workload clusters via AWS console.
-- create [capa-controller-role](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/tree/master/capa-controller-role) IAM role, which is used the controllers and operators to create necessery AWS resources for the Cluster API workload clusters.
-- Service limits set according to requirements.
+In order to run Giant Swarm Cluster API clusters, all AWS account(s) need to fulfil these requirements (there is [repository](https://github.com/giantswarm/giantswarm-aws-account-prerequisites) that can help with creating the necessary resources in AWS)
+
+- Create [GiantSwarmAdmin](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/tree/master/admin-role) IAM role, which is used by Giant Swarm employees to support and debug Cluster API workload clusters via AWS console.
+- Create [capa-controller-role](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/tree/master/capa-controller-role) IAM role, which is used the controllers and operators to create necessary AWS resources for the Cluster API workload clusters.
+- Service limits are set according to requirements.
 
 We have created a Terraform module to automate the IAM role creation. You can view the code [here](https://github.com/giantswarm/giantswarm-aws-account-prerequisites). You can also use the steps as described in this guide.
 
 ## Service limits in AWS accounts {#limits}
 
-A number of limits apply to an AWS account initially, which are described in the
-[AWS Service Limits documentation](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html).
-The following overview lists the limits that have to be adjusted in order to use
-the account to operate Giant Swarm Cluster API workload clusters.
+A number of limits apply to an AWS account initially, which are described in the [AWS Service Limits documentation](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html). The following overview lists the limits that have to be adjusted in order to use the account to operate Giant Swarm Cluster API workload clusters.
 
-Adjusting a service limit requires a support case in the
-[AWS Support Center](https://console.aws.amazon.com/support/home),
-where a specific entry form is provided for this type of case. Each limit type
-requires a separate case. When creating these, make sure to be logged in to the
-AWS account you want to adjust the limits for, and always select the correct
-region.
+Adjusting a service limit requires a support case in the [AWS Support Center](https://console.aws.amazon.com/support/home), where a specific entry form is provided for this type of case. Each limit type requires a separate case. When creating these, make sure to be logged in to the AWS account you want to adjust the limits for, and always select the correct region.
 
 The screenshot below shows the entry form.
 
@@ -102,7 +94,7 @@ Where:
 * `${ROLE_ARN}` is full ARN of the role created in previous step with `giantswarm-aws-account-prerequisites` repository.
 
 
-This CR needs to be created only once for each AWS Account. It can be then refered in the `cluster-aws` repo in the value [`aws.awsClusterRoleIdentityName`](https://github.com/giantswarm/cluster-aws/blob/master/helm/cluster-aws/values.yaml#L14).
+This CR needs to be created only once for each AWS Account. It can be then referenced in the `cluster-aws` repo in the value [`aws.awsClusterRoleIdentityName`](https://github.com/giantswarm/cluster-aws/blob/master/helm/cluster-aws/values.yaml#L14).
 
 ## Further reading
 
