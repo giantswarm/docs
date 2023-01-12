@@ -60,6 +60,7 @@ Refer to the subcommand documentation for details.
 | [`add app`][5]                | [Add a new app to the GitOps repository][5]                        |
 | [`add automatic-update`][6]   | [Enable automatic updates for an app][6]                           |
 | [`add encryption`][7]         | [Add a new GPG key pair to the SOPS repository configuration][7]   |
+| [`add base`][8]               | [Add a new base to create workload clusters for different providers][8]   |
 
 [1]: {{< relref "/use-the-api/kubectl-gs/gitops/init" >}}
 [2]: {{< relref "/use-the-api/kubectl-gs/gitops/add-mc" >}}
@@ -68,3 +69,4 @@ Refer to the subcommand documentation for details.
 [5]: {{< relref "/use-the-api/kubectl-gs/gitops/add-app" >}}
 [6]: {{< relref "/use-the-api/kubectl-gs/gitops/add-update" >}}
 [7]: {{< relref "/use-the-api/kubectl-gs/gitops/add-enc" >}}
+[8]: {{< relref "/use-the-api/kubectl-gs/gitops/add-base" >}}
