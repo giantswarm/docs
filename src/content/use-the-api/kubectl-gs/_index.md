@@ -16,6 +16,7 @@ user_questions:
   - Which commands does kubectl-gs offer?
 aliases:
   - /reference/kubectl-gs/
+  - /ui-api/kubectl-gs/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 ---

@@ -25,7 +25,7 @@ This release provides initial support for creating clusters with Cluster API for
 kubectl get machinepools.exp.cluster.x-k8s.io -A
 ```
 
-Clusters can be created with `kubectl-gs` by following the [documentation](https://docs.giantswarm.io/use-the-api/kubectl-gs/template-cluster/#flags-capz).
+Clusters can be created with `kubectl-gs` by following the [documentation](https://docs.giantswarm.io/ui-api/kubectl-gs/template-cluster/#flags-capz).
 
 If you are interested how Cluster API changed our structure and what is coming next, please see our [blog post](https://www.giantswarm.io/blog/a-phoenix-rising-from-cluster-api).
 

@@ -9,6 +9,7 @@ menu:
 weight: 40
 aliases:
   - /observability/grafana/access
+  - /ui-api/observability/grafana/access
 last_review_date: 2022-09-12
 user_questions:
   - How can I access Grafana for my installation?

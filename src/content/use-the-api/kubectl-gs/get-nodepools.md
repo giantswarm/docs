@@ -8,6 +8,7 @@ menu:
     parent: uiapi-kubectlgs
 aliases:
   - /reference/kubectl-gs/get-nodepools/
+  - /ui-api/kubectl-gs/get-nodepools/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:

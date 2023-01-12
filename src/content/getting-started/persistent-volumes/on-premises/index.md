@@ -9,6 +9,7 @@ menu:
     parent: gettingstarted-persistentvolumes
 aliases:
   - /guides/using-persistent-volumes-on-baremetal/
+  - /ui-api/observability/prometheus/persistent-volumes/on-premises
 user_questions:
   - How can I use persistent storage in my KVM clusters on-premises?
 owner:

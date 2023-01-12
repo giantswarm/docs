@@ -12,6 +12,7 @@ menu:
 layout: single
 aliases:
   - /reference/gsctl/
+  - /ui-api/gsctl/
 user_questions:
 - What are the commands for the Giant Swarm command line utility, gsctl?
 - What is the list of subcommands of gsctl?

@@ -12,6 +12,7 @@ user_questions:
 - How do I login with gsctl in a script?
 aliases:
   - /reference/gsctl/login/
+  - /ui-api/gsctl/login/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 last_review_date: 2022-12-07

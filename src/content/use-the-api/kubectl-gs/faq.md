@@ -7,6 +7,9 @@ menu:
   main:
     parent: uiapi-kubectlgs
 last_review_date: 2022-12-07
+aliases:
+  - /reference/kubectl-gs/faq
+  - /ui-api/kubectl-gs/faq
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:

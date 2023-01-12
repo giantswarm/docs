@@ -12,6 +12,7 @@ user_questions:
   - How does an example call of 'gsctl create cluster' look like?
 aliases:
   - /reference/gsctl/create-cluster/
+  - /ui-api/gsctl/create-cluster/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 last_review_date: 2021-01-01

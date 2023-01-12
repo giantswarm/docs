@@ -9,6 +9,8 @@ menu:
 user_questions:
   - How to create workload cluster client certificates via the Management API?
 last_review_date: 2021-10-26
+aliases:
+  - /ui-api/management-api/wc-key-pairs/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 ---

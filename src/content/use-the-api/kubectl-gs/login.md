@@ -9,6 +9,7 @@ menu:
     parent: uiapi-kubectlgs
 aliases:
   - /reference/kubectl-gs/login/
+  - /ui-api/kubectl-gs/login/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:

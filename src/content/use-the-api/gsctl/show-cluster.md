@@ -8,6 +8,7 @@ menu:
     parent: uiapi-gsctl
 aliases:
   - /reference/gsctl/show-cluster/
+  - /ui-api/gsctl/show-cluster/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:

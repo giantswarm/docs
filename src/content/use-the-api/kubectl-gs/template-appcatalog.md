@@ -6,6 +6,7 @@ weight: 120
 menu: false
 aliases:
   - /reference/kubectl-gs/template-appcatalog/
+  - /ui-api/kubectl-gs/template-appcatalog/
 last_review_date: 2021-06-30
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger

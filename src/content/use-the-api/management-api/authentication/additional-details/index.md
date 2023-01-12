@@ -8,6 +8,9 @@ menu:
     identifier: uiapi-managementapi-authentication-details
     parent: uiapi-managementapi-authentication
 last_review_date: 2022-04-28
+aliases:
+  - /reference/management-api/authentication/additional-details
+  - /ui-api/management-api/authentication/additional-details
 user_questions:
   - How long do ID tokens live?
   - How can I refresh my groups memberships for Management API authorization?
