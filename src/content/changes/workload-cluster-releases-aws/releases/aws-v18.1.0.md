@@ -15,7 +15,7 @@ description: Release notes for AWS workload cluster release v18.1.0, published o
 title: Workload cluster release v18.1.0 for AWS
 ---
 
-This release contains changes that address several kubernetes vulnerabilities as well as improvements. Additionally we ensure IAM permissions for Elastic File System (EFS) are set correctly on workload clusters.
+This release contains changes that address several kubernetes vulnerabilities as well as improvements. Kubernetes api-server's cpu request are changed to be the half of the CPUs of the VM. Additionally we ensure IAM permissions for Elastic File System (EFS) are set correctly on workload clusters. 
 
 ## Change details
 
@@ -164,7 +164,7 @@ _Nothing has changed._
 #### Changed
 - Use custom KMS key for encryption on your Amazon EBS volumes.
 - Enable IRSA by default in release v19.0.0.
-- Bump k8scc to 15.1.1.
+- Bump k8scc to [15.1.1](https://github.com/giantswarm/k8scloudconfig/blob/master/CHANGELOG.md#1511---2022-11-03). (Set CPU and Memory requests for Api server to be half of VM CPUs.)
 - Added EFS policy to the ec2 instance role to allow to use the EFS driver out of the box
 - Add both the cloudfront domain and alias domain in route53manager role policy.
 
