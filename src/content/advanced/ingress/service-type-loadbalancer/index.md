@@ -124,6 +124,8 @@ service.beta.kubernetes.io/aws-load-balancer-backend-protocol: (https|http|ssl|t
 
 The second annotation specifies which protocol a pod speaks. For HTTPS and SSL, the ELB will expect the pod to authenticate itself over the encrypted connection.
 
+Please note, setting `service.beta.kubernetes.io/aws-load-balancer-backend-protocol: ssl` requires changing `controller.service.targetPorts.https` to `http` in your nginx-ingress-controller-app configuration.
+
 HTTP and HTTPS will select layer 7 proxying: the ELB will terminate the connection with the user, parse headers and inject the `X-Forwarded-For` header with the user’s IP address (pods will only see the IP address of the ELB at the other end of its connection) when forwarding requests.
 
 TCP and SSL will select layer 4 proxying: the ELB will forward traffic without modifying the headers.
