@@ -16,7 +16,7 @@ user_questions:
   - How can I log in with kubectl for the Management API?
   - How can I create a workload cluster client certificate?
   - How do I specify the time to live for a workload cluster client certificate?
-last_review_date: 2022-05-20
+last_review_date: 2023-01-10
 ---
 
 Use this command to set up a kubectl context to work with:
@@ -74,6 +74,8 @@ For **OIDC** authentication, the following flags are available:
 - `--token`: Use a bearer token instead of OIDC authentication, e. g. a service account token.
 
 - `--internal-api` - (AWS only) With this flag you use an internal Management API endpoint. It resolves to an internal IP address that is only accessible from within the cluster's virtual private cloud (VPC). The hostname of this endpoint is the same as the normal one, with the prefix `internal-`. Example: if your Management API host name is `g8s.example.yourdomain.tld`, the alternative hostname is `internal-g8s.example.yourdomain.tld`.
+
+- `--connector-id` - OIDC authentication prompts the user to select an authentication provider for the login process. The connector ID flag can be used to skip the prompt by providing an identifier of a specific authentication provider.
 
 The following flags are related to creating **client certificates** for workload cluster access:
 
