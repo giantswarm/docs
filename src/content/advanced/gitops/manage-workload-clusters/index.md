@@ -1,68 +1,22 @@
 ---
 linkTitle: Managing workload clusters with GitOps
 title: Managing workload clusters with GitOps
-description: An explanation of the GitOps principles and a guide to managing Giant Swarm platform resources with FluxCD.
-weight: 50
+description: A guide to managing Giant Swarm platform resources with FluxCD.
+weight: 30
 menu:
   main:
-    parent: advanced
+    parent: advanced-gitops
+    identifier: advanced-gitops-manage-workload-clusters
 user_questions:
-  - What is GitOps?
-  - What is FluxCD?
-  - How to manage resources with GitOps?
+  - How to manage workload clusters with GitOps?
   - How to prepare repositories for use with FluxCD?
   - How to ensure security by combining FluxCD with the Management API permission model?
-aliases:
-  - /advanced/fluxcd/
-  - /advanced/gitops/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2022-11-25
+last_review_date: 2022-12-20
 ---
 
 In this document you will learn how to manage infrastructure and applications by utilizing FluxCD - a set of GitOps operators installed in Giant Swarm management clusters.
-
-## What is GitOps
-
-The GitOps Working Group [defines GitOps as a set of principles](https://github.com/open-gitops/documents/blob/release-v1.0.0/PRINCIPLES.md):
-> GitOps is a set of principles for operating and managing software systems. These principles are derived from modern software operations, but are also rooted in pre-existing and widely adopted best practices.
-> The desired state of a GitOps managed system must be:
-> **Declarative**
-> A system managed by GitOps must have its desired state expressed declaratively.
-> **Versioned and Immutable**
-> The desired state is stored in a way that enforces immutability, versioning and retains a complete version history.
-> **Pulled Automatically**
-> Software agents automatically pull the desired state declarations from the source.
-> **Continuously Reconciled**
-> Software agents continuously observe the actual system state and attempt to apply the desired state.
-
-The way these principles manifest in popular tools, such as FluxCD or ArgoCD can be summarized as follows:
-
-The cluster's desired state, or manifest, is kept in Git repositories (or Helm repositories, S3 buckets, and so on). GitOps operators are deployed to clusters and configured to watch the manifest. The operators are tasked with periodically comparing the desired and actual states of the cluster's resources and reconciling them in case discrepancies are found.
-
-If the cluster's state changes in a way that is not reflected in the code, the change will be reverted. If the code is updated with a new configuration and/or resources, the cluster will be instantly updated to match the desired state.
-
-This way of managing Kubernetes comes with all the benefits and best practices of a versioning system: code reviews, pull requests, versioned releases, test branches, commit history, and full accountability. Due to the almost instant deployment of committed changes, it is also a perfect tool for development and testing.
-
-## What is FluxCD
-
-The [FluxCD](https://fluxcd.io) website states:
-> Flux is a set of continuous and progressive delivery solutions for Kubernetes that are open and extensible.
-
-What it is from a developer perspective is a set of operators and Custom Resources designed to apply GitOps in a Kubernetes environment. The operators, configured with the Custom Resources, will be watching Git repositories, Helm repositories, or even S3 buckets and reconciling their contents with the state of the cluster to make sure they both match.
-
-To get started with FluxCD, you will need to bootstrap FluxCD to your cluster of choice and create at least one of each of the following:
-
-1. `source.toolkit.fluxcd.io` resources - they tell the `source-controller` where to look for the manifests
-2. `helmrelease.helm.toolkit.fluxcd.io` or `kustomization.kustomize.toolkit.fluxcd.io` resources - they are meant for `helm-controller` and `kustomize-controller` respectively and govern how the manifests found in sources will be applied
-
-Luckily, FluxCD is bootstrapped and running in Giant Swarm management clusters, so you can start using it immediately.
-
-If want to learn more about FluxCD and its capabilities, here are a couple of useful links:
-
-- [FluxCD documentation homepage](https://fluxcd.io/docs/)
-- [Get Started with Flux](https://fluxcd.io/docs/get-started/) is a great way to get familiar with Flux on a test cluster or even a [Kind](https://kind.sigs.k8s.io/) cluster
-- [GitOps Toolkit components](https://fluxcd.io/docs/components/) is where you can browse Flux Custom Resources and their use cases.
 
 ## Managing resources with Flux
 
