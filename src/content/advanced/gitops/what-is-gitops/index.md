@@ -1,7 +1,7 @@
 ---
 linkTitle: What is GitOps
 title: What is GitOps
-description: An explanation of the GitOps principles.
+description: A brief explanation of the GitOps principles and the main features they provide.
 weight: 10
 menu:
   main:
