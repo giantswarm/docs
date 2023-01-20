@@ -16,10 +16,7 @@ last_review_date: 2023-01-20
 
 # Add a CAPx (CAPI) Workload Cluster template (cluster App based)
 
-Our CAPx (CAPI provider-specific clusters) are delivered by Giant Swarm as a set of two applications. First one
-is an App with Cluster instance definition, second one is an App with all the default applications a new cluster
-needs in order to run correctly. As such, creating a CAPx cluster means that you need to deliver two correctly
-configured App CRs to the Management Cluster.
+Our CAPx (CAPI provider-specific clusters) are delivered by Giant Swarm as a set of two applications. The first one is an [App Custom Resource](https://docs.giantswarm.io/platform-overview/app-platform/)(CR) with a Cluster instance definition, while the second one is an App CR containing all the default applications needed for a cluster to run correctly. As such, creating a CAPx cluster means that you need to deliver two configured App CRs to the Management Cluster.
 
 Adding definitions can be done on two levels: shared cluster template and version specific template, see
 [create shared template base](#create-shared-template-base)
