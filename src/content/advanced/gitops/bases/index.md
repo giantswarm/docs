@@ -18,9 +18,7 @@ last_review_date: 2023-01-20
 
 Our CAPx (CAPI provider-specific clusters) are delivered by Giant Swarm as a set of two applications. The first one is an [App Custom Resource](https://docs.giantswarm.io/platform-overview/app-platform/)(CR) with a Cluster instance definition, while the second one is an App CR containing all the default applications needed for a cluster to run correctly. As such, creating a CAPx cluster means that you need to deliver two configured App CRs to the Management Cluster.
 
-Adding definitions can be done on two levels: shared cluster template and version-specific template, see
-[create shared template base](#create-shared-template-base) and [create versioned base](#create-versioned-base-optional).
-
+Adding definitions can be done on two levels: shared cluster template and version-specific template, see [create shared template base](#create-shared-template-base) and [create versioned base](#create-versioned-base-optional).
 
 **IMPORTANT**, CAPx configuration utilizes the [App Platform Configuration Levels](/getting-started/app-platform/app-configuration/#levels), in the following manner:
 
@@ -118,9 +116,7 @@ In this example we are creating a custom version for capa base:
     sed -i "s/mywcl/${cluster_name}/g" bases/clusters/capa/0.21.0/cluster_config.yaml
     ```
 
-1. Check `cluster_config.yaml` against the version-specific `values.yaml`, and tweak it if necessary to match the
-expected schema. At this point you may also provide extra configuration, like additional availability zones, node
-pools, etc. If you used `kubectl gs template` to get the values, this should be aligned with the latest version. If you were trying to create a different version, you might need to check proper values for that version.
+1. Check `cluster_config.yaml` against the version-specific `values.yaml`, and tweak it if necessary to match the expected schema. At this point you may also provide extra configuration, like additional availability zones, node pools, etc. If you used `kubectl gs template` to get the values, this should be aligned with the latest version. If you were trying to create a different version, you might need to check proper values for that version.
 
 1. Create a patch for the cluster App CR to provide the newly created configuration. For this create a file `patch_config.yaml` with this content:
 
@@ -135,7 +131,7 @@ pools, etc. If you used `kubectl gs template` to get the values, this should be 
         - kind: configMap
           name: ${cluster_name}-config
           namespace: org-${organization}
-          priority: 1
+          priority: 55
     ```
 
 1. Create the `kustomization.yaml`, referencing the template, and generating the ConfigMap out of `cluster_config.yaml`:
