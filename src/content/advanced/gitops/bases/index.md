@@ -77,9 +77,7 @@ In this example we are creating a custom version for capa base:
     mkdir -p bases/clusters/capa/v0.21.0
     ```
 
-1. Use the [kubectl gs template cluster](/use-the-api/kubectl-gs/template-cluster/) to template
-cluster resources, see example for the `capa` provider below. Use arbitrary values for the mandatory fields, we
-will configure them later in our process:
+1. Use the [kubectl gs template cluster](/use-the-api/kubectl-gs/template-cluster/) to template cluster resources, see an example for the `capa` provider below. Use arbitrary values for the mandatory fields, we will configure them later in our process:
 
     ```nohighlight
     kubectl gs template cluster \
