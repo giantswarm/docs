@@ -67,7 +67,7 @@ The current possible values for the providers can be checked in the [command ref
 
 There is one example of a versioned base in the `gitops-template` repository for capo [v0.6.0](https://github.com/giantswarm/gitops-template/tree/main/bases/clusters/capo/>=v0.6.0) as major changes were introduced to the `values.yaml` in the [cluster-openstack v0.6.0 release](https://github.com/giantswarm/cluster-openstack/releases/tag/v0.6.0).
 
-**IMPORTANT**, despite the below instructions referencing `kubectl-gs` for templating configuration, `kubectl-gs` generates configuration for the most recent schema only. If you configure a base for older versions of cluster app, it is advised to check what is generated against the version-specific `values.yaml`.
+**IMPORTANT**, despite the below instructions referencing `kubectl-gs` for templating configuration, `kubectl-gs` generates configuration for the most recent schema only. If you configure a base for older versions of the cluster app, it is advised to check what is generated against the version-specific `values.yaml`.
 
 In this example we are creating a custom version for capa base:
 
