@@ -158,4 +158,4 @@ pools, etc. If you used `kubectl gs template` to get the values, this should be 
       - ../template
     ```
 
-With these steps you have created a new base, built upon the original template which you can use to create workload clusters with the `kubectl gs gitops add workload-cluster --base` command as it is explained in the [workload cluster creation tutorial](/advanced/gitops/manage-workload-clusters/#managing-workload-clusters).
+With these steps you have created a new base, built upon the original template which you can use to create workload clusters with the `kubectl gs GitOps add workload-cluster --base` command as it is explained in the [workload cluster creation tutorial](/advanced/gitops/manage-workload-clusters/#managing-workload-clusters).
