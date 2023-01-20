@@ -1,5 +1,5 @@
 ---
-linkTitle: Creating a base template for workload clusters
+linkTitle: Creating a base template clusters
 title: Creating a base template for workload clusters
 description: How to create a base template to create workload clusters with different configurations.
 weight: 70
