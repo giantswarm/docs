@@ -13,7 +13,7 @@ user_questions:
   - How to ensure security by combining FluxCD with the Management API permission model?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2022-12-20
+last_review_date: 2023-01-20
 ---
 
 In this document you will learn how to manage infrastructure and applications by utilizing FluxCD - a set of GitOps operators installed in Giant Swarm management clusters.
