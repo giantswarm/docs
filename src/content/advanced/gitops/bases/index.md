@@ -35,10 +35,7 @@ In order to avoid code duplication, it is advised to utilize the [bases and over
 
 ## Create shared cluster template base {#create-shared-template-base}
 
-**IMPORTANT:** shared cluster template base should not serve as a standalone base for cluster creation, it is there only to abstract
-App CRs that are common to all clusters versions, and to provide basic configuration for default apps App.
-It is then used as a base to other bases, which provide an overlay with a specific configuration. This is to avoid
-code duplication across bases.
+**IMPORTANT:** shared cluster template base should not serve as a standalone base for cluster creation, it is there only to abstract App CRs that are common to all clusters versions, and to provide basic configuration for default apps App. It is then used as a base for other bases, which provide an overlay with a specific configuration. This is to avoid code duplication across bases.
 
 **Bear in mind**, this is not a complete guide of how to create a perfect base, but rather a mere summary of basic
 steps needed to move forward. Hence, instructions here will not always be precise in telling you what to change,
