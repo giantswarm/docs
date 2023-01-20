@@ -31,9 +31,7 @@ See more about this approach [here](https://github.com/giantswarm/rfc/tree/main/
 
 ## Choose bases
 
-In order to avoid code duplication, it is advised to utilize the
-[bases and overlays](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/#bases-and-overlays)
-of Kustomize in order to configure the cluster.
+In order to avoid code duplication, it is advised to utilize the [bases and overlays](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/#bases-and-overlays) of Kustomize in order to configure the cluster.
 
 ## Create shared cluster template base {#create-shared-template-base}
 
