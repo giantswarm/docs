@@ -22,12 +22,10 @@ Adding definitions can be done on two levels: shared cluster template and versio
 [create shared template base](#create-shared-template-base) and [create versioned base](#create-versioned-base-optional).
 
 
-**IMPORTANT**, CAPx configuration utilizes the
-[App Platform Configuration Levels](/getting-started/app-platform/app-configuration/#levels),
-in the following manner:
+**IMPORTANT**, CAPx configuration utilizes the [App Platform Configuration Levels](/getting-started/app-platform/app-configuration/#levels), in the following manner:
 
 - cluster templates provide default configuration via App' `config` field,
-- cluster instances provide custom configuration via App' `userConfig` field, that is overlaid on top of `config`.
+- cluster instances provide custom configuration via App' `extraConfig` field, which is overlaid on top of `config`.
 
 See more about this approach [here](https://github.com/giantswarm/rfc/tree/main/merging-configmaps-gitops).
 
