@@ -63,7 +63,7 @@ The current possible values for the providers can be checked in the [command ref
 
 ## Create versioned base (optional) {#create-versioned-base-optional}
 
-**IMPORTANT**, versioned cluster template bases use a shared cluster template base and overlay it with a preferably generic configuration for a given cluster version. Versioning comes from the fact that `values.yaml` schema may change over multiple releases, and although minor differences can be handled on the `userConfig` level, it is advised for the bases to follow major `values.yaml` schema versions to avoid confusion.
+**IMPORTANT**, versioned cluster template bases use a shared cluster template base and overlay it with a preferably generic configuration for a given cluster version. Versioning comes from the fact that `values.yaml` schema may change over multiple releases, and although minor differences can be handled on the `extraConfig` level, it is advised for the bases to follow major `values.yaml` schema versions to avoid confusion.
 
 There is one example of a versioned base in the `gitops-template` repository for capo [v0.6.0](https://github.com/giantswarm/gitops-template/tree/main/bases/clusters/capo/>=v0.6.0) as major changes were introduced to the `values.yaml` in the [cluster-openstack v0.6.0 release](https://github.com/giantswarm/cluster-openstack/releases/tag/v0.6.0).
 
