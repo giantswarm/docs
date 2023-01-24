@@ -1,5 +1,5 @@
 ---
-linkTitle: What is FluxCD
+linkTitle: FluxCD
 title: What is FluxCD
 description: An explanation of the GitOps principles and a guide to managing Giant Swarm platform resources with FluxCD.
 weight: 30
