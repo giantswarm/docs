@@ -134,7 +134,7 @@ This command creates the folder for the management cluster, the `Kustomization` 
 
 Then, we create a Flux `GitRepository` resource that points to the repository. We need a `GitRepository` resource for every management cluster we want to manage. In the `GitRepository` resource we define the URL where our repository is stored.
 
-Now, we need to create a secret (we will refer to it as GIT_CREDENTIALS_SECRET, please, replace with the chosen name) with the credentials to access the repository. This will allow Flux to download the repo files in order to apply all resources. If your repo is public you don't need the secret and can safely delete the parameter `secret-ref` of the next command.
+Now, we need to [create a secret](https://fluxcd.io/flux/cmd/flux_create_secret_git/) (we will refer to it as GIT_CREDENTIALS_SECRET, please, replace with the chosen name) with the credentials to access the repository. This will allow Flux to download the repo files in order to apply all resources. If your repo is public you don't need the secret and can safely delete the parameter `secret-ref` of the next command.
 This process is different depending on the git platform used (ssh-keys, token, user/password). Check documentation of every provider to create the secret.
 
 ```nohighlight
