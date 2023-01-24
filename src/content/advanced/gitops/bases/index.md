@@ -87,7 +87,7 @@ In this example we are creating a custom version for capa base:
 1. This creates four files but we are only interested in the cluster userconfig file `mywcl-userconfig.yml`. We will extract the values and create a new `cluster-config.yaml` file in our version folder:
 
     ```nohighlight
-    cat mywcl-userconfig.yml|yq eval '.data.values' > bases/clusters/capa/v0.21.0/cluster_config.yaml
+    cat mywcl-userconfig.yml | yq eval '.data.values' > bases/clusters/capa/v0.21.0/cluster_config.yaml
     ```
 
     The content of the file will be something like this:
