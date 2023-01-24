@@ -22,7 +22,6 @@ jobs:
 
       - architect/push-to-docker:
           image: "quay.io/giantswarm/docs"
-          context: architect
           tag-latest-branch: "main"
           username_envar: "QUAY_USERNAME"
           password_envar: "QUAY_PASSWORD"
