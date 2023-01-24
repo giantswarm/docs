@@ -41,7 +41,8 @@ workflows:
 
   build-and-check:
     jobs:
-      - build
+      - build:
+          context: "architect"
 
   package-and-push-chart-on-tag:
     jobs:
