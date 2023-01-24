@@ -2,7 +2,7 @@
 linkTitle: Managing workload clusters with GitOps
 title: Managing workload clusters with GitOps
 description: A guide to create workload clusters in Giant Swarm platform with FluxCD.
-weight: 30
+weight: 20
 menu:
   main:
     parent: advanced-gitops
