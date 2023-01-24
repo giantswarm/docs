@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  architect: giantswarm/architect@4.15.0
+  architect: giantswarm/architect@4.27.0
 
 
 jobs:
@@ -9,7 +9,7 @@ jobs:
     executor: "architect/architect"
     environment:
       DOCKER_BUILDKIT: "1"
-
+    
     steps:
       - checkout
 
@@ -41,11 +41,13 @@ workflows:
 
   build-and-check:
     jobs:
-      - build
+      - build:
+          context: architect
 
   package-and-push-chart-on-tag:
     jobs:
       - build:
+          context: architect
           filters:  # required since `architect/push-to-app-catalog` has tag filters AND requires `build`
             # Ignore all commits, but run when tagging a release.
 
@@ -54,6 +56,7 @@ workflows:
             tags:
               only: /^v.*/
       - architect/push-to-app-catalog:
+          context: architect
           name: "package and push docs"
           app_catalog: "giantswarm-operations-platform-catalog"
           app_catalog_test: "giantswarm-operations-platform-test-catalog"

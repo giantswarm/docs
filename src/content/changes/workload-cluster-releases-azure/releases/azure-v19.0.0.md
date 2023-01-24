@@ -18,7 +18,7 @@ title: Workload cluster release v19.0.0 for Azure
 This is the first Azure release featuring Kubernetes 1.24. For increased performance the kubernetes api-server's cpu request are changed to be the half of the **available** CPUs in the VM. Release consists of upgrades to most of components that are listed below. 
 
 Important to note this release adds two new components:
-- [k8s-dns-node-cache](https://github.com/giantswarm/k8s-dns-node-cache-app) - improving cluster DNS performance by running a dns caching agent on cluster nodes as a DaemonSet.
+- [k8s-dns-node-cache](https://github.com/giantswarm/k8s-dns-node-cache-app) - improving cluster DNS performance by running a dns caching agent on cluster nodes as a DaemonSet. If you are using `egress` rules for your pods and you needed to allow traffic towards coreDNS then you might need to change the network policy to make `k8s-dns-node-cache` work properly. If in doubt get in touch with your account engineer before you begin the cluster upgrade process.
 - [observability-bundle](https://github.com/giantswarm/observability-bundle) - revised monitoring solution that provides necessary components to enable observability capabilities in a workload cluster. This upgrade can temporairly affect prometheus but the monitoring team is paged immediately to perform manual steps and cleanup. Hence there should be little to no impact. If prometheus-operator is in use on the Workload Clusters, please reach out to your Account Engineer who will notify and sync with Giant Swarm monitoring team upfront.
 
 ## Change details
