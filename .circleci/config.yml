@@ -9,6 +9,7 @@ jobs:
     executor: "architect/architect"
     environment:
       DOCKER_BUILDKIT: "1"
+    context: "architect"
 
     steps:
       - checkout
@@ -21,7 +22,6 @@ jobs:
           command: make lint
 
       - architect/push-to-docker:
-          context: "architect"
           image: "quay.io/giantswarm/docs"
           tag-latest-branch: "main"
           username_envar: "QUAY_USERNAME"
