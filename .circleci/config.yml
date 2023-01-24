@@ -9,8 +9,7 @@ jobs:
     executor: "architect/architect"
     environment:
       DOCKER_BUILDKIT: "1"
-    context: "architect"
-
+    
     steps:
       - checkout
 
