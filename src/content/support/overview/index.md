@@ -10,6 +10,7 @@ user_questions:
 menu:
   main:
     parent: support-training
+    identifier: support-training-overview
     weight: 1
 aliases:
   - /general/support

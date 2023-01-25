@@ -1,6 +1,6 @@
 ---
-linkTitle: Gitops
-title: Gitops
+linkTitle: GitOps
+title: GitOps
 description: Learn how to use GitOps to manage the workload clusters and all the resources running in them.
 weight: 50
 menu:

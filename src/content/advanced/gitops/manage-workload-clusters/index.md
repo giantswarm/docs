@@ -2,7 +2,7 @@
 linkTitle: Managing workload clusters with GitOps
 title: Managing workload clusters with GitOps
 description: A guide to create workload clusters in Giant Swarm platform with FluxCD.
-weight: 30
+weight: 20
 menu:
   main:
     parent: advanced-gitops
@@ -13,7 +13,7 @@ user_questions:
   - How to ensure security by combining FluxCD with the Management API permission model?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2022-12-20
+last_review_date: 2023-01-20
 ---
 
 In this document you will learn how to manage infrastructure and applications by utilizing FluxCD - a set of GitOps operators installed in Giant Swarm management clusters.
@@ -239,13 +239,42 @@ There are a bunch of advantages to createing clusters starting from a base (usin
 - Modifying the base, we modify all the clusters that implement it (batch update)
 - We can change the clusters between different environments easily
 
-In this tutorial we are implementing a cluster from a base without applying any extra configuration.
+In this tutorial we are implementing a cluster from a base without applying any extra configuration. In order to create a base for the provider you are using, you can follow the tutorial of [base creation]({{< relref "/advanced/gitops/bases" >}}).
 
 In order to create a workload cluster in our repository we run the command:
 
 ```nohighlight
-kubectl gs gitops add workload-cluster --management-cluster MC_NAME --name WL_NAME --organization ORG_NAME --repository-name MC_NAME-git-repo --base bases/cluster/PROVIDER --cluster-release 0.18.0 --default-apps-release 0.10.0
+kubectl gs gitops add workload-cluster \
+--management-cluster MC_NAME \
+--name WL_NAME \
+--organization ORG_NAME \
+--repository-name MC_NAME-git-repo \
+--base bases/cluster/PROVIDER/template \
+--cluster-release 0.21.0 \
+--default-apps-release 0.15.0
 ```
+
+In order to get current `cluster-release` and `default-apps-release` version you can get them from the catalog with the command:
+
+```nohighlight
+kubectl gs get catalog -n giantswarm cluster
+```
+
+Depending on the provider of the cluster you are connected the return will vary, but you should get there at least the version for `cluster-PROVIDER` and `default-apps-PROVIDER`.
+
+An example of the output would be:
+
+```nohighlight
+CATALOG   APP NAME                    VERSION   UPSTREAM VERSION   AGE   DESCRIPTION
+cluster   capa-internal-proxy-stack   0.1.0     0.1.0              64d   repository to aggregate CRs necessery to create capa internal outgoing proxy clu...
+cluster   cluster-aws                 0.21.0                       23h   A helm chart for creating Cluster API clusters with the AWS infrastructure provi...
+cluster   cluster-shared              0.6.4     0.0.1              64d   A library chart of shared CAPI cluster helpers
+cluster   default-apps-aws            0.15.0                       2d    A Helm chart for default-apps-aws
+cluster   default-apps-azure          0.0.8     0.0.1              47h   A Helm chart defining the preinstalled apps running in all Giant Swarm Azure clu...
+cluster   outgoing-proxy-stack        0.2.4     0.1.0              26d   repository to aggregate CRs necessery to create capa internal outgoing proxy clu...
+```
+
+Where we can extract that the current version of `cluster-aws` is `0.21.0` and `default-apps-aws` is `0.15.0`.
 
 This will create the folders and the files needed. If you already applied the management cluster `Kustomization`, the cluster will start to be created as you commit and push the files.
 
