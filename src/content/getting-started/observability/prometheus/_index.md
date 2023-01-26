@@ -1,7 +1,7 @@
 ---
 linkTitle: Prometheus
 title: Prometheus
-description: Guide explaning how to interact with our installation level Prometheus.
+description: Guide explaining how to interact with our installation level Prometheus.
 weight: 30
 menu:
   main:
