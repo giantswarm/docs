@@ -354,7 +354,7 @@ source_repositories:
         topics:
           - workloadcluster
         deprecation:
-          info: Support for KVM clusters  has reached end of life  and this CRD will be removed in future versions.
+          info: Support for KVM clusters has reached end of life and this CRD will be removed in future versions.
       kvmconfigs.provider.giantswarm.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-rocket
