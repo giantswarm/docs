@@ -29,7 +29,9 @@ TODO: Brief summary here and then link https://www.datadoghq.com/knowledge-cente
 
 ## At Giant Swarm
 
-In all Giant Swarm clusters, Giant Swarm provides two kinds of audit logs, Kubernetes audit logs (logging every activity on the kubernetes API Server) and Virtual Machine audit logs (any execution running on the host).
+In all Giant Swarm clusters, two kinds of audit logs are provided:
+- Kubernetes audit logs: logging all activity on the Kubernetes API Server
+- Machine audit logs: any system calls and file access happening on the host (e.g. login attempts, user commands, file system changes, etc...)
 
 ### Kubernetes Audit Logs
 
