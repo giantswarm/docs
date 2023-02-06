@@ -91,7 +91,7 @@ This configuration asks the Linux Audit Daemon to trace any `execve` signal happ
 Feb 06 09:57:37 ip-10-0-5-34.eu-central-1.compute.internal kernel: audit: type=1300 audit(1675677457.491:6132447): arch=c000003e syscall=59 success=yes exit=0 a0=55a8f8fc7fd0 a1=55a8f947eec0 a2=55a8f9b8fd10 a3=55a8f947eec0 items=2 ppid=1 pid=3659596 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="update-ssh-keys" exe="/usr/bin/update-ssh-keys" subj=system_u:system_r:kernel_t:s0 key="auditing"
 ```
 
-Beware that the Linux Audit Daemon is quite verbose when it comes to logging so you will need to ensure enough storage and bandwidth for your logs.
+Beware that the Linux Audit Daemon is quite verbose when it comes to logging so you will need to ensure enough storage and bandwidth for your logs. For this we suggest you use either a SIEM tool, Opensearch or Loki
 
 At the moment, the Machine audit logs can be found in `journald` so you can ship them over to your <abbr title="Security information and event management">SIEM</abbr> system.
 
