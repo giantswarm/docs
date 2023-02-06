@@ -35,7 +35,7 @@ In all Giant Swarm clusters, two kinds of audit logs are provided:
 
 ### Kubernetes Audit Logs
 
-The Kubernetes api-server supports audit logging by default. This mechanism log every request made to it by both service accounts and users. Customers can ingest this audit log to detect if any suspicious behavior (internal or by a 3rd party.is made to their kubernetes clusters. 
+The Kubernetes api-server supports audit logging by default. This mechanism logs every request made to it by both service accounts and users. Customers can ingest these audit logs to detect if any suspicious behaviour (internal or by a 3rd party) is made to their Kubernetes clusters. 
 
 __Warning:__ This feature is currently unavailable on CAPI clusters.
 
