@@ -54,7 +54,7 @@ Bundle installation](#app-bundle-installation).
 The solitary app installation process has been already well depicted in the [App Platform Overview]({{< relref "/platform-overview/app-platform#what-makes-up-the-app-platform" >}}). The bundle installation process is very similar,
 except it involves one extra layer, and hence extra controllers. This layer be the Management Cluster's App and   Chart Operators. It shouldn't come as a surprise that Management Clusters, same as the Workload Clusters, run
 their own App and Chart Operators that let the Giantswarm staff to install the applications. Now these controllers
-can also be laveraged for installing the app bundles.
+can also be leveraged for installing the app bundles.
 
 The figure below depicts the process briefly. Note however, some parts present in the [App Platform Overview]({{< relref "/platform-overview/app-platform" >}}) figure, like pulling the tarball archive, have been omitted for
 brevity.
@@ -160,7 +160,7 @@ so that there is no need to remember about it.
 
 <h5><i class="fa fa-help-outline"></i> Can I use it to install any app in the Management Cluster?</h5> No, but it
 will work for some apps. The Management Cluster's Chart Operator uses a limited set of permissions when
-installing user-requested apps, making it prohibit for him to crate certain cluster-scoped resources, like
+installing user-requested apps, making it prohibit for him to create certain cluster-scoped resources, like
 "ClusterRole", or to access certain namespaces, like "kube-system". When the app being requested is limited to
 the namespace you have access to, and does not go beyond, then installing it within the Management Cluster
 should work.
