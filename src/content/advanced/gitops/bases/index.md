@@ -99,11 +99,13 @@ In this example we are creating a custom version for capa base:
     controlPlane:
       replicas: 3
     machinePools:
-    - instanceType: m5.xlarge
-      maxSize: 10
-      minSize: 3
-      name: machine-pool0
-      rootVolumeSizeGB: 300
+      machine-pool0:
+        availabilityZones:
+        - eu-central-1a
+        instanceType: m5.xlarge
+        maxSize: 10
+        minSize: 3
+        rootVolumeSizeGB: 300
     network:
       availabilityZoneUsageLimit: 3
     organization: myorg
