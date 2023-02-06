@@ -24,7 +24,7 @@ In this document you will learn what are audit logs, which kind is available on 
 ## Audit logging
 
 Audit logging is the process of recording any event happening within or to your system (execution of any network call, security events like logins, payment transactions and so on).
-An audit log records any occurence of an event, i.e. who did what and when with as much detail as possible
+An audit log records any occurrence of an event, i.e. who did what and when with as much detail as possible
 
 For a more in-depth introduction to audit logging, we advise you to read [this](https://www.datadoghq.com/knowledge-center/audit-logging/)
 
