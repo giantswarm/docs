@@ -73,6 +73,16 @@ At the moment, the Kubernetes audit logs can be found on `control-plane` nodes o
 
 The Kubernetes audit logs will be shipped to our [Managed Loki](https://github.com/giantswarm/roadmap/issues/311) in the future.
 
+#### Custom configuration
+
+If the Giant Swarm default Kubernetes Audit Policy is not sufficient for your use case, you can configure as you want.
+
+To configure the policy for your management cluster, get in touch with your Account engineer and we will help you sort it out.
+
+For your workload clusters, you can deploy the [k8s-initiator-app](https://github.com/giantswarm/k8s-initiator-app) App to your cluster to deploy the whatever Audit Policy configuration you want.
+
+__Warning:__ Beware that the k8s-initiator-app can change Kubernetes api server settings and any misconfiguration might cause it to go down. We advise you to ask your Account Engineer for help to configure it safely.
+
 ### Machine audit logs
 
 To provide you with a better visibility and security, Giant Swarm offers you the possibility to access the Machine audit logs.
@@ -99,7 +109,7 @@ __Notice:__ The Linux Audit Daemon logs are kernel logs so they need to be acces
 
 The Machine audit logs will be shipped to our [Managed Loki](https://github.com/giantswarm/roadmap/issues/311) in the future.
 
-## How to audit logs ship to a remote location
+## How to ship your audit logs to a remote location
 
 Giant Swarm offers two tools to allow you to get the audit logs for your workload clusters.
 
