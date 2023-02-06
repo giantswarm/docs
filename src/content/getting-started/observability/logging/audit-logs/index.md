@@ -43,7 +43,7 @@ TODO add sample of logs
 
 For more information on Kubernetes audit logs, we suggest you to read [this](https://kubernetes.io/docs/tasks/debug/debug-cluster/audit/)
 
-The Kubernetes audit logs can be found on `master/control-plane` nodes only at `/var/log/apiserver/audit*.log
+The Kubernetes audit logs can be found on `master/control-plane` nodes only at `/var/log/apiserver/audit*.log`
 
 ### Virtual Machine Audit Logs
 
