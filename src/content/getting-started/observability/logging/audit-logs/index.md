@@ -103,7 +103,7 @@ The Machine audit logs will be shipped to our [Managed Loki](https://github.com/
 
 Giant Swarm offers two tools to allow you to get the audit logs for your workload clusters.
 
-You can also access the access logs for the management clusters but this is not something we provide by default (at least for now). Please contact your Account Engineer to sort out the details.
+__Note__: You can also access the access logs for the management clusters but this is not something we provide by default (at least for now). Please contact your Account Engineer to sort out the details.
 
 ### Fluent bit
 
