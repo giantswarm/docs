@@ -287,7 +287,7 @@ __Note__: You can also access the access logs for the management clusters but th
 
 Giant Swarm provides a custom [Fluent-bit](https://fluentbit.io/) configuration packaged as a Managed App named [`fluent-logshipping-app`](https://github.com/giantswarm/fluent-logshipping-app)
 
-Fluent-bit's main advantage is that it can be used for all kinds of cases (shipping to rsyslog, elasticsearch, loki and so on) and provides a lot of configurability with it's plugin system so you can use it if this is what you need.
+Fluent-bit's main advantage is that it can be used for all kinds of cases (shipping to rsyslog, elasticsearch, loki and so on) and provides a lot of configurability with it's plugin system.
 
 ### Promtail
 
