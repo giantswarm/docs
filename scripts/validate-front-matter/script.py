@@ -340,6 +340,8 @@ def dump_annotations(rdict):
             'line': 1,
             'end_line': end_line,
             'title': headline,
+            'owner': check.get('owner'),
+            'page_title': check.get('page_title'),
             'message': message,
             'annotation_level': level,
         })
@@ -577,23 +579,31 @@ def validate(content, fpath, validation):
                 if diff > datetime.timedelta(days=365):
                     result['checks'].append({
                         'check': REVIEW_TOO_LONG_AGO,
+                        'page_title': fm['title'],
+                        'owner': fm['owner'],
                         'value': fm['last_review_date'],
                     })
                 elif diff < datetime.timedelta(seconds=0):
                     # in the future
                     result['checks'].append({
                         'check': INVALID_LAST_REVIEW_DATE,
+                        'page_title': fm['title'],
+                        'owner': fm['owner'],
                         'value': fm['last_review_date'],
                     })
             else:
                 result['checks'].append({
                     'check': INVALID_LAST_REVIEW_DATE,
+                    'page_title': fm['title'],
+                    'owner': fm['owner'],
                     'value': fm['last_review_date'],
                 })
         else:
             if not ignored_path(fpath, NO_LAST_REVIEW_DATE):
                 result['checks'].append({
                     'check': NO_LAST_REVIEW_DATE,
+                    'page_title': fm['title'],
+                    'owner': fm['owner'],
                 })
 
     # Evaluate all attributes
