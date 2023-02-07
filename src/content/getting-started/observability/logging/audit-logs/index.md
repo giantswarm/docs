@@ -291,7 +291,5 @@ Fluent-bit's main advantage is that it can be used for all kinds of cases (shipp
 
 ### Promtail
 
-As we are providing [Loki as Managed app](https://github.com/giantswarm/loki-app), we also provide our customers with [Promtail](https://github.com/giantswarm/promtail-app) for log collection and shipping.
-
-Note that Promtail can only be used with Loki but it provides a better integration with it (targets and labels found using Service Discovery instead of on the node directly).
+[Promtail](https://github.com/giantswarm/promtail-app) can only be used with Loki but it provides a better integration via its discovery mechanism rather than hardcoding file path.
 
