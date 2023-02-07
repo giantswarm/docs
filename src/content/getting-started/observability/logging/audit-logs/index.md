@@ -69,7 +69,7 @@ __Example:__
 
 For more information on Kubernetes audit logs, we suggest you to read [this](https://kubernetes.io/docs/tasks/debug/debug-cluster/audit/)
 
-At the moment, the Kubernetes audit logs can be found on `control-plane` nodes only at the location `/var/log/apiserver/audit*.log` that you can ship to your <abbr title="Security information and event management">SIEM</abbr> system.
+At the moment, Kubernetes audit logs can be found on `control-plane` nodes at `/var/log/apiserver/audit*.log`.
 
 The Kubernetes audit logs will be shipped to our [Managed Loki](https://github.com/giantswarm/roadmap/issues/311) in the future.
 
