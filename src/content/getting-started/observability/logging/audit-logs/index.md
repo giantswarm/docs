@@ -71,8 +71,6 @@ For more information on Kubernetes audit logs, we suggest you to read [this](htt
 
 At the moment, Kubernetes audit logs can be found on `control-plane` nodes at `/var/log/apiserver/audit*.log`.
 
-The Kubernetes audit logs will be shipped to our [Managed Loki](https://github.com/giantswarm/roadmap/issues/311) in the future.
-
 #### Giant Swarm default audit policy
 
 Here is the Giant Swarm audit policy configured by default on all our clusters (management and workload clusters alike):
