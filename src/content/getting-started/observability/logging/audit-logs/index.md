@@ -16,7 +16,7 @@ aliases:
   - /ui-api/observability/logs/audit-logging
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
-last_review_date: 2023-02-01
+last_review_date: 2023-02-07
 ---
 
 In this document you will learn what are audit logs, which kind is available on Giant Swarm clusters and how to access / ship them to a remote location.
@@ -273,9 +273,11 @@ __Warning:__ Beware that the Linux Audit Daemon is quite verbose so when shippin
 
 ## How to ship your audit logs to a remote location
 
-Giant Swarm offers two tools to allow you to ship audit logs from your workload clusters into your SIEM (a.k.a. Security Information and Event Management) system.
+We are currently working on our [Logging Infrastructure](https://github.com/giantswarm/roadmap/issues/311) and all the above audit logs (kubernetes audit and auditd logs) will be shipped there in the future. 
 
-__Note__: You can also access the access logs for the management clusters but this is not something we provide by default (at least for now). Please contact your Account Engineer to sort out the details.
+If you need the audit logs for your internal use cases (e.g. Security Information and Event Management system), you can use one of the following solutions:
+
+__Note__: You can also access the ship the audit logs for the management clusters but this is not something we provide by default (at least for now). Please contact your Account Engineer to sort out the details.
 
 ### Fluent bit
 
