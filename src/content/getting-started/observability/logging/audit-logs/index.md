@@ -279,7 +279,7 @@ The Machine audit logs will be shipped to our [Managed Loki](https://github.com/
 
 ## How to ship your audit logs to a remote location
 
-Giant Swarm offers two tools to allow you to get the audit logs for your workload clusters.
+Giant Swarm offers two tools to allow you to ship audit logs from your workload clusters into your SIEM (a.k.a. Security Information and Event Management) system.
 
 __Note__: You can also access the access logs for the management clusters but this is not something we provide by default (at least for now). Please contact your Account Engineer to sort out the details.
 
