@@ -273,8 +273,6 @@ The Linux Audit Daemon logs are kernel logs which are stored in `journald` and c
 
 __Warning:__ Beware that the Linux Audit Daemon is quite verbose so when shipping those logs you will need to ensure enough storage and bandwidth are available in order to process them.
 
-The Machine audit logs will be shipped to our [Managed Loki](https://github.com/giantswarm/roadmap/issues/311) in the future.
-
 ## How to ship your audit logs to a remote location
 
 Giant Swarm offers two tools to allow you to ship audit logs from your workload clusters into your SIEM (a.k.a. Security Information and Event Management) system.
