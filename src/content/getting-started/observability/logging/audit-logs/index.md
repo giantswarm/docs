@@ -287,5 +287,4 @@ Fluent-bit's main advantage is that it can be used for all kinds of cases (shipp
 
 ### Promtail
 
-[Promtail](https://github.com/giantswarm/promtail-app) can only be used with Loki but it provides a better integration via its discovery mechanism rather than hardcoding file path.
-
+[Promtail](https://github.com/giantswarm/promtail-app) can only be used with Loki. It provides a better integration with Kubernetes via its discovery mechanism and enriches logs with metadata by default. It can also be used to read files on the machines like the audit logs described here.
