@@ -22,7 +22,7 @@ Additionally to allow customers better cost optimatization the size of [EBS Volu
 ***Important to note this release adds new component:***
 - [observability-bundle](https://github.com/giantswarm/observability-bundle) - revised monitoring solution that provides necessary components to enable observability capabilities in a workload cluster. This upgrade can temporairly affect prometheus but the monitoring team is paged immediately to perform manual steps and cleanup. Hence there should be little to no impact. If prometheus-operator is in use on the Workload Clusters, please reach out to your Account Engineer who will notify and sync with Giant Swarm monitoring team upfront.
 
-Summary of further improvements can be found in the list below:
+***Summary of further improvements can be found in the list below:***
 - Node pool nodes will be labeled with the current cgroup version. 
 - Docker Rate Limits will be fixed when trying to pull images too often
 - Custom kernel parameters in the 'net.*' namespace are allowed to be set 
