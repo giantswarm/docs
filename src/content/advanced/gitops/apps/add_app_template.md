@@ -8,6 +8,8 @@ menu:
     identifier: advanced-gitops-apps-add-app-template
     parent: advanced-gitops-apps
 last_review_date: 2023-02-10
+user_questions:
+  - How can I create an template for app deployment in GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---

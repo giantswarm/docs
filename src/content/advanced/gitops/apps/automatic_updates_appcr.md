@@ -8,6 +8,8 @@ menu:
     identifier: advanced-gitops-apps-automatic-update
     parent: advanced-gitops-apps
 last_review_date: 2023-02-10
+user_questions:
+  - How can I enable and configure auto update for apps deployment with GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---

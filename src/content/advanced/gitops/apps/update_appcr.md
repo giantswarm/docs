@@ -8,6 +8,8 @@ menu:
     identifier: advanced-gitops-apps-app-update
     parent: advanced-gitops-apps
 last_review_date: 2023-02-10
+user_questions:
+  - How can I update an existent app deployed with GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
