@@ -1,7 +1,7 @@
 ---
 linkTitle: Enable automatic updates in Apps
 title: Enable automatic updates in Apps
-description: Learn how to enable automatic updates in Apps deployed using GitOps.
+description: Learn how to enable and configure automatic updates in Apps deployed using GitOps.
 weight: 50
 menu:
   main:

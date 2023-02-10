@@ -1,7 +1,7 @@
 ---
 linkTitle: Update an existing App
 title: Update an existing App
-description: Learn how to update an App deployed with GitOps.
+description: Learn how to update an App already deployed in a workload cluster with GitOps.
 weight: 50
 menu:
   main:

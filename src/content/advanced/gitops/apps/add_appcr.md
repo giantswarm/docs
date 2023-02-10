@@ -1,7 +1,7 @@
 ---
 linkTitle: Add a new App to a Workload cluster
 title: Add a new App to a Workload cluster
-description: Learn how to deploy applications into Workload clusters using GitOps.
+description: Learn how to deploy and configure applications into Workload clusters using GitOps.
 weight: 50
 menu:
   main:
