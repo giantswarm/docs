@@ -1,5 +1,5 @@
 ---
-linkTitle: Creating environments for GitOps resources
+linkTitle: Creating environments for GitOps
 title: Creating environments for GitOps resources
 description: How to create different environments to deploy different resources, configurations or versions in different stages.
 weight: 70
