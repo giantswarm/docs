@@ -19,6 +19,8 @@ crd:
     - workloadcluster
   providers:
     - kvm
+  deprecation:
+    info: Support for KVM clusters has reached end of life and this CRD will be removed in future versions.
 layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
@@ -30,6 +32,10 @@ source_repository_ref: v5.0.0
 ---
 
 # KVMConfig
+<p class="well disclaimer">
+<i class="fa fa-warning"></i> <b>Deprecation:</b>
+Support for KVM clusters has reached end of life and this CRD will be removed in future versions.
+</p>
 
 <dl class="crd-meta">
 <dt class="fullname">Full name:</dt>

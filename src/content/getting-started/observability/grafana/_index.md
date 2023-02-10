@@ -1,7 +1,7 @@
 ---
 linkTitle: Grafana
 title: Grafana
-description: Guide explaning how to interact with our installation level grafana (accessing the metrics, creating custom dashboards).
+description: Guide explaining how to interact with our installation level grafana (accessing the metrics, creating custom dashboards).
 menu:
   main:
     identifier: getting-started-observability-grafana
