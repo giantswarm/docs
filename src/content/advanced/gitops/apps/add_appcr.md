@@ -23,7 +23,7 @@ Examples of creating apps are available in following locations:
 
 - An example of a directly configured App (the simplest use case - no configuration): an [app without configuration](https://github.com/giantswarm/gitops-template/tree/main//management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters/WC_NAME/apps/hello-world/)
 - An example of a directly configured App (with configuration): an [app that uses a configuration ConfigMap](https://github.com/giantswarm/gitops-template/tree/main//management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters/WC_NAME/apps/nginx-ingress-controller/)
-- An example of an App created from App Template is available in [WC_NAME/apps/nginx-from-template](https://github.com/giantswarm/gitops-template/tree/main//management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters/WC_NAME/apps/nginx-from-template/).
+- An example of an App created from an App Template is available in [WC_NAME/apps/nginx-from-template](https://github.com/giantswarm/gitops-template/tree/main//management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters/WC_NAME/apps/nginx-from-template/).
 
 ## Common steps
 
