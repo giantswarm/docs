@@ -58,7 +58,7 @@ export APP_USER_VALUES=CONFIGMAP_OR_SECRET_PATH
     --version {$APP_VERSION} > appcr.yaml
     ```
 
-    **Note**, you most likely want to provide a default configuration, so add any of the below flags to the previous command:
+**__Note__**, you most likely want to provide a default configuration, so add any of the below flags to the previous command:
 
     ```nohighlight
     --user-configmap ${APP_USER_VALUES}
