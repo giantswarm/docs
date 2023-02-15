@@ -79,7 +79,7 @@ export APP_NAME="${WC_NAME}-APP_NAME"
     --version ${APP_VERSION} > appcr.yaml
     ```
 
-    **Note**, you can optionally configure App with the user-provided values by adding below flags to the previous command:
+**__Note__**, you can optionally configure App with the user-provided values by adding the below flags to the previous command:
 
     ```nohighlight
     --user-configmap ${APP_USER_VALUES}
