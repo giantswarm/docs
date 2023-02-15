@@ -1,14 +1,14 @@
 ---
 linkTitle: Creating environments for GitOps
 title: Creating environments for GitOps resources
-description: How to create different environments to deploy different resources, configurations or versions in different stages.
+description: How to deploy resources, with different configurations or versions across several environments.
 weight: 70
 menu:
   main:
     parent: advanced-gitops
     identifier: advanced-gitops-environments
 user_questions:
-  - How can I create an environment for gitops resources?
+  - How can I manage different environments with GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 last_review_date: 2023-02-10
@@ -16,33 +16,24 @@ last_review_date: 2023-02-10
 
 # Add Workload Cluster environments
 
-You might want to set up multiple, similar Workload Clusters that serve as for example development,
-staging and production environments. You can utilize `bases` to achieve that. Let's take a look at the
-`/bases/environments` folder structure.
+You might want to set up multiple, similar Workload Clusters that serve as for example development, staging and production environments. You can utilize `bases` to achieve that. Let's take a look at the `/bases/environments` folder structure.
 
 ## General note
 
-It is possible to solve the environment and environment propagation problem in multiple ways, notably by:
+It is possible to solve the environment propagation problem in multiple ways, notably by:
 
 - using a multi-directory structure, where each environment is represented as a directory in a `main` branch of a single
   repository
 - using a multi-branch approach, where each branch corresponds to one environment, but they are in the same repo
-- using a multi-repo setup, where there's one root repository providing all the necessary templates, then there is one another
-  repository per environment.
+- using a multi-repo setup, where there's one root repository providing all the necessary templates, and then there is another repository per environment.
 
-Each of these approaches has pros and cons. We propose the multi-directory approach. The pros of it are:
-a single repo and branch serving as the source of truth for all the environments, very easy template sharing and
-relatively easy way to compare and promote configuration across environments. On the other hand, it might not be the
-best solution for access control, template versioning and also easy comparing of environments.
+Each of these approaches has pros and cons. Giant Swarm relies on the multi-directory approach for multiple reasons. It is a single repo and single branch which serves as the source of truth for all the environments. Easy for template sharing and a relatively simple way to compare and promote configuration across environments. On the other hand, it needs extra work for access control management, template versioning or environment drift detection.
 
 ## Environments
 
 We are creating a new `base` type called environment. Inside there will be two folders.
 
-The `stages` folder is how we propose to group environment specifications.
-There is a good reason for this additional layer of grouping. You can use this approach to have multiple
-different clusters - like the dev, staging, production - but also to have multiple different
-regions where you want to spin these clusters up.
+The `stages` folder is how we propose to group environment specifications. There is a good reason for this additional layer. You can use it for having multiple different clusters - like the dev, staging and production - but also to have multiple different regions where you want to spin these clusters up.
 
 The `regions` folder is how we propose to group specifications for configurations referred to different locations or regions in the different cloud providers or datacenters.
 
@@ -55,17 +46,15 @@ overrides the whole value of the same attribute coming from the other base. We'r
 In order to avoid config collisions, we are specifying different config changes in different environment folders. In our case:
 
 - `stages` should refer to versions of the cluster and apps running, and different configurations associated to the stage.
-- `regions` should contain configurations referred to locality, like netwroking or DNS zones.
+- `regions` should contain configurations referred to the locality, like networking or DNS zones.
 
-We're assuming that all the clusters using this environments pattern should in many regards look the same
-across all the environments. Still, each environment layer introduces some key differences, like app version being deployed
-for `dev/staging/prod` environments or a specific IP range, availability zones, certificates or ingresses config
-for regions like `eu-central/us-west`.
+We're assuming that all the clusters using this environments pattern should in many regards look the same across all the environments. Still, each environment layer introduces some key differences, like the app version being deployed for `dev/staging/prod` environments or a specific IP range, availability zones, certificates or ingress config for regions like `eu-central/us-west`.
 
 To create an environment template, you need to make a  directory in `environments` that describes the best the
-differentiating factor for that kind of environment, then you should create sub folder there for different possible values.
-For example, for multiple regions, we recommend putting region specific configuration into
-`/bases/environments/regions` folder and under there create e.g. `eu_central`, `us_west` folders.
+differentiating factor for that kind of environment, then you should create a sub folder there for different possible values.
+
+For example, for multiple regions, we recommend putting region-specific configurations into
+`/bases/environments/regions` folder and under there create e.g. `eu_central`, and `us_west` folders.
 
 Once your environment templates are ready, you can use them to create new clusters by placing cluster definitions
 in `/management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters`
@@ -79,7 +68,7 @@ mkdir -p bases/environments/stages/dev/example_cluster
 mkdir -p bases/environments/stages/prod/example_cluster
 ```
 
-Inside each folder we will create a `kustomization.yaml` file. This file will reference an already existent `base` to get the cluster creation resources and then add some extra confiurations or resources that will conform the cluster template for the environment.
+Inside each folder, we will create a `kustomization.yaml` file. This file will reference an already existent `base` to get the cluster creation resources and then add some extra configurations or resources that will conform to the cluster template for the environment.
 
 Let's see how to create these files for the different environments.
 
@@ -148,7 +137,7 @@ network:
   availabilityZoneUsageLimit: 1
 ```
 
-We want to set an specific version for some default apps installed in the cluster too, so we create a file `default_apps_config.yaml` with the specific values.
+We want to set a specific version for some default apps installed in the cluster too, so we create a file `default_apps_config.yaml` with the specific values.
 
 ```yaml
 userConfig:
@@ -220,9 +209,9 @@ patches:
 resources:
   - ../../../../../../../../bases/clusters/capa/v0.21.0/
 ```
-In this case we are setting the version of the base that we are using. See how to create versioned bases in the ["How to create bases" article](/advanced/gitops/bases/).
+In this case, we are setting the version of the base that we are using. See how to create versioned bases in the ["How to create bases" article](/advanced/gitops/bases/).
 
-Now, we are creating a configuration file `cluster_config.yaml` with the values we are changing from the cluster base for production. We can configure a complete different value set, even override new configurations from default.
+Now, we are creating a configuration file `cluster_config.yaml` with the values we are changing from the cluster base for production. We can configure a completely different value set, even override new configurations from default.
 
 ```yaml
 controlPlane:
@@ -237,7 +226,7 @@ network:
   availabilityZoneUsageLimit: 3
 ```
 
-We want now to set an different version for some default apps installed in the cluster (for example, we want to use a known stable version). Like in dev environment, we create a file `default_apps_config.yaml` with the specific values.
+We want now to set a different version for some default apps installed in the cluster (for example, we want to use a known stable version). Like in the dev environment, we create a file `default_apps_config.yaml` with the specific values.
 
 ```yaml
 userConfig:
@@ -269,7 +258,7 @@ bases/environments/stages/
         └── kustomization.yaml
 ```
 
-> In a similar way, we can base our stages in different cluster templates that we create from bases. We can create as many levels as we want, always keeping in mind properly setting the priorities of the config files.
+__Note__: In a similar way, we can base our stages on different cluster templates that we create from bases. We can create as many levels as we want, always keeping in mind properly setting the priorities of the config files.
 
 #### Region specific settings for the production cluster
 
@@ -295,7 +284,7 @@ controlPlane:
 nodeCIDR: "10.32.0.0/24"
 ```
 
-> These values are examples and need to be replaced by real values of the user account.
+__Note__: These values are examples and need to be replaced by real values of the user account.
 
 `kustomization.yaml`
 
@@ -325,9 +314,9 @@ patches:
 kind: Kustomization
 ```
 
-With these files we are creating a new `configmap` and adding it as an extra config in the cluster app that will create the cluster resources.
+With these files, we are creating a new `configmap` and adding it as an extra config in the cluster app that will create the cluster resources.
 
-Now, for the `us-west` region we create a `cluster_config.yaml` file with different configuration. We can copy the `kustomization.yaml` file from the other region as it will be the same.
+Now, for the `us-west` region we create a `cluster_config.yaml` file with a different configuration. We can copy the `kustomization.yaml` file from the other region as it will be the same.
 
 `cluster_config.yaml`
 
@@ -383,12 +372,12 @@ resources:
   - ../../../../../../../../bases/environments/regions/eu-central
 ```
 
-> Note that we use the extra configs feature of App CR to patch in additional layers of configurations for out Application.
+__Note__:  We use the extra configs feature of App CR to patch in additional layers of configurations for out Application.
 You can read more about this feature [here](https://docs.giantswarm.io/app-platform/app-configuration/#extra-configs).
 
 ## Tips for developing environments
 
-For complex clusters, you can end up merging a lot of layers of templates and configurations. In order to keep sanity, it's very important to stablish a good priority system and respect it every time.
+For complex clusters, you can end up merging a lot of layers of templates and configurations. In order to keep sanity, it's very important to establish a good priority system and respect it every time.
 
 For example, reserve priority values for different levels:
 
@@ -397,5 +386,4 @@ For example, reserve priority values for different levels:
 - 120 for environment region
 - 130 for cluster config
 
-You can check the [gitops-template](https://github.com/giantswarm/gitops-template/tree/main/) repository that contains severa examples of cluster bases and configuration layers. Under `tools` folder in this repository you can find the `fake-flux-build` script that helps
-you render and inspect the final result. For more information check `tools/README.md`.
+You can check the [gitops-template](https://github.com/giantswarm/gitops-template/tree/main/) repository which contains several examples of cluster bases and configuration layers. Under the `tools` folder in this repository, you can find the `fake-flux-build` script that helps you render and inspect the final result. For more information check `tools/README.md`.
