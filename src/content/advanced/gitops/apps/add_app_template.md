@@ -70,7 +70,7 @@ export APP_USER_VALUES=CONFIGMAP_OR_SECRET_PATH
     Reference [the App Configuration](https://docs.giantswarm.io/app-platform/app-configuration/) for more details about
     how to properly create the respective ConfigMaps or Secrets.
 
-    If you want to provide a default config, we can use use the ConfigMap generator feature of `kustomize`. This allows us to use a pure YAML file for the configuration, without the wrapping into a ConfigMap. Still, for Secrets we need to encrypt them as a Secret object and the generator approach won't work. Refer our [adding an App](./add_appcr.md) docs to check how to add and encrypt a Secret. For configuration that can be used as a ConfigMap, just add the content to a `default_config.yaml` file.
+    If you want to provide a default config, we can use use the ConfigMap generator feature of `kustomize`. This allows us to use a pure YAML file for the configuration, without wrapping it into a ConfigMap. Still, for Secrets we need to encrypt them as a Secret object and the generator approach won't work. Refer to our [adding an App](./add_appcr.md) docs to check how to add and encrypt a Secret. For configuration that can be used as a ConfigMap, just add the content to a `default_config.yaml` file.
 
 1. Add the `kustomization.yaml` file, adding an optional Secret as a resource and a ConfigMapGenerator for plain text config:
 
