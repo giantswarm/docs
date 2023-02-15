@@ -37,11 +37,7 @@ The `stages` folder is how we propose to group environment specifications. There
 
 The `regions` folder is how we propose to group specifications for configurations referred to different locations or regions in the different cloud providers or datacenters.
 
-> Please note that if you want to use multiple environment templates to create a single cluster
-that uses `App CR`s for deployments, like you would like to use `dev` out of `staging` layout to set app configuration
-and then use `east` from the `data-centers` to set the IP ranges, you will run into issues around merging
-configurations, as currently one configuration source (i.e. `ConfigMap` in `spec.config.configMap`) completely
-overrides the whole value of the same attribute coming from the other base. We're working to remove this limitation.
+__Note__: If you want to use multiple environment templates to create a single cluster that uses `App CR`s for deployments, for example, you would like to use `dev` layout to set app configuration and then use `east` from the `data-centers` to set the IP ranges, you might run into issues around merging configurations, as currently one configuration source (i.e. `ConfigMap` in `spec.config.configMap`) completely overrides the whole value of the same attribute coming from the other base. We're working to remove this limitation. This means for example that setting `machinePools` in several files will result on selecting only the full block of the file with higher priority.
 
 In order to avoid config collisions, we are specifying different config changes in different environment folders. In our case:
 
@@ -209,6 +205,7 @@ patches:
 resources:
   - ../../../../../../../../bases/clusters/capa/v0.21.0/
 ```
+
 In this case, we are setting the version of the base that we are using. See how to create versioned bases in the ["How to create bases" article](/advanced/gitops/bases/).
 
 Now, we are creating a configuration file `cluster_config.yaml` with the values we are changing from the cluster base for production. We can configure a completely different value set, even override new configurations from default.
