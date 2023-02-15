@@ -56,7 +56,7 @@ export APP_NAME="${WC_NAME}-APP_NAME"
 
 ## Adding App directly
 
-1. Set remaining env variables
+1. Set remaining environment variables
 
     ```nohighlight
     export APP_VERSION=APP_VERSION
