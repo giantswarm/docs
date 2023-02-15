@@ -86,7 +86,7 @@ export APP_NAME="${WC_NAME}-APP_NAME"
     --user-secret ${APP_USER_VALUES}
     ```
 
-    **Note**, We're including `${cluster_name}` in the app name to avoid a problem when two
+**__Note__**, We're including `${cluster_name}` in the app name to avoid a problem when two
     or more clusters in the same organization want to deploy the same app with its
     default name.
 
@@ -161,7 +161,7 @@ export APP_NAME="${WC_NAME}-APP_NAME"
     EOF
     ```
 
-    Please note, that the block marked "configuration override block" is needed only if you override the default (from the Template) config and the `- secret.enc.yaml` only if you override the secret. If you don't override any, skip both parts in `kustomization.yaml` and also skip next three configuration points below.
+    Please note, that the block marked "configuration override block" is needed only if you override the default (from the Template) config and the `- secret.enc.yaml` only if you override the secret. In case you don't override any, skip both parts in `kustomization.yaml` and also the next three configuration points below.
 
 1. (optional - if you override either config or secret) Create a patch configuration file, that will enhance your App Template with a `userConfig` attribute (refer to [the App Configuration](https://docs.giantswarm.io/app-platform/app-configuration/) for more details about how `config` and `userConfig` properties of App CR are used).
 

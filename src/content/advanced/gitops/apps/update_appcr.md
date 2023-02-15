@@ -20,7 +20,7 @@ Follow the below instructions to update an existing App.
 
 ## Export environment variables
 
-**Note**, Management Cluster codename, Organization name, Workload Cluster name and App name are needed in multiple places across this instruction, the least error prone way of providing them is by exporting as environment variables:
+**__Note__**, Management Cluster codename, Organization name, Workload Cluster name and App name are needed in multiple places across this instruction, the least error prone way of providing them is by exporting them as environment variables:
 
 ```sh
 export MC_NAME=CODENAME
@@ -31,7 +31,7 @@ export APP_NAME=APP_NAME
 
 ## Updating App
 
-  App update and reconfiguration must be done in a correct resource. If you want to reconfigure a property of App CR, like application version, you have to edit the `appcr.yaml` file. If you want to edit the plain text or encrypted configuration, you have to edit the relevant resource type.
+  App update and reconfiguration must be done in the correct resource. If you want to reconfigure a property of App CR, like the application version, you have to edit the `appcr.yaml` file. If you want to edit the plain text or encrypted configuration, you have to edit the relevant resource type.
 
 ### Updating App CR
 

@@ -55,7 +55,7 @@ export APP_USER_VALUES=CONFIGMAP_OR_SECRET_PATH
     --cluster ${WC_NAME} \
     --name ${APP_NAME} \
     --namespace ${APP_NAMESPACE} \
-    --version {$APP_VERSION} > appcr.yaml
+    --version ${APP_VERSION} > appcr.yaml
     ```
 
 **__Note__**, you most likely want to provide a default configuration, so add any of the below flags to the previous command:

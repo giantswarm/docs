@@ -16,7 +16,7 @@ owner:
 
 # Enable automatic updates of an existing App
 
-Follow the below instructions to tell Flux to automatically update an existing App. Automatic update means that Flux will scan a remote repository for you and automatically update your deployed application version while also creating commits in your repository to reflect these changes.
+Follow the below instructions to instruct Flux on how to automatically update an existing App. Automatic update means Flux will scan a remote repository and automatically update your deployed application version while also creating commits in your repository to reflect these changes.
 
 Configuring automated version updates requires a few additional Flux API objects to be defined, namely:
 
@@ -27,7 +27,7 @@ Configuring automated version updates requires a few additional Flux API objects
 
 Flux will watch for new Docker image tags for your App and use them to update the `.spec.version` field in the App CR. It will do it by pushing commits to this repository.
 
-**Note**, in order to use this mechanism you have to make sure that image tags of your App corresponds to its version, otherwise this process will result in setting meaningless version in the `.spec.version` field.
+**__Note__**, in order to use this mechanism you have to make sure that image tags of your App correspond to its version, otherwise this process will result in setting a meaningless version in the `.spec.version` field.
 
 ## Example
 
@@ -35,7 +35,7 @@ An example of an App automated updates is available in the [gitops-template repo
 
 ## Export environment variables
 
-**Note**, Management Cluster codename, Organization name, Workload Cluster name and some App-related values are needed in multiple places across this instruction, the least error prone way of providing them is by exporting as environment variables:
+**__Note__**, Management Cluster codename, Organization name, Workload Cluster name and some App-related values are needed in multiple places across this instruction, the least error prone way of providing them is by exporting them as environment variables:
 
 ```nohighlight
 export MC_NAME=CODENAME
@@ -134,7 +134,7 @@ scan for new tags:
     EOF
     ```
 
-    **Note**, the `filterTags` is processed first and gives opportunity to filter the image tags before they are considered by the policy rule. Here, it is used to skip the heading `v` in version upon passing it to the policy.
+    **__Note__**, the `filterTags` is processed first and gives the opportunity to filter the image tags before they are considered by the policy rule. Here, it is used to skip the heading `v` in the version upon passing it to the policy.
 
     Check [Flux docs](https://fluxcd.io/docs/components/image/imagepolicies/#examples) for more examples of possible policies.
 
