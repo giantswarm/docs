@@ -79,14 +79,14 @@ export APP_NAME="${WC_NAME}-APP_NAME"
     --version ${APP_VERSION} > appcr.yaml
     ```
 
-**__Note__**, you can optionally configure App with the user-provided values by adding the below flags to the previous command:
+__Note__: you can optionally configure App with the user-provided values by adding the below flags to the previous command:
 
     ```nohighlight
     --user-configmap ${APP_USER_VALUES}
     --user-secret ${APP_USER_VALUES}
     ```
 
-**__Note__**, We're including `${cluster_name}` in the app name to avoid a problem when two
+__Note__: We're including `${cluster_name}` in the app name to avoid a problem when two
     or more clusters in the same organization want to deploy the same app with its
     default name.
 
