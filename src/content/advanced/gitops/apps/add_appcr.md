@@ -31,7 +31,7 @@ Please follow these steps when installing an App directly as well as using App T
 
 ### Export environment variables
 
-**__Note__**, Management Cluster codename, Organization name, Workload Cluster name and several App-related values are needed in multiple places across this instruction, the least error prone way of providing them is by exporting them as environment variables:
+__Note__: Management Cluster codename, Organization name, Workload Cluster name and several App-related values are needed in multiple places across this instruction, the least error prone way of providing them is by exporting them as environment variables:
 
 ```nohighlight
 export MC_NAME=CODENAME
