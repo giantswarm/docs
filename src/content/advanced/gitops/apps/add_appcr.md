@@ -15,7 +15,7 @@ owner:
 ---
 # Add a new App to a Workload Cluster
 
-Follow the instructions below to add a new App to a cluster managed in this repository. You can add an App directly (without any intermediate step) or use an [App Template](/advanced/gitops/apps/advanced-gitops-apps-add-app-template). The documentation below shows common steps as well as what is different in both cases.
+Follow the instructions below to add a new App to a workload cluster managed in this repository. You can add an App directly (without any intermediate step) or use an [App Template](/advanced/gitops/apps/advanced-gitops-apps-add-app-template). The documentation below shows common steps as well as what is different in both cases.
 
 ## Examples
 
