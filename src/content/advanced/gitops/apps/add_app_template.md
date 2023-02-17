@@ -65,7 +65,7 @@ __Note__: you most likely want to provide a default configuration, so add any of
     --user-secret ${APP_USER_VALUES}
     ```
 
-**__Note__**, We're including `${cluster_name}` in the app name to avoid a problem when two or more clusters in the same organization want to deploy the same app with its default name.
+__Note__: We're including `${cluster_name}` in the app name to avoid a problem when two or more clusters in the same organization want to deploy the same app with its default name.
 
     Reference [the App Configuration](https://docs.giantswarm.io/app-platform/app-configuration/) for more details about
     how to properly create the respective ConfigMaps or Secrets.
