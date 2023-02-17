@@ -24,7 +24,7 @@ An example of an App Template is available in the [gitops-template repository "b
 
 ## Export environment variables
 
-**__Note__**, Management Cluster codename, Organization name, Workload Cluster name and several App-related values are needed in multiple places across this instruction, the least error prone way of providing them is by exporting them as environment variables:
+**__Note__**, Management Cluster codename, Organization name, Workload Cluster name and several App-related values are needed in multiple places across this instructions, the least error prone way of providing them is by exporting them as environment variables:
 
 ```nohighlight
 export WC_NAME=CLUSTER_NAME
