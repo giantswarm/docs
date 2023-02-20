@@ -1,7 +1,7 @@
 ---
 linkTitle: Amazon Elastic File System (EFS)
 title: Using persistent volumes on AWS with EFS
-description: Tutorial on how to use dynamically provisioned Persistent Volumes on a cluster running on Amazon Web Services with EFS
+description: Tutorial on how to use dynamically provisioned Persistent Volumes on a cluster running on Amazon Web Services with EFS.
 weight: 30
 menu:
   main:
@@ -16,7 +16,7 @@ aliases:
   - /guides/using-persistent-volumes-on-aws-with-efs-csi-driver/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2021-01-01
+last_review_date: 2022-12-07
 ---
 
 If your cluster is running in the cloud on Amazon Web Services (AWS) the most common way to store data is using EBS volumes with the [dynamic provisioner](/guides/using-persistent-volumes-on-aws-with-ebs-csi-driver/). Sometimes EBS is not the optimal solution.
@@ -55,7 +55,7 @@ Before installing the provisioner in Kubernetes we will need to create the EFS i
 
 To install the EFS CSI driver in the workload cluster, you will need to follow these steps:
 
-1. Access the [web interface]({{< relref "/ui-api/web" >}}) and select the cluster on which you want to install the EFS CSI driver.
+1. Access the [web interface]({{< relref "/platform-overview/web-interface" >}}) and select the cluster on which you want to install the EFS CSI driver.
 2. Open the Apps tab.
 3. Click the Install App button
 4. Select the Giant Swarm Playground catalog.

@@ -1,12 +1,12 @@
 ---
 linkTitle: Cluster size and autoscaling
 title: Cluster size and autoscaling
-description: This article explains options you have for defining the size of a Kubernetes cluster with Giant Swarm, and automatically scaling it
+description: This article explains options you have for defining the size of a Kubernetes cluster with Giant Swarm, and automatically scaling it.
 weight: 100
 menu:
   main:
     parent: getting-started
-last_review_date: 2020-10-07
+last_review_date: 2022-12-07
 aliases:
   - /basics/cluster-size-autoscaling/
   - /kubernetes/cluster-size-autoscaling/
@@ -86,9 +86,9 @@ In workload clusters without autoscaling support, the number of Ingress Controll
 
 - [Cluster Autoscaler advanced configuration]({{< relref "/advanced/cluster-autoscaler" >}})
 - [Recommendations and Best Practices regarding cluster size]({{< relref "/getting-started/best-practices#cluster-sizing" >}})
-- [`gsctl create cluster`]({{< relref "/ui-api/gsctl/create-cluster" >}}): Creating a cluster
-- [`gsctl scale cluster`]({{< relref "/ui-api/gsctl/scale-cluster" >}}): Scaling a cluster
-- [`gsctl show cluster`]({{< relref "/ui-api/gsctl/show-cluster" >}}): Inspecting a cluster
+- [`gsctl create cluster`]({{< relref "/use-the-api/gsctl/create-cluster" >}}): Creating a cluster
+- [`gsctl scale cluster`]({{< relref "/use-the-api/gsctl/scale-cluster" >}}): Scaling a cluster
+- [`gsctl show cluster`]({{< relref "/use-the-api/gsctl/show-cluster" >}}): Inspecting a cluster
 - [API: Create cluster](/api/#operation/addCluster)
 - [API: Modify cluster](/api/#operation/modifyCluster)
 - [API: Get cluster details](/api/#operation/getCluster)

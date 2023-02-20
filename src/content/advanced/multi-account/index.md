@@ -14,7 +14,7 @@ aliases:
   - /basics/multi-account/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2021-01-01
+last_review_date: 2022-12-07
 ---
 
 The Giant Swarm architecture distinguishes between the management cluster and workload clusters. The management cluster enables the creation and operation of workload clusters and the workload cluster(s) run your Kubernetes workloads.
@@ -71,14 +71,14 @@ To prepare your credentials, either as AWS account roles or as an Azure service 
 You can then assign the credentials to your organization in several ways:
 
 - In the Giant Swarm web UI via the organization details page
-- In `gsctl` using the [`update organization set-credentials`]({{< relref "/ui-api/gsctl/update-org-set-credentials" >}}) command
+- In `gsctl` using the [`update organization set-credentials`]({{< relref "/use-the-api/gsctl/update-org-set-credentials" >}}) command
 - Via the [Giant Swarm REST API](/api/#operation/addCredentials)
 
 All workload clusters created for that organization will then use the credentials provided to the organization and will reside in the account/subscription associated with them.
 
-When inspecting details of such a cluster, or using the [`gsctl show cluster`]({{< relref "/ui-api/gsctl/show-cluster" >}}) command, we display cloud provider details in the case the workload cluster does not reside in the default account.
+When inspecting details of such a cluster, or using the [`gsctl show cluster`]({{< relref "/use-the-api/gsctl/show-cluster" >}}) command, we display cloud provider details in the case the workload cluster does not reside in the default account.
 
 ## Further reading
 
-- [The Giant Swarm AWS Architecture]({{< relref "/general/architecture/aws" >}}) explains the setup of Giant Swarm on AWS, in more detail.
-- [The Giant Swarm Azure Architecture]({{< relref "/general/architecture/azure" >}}) explains the setup of Giant Swarm on Azure, in more detail.
+- [The Giant Swarm AWS Architecture]({{< relref "/platform-overview/cluster-management/vintage/aws" >}}) explains the setup of Giant Swarm on AWS, in more detail.
+- [The Giant Swarm Azure Architecture]({{< relref "/platform-overview/cluster-management/vintage/azure" >}}) explains the setup of Giant Swarm on Azure, in more detail.

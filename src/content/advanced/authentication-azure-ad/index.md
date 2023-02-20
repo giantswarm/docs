@@ -175,4 +175,4 @@ Access is revoked as soon as the user has either been removed from a bound group
 - [Securing your Cluster with RBAC and PSP
 ]({{< relref "/getting-started/rbac-and-psp" >}})
 - [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
-- [Azure Active Directory plugin for client authentication](https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/client-go/plugin/pkg/client/auth/azure/README.md)
+- [Azure Active Directory plugin for client authentication](https://github.com/jenkinsci/azure-credentials-plugin/blob/master/README.md)

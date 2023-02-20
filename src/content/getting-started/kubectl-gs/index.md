@@ -2,7 +2,7 @@
 linkTitle: kubectl-gs introduction
 title: Getting started with kubectl-gs
 description: The Giant Swarm Management API is easily accessible by means of kubectl-gs, a kubectl plugin developed by Giant Swarm. This tutorial guides you throughout some of the most important features of the tool.
-weight: 40
+weight: 30
 menu:
   main:
     parent: getting-started
@@ -14,7 +14,7 @@ user_questions:
 last_review_date: 2022-02-28
 ---
 
-As better explained in the [reference]({{< relref "/ui-api/kubectl-gs" >}}), kubectl-gs is a CLI and a kubectl plugin (invoked as kubectl gs) for the Giant Swarm Management API. In this guide, you will learn how to use `kubectl-gs` for your daily tasks on the Giant Swarm installation.
+As better explained in the [reference]({{< relref "/use-the-api/kubectl-gs" >}}), kubectl-gs is a CLI and a kubectl plugin (invoked as kubectl gs) for the Giant Swarm Management API. In this guide, you will learn how to use `kubectl-gs` for your daily tasks on the Giant Swarm installation.
 
 ## Step 1: Installing the necessary tools
 
@@ -74,7 +74,7 @@ testing                 97d
 giantswarm              97d
 ```
 
-You can see organizations as "buckets" for different entities. More information can be found [here]({{< relref "/general/organizations" >}}), but in general we can say that they are a way to isolate clusters, apps, etc. between different teams or environments.
+You can see organizations as "buckets" for different entities. More information can be found [here]({{< relref "/platform-overview/organizations" >}}), but in general we can say that they are a way to isolate clusters, apps, etc. between different teams or environments.
 
 Finally, run the `kubectl gs get clusters -A` command, which will show you all the clusters managed by your installation. The `-A` flag stands for *all namespaces*.
 
@@ -237,4 +237,4 @@ For instance:
 
 Cluster updates can be easily performed straight away or scheduled for a specific moment in time. The latter is a feature that many customers find very useful because it allows them to schedule updates without the need to physically be there to "press the button".
 
-More information on updating a cluster can be found [here](https://docs.giantswarm.io/ui-api/kubectl-gs/update-cluster/).
+More information on updating a cluster can be found [here](https://docs.giantswarm.io/use-the-api/kubectl-gs/update-cluster/).

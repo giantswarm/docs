@@ -59,7 +59,7 @@ lint:
 	    --config .markdownlint.yaml \
 	    --ignore README.md \
 		--ignore ./src/content/changes \
-		--ignore ./src/content/ui-api/management-api/crd \
+		--ignore ./src/content/use-the-api/management-api/crd \
 		./src
 
 # Validate front matter in all pages.
@@ -129,7 +129,7 @@ linkcheck:
 	docker run --rm -ti --name linkchecker \
 		-v ${PWD}/volumes/linkchecker:/workdir:rw \
 		-w /workdir \
-		linkchecker \
+		ghcr.io/linkchecker/linkchecker \
 		https://docs.giantswarm.io \
 		-t 1 \
 		--file-output csv/linkcheck.csv \

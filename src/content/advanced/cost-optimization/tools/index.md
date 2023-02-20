@@ -19,7 +19,7 @@ Adoption of Kubernetes still requires monitoring cost drivers. Improving resourc
 
 ## Visualization and Optimization
 
-- [Kubecost](https://www.kubecost.com/), an open core cost visualization tool (now with a nice [plugin](https://blog.kubecost.com/blog/kubectl-cost-kubernetes-monitoring-cli/) included)
+- [Kubecost](https://www.kubecost.com/), an open source cost visualization tool, with a kubectl [plugin](https://blog.kubecost.com/blog/kubectl-cost-kubernetes-monitoring-cli/) included. Requires a daemon to be running in the cluster.
 - Cloud Provider tooling:
     - [AWS Cost Explorer](https://aws.amazon.com/es/aws-cost-management/aws-cost-explorer/)
     - [Azure Cost Management and Billing Service](https://azure.microsoft.com/en-us/services/cost-management/)
@@ -30,9 +30,7 @@ Adoption of Kubernetes still requires monitoring cost drivers. Improving resourc
     - [Azure Monitor data source integration](https://grafana.com/grafana/plugins/grafana-azure-monitor-datasource/)
 - [Goldilocks](https://github.com/FairwindsOps/goldilocks), a tool for refine and discover the right application resource settings
 - There are a lot of payed solutions offering dashboard oriented services that track costs of Kubernetes Applications like:
-    - [Replex](https://www.replex.io/)
     - [Cloudability](https://www.apptio.com/products/cloudability/)
-    - [Opsani](https://opsani.com/) (Also manages resource assignation using AI)
     - [Kubernetes Opex Analytics](https://github.com/rchakode/kube-opex-analytics)
     - [CloudHealth](https://www.cloudhealthtech.com/)
 

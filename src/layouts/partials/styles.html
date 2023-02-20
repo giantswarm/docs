@@ -3,7 +3,6 @@
 {{- $cssOpts      := (dict "targetPath" $cssTarget "outputStyle" "compressed") }}
 {{- $css := resources.Get $sass | toCSS $cssOpts | minify | fingerprint }}
 
-<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto+Slab:300,700|Roboto:300,400,500,700,300italic|Inconsolata:400,700">
 <link rel="stylesheet" type="text/css" href="https://s.giantswarm.io/giantswarmio/0.10.18/1/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn2.hubspot.net/hubfs/273774/fontawesome/v5/latest.css">
 <link rel="stylesheet" type="text/css" href="{{ $css.RelPermalink }}" integrity="{{ htmlUnescape $css.Data.Integrity }}">

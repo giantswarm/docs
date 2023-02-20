@@ -16,13 +16,13 @@ user_questions:
   - How do I configure NGINX Ingress Controller for internal traffic?
   - How do I override the NodePorts on KVM Ingresses?
   - How do I configure NGINX Ingress Controller to allow weak ciphers?
-last_review_date: 2021-09-01
+last_review_date: 2022-07-19
 ---
 
 NGINX ingress controller handles [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) resources, routing traffic from outside the Kubernetes cluster to services within the cluster.
 
-Starting with [NGINX IC v1.8.0](https://docs.giantswarm.io/changes/managed-apps/nginx-ingress-controller-app/v1.8.0/), one can install multiple NGINX ingress controllers in a Kubernetes cluster. The optional NGINX Ingress Controller can be [installed as an App on your cluster]({{< relref "/content/getting-started/ingress-controller/index.md" >}}).
-[NGINX IC v2.2.0](https://docs.giantswarm.io/changes/managed-apps/nginx-ingress-controller-app/v2.2.0/) will start installing a IngressClass with default name `nginx` and controller value `k8s.io/ingress-nginx`.
+Starting with [NGINX IC v1.8.0](/changes/managed-apps/nginx-ingress-controller-app/v1.8.0/), one can install multiple NGINX ingress controllers in a Kubernetes cluster. The optional NGINX Ingress Controller can be [installed as an App on your cluster]({{< relref "/content/getting-started/ingress-controller/index.md" >}}).
+[NGINX IC v2.2.0](/changes/managed-apps/nginx-ingress-controller-app/v2.2.0/) will start installing a IngressClass with default name `nginx` and controller value `k8s.io/ingress-nginx`.
 
 Some use cases for this might be:
 
@@ -63,7 +63,7 @@ spec:
 
 Not specifying the ingressClassName will lead to no ingress controller claiming your Ingress. Specifying a value which does not match the class of any existing ingress controllers will result in all ingress controllers ignoring the ingress.
 
-Additionally, please ensure the Ingress Class of each of your Ingress Controllers do not collide with each other and with the [preinstalled Ingress Controllers in legacy clusters]({{< relref "/content/general/releases/index.md#apps" >}}). For the community supported NGINX Ingress Controller this is described in the [official documentation](https://kubernetes.github.io/ingress-nginx/user-guide/multiple-ingress/).
+Additionally, please ensure the Ingress Class of each of your Ingress Controllers do not collide with each other and with the [preinstalled Ingress Controllers in legacy clusters]({{< relref "/platform-overview/cluster-management/releases/index.md#apps" >}}). For the community supported NGINX Ingress Controller this is described in the [official documentation](https://kubernetes.github.io/ingress-nginx/user-guide/multiple-ingress/).
 
 ## Separating public from internal ingress traffic
 
@@ -113,9 +113,23 @@ For NGINX IC running on on-prem (KVM) workload clusters there's no out-of-the-bo
 
 More information on this topic can be found in document [Services of type LoadBalancer]({{< relref "/content/advanced/ingress/service-type-loadbalancer/index.md" >}}).
 
+It is also possible to only install a single Nginx Ingress Controller App and to delegate both internal and external traffic to it. Here is a minimal working example on how to achieve this goal.
+
+```yaml
+controller:
+  service:
+    public: true  # default value
+    subdomain: "ingress"  # default value
+    internal:
+      enabled: true  # default is `false`
+      subdomain: "ingress-internal"  # default value
+```
+
+In other words, it is sufficient to set `controller.service.internal.enabled` to `true` to create two services: one for public traffic and one for private one. On cloud providers, the Services we create will be of type `LoadBalancer`; on premise, depending on the platform, they might be either of type `LoadBalancer` or `NodePort`.
+
 ## Using weak ciphers for legacy clients
 
-In [NGINX IC App v1.2.0](https://github.com/giantswarm/nginx-ingress-controller-app/blob/master/CHANGELOG.md#120-2020-01-21), there was a notable security improvement: weak SSL ciphers were removed from the default configuration. Some older clients (like web browsers, http libraries in apps) could no longer establish secure connections with cluster services exposed via new NGINX. This is because these clients only supported SSL ciphers that got removed.
+In [NGINX IC App v1.2.0](https://github.com/giantswarm/nginx-ingress-controller-app/blob/main/CHANGELOG.md#120-2020-01-21), there was a notable security improvement: weak SSL ciphers were removed from the default configuration. Some older clients (like web browsers, http libraries in apps) could no longer establish secure connections with cluster services exposed via new NGINX. This is because these clients only supported SSL ciphers that got removed.
 
 With single NGINX, one could restore weak SSL ciphers configuration in order to support services with older clients until clients get upgraded. Problem with this approach, since SSL ciphers are global settings, was that changing default SSL ciphers back by restoring weak ciphers would apply to all Ingresses and service behind them, not just the one with old clients.
 
@@ -143,6 +157,6 @@ For the second NGINX IC App installation, ingress class and host name subdomain 
 
 - [Services of type LoadBalancer]({{< relref "/content/advanced/ingress/service-type-loadbalancer/index.md" >}})
 - [Installing an Ingress Controller]({{< relref "/content/getting-started/ingress-controller/index.md" >}})
-- [NGINX IC App configuration options](https://github.com/giantswarm/nginx-ingress-controller-app/blob/master/helm/nginx-ingress-controller-app/values.yaml)
+- [NGINX IC App configuration options](https://github.com/giantswarm/nginx-ingress-controller-app/blob/main/helm/nginx-ingress-controller-app/values.yaml)
 - [Upstream ingress-nginx configuration documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)
 - [Upstream ingress-nginx multi-nginx documentation](https://kubernetes.github.io/ingress-nginx/user-guide/multiple-ingress/)

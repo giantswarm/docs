@@ -12,14 +12,14 @@ user_questions:
   - How can I influence the disruption a cluster upgrade will cause?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2021-01-01
+last_review_date: 2022-12-07
 ---
 
 {{< platform_support_table aws="alpha=v12.7.0" >}}
 
 ## Introduction
 
-Cluster upgraded, described in detail in our [cluster upgrades reference]({{< relref "/general/cluster-upgrades" >}})), can cause disruption on workloads, if the upgrade requires upgrading worker nodes.
+Cluster upgraded, described in detail in our [cluster upgrades reference]({{< relref "/platform-overview/cluster-management/cluster-upgrades" >}})), can cause disruption on workloads, if the upgrade requires upgrading worker nodes.
 
 We provide two ways of limiting the amount of disruption:
 
@@ -30,7 +30,7 @@ As worker [node pools]({{< relref "/advanced/node-pools" >}}) on AWS are based o
 
 Configurability of these details has been introduced with workload cluster release v12.7.0 for AWS. The feature is currently in an early stage and its behaviour may change in the near future.
 
-Adjustments to these settings require using the [Management API]({{< relref "/ui-api/management-api" >}}) to edit the [`AWSCluster`]({{< relref "/ui-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) resource of the cluster (for cluster-wide settings) or the [`AWSMachineDeployment`]({{< relref "/ui-api/management-api/crd/awsmachinedeployments.infrastructure.giantswarm.io.md" >}}) of an individual node pool.
+Adjustments to these settings require using the [Management API]({{< relref "/use-the-api/management-api" >}}) to edit the [`AWSCluster`]({{< relref "/use-the-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) resource of the cluster (for cluster-wide settings) or the [`AWSMachineDeployment`]({{< relref "/use-the-api/management-api/crd/awsmachinedeployments.infrastructure.giantswarm.io.md" >}}) of an individual node pool.
 
 ## Maximum batch size {#maximum-batch-size}
 
@@ -48,8 +48,8 @@ alpha.aws.giantswarm.io/update-max-batch-size
 
 must be set
 
-- on the [`AWSCluster`]({{< relref "/ui-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) resource, to be applied as a default to **all node pools** of the cluster.
-- on the [`AWSMachineDeployment`]({{< relref "/ui-api/management-api/crd/awsmachinedeployments.infrastructure.giantswarm.io.md" >}}) resource, to be effective for only **one node pool**. A value here will override any value specified on the `AWSCluster` level.
+- on the [`AWSCluster`]({{< relref "/use-the-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) resource, to be applied as a default to **all node pools** of the cluster.
+- on the [`AWSMachineDeployment`]({{< relref "/use-the-api/management-api/crd/awsmachinedeployments.infrastructure.giantswarm.io.md" >}}) resource, to be effective for only **one node pool**. A value here will override any value specified on the `AWSCluster` level.
 
 You have two options to configure the maximum batch size:
 
@@ -102,8 +102,8 @@ alpha.aws.giantswarm.io/update-pause-time
 
 Again, the setting can be defined on two levels:
 
-- on the [`AWSCluster`]({{< relref "/ui-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) resource, to be applied as a default to **all node pools** of the cluster.
-- on the [`AWSMachineDeployment`]({{< relref "/ui-api/management-api/crd/awsmachinedeployments.infrastructure.giantswarm.io.md" >}}) resource, to be effective for only **one node pool**. A value here will override any value specified on the `AWSCluster` level.
+- on the [`AWSCluster`]({{< relref "/use-the-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) resource, to be applied as a default to **all node pools** of the cluster.
+- on the [`AWSMachineDeployment`]({{< relref "/use-the-api/management-api/crd/awsmachinedeployments.infrastructure.giantswarm.io.md" >}}) resource, to be effective for only **one node pool**. A value here will override any value specified on the `AWSCluster` level.
 
 The value must be a string in the ISO 8601 duration format. Value examples:
 
@@ -141,6 +141,6 @@ metadata:
 
 ## Further reading
 
-- [Cluster upgrades reference]({{< relref "/general/cluster-upgrades" >}})
+- [Cluster upgrades reference]({{< relref "/platform-overview/cluster-management/cluster-upgrades" >}})
 - [Node pools]({{< relref "/advanced/node-pools" >}})
-- [Management API]({{< relref "/ui-api/management-api" >}})
+- [Management API]({{< relref "/use-the-api/management-api" >}})

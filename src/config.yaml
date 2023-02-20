@@ -23,9 +23,9 @@ markup:
 
 menu:
   main:
-  - identifier: general
-    name: General
-    url: /general/
+  - identifier: platform-overview
+    name: Platform Overview
+    url: /platform-overview/
     weight: 10
   - identifier: getting-started
     name: Getting started
@@ -35,26 +35,14 @@ menu:
     name: Advanced setup
     url: /advanced/
     weight: 30
-  - identifier: ui-api
-    name: UIs and APIs
-    url: /ui-api/
+  - identifier: use-the-api
+    name: Use the API
+    url: /use-the-api/
     weight: 40
-  - identifier: app-platform
-    name: App platform
-    url: /app-platform/
+  - identifier: support-training
+    name: Support & Training
+    url: /support/
     weight: 50
-  - identifier: security
-    name: Security
-    url: /security/
-    weight: 60
-  - identifier: kubernetes
-    name: Kubernetes basics
-    url: /kubernetes/
-    weight: 70
-  - identifier: reference
-    name: Reference
-    url: /reference/
-    weight: 80
   - identifier: changes
     name: Changes and releases
     url: /changes/

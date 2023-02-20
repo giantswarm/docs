@@ -1,11 +1,11 @@
 ---
 linkTitle: Best practices
 title: Recommendations and best practices
-description: Recommendations and best practices around cluster and node sizing as well as multi-tenant setups
+description: Recommendations and best practices around cluster and node sizing as well as multi-tenant setups.
 weight: 110
 menu:
   main:
-    parent: getting-started
+    parent: support-training
 aliases:
   - /guides/recommendations-and-best-practices/
   - /kubernetes/best-practices/
@@ -17,7 +17,7 @@ user_questions:
   - How should I separate concerns using several clusters?
   - How many worker nodes should my clusters have?
   - How many control plane nodes should I run?
-last_review_date: 2021-01-01
+last_review_date: 2022-12-07
 ---
 
 Keep in mind that these recommendations are just basic rules-of-thumb that you should adapt to your needs.
@@ -110,7 +110,7 @@ The downside to the multi-tenant single cluster approach is that it, as mentione
 
 ## Further reading
 
-- [Creating clusters with gsctl]({{< relref "/ui-api/gsctl/create-cluster" >}})
+- [Creating clusters with gsctl]({{< relref "/use-the-api/gsctl/create-cluster" >}})
 - [Cluster Size and Autoscaling]({{< relref "/getting-started/cluster-size-autoscaling" >}})
 - [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
 - [Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/)

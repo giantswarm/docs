@@ -71,85 +71,9 @@ Adding the annotation `'giantswarm.io/keep': 'true'` makes it possible for custo
 
 Taking into the consideration the use case of scaling down and silencing clusters for the weekends we have tested a following setup with CronJobs that can be scheduled to perform the actions.
 
-### Permissions setup for the CronJob
-
-The first step to apply any Cron Jobs that can create silences and scale down the clusters is to define a set of permissions that are assigned to the given task.
-Following CronJob RBAC example provides required setup for the actual tasks to run in the future. Please adjust the Organization parameter accoringly to your Workload Cluster resources location.
-
-```yaml
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: silences-customer-rbac
-  namespace: {YOUR_ORGANIZATION-NAMESPACE}
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: silences-customer-rbac
-  namespace: {YOUR_ORGANIZATION-NAMESPACE}
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: silences-customer-rbac
-subjects:
-- kind: ServiceAccount
-  name: silences-customer-rbac
-  namespace: {YOUR_ORGANIZATION_NAMESPACE}
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: silences-customer-rbac
-rules:
-- apiGroups:
-  - monitoring.giantswarm.io
-  resources:
-  - silences
-  verbs:
-  - get
-  - update
-  - create
-  - delete
-  - list
-- apiGroups:
-  - exp.cluster.x-k8s.io
-  resources:
-  - machinepools
-  verbs:
-  - patch
-  - update
-  - get
-  - list
----
-apiVersion: policy/v1beta1
-kind: PodSecurityPolicy
-metadata:
-  name: silences-customer-rbac-psp
-  labels:
-    app: silences-customer
-spec:
-  privileged: false
-  fsGroup:
-    rule: RunAsAny
-  runAsUser:
-    rule: RunAsAny
-  runAsGroup:
-    rule: RunAsAny
-  seLinux:
-    rule: RunAsAny
-  supplementalGroups:
-    rule: RunAsAny
-  volumes:
-    - 'configMap'
-    - 'secret'
-    - 'hostPath'
-  allowPrivilegeEscalation: false
-```
-
 ### Scale down and silence clusters
 
-After RBAC is applied successfully it is possible to create the Cron Jobs that will scale down and silence the clusters.  
+Following Cron Job will scale down and silence the clusters. You can apply the Cron Job by using the `automation` Service Account that can be found in your Organization namespace. You will have to adjust the Service Account token accordingly to the Organization the Cron Job should run in.
 Please consider using the syntax for naming and namespaces as listed in the following example that has been prepare for Azure Workload Clusters:
 
 ```yaml
@@ -159,7 +83,7 @@ metadata:
   name: silences-customer-create-{CLUSTER-NAME}
   namespace: {YOUR_ORGANIZATION-NAMESPACE}
   labels:
-    app: silence-customer
+    app: automation
 spec:
   schedule: "47 16 * * 5" #Timezone - UTC by default - Fridays, 16;47 UTC
   successfulJobsHistoryLimit: 1
@@ -168,12 +92,12 @@ spec:
       template:
         metadata:
           labels:
-            app: silences-customer
+            app: automation
         spec:
-          serviceAccountName: silences-customer-rbac
+          serviceAccountName: automation
           containers:
           - name: silences-customer-create-{CLUSTER-NAME}
-            image: quay.io/giantswarm/k8s-initiator
+            image: quay.io/giantswarm/docker-kubectl
             imagePullPolicy: IfNotPresent
             command:
             - /bin/sh
@@ -218,7 +142,7 @@ metadata:
   name: silences-customer-delete-{CLUSTER-NAME}
   namespace: {YOUR_ORGANIZATION_NAMESPACE}
   labels:
-    app: silence-customer
+    app: automation
 spec:
   schedule: "00 8 * * 1" #Timezone - UTC by default - Mondays, 8 AM UTC
   successfulJobsHistoryLimit: 1
@@ -227,9 +151,9 @@ spec:
       template:
         metadata:
           labels:
-            app: silences-customer
+            app: automation
         spec:
-          serviceAccountName: silences-customer-rbac
+          serviceAccountName: automation
           containers:
           - name: silences-customer-delete-{CLUSTER-NAME}
             image: quay.io/giantswarm/k8s-initiator

@@ -2,6 +2,8 @@
 # generated content in these sections:
 # - Changes and releases
 # - CRDs (Management API)
+# - CLI versions
+# - Website header and footer
 name: Update generated content
 
 # Trigger by cronjob
@@ -19,7 +21,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Aggregate releases
         env:
@@ -31,6 +33,9 @@ jobs:
       
       - name: Update CLI versions
         run: make update-latest-versions
+
+      - name: Update website header and footer
+        run: make update-website-content
 
       - name: Create or update pull request
         uses: gr2m/create-or-update-pull-request-action@v1.3.1
@@ -46,6 +51,7 @@ jobs:
             - Changes and releases
             - CLI versions
             - CRD pages
+            - Website header and footer
 
             up-to-date.
 

@@ -16,10 +16,10 @@ aliases:
   - /guides/prepare-aws-account/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2021-01-01
+last_review_date: 2022-06-28
 ---
 
-As detailed in the [Architecture]({{< relref "/general/architecture/aws" >}}) docs,
+As detailed in the [Architecture]({{< relref "/platform-overview/cluster-management/vintage/aws" >}}) docs,
 the workload clusters (the clusters running your Kubernetes workloads) in a Giant
 Swarm installation can run in an AWS account separate from the management cluster.
 This gives great flexibility depending on requirements and usage
@@ -228,6 +228,8 @@ These are the limit increases to be requested, grouped by limit type:
         - other instance types to be used as workers: increase accordingly
     - EC2 Spot Instances
         - For every primary instance type you tend to use spot instances with, set the limit according to your needs.
+    - S3
+        - Buckets per Account: **1000**
 
 (Please extend the list of EC2 instances to also contain the types you need frequently.)
 
@@ -262,8 +264,8 @@ In order to run a workload cluster in your AWS account, the organization owning
 your cluster has to know about the roles you just created.
 
 If you have direct access to the Giant Swarm REST API, please set the credentials of
-your organization with our CLI [gsctl]({{< relref "/ui-api/gsctl" >}}). Look for the
-[`update organization set-credentials`]({{< relref "/ui-api/gsctl/update-org-set-credentials" >}})/#aws)
+your organization with our CLI [gsctl]({{< relref "/use-the-api/gsctl" >}}). Look for the
+[`update organization set-credentials`]({{< relref "/use-the-api/gsctl/update-org-set-credentials" >}})/#aws)
 command.
 
 In case you are working with a Giant Swarm partner, you might not have
@@ -277,9 +279,9 @@ organization. These clusters' resources will be created in your AWS account.
 ## Further reading
 
 - [Basics and Concepts: Multi Account Support]({{< relref "/advanced/multi-account" >}})
-- [gsctl Reference: `update organization set-credentials`]({{< relref "/ui-api/gsctl/update-org-set-credentials" >}})
+- [gsctl Reference: `update organization set-credentials`]({{< relref "/use-the-api/gsctl/update-org-set-credentials" >}})
 - [API: Set credentials](/api/#operation/addCredentials)
-- [Giant Swarm Architecture]({{< relref "/general/architecture/aws" >}})
+- [Giant Swarm Architecture]({{< relref "/platform-overview/cluster-management/vintage/aws" >}})
 - [Giant Swarm REST API documentation](/api/)
 - [AWS Service Limits](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)
 - [AWS Support Center](https://console.aws.amazon.com/support/home)

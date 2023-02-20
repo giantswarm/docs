@@ -107,17 +107,17 @@ Please be aware of some undesirable edge-cases and caveats. These might show up 
 
 You can create clusters in several ways:
 
-- In the [web interface]({{< relref "/ui-api/web/" >}}).
-- In `gsctl` using the [`create cluster`]({{< relref "/ui-api/gsctl/create-cluster" >}}) command with the appropriate details set in a [cluster definition]({{< relref "/ui-api/gsctl/cluster-definition" >}}).
+- In the [web interface]({{< relref "/platform-overview/web-interface/" >}}).
+- In `gsctl` using the [`create cluster`]({{< relref "/use-the-api/gsctl/create-cluster" >}}) command with the appropriate details set in a [cluster definition]({{< relref "/use-the-api/gsctl/cluster-definition" >}}).
 - Via the [Giant Swarm REST API](/api/#operation/addCluster).
 
-When inspecting details of such a cluster, or using the [`gsctl show cluster`]({{< relref "/ui-api/gsctl/show-cluster" >}}) command, we display the list of availability zones used by the cluster.
+When inspecting details of such a cluster, or using the [`gsctl show cluster`]({{< relref "/use-the-api/gsctl/show-cluster" >}}) command, we display the list of availability zones used by the cluster.
 
-Where worker nodes are organized in node pools, the availability zone distribution must be configured when creating a node pool. This is supported both in the web UI as well as the CLI with the [`gsctl create nodepool`]({{< relref "/ui-api/gsctl/create-nodepool" >}}) command. For inspection, both the [`gsctl list nodepools`]({{< relref "/ui-api/gsctl/list-nodepools" >}}) and [`gsctl show nodepool`]({{< relref "/ui-api/gsctl/show-nodepool" >}}) commands provide AZ information.
+Where worker nodes are organized in node pools, the availability zone distribution must be configured when creating a node pool. This is supported both in the web UI as well as the CLI with the [`gsctl create nodepool`]({{< relref "/use-the-api/gsctl/create-nodepool" >}}) command. For inspection, both the [`gsctl list nodepools`]({{< relref "/use-the-api/gsctl/list-nodepools" >}}) and [`gsctl show nodepool`]({{< relref "/use-the-api/gsctl/show-nodepool" >}}) commands provide AZ information.
 
 Also exclusively on AWS, for control plane nodes, the choice to use high-availability (three control plane nodes, placed in one AZ each) is made on cluster creation. It is also possible to switch from a single control plane node to high availability after cluster creation, but not vice versa.
 
 ## Further reading
 
-- [The Giant Swarm AWS Architecture]({{< relref "/general/architecture/aws" >}}) explains in more detail the setup of Giant Swarm on AWS.
-- [The Giant Swarm Azure Architecture]({{< relref "/general/architecture/azure" >}}) explains in more detail the setup of Giant Swarm on Azure.
+- [The Giant Swarm AWS Architecture]({{< relref "/platform-overview/cluster-management/vintage/aws" >}}) explains in more detail the setup of Giant Swarm on AWS.
+- [The Giant Swarm Azure Architecture]({{< relref "/platform-overview/cluster-management/vintage/azure" >}}) explains in more detail the setup of Giant Swarm on Azure.

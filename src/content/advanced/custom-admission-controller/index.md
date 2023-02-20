@@ -6,7 +6,7 @@ weight: 160
 menu:
   main:
     parent: advanced
-last_review_date: 2021-01-01
+last_review_date: 2023-02-07
 user_questions:
   - How can I create and deploy my own admission controller?
 aliases:
@@ -36,7 +36,7 @@ Our example controller will be called `grumpy` and will reject all new pods with
 The Kubernetes API server needs to know when to send the incoming request to our admission controller. The Kubernetes philosophy advocates always using a declarative strategy and this is no exception. Below we define a `ValidationWebhookConfiguration` which gives the needed information to the API:
 
 ```yaml
-apiVersion: admissionregistration.k8s.io/v1beta1
+apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingWebhookConfiguration
 metadata:
   name: grumpy
@@ -93,7 +93,7 @@ kubectl create secret generic grumpy -n default \
 In order to deploy the server, we will use a deployment with a single replica which mounts the certs generated to expose a secure REST endpoint where the pod request will be submitted. At the same time, we will expose the controller through the service to configure the DNS as we have defined in the webhook resource.
 
 ```yaml
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: grumpy

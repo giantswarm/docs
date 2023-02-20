@@ -231,11 +231,11 @@ roleRef:
 
 ##### A super-user role binding
 
-One of the most important default Role Bindings is for the "cluster-admin" role, which depicts a super-user in the cluster. By default it is bound to the `system:masters` group. Thus, if you need cluster admin access to your Kubernetes cluster, you need to create user credentials (e.g. by [creating a key pair with gsctl]({{< relref "/ui-api/gsctl/create-keypair" >}}) or the Giant Swarm Web UI) that include that group.
+One of the most important default Role Bindings is for the "cluster-admin" role, which depicts a super-user in the cluster. By default it is bound to the `system:masters` group. Thus, if you need cluster admin access to your Kubernetes cluster, you need to create user credentials (e.g. by [creating a key pair with gsctl]({{< relref "/use-the-api/gsctl/create-keypair" >}}) or the Giant Swarm Web UI) that include that group.
 
 For a complete overview of default roles and bindings we defer to the [official RBAC documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#default-roles-and-role-bindings).
 
-__Warning:__ Be careful assigning super-user as a default role. Giving `cluster-admin` role to every user means letting them perform any action in the cluster. As an analogy, it is like you giving root access to every user in a Linux system. Consequently think twice which role your users will have in the system. For Kubernetes, it translates in selecting a username and group name properly. In case you use authentication based on certs, [common name and organization would be those respectively]({{< relref "/ui-api/gsctl/create-keypair#rbac-cn-org" >}}). If you are using an external authentication system then be sure it returns the correct user and group name to the Kubernetes API.
+__Warning:__ Be careful assigning super-user as a default role. Giving `cluster-admin` role to every user means letting them perform any action in the cluster. As an analogy, it is like you giving root access to every user in a Linux system. Consequently think twice which role your users will have in the system. For Kubernetes, it translates in selecting a username and group name properly. In case you use authentication based on certs, [common name and organization would be those respectively]({{< relref "/use-the-api/gsctl/create-keypair#rbac-cn-org" >}}). If you are using an external authentication system then be sure it returns the correct user and group name to the Kubernetes API.
 
 ### Verifying if you Have Access
 
@@ -302,7 +302,7 @@ Setting a Common Name Prefix results in a username like the following:
 <cn-prefix>.user.api.<cluster-domain>
 ```
 
-where `<cn-prefix>` is a username of your choice and `<cluster-domain>` is your cluster's domain, e.g. `w6wn8.k8s.ginger.eu-central-1.aws.gigantic.io`.
+where `<cn-prefix>` is a username of your choice and `<cluster-domain>` is your cluster's domain, e.g. `w6wn8.k8s.example.eu-central-1.aws.gigantic.io`.
 
 When binding roles to a user you need to use the full username mentioned above.
 
@@ -352,7 +352,7 @@ metadata:
   namespace: development
 subjects:
   - kind: User
-    name: jane.w6wn8.k8s.ginger.eu-central-1.aws.gigantic.io
+    name: jane.w6wn8.k8s.example.eu-central-1.aws.gigantic.io
     apiGroup: rbac.authorization.k8s.io
   - kind: Group
     name: dev-admin
@@ -390,7 +390,7 @@ metadata:
   name: cluster-viewer
 subjects:
   - kind: User
-    name: jane.w6wn8.k8s.ginger.eu-central-1.aws.gigantic.io
+    name: jane.w6wn8.k8s.example.eu-central-1.aws.gigantic.io
     apiGroup: rbac.authorization.k8s.io
   - kind: Group
     name: cluster-view
@@ -639,5 +639,5 @@ Note that bindings that come with the cluster by default like `system:masters` c
 - [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/)
 - [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)
 - [Configuring Service Accounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/)
-- [Creating a kubeconfig with gsctl]({{< relref "/ui-api/gsctl/create-kubeconfig" >}})
-- [Creating a key pair with gsctl]({{< relref "/ui-api/gsctl/create-keypair" >}})
+- [Creating a kubeconfig with gsctl]({{< relref "/use-the-api/gsctl/create-kubeconfig" >}})
+- [Creating a key pair with gsctl]({{< relref "/use-the-api/gsctl/create-keypair" >}})

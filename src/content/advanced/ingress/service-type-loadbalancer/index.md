@@ -124,6 +124,8 @@ service.beta.kubernetes.io/aws-load-balancer-backend-protocol: (https|http|ssl|t
 
 The second annotation specifies which protocol a pod speaks. For HTTPS and SSL, the ELB will expect the pod to authenticate itself over the encrypted connection.
 
+Please note, setting `service.beta.kubernetes.io/aws-load-balancer-backend-protocol: ssl` requires changing `controller.service.targetPorts.https` to `http` in your nginx-ingress-controller-app configuration.
+
 HTTP and HTTPS will select layer 7 proxying: the ELB will terminate the connection with the user, parse headers and inject the `X-Forwarded-For` header with the user’s IP address (pods will only see the IP address of the ELB at the other end of its connection) when forwarding requests.
 
 TCP and SSL will select layer 4 proxying: the ELB will forward traffic without modifying the headers.
@@ -170,14 +172,24 @@ metadata:
 
 AWS is in the process of replacing ELBs with NLBs (Network Load Balancers) and ALBs (Application Load
 Balancers). NLBs have a number of benefits over "classic" ELBs including scaling to many more requests.
-Alpha support for NLBs was added in Kubernetes 1.9. As it's an alpha feature it's not yet recommended
-for production workloads but you can start trying it out.
+To be able to fully controll all NLB features, we're strongly recommend installing [AWS Load Balancer Controller](https://github.com/giantswarm/aws-load-balancer-controller-app) as the Kubernetes in-tree AWS Load Balancer implementation only supports [annotations for classic ELBs](https://github.com/kubernetes/kubernetes/blob/v1.26.0/staging/src/k8s.io/legacy-cloud-providers/aws/aws.go#L105-L246).
 
 ```yaml
 metadata:
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
 ```
+
+Network load balancers will use [Subnet Discovery](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/deploy/subnet_discovery/) to attach to a suitable subnet.
+With the following [annotation](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/guide/service/annotations/#subnets) the subnet can be specified either by nameTag or subnetID:
+
+```
+metadata:
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-xxxx, mySubnet
+```
+
+Multiple subnets can be specified but each has to be in it's own availability zone.
 
 #### Other AWS ELB configuration options
 
@@ -216,5 +228,6 @@ metadata:
 
 - [Running Multiple NGINX Ingress Controllers]({{< relref "/content/advanced/ingress/multi-nginx-ic/index.md" >}})
 - [Services of type LoadBalancer](https://kubernetes.io/docs/concepts/services-networking/service/#type-loadbalancer)
+- [AWS Load Balancer Controller - Annotations](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/guide/service/annotations/)
 - [Running Multiple Ingress Controllers](https://github.com/kubernetes/ingress-nginx#running-multiple-ingress-controllers)
 - [Deploying the NGINX Ingress Controller]({{< relref "/getting-started/ingress-controller/index.md" >}})

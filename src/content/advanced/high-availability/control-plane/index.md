@@ -102,7 +102,7 @@ the instructions in the web UI.
 ### Via `gsctl` {#gsctl}
 
 The `gsctl` CLI as of v0.23.1 provides the
-[gsctl update cluster]({{< relref "/ui-api/gsctl/update-cluster" >}}) to change cluster details.
+[gsctl update cluster]({{< relref "/use-the-api/gsctl/update-cluster" >}}) to change cluster details.
 Check the reference for the `--master-ha` flag.
 
 ### Via the REST API {#rest-api}
@@ -113,7 +113,7 @@ to find out how to convert a cluster programmatically using the Giant Swarm REST
 ### Via the Management API {#management-api}
 
 In order to convert a single node control plane to high availability, the cluster's
-[`G8sControlPlane`]({{< relref "/ui-api/management-api/crd/g8scontrolplanes.infrastructure.giantswarm.io.md" >}})
+[`G8sControlPlane`]({{< relref "/use-the-api/management-api/crd/g8scontrolplanes.infrastructure.giantswarm.io.md" >}})
 has to be modified. First you have to find the resource for your cluster ID. The
 following command helps with that:
 

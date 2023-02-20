@@ -6,12 +6,12 @@ changes_categories:
 - Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
-  url: https://github.com/giantswarm/releases/tree/master/aws/v17.0.0
+  url: https://github.com/giantswarm/releases/tree/master/aws/archived/v17.0.0
   version: 17.0.0
   version_tag: v17.0.0
 date: '2022-02-17T10:00:00+00:00'
 description: Release notes for AWS workload cluster release v17.0.0, published on
-  17 February 2022, 10:00
+  17 February 2022, 10:00.
 title: Workload cluster release v17.0.0 for AWS
 ---
 
@@ -50,7 +50,8 @@ This release provides support for Kubernetes 1.22, has Control Groups v2 enabled
 > **_Warning:_** `rpcbind` is disabled by default to mitigate security risks. Any application which requires it will no longer work. NFS `v2` and `v3` are such applications and are no longer supported. Please, check if any you have any application which depend on `rpcbind` before you upgrade.
 
 **Known Issues**
-- Java applications are unable to identify memory limits when using a `JRE` prior to v15 in a Control Groups v2 environment. Support was added in `JRE` v15 and later. More details are available in the [upstream issue](https://bugs.openjdk.java.net/browse/JDK-8230305). We recommend using the latest LTS JRE available (currently v17) to ensure continued compatibility with future releases.
+- Java applications are unable to identify memory limits when using a `JRE` prior to v15 in a Control Groups v2 environment. Support was added in `JRE` v15 and later. More details are available in the [upstream issue](https://bugs.openjdk.java.net/browse/JDK-8230305). We recommend using the latest LTS JRE available (currently v17) to ensure continued compatibility with future releases;
+- Go applications, which use an older version of [uber-go/automaxprocs](https://github.com/uber-go/automaxprocs), are unable to properly set `GOMAXPROCS`. Such applications need to be updated to use at least `v1.5.1` of `uber-go/automaxprocs`.
 
 **Control Groups v1**
 To ensure a smooth transition, in case you need time to modify applications to make them compatible with Control Groups v2, we provide a mechanism that will allow using Control Groups v1 on specific node pools. More details are available in our [documentation](https://docs.giantswarm.io/advanced/forcing-cgroupsv1/).
