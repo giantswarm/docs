@@ -28,11 +28,11 @@ __Note__: Management Cluster codename, Organization name, Workload Cluster name 
 
 ```nohighlight
 export WC_NAME=CLUSTER_NAME
-export APP_NAME="\${cluster_name}-APP_NAME"
+export APP_NAME="${WC_NAME}-APP_NAME"
 export APP_VERSION=APP_VERSION
 export APP_CATALOG=APP_CATALOG
 export APP_NAMESPACE=APP_NAMESPACE
-# OPTIONAL
+# OPTIONAL more info about App Configuration can be found at https://docs.giantswarm.io/getting-started/app-platform/app-configuration/#basic-values-merging-example
 export APP_USER_VALUES=CONFIGMAP_OR_SECRET_PATH
 ```
 
@@ -52,9 +52,9 @@ export APP_USER_VALUES=CONFIGMAP_OR_SECRET_PATH
     kubectl gs template app \
     --app-name ${APP_NAME} \
     --catalog ${APP_CATALOG} \
-    --cluster ${WC_NAME} \
+    --cluster-name ${WC_NAME} \
     --name ${APP_NAME} \
-    --namespace ${APP_NAMESPACE} \
+    --target-namespace ${APP_NAMESPACE} \
     --version ${APP_VERSION} > appcr.yaml
     ```
 
@@ -70,9 +70,11 @@ __Note__: We're including `${cluster_name}` in the app name to avoid a problem w
     Reference [the App Configuration](https://docs.giantswarm.io/app-platform/app-configuration/) for more details about
     how to properly create the respective ConfigMaps or Secrets.
 
-    If you want to provide a default config, we can use use the ConfigMap generator feature of `kustomize`. This allows us to use a pure YAML file for the configuration, without wrapping it into a ConfigMap. Still, for Secrets we need to encrypt them as a Secret object and the generator approach won't work. Refer to our [adding an App](./add_appcr.md) docs to check how to add and encrypt a Secret. For configuration that can be used as a ConfigMap, just add the content to a `default_config.yaml` file.
+In case you used `kubectl gs` command you realized the output is an App Custom Resource plus the Config Map. In case you want to manage the values in plain YAML, you could rely on the ConfigMap generator feature of [Kustomize](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/#generating-resources).
 
-1. Add the `kustomization.yaml` file, adding an optional Secret as a resource and a ConfigMapGenerator for plain text config:
+__Warning__: It can not be used for the Secrets as they need to be encrypted before commit into the Git Repository. Refer to our [adding an App](./add_appcr.md) docs to check how to add and encrypt a Secret.
+
+1. Now it is time to create the `kustomization.yaml` file, adding the optional Secret/Config Map as resources and/or using a ConfigMapGenerator to manage plain configuration:
 
     ```yaml
     apiVersion: kustomize.config.k8s.io/v1beta1
@@ -88,7 +90,8 @@ __Note__: We're including `${cluster_name}` in the app name to avoid a problem w
     # default config block end
     resources:
       - appcr.yaml
-      - secret.enc.yaml # only if you provide default Secret
+      - secret.enc.yaml # only if you provide the default Secret
+      # You can add here the config map in case of generate it via kubectl gs command or manually
     ```
 
 At this point, you should have a ready App Template.
