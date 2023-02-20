@@ -16,6 +16,7 @@ except ImportError:
 path         = 'src/content'
 changes_path = 'src/content/changes/'
 crds_path    = 'src/content/use-the-api/management-api/crd/'
+docs_host    = 'https://github.com/giantswarm/docs/blob/main/'
 
 todays_date = datetime.date.today()
 
@@ -218,6 +219,32 @@ valid_keys = set((
 checks_dict = {}
 for c in checks:
     checks_dict[c['id']] = c
+
+
+
+def print_json(rdict):
+    """
+    Print a formatted result report to JSON.
+
+    rdict is a dict with file paths as keys and a list of check results as a value.
+    """
+    out = []
+    for fpath in rdict.keys():
+        for check in rdict[fpath]['checks']:
+            try:
+                owners = []
+                for i in check.get('owner'):
+                  owners.append(re.search('\/.*\/([^\/]+)\/?$', i).group(1))
+            except AttributeError:
+                pass
+            out.append({
+                'title': 'Doc entry \"'+check.get('page_title')+'\" needs to be reviewed',
+                'message': checks_dict[check['check']]['description']+" for [this document]("+docs_host+fpath+").",
+                'owner': owners
+            })
+
+    json_object = json.dumps(out) 
+    print(json_object)
 
 
 def print_result(rdict):
@@ -637,7 +664,8 @@ def severity(text):
 
 @click.command()
 @click.option("--validation", default="all", help="Which validation to run. Use 'last-reviewed' or 'all' (default).")
-def main(validation):
+@click.option("--output", default="stdout", help="Offer different output formats, 'json' or 'stdout' supported by now.")
+def main(validation, output):
     # Result dict has a key for each file to check
     result = {}
 
@@ -671,7 +699,10 @@ def main(validation):
             if len(r['checks']) > 0:
                 result[fpath] = r
 
-    print_result(result)
+    if output == "json":
+        print_json(result)
+    else:
+        print_result(result)
 
     if GITHUB_ACTIONS != None:
         dump_annotations(result)
