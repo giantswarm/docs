@@ -270,21 +270,6 @@ cd bases/environments/regions
 
 For the `eu-central` region, we are creating a `cluster_config.yaml` file and a `kustomization.yaml` file. 
 
-`cluster_config.yaml`
-
-```yaml
-controlPlane:
-  availabilityZones:
-    - eu-central-1
-    - eu-central-2
-    - eu-central-3
-nodeCIDR: "10.32.0.0/24"
-```
-
-__Note__: These values are examples and need to be replaced by real values of the user account.
-
-`kustomization.yaml`
-
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 buildMetadata: [originAnnotations]
@@ -311,11 +296,20 @@ patches:
 kind: Kustomization
 ```
 
-With these files, we are creating a new `configmap` and adding it as an extra config in the cluster app that will create the cluster resources.
+```yaml
+controlPlane:
+  availabilityZones:
+    - eu-central-1
+    - eu-central-2
+    - eu-central-3
+nodeCIDR: "10.32.0.0/24"
+```
+__Note__: These values are examples and need to be replaced by real values of the user account.
 
-Now, for the `us-west` region we create a `cluster_config.yaml` file with a different configuration. We can copy the `kustomization.yaml` file from the other region as it will be the same.
 
-`cluster_config.yaml`
+The kustomize plugin in Flux will create the new Config Map with the region values. Note that priority is set to `120` which will precede over the stage values.
+
+In case we have other region, for example `us-west`, we can create a `cluster_config.yaml` file with the different configuration. 
 
 ```yaml
 controlPlane:
@@ -324,8 +318,6 @@ controlPlane:
     - us-west-2
 nodeCIDR: "10.64.0.0/24"
 ```
-
-We can use these as a second layer of configuration for our different clysers clusters.
 
 The folder structure resulting from this is:
 
