@@ -18,7 +18,7 @@ This document is part of the documentation to use GitOps with Giant Swarm App Pl
 
 # Creating and using App Sets
 
-It is often desirable to deploy a group of apps together, as a single deployment step. We call such groups "App Sets". There's nothing special about App Sets: they are not a separate API entity, but rather just a configuration pattern enabled by `kustomize` and `flux`. The purpose of such an approach can vary, but it's usually to meet the following benefits:
+It is often desirable to deploy a group of apps together, as a single deployment step. We call such groups "App Sets". There's nothing special about App Sets: they are not a separate API entity, but rather just a configuration pattern enabled by [Kustomize](https://kustomize.io/) and [Flux](https://fluxcd.io/flux/). The purpose of such an approach can vary, but it's usually to meet the following benefits:
 
 - Apps within the set have strong relationship and dependency on versions and you want to be sure that the correct versions are used and deployed together.
 - The configuration of apps in an App Set could be shared. By placing them together it is possible to simplify the configuration of one app by providing values known to depend on another. As a result, it is easier to deploy an App Set than each of the apps individually. That way a specialized team might deliver a pre-configured App Set so that it is easy and understandable to deploy be a less proficient end user.
@@ -30,6 +30,7 @@ Even though App Sets have a lot of benefits, their implementation with `kustomiz
 In general, the whole problem can be summarized as "`kustomize` is not a templating engine". It can override some values, even in bulks, but it can't put the same value in any arbitrary place.
 
 In the common case, it is impossible to configure a variable once and use it with multiple apps. There are only two choices here: either each pair of apps shares exactly the same ConfigMap/Secret as a `config:` attribute of an App CR or they use two separate ConfigMaps. In the latter case, it is your responsibility to provide exactly the same value in both ConfigMaps/Secrets. In the former, it means that your apps share the same configuration input and must be able to handle this situation correctly: there can be no conflicting options and each shared option must be understood exactly the same by each app. In practice, it means that the apps must be prepared on the Helm chart layer to work together.
+
 If none of these two solutions is applicable, you might want to solve the problem of bundling the apps together elsewhere. One of possible routes is to create a new umbrella Helm Chart that includes all the necessary apps as [sub-charts](https://helm.sh/docs/chart_template_guide/subcharts_and_globals/).
 
 ## Example
