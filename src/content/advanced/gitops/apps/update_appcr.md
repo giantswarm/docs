@@ -14,6 +14,8 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
 
+This document is part of the documentation to use GitOps with Giant Swarm App Platform. You can find more information about the [App Platform in our docs](/platform-overview/app-platform/).
+
 # Update an existing App
 
 Follow the below instructions to update an existing App.

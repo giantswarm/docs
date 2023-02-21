@@ -14,6 +14,8 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
 
+This document is part of the documentation to use GitOps with Giant Swarm App Platform. You can find more information about the [App Platform in our docs](/platform-overview/app-platform/).
+
 # Creating and using App Sets
 
 It is often desirable to deploy a group of apps together, as a single deployment step. We call such groups "App Sets". There's nothing special about App Sets: they are not a separate API entity, but rather just a configuration pattern enabled by `kustomize` and `flux`. The purpose of such an approach can vary, but it's usually to meet the following benefits:

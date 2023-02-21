@@ -14,6 +14,8 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
 
+This document is part of the documentation to use GitOps with Giant Swarm App Platform. You can find more information about the [App Platform in our docs](/platform-overview/app-platform/).
+
 # Add a new App Template to the repository
 
 In order to avoid adding the same application from scratch across all your clusters, you can prepare App Templates providing a pre-configured version of an App. This also allows you to manage and version an app's configuration even if the app itself is not yet installed in any cluster.
@@ -67,8 +69,7 @@ __Note__: you most likely want to provide a default configuration, so add any of
 
 __Note__: We're including `${cluster_name}` in the app name to avoid a problem when two or more clusters in the same organization want to deploy the same app with its default name.
 
-    Reference [the App Configuration](https://docs.giantswarm.io/app-platform/app-configuration/) for more details about
-    how to properly create the respective ConfigMaps or Secrets.
+Reference [the App Configuration](https://docs.giantswarm.io/app-platform/app-configuration/) for more details about how to properly create the respective ConfigMaps or Secrets.
 
 In case you used `kubectl gs` command you realized the output is an App Custom Resource plus the Config Map. In case you want to manage the values in plain YAML, you could rely on the ConfigMap generator feature of [Kustomize](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/#generating-resources).
 
@@ -94,7 +95,7 @@ __Warning__: It can not be used for the Secrets as they need to be encrypted bef
       # You can add here the config map in case of generate it via kubectl gs command or manually
     ```
 
-At this point, you should have a ready App Template.
+At this point, you should have a ready App Template. You can use it to [add a new App to a Workload Cluster](/advanced/gitops/apps/add_appcr/).
 
 ## Recommended next steps
 

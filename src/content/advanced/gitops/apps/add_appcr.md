@@ -13,6 +13,9 @@ user_questions:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
+
+This document is part of the documentation to use GitOps with Giant Swarm App Platform. You can find more information about the [App Platform in our docs](/platform-overview/app-platform/).
+
 # Add a new App to a Workload Cluster
 
 Follow the instructions below to add a new App to a workload cluster managed in this repository. You can add an App directly (without any intermediate step) or use an [App Template](/advanced/gitops/apps/advanced-gitops-apps-add-app-template). The documentation below shows common steps as well as what is different in both cases.

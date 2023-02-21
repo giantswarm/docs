@@ -14,6 +14,8 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
 
+This document is part of the documentation to use GitOps with Giant Swarm App Platform. You can find more information about the [App Platform in our docs](/platform-overview/app-platform/).
+
 # Enable automatic updates of an existing App
 
 Follow the below instructions to instruct Flux on how to automatically update an existing App. Automatic update means Flux will scan a remote repository and automatically update your deployed application version while also creating commits in your repository to reflect these changes.
