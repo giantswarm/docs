@@ -56,3 +56,5 @@ Hence, we decided to release a Prometheus Agent alongside Giant Swarm managed [P
 
 ![Architecture diagram of the Prometheus Agent architecture](prometheus-agent-architecture.png)
 <!-- Source: https://drive.google.com/file/d/1Pr0J1x-nPF1klZEFfwJ3gZhxTRjuI1aM -->
+
+__Note__: We are using an ingress with `nginx-ingress-controller` not represented here on the management cluster so the Prometheus Agent can send its data to the workload cluster Prometheus on the Management Cluster using the Remote Write API
