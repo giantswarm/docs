@@ -5,18 +5,20 @@ description: A guide explaining how to set up your Prometheus remote write integ
 weight: 50
 menu:
   main:
-    identifier: getting-started-observability-prometheusremotewrite
-    parent: getting-started-observability-prometheus
+    identifier: getting-started-observability-monitoring-prometheus-remotewrite
+    parent: getting-started-observability-monitoring-prometheus
 user_questions:
   - What is Prometheus RemoteWrite?
   - How Prometheus RemoteWrite works?
   - How do I get access to management cluster metrics?
 aliases:
   - /observability/prometheus/remotewrite
+  - /observability/monitoring/prometheus/remotewrite
   - /ui-api/observability/prometheus/remotewrite
+  - /ui-api/observability/monitoring/prometheus/remotewrite
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
-last_review_date: 2022-10-26
+last_review_date: 2023-02-22
 ---
 
 In this document you will learn how to set up your Prometheus remote write integration.
