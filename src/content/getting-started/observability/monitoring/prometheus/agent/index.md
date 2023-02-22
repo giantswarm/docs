@@ -58,3 +58,29 @@ Hence, we decided to release a Prometheus Agent alongside Giant Swarm managed [P
 <!-- Source: https://drive.google.com/file/d/1Pr0J1x-nPF1klZEFfwJ3gZhxTRjuI1aM -->
 
 __Note__: We are using an ingress with `nginx-ingress-controller` not represented here on the management cluster so the Prometheus Agent can send its data to the workload cluster Prometheus on the Management Cluster using the Remote Write API
+
+__Warning__: As of this writing, the agent is sending data to a Prometheus but we are thinking about moving to a Long Term Storage solution in the future.
+
+The Prometheus Agent is scrapping [`Service Monitors`](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/user-guides/getting-started.md#deploying-a-sample-application) in the workload clusters labelled with `application.giantswarm.io/team`.
+At the time of this writing, the targets include:
+- kubernetes core components (kube-apiserver, kube-scheduler and kube-controller-manager)
+- prometheus operator
+- the agent itself
+
+The other targets are scraped by the workload cluster prometheus and will transition to the agent over time.
+
+If you are using Prometheus Operator, you can deploy your own service monitors as long as they do not carry this label.
+
+## Access to the Prometheus Agent information
+
+### Accessing the UI
+
+As the Prometheus Agent is running in your workload cluster, you can gain access to its UI to inspect the list of currently configured targets it is scraping using the following command `kubectl port-forward -n kube-system prometheus-prometheus-agent-0 9090` then access the url `http://localhost:9090/targets` on your favorite browser.
+
+You should see the following:
+
+![Screenshot of Prometheus Agent User Interface](prometheus-agent-ui.png)
+
+### Access to the metrics
+
+The metrics of the Prometheus Agent can be found on the [grafana instance]({{< relref "/getting-started/observability/grafana/access" >}}) running on your management cluster under the `Prometheus / Remote Write` and `NGINX Ingress controller` dashboards
