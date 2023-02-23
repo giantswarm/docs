@@ -5,11 +5,12 @@ description: Guide explaining how to interact with our installation level Promet
 weight: 30
 menu:
   main:
-    identifier: getting-started-observability-prometheus
-    parent: getting-started-observability
+    identifier: getting-started-observability-monitoring-prometheus
+    parent: getting-started-observability-monitoring
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
-last_review_date: 2022-10-26
+last_review_date: 2023-02-22
 aliases:
   - /ui-api/observability/prometheus/
+  - /ui-api/observability/monitoring/prometheus/
 ---

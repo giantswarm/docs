@@ -5,18 +5,20 @@ description: A guide explaining how to resize the Prometheus persistent volume t
 weight: 50
 menu:
   main:
-    identifier: getting-started-observability-prometheusvolumesize
-    parent: getting-started-observability-prometheus
+    identifier: getting-started-observability-monitoring-prometheus-volumesize
+    parent: getting-started-observability-monitoring-prometheus
 user_questions:
   - How can I shrink the persistent volume of the Giant Swarm managed Prometheus?
   - How can I expand the persistent volume of the Giant Swarm managed Prometheus?
   - Why would I resize the Giant Swarm managed Prometheus persistent volume ?
 aliases:
   - /observability/prometheus/volume-size
+  - /observability/monitoring/prometheus/volume-size
   - /ui-api/observability/prometheus/volume-size
+  - /ui-api/observability/monitoring/prometheus/volume-size
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
-last_review_date: 2022-10-26
+last_review_date: 2023-02-22
 ---
 
 In this document you will learn how to size the Prometheus persistent volume.
