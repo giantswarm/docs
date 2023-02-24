@@ -14,7 +14,6 @@ owner:
 last_review_date: 2023-02-10
 ---
 
-# Add Workload Cluster environments
 
 On many occasions, you need to set good defaults for your Workload Clusters but have the ability to change some values depending on the type of environment: development, staging or production for example. In such a case, you can rely on specific `bases` defined on your GitOps repository.  Let's see in this document how you can create a `/bases/environments` folder structure.
 
