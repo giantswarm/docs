@@ -108,6 +108,7 @@ Reference [the App Configuration](https://docs.giantswarm.io/app-platform/app-co
     gpg --import management-clusters/${MC_NAME}/.sops.keys/.sops.${WC_NAME}.asc
     sops --encrypt --in-place secret.enc.yaml
     ```
+You can find more information on encrypting secrets in [this document](https://github.com/giantswarm/gitops-template/blob/main/docs/add_mc.md#flux-gpg-master-key-pair).
 
 1. Go back to the `apps` directory:
 

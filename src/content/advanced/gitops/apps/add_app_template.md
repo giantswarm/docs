@@ -16,13 +16,13 @@ owner:
 
 This document is part of the documentation to use GitOps with Giant Swarm App Platform. You can find more information about the [App Platform in our docs](/platform-overview/app-platform/).
 
-# Add a new App Template to the repository
+# Add a new app template to the repository
 
-In order to avoid adding the same application from scratch across all your clusters, you can prepare App Templates providing a pre-configured version of an App. This also allows you to manage and version an app's configuration even if the app itself is not yet installed in any cluster.
+In order to avoid adding the same application from scratch across all your clusters, you can prepare app templates providing a pre-configured version of an App. This also allows you to manage and version an app's configuration even if the app itself is not yet installed in any cluster.
 
 ## Example
 
-An example of an App Template is available in the [gitops-template repository "bases/apps/nginx-ingress-controller"](https://github.com/giantswarm/gitops-template/tree/main/bases/apps/nginx-ingress-controller).
+An example of an app template is available in the [gitops-template repository "bases/apps/nginx-ingress-controller"](https://github.com/giantswarm/gitops-template/tree/main/bases/apps/nginx-ingress-controller).
 
 ## Export environment variables
 
@@ -40,7 +40,7 @@ export APP_USER_VALUES=CONFIGMAP_OR_SECRET_PATH
 
 ## Setting up directory tree structure for managing apps
 
-1. Go to the `apps` directory and prepare a directory for the new App Template:
+1. Go to the `apps` directory and prepare a directory for the new app template:
 
     ```nohighlight
     cd bases/apps/
@@ -71,11 +71,11 @@ __Note__: We're including `${cluster_name}` in the app name to avoid a problem w
 
 Reference [the App Configuration](https://docs.giantswarm.io/app-platform/app-configuration/) for more details about how to properly create the respective ConfigMaps or Secrets.
 
-In case you used `kubectl gs` command you realized the output is an App Custom Resource plus the Config Map. In case you want to manage the values in plain YAML, you could rely on the ConfigMap generator feature of [Kustomize](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/#generating-resources).
+In case you used `kubectl gs` command you realized the output is an App Custom Resource plus the ConfigMap. In case you want to manage the values in plain YAML, you could rely on the ConfigMap generator feature of [Kustomize](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/#generating-resources).
 
 __Warning__: It can not be used for the Secrets as they need to be encrypted before commit into the Git Repository. Refer to our [adding an App](./add_appcr.md) docs to check how to add and encrypt a Secret.
 
-1. Now it is time to create the `kustomization.yaml` file, adding the optional Secret/Config Map as resources and/or using a ConfigMapGenerator to manage plain configuration:
+1. Now it is time to create the `kustomization.yaml` file, adding the optional Secret/ConfigMap as resources and/or using a ConfigMapGenerator to manage plain configuration:
 
     ```yaml
     apiVersion: kustomize.config.k8s.io/v1beta1
@@ -95,7 +95,7 @@ __Warning__: It can not be used for the Secrets as they need to be encrypted bef
       # You can add here the config map in case of generate it via kubectl gs command or manually
     ```
 
-At this point, you should have a ready App Template. You can use it to [add a new App to a Workload Cluster](/advanced/gitops/apps/add_appcr/).
+At this point, you should have a ready app template. You can use it to [add a new App to a Workload Cluster](/advanced/gitops/apps/add_appcr/).
 
 ## Recommended next steps
 
