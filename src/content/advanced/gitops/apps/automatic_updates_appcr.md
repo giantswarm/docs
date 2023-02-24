@@ -136,7 +136,7 @@ scan for new tags:
     EOF
     ```
 
-    **__Note__**, the `filterTags` is processed first and gives the opportunity to filter the image tags before they are considered by the policy rule. Here, it is used to skip the heading `v` in the version upon passing it to the policy.
+__Note__: the `filterTags` is processed first and gives the opportunity to filter the image tags before they are considered by the policy rule. Here, it is used to skip the heading `v` in the version upon passing it to the policy.
 
     Check [Flux docs](https://fluxcd.io/docs/components/image/imagepolicies/#examples) for more examples of possible policies.
 
