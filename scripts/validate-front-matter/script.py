@@ -603,7 +603,11 @@ def validate(content, fpath, validation):
         if 'last_review_date' in fm:
             if type(fm['last_review_date']) is datetime.date:
                 diff = todays_date - fm['last_review_date']
-                if diff > datetime.timedelta(days=365):
+                expiration = 365
+                if 'expiration_in_days' in fm and type(fm['expiration_in_days']) is int:
+                    expiration = fm['expiration_in_days']
+                
+                if diff > datetime.timedelta(days=expiration):
                     result['checks'].append({
                         'check': REVIEW_TOO_LONG_AGO,
                         'page_title': fm['title'],
