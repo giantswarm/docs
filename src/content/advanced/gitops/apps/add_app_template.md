@@ -18,7 +18,7 @@ This document is part of the documentation to use GitOps with Giant Swarm App Pl
 
 # Add a new app template to the repository
 
-In order to avoid adding the same application from scratch across all your clusters, you can prepare app templates providing a pre-configured version of an App. This also allows you to manage and version an app's configuration even if the app itself is not yet installed in any cluster.
+To avoid duplication caused by adding the same application from scratch across all your clusters, you can prepare App Templates providing a pre-configured version of an App. This also allows you to manage and version an app's configuration even if the app itself is not yet installed in any cluster.
 
 ## Example
 
@@ -26,7 +26,7 @@ An example of an app template is available in the [gitops-template repository "b
 
 ## Export environment variables
 
-__Note__: Management Cluster codename, Organization name, Workload Cluster name and several App-related values are needed in multiple places across this instructions, the least error prone way of providing them is by exporting them as environment variables:
+__Note__: Management Cluster codename, Organization name, Workload Cluster name and several App-related values are needed in multiple places across these instructions. The least error prone way of providing them is by exporting them as environment variables:
 
 ```nohighlight
 export WC_NAME=CLUSTER_NAME
@@ -40,14 +40,14 @@ export APP_USER_VALUES=CONFIGMAP_OR_SECRET_PATH
 
 ## Setting up directory tree structure for managing apps
 
-1. Go to the `apps` directory and prepare a directory for the new app template:
+1. Go to the `bases/apps` directory and create a new directory for the new App Template:
 
     ```nohighlight
     cd bases/apps/
     mkdir ${APP_NAME}
     ```
 
-1. Go to the newly created directory and use [the kubectl-gs plugin](https://github.com/giantswarm/kubectl-gs) to generate the [App CR](https://docs.giantswarm.io/ui-api/kubectl-gs/template-app/):
+1. Navigate to the newly created directory and use [the kubectl-gs plugin](https://github.com/giantswarm/kubectl-gs) to generate the [App CR](https://docs.giantswarm.io/ui-api/kubectl-gs/template-app/):
 
     ```nohighlight
     cd ${APP_NAME}/
@@ -60,7 +60,7 @@ export APP_USER_VALUES=CONFIGMAP_OR_SECRET_PATH
     --version ${APP_VERSION} > appcr.yaml
     ```
 
-__Note__: you most likely want to provide a default configuration, so add any of the below flags to the previous command:
+__Note__: you most likely want to provide a default configuration, and optionally additional secrets for your application. The flags below can be used to achieve this by adding them to the previous command:
 
     ```nohighlight
     --user-configmap ${APP_USER_VALUES}
