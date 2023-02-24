@@ -29,15 +29,15 @@ Configuring automated version updates requires a few additional Flux API objects
 
 Flux will watch for new Docker image tags for your App and use them to update the `.spec.version` field in the App CR. It will do it by pushing commits to this repository.
 
-**__Note__**, in order to use this mechanism you have to make sure that image tags of your App correspond to its version, otherwise this process will result in setting a meaningless version in the `.spec.version` field.
+__Note__: in order to use this mechanism you have to make sure that the image tags of your App correspond to its version, otherwise this process will result in setting a meaningless version in the `.spec.version` field.
 
 ## Example
 
-An example of an App automated updates is available in the [gitops-template repository in "WC_NAME/apps/hello-world-automatic-updates"](https://github.com/giantswarm/gitops-template/tree/main/management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters/WC_NAME/mapi/apps/hello-world-automatic-updates/).
+An example of an App automated update is available in the [gitops-template repository in "WC_NAME/apps/hello-world-automatic-updates"](https://github.com/giantswarm/gitops-template/tree/main/management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters/WC_NAME/mapi/apps/hello-world-automatic-updates/).
 
 ## Export environment variables
 
-**__Note__**, Management Cluster codename, Organization name, Workload Cluster name and some App-related values are needed in multiple places across this instruction, the least error prone way of providing them is by exporting them as environment variables:
+__Note__: Management Cluster codename, Organization name, Workload Cluster name and some App-related values are needed in multiple places across this instruction, the least error prone way of providing them is by exporting them as environment variables:
 
 ```nohighlight
 export MC_NAME=CODENAME
