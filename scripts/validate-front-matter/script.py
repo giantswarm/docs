@@ -232,14 +232,18 @@ def print_json(rdict):
     for fpath in rdict.keys():
         for check in rdict[fpath]['checks']:
             try:
+                title = check.get('page_title') or ""
+                description = checks_dict[check['check']]['description']
                 owners = []
-                for i in check.get('owner'):
-                  owners.append(re.search('\/.*\/([^\/]+)\/?$', i).group(1))
+                doc_owner = check.get('owner')
+                if hasattr(doc_owner, "__len__"): 
+                  for i in doc_owner:
+                    owners.append(re.search('\/.*\/([^\/]+)\/?$', i).group(1))
             except AttributeError:
                 pass
             out.append({
-                'title': 'Doc entry \"'+check.get('page_title')+'\" needs to be reviewed',
-                'message': checks_dict[check['check']]['description']+" for [this document]("+docs_host+fpath+").",
+                'title': 'Doc entry \"'+title+'\" needs to be reviewed',
+                'message': description+" for [this document]("+docs_host+fpath+").",
                 'owner': owners
             })
 

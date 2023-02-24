@@ -20,7 +20,7 @@ jobs:
         run: |
           git fetch --no-tags origin "${GITHUB_BASE_REF}":"${GITHUB_BASE_REF}"
           git diff --name-only "refs/heads/${GITHUB_BASE_REF}" -- . | tee files.txt
-          echo "ISSUES=$(cat files.txt | python3 scripts/validate-front-matter/script.py --validation last-reviewed --json)" >> $GITHUB_ENV
+          echo "ISSUES=$(cat files.txt | python3 scripts/validate-front-matter/script.py --validation last-reviewed --output json)" >> $GITHUB_ENV
       
       - name: Generate issues of out of date docs
         uses: giantswarm/open-issue@v1.0.0
