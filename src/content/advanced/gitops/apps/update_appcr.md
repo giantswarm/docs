@@ -22,14 +22,13 @@ Follow the below instructions to update an existing App.
 
 ## Export environment variables
 
-**__Note__**, Management Cluster codename, Organization name, Workload Cluster name and App name are needed in multiple places across this instruction, the least error prone way of providing them is by exporting them as environment variables:
+The Management Cluster codename, Organization name, Workload Cluster name and App name are needed in multiple places across this instruction, the least error prone way of providing them is by exporting them as environment variables:
 
 ```sh
 export MC_NAME=CODENAME
 export ORG_NAME=ORGANIZATION
 export WC_NAME=CLUSTER_NAME
 export APP_NAME=APP_NAME
-```
 
 ## Updating App
 
