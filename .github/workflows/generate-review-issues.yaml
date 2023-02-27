@@ -1,10 +1,9 @@
-name: Generate review PRs
+name: Generate review Issues weekly
 on:
-  pull_request:
-    branches:
-      - main
-    paths:
-      - 'src/**.md'
+  schedule:
+    # At 0:00 on Sundays
+    - cron:  '0 0 * * 0' 
+
 
 jobs:
   front-matter:
@@ -23,7 +22,7 @@ jobs:
           echo "ISSUES=$(cat files.txt | python3 scripts/validate-front-matter/script.py --validation last-reviewed --output json)" >> $GITHUB_ENV
       
       - name: Generate issues of out of date docs
-        uses: giantswarm/open-issue@v1.0.0
+        uses: giantswarm/open-issue@0.1.0
         with: 
           token: ${{ secrets.ISSUE_AUTOMATION }}
           org: giantswarm
