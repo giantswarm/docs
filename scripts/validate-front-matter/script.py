@@ -16,6 +16,7 @@ except ImportError:
 path         = 'src/content'
 changes_path = 'src/content/changes/'
 crds_path    = 'src/content/use-the-api/management-api/crd/'
+docs_host    = 'https://github.com/giantswarm/docs/blob/main/'
 
 todays_date = datetime.date.today()
 
@@ -218,6 +219,36 @@ valid_keys = set((
 checks_dict = {}
 for c in checks:
     checks_dict[c['id']] = c
+
+
+
+def print_json(rdict):
+    """
+    Print a formatted result report to JSON.
+
+    rdict is a dict with file paths as keys and a list of check results as a value.
+    """
+    out = []
+    for fpath in rdict.keys():
+        for check in rdict[fpath]['checks']:
+            try:
+                title = check.get('page_title') or ""
+                description = checks_dict[check['check']]['description']
+                owners = []
+                doc_owner = check.get('owner')
+                if hasattr(doc_owner, "__len__"): 
+                  for i in doc_owner:
+                    owners.append(re.search('\/.*\/([^\/]+)\/?$', i).group(1))
+            except AttributeError:
+                pass
+            out.append({
+                'title': 'Doc entry \"'+title+'\" needs to be reviewed',
+                'message': description+" for [this document]("+docs_host+fpath+").",
+                'owner': owners
+            })
+
+    json_object = json.dumps(out) 
+    print(json_object)
 
 
 def print_result(rdict):
@@ -574,7 +605,11 @@ def validate(content, fpath, validation):
         if 'last_review_date' in fm:
             if type(fm['last_review_date']) is datetime.date:
                 diff = todays_date - fm['last_review_date']
-                if diff > datetime.timedelta(days=365):
+                expiration = 365
+                if 'expiration_in_days' in fm and type(fm['expiration_in_days']) is int:
+                    expiration = fm['expiration_in_days']
+                
+                if diff > datetime.timedelta(days=expiration):
                     result['checks'].append({
                         'check': REVIEW_TOO_LONG_AGO,
                         'value': fm['last_review_date'],
@@ -627,7 +662,8 @@ def severity(text):
 
 @click.command()
 @click.option("--validation", default="all", help="Which validation to run. Use 'last-reviewed' or 'all' (default).")
-def main(validation):
+@click.option("--output", default="stdout", help="Offer different output formats, 'json' or 'stdout' supported by now.")
+def main(validation, output):
     # Result dict has a key for each file to check
     result = {}
 
@@ -661,7 +697,10 @@ def main(validation):
             if len(r['checks']) > 0:
                 result[fpath] = r
 
-    print_result(result)
+    if output == "json":
+        print_json(result)
+    else:
+        print_result(result)
 
     if GITHUB_ACTIONS != None:
         dump_annotations(result)

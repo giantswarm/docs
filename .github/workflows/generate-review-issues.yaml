@@ -1,0 +1,30 @@
+name: Generate review Issues weekly
+on:
+  schedule:
+    # At 0:00 on Sundays
+    - cron:  '0 0 * * 0' 
+
+
+jobs:
+  front-matter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: pip3 install click colored
+
+      - name: Validate front matter for changed files
+        run: |
+          git fetch --no-tags origin "${GITHUB_BASE_REF}":"${GITHUB_BASE_REF}"
+          git diff --name-only "refs/heads/${GITHUB_BASE_REF}" -- . | tee files.txt
+          echo "ISSUES=$(cat files.txt | python3 scripts/validate-front-matter/script.py --validation last-reviewed --output json)" >> $GITHUB_ENV
+      
+      - name: Generate issues of out of date docs
+        uses: giantswarm/open-issue@0.1.0
+        with: 
+          token: ${{ secrets.ISSUE_AUTOMATION }}
+          org: giantswarm
+          repo: giantswarm
+          issues: ${{ env.ISSUES }}
