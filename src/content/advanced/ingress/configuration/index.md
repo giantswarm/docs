@@ -22,6 +22,7 @@ user_questions:
   - How can I enable TLS passthrough in Ingress?
   - How can I let the Ingress Controller do TLS termination?
   - How can I rate-limit Ingress requests?
+  - How can I confgiure a different connection timeout for my ingress?
   - How can I change the NGINX ingress controller configmap?
 aliases:
   - /guides/advanced-ingress-configuration/
@@ -329,6 +330,25 @@ To use custom values in a specific Ingress add following annotation:
 ```yaml
 nginx.ingress.kubernetes.io/proxy-body-size: 8m
 ```
+
+### Custom connection timeout
+
+Nginx allows to define the timeout that waits to close a connection (`keepalive`) with your workload. You can define a value in the main [Config Map](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#upstream-keepalive-timeout) or use the following annotation. The default value is `60` and it is measured in seconds.
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: INGRESS_NAME
+  annotations:
+    nginx.ingress.kubernetes.io/auth-keepalive-timeout: "600"
+spec:
+...
+```
+
+There are many other timeouts that can be customized when setting an ingress. Take a look at the [official docs]](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#custom-timeouts).
+
+__Warning__: When running Nginx Controller in cloud providers you may often rely on integrated services like AWS NLBs or Azure LBs. Those intermediate Load Balancers could have their own settings which can be in the request path conflicting with values defined in Ingress Resources. [Read how to configure Nginx Controller in cloud environments to avoid unexpected results](https://docs.giantswarm.io/advanced/ingress/service-type-loadbalancer/#other-aws-elb-configuration-options).
 
 ### Session Affinity
 
