@@ -201,6 +201,7 @@ valid_keys = set((
     'crd',
     'date',
     'description',
+    'expiration_in_days',
     'last_review_date',
     'layout',
     'linkTitle',
