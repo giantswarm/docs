@@ -348,7 +348,7 @@ spec:
 
 There are many other timeouts that can be customized when setting an ingress. Take a look at the [official docs](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#custom-timeouts).
 
-__Warning__: When running Nginx Controller in cloud providers you may often rely on integrated services like AWS NLBs or Azure LBs. Those intermediate Load Balancers could have their own settings which can be in the request path conflicting with values defined in Ingress Resources. [Read how to configure Nginx Controller in cloud environments to avoid unexpected results](https://docs.giantswarm.io/advanced/ingress/service-type-loadbalancer/#other-aws-elb-configuration-options).
+__Warning__: When running in cloud provider environments you may often rely on integrated services like AWS NLBs or Azure LBs. Those intermediate Load Balancers could have their own settings which can be in the request path conflicting with values defined in Ingress Resources. [Read how to configure Nginx Controller in cloud environments to avoid unexpected results](https://docs.giantswarm.io/advanced/ingress/service-type-loadbalancer/#other-aws-elb-configuration-options).
 
 ### Session Affinity
 
