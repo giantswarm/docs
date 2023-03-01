@@ -60,5 +60,5 @@ Use `gsctl scale cluster --help` for a additional (global) arguments.
 
 - [`gsctl update nodepool`]({{< relref "/use-the-api/gsctl/update-nodepool" >}}): Among others, allows to scale a node pool
 - [`gsctl delete cluster`]({{< relref "/use-the-api/gsctl/delete-cluster" >}}): Delete a cluster
-- [Basics: Cluster Size and Autoscaling]({{< relref "/getting-started/cluster-size-autoscaling" >}})
+- [Basics: Cluster Size and Autoscaling]({{< relref "/getting-started/operations/autoscaling/cluster-size" >}})
 - [API: Modify cluster](/api/#operation/modifyCluster)
