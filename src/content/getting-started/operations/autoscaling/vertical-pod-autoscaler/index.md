@@ -1,7 +1,7 @@
 ---
 linkTitle: Vertical Pod Autoscaler
 title: Vertical Pod Autoscaler
-description: Guide explaining how to use the vertical pod autoscaler to change your pod resources.
+description: Guide explaining how to use the vertical pod autoscaler to automatically adjust your pod resources.
 menu:
   main:
     identifier: getting-started-operations-autoscaling-verticalpodautoscaler
