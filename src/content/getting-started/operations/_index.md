@@ -1,7 +1,7 @@
 ---
 linkTitle: Cluster operations
 title: Cluster operations
-description: Guides to help you get going to operator your Giant Swarm clusters quickly.
+description: Guides and best practices to help you operate your Giant Swarm clusters quickl.
 menu:
   main:
     identifier: getting-started-operations
