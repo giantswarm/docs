@@ -46,7 +46,7 @@ There's 2 things that you may aim for with VPA:
 - make sure your container has enough resources to work (`requests` management)
 - make sure your container fits on your nodes (`limits` management)
 
-When a container uses too much resources, keep in mind that [VPA sets the container's requests](#vpa-sets-the-containers-requests) and that `limits` are set proportionally, keeping the original requests/limits ratio.
+When a container uses too much resources, keep in mind that [VPA sets the container's requests](#vpa-sets-the-containers-requests) and `limits` proportionally, keeping the original requests/limits ratio.
 
 When setting `maxAllowed` (max allowed requests) values:
 - make sure that the requests won't go over the node's resources, which would make the container unschedulable.
