@@ -20,7 +20,7 @@ owner:
 
 ## Introduction
 
-Giant Swarm workload clusters provide the [Vertical Pod Autoscaler](https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler) by default, to either recommend or automatically increase or redure your pods resource requests and limits based on the current resource usage.
+Giant Swarm workload clusters provide the [Vertical Pod Autoscaler](https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler) by default, to either recommend or automatically increase or reduce your pods resource requests and limits based on the current resource usage.
 
 ## Architecture overview
 
