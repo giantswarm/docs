@@ -5,17 +5,20 @@ description: This article explains options you have for defining the size of a K
 weight: 100
 menu:
   main:
-    parent: getting-started
-last_review_date: 2022-12-07
+    identifier: getting-started-operations-autoscaling-clustersize
+    parent: getting-started-operations-autoscaling
+last_review_date: 2023-03-01
 aliases:
   - /basics/cluster-size-autoscaling/
   - /kubernetes/cluster-size-autoscaling/
+  - /operations/autoscaling/cluster-size
 user_questions:
   - How should I size my clusters?
   - How can clusters or node pools get scaled automatically?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-teddyfriends
 ---
+
 
 {{< platform_support_table aws="ga=v6.3.0" azure="ga=v13.1.0" >}}
 

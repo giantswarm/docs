@@ -111,7 +111,7 @@ The downside to the multi-tenant single cluster approach is that it, as mentione
 ## Further reading
 
 - [Creating clusters with gsctl]({{< relref "/use-the-api/gsctl/create-cluster" >}})
-- [Cluster Size and Autoscaling]({{< relref "/getting-started/cluster-size-autoscaling" >}})
+- [Cluster Size and Autoscaling]({{< relref "/getting-started/operations/autoscaling/cluster-size" >}})
 - [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
 - [Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/)
 - [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)
