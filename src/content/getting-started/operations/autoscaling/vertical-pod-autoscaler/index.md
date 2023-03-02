@@ -50,7 +50,7 @@ When a container uses too much resources, keep in mind that [VPA sets the contai
 
 When setting `maxAllowed` (max allowed requests) values:
 - make sure that the requests won't go over the node's resources, which would make the container unschedulable.
-- watch out for the max vpa computed limits. While it won't lead to an unschedulable container it may kill your node.
+- watch out for the max VPA computed limits. While it won't lead to an unschedulable container it may kill your node.
 
 If you want to make sure your container won't use more resources than `maxAllowed`, set `limits`=`requests` at container creation.
 
