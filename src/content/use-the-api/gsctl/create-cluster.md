@@ -115,6 +115,6 @@ When requesting cluster creation with workload cluster release v{{% first_aws_no
 - [`gsctl list releases`]({{< relref "/use-the-api/gsctl/list-releases" >}}) - List all available workload cluster releases
 - [`gsctl create kubeconfig`]({{< relref "/use-the-api/gsctl/create-kubeconfig" >}}) - Getting a key pair and enabling `kubectl` to access a cluster
 - [`gsctl delete cluster`]({{< relref "/use-the-api/gsctl/delete-cluster" >}}) - Deleting a cluster
-- [Basics: Cluster Size and Autoscaling]({{< relref "/getting-started/cluster-size-autoscaling" >}})
+- [Basics: Cluster Size and Autoscaling]({{< relref "/getting-started/operations/autoscaling/cluster-size" >}})
 - [API: Create cluster (v4)](/api/#operation/addCluster)
 - [API: Create cluster (v5)](/api/#operation/addClusterV5)
