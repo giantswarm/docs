@@ -28,7 +28,7 @@ It is possible to solve the environment propagation problem in multiple ways, no
 
 Each of these approaches has pros and cons. Giant Swarm relies on the multi-directory approach for multiple reasons. It is a single repo and single branch which serves as the source of truth for all the environments. Easy for template sharing and a relatively simple way to compare and promote configuration across environments. On the other hand, it needs extra work for access control management, template versioning or environment drift detection.
 
-## Environments types
+## Environment types
 
 There are many ways to separete your cluster configuration but over the years we have seen in most cases there are two main factors: stages and regions. You can always adapt further this to your own requirements following the same principles described below.
 
