@@ -11,7 +11,7 @@ aliases:
 user_questions:
   - How can I use GPUs with my Kubernetes clusters?
   - Which releases support the use of GPUs?
-last_review_date: 2021-01-01
+last_review_date: 2023-03-06
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
