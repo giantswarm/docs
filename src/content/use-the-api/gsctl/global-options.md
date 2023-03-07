@@ -14,7 +14,7 @@ owner:
 user_questions:
   - What options/flags does gsctl offer for all commands?
   - How can I customize the gsctl configuration directory?
-last_review_date: 2021-01-01
+last_review_date: 2023-03-06
 ---
 
 {{% gsctl_deprecation_disclaimer %}}

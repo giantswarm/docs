@@ -15,7 +15,7 @@ aliases:
   - /ui-api/gsctl/create-cluster/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
-last_review_date: 2021-01-01
+last_review_date: 2023-03-06
 ---
 
 {{% gsctl_deprecation_disclaimer %}}

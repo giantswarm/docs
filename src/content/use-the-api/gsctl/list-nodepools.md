@@ -13,7 +13,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-rainbow
 user_questions:
   - How can I see all node pools in a cluster using gsctl?
-last_review_date: 2022-12-07
+last_review_date: 2023-03-06
 ---
 
 {{% gsctl_deprecation_disclaimer %}}
