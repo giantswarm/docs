@@ -14,7 +14,7 @@ user_questions:
   - How can I inspect roles and permissions bound to an org-namespace?
   - How can I create a service account in the web interface?
   - How can I bind a service account to an org-namespace in the web interface?
-last_review_date: 2021-06-16
+last_review_date: 2023-03-08
 ---
 
 Learn how to quickly grant and revoke access to an organization's resources via the web user interface, using Kubernetes role based access control (RBAC) mechanisms.
@@ -40,7 +40,7 @@ To learn more about the subject, please also check out the broader article on [a
 
 The access control user interface provides:
 
-- A list of roles to select from, sourced from both the organization's namespace and cluster roles. Each role defines a specific set of permissions for a number of resources. Cluster roles are marked using a 🌐 globe icon. In the list, it is also indicated how many users and groups are bound to each role in this organization's namespace.
+- A list of roles to select from, sourced from both the organization's namespace and cluster roles. Each role defines a specific set of permissions for a number of resources. Cluster roles are marked using a 🌐 globe icon. In the list, it is also indicated how many users, groups, and service accounts are bound to each role in this organization's namespace.
 
 - For the selected role:
 
@@ -116,11 +116,11 @@ For example, the `cluster-admin` ClusterRole, when assigned here, will grant all
 
 ### 2. Double-check permissions
 
-By inspecting the _Permissions_ tab, double check that the role grants only the permissions you are expecting.
+By inspecting the **Permissions** tab, double check that the role grants only the permissions you are expecting.
 
 ### 3. Add subjects
 
-On the _Subjects_ tab, add or select the service account you want to assign to the selected role.
+On the **Subjects** tab, add or select the service account you want to assign to the selected role.
 
 When adding a **service account** as a subject, you are free to select from the existing ones in the current organization's namespace, by using the suggestions in the input field. When typing some letters, these suggestions will present existing service accounts that match your input. However you can also create new service accounts here by entering new names here.
 
@@ -162,7 +162,7 @@ Make sure to repeat this for all relevant roles.
 
 - **Roles and cluster roles are read-only.** It is currently not possible to add new roles or cluster roles via the web user interface.
 
-  As an admin user of the Management API, you can add roles or cluster roles directly, e. g using `kubectl create role` and `kubectl create clusterrole`. Make sure to add the label `ui.giantswarm.io/display` with the string value `"true"` in order to get the role listed in the access control UI.
+  As an admin user of the Management API, you can add roles or cluster roles directly, e.g. using `kubectl create role` and `kubectl create clusterrole`. Make sure to add the label `ui.giantswarm.io/display` with the string value `"true"` in order to get the role listed in the access control UI.
 
 ## Related
 
