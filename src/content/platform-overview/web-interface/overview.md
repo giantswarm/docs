@@ -13,7 +13,7 @@ user_questions:
   - What can I do with the web UI?
   - Where can I find the web UI source code?
   - How can I give feedback on the web UI?
-last_review_date: 2021-01-01
+last_review_date: 2023-03-08
 aliases:
    - /ui-api/web/overview
 owner:
@@ -36,7 +36,7 @@ the application.
 
 ## What can I do with the web interface
 
-Our web interface let's you do the following things. Some topics link to more
+Our web interface lets you do the following things. Some topics link to more
 detailed information:
 
 - View and manage organizations
