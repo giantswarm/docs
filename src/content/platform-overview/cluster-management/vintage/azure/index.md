@@ -6,7 +6,7 @@ weight: 20
 menu:
   main:
     parent: cluster-management-vintage
-last_review_date: 2022-01-25
+last_review_date: 2023-03-06
 aliases:
   - /basics/azure-architecture/
   - /general/architcture/azure/
