@@ -286,7 +286,9 @@ __Warning__: It is assumed that you have an [ingress controller and cert-manager
 
 ### Deploying Dex with custom certificates
 
-Dex gets certificates from the cert-manager by default. In case the cert-manager is configured to use a custom certification authority, which is not publicly trusted, Dex needs to be configured to trust it. The custom certification authority needs to be stored in a `Secret` and referenced in the `trustedRootCA` section of the `Secret` or `ConfigMap` with configuration values for the Dex app.
+Dex gets certificates from the cert-manager by default. 
+In case the cert-manager is configured to use a custom certification authority, which is not publicly trusted, Dex needs to be configured to trust it. 
+The custom certification authority needs to be stored in a `Secret` and referenced in the `trustedRootCA` section of the `Secret` or `ConfigMap` with configuration values for the Dex app.
 
 ```yaml
 trustedRootCA:
@@ -307,7 +309,9 @@ ingress:
 
 ### Running Dex in a private workload cluster
 
-When deploying Dex to a private workload cluster, it is required to specify a proxy configuration in order to ensure that Dex has access to the outside network. Proxy setup can be provided in the `proxy` section of the `Secret` or `ConfigMap` with configuration values for the Dex app. It is required to set the proxy as `enabled`, specify the URL of the HTTPS proxy in the `https_proxy` property and exclude Kubernetes API from running through the proxy by adding its IP address or network to the `no_proxy` property.  
+When deploying Dex to a private workload cluster, it is required to specify a proxy configuration in order to ensure that Dex has access to the outside network. 
+Proxy setup can be provided in the `proxy` section of the `Secret` or `ConfigMap` with configuration values for the Dex app. 
+It is required to set the proxy as `enabled`, specify the URL of the HTTPS proxy in the `https_proxy` property and exclude Kubernetes API from running through the proxy by adding its IP address or network to the `no_proxy` property.  
 
 ```yaml
 proxy:
@@ -367,6 +371,7 @@ security:
     restrictAccess:
       gsAPI: true
 ```
+
 
 If both `Dex` and `Athena` are configured correctly and you have installed `kubectl gs` on your machine, you should be able to create a kubectl context using the management API URL.
 ```
