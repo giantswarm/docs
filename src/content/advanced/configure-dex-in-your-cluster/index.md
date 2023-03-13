@@ -372,6 +372,17 @@ security:
       gsAPI: true
 ```
 
+Athena also supports custom certificates, same as the Dex app. 
+The certificates need to be provided in the `ingress` section of the configuration:
+
+```yaml
+ingress:
+  tls:
+    letsencrypt: false
+    caPemB64: ...
+    crtPemB64: ...
+    keyPemB64: ...
+```
 
 If both `Dex` and `Athena` are configured correctly and you have installed `kubectl gs` on your machine, you should be able to create a kubectl context using the management API URL.
 ```
