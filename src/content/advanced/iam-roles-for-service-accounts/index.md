@@ -226,7 +226,7 @@ metadata:
   namespace: default
 ```
 
-## Cross Account Roles
+## Cross Account Roles {#cross-account}
 
 ### IAM role cross account
 
@@ -373,4 +373,4 @@ Modify the trust entity of your AWS IAM roles with the new identity provider URL
 }
 ```
 
-For cross account roles please following the guide above and replace the `CLOUDFRONT_DOMAIN` with the new `CLOUDFRONT_ALTERNATE_DOMAIN`.
+For cross account roles please follow the [guide](#cross-account) above and replace the `CLOUDFRONT_DOMAIN` with the new `CLOUDFRONT_ALTERNATE_DOMAIN`.
