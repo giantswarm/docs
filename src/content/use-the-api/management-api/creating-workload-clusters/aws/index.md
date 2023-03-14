@@ -281,7 +281,7 @@ Triggering a delete on the `Cluster` resource  will have a cascading effect on a
 - `MachineDeployment`
 - `AWSMachineDeployment`
 
-This resources will not be deleted immediately, our operators will start the deletion process of the CloudFormation Stacks on AWS and remove the Kubernetes finalizer.
+These resources will not be deleted immediately. Our operators will start the deletion process of the CloudFormation Stacks on AWS and remove the Kubernetes finalizer.
 
 In order to review if a resource has been marked for deletion you can check if the resource has the attribute `deletionTimestamp` in the `metadata` field.
 
