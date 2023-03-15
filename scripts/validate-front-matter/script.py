@@ -233,13 +233,15 @@ def print_json(rdict):
     for fpath in rdict.keys():
         for check in rdict[fpath]['checks']:
             try:
-                title = check.get('page_title') or ""
+                title = check.get('title') or ""
                 description = checks_dict[check['check']]['description']
                 owners = []
                 doc_owner = check.get('owner')
                 if hasattr(doc_owner, "__len__"): 
                   for i in doc_owner:
-                    owners.append(re.search('\/.*\/([^\/]+)\/?$', i).group(1))
+                    team_name = re.search('\/.*\/([^\/]+)\/?$', i).group(1)
+                    team_label = team_name.replace("-", "/")
+                    owners.append(team_label)
             except AttributeError:
                 pass
             out.append({
@@ -613,17 +615,23 @@ def validate(content, fpath, validation):
                 if diff > datetime.timedelta(days=expiration):
                     result['checks'].append({
                         'check': REVIEW_TOO_LONG_AGO,
+                        'title': fm['title'] or "",
+                        'owner': fm['owner'] or [],
                         'value': fm['last_review_date'],
                     })
                 elif diff < datetime.timedelta(seconds=0):
                     # in the future
                     result['checks'].append({
                         'check': INVALID_LAST_REVIEW_DATE,
+                        'title': fm['title'] or "",
+                        'owner': fm['owner'] or [],
                         'value': fm['last_review_date'],
                     })
             else:
                 result['checks'].append({
                     'check': INVALID_LAST_REVIEW_DATE,
+                    'title': fm['title'] or "",
+                    'owner': fm['owner'] or [],
                     'value': fm['last_review_date'],
                 })
         else:

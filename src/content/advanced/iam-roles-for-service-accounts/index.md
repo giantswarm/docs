@@ -11,7 +11,7 @@ user_questions:
  -  How can I migrate from KIAM to IAM roles for service accounts?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2022-12-29
+last_review_date: 2023-03-14
 ---
 
 {{< platform_support_table aws="alpha=v17.2.0" aws="ga=v17.4.0">}}
@@ -226,7 +226,7 @@ metadata:
   namespace: default
 ```
 
-## Cross Account Roles
+## Cross Account Roles {#cross-account}
 
 ### IAM role cross account
 
@@ -328,3 +328,49 @@ If you have followed the steps above you can switch from kiam to IAM roles for s
 - Verify that your application is working correctly.
 
 In case your application is not working you can always remove the annotation on the service account and add the kiam annotation on your deployment again.
+
+## AWS Release v19
+
+When upgrading to AWS Release `v19.0.0` or higher, we have made changes to the identity provider URL to provide greater predictability and enable easier automation of AWS IAM role creation by customers. Specifically, we have decided to use a `Cloudfront domain alias` for the identity provider URL.
+
+Previously, in AWS Release `v18.x.x.`, the default Cloudfront domain name - a randomly generated URL such as `https://d111111abcdef8.cloudfront.net` - was used as the identity provider URL. However, with the introduction of the Cloudfront alternate domain name, the new identity provider URL will be `https://irsa.CLUSTER_ID.k8s.INSTALLATION_NAME.BASE_DOMAIN`.
+
+**Please note that before upgrading to release `v19.0.0` or higher, it is necessary to update your AWS IAM roles with the new identity provider URL.**
+
+To find the new URL, simply log into the AWS Console, navigate to IAM > Identity Providers, and search for the updated identity provider URL there.
+
+Modify the trust entity of your AWS IAM roles with the new identity provider URL:
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Federated": "arn:aws:iam::ROLE_AWSACCOUNT:oidc-provider/CLOUDFRONT_DOMAIN"
+            },
+            "Action": "sts:AssumeRoleWithWebIdentity",
+            "Condition": {
+                "StringEquals": {
+                    "CLOUDFRONT_DOMAIN:sub": "system:serviceaccount:NAMESPACE:SA_NAME"
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Federated": "arn:aws:iam::ROLE_AWSACCOUNT:oidc-provider/CLOUDFRONT_ALTERNATE_DOMAIN"
+            },
+            "Action": "sts:AssumeRoleWithWebIdentity",
+            "Condition": {
+                "StringEquals": {
+                    "CLOUDFRONT_DOMAIN:sub": "system:serviceaccount:NAMESPACE:SA_NAME"
+                }
+            }
+        },
+    ]
+}
+```
+
+For cross account roles please follow the [guide](#cross-account) above and replace the `CLOUDFRONT_DOMAIN` with the new `CLOUDFRONT_ALTERNATE_DOMAIN`.
