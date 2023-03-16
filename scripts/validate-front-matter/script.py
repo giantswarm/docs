@@ -239,7 +239,9 @@ def print_json(rdict):
                 doc_owner = check.get('owner')
                 if hasattr(doc_owner, "__len__"): 
                   for i in doc_owner:
-                    owners.append(re.search('\/.*\/([^\/]+)\/?$', i).group(1))
+                    team_name = re.search('\/.*\/([^\/]+)\/?$', i).group(1)
+                    team_label = team_name.replace("-", "/")
+                    owners.append(team_label)
             except AttributeError:
                 pass
             out.append({
@@ -614,6 +616,7 @@ def validate(content, fpath, validation):
                     result['checks'].append({
                         'check': REVIEW_TOO_LONG_AGO,
                         'title': fm['title'] or "",
+                        'owner': fm['owner'] or [],
                         'value': fm['last_review_date'],
                     })
                 elif diff < datetime.timedelta(seconds=0):
@@ -621,12 +624,14 @@ def validate(content, fpath, validation):
                     result['checks'].append({
                         'check': INVALID_LAST_REVIEW_DATE,
                         'title': fm['title'] or "",
+                        'owner': fm['owner'] or [],
                         'value': fm['last_review_date'],
                     })
             else:
                 result['checks'].append({
                     'check': INVALID_LAST_REVIEW_DATE,
                     'title': fm['title'] or "",
+                    'owner': fm['owner'] or [],
                     'value': fm['last_review_date'],
                 })
         else:
