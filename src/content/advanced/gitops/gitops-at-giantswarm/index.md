@@ -1,20 +1,20 @@
 ---
 linkTitle: GitOps at Giant Swarm
 title: GitOps at Giant Swarm
-description: A brief explanation of what Giant Swarm provides for GitOps
+description: A brief explanation of how Giant Swarm supports the GitOps journey for our customers.
 weight: 10
 menu:
   main:
     parent: advanced-gitops
     identifier: advanced-gitops-at-giantswarm
 user_questions:
-  - GitOps at Giant Swarm
+  - GitOps at Giant Swarm?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 last_review_date: 2023-03-17
 ---
 
-## GitOps at Giant Swarm
+## GitOps at Giant Swarm?
 
 Here at Giant Swarm, we are dedicated to ensuring you have a successful GitOps journey.
 
