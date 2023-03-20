@@ -14,7 +14,7 @@ owner:
 user_questions:
   - What usage data is Giant Swarm recording in the web UI?
   - How is Giant Swarm treating usage data recorded in the web UI?
-last_review_date: 2021-01-01
+last_review_date: 2023-03-20
 ---
 
 In general, when using the Giant Swarm web interface, usage data is collected on these levels:
