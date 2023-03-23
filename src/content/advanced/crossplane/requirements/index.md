@@ -48,3 +48,8 @@ There are currently ongoing discussion in the Crossplane community on how to mit
 
 - https://github.com/crossplane/crossplane/issues/3852
 - https://github.com/crossplane/crossplane/issues/2869
+
+
+## Additional readings
+
+- [The Kubernetes Discovery Cache: Blessing and Curse](https://jonnylangefeld.com/blog/the-kubernetes-discovery-cache-blessing-and-curse)
