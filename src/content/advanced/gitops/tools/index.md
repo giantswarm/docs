@@ -8,7 +8,8 @@ menu:
     parent: advanced-gitops
     identifier: advanced-gitops-gitops-tooling
 user_questions:
-- What tools should I use to validate my gitops manifests
+- What tools should I use to validate my gitops manifests?
+- How can I trace resources that flux controls?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 last_review_date: 2023-03-23
