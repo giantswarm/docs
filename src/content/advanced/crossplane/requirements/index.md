@@ -40,7 +40,7 @@ to the management cluster, including:
   our experience this does not completely solve the issue (while helps) and is unreliably applied across the kubernetes
   landscape. The relevant upstream issue can be found [here](https://github.com/crossplane/crossplane/issues/3272).
 - interacting with the cluster gets slower because of similar issues as the above item because of the client-side
-  throttling caused by the increased number of CRDs when building the [discovery cache](https://jonnylangefeld.com/blog/the-kubernetes-discovery-cache-blessing-and-curse)
+  throttling caused by the increased number of CRDs when building the [discovery cache](https://github.com/kubernetes/client-go/blob/1517ffb8d37c99e6a3a2842bcdee0aa271f0332b/discovery/discovery_client.go)
 
 There are currently ongoing discussion in the Crossplane community on how to mitigate these issues:
 
