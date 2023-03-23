@@ -27,19 +27,57 @@ If something modifies or deletes a resource outside of Kubernetes, Crossplane re
 
 It [officially supports](https://marketplace.upbound.io/providers?tier=official) major cloud providers like `aws`, `azure`, `gcp`.
 
-An example of creating - and maintaining the state of - an AWS S3 bucket via the official AWS provider:
+There are also an increasing number of [community providers](https://marketplace.upbound.io/providers?tier=community) getting available.
+
+### Example usage
+
+An example of creating - and maintaining the state of - an AWS S3 bucket via the official AWS provider you first need
+to create a config for the provider that will be used to manage the resource:
+
+```yaml
+apiVersion: aws.upbound.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: default
+spec:
+  credentials:
+    secretRef:
+      key: creds
+      name: aws-creds
+      namespace: crossplane
+    source: Secret
+```
+
+The secret referenced in the `ProviderConfig` in this case would look like:
+
+```yaml
+apiVersion: v1
+data:
+  creds: "..."
+kind: Secret
+metadata:
+  name: aws-creds
+  namespace: crossplane
+```
+
+This is a most simple approach: an AWS credentials file is store base64 encoded in the `.data.creds` field, but Crossplane
+supports [more fine-grained approaches](https://github.com/crossplane-contrib/provider-aws/blob/36ba63a1df442a72934c7ae90ae7f137c0c2cef5/AUTHENTICATION.md)
+as well, like using `IRSA` on AWS as well.
+
+Finally, we create the Bucket CR and reference the `ProviderConfig` that will be used to manage the resource.
 
 ```yaml
 apiVersion: s3.aws.upbound.io/v1beta1
 kind: Bucket
 metadata:
   name: example
+  namespace: crossplane
 spec:
   forProvider:
     region: eu-central-1
+  providerConfigRef:
+    name: default
 ```
-
-There are also an increasing number of [community providers](https://marketplace.upbound.io/providers?tier=community) getting available.
 
 ### Notable features
 
@@ -51,10 +89,10 @@ There are also an increasing number of [community providers](https://marketplace
 ## Architecture
 
 Crossplane itself is a core set of [Kubernetes operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/)
-that managed so called `providers`.
+that manage so called `providers`.
 
 Providers are the cloud provider specific extensions to core Crossplane that offer a set of Kubernetes CRDs that
-describe cloud resources as Kubernetes CRDs and the operators to create, update, maintain the state and delete these resources.
+describe cloud resources and the operators to create, update, maintain the state and delete these resources.
 
 Giant Swarm offers experimental, [managed application](https://github.com/giantswarm/crossplane/) for core Crossplane,
 and supports managed solutions for running the following Crossplane `providers` on management clusters:
