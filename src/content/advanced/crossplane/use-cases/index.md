@@ -4,9 +4,6 @@ title: Crossplane overview
 description: A brief overview of Crossplane architecture, supported providers and the main features they offer.
 weight: 10
 menu:
-main:
-parent: advanced-crossplane
-identifier: advanced-crossplane-overview
 user_questions:
 - What is Crossplane?
 owner:

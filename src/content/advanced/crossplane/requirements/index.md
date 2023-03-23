@@ -4,9 +4,6 @@ title: Crossplane requirements
 description: Resource requirements and risks Crossplane impose on the management cluster.
 weight: 20
 menu:
-main:
-parent: advanced-crossplane
-identifier: advanced-crossplane-requirements
 user_questions:
 - What are the requirements for Crossplane?
 - What are the risks of using Crossplane?
