@@ -1,7 +1,7 @@
 ---
 linkTitle: Crossplane
 title: Crossplane
-description: Learn about our (experimental) managed Crossplane solution.
+description: A brief overview of Crossplane and the (experimental) managed solution offered by Giant Swarm.
 weight: 50
 menu:
   main:

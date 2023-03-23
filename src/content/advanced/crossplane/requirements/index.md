@@ -1,7 +1,7 @@
 ---
 linkTitle: Crossplane requirements
 title: Crossplane requirements
-description: Crossplane requirements
+description: Resource requirements and risks Crossplane impose on the management cluster.
 weight: 20
 menu:
 main:

@@ -1,7 +1,7 @@
 ---
 linkTitle: Crossplane overview
 title: Crossplane overview
-description: A brief overview of Crossplane and the main features they provide.
+description: A brief overview of Crossplane architecture, supported providers and the main features they offer.
 weight: 10
 menu:
 main:
