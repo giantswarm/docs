@@ -29,6 +29,33 @@ It [officially supports](https://marketplace.upbound.io/providers?tier=official)
 
 There are also an increasing number of [community providers](https://marketplace.upbound.io/providers?tier=community) getting available.
 
+## Architecture
+
+Crossplane itself is a core set of [Kubernetes operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/)
+that manage so called `providers`.
+
+Providers are the cloud provider specific extensions to core Crossplane that offer a set of Kubernetes CRDs that
+describe cloud resources and the operators to create, update, maintain the state and delete these resources.
+
+### Notable features
+
+- [Provider Configs](https://docs.crossplane.io/v1.11/concepts/providers/#configuring-providers) is an excellent way to
+  manage the actor (access keys, roles, identities) handling given resources down to the individual level
+- [Composite Resources](https://docs.crossplane.io/latest/concepts/composition/) is collection of other resources that can be offered by your devops team
+  to developers to make it easier to bring up common infrastructure for application
+
+## Giant Swarm managed solution
+
+Giant Swarm offers a [managed core crossplane](https://github.com/giantswarm/crossplane/) and a set of
+supported providers that we install on-demand to the management clusters:
+
+- the [official AWS provider](https://marketplace.upbound.io/providers/upbound/provider-aws/latest)
+- the [official Azure provider](https://marketplace.upbound.io/providers/upbound/provider-azure/latest)
+- the [official GCP provider](https://marketplace.upbound.io/providers/upbound/provider-gcp/latest)
+
+Configuring access keys, roles, identities - `ProviderConfig`s, see example below - and their scope of what they can
+access on the cloud provider account is managed by the customer.
+
 ### Example usage
 
 An example of creating - and maintaining the state of - an AWS S3 bucket via the official AWS provider you first need
@@ -78,25 +105,3 @@ spec:
   providerConfigRef:
     name: default
 ```
-
-### Notable features
-
-- [Provider Configs](https://docs.crossplane.io/v1.11/concepts/providers/#configuring-providers) is an excellent way to
-  manage the actor (access keys, roles, identities) handling given resources down to the individual level
-- [Composite Resources](https://docs.crossplane.io/latest/concepts/composition/) is collection of other resources that can be offered by your devops team
-  to developers to make it easier to bring up common infrastructure for application
-
-## Architecture
-
-Crossplane itself is a core set of [Kubernetes operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/)
-that manage so called `providers`.
-
-Providers are the cloud provider specific extensions to core Crossplane that offer a set of Kubernetes CRDs that
-describe cloud resources and the operators to create, update, maintain the state and delete these resources.
-
-Giant Swarm offers experimental, [managed application](https://github.com/giantswarm/crossplane/) for core Crossplane,
-and supports managed solutions for running the following Crossplane `providers` on management clusters:
-
-- the [official AWS provider](https://marketplace.upbound.io/providers/upbound/provider-aws/latest)
-- the [official Azure provider](https://marketplace.upbound.io/providers/upbound/provider-azure/latest)
-- the [official GCP provider](https://marketplace.upbound.io/providers/upbound/provider-gcp/latest)
