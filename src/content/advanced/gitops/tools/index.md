@@ -8,9 +8,10 @@ menu:
     parent: advanced-gitops
     identifier: advanced-gitops-gitops-tooling
 user_questions:
+- What tools should I use to validate my gitops manifests
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2022-12-20
+last_review_date: 2023-03-23
 ---
 
 ## GitOps tooling
@@ -87,3 +88,30 @@ As a quick visual guide, this may be preferable to ensure your secrets are all e
 to visually compare key fingerprints.
 
 Documentation on `kustomize build` can be found in the [kustomize documentation here](https://kubectl.docs.kubernetes.io/references/kustomize/cmd/build/).
+
+### flux
+
+There are many useful comnmands in flux and to understand this as a tool we recommend you browse their comprehensive CLI
+documentation which can be found at [https://fluxcd.io/flux/cmd/](https://fluxcd.io/flux/cmd/). However, when
+understanding resources on the cluster, there are two commands in particular that should be brought to your attention as
+these offer a great deal of benefit in determining if a resource is controlled by flux and whether it has the latest
+changes.
+
+#### flux tree
+
+flux tree will show you a list of resources a kustomization manages.
+
+This command cannot be used against local manifests but is instead run against the server and will print out
+a tree of all resources organised by sub-kustomization and sorted by type.
+
+#### flux trace
+
+When looking at any given resource on a cluster, it's not always easy to understand if that resource is controlled via
+fluxcd, and if so, which kustomization controls it.
+
+Occasionally you might find a resource has been accidentally duplicated in your repository so it's now being controlled
+by multiple kustomizations which are fighting for control, other times you may create a child kustomization but the sub
+directory is actually controlled at a higher level.
+
+Flux trace helps identify the kustomization controlling the resource you're looking interested in and will show you
+the source revision for that resource, additionally helping you determine if it's recieved the latest changes.
