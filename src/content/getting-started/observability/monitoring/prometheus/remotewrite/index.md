@@ -76,3 +76,51 @@ spec:
 ## RemoteWrite CRD
 
 The RemoteWrite CRD documentation can be found [here](https://doc.crds.dev/github.com/giantswarm/prometheus-meta-operator/monitoring.giantswarm.io/RemoteWrite/v1alpha1@v4.5.1) or on any management cluster using `kubectl explain`.
+
+## Data filtering
+
+The amount of metrics sent by our Prometheus can be quite high. In order to prevent this you can filter out metrics being sent over remote write.
+
+This is achieved using the relabeling feature via the `writeRelabelConfigs` field, here are some examples :
+
+Wildcard filtering, only allowing metrics starting with `aggregation:` or `prometheus_` to be sent
+
+```yaml
+apiVersion: monitoring.giantswarm.io/v1alpha1
+kind: RemoteWrite
+metadata:
+  name: your-prometheus-instance
+  namespace: monitoring
+spec:
+  clusterSelector: {}
+  remoteWrite:
+    name: your-prometheus-instance
+    url: https://your-prometheus-instance.com/api/prom/push
+    writeRelabelConfigs:
+      - action: keep
+        regex: (^aggregation:.+|^prometheus_.+)
+        sourceLabels:
+          - __name__
+```
+
+Blacklist filtering, sending all metrics expect the ones starting with `aggregation:` or `prometheus_`
+
+```yaml
+apiVersion: monitoring.giantswarm.io/v1alpha1
+kind: RemoteWrite
+metadata:
+  name: your-prometheus-instance
+  namespace: monitoring
+spec:
+  clusterSelector: {}
+  remoteWrite:
+    name: your-prometheus-instance
+    url: https://your-prometheus-instance.com/api/prom/push
+    writeRelabelConfigs:
+      - action: drop
+        regex: (^aggregation:.+|^prometheus_.+)
+        sourceLabels:
+          - __name__
+```
+
+More details on how to use relabeling can be found in the official doc [here](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config)
