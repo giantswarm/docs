@@ -43,7 +43,7 @@ For example, this `RemoteWrite` Custom Resource indicates that we configure the 
 apiVersion: monitoring.giantswarm.io/v1alpha1
 kind: RemoteWrite
 metadata:
-  name: grafana-cloud
+  name: your-prometheus-instance
   namespace: monitoring
 spec:
   ## Defines the cluster to configure prometheus remote write for
@@ -51,15 +51,15 @@ spec:
   ## see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#labelselector-v1-meta
   clusterSelector: {}
   remoteWrite:
-    ## Configure the authentication to use using the values from the grafana-cloud secret
+    ## Configure the authentication to use using the values from the your-prometheus-instance secret
     basicAuth:
       password:
         key: password
-        name: grafana-cloud
+        name: your-prometheus-instance
       username:
         key: username
-        name: grafana-cloud
-    name: grafana-cloud
+        name: your-prometheus-instance
+    name: your-prometheus-instance
     queueConfig:
       capacity: 10000
       maxSamplesPerSend: 1000
@@ -70,7 +70,7 @@ spec:
   - data:
       password: ...
       username: ...
-    name: grafana-cloud
+    name: your-prometheus-instance
 ```
 
 ## RemoteWrite CRD
