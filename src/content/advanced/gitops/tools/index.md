@@ -100,7 +100,7 @@ changes.
 
 #### flux tree
 
-flux tree will show you a list of resources a kustomization manages.
+The `flux tree`command will show you a list of resources a kustomization manages.
 
 This command cannot be used against local manifests but is instead run against the server and will print out
 a tree of all resources organised by sub-kustomization and sorted by type.
