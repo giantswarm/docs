@@ -44,8 +44,8 @@ The purpose of the script is to check all generated manifests for linting and va
 using both [`yamllint`](https://github.com/adrienverge/yamllint) and [`kubeconform`](https://github.com/yannh/kubeconform) to verify a compiled version of all manifests discovered from a flux kustomization
 `spec.path`.
 
-Usage of the script is simple; from the root of your gitops repository run `test-all-ff validate`. The script will then
-find all flux kustomization files, execute `fake-flux`  to build a monolithic manifest for each kustomization found,
+Usage of the script is simple; from the root of your GitOps repository run `test-all-ff validate`. The script will then
+find all flux kustomization files, execute `fake-flux` to build a monolithic manifest for each kustomization found,
 and then parse that manifest with `yamllint` and `kubeconform`.
 
 The script can be found as part of our [gitops-template tooling](https://github.com/giantswarm/gitops-template/tree/main/tools).
