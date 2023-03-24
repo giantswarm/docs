@@ -85,7 +85,7 @@ offer a quick visual check to ensure your secrets have all been encrypted proper
 The difference here is `flux build kustomization` replaces the contents of your secret with the type of encryption used
 such as `**SOPS**` whilst `kustomize build` will display instead the entire encrypted secret.
 
-As a quick visual guide, this may be preferable to ensure your secrets are all encrypted and gives you the opportunity
+__Note__: As a quick visual guide, this may be preferable to ensure your secrets are all encrypted and gives you the opportunity
 to visually compare key fingerprints.
 
 Documentation on `kustomize build` can be found in the [kustomize documentation here](https://kubectl.docs.kubernetes.io/references/kustomize/cmd/build/).
