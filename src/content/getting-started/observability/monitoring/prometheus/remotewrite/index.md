@@ -64,12 +64,12 @@ spec:
       capacity: 10000
       maxSamplesPerSend: 1000
       minShards: 10
-    url: https://prometheus-us-central1.grafana.net/api/prom/push
+    url: https://your-prometheus-instance.io/api/prom/push
   ## Secret values to be used for authentication
   secrets:
   - data:
-      password: ...
-      username: ...
+      password: base64-encoded-string
+      username: base64-encoded-string
     name: your-prometheus-instance
 ```
 
