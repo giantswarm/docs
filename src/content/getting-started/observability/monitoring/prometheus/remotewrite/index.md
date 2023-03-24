@@ -35,9 +35,9 @@ To enable this behavior, Prometheus needs to be configured using [remote_write c
 The Prometheus `RemoteWrite` feature allows you to configure remote write targets in the Giant Swarm managed prometheus running on your management cluster.
 That way, you can replicate and send metrics to your own 3rd party system and use the data as you see fit.
 
-Giant Swarm provides and uses a `RemoteWrite` Custom Resource Definition that you can use to configure `remote_write` targets.
+Example:
 
-For example, this `RemoteWrite` Custom Resource indicates that we configure the remote write feature for all clusters (`clusterSelector: {}`) to send the data to grafana cloud (`url: https://prometheus-us-central1.grafana.net/api/prom/push`)
+This `RemoteWrite` Custom Resource configures all clusters (`clusterSelector: {}`) to send the data to a single Prometheus (`url: https://your-prometheus-instance.io/api/prom/push`)
 
 ```yaml
 apiVersion: monitoring.giantswarm.io/v1alpha1
