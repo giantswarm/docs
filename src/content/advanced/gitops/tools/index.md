@@ -41,7 +41,7 @@ This script has the most benefit when tied in with a github action but may also 
 as part of a git pre-commit hook.
 
 The purpose of the script is to check all generated manifests for linting and validation errors. It achieves this by
-using both yamllint and kubeconform to verify a compiled version of all manifests discovered from a flux kustomization
+using both [`yamllint`](https://github.com/adrienverge/yamllint) and [`kubeconform`](https://github.com/yannh/kubeconform) to verify a compiled version of all manifests discovered from a flux kustomization
 `spec.path`.
 
 Usage of the script is simple; from the root of your gitops repository run `test-all-ff validate`. The script will then
