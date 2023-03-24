@@ -51,7 +51,7 @@ spec:
   ## see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#labelselector-v1-meta
   clusterSelector: {}
   remoteWrite:
-    ## Configure the authentication to use using the values from the your-prometheus-instance secret
+    ## Configure the authentication to use values from the your-prometheus-instance secret
     basicAuth:
       password:
         key: password
