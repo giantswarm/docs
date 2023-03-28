@@ -15,7 +15,7 @@ aliases:
   - /guides/accessing-services-from-the-outside/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
-last_review_date: 2021-09-01
+last_review_date: 2023-03-28
 ---
 
 Once you have some workload running on your cluster, you might want to access it from outside your cluster. Creating an Ingress resource is the canonical way to do that:
@@ -79,8 +79,6 @@ spec:
       - path: /
         pathType: Prefix
         backend:
-          serviceName: SERVICE_NAME
-          servicePort: SERVICE_PORT
           service:
             name: SERVICE_NAME
             port:

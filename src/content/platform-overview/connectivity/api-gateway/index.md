@@ -13,7 +13,7 @@ user_questions:
   - What is tested for Kong?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
-last_review_date: 2022-02-23
+last_review_date: 2023-03-28
 ---
 
 Kong is an API gateway that Giant Swarm provides as part of the developer platform.
