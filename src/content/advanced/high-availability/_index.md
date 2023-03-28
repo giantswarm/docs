@@ -7,7 +7,7 @@ menu:
   main:
     identifier: advanced-highavailability
     parent: advanced
-last_review_date: 2021-06-14
+last_review_date: 2023-03-28
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 ---
