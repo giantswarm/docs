@@ -6,7 +6,7 @@ weight: 100
 menu:
   main:
     parent: cost-optimization
-last_review_date: 2021-08-02
+last_review_date: 2023-03-28
 user_questions:
 - What cost optimization tools do you recommend?
 - How can I tune my setup to optimize for cost?
@@ -29,7 +29,8 @@ Adoption of Kubernetes still requires monitoring cost drivers. Improving resourc
     - [AWS CloudWatch data source integration](https://grafana.com/docs/grafana/latest/datasources/cloudwatch/#iam-policies)
     - [Azure Monitor data source integration](https://grafana.com/grafana/plugins/grafana-azure-monitor-datasource/)
 - [Goldilocks](https://github.com/FairwindsOps/goldilocks), a tool for refine and discover the right application resource settings
-- There are a lot of payed solutions offering dashboard oriented services that track costs of Kubernetes Applications like:
+- There are a lot of payed solutions offering dashboard oriented services that track costs of Kubernetes Applications or help to reduce Cloud costs like:
+    - [Zesty](https://zesty.co/) Real time controller that measures machine resource usage and adapt Reserved Instances using the AWS Marketplace. 
     - [Cloudability](https://www.apptio.com/products/cloudability/)
     - [Kubernetes Opex Analytics](https://github.com/rchakode/kube-opex-analytics)
     - [CloudHealth](https://www.cloudhealthtech.com/)
@@ -45,6 +46,7 @@ Adoption of Kubernetes still requires monitoring cost drivers. Improving resourc
 
 - [Janitor](https://codeberg.org/hjacobs/kube-janitor), a tool that leverages on resource annotations to clean and set TTL for your deployments, find out unused volumes,...
 - [Kubernetes Downscaler](https://codeberg.org/hjacobs/kube-downscaler) scales down deployments on your non production cluster based on some conditions
+- [Cluster cleaner](https://github.com/giantswarm/cluster-cleaner) automatically removes workload clusters after a defined amount of time. 
 
 ## Summary
 
