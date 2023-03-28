@@ -29,7 +29,7 @@ Adoption of Kubernetes still requires monitoring cost drivers. Improving resourc
     - [AWS CloudWatch data source integration](https://grafana.com/docs/grafana/latest/datasources/cloudwatch/#iam-policies)
     - [Azure Monitor data source integration](https://grafana.com/grafana/plugins/grafana-azure-monitor-datasource/)
 - [Goldilocks](https://github.com/FairwindsOps/goldilocks), a tool for refine and discover the right application resource settings
-- There are a lot of payed solutions offering dashboard oriented services that track costs of Kubernetes Applications or help to reduce Cloud costs like:
+- There are multiple paid solutions offering dashboard-oriented services to track Kubernetes application costs or help to reduce cloud costs. For example:
     - [Zesty](https://zesty.co/) Real time controller that measures machine resource usage and adapt Reserved Instances using the AWS Marketplace. 
     - [Cloudability](https://www.apptio.com/products/cloudability/)
     - [Kubernetes Opex Analytics](https://github.com/rchakode/kube-opex-analytics)
