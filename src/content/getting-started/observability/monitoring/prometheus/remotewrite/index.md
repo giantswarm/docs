@@ -35,15 +35,15 @@ To enable this behavior, Prometheus needs to be configured using [remote_write c
 The Prometheus `RemoteWrite` feature allows you to configure remote write targets in the Giant Swarm managed prometheus running on your management cluster.
 That way, you can replicate and send metrics to your own 3rd party system and use the data as you see fit.
 
-Giant Swarm provides and uses a `RemoteWrite` Custom Resource Definition that you can use to configure `remote_write` targets.
+Example:
 
-For example, this `RemoteWrite` Custom Resource indicates that we configure the remote write feature for all clusters (`clusterSelector: {}`) to send the data to grafana cloud (`url: https://prometheus-us-central1.grafana.net/api/prom/push`)
+This `RemoteWrite` Custom Resource configures all clusters (`clusterSelector: {}`) to send the data to a single Prometheus (`url: https://your-prometheus-instance.io/api/prom/push`)
 
 ```yaml
 apiVersion: monitoring.giantswarm.io/v1alpha1
 kind: RemoteWrite
 metadata:
-  name: grafana-cloud
+  name: your-prometheus-instance
   namespace: monitoring
 spec:
   ## Defines the cluster to configure prometheus remote write for
@@ -51,28 +51,76 @@ spec:
   ## see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#labelselector-v1-meta
   clusterSelector: {}
   remoteWrite:
-    ## Configure the authentication to use using the values from the grafana-cloud secret
+    ## Configure the authentication to use values from the your-prometheus-instance secret
     basicAuth:
       password:
         key: password
-        name: grafana-cloud
+        name: your-prometheus-instance
       username:
         key: username
-        name: grafana-cloud
-    name: grafana-cloud
+        name: your-prometheus-instance
+    name: your-prometheus-instance
     queueConfig:
       capacity: 10000
       maxSamplesPerSend: 1000
       minShards: 10
-    url: https://prometheus-us-central1.grafana.net/api/prom/push
+    url: https://your-prometheus-instance.io/api/prom/push
   ## Secret values to be used for authentication
   secrets:
   - data:
-      password: ...
-      username: ...
-    name: grafana-cloud
+      password: base64-encoded-string
+      username: base64-encoded-string
+    name: your-prometheus-instance
 ```
 
 ## RemoteWrite CRD
 
 The RemoteWrite CRD documentation can be found [here](https://doc.crds.dev/github.com/giantswarm/prometheus-meta-operator/monitoring.giantswarm.io/RemoteWrite/v1alpha1@v4.5.1) or on any management cluster using `kubectl explain`.
+
+## Data filtering
+
+The amount of metrics sent by our Prometheus can be quite high. In order to prevent this you can filter out metrics being sent over remote write.
+
+This is achieved using the relabeling feature via the `writeRelabelConfigs` field, here are some examples :
+
+Wildcard filtering, only allowing metrics starting with `aggregation:` or `prometheus_` to be sent
+
+```yaml
+apiVersion: monitoring.giantswarm.io/v1alpha1
+kind: RemoteWrite
+metadata:
+  name: your-prometheus-instance
+  namespace: monitoring
+spec:
+  clusterSelector: {}
+  remoteWrite:
+    name: your-prometheus-instance
+    url: https://your-prometheus-instance.com/api/prom/push
+    writeRelabelConfigs:
+      - action: keep
+        regex: (^aggregation:.+|^prometheus_.+)
+        sourceLabels:
+          - __name__
+```
+
+Blacklist filtering, sending all metrics expect the ones starting with `aggregation:` or `prometheus_`
+
+```yaml
+apiVersion: monitoring.giantswarm.io/v1alpha1
+kind: RemoteWrite
+metadata:
+  name: your-prometheus-instance
+  namespace: monitoring
+spec:
+  clusterSelector: {}
+  remoteWrite:
+    name: your-prometheus-instance
+    url: https://your-prometheus-instance.com/api/prom/push
+    writeRelabelConfigs:
+      - action: drop
+        regex: (^aggregation:.+|^prometheus_.+)
+        sourceLabels:
+          - __name__
+```
+
+More details on how to use relabeling can be found in the official doc [here](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config)
