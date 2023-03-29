@@ -2,7 +2,7 @@
 linkTitle: Advanced configuration
 title: Advanced ingress configuration
 description: Here we describe how you can customize and enable specific features for the NGINX-based Ingress.
-last_review_date: 2022-03-18
+last_review_date: 2023-03-28
 weight: 10
 menu:
   main:
@@ -110,7 +110,7 @@ __Note:__ Your applications need to be capable of running on a non-root path eit
 
 ### TLS
 
-If your cluster has TLS enabled, you can terminate TLS either in your application itself by enabling SSL passthrough or let the Ingress Controller terminate for you.
+It is possible to configure TLS encryption in your Ingress objects. You can either terminate TLS in your application by enabling SSL passthrough or let the Ingress Controller terminate for you.
 
 #### SSL passthrough
 
@@ -171,10 +171,10 @@ metadata:
   name: INGRESS_NAME
 spec:
   ingressClassName: nginx
-   tls:
-   - hosts:
-     - YOUR_CHOICE.CLUSTER_ID.k8s.gigantic.io
-     secretName: TLS_SECRET
+  tls:
+  - hosts:
+    - YOUR_CHOICE.CLUSTER_ID.k8s.gigantic.io
+    secretName: TLS_SECRET
   rules:
   - host: YOUR_CHOICE.CLUSTER_ID.k8s.gigantic.io
     http:
@@ -348,7 +348,7 @@ spec:
 
 There are many other timeouts that can be customized when setting an ingress. Take a look at the [official docs](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#custom-timeouts).
 
-__Warning__: When running in cloud provider environments you may often rely on integrated services like AWS NLBs or Azure LBs. Those intermediate Load Balancers could have their own settings which can be in the request path conflicting with values defined in Ingress Resources. [Read how to configure Nginx Controller in cloud environments to avoid unexpected results](https://docs.giantswarm.io/advanced/ingress/service-type-loadbalancer/#other-aws-elb-configuration-options).
+__Warning__: When running in cloud provider environments you may often rely on integrated services like AWS NLBs or Azure LBs. Those intermediate Load Balancers could have their own settings which can be in the request path conflicting with values defined in Ingress Resources. [Read how to configure Nginx Controller in cloud environments to avoid unexpected results]({{< relref "/advanced/ingress/service-type-loadbalancer/index.md" >}}#other-aws-elb-configuration-options).
 
 ### Session Affinity
 
@@ -382,7 +382,7 @@ metadata:
   namespace: NAMESPACE
   annotations:
     nginx.ingress.kubernetes.io/configuration-snippet: |
-   expires 24h;
+      expires 24h;
 spec:
   ingressClassName: nginx
   rules:
@@ -462,7 +462,7 @@ spec:
       namespace: NAMESPACE
 ```
 
-Any defaults that we override are visible in the following `values.yaml` file, under the `configmap` key. [Check this values.yaml file in v2.20.0](https://github.com/giantswarm/nginx-ingress-controller-app/blob/v2.20.0/helm/nginx-ingress-controller-app/values.yaml) as an example.
+Any defaults that we override are visible in the following `values.yaml` file, under the `configmap` key. [Check this values.yaml file in v2.27.0](https://github.com/giantswarm/nginx-ingress-controller-app/blob/v2.27.0/helm/nginx-ingress-controller-app/values.yaml) as an example.
 
 Do not copy all the defaults if you do not need to change them, that way we can adjust them in case they need to change.
 
