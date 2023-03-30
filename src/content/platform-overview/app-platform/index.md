@@ -101,37 +101,41 @@ The maturity levels of apps in this catalog are expressed through semantic versi
 
 ### What is a Managed App
 
-A _Managed App_ is consider an app in our catalog that provides:
+A _Managed App_ is consider an app in our Giant Swarm Catalog that provides:
 
-1. Installing the standard helm chart
+1. Safe and tested deployment
 
-We apply our fork of the upstream helm chart of the app through the Giant Swarm App Catalog. We add our sane defaults that we find generally work well for our customers and commit this back to upstream if possible. Note that not in all cases our defaults apply to the wider masses of upstream users.
+We make sure the Helm chart works, either sanitizing the upstream forked applications or creating good defaults for our maintained ones. We have [a common way of building apps](https://github.com/giantswarm/app-build-suite) and a [testing framework](https://github.com/giantswarm/app-test-suite) which ensures the application is deployable and works as expected. Security and upgradability are checked too during the integration process.
 
 1. Monitoring
 
-    We make sure all pods and main components of the app are running and that the app is working right.
+Giant Swarm makes sure all the main components of the app are running and that the app is working right. At the same time, we monitor and alert on necessary metrics to ensure our SLAs.
 
-    We monitor and alert on necessary metrics to ensure our SLA.
+In case of an alert, we perform an RCA (root cause analysis) to understand if it is a Giant Swarm or customer-inflicted issue that broke the application.
+
+__Note__: Usually, we don’t fix bugs upstream when it involves code changes. That said, we try to get find a workaround again and submit a ticket to the upstream project. In some cases, we have fixed the bug ourselves where it’s necessary and possible for us, and provide that to the upstream project. This might result in running a non-upstream patch version from Giant Swarm until upstream merges our patch. Customers can, in general, expect the same level of service for the Managed Optional App as they get with the CoreDNS.
 
 1. Configurations and Plug-ins
 
-    The customer can do unlimited configurations to the app. The customer can also install unlimited plugins to the app.
+The customer can do unlimited configurations to the app. The customer can also install unlimited plugins to the app.
 
-    Note, however, that we only perform tests for upgrades with our default settings.
+__Note__: Giant Swarm only perform tests for upgrades with the default values, so in case you have customized configuration you need to ensure that works in a test environnement and report our support in case of problems.
 
 1. Upgrades
 
-    1. Patch releases: We do patch releases (For example, 2.1.1 -> 2.1.2 -> 2.1.3, and so on) automatically, add them to the change logs, and communicate the changes to the customer.  
-    1. Minor versions: We upgrade to minor versions, add them to the change logs, and communicate the changes to the customer.  
-    1. Major versions: We leave it to the customer to decide when to do a major upgrade. Similar to our Managed Kubernetes, we only support 1 major version back.  
+We following the common semantic versioning (`semver`) use in Cloud Native Projects to release our apps:
 
-    We add all changes to change logs and communicate them to the customer.
+1. Patch releases: We do patch releases (For example, 2.1.1 -> 2.1.2 -> 2.1.3, and so on) automatically, add them to the change logs, and communicate the changes to the customer.  
+1. Minor versions: We upgrade to minor versions, add them to the change logs, and communicate the changes to the customer.  
+1. Major versions: We leave it to the customer to decide when to do a major upgrade. Similar to our Managed Kubernetes, we only support 1 major version back.  
+
+We add all changes to change logs and communicate them to the customer weekly.
 
 1. Dependencies
 
-    If the app requires secondary apps to run, we adapt the chart to run a normal deployment of the secondary app. We, however, do not manage nor maintain secondary apps.
-  
-    Overall, we adapt the chart to make sure the app works with the customer’s custom configurations and plug-ins.
+If the app requires secondary apps to run, we adapt the chart to run a normal deployment of the secondary app. We, however, do not manage nor maintain secondary apps.
+
+__Note__: Overall, we adapt the chart to make sure the app works with the customer’s custom configurations and plug-ins.
 
 ### Installing your own App Catalog
 
