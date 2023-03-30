@@ -1,8 +1,8 @@
 ---
 linkTitle: App platform
 title: App platform
-description: The app platform allows to manage app catalogs and apps, for simple and standardized deployment in all your workload clusters.
-last_review_date: 2022-11-12
+description: The app platform allows to manage app catalogs and apps, for simple and standardized deployment across the platform.
+last_review_date: 2023-03-31
 weight: 50
 aliases:
   - /developer-platform/app-platform/
@@ -19,6 +19,7 @@ owner:
 user_questions:
   - What does App Platform do?
   - What is an App Catalog?
+  - What is a Managed App?
   - Does Giant Swarm provide app catalogs out of the box?
   - How is App Platform implemented?
   - How does the App Platform relate to Helm?
@@ -33,21 +34,19 @@ user_questions:
 
 The _Giant Swarm App Platform_ refers to a set of features and concepts that allow
 you to browse, install and manage the configurations of apps (such as Prometheus)
-from a single place; the management cluster.
+from a single place; the management cluster API.
 
-We fully support [Helm](https://helm.sh/) as a general tool to deploy your applications as well as for our general App Catalog. Apps are packaged as Helm charts and can be configured with _values_. We provide a recommended
-[app configuration]({{< relref "/getting-started/app-platform/app-configuration" >}}) which you can override to meet your needs.
+We fully support [Helm](https://helm.sh/) as a general tool to deploy your applications as well as for our general App Catalog. Apps are packaged as Helm charts and can be configured with _values_. We provide a recommended [app configuration]({{< relref "/getting-started/app-platform/app-configuration" >}}) which you can override to meet your needs.
+
 The App Platform then, underneath, installs these Helm Charts whenever an app installation is requested by you.
 The Helm execution is mostly not configurable for you, with the exception to the options presented in 
 [installation configuration]({{< relref "/getting-started/app-platform/installation-configuration" >}}).
 
-Using this platform, we are providing a collection of curated _Apps_. These _Apps_ are grouped into _App Catalogs_, which are browsable through our web interface.
-We also use app platform to install the apps that are pre-installed in your cluster (such as CoreDNS).
+Using this feature of the platform, we are providing a collection of curated _Managed Apps_. These _Managed Apps_ are grouped into an _App Catalog_, which are browsable through our web interface. As well, customers can install their own catalogs using the Management Cluster API. Also, Giant Swarm uses the App Platform to install the apps that are pre-installed in your cluster (such as CoreDNS).
 
 In short: the _Giant Swarm App Platform_ refers to the whole feature, and an _App Catalog_ is a collection of _Apps_.
 
-We provide two _App Catalogs_, the Giant Swarm Catalog and the Giant Swarm Playground. You are able to set up your own [additional catalog(s)]({{< relref "/getting-started/app-platform/create-catalog" >}})
-to provide for any needs you have at the enterprise level.
+We provide a Giant Swarm _App Catalog_ with our offered set of Cloud Native Applications which are operated and pre-configured by us. You are able to set up your own [additional catalog(s)]({{< relref "/getting-started/app-platform/create-catalog" >}}) to provide for any needs you have at the enterprise level.
 
 ### What makes up the Giant Swarm App Platform {#what-makes-up-the-app-platform}
 
@@ -57,8 +56,7 @@ Custom Resources, some created by us, and others created by you. Together, they 
 the desired state of the App Platform.
 
 For example, this "App" Custom Resource indicates that you want Kong installed
-on a specific workload cluster. We [default]({{< relref "/getting-started/app-platform/defaulting-validation" >}})
-some additional values for the workload cluster you select.
+on a specific workload cluster. We [default]({{< relref "/getting-started/app-platform/defaulting-validation" >}}) some additional values for the workload cluster you select.
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
@@ -90,29 +88,50 @@ together to enable the features of the Giant Swarm App Platform:
 <!-- Original version: https://docs.google.com/drawings/d/1V3KcUImxRdrrb2v_nIQnkapHiRkRM6t8PoYGCqWebYY/edit -->
 
 
+#### The Giant Swarm App Catalog
 
-### What kind of App Catalogs are there
+This catalog contains our stable, fully managed apps, with SLA (e.g. the NGINX Ingress Controller).
 
-By default you will have the Giant Swarm Catalog and the Giant Swarm Playground installed
-on your management clusters.
-
-#### The Giant Swarm Catalog
-
-This catalog contains our stable, fully managed apps, with SLA (e.g. the NGINX Ingress Controller). It also contain apps that we are developing towards that level of commitment (e.g. Kong, EFK).
-
-Maturity levels of apps in this catalog are expressed through semantic versioning as follows:
+The maturity levels of apps in this catalog are expressed through semantic versioning as follows:
 
 - Version with `-alpha` or `-beta` suffix - the application is only at a basic maturity level. There is no stable release. It is supported on a best effort basis,
 - Version with `-rc*` suffix - the application is at a preview maturity level. This allows customers to preview a new release of an application and evaluate new features. It is supported on a best effort basis.
 - version >= `v1.0.0` with no suffix - the specified version of the application is at a stable maturity level. It is available to our customers as a managed offering with support and SLA.
 
-#### The Giant Swarm Playground
 
-This is our go-to place to create and try out things. Mainly, this contains apps that we have added in order help you with a certain issue. Additionally, you will find some apps that we created for non-commercial purposes (e.g. for a blog post or a workshop).
+### What is a Managed App
 
-Bear in mind that we do NOT support these apps and they won’t be worked on with priority. These apps might not ever make it into the Giant Swarm Catalog. What you will get, is an app at a basic maturity level at a specific point in time.
+A _Managed App_ is consider an app in our catalog that provides:
 
-We encourage you to try out this playground catalog and the different apps offered there. As always, feedback is welcome.
+1. Installing the standard helm chart
+
+We apply our fork of the upstream helm chart of the app through the Giant Swarm App Catalog. We add our sane defaults that we find generally work well for our customers and commit this back to upstream if possible. Note that not in all cases our defaults apply to the wider masses of upstream users.
+
+1. Monitoring
+
+    We make sure all pods and main components of the app are running and that the app is working right.
+
+    We monitor and alert on necessary metrics to ensure our SLA.
+
+1. Configurations and Plug-ins
+
+    The customer can do unlimited configurations to the app. The customer can also install unlimited plugins to the app.
+
+    Note, however, that we only perform tests for upgrades with our default settings.
+
+1. Upgrades
+
+    1. Patch releases: We do patch releases (For example, 2.1.1 -> 2.1.2 -> 2.1.3, and so on) automatically, add them to the change logs, and communicate the changes to the customer.  
+    1. Minor versions: We upgrade to minor versions, add them to the change logs, and communicate the changes to the customer.  
+    1. Major versions: We leave it to the customer to decide when to do a major upgrade. Similar to our Managed Kubernetes, we only support 1 major version back.  
+
+    We add all changes to change logs and communicate them to the customer.
+
+1. Dependencies
+
+    If the app requires secondary apps to run, we adapt the chart to run a normal deployment of the secondary app. We, however, do not manage nor maintain secondary apps.
+  
+    Overall, we adapt the chart to make sure the app works with the customer’s custom configurations and plug-ins.
 
 ### Installing your own App Catalog
 
