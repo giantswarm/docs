@@ -17,26 +17,20 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
 
-This page will give you an overview of what parts of the Giant Swarm App Platform
-are manageable using our web interface.
+This page will give you an overview of what parts of the Giant Swarm App Platform are manageable using our web interface.
 
-The _Giant Swarm App Platform_ refers to a set of features and concepts that allow
-you to browse, install and manage the configurations of apps (such as Prometheus)
-from a single place; the management cluster.
+The _Giant Swarm App Platform_ refers to a set of features and concepts that allow you to browse, install and manage the configurations of apps (such as Prometheus) from a single place; the management cluster.
 
-Using this platform, we are providing a collection of curated _Apps_. These _Apps_ are grouped into _App Catalogs_, which are browsable through our web interface.
-We also use app platform to install the apps that are pre-installed in your cluster (such as CoreDNS).
+Using this platform, we are providing a collection of curated _Managed Apps_. These _Managed Apps_ are grouped in our _Giant Swarm Catalog_, which is browsable through our web interface. Customers can install or use different catalogs by their own. We also use app platform to install the apps that are pre-installed in your cluster (such as CoreDNS).
 
 We fully support [Helm](https://helm.sh/) as a general tool to deploy these _Apps_. Apps are packaged as Helm charts and can be configured with _values_. We provide a recommended configuration which you can override to meet your needs.
 
-If you'd like to know more about the App Platform in general, go here for an
-[overview of the Giant Swarm App Platform]({{< relref "/platform-overview/app-platform" >}}) instead.
+If you'd like to know more about the App Platform in general, go here for an [overview of the Giant Swarm App Platform]({{< relref "/platform-overview/app-platform" >}}) instead.
 
 ## Viewing all App Catalogs
 
-Our web interface lets you browse the App Catalogs installed on your Control Plane.
-Click on "App Catalogs" in the navigation menu. The "App Catalogs" link will only
-be visible if your Control Plane has at least one App Catalog installed on it.
+Our web interface lets you browse the App Catalogs installed on your Management Cluster API (MAPI).
+Click on "App Catalogs" in the navigation menu. The "App Catalogs" link will only be visible if your MAPI has at least one App Catalog installed on it.
 
 The screenshot below shows what the "App Catalogs" page looks like with two app catalogs
 installed:
@@ -45,8 +39,7 @@ installed:
 
 ## Installing an App
 
-Click on the catalog you'd like to install from. Only apps in the Managed catalog
-will be monitored and managed by us.
+Click on the catalog you'd like to install from. Only apps in the Managed catalog will be monitored and managed by us. More info about Managed App [here]({{< relref "/platform-overview/app-platform" >}}).
 
 ![A screenshot of our web interface, showing a list of apps in an app catalog](apps.png)
 
@@ -62,11 +55,9 @@ This is also where you can provide your [values.yaml](https://helm.sh/docs/chart
 
 ![A screenshot of the configuration screen when install an app using our web interface](app-configuration-modal.png#width-60)
 
-Apps can be configured by uploading optional YAML files, one intended for general configuration values and the other
-for secret values.
+Apps can be configured by uploading optional YAML files, one intended for general configuration values and the other for secret values.
 
-Configuration is split into values and secrets so that you are able to manage values that are shareable from values
-that requires more care in handling.
+Configuration is split into values and secrets so that you are able to manage values that are shareable from values that requires more care in handling.
 
 Configuration values exist at three levels: `catalog`, `cluster`, and `user`, but the
 web interface only allows you to upload files for the final (`user`) level.
@@ -74,7 +65,7 @@ web interface only allows you to upload files for the final (`user`) level.
 The values are merged with values from previous configuration levels and override them
 when they contain the same key.
 
-Communication between the web interface and the api that processes these files is protected by SSL/TLS.
+Communication between the web interface and the API that processes these files is protected by SSL/TLS.
 Data stored in etcd is encrypted at rest.
 
 When you upload a file the API creates a ConfigMap or a secret respectively
