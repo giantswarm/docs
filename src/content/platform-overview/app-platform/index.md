@@ -131,7 +131,8 @@ We following the common semantic versioning (`semver`) use in Cloud Native Proje
 
 We add all changes to change logs and communicate them to customers weekly.
 
-It is responsibility of the customer to upgrade the applications they run. Whereas Giant Swarm provides updated charts and the relative changelogs, and is always willing to help customers understand the impact of upgrades, the responsibility of actually triggering upgrades resides on the customer. This ensures that no changes happen outside of customer-defined maintenance windows and gives customers all the time they need to validate upgrades in low environments before applying them to production ones.
+It is the responsibility of the customer to upgrade the applications they run. Whereas Giant Swarm provides updated charts and the relative changelogs and is always willing to help customers understand the impact of upgrades, the responsibility of actually triggering upgrades resides on the customer. This ensures that no changes happen outside of customer-defined maintenance windows and gives customers all the time they need to validate upgrades in low environments before applying them to production ones. That said, Giant Swarm provides tooling to automate upgrades for the apps and customers can adopt it to automate changes on the platform.
+
 1. Dependencies
 
 If a Managed App requires secondary apps to run, we adapt the chart to run a "standard" deployment of the secondary app. We, however, do not manage nor maintain secondary apps.
