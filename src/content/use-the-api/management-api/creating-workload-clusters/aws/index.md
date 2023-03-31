@@ -14,7 +14,7 @@ user_questions:
   - How can I create an AWS cluster via the Management API?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2021-01-01
+last_review_date: 2023-03-15
 ---
 
 ## How cluster creation works
@@ -281,7 +281,7 @@ Triggering a delete on the `Cluster` resource  will have a cascading effect on a
 - `MachineDeployment`
 - `AWSMachineDeployment`
 
-This resources will not be deleted immediately, our operators will start the deletion process of the CloudFormation Stacks on AWS and remove the Kubernetes finalizer.
+These resources will not be deleted immediately. Our operators will start the deletion process of the CloudFormation Stacks on AWS and remove the Kubernetes finalizer.
 
 In order to review if a resource has been marked for deletion you can check if the resource has the attribute `deletionTimestamp` in the `metadata` field.
 
