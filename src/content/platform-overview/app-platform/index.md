@@ -103,11 +103,11 @@ The maturity levels of apps in this catalog are expressed through semantic versi
 
 A _Managed App_ is an app in our Giant Swarm Catalog that provides:
 
-1. Safe and tested deployment
+- Safe and tested deployment
 
 We make sure the Helm chart works, either sanitizing the upstream forked applications or creating good defaults for our maintained ones. We have [a common way of building apps](https://github.com/giantswarm/app-build-suite) and a [testing framework](https://github.com/giantswarm/app-test-suite) which ensure the application is deployable and works as expected. Security and upgradability are checked too during the integration process.
 
-1. Monitoring
+- Monitoring
 
 Giant Swarm makes sure all the main components of the app are running and that the app is working as expected. At the same time, we set up monitoring and alerting on necessary metrics to ensure our SLAs.
 
@@ -115,25 +115,25 @@ In case of an alert, we perform an RCA (root cause analysis) to understand if it
 
 __Note__: We generally do not fix bugs upstream when they involve significant code changes. That said, we always try to find a workaround or the root cause of the issue and submit a ticket to the upstream project. In some cases, we fix the bug ourselves where it’s necessary and possible for us, and provide the fix to the upstream project. This might result in temporarily running a non-upstream patch version from Giant Swarm until upstream merges our patch. Customers can, in general, expect the same level of service for a Managed Optional App as they get with "default" apps such as CoreDNS.
 
-1. Configurations and Plug-ins
+- Configurations and Plug-ins
 
 The customer can do unlimited configurations to the app. The customer can also install unlimited plugins to the app. The application configuration is the customer's responsibility. In other words, configurations that derail from the default ones have to be tested and maintained by the customer. Giant Swarm is always happy to help in validating whether those configurations adhere to best-practices and test them together with the customer, but it is the latter's responsibility to actually deploy those configurations in their environments according to their deployment processes and maintenance windows.
 
 __Note__: Giant Swarm only perform tests for upgrades with the default values, so in case you have customized configuration you need to ensure that the upgrade procedure works as expected in a lower environment and reach out to our support in case of problems.
 
-1. Upgrades
+- Upgrades
 
 We following the common semantic versioning (`semver`) use in Cloud Native Projects to release our apps:
 
 1. Patch releases: We do patch releases (For example, 2.1.1 -> 2.1.2 -> 2.1.3, and so on) automatically, add them to the change logs, and communicate the changes to the customer.  
-1. Minor versions: We upgrade to minor versions, add them to the change logs, and communicate the changes to the customer.  
-1. Major versions: We leave it to the customer to decide when to do a major upgrade. Similar to our Managed Kubernetes, we only support 1 major version back.  
+2. Minor versions: We upgrade to minor versions, add them to the change logs, and communicate the changes to the customer.  
+3. Major versions: We leave it to the customer to decide when to do a major upgrade. Similar to our Managed Kubernetes, we only support 1 major version back.  
 
 We add all changes to change logs and communicate them to customers weekly.
 
 It is the responsibility of the customer to upgrade the applications they run. Whereas Giant Swarm provides updated charts and the relative changelogs and is always willing to help customers understand the impact of upgrades, the responsibility of actually triggering upgrades resides on the customer. This ensures that no changes happen outside of customer-defined maintenance windows and gives customers all the time they need to validate upgrades in low environments before applying them to production ones. That said, Giant Swarm provides tooling to automate upgrades for the apps and customers can adopt it to automate changes on the platform.
 
-1. Dependencies
+- Dependencies
 
 If a Managed App requires secondary apps to run, we adapt the chart to run a "standard" deployment of the secondary app. We, however, do not manage nor maintain secondary apps.
 
