@@ -42,7 +42,7 @@ The App Platform then, underneath, installs these Helm Charts whenever an app in
 The Helm execution is mostly not configurable for you, with the exception to the options presented in 
 [installation configuration]({{< relref "/getting-started/app-platform/installation-configuration" >}}).
 
-Using this feature of the platform, we are providing a collection of curated _Managed Apps_. These _Managed Apps_ are grouped into _App Catalogs_, which are browsable through our web interface. Customers can install their own App Catalogs as well using the Management Cluster API. Finally, it's worth noting that Giant Swarm uses the App Platform to install the apps that are pre-installed in your clusters, such as CoreDNS or cluster-autoscaler.
+This feature of the platform provides a collection a collection of curated _Managed Apps_. These _Managed Apps_ are grouped into _App Catalogs_, which can be browsed through our web interface. may also install their own catalogs using the Management Cluster API. Finally, it's worth noting that Giant Swarm uses the App Platform to install the apps that are pre-installed in your clusters, such as CoreDNS or cluster-autoscaler.
 
 In short: the _Giant Swarm App Platform_ refers to the whole feature, and an _App Catalog_ is a collection of _Apps_.
 
