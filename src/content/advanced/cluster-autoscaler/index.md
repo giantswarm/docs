@@ -6,7 +6,7 @@ weight: 90
 menu:
   main:
     parent: advanced
-last_review_date: 2022-02-07
+last_review_date: 2023-04-04
 aliases:
   - /guides/advanced-cluster-autoscaler-configuration/
 user_questions:
