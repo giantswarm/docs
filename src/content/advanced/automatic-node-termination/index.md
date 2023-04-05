@@ -6,7 +6,7 @@ weight: 60
 menu:
   main:
     parent: advanced
-last_review_date: 2021-06-21
+last_review_date: 2023-04-04
 user_questions:
   - How can I turn off automatic termination of unhealthy nodes?
   - Since what release are unhealthy nodes terminated automatically?
@@ -48,7 +48,7 @@ To enable the feature, edit the [`AWSCluster`]({{< relref "/use-the-api/manageme
 Make sure the resource has the `alpha.node.giantswarm.io/terminate-unhealthy` annotation. The value can be anything you like, as only the presence of that annotation is checked. Here is an example:
 
 ```yaml
-apiVersion: infrastructure.giantswarm.io/v1alpha2
+apiVersion: infrastructure.giantswarm.io/v1alpha3
 kind: AWSCluster
 metadata:
   annotations:
@@ -75,7 +75,7 @@ Make sure the resource has the annotation
 node.giantswarm.io/terminate-unhealthy: "false"
 
 ```yaml
-apiVersion: infrastructure.giantswarm.io/v1alpha2
+apiVersion: infrastructure.giantswarm.io/v1alpha3
 kind: AWSCluster
 metadata:
   annotations:
