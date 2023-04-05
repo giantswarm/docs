@@ -11,7 +11,7 @@ user_questions:
 - What resources does external secrets operator consume on my cluster?
 owner:
 - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2023-03-23
+last_review_date: 2023-04-05
 ---
 
 ## What is External Secrets Operator
