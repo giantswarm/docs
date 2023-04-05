@@ -14,10 +14,6 @@ owner:
 last_review_date: 2023-03-23
 ---
 
-> We are currently in the process of rolling ESO to all management clusters
-> and it may not yet be available on your cluster. We expect this to be
-> complete by Friday 31st March 2023.
-
 ## What is External Secrets Operator
 
 External secrets operator (ESO) is a kubernetes operator that reads secrets
