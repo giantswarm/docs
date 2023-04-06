@@ -11,12 +11,8 @@ user_questions:
 - What resources does external secrets operator consume on my cluster?
 owner:
 - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2023-03-23
+last_review_date: 2023-04-05
 ---
-
-> We are currently in the process of rolling ESO to all management clusters
-> and it may not yet be available on your cluster. We expect this to be
-> complete by Friday 31st March 2023.
 
 ## What is External Secrets Operator
 
