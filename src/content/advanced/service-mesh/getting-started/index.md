@@ -34,21 +34,6 @@ Take note of the --not-after flag. We recommend 10 years (87600h) for the trust 
 step certificate create root.linkerd.cluster.local ca.crt ca.key --profile root-ca --no-password --insecure --not-after=87600h
 step certificate create identity.linkerd.cluster.local issuer.crt issuer.key --profile intermediate-ca --not-after=26280h --no-password --insecure --ca ca.crt --ca-key ca.key
 ```
-Finally construct your user secrets file by filling this template and saving it as my-linkerd-certificates.yaml:
-
-```
-apps:
-  linkerd-control-plane:
-    userConfig:
-      secret:
-        values: |
-          identity:
-            issuer:
-              tls:
-                crtPEM: |
-                keyPEM: |
-          identityTrustAnchorsPEM: |
-```
 
 ### App installation
 
