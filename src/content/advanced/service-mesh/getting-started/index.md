@@ -1,8 +1,8 @@
 ---
 linkTitle: Getting started
 title: Getting started with Linkerd
-description: TBD
-last_review_date: 2023-04-03
+description: Set up and configure Linkerd on Giant Swarm workload clusters.
+last_review_date: 2023-04-12
 weight: 10
 menu:
   main:

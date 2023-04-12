@@ -1,7 +1,7 @@
 ---
 linkTitle: Service Mesh
 title: Service Mesh setup
-description: TDB
+description: Set up and configuration options for Linkerd Service Mesh.
 weight: 10
 menu:
   main:
@@ -9,5 +9,5 @@ menu:
     parent: advanced
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
-last_review_date: 2023-04-03
+last_review_date: 2023-04-12
 ---
