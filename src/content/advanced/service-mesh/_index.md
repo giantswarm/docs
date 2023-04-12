@@ -1,7 +1,7 @@
 ---
 linkTitle: Service Mesh
 title: Service Mesh setup
-description: Setup and configuration options for Linkerd Service Mesh.
+description: Setup and configuration options for Linkerd, offering Service Mesh capabilities to your users.
 weight: 10
 menu:
   main:
