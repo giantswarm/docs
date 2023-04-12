@@ -1,7 +1,7 @@
 ---
 linkTitle: Getting started
 title: Getting started with Linkerd
-description: Set up and configure Linkerd on Giant Swarm workload clusters.
+description: Basic setup and configuration of Linkerd Service Mesh on Giant Swarm workload clusters.
 last_review_date: 2023-04-12
 weight: 10
 menu:
