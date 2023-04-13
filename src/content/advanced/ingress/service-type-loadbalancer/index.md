@@ -15,10 +15,13 @@ user_questions:
   - How can I expose Services to the internet?
   - How do I configure an Ingress Controller behind an ELB for traffic between services within the VPC?
   - How do I configure an Ingress Controller behind an ELB that terminates SSL?
-last_review_date: 2021-09-01
+  - How do I configure an internal Load Balancer on AWS?
+  - How do I configure an internal Load Balancer on Azure?
+  - How do I configure an internal Load Balancer on GCP?
+last_review_date: 2023-04-11
 ---
 
-Next to using the default NGINX Ingress Controller, on cloud providers (currently AWS and Azure), you can expose services directly outside your cluster by using Services of type `LoadBalancer`.
+Next to using the default NGINX Ingress Controller, on cloud providers (currently AWS, Azure and GCP), you can expose services directly outside your cluster by using Services of type `LoadBalancer`.
 
 You can use this to [expose single Services](#service-of-type-lb) to the internet. It is also possible, to [install additional NGINX Ingress Controllers]({{< relref "/content/advanced/ingress/multi-nginx-ic/index.md" >}}) to expose a subset of your Services with a different Ingress Controller configuration.
 
@@ -103,6 +106,15 @@ metadata:
   name: my-service
   annotations:
     service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+```
+
+On GCP, an internal Load Balancer can be requested using the following annotation:
+
+```yaml
+metadata:
+  name: my-service
+  annotations:
+    networking.gke.io/load-balancer-type: "Internal"
 ```
 
 #### SSL termination on AWS
@@ -231,3 +243,4 @@ metadata:
 - [AWS Load Balancer Controller - Annotations](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/guide/service/annotations/)
 - [Running Multiple Ingress Controllers](https://github.com/kubernetes/ingress-nginx#running-multiple-ingress-controllers)
 - [Deploying the NGINX Ingress Controller]({{< relref "/getting-started/ingress-controller/index.md" >}})
+- [Google GCP LoadBalancer Service parameters](https://cloud.google.com/kubernetes-engine/docs/concepts/service-load-balancer-parameters)
