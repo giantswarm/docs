@@ -20,7 +20,7 @@ owner:
 last_review_date: 2023-04-13
 ---
 
-{{< platform_support_table aws="v19.0.0" >}}
+{{< platform_support_table aws="alpha=v19.0.0" >}}
 
 ## Introduction
 
