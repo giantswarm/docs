@@ -44,7 +44,7 @@ With `Cilium`, you'll no longer be using the `AWS CNI` Pod subnets, so be sure t
 
 Additionally, while `Cilium's Network Policy` provides powerful security features, support for setting `ipBlock` with `Pod IPs` is not included, so be sure to inspect your workloads and configured `Network Policies` carefully. The Account Engineers will reach out to you and we will provide a solution to provide the `NetworkCiliumPolicies` before the upgrade for no downtime.
 
-It's important to note that due to changes to `Cluster CR's` during the upgrade process, `GitOps` automation will have to be suspended and any applied changes backported to the repos before resuming. Keep this in mind as you prepare for the upgrade
+It's important to note that due to changes to `Cluster CR's` during the upgrade process, `GitOps` automation will have to be suspended and any applied changes backported to the repos before resuming. Keep this in mind as you prepare for the upgrade.
 
 To ensure a smooth transition to `Cilium`, we've prepared a [comprehensive upgrade process](https://handbook.giantswarm.io/docs/support-and-ops/ops-recipes/upgrade-to-cilium/) that explains every migration step in detail, so you can feel confident in following the process and avoid any potential issues.
 
@@ -63,8 +63,6 @@ By switching from `KIAM` to `IAM Roles for Service Accounts (IRSA)`, we're makin
 - Official AWS way to authenticate pods to AWS API.
 - Reduced complexity: IRSA eliminates the need for a separate service like KIAM, streamlining your Kubernetes clusters.
 - Regional STS (Security Token Service) rather than using global STS
-
-
 ### What changes with IRSA?
 
 During the upgrade, we are removing `KIAM` as a default app in your workload clusters but it is possible to install it optionally. 
