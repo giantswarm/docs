@@ -42,7 +42,7 @@ Say goodbye to slow network initialization times and hello to lightning-fast per
 
 With `Cilium`, you'll no longer be using the `AWS CNI` Pod subnets, so be sure to add custom routes with the `Node subnet(s) CIDR(s)` instead. 
 
-Additionally, while `Cilium's Network Policy` provides powerful security features, support for setting `ipBlock` with `Pod IPs` is not included, so be sure to inspect your workloads and configured `Network Policies` carefully. The Account Engineers will reach out to you and we will provide a solution to provide the `NetworkCiliumPolicies` before the upgrade for no downtime.
+Additionally, while `Cilium's Network Policy` provides powerful security features, support for setting `ipBlock` with `Pod IPs` is not included, so be sure to inspect your workloads and configured `Network Policies` carefully. The Account Engineers will reach out to you and we will provide a solution to provide the `CiliumNetworkPolicies` before the upgrade for no downtime.
 
 It's important to note that due to changes to `Cluster CR's` during the upgrade process, `GitOps` automation will have to be suspended and any applied changes backported to the repos before resuming. Keep this in mind as you prepare for the upgrade.
 
