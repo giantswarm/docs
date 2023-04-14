@@ -44,7 +44,7 @@ With `Cilium`, you'll no longer be using the `AWS CNI` Pod subnets, so be sure t
 
 Additionally, while `Cilium's Network Policy` provides powerful security features, support for setting `ipBlock` with `Pod IPs` is not included, so be sure to inspect your workloads and configured `Network Policies` carefully. The Account Engineers will reach out to you and we will provide a solution to provide the `CiliumNetworkPolicies` before the upgrade for no downtime.
 
-It's important to note that due to changes to `Cluster CR's` during the upgrade process, `GitOps` automation will have to be suspended and any applied changes backported to the repos before resuming. Keep this in mind as you prepare for the upgrade.
+It's important to note that due to changes to `Cluster CR's` during the upgrade process, `GitOps` automation will have to be suspended and any applied changes backported to the repos before resuming. Keep this in mind as you prepare for the upgrade. This needs to be evaluated on a case-by-case basis, since different GitOps implementations might only keep _some_ parts of `Cluster` CRs in Git. Feel free to reach out to your Account Engineer to understand more about these changes.
 
 To ensure a smooth transition to `Cilium`, we've prepared a [comprehensive upgrade process](https://handbook.giantswarm.io/docs/support-and-ops/ops-recipes/upgrade-to-cilium/) that explains every migration step in detail, so you can feel confident in following the process and avoid any potential issues.
 
