@@ -365,7 +365,7 @@ Modify the trust entity of your AWS IAM roles with the new identity provider URL
             "Action": "sts:AssumeRoleWithWebIdentity",
             "Condition": {
                 "StringEquals": {
-                    "CLOUDFRONT_DOMAIN:sub": "system:serviceaccount:NAMESPACE:SA_NAME"
+                    "CLOUDFRONT_ALTERNATE_DOMAIN:sub": "system:serviceaccount:NAMESPACE:SA_NAME"
                 }
             }
         },
