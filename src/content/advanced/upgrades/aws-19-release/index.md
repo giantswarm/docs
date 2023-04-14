@@ -63,6 +63,7 @@ By switching from `KIAM` to `IAM Roles for Service Accounts (IRSA)`, we're makin
 - Official AWS way to authenticate pods to AWS API.
 - Reduced complexity: IRSA eliminates the need for a separate service like KIAM, streamlining your Kubernetes clusters.
 - Regional STS (Security Token Service) rather than using global STS
+
 ### What changes with IRSA?
 
 During the upgrade, we are removing `KIAM` as a default app in your workload clusters but it is possible to install it optionally. 
