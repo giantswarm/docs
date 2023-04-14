@@ -24,7 +24,7 @@ last_review_date: 2023-04-13
 
 ## Introduction
 
-We have been preparing for a long time to introduce release v19 on AWS. Besides upgrade of components and Kubernetes version to 1.24, this release will involve two major changes for customers i.e. migration from AWS CNI to Cilium and replacement of kiam with IAM Roles for Service Accounts(IRSA).
+We have been preparing for a long time to introduce release v19 on AWS. Besides upgrade of components and Kubernetes version to 1.24, this release will involve two major changes for customers, namely the migration from the AWS VPC CNI to Cilium and the replacement of Kiam with IAM Roles for Service Accounts(IRSA) for authenticating pods against the AWS API.
 Next sections are describing important changes we will introduce with the new release, the key benefits, what customers can do to prepare and how to avoid downtime during this crucial upgrade. 
 
 ## Cilium
