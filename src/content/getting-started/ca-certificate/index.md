@@ -13,7 +13,7 @@ user_questions:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
   - https://github.com/orgs/giantswarm/teams/team-rocket
-last_review_date: 2021-01-01
+last_review_date: 2023-04-04
 ---
 
 In this tutorial we explain to you how to establish trust to your cluster's Certificate Authority (CA) and how to import a key pair to enable client authentication against the API to enable access to the Kubernetes API of your cluster.
