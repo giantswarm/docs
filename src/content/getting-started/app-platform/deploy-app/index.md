@@ -7,7 +7,7 @@ menu:
   main:
     parent: getting-started-app-platform
     identifier: getting-started-app-platform-deploy-app
-last_review_date: 2022-11-18
+last_review_date: 2022-12-08
 aliases:
   - /developer-platform/app-platform/getting-started
   - /app-platform/getting-started
@@ -113,9 +113,9 @@ command to generate the App CR using the latest version from the previous comman
 ```nohighlight
 kubectl gs template app \
   --catalog=giantswarm \
-  --cluster=${CLUSTER} \
+  --cluster-name=${CLUSTER} \
   --name=nginx-ingress-controller-app \
-  --namespace=kube-system \
+  --target-namespace=kube-system \
   --version=1.17.0 > nginx-ingress-controller-app.yaml
 
 kubectl apply -f nginx-ingress-controller-app.yaml
@@ -213,9 +213,9 @@ EOL
 
 kubectl gs template app \
   --catalog=giantswarm \
-  --cluster=${CLUSTER} \
+  --cluster-name=${CLUSTER} \
   --name=nginx-ingress-controller-app \
-  --namespace=kube-system \
+  --target-namespace=kube-system \
   --user-configmap=ingress-values.yaml \
   --version=1.17.0 > nginx-ingress-controller-app.yaml
 
