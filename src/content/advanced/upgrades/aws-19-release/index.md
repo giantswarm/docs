@@ -42,7 +42,7 @@ Say goodbye to slow network initialization times and hello to lightning-fast per
 
 With `Cilium`, you'll no longer be using the `AWS CNI` Pod subnets, so be sure to add custom routes with the `Node subnet(s) CIDR(s)` instead. 
 
-Additionally, while `Cilium's Network Policy` provides powerful security features, support for setting `ipBlock` with `Pod IPs` is not included, so be sure to inspect your workloads and configured `Network Policies` carefully. The Account Engineers will reach out to you and we will provide a solution to provide the `CiliumNetworkPolicies` before the upgrade for no downtime.
+Additionally, while `Cilium's Network Policy` provides powerful security features, support for setting `ipBlock` with `Pod IPs` is not implemented in Cilium, so be sure to inspect your workloads and configure `Network Policies` carefully. The Account Engineers will reach out to you and we will provide a solution to provide the `CiliumNetworkPolicies` before the upgrade in order to have no downtime during the switch.
 
 It's important to note that due to changes to `Cluster CR's` during the upgrade process, `GitOps` automation will have to be suspended and any applied changes backported to the repos before resuming. Keep this in mind as you prepare for the upgrade. This needs to be evaluated on a case-by-case basis, since different GitOps implementations might only keep _some_ parts of `Cluster` CRs in Git. Feel free to reach out to your Account Engineer to understand more about these changes.
 
@@ -53,6 +53,11 @@ To ensure a smooth transition to `Cilium`, we've prepared a [comprehensive upgra
 If you are running `aws-load-balancer-controller` inside your clusters for managing [Network Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/introduction.html) and you did set the annotation `service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip`, you need to change it to `service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: instance`.
 
 For further information, please checkout the [documentation](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.2/guide/service/annotations/#traffic-routing)
+
+#### Cilium and pod CIDR
+
+While switching to Cilium we are forced to change the CIDR used to assign IPs to Pods (192.168.0.0/16 by default).
+The process is automated for the vast majority of the clusters, but if you had set up custom networking settings in your cluster the upgrade might be blocked by admission controllers. If that is the case, reach out to your SA and you'll receive guidance how to move on with the upgrade. Same thing applies uf you don't want to stick with the default value and prefer to change it.
 
 ## IAM roles for service accounts (IRSA)
 
@@ -66,7 +71,7 @@ By switching from `KIAM` to `IAM Roles for Service Accounts (IRSA)`, we're makin
 
 ### What changes with IRSA?
 
-During the upgrade, we are removing `KIAM` as a default app in your workload clusters but it is possible to install it optionally. 
+During the upgrade, we are removing `KIAM` as a default app in your workload clusters but it is possible to install it optionally. If you need to keep using KIAM in v19 clusters, please reach out to your SA.
 
 Additionally, we are creating a `Cloudfront Domain Alias` (except China) for each cluster which is used as the [OpenID Connect (OIDC) identity provider](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc.html) to improve predictability and simplify IAM role creation. 
 
@@ -109,6 +114,10 @@ We're aiming to provide a comprehensive blackbox monitoring tool that can valida
 
 - Provides real-time visibility into network traffic with advanced filtering and aggregation capabilities.
 - Helps troubleshoot connectivity issues with its network flow and DNS query analysis features.
+
+#### Caveats and know limitations
+
+- Hubble's UI is not exposed by default, but can be reached using port forwarding.
 
 ## 🙇🏻‍♂️ Final last words
 
