@@ -6,7 +6,7 @@ weight: 25
 menu:
   main:
     parent: advanced-external-dns
-last_review_date: 2022-12-09
+last_review_date: 2023-04-18
 user_questions:
   - How can I customize the External DNS AWS authentication method?
 owner:
@@ -69,7 +69,7 @@ Starting from version `2.35.1`, with the addition of the secretConfiguration val
 
 #### secretConfiguration
 
-This method is flexible as it can load credentias from the chart values and store them in a `Secret`. It does not make any assumptions about the structure of your data, so it can be used in conjunction with `env` values.
+This method is flexible as it loads credentias from the chart values and stores them in a `Secret` without making any assumptions about the structure of your data. It can be used in conjunction with `env` values to provide the credentials to the application.
 
 This example is the equivalent configuration to the one outlined in the following section:
 
