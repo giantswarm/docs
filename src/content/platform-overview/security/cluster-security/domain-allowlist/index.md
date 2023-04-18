@@ -33,6 +33,10 @@ Below is a list of the external domains we require access to for our clusters to
         - `giantswarm.azurecr.io`
         - `giantswarmpublic.azurecr.io`
     - Container images are hosted on Azure Container Registry.
+- auth0.com
+    - domains:
+        - `giantswarm.eu.auth0.com`
+    - Used to secure access to Grafana and Prometheus.
 - cloudfront.net
     - domains:
         - `*.cloudfront.net`
@@ -62,34 +66,10 @@ Below is a list of the external domains we require access to for our clusters to
     - domains:
         - `k8s.gcr.io`
     - (Legacy) K8s container images are hosted on Google Container Registry.
-- k8s.io
-    - domains:
-        - `registry.k8s.io`
-    - Container registry and a global CDN for the K8s project’s container images.
-- keybase.io
-    - domains:
-        - `*.keybase.io`
-    - Vault initialisation and unsealing requires access to Keybase.
-- letsencrypt.org
-    - domains:
-        - `*.api.letsencrypt.org`
-    - cert-manager will request certificates from Lets Encrypt.
-- quay.io
-    - domains:
-        - `*.quay.io`
-    - Container images are hosted on Quay.
 - googleapis.com
     - domains:
         - `storage.googleapis.com`
     - Google Container Registry is backed by a Google cloud storage bucket.
-- sentry.io
-    - domains:
-        - `o346224.ingest.sentry.io`
-    - Monitoring and crash reporting for `happa`.
-- opsgenie.com
-    - domains:
-        - `api.opsgenie.com`
-    - Opsgenie's API is used to send alerts.
 - grafana.com
     - domains:
         - `grafana.com`
@@ -103,10 +83,30 @@ Below is a list of the external domains we require access to for our clusters to
         - `vault.operations.giantswarm.io`
         - `schema.giantswarm.io`
     - Our operations Vault is used for unsealing customer Vault servers.
-- auth0.com
+- k8s.io
     - domains:
-        - `giantswarm.eu.auth0.com`
-    - Used to secure access to Grafana and Prometheus.
+        - `registry.k8s.io`
+    - Container registry and a global CDN for the K8s project’s container images.
+- keybase.io
+    - domains:
+        - `*.keybase.io`
+    - Vault initialisation and unsealing requires access to Keybase.
+- letsencrypt.org
+    - domains:
+        - `*.api.letsencrypt.org`
+    - cert-manager will request certificates from Lets Encrypt.
+- opsgenie.com
+    - domains:
+        - `api.opsgenie.com`
+    - Opsgenie's API is used to send alerts.
+- quay.io
+    - domains:
+        - `*.quay.io`
+    - Container images are hosted on Quay.
+- sentry.io
+    - domains:
+        - `o346224.ingest.sentry.io`
+    - Monitoring and crash reporting for `happa`.
 - slack.com
     - domains:
         - `hooks.slack.com`
