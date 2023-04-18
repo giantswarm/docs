@@ -46,7 +46,6 @@ Use the following values to set up the external-dns-app:
 provider: aws
 
 aws:
-  access: external
   baseDomain: <domain>
 
 env:
@@ -66,7 +65,44 @@ extraVolumes:
 
 ### Inject access key as values
 
-__Warning:__ This method is not recommended and will be deprecated in future versions.
+Starting from version `2.35.1`, with the addition of the secretConfiguration values, the external-dns-app supports 2 ways to load static credentials:
+
+#### secretConfiguration
+
+This method is flexible as it can load credentias from the chart values and store them in a `Secret`. It does not make any assumptions about the structure of your data, so it can be used in conjunction with `env` values.
+
+This example is the equivalent configuration to the one outlined in the following section:
+
+```yaml
+# values.yaml
+
+provider: aws
+
+aws:
+  baseDomain: <domain>
+
+env:
+  - name: AWS_ACCESS_KEY_ID
+    valueFrom:
+      secretKeyRef:
+        name: external-dns
+        key: aws_access_key_id
+  - name: AWS_SECRET_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: external-dns
+        key: aws_secret_access_key
+
+secretConfiguration:
+  enabled: true
+  data:
+    aws_access_key_id: <key_id>
+    aws_secret_access_key: <secret>
+```
+
+#### aws_access_key_id and aws_secret_access_key
+
+__Warning:__ This method will be deprecated in future versions.
 
 This configuration directly injects the `aws_access_key_id` and `aws_secret_access_key` into the App.
 
@@ -83,7 +119,6 @@ externalDNS:
   aws_access_key_id: <key_id>
   aws_secret_access_key: <secret>
 ```
-
 
 ---
 
