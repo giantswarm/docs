@@ -83,6 +83,7 @@ Below is a list of the external domains we require access to for our clusters to
         - `vault.operations.giantswarm.io`
         - `schema.giantswarm.io`
     - Our operations Vault is used for unsealing customer Vault servers.
+    - Our schema server hosts the schema's for container image validation.
 - k8s.io
     - domains:
         - `registry.k8s.io`
