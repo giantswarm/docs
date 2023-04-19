@@ -32,7 +32,7 @@ Below is a list of the external domains we require access to for our clusters to
     - domains:
         - `giantswarm.azurecr.io`
         - `giantswarmpublic.azurecr.io`
-    - Container images are hosted on Azure Container Registry.
+    - Container images and app catalogs are hosted on Azure Container Registry.
 - auth0.com
     - domains:
         - `giantswarm.eu.auth0.com`
@@ -46,6 +46,7 @@ Below is a list of the external domains we require access to for our clusters to
         - `*.docker.com`
         - `production.cloudflare.docker.com`
     - Container images are hosted on Dockerhub.
+    - Dockerhub uses Cloudflare as the CDN for serving Docker Image layer blobs, manifests, etc.
 - docker.io
     - domains:
         - `*.docker.io`
