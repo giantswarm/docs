@@ -53,15 +53,18 @@ This Giant Swarm release introduces Kubernetes 1.24, replaces the use of AWS CNI
 - Changed VPA to consider unique and workload cluster operators as well and added support for min allowed fields of CPU and memory
 
 
-### aws-operator [14.12.1](https://github.com/giantswarm/aws-operator/releases/tag/v14.12.1)
+### aws-operator [14.14.0](https://github.com/giantswarm/aws-operator/releases/tag/v14.14.0)
+
+### Fixed
+- Use alpine as image for aws-cni's routes-fixer.
 
 #### Added
-
 - Added ami IDs for flatcar `3374.2.4` and `3374.2.5`.
+- Added ami IDs for flatcar `3510.2.0`.
 
 #### Changed
 - Set ENV for nftables in `aws-cni`.
-
+- Allow externalDNS role to be assumed by any SA containing "external-dns" to allow multiple app deployments.
 
 
 ### cluster-operator [5.6.0](https://github.com/giantswarm/cluster-operator/releases/tag/v5.6.0)
@@ -98,11 +101,13 @@ This Giant Swarm release introduces Kubernetes 1.24, replaces the use of AWS CNI
 
 
 
-### cilium [0.9.0](https://github.com/giantswarm/cilium-app/releases/tag/v0.9.0)
+### cilium [0.9.3](https://github.com/giantswarm/cilium-app/releases/tag/v0.9.3)
 
 #### Changed
 - Use `image.registry` value as image registry for all containers in the chart.
 
+#### Added
+- Add network policy to allow exposing hubble UI through ingress.
 
 
 ### external-dns [2.35.0](https://github.com/giantswarm/external-dns-app/releases/tag/v2.35.0)
