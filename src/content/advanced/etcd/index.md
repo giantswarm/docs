@@ -1,7 +1,7 @@
 ---
 linkTitle: Etcd Quota Backend Bytes
 title: Etcd Quota Backend Bytes
-description: Since version 18.3 it's now possible to adjust the Etcd `--quota-backend-bytes` which allows to increase Etcd's keyspace database size.
+description: Since version 18.3.0 it's now possible to adjust the Etcd `--quota-backend-bytes` which allows to increase Etcd's keyspace database size.
 weight: 140
 menu:
   main:
@@ -16,7 +16,7 @@ owner:
 last_review_date: 2023-03-19
 ---
 
-{{< platform_support_table aws="ga=v18.3" >}}
+{{< platform_support_table aws="ga=v18.3.0" >}}
 
 ## Definition
 
@@ -27,11 +27,11 @@ In order to keep Etcd running efficiently it's important to:
 2. Run auto compaction
 3. Run defragmentation
 
-From version `>= 18.3` we have improved the Etcd autocompaction and defragmentation to be executed automatically and more frequently.
+From version `>= 18.3.0` we have improved the Etcd autocompaction and defragmentation to be executed automatically and more frequently.
 
 ## How to change the Etcd keyspace size
 
-Since version 18.3 we have introduced a way to configure the `quota-backend-bytes` via the following annotation `etcd.giantswarm.io/quota-backend-bytes` in the `cluster.x-k8s.io/v1beta1/clusters` CRD.  
+Since version 18.3.0 we have introduced a way to configure the `quota-backend-bytes` via the following annotation `etcd.giantswarm.io/quota-backend-bytes` in the `cluster.x-k8s.io/v1beta1/clusters` CRD.  
 The value of the annotation is in bytes.  
 The default value is: `8589934592`  
 
