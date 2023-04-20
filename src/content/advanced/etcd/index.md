@@ -46,7 +46,7 @@ Kyverno and Trivy are just examples of these kind of technologies.
 
 Specifically for Kyverno, it's possible to create policies which generate reports very frequently and this can cause the Etcd keyspace to fill up quickly.  
 
-When the Etcd database is full it's a cathastrofic event and the Kubernetes control plane becomes unavailable.  
+When the Etcd database is full it's a catastrophic event and the Kubernetes control plane becomes unavailable.  
 
 If the automatic compaction and defragmentation is not enough to prevent the Etcd database from filling up, then it means it's necessary to increase its maximum size via the `etcd.giantswarm.io/quota-backend-bytes` annotation.
 
