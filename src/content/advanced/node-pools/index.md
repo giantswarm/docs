@@ -15,7 +15,7 @@ aliases:
   - /basics/nodepools/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2021-01-01
+last_review_date: 2023-04-04
 ---
 
 {{< platform_support_table aws="beta=v10.0.0,ga=v11.0.0" azure="ga=v13.0.0" >}}

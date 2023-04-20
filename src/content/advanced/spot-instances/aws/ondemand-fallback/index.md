@@ -13,7 +13,7 @@ aliases:
   - /advanced/spot-instances/aws/on-demand-fallback/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2021-01-01
+last_review_date: 2023-04-04
 ---
 
 {{< platform_support_table aws="ga=v11.2.0" >}}
