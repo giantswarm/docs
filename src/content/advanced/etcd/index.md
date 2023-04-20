@@ -33,7 +33,9 @@ From version `>= 18.3` we have improved the Etcd autocompaction and defragmentat
 
 Since version 18.3 we have introduced a way to configure the `quota-backend-bytes` via the following annotation `etcd.giantswarm.io/quota-backend-bytes` in the `cluster.x-k8s.io/v1beta1/clusters` CRD.  
 The value of the annotation is in bytes.  
-The default value is: `8589934592`
+The default value is: `8589934592`  
+
+After the value has been changed, wait 10 minutes for our operators to reconcile, then replace the control plane nodes, one at the time.  
 
 ## When to change the default value
 
