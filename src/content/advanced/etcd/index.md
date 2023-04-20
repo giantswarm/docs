@@ -16,7 +16,7 @@ owner:
 last_review_date: 2023-03-19
 ---
 
-{{< platform_support_table aws="ga=v18.3" ">="}}
+{{< platform_support_table aws="ga=v18.3" =}}
 
 ## Definition
 
