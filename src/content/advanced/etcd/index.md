@@ -1,7 +1,7 @@
 ---
 linkTitle: Etcd Quota Backend Bytes
 title: Etcd Quota Backend Bytes
-description: With version `>= 18.3` it's now possible to adjust the Etcd `--quota-backend-bytes` which allows to increase Etcd's keyspace database size.
+description: Since version 18.3 it's now possible to adjust the Etcd `--quota-backend-bytes` which allows to increase Etcd's keyspace database size.
 weight: 140
 menu:
   main:
