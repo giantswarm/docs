@@ -1,90 +1,46 @@
 ---
-linkTitle: P1 Incident Process
-title: Critical incident process
-description: How Giant Swarm support team react to P1 incidents.
+linkTitle: Installation names
+title: Picking an installation name
+description: Every Giant Swarm installation has a unique name. Learn here how to select a name for your new installation.
 weight: 100
 menu:
   main:
-    parent: overview
+    parent: support-training
     weight: 20
 user_questions:
-  - What process does Giant Swarm follow in case of critical incidents?
+  - How do I determine the name for my Giant Swarm installation?
 owner:
-  - https://github.com/orgs/giantswarm/teams/teddyfriends
-last_review_date: 2023-04-11
+  - https://github.com/orgs/giantswarm/teams/team-rainbow
+last_review_date: 2022-09-08
+aliases:
+  - /getting-started/installation-name/
 ---
 
-After years of handling critical enterprise workloads in production, we have hardened our incident process based on our learnings. In this document we focus on critical incidents, called `Priority 1` (P1) incidents, though some of the steps could be part of regular incidents too. Giant Swarm classify incidents in a simple manner, critical incidents when a production system is impaired or regular incidents which have a straightforward process.
+A Giant Swarm installation includes a management cluster, bastion hosts, the workload clusters (depending on your viewpoint) and a few more components specific to the cloud provider used.
 
-## Separation of Responsibilities
+## Why an installation name
 
-It’s important to make sure that everybody involved in an incident knows their role, what is expected from them and doesn’t conflict with others actions. Somewhat counterintuitively, a clear separation of responsibilities allows individuals more autonomy, as they do not need to ask all the time and coordinate actions.
+Every Giant Swarm installation has a unique name. This name is part of the DNS zone used for all endpoints of this installation.
 
-### Roles
+When we set up a new installation for you, we want you to pick a name for it. Think of this name as your handy alias for everything you do with Giant Swarm in a specific cloud provider region, e.g. _Google Cloud Finland (europe-north1)_.
 
-In Giant Swarm we have basically defined two roles: Incident Coordinators and Operations Engineers.
+Once a name is decided on, you will use it often in your communication with Giant Swarm. Of course, we encourage you to also use it in internal communication.
 
-### Incident Coordinator
+## Criteria for good installation names
 
-The Incident Coordinator (IC) holds the high-level state about the incident. They structure the incident response, assigning responsibilities according to need and priority. De facto, the IC holds all positions/responsibilities that they have not delegated. If appropriate, they can remove roadblocks that prevent Operations Engineer’s from working most effectively.
+Besides being usable in DNS, there are many criteria which distinguish a good installation name. It should be easy to pronounce in an English language context, easy to type, and ideally easy to memorize. On the other hand, it should not reveal information about you as a customer.
 
-The IC is the public face of our incident response. It is within the IC’s duty to issue periodic updates to the team involved (customer and GiantSwarm) and acts as the bridge between the customer and the team. The IC will need to be in the war rooms of our customers.
+Installation names cannot be changed. So the best names are long-lasting, even in the case of context changes. For example, changing the purpose of the installation, or even a company name change.
 
-If there is a dedicated IC, the IC isn’t debugging systems and keeps the focus on coordinating the team to do so, while managing our customers.
+We provide a GitHub repository with [installation name candidates](https://github.com/giantswarm/installation-names) available for you to pick from. The names offered there should fulfill all of our criteria for a name.
 
-### Operations Engineer
+## How to select a name
 
-The Operations Engineer (OE) works with the incident commander to respond to the incident and is the only one debugging and applying changes to a system.
+To select a name for your new installation, please
 
+1. Browse the available names in the `.txt` files within the [installation-names](https://github.com/giantswarm/installation-names) repository and decide on a name. Feel free to pick the one you like best, for whatever reason.
+2. Fork the repository.
+3. In your fork, remove the name you decided for.
+4. Provide a pull request to our source repository. Please inform your Giant Swarm account engineer (AE) or site reliability engineer (SRE) about the pull request.
 
-## P1 Incident Process
-
-The process starts from the well-known [Incident Command System](https://en.wikipedia.org/wiki/Incident_Command_System) used by US firefighters to manage emergency situations. Obviously we have adapted to manage developer platforms. 
-
-Our main tenet is to have a simple process integrated with our incident tooling ([Incident.io](https://incident.io/)) to simplify the life of our engineers. Once a critical incident is declared none wants to read a process but be driving by it. 
-
-The process can be broken down in these steps:
-
-1. [Identify](#identify)
-2. [Investigate](#investigate)
-3. [Fixing](#fixing)
-4. [Monitoring](#monitoring)
-5. [Closing up](#closing-up)
-
-### Identify
-
-First step is to identify the incident and understand the severity. In our case, there are three possible sources:
-
-- Alert received pointing to a impaired production system
-- Customer sent us a urgent email 
-- Customer reached us via Slack
-
-Once our engineer acknowledge the message we need to confirm the severity to trigger the P1 process. In case the customer paged us, the Giant Swarm engineer joins the call or thread to verify the severity. In case an alert paged us, the engineer connects to the platform and measure the impact.
-
-Once the criticality is confirmed we continue the workflow by [declaring an Incident](https://help.incident.io/en/articles/5947915-declaring-incidents), which creates a Slack incident channel and triggers a custom [workflow](https://help.incident.io/en/articles/6971329-getting-started-with-workflows) that drives the engineer through the next steps. 
-
-When the incident is created there are some data the engineer must fill in (short summary, severity and customer impacted). When severity is `Critical` (P1 incident) the first thing to do is building the team. Most of the times the engineer creating the channel is not part of the [Incident Coordinators Group]() so he needs to escalate it to get someone from that team. For that reason, when you create an incident channel, incident.io show you a button to escalate. In the end, we need at least two person team to manage a critical incident (communications and operations).
-
-### Investigate
-
-Once team is built the person assigned to the Operations Engineer role will carry on with the investigation. The Incident Coordinator will be in contact with the customer, via messaging or in a call, and will provide information to the Operator to help with the investigation.
-
-We leave space to the Operations Engineers to focus on the investigation but we establish 20 minutes periods to get back and inform on the state. Most of the times the OEs share the findings in the channel and IC pin those message to help tracking the actions performed.
-
-In case the Incident Coordinator realize we need to grow the group, he can always escalate to more memebers of the team using incident.io commands.
-
-### Fixing
-
-After we have found the root cause of the problem we implement a solution, which can be temporal, to avoid any more damage the customer service.
-
-### Monitoring
-
-Once the fix or workaround has been implemented, we communicate with the customer and move to a monitoring phase, where we stay in stand-by keeping an eye on the metrics and communication channel to confirm there is no a regression coming. We leave the incident in this state for some time, could be a day or two, till we agree with the customer there is no regression.  
-
-### Closing up
-
-When we close the incident the work is not yet finished. We write down a [PostMortem]() document to detail all information collected through the incndent and share with the customer. We usually create follow ups that convert in tickets to our product teams so we can improve our service and avoid same mistake twice.
-
-## More info
-
-- The process is based on the [Incident Coordinator role](https://en.wikipedia.org/wiki/Incident_commander).
+A Giant Swarm staff member will eventually merge your pull request and thus remove your claimed name from the repository.
