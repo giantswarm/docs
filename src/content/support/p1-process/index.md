@@ -1,78 +1,90 @@
 ---
-linkTitle: Overview
-title: Customer support
-description: The support we provide is an essential part of our offering. Here we explain various support service processes and workflows.
-weight: 10
-last_review_date: 2022-12-07
-user_questions:
-  - What should I know when working with Giant Swarm's support staff?
-  - How is Giant Swarm organizing support?
+linkTitle: P1 Incident Process
+title: Critical incident process
+description: How Giant Swarm support team react to P1 incidents.
+weight: 100
 menu:
   main:
-    parent: support-training
-    identifier: support-training-overview
-    weight: 1
-aliases:
-  - /general/support
-  - /basics/giant-swarm-support/
+    parent: overview
+    weight: 20
+user_questions:
+  - What process does Giant Swarm follow in case of critical incidents?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-horizon
+  - https://github.com/orgs/giantswarm/teams/teddyfriends
+last_review_date: 2023-04-11
 ---
 
-In Giant Swarm we have developed a custom support model. In order to offer a great support we define different layers of assistance.
+After years of handling critical enterprise workloads in production, we have hardened our incident process based on our learnings. In this document we focus on critical incidents, called `Priority 1` (P1) incidents, though some of the steps could be part of regular incidents too. Giant Swarm classify incidents in a simple manner, critical incidents when a production system is impaired or regular incidents which have a straightforward process.
 
-## Direct Support via Slack
+## Separation of Responsibilities
 
-Our first level support relies on close interactions via Slack, to ensure bi-directional feedback as quickly as possible. This interaction channel is also used to answer a variety of questions. The conversations are not limited to the platform itself, but can go broader and include anything cloud-native.
+It’s important to make sure that everybody involved in an incident knows their role, what is expected from them and doesn’t conflict with others actions. Somewhat counterintuitively, a clear separation of responsibilities allows individuals more autonomy, as they do not need to ask all the time and coordinate actions.
 
-Our first level support shifts run from 08:00 to 18:00 (CET) on Monday-Friday. As we have a distributed team across the world, we  often answer questions well outside those times. We rotate support shifts across our teams, which is why we focus on support channels with clear internal handovers.
+### Roles
 
-If there is a problem that the first line support cannot resolve, it is handed over to an engineer who is part of the team responsible for the component or application that is failing. This is a 24 hour rotating shift.
+In Giant Swarm we have basically defined two roles: Incident Coordinators and Operations Engineers.
 
-## Project Management
+### Incident Coordinator
 
-The shared goal is to build a developer platform together. Since you are the expert in your company domain we help you to construct a nice experience for your developers. To make this possible we work together creating a roadmap and defining the milestones need to achieve.
+The Incident Coordinator (IC) holds the high-level state about the incident. They structure the incident response, assigning responsibilities according to need and priority. De facto, the IC holds all positions/responsibilities that they have not delegated. If appropriate, they can remove roadblocks that prevent Operations Engineer’s from working most effectively.
 
-Each customer has a dedicated Account Engineer who holds regular sync meetings to discuss the progress of the project, any blocker or change in requirements. This go-to person provides additional support and acts as a first backup in case the person on first line support is overloaded.
+The IC is the public face of our incident response. It is within the IC’s duty to issue periodic updates to the team involved (customer and GiantSwarm) and acts as the bridge between the customer and the team. The IC will need to be in the war rooms of our customers.
 
-## Operational support
+If there is a dedicated IC, the IC isn’t debugging systems and keeps the focus on coordinating the team to do so, while managing our customers.
 
-We trust in the DevOps principle "You build it, you run it" and for that reasons each part of the platform is operated for a different team in Giant Swarm. 
+### Operations Engineer
 
-Our on-call engineers watch over all alerts coming in from all environments where our customers run workloads. The on-call engineers are available 24/7. Thus, ensuring that issues are handled promptly, even on nights and weekends.
+The Operations Engineer (OE) works with the incident commander to respond to the incident and is the only one debugging and applying changes to a system.
 
-Today our mean time to acknowledge an alert is around two minutes and we usually resolve incidents in less than two hours. Obviously, not all alerts result in downtime in a customer environment. As alerts are set to make sure we fix problems before they lead to real incidents.
 
-Additionally, customers have a dedicated email address to reach our on-call engineer 24/7.  This is for cases in which customers notice problems that have not been caught by our monitoring.
+## P1 Incident Process
 
-### Fully monitor platform
+The process starts from the well-known [Incident Command System](https://en.wikipedia.org/wiki/Incident_Command_System) used by US firefighters to manage emergency situations. Obviously we have adapted to manage developer platforms. 
 
-The Giant Swarm platform comes with a monitoring and alerting system that helps our operations team maintain our SLAs across all customer platforms.
+Our main tenet is to have a simple process integrated with our incident tooling ([Incident.io](https://incident.io/)) to simplify the life of our engineers. Once a critical incident is declared none wants to read a process but be driving by it. 
 
-The monitoring stack observes the underlying infrastructure of the platform. This includes the networking layer, DNS resolution, Kubernetes core components, cloud providers and any other targets we need to monitor to give us a complete view of the health of the system.
+The process can be broken down in these steps:
 
-On the other side the applications running on top offering observability, connectivity or security are instrumented to expose metrics to our monitoring system allowing us to maintain those up and running all time.
+1. [Identify](#identify)
+2. [Investigate](#investigate)
+3. [Fixing](#fixing)
+4. [Monitoring](#monitoring)
+5. [Closing up](#closing-up)
 
-### Incident handling
+### Identify
 
-Every time our on-call engineer receives an alert from our monitoring platform the incident process kicks off. There is a new Slack channel created specifically for this problem where the engineer can gather all information around. Thanks to [incident.io](https://incident.io) automation the ops team can quickly escalate an incident or generate an inform for the customer (postmortem).
+First step is to identify the incident and understand the severity. In our case, there are three possible sources:
 
-Treating every alert as an incident has many benefits: the information of the incident is contained in a single channel, we can identify recurrent problems or any trends happening in order to improve the support process and we have historical record of the actions and information ocurred in a specific issue.
+- Alert received pointing to a impaired production system
+- Customer sent us a urgent email 
+- Customer reached us via Slack
 
-### Postmortem process
+Once our engineer acknowledge the message we need to confirm the severity to trigger the P1 process. In case the customer paged us, the Giant Swarm engineer joins the call or thread to verify the severity. In case an alert paged us, the engineer connects to the platform and measure the impact.
 
-The `postmortem` culture [was created by Google](https://sre.google/sre-book/postmortem-culture/) and was established in order to document a problem correctly, find the root cause and fix it across all installations permanently. Every time we close an incident, if it is not a false positive, we create a postmortem. 
+Once the criticality is confirmed we continue the workflow by [declaring an Incident](https://help.incident.io/en/articles/5947915-declaring-incidents), which creates a Slack incident channel and triggers a custom [workflow](https://help.incident.io/en/articles/6971329-getting-started-with-workflows) that drives the engineer through the next steps. 
 
-Postmortems are created during the whole week. On Mondays, the product team meets and distributes the postmortems across our product teams. As each team plans their weekly sprint they assign a specific engineer to each postmortem. Postmortems have priority over feature development and engineers are used to spending at least a day a week to solve these problems.
+When the incident is created there are some data the engineer must fill in (short summary, severity and customer impacted). When severity is `Critical` (P1 incident) the first thing to do is building the team. Most of the times the engineer creating the channel is not part of the [Incident Coordinators Group]() so he needs to escalate it to get someone from that team. For that reason, when you create an incident channel, incident.io show you a button to escalate. In the end, we need at least two person team to manage a critical incident (communications and operations).
 
-The postmortem is closed only once the underlying issue is fixed and deployed to all affected environments. Additionally postmortems often result in new or tuned alerts and ops recipes to share knowledge through the operations team.
+### Investigate
 
-## Our future
+Once team is built the person assigned to the Operations Engineer role will carry on with the investigation. The Incident Coordinator will be in contact with the customer, via messaging or in a call, and will provide information to the Operator to help with the investigation.
 
-Our support process is subject to change. As we continuously improve it we discover how to improve our policies, process and tools. But the goals are clear and unchanging. We are committed to seamlessly supporting our customers.
+We leave space to the Operations Engineers to focus on the investigation but we establish 20 minutes periods to get back and inform on the state. Most of the times the OEs share the findings in the channel and IC pin those message to help tracking the actions performed.
 
-## Further reading
+In case the Incident Coordinator realize we need to grow the group, he can always escalate to more memebers of the team using incident.io commands.
 
-- [Giant Swarm Operation Layers]({{< relref "/platform-overview/security/operational-layers" >}})
-- [Giant Swarm Cluster Upgrades]({{< relref "/platform-overview/cluster-management/cluster-upgrades" >}})
-- [Giant Swarm Training Catalog]({{< relref "/support/training-catalog" >}})
+### Fixing
+
+After we have found the root cause of the problem we implement a solution, which can be temporal, to avoid any more damage the customer service.
+
+### Monitoring
+
+Once the fix or workaround has been implemented, we communicate with the customer and move to a monitoring phase, where we stay in stand-by keeping an eye on the metrics and communication channel to confirm there is no a regression coming. We leave the incident in this state for some time, could be a day or two, till we agree with the customer there is no regression.  
+
+### Closing up
+
+When we close the incident the work is not yet finished. We write down a [PostMortem]() document to detail all information collected through the incndent and share with the customer. We usually create follow ups that convert in tickets to our product teams so we can improve our service and avoid same mistake twice.
+
+## More info
+
+- The process is based on the [Incident Coordinator role](https://en.wikipedia.org/wiki/Incident_commander).
