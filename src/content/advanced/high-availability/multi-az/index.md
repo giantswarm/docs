@@ -6,7 +6,7 @@ weight: 20
 menu:
   main:
     parent: advanced-highavailability
-last_review_date: 2022-03-16
+last_review_date: 2023-04-04
 user_questions:
 - Does Giant Swarm support multiple availability zones (AZ)?
 - What are the benefits of using multiple availability zones (AZ)?
@@ -113,7 +113,7 @@ You can create clusters in several ways:
 
 When inspecting details of such a cluster, or using the [`gsctl show cluster`]({{< relref "/use-the-api/gsctl/show-cluster" >}}) command, we display the list of availability zones used by the cluster.
 
-Where worker nodes are organized in node pools, the availability zone distribution must be configured when creating a node pool. This is supported both in the web UI as well as the CLI with the [`gsctl create nodepool`]({{< relref "/use-the-api/gsctl/create-nodepool" >}}) command. For inspection, both the [`gsctl list nodepools`]({{< relref "/use-the-api/gsctl/list-nodepools" >}}) and [`gsctl show nodepool`]({{< relref "/use-the-api/gsctl/show-nodepool" >}}) commands provide AZ information.
+Where worker nodes are organized in node pools, the availability zone distribution must be configured when creating a node pool. This is supported both in the web UI as well as the CLI with the [`gsctl create nodepool`]({{< relref "/use-the-api/gsctl/create-nodepool" >}}) or [`kubectl gs template nodepool`]({{< relref "/use-the-api/kubectl-gs/template-nodepool" >}}) command. For inspection, both the [`gsctl list nodepools`]({{< relref "/use-the-api/gsctl/list-nodepools" >}}) and [`kubectl gs get nodepools`]({{< relref "/use-the-api/kubectl-gs/get-nodepools" >}}) commands provide AZ information.
 
 Also exclusively on AWS, for control plane nodes, the choice to use high-availability (three control plane nodes, placed in one AZ each) is made on cluster creation. It is also possible to switch from a single control plane node to high availability after cluster creation, but not vice versa.
 

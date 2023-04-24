@@ -15,7 +15,7 @@ aliases:
   - /basics/networkpools/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2021-01-01
+last_review_date: 2023-04-04
 ---
 
 {{< platform_support_table aws="ga=v12.7.0" >}}
@@ -44,7 +44,7 @@ NetworkPools can be modified as long as the CIDR doesn't overlap with other Netw
 When creating a Cluster, you can assign the NetworkPool in the `.spec.provider.nodes.networkPool` attribute like:
 
 ```yaml
-apiVersion: infrastructure.giantswarm.io/v1alpha2
+apiVersion: infrastructure.giantswarm.io/v1alpha3
 kind: NetworkPool
 metadata:
   labels:
@@ -56,7 +56,7 @@ spec:
 ```
 
 ```yaml
-apiVersion: infrastructure.giantswarm.io/v1alpha2
+apiVersion: infrastructure.giantswarm.io/v1alpha3
 kind: AWSCluster
 metadata:
   name: g8kw3

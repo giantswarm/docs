@@ -10,7 +10,7 @@ user_questions:
  -  How can I enable cgroupsv1?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2022-02-01
+last_review_date: 2023-04-04
 ---
 
 {{< platform_support_table aws="beta=v17.0.0" azure="beta=v17.0.0" >}}

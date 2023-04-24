@@ -6,7 +6,7 @@ weight: 100
 menu:
   main:
     parent: cost-optimization
-last_review_date: 2021-11-15
+last_review_date: 2023-04-04
 user_questions:
 - How can I scale down cluster nodes to 0?
 - How can I silence alerts from the clusters?
@@ -77,7 +77,7 @@ Following Cron Job will scale down and silence the clusters. You can apply the C
 Please consider using the syntax for naming and namespaces as listed in the following example that has been prepare for Azure Workload Clusters:
 
 ```yaml
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: silences-customer-create-{CLUSTER-NAME}
@@ -136,7 +136,7 @@ Please remember to use your Node Pool Name in the patch command, which is the un
 When the time is right to scale up the cluster again, following template can be applied:
 
 ```yaml
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: silences-customer-delete-{CLUSTER-NAME}
