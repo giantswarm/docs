@@ -77,6 +77,8 @@ Additionally, we are creating a `Cloudfront Domain Alias` (except China) for eac
 
 To ensure that your applications can assume the appropriate IAM roles, you need to add the `Cloudfront Domain Alias` to those roles as a [trust entity]({{< relref "/advanced/iam-roles-for-service-accounts/index.md#aws-release-v19" >}}).
 
+We have also adjusted the `external-dns` IRSA trust policy to facilitate externalDNS role being assumed by any Service Account containing "external-dns" to allow multiple app deployments.
+
 To help make your transition to `IRSA` as easy as possible, we've added more context on our [official docs]({{< relref "/advanced/iam-roles-for-service-accounts/index.md#aws-release-v19" >}}).
 
 ## Other release highlights
