@@ -11,7 +11,7 @@ user_questions:
   - What process does Giant Swarm follow in case of critical incidents?
 owner:
   - https://github.com/orgs/giantswarm/teams/teddyfriends
-last_review_date: 2023-04-11
+last_review_date: 2023-04-25
 ---
 
 After years of handling critical enterprise workloads in production, we have hardened our incident process based on our learnings. In this document we focus on critical incidents, called `Priority 1` (P1) incidents, though some of the steps could be part of regular incidents too. Giant Swarm classify incidents in a simple manner, critical incidents when a production system is impaired or regular incidents which have a straightforward process.
@@ -63,15 +63,15 @@ Once our engineer acknowledge the message we need to confirm the severity to tri
 
 Once the criticality is confirmed we continue the workflow by [declaring an Incident](https://help.incident.io/en/articles/5947915-declaring-incidents), which creates a Slack incident channel and triggers a custom [workflow](https://help.incident.io/en/articles/6971329-getting-started-with-workflows) that drives the engineer through the next steps. 
 
-When the incident is created there are some data the engineer must fill in (short summary, severity and customer impacted). When severity is `Critical` (P1 incident) the first thing to do is building the team. Most of the times the engineer creating the channel is not part of the [Incident Coordinators Group]() so he needs to escalate it to get someone from that team. For that reason, when you create an incident channel, incident.io show you a button to escalate. In the end, we need at least two person team to manage a critical incident (communications and operations).
+When the incident is created there is some data that the engineer must fill in (short summary, severity and customer impacted). When severity is `Critical` (P1 incident) the first thing to do is building the team. Most of the times the engineer creating the channel is not part of the [Incident Coordinators Group]() so he needs to escalate it to get someone from that team. For that reason, when you create an incident channel, incident.io show you a button to escalate. In the end, we need at least two person team to manage a critical incident (communications and operations).
 
 ### Investigate
 
-Once team is built the person assigned to the Operations Engineer role will carry on with the investigation. The Incident Coordinator will be in contact with the customer, via messaging or in a call, and will provide information to the Operator to help with the investigation.
+Once the team is built the person assigned to the Operations Engineer role will carry on with the investigation. The Incident Coordinator will be in contact with the customer, via messaging or in a call, and will provide information to the Operator to help with the investigation.
 
-We leave space to the Operations Engineers to focus on the investigation but we establish 20 minutes periods to get back and inform on the state. Most of the times the OEs share the findings in the channel and IC pin those message to help tracking the actions performed.
+We leave space to the Operations Engineers to focus on the investigation but we establish 20 minutes periods to get back and inform the customer on the state. Most of the time the OEs will share the findings in the channel and the IC can pin those message to help tracking the actions performed.
 
-In case the Incident Coordinator realize we need to grow the group, he can always escalate to more memebers of the team using incident.io commands.
+In case the Incident Coordinator realize we need to grow the group, he can always escalate to more members of the team using incident.io commands.
 
 ### Fixing
 
