@@ -1,7 +1,7 @@
 ---
 linkTitle: P1 Incident Process
 title: Critical incident process
-description: How Giant Swarm support team react to P1 incidents.
+description: Critical Incident Process description followed by the Giant Swarm support team when a priority one incident is called.
 weight: 100
 menu:
   main:
@@ -11,18 +11,18 @@ user_questions:
   - What process does Giant Swarm follow in case of critical incidents?
 owner:
   - https://github.com/orgs/giantswarm/teams/teddyfriends
-last_review_date: 2023-04-25
+last_review_date: 2023-04-24
 ---
 
 After years of handling critical enterprise workloads in production, we have hardened our incident process based on our learnings. In this document we focus on critical incidents, called `Priority 1` (P1) incidents, though some of the steps could be part of regular incidents too. Giant Swarm classify incidents in a simple manner, critical incidents when a production system is impaired or regular incidents which have a straightforward process.
 
 ## Separation of Responsibilities
 
-It’s important to make sure that everybody involved in an incident knows their role, what is expected from them and doesn’t conflict with others actions. Somewhat counterintuitively, a clear separation of responsibilities allows individuals more autonomy, as they do not need to ask all the time and coordinate actions.
+It’s important to make sure that everybody involved in an incident knows their role, what is expected from them and that it doesn’t conflict with others' responsibilities. Somewhat counterintuitively, a clear separation of responsibilities allows individuals more autonomy, as they do not need to ask all the time and coordinate actions.
 
 ### Roles
 
-In Giant Swarm we have basically defined two roles: Incident Coordinators and Operations Engineers.
+At Giant Swarm we have two defined roles: Incident Coordinators and Operations Engineers.
 
 ### Incident Coordinator
 
@@ -53,11 +53,11 @@ The process can be broken down in these steps:
 
 ### Identify
 
-First step is to identify the incident and understand the severity. In our case, there are three possible sources:
+First step is to identify the incident and understand its impact and severity. In our case, there are three possible sources:
 
-- Alert received pointing to a impaired production system
+- Alert received pointing to an impacted production system
 - Customer sent us a urgent email 
-- Customer reached us via Slack
+- Customer reached out via Slack
 
 Once our engineer acknowledge the message we need to confirm the severity to trigger the P1 process. In case the customer paged us, the Giant Swarm engineer joins the call or thread to verify the severity. In case an alert paged us, the engineer connects to the platform and measure the impact.
 
@@ -81,7 +81,7 @@ After we have found the root cause of the problem we implement a solution, which
 
 ### Monitoring
 
-Once the fix or workaround has been implemented, we communicate with the customer and move to a monitoring phase, where we stay in stand-by keeping an eye on the metrics and communication channel to confirm there is no a regression coming. We leave the incident in this state for some time, could be a day or two, till we agree with the customer there is no regression.  
+Once the fix or workaround has been implemented, we communicate with the customer and move to a monitoring phase, where we stay in stand-by keeping an eye on the metrics and communication channel to confirm there is no regression. We leave the incident in this state for some time, which could be a day or two, till we agree with the customer there is no regression.  
 
 ### Closing up
 
