@@ -63,7 +63,9 @@ Once our engineer acknowledge the message we need to confirm the severity to tri
 
 Once the criticality is confirmed we continue the workflow by [declaring an Incident](https://help.incident.io/en/articles/5947915-declaring-incidents), which creates a Slack incident channel and triggers a custom [workflow](https://help.incident.io/en/articles/6971329-getting-started-with-workflows) that drives the engineer through the next steps. 
 
-When the incident is created there is some data that the engineer must fill in (short summary, severity and customer impacted). When severity is `Critical` (P1 incident) the first thing to do is building the team. Most of the times the engineer creating the channel is not part of the [Incident Coordinators Group]() so he needs to escalate it to get someone from that team. For that reason, when you create an incident channel, incident.io show you a button to escalate. In the end, we need at least two person team to manage a critical incident (communications and operations).
+When the incident is created there is some data that the engineer must fill in (short summary, severity and customer impacted). When severity is `Critical` (P1 incident) the first thing to do is building the team. Most of the times the engineer creating the channel is not part of the [Incident Coordinators Group](https://giantswarm.app.opsgenie.com/teams/dashboard/f02504a3-83d4-4ea8-b55c-8c67756f9b2e/main) so he needs to escalate it to get someone from that team. For that reason, when you create an incident channel, incident.io show you a button to escalate. In the end, we need at least two person team to manage a critical incident (communications and operations).
+
+![Incident.io Escalate Screenshot](escalate_screenshot.png)
 
 ### Investigate
 
@@ -83,7 +85,7 @@ Once the fix or workaround has been implemented, we communicate with the custome
 
 ### Closing up
 
-When we close the incident the work is not yet finished. We write down a [PostMortem]() document to detail all information collected through the incndent and share with the customer. We usually create follow ups that convert in tickets to our product teams so we can improve our service and avoid same mistake twice.
+When we close the incident the work is not yet finished. We write down a [PostMortem](https://docs.giantswarm.io/support/overview/#postmortem-process) document to detail all information collected through the incident and share with the customer. We usually create follow ups that convert in tickets to our product teams so we can improve our service and avoid same mistake twice.
 
 ## More info
 
