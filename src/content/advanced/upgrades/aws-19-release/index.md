@@ -17,7 +17,7 @@ user_questions:
   - How does the Cilium migration work?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2023-04-13
+last_review_date: 2023-04-24
 ---
 
 {{< platform_support_table aws="alpha=v19.0.0" >}}
@@ -76,6 +76,8 @@ During the upgrade, we are removing `KIAM` as a default app in your workload clu
 Additionally, we are creating a `Cloudfront Domain Alias` (except China) for each cluster which is used as the [OpenID Connect (OIDC) identity provider](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc.html) to improve predictability and simplify IAM role creation. 
 
 To ensure that your applications can assume the appropriate IAM roles, you need to add the `Cloudfront Domain Alias` to those roles as a [trust entity]({{< relref "/advanced/iam-roles-for-service-accounts/index.md#aws-release-v19" >}}).
+
+We have also adjusted the `external-dns` IRSA trust policy to facilitate externalDNS role being assumed by any Service Account containing "external-dns" to allow multiple app deployments.
 
 To help make your transition to `IRSA` as easy as possible, we've added more context on our [official docs]({{< relref "/advanced/iam-roles-for-service-accounts/index.md#aws-release-v19" >}}).
 
