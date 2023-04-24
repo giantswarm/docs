@@ -655,21 +655,369 @@ spec:
 
 {{%details "disallow-capabilities-strict" %}}
 Policy source: https://kyverno.io/policies/pod-security/restricted/disallow-capabilities-strict/disallow-capabilities-strict/
+
+This policy requires all containers to explicitly drop all capabilities.
+
+#### Examples
+
+This Pod satisfies the policy, because its only container explicitly drops `ALL` capabilities:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+    securityContext:
+      capabilities:
+        drop:
+        - ALL
+```
+
+This Pod does NOT satisfy the policy, because it does not explicitly drop `ALL` capabilities:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+```
+
 {{% /details %}}
 {{%details "disallow-privilege-escalation" %}}
 Policy source: https://kyverno.io/policies/pod-security/restricted/disallow-privilege-escalation/disallow-privilege-escalation/
+
+This policy rejects Pods if any of the containers do not explicitly disallow privilege escalation.
+
+#### Examples
+
+This Pod satisfies the policy, because its only container explicitly forbids privilege escalation:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+    securityContext:
+      allowPrivilegeEscalation: false
+```
+
+This Pod does NOT satisfy the policy, because its only container allows privilege escalation:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+    securityContext:
+      allowPrivilegeEscalation: true
+```
+
+This Pod also does NOT satisfy the policy, because it does not explicitly disallow privilege escalation:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+```
+
 {{% /details %}}
 {{%details "require-run-as-non-root-user" %}}
 Policy source: https://kyverno.io/policies/pod-security/restricted/require-run-as-non-root-user/require-run-as-non-root-user/
+
+This policy rejects Pods if any of the containers or the Pod itself sets a user id of 0.
+
+#### Examples
+
+This Pod satisfies the policy, because the Pod sets a user id of 10000:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  securityContext:
+    runAsUser: 10000
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+```
+
+This Pod also satisfies the policy, because the only container sets a user id of 10000:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+    securityContext:
+      runAsUser: 10000
+```
+
+This Pod does NOT satisfy the policy, because its container runs as root (user id 0):
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+    securityContext:
+      runAsUser: 0
+```
+
+This Pod also does NOT satisfy the policy, because even though the Pod specifies a users of 10000, the container still sets an user id of 0:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  securityContext:
+    runAsUser: 10000
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+    securityContext:
+      runAsUser: 0
+```
+
 {{% /details %}}
 {{%details "require-run-as-nonroot" %}}
 Policy source: https://kyverno.io/policies/pod-security/restricted/require-run-as-nonroot/require-run-as-nonroot/
+
+This policy requires that either the Pod or all of its containers set the `runAsNonRoot` value to `true`.
+
+#### Examples
+
+This Pod satisfies the policy, because the Pod sets the `runAsNonRoot` value:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  securityContext:
+    runAsNonRoot: true
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+```
+
+This Pod also satisfies the policy, because the only container sets the `runAsNonRoot` value:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+    securityContext:
+      runAsNonRoot: true
+```
+
+This Pod does NOT satisfy the policy, because its container sets the `runAsNonRoot` value to `false`:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+    securityContext:
+      runAsNonRoot: false
+```
+
+This Pod also does NOT satisfy the policy, because even though the only container sets the `runAsNonRoot` value to `true`, the Pod itself sets it to `false`:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  securityContext:
+    runAsNonRoot: false
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+    securityContext:
+      runAsNonRoot: true
+```
+
 {{% /details %}}
 {{%details "restrict-seccomp-strict" %}}
 Policy source: https://kyverno.io/policies/pod-security/restricted/restrict-seccomp-strict/restrict-seccomp-strict/
+
+This policy requires either the Pod or all containers to explicitly set a seccomp profile of either `RuntimeDefault` or `Localhost`.
+
+**Note: The Baseline PSS policy `restrict-seccomp` requires Pods/containers to use one of these profiles *if they set one*. This policy requires the value to be set.**
+
+#### Examples
+
+This Pod satisfies the policy, because its container sets an approved seccomp profile:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+    securityContext:
+      seccompProfile:
+        type: RuntimeDefault
+```
+
+This Pod satisfies the policy, because the Pod sets an approved seccomp profile:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  securityContext:
+    seccompProfile:
+      type: RuntimeDefault
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+```
+
+This Pod does NOT satisfy the policy, because it does not set a seccomp profile:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+```
+
+
+
+This Pod does NOT satisfy the policy, because it attempts to use the `Unconfined` profile:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+    securityContext:
+      seccompProfile:
+        type: Unconfined
+```
+
 {{% /details %}}
 {{%details "restrict-volume-types" %}}
 Policy source: https://kyverno.io/policies/pod-security/restricted/restrict-volume-types/restrict-volume-types/
+
+This policy restricts the types of volumes a Pod may use to a list of pre-approved types.
+
+**Note: The Baseline PSS policy `disallow-host-path` forbids only HostPath volumes. This policy further restricts the types of approved volumes.**
+
+#### Examples
+
+This Pod satisfies the policy, because it does not use any volumes:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+```
+
+This Pod also satisfies the policy, because the `configMap` volume type is permitted:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+    volumeMounts:
+    - mountPath: /etc/config
+      name: config
+  volumes:
+  - name: config
+    configMap:    
+      name: my-configmap
+```
+
+This Pod does NOT satisfy the policy, because it uses a `gitRepo` type volume, which is not permitted by the policy:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+    volumeMounts:
+    - mountPath: /repo
+      name: my-git-repo
+  volumes:
+  - name: my-git-repo
+    gitRepo:
+      repository: "git@danger.git"
+      revision: "abc123"
+```
+
 {{% /details %}}
 
 ## Policy Exceptions
