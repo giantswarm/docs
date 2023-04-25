@@ -20,7 +20,7 @@ last_review_date: 2023-03-21
 
 <!-- {{< platform_support_table aws="alpha=v17.2.0" aws="ga=v17.4.0">}} -->
 
-*Note: this content is applicable only to clusters running Kyverno, with the PSS `baseline` and `restricted` policies deployed in `enforce` mode. This will become the default in future Giant Swarm clusters, but can already be enabled on demand. This page will be updated to indicate the platform version where this content becomes the standard.*
+__Note__: this content is applicable only to clusters running Kyverno, with the PSS `baseline` and `restricted` policies deployed in `enforce` mode. This will become the default in future Giant Swarm clusters, but can already be enabled on demand. This page will be updated to indicate the platform version where this content becomes the standard.
 
 To enforce security best practices, several Kyverno policies mapped to the [Kubernetes Pod Security Standards][k8s-pss] are pre-installed in Giant Swarm clusters.
 
@@ -100,7 +100,7 @@ Policy source: https://kyverno.io/policies/pod-security/baseline/disallow-capabi
 
 This policy specifies a list of permitted capabilities and rejects Pods which add any capabilities not in the list.
 
-**Note: The Restricted PSS policy `disallow-capabilities-strict` imposes additional restrictions and requires explicitly dropping ALL other capabilities.**
+__Note__: The Restricted PSS policy `disallow-capabilities-strict` imposes additional restrictions and requires explicitly dropping ALL other capabilities.
 
 #### Examples
 
@@ -204,7 +204,7 @@ Policy source: https://kyverno.io/policies/pod-security/baseline/disallow-host-p
 
 This policy rejects Pods which use a `HostPath` type volume.
 
-**Note: The Restricted PSS policy `restrict-volume-types` imposes additional restrictions on volume types.**
+__Note__: The Restricted PSS policy `restrict-volume-types` imposes additional restrictions on volume types.
 
 #### Examples
 
@@ -546,7 +546,7 @@ Policy source: https://kyverno.io/policies/pod-security/baseline/restrict-seccom
 
 This policy rejects Pods which set a seccomp profile other than `RuntimeDefault` or `Localhost`.
 
-**Note: The Restricted PSS policy `restrict-seccomp-strict` requires containers to explicitly set one of the approved profiles.**
+__Note__: The Restricted PSS policy `restrict-seccomp-strict` requires containers to explicitly set one of the approved profiles.**
 
 #### Examples
 
@@ -887,7 +887,7 @@ Policy source: https://kyverno.io/policies/pod-security/restricted/restrict-secc
 
 This policy requires either the Pod or all containers to explicitly set a seccomp profile of either `RuntimeDefault` or `Localhost`.
 
-**Note: The Baseline PSS policy `restrict-seccomp` requires Pods/containers to use one of these profiles *if they set one*. This policy requires the value to be set.**
+__Note__: The Baseline PSS policy `restrict-seccomp` requires Pods/containers to use one of these profiles *if they set one*. This policy requires the value to be set.
 
 #### Examples
 
@@ -960,7 +960,7 @@ Policy source: https://kyverno.io/policies/pod-security/restricted/restrict-volu
 
 This policy restricts the types of volumes a Pod may use to a list of pre-approved types.
 
-**Note: The Baseline PSS policy `disallow-host-path` forbids only HostPath volumes. This policy further restricts the types of approved volumes.**
+__Note__: The Baseline PSS policy `disallow-host-path` forbids only HostPath volumes. This policy further restricts the types of approved volumes.
 
 #### Examples
 
@@ -1024,7 +1024,7 @@ spec:
 
 If a workload requires an exception, for example because it has a legitimate reason to run with a less secure configuration, the workload can be excluded from enforcement of a particular policy.
 
-**Note: under most circumstances, only a cluster administrator will be able to grant an exception. Your organization may have a predefined process or offer an automated self-service portal to request one.**
+__Note__: under most circumstances, only a cluster administrator will be able to grant an exception. Your organization may have a predefined process or offer an automated self-service portal to request one.
 
 To exclude a workload from a policy, create a `PolicyException` resource for that workload-policy combination.
 
