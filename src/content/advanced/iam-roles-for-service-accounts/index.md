@@ -331,7 +331,7 @@ In case your application is not working you can always remove the annotation on 
 
 ## AWS Release v18.4.0
 
-When upgrading to AWS Release `v18.4.0` you can additionally set a annotation on AWSCluster CR `alpha.aws.giantswarm.io/enable-cloudfront-alias: ""` to enable the usage of the Cloudfront alternate domain name beforehand. This is useful if you want to immediately want to take actions replacing `Kiam`. 
+When upgrading to AWS Release `v18.4.0` you can additionally set a annotation on AWSCluster CR `alpha.aws.giantswarm.io/enable-cloudfront-alias: ""` to enable the usage of the Cloudfront alternate domain name beforehand. This is useful if you want to take immeditately actions replacing `Kiam`. 
 
 ## AWS Release v19
 
