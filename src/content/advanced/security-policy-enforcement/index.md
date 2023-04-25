@@ -91,8 +91,6 @@ spec:
 
 These policies are pre-installed and enforced by default. Expand each policy for more information.
 
-{{%details "test" %}} Content {{% /details %}}
-
 ### PSS Baseline
 
 {{%details "disallow-capabilities" %}}
@@ -1065,7 +1063,7 @@ This example allows a DaemonSet (and the Pods it creates) named `my-workload` in
 Noteworthy pieces of this example:
 
 - Kyverno policy rules are usually written at the Pod level. For convenience, Kyverno automatically generates equivalent rules for Pod controllers like Deployments and DaemonSets. Such rules are prefaced with the value `autogen-` and added to the policy automatically (two such rules are visible in the example). When writing a `PolicyException`, any applicable `autogen` rules must also be listed if a workload should be exempt from them.
-- a policy can contain multiple rules -- exceptions can be applied to individual rules so that the others remain in effect. Here, the workload is allowed to fail the `host-path` and `restricted-volumes` rules (and their automatically generated equivalents). A workload is only exempt from the rules listed in a `ruleNames` list. If a policy contains other rules not listed in the `PolicyException`, and the workload does not satisfy those rules, the workload will be rejected.
+- A policy can contain multiple rules -- exceptions can be applied to individual rules so that the others remain in effect. Here, the workload is allowed to fail the `host-path` and `restricted-volumes` rules (and their automatically generated equivalents). A workload is only exempt from the rules listed in a `ruleNames` list. If a policy contains other rules not listed in the `PolicyException`, and the workload does not satisfy those rules, the workload will be rejected.
 - Cluster administrators can choose the namespace(s) where `PolicyExceptions` are stored. The correct namespace for a `PolicyException` might be different than the namespace for the Pod itself.
 
 [k8s-pss]: https://kubernetes.io/docs/concepts/security/pod-security-standards/
