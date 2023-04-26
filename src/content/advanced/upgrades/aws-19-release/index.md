@@ -38,7 +38,7 @@ Say goodbye to slow network initialization times and hello to lightning-fast per
 - Advanced networking features: `Cilium` supports advanced networking features such as load balancing, network segmentation, and eBPF-based packet filtering. These features allow for more granular control over network traffic and improve security. 
 - Scalability: `Cilium's` eBPF-based data plane is highly scalable and performs well even at scale. It is also highly efficient, reducing overhead and maximizing performance.
 - Improvements in pods time to come up due to cilium endpoint refresh substituting the kubeproxy refresh of iptables.
-- More efficient usage of IP spaced - fully described in `Cilium and IP space` section below.
+- More efficient usage of IP space - fully described in `Cilium and IP space` section below.
 
 ### What changes with Cilium?
 
