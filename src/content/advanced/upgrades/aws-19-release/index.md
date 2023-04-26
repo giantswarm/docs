@@ -74,7 +74,7 @@ The pod CIDR space needs to be split into separate, contiguous CIDR space, one f
 
 ##### Cilium in releases v19 and further
 
-In v19 and further releases the default pod CIDR is 192.168.0.0/16 and is NOT part of the VPC, meaning it can overlap with mostly any other address space in the VPC (but of course not with the cluster CIDRs such as the service CIDR). The default can be changed by setting a field in the AWSCluster CR as it was the case so far.
+In v19 and further releases the default pod CIDR is 192.168.0.0/16. The default can be changed by setting a field in the AWSCluster CR as it was the case so far.
 
 *WARNING*: If pods need to talk directly with private IP addresses reachable through the VPC (for example peered resources) then those target private IP addresses must be on a separate IP space.
 
