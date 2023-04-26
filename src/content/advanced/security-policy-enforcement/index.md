@@ -33,6 +33,34 @@ Users who are unaware of those requirements may be surprised when their workload
 
 Much more extensive documentation about Kyverno configuration and policy behavior is available [in the official docs][kyverno-docs].
 
+## Compliance Scanning and Enforcement
+
+Kyverno policies can be configured in two modes: `audit` and `enforce`.
+
+In `audit` mode, Kyverno will not reject admission of a resource even if it fails the policy. It will instead create a report and add an Event to the resource indicating that the resource has failed the policy.
+
+In `enforce` mode, Kyverno will block the creation of a resource if it fails a policy. No report or event will be created, because the resource will never exist in the cluster.
+
+By default, Kyverno will periodically re-scan all existing resources in a cluster and generate reports about their compliance.
+
+Resources which fail a policy will receive an Event similar to the example below, indicating which policy has failed.
+
+These Events are useful for evaluating which resources are affected by a policy or potential policy change.
+
+If a resource has these warning events for a given policy, it means that the resource would be rejected if that policy were to change to `enforce` mode.
+
+### Sample Policy Warnings
+
+```text
+Events:
+  Type     Reason           Age   From          Message
+  ----     ------           ----  ----          -------
+  Warning  PolicyViolation  18m   kyverno-scan  policy restrict-volume-types/restricted-volumes fail: Only the following types of volumes may be used: configMap, csi, downwardAPI, emptyDir, ephemeral, persistentVolumeClaim, projected, and secret.
+  Warning  PolicyViolation  18m   kyverno-scan  policy disallow-host-path/host-path fail: validation error: HostPath volumes are forbidden. The field spec.volumes[*].hostPath must be unset. rule host-path failed at path /spec/volumes/2/hostPath/
+```
+
+This example shows that the Pod resource fails two policies: the `restrict-volume-types` and `disallow-host-path` policies. It also indicates the rule which failed from each policy, specifically the `restricted-volumes` rule and the `host-path` rule. With this information, the owner of the resource should change the Pod configuration to comply with the policies, or if it is not possible to comply, apply for a PolicyException.
+
 ## Sample Compliant Deployment
 
 This Deployment is compliant with all Baseline and Restricted PSS policies:
@@ -93,7 +121,7 @@ These policies are pre-installed and enforced by default. Expand each policy for
 
 ### PSS Baseline
 
-{{%details "disallow-capabilities" %}}
+{{%details "Disallow Capabilities (disallow-capabilities)" %}}
 Policy source: https://kyverno.io/policies/pod-security/baseline/disallow-capabilities/disallow-capabilities/
 
 This policy specifies a list of permitted capabilities and rejects Pods which add any capabilities not in the list.
@@ -155,7 +183,7 @@ spec:
 
 {{% /details %}}
 
-{{%details "disallow-host-namespaces" %}}
+{{%details "Disallow Host Namespaces (disallow-host-namespaces)" %}}
 Policy source: https://kyverno.io/policies/pod-security/baseline/disallow-host-namespaces/disallow-host-namespaces/
 
 This policy rejects Pods using host networking, host IPC, or host PID.
@@ -197,7 +225,7 @@ spec:
 
 {{% /details %}}
 
-{{%details "disallow-host-path" %}}
+{{%details "Disallow hostPath (disallow-host-path)" %}}
 Policy source: https://kyverno.io/policies/pod-security/baseline/disallow-host-path/disallow-host-path/
 
 This policy rejects Pods which use a `HostPath` type volume.
@@ -268,7 +296,7 @@ spec:
 
 {{% /details %}}
 
-{{%details "disallow-host-ports" %}}
+{{%details "Disallow hostPorts (disallow-host-ports)" %}}
 Policy source: https://kyverno.io/policies/pod-security/baseline/disallow-host-ports/disallow-host-ports/
 
 This policy rejects Pods which use host network ports.
@@ -322,14 +350,14 @@ spec:
 
 {{% /details %}}
 
-{{%details "disallow-host-process" %}}
+{{%details "Disallow hostProcess (disallow-host-process)" %}}
 Policy source: https://kyverno.io/policies/pod-security/baseline/disallow-host-process/disallow-host-process/
 
 This policy rejects Windows pods which enable the `hostProcess` feature.
 
 {{% /details %}}
 
-{{%details "disallow-privileged-containers" %}}
+{{%details "Disallow Privileged Containers (disallow-privileged-containers)" %}}
 Policy source: https://kyverno.io/policies/pod-security/baseline/disallow-privileged-containers/disallow-privileged-containers/
 
 This policy rejects Pods which attempt to use `privileged` mode.
@@ -381,7 +409,7 @@ spec:
 
 {{% /details %}}
 
-{{%details "disallow-proc-mount" %}}
+{{%details "Disallow procMount (disallow-proc-mount)" %}}
 Policy source: https://kyverno.io/policies/pod-security/baseline/disallow-proc-mount/disallow-proc-mount/
 
 This policy rejects Pods which set non-default `procMount` values.
@@ -433,7 +461,7 @@ spec:
 
 {{% /details %}}
 
-{{%details "disallow-selinux" %}}
+{{%details "Disallow SELinux (disallow-selinux)" %}}
 Policy source: https://kyverno.io/policies/pod-security/baseline/disallow-selinux/disallow-selinux/
 
 This policy rejects Pods which set SELinux values which are not known to be safe.
@@ -489,7 +517,7 @@ spec:
 
 {{% /details %}}
 
-{{%details "restrict-apparmor-profiles" %}}
+{{%details "Restrict AppArmor (restrict-apparmor-profiles)" %}}
 Policy source: https://kyverno.io/policies/pod-security/baseline/restrict-apparmor-profiles/restrict-apparmor-profiles/
 
 This policy rejects Pods which set an AppArmor profile other than `runtime/default` or `localhost/*`.
@@ -539,7 +567,7 @@ spec:
 
 {{% /details %}}
 
-{{%details "restrict-seccomp" %}}
+{{%details "Restrict Seccomp (restrict-seccomp)" %}}
 Policy source: https://kyverno.io/policies/pod-security/baseline/restrict-seccomp/restrict-seccomp/
 
 This policy rejects Pods which set a seccomp profile other than `RuntimeDefault` or `Localhost`.
@@ -595,7 +623,7 @@ spec:
 
 {{% /details %}}
 
-{{%details "restrict-sysctls" %}}
+{{%details "Restrict sysctls (restrict-sysctls)" %}}
 Policy source: https://kyverno.io/policies/pod-security/baseline/restrict-sysctls/restrict-sysctls/
 
 This policy rejects Pods which set [sysctls][k8s-sysctl] aside from an approved list.
@@ -651,10 +679,10 @@ spec:
 
 ### PSS Restricted
 
-{{%details "disallow-capabilities-strict" %}}
+{{%details "Disallow Capabilities (Strict) (disallow-capabilities-strict)" %}}
 Policy source: https://kyverno.io/policies/pod-security/restricted/disallow-capabilities-strict/disallow-capabilities-strict/
 
-This policy requires all containers to explicitly drop all capabilities.
+This policy only allows adding the `NET_BIND_SERVICE` capability and requires all containers to explicitly drop all others.
 
 #### Examples
 
@@ -689,7 +717,7 @@ spec:
 ```
 
 {{% /details %}}
-{{%details "disallow-privilege-escalation" %}}
+{{%details "Disallow Privilege Escalation (disallow-privilege-escalation)" %}}
 Policy source: https://kyverno.io/policies/pod-security/restricted/disallow-privilege-escalation/disallow-privilege-escalation/
 
 This policy rejects Pods if any of the containers do not explicitly disallow privilege escalation.
@@ -740,7 +768,7 @@ spec:
 ```
 
 {{% /details %}}
-{{%details "require-run-as-non-root-user" %}}
+{{%details "Require Run As Non-Root User (require-run-as-non-root-user)" %}}
 Policy source: https://kyverno.io/policies/pod-security/restricted/require-run-as-non-root-user/require-run-as-non-root-user/
 
 This policy rejects Pods if any of the containers or the Pod itself sets a user id of 0.
@@ -810,7 +838,7 @@ spec:
 ```
 
 {{% /details %}}
-{{%details "require-run-as-nonroot" %}}
+{{%details "Require runAsNonRoot (require-run-as-nonroot)" %}}
 Policy source: https://kyverno.io/policies/pod-security/restricted/require-run-as-nonroot/require-run-as-nonroot/
 
 This policy requires that either the Pod or all of its containers set the `runAsNonRoot` value to `true`.
@@ -880,7 +908,7 @@ spec:
 ```
 
 {{% /details %}}
-{{%details "restrict-seccomp-strict" %}}
+{{%details "Restrict Seccomp (Strict) (restrict-seccomp-strict)" %}}
 Policy source: https://kyverno.io/policies/pod-security/restricted/restrict-seccomp-strict/restrict-seccomp-strict/
 
 This policy requires either the Pod or all containers to explicitly set a seccomp profile of either `RuntimeDefault` or `Localhost`.
@@ -953,7 +981,7 @@ spec:
 ```
 
 {{% /details %}}
-{{%details "restrict-volume-types" %}}
+{{%details "Restrict Volume Types (restrict-volume-types)" %}}
 Policy source: https://kyverno.io/policies/pod-security/restricted/restrict-volume-types/restrict-volume-types/
 
 This policy restricts the types of volumes a Pod may use to a list of pre-approved types.
