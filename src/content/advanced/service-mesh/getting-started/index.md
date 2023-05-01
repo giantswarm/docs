@@ -17,18 +17,18 @@ owner:
 
 ### Preparing your cluster
 
-For security reasons Giant Swarm by default forbids the usage of emptyDir volumes as storage for pods. Linkerd needs this functionality to run the proxy containers in any deployment that is going to be included in the service mesh. Enabling emptyDir volumes poses a risk that a pod will create such big emptyDir that the underlying cluster node will run out of disk space. If you're OK with this potential issue, the easiest way to allow for emptyDir for all the deployments is to edit the default PSP of your workload cluster by running the command:
+For security reasons, Giant Swarm - by default - forbids the usage of emptyDir volumes as storage for pods. Linkerd needs this functionality to run the proxy containers in any deployment that is going to be included in the service mesh. Enabling emptyDir volumes poses a risk that a pod will create such big emptyDir that the underlying cluster node will run out of disk space. If you're OK with this potential issue, the easiest way to allow for emptyDir for all the deployments is to edit the default PSP of your workload cluster by running the command:
 
 ```
 kubectl patch psp restricted --type='json' -p='[{"op": "add", "path": "/spec/volumes/-", "value": "emptyDir"}]'
 ```
 
-### Ceritificates
+### Certificates
 
-To successful install Linkerd you will require to generate a trust anchor and issuer certificate. The following steps loosely follow the official instructions.
+To successfully install Linkerd, you will need to generate a trust anchor and issuer certificate. The following steps loosely follow the official instructions.
 
 Obtain the step cli (you can download the binaries from [here](https://github.com/smallstep/cli/releases/tag/v0.23.4)) and execute the following commands. 
-Take note of the --not-after flag. We recommend 10 years (87600h) for the trust anchor and 3 years (26280h) for the issuer certificate.
+Take note of the `--not-after` flag. We recommend 10 years (87600h) for the trust anchor and 3 years (26280h) for the issuer certificate.
 
 ```
 step certificate create root.linkerd.cluster.local ca.crt ca.key --profile root-ca --no-password --insecure --not-after=87600h
@@ -91,7 +91,7 @@ You can find more configuration examples [here](https://github.com/giantswarm/li
 
 ### Mesh your apps
 
-After installation, linkerd looks for a `linkerd.io/inject: enabled` annotation on Namespaces or other workload resources. Adding this annotation to your workload namespaces will trigger automatic proxy container injection to your pods. You can use the spec.namespaceConfig.annotations field of your other apps App CR to automatically apply the required annotation.
+After installation, linkerd looks for a `linkerd.io/inject: enabled` annotation on namespaces or other workload resources. Adding this annotation to your workload namespaces will trigger automatic proxy container injection to your pods. You can use the `spec.namespaceConfig.annotations` field of your other apps App CR to automatically apply the required annotation.
 
 More information on proxy injection can be found on the "Automatic Proxy Injection" page in the upstream documentation.
 
