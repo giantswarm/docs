@@ -26,7 +26,7 @@ At Giant Swarm we have two defined roles: Incident Coordinators and Operations E
 
 ### Incident Coordinator
 
-The Incident Coordinator (IC) holds the high-level state about the incident. They structure the incident response, assigning responsibilities according to need and priority. De facto, the IC holds all positions/responsibilities that they have not delegated. If appropriate, they can remove roadblocks that prevent Operations Engineer’s from working most effectively.
+The Incident Coordinator (IC) holds the high-level state about the incident. They structure the incident response, assigning responsibilities according to need and priority. De facto, the IC holds all positions/responsibilities that they have not delegated. If appropriate, they can remove roadblocks that prevent Operations Engineers from working most effectively.
 
 The IC is the public face of our incident response. It is within the IC’s duty to issue periodic updates to the team involved (customer and GiantSwarm) and acts as the bridge between the customer and the team. The IC will need to be in the war rooms of our customers.
 
