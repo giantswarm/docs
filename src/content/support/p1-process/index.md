@@ -11,7 +11,7 @@ user_questions:
   - What process does Giant Swarm follow in case of critical incidents?
 owner:
   - https://github.com/orgs/giantswarm/teams/teddyfriends
-last_review_date: 2023-04-24
+last_review_date: 2023-05-02
 ---
 
 After years of handling critical enterprise workloads in production, we have hardened our incident process based on our learnings. In this document we focus on critical incidents, called `Priority 1` (P1) incidents, though some of the steps could be part of regular incidents too. Giant Swarm classify incidents in a simple manner, critical incidents when a production system is impaired or regular incidents which have a straightforward process.
@@ -89,4 +89,4 @@ When we close the incident the work is not yet finished. We write down a [PostMo
 
 ## More info
 
-- The process is based on the [Incident Coordinator role](https://en.wikipedia.org/wiki/Incident_commander).
+- This process takes inspiration from [Incident Coordinator role](https://en.wikipedia.org/wiki/Incident_commander).
