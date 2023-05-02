@@ -56,7 +56,7 @@ The process can be broken down in these steps:
 First step is to identify the incident and understand its impact and severity. In our case, there are three possible sources:
 
 - Alert received pointing to an impacted production system
-- Customer sent us an urgent email (urgent[at]ginatswarm.io)
+- Customer sent us an urgent email
 - Customer reached out via Slack
 
 Once our engineer acknowledge the message we need to confirm the severity to trigger the P1 process. In case the customer paged us, the Giant Swarm engineer joins the call or thread to verify the severity. In case an alert paged us, the engineer connects to the platform and measure the impact.
