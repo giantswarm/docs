@@ -75,7 +75,7 @@ If you are using Prometheus Operator, you can deploy your own service monitors a
 
 ### Accessing the UI
 
-As the Prometheus Agent is running in your workload cluster, you can gain access to its UI to inspect the list of currently configured targets it is scraping using the following command `kubectl port-forward -n kube-system prometheus-prometheus-agent-0 9090` then access the url `http://localhost:9090/targets` on your favorite browser.
+As the Prometheus Agent is running in your workload cluster, you can gain access to its UI to inspect the list of currently configured targets it is scraping using the following command `kubectl port-forward -n kube-system prometheus-prometheus-agent-0 9090` then access the url `https://localhost:9090/targets` on your favorite browser.
 
 You should see the following:
 

@@ -430,7 +430,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: <a href="http://kubernetes.io/docs/user-guide/annotations">http://kubernetes.io/docs/user-guide/annotations</a></p>
+<p>Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: <a href="https://kubernetes.io/docs/user-guide/annotations">https://kubernetes.io/docs/user-guide/annotations</a></p>
 
 </div>
 
@@ -468,7 +468,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: <a href="http://kubernetes.io/docs/user-guide/labels">http://kubernetes.io/docs/user-guide/labels</a></p>
+<p>Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: <a href="https://kubernetes.io/docs/user-guide/labels">https://kubernetes.io/docs/user-guide/labels</a></p>
 
 </div>
 
@@ -486,7 +486,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: <a href="http://kubernetes.io/docs/user-guide/identifiers#names">http://kubernetes.io/docs/user-guide/identifiers#names</a></p>
+<p>Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: <a href="https://kubernetes.io/docs/user-guide/identifiers#names">https://kubernetes.io/docs/user-guide/identifiers#names</a></p>
 
 </div>
 
@@ -505,7 +505,7 @@ spec:
 
 <div class="property-description">
 <p>Namespace defines the space within each name must be unique. An empty namespace is equivalent to the &ldquo;default&rdquo; namespace, but &ldquo;default&rdquo; is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty.
- Must be a DNS_LABEL. Cannot be updated. More info: <a href="http://kubernetes.io/docs/user-guide/namespaces">http://kubernetes.io/docs/user-guide/namespaces</a></p>
+ Must be a DNS_LABEL. Cannot be updated. More info: <a href="https://kubernetes.io/docs/user-guide/namespaces">https://kubernetes.io/docs/user-guide/namespaces</a></p>
 
 </div>
 
@@ -631,7 +631,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Name of the referent. More info: <a href="http://kubernetes.io/docs/user-guide/identifiers#names">http://kubernetes.io/docs/user-guide/identifiers#names</a></p>
+<p>Name of the referent. More info: <a href="https://kubernetes.io/docs/user-guide/identifiers#names">https://kubernetes.io/docs/user-guide/identifiers#names</a></p>
 
 </div>
 
@@ -649,7 +649,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>UID of the referent. More info: <a href="http://kubernetes.io/docs/user-guide/identifiers#uids">http://kubernetes.io/docs/user-guide/identifiers#uids</a></p>
+<p>UID of the referent. More info: <a href="https://kubernetes.io/docs/user-guide/identifiers#uids">https://kubernetes.io/docs/user-guide/identifiers#uids</a></p>
 
 </div>
 
