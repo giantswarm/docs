@@ -28,14 +28,13 @@ At Giant Swarm we have two defined roles: Incident Coordinators and Operations E
 
 The Incident Coordinator (IC) holds the high-level state about the incident. They structure the incident response, assigning responsibilities according to need and priority. De facto, the IC holds all positions/responsibilities that they have not delegated. If appropriate, they can remove roadblocks that prevent Operations Engineers from working most effectively.
 
-The IC is the public face of our incident response. It is within the IC’s duty to issue periodic updates to the team involved (customer and GiantSwarm) and acts as the bridge between the customer and the team. The IC will need to be in the war rooms of our customers.
+The IC is the public face of our incident response. It is within the ICs duty to issue periodic updates to the team involved - both customer teams and within Giant Swarm - to act as the bridge between the customer and the team. The IC will need to be in the war rooms of our customers.
 
 If there is a dedicated IC, the IC isn’t debugging systems and keeps the focus on coordinating the team to do so, while managing our customers.
 
 ### Operations Engineer
 
 The Operations Engineer (OE) works with the incident commander to respond to the incident and is the only one debugging and applying changes to a system.
-
 
 ## P1 Incident Process
 
@@ -73,11 +72,11 @@ Once the team is built the person assigned to the Operations Engineer role will 
 
 We leave space to the Operations Engineers to focus on the investigation but we establish 20 minutes periods to get back and inform the customer on the state. Most of the time the OEs will share the findings in the channel and the IC can pin those message to help tracking the actions performed.
 
-In case the Incident Coordinator realize we need to grow the group, he can always escalate to more members of the team using incident.io commands.
+In case the Incident Coordinator needs to increase the number of responders, they can always escalate to more members of the large team using incident.io.
 
 ### Fixing
 
-After we have found the root cause of the problem we implement a solution, which can be temporal, to avoid any more damage the customer service.
+After we have found the root cause of the problem we implement a solution to avoid any more downtime for the customer service. 
 
 ### Monitoring
 
