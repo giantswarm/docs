@@ -12,7 +12,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 user_questions:
   - How can I deal with impaired EBS volumes in my AWS cluster?
-last_review_date: 2021-01-01
+last_review_date: 2023-04-04
 ---
 
 ## What happens when EBS Volumes are impaired

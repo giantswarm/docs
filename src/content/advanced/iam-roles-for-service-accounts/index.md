@@ -329,6 +329,10 @@ If you have followed the steps above you can switch from kiam to IAM roles for s
 
 In case your application is not working you can always remove the annotation on the service account and add the kiam annotation on your deployment again.
 
+## AWS Release v18.4.0
+
+When upgrading to AWS Release `v18.4.0` you can additionally set a annotation on AWSCluster CR `alpha.aws.giantswarm.io/enable-cloudfront-alias: ""` to enable the usage of the Cloudfront alternate domain name beforehand. This is useful if you want to take immeditately actions replacing `Kiam`. 
+
 ## AWS Release v19
 
 When upgrading to AWS Release `v19.0.0` or higher, we have made changes to the identity provider URL to provide greater predictability and enable easier automation of AWS IAM role creation by customers. Specifically, we have decided to use a `Cloudfront domain alias` for the identity provider URL.
@@ -365,7 +369,7 @@ Modify the trust entity of your AWS IAM roles with the new identity provider URL
             "Action": "sts:AssumeRoleWithWebIdentity",
             "Condition": {
                 "StringEquals": {
-                    "CLOUDFRONT_DOMAIN:sub": "system:serviceaccount:NAMESPACE:SA_NAME"
+                    "CLOUDFRONT_ALTERNATE_DOMAIN:sub": "system:serviceaccount:NAMESPACE:SA_NAME"
                 }
             }
         },

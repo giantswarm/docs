@@ -7,7 +7,7 @@ menu:
   main:
     identifier: uiapi-managementapi-authentication-details
     parent: uiapi-managementapi-authentication
-last_review_date: 2022-04-28
+last_review_date: 2023-05-02
 aliases:
   - /reference/management-api/authentication/additional-details
   - /ui-api/management-api/authentication/additional-details
