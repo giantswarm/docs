@@ -34,7 +34,7 @@ If there is a dedicated IC, the IC isn’t debugging systems and keeps the focus
 
 ### Operations Engineer
 
-The Operations Engineer (OE) works with the incident commander to respond to the incident and is the only one debugging and applying changes to a system.
+The Operations Engineer (OE) works with the incident coordinator to respond to the incident and is the only one debugging and applying changes to a system.
 
 ## P1 Incident Process
 
@@ -70,13 +70,13 @@ When the incident is created there is some data that the engineer must fill in (
 
 Once the team is built the person assigned to the Operations Engineer role will carry on with the investigation. The Incident Coordinator will be in contact with the customer, via messaging or in a call, and will provide information to the Operator to help with the investigation.
 
-We leave space to the Operations Engineers to focus on the investigation but we establish 20 minutes periods to get back and inform the customer on the state. Most of the time the OEs will share the findings in the channel and the IC can pin those message to help tracking the actions performed.
+We leave space to the Operations Engineers to focus on the investigation but we establish 20 minutes periods to get back and inform the customer on the state. Most of the time the OEs will share the findings in the channel and the IC can pin those messages to help tracking the actions performed.
 
 In case the Incident Coordinator needs to increase the number of responders, they can always escalate to more members of the large team using incident.io.
 
 ### Fixing
 
-After we have found the root cause of the problem we implement a solution to avoid any more downtime for the customer service. 
+After we have found the root cause of the problem we implement a solution to avoid any more downtime for the customer service. Most of the time, the solution is temporary and will be replaced once the actual fix is rolled out to the platform. 
 
 ### Monitoring
 
@@ -89,3 +89,4 @@ When we close the incident the work is not yet finished. We write down a [PostMo
 ## More info
 
 - This process takes inspiration from [Incident Coordinator role](https://en.wikipedia.org/wiki/Incident_commander).
+- Incident.io [shortcut cheatsheet](https://help.incident.io/en/articles/5948163-shortcuts-cheatsheet)
