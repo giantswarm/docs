@@ -38,7 +38,7 @@ _Changes since **Stable 3374.2.2**_
 
 #### Updates:
 
-- Linux ([5.15.86](https://lwn.net/Articles/918808) (includes [5.15.85](https://lwn.net/Articles/918329), [5.15.84](https://lwn.net/Articles/918206), [5.15.83](https://lwn.net/Articles/917896), [5.15.82](https://lwn.net/Articles/917400), [5.15.81](https://lwn.net/Articles/916763), [5.15.80](https://lwn.net/Articles/916003)))
+- Linux ([5.15.86](https://lwn.net/Articles/918808) (includes [5.15.85](https://lwn.net/Articles/918329), [5.15.84](https://lwn.net/Articles/918206), [5.15.83](https://lwn.net/Articles/917896), [5.15.82](https://lwn.net/Articles/917400/), [5.15.81](https://lwn.net/Articles/916763), [5.15.80](https://lwn.net/Articles/916003)))
 - git ([2.37.5](https://github.com/git/git/blob/v2.37.5/Documentation/RelNotes/2.37.5.txt))
 
 
