@@ -122,11 +122,7 @@ kubectl annotate \
    alpha.aws.giantswarm.io/iam-roles-for-service-accounts=""
 ```
 
-In order to apply the changes, rolling of the master nodes is required. Rolling of the nodes can be triggered either by an update or manually by terminating each node.
-
-Alternatively, you can roll the nodes by using the `opsctl roll` command (e.g `opsctl roll nodepool -i <installation> -n <nodepool-name>` for rolling worker nodes)
-
-Unfortunately manual application of the changes will also result in a neccessity of rolling worker nodes. Thus we **highly** recommend to apply changes **only** prior to upgrading clusters. For more details please talk with your Account Engineer or ask in support channel.
+In order to apply the changes, rolling of the master nodes is required. Rolling of the nodes can be triggered either by an update or manually by terminating each node.Unfortunately manual application of the changes will also result in a neccessity of rolling worker nodes. Thus we **highly** recommend to apply changes **only** prior to upgrading clusters. For more details please talk with your Account Engineer or ask in support channel.
 
 If you have deployed additional ExternalDNS you have to make sure the role's **trusted entities** are prepared beforehand or it will stop working due to the switch to IRSA. If you want to continue using KIAM until release 19 you can set the value `aws.irsa=false` in the user values configmap.
 
