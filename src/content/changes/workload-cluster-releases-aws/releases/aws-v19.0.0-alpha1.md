@@ -24,7 +24,7 @@ This Giant Swarm release introduces Kubernetes 1.24, replaces the use of AWS CNI
 > **_IAM Warning:_** The `kiam` application will be removed from clusters in favor of IAM Roles for Service Accounts (IRSA). Please read release notes and prepare for migration.
 
 ***Cilium highlights***
-- [Network Policy](https://docs.cilium.io/en/stable/concepts/kubernetes/policy/#networkpolicy-state) provided by Cilium does not cover support for setting [ipBlock with Pod IP](https://github.com/cilium/cilium/issues/9209). Components in need of this will have to use [CiliumNetworkPolicy](https://docs.cilium.io/en/stable/concepts/kubernetes/policy/#ciliumnetworkpolicy) which has wider scope.
+- [Network Policy](https://docs.cilium.io/en/latest/network/kubernetes/policy/) provided by Cilium does not cover support for setting [ipBlock with Pod IP](https://github.com/cilium/cilium/issues/9209). Components in need of this will have to use [CiliumNetworkPolicy](https://docs.cilium.io/en/stable/concepts/kubernetes/policy/#ciliumnetworkpolicy) which has wider scope.
 - The AWS CNI pod subnets are no longer used by Cilium. Please add custom routes with the node subnet(s) CIDR(s) instead of the AWS CNI pod subnets CIDR before upgrading to this release.
 - The upgrade process [documentation](https://handbook.giantswarm.io/docs/support-and-ops/ops-recipes/upgrade-to-cilium/) is available. Please read it carefully and reach out in case of questions.
 - Cilium will have Hubble UI enabled by default for troubleshooting and observability.
@@ -79,7 +79,7 @@ _Changes since **Stable 3374.2.2**_
 
 #### Updates:
 
-- Linux ([5.15.86](https://lwn.net/Articles/918808) (includes [5.15.85](https://lwn.net/Articles/918329), [5.15.84](https://lwn.net/Articles/918206), [5.15.83](https://lwn.net/Articles/917896), [5.15.82](https://lwn.net/Articles/917400), [5.15.81](https://lwn.net/Articles/916763), [5.15.80](https://lwn.net/Articles/916003)))
+- Linux ([5.15.86](https://lwn.net/Articles/918808) (includes [5.15.85](https://lwn.net/Articles/918329), [5.15.84](https://lwn.net/Articles/918206), [5.15.83](https://lwn.net/Articles/917896), [5.15.82](https://lwn.net/Articles/917400/), [5.15.81](https://lwn.net/Articles/916763), [5.15.80](https://lwn.net/Articles/916003/)))
 - git ([2.37.5](https://github.com/git/git/blob/v2.37.5/Documentation/RelNotes/2.37.5.txt))
 
 ### etcd [3.5.7](https://github.com/etcd-io/etcd/releases/tag/v3.5.7)
@@ -624,7 +624,7 @@ Service `ClusterIP` are unique, hence, trying to create a Service with a `Cluste
 - Improved logging when volume times out waiting for attach/detach. ([#108628](https://github.com/kubernetes/kubernetes/pull/108628), [@RomanBednar](https://github.com/RomanBednar))
 - Improved the rounding of `PodTopologySpread` scores to offer better scoring when spreading a low number of pods. ([#107384](https://github.com/kubernetes/kubernetes/pull/107384), [@sanposhiho](https://github.com/sanposhiho))
 - Increase Azure ACR credential provider timeout ([#108209](https://github.com/kubernetes/kubernetes/pull/108209), [@andyzhangx](https://github.com/andyzhangx))
-- Kube-apiserver: Server Side Apply merge order is reverted to match v1.22 behavior until http://issue.k8s.io/104641 is resolved. ([#106660](https://github.com/kubernetes/kubernetes/pull/106660), [@liggitt](https://github.com/liggitt))
+- Kube-apiserver: Server Side Apply merge order is reverted to match v1.22 behavior until https://issue.k8s.io/104641 is resolved. ([#106660](https://github.com/kubernetes/kubernetes/pull/106660), [@liggitt](https://github.com/liggitt))
 - Kube-apiserver: ensures the namespace of objects sent to admission webhooks matches the request namespace. Previously, objects without a namespace set would have the request namespace populated after mutating admission, and objects with a namespace that did not match the request namespace would be rejected after admission. ([#94637](https://github.com/kubernetes/kubernetes/pull/94637), [@liggitt](https://github.com/liggitt))
 - Kube-apiserver: removed `apf_fd` from server logs which could contain data identifying the requesting user ([#108631](https://github.com/kubernetes/kubernetes/pull/108631), [@jupblb](https://github.com/jupblb))
 - Kube-proxy in iptables mode now only logs the full iptables input at `-v=9` rather than `-v=5`. ([#108224](https://github.com/kubernetes/kubernetes/pull/108224), [@danwinship](https://github.com/danwinship))
@@ -729,7 +729,7 @@ Service `ClusterIP` are unique, hence, trying to create a Service with a `Cluste
 - [k8s.io/utils/clock]: IntervalClock is now deprecated in favour of SimpleIntervalClock ([#108059](https://github.com/kubernetes/kubernetes/pull/108059), [@RaghavRoy145](https://github.com/RaghavRoy145))
 - `kube-addon-manager` image version is bumped to 9.1.6 ([#108341](https://github.com/kubernetes/kubernetes/pull/108341), [@zshihang](https://github.com/zshihang))
 - Add SourceVolumeMode field to VolumeSnapshotContents. Documentation for this alpha feature is pending. ([#665](https://github.com/kubernetes-csi/external-snapshotter/pull/665), [@RaunakShah](https://github.com/RaunakShah))
-- Update snapshotter module to v6 and client module to v5. Documentation for this alpha feature is pending. ([#670],(https://github.com/kubernetes-csi/external-snapshotter/pull/670), [@RaunakShah](https://github.com/RaunakShah))
+- Update snapshotter module to v6 and client module to v5. Documentation for this alpha feature is pending. ([#670],(https://github.com/kubernetes-csi/external-snapshotter/pull/670, [@RaunakShah](https://github.com/RaunakShah))
 
 ##### Uncategorized
 
@@ -740,7 +740,7 @@ Service `ClusterIP` are unique, hence, trying to create a Service with a `Cluste
 
 ##### Added
 - github.com/armon/go-socks5: [e753329](https://github.com/armon/go-socks5/tree/e753329)
-- github.com/blang/semver/v4: [v4.0.0](https://github.com/blang/semver/v4/tree/v4.0.0)
+- github.com/blang/semver/v4: [v4.0.0](https://github.com/blang/semver/releases/tag/v4.0.0)
 - github.com/google/gnostic: [v0.5.7-v3refs](https://github.com/google/gnostic/tree/v0.5.7-v3refs)
 
 ##### Changed

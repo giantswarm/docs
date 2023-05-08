@@ -30,7 +30,7 @@ will get lost.
 
 ```yaml
 endpoints:
-  http://localhost:9000:
+  https://localhost:9000:
     alias: local
     email: developer@example.com
     token: 7d5b1161-87e6-4dfd-8017-5ab9f4e1cb14

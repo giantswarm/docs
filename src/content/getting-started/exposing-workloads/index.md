@@ -111,7 +111,7 @@ kubectl -n NAMESPACE describe ing/INGRESS_NAME
 Once the ingress is up, you will be able to access your service publicly at a URL like this (again replacing the placeholders):
 
 ```nohighlight
-http://PREFIX.CLUSTER_ID.k8s.gigantic.io
+https://PREFIX.CLUSTER_ID.k8s.gigantic.io
 ```
 
 For additional features and options, please see our documentation around [advanced ingress configuration]({{< relref "/advanced/ingress/configuration" >}}).
