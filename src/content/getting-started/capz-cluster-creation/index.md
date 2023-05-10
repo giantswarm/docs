@@ -355,10 +355,10 @@ bzm29   bzm29     True                       bzm29            6b1f6e4a-6d0e-4aa4
 
 ### login
 
-Once the cluster got created, `opsctl` could be used to login into the workload cluster by running
+Once the cluster got created, `kubectl-gs` could be used to login into the workload cluster by running
 
 ```noghighlight
-$ opsctl login glippy jrp45
+$ kubectl gs login glippy --workload-cluster jrp45 --certificate-group system:masters
 ```
 
 With the changed context, you are able to list the newly created nodes within a cluster:
@@ -411,3 +411,7 @@ Cluster/jrp45                                  True                             
     │           └─Available                    True                               90m                                                                       
     └─3 Machines...                            True                               90m    See jrp45-md00-7b9fb977c8-rzkmw, jrp45-md00-7b9fb977c8-ssjph, ...  
 ```
+
+## Related
+
+- [`kubectl gs login`]({{< relref "/use-the-api/kubectl-gs/login" >}}) - Ensure an authenticated kubectl context.
