@@ -20,7 +20,7 @@ Giant Swarm classifies incidents as being either critical or routine. Critical i
 
 ## Separation of Responsibilities
 
-It’s important to make sure that everybody involved in an incident knows their role, what is expected from them and that it doesn’t conflict with others' responsibilities. Somewhat counterintuitively, a clear separation of responsibilities allows individuals more autonomy, as they do not need to ask all the time and coordinate actions.
+It’s important to make sure that everybody involved in an incident knows their role, what is expected from them, and that it doesn’t conflict with others' responsibilities. Somewhat counterintuitively, a clear separation of responsibilities allows individuals more autonomy, as they do not need to ask all the time and coordinate actions.
 
 ### Roles
 
