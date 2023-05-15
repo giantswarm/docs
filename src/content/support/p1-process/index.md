@@ -36,13 +36,13 @@ If there is a dedicated IC, the IC isn’t debugging systems and keeps the focus
 
 ### Operations Engineer
 
-The Operations Engineer (OE) works with the incident coordinator to respond to the incident and is the only one debugging and applying changes to a system.
+The Operations Engineer (OE) works with the Incident Coordinator to respond to the incident and is the one responsible for debugging and applying changes to a system.
 
 ## P1 Incident Process
 
-The process starts from the well-known [Incident Command System](https://en.wikipedia.org/wiki/Incident_Command_System) used by US firefighters to manage emergency situations. Obviously we have adapted to manage developer platforms. 
+The process is inspired by the well-known [Incident Command System](https://en.wikipedia.org/wiki/Incident_Command_System) used by US firefighters to manage emergency situations. Obviously we have adapted to manage developer platforms. 
 
-Our main tenet is to have a simple process integrated with our incident tooling ([Incident.io](https://incident.io/)) to simplify the life of our engineers. Once a critical incident is declared none wants to read a process but be driving by it. 
+Our main tenet is to have a simple process integrated with our incident tooling ([Incident.io](https://incident.io/)) to simplify the life of our engineers. Once a critical incident is declared, nobody wants to read a process, but be driven by it. 
 
 The process can be broken down in these steps:
 
@@ -60,11 +60,11 @@ First step is to identify the incident and understand its impact and severity. I
 - Customer sent us an urgent email
 - Customer reached out via Slack
 
-Once our engineer acknowledge the message we need to confirm the severity to trigger the P1 process. In case the customer paged us, the Giant Swarm engineer joins the call or thread to verify the severity. In case an alert paged us, the engineer connects to the platform and measure the impact.
+Once our engineer acknowledges the message we need to confirm the severity to trigger the P1 process. In case the customer paged us, the Giant Swarm engineer joins the call or thread to verify the severity. In case an alert paged us, the engineer connects to the platform and assesses the impact.
 
 Once the criticality is confirmed we continue the workflow by [declaring an Incident](https://help.incident.io/en/articles/5947915-declaring-incidents), which creates a Slack incident channel and triggers a custom [workflow](https://help.incident.io/en/articles/6971329-getting-started-with-workflows) that drives the engineer through the next steps. 
 
-When the incident is created there is some data that the engineer must fill in (short summary, severity and customer impacted). When severity is `Critical` (P1 incident) the first thing to do is building the team. Most of the times the engineer creating the channel is not part of the [Incident Coordinators Group](https://giantswarm.app.opsgenie.com/teams/dashboard/f02504a3-83d4-4ea8-b55c-8c67756f9b2e/main) so he needs to escalate it to get someone from that team. For that reason, when you create an incident channel, incident.io show you a button to escalate. In the end, we need at least two person team to manage a critical incident (communications and operations).
+When the incident is created, there is some data that the engineer must fill in (short summary, severity and customer impacted). When the severity is `Critical` (P1 incident) the first thing to do is build the team. Most of the time, the engineer creating the channel is not part of the [Incident Coordinators Group](https://giantswarm.app.opsgenie.com/teams/dashboard/f02504a3-83d4-4ea8-b55c-8c67756f9b2e/main), so the engineer will need to escalate the issue to get someone from that team. For that reason, when you create an incident channel, incident.io shows you a button to escalate. In the end, we need at least two person team to manage a critical incident (communications and operations).
 
 ![Incident.io Escalate Screenshot](escalate_screenshot.png)
 
@@ -72,7 +72,7 @@ When the incident is created there is some data that the engineer must fill in (
 
 Once the team is built the person assigned to the Operations Engineer role will carry on with the investigation. The Incident Coordinator will be in contact with the customer, via messaging or in a call, and will provide information to the Operator to help with the investigation.
 
-We leave space to the Operations Engineers to focus on the investigation but we establish 20 minutes periods to get back and inform the customer on the state. Most of the time the OEs will share the findings in the channel and the IC can pin those messages to help tracking the actions performed.
+We leave space for the Operations Engineers to focus on the investigation, but we establish 20 minutes intervals to get back and inform the customer of the current state. Most of the time, the OEs will share the findings in the channel and the IC can pin those messages to help track the actions performed.
 
 In case the Incident Coordinator needs to increase the number of responders, they can always escalate to more members of the large team using incident.io.
 
@@ -82,11 +82,11 @@ After we have found the root cause of the problem we implement a solution to avo
 
 ### Monitoring
 
-Once the fix or workaround has been implemented, we communicate with the customer and move to a monitoring phase, where we stay in stand-by keeping an eye on the metrics and communication channel to confirm there is no regression. We leave the incident in this state for some time, which could be a day or two, till we agree with the customer there is no regression.  
+Once the fix or workaround has been implemented, we communicate with the customer and move to a monitoring phase, where we stay in standby, keeping an eye on the metrics and communication channel to confirm there is no regression. We leave the incident in this state for some time, which could be a day or two, until we agree with the customer there is no regression.  
 
 ### Closing up
 
-When we close the incident the work is not yet finished. We write down a [PostMortem](https://docs.giantswarm.io/support/overview/#postmortem-process) document to detail all information collected through the incident and share with the customer. We usually create follow ups that convert in tickets to our product teams so we can improve our service and avoid same mistake twice.
+When we close the incident the work is not yet finished. We create a [PostMortem](https://docs.giantswarm.io/support/overview/#postmortem-process) document to detail all information collected during the incident and share with the customer. Any remaining follow-up items are converted to tickets for our product teams so we can improve our service and avoid making the same mistake twice.
 
 ## More info
 
