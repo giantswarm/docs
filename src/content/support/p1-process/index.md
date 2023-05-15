@@ -1,7 +1,7 @@
 ---
 linkTitle: P1 Incident Process
 title: Critical incident process
-description: Critical Incident Process description followed by the Giant Swarm support team when a priority one incident is called.
+description: The process used by the Giant Swarm support team when a priority one incident is called.
 weight: 100
 menu:
   main:
