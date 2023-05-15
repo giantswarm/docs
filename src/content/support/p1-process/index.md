@@ -14,7 +14,9 @@ owner:
 last_review_date: 2023-05-02
 ---
 
-After years of handling critical enterprise workloads in production, we have hardened our incident process based on our learnings. In this document we focus on critical incidents, called `Priority 1` (P1) incidents, though some of the steps could be part of regular incidents too. Giant Swarm classify incidents in a simple manner, critical incidents when a production system is impaired or regular incidents which have a straightforward process.
+After years of handling critical enterprise workloads in production, we have hardened our incident process based on our learnings. In this document we focus on critical incidents, called `Priority 1` (P1) incidents, though some of the steps could be part of regular incidents too. 
+
+Giant Swarm classifies incidents as being either critical or routine. Critical incidents are those which impair a customer production system. Routine incidents are all other regular incidents which don't impact production and which have a straightforward process.
 
 ## Separation of Responsibilities
 
