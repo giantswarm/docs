@@ -1,6 +1,6 @@
 ---
 linkTitle: P1 Incident Process
-title: Critical incident process
+title: P1 incident process
 description: The process used by the Giant Swarm support team when a priority one incident is called.
 weight: 100
 menu:
