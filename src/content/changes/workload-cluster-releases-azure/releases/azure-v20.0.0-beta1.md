@@ -205,7 +205,7 @@ Not found
 
 
 
-### k8s-dns-node-cache [2.1.0](https://github.com/giantswarm/k8s-dns-node-cache-app/releases/tag/v2.1.0)
+### k8s-dns-node-cache [1.2.0](https://github.com/giantswarm/k8s-dns-node-cache-app/releases/tag/v1.2.0)
 
 #### Changed
-- Switch to ServiceMonitors for metrics scraping.
+- Disable PSPs for k8s 1.25 and newer.
