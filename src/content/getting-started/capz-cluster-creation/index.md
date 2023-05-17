@@ -137,8 +137,8 @@ spec:
   catalog: cluster
   config:
     configMap:
-      name: ""
-      namespace: ""
+      name: "jrp45-cluster-values"
+      namespace: "org-multi-project"
     secret:
       name: ""
       namespace: ""
@@ -321,8 +321,8 @@ spec:
   catalog: cluster
   config:
     configMap:
-      name: ""
-      namespace: ""
+      name: "bzm29-cluster-values"
+      namespace: "org-observability"
     secret:
       name: ""
       namespace: ""
