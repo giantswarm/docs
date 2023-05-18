@@ -98,13 +98,13 @@ After we have found the root cause of the problem we implement a solution to avo
 
 ### Monitoring
 
-Once the fix or workaround has been implemented, we communicate with the customer and move to a monitoring phase, where we stay in standby, keeping an eye on the metrics and communication channel to confirm there is no regression. We leave the incident in this state for some time, which could be a day or two, until we agree with the customer there is no regression.  
+Once the fix or workaround has been implemented, IC communicates with the customer and move the incident status to monitoring phase, where we stay in standby, the OE keeps an eye on the metrics and communication channel to confirm there is no regression. We leave the incident in this state for some time, which could be a day or two, until we agree with the customer there is no regression.  
 
 ### Closing up
 
-When we close the incident the work is not yet finished. We create a [PostMortem](https://docs.giantswarm.io/support/overview/#postmortem-process) document to detail all information collected during the incident and share with the customer. The [incident.io](https://incident.io/) functionality allows you to generate a Google Doc Post Mortem filling most of the parts with the metadata and pinned messages gathered during the incident.
+When we close the incident the work is not yet finished. The IC creates a [PostMortem](https://docs.giantswarm.io/support/overview/#postmortem-process) document to detail all information collected during the incident and shares with the customer. The [incident.io](https://incident.io/) functionality allows you to generate a Google Doc Post Mortem filling most of the parts with the metadata and pinned messages gathered during the incident. The dedicated Account Engineer of the customer will do a review and ask for feedback to any of the participants in the incident.
 
-Any remaining follow-up items are converted to Github tickets for our product teams so we can improve our service and avoid making the same mistake twice.
+Any remaining follow-up items are converted to Github tickets for the IC and move to the product teams so we can improve our service and avoid making the same mistake twice.
 
 ## More info
 
