@@ -122,7 +122,7 @@ kubectl annotate \
    alpha.aws.giantswarm.io/iam-roles-for-service-accounts=""
 ```
 
-In order to apply the changes, rolling of the master nodes is required. Rolling of the nodes can be triggered either by an update or manually by terminating each node. Unfortunately manual application of the changes will also result in a neccessity of rolling worker nodes. Thus we **highly** recommend to apply changes **only** prior to upgrading clusters. For more details please talk with your Account Engineer or ask in support channel.
+In order to apply the changes, rolling of the master nodes is required. Rolling of the nodes can be triggered either by an update or manually by terminating each node.Unfortunately manual application of the changes will also result in a neccessity of rolling worker nodes. Thus we **highly** recommend to apply changes **only** prior to upgrading clusters. For more details please talk with your Account Engineer or ask in support channel.
 
 If you have deployed additional ExternalDNS you have to make sure the role's **trusted entities** are prepared beforehand or it will stop working due to the switch to IRSA. If you want to continue using KIAM until release 19 you can set the value `aws.irsa=false` in the user values configmap.
 
@@ -328,6 +328,10 @@ If you have followed the steps above you can switch from kiam to IAM roles for s
 - Verify that your application is working correctly.
 
 In case your application is not working you can always remove the annotation on the service account and add the kiam annotation on your deployment again.
+
+## AWS Release v18.4.0
+
+When upgrading to AWS Release `v18.4.0` you can additionally set a annotation on AWSCluster CR `alpha.aws.giantswarm.io/enable-cloudfront-alias: ""` to enable the usage of the Cloudfront alternate domain name beforehand. This is useful if you want to take immeditately actions replacing `Kiam`. 
 
 ## AWS Release v19
 
