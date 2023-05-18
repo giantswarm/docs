@@ -76,13 +76,30 @@ Having said that, there is no general rule to split workloads between AWS accoun
 
 ### Architecture
 
-Our [AWS operator](https://www.giantswarm.io/blog/aws-operator-2-0-creating-kubernetes-clusters-with-cloudformation) creates a single VPC per cluster and a subnet (in fact its two subnets: one public and private) for each node pool defined in the configuration. There is no overlay network in place, so that pods run in the same IP range as nodes. For each private subnet there is a NAT Gateway, which is in charge of routing traffic from nodes or pods to the Internet. Once a workload is exposed to the Internet, an ELB is placed in the public subnet to balance the request over the different backends.
+Our [AWS operator](https://www.giantswarm.io/blog/aws-operator-2-0-creating-kubernetes-clusters-with-cloudformation) creates a single VPC per cluster and a subnet (in fact its two subnets: one public and private) for each node pool defined in the configuration. For each private subnet there is a NAT Gateway, which is in charge of routing traffic from nodes or pods to the Internet. Once a workload is exposed to the Internet, an ELB is placed in the public subnet to balance the request over the different backends.
 
 ![AWS workload cluster architecture](aws-tenant-cluster-architecture.png)
 
 In AWS the [node pool]({{< relref "/advanced/node-pools" >}}) concept is mapped to an Autoscaling Group, which defines a launch configuration and scaling properties of the worker nodes located in it.
 
 In order to communicate with your on-premises data center or with other VPCs (other cluster or existing infrastructure) you can leverage a VPN/Direct Connect or a Transit Gateway/peering respectively.
+
+### Pod Networking
+
+#### AWS CNI
+CNI used until AWS release 18.
+
+[AWS CNI](https://github.com/aws/amazon-vpc-cni-k8s) enables container communication in separate subnets within the cluster leveraging the VPC network.
+
+![AWS CNI](awscni.png)
+
+#### Cilium CNI
+CNI Used from release [19](https://docs.giantswarm.io/advanced/upgrades/aws-19-release/).
+
+[Cilium CNI](https://docs.cilium.io/en/stable/overview/intro/) offers advanced EBPF networking without overlay.
+
+![Cilium CNI](cilium.png)
+
 
 ### Worker node size
 
