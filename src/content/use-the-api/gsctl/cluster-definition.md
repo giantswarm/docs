@@ -212,7 +212,7 @@ Coming from v4, you might want to understand how v5 is different from v4:
 Chances are that you already work with YAML in various places. If not, here are some hints:
 
 - In YAML, whitespace is important. Indentation must be made using blanks (space), not tabs.
-- If in doubt, check your YAML in a linter. There are plenty online, e.g. [yamllint.com](http://www.yamllint.com/).
+- If in doubt, check your YAML in a linter. There are plenty online, e.g. [yamllint.com](https://www.yamllint.com/).
 - JSON is valid YAML. If you prefer JSON's notation, just use valid JSON.
 - You can add comments to YAML files by starting a line with the character `#`.
 

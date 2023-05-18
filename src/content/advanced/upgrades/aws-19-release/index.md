@@ -17,7 +17,7 @@ user_questions:
   - How does the Cilium migration work?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2023-04-13
+last_review_date: 2023-04-24
 ---
 
 {{< platform_support_table aws="alpha=v19.0.0" >}}
@@ -37,6 +37,8 @@ Say goodbye to slow network initialization times and hello to lightning-fast per
 - `Cilium` uses a virtual network which provides more flexibility, faster network initialization, and more advanced networking features compared to `AWS CNI` affecting the IP addresses.
 - Advanced networking features: `Cilium` supports advanced networking features such as load balancing, network segmentation, and eBPF-based packet filtering. These features allow for more granular control over network traffic and improve security. 
 - Scalability: `Cilium's` eBPF-based data plane is highly scalable and performs well even at scale. It is also highly efficient, reducing overhead and maximizing performance.
+- Improvements in pods time to come up due to cilium endpoint refresh substituting the kubeproxy refresh of iptables.
+- More efficient usage of IP space - fully described in `Cilium and IP space` section below.
 
 ### What changes with Cilium?
 
@@ -59,6 +61,33 @@ For further information, please checkout the [documentation](https://kubernetes-
 While switching to Cilium we are forced to change the CIDR used to assign IPs to Pods (192.168.0.0/16 by default).
 The process is automated for the vast majority of the clusters, but if you had set up custom networking settings in your cluster the upgrade might be blocked by admission controllers. If that is the case, reach out to your SA and you'll receive guidance how to move on with the upgrade. Same thing applies uf you don't want to stick with the default value and prefer to change it.
 
+#### Cilium and improved IP space usage
+
+Migration from AWS CNI to Cilium allowed us to improve the IP space delegation per WC, meaning that starting with AWS v19 release customers will be able to use full range of the CIDR instead of 25%.
+
+##### AWS-CNI in releases prior to v19
+
+By default at Giant Swarm the pod CIDR is set to 10.2.0.0/16 and can be customized in the AWSCluster CR.
+The CIDR is added in the VPC CIDR and thus cannot overlap with other CIDRs in the cluster and any other CIDR in peered VPCs.
+
+The pod CIDR space needs to be split into separate, contiguous CIDR space, one for each AZ. Since Giant Swarm supports 3 AZs, we need to divide the range into 4 subranges. In the default scenario, we end up with 4 /18 blocks (16k addresses each). One of the /18 blocks is unused meaning we have 16k (or 1/4th) IP addresses "lost".
+
+##### Cilium in releases v19 and further
+
+In v19 and further releases the default pod CIDR is 192.168.0.0/16. The default can be changed by setting a field in the AWSCluster CR as it was the case so far.
+
+*WARNING*: If pods need to talk directly with private IP addresses reachable through the VPC (for example peered resources) then those target private IP addresses must be on a separate IP space.
+
+This CIDR is used across the whole cluster, regardless of AZs and all addresses from the range can be used. In the default setting, each node gets assigned a /25 subnet for pods running in it. Meaning we can have as many as 65k pods in a cluster (~ 595 nodes in theory) but that can be increased by providing a larger pod cidr space to begin with.
+
+##### Maximum number of pods in a node
+
+With AWS-CNI, IP addresses assigned to pods are actually IP addresses assigned to the node itself.
+Depending on the instance type, there is a limit on the number of IP addresses assignable to each instance. This means in practice that clusters using AWS-CNI will have less pods per node in principle. With Cilium, we can use the max number of pods per node as [suggested by k8s](https://kubernetes.io/docs/setup/best-practices/cluster-large/) which is 110.
+
+##### Cilium Troubleshooting
+We have included a small [ops-recipe](https://handbook.giantswarm.io/docs/support-and-ops/ops-recipes/cilium-troubleshooting/) for details how you can start troubleshoot Cilium issues.
+
 ## IAM roles for service accounts (IRSA)
 
 By switching from `KIAM` to `IAM Roles for Service Accounts (IRSA)`, we're making it easier and more secure for your Kubernetes workloads to interact with AWS services. 
@@ -76,6 +105,8 @@ During the upgrade, we are removing `KIAM` as a default app in your workload clu
 Additionally, we are creating a `Cloudfront Domain Alias` (except China) for each cluster which is used as the [OpenID Connect (OIDC) identity provider](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc.html) to improve predictability and simplify IAM role creation. 
 
 To ensure that your applications can assume the appropriate IAM roles, you need to add the `Cloudfront Domain Alias` to those roles as a [trust entity]({{< relref "/advanced/iam-roles-for-service-accounts/index.md#aws-release-v19" >}}).
+
+We have also adjusted the `external-dns` IRSA trust policy to facilitate externalDNS role being assumed by any Service Account containing "external-dns" to allow multiple app deployments.
 
 To help make your transition to `IRSA` as easy as possible, we've added more context on our [official docs]({{< relref "/advanced/iam-roles-for-service-accounts/index.md#aws-release-v19" >}}).
 
@@ -117,7 +148,7 @@ We're aiming to provide a comprehensive blackbox monitoring tool that can valida
 
 #### Caveats and know limitations
 
-- Hubble's UI is not exposed by default, but can be reached using port forwarding.
+- Hubble's UI is not exposed by default, but can be reached using port forwarding. More information regarding the access in the [ops-recipe](https://handbook.giantswarm.io/docs/support-and-ops/ops-recipes/cilium-troubleshooting/#hubble-ui)
 
 ## 🙇🏻‍♂️ Final last words
 
