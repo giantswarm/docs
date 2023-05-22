@@ -86,7 +86,7 @@ Once the team is built, the person assigned to the Operations Engineer role will
 
 __Note__: In exceptional occasions the person who acknowledges the alert can manage the communication and fix the problem at the same time, but once it is the case make sure customer is aware of the measures have been implemented to solved the issue.
 
-We leave space for the Operations Engineers to focus on the investigation, but we establish 20 minutes intervals to get back and inform the customer of the current state. Most of the time, the OEs will share the findings in the channel and the IC can pin those messages to help track the actions performed.
+We leave space for the Operations Engineers to focus on the investigation, but we establish 30 minutes intervals to get back and inform the customer of the current state. Most of the time, the OEs will share the findings in the channel and the IC can pin those messages to help track the actions performed.
 
 In case the Incident Coordinator needs to increase the number of responders, they can always escalate to more members of the team using [incident.io](https://incident.io/) command `/inc escalate`.
 
