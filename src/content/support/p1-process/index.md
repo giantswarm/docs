@@ -16,7 +16,7 @@ last_review_date: 2023-05-15
 
 After years of handling critical enterprise workloads in production, we have hardened our incident process based on our learnings. In this document we focus on critical incidents, called `Priority 1` (P1) incidents, though some of the steps could be part of regular incidents too. 
 
-Giant Swarm classifies incidents as being either critical (`P1` or routine (`P2`). Critical incidents are those which impair a customer production system. Routine incidents are all other regular incidents which don't impact production and which have a straightforward process.
+Giant Swarm classifies incidents as being either critical (`P1`) or routine (`P2`). Critical incidents are those which impair a customer production system. Routine incidents are all other regular incidents which don't impact production and which have a straightforward process.
 
 ## Separation of Responsibilities
 
@@ -102,7 +102,7 @@ Once the fix or workaround has been implemented, IC communicates with the custom
 
 ### Closing up
 
-When we close the incident the work is not yet finished. The IC creates a [PostMortem](https://docs.giantswarm.io/support/overview/#postmortem-process) document to detail all information collected during the incident and shares with the customer. The [incident.io](https://incident.io/) functionality allows you to generate a Google Doc Post Mortem filling most of the parts with the metadata and pinned messages gathered during the incident. The dedicated Account Engineer of the customer will do a review and ask for feedback to any of the participants in the incident.
+When we close the incident the work is not yet finished. The IC creates a [Postmortem](https://docs.giantswarm.io/support/overview/#postmortem-process) document to detail all information collected during the incident and shares with the customer. The [incident.io](https://incident.io/) functionality allows you to generate a Google Doc Post Mortem filling most of the parts with the metadata and pinned messages gathered during the incident. The dedicated Account Engineer of the customer will do a review and ask for feedback to any of the participants in the incident.
 
 Any remaining follow-up items are converted to Github tickets for the IC and move to the product teams so we can improve our service and avoid making the same mistake twice.
 
