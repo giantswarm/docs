@@ -38,7 +38,7 @@ If there is a dedicated IC, the IC isn’t debugging systems and keeps the focus
 
 The Operations Engineer (OE) works with the Incident Coordinator to respond to the incident and is the one responsible for debugging and applying changes to a system. 
 
-In case of Operations Engineers, we have different [Opsgenie teams](https://support.atlassian.com/opsgenie/docs/what-are-teams-in-opsgenie/) sliced by area that are oncall in a given day.
+In case of Operations Engineers, we have multiple [Opsgenie teams](https://support.atlassian.com/opsgenie/docs/what-are-teams-in-opsgenie/) oncall 24/7.
 
 ## P1 Incident Process
 
