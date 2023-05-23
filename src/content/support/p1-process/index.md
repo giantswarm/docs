@@ -106,6 +106,12 @@ When we close the incident the work is not yet finished. The IC creates a [Postm
 
 Any remaining follow-up items are converted to Github tickets for the IC and move to the product teams so we can improve our service and avoid making the same mistake twice.
 
+### Diagram
+
+We have drawn the entire workflow for better visualization. We have focussed in the most common scenario and discard all possible ramifications the process could have as those are exceptions.
+
+![P1 Workflow](p1_flow_diagram.jpg)
+
 ## More info
 
 - This process takes inspiration from [Incident Coordinator role](https://en.wikipedia.org/wiki/Incident_commander).
