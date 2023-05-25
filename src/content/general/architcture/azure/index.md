@@ -12,7 +12,7 @@ aliases:
 user_questions:
   - What's the high level architecture of a Giant Swarm installation on Azure?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-celestial
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
 # The Giant Swarm Azure architecture

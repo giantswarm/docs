@@ -22,7 +22,7 @@ crd:
     - azure
 layout: crd
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-celestial
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 aliases:
   - /reference/cp-k8s-api/azuremachines.infrastructure.cluster.x-k8s.io/
 technical_name: azuremachines.infrastructure.cluster.x-k8s.io

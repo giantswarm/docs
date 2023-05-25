@@ -10,8 +10,7 @@ menu:
 aliases:
   - /basics/spot-instances/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-celestial
-  - https://github.com/orgs/giantswarm/teams/team-firecracker
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 last_review_date: 2021-01-01
 ---
 

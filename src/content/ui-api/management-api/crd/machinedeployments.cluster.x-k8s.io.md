@@ -22,7 +22,7 @@ crd:
     - aws
 layout: crd
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-firecracker
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 aliases:
   - /reference/cp-k8s-api/machinedeployments.cluster.x-k8s.io/
 technical_name: machinedeployments.cluster.x-k8s.io

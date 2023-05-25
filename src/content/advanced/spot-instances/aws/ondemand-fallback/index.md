@@ -12,7 +12,7 @@ user_questions:
 aliases:
   - /advanced/spot-instances/aws/on-demand-fallback/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-firecracker
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 last_review_date: 2021-01-01
 ---
 

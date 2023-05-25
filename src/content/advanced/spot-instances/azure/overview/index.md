@@ -13,7 +13,7 @@ user_questions:
   - As of which release are Azure spot VMs supported?
   - What's the difference between spot VMs and on-demand VMs on Azure?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-celestial
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 last_review_date: 2021-01-01
 ---
 

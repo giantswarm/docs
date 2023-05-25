@@ -15,7 +15,7 @@ user_questions:
 aliases:
   - /guides/using-persistent-volumes-on-aws-with-efs-csi-driver/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-firecracker
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 last_review_date: 2021-01-01
 ---
 

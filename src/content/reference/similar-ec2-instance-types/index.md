@@ -9,7 +9,7 @@ menu:
 user_questions:
   - Which EC2 instance types are used when I activate the use of similar instance types?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-firecracker
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 last_review_date: 2021-01-01
 ---
 

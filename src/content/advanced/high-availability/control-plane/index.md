@@ -16,7 +16,7 @@ aliases:
   - /basics/ha-masters/
   - /advanced/high-availability/masters/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-firecracker
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
 # High-availability Kubernetes control plane

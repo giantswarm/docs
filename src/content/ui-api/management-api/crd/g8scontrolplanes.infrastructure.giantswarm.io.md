@@ -24,7 +24,7 @@ crd:
     info: This CRD will be removed once Cluster API resources are used for all AWS workload clusters.
 layout: crd
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-firecracker
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 aliases:
   - /reference/cp-k8s-api/g8scontrolplanes.infrastructure.giantswarm.io/
 technical_name: g8scontrolplanes.infrastructure.giantswarm.io

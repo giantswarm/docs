@@ -21,7 +21,7 @@ crd:
     - azure
 layout: crd
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-celestial
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 aliases:
   - /reference/cp-k8s-api/sparks.core.giantswarm.io/
 technical_name: sparks.core.giantswarm.io
