@@ -98,7 +98,7 @@ source_repositories:
     metadata:
       organizations.security.giantswarm.io:
         owner:
-          - https://github.com/orgs/giantswarm/teams/team-rainbow
+          - https://github.com/orgs/giantswarm/teams/team-bigmac
         topics:
           - managementcluster
   - url: https://github.com/giantswarm/apiextensions
