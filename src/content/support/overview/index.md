@@ -73,6 +73,7 @@ Our support process is subject to change. As we continuously improve it we disco
 
 ## Further reading
 
+- [Giant Swarm P1 process]({{< relref "/support/p1-process" >}})
 - [Giant Swarm Operation Layers]({{< relref "/platform-overview/security/operational-layers" >}})
 - [Giant Swarm Cluster Upgrades]({{< relref "/platform-overview/cluster-management/cluster-upgrades" >}})
 - [Giant Swarm Training Catalog]({{< relref "/support/training-catalog" >}})
