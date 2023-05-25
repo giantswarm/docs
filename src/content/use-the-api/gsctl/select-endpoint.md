@@ -10,7 +10,7 @@ aliases:
   - /reference/gsctl/select-endpoint/
   - /ui-api/gsctl/select-endpoint/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I select an API endpoint for use with gsctl?
 last_review_date: 2023-03-06

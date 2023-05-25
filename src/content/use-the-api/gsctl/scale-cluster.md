@@ -10,7 +10,7 @@ aliases:
   - /reference/gsctl/scale-cluster/
   - /ui-api/gsctl/scale-cluster/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I scale an on-premises (KVM) cluster using gsctl?
 last_review_date: 2023-03-06

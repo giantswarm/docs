@@ -11,7 +11,7 @@ aliases:
   - /ui-api/kubectl-gs/template-nodepool/
 last_review_date: 2022-10-12
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I create a node pool manifest for the Management API?
 ---

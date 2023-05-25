@@ -10,7 +10,7 @@ user_questions:
 - What commands in kubectl-gs replace what gsctl commands?
 - How can I replace gsctl with kubectl-gs?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 last_review_date: 2021-11-23
 aliases:
   - /reference/gsctl/migrate/

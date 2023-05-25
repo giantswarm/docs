@@ -17,7 +17,7 @@ last_review_date: 2023-03-08
 aliases:
    - /ui-api/web/overview
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
 
 If we did our job well then our web interface is so intuitive and

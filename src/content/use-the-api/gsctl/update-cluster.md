@@ -10,7 +10,7 @@ aliases:
   - /reference/gsctl/update-cluster/
   - /ui-api/gsctl/update-cluster/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I modify a cluster using gsctl?
 last_review_date: 2023-03-06
