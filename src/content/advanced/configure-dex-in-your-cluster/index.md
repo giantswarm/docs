@@ -11,7 +11,7 @@ user_questions:
   - How can I add a new OIDC connector?
 last_review_date: 2023-03-13
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-bigmac
 ---
 
 ## Introduction
