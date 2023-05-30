@@ -11,7 +11,7 @@ aliases:
   - /reference/kubectl-gs/login/
   - /ui-api/kubectl-gs/login/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I log in with kubectl for the Management API?
   - How can I create a workload cluster client certificate?

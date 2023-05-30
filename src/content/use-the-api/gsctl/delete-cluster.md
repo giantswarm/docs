@@ -10,7 +10,7 @@ aliases:
   - /reference/gsctl/delete-cluster/
   - /ui-api/gsctl/delete-cluster/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I delete a cluster using gsctl?
 last_review_date: 2023-03-06

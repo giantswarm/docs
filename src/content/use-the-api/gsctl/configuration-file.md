@@ -10,7 +10,7 @@ aliases:
   - /reference/gsctl/configuration-file/
   - /ui-api/gsctl/configuration-file/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - What settings does gsctl store in its config file?
   - Where can I find gsctl's configuration file?

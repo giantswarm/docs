@@ -10,7 +10,7 @@ aliases:
   - /reference/gsctl/create-nodepool/
   - /ui-api/gsctl/create-nodepool/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I create a node pool with gsctl?
 last_review_date: 2023-03-06

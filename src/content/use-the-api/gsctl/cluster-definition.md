@@ -19,7 +19,7 @@ user_questions:
   - Will my cluster definition change if I use node pools?
 last_review_date: 2023-03-06
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
 
 {{% gsctl_deprecation_disclaimer %}}

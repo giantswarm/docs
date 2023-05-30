@@ -10,7 +10,7 @@ aliases:
    - /ui-api/web/usage-data
    - /reference/web-interface/usage-data/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - What usage data is Giant Swarm recording in the web UI?
   - How is Giant Swarm treating usage data recorded in the web UI?
