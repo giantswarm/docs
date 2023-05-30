@@ -17,7 +17,7 @@ user_questions:
   - How can I inspect the ID token issued for authenticating to the Management API?
   - What requirements are there to use single sign-on with the Management API?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-bigmac
 ---
 
 ## Details of an ID token {#id-token-details}

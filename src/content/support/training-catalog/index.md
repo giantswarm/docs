@@ -59,7 +59,7 @@ _____________________________________
 
 ### Management API and User Authentication (Single Sign On) 101
 
-[_Team Rainbow_](https://www.giantswarm.io/about)
+[_Team bigmac_](https://www.giantswarm.io/about)
 
 - What is the Giant Swarm Management API and why is it important?
 - Examples of Management API best practices

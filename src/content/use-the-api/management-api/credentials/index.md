@@ -7,7 +7,7 @@ menu:
   main:
     parent: uiapi-managementapi
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-bigmac
 last_review_date: 2022-12-07
 aliases:
   - /ui-api/management-api/credentials/

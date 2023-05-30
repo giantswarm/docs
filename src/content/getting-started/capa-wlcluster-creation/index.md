@@ -12,7 +12,7 @@ user_questions:
 aliases:
   - /guides/create-wlcluster-capa-template/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-hydra
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 last_review_date: 2022-10-07
 ---
 
