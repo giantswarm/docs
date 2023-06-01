@@ -10,7 +10,7 @@ aliases:
   - /reference/kubectl-gs/get-organizations/
   - /ui-api/kubectl-gs/get-organizations/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I list organizations in the management API using kubectl?
   - How can I inspect organizations using kubectl?

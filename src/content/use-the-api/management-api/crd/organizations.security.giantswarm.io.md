@@ -19,7 +19,7 @@ crd:
     - managementcluster
 layout: crd
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-bigmac
 aliases:
   - /reference/cp-k8s-api/organizations.security.giantswarm.io/
 technical_name: organizations.security.giantswarm.io

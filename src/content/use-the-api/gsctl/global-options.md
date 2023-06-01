@@ -10,7 +10,7 @@ aliases:
   - /reference/gsctl/global-options/
   - /ui-api/gsctl/global-options/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - What options/flags does gsctl offer for all commands?
   - How can I customize the gsctl configuration directory?

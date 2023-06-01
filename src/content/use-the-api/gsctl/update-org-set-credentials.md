@@ -10,7 +10,7 @@ aliases:
   - /reference/gsctl/update-org-set-credentials/
   - /ui-api/gsctl/update-org-set-credentials/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I set cloud provider credentials for an organization using gsctl?
 last_review_date: 2023-03-06

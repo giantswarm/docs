@@ -10,7 +10,7 @@ aliases:
   - /reference/gsctl/list-nodepools/
   - /ui-api/gsctl/list-nodepools/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I see all node pools in a cluster using gsctl?
 last_review_date: 2023-03-06

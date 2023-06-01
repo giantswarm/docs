@@ -23,7 +23,7 @@ user_questions:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
   - https://github.com/orgs/giantswarm/teams/team-rocket
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-bigmac
 ---
 
 It goes without saying that our customers will have secure access to their own workload clusters. In order to provide the best service possible, Giant Swarm staff also needs access to them.

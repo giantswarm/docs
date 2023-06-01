@@ -15,7 +15,7 @@ user_questions:
   - How can I authenticate as a user to the Management API?
   - How can I authenticate to the Management API without kubectl-gs?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-bigmac
 ---
 
 As a user of the Management API for any given installation, you need:

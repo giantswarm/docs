@@ -10,7 +10,7 @@ aliases:
   - /reference/gsctl/show-cluster/
   - /ui-api/gsctl/show-cluster/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I inspect cluster details using gsctl?
 last_review_date: 2023-03-06

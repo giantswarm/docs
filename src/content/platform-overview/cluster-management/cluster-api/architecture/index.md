@@ -12,7 +12,7 @@ user_questions:
   - How has Giant Swarm built a platform to build platforms with Cluster API?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
-  - https://github.com/orgs/giantswarm/teams/team-hydra
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
 The Giant Swarm platform consists of various systems. They can be categorized into three areas: infrastructure, applications, and operations.
