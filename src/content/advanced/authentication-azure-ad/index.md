@@ -1,7 +1,7 @@
 ---
 linkTitle: Authenticating with Azure AD
 title: Authenticating with Microsoft Azure Active Directory
-description: Tutorial on how to setup Authentication with Microsoft Azure Active Directory in kubectl.
+description: short
 weight: 120
 menu:
   main:
