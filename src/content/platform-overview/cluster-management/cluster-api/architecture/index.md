@@ -59,7 +59,7 @@ The Kubernetes cluster is represented in VCD by a vAPP of the same name that hos
 
 ### Storage
 
-In order to offer persistent storage that is decoupled from the virtual machines, the VCD CSI creates a Named Disk that can be attached or detached from the VM according to whether or not the `pvc` is bound to a pod. Named disks are `RWO` but `RWX` is on the roadmap.
+In order to offer persistent storage that is decoupled from the virtual machines, the VCD CSI creates a Named Disk that can be attached or detached from the VM according to whether or not the persistent volume claim (PVC) is bound to a pod. Named disks currently only support Read-Write-Only (RWO) with block storage backed named disks.
 
 {{< /tab >}}
 {{< tab id="flags-aws" title="AWS">}}
