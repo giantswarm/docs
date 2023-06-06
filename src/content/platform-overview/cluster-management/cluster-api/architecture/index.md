@@ -37,7 +37,7 @@ There is a machine created as a bastion that helps us with the operations. It is
 The setup requires an external network configured in the project to allow the machines to pull images or route requests from containers to the Internet. On the other side, there is an internal network which interconnects all master and worker machines allowing the internal communication of all containers within the cluster. At the same time, it allocates the load balancers that are created dynamically as result of exposing a service in the cluster. In case the load balancer is external, a floating IP is allocated to enable the connection with external endpoints.
 
 {{< /tab >}}
-{{< tab id="flags-clouddirector" title="VMware Cloud Director">}}
+{{< tab id="flags-clouddirector" title="CAPVCD (VMware Cloud Director)">}}
 
 ### Compatibility
 
