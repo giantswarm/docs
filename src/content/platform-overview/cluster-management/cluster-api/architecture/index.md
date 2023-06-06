@@ -37,6 +37,17 @@ There is a machine created as a bastion that helps us with the operations. It is
 The setup requires an external network configured in the project to allow the machines to pull images or route requests from containers to the Internet. On the other side, there is an internal network which interconnects all master and worker machines allowing the internal communication of all containers within the cluster. At the same time, it allocates the load balancers that are created dynamically as result of exposing a service in the cluster. In case the load balancer is external, a floating IP is allocated to enable the connection with external endpoints.
 
 {{< /tab >}}
+{{< tab id="flags-clouddirector" title="VMware Cloud Director">}}
+
+The setup supports OVDCs running on VCD 10.3+, backed with NSX-T and NSX ALB load balancer enabled on the Edge gateway. The kubernetes API and services type `LoadBalancer` get IPs from the pool of external IPs available in the edge gateway, it can be set statically or it will take the next available IP. A virtual service is then created with the selected IP/port and is associated with a load balancer pool that contains the relevant node IPs as members.
+
+A network needs to be specified in CAPVCD to define where the default gateway will be. It is also possible to add additional networks in order to connect multiple virtual interfaces to the nodes and configure static routes. The nodes must have internet access, usually achieved with an SNAT rule or via an HTTP proxy.
+
+The Kubernetes cluster is represented in VCD by a vAPP that hosts one virtual machine for each node. The setup also supports naming conventions for virtual machine names based on go templates. When a node is created, a virtual machine is provisioned in the cluster's vAPP from a vAPP template stored in a specific catalog.
+
+In order to provide persistent storage that is decoupled from the virtual machines, the VCD CSI creates a Named Disk that can be attached or detached from the VM according to whether or not the `pvc` is bound to a pod.
+
+{{< /tab >}}
 {{< tab id="flags-aws" title="AWS">}}
 
 The setup uses a standalone VPC (though you can bring your own VPC) and creates private subnets for the machine in each availability zone. It uses NAT gateways for allowing machines to pull images or route requests from containers to the Internet. On the other side, it needs an Internet Gateway to route traffic from Internet to the containers. It leverages route tables to configure the routing for each subnet and gateways.
