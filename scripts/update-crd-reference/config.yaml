@@ -104,7 +104,7 @@ source_repositories:
   - url: https://github.com/giantswarm/apiextensions
     organization: giantswarm
     short_name: apiextensions
-    commit_reference: v5.0.0
+    commit_reference: v6.6.0
     annotations_paths:
       - pkg/annotation
     crd_paths:
