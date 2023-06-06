@@ -305,8 +305,6 @@ source_repositories:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
-      etcdbackups.backup.giantswarm.io:
-        hidden: true
       flannelconfigs.core.giantswarm.io:
         hidden: true
       g8scontrolplanes.infrastructure.giantswarm.io:
