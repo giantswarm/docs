@@ -12,7 +12,7 @@ crd:
   technical_name: kvmconfigs.provider.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v5.0.0
+  source_repository_ref: v6.6.0
   versions:
     - v1alpha1
   topics:
@@ -28,7 +28,7 @@ aliases:
   - /reference/cp-k8s-api/kvmconfigs.provider.giantswarm.io/
 technical_name: kvmconfigs.provider.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v5.0.0
+source_repository_ref: v6.6.0
 ---
 
 # KVMConfig
