@@ -1,8 +1,7 @@
 ---
-linkTitle: Best practices
-title: Recommendations and best practices
+title: Cluster sizing, multi-tenancy and autoscaling
 description: Recommendations and best practices around cluster and node sizing as well as multi-tenant setups.
-weight: 110
+weight: 50
 menu:
   main:
     parent: support-training

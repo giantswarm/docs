@@ -1,8 +1,7 @@
 ---
-linkTitle: Securing your cluster with RBAC and PSP
-title: Securing your Cluster with RBAC and PSP
+title: Securing your cluster with RBAC and PSP
 description: Introduction to using role-based access control (RBAC) and pod security policies (PSP) to secure your cluster and manage access control.
-weight: 40
+weight: 110
 menu:
   main:
     parent: getting-started
@@ -356,7 +355,7 @@ subjects:
     apiGroup: rbac.authorization.k8s.io
   - kind: Group
     name: dev-admin
-    apiGroup: rbac.authorization.k8s.io  
+    apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: ClusterRole
   name: admin
@@ -394,7 +393,7 @@ subjects:
     apiGroup: rbac.authorization.k8s.io
   - kind: Group
     name: cluster-view
-    apiGroup: rbac.authorization.k8s.io  
+    apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: ClusterRole
   name: view
