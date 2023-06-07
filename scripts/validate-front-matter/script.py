@@ -109,7 +109,7 @@ checks = (
     {
         'id': NO_FULL_STOP_DESCRIPTION,
         'description': 'The description should end with a full stop',
-        'ignore_paths': [crds_path],
+        'ignore_paths': [crds_path, changes_path],
         'severity': SEVERITY_FAIL,
         'has_value': True,
     },
