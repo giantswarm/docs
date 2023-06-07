@@ -1,4 +1,5 @@
 ---
+linkTitle: Sizing, multi-tenancy and autoscaling
 title: Cluster sizing, multi-tenancy and autoscaling
 description: Recommendations and best practices around cluster and node sizing as well as multi-tenant setups.
 weight: 50
@@ -6,6 +7,7 @@ menu:
   main:
     parent: support-training
 aliases:
+  - /getting-started/best-practices/
   - /guides/recommendations-and-best-practices/
   - /kubernetes/best-practices/
 owner:
