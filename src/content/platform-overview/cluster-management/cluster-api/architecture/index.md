@@ -51,7 +51,7 @@ CAPVCD, along with the associated CPI and CSI, authenticate against the VMware C
 
 The kubernetes API and services type `LoadBalancer` get IPs from the pool of external IPs available in the edge gateway, it can be set statically or it will take the next available IP. A virtual service is then created with the selected IP/port and is associated with a load balancer pool that contains the relevant node IPs as members. For the CPI, we support the virtual service shared feature introduced in VCD 10.4 as well as the legacy method based on a single internal IP and multiple DNAT rules.
 
-To connect the nodes, a network needs to be specified in CAPVCD to define where the default gateway will be. It is also possible to add additional networks in order to connect multiple virtual interfaces to the nodes along with the configuration of static routes. The nodes must have internet access which usually achieved with an SNAT rule or via an HTTP proxy. Note that it is possible to specify NTP servers and pools (Ubuntu based nodes running `chrony`) which is particularly useful in air-gapped environments.
+To connect the nodes, a network needs to be specified in CAPVCD to define where the default gateway will be. It is also possible to add additional networks in order to connect multiple virtual interfaces to the nodes along with the configuration of static routes. The nodes must have internet access which is usually achieved with a SNAT rule or via an HTTP proxy. Note that it is possible to specify NTP servers and pools (Ubuntu based nodes running `chrony`) which is particularly useful in air-gapped environments.
 
 ### Compute
 
