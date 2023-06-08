@@ -657,6 +657,7 @@ spec:
     securityContext:
       sysctls:
         - name: net.ipv4.ip_local_port_range
+          value: "32768 60999"
 ```
 
 This Pod does NOT satisfy the policy, because it attempts to add a non-approved sysctl:
@@ -673,6 +674,7 @@ spec:
     securityContext:
       sysctls:
         - name: kernel.stack_erasing
+          value: "0"
 ```
 
 {{% /details %}}
