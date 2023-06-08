@@ -11,7 +11,7 @@ aliases:
   - /reference/kubectl-gs/faq
   - /ui-api/kubectl-gs/faq
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I create a cluster or node pool with kubectl-gs?
   - How can I install an app in a workload cluster with kubectl-gs?

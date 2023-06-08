@@ -10,6 +10,6 @@ menu:
 aliases:
    - /ui-api/web
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 last_review_date: 2022-12-12
 ---

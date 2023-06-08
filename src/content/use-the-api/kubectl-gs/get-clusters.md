@@ -10,7 +10,7 @@ aliases:
   - /reference/kubectl-gs/get-clusters/
   - /ui-api/kubectl-gs/get-clusters/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I list clusters using kubectl?
   - How can I inspect clusters using kubectl?

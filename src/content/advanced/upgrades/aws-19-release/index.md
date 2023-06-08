@@ -85,6 +85,9 @@ This CIDR is used across the whole cluster, regardless of AZs and all addresses 
 With AWS-CNI, IP addresses assigned to pods are actually IP addresses assigned to the node itself.
 Depending on the instance type, there is a limit on the number of IP addresses assignable to each instance. This means in practice that clusters using AWS-CNI will have less pods per node in principle. With Cilium, we can use the max number of pods per node as [suggested by k8s](https://kubernetes.io/docs/setup/best-practices/cluster-large/) which is 110.
 
+##### Cilium Troubleshooting
+We have included a small [ops-recipe](https://handbook.giantswarm.io/docs/support-and-ops/ops-recipes/cilium-troubleshooting/) for details how you can start troubleshoot Cilium issues.
+
 ## IAM roles for service accounts (IRSA)
 
 By switching from `KIAM` to `IAM Roles for Service Accounts (IRSA)`, we're making it easier and more secure for your Kubernetes workloads to interact with AWS services. 
@@ -145,7 +148,7 @@ We're aiming to provide a comprehensive blackbox monitoring tool that can valida
 
 #### Caveats and know limitations
 
-- Hubble's UI is not exposed by default, but can be reached using port forwarding.
+- Hubble's UI is not exposed by default, but can be reached using port forwarding. More information regarding the access in the [ops-recipe](https://handbook.giantswarm.io/docs/support-and-ops/ops-recipes/cilium-troubleshooting/#hubble-ui)
 
 ## 🙇🏻‍♂️ Final last words
 

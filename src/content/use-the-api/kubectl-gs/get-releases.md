@@ -7,7 +7,7 @@ menu:
   main:
     parent: uiapi-kubectlgs
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I list releases in a cluster using kubectl?
   - How can I inspect releases using kubectl?

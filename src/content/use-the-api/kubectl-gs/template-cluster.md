@@ -10,7 +10,7 @@ aliases:
   - /reference/kubectl-gs/template-cluster/
   - /ui-api/kubectl-gs/template-cluster/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I create a cluster manifest for the Management API?
 last_review_date: 2022-09-26
