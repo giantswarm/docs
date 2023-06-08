@@ -5,7 +5,7 @@ description: The process used by the Giant Swarm support team when a priority on
 weight: 100
 menu:
   main:
-    parent: overview
+    parent: support-training
     weight: 20
 user_questions:
   - What process does Giant Swarm follow in case of critical incidents?
