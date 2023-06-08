@@ -1,8 +1,7 @@
 ---
-linkTitle: Installing an ingress controller
 title: Installing an ingress controller
 description: How to install the NGINX ingress controller using the Giant Swarm web user interface.
-weight: 50
+weight: 70
 menu:
   main:
     parent: getting-started
