@@ -45,11 +45,11 @@ The setup supports OVDCs running on VCD 10.3+, backed with NSX-T and NSX ALB loa
 
 ### Authentication
 
-CAPVCD, along with the associated CPI and CSI, authenticate against the VMware Cloud Director API using an API Token (sometimes also referred to as Refresh Token) which is stored in a secret. Such token can be created by any user with the right permission and can be revoked at any time should there be suspicion of it being compromised.
+CAPVCD, along with the associated Cloud Provider interface (CPI) and Container Storage interface (CSI), authenticate against the VMware Cloud Director API using an API Token (sometimes also referred to as Refresh Token) which is stored in a secret. Such token can be created by any user with the right permission and can be revoked at any time should there be suspicion of it being compromised.
 
 ### Networking
 
-The kubernetes API and services type `LoadBalancer` get IPs from the pool of external IPs available in the edge gateway, it can be set statically or it will take the next available IP. A virtual service is then created with the selected IP/port and is associated with a load balancer pool that contains the relevant node IPs as members. For the CPI, we support the virtual service shared feature introduced in VCD 10.4 as well as the legacy method based on a single internal IP and multiple DNAT rules.
+The kubernetes API and services of type `LoadBalancer` get IPs from the pool of external IPs available in the edge gateway, it can be set statically or it will take the next available IP. A virtual service is then created with the selected IP/port and is associated with a load balancer pool that contains the relevant node IPs as members. For the CPI, we support the virtual service shared feature introduced in VCD 10.4 as well as the legacy method based on a single internal IP and multiple DNAT rules.
 
 To connect the nodes, a network needs to be specified in CAPVCD to define where the default gateway will be. It is also possible to add additional networks in order to connect multiple virtual interfaces to the nodes along with the configuration of static routes. The nodes must have internet access which is usually achieved with a SNAT rule or via an HTTP proxy. Note that it is possible to specify NTP servers and pools (Ubuntu based nodes running `chrony`) which is particularly useful in air-gapped environments.
 
