@@ -19,7 +19,7 @@ user_questions:
 last_review_date: 2023-06-12
 ---
 
-To run your business applications on Kubernetes, you need a workload cluster. The `kubectl-gs` tool ([reference]({{< relref "/use-the-api/kubectl-gs" >}})), as already installed in the previous tutorial, is used to create such clusters.
+To run your business applications on Kubernetes, you need a workload cluster. The `kubectl-gs` tool ([reference]({{< relref "/use-the-api/kubectl-gs" >}})), as already installed in the [previous tutorial]({{< relref "/getting-started/management-cluster" >}}), is used to create such clusters.
 
 ## Step 1: Log in to the management cluster
 
