@@ -4,223 +4,299 @@ title: Creating a workload cluster and installing applications
 description: The Giant Swarm Management API is easily accessible by means of kubectl-gs, a kubectl plugin developed by Giant Swarm. This tutorial guides you throughout some of the most important features of the tool.
 weight: 40
 aliases:
+  - /getting-started/capa-wlcluster-creation/
+  - /getting-started/capz-cluster-creation/
   - /getting-started/kubectl-gs/
 menu:
   main:
     parent: getting-started
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 user_questions:
-  - How can I access the Giant Swarm Management API?
   - How do I use kubectl gs?
-last_review_date: 2022-02-28
+  - How can I create a workload cluster?
+last_review_date: 2023-06-12
 ---
 
-As better explained in the [reference]({{< relref "/use-the-api/kubectl-gs" >}}), kubectl-gs is a CLI and a kubectl plugin (invoked as kubectl gs) for the Giant Swarm Management API. In this guide, you will learn how to use `kubectl-gs` for your daily tasks on the Giant Swarm installation.
+To run your business applications on Kubernetes, you need a workload cluster. The `kubectl-gs` tool ([reference]({{< relref "/use-the-api/kubectl-gs" >}})), as already installed in the previous tutorial, is used to create such clusters.
 
-## Step 1: Installing the necessary tools
+## Step 1: Log in to the management cluster
 
-In order to use `kubectl-gs`, you need to have a few tools installed in your computer:
+Please follow the article [Access to the management cluster]({{< relref "/getting-started/management-cluster" >}}). In short, you need to point kubectl to the management cluster:
 
-1. install [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
-2. install [krew](https://krew.sigs.k8s.io/)
-3. install `kubectl-gs` by running: `kubectl krew install gs`
+```sh
+kubectl gs login "https://api.<management cluster domain>/" --cluster-admin
 
-## Step 2: Logging in to your cluster
-
-First of all, for the purpose of this tutorial, we will start from Giant Swarm's web interface, reachable via a URL that we as Giant Swarm provide you when we finish setting up a cluster. The hostname in the URL usually starts with `happa`, which is how we call the web interface.
-
-After having accessed happa, you will see the clusters belonging to the organization shown in the top-right corner (in this case, `testing`).
-
-![Clusters listed in happa](happa-clusters.png)
-
-What is interesting here is that, by clicking on the "List clusters via the Management API", you will be able to see which command to run for logging in to your cluster. **Run this command in your shell!**
-
-After having run the command, you should see a message similar to the following:
-
-```text
-A new kubectl context has been created named 'gs-wombat' and selected. To switch back to this context later, use either of these commands:
-  kubectl gs login wombat
-  kubectl config use-context gs-wombat
+# For instance:
+kubectl gs login "https://api.wombat.eu-west-1.aws.gigantic.io" --cluster-admin
 ```
 
-## Step 3: Sneaking around the Management Cluster
+We use the management cluster name `wombat` as example in this tutorial.
 
-The command run in the previous step logs the user in the Management Cluster (MC). As the name suggests, this cluster is used for managing all the Workload Clusters (WCs), which are the clusters doing the "actual" work.
+The commands in this section should be run in the management cluster's kubectl context.
 
-Let's run some commands and understand what's happening under the hood.
+Since you have already logged in the MC, you can choose the context like this:
 
-The first command is `kubectl get nodes`. This will show us the nodes making up our management cluster.
+```sh
+kubectl config use-context gs-MC_NAME
 
-```bash
-➜  kubectl get nodes
-NAME                                          STATUS   ROLES    AGE   VERSION
-ip-10-0-5-103.eu-central-1.compute.internal   Ready    worker   19h   v1.21.9
-ip-10-0-5-121.eu-central-1.compute.internal   Ready    master   19h   v1.21.9
-ip-10-0-5-14.eu-central-1.compute.internal    Ready    master   19h   v1.21.9
-ip-10-0-5-163.eu-central-1.compute.internal   Ready    master   19h   v1.21.9
-ip-10-0-5-183.eu-central-1.compute.internal   Ready    worker   19h   v1.21.9
-ip-10-0-5-5.eu-central-1.compute.internal     Ready    worker   19h   v1.21.9
-ip-10-0-5-53.eu-central-1.compute.internal    Ready    worker   19h   v1.21.9
+# For instance:
+kubectl config use-context gs-wombat
 ```
 
-We can see that there are two kinds of roles: `master` and `worker`. Note that this still relates to the Management Cluster. In other words, the MC has some master nodes working on the cluster's "bureaucracy" and some worker nodes doing the actual work needed to manage the Workload Clusters.
+## Step 2: Template and create the workload cluster
 
-The second command we suggest running is `kubectl get orgs`. This will show us the organizations that are defined in our installation.
+You will now create resources with `kubectl gs`. In particular, this tutorial uses the `kubectl gs template` command to create valid YAML for each resource. Alternatively, the Web UI provides a visual way to create clusters.
 
-```bash
-➜  kubectl get orgs
-NAME                    AGE
-production              97d
-testing                 97d
-giantswarm              97d
+First, template a cluster ([command reference]({{< relref "/use-the-api/kubectl-gs/template-cluster" >}})):
+
+{{< tabs >}}
+{{< tab id="cluster-vintage-azure" title="Vintage (Azure)">}}
+
+[Choose a release version here](https://docs.giantswarm.io/changes/workload-cluster-releases-for-azure), or use `kubectl gs get releases`, and fill it into this example command:
+
+```sh
+# See hint about `--name` below!
+kubectl gs template cluster \
+  --provider azure \
+  --organization testing \
+  --release 19.0.1 `# please fill in your desired release version` \
+  > cluster.yaml
 ```
 
-You can see organizations as "buckets" for different entities. More information can be found [here]({{< relref "/platform-overview/organizations" >}}), but in general we can say that they are a way to isolate clusters, apps, etc. between different teams or environments.
+{{< /tab >}}
+{{< tab id="cluster-vintage-aws" title="Vintage (AWS)">}}
 
-Finally, run the `kubectl gs get clusters -A` command, which will show you all the clusters managed by your installation. The `-A` flag stands for *all namespaces*.
+[Choose a release version here](https://docs.giantswarm.io/changes/workload-cluster-releases-for-aws), or use `kubectl gs get releases`, and fill it into this example command:
 
-```bash
-➜  kubectl gs get clusters -A
-NAMESPACE          NAME    AGE    CONDITION   RELEASE   ORGANIZATION
-org-training       rfjh2   84d    UPDATED     16.3.0    training
-org-production     jn88t   91d    CREATED     16.0.1    production
+```sh
+# See hint about `--name` below!
+kubectl gs template cluster \
+  --provider aws \
+  --organization testing \
+  --release 19.0.0 `# please fill in your desired release version` \
+  > cluster.yaml
 ```
 
-We can notice two important points:
+{{< /tab >}}
+{{< tab id="cluster-capa-ec2" title="CAPA (AWS EC2)">}}
 
-1. A cluster belonging to an organization called `x` will be represented in the Kubernetes namespace `org-x` in the Management Cluster (that's why we use the `-A` flag to see all the namespaces)
-2. Some organizations can have no clusters attached to them. Of course, some clusters can be created in those organizations whenever needed. In other words, an organization can "contain" any number of clusters, including zero.
+This will automatically use the latest release of the relevant Helm charts [cluster-aws](https://github.com/giantswarm/cluster-aws/blob/master/CHANGELOG.md) and [default-apps-aws](https://github.com/giantswarm/default-apps-aws/blob/master/CHANGELOG.md) (bundle of mandatory apps):
 
-Finally, you can see the YAML definition of a cluster (in this example, of cluster `rfjh2` in organization `training`) by running:
-
-```bash
-➜  kubectl gs get cluster rfjh2  --namespace org-giantswarm-hiring -o yaml
+```sh
+# See hint about `--name` below!
+kubectl gs template cluster \
+  --provider capa \
+  --organization testing \
+  > cluster.yaml
 ```
 
-## Step 4: A look at the Workload Clusters
+{{< /tab >}}
+{{< tab id="cluster-capz-azure-vms" title="CAPZ (Azure VMs)">}}
 
-In Happa, by clicking on the cluster's name, you can see its details. The string on the top-left (in our case, gh3o2) is the Workload Cluster's name.
+This will automatically use the latest release of the relevant Helm charts [cluster-azure](https://github.com/giantswarm/cluster-azure/blob/master/CHANGELOG.md) and [default-apps-azure](https://github.com/giantswarm/default-apps-azure/blob/master/CHANGELOG.md) (bundle of mandatory apps):
 
-In case the WC has no node pools attached to it, you can easily add one node pool by clicking on the "Add node pool" button.
+```sh
+# See hint about `--name` below!
+kubectl gs template cluster \
+  --provider capz \
+  --organization testing \
+  --region westeurope \
+  --azure-subscription-id 00000000-0000-0000-0000-000000000000 `# fill in your subscription ID` \
+  > cluster.yaml
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+If no name is specified for a workload cluster, a random one like `rfjh2` will be generated. We recommend you choose a naming scheme suiting your organization, and then stick to it (e.g. `dev-eu-1`, `prod-a`, `prod-ecommerce-b`). Add the `--name` parameter to specify the cluster name.
+
+This will create a `cluster.yaml` file containing all the Custom Resources (CRs) necessary to create the cluster.
+
+For the CAPI product family, you will notice that clusters are templated exactly like managed apps (i.e. as `App` resource), with `kubectl-gs` filling certain default values into the configuration. This is different from vintage products.
+
+In the vintage product family, no worker node pool is created by default, so you should attach one:
+
+{{< tabs >}}
+{{< tab id="nodepool-vintage-azure" title="Vintage (Azure)">}}
+
+```sh
+kubectl gs template nodepool \
+  --provider azure \
+  --cluster-name "<please fill in the cluster name from cluster.yaml>" \
+  --description "Worker node pool for workload cluster" \
+  --organization testing \
+  --release 19.0.1 `# please fill in your desired release version` \
+  > nodepool.yaml
+```
+
+This will create a `nodepool.yaml` file with all the CRs needed for attaching a node pool to the cluster created in the previous step.
+
+{{< /tab >}}
+{{< tab id="nodepool-capi" title="CAPI (any)">}}
+
+This is not needed for CAPI. The `nodePools` value in the cluster app has a default. For example, see [nodePools configuration for cluster-aws](https://github.com/giantswarm/cluster-aws/blob/master/helm/cluster-aws/README.md#node-pools) when using the CAPA-based product (AWS cloud).
+
+{{< /tab >}}
+{{< /tabs >}}
+
+Templating these and other resources as YAML files is reasonable if you prefer deployments using GitOps (YAML manifests committed and deployed from a Git control repository) or want to develop/deploy using scripts or the command line, without manual steps in the web interface. We recommend running `kubectl gs template [...] --help` and the online [reference]({{< relref "/use-the-api/kubectl-gs" >}}) to see available parameters. For clusters and node pools, you probably want to choose a different instance size (varies in CPU, memory, pricing), maximum number of nodes, cloud provider region, or IP CIDRs. Instead of the kubectl-gs command line, you can also manually edit the YAML file with the help of our documentation for cluster configuration options (example: [configuration options for cluster-aws](https://github.com/giantswarm/cluster-aws/blob/master/helm/cluster-aws/README.md)).
+
+To _actually_ create the resources – the workload cluster and (only for vintage product family) worker node pool – you need to apply the manifests. Ensure you are still pointing to the management cluster's kubectl context and run:
+
+```sh
+kubectl apply -f cluster.yaml
+
+# Only for vintage product family:
+kubectl apply -f nodepool.yaml
+```
+
+Deletion works in the same way: run `kubectl delete -f FILENAME.yaml` and the operators in the management cluster will delete the resources in a few minutes. Please do not directly delete the CAPI custom resources (such as `Cluster`, `AWSCluster` or `MachineDeployment`) since this may leave resources behind or even lead to inadvertently recreating the cluster once the `App` is reconciled again. Deletion should be done exactly like the creation, using the original manifests. For the CAPI product family, our example output file `cluster.yaml` contains 2 `App` and 2 `ConfigMap` manifests.
+
+### Private workload clusters
+
+By default, the created Kubernetes cluster API endpoint is public. See [Private clusters]({{< relref "/advanced/private-clusters" >}}) if you want to limit networking to/from the cluster.
+
+## Step 3: Watch the status of workload clusters
+
+In the Web UI, click on the cluster's name to see its details. The workload cluster's name is shown on the top-left (in the screenshot: `o8r3r`).
 
 ![Adding a nodepool](nodepool.png)
 
-By clicking on the "Client certificates" tab, conversely, we can create a certificate for logging in the workload cluster using the command line. You just need to copy the command suggested at the *Create a client certificate step*. As far as the `--certificate-group` flag is concerned, you can use `system:masters`. More information about group certificates can be found [here](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#default-roles-and-role-bindings).
+For the vintage product family, if you did not yet attach a node pool to the WC as shown above, you can now add one by clicking the "Add node pool" button.
+
+Using the command line, you can also watch the creation and status of the workload cluster:
+
+{{< tabs >}}
+{{< tab id="status-vintage" title="Vintage (any)">}}
+
+```sh
+kubectl gs get clusters -A
+
+kubectl gs get nodepools -A
+```
+
+{{< /tab >}}
+{{< tab id="status-capi" title="CAPI (any)">}}
+
+Either use kubectl-gs:
+
+```sh
+kubectl gs get clusters -A
+```
+
+Or use other kubectl tooling to display the relations and status of the CAPI manifests:
+
+```sh
+kubectl describe clusters.cluster.x-k8s.io -n org-testing name-of-workload-cluster
+
+# Using CAPI's clusterctl tool (https://cluster-api.sigs.k8s.io/clusterctl/overview.html)
+clusterctl describe cluster -n org-testing name-of-workload-cluster --show-conditions all
+
+# Using kubectl-tree plugin (https://github.com/ahmetb/kubectl-tree)
+kubectl krew install tree
+kubectl tree clusters.cluster.x-k8s.io -n org-testing name-of-workload-cluster
+```
+
+Note how our example commands use the fully-qualified CRD name `clusters.cluster.x-k8s.io`. The shorthands `cluster` or `clusters` also work as long as there are no CRDs with a conflicting name installed.
+
+{{< /tab >}}
+{{< /tabs >}}
+
+## Step 4: Log in to the workload cluster
+
+Using the Web UI, click on the workload cluster and then the _Client certificates_ tab. Copy the command suggested at the _Create a client certificate_ step. As value for `--certificate-group`, you can use `system:masters`. More information about group certificates can be found in [Kubernetes RBAC: Default roles and role bindings](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#default-roles-and-role-bindings).
 
 ![Creating a client certificate](client-certificates.png)
 
-In our case, therefore, we will run
+In our example, therefore, we will run
 
-```bash
-➜  kubectl gs login gs-wombat \
-  --workload-cluster gh3o2 \
+```sh
+kubectl gs login gs-wombat \
+  --workload-cluster o8r3r \
   --organization giantswarm \
   --certificate-group system:masters \
   --certificate-ttl 3h
 ```
 
-At this point, you are logged in the Workload Cluster. As a matter of fact, some of the custom resource definitions available in the Management Cluster are not available in the WC because those concepts do not exist in Workload Clusters.
+At this point, you are logged in to the workload cluster, with full access. Try `kubectl get pod -A`, for example, to take a look into the cluster.
 
-For instance, if we try to get the organizations, we get an error, because they are a concept that makes sense in the MC but not in the WC:
+Some of the custom resource definitions (CRDs) available in the management cluster are not available in the WC because those concepts do not exist in workload clusters. For instance, if we try to get the organizations, we get an error, because they are a concept that makes sense in the MC but not in the WC:
 
-```
-➜  kubectl get orgs
+```text
+$ kubectl get orgs
 error: the server doesn't have a resource type "organizations"
 ```
 
-The WCs are where the "actual" work happens, i.e. where applications are deployed. The easiest way to check whether an application is running is to run `kubectl get pods -A | grep APPLICATION_NAME`, for instance: `kubectl get pods -A | grep kong`.
+The WCs are where the "actual" work happens, i.e. where Giant Swarm-supported managed apps and your business applications are deployed. The easiest way to check whether an application is running is `kubectl get pods -A | grep APPLICATION_NAME`, for instance: `kubectl get pods -A | grep kong`.
 
+## Step 5: Template and deploy managed apps
 
-## Step 5: Templating resources
+In addition to workload clusters, you can also template applications. Apps belong to catalogs. While you can define your own catalogs, we already provide two: `giantswarm` (_Giant Swarm Catalog_) contains applications that we know how to manage; `giantswarm-playground` (_Playground_) contains applications that we have integrated but are not managed by us. Other catalogs such as the _Giant Swarm Cluster Catalog_ are used for templating of clusters (which you did above).
 
-The commands in this section should be run in the Management Cluster's context.
-
-Since you have already logged in the MC, you can simply run:
-
-`➜  kubectl config use-context gs-INSTALLATION_NAME`
-
-For instance: `➜  kubectl config use-context gs-wombat`
-
-In order to go back to the Workload Cluster's context, you can add the `-WC_NAME` suffix to the previous command, for instance: `➜  kubectl config use-context gs-wombat-rfjh2`.
-
-### Templating infrastructure
-
-Most of the resources we create can be templated with `kubectl gs`. In particular, we can use the `kubectl gs template` command.
-
-For instance, we can template a cluster with
-
-```bash
-➜  kubectl gs template cluster \
-  --provider=azure \
-  --organization=giantswarm \
-  --release=16.1.2 \
-  > cluster.yaml
-```
-
-This will create a `cluster.yaml` file containing all the Custom Resources necessary for the definition of the cluster to be created.
-
-We can also template a node pool to be attached to this cluster:
-
-```bash
-➜  kubectl gs template nodepool \
-  --provider=azure \
-  --cluster-name=${COPY_CLUSTER_NAME_FROM_cluster.yaml} \
-  --description="Node pool for previously created cluster" \
-  --organization=giantswarm \
-  --release=16.1.2 \
-  > nodepool.yaml
-```
-
-This will create a `nodepool.yaml` file with all the CRs needed for successfully creating a NodePool attached to the cluster created in the previous step.
-
-Learning how to template resources can be useful for a number of reasons. We encourage you to try and get your hands dirty with this.
-
-You can create the resources by running `kubectl apply -f FILENAME.yaml` and delete them by running `kubectl delete -f FILENAME.yaml`
-
-### Templating applications
-In addition to Workload Clusters and nodepools, you can also template applications. Apps belong to catalogs. While you can define your own catalogs, we already provide two: `giantswarm` and `giantswarm-playground`. The former contains applications that we know how to manage; the latter contains applications that we have integrated but are not managed by us.
-
-You can easily surf catalogs from the Apps section in Happa:
+You can easily surf catalogs from the _Apps_ section in the Web UI:
 
 ![App Catalog](apps.png)
 
-Let's assume we want to install the Kong app. By clicking on it, we can see its details:
+Let's assume you want to install the Kong app. By clicking on it, we can see its details:
 
 ![The Kong application](kong-app.png)
 
-And we are now ready to template it (or simply install it by clicking the green button).
+With the web interface, you can configure and deploy the app by clicking _Install in this cluster_. In this tutorial, we show how to template the app into a YAML manifest. The command can be seen on the bottom of the Web UI app overview, for instance:
 
-We can now template the app:
-
-``` bash
-➜ kubectl gs template app \
+```sh
+kubectl gs template app \
   --catalog giantswarm \
   --name kong-app \
-  --namespace test-namespace \
-  --cluster gh3o2 \
-  --version 2.5.0 \
+  --target-namespace test-namespace \
+  --cluster-name o8r3r \
+  --version 3.3.0 \
   > kong-app.yaml
 ```
 
-And deploy it: `➜  kubectl apply -f kong-app.yaml`
+This writes the `App` CR to the file `kong-app.yaml`.
 
-Notice that by running `kubectl gs template app -h` you can list all the options that can be useful when templating an app. For instance, the `--user-configmap` and `--user-secret` options allow for adding YAML files containing useful configuration or secrets.
+To deploy the app, deploy it, again using the management cluster context:
 
-In general, whenever templating and/or installing an application, read its documentation page on happa to be sure you are configuring everything correctly.
+```sh
+kubectl apply -f kong-app.yaml
+```
 
-## Step 6: Updates
+Notice that by running `kubectl gs template app --help` you can list all the options that can be useful when templating an app. For instance, the `--user-configmap` and `--user-secret` options allow for adding YAML files containing useful configuration or secrets.
+
+Here is an example which disables the config flag `proxy.enabled` for Kong:
+
+```sh
+cat > kong-config.yaml <<EOF
+proxy:
+  enabled: false
+EOF
+
+kubectl gs template app \
+  --catalog giantswarm \
+  --name kong-app \
+  --target-namespace test-namespace \
+  --cluster-name o8r3r \
+  --version 3.3.0 \
+  --user-configmap kong-config.yaml \
+  > kong-app.yaml
+```
+
+In general, whenever templating and/or installing an application, please read its documentation page on the Web UI to be sure you are configuring everything correctly.
+
+## Step 6: Updates of workload clusters and managed apps
 
 ### Updating an application
 
-Updating an application can either be done in Happa, or by using `kubectl gs`.
+Updating an application can either be done in the Web UI, or by using `kubectl gs`.
 
-Beware: before performing any updates, verify that there are no breaking changes! If there are breaking changes, prepare for the upgrade accordingly.
+Beware: before performing any updates, verify that there are no breaking changes! If there are breaking changes, prepare for the upgrade accordingly. We document breaking and other changes in the repository's `CHANGELOG.md` (example: [changelog for Kong app](https://github.com/giantswarm/kong-app/blob/main/CHANGELOG.md)). Mind that the upstream project can also introduce major changes, so looking at their changelog is also reasonable.
 
-You can update an application by running the following command in the Management Cluster:
+You can update (or roll back) an application by running the following command in the management cluster:
 
-```
-➜ kubectl gs update app \
+```sh
+kubectl gs update app \
   --name APP_NAME \
   --namespace NAMESPACE \
   --version NEW_VERSION
@@ -228,15 +304,15 @@ You can update an application by running the following command in the Management
 
 For instance:
 
-```
-➜ kubectl gs update app \
+```sh
+kubectl gs update app \
   --name kong \
   --namespace test-namespace \
-  --version 2.6.0
+  --version 3.3.0
 ```
 
 ### Updating a cluster
 
-Cluster updates can be easily performed straight away or scheduled for a specific moment in time. The latter is a feature that many customers find very useful because it allows them to schedule updates without the need to physically be there to "press the button".
+Cluster updates can be easily performed straight away or scheduled for a specific moment in time. The latter is a feature in the vintage product family that many customers find very useful because it allows them to schedule updates without the need to physically be there to "press the button".
 
-More information on updating a cluster can be found [here](https://docs.giantswarm.io/use-the-api/kubectl-gs/update-cluster/).
+More information on updating a cluster can be found [in the kubectl-gs reference]({{< relref "/use-the-api/kubectl-gs/update-cluster" >}}).
