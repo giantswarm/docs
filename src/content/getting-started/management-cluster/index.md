@@ -52,7 +52,7 @@ Click "List clusters via the Management API" on the bottom to see which command 
 **Run this command in your shell.** The command performs authentication, creates a kubectl context and prints a message similar to this:
 
 ```text
-$ kubectl gs login "https://api.<management cluster domain>/" --cluster-admin
+$ kubectl gs login "https://api.<management cluster domain>/"
 [...]
 A new kubectl context has been created named 'gs-wombat' and selected. To switch back to this context later, use either of these commands:
   kubectl gs login wombat

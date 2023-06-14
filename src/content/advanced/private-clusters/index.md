@@ -77,7 +77,7 @@ connectivity:
 
 This will create a workload cluster in the subscription `6b1f6e4a-6d0e-4aa4-9a5a-fbaca65a4711` in Azure region `westeurope`.
 
-As all mandatory apps are bundled in `default-apps-azure`, its basic configuration must be also given:
+As all default apps are bundled in `default-apps-azure`, its basic configuration must be also given:
 
 ```yaml
 # filename: default-apps-azure-config.yaml

@@ -26,10 +26,10 @@ To run your business applications on Kubernetes, you need a workload cluster. Th
 Please follow the article [Access to the management cluster]({{< relref "/getting-started/management-cluster" >}}). In short, you need to point kubectl to the management cluster:
 
 ```sh
-kubectl gs login "https://api.<management cluster domain>/" --cluster-admin
+kubectl gs login "https://api.<management cluster domain>/"
 
 # For instance:
-kubectl gs login "https://api.wombat.eu-west-1.aws.gigantic.io" --cluster-admin
+kubectl gs login "https://api.wombat.eu-west-1.aws.gigantic.io"
 ```
 
 We use the management cluster name `wombat` as example in this tutorial.
@@ -82,7 +82,7 @@ kubectl gs template cluster \
 {{< /tab >}}
 {{< tab id="cluster-capa-ec2" title="CAPA (AWS EC2)">}}
 
-This will automatically use the latest release of the relevant Helm charts [cluster-aws](https://github.com/giantswarm/cluster-aws/blob/master/CHANGELOG.md) and [default-apps-aws](https://github.com/giantswarm/default-apps-aws/blob/master/CHANGELOG.md) (bundle of mandatory apps):
+This will automatically use the latest release of the relevant Helm charts [cluster-aws](https://github.com/giantswarm/cluster-aws/blob/master/CHANGELOG.md) and [default-apps-aws](https://github.com/giantswarm/default-apps-aws/blob/master/CHANGELOG.md) (bundle of default apps):
 
 ```sh
 # See hint about `--name` below!
@@ -95,7 +95,7 @@ kubectl gs template cluster \
 {{< /tab >}}
 {{< tab id="cluster-capz-azure-vms" title="CAPZ (Azure VMs)">}}
 
-This will automatically use the latest release of the relevant Helm charts [cluster-azure](https://github.com/giantswarm/cluster-azure/blob/master/CHANGELOG.md) and [default-apps-azure](https://github.com/giantswarm/default-apps-azure/blob/master/CHANGELOG.md) (bundle of mandatory apps):
+This will automatically use the latest release of the relevant Helm charts [cluster-azure](https://github.com/giantswarm/cluster-azure/blob/master/CHANGELOG.md) and [default-apps-azure](https://github.com/giantswarm/default-apps-azure/blob/master/CHANGELOG.md) (bundle of default apps):
 
 ```sh
 # See hint about `--name` below!
