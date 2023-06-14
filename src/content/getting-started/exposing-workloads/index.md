@@ -1,8 +1,7 @@
 ---
-linkTitle: Exposing workloads
-title: Accessing pods and services from the outside
+title: Exposing workloads
 description: You can access pods and services from outside your cluster either through the API proxy or through ingress.
-weight: 60
+weight: 80
 menu:
   main:
     parent: getting-started

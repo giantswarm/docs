@@ -1,8 +1,7 @@
 ---
-linkTitle: Cloud provider accounts
-title: Cloud provider accounts
+title: Setup of cloud provider accounts
 description: How to set up your AWS account or your Azure subscription in order to run Giant Swarm management clusters and workload clusters under your jurisdiction.
-weight: 10
+weight: 20
 menu:
   main:
     identifier: gettingstarted-cloudprovider

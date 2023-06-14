@@ -1,8 +1,7 @@
 ---
-linkTitle: Persistent volumes
-title: Using persistent volumes
+title: Persistent volumes
 description: Basic information on using Persistent Volumes in Giant Swarm workload clusters.
-weight: 40
+weight: 90
 menu:
   main:
     identifier: gettingstarted-persistentvolumes
