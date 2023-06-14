@@ -110,7 +110,7 @@ kubectl gs template cluster \
 {{< /tab >}}
 {{< /tabs >}}
 
-If no name is specified for a workload cluster, a random one like `rfjh2` will be generated. We recommend you choose a naming scheme suiting your organization, and then stick to it (e.g. `dev-eu-1`, `prod-a`, `prod-ecommerce-b`). Add the `--name` parameter to specify the cluster name.
+If no name is specified for a workload cluster, a random one like `rfjh2` will be generated. We recommend you choose a naming scheme suiting your organization, and then stick to it. Add the `--name` parameter to specify the cluster name.
 
 This will create a `cluster.yaml` file containing all the Custom Resources (CRs) necessary to create the cluster.
 
