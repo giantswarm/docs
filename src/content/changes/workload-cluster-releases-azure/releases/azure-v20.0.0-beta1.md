@@ -198,9 +198,11 @@ Not found
 
 
 
-### observability-bundle [0.5.1](https://github.com/giantswarm/observability-bundle/releases/tag/v0.5.1)
+### observability-bundle [0.7.0](https://github.com/giantswarm/observability-bundle/releases/tag/v0.7.0)
 
 #### Changed
+- Upgrade prometheus-operator-app to 5.0.5.
+- Upgrade prometheus-operator-crd to 5.0.0.
 - Remove cluster prefix to app name in _helpers.tpl
 
 
