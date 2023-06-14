@@ -9,7 +9,7 @@ menu:
 aliases:
   - /ui-api/web/permissions
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I check my RBAC permissions for the Management API?
   - How can I check a user's permissions for the Management API?

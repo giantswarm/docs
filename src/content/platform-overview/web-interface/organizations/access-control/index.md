@@ -7,7 +7,7 @@ menu:
   main:
     parent: platform-overview-web-orgs
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 aliases:
   - /ui-api/web/organisations/access-control
 user_questions:

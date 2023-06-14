@@ -1,8 +1,7 @@
 ---
-linkTitle: Create a workload cluster in CAPA
-title: Create a cluster using cluster API in AWS (CAPA)
+title: Create a workload cluster in CAPA
 description: This guide will walk you through all necessary steps to create a workload cluster with cluster API in AWS environments.
-weight: 100
+weight: 150
 menu:
   main:
     parent: getting-started
@@ -12,7 +11,7 @@ user_questions:
 aliases:
   - /guides/create-wlcluster-capa-template/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-hydra
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 last_review_date: 2022-10-07
 ---
 
@@ -31,7 +30,7 @@ In order to create a cluster in an installation using the new cluster API in AWS
     - size of the node and master node pool
     - availability zone usage
 
-  ``` yaml 
+  ``` yaml
   ---
 apiVersion: v1
 data:
@@ -135,17 +134,17 @@ spec:
       namespace: org-YOUR_ORG
   version: 0.5.4
 
-  ``` 
+  ```
 
 ## Creating the cluster
 
 Applying this files to the management cluster is enough to create the cluster. When this happens cluster operator takes control and creates the necessary resources for the new workload cluster.
-```  
+```
   kubectl apply -f cluster.yaml
 ```
 You can check that the cluster has been properly created using `kubectl get clusters` in the management cluster.
 ```
-kubectl get clusters -n org-YOUR_ORG 
+kubectl get clusters -n org-YOUR_ORG
 NAME    PHASE         AGE     VERSION
 brhf3   Provisioned   10m
-``` 
+```

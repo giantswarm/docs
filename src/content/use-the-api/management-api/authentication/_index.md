@@ -14,5 +14,5 @@ aliases:
 user_questions:
   - How does authentication for the Management API work?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-bigmac
 ---

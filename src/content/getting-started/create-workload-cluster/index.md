@@ -1,13 +1,15 @@
 ---
-linkTitle: kubectl-gs introduction
-title: Getting started with kubectl-gs
+linkTitle: Creating a workload cluster
+title: Creating a workload cluster and installing applications
 description: The Giant Swarm Management API is easily accessible by means of kubectl-gs, a kubectl plugin developed by Giant Swarm. This tutorial guides you throughout some of the most important features of the tool.
-weight: 30
+weight: 40
+aliases:
+  - /getting-started/kubectl-gs/
 menu:
   main:
     parent: getting-started
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I access the Giant Swarm Management API?
   - How do I use kubectl gs?
@@ -26,7 +28,7 @@ In order to use `kubectl-gs`, you need to have a few tools installed in your com
 
 ## Step 2: Logging in to your cluster
 
-First of all, for the purpose of this tutorial, we will start from Giant Swarm's web interface, reachable via a URL that we as Giant Swarm provide you when we finish setting up a cluster. The hostname in the URL usually starts with `happa`, which is how we call the web interface. 
+First of all, for the purpose of this tutorial, we will start from Giant Swarm's web interface, reachable via a URL that we as Giant Swarm provide you when we finish setting up a cluster. The hostname in the URL usually starts with `happa`, which is how we call the web interface.
 
 After having accessed happa, you will see the clusters belonging to the organization shown in the top-right corner (in this case, `testing`).
 
@@ -98,7 +100,7 @@ Finally, you can see the YAML definition of a cluster (in this example, of clust
 
 ## Step 4: A look at the Workload Clusters
 
-In Happa, by clicking on the cluster's name, you can see its details. The string on the top-left (in our case, gh3o2) is the Workload Cluster's name. 
+In Happa, by clicking on the cluster's name, you can see its details. The string on the top-left (in our case, gh3o2) is the Workload Cluster's name.
 
 In case the WC has no node pools attached to it, you can easily add one node pool by clicking on the "Add node pool" button.
 
@@ -118,7 +120,7 @@ In our case, therefore, we will run
   --certificate-ttl 3h
 ```
 
-At this point, you are logged in the Workload Cluster. As a matter of fact, some of the custom resource definitions available in the Management Cluster are not available in the WC because those concepts do not exist in Workload Clusters. 
+At this point, you are logged in the Workload Cluster. As a matter of fact, some of the custom resource definitions available in the Management Cluster are not available in the WC because those concepts do not exist in Workload Clusters.
 
 For instance, if we try to get the organizations, we get an error, because they are a concept that makes sense in the MC but not in the WC:
 
@@ -153,7 +155,7 @@ For instance, we can template a cluster with
   --provider=azure \
   --organization=giantswarm \
   --release=16.1.2 \
-  > cluster.yaml 
+  > cluster.yaml
 ```
 
 This will create a `cluster.yaml` file containing all the Custom Resources necessary for the definition of the cluster to be created.

@@ -12,7 +12,7 @@ last_review_date: 2021-10-26
 aliases:
   - /ui-api/management-api/wc-key-pairs/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-bigmac
 ---
 
 As of `kubectl gs` v1.44.0, the [`login`]({{< relref "/use-the-api/kubectl-gs/login" >}}) command supports the creation of client certificates for workload clusters.

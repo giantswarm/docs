@@ -15,7 +15,7 @@ user_questions:
   - What automation is working in a management cluster to ensure RBAC permissions?
   - How can I set up access to resources in the management cluster?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-bigmac
 ---
 
 Once your users are [authenticated]({{< relref "/use-the-api/management-api/authentication" >}}) for the Management API, you want to define which permissions they will have assigned. That's what we'll explain in more detail in this article.

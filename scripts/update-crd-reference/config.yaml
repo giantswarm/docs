@@ -98,7 +98,7 @@ source_repositories:
     metadata:
       organizations.security.giantswarm.io:
         owner:
-          - https://github.com/orgs/giantswarm/teams/team-rainbow
+          - https://github.com/orgs/giantswarm/teams/team-bigmac
         topics:
           - managementcluster
   - url: https://github.com/giantswarm/apiextensions
@@ -284,7 +284,6 @@ source_repositories:
         hidden: true
       clusters.cluster.x-k8s.io:
         owner:
-          - https://github.com/orgs/giantswarm/teams/team-hydra
           - https://github.com/orgs/giantswarm/teams/team-rocket
           - https://github.com/orgs/giantswarm/teams/team-phoenix
         provider:

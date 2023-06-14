@@ -1,8 +1,7 @@
 ---
-linkTitle: Accepting your cluster’s CA certificate
-title: Establishing trust to your cluster's CA and importing certificates
+title: Accepting your cluster’s CA certificate
 description: To access the API of your server as well as services like the Kubernetes Dashboard using a web browser, you need to import the CA certificate for the cluster and your key pair. Here we show how to do this for several platforms and clients.
-weight: 80
+weight: 130
 menu:
   main:
     parent: getting-started
@@ -12,7 +11,7 @@ user_questions:
   - How can I set my cluster's CA certificate to be trusted by my system?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-  - https://github.com/orgs/giantswarm/teams/team-rocket
+  - https://github.com/orgs/giantswarm/teams/team-bigmac
 last_review_date: 2023-04-04
 ---
 

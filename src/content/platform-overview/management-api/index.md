@@ -11,7 +11,7 @@ user_questions:
   - In what development stage is the Management API?
 last_review_date: 2022-02-15
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-bigmac
 ---
 
 ## What it is

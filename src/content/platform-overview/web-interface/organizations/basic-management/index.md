@@ -9,7 +9,7 @@ menu:
 aliases:
   - /ui-api/web/organisations/basic-management
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 last_review_date: 2022-12-07
 user_questions:
   - Where can I manage organizations in the web UI?
