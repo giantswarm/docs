@@ -97,9 +97,9 @@ Finally, run the `kubectl gs get clusters -A` command, which will show you all t
 
 ```bash
 $ kubectl gs get clusters -A
-NAMESPACE          NAME    AGE    CONDITION   RELEASE   ORGANIZATION
-org-testing        rfjh2   84d    UPDATED     18.4.0    testing
-org-production     jn88t   91d    CREATED     18.0.1    production
+NAMESPACE          NAME    AGE    CONDITION   SERVICE PRIORITY  RELEASE   ORGANIZATION  DESCRIPTION
+org-testing        rfjh2   84d    UPDATED     lowest            18.4.0    testing       n/a
+org-production     jn88t   91d    CREATED     highest           18.0.1    production    n/a
 ```
 
 You may notice some important points:
