@@ -67,7 +67,7 @@ Let's run some commands and understand what's happening under the hood.
 
 The first command is `kubectl get nodes`. This will show us the nodes making up our management cluster.
 
-```bash
+```text
 $ kubectl get nodes
 NAME                                          STATUS   ROLES                  AGE   VERSION
 ip-10-0-5-103.eu-central-1.compute.internal   Ready    worker                 19h   v1.24.10
@@ -83,7 +83,7 @@ There are two kinds of roles: `control-plane` and `worker`. Note that this still
 
 The second command we suggest running is `kubectl get orgs`. This will show the organizations that are defined in your management cluster.
 
-```bash
+```text
 $ kubectl get orgs
 NAME                    AGE
 production              97d
@@ -95,7 +95,7 @@ Organizations are a way to isolate clusters, apps, etc. between different teams 
 
 Finally, run the `kubectl gs get clusters -A` command, which will show you all the clusters managed by your management cluster. The `-A` flag stands for _all namespaces_.
 
-```bash
+```text
 $ kubectl gs get clusters -A
 NAMESPACE          NAME    AGE    CONDITION   SERVICE PRIORITY  RELEASE   ORGANIZATION  DESCRIPTION
 org-testing        rfjh2   84d    UPDATED     lowest            18.4.0    testing       n/a
@@ -110,8 +110,8 @@ You may notice some important points:
 
 Finally, you can see the YAML definition of a cluster (in this example, cluster `rfjh2` in organization `testing`) by running:
 
-```bash
-kubectl gs get cluster rfjh2 -n org-testing -o yaml
+```sh
+kubectl get cluster rfjh2 -n org-testing -o yaml
 ```
 
 ## Next steps
