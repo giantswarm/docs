@@ -316,7 +316,6 @@ It is required to specify the URL of the HTTPS proxy in the `https` property and
 ```yaml
 cluster:
   proxy:
-    enabled: true
     http: ... # HTTP proxy URL
     https: ... # HTTPS proxy URL
     noProxy: ... # Hostnames or networks/IP ranges excluded from going through the proxy
