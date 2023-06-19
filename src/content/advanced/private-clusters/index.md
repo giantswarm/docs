@@ -1,6 +1,6 @@
 ---
 title: Private clusters
-description: By default, the Kubernetes API endpoint is public and the cluster has internet access. This article shows which products offer private cluster features.
+description: Learn how to manage private clusters in Giant Swarm. A private cluster lets you limit the Kubernetes API access and at the same time control egress traffic of your workload using a proxy.
 weight: 35
 menu:
   main:
