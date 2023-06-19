@@ -159,7 +159,7 @@ We're aiming to provide a comprehensive blackbox monitoring tool that can valida
 
 
 
-### aws-operator [14.17.1](https://github.com/giantswarm/aws-operator/releases/tag/v14.17.1)
+### aws-operator [14.17.1-patch1](https://github.com/giantswarm/aws-operator/releases/tag/v14.17.1-patch1)
 
 #### Added
 - Add toleration for new control-plane taint.
