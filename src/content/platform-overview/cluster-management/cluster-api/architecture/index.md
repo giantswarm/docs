@@ -41,25 +41,25 @@ The setup requires an external network configured in the project to allow the ma
 
 ### Compatibility
 
-The setup supports OVDCs running on VCD 10.3+, backed with NSX-T and NSX ALB load balancer enabled on the Edge gateway. 
+The setup supports organisation virtual datacenters (OVCDs) running on VMware Cloud Director 10.3 and above. It must be backed by backed with NSX-T and NSX advanced load balancer (ALB) with the load balancer feature enabled on the Edge gateway. 
 
 ### Authentication
 
-CAPVCD, along with the associated Cloud Provider interface (CPI) and Container Storage interface (CSI), authenticate against the VMware Cloud Director API using an API Token (sometimes also referred to as Refresh Token) which is stored in a secret. Such token can be created by any user with the right permission and can be revoked at any time should there be suspicion of it being compromised.
+Cluster API Provider VMware Cloud Director (CAPVCD), along with the associated Cloud Provider interface (CPI) and Container Storage interface (CSI), authenticate against the VMware Cloud Director API using an API Token (sometimes also referred to as Refresh Token) which is stored in a secret. Such token can be created by any user with the right permission and can be revoked at any time should there be suspicion of it being compromised.
 
 ### Networking
 
-The kubernetes API and services of type `LoadBalancer` get IPs from the pool of external IPs available in the edge gateway, it can be set statically or it will take the next available IP. A virtual service is then created with the selected IP/port and is associated with a load balancer pool that contains the relevant node IPs as members. For the CPI, we support the virtual service shared feature introduced in VCD 10.4 as well as the legacy method based on a single internal IP and multiple DNAT rules.
+The kubernetes API and services of type `LoadBalancer` get IPs from a pool of external IPs available in the edge gateway. It can be set statically or takes the next available IP if unspecified. A virtual service is then created with the required IP/port and is associated with a load balancer pool that contains the relevant node IPs as members. For the CPI, we support the virtual service shared feature which was introduced in VCD 10.4 as well as the legacy method based on a single internal IP and multiple DNAT rules.
 
-To connect the nodes, a network needs to be specified in CAPVCD to define where the default gateway will be. It is also possible to add additional networks in order to connect multiple virtual interfaces to the nodes along with the configuration of static routes. The nodes must have internet access which is usually achieved with a SNAT rule or via an HTTP proxy. Note that it is possible to specify NTP servers and pools (Ubuntu based nodes running `chrony`) which is particularly useful in air-gapped environments.
+A network needs to be specified in the cluster definition to identify where the default gateway will be and where to connect the virtual machines (VMs). It is also possible to add additional networks in order to connect multiple virtual interfaces to the nodes along with a list of static routes. The nodes must have internet access which is usually achieved with a SNAT rule or via an HTTP proxy. Note that it is also possible to specify NTP servers and pools (Ubuntu based nodes running `chrony`) in the cluster definition, which is particularly useful in air-gapped environments.
 
 ### Compute
 
-The Kubernetes cluster is represented in VCD by a vAPP of the same name that hosts one virtual machine for each node. Note that the setup also supports naming conventions for virtual machine names based on go templates. When a node is created, a virtual machine is provisioned in the cluster's vAPP from a vAPP template stored in a specific catalog. When configuring the control plane nodes or a node class for a node pool, several parameters can be set for the virtual machines such as the sizing policy, placement policy, virtual disk size and storage profile.
+The Kubernetes cluster is represented in VMware Cloud Directior by a vAPP of the same name that contains one virtual machine for each node. Note that our setup also supports naming conventions for virtual machine names based on go templates. When a node is created, a virtual machine is provisioned in the cluster's vAPP using a vAPP template stored in a specific catalog. When configuring the control plane nodes or a node class for a node pool, several parameters can be set for the virtual machines such as the sizing policy, placement policy, virtual disk size and storage profile.
 
 ### Storage
 
-In order to offer persistent storage that is decoupled from the virtual machines, the VCD CSI creates a Named Disk that can be attached or detached from the VM according to whether or not the persistent volume claim (PVC) is bound to a pod. Named disks currently only support Read-Write-Only (RWO) with block storage backed named disks.
+In order to offer persistent storage that is decoupled from the virtual machines, the container storage interface creates a Named Disk that can be attached or detached from the VM according to whether or not the persistent volume claim (PVC) is bound to a pod or not. Named disks currently only support Read-Write-Only (RWO) with block storage backed named disks.
 
 {{< /tab >}}
 {{< tab id="flags-aws" title="AWS">}}
