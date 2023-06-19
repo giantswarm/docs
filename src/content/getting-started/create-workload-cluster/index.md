@@ -114,7 +114,7 @@ If no name is specified for a workload cluster, a random one like `rfjh2` will b
 
 This will create a `cluster.yaml` file containing all the Custom Resources (CRs) necessary to create the cluster.
 
-For the CAPI product family, you will notice that clusters are templated exactly like managed apps (i.e. as `App` resource), with `kubectl-gs` filling certain default values into the configuration. This is different from vintage products.
+For the [Cluster API (CAPI)]({{< relref "/platform-overview/cluster-management/cluster-api/architecture" >}}) product family, you will notice that clusters are templated exactly like managed apps (i.e. as `App` resource), with `kubectl-gs` filling certain default values into the configuration. This is different from vintage products.
 
 In the vintage product family, no worker node pool is created by default, so you should attach one:
 
