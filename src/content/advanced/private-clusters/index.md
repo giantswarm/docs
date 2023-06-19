@@ -12,7 +12,9 @@ owner:
 last_review_date: 2023-06-13
 ---
 
-By default, the Kubernetes API endpoint is public and the cluster has internet access. You can skip this article unless you plan on creating clusters with strictly-limited networking.
+By default, Giant Swarm clusters expose the Kubernetes API endpoint publicly and the cluster workloads have internet access. In the following sections, we will explain different options to restrict inbound access to API or outbound connectivity to the internet within the clusters.
+
+**Note**: You can skip this article unless you plan on creating clusters with strictly-limited networking.
 
 The following products offer private cluster features:
 
