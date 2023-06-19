@@ -19,11 +19,11 @@ user_questions:
 last_review_date: 2023-06-12
 ---
 
-To run your business applications on Kubernetes, you need a workload cluster. The `kubectl-gs` tool ([reference]({{< relref "/use-the-api/kubectl-gs" >}})), as already installed in the [previous tutorial]({{< relref "/getting-started/management-cluster" >}}), is used to create such clusters.
+In a Giant Swarm installation, to run your business applications on Kubernetes, you need a workload cluster. The `kubectl-gs` tool ([reference]({{< relref "/use-the-api/kubectl-gs" >}})), as already installed in the [previous tutorial]({{< relref "/getting-started/management-cluster" >}}), is used to create such clusters.
 
 ## Step 1: Log in to the management cluster
 
-Please follow the article [Access to the management cluster]({{< relref "/getting-started/management-cluster" >}}). In short, you need to point kubectl to the management cluster:
+Please follow the article [Access to the management cluster (MC)]({{< relref "/getting-started/management-cluster" >}}). In short, you need to point kubectl to the management cluster:
 
 ```sh
 kubectl gs login "https://api.<management cluster domain>/"
@@ -243,7 +243,7 @@ Let's assume you want to install the Kong app. By clicking on it, we can see its
 
 ![The Kong application](kong-app.png)
 
-With the web interface, you can configure and deploy the app by clicking _Install in this cluster_. In this tutorial, we show how to template the app into a YAML manifest. The command can be seen on the bottom of the Web UI app overview, for instance:
+With the web interface, you can configure and deploy the app by clicking _Install in this cluster_. In this tutorial, we show how to template the app into a YAML manifest. The command can be seen at the bottom of the Web UI app overview, for instance:
 
 ```sh
 kubectl gs template app \
@@ -263,7 +263,7 @@ To deploy the app, deploy it, again using the management cluster context:
 kubectl apply -f kong-app.yaml
 ```
 
-Notice that by running `kubectl gs template app --help` you can list all the options that can be useful when templating an app. For instance, the `--user-configmap` and `--user-secret` options allow for adding YAML files containing useful configuration or secrets.
+Notice that by running `kubectl gs template app --help` you can list all the options that can be useful when templating an app. For instance, the `--user-configmap` and `--user-secret` options allow for adding YAML files containing useful configurations or secrets.
 
 Here is an example which disables the config flag `proxy.enabled` for Kong:
 
