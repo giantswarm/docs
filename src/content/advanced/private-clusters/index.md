@@ -25,7 +25,7 @@ Private clusters have special requirements:
 
 - Since a private workload cluster still has to be reachable by the management cluster, there must be networking peering between the two. This means that the IP ranges must not overlap.
 - Access to the Kubernetes API can be restricted to an internal network. It should then be reachable both by you as customer, and by Giant Swarm for support purposes. For example, a VPN can be used.
-- An HTTP proxy can be used to restrict which exact domains can be accessed at all. In this case, precise configuration is important or else the new cluster will not be able to fetch container images or reach other important resources such as internal communication to the Kubernetes API.
+- An HTTP proxy can be used to restrict which exact domains can be accessed at all. In this case, a precise configuration is essential or else the new cluster will not be able to fetch container images or reach other important resources such as internal communication to the Kubernetes API.
 
 To get everything set up correctly, please get in contact with Giant Swarm. We will help creating and supporting your desired private cluster configuration within your network architecture.
 
