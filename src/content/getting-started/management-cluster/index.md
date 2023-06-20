@@ -13,7 +13,7 @@ user_questions:
 last_review_date: 2023-06-12
 ---
 
-Giant Swarm provides customers with their own _management cluster (MC)_. You can have multiple management clusters, for example if different cloud providers are used. The management Kubernetes cluster runs operators that create and manage all the workload clusters (WCs). On workload Kubernetes clusters, you deploy and run actual business applications.
+Giant Swarm provides customers with their own _management cluster (MC)_. You can have multiple management clusters, for example if different cloud providers are used. Each management cluster runs Kubernetes plus operators that create and manage all the workload clusters (WCs). On workload clusters, you deploy and run actual business applications.
 
 To create workload clusters – or install managed apps (such as ingress-nginx) on them – you need to access the management cluster. Alternatively, you can also deploy workload clusters or managed apps with GitOps, but we still recommend that you first start out by manually accessing the management cluster since you may need this for manual investigation or deployments.
 
