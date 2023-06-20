@@ -14,17 +14,17 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install dependencies
-        run: pip3 install click colored
+        run: pip3 install click colored==1.4.4
 
       - name: Validate front matter for changed files
         run: |
           git fetch --no-tags origin "${GITHUB_BASE_REF}":"${GITHUB_BASE_REF}"
           git diff --name-only "refs/heads/${GITHUB_BASE_REF}" -- . | tee files.txt
           cat files.txt | python3 scripts/validate-front-matter/script.py
-      
+
       - name: Verify annotations
         run: cat ./annotations.json
-      
+
       - name: Send annotations
         uses: giantswarm/annotations-action@8028d6604d2db401d4dcd30c21a99fa26e662544
         with:
