@@ -27,6 +27,7 @@ Below, products are described in one of these states:
 - **Beta** – Working and supported, but we may still require more testing with live workloads. Breaking changes are still probable.
 - **Alpha** – Mostly working and supported, but with missing features or major breaking changes outstanding.
 - **In development** – Early phase development and not working yet. No 24/7 support.
+- **Deprecated** – We are actively moving customers off this old product.
 
 ## Cluster API (CAPI) products
 
@@ -49,7 +50,7 @@ These products are live with most of our customers, and we still actively suppor
 
 - **Vintage (AWS)** – _GA (general availability)_
 - **Vintage (Azure)** – _GA (general availability)_
-- **Vintage (KVM)** – _GA (general availability)_
+- **Vintage (KVM)** – _deprecated and being phased out_
 
 ## How to choose
 
