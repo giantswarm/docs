@@ -39,6 +39,8 @@ For certain cloud providers, there are even different options available: for exa
 - **CAPA (AWS EC2)** – _GA (general availability) i.e. stable state expected soon (around 2023Q3)_
 - **CAPA (AWS EKS)** – _in development_
 - **CAPG (GCP VMs)** – _alpha_
+- **CAPV (VMware vSphere)** – _alpha_
+- **CAPVCD (VMware Cloud Director)** – _beta_
 - **CAPZ (Azure VMs)** – _beta_
 
 ## Vintage products
@@ -70,6 +72,10 @@ As new customer, you should take the decision based on the cloud provider, devel
   For new projects, we however recommend starting with _CAPZ (Azure VMs)_ since our focus is shifting to CAPI-based offerings.
 
   We may support Azure AKS in the future as well.
+
+- **Cloud provider: VMware**
+
+  VMware offers _vSphere_ and _Cloud Director_. Depending on which of their platforms you are using, our product is _CAPV (VMware vSphere)_ or _CAPVCD (VMware Cloud Director)_, respectively.
 
 - **On-premises (own datacenter)**
 
