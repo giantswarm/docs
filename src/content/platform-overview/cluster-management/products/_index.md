@@ -54,11 +54,11 @@ These products are live with most of our customers, and we still actively suppor
 
 ## How to choose
 
-As new customer, you should take the decision based on the cloud provider, development state (stability) of our offered product and how soon you want to go live with your workloads (business applications).
+As new customer, you should take the decision based on the cloud provider, development state (stability) of our offered product, how soon you want to go live with your workloads (business applications), and extra features that are only available yet in certain products.
 
 - **Cloud provider: AWS (Amazon Web Services)**
 
-  Since we are close to GA state for our _CAPA (AWS EC2)_ product, we recommend starting with it instead of using _Vintage (AWS)_. This avoids a migration later on.
+  Since we are close to GA state for our _CAPA (AWS EC2)_ product, we recommend starting with it instead of using _Vintage (AWS)_. This avoids a migration later on. We also support [private cluster support]({{< relref "/advanced/private-clusters" >}}) with this product.
 
   If you prefer to switch to AWS EKS as control plane later, our platform is designed with high consistency in mind so that a migration would become easy.
 
@@ -70,7 +70,7 @@ As new customer, you should take the decision based on the cloud provider, devel
 
   The _Vintage (Azure)_ product is the most stable at the moment.
 
-  For new projects, we however recommend starting with _CAPZ (Azure VMs)_ since our focus is shifting to CAPI-based offerings.
+  For new projects, we however recommend starting with _CAPZ (Azure VMs)_ since our focus is shifting to CAPI-based offerings. We also support [private cluster support]({{< relref "/advanced/private-clusters" >}}) with this product.
 
   We may support Azure AKS in the future as well.
 
