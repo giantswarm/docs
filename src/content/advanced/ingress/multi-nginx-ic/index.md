@@ -103,11 +103,11 @@ This is how one can achieve it by using multiple Ingress NGINX Controllers:
 
 Each Ingress NGINX Controller App installation has to have an unique IngressClass. Ingress resources can then declare which Ingress Controller should be handling their route definition by referencing the respective IngressClass in the `ingressClassName` spec field. Default Ingress NGINX Controller IngressClass is `nginx`. In the above example we configure `nginx-internal` as the second Ingress NGINX Controller installation's IngressClass.
 
-On AWS and Azure, Ingress NGINX Controller LoadBalancer Service is fronted by the cloud provider's managed load balancer service. By default, Ingress NGINX Controller will have a public load balancer. Changing `controller.service.public` flag to `false` declares that internal load balancer should be created instead.
+On AWS and Azure, Ingress NGINX Controller `LoadBalancer` service is fronted by the cloud provider's managed load balancer service. By default, Ingress NGINX Controller will have a public load balancer. Changing `controller.service.public` flag to `false` declares that internal load balancer should be created instead.
 
 Similarly, cloud load balancer created for each Ingress NGINX Controller installation on AWS and Azure has to have unique host name associated with it. Host name suffix is common for all, and equals to the workload cluster's base domain name. Prefix is configurable via `controller.service.subdomain` configuration property and defaults to `ingress`. In example configuration for second internal Ingress NGINX Controller, it is overriden to `ingress-internal`.
 
-For Ingress NGINX Controller running on on-prem (KVM) workload clusters there's no out-of-the-box `LoadBalancer` Service type support. Therefore, Ingress NGINX Controller Service type defaults to `NodePort`. For every Ingress NGINX Controller installation, one must assign a set of unique http and https node ports. The default Ingress NGINX Controller http and https node ports are `30010` and `30011`. The example sets `31010` and `31011` as overrides for the internal Ingress NGINX Controller.
+For Ingress NGINX Controller running on on-prem (KVM) workload clusters there's no out-of-the-box `LoadBalancer` service type support. Therefore, Ingress NGINX Controller Service type defaults to `NodePort`. For every Ingress NGINX Controller installation, one must assign a set of unique http and https node ports. The default Ingress NGINX Controller http and https node ports are `30010` and `30011`. The example sets `31010` and `31011` as overrides for the internal Ingress NGINX Controller.
 
 More information on this topic can be found in document [Services of type LoadBalancer]({{< relref "/content/advanced/ingress/service-type-loadbalancer/index.md" >}}).
 
@@ -127,7 +127,7 @@ In other words, it is sufficient to set `controller.service.internal.enabled` to
 
 ## Using weak ciphers for legacy clients
 
-In [Ingress NGINX Controller v1.2.0](https://github.com/giantswarm/nginx-ingress-controller-app/blob/main/CHANGELOG.md#120-2020-01-21), there was a notable security improvement: weak SSL ciphers were removed from the default configuration. Some older clients (like web browsers, http libraries in apps) could no longer establish secure connections with cluster services exposed via new Ingress NGINX Controller. This is because these clients only supported SSL ciphers that got removed.
+In [Ingress NGINX Controller v1.2.0](https://github.com/giantswarm/ingress-nginx-app/blob/main/CHANGELOG.md#120-2020-01-21), there was a notable security improvement: weak SSL ciphers were removed from the default configuration. Some older clients (like web browsers, http libraries in apps) could no longer establish secure connections with cluster services exposed via new Ingress NGINX Controller. This is because these clients only supported SSL ciphers that got removed.
 
 With single Ingress NGINX Controller, one could restore weak SSL ciphers configuration in order to support services with older clients until clients get upgraded. Problem with this approach, since SSL ciphers are global settings, was that changing default SSL ciphers back by restoring weak ciphers would apply to all Ingresses and service behind them, not just the one with old clients.
 

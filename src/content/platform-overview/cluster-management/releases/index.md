@@ -2,7 +2,7 @@
 linkTitle: Releases
 title: Workload cluster release versions
 description: Details on the workload cluster release offered by Giant Swarm and ways to look up even more details.
-last_review_date: 2022-04-12
+last_review_date: 2023-07-05
 weight: 30
 menu:
   main:
@@ -132,18 +132,18 @@ You have several options to inspect workload cluster release details:
 
 ### Preinstalled and optional Apps {#apps}
 
-Depending on your provider (AWS, Azure, or KVM), the apps NGINX IC, External DNS, and Cert Manager may be preinstalled, optional, or not available (n/a).
+Depending on your provider (AWS, Azure, or KVM), the apps Ingress NGINX Controller, External DNS and Cert Manager may be preinstalled, optional, or not available (n/a).
 
 Preinstalled apps are installed by default upon cluster creation. Optional apps can be installed from App Catalogs. In releases where they are not preinstalled, n/a apps (e.g. External DNS in certain releases) are currently not available to be installed as an optional app.
 
-| Workload cluster release version | NGINX IC      | External DNS  | Cert Manager |
-|:------------------------------:|:-------------:|:-------------:|:------------:|
-| **AWS v10.x.x+**               | optional      | preinstalled  | preinstalled |
-| **AWS legacy**                 | preinstalled  | n/a           | optional     |
-| **Azure v12.x.x+**             | optional      | preinstalled  | optional     |
-| **Azure legacy**               | preinstalled  | preinstalled  | optional     |
-| **KVM 12.2.x+**                | optional      | n/a           | optional     |
-| **KVM legacy**                 | preinstalled  | n/a           | optional     |
+| Workload cluster release version | Ingress NGINX Controller | External DNS  | Cert Manager |
+|:--------------------------------:|:------------------------:|:-------------:|:------------:|
+| **AWS v10.x.x+**                 | optional                 | preinstalled  | preinstalled |
+| **AWS legacy**                   | preinstalled             | n/a           | optional     |
+| **Azure v12.x.x+**               | optional                 | preinstalled  | optional     |
+| **Azure legacy**                 | preinstalled             | preinstalled  | optional     |
+| **KVM 12.2.x+**                  | optional                 | n/a           | optional     |
+| **KVM legacy**                   | preinstalled             | n/a           | optional     |
 
 ## Further reading
 
