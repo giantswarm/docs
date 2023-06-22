@@ -1,6 +1,6 @@
 ---
 title: Cluster management
-description: Our products and all the details on the cluster management features offered by Giant Swarm.
+description: Our product, supported cloud providers, and details on the cluster management features offered by Giant Swarm.
 last_review_date: 2023-06-21
 weight: 20
 aliases:
