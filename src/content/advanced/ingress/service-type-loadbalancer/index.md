@@ -15,12 +15,15 @@ user_questions:
   - How can I expose Services to the internet?
   - How do I configure an Ingress Controller behind an ELB for traffic between services within the VPC?
   - How do I configure an Ingress Controller behind an ELB that terminates SSL?
-last_review_date: 2021-09-01
+  - How do I configure an internal Load Balancer on AWS?
+  - How do I configure an internal Load Balancer on Azure?
+  - How do I configure an internal Load Balancer on GCP?
+last_review_date: 2023-06-21
 ---
 
-Next to using the default NGINX Ingress Controller, on cloud providers (currently AWS and Azure), you can expose services directly outside your cluster by using Services of type `LoadBalancer`.
+Next to using the default Ingress NGINX Controller, on cloud providers (currently AWS, Azure and GCP), you can expose services directly outside your cluster by using Services of type `LoadBalancer`.
 
-You can use this to [expose single Services](#service-of-type-lb) to the internet. It is also possible, to [install additional NGINX Ingress Controllers]({{< relref "/content/advanced/ingress/multi-nginx-ic/index.md" >}}) to expose a subset of your Services with a different Ingress Controller configuration.
+You can use this to [expose single Services](#service-of-type-lb) to the internet. It is also possible, to [install additional Ingress NGINX Controllers]({{< relref "/content/advanced/ingress/multi-nginx-ic/index.md" >}}) to expose a subset of your Services with a different Ingress Controller configuration.
 
 __Note__ that this functionality cannot be used on premises (KVM).
 
@@ -105,6 +108,15 @@ metadata:
     service.beta.kubernetes.io/azure-load-balancer-internal: "true"
 ```
 
+On GCP, an internal Load Balancer can be requested using the following annotation:
+
+```yaml
+metadata:
+  name: my-service
+  annotations:
+    networking.gke.io/load-balancer-type: "Internal"
+```
+
 #### SSL termination on AWS
 
 There are three annotations you can set to configure SSL termination.
@@ -124,7 +136,7 @@ service.beta.kubernetes.io/aws-load-balancer-backend-protocol: (https|http|ssl|t
 
 The second annotation specifies which protocol a pod speaks. For HTTPS and SSL, the ELB will expect the pod to authenticate itself over the encrypted connection.
 
-Please note, setting `service.beta.kubernetes.io/aws-load-balancer-backend-protocol: ssl` requires changing `controller.service.targetPorts.https` to `http` in your nginx-ingress-controller-app configuration.
+Please note, setting `service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http` requires changing `controller.service.targetPorts.https` to `http` in your Ingress NGINX Controller configuration.
 
 HTTP and HTTPS will select layer 7 proxying: the ELB will terminate the connection with the user, parse headers and inject the `X-Forwarded-For` header with the user’s IP address (pods will only see the IP address of the ELB at the other end of its connection) when forwarding requests.
 
@@ -170,8 +182,8 @@ metadata:
 
 #### AWS network load balancer
 
-AWS is in the process of replacing ELBs with NLBs (Network Load Balancers) and ALBs (Application Load
-Balancers). NLBs have a number of benefits over "classic" ELBs including scaling to many more requests.
+AWS is in the process of replacing ELBs with NLBs (Network Load Balancers) and ALBs (Application Load Balancers). NLBs have a number of benefits over "classic" ELBs including scaling to many more requests.
+
 To be able to fully controll all NLB features, we're strongly recommend installing [AWS Load Balancer Controller](https://github.com/giantswarm/aws-load-balancer-controller-app) as the Kubernetes in-tree AWS Load Balancer implementation only supports [annotations for classic ELBs](https://github.com/kubernetes/kubernetes/blob/v1.26.0/staging/src/k8s.io/legacy-cloud-providers/aws/aws.go#L105-L246).
 
 ```yaml
@@ -181,6 +193,7 @@ metadata:
 ```
 
 Network load balancers will use [Subnet Discovery](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/deploy/subnet_discovery/) to attach to a suitable subnet.
+
 With the following [annotation](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/guide/service/annotations/#subnets) the subnet can be specified either by nameTag or subnetID:
 
 ```
@@ -226,8 +239,9 @@ metadata:
 
 ## Further reading
 
-- [Running Multiple NGINX Ingress Controllers]({{< relref "/content/advanced/ingress/multi-nginx-ic/index.md" >}})
+- [Running Multiple Ingress NGINX Controllers]({{< relref "/content/advanced/ingress/multi-nginx-ic/index.md" >}})
 - [Services of type LoadBalancer](https://kubernetes.io/docs/concepts/services-networking/service/#type-loadbalancer)
 - [AWS Load Balancer Controller - Annotations](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/guide/service/annotations/)
-- [Running Multiple Ingress Controllers](https://github.com/kubernetes/ingress-nginx#running-multiple-ingress-controllers)
-- [Deploying the NGINX Ingress Controller]({{< relref "/getting-started/ingress-controller/index.md" >}})
+- [Running Multiple Ingress NGINX Controllers](https://github.com/kubernetes/ingress-nginx#running-multiple-ingress-controllers)
+- [Deploying the Ingress NGINX Controller]({{< relref "/getting-started/ingress-controller/index.md" >}})
+- [Google GCP LoadBalancer Service parameters](https://cloud.google.com/kubernetes-engine/docs/concepts/service-load-balancer-parameters)

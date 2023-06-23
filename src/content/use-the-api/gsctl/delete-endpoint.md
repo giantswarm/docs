@@ -10,11 +10,11 @@ aliases:
   - /reference/gsctl/delete-endpoint/
   - /ui-api/gsctl/delete-endpoint/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I delete an endpoint from gsctl?
   - How can I delete an installation from gsctl?
-last_review_date: 2021-01-01
+last_review_date: 2023-03-06
 ---
 
 {{% gsctl_deprecation_disclaimer %}}

@@ -18,7 +18,7 @@ aliases:
   - /reference/kubectl-gs/
   - /ui-api/kubectl-gs/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
 
 `kubectl-gs` is a CLI and a [kubectl](https://kubernetes.io/docs/reference/kubectl/kubectl/) plugin (invoked as `kubectl gs`) for the Giant Swarm [Management API]({{< relref "/use-the-api/management-api" >}}).

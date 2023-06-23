@@ -11,7 +11,7 @@ aliases:
   - /ui-api/kubectl-gs/template-organization/
 last_review_date: 2022-12-07
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I create an organization manifest for the Management API?
 ---

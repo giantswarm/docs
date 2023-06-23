@@ -12,7 +12,7 @@ user_questions:
   - How has Giant Swarm built a platform to build platforms with Cluster API?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
-  - https://github.com/orgs/giantswarm/teams/team-hydra
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
 The Giant Swarm platform consists of various systems. They can be categorized into three areas: infrastructure, applications, and operations.
@@ -35,6 +35,31 @@ There is a machine created as a bastion that helps us with the operations. It is
 {{< tab id="flags-openstack" title="OpenStack">}}
 
 The setup requires an external network configured in the project to allow the machines to pull images or route requests from containers to the Internet. On the other side, there is an internal network which interconnects all master and worker machines allowing the internal communication of all containers within the cluster. At the same time, it allocates the load balancers that are created dynamically as result of exposing a service in the cluster. In case the load balancer is external, a floating IP is allocated to enable the connection with external endpoints.
+
+{{< /tab >}}
+{{< tab id="flags-clouddirector" title="VMware Cloud Director">}}
+
+### Compatibility
+
+The setup supports organisation virtual datacenters (OVCDs) running on VMware Cloud Director 10.3 and above. It must be backed by backed with NSX-T and NSX advanced load balancer (ALB) with the load balancer feature enabled on the Edge gateway. 
+
+### Authentication
+
+Cluster API Provider VMware Cloud Director (CAPVCD), along with the associated Cloud Provider interface (CPI) and Container Storage interface (CSI), authenticate against the VMware Cloud Director API using an API Token (sometimes also referred to as Refresh Token) which is stored in a secret. Such token can be created by any user with the right permission and can be revoked at any time should there be suspicion of it being compromised.
+
+### Networking
+
+The kubernetes API and services of type `LoadBalancer` get IPs from a pool of external IPs available in the edge gateway. It can be set statically or takes the next available IP if unspecified. A virtual service is then created with the required IP/port and is associated with a load balancer pool that contains the relevant node IPs as members. For the CPI, we support the virtual service shared feature which was introduced in VCD 10.4 as well as the legacy method based on a single internal IP and multiple DNAT rules.
+
+A network needs to be specified in the cluster definition to identify where the default gateway will be and where to connect the virtual machines (VMs). It is also possible to add additional networks in order to connect multiple virtual interfaces to the nodes along with a list of static routes. The nodes must have internet access which is usually achieved with a SNAT rule or via an HTTP proxy. Note that it is also possible to specify NTP servers and pools (Ubuntu based nodes running `chrony`) in the cluster definition, which is particularly useful in air-gapped environments.
+
+### Compute
+
+The Kubernetes cluster is represented in VMware Cloud Directior by a vAPP of the same name that contains one virtual machine for each node. Note that our setup also supports naming conventions for virtual machine names based on go templates. When a node is created, a virtual machine is provisioned in the cluster's vAPP using a vAPP template stored in a specific catalog. When configuring the control plane nodes or a node class for a node pool, several parameters can be set for the virtual machines such as the sizing policy, placement policy, virtual disk size and storage profile.
+
+### Storage
+
+In order to offer persistent storage that is decoupled from the virtual machines, the container storage interface creates a Named Disk that can be attached or detached from the VM according to whether or not the persistent volume claim (PVC) is bound to a pod or not. Named disks currently only support Read-Write-Only (RWO) with block storage backed named disks.
 
 {{< /tab >}}
 {{< tab id="flags-aws" title="AWS">}}

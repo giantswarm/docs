@@ -25,11 +25,18 @@ Below is a list of the external domains we require access to for our clusters to
 - amazonaws.com
     - domains:
         - `*.amazonaws.com`
+        - `ec2.eu-west-2.amazonaws.com`
+        - `sts.eu-central-1.amazonaws.com`
     - AWS services are used for a variety of tasks, such as etcd backup storage.
 - azurecr.io
     - domains:
         - `giantswarm.azurecr.io`
-    - Container images are hosted on Azure Container Registry.
+        - `giantswarmpublic.azurecr.io`
+    - Container images and app catalogs are hosted on Azure Container Registry.
+- auth0.com
+    - domains:
+        - `giantswarm.eu.auth0.com`
+    - Used to secure access to Grafana and Prometheus.
 - cloudfront.net
     - domains:
         - `*.cloudfront.net`
@@ -37,7 +44,9 @@ Below is a list of the external domains we require access to for our clusters to
 - docker.com
     - domains:
         - `*.docker.com`
+        - `production.cloudflare.docker.com`
     - Container images are hosted on Dockerhub.
+    - Dockerhub uses Cloudflare as the CDN for serving Docker Image layer blobs, manifests, etc.
 - docker.io
     - domains:
         - `*.docker.io`
@@ -54,6 +63,32 @@ Below is a list of the external domains we require access to for our clusters to
     - domains:
         - `*.github.io`
     - Helm chart tarballs are pulled from GitHub Pages.
+- gcr.io
+    - domains:
+        - `k8s.gcr.io`
+    - (Legacy) K8s container images are hosted on Google Container Registry.
+- googleapis.com
+    - domains:
+        - `storage.googleapis.com`
+    - Google Container Registry is backed by a Google cloud storage bucket.
+- grafana.com
+    - domains:
+        - `grafana.com`
+    - Grafana may download plugins from the Grafana plugin registry.
+- grafana.net
+    - domains:
+        - `prometheus-us-central1.grafana.net`
+    - Some metrics are pushed to our hosted Grafana tenant.
+- giantswarm.io
+    - domains:
+        - `vault.operations.giantswarm.io`
+        - `schema.giantswarm.io`
+    - Our operations Vault is used for unsealing customer Vault servers.
+    - Our schema server hosts the schema's for container image validation.
+- k8s.io
+    - domains:
+        - `registry.k8s.io`
+    - Container registry and a global CDN for the K8s project’s container images.
 - keybase.io
     - domains:
         - `*.keybase.io`
@@ -62,6 +97,10 @@ Below is a list of the external domains we require access to for our clusters to
     - domains:
         - `*.api.letsencrypt.org`
     - cert-manager will request certificates from Lets Encrypt.
+- opsgenie.com
+    - domains:
+        - `api.opsgenie.com`
+    - Opsgenie's API is used to send alerts.
 - quay.io
     - domains:
         - `*.quay.io`
@@ -70,16 +109,10 @@ Below is a list of the external domains we require access to for our clusters to
     - domains:
         - `o346224.ingest.sentry.io`
     - Monitoring and crash reporting for `happa`.
-- `api.opsgenie.com`
-    - Opsgenie's API is used to send alerts.
-- `grafana.com`
-    - Grafana may download plugins from the Grafana plugin registry.
-- `prometheus-us-central1.grafana.net`
-    - Some metrics are pushed to our hosted Grafana tenant.
-- `vault.operations.giantswarm.io`
-    - Our operations Vault is used for unsealing customer Vault servers.
-- `giantswarm.eu.auth0.com`
-    - Used to secure access to Grafana and Prometheus.
+- slack.com
+    - domains:
+        - `hooks.slack.com`
+    - Used to send alerts on slack channels
 
 ## On-premise installations
 

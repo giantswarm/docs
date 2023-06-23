@@ -7,12 +7,12 @@ menu:
   main:
     identifier: uiapi-managementapi-authentication
     parent: uiapi-managementapi
-last_review_date: 2022-04-29
+last_review_date: 2023-05-02
 aliases:
   - /reference/management-api/authentication/
   - /ui-api/management-api/authentication/
 user_questions:
   - How does authentication for the Management API work?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-bigmac
 ---

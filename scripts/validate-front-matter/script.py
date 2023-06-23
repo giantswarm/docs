@@ -16,6 +16,7 @@ except ImportError:
 path         = 'src/content'
 changes_path = 'src/content/changes/'
 crds_path    = 'src/content/use-the-api/management-api/crd/'
+docs_host    = 'https://github.com/giantswarm/docs/blob/main/'
 
 todays_date = datetime.date.today()
 
@@ -108,7 +109,7 @@ checks = (
     {
         'id': NO_FULL_STOP_DESCRIPTION,
         'description': 'The description should end with a full stop',
-        'ignore_paths': [crds_path],
+        'ignore_paths': [crds_path, changes_path],
         'severity': SEVERITY_FAIL,
         'has_value': True,
     },
@@ -127,14 +128,15 @@ checks = (
     },
     {
         'id': NO_LINK_TITLE,
-        'description': 'The page should have a linkTitle, which appears in menus and list pages',
+        'description': 'The page should have a linkTitle, which appears in menus and list pages. If not given, title will be used and should be no longer than 40 characters.',
         'ignore_paths': [crds_path, changes_path],
         'severity': SEVERITY_WARN,
     },
     {
         'id': LONG_LINK_TITLE,
-        'description': 'The linkTitle (used in menu and list pages) should be less than 40 characters',
+        'description': 'The linkTitle (used in menu and list pages; title is used if linkTitle is not given) should be less than 40 characters',
         'severity': SEVERITY_FAIL,
+        'ignore_paths': [changes_path],
     },
     {
         'id': NO_WEIGHT,
@@ -200,6 +202,7 @@ valid_keys = set((
     'crd',
     'date',
     'description',
+    'expiration_in_days',
     'last_review_date',
     'layout',
     'linkTitle',
@@ -218,6 +221,38 @@ valid_keys = set((
 checks_dict = {}
 for c in checks:
     checks_dict[c['id']] = c
+
+
+
+def print_json(rdict):
+    """
+    Print a formatted result report to JSON.
+
+    rdict is a dict with file paths as keys and a list of check results as a value.
+    """
+    out = []
+    for fpath in rdict.keys():
+        for check in rdict[fpath]['checks']:
+            try:
+                title = check.get('title') or ""
+                description = checks_dict[check['check']]['description']
+                owners = []
+                doc_owner = check.get('owner')
+                if hasattr(doc_owner, "__len__"):
+                  for i in doc_owner:
+                    team_name = re.search('\/.*\/([^\/]+)\/?$', i).group(1)
+                    team_label = team_name.replace("-", "/")
+                    owners.append(team_label)
+            except AttributeError:
+                pass
+            out.append({
+                'title': 'Doc entry \"'+title+'\" needs to be reviewed',
+                'message': description+" for [this document]("+docs_host+fpath+").",
+                'owner': owners
+            })
+
+    json_object = json.dumps(out)
+    print(json_object)
 
 
 def print_result(rdict):
@@ -244,7 +279,7 @@ def print_result(rdict):
             else:
                 warnings.append(check)
                 nwarnings += 1
-        
+
         def format_line(check_id, severity_str, description, value):
             out = f' - {severity(severity_str)} - {headline(check_id)} - {description}'
             if checks_dict[check_id].get('has_value') and value != "":
@@ -255,7 +290,7 @@ def print_result(rdict):
                 else:
                     out += f': {literal(json.dumps(value))}'
             return out
-        
+
         for check in fails:
             print(format_line(check['check'], SEVERITY_FAIL, checks_dict[check['check']]['description'], check.get('value')))
         for check in warnings:
@@ -317,18 +352,18 @@ def dump_annotations(rdict):
             end_line = max(end_line,
                            check.get('line', 1),
                            check.get('end_line', rdict[fpath]['num_front_matter_lines'] + 1))
-            
+
             if checks_dict[check['check']]['severity'] == SEVERITY_FAIL:
                 level = 'failure'
                 nfails += 1
             else:
                 nwarnings += 1
-            
+
             message += format_message_part(check['check'],
                                            checks_dict[check['check']]['severity'],
                                            checks_dict[check['check']]['description'],
                                            check.get('value'))
-        
+
         headline = f'Found {nwarnings} less severe problems'
         if nwarnings > 0 and nfails > 0:
             headline = f'Found {nfails} severe and {nwarnings} less severe problems'
@@ -364,15 +399,15 @@ def get_raw_front_matter(source_text):
 def ignored_path(path, check_id):
     "Returns true if the given path should be ignored for the given check"
     check = None
-    
+
     for c in checks:
         if c['id'] == check_id:
             check = c
             break
-    
+
     if 'ignore_paths' not in check:
         return False
-    
+
     for ignore_path in check['ignore_paths']:
         if path.startswith(ignore_path):
             return True
@@ -441,13 +476,13 @@ def validate(content, fpath, validation):
         })
         return result
 
-    # Evaluate linkTitle
+    # Evaluate linkTitle (hugo falls back to `title` if `linkTitle` not given)
     if validation == VALIDATE_ALL:
-        if 'linkTitle' in fm:
-            if len(fm['linkTitle']) > 40:
+        if 'linkTitle' in fm or 'title' in fm:
+            if len(fm.get('linkTitle') or fm['title']) > 40 and not ignored_path(fpath, LONG_LINK_TITLE):
                 result['checks'].append({
                     'check': LONG_LINK_TITLE,
-                    'value': fm['linkTitle'],
+                    'value': fm.get('linkTitle') or fm['title'],
                 })
 
     # Evaluate title
@@ -457,10 +492,6 @@ def validate(content, fpath, validation):
                 result['checks'].append({
                     'check': SHORT_TITLE,
                     'value': fm['title'],
-                })
-            elif len(fm['title']) > 40 and not 'linkTitle' in fm and not ignored_path(fpath, NO_LINK_TITLE):
-                result['checks'].append({
-                    'check': NO_LINK_TITLE,
                 })
             if len(fm['title']) > 100:
                 result['checks'].append({
@@ -516,7 +547,7 @@ def validate(content, fpath, validation):
     # Evaluate menu
     if validation == VALIDATE_ALL:
         if 'menu' in fm:
-            if 'linkTitle' not in fm:
+            if not (fm.get('linkTitle') or fm.get('title')):
                 result['checks'].append({
                     'check': NO_LINK_TITLE,
                 })
@@ -574,20 +605,30 @@ def validate(content, fpath, validation):
         if 'last_review_date' in fm:
             if type(fm['last_review_date']) is datetime.date:
                 diff = todays_date - fm['last_review_date']
-                if diff > datetime.timedelta(days=365):
+                expiration = 365
+                if 'expiration_in_days' in fm and type(fm['expiration_in_days']) is int:
+                    expiration = fm['expiration_in_days']
+
+                if diff > datetime.timedelta(days=expiration):
                     result['checks'].append({
                         'check': REVIEW_TOO_LONG_AGO,
+                        'title': fm['title'] or "",
+                        'owner': fm['owner'] or [],
                         'value': fm['last_review_date'],
                     })
                 elif diff < datetime.timedelta(seconds=0):
                     # in the future
                     result['checks'].append({
                         'check': INVALID_LAST_REVIEW_DATE,
+                        'title': fm['title'] or "",
+                        'owner': fm['owner'] or [],
                         'value': fm['last_review_date'],
                     })
             else:
                 result['checks'].append({
                     'check': INVALID_LAST_REVIEW_DATE,
+                    'title': fm['title'] or "",
+                    'owner': fm['owner'] or [],
                     'value': fm['last_review_date'],
                 })
         else:
@@ -604,7 +645,7 @@ def validate(content, fpath, validation):
                     'check': UNKNOWN_ATTRIBUTE,
                     'value': key,
                 })
-    
+
     result['num_front_matter_lines'] = num_fmlines
     return result
 
@@ -627,7 +668,8 @@ def severity(text):
 
 @click.command()
 @click.option("--validation", default="all", help="Which validation to run. Use 'last-reviewed' or 'all' (default).")
-def main(validation):
+@click.option("--output", default="stdout", help="Offer different output formats, 'json' or 'stdout' supported by now.")
+def main(validation, output):
     # Result dict has a key for each file to check
     result = {}
 
@@ -661,7 +703,10 @@ def main(validation):
             if len(r['checks']) > 0:
                 result[fpath] = r
 
-    print_result(result)
+    if output == "json":
+        print_json(result)
+    else:
+        print_result(result)
 
     if GITHUB_ACTIONS != None:
         dump_annotations(result)

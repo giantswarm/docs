@@ -1,8 +1,7 @@
 ---
-linkTitle: Installing an ingress controller
 title: Installing an ingress controller
 description: How to install the NGINX ingress controller using the Giant Swarm web user interface.
-weight: 50
+weight: 70
 menu:
   main:
     parent: getting-started
@@ -14,7 +13,7 @@ aliases:
   - /guides/installing-optional-ingress-controller/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
-last_review_date: 2021-09-01
+last_review_date: 2023-03-28
 ---
 
 An ingress controller helps you expose your services to the outside world.

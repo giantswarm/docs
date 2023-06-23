@@ -1,7 +1,7 @@
 ---
 linkTitle: Ingress
 title: Advanced ingress setup
-description: From advanced configuration options for NGINX ingress controller, to running multiple ingress controllers, this sections provides some great depth around ingress.
+description: From advanced configuration options for Ingress NGINX Controller, to running multiple Ingress NGINX Controller, this sections provides some great depth around ingress.
 weight: 10
 menu:
   main:
@@ -9,5 +9,5 @@ menu:
     parent: advanced
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
-last_review_date: 2021-01-01
+last_review_date: 2023-06-21
 ---

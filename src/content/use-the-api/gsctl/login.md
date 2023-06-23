@@ -14,8 +14,8 @@ aliases:
   - /reference/gsctl/login/
   - /ui-api/gsctl/login/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
-last_review_date: 2022-12-07
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+last_review_date: 2023-03-06
 ---
 
 {{% gsctl_deprecation_disclaimer %}}

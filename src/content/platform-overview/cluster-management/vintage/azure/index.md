@@ -6,7 +6,7 @@ weight: 20
 menu:
   main:
     parent: cluster-management-vintage
-last_review_date: 2022-01-25
+last_review_date: 2023-03-06
 aliases:
   - /basics/azure-architecture/
   - /general/architcture/azure/
@@ -84,7 +84,7 @@ Further, to enforce the definition of resources, [Limit Ranges](https://kubernet
 
 ### Cluster scalability
 
-Our clusters are crafted with the [cluster autoscaling component]({{< relref "/getting-started/cluster-size-autoscaling" >}}) included as a managed app. This means that a users can define the size of the cluster by defining a minimum and maximum number of nodes per node pool. The cluster autoscaling component will scale the node pools up and down based on the capacity needed. Although we manage the component, we also allow for some customization in order to adapt the autoscaling behaviour to your needs.
+Our clusters are crafted with the [cluster autoscaling component]({{< relref "/getting-started/operations/autoscaling/cluster-size" >}}) included as a managed app. This means that a users can define the size of the cluster by defining a minimum and maximum number of nodes per node pool. The cluster autoscaling component will scale the node pools up and down based on the capacity needed. Although we manage the component, we also allow for some customization in order to adapt the autoscaling behaviour to your needs.
 
 ### Cluster authentication
 

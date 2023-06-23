@@ -8,8 +8,8 @@ menu:
     identifier: uiapi-managementapi
     parent: use-the-api
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
-last_review_date: 2021-08-03
+  - https://github.com/orgs/giantswarm/teams/team-bigmac
+last_review_date: 2023-03-08
 aliases:
   - /reference/management-api/
   - /ui-api/management-api/

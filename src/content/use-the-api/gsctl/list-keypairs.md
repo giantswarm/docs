@@ -10,10 +10,10 @@ aliases:
   - /reference/gsctl/list-keypairs/
   - /ui-api/gsctl/list-keypairs/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I show the valid key pairs for a cluster using gsctl?
-last_review_date: 2022-12-07
+last_review_date: 2023-03-06
 ---
 
 {{% gsctl_deprecation_disclaimer %}}

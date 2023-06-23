@@ -7,14 +7,14 @@ menu:
   main:
     identifier: uiapi-managementapi-authentication-automation
     parent: uiapi-managementapi-authentication
-last_review_date: 2022-04-28
+last_review_date: 2023-05-02
 aliases:
   - /reference/management-api/authentication/automation
   - /ui-api/management-api/authentication/automation
 user_questions:
   - How can I use the Management API in a programmatic way?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-bigmac
 ---
 
 Using the Management API from an automation requires a hands-free way to provide credentials to kubectl or any Kubernetes client. This article explains how to make use of a service account and create a self-contained kubeconfig file to use in such a scenario.
@@ -39,7 +39,7 @@ Make sure that you have an authenticated `kubectl` context for your Management A
 
 ### 2. Find the service account's secret
 
-Every service account comes with a `Secret` resource that contains the credentials some additional details we need. To obtain that resource, we must look up its name first.
+Every service account comes with a `Secret` resource that contains the credentials and some additional details we need. To obtain that resource, we must look up its name first.
 
 Here, `INSTALLATION` is a placeholder for the name of your installation. `SERVICE_ACCOUNT_NAME` is the name of the service account you want to use.
 

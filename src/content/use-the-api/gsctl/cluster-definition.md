@@ -17,9 +17,9 @@ user_questions:
   - What are the node pool definition keys I need to specify for a cluster definition? 
   - What goes into the 'masters' key of a cluster definition?
   - Will my cluster definition change if I use node pools?
-last_review_date: 2021-01-01
+last_review_date: 2023-03-06
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
 
 {{% gsctl_deprecation_disclaimer %}}
@@ -212,7 +212,7 @@ Coming from v4, you might want to understand how v5 is different from v4:
 Chances are that you already work with YAML in various places. If not, here are some hints:
 
 - In YAML, whitespace is important. Indentation must be made using blanks (space), not tabs.
-- If in doubt, check your YAML in a linter. There are plenty online, e.g. [yamllint.com](http://www.yamllint.com/).
+- If in doubt, check your YAML in a linter. There are plenty online, e.g. [yamllint.com](https://www.yamllint.com/).
 - JSON is valid YAML. If you prefer JSON's notation, just use valid JSON.
 - You can add comments to YAML files by starting a line with the character `#`.
 

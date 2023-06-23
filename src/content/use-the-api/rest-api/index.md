@@ -10,7 +10,7 @@ user_questions:
   - How can I manage Giant Swarm resources programmatically?
   - How can I manage clusters via an API?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-bigmac
 last_review_date: 2022-12-07
 aliases:
   - /reference/rest-api/

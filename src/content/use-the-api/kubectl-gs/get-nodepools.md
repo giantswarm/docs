@@ -10,7 +10,7 @@ aliases:
   - /reference/kubectl-gs/get-nodepools/
   - /ui-api/kubectl-gs/get-nodepools/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I list node pools in a cluster using kubectl?
   - How can I inspect node pools using kubectl?

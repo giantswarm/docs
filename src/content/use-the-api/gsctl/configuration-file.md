@@ -10,11 +10,11 @@ aliases:
   - /reference/gsctl/configuration-file/
   - /ui-api/gsctl/configuration-file/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - What settings does gsctl store in its config file?
   - Where can I find gsctl's configuration file?
-last_review_date: 2021-01-01
+last_review_date: 2023-03-06
 ---
 
 {{% gsctl_deprecation_disclaimer %}}
@@ -30,7 +30,7 @@ will get lost.
 
 ```yaml
 endpoints:
-  http://localhost:9000:
+  https://localhost:9000:
     alias: local
     email: developer@example.com
     token: 7d5b1161-87e6-4dfd-8017-5ab9f4e1cb14

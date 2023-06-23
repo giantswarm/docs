@@ -7,7 +7,7 @@ menu:
   main:
     identifier: uiapi-managementapi-authentication-details
     parent: uiapi-managementapi-authentication
-last_review_date: 2022-04-28
+last_review_date: 2023-05-02
 aliases:
   - /reference/management-api/authentication/additional-details
   - /ui-api/management-api/authentication/additional-details
@@ -17,7 +17,7 @@ user_questions:
   - How can I inspect the ID token issued for authenticating to the Management API?
   - What requirements are there to use single sign-on with the Management API?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-bigmac
 ---
 
 ## Details of an ID token {#id-token-details}

@@ -10,10 +10,10 @@ aliases:
   - /reference/gsctl/scale-cluster/
   - /ui-api/gsctl/scale-cluster/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I scale an on-premises (KVM) cluster using gsctl?
-last_review_date: 2022-12-07
+last_review_date: 2023-03-06
 ---
 
 {{% gsctl_deprecation_disclaimer %}}
@@ -24,7 +24,7 @@ For clusters on AWS and Azure, instead of scaling an entire cluster, please see 
 
 ## Notes on worker node removal {#node-removal}
 
-When reducing the worker node count, you have no influence in which exact order worker nodes are removed. Your workloads have to be configured in a way that single pods can be removed any time. See our article on [recommendations and best practices]({{< relref "/getting-started/best-practices" >}}) for details on how to achieve that.
+When reducing the worker node count, you have no influence in which exact order worker nodes are removed. Your workloads have to be configured in a way that single pods can be removed any time. See our article on [recommendations and best practices]({{< relref "/getting-started/sizing-multi-tenancy" >}}) for details on how to achieve that.
 
 ## Command usage {#usage}
 
@@ -60,5 +60,5 @@ Use `gsctl scale cluster --help` for a additional (global) arguments.
 
 - [`gsctl update nodepool`]({{< relref "/use-the-api/gsctl/update-nodepool" >}}): Among others, allows to scale a node pool
 - [`gsctl delete cluster`]({{< relref "/use-the-api/gsctl/delete-cluster" >}}): Delete a cluster
-- [Basics: Cluster Size and Autoscaling]({{< relref "/getting-started/cluster-size-autoscaling" >}})
+- [Basics: Cluster Size and Autoscaling]({{< relref "/getting-started/operations/autoscaling/cluster-size" >}})
 - [API: Modify cluster](/api/#operation/modifyCluster)

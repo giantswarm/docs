@@ -10,10 +10,10 @@ aliases:
   - /reference/gsctl/delete-nodepool/
   - /ui-api/gsctl/delete-nodepool/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I delete a node pool using gsctl?
-last_review_date: 2021-01-01
+last_review_date: 2023-03-06
 ---
 
 {{% gsctl_deprecation_disclaimer %}}

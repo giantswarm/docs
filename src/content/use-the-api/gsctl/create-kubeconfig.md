@@ -14,8 +14,8 @@ user_questions:
   - How to gain access to a cluster using gsctl?
   - How can I configure kubie?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
-last_review_date: 2021-01-01
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+last_review_date: 2023-03-06
 ---
 
 {{% gsctl_deprecation_disclaimer %}}

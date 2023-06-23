@@ -10,10 +10,10 @@ aliases:
   - /reference/gsctl/update-nodepool/
   - /ui-api/gsctl/update-nodepool/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I modify a node pool using gsctl?
-last_review_date: 2021-01-01
+last_review_date: 2023-03-06
 ---
 
 {{% gsctl_deprecation_disclaimer %}}

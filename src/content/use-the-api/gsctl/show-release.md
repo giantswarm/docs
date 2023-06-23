@@ -10,10 +10,10 @@ aliases:
   - /reference/gsctl/show-release/
   - /ui-api/gsctl/show-release/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
-  - How can I inspeact a workload cluster release using gsctl?
-last_review_date: 2021-01-01
+  - How can I inspect a workload cluster release using gsctl?
+last_review_date: 2023-03-06
 ---
 
 {{% gsctl_deprecation_disclaimer %}}
