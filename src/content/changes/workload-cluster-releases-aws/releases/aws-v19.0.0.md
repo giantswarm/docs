@@ -230,7 +230,7 @@ We're aiming to provide a comprehensive blackbox monitoring tool that can valida
 
 
 
-### external-dns [2.37.0](https://github.com/giantswarm/external-dns-app/releases/tag/v2.37.0)
+### external-dns [2.37.1](https://github.com/giantswarm/external-dns-app/releases/tag/v2.37.1)
 
 #### Changed
 - Disable PSPs for k8s 1.25 and newer.
