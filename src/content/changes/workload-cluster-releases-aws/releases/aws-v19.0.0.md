@@ -260,11 +260,13 @@ We're aiming to provide a comprehensive blackbox monitoring tool that can valida
 
 
 
-### vertical-pod-autoscaler [3.4.2](https://github.com/giantswarm/vertical-pod-autoscaler-app/releases/tag/v3.4.2)
+### vertical-pod-autoscaler [3.5.2](https://github.com/giantswarm/vertical-pod-autoscaler-app/releases/tag/v3.5.2)
 
 #### Changed
 - Remove circleci job for pushing to shared app collection
-
+- Raised resources for updater and recommender.
+- Drop all CAPabilities in container SecurityContext for Kyverno Policy compliance
+- Set AllowPrivilegeEscalation=false in container SecurityContext for Kyverno Policy compliance
 
 
 ### vertical-pod-autoscaler-crd [2.0.1](https://github.com/giantswarm/vertical-pod-autoscaler-crd/releases/tag/v2.0.1)
