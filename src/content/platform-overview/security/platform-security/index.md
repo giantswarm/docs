@@ -12,7 +12,7 @@ aliases:
 #   - /guides/managed-security-stack/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
-last_review_date: 2023-06-29
+last_review_date: 2023-06-28
 user_questions:
   - How do I view and manage vulnerabilities in my cluster?
   - What UI options are there for vulnerability and policy reports?
