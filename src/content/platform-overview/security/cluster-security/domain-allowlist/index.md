@@ -63,6 +63,10 @@ Below is a list of the external domains we require access to for our clusters to
     - domains:
         - `*.github.io`
     - Helm chart tarballs are pulled from GitHub Pages.
+- githubusercontent.com
+    - domains:
+      - `raw.githubusercontent.com`
+    - Flux applies some manifests using the raw domain. 
 - gcr.io
     - domains:
         - `k8s.gcr.io`
@@ -97,6 +101,14 @@ Below is a list of the external domains we require access to for our clusters to
     - domains:
         - `*.api.letsencrypt.org`
     - cert-manager will request certificates from Lets Encrypt.
+- microsoft.com
+    - domains:
+      - `graph.microsoft.com`
+    - Used when logging into the cluster with Microsoft AD.
+- microsoftonline.com
+    - domains:
+      - `login.microsoftonline.com`
+    - Used when logging into the cluster with Microsoft AD.
 - opsgenie.com
     - domains:
         - `api.opsgenie.com`
