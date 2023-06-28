@@ -12,11 +12,11 @@ aliases:
 #   - /guides/managed-security-stack/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
-last_review_date: 2022-03-15
+last_review_date: 2023-06-29
 user_questions:
   - How do I view and manage vulnerabilities in my cluster?
   - What UI options are there for vulnerability and policy reports?
-  - What is included in the Security Pack?
+  - What is included in the Security Bundle?
   - How do I enforce admission policies in my cluster?
   - What can I do to keep my clusters secure?
   - What security services and tools does Giant Swarm offer?
@@ -30,18 +30,18 @@ The stack consists of multiple distinct components which are independently insta
 
 | Feature | Component | State | Source(s) |
 |---|---|---|---|
-| Image Scanning | Trivy + Starboard | In Catalog | [Trivy][trivy-app] / [Starboard][starboard-app]  |
+| Image Vulnerability Scanning | Trivy + Trivy Operator | In Catalog | [Trivy][trivy-app] / [Trivy Operator][trivy-operator-app]  |
 | Policy Enforcement | Kyverno | In Catalog | [Kyverno][kyverno-app]  |
-| CIS Benchmarks | Starboard | In Catalog | [Starboard][starboard-app]  |
-| Image Provenance | Cosign + Fulcio | Planned |   |
-| Cloud Security Posture | Cloud Custodian | Planned |   |
+| CIS Benchmarks | Trivy Operator | In Catalog | [Trivy Operator][trivy-operator-app]  |
+| Cloud Security Posture | Evaluating | Planned |   |
 | Runtime Anomalies | Falco | In Catalog | [Falco][falco-app]  |
 | In-Cluster Registry | Harbor | In Catalog | [Harbor][harbor-app]  |
-| Log Alerting | Supported by our [managed Observability Stack][observability-stack] offering. | In Catalog | [Loki][loki-app]  |
-| Log Shipping + Storage | Supported by our [managed EFK Stack][efk-stack] offering. | In Catalog | [EFK Stack][efk-app]  |
-| Advanced Network Capabilities* | Supported by our managed Connectivity Stack offering. | In Catalog | [Linkerd][linkerd-app] / [Linkerd CNI][linkerd-cni-app] / [Linkerd Visualization][linkerd-viz-app]  |
+| Log Alerting | Supported by both Falco and our [managed Observability Bundle][observability-bundle] offering. | In Catalog | [Loki][loki-app] / [Falco][falco-app] |
+| Log Shipping + Storage | Supported by our [managed Loki][loki-app] offering. | In Catalog | [Loki][loki-app]  |
+| Advanced Network Capabilities* | Supported by our managed Connectivity Bundle offering. | In Catalog | [Cilium][cilium-app] / [Linkerd][linkerd-app] / [Linkerd CNI][linkerd-cni-app] / [Linkerd Visualization][linkerd-viz-app]  |
+| Image Provenance | Sigstore (`cosign`) | Policies supported |   |
 
-\* mTLS, DNS-based egress policies, and other advanced network capabilities are available through a separately-managed service mesh.
+\* mTLS, DNS-based egress policies, and other advanced network capabilities are available through separately-managed components.
 
 Components with a state of "In Catalog" are available for installation via our [App Platform][app-platform]. We are working to improve centralized installation and configuration across components.
 
@@ -49,29 +49,28 @@ A high-level overview of each component is included below. Please refer to the G
 
 ## Trivy
 
-Trivy is a vulnerability scanner created by [Aqua Security][trivy-upstream]. It can be run as a command-line tool (for example, in a CI/CD pipeline) or as a Kubernetes operator, which we deploy from our [Trivy App][trivy-app]. When running as an operator, Trivy can be used as the scanning backend for a Harbor container registry as well as the scanner used by Starboard.
+Trivy is a vulnerability scanner created by [Aqua Security][trivy-upstream]. It can be run as a command-line tool (for example, in a CI/CD pipeline) or as a Kubernetes operator, which we deploy from our [Trivy App][trivy-app]. When running as an operator, Trivy can be used as the scanning backend for a Harbor container registry as well as the scanner used by Trivy Operator.
 
-Within our managed security stack, Trivy is deployed in-cluster as the backend for Starboard and Harbor (if in use). We also recommend customers enable vulnerability scanning in their CI/CD pipelines and include support for that integration as part of our managed offering.
+Within our managed security stack, Trivy is deployed in-cluster as the backend for Trivy Operator and Harbor (if in use). We also recommend customers enable vulnerability scanning in their CI/CD pipelines and include support for that integration as part of our managed offering.
 
-## Starboard
+## Trivy Operator
 
-Starboard is another open-source project developed by [Aqua Security][starboard-upstream]. Starboard runs as an operator (deployed from our [Starboard App][starboard-app]) and performs several ongoing functions in the cluster, including scanning Pods for vulnerabilities, running Kubernetes CIS benchmarks with [`kube-bench`][kube-bench], and auditing Kubernetes resources against best practices and other policies using [Polaris][polaris]. These functions can all be configured independently. Though not required, Starboard can use an existing Trivy server running in the cluster as its vulnerability scanner. Starboard stores the results of its scans inside the cluster as Kubernetes custom resources.
+Trivy Operator is another open-source project developed by [Aqua Security][trivy-operator-upstream]. It was previously based on an earlier project named Starboard, but has now diverged significantly. As the name suggests, it is an operator (deployed from our [Trivy Operator App][trivy-operator-app]) and performs several continuous functions in the cluster, including scanning Pods for vulnerabilities, running Kubernetes CIS (or NSA) benchmarks, and auditing Kubernetes resources against best practices and other policies. These functions can all be configured independently. Trivy Operator uses an existing Trivy server running in the cluster as its vulnerability scanner, and stores the results of its scans inside the cluster as Kubernetes custom resources.
 
-In our stack, we deploy Starboard alongside Trivy in the cluster to initiate vulnerability scans for running Pods and to perform CIS benchmarks. Users may also choose to enable Polaris configuration scans in addition to our recommended Kyverno policy enforcement. To support monitoring and better observability of the scan results, we have also created a [custom Prometheus exporter][starboard-exporter] which reads the `VulnerabilityReport` and `CISKubeBenchReport` custom resources created by Starboard and exposes the data as Prometheus metrics.
+In our stack, we deploy Trivy Operator alongside Trivy in the cluster to initiate vulnerability scans for running Pods and to perform CIS benchmarks. Users may also choose to enable additional configuration scans in addition to our recommended Kyverno policy enforcement. To support monitoring and better observability of the scan results, we have also created a [custom Prometheus exporter][starboard-exporter] which reads the `VulnerabilityReport` and other custom resources created by Trivy Operator and exposes the data as Prometheus metrics.
 
-### Working with Starboard Scan Results
+### Working with Trivy Operator Scan Results
 
-The authoritative source of truth for Starboard scans are the in-cluster custom resources. However, scan results, especially `VulnerabilityReport`s, can be lengthy and difficult to read.
+The authoritative source of truth for Trivy Operator scans are the in-cluster custom resources. However, scan results, especially `VulnerabilityReport`s, can be lengthy and difficult to read.
 
-There are several available options for viewing and distilling the results of Starboard scans as well as UI integrations to make them easier to work with.
+There are several available options for viewing and distilling the results of Trivy Operator scans as well as UI integrations to make them easier to work with.
 
 Scan data can be accessed:
 
 - using `kubectl`
-- from the Starboard Grafana dashboard
+- from the Trivy Operator Grafana dashboard
 - directly in Prometheus
-- using the [Starboard extension for K8s Lens][lens-extension]
-- using the [Starboard plugin for Octant][octant-plugin]
+- using the [Trivy Operator extension for K8s Lens][lens-extension]
 - using the [Trivy extension for VS Code][vscode-trivy] (for working with Trivy scans offline)
 
 #### Using kubectl
@@ -79,45 +78,50 @@ Scan data can be accessed:
 Authoritative scan results are stored in the cluster and can be retrieved using `kubectl`:
 
 ```bash
-$ kubectl get vulnerabilityreport -n argocd
+$ kubectl get vulnerabilityreport -n flux-system
 NAME                                       REPOSITORY      TAG            SCANNER   AGE
 ...
-replicaset-argocd-redis-74d8c6db65-redis   library/redis   6.2.4-alpine   Trivy     23d
-replicaset-argocd-redis-759b6bc7f4-redis   library/redis   6.2.1-alpine   Trivy     23d
+replicaset-notification-controller-7f6f8b76c4-manager             giantswarm/fluxcd-notification-controller             v0.33.0                Trivy     5d22h
+replicaset-source-controller-76d9b66f5f-manager                   giantswarm/fluxcd-source-controller                   v0.36.1                Trivy     5d23h
+
 ...
 ```
 
 To see detailed vulnerability information, `describe` the resource or use `get -o yaml`, for example:
 
 ```bash
-$ kubectl describe vulnerabilityreport -n argocd replicaset-argocd-redis-74d8c6db65-redis
-Name:         replicaset-argocd-redis-74d8c6db65-redis
-Namespace:    argocd
-Labels:       pod-spec-hash=94c6f9fbb
-              starboard.container.name=redis
-              starboard.resource.kind=ReplicaSet
-              starboard.resource.name=argocd-redis-74d8c6db65
-              starboard.resource.namespace=argocd
-Annotations:  <none>
+$ k describe vulnerabilityreports.aquasecurity.github.io -n flux-system replicaset-source-controller-76d9b66f5f-manager
+Name:         replicaset-source-controller-76d9b66f5f-manager
+Namespace:    flux-system
+Labels:       resource-spec-hash=7b4f847d9b
+              starboard-exporter.giantswarm.io/shard-owner=100.64.9.67
+              trivy-operator.container.name=manager
+              trivy-operator.resource.kind=ReplicaSet
+              trivy-operator.resource.name=source-controller-76d9b66f5f
+              trivy-operator.resource.namespace=flux-system
+Annotations:  trivy-operator.aquasecurity.github.io/report-ttl: 168h0m0s
 API Version:  aquasecurity.github.io/v1alpha1
 Kind:         VulnerabilityReport
+Metadata:
+  ...
 Report:
   Artifact:
-    Repository:  library/redis
-    Tag:         6.2.4-alpine
+    Repository:  giantswarm/fluxcd-source-controller
+    Tag:         v0.36.1
   Registry:
     Server:  index.docker.io
   Scanner:
     Name:     Trivy
     Vendor:   Aqua Security
-    Version:  0.19.2
+    Version:  0.40.0
   Summary:
-    Critical Count:  3
-    High Count:      2
+    Critical Count:  0
+    High Count:      7
     Low Count:       0
-    Medium Count:    0
+    Medium Count:    10
+    None Count:      0
     Unknown Count:   0
-  Update Timestamp:  2021-10-30T03:09:37Z
+  Update Timestamp:  2023-06-28T09:44:08Z
   Vulnerabilities:
     ...
 ```
@@ -128,12 +132,12 @@ Kubernetes CIS benchmark reports can similarly be retrieved with `$ kubectl get 
 
 For convenience, data from the in-cluster CRs is exported to Prometheus, where it can be queried, used for alerting, or included in dashboards.
 
-![Diagram illustrating the flow of data from Starboard's scan through an exporter to Prometheus and Grafana](Starboard-Scanning-Monitoring.svg)
+![Diagram illustrating the flow of data from Trivy Operator's scan through an exporter to Prometheus and Grafana](Starboard-Scanning-Monitoring.svg)
 
 Data flow:
 
-1. Starboard scans a Pod.
-2. Starboard creates a `VulnerabilityReport` CR.
+1. Trivy Operator scans a Pod.
+2. Trivy Operator creates a `VulnerabilityReport` CR.
 3. `starboard-exporter` reads the `VulnerabilityReport` CR and exposes metrics.
 4. Prometheus scrapes the metrics from `starboard-exporter`. Data can then be queried in Prometheus or seen in the Grafana vulnerability dashboard.
 
@@ -168,6 +172,8 @@ Forwarding from [::1]:8080 -> 8080
 
 Open your browser to `localhost:8080` to view the reports.
 
+More detailed information about the use of Kyverno for Pod Security Standards (PSS) policy enforcement, including exception management is available in our separate [policy enforcement documentation][policy-enforcement].
+
 ## Falco
 
 Falco is a [CNCF project][falco-upstream] originally created by Sysdig which enables rule-based detection of runtime anomalies in a container or on a host Node. Falco watches Linux system calls (syscalls) for events matching a predefined set of suspicious or malicious activities, for example the reading of a sensitive file or the execution of a shell inside a container.
@@ -175,29 +181,28 @@ Falco is a [CNCF project][falco-upstream] originally created by Sysdig which ena
 We include Falco in our managed security stack as a detection mechanism for malicious activity once a Pod has already started. It is deployed from our [Falco App][falco-app], which includes helper components for exposing Prometheus metrics and forwarding events to various other channels, such as Elasticsearch and various messages queues and alerting backends.
 
 [app-platform]: {{< relref "/platform-overview/app-platform" >}}
-[efk-app]: https://github.com/giantswarm/efk-stack-app/
-[efk-stack]: {{< relref "/platform-overview/observability/elastic-stack" >}}
+[cilium-app]: https://github.com/giantswarm/cilium-app/
 [falco-app]: https://github.com/giantswarm/falco-app
 [falco-upstream]: https://github.com/falcosecurity/falco
 [harbor-app]: https://github.com/giantswarm/harbor-app
 [kube-bench]: https://github.com/aquasecurity/kube-bench
 [kyverno-app]: https://github.com/giantswarm/kyverno-app
 [kyverno-upstream]: https://github.com/kyverno/kyverno/
-[lens-extension]: https://github.com/aquasecurity/starboard-lens-extension
+[lens-extension]: https://github.com/aquasecurity/trivy-operator-lens-extension
 [linkerd-app]: https://github.com/giantswarm/linkerd2-app
 [linkerd-cni-app]: https://github.com/giantswarm/linkerd2-cni-app
 [linkerd-viz-app]: https://github.com/giantswarm/linkerd-viz-app
 [loki-app]: https://github.com/giantswarm/loki-app
 [net-pols]: {{< relref "/getting-started/network-policies" >}}
-[polaris]: https://github.com/FairwindsOps/polaris
+[policy-enforcement]: {{< relref "/advanced/security-policy-enforcement/" >}}
 [policy-reporter-upstream]: https://github.com/kyverno/policy-reporter
-[observability-stack]: {{< relref "/platform-overview/observability" >}}
-[octant-plugin]: https://github.com/aquasecurity/starboard-octant-plugin
+[observability-bundle]: {{< relref "/platform-overview/observability" >}}
 [rbac-psp]: {{< relref "/getting-started/rbac-and-psp" >}}
 [security]: {{< relref "/platform-overview/security/" >}}
-[starboard-app]: https://github.com/giantswarm/starboard-app
 [starboard-exporter]: https://github.com/giantswarm/starboard-exporter/
-[starboard-upstream]: https://github.com/aquasecurity/starboard
 [trivy-app]: https://github.com/giantswarm/trivy-app/
+[trivy-operator-app]: https://github.com/giantswarm/trivy-operator-app
 [trivy-upstream]: https://github.com/aquasecurity/trivy
-[vscode-trivy]: https://github.com/aquasecurity/trivy-vscode-extension [The nginx-ingress-controller helm chart on Github](https://github.com/giantswarm/nginx-ingress-controller-app)
+[trivy-operator-upstream]: https://github.com/aquasecurity/trivy-operator
+[vscode-trivy]: https://github.com/aquasecurity/trivy-vscode-extension
+[The nginx-ingress-controller helm chart on Github](https://github.com/giantswarm/nginx-ingress-controller-app)
