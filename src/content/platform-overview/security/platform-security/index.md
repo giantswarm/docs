@@ -194,7 +194,7 @@ We include Falco in our managed security stack as a detection mechanism for mali
 [linkerd-viz-app]: https://github.com/giantswarm/linkerd-viz-app
 [loki-app]: https://github.com/giantswarm/loki-app
 [net-pols]: {{< relref "/getting-started/network-policies" >}}
-[policy-enforcement]: {{< relref "/advanced/security-policy-enforcement/" >}}
+[policy-enforcement]: {{< relref "/advanced/security-policy-enforcement" >}}
 [policy-reporter-upstream]: https://github.com/kyverno/policy-reporter
 [observability-bundle]: {{< relref "/platform-overview/observability" >}}
 [rbac-psp]: {{< relref "/getting-started/rbac-and-psp" >}}
