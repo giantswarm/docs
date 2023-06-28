@@ -1,6 +1,6 @@
 ---
 description: A list of all external domains Giant Swarm clusters need access to in order to function.
-last_review_date: 2022-12-07
+last_review_date: 2023-06-28
 linkTitle: Domain allowlist
 menu:
   main:
