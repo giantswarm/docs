@@ -177,7 +177,10 @@ We're aiming to provide a comprehensive blackbox monitoring tool that can valida
 
 
 
-### aws-cloud-controller-manager [1.24.1-gs7](https://github.com/giantswarm/aws-cloud-controller-manager-app/releases/tag/v1.24.1-gs7)
+### aws-cloud-controller-manager [1.24.1-gs9](https://github.com/giantswarm/aws-cloud-controller-manager-app/releases/tag/v1.24.1-gs9)
+
+#### Changed
+- Adjusted VerticalPodAutoscaler minimum allowed CPU and memory
 
 #### Fixed
 - Quote environment variables that contain numeric values, because it's required by kubernetes.
@@ -214,9 +217,10 @@ We're aiming to provide a comprehensive blackbox monitoring tool that can valida
 
 
 
-### cluster-autoscaler [1.24.0-gs2](https://github.com/giantswarm/cluster-autoscaler-app/releases/tag/v1.24.0-gs2)
+### cluster-autoscaler [1.24.0-gs3](https://github.com/giantswarm/cluster-autoscaler-app/releases/tag/v1.24.0-gs3)
 
 #### Changed
+- Adjusted VerticalPodAutoscaler minimum allowed CPU and memory
 - Add 'projected' volumes to the PSP.
 - Add new-pod-scale-up-delay variable.
 - Disable PSPs for k8s 1.25 and newer.
