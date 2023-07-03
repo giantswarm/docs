@@ -16,7 +16,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-horizon
 ---
 
-Our cluster management implementations come in different generations which are designed to be compatible with each other and integrate well with our [app platform]({{< relref "/platform-overview/app-platform" >}}). Development focuses on the latest generation: cluster management based on the Kubernetes subproject [Cluster API (CAPI)]({{< relref "/platform-overview/cluster-management/cluster-api" >}}). We are planning and supporting the migration of customer clusters to this generation in the long term. The previous generation is called _Vintage_. Depending on the generation, we support certain cloud providers.
+One of the main building blocks of the platform is the cluster management. Our cluster management implementations come in different generations which are designed to be compatible with each other and integrate well with our [app platform]({{< relref "/platform-overview/app-platform" >}}). Development focuses on the latest generation: cluster management based on the Kubernetes subproject [Cluster API (CAPI)]({{< relref "/platform-overview/cluster-management/cluster-api" >}}). We are planning and supporting the migration of customer clusters to this generation in the long term. The previous generation is called _Vintage_. Depending on the generation, we support certain cloud providers.
 
 ## Cluster API (CAPI) generation
 
@@ -54,7 +54,7 @@ We offer the following cloud provider-specific implementations:
 
 ## Choice of cloud provider and implementation
 
-As new customer, the decision is usually based on the desired cloud provider (e.g. AWS). Your contact and the team at Giant Swarm will work with you to make the right choice of the implementation. We also clarify customizations with customers, such as networking or other requirements.
+As a new customer, the decision is usually based on the desired cloud provider (e.g. AWS). You have an assigned account engineer at Giant Swarm who will help from the very beginning to compose the development platform to your needs. We will work with you to make the right choice of the implementation, and also clarify customizations, such as networking or other requirements.
 
 Once the decision for a cloud provider and implementation was made, we can [get you started]({{< relref "/getting-started" >}}) quickly.
 
