@@ -273,7 +273,7 @@ yes
 
 ## Pod Security Standards (PSS)
 
-**Note:** Prior to Kubernetes v1.25, pod-level security configuration was controlled by Pod Security Policies (PSP). PSPs were a Kubernetes API resource which allowed cluster administrators to restrict the values a pod could use for certain security-relevant configuration. Due to limitations of the specification, the PSP type was deprecated in v1.21 and removed in v1.25.
+__Note__: Prior to Kubernetes v1.25, pod-level security configuration was controlled by Pod Security Policies (PSP). PSPs were a Kubernetes API resource which allowed cluster administrators to restrict the values a pod could use for certain security-relevant configuration. Due to limitations of the specification, the PSP type was deprecated in v1.21 and removed in v1.25.
 
 The Kubernetes maintainers publish a set of policies called Pod Security Standards, which describe acceptable pod configurations for different levels of risk. The policies apply to several pod and container specification-level fields which have security implications for the workload, and are grouped into three increasingly restrictive levels.
 
