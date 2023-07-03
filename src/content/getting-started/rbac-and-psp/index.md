@@ -281,13 +281,6 @@ For example, the `baseline` policy level limits the capabilities a pod can use t
 
 The Pod Security Standards provide only a set of suggested policies intended to be enforced by other implementations of actual controls which validate pods against the PSS rules.
 
-```mermaid
-flowchart TD
-    A["Pod Security Standards (PSS)"] -->|Enforced by| B("Kyverno <br/> (outside API Server)")
-    A --> |Enforced by| C("Pod Security Admission (PSA) <br/> (inside API Server)")
-
-```
-
 ### Pod Security Admission (PSA)
 
 The Kubernetes API includes a built-in admission controller called Pod Security Admission, which a specific implementation of a technical control for the Pod Security Standards. It is an admission controller which is built into the API server, and can be configured using labels on cluster namespaces.
@@ -300,7 +293,13 @@ To learn more about builtin PSA, please refer to the [upstream Kubernetes Pod Se
 
 Instead of the Pod Security Admission controller, Giant Swarm clusters use Kyverno along with a set of Kyverno ClusterPolicies which map to the Kubernetes Pod Security Standards.
 
-By default, Giant Swarm clusters enforce the `restricted` level Pod Security Standards. This level aligns with our other "secure by default" principles, and is intended to ensure our clusters are hardened according to community best practices.
+```mermaid
+flowchart TD
+    A["Pod Security Standards (PSS)"] -->|Enforced by| B("Kyverno <br/> (outside API Server)")
+    A --> |Enforced by| C("Pod Security Admission (PSA) <br/> (inside API Server)")
+```
+
+By default, Giant Swarm clusters enforce the `restricted` level Pod Security Standards. This level aligns with our "secure by default" principle, and is intended to ensure our clusters are hardened according to community best practices.
 
 Cluster administrators have complete flexibility and control over their policy enforcement, and may choose to ease their security requirements or enforce additional policies to suit their risk tolerance and business needs.
 
@@ -483,150 +482,6 @@ rules:
 ```
 
 #### 4. Bind the Role to the Service Account {#app-api-bind-role-sa}
-
-Now we bind the role we created above to the Service Account we're using.
-
-```yaml
-kind: ClusterRoleBinding
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: fluentd
-subjects:
-- kind: ServiceAccount
-  name: fluentd
-  namespace: logging
-roleRef:
-  kind: ClusterRole
-  name: fluentd
-  apiGroup: rbac.authorization.k8s.io
-```
-
-
-### Running applications that need privileged access
-
-Applications running inside your cluster that need to run in a privileged Security Context, e.g. as privileged containers, mounting host paths or exposing host ports, need the right permissions in the form of Pod Security Policies bound to them. For this the Pods again need to use a Service Account.
-
-The typical process looks like following example. If your app is already using a service account set up like the RBAC example above you can reuse that and skip steps 1, 2,and 5.
-
-#### 1. Create a Service Account for your app {#app-privileged-create-sa}
-
-```yaml
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: fluentd
-  namespace: logging
-```
-
-#### 2. Add the Service Account to your app {#app-privileged-add-sa}
-
-This is done by adding a line referencing the Service Account to the Pod spec of your Deployment or DaemonSet. To be sure you have the right place in the YAML you can put it right above the line `containers:` at the same indentation level. The section should look similar to following:
-
-```yaml
-[...]
-spec:
-  template:
-    metadata:
-      name: fluentd
-      labels:
-        component: fluentd
-    spec:
-      serviceAccountName: fluentd
-      containers:
-[...]
-```
-
-#### 3. Create a Pod Security Policy for your app {#app-privileged-create-psp}
-
-In Giant Swarm Kubernetes clusters there is a default Pod Security Policy (PSP) called `restricted` that applies when no specifc PSP is given. This PSP can help you create the specifc PSP needed for your app.
-
-This is done by adding a line referencing the Service Account to the Pod spec of your Deployment or Daemonset. To be sure you have the right place in the YAML you can put it right above the line `containers:` at the same indentation level. The section should look similar to following:
-
-You can get the YAML for this PSP by running:
-
-```nohighlight
-kubectl get psp restricted -o yaml --export
-```
-
-In this example we assume that fluentd needs to expose a host port (it doesn't, but just for this example's sake) and mount host paths (it actually does). Our PSP object based on the `restricted` PSP should look like following after editing.
-
-```yaml
-apiVersion: policy/v1beta1
-kind: PodSecurityPolicy
-metadata:
-  name: fluentd
-spec:
-  privileged: false
-  fsGroup:
-    rule: RunAsAny
-  runAsUser:
-    rule: RunAsAny
-  seLinux:
-    rule: RunAsAny
-  supplementalGroups:
-    rule: RunAsAny
-  volumes:
-  - 'configMap'
-  - 'hostPath'
-  allowedHostPaths:
-    - pathPrefix: "/var/log"
-    - pathPrefix: "/var/lib/docker/containers"
-  hostPID: false
-  hostIPC: false
-  hostNetwork: true
-  hostPorts:
-  - min: 9001
-    max: 9001
-```
-
-Note, how the above PSP allows the use volumes of type `configMap` and `hostPath`, but restricts the latter to only two specific paths (and their sub-paths). Furthermore, the PSP allows the use of a single host port, namely `9001`.
-
-We strongly recommend to create such specific rules, so that no further privilege escalation can occur.
-
-#### 4. Create a Role for your app {#app-privileged-create-role}
-
-Now that we have a PSP we need a role that is allowed to `use` that PSP.
-
-```yaml
-kind: ClusterRole
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: fluentd
-rules:
-- apiGroups:
-  - policy
-  resources:
-  - podsecuritypolicies
-  resourceNames:
-  - fluentd
-  verbs:
-  - use
-```
-
-If there's already a role for that app, like the one we created in the RBAC example above, we can also just edit that role and add our PSP to its rules:
-
-```yaml
-kind: ClusterRole
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: fluentd
-rules:
-- apiGroups: [""] # core API group
-  resources: ["pods", "namespaces"]
-  verbs: ["get", "watch", "list"]
-- apiGroups:
-  - policy
-  resources:
-  - podsecuritypolicies
-  resourceNames:
-  - fluentd
-  verbs:
-  - use
-```
-
-In the latter case we already have bound that role to our Service Account and are done. In the former case we still need step 5.
-
-#### 5. Bind the Role to the Service Account {#app-privileged-bind-role-sa}
 
 Now we bind the role we created above to the Service Account we're using.
 
