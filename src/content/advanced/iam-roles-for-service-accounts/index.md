@@ -117,6 +117,7 @@ Alternatively you can use `kubectl` to annotate the CR like shown below:
 
 ```nohighlight
 kubectl annotate \
+   --namespace myorg \
    awsclusters.infrastructure.giantswarm.io \
    abcl0 \
    alpha.aws.giantswarm.io/iam-roles-for-service-accounts=""

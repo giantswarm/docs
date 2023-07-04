@@ -7,7 +7,7 @@ menu:
   main:
     parent: getting-started-app-platform
     identifier: getting-started-app-platform-default-validation
-last_review_date: 2022-02-16
+last_review_date: 2023-06-26
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 aliases:
@@ -94,8 +94,8 @@ spec:
   kubeConfig:
     context:
       name: x7jwz
-     inCluster: false
-     secret:
+    inCluster: false
+    secret:
       name: x7jwz-kubeconfig
       namespace: x7jwz
   userConfig:
