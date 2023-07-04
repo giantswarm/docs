@@ -53,3 +53,19 @@ taxonomies:
 
 permalinks:
   changes_categories: /changes/:slug
+
+# Populate the `.Site.Params` variable for use in templates and shortcodes
+params:
+  impl_titles:
+    capi_any: "CAPI (any)"
+    vintage_any: "Vintage (any)"
+
+    capa_ec2: "CAPA (AWS EC2)"
+    capa_eks: "CAPA (AWS EKS)"
+    capg_vms: "CAPG (GCP VMs)"
+    capv: "CAPV (VMware vSphere)"
+    capvcd: "CAPVCD (VMware Cloud Director)"
+    capz_vms: "CAPZ (Azure VMs)"
+    vintage_aws: "Vintage (AWS)"
+    vintage_azure: "Vintage (Azure)"
+    vintage_kvm: "Vintage (KVM)"

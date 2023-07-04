@@ -18,8 +18,8 @@ By default, Giant Swarm clusters expose the Kubernetes API endpoint publicly and
 
 The following products offer private cluster features:
 
-- CAPA (AWS EC2)
-- CAPZ (Azure VMs)
+- {{% impl_title "capa_ec2" %}}
+- {{% impl_title "capz_vms" %}}
 
 Private clusters have special requirements:
 
@@ -40,7 +40,7 @@ At the moment, we have these [`kubectl gs template cluster` command line options
 We have a few provider-specific hints:
 
 {{< tabs >}}
-{{< tab id="private-cluster-capz-azure-vms" title="CAPZ (Azure VMs)">}}
+{{< tab id="private-cluster-capz-azure-vms" for-impl="capz_vms">}}
 
 As getting the correct CIDR depend on the installation, please get in contact with your platform team to check for the next CIDR range to use. This step might become obsolete once a dedicated IPAM operator got implemented for private Azure clusters.
 
