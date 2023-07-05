@@ -36,12 +36,12 @@ For certain cloud providers, there are even different options available: for exa
 
 The open-source cloud infrastructure providers of CAPI are separate projects – named CAPA for the AWS cloud, CAPZ for Azure, etc. Since they provide a major part of the cluster management, we name our implementations after them. We offer the following cloud provider-specific implementations:
 
-- **{{% cluster_mgmt_impl_capa_ec2 %}}**
-- **{{% cluster_mgmt_impl_capa_eks %}}**
-- **{{% cluster_mgmt_impl_capg_gcp_vms %}}**
-- **{{% cluster_mgmt_impl_capv %}}**
-- **{{% cluster_mgmt_impl_capvcd %}}**
-- **{{% cluster_mgmt_impl_capz_vms %}}**
+- **{{% impl_title "capa_ec2" %}}**
+- **{{% impl_title "capa_eks" %}}**
+- **{{% impl_title "capg_vms" %}}**
+- **{{% impl_title "capv" %}}**
+- **{{% impl_title "capvcd" %}}**
+- **{{% impl_title "capz_vms" %}}**
 
 ## Vintage generation
 
@@ -49,9 +49,9 @@ This is the previous generation and is still in production with many of our cust
 
 We offer the following cloud provider-specific implementations:
 
-- **{{% cluster_mgmt_impl_vintage_aws %}}**
-- **{{% cluster_mgmt_impl_vintage_azure %}}**
-- **{{% cluster_mgmt_impl_vintage_kvm %}}** – _deprecated and being phased out_
+- **{{% impl_title "vintage_aws" %}}**
+- **{{% impl_title "vintage_azure" %}}**
+- **{{% impl_title "vintage_kvm" %}}** – _deprecated and being phased out_
 
 ## Choice of cloud provider and implementation
 
