@@ -2,8 +2,8 @@
 linkTitle: Cluster API
 title: Cluster API
 description: All the details on the Cluster API cluster management features offered by Giant Swarm.
-last_review_date: 2022-12-07
-weight: 10
+last_review_date: 2023-06-21
+weight: 15
 aliases:
 menu:
   main:
