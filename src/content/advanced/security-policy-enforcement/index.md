@@ -1058,7 +1058,7 @@ To exclude a workload from a policy, create a `PolicyException` resource for tha
 
 There are different ways to structure a `PolicyException`, and your cluster administrator may have a preferred format.
 
-Giant Swarm currently uses a "PolicyException per Pod" approach, which looks like this:
+Giant Swarm currently uses a "PolicyException per Workload" approach, which looks like this:
 
 ```yaml
 apiVersion: kyverno.io/v2alpha1
@@ -1093,6 +1093,7 @@ This example allows a DaemonSet (and the Pods it creates) named `my-workload` in
 Noteworthy pieces of this example:
 
 - Kyverno policy rules are usually written at the Pod level. For convenience, Kyverno automatically generates equivalent rules for Pod controllers like Deployments and DaemonSets. Such rules are prefaced with the value `autogen-` and added to the policy automatically (two such rules are visible in the example). When writing a `PolicyException`, any applicable `autogen` rules must also be listed if a workload should be exempt from them.
+- When listing resource kinds in a `PolicyException`, every subresource controller must be listed. For example: If a Policy is written at the CronJob level, then the Job and Pod controllers need to be explicitly defined in the `PolicyException`. The same happens with Deployments, where the ReplicaSet and Pod controllers will need to be excluded too.
 - A policy can contain multiple rules -- exceptions can be applied to individual rules so that the others remain in effect. Here, the workload is allowed to fail the `host-path` and `restricted-volumes` rules (and their automatically generated equivalents). A workload is only exempt from the rules listed in a `ruleNames` list. If a policy contains other rules not listed in the `PolicyException`, and the workload does not satisfy those rules, the workload will be rejected.
 - Cluster administrators can choose the namespace(s) where `PolicyExceptions` are stored. The correct namespace for a `PolicyException` might be different than the namespace for the Pod itself.
 
