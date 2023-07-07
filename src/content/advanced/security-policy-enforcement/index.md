@@ -1080,7 +1080,8 @@ spec:
     any:
     - resources:
         kinds:
-        - DaemonSet
+        - Deployment
+        - ReplicaSet
         - Pod
         namespaces:
         - my-namespace
@@ -1088,7 +1089,7 @@ spec:
         - my-workload*
 ```
 
-This example allows a DaemonSet (and the Pods it creates) named `my-workload` in the namespace `my-namespace` to be admitted even though it violates the `disallow-host-path` and `restrict-volume-types` policies.
+This example allows a Deployment (and the ReplicaSet and Pods it creates) named `my-workload` in the namespace `my-namespace` to be admitted even though it violates the `disallow-host-path` and `restrict-volume-types` policies.
 
 Noteworthy pieces of this example:
 
