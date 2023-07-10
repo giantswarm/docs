@@ -5,7 +5,7 @@ description: Ways to interact with your infrastructure and apps, from CLIs and A
 aliases:
   - /basics/api/
   - /ui-api/
-last_review_date: 2023-03-28
+last_review_date: 2023-07-10
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 ---
