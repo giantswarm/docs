@@ -7,5 +7,5 @@ aliases:
   - /ui-api/
 last_review_date: 2023-07-10
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-docs
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
