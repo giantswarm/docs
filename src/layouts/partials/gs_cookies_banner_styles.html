@@ -2,10 +2,10 @@
 
 <style>
 a { background-color: transparent; }
-*, ::before, ::after { box-sizing: inherit; }
-a { color: rgb(0, 159, 255); text-decoration: none; transition: color 0.4s ease 0s, text-shadow 0.4s ease 0s, background-color 0.4s ease 0s, border-color 0.4s ease 0s, box-shadow 0.4s ease 0s, opacity 0.4s ease 0s; font-weight: 500; }
-p { max-width: 100%; margin-top: 0px; }
-p, .p { margin-bottom: 1.8em; }
+*, ::after, ::before { box-sizing: inherit; }
+a { color: rgb(0, 159, 255); font-weight: 500; text-decoration: none; transition: color 0.4s ease 0s, text-shadow 0.4s ease 0s, background-color 0.4s ease 0s, border-color 0.4s ease 0s, box-shadow 0.4s ease 0s, opacity 0.4s ease 0s; }
+p { margin-top: 0px; max-width: 100%; }
+.p, p { margin-bottom: 1.8em; }
 div#hs-eu-cookie-confirmation * { box-sizing: border-box !important; }
 div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner { background: rgb(255, 255, 255); margin: 0px auto; max-width: 1000px; padding: 20px; }
 div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a { text-decoration: none !important; }
@@ -13,16 +13,17 @@ div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a, div#hs-eu-c
 div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a:hover { text-decoration: underline !important; }
 div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner div#hs-eu-policy-wording { margin-bottom: 12px; }
 div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner div#hs-en-cookie-confirmation-buttons-area, div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner div#hs-eu-cookie-confirmation-button-group { display: flex; flex-flow: row wrap; align-items: center; }
-div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner div#hs-en-cookie-confirmation-buttons-area { justify-content: flex-end; align-items: center; margin: 10px 0px 0px !important; }
+div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner div#hs-en-cookie-confirmation-buttons-area { margin-right: 72px; justify-content: flex-end; align-items: center; }
 div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner div#hs-eu-cookie-confirmation-button-group { justify-content: center; }
 div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a#hs-eu-confirmation-button, div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a#hs-eu-cookie-settings-button, div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a#hs-eu-decline-button { margin: 6px !important; }
 div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a#hs-eu-confirmation-button, div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a#hs-eu-decline-button { border-radius: 3px; display: inline-block; padding: 10px 16px !important; text-decoration: none !important; }
 div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a#hs-eu-confirmation-button { color: rgb(255, 255, 255); font-family: inherit; font-size: inherit; line-height: inherit; text-align: left; background-color: rgb(66, 91, 118) !important; border: 1px solid rgb(66, 91, 118) !important; font-weight: 400 !important; text-shadow: none !important; }
 div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a#hs-eu-decline-button { color: rgb(66, 91, 118); font-family: inherit; font-size: inherit; line-height: inherit; text-align: left; border: 1px solid rgb(66, 91, 118) !important; font-weight: 400 !important; text-shadow: none !important; }
 div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a#hs-eu-cookie-settings-button { color: rgb(66, 91, 118) !important; }
-div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner p { margin: 0px 0px 12px; color: rgb(51, 71, 91); font-family: inherit; font-size: inherit; line-height: inherit; text-align: left; font-weight: 400 !important; text-shadow: none !important; }
+div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner p { margin: 0px 72px 12px; color: rgb(51, 71, 91); font-family: inherit; font-size: inherit; line-height: inherit; text-align: left; font-weight: 400 !important; text-shadow: none !important; }
 @media (max-width: 800px) {
-div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner div#hs-en-cookie-confirmation-buttons-area { justify-content: center; }
+div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner div#hs-en-cookie-confirmation-buttons-area { justify-content: center; margin-right: 0px; }
+div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner p { margin: 0px 20px 12px; }
 }
 @media screen and (max-width: 480px) {
 div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner { padding: 8px 14px 14px !important; }

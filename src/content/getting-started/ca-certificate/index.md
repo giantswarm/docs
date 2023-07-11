@@ -1,8 +1,7 @@
 ---
-linkTitle: Accepting your cluster’s CA certificate
-title: Establishing trust to your cluster's CA and importing certificates
+title: Accepting your cluster’s CA certificate
 description: To access the API of your server as well as services like the Kubernetes Dashboard using a web browser, you need to import the CA certificate for the cluster and your key pair. Here we show how to do this for several platforms and clients.
-weight: 80
+weight: 130
 menu:
   main:
     parent: getting-started
@@ -12,8 +11,8 @@ user_questions:
   - How can I set my cluster's CA certificate to be trusted by my system?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-  - https://github.com/orgs/giantswarm/teams/team-rocket
-last_review_date: 2021-01-01
+  - https://github.com/orgs/giantswarm/teams/team-bigmac
+last_review_date: 2023-04-04
 ---
 
 In this tutorial we explain to you how to establish trust to your cluster's Certificate Authority (CA) and how to import a key pair to enable client authentication against the API to enable access to the Kubernetes API of your cluster.
@@ -29,7 +28,7 @@ As a user of a Giant Swarm Kubernetes cluster, when you access services on the c
 
 The CA that issued the server certificate is one created by Giant Swarm exclusively for your cluster, so it is unknown to your browser.
 
-Both the CA file for your cluster and a personal key pair, consisting of a client certificate and a private key, can be obtained using either our [web user interface]({{< relref "/ui-api/web/" >}}) or [gsctl]({{< relref "/ui-api/gsctl" >}}).
+Both the CA file for your cluster and a personal key pair, consisting of a client certificate and a private key, can be obtained using either our [web user interface]({{< relref "/platform-overview/web-interface/" >}}) or [gsctl]({{< relref "/use-the-api/gsctl" >}}).
 
 In the tutorial we assume that you have done this and obtained three files:
 
@@ -48,11 +47,11 @@ openssl pkcs12 -export -clcerts \
   -inkey client.key \
   -in client.crt \
   -out client.p12 \
-  -passout pass:giantswarm \
+  -passout pass:YOUR_PASSWORD \
   -name "Key pair for Giant Swarm cluster"
 ```
 
-The `-passout` argument sets a password to encrypt the bundle. In our examples here, we use the password `giantswarm`. Feel free to pick your own password when following the tutorial, but make sure to prepend the `pass:` prefix as shown above. If you prefer to enter a password via a prompt instead of passing it as a clear text argument, you can completely omit the `-passout pass:<your-password>` part.
+The `-passout` argument sets a password to encrypt the bundle. Make sure to prepend the `pass:` prefix to the password as shown above. If you prefer to enter a password via a prompt instead of passing it as a clear text argument, you can completely omit the `-passout pass:YOUR_PASSWORD` part.
 
 Also note that we give a freely chosen name for the bundle using the `-name` argument. You can pick whatever name suits you. However, most platforms don't display this name in any meaningful place, so don't put too much effort in coming up with a good name.
 
@@ -114,7 +113,7 @@ Now to importing your client certificate. With `path/to/bundle.p12` being the pa
 security import \
   path/to/bundle.p12 \
   -k "$HOME/Library/Keychains/login.keychain" \
-  -P giantswarm
+  -P YOUR_PASSWORD
 ```
 
 #### Firefox on macOS {#mac-os-firefox}
@@ -167,7 +166,7 @@ Now we can import the PKCS12 key bundle. The example below again assumes the PKC
 ```nohighlight
 pk12util -i path/to/bundle.p12 \
   -d sql:$HOME/.pki/nssdb \
-  -W giantswarm
+  -W YOUR_PASSWORD
 ```
 
 #### Firefox on Linux {#linux-firefox}
@@ -205,7 +204,7 @@ Now we can import the PKCS12 key bundle. The example below again assumes your Fi
 ```nohighlight
 pk12util -i path/to/bundle.p12 \
   -d ~/.mozilla/firefox/6eozd6kv.default \
-  -W giantswarm
+  -W YOUR_PASSWORD
 ```
 
 ### Windows

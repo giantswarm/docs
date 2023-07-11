@@ -11,7 +11,7 @@ changes_entry:
   version_tag: v11.5.4
 date: '2020-08-28T13:00:00+00:00'
 description: Release notes for AWS workload cluster release v11.5.4, published on
-  28 August 2020, 13:00
+  28 August 2020, 13:00.
 title: Workload cluster release v11.5.4 for AWS
 ---
 

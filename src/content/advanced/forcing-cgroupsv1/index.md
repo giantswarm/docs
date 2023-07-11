@@ -10,7 +10,7 @@ user_questions:
  -  How can I enable cgroupsv1?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2022-02-01
+last_review_date: 2023-04-04
 ---
 
 {{< platform_support_table aws="beta=v17.0.0" azure="beta=v17.0.0" >}}
@@ -23,7 +23,7 @@ To ensure a smooth transition, in case you need time to modify applications to m
 
 ### AWS
 
-To enable cgroups v1, you have to edit the [`MachineDeployment`]({{< relref "/ui-api/management-api/crd/machinedeployments.cluster.x-k8s.io.md" >}}) resource of your cluster using the [Management API]({{< relref "/ui-api/management-api/" >}}).
+To enable cgroups v1, you have to edit the [`MachineDeployment`]({{< relref "/use-the-api/management-api/crd/machinedeployments.cluster.x-k8s.io.md" >}}) resource of your cluster using the [Management API]({{< relref "/use-the-api/management-api/" >}}).
 
 Make sure the resource has the `node.giantswarm.io/cgroupv1` annotation. The value can be anything you like, as only the presence of that annotation is checked. Here is an example:
 
@@ -32,7 +32,7 @@ apiVersion: cluster.x-k8s.io/v1alpha3
 kind: MachineDeployment
 metadata:
   annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/machinedeployments.cluster.x-k8s.io/
+    giantswarm.io/docs: https://docs.giantswarm.io/use-the-api/management-api/crd/machinedeployments.cluster.x-k8s.io/
     node.giantswarm.io/cgroupv1: ""
   labels:
     cluster.x-k8s.io/cluster-name: abcd1
@@ -56,11 +56,11 @@ In order to apply the changes, rolling of the nodes in the modified node pool is
 
 We recommend to set the proper annotation on the node pool before upgrading to release `v17.0.0` or later.
 
-If you want to disable the feature you must remove the annotation from the [`MachineDeployment`]({{< relref "/ui-api/management-api/crd/machinedeployments.cluster.x-k8s.io.md" >}}) resource.
+If you want to disable the feature you must remove the annotation from the [`MachineDeployment`]({{< relref "/use-the-api/management-api/crd/machinedeployments.cluster.x-k8s.io.md" >}}) resource.
 
 ### Azure
 
-To enable cgroups v1, you have to edit the [`MachinePool`]({{< relref "/ui-api/management-api/crd/machinepools.exp.cluster.x-k8s.io.md" >}}) resource of your cluster using the [Management API]({{< relref "/ui-api/management-api/" >}}).
+To enable cgroups v1, you have to edit the [`MachinePool`]({{< relref "/use-the-api/management-api/crd/machinepools.exp.cluster.x-k8s.io.md" >}}) resource of your cluster using the [Management API]({{< relref "/use-the-api/management-api/" >}}).
 
 Make sure the resource has the `node.giantswarm.io/cgroupv1` annotation. The value can be anything you like, as only the presence of that annotation is checked. Here is an example:
 
@@ -95,4 +95,4 @@ In order to apply the changes, rolling of the nodes in the modified node pool is
 
 We recommend to set the proper annotation on the node pool before updating to the release `17.0.0` or later.
 
-If you want to disable the feature you must remove the annotation from the [`MachinePool`]({{< relref "/ui-api/management-api/crd/machinepools.exp.cluster.x-k8s.io.md" >}}) custom resource.
+If you want to disable the feature you must remove the annotation from the [`MachinePool`]({{< relref "/use-the-api/management-api/crd/machinepools.exp.cluster.x-k8s.io.md" >}}) custom resource.

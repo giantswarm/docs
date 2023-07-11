@@ -3,7 +3,7 @@ linkTitle: High-availability control plane
 title: High-availability Kubernetes control plane
 description: For production clusters with high availability requirements, Giant Swarm on AWS enables control planes with three control plane nodes and three etcd replicas spread over multiple availability zones.
 weight: 10
-last_review_date: 2021-06-07
+last_review_date: 2023-04-04
 menu:
   main:
     parent: advanced-highavailability
@@ -70,7 +70,7 @@ the number of AZs in the region, the logic is:
 
 - In case of **three or more AZs** in the region, each control plane node is assigned to a different
   AZ, selected randomly.
-- In case of **two AZs** in the region (as is the case in `cn-north-1`), both AZs get used.
+- In case of **two AZs** in the region, both AZs get used.
   Two of the control plane nodes will share the same AZ.
 
 When [converting a cluster with a single control plane node to high availability](#conversion-to-ha),
@@ -102,7 +102,7 @@ the instructions in the web UI.
 ### Via `gsctl` {#gsctl}
 
 The `gsctl` CLI as of v0.23.1 provides the
-[gsctl update cluster]({{< relref "/ui-api/gsctl/update-cluster" >}}) to change cluster details.
+[gsctl update cluster]({{< relref "/use-the-api/gsctl/update-cluster" >}}) to change cluster details.
 Check the reference for the `--master-ha` flag.
 
 ### Via the REST API {#rest-api}
@@ -113,7 +113,7 @@ to find out how to convert a cluster programmatically using the Giant Swarm REST
 ### Via the Management API {#management-api}
 
 In order to convert a single node control plane to high availability, the cluster's
-[`G8sControlPlane`]({{< relref "/ui-api/management-api/crd/g8scontrolplanes.infrastructure.giantswarm.io.md" >}})
+[`G8sControlPlane`]({{< relref "/use-the-api/management-api/crd/g8scontrolplanes.infrastructure.giantswarm.io.md" >}})
 has to be modified. First you have to find the resource for your cluster ID. The
 following command helps with that:
 

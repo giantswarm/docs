@@ -11,7 +11,7 @@ changes_entry:
   version_tag: v9.0.2
 date: '2020-05-04T12:00:00+00:00'
 description: Release notes for KVM workload cluster release v9.0.2, published on 04
-  May 2020, 12:00
+  May 2020, 12:00.
 title: Workload cluster release v9.0.2 for KVM
 ---
 

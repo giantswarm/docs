@@ -11,7 +11,7 @@ changes_entry:
   version_tag: v11.3.3
 date: '2020-06-18T15:00:00+00:00'
 description: Release notes for Azure workload cluster release v11.3.3, published on
-  18 June 2020, 15:00
+  18 June 2020, 15:00.
 title: Workload cluster release v11.3.3 for Azure
 ---
 

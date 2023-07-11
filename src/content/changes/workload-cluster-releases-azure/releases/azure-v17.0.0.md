@@ -6,12 +6,12 @@ changes_categories:
 - Workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
-  url: https://github.com/giantswarm/releases/tree/master/azure/v17.0.0
+  url: https://github.com/giantswarm/releases/tree/master/azure/archived/v17.0.0
   version: 17.0.0
   version_tag: v17.0.0
 date: '2022-03-17T14:43:09+00:00'
 description: Release notes for Azure workload cluster release v17.0.0, published on
-  17 March 2022, 14:43
+  17 March 2022, 14:43.
 title: Workload cluster release v17.0.0 for Azure
 ---
 

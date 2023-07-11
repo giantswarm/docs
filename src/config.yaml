@@ -23,9 +23,9 @@ markup:
 
 menu:
   main:
-  - identifier: general
-    name: General
-    url: /general/
+  - identifier: platform-overview
+    name: Platform Overview
+    url: /platform-overview/
     weight: 10
   - identifier: getting-started
     name: Getting started
@@ -35,18 +35,14 @@ menu:
     name: Advanced setup
     url: /advanced/
     weight: 30
-  - identifier: ui-api
-    name: UIs and APIs
-    url: /ui-api/
+  - identifier: use-the-api
+    name: Use the API
+    url: /use-the-api/
     weight: 40
-  - identifier: app-platform
-    name: App platform
-    url: /app-platform/
+  - identifier: support-training
+    name: Support & Training
+    url: /support/
     weight: 50
-  - identifier: security
-    name: Security
-    url: /security/
-    weight: 60
   - identifier: changes
     name: Changes and releases
     url: /changes/
@@ -57,3 +53,19 @@ taxonomies:
 
 permalinks:
   changes_categories: /changes/:slug
+
+# Populate the `.Site.Params` variable for use in templates and shortcodes
+params:
+  impl_titles:
+    capi_any: "CAPI (any)"
+    vintage_any: "Vintage (any)"
+
+    capa_ec2: "CAPA (AWS EC2)"
+    capa_eks: "CAPA (AWS EKS)"
+    capg_vms: "CAPG (GCP VMs)"
+    capv: "CAPV (VMware vSphere)"
+    capvcd: "CAPVCD (VMware Cloud Director)"
+    capz_vms: "CAPZ (Azure VMs)"
+    vintage_aws: "Vintage (AWS)"
+    vintage_azure: "Vintage (Azure)"
+    vintage_kvm: "Vintage (KVM)"

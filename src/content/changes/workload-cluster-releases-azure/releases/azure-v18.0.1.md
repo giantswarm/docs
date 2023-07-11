@@ -6,12 +6,12 @@ changes_categories:
 - Workload cluster releases for Azure
 changes_entry:
   repository: giantswarm/releases
-  url: https://github.com/giantswarm/releases/tree/master/azure/v18.0.1
+  url: https://github.com/giantswarm/releases/tree/master/azure/archived/v18.0.1
   version: 18.0.1
   version_tag: v18.0.1
 date: '2022-09-12T12:49:54+00:00'
 description: Release notes for Azure workload cluster release v18.0.1, published on
-  12 September 2022, 12:49
+  12 September 2022, 12:49.
 title: Workload cluster release v18.0.1 for Azure
 ---
 

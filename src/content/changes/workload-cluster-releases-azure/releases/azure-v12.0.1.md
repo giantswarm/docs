@@ -11,7 +11,7 @@ changes_entry:
   version_tag: v12.0.1
 date: '2020-08-20T15:00:00+00:00'
 description: Release notes for Azure workload cluster release v12.0.1, published on
-  20 August 2020, 15:00
+  20 August 2020, 15:00.
 title: Workload cluster release v12.0.1 for Azure
 ---
 

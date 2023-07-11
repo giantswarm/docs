@@ -10,7 +10,7 @@ user_questions:
   - How can I activate accelerated networking for my Azure clusters?
 aliases:
   - /basics/azure-accelerated-networking/
-last_review_date: 2021-05-04
+last_review_date: 2023-03-06
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---

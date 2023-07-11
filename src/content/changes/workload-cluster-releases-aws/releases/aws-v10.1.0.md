@@ -11,7 +11,7 @@ changes_entry:
   version_tag: v10.1.0
 date: '2019-12-18T14:00:00+00:00'
 description: Release notes for AWS workload cluster release v10.1.0, published on
-  18 December 2019, 14:00
+  18 December 2019, 14:00.
 title: Workload cluster release v10.1.0 for AWS
 ---
 

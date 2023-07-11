@@ -1,8 +1,7 @@
 ---
-linkTitle: Exposing workloads
-title: Accessing pods and services from the outside
+title: Exposing workloads
 description: You can access pods and services from outside your cluster either through the API proxy or through ingress.
-weight: 60
+weight: 80
 menu:
   main:
     parent: getting-started
@@ -15,7 +14,7 @@ aliases:
   - /guides/accessing-services-from-the-outside/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
-last_review_date: 2021-09-01
+last_review_date: 2023-03-28
 ---
 
 Once you have some workload running on your cluster, you might want to access it from outside your cluster. Creating an Ingress resource is the canonical way to do that:
@@ -79,8 +78,6 @@ spec:
       - path: /
         pathType: Prefix
         backend:
-          serviceName: SERVICE_NAME
-          servicePort: SERVICE_PORT
           service:
             name: SERVICE_NAME
             port:
@@ -113,7 +110,7 @@ kubectl -n NAMESPACE describe ing/INGRESS_NAME
 Once the ingress is up, you will be able to access your service publicly at a URL like this (again replacing the placeholders):
 
 ```nohighlight
-http://PREFIX.CLUSTER_ID.k8s.gigantic.io
+https://PREFIX.CLUSTER_ID.k8s.gigantic.io
 ```
 
 For additional features and options, please see our documentation around [advanced ingress configuration]({{< relref "/advanced/ingress/configuration" >}}).

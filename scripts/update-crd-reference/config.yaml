@@ -98,7 +98,7 @@ source_repositories:
     metadata:
       organizations.security.giantswarm.io:
         owner:
-          - https://github.com/orgs/giantswarm/teams/team-rainbow
+          - https://github.com/orgs/giantswarm/teams/team-bigmac
         topics:
           - managementcluster
   - url: https://github.com/giantswarm/apiextensions
@@ -268,7 +268,7 @@ source_repositories:
         hidden: true
       certconfigs.core.giantswarm.io:
         owner:
-          - https://github.com/orgs/giantswarm/teams/team-cabbage
+          - https://github.com/orgs/giantswarm/teams/team-phoenix
         topics:
           - managementcluster
           - workloadcluster
@@ -284,11 +284,12 @@ source_repositories:
         hidden: true
       clusters.cluster.x-k8s.io:
         owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
           - https://github.com/orgs/giantswarm/teams/team-rocket
+          - https://github.com/orgs/giantswarm/teams/team-phoenix
         provider:
           - aws
           - azure
+          - capa
           - vsphere
         topics:
           - workloadcluster
@@ -351,6 +352,8 @@ source_repositories:
           - kvm
         topics:
           - workloadcluster
+        deprecation:
+          info: Support for KVM clusters has reached end of life and this CRD will be removed in future versions.
       kvmconfigs.provider.giantswarm.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-rocket
@@ -358,6 +361,8 @@ source_repositories:
           - kvm
         topics:
           - workloadcluster
+        deprecation:
+          info: Support for KVM clusters has reached end of life and this CRD will be removed in future versions.
       machinedeployments.cluster.x-k8s.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-phoenix

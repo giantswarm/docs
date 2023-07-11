@@ -1,7 +1,7 @@
 ---
 linkTitle: On-premises
 title: Using persistent volumes on-premises
-description: "Tutorial on how to use pre-created Persistent Volumes on a cluster running on-premises (on bare metal)"
+description: Tutorial on how to use pre-created Persistent Volumes on a cluster running on-premises (on bare metal).
 weight: 30
 menu:
   main:
@@ -9,11 +9,12 @@ menu:
     parent: gettingstarted-persistentvolumes
 aliases:
   - /guides/using-persistent-volumes-on-baremetal/
+  - /ui-api/observability/prometheus/persistent-volumes/on-premises
 user_questions:
   - How can I use persistent storage in my KVM clusters on-premises?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
-last_review_date: 2021-01-01
+last_review_date: 2022-12-07
 ---
 
 Persistent Volumes allow you to store data beyond the lifetime of a Pod. Ideally, storage is dynamically provisioned and claiming storage for your pods would not require you to pre-provision storage. However, depending on your installation, your bare metal clusters might not support dynamic storage provisioning.
@@ -96,7 +97,7 @@ First we create a PVC:
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: myclaim
+  name: MY_CLAIM
 spec:
   accessModes:
     - ReadWriteOnce
@@ -113,18 +114,18 @@ Now we can create a Pod that uses our PVC:
 kind: Pod
 apiVersion: v1
 metadata:
-  name: mypod
+  name: MY_POD
 spec:
   containers:
     - name: myfrontend
       image: nginx
       volumeMounts:
       - mountPath: "/var/www/html"
-        name: mypd
+        name: MY_VOLUME
   volumes:
-    - name: mypd
+    - name: MY_VOLUME
       persistentVolumeClaim:
-        claimName: myclaim
+        claimName: MY_CLAIM
 ```
 
 Now we have an NGINX Pod which serves the contents of our Volume.

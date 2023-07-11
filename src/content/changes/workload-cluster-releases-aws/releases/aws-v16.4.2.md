@@ -6,12 +6,12 @@ changes_categories:
 - Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
-  url: https://github.com/giantswarm/releases/tree/master/aws/v16.4.2
+  url: https://github.com/giantswarm/releases/tree/master/aws/archived/v16.4.2
   version: 16.4.2
   version_tag: v16.4.2
 date: '2022-06-02T10:00:00+00:00'
 description: Release notes for AWS workload cluster release v16.4.2, published on
-  02 June 2022, 10:00
+  02 June 2022, 10:00.
 title: Workload cluster release v16.4.2 for AWS
 ---
 

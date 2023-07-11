@@ -1,8 +1,7 @@
 ---
-linkTitle: Securing your cluster with RBAC and PSP
-title: Securing your Cluster with RBAC and PSP
-description: Introduction to using role-based access control (RBAC) and pod security policies (PSP) to secure your cluster and manage access control.
-weight: 40
+title: Securing your cluster with RBAC and PSS
+description: Introduction to using role-based access control (RBAC) and pod security standards (PSS) to secure your cluster and manage access control.
+weight: 110
 menu:
   main:
     parent: getting-started
@@ -18,10 +17,10 @@ aliases:
   - /guides/securing-with-rbac-and-psp/
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-security
-last_review_date: 2021-01-01
+last_review_date: 2023-06-30
 ---
 
-Two of the most central mechanisms to secure your cluster in Kubernetes are Role Based Access Control (RBAC) and Pod Security Policies (PSP). Together, they allow you to create fine-grained roles and policies to manage access control for users and software running on your cluster. Both are enabled by default on Giant Swarm clusters.
+Two of the most central mechanisms to secure your cluster in Kubernetes are Role Based Access Control (RBAC) and Pod Security Standards (PSS). Together, they allow you to create fine-grained roles and policies to manage access control for users and software running on your cluster. Both are enabled by default on Giant Swarm clusters.
 
 ## Role based access control
 
@@ -231,11 +230,11 @@ roleRef:
 
 ##### A super-user role binding
 
-One of the most important default Role Bindings is for the "cluster-admin" role, which depicts a super-user in the cluster. By default it is bound to the `system:masters` group. Thus, if you need cluster admin access to your Kubernetes cluster, you need to create user credentials (e.g. by [creating a key pair with gsctl]({{< relref "/ui-api/gsctl/create-keypair" >}}) or the Giant Swarm Web UI) that include that group.
+One of the most important default Role Bindings is for the "cluster-admin" role, which depicts a super-user in the cluster. By default it is bound to the `system:masters` group. Thus, if you need cluster admin access to your Kubernetes cluster, you need to create user credentials (e.g. by [creating a key pair with gsctl]({{< relref "/use-the-api/gsctl/create-keypair" >}}) or the Giant Swarm Web UI) that include that group.
 
 For a complete overview of default roles and bindings we defer to the [official RBAC documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#default-roles-and-role-bindings).
 
-__Warning:__ Be careful assigning super-user as a default role. Giving `cluster-admin` role to every user means letting them perform any action in the cluster. As an analogy, it is like you giving root access to every user in a Linux system. Consequently think twice which role your users will have in the system. For Kubernetes, it translates in selecting a username and group name properly. In case you use authentication based on certs, [common name and organization would be those respectively]({{< relref "/ui-api/gsctl/create-keypair#rbac-cn-org" >}}). If you are using an external authentication system then be sure it returns the correct user and group name to the Kubernetes API.
+__Warning:__ Be careful assigning super-user as a default role. Giving `cluster-admin` role to every user means letting them perform any action in the cluster. As an analogy, it is like you giving root access to every user in a Linux system. Consequently think twice which role your users will have in the system. For Kubernetes, it translates in selecting a username and group name properly. In case you use authentication based on certs, [common name and organization would be those respectively]({{< relref "/use-the-api/gsctl/create-keypair#rbac-cn-org" >}}). If you are using an external authentication system then be sure it returns the correct user and group name to the Kubernetes API.
 
 ### Verifying if you Have Access
 
@@ -272,23 +271,39 @@ $ kubectl auth can-i get pods --as-group=system:masters
 yes
 ```
 
-## Pod Security Policies
+## Pod Security Standards (PSS)
 
-A `PodSecurityPolicy` object defines a set of conditions that a pod must run with in order to be accepted into the system. It governs the ability to make requests on a Pod that affect the `SecurityContext` that will be applied to a Pod and container.
+__Note__: Prior to Kubernetes v1.25, pod-level security configuration was controlled by Pod Security Policies (PSP). PSPs were a Kubernetes API resource which allowed cluster administrators to restrict the values a pod could use for certain security-relevant configuration. Due to limitations of the specification, the PSP type was deprecated in v1.21 and removed in v1.25.
 
-By default, Giant Swarm clusters come with two PSPs defined - a `privileged` policy that allows almost any Security Context and a `restricted` policy that mainly restricts users from running privileged containers, running containers as root, or mounting host paths as volumes.
+The Kubernetes maintainers publish a set of policies called Pod Security Standards, which describe acceptable pod configurations for different levels of risk. The policies apply to several pod and container specification-level fields which have security implications for the workload, and are grouped into three increasingly restrictive levels.
 
-Additionally, there are two respective cluster roles defined - `privileged-psp-user` and `restricted-psp-user`.
+For example, the `baseline` policy level limits the capabilities a pod can use to a limited subset (~14 possibilities). The `restricted` level takes this policy further and requires each pod to explicitly drop all capabilities in its Pod spec, and allows adding back only a single capability (`NET_BIND_SERVICE`). The least restrictive level, `privileged`, is a no-op policy which does not perform any validation or impose any rules. Refer to the [official Pod Security Standards docs][upstream-pss] for more information.
 
-By default all authenticated users have the `restricted-psp-user` role assigned.
+The Pod Security Standards provide only a set of suggested policies intended to be enforced by other implementations of actual controls which validate pods against the PSS rules.
 
-If you need to run privileged or root containers in a Pod, you need to either use a cluster admin user or bind the `privileged-psp-user` role to your desired user or group.
+### Pod Security Admission (PSA)
 
-Note that your user's PSP only comes into play when you directly create Pods. If you are using Deployments, Daemonsets, or other means to spawn Pods in your cluster, you need to make sure these have the right PSP by using [Service Accounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/).
+The Kubernetes API includes a built-in admission controller called Pod Security Admission, which a specific implementation of a technical control for the Pod Security Standards. It is an admission controller which is built into the API server, and can be configured using labels on cluster namespaces.
 
-You need to either bind the already existing `privileged-psp-user` role, or create a PSP that caters specifically to your desired Security Context. Keep in mind that after creating a PSP you also need to have a role that is allowed to `use` that specific PSP and bind that to the Service Account you're using. For an example see [Running Applications that need Privileged Access](#running-applications-that-need-privileged-access).
+Due to perceived limitations in the initial implementation of PSA and to keep feature parity with PSPs for our customers, Giant Swarm uses an external admission controller to enforce these policies instead of PSA.
 
-For details on PSPs we defer to the [official PSP documentation](https://kubernetes.io/docs/concepts/policy/pod-security-policy/).
+To learn more about builtin PSA, please refer to the [upstream Kubernetes Pod Security Admission documentation][upstream-psa]. We've also written [a blog post outlining our decision not to use PSA][farewell-psp-blog].
+
+### Pod Security Standards with Kyverno
+
+Instead of the Pod Security Admission controller, Giant Swarm clusters use Kyverno along with a set of Kyverno ClusterPolicies which map to the Kubernetes Pod Security Standards.
+
+```mermaid
+flowchart TD
+    A["Pod Security Standards (PSS)"] -->|Enforced by| B("Kyverno <br/> (outside API Server)")
+    A --> |Enforced by| C("Pod Security Admission (PSA) <br/> (inside API Server)")
+```
+
+By default, Giant Swarm clusters enforce the `restricted` level Pod Security Standards. This level aligns with our "secure by default" principle, and is intended to ensure our clusters are hardened according to community best practices.
+
+Cluster administrators have complete flexibility and control over their policy enforcement, and may choose to ease their security requirements or enforce additional policies to suit their risk tolerance and business needs.
+
+[A detailed guide to working with Kyverno PSS Policies and PolicyExceptions][policy-enforcement-guide] is available as a standalone resource.
 
 ## User management with Giant Swarm
 
@@ -356,7 +371,7 @@ subjects:
     apiGroup: rbac.authorization.k8s.io
   - kind: Group
     name: dev-admin
-    apiGroup: rbac.authorization.k8s.io  
+    apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: ClusterRole
   name: admin
@@ -394,7 +409,7 @@ subjects:
     apiGroup: rbac.authorization.k8s.io
   - kind: Group
     name: cluster-view
-    apiGroup: rbac.authorization.k8s.io  
+    apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: ClusterRole
   name: view
@@ -485,149 +500,6 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-### Running applications that need privileged access
-
-Applications running inside your cluster that need to run in a privileged Security Context, e.g. as privileged containers, mounting host paths or exposing host ports, need the right permissions in the form of Pod Security Policies bound to them. For this the Pods again need to use a Service Account.
-
-The typical process looks like following example. If your app is already using a service account set up like the RBAC example above you can reuse that and skip steps 1, 2,and 5.
-
-#### 1. Create a Service Account for your app {#app-privileged-create-sa}
-
-```yaml
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: fluentd
-  namespace: logging
-```
-
-#### 2. Add the Service Account to your app {#app-privileged-add-sa}
-
-This is done by adding a line referencing the Service Account to the Pod spec of your Deployment or DaemonSet. To be sure you have the right place in the YAML you can put it right above the line `containers:` at the same indentation level. The section should look similar to following:
-
-```yaml
-[...]
-spec:
-  template:
-    metadata:
-      name: fluentd
-      labels:
-        component: fluentd
-    spec:
-      serviceAccountName: fluentd
-      containers:
-[...]
-```
-
-#### 3. Create a Pod Security Policy for your app {#app-privileged-create-psp}
-
-In Giant Swarm Kubernetes clusters there is a default Pod Security Policy (PSP) called `restricted` that applies when no specifc PSP is given. This PSP can help you create the specifc PSP needed for your app.
-
-This is done by adding a line referencing the Service Account to the Pod spec of your Deployment or Daemonset. To be sure you have the right place in the YAML you can put it right above the line `containers:` at the same indentation level. The section should look similar to following:
-
-You can get the YAML for this PSP by running:
-
-```nohighlight
-kubectl get psp restricted -o yaml --export
-```
-
-In this example we assume that fluentd needs to expose a host port (it doesn't, but just for this example's sake) and mount host paths (it actually does). Our PSP object based on the `restricted` PSP should look like following after editing.
-
-```yaml
-apiVersion: policy/v1beta1
-kind: PodSecurityPolicy
-metadata:
-  name: fluentd
-spec:
-  privileged: false
-  fsGroup:
-    rule: RunAsAny
-  runAsUser:
-    rule: RunAsAny
-  seLinux:
-    rule: RunAsAny
-  supplementalGroups:
-    rule: RunAsAny
-  volumes:
-  - 'configMap'
-  - 'hostPath'
-  allowedHostPaths:
-    - pathPrefix: "/var/log"
-    - pathPrefix: "/var/lib/docker/containers"
-  hostPID: false
-  hostIPC: false
-  hostNetwork: true
-  hostPorts:
-  - min: 9001
-    max: 9001
-```
-
-Note, how the above PSP allows the use volumes of type `configMap` and `hostPath`, but restricts the latter to only two specific paths (and their sub-paths). Furthermore, the PSP allows the use of a single host port, namely `9001`.
-
-We strongly recommend to create such specifc rules, so that no further privilege escalation can occur.
-
-#### 4. Create a Role for your app {#app-privileged-create-role}
-
-Now that we have a PSP we need a role that is allowed to `use` that PSP.
-
-```yaml
-kind: ClusterRole
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: fluentd
-rules:
-- apiGroups:
-  - policy
-  resources:
-  - podsecuritypolicies
-  resourceNames:
-  - fluentd
-  verbs:
-  - use
-```
-
-If there's already a role for that app, like the one we created in the RBAC example above, we can also just edit that role and add our PSP to its rules:
-
-```yaml
-kind: ClusterRole
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: fluentd
-rules:
-- apiGroups: [""] # core API group
-  resources: ["pods", "namespaces"]
-  verbs: ["get", "watch", "list"]
-- apiGroups:
-  - policy
-  resources:
-  - podsecuritypolicies
-  resourceNames:
-  - fluentd
-  verbs:
-  - use
-```
-
-In the latter case we already have bound that role to our Service Account and are done. In the former case we still need step 5.
-
-#### 5. Bind the Role to the Service Account {#app-privileged-bind-role-sa}
-
-Now we bind the role we created above to the Service Account we're using.
-
-```yaml
-kind: ClusterRoleBinding
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: fluentd
-subjects:
-- kind: ServiceAccount
-  name: fluentd
-  namespace: logging
-roleRef:
-  kind: ClusterRole
-  name: fluentd
-  apiGroup: rbac.authorization.k8s.io
-```
-
 ### Revoking access
 
 You can revoke access from any user or group of users by either completely removing the binding(s) they are part of or, in case of bindings that bind to several subjects, removing them specifically from the list of subjects in that binding.
@@ -637,7 +509,14 @@ Note that bindings that come with the cluster by default like `system:masters` c
 ## Further reading
 
 - [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/)
-- [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)
+- [Pod Security Admission][upstream-psa]
+- [Pod Security Standards][upstream-pss]
+- [Giant Swarm's farewell to PSP blog][farewell-psp-blog]
 - [Configuring Service Accounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/)
-- [Creating a kubeconfig with gsctl]({{< relref "/ui-api/gsctl/create-kubeconfig" >}})
-- [Creating a key pair with gsctl]({{< relref "/ui-api/gsctl/create-keypair" >}})
+- [Creating a kubeconfig with gsctl]({{< relref "/use-the-api/gsctl/create-kubeconfig" >}})
+- [Creating a key pair with gsctl]({{< relref "/use-the-api/gsctl/create-keypair" >}})
+
+[farewell-psp-blog]: https://www.giantswarm.io/blog/giant-swarms-farewell-to-psp
+[upstream-psa]: https://kubernetes.io/docs/concepts/security/pod-security-admission/
+[upstream-pss]: https://kubernetes.io/docs/concepts/security/pod-security-standards/
+[policy-enforcement-guide]: {{< relref "/advanced/security-policy-enforcement" >}}

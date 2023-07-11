@@ -1,7 +1,7 @@
 ---
 linkTitle: TLS certificates with cert-manager
 title: Obtaining TLS certificates for Ingresses with cert-manager
-description: Configure cert-manager to automatically obtain TLS certificates for Ingresses
+description: Configure cert-manager to automatically obtain TLS certificates for Ingresses.
 weight: 20
 menu:
   main:
