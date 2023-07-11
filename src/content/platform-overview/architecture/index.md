@@ -1,18 +1,20 @@
 ---
-linkTitle: Cluster API Architecture
-title: Cluster API Architecture
-description: Architecture overview explaining how our platform is built and what services we offer with Cluster API.
+linkTitle: Platform Architecture
+title: Platform Architecture
+description: Architecture overview explaining how our platform is built and what services we offer in the Platform.
 weight: 30
 menu:
   main:
-    parent: cluster-management-cluster-api
-last_review_date: 2022-12-07
+    parent: platform-overview
+    identifier: platform-architecture
+last_review_date: 2023-07-11
 user_questions:
-  - How do you run a developer platform based on Cluster API?
-  - How has Giant Swarm built a platform to build platforms with Cluster API?
+  - How do you looks like a developer platform?
+  - How has Giant Swarm built a platform to allow customers enhance developer experience?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
   - https://github.com/orgs/giantswarm/teams/team-phoenix
+  - https://github.com/orgs/giantswarm/teams/team-horizon
 ---
 
 The Giant Swarm platform consists of various systems. They can be categorized into three areas: infrastructure, applications, and operations.
