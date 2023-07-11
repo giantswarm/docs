@@ -59,17 +59,17 @@ apiVersion: application.giantswarm.io/v1alpha1
 kind: AppCatalogEntry
 metadata:
   creationTimestamp: null
-  name: giantswarm-nginx-ingress-controller-app-1.9.2
+  name: giantswarm-ingress-nginx-3.0.0
   namespace: default
 spec:
-  appName: nginx-ingress-controller-app
-  appVersion: v0.35.0
+  appName: ingress-nginx
+  appVersion: v1.8.0
   catalog:
     name: giantswarm
     namespace: ""
   chart:
     apiVersion: v1
-    home: https://github.com/giantswarm/nginx-ingress-controller-app
+    home: https://github.com/giantswarm/ingress-nginx-app
     icon: https://upload.wikimedia.org/wikipedia/commons/nginx-logo.svg
   dateCreated: "2020-09-02T09:40:39Z"
   dateUpdated: "2020-09-02T09:40:39Z"
@@ -78,7 +78,7 @@ spec:
     compatibleProviders:
     - aws
     fixedNamespace: giantswarm
-  version: 1.9.2
+  version: 3.0.0
 ```
 
 
@@ -158,7 +158,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>AppName is the name of the app this entry belongs to. e.g. nginx-ingress-controller-app</p>
+<p>AppName is the name of the app this entry belongs to. e.g. ingress-nginx-app</p>
 
 </div>
 
@@ -556,6 +556,3 @@ spec:
 
 
 </div>
-
-
-

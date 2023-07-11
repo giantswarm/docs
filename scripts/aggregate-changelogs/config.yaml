@@ -54,7 +54,7 @@ repositories:
     category: Management API
   giantswarm/management-cluster-admission:
     category: Management API
-  giantswarm/nginx-ingress-controller-app:
+  giantswarm/ingress-nginx-app:
     category: Managed Apps
   giantswarm/prometheus-operator-app:
     category: Managed Apps

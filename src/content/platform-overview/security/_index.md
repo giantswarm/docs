@@ -9,12 +9,13 @@ menu:
     identifier: platform-overview-security
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
-last_review_date: 2022-03-15
+last_review_date: 2023-06-28
 user_questions:
   - How do I view and manage vulnerabilities in my cluster?
   - What UI options are there for vulnerability and policy reports?
-  - What is included in the Security Pack?
+  - What is included in the Security Bundle?
   - How do I enforce admission policies in my cluster?
   - What can I do to keep my clusters secure?
   - What security services and tools does Giant Swarm offer?
+  - What access does Giant Swarm have to my cluster?
 ---

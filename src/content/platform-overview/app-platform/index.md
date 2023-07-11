@@ -90,7 +90,7 @@ together to enable the features of the Giant Swarm App Platform:
 
 #### The Giant Swarm App Catalog
 
-This catalog contains our stable, fully managed apps, with SLA (e.g. the NGINX Ingress Controller).
+This catalog contains our stable, fully managed apps, with SLA (e.g. the Ingress NGINX Controller).
 
 The maturity levels of apps in this catalog are expressed through semantic versioning as follows:
 

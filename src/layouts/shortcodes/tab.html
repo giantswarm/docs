@@ -1,13 +1,21 @@
 {{/* The tab counter is needed to activate the first tab by default. */}}
 {{- .Parent.Scratch.Add "tabcount" 1 }}
 
+{{/*
+    For cluster management implementation names, you can use `for-impl` instead of `title`.
+    This lookup is needed because Hugo does not support using a shortcode for the value of `title="..."`.
+*/}}
+{{ $title := default (.Get "title") (index (index $.Site.Params "impl_titles") (.Get "for-impl")) }}
+{{ if not $title }}
+{{ errorf "Please use a valid `title` or `for-impl` value for tabs in %q (`for-impl` value %q must be listed in `src/config.yaml`)" .Page.File.Path (.Get "for-impl") }}
+{{ end }}
 {{/* Making tab titles and IDs available to the parent, to create the header. */}}
 {{ $titles := .Parent.Scratch.Get "titles" }}
 {{- if $titles }}
-{{ $titles = $titles | append (.Get "title") }}
+{{ $titles = $titles | append $title }}
 {{ .Parent.Scratch.Set "titles" $titles }}
 {{- else }}
-{{ $titles := slice (.Get "title") }}
+{{ $titles := slice $title }}
 {{ .Parent.Scratch.Set "titles" $titles }}
 {{- end }}
 
@@ -20,7 +28,7 @@
 {{ .Parent.Scratch.Set "ids" $ids }}
 {{- end }}
 
-<div role="tabpanel" class="tab-pane{{ if eq (.Parent.Scratch.Get `tabcount`) 1 }} active{{ end }}" id="{{ if .Get `id` }}{{ .Get `id` | urlize }}{{ else }}{{ .Get `title` | urlize }}{{ end }}">
+<div role="tabpanel" class="tab-pane{{ if eq (.Parent.Scratch.Get `tabcount`) 1 }} active{{ end }}" id="{{ if .Get `id` }}{{ .Get `id` | urlize }}{{ else }}{{ $title | urlize }}{{ end }}">
 
 {{ .Inner | markdownify }}
 
