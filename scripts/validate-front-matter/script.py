@@ -109,7 +109,7 @@ checks = (
     {
         'id': NO_FULL_STOP_DESCRIPTION,
         'description': 'The description should end with a full stop',
-        'ignore_paths': [crds_path],
+        'ignore_paths': [crds_path, changes_path],
         'severity': SEVERITY_FAIL,
         'has_value': True,
     },
@@ -128,14 +128,15 @@ checks = (
     },
     {
         'id': NO_LINK_TITLE,
-        'description': 'The page should have a linkTitle, which appears in menus and list pages',
+        'description': 'The page should have a linkTitle, which appears in menus and list pages. If not given, title will be used and should be no longer than 40 characters.',
         'ignore_paths': [crds_path, changes_path],
         'severity': SEVERITY_WARN,
     },
     {
         'id': LONG_LINK_TITLE,
-        'description': 'The linkTitle (used in menu and list pages) should be less than 40 characters',
+        'description': 'The linkTitle (used in menu and list pages; title is used if linkTitle is not given) should be less than 40 characters',
         'severity': SEVERITY_FAIL,
+        'ignore_paths': [changes_path],
     },
     {
         'id': NO_WEIGHT,
@@ -237,7 +238,7 @@ def print_json(rdict):
                 description = checks_dict[check['check']]['description']
                 owners = []
                 doc_owner = check.get('owner')
-                if hasattr(doc_owner, "__len__"): 
+                if hasattr(doc_owner, "__len__"):
                   for i in doc_owner:
                     team_name = re.search('\/.*\/([^\/]+)\/?$', i).group(1)
                     team_label = team_name.replace("-", "/")
@@ -250,7 +251,7 @@ def print_json(rdict):
                 'owner': owners
             })
 
-    json_object = json.dumps(out) 
+    json_object = json.dumps(out)
     print(json_object)
 
 
@@ -278,7 +279,7 @@ def print_result(rdict):
             else:
                 warnings.append(check)
                 nwarnings += 1
-        
+
         def format_line(check_id, severity_str, description, value):
             out = f' - {severity(severity_str)} - {headline(check_id)} - {description}'
             if checks_dict[check_id].get('has_value') and value != "":
@@ -289,7 +290,7 @@ def print_result(rdict):
                 else:
                     out += f': {literal(json.dumps(value))}'
             return out
-        
+
         for check in fails:
             print(format_line(check['check'], SEVERITY_FAIL, checks_dict[check['check']]['description'], check.get('value')))
         for check in warnings:
@@ -351,18 +352,18 @@ def dump_annotations(rdict):
             end_line = max(end_line,
                            check.get('line', 1),
                            check.get('end_line', rdict[fpath]['num_front_matter_lines'] + 1))
-            
+
             if checks_dict[check['check']]['severity'] == SEVERITY_FAIL:
                 level = 'failure'
                 nfails += 1
             else:
                 nwarnings += 1
-            
+
             message += format_message_part(check['check'],
                                            checks_dict[check['check']]['severity'],
                                            checks_dict[check['check']]['description'],
                                            check.get('value'))
-        
+
         headline = f'Found {nwarnings} less severe problems'
         if nwarnings > 0 and nfails > 0:
             headline = f'Found {nfails} severe and {nwarnings} less severe problems'
@@ -398,15 +399,15 @@ def get_raw_front_matter(source_text):
 def ignored_path(path, check_id):
     "Returns true if the given path should be ignored for the given check"
     check = None
-    
+
     for c in checks:
         if c['id'] == check_id:
             check = c
             break
-    
+
     if 'ignore_paths' not in check:
         return False
-    
+
     for ignore_path in check['ignore_paths']:
         if path.startswith(ignore_path):
             return True
@@ -475,13 +476,13 @@ def validate(content, fpath, validation):
         })
         return result
 
-    # Evaluate linkTitle
+    # Evaluate linkTitle (hugo falls back to `title` if `linkTitle` not given)
     if validation == VALIDATE_ALL:
-        if 'linkTitle' in fm:
-            if len(fm['linkTitle']) > 40:
+        if 'linkTitle' in fm or 'title' in fm:
+            if len(fm.get('linkTitle') or fm['title']) > 40 and not ignored_path(fpath, LONG_LINK_TITLE):
                 result['checks'].append({
                     'check': LONG_LINK_TITLE,
-                    'value': fm['linkTitle'],
+                    'value': fm.get('linkTitle') or fm['title'],
                 })
 
     # Evaluate title
@@ -491,10 +492,6 @@ def validate(content, fpath, validation):
                 result['checks'].append({
                     'check': SHORT_TITLE,
                     'value': fm['title'],
-                })
-            elif len(fm['title']) > 40 and not 'linkTitle' in fm and not ignored_path(fpath, NO_LINK_TITLE):
-                result['checks'].append({
-                    'check': NO_LINK_TITLE,
                 })
             if len(fm['title']) > 100:
                 result['checks'].append({
@@ -550,7 +547,7 @@ def validate(content, fpath, validation):
     # Evaluate menu
     if validation == VALIDATE_ALL:
         if 'menu' in fm:
-            if 'linkTitle' not in fm:
+            if not (fm.get('linkTitle') or fm.get('title')):
                 result['checks'].append({
                     'check': NO_LINK_TITLE,
                 })
@@ -611,7 +608,7 @@ def validate(content, fpath, validation):
                 expiration = 365
                 if 'expiration_in_days' in fm and type(fm['expiration_in_days']) is int:
                     expiration = fm['expiration_in_days']
-                
+
                 if diff > datetime.timedelta(days=expiration):
                     result['checks'].append({
                         'check': REVIEW_TOO_LONG_AGO,
@@ -648,7 +645,7 @@ def validate(content, fpath, validation):
                     'check': UNKNOWN_ATTRIBUTE,
                     'value': key,
                 })
-    
+
     result['num_front_matter_lines'] = num_fmlines
     return result
 

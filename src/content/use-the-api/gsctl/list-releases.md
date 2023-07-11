@@ -56,7 +56,6 @@ Components:
   flannel: 0.9.0
   kubedns: 1.14.5
   kubernetes: 1.8.1
-  nginx-ingress-controller: 0.9.0
   vault: 0.7.3
 Changelog:
   calico: Calico version updated.
@@ -65,7 +64,6 @@ Changelog:
   flannel: Flannel version updated.
   kubedns: KubeDNS version updated.
   kubernetes: Kubernetes version updated.
-  nginx-ingress-controller: Nginx-ingress-controller version updated.
   vault: Vault version updated.
 ```
 

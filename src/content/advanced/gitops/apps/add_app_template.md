@@ -22,7 +22,7 @@ To avoid duplication caused by adding the same application from scratch across a
 
 ## Example
 
-An example of an app template is available in the [gitops-template repository "bases/apps/nginx-ingress-controller"](https://github.com/giantswarm/gitops-template/tree/main/bases/apps/nginx-ingress-controller).
+An example of an app template is available in the [gitops-template repository "bases/apps/ingress-nginx"](https://github.com/giantswarm/gitops-template/tree/main/bases/apps/ingress-nginx).
 
 ## Export environment variables
 
@@ -85,7 +85,7 @@ __Warning__: It can not be used for the Secrets as they need to be encrypted bef
     configMapGenerator:
       - files:
         - values=default_config.yaml
-        name: ${cluster_name}-nginx-ingress-controller-values
+        name: ${cluster_name}-ingress-nginx-values
     generatorOptions:
       disableNameSuffixHash: true
     # default config block end

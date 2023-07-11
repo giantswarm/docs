@@ -310,15 +310,15 @@ ingress:
 ### Running Dex in a private workload cluster
 
 When deploying Dex to a private workload cluster, it is required to specify a proxy configuration in order to ensure that Dex has access to the outside network. 
-Proxy setup can be provided in the `proxy` section of the `Secret` or `ConfigMap` with configuration values for the Dex app. 
-It is required to set the proxy as `enabled`, specify the URL of the HTTPS proxy in the `https_proxy` property and exclude Kubernetes API from running through the proxy by adding its IP address or network to the `no_proxy` property.  
+Proxy setup can be provided in the `cluster.proxy` section of the `Secret` or `ConfigMap` with configuration values for the Dex app. 
+It is required to specify the URL of the HTTPS proxy in the `https` property and exclude Kubernetes API from running through the proxy by adding its IP address or network to the `noProxy` property.  
 
 ```yaml
-proxy:
-  enabled: true
-  http_proxy: ... # HTTP proxy URL
-  https_proxy: ... # HTTPS proxy URL
-  no_proxy: ... # Hostnames or networks/IP ranges excluded from going through the proxy
+cluster:
+  proxy:
+    http: ... # HTTP proxy URL
+    https: ... # HTTPS proxy URL
+    noProxy: ... # Hostnames or networks/IP ranges excluded from going through the proxy
 
 ```
 

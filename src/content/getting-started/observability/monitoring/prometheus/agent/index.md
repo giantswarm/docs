@@ -57,7 +57,7 @@ Hence, we decided to release a Prometheus Agent alongside Giant Swarm managed [P
 ![Architecture diagram of the Prometheus Agent architecture](prometheus-agent-architecture.png)
 <!-- Source: https://drive.google.com/file/d/1Pr0J1x-nPF1klZEFfwJ3gZhxTRjuI1aM -->
 
-__Note__: We are using an ingress with `nginx-ingress-controller` not represented here on the management cluster so the Prometheus Agent can send its data to the workload cluster Prometheus on the Management Cluster using the Remote Write API
+__Note__: We are using an ingress with Ingress NGINX Controller not represented here on the management cluster so the Prometheus Agent can send its data to the workload cluster Prometheus on the Management Cluster using the Remote Write API
 
 __Warning__: As of this writing, the agent is sending data to a Prometheus but we are thinking about moving to a Long Term Storage solution in the future.
 
@@ -83,4 +83,4 @@ You should see the following:
 
 ### Access to the metrics
 
-The metrics of the Prometheus Agent can be found on the [grafana instance]({{< relref "/getting-started/observability/grafana/access" >}}) running on your management cluster under the `Prometheus / Remote Write` and `NGINX Ingress controller` dashboards
+The metrics of the Prometheus Agent can be found on the [grafana instance]({{< relref "/getting-started/observability/grafana/access" >}}) running on your management cluster under the `Prometheus / Remote Write` and `Ingress NGINX Controller` dashboards

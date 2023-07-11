@@ -39,10 +39,10 @@ from a single place; the management cluster API.
 We fully support [Helm](https://helm.sh/) as a general tool to deploy your applications as well as for our general App Catalog. Apps are packaged as Helm charts and can be configured with _values_. We provide a recommended [app configuration]({{< relref "/getting-started/app-platform/app-configuration" >}}) which you can override to meet your needs.
 
 The App Platform then, underneath, installs these Helm Charts whenever an app installation is requested by you.
-The Helm execution is mostly not configurable for you, with the exception to the options presented in 
+The Helm execution is mostly not configurable for you, with the exception to the options presented in
 [installation configuration]({{< relref "/getting-started/app-platform/installation-configuration" >}}).
 
-This feature of the platform provides a collection a collection of curated _Managed Apps_. These _Managed Apps_ are grouped into _App Catalogs_, which can be browsed through our web interface. may also install their own catalogs using the Management Cluster API. Finally, it's worth noting that Giant Swarm uses the App Platform to install the apps that are pre-installed in your clusters, such as CoreDNS or cluster-autoscaler.
+This feature of the platform provides a collection of curated _Managed Apps_. These _Managed Apps_ are grouped into _App Catalogs_, which can be browsed through our web interface. may also install their own catalogs using the Management Cluster API. Finally, it's worth noting that Giant Swarm uses the App Platform to install the apps that are pre-installed in your clusters, such as CoreDNS or cluster-autoscaler.
 
 In short: the _Giant Swarm App Platform_ refers to the whole feature, and an _App Catalog_ is a collection of _Apps_.
 
@@ -90,7 +90,7 @@ together to enable the features of the Giant Swarm App Platform:
 
 #### The Giant Swarm App Catalog
 
-This catalog contains our stable, fully managed apps, with SLA (e.g. the NGINX Ingress Controller).
+This catalog contains our stable, fully managed apps, with SLA (e.g. the Ingress NGINX Controller).
 
 The maturity levels of apps in this catalog are expressed through semantic versioning as follows:
 
@@ -125,9 +125,9 @@ __Note__: Giant Swarm only perform tests for upgrades with the default values, s
 
 We following the common semantic versioning (`semver`) use in Cloud Native Projects to release our apps:
 
-1. Patch releases: We do patch releases (For example, 2.1.1 -> 2.1.2 -> 2.1.3, and so on) automatically, add them to the change logs, and communicate the changes to the customer.  
-2. Minor versions: We upgrade to minor versions, add them to the change logs, and communicate the changes to the customer.  
-3. Major versions: We leave it to the customer to decide when to do a major upgrade. Similar to our Managed Kubernetes, we only support 1 major version back.  
+1. Patch releases: We do patch releases (For example, 2.1.1 -> 2.1.2 -> 2.1.3, and so on) automatically, add them to the change logs, and communicate the changes to the customer.
+2. Minor versions: We upgrade to minor versions, add them to the change logs, and communicate the changes to the customer.
+3. Major versions: We leave it to the customer to decide when to do a major upgrade. Similar to our Managed Kubernetes, we only support 1 major version back.
 
 We add all changes to change logs and communicate them to customers weekly.
 

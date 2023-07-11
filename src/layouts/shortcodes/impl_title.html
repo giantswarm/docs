@@ -1,0 +1,5 @@
+{{- $title := (index (index $.Site.Params "impl_titles") (.Get 0)) -}}
+{{- if not $title -}}
+{{- errorf "Please use a valid argument for `impl_title` shortcodes in %q (argument value %q must be listed in `src/config.yaml`)" .Page.File.Path (.Get 0) -}}
+{{- end -}}
+{{- $title -}}

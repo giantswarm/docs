@@ -23,7 +23,7 @@ user_questions:
 
 The _Giant Swarm App Platform_ is built on top of [Helm](https://helm.sh/) and allows you to manage apps and their configurations represented by App Custom Resources (CRs) for multiple clusters, from a single place: the [Management API]({{< relref "/platform-overview/management-api" >}}).
 
-In this guide, we will install the NGINX Ingress Controller app. We will do this by using kubectl, to create
+In this guide, we will install the Ingress NGINX Controller app. We will do this by using kubectl, to create
 an [App]({{< relref "/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) CR using the Kubernetes API of your management cluster.
 
 App CRs can be created this way via your automation or our Web UI (See: [guide]({{< relref "/getting-started/ingress-controller" >}})).
@@ -44,13 +44,12 @@ which we will use in the later steps.
 export CLUSTER=CLUSTER_ID
 ```
 
-## Checking if your cluster has an ingress controller
+## Checking if your cluster has an Ingress Controller
 
-First we will check if there is already an ingress controller deployed.
+First we will check if there is already an Ingress Controller deployed.
 
 We can see the apps that were pre-installed in the cluster but there is no
-`nginx-ingress-controller` or `nginx-ingress-controller-app` App CR so we can
-continue with the guide.
+`ingress-nginx` App CR so we can continue with the guide.
 
 In some older releases the ingress controller is pre-installed. If this is the
 case please use another cluster.
@@ -99,9 +98,9 @@ Now we can list the latest version of each app in the catalog.
 ```nohighlight
 kubectl gs get catalog giantswarm
 
-CATALOG      APP NAME                       APP VERSION   VERSION   AGE
+CATALOG      APP NAME        APP VERSION   VERSION   AGE
 ...
-giantswarm   nginx-ingress-controller-app   v0.47.0       1.17.0    25d
+giantswarm   ingress-nginx   v1.8.0        3.0.0     25d
 ...
 ```
 
@@ -114,12 +113,12 @@ command to generate the App CR using the latest version from the previous comman
 kubectl gs template app \
   --catalog=giantswarm \
   --cluster-name=${CLUSTER} \
-  --name=nginx-ingress-controller-app \
+  --name=ingress-nginx \
   --target-namespace=kube-system \
-  --version=1.17.0 > nginx-ingress-controller-app.yaml
+  --version=3.0.0 > ingress-nginx.yaml
 
-kubectl apply -f nginx-ingress-controller-app.yaml
-cat nginx-ingress-controller-app.yaml
+kubectl apply -f ingress-nginx.yaml
+cat ingress-nginx.yaml
 ```
 
 Lets first see the output of the template command which shows only the
@@ -129,15 +128,15 @@ required fields.
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
-  name: nginx-ingress-controller-app
+  name: ingress-nginx
   namespace: tm23r
 spec:
   catalog: giantswarm
   kubeConfig:
     inCluster: false
-  name: nginx-ingress-controller-app
+  name: ingress-nginx
   namespace: kube-system
-  version: 1.17.0
+  version: 3.0.0
 ```
 
 The `--name` parameter is the name of the app in the catalog and the name of
@@ -149,7 +148,7 @@ allows installing multiple instances of an app.
 Now lets check the app using the `kubectl gs get app` command.
 
 ```nohighlight
-kubectl gs -n ${CLUSTER} get app nginx-ingress-controller-app -o yaml
+kubectl gs -n ${CLUSTER} get app ingress-nginx -o yaml
 ```
 
 The labels, cluster config and kubeconfig have been all defaulted to the correct
@@ -162,8 +161,8 @@ kind: App
 metadata:
   labels:
     app-operator.giantswarm.io/version: 4.4.0
-    app.kubernetes.io/name: nginx-ingress-controller-app
-  name: nginx-ingress-controller-app
+    app.kubernetes.io/name: ingress-nginx
+  name: ingress-nginx
   namespace: tm23r
 spec:
   catalog: giantswarm
@@ -178,20 +177,20 @@ spec:
     secret:
       name: tm23r-kubeconfig
       namespace: tm23r
-  name: nginx-ingress-controller-app
+  name: ingress-nginx
   namespace: kube-system
-  version: 1.16.1
+  version: 3.0.0
 status:
-  appVersion: v0.45.0
+  appVersion: v1.8.0
   release:
     lastDeployed: "2021-06-21T16:28:08Z"
     status: deployed
-  version: 1.16.1
+  version: 3.0.0
 ```
 
 In the App CR status you can see that the app is deployed. The `appVersion`
 shows that this version of the app is deploying `v0.45.0` of the upstream
-[Nginx Ingress Controller](https://github.com/kubernetes/ingress-nginx) project.
+[Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx) project.
 
 ## Configuring an App CR
 
@@ -214,13 +213,13 @@ EOL
 kubectl gs template app \
   --catalog=giantswarm \
   --cluster-name=${CLUSTER} \
-  --name=nginx-ingress-controller-app \
+  --name=ingress-nginx \
   --target-namespace=kube-system \
   --user-configmap=ingress-values.yaml \
-  --version=1.17.0 > nginx-ingress-controller-app.yaml
+  --version=3.0.0 > ingress-nginx.yaml
 
-kubectl apply -f nginx-ingress-controller-app.yaml
-cat nginx-ingress-controller-app.yaml
+kubectl apply -f ingress-nginx.yaml
+cat ingress-nginx.yaml
 ```
 
 Now let's see what was generated. In the Config Map there is a values key with
@@ -235,23 +234,23 @@ data:
       error-log-level: "info"
 kind: ConfigMap
 metadata:
-  name: nginx-ingress-controller-app-userconfig-tm23r
+  name: ingress-nginx-userconfig-tm23r
   namespace: tm23r
 ---
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
-  name: nginx-ingress-controller-app
+  name: ingress-nginx
   namespace: tm23r
 spec:
   catalog: giantswarm
   kubeConfig:
     inCluster: false
-  name: nginx-ingress-controller-app
+  name: ingress-nginx
   namespace: kube-system
   userConfig:
     configMap:
-      name: nginx-ingress-controller-app-userconfig-tm23r
+      name: ingress-nginx-userconfig-tm23r
       namespace: tm23r
   version: 1.17.0
 ```
@@ -265,6 +264,6 @@ This completes the guide. If you no longer need the ingress controller you can
 run the commands below.
 
 ```nohighlight
-kubectl delete -f nginx-ingress-controller-app.yaml
-rm ingress-values.yaml nginx-ingress-controller-app.yaml
+kubectl delete --filename ingress-nginx.yaml
+rm ingress-values.yaml ingress-nginx.yaml
 ```
