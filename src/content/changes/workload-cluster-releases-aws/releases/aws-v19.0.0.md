@@ -176,6 +176,13 @@ We're aiming to provide a comprehensive blackbox monitoring tool that can valida
 - Don't enable Cilium network policies on Azure.
 
 
+### k8s-dns-node-cache-app [v2.3.1](https://github.com/giantswarm/k8s-dns-node-cache-app/releases/tag/v2.3.1)
+
+### Changed
+- Disable IPV6 queries.
+- Remove VPA.
+- Remove resource limits.
+
 
 ### aws-cloud-controller-manager [1.24.1-gs9](https://github.com/giantswarm/aws-cloud-controller-manager-app/releases/tag/v1.24.1-gs9)
 
@@ -227,12 +234,13 @@ We're aiming to provide a comprehensive blackbox monitoring tool that can valida
 
 
 
-### coredns [1.17.0](https://github.com/giantswarm/coredns-app/releases/tag/v1.17.0)
+### coredns [1.17.1](https://github.com/giantswarm/coredns-app/releases/tag/v1.17.1)
 
 #### Added
 - Add scaling based on custom metrics ([#209](https://github.com/giantswarm/coredns-app/pull/209)).
 #### Changed
 - Decouple PDB configuration from deployment updateStrategy ([#208](https://github.com/giantswarm/coredns-app/pull/208)).
+- Disable IPV6.
 
 
 
