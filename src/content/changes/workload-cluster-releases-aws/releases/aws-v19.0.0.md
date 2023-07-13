@@ -159,14 +159,16 @@ We're aiming to provide a comprehensive blackbox monitoring tool that can valida
 
 
 
-### aws-operator [14.17.1-patch1](https://github.com/giantswarm/aws-operator/releases/tag/v14.17.1-patch1)
+### aws-operator [14.17.1-patch2](https://github.com/giantswarm/aws-operator/releases/tag/v14.17.1-patch2)
 
 #### Added
 - Add toleration for new control-plane taint.
 #### Fixed
 - Ensure `net.ipv4.conf.eth0.rp_filter` is set to `2` if aws-CNI is used.
 - Make `routes-fixer` script compatible with alpine.
-
+- Change AWS LB Controller Trust Policy for the new S3 bucket in China clusters.
+### Changed
+- Change Route53 Trust Policy to allow multiple applications to use the role.
 
 ### cluster-operator [5.6.1](https://github.com/giantswarm/cluster-operator/releases/tag/v5.6.1)
 
@@ -175,7 +177,10 @@ We're aiming to provide a comprehensive blackbox monitoring tool that can valida
 
 
 
-### aws-cloud-controller-manager [1.24.1-gs7](https://github.com/giantswarm/aws-cloud-controller-manager-app/releases/tag/v1.24.1-gs7)
+### aws-cloud-controller-manager [1.24.1-gs9](https://github.com/giantswarm/aws-cloud-controller-manager-app/releases/tag/v1.24.1-gs9)
+
+#### Changed
+- Adjusted VerticalPodAutoscaler minimum allowed CPU and memory
 
 #### Fixed
 - Quote environment variables that contain numeric values, because it's required by kubernetes.
@@ -212,9 +217,10 @@ We're aiming to provide a comprehensive blackbox monitoring tool that can valida
 
 
 
-### cluster-autoscaler [1.24.0-gs2](https://github.com/giantswarm/cluster-autoscaler-app/releases/tag/v1.24.0-gs2)
+### cluster-autoscaler [1.24.0-gs3](https://github.com/giantswarm/cluster-autoscaler-app/releases/tag/v1.24.0-gs3)
 
 #### Changed
+- Adjusted VerticalPodAutoscaler minimum allowed CPU and memory
 - Add 'projected' volumes to the PSP.
 - Add new-pod-scale-up-delay variable.
 - Disable PSPs for k8s 1.25 and newer.
