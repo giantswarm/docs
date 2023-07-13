@@ -1058,7 +1058,7 @@ To exclude a workload from a policy, create a `PolicyException` resource for tha
 
 There are different ways to structure a `PolicyException`, and your cluster administrator may have a preferred format.
 
-Giant Swarm currently uses a "PolicyException per Pod" approach, which looks like this:
+Giant Swarm currently uses a "PolicyException per Workload" approach, which looks like this:
 
 ```yaml
 apiVersion: kyverno.io/v2alpha1
@@ -1080,7 +1080,8 @@ spec:
     any:
     - resources:
         kinds:
-        - DaemonSet
+        - Deployment
+        - ReplicaSet
         - Pod
         namespaces:
         - my-namespace
@@ -1088,11 +1089,12 @@ spec:
         - my-workload*
 ```
 
-This example allows a DaemonSet (and the Pods it creates) named `my-workload` in the namespace `my-namespace` to be admitted even though it violates the `disallow-host-path` and `restrict-volume-types` policies.
+This example allows a Deployment (and the ReplicaSet and Pods it creates) named `my-workload` in the namespace `my-namespace` to be admitted even though it violates the `disallow-host-path` and `restrict-volume-types` policies.
 
 Noteworthy pieces of this example:
 
 - Kyverno policy rules are usually written at the Pod level. For convenience, Kyverno automatically generates equivalent rules for Pod controllers like Deployments and DaemonSets. Such rules are prefaced with the value `autogen-` and added to the policy automatically (two such rules are visible in the example). When writing a `PolicyException`, any applicable `autogen` rules must also be listed if a workload should be exempt from them.
+- Similarly, when listing resource kinds to be matched in a `PolicyException`, every subresource controller must be listed as well. For example: If a Policy is written at the CronJob level (and autogen policies are enabled for it), then the Job and Pod resources created from the CronJob also need to be explicitly matched in the `PolicyException`. The same happens with Deployments, where the ReplicaSet and Pod controllers will need to be excluded as well.
 - A policy can contain multiple rules -- exceptions can be applied to individual rules so that the others remain in effect. Here, the workload is allowed to fail the `host-path` and `restricted-volumes` rules (and their automatically generated equivalents). A workload is only exempt from the rules listed in a `ruleNames` list. If a policy contains other rules not listed in the `PolicyException`, and the workload does not satisfy those rules, the workload will be rejected.
 - Cluster administrators can choose the namespace(s) where `PolicyExceptions` are stored. The correct namespace for a `PolicyException` might be different than the namespace for the Pod itself.
 

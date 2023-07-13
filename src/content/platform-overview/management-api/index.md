@@ -2,7 +2,7 @@
 linkTitle: Management API
 title: Management API
 description: Introduction to the Giant Swarm Management API, the Kubernetes API of the management cluster in your Giant Swarm installation.
-weight: 20
+weight: 30
 menu:
   main:
     parent: platform-overview

@@ -6,7 +6,7 @@ menu:
   main:
     identifier: gettingstarted-cloudprovider
     parent: getting-started
-last_review_date: 2023-03-28
+last_review_date: 2023-07-06
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 ---

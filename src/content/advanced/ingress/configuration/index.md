@@ -10,7 +10,7 @@ menu:
 user_questions:
   - How can I allow only certain IPs for Ingress access?
   - How can I assign requests to different services, based on the URL path?
-  - How can I configure Ingress to use HTTPS when connecting to my internal service?
+  - How can I configure ingress to use HTTPS when connecting to my internal service?
   - How can I configure basic authentication in an Ingress resource?
   - How can I configure ingress to prevent DDoS attacks?
   - How can I configure request URL rewrites in the Ingress resource?
@@ -21,9 +21,9 @@ user_questions:
   - How can I enable CORS headers in the Ingress resource?
   - How can I enable TLS passthrough in Ingress?
   - How can I let the Ingress Controller do TLS termination?
-  - How can I rate-limit Ingress requests?
+  - How can I rate-limit ingress requests?
   - How can I confgiure a different connection timeout for my ingress?
-  - How can I change the NGINX ingress controller configmap?
+  - How can I change the Ingress NGINX Controller configmap?
 aliases:
   - /guides/advanced-ingress-configuration/
 owner:
@@ -32,7 +32,7 @@ owner:
 
 The [Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx) has additional configuration options and features that can be customized. The functionality is split into two categories:
 
-- [Per-Service options](#yaml) in each Ingress' YAML definition either directly or via [Annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) ([Complete list of supported Annotations](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/)).
+- [Per-service options](#yaml) in each Ingress' YAML definition either directly or via [Annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) ([Complete list of supported Annotations](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/)).
 - [Global options](#configmap) that influence all Ingresses of a cluster via a ConfigMap ([Complete list of ConfigMap options](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/)).
 
 **Note**: Giant Swarm clusters do not come with an Ingress Controller pre-installed. See our [guide on how to install an ingress from the Giant Swarm Catalog]({{< relref "/getting-started/ingress-controller" >}}).
@@ -456,15 +456,15 @@ If the ConfigMap does not exist, create it. In this case you'll need to referenc
 spec:
   userConfig:
     configMap:
-      name: nginx-ingress-controller-app-user-values
+      name: ingress-nginx-user-values
       namespace: NAMESPACE
 ```
 
-Any defaults that we override are visible in the following `values.yaml` file, under the `configmap` key. [Check this values.yaml file in v2.27.0](https://github.com/giantswarm/nginx-ingress-controller-app/blob/v2.27.0/helm/nginx-ingress-controller-app/values.yaml) as an example.
+Any defaults that we override are visible in the following `values.yaml` file, under the `configmap` key. Check this [`values.yaml`](https://github.com/giantswarm/ingress-nginx-app/blob/main/helm/ingress-nginx/values.yaml) as an example.
 
 Do not copy all the defaults if you do not need to change them, that way we can adjust them in case they need to change.
 
-Do make sure you look at the right tag of that repository, when reading this file check that the tag corresponds to the version of the nginx-ingress-controller-app running on your cluster.
+Do make sure you look at the right tag of that repository, when reading this file check that the tag corresponds to the version of the Ingress NGINX Controller running on your cluster.
 
 ---
 ### Configure Proxy Protocol

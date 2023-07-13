@@ -41,7 +41,7 @@ Among the third party components building a workload cluster stack are
 - [Project Calico](https://www.tigera.io/project-calico/) and [AWS CNI](https://github.com/aws/amazon-vpc-cni-k8s)/[Azure CNI](https://github.com/Azure/azure-container-networking)/[Flannel](https://github.com/flannel-io/flannel) for virtual networking
 - [CoreDNS](https://coredns.io/) for cluster-internal name resolution
 - [Prometheus node exporter](https://github.com/prometheus/node_exporter) for hardware and OS metrics
-- [NGINX Ingress Controller](https://github.com/kubernetes/ingress-nginx) for connecting services with load balancers
+- [Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx) for connecting services with load balancers
 
 as well as many operators and controllers created and maintained by Giant Swarm.
 
