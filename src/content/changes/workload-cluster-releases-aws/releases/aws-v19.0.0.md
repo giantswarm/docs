@@ -170,11 +170,19 @@ We're aiming to provide a comprehensive blackbox monitoring tool that can valida
 ### Changed
 - Change Route53 Trust Policy to allow multiple applications to use the role.
 
-### cluster-operator [5.6.1](https://github.com/giantswarm/cluster-operator/releases/tag/v5.6.1)
+### cluster-operator [5.6.1-patch1](https://github.com/giantswarm/cluster-operator/releases/tag/v5.6.1-patch1)
 
 #### Fixed
 - Don't enable Cilium network policies on Azure.
+#### Changed
+- Patch app operator version on all apps instead of just optional ones.
 
+### k8s-dns-node-cache-app [v2.3.1](https://github.com/giantswarm/k8s-dns-node-cache-app/releases/tag/v2.3.1)
+
+### Changed
+- Disable IPV6 queries.
+- Remove VPA.
+- Remove resource limits.
 
 ### k8s-dns-node-cache-app [v2.3.1](https://github.com/giantswarm/k8s-dns-node-cache-app/releases/tag/v2.3.1)
 
