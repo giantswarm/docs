@@ -184,13 +184,6 @@ We're aiming to provide a comprehensive blackbox monitoring tool that can valida
 - Remove VPA.
 - Remove resource limits.
 
-### k8s-dns-node-cache-app [v2.3.1](https://github.com/giantswarm/k8s-dns-node-cache-app/releases/tag/v2.3.1)
-
-### Changed
-- Disable IPV6 queries.
-- Remove VPA.
-- Remove resource limits.
-
 
 ### aws-cloud-controller-manager [1.24.1-gs9](https://github.com/giantswarm/aws-cloud-controller-manager-app/releases/tag/v1.24.1-gs9)
 
