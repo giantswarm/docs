@@ -5,9 +5,9 @@ description: How to increase the uptime of your workload clusters by using multi
 weight: 30
 menu:
   main:
-    identifier: advanced-highavailability
+    identifier: advanced-high-availability
     parent: advanced
-last_review_date: 2023-03-28
+last_review_date: 2023-07-10
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 ---
