@@ -81,6 +81,9 @@ spec:
     version: 1.0.0
   - name: net-exporter
     version: 1.6.0
+  - componentVersion: 0.29.0
+    name: nginx-ingress-controller
+    version: 1.5.0
   - componentVersion: 0.18.1
     name: node-exporter
     version: 1.2.0
@@ -526,3 +529,6 @@ spec:
 
 
 </div>
+
+
+

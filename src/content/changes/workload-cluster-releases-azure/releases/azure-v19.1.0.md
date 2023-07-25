@@ -145,12 +145,13 @@ _Nothing has changed._
 
 
 
-### coredns [1.17.0](https://github.com/giantswarm/coredns-app/releases/tag/v1.17.0)
+### coredns [1.17.1](https://github.com/giantswarm/coredns-app/releases/tag/v1.17.1)
 
 #### Added
 - Add scaling based on custom metrics ([#209](https://github.com/giantswarm/coredns-app/pull/209)).
 #### Changed
 - Decouple PDB configuration from deployment updateStrategy ([#208](https://github.com/giantswarm/coredns-app/pull/208)).
+- Disable IPV6 queries.
 
 
 
