@@ -5,7 +5,7 @@ description: Using multiple availability zones both for worker and control plane
 weight: 20
 menu:
   main:
-    parent: advanced-highavailability
+    parent: advanced-high-availability
 last_review_date: 2023-04-04
 user_questions:
 - Does Giant Swarm support multiple availability zones (AZ)?

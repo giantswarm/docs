@@ -6,7 +6,7 @@ weight: 10
 last_review_date: 2023-04-04
 menu:
   main:
-    parent: advanced-highavailability
+    parent: advanced-high-availability
 user_questions:
   - How can I maximize the availability of my cluster's API server?
   - Is there support for high-availability control planes on AWS?
