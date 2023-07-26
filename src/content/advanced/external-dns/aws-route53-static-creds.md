@@ -6,14 +6,14 @@ weight: 25
 menu:
   main:
     parent: advanced-external-dns
-last_review_date: 2023-04-18
+last_review_date: 2023-07-26
 user_questions:
   - How can I customize the External DNS AWS authentication method?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
 ---
 
-External DNS in Giant Swarm is configured to authenticate against AWS using the method available on the cluster (KIAM or IRSA). But there are cases where this is no possible, for example, if you try to manage your DNS records in AWS Route 53 from a cluster running on a different provider.
+External DNS in Giant Swarm is configured to authenticate against AWS using the method available on the cluster (IRSA). But there are cases where this is no possible, for example, if you try to manage your DNS records in AWS Route 53 from a cluster running on a different provider.
 
 ## Credentials
 
@@ -78,26 +78,16 @@ This example is the equivalent configuration to the one outlined in the followin
 
 provider: aws
 
-aws:
-  baseDomain: <domain>
-
-env:
-  - name: AWS_ACCESS_KEY_ID
-    valueFrom:
-      secretKeyRef:
-        name: external-dns
-        key: aws_access_key_id
-  - name: AWS_SECRET_ACCESS_KEY
-    valueFrom:
-      secretKeyRef:
-        name: external-dns
-        key: aws_secret_access_key
+domainFilters: <domain>
 
 secretConfiguration:
   enabled: true
+  mountPath: /.aws
   data:
-    aws_access_key_id: <key_id>
-    aws_secret_access_key: <secret>
+    credentials: |
+      [default]
+      aws_access_key_id = _REPLACE_WITH_ACCESS_KEY_ID_
+      aws_secret_access_key = _REPLACE_WITH_ACCESS_KEY_SECRET_
 ```
 
 #### aws_access_key_id and aws_secret_access_key
