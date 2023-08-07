@@ -23,7 +23,7 @@ For managing the infrastructure we run a management cluster per provider and reg
 
 Giant Swarm's architecture is split into two logical parts. One encompasses the management cluster and all the components running there. The second part refers to the workload clusters that are created dynamically by the users to run their business workloads. In principle the management cluster and workload cluster(s) are analogous in terms of infrastructure and configuration. The difference comes with the additional layers we deployed on top of the management cluster that helps manage your users and permissions, workload clusters or the applications running on the workload clusters.
 
-## Platform Architecture
+## Platform architecture
 
 As explained previously, both the management cluster and the workload cluster(s) have the same structure and configuration. In Giant Swarm we rely on [Cluster API](https://cluster-api.sigs.k8s.io/) to bootstrap and configure the cluster infrastructure and set up all the components needed for a cluster to function.
 
