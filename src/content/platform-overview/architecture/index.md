@@ -9,7 +9,7 @@ menu:
     identifier: platform-architecture
 last_review_date: 2023-07-11
 user_questions:
-  - How do you looks like a developer platform?
+  - How does a developer platform look like?
   - How has Giant Swarm built a platform to allow customers enhance developer experience?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
