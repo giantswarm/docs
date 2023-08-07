@@ -1,37 +1,77 @@
 ---
 linkTitle: Platform Architecture
 title: Platform Architecture
-description: Architecture overview explaining how our platform is built and what services we offer in the Platform.
-weight: 30
+description: Architecture overview explaining how our Platform is built and what services we offer in the Platform.
+weight: 20
 menu:
   main:
     parent: platform-overview
     identifier: platform-architecture
 last_review_date: 2023-07-11
 user_questions:
-  - How do you looks like a developer platform?
-  - How has Giant Swarm built a platform to allow customers enhance developer experience?
+  - How do you looks like a Developer Platform?
+  - How has Giant Swarm built a Platform to allow customers enhance developer experience?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
   - https://github.com/orgs/giantswarm/teams/team-phoenix
   - https://github.com/orgs/giantswarm/teams/team-horizon
 ---
 
-The Giant Swarm platform consists of various systems. They can be categorized into three areas: infrastructure, applications, and operations.
+Giant Swarm's mission is to offer a developer platform to our customers. We work with companies which usually have their systems and teams managing their existing infrastructure and applications. For that reason, we have created a composable system where customers can opt in or out of the services available. 
 
-For managing the infrastructure we run a management cluster per provider and region wherever you want to have your workloads. From that management cluster you can spin up as many individual Kubernetes clusters, called workload clusters, as you want. Our operations team works to maintain all cluster components' health, while we release new versions with new features and patches. On top of that, Giant Swarm offers a curated catalog with the most common Cloud Native tools that helps to monitor, secure or manage your applications. Customers can leverage those while we carry the burden of maintaining, securing and keeping them up to date.
+All platforms teams are trying to solve the same set of problems. How developers securely build their applications, how to deploy these applications in an ephemeral environment easily or how to observe the behavior of these applications with the minimal configuration. For that reason we want to build a platform that relies on the [good principles](https://www.giantswarm.io/blog/platform-engineering-its-not-about-a-tool-stack-its-a-set-of-capabilities) exposed by the community:
 
-Giant Swarm's architecture is split into two logical parts. One encompasses the management cluster and all the components running there. The second part refers to the workload clusters that are created dynamically by the users to run their business workloads. In principle the management cluster and workload cluster(s) are analogous in terms of infrastructure and configuration. The difference comes with the additional layers we deployed on top of the management cluster that helps manage your users and permissions, workload clusters or the applications running on the workload clusters.
+- Treat the platform as product
+- Minimize cognitive load for developers
+- Enable fast-flow software delivery
+
+![Platform Architecture](platform-architecture.png)
+
+Starting from this premise we have built a solution that consists in various systems. They can be categorized into three areas: infrastructure, applications, platform interfaces and operations.
 
 ## Platform Architecture
 
-As explained previously, both the management cluster and the workload cluster(s) have the same structure and configuration. In Giant Swarm we rely on [Cluster API](https://cluster-api.sigs.k8s.io/) to bootstrap and configure the cluster infrastructure and set up all the components needed for a cluster to function.
+### Interfaces
+
+The entrypoint to the platform is our interfaces. We leverage in the Kubernetes and its extension capabilities to expose the main functionality. The [management API]({{< relref "/platform-overview/management-api" >}}) is just a Kubernetes API enriched to enable to serve complete golden paths for developers.
+
+Beyond the API our bet is [GitOps](https://www.giantswarm.io/blog/what-is-gitops) to ensure the customers use the right principles for managing the platform. Most of the actions in our platform cna be programmed to use GitOps principles. 
+
+Along with GitOps we have a UI, called [Happa](), that simplifies the life of the platform engineering teams in order to visualize infrastructure, apps and permissions. 
+
+Also we offer a set of templates to start with the platform and a documentation hub where you can go across a step-by-step guide to complete a Dev Platform Journey. 
+
+### Applications
+
+The capabilities of the platform are exposed thanks to the different Cloud Native tools available. In Giant Swarm we use a set of open-source tooling backup by the community but we do not force you to stick to it. 
+
+There are a set of capabilities that customer can rely today, but we are open also for new use cases. Every customer has different necessities and it can vary over time. 
+
+Today we can rely on a set of different features for building your platform:
+
+- Access Management: Configure which user or groups can have access to the platform.
+- Secret Management: Store securely the secrets your apps need to access other services.
+- CI/CD: Create your pipelines to build and deploy the applications.
+- Registry: Store the applications artifacts in a secure place. 
+- Smart Routing: Configure the ingress/egress access to your applications trusting in service mesh capabilities.
+- Policy enforcement: Ensure a set of constraints through the platform based on the company policies.
+- Resource provisioning: Easy the way of providing and configuring external resources.
+
+### Infrastructure
+
+For managing the infrastructure we run a management cluster per provider and region wherever you want to have your workloads. From that management cluster you can spin up as many individual Kubernetes clusters, called workload clusters, as you want. Our operations team works to maintain all cluster components' health, while we release new versions with new features and patches.
+
+Giant Swarm's architecture is split into two logical parts. One encompasses the management cluster and all the components running there. The second part refers to the workload clusters that are created dynamically by the users to run their business workloads. In principle the management cluster and workload cluster(s) are analogous in terms of infrastructure and configuration. The difference comes with the additional layers we deployed on top of the management cluster that helps manage your users and permissions, workload clusters or the applications running on the workload clusters.
 
 ![Cluster architecture image](CAPI_architecture.png)
 
-By default, the machines are split into three different failure domains or zones to ensure the availability of the API and workloads running. In our setup, three control plane machines hold the Kubernetes API and the other controllers, and a variable number of worker machines contain the regular services.
+In Giant Swarm we rely on [Cluster API](https://cluster-api.sigs.k8s.io/) to bootstrap and configure the cluster infrastructure and set up all the components needed for a cluster to function.
 
-There is a machine created as a bastion that helps us with the operations. It is the single entry point to the running infrastructure. This way all the cluster machines can live in a private network and expose the services running on them via explicit configuration.
+By default, the machines are split into three different failure domains or zones to ensure the availability of the API and workloads running. In our setup, three control plane machines hold the Kubernetes API and the other controllers, and a variable number of worker machines contain the workloads.
+
+Besides the Kubernetes machines, we run a bastion host that helps us with the operations. It is the single entry point to the running infrastructure. This way all the cluster machines can live in a private network and expose the services running on them via explicit configuration.
+
+#### Providers
 
 {{< tabs >}}
 {{< tab id="flags-openstack" title="OpenStack">}}
@@ -57,7 +97,7 @@ A network needs to be specified in the cluster definition to identify where the 
 
 ### Compute
 
-The Kubernetes cluster is represented in VMware Cloud Directior by a vAPP of the same name that contains one virtual machine for each node. Note that our setup also supports naming conventions for virtual machine names based on go templates. When a node is created, a virtual machine is provisioned in the cluster's vAPP using a vAPP template stored in a specific catalog. When configuring the control plane nodes or a node class for a node pool, several parameters can be set for the virtual machines such as the sizing policy, placement policy, virtual disk size and storage profile.
+The Kubernetes cluster is represented in VMware Cloud Director by a vAPP of the same name that contains one virtual machine for each node. Note that our setup also supports naming conventions for virtual machine names based on go templates. When a node is created, a virtual machine is provisioned in the cluster's vAPP using a vAPP template stored in a specific catalog. When configuring the control plane nodes or a node class for a node pool, several parameters can be set for the virtual machines such as the sizing policy, placement policy, virtual disk size and storage profile.
 
 ### Storage
 
@@ -87,47 +127,47 @@ The Giant Swarm platform is based on the API of the management cluster. The main
 
 Our platform lets customers manage (workload) clusters and applications in a Cloud Native fashion. Following is an explanation of the bootstrapping process of a cluster, how it is managed throughout its lifecycle and which cluster components run based on its role (i.e. workload cluster or management cluster).
 
-### Components
+#### Components
 
 There are two types of components: generic and self-developed.
 
-#### Generic Components
+##### Generic Components
 
 The generic components run in all of our clusters regardless of whether it is a management cluster or a workload cluster.
 
-##### Container Network Interface (CNI)
+###### Container Network Interface (CNI)
 
 The Container Network Interface is the standard for writing plugins to configure network interfaces in Linux containers, and hence Kubernetes.
 
 We have chosen Cilium as the CNI implementation for several reasons. It is an open source solution that provides connectivity between containers in reliable and secure way. Cilium operates at Layer 3/4 providing traditional networking and security services. Additionally it protects and secures applications offering different enhanced features on top. For now, it is used only as container network in workload clusters.
 
-##### Kube State Metrics
+###### Kube State Metrics
 
 Kube State Metrics (KSM) is an upstream project that watches the Kubernetes API and provides metrics about the state of built-in resources. It is used by our monitoring service to scrape the metrics of the core components so we can be paged when something is wrong with the cluster. At the same time customers can scrape these metrics to create their own dashboards and alerts.
 
-##### Cert exporter
+###### Cert exporter
 
 It is a Prometheus exporter that exposes a set of metrics regarding certificates and tokens. It enables us to stay ahead of certificates expiration and take care of them in a timely fashion.
 
-##### Net exporter
+###### Net exporter
 
 Net exporter is also a Prometheus exporter for exposing network information. It runs on every node to track network and DNS errors. We created dashboards to help us debug issues on the cluster. In addition some of our alerts are based on the metrics exported by it.
 
-##### Metrics server
+###### Metrics server
 
 Metrics Server is an upstream component that implements the [Kubernetes Metrics API](https://kubernetes.io/docs/tasks/debug/debug-cluster/resource-metrics-pipeline/#metrics-api) to provide basic data of the container running in the cluster. It gives us information about CPU and memory usage of every pod. It is also used by other components, like Horizontal Pod Autoscaler, for scaling decisions. 
 
-##### Node exporter
+###### Node exporter
 
 It is an upstream Prometheus exporter for tracking hardware and operating system metrics exposed by *NIX kernels. It completes our monitoring service giving us the possibility to track resources used in the nodes and let us create alerts based on that information.
 
-#### Giant Swarm Components
+##### Giant Swarm Components
 
 In addition to generic components, we deploy a set of controllers and extensions to the management API. The purpose of which is to enhance the user experience of managing clusters and apps on top of Kubernetes.
 
 There are three types of Giant Swarm components running on the management clusters: the operators, the admission controllers and the operational services. The first one, operators, extend the API allowing our customers to manage new entities (like a Cluster or an App) as if they were built-in resources. The second one, admission controllers, validate and default the resources to create a better user experience. And the last one, the operational services, monitoring or security, enable our staff to ensure all the workload clusters and applications are up and running securely and seamlessly.
 
-##### Operators (Custom Resource plus controller)
+###### Operators (Custom Resource plus controller)
 
 The most common pattern to extend Kubernetes is called [Operator](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/). It allows to define a new [Kubernetes resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) (called Custom Resource) and apply functionality to it. 
 
@@ -171,7 +211,7 @@ In Cluster API there is a set of common providers defined above, but to manage t
 
 This simple operator takes care of providing the basic configuration for our Managed Apps. Assets like the certificate authority or the domain base are provided by it via a Config Map so the different apps can rely on those values to configure themselves.
 
-##### Admission controllers
+###### Admission controllers
 
 The [Admission Controller](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) is another feature Kubernetes offers to extend its functionality. This time the idea is to intercept the API requests for validating or mutating the content. The main reason is to block users from submitting wrong data or  to default some of the properties for custom resources. 
 
@@ -191,7 +231,7 @@ As we described before, organizations are used to organize clusters and apps, bu
 
 [Pod Security Policies are deprecated](https://kubernetes.io/blog/2021/04/06/podsecuritypolicy-deprecation-past-present-and-future/) and from Kubernetes `1.25` they will not be valid anymore. In the past we relied on this functionality to harden the cluster and ensure containers run with the least privileges required. As a replacement we implemented equivalent policies in [Kyverno](https://kyverno.io/). 
 
-##### Operational services
+### Operations
 
 Aside from operators and admission controllers we also deploy a set of tooling that ensure we have a nice delivery system, good hardening and clear observability.  
 

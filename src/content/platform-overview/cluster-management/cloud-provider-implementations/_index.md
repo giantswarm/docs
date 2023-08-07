@@ -3,7 +3,7 @@ linkTitle: Cloud providers and implementations
 title: Supported cloud providers and implementations
 description: Providers for which we support cluster management, and the different generations.
 last_review_date: 2023-07-03
-weight: 10
+weight: 30
 aliases:
 menu:
   main:
@@ -17,13 +17,13 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-horizon
 ---
 
-One of the main building blocks of the platform is the cluster management. Our cluster management implementations come in different generations which are designed to be compatible with each other and integrate well with our [app platform]({{< relref "/platform-overview/app-platform" >}}). Development focuses on the latest generation: cluster management based on the Kubernetes subproject [Cluster API (CAPI)]({{< relref "/platform-overview/cluster-management/cluster-api" >}}). We are planning and supporting the migration of customer clusters to this generation in the long term. The previous generation is called _Vintage_. Depending on the generation, we support certain cloud providers.
+One of the main building blocks of the platform is the cluster management. Our cluster management implementations come in different generations which are designed to be compatible with each other and integrate well with our [app platform]({{< relref "/platform-overview/app-platform" >}}). Development focuses on the latest generation: cluster management based on the Kubernetes subproject [Cluster API (CAPI)]({{< relref "/platform-overview/architecture" >}}). We are planning and supporting the migration of customer clusters to this generation in the long term. The previous generation is called _Vintage_. Depending on the generation, we support certain cloud providers.
 
 ## Cluster API (CAPI) generation
 
 This is the latest and recommended generation.
 
-We run the [cluster-api (CAPI)](https://github.com/kubernetes-sigs/cluster-api/) operators and the respective cloud provider-specific operator, such as [cluster-api-provider-aws (CAPA)](https://github.com/kubernetes-sigs/cluster-api-provider-aws/) for the AWS cloud, on the management clusters. Our [Cluster API architecture page]({{< relref "/platform-overview/cluster-management/cluster-api/architecture" >}}) explains more details.
+We run the [cluster-api (CAPI)](https://github.com/kubernetes-sigs/cluster-api/) operators and the respective cloud provider-specific operator, such as [cluster-api-provider-aws (CAPA)](https://github.com/kubernetes-sigs/cluster-api-provider-aws/) for the AWS cloud, on the management clusters. Our [Cluster API architecture page]({{< relref "/platform-overview/architecture" >}}) explains more details.
 
 This generation has several benefits over the previous _Vintage_ generation:
 
