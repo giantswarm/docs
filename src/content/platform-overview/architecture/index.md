@@ -1,16 +1,16 @@
 ---
-linkTitle: Platform Architecture
-title: Platform Architecture
-description: Architecture overview explaining how our Platform is built and what services we offer in the Platform.
-weight: 20
+linkTitle: Platform architecture
+title: Platform architecture
+description: Architecture overview explaining how our platform is built and what services we offer in the Platform.
+weight: 30
 menu:
   main:
     parent: platform-overview
     identifier: platform-architecture
 last_review_date: 2023-07-11
 user_questions:
-  - How do you looks like a Developer Platform?
-  - How has Giant Swarm built a Platform to allow customers enhance developer experience?
+  - How does a developer platform look like?
+  - How has Giant Swarm built a platform to allow customers enhance developer experience?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
   - https://github.com/orgs/giantswarm/teams/team-phoenix
@@ -62,6 +62,10 @@ Today we can rely on a set of different features for building your platform:
 For managing the infrastructure we run a management cluster per provider and region wherever you want to have your workloads. From that management cluster you can spin up as many individual Kubernetes clusters, called workload clusters, as you want. Our operations team works to maintain all cluster components' health, while we release new versions with new features and patches.
 
 Giant Swarm's architecture is split into two logical parts. One encompasses the management cluster and all the components running there. The second part refers to the workload clusters that are created dynamically by the users to run their business workloads. In principle the management cluster and workload cluster(s) are analogous in terms of infrastructure and configuration. The difference comes with the additional layers we deployed on top of the management cluster that helps manage your users and permissions, workload clusters or the applications running on the workload clusters.
+
+## Platform architecture
+
+As explained previously, both the management cluster and the workload cluster(s) have the same structure and configuration. In Giant Swarm we rely on [Cluster API](https://cluster-api.sigs.k8s.io/) to bootstrap and configure the cluster infrastructure and set up all the components needed for a cluster to function.
 
 ![Cluster architecture image](CAPI_architecture.png)
 
