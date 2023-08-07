@@ -1,6 +1,6 @@
 ---
-linkTitle: Platform Architecture
-title: Platform Architecture
+linkTitle: Platform architecture
+title: Platform architecture
 description: Architecture overview explaining how our platform is built and what services we offer in the Platform.
 weight: 30
 menu:
