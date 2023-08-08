@@ -159,7 +159,7 @@ We're aiming to provide a comprehensive blackbox monitoring tool that can valida
 
 
 
-### aws-operator [14.17.1-patch2](https://github.com/giantswarm/aws-operator/releases/tag/v14.17.1-patch2)
+### aws-operator [14.17.1-patch3](https://github.com/giantswarm/aws-operator/releases/tag/v14.17.1-patch3)
 
 #### Added
 - Add toleration for new control-plane taint.
@@ -169,12 +169,21 @@ We're aiming to provide a comprehensive blackbox monitoring tool that can valida
 - Change AWS LB Controller Trust Policy for the new S3 bucket in China clusters.
 ### Changed
 - Change Route53 Trust Policy to allow multiple applications to use the role.
+- Update IAM policy for AWS LoadBalancer Controller.
 
-### cluster-operator [5.6.1](https://github.com/giantswarm/cluster-operator/releases/tag/v5.6.1)
+### cluster-operator [5.6.1-patch1](https://github.com/giantswarm/cluster-operator/releases/tag/v5.6.1-patch1)
 
 #### Fixed
 - Don't enable Cilium network policies on Azure.
+#### Changed
+- Patch app operator version on all apps instead of just optional ones.
 
+### k8s-dns-node-cache-app [v2.3.1](https://github.com/giantswarm/k8s-dns-node-cache-app/releases/tag/v2.3.1)
+
+### Changed
+- Disable IPV6 queries.
+- Remove VPA.
+- Remove resource limits.
 
 
 ### aws-cloud-controller-manager [1.24.1-gs9](https://github.com/giantswarm/aws-cloud-controller-manager-app/releases/tag/v1.24.1-gs9)
@@ -227,12 +236,13 @@ We're aiming to provide a comprehensive blackbox monitoring tool that can valida
 
 
 
-### coredns [1.17.0](https://github.com/giantswarm/coredns-app/releases/tag/v1.17.0)
+### coredns [1.17.1](https://github.com/giantswarm/coredns-app/releases/tag/v1.17.1)
 
 #### Added
 - Add scaling based on custom metrics ([#209](https://github.com/giantswarm/coredns-app/pull/209)).
 #### Changed
 - Decouple PDB configuration from deployment updateStrategy ([#208](https://github.com/giantswarm/coredns-app/pull/208)).
+- Disable IPV6.
 
 
 
@@ -307,6 +317,24 @@ We're aiming to provide a comprehensive blackbox monitoring tool that can valida
 
 #### Added
 - Add overridability to the servicemonitors relabelings and metric_relabelings sections.
+
+
+
+### cert-manager [2.24.1](https://github.com/giantswarm/cert-manager-app/releases/tag/v2.24.1)
+
+### Added
+
+- Add `cluster-autoscaler safe-to-evict` annotation to `controller` and `cainjector`.
+- Add `CiliumNetworkPolicy`.
+
+### Changed
+
+- Update cert-manager container image versions to use v1.12.1
+- Do not try to install PodSecurityPolicies if not available. This will make the Chart compatible with kubernetes >= 1.25
+- Change security contexts to make the chart work with PSS restricted profile
+- Install `giantswarm-selfsigned` ClusterIssuer regardless of `global.giantSwarmClusterIssuer.install` value. It is required as a default component for Giant Swarm cluster installations.
+- Add helm adoption annotations to CRD templates. This change is done in preparation of the next major chart release.
+
 
 
 ### kubernetes [1.24.13](https://github.com/kubernetes/kubernetes/releases/tag/v1.24.13)

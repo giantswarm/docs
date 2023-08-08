@@ -145,12 +145,20 @@ _Nothing has changed._
 
 
 
-### coredns [1.17.0](https://github.com/giantswarm/coredns-app/releases/tag/v1.17.0)
+### coredns [1.18.0](https://github.com/giantswarm/coredns-app/releases/tag/v1.18.0)
 
 #### Added
 - Add scaling based on custom metrics ([#209](https://github.com/giantswarm/coredns-app/pull/209)).
+- Add a new field additionalLocalZones which can be used to introduce more internal local zones, e.g. linkerd.
 #### Changed
 - Decouple PDB configuration from deployment updateStrategy ([#208](https://github.com/giantswarm/coredns-app/pull/208)).
+- Disable IPV6.
+- Create a coredns zone for each cluster domain.
+- Adjust the settings for upscaling HPA when hitting 60% CPU.
+- Adjust the settings for downscaling HPA to 30 minutes.
+- Adjust the min and max memory settings per Pod.
+- Enable cache inconditionaly for . and local zones.
+- Adjust the settings for upscaling HPA when hitting 80% Memory.
 
 
 
