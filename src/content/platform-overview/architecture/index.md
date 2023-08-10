@@ -2,7 +2,7 @@
 linkTitle: Platform architecture
 title: Platform architecture
 description: Architecture overview explaining how our platform is built and what services we offer in the Platform.
-weight: 30
+weight: 10
 menu:
   main:
     parent: platform-overview
