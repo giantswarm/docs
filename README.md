@@ -10,6 +10,10 @@ Please review the [Contribution guidelines](CONTRIBUTING.md) for guidelines on s
 
 If you are an employee of Giant Swarm you can get more information per [intranet page](https://intranet.giantswarm.io/docs/product/docs/) with info on style and other pre-requisites.
 
+## Diagrams
+
+We use [mermaid]() for diagrams. You need to annotate the page previously in the frontmatter to load the mermaid code (`mermaid: true`). Then you can use the shortcode `{{< mermaid >}}` to add the diagram code.
+
 ## License
 
 The content in this repository is licensed under the [Creative Commons Attribution ShareAlike](http://creativecommons.org/licenses/by-sa/4.0/) license.
