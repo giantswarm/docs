@@ -211,24 +211,23 @@ Some parameters on AWS Load Balancers (LBs) cannot be updated gracefully. When t
 
 To avoid downtime, we can create an additional Kubernetes Service of type LoadBalancer, with the required configuration. This will generate a new, temporary LB on AWS. Traffic is then rerouted to this temporary LB by switching the DNS entry. Once all sessions on the old LB have closed, the original Service can be replaced. The DNS entry is then switched back. Once the temporary AWS LB is drained, the corresponding Service can be deleted.
 
-##### Process
 **Process for updating parameters in LoadBalancer Services**
 
-1. **Identify the LoadBalancer Service:** Begin by identifying the Kubernetes Service of type LoadBalancer that needs parameter changes.
+1. **Identify the LoadBalancer Service:** Begin by identifying the Kubernetes Service of type LoadBalancer that requires parameter changes.
     
-2. **Prepare a temporary replacement:** Clone the existing Service or create a new temporary Service with the required new configuration. The aim is to spawn a new LoadBalancer (LB) with its own DNS on the provider infrastructure. The Ingress Controller (for example, nginx-ingress-controller) is agnostic to which Service it gets its requests from, so this step will not disrupt the existing operations.
+2. **Prepare a temporary replacement:** Clone the existing Service or create a new temporary Service with the required new configuration. The goal is to create a new LoadBalancer (LB) with its own DNS on the provider's infrastructure. The Ingress Controller (e.g., nginx-ingress-controller) is agnostic to the source of its requests, ensuring that this process does not disrupt ongoing operations.
 
-3. **Redirect traffic to the temporary LoadBalancer service:** Once the temporary Service is established and the new LoadBalancer can receive traffic, switch the DNS entry for the relevant domain to the new LoadBalancer. This ensures that the traffic originally intended for the old LoadBalancer is now seamlessly handled by the new, temporary one.
+3. **Redirect traffic to the temporary LoadBalancer service:** Once the temporary Service is set up and the new LoadBalancer can handle traffic, switch the DNS entry for the relevant domain to the new LoadBalancer. This seamlessly directs traffic originally intended for the old LoadBalancer to the new temporary one.
     
-4. **Update the original Service:** Apply the configuration changes of the original Service in the Kubernetes cluster.
+4. **Update the original Service:** Apply the configuration changes to the original Service in the Kubernetes cluster.
     
-5. **Wait for propagation:** Allow time for this change to propagate through the provider's API.
+5. **Await propagation:** Allow time for this change to propagate through the provider's API.
     
-6. **Switch back the DNS:** Now, switch the DNS entry again to the oringinal LoadBalancer. This completes the process, ensuring that traffic is handled as expected and the immutable parameters have been effectively updated.
+6. **Switch back the DNS:** Now, revert the DNS entry back to the original LoadBalancer. This completes the process, ensuring that traffic is handled as expected and the immutable parameters have been successfully updated.
 
-7. **Clean up:** One the temporary LoadBalancer is drained and no traffic is going through it, remove the temporary `Service`.
+7. **Clean up:** Once the temporary LoadBalancer is drained and no traffic passes through it, remove the temporary Service.
     
-Always ensure to monitor the system closely during this entire process to minimize any unforeseen disruptions. Also, remember to perform these tasks during a maintenance window or a period of low traffic to minimize impact on end users.
+Always ensure to closely monitor the system throughout this entire process to minimize any unforeseen disruptions. Additionally, remember to perform these tasks during a maintenance window or a period of low traffic to minimize the impact on end users.
 
 ---------------------------------------------------
 
