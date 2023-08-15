@@ -207,9 +207,9 @@ Multiple subnets can be specified but each has to be in it's own availability zo
 
 #### Changing AWS NLBs configuration
 
-Some parameters on AWS Load Balancers (LBs) cannot be updated gracefully. When these options are changed by updating the corresponding Service object in the Kubernetes cluster, the AWS Load Balancer controller has to re-create either the Target Group or the entire Load Balancer. The first case implies a disruption of traffic during the initialization process of the targets. In the latter scenario, a new LB means a new domain, which requires updating the DNS records or any external load balancer configurations.
+Some parameters on AWS Load Balancers (LBs) cannot be updated gracefully. When these options are changed by updating the corresponding `Service` object in the Kubernetes cluster, the AWS Load Balancer controller has to re-create either the Target Group or the entire Load Balancer. The first case implies a disruption of traffic during the initialization process of the targets. In the latter scenario, a new LB means a new domain, which requires updating the DNS records or any external load balancer configurations.
 
-To avoid downtime, we can create an additional Kubernetes Service of type LoadBalancer, with the required configuration. This will generate a new, temporary LB on AWS. Traffic is then rerouted to this temporary LB by switching the DNS entry. Once all sessions on the old LB have closed, the original Service can be replaced. The DNS entry is then switched back. Once the temporary AWS LB is drained, the corresponding Service can be deleted.
+To avoid downtime, we can create an additional Kubernetes `Service` of type `LoadBalancer`, with the required configuration. This will generate a new, temporary LB on AWS. Traffic is then rerouted to this temporary LB by switching the DNS entry. Once all sessions on the old LB have closed, the original `Service` can be replaced. The DNS entry is then switched back. Once the temporary AWS LB is drained, the corresponding `Service` can be deleted.
 
 **Process for updating parameters in LoadBalancer Services**
 
