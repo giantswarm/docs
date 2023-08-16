@@ -18,7 +18,7 @@ owner:
 
 <div class="well disclaimer">
 
-<i class="fa fa-warning"></i> This article covers organizations as defined in the [Management API]({{< relref "/platform-overview/management-api" >}}). These are replacing the organizations as used with the [REST API]({{< relref "/use-the-api/rest-api/index.md">}}). Existing customers of the REST API should be aware of this transition.
+<i class="fa fa-warning"></i> This article covers organizations as defined in the [Management API]({{< relref "/platform-overview/management-api" >}}). These are replacing the organizations formerly used with the [REST API]({{< relref "/use-the-api/rest-api/index.md">}}). Existing users of the REST API should be aware of this transition.
 
 </div>
 
