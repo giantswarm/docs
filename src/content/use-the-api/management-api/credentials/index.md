@@ -131,7 +131,7 @@ Both options are explained in further detail below.
 
 ### Organization default credentials {#organization-default}
 
-Any workload cluster in Giant Swarm belongs to an [organization]({{< relref "/platform-overview/organizations" >}}) as encoded in the `giantswarm.io/organization` label of the cluster's [`Cluster`]({{< relref "/use-the-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) resource.
+Any workload cluster in Giant Swarm belongs to an [organization]({{< relref "/platform-overview/multi-tenancy" >}}) as encoded in the `giantswarm.io/organization` label of the cluster's [`Cluster`]({{< relref "/use-the-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) resource.
 
 For each organization you can also deposit a credential secret which will be used automatically for any new workload cluster that does not specify credentials explicitly (as explained [above](#explicit)). To be looked up as the organization's default credentials, your `Secret` resource must match the following requirements:
 

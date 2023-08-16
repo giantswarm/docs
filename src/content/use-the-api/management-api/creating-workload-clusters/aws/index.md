@@ -17,6 +17,12 @@ owner:
 last_review_date: 2023-03-15
 ---
 
+<div class="well disclaimer">
+
+<i class="fa fa-warning"></i> This article only covers cluster creation for the Vintage generation. For newer generations, please instead follow the [Getting started]({{< relref "/getting-started/" >}}) guide.
+
+</div>
+
 ## How cluster creation works
 
 Starting from version {{% first_aws_nodepools_version %}} on AWS, Giant Swarm introduced a feature to create multiple [node pools]({{< relref "/advanced/node-pools" >}}) on AWS.

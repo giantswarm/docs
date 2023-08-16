@@ -17,6 +17,12 @@ owner:
 last_review_date: 2021-01-01
 ---
 
+<div class="well disclaimer">
+
+<i class="fa fa-warning"></i> This article only covers cluster creation for the Vintage generation. For newer generations, please instead follow the [Getting started]({{< relref "/getting-started/" >}}) guide.
+
+</div>
+
 ## How does cluster creation work
 
 Starting from version {{% first_azure_nodepools_version %}} on Azure, Giant Swarm introduced a feature to create multiple [node pools]({{< relref "/advanced/node-pools" >}}) on Azure.
@@ -210,7 +216,7 @@ In order to configure your new cluster with OIDC, you will have to add annotatio
 apiVersion: cluster.x-k8s.io/v1alpha3
 kind: Cluster
 metadata:
-  annotations:  
+  annotations:
     oidc.giantswarm.io/client-id: OIDC_CLIENT_ID
     oidc.giantswarm.io/group-claim: GROUP_CLAIM
     oidc.giantswarm.io/issuer-url: https://login.microsoftonline.com/TENANT_ID/v2.0
