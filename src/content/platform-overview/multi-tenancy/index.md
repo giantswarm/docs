@@ -89,7 +89,7 @@ Organizations are transitioning from being managed completely by microservices b
 
 If the concept of custom resources (CR) and custom resource definitions (CRD) is new to you: Kubernetes allows to define [arbitrary objects](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) to be handled via the Kubernetes API. The schema of such an object is specified by a custom resource definition. The actual objects are called the custom resources.
 
-Giant Swarm management management clusters provide a CRD named `Organization` (long form: `organizations.security.giantswarm.io`, [schema documentation]({{< relref "/use-the-api/management-api/crd/organizations.security.giantswarm.io.md" >}})). An organization is defined simply by a custom resource using that CRD, which we'll call an "organization CR" here for brevity.
+Giant Swarm management clusters provide a CRD named `Organization` (long form: `organizations.security.giantswarm.io`, [schema documentation]({{< relref "/use-the-api/management-api/crd/organizations.security.giantswarm.io.md" >}})). An organization is defined simply by a custom resource using that CRD, which we'll call an "organization CR" here for brevity.
 
 The single most important aspect of an organization CR is its name. Therefore the CR looks as simple as this:
 
