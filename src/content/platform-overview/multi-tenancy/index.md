@@ -1,6 +1,6 @@
 ---
 title: Multi-tenancy
-description: Organization concept in the Giant Swarm Management API which helps keep resources for different tenants separated.
+description: The Organization concept in the Giant Swarm Management API helps keep resources for different tenants separate.
 last_review_date: 2023-08-02
 aliases:
   - /platform-overview/organizations/
