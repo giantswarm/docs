@@ -1,32 +1,32 @@
 ---
-linkTitle: Giant Swarm Release v20.0.0
-title: Giant Swarm Release v20.0.0
-description: Giant Swarm release v20 besides many improvements will introduce Kuberntes Release Version 1.25.x. Following handbook should be carefully read by customers upfront the upgrade to prepare the clusters and workloads accordingly.
+linkTitle: Giant Swarm Release v21.0.0
+title: Giant Swarm Release v21.0.0
+description: Giant Swarm release v21 besides many improvements will introduce Kuberntes Release Version 1.25.x. Following handbook should be carefully read by customers upfront the upgrade to prepare the clusters and workloads accordingly.
 weight: 10
 menu:
   main:
     parent: advanced-upgrades
 aliases:
-  - /guides/gs-release-v20/
+  - /guides/gs-release-v21/
 user_questions:
-  - Where can I read about v20 changes?
-  - What does v20 change?
-  - What changes does Kubernetes Version 1.25.x bring?
-  - What do i have to prepare for v20?
-  - How does the Kubernetes V1.25.x migration work?
+  - Where can I read about v21 changes?
+  - What does v21 change?
+  - What changes does Kubernetes Version 1.25 bring?
+  - What do i have to prepare for v21?
+  - How does the Kubernetes V1.25 migration work?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
   - https://github.com/orgs/giantswarm/teams/team-turtles
 last_review_date: 2023-08-02
 ---
 
-{{< platform_support_table aws="alpha=v20.0.0" >}}
+{{< platform_support_table aws="alpha=v21.0.0" >}}
 
 ## Introduction
 
-As we prepare the Giant Swarm Release v20 we want to already give you a sneak preview of the upcoming changes.
-One major change will be the upgrade to the latest Kubernetes Version 1.25.x for which we already prepared our platform extensively with the Giant Swarm Version 19.
-In this document we want to take a look at the upcoming changes and key highlights for the new Giant Swarm Version 20 and with that Kubernetes Version 1.25.x.
+As we prepare the Giant Swarm Release v21 we want to already give you a sneak preview of the upcoming changes.
+One major change will be the upgrade to the latest Kubernetes Version 1.25.x for which we already prepared our platform extensively with the Giant Swarm Version 19 and Version 20.
+In this document we want to take a look at the upcoming changes and key highlights for the new Giant Swarm Version 21 and with that Kubernetes Version 1.25.
 
 ## Kubernetes v1.25: Enhancing Security and Empowering Policies
 
