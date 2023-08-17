@@ -32,12 +32,12 @@ By default, the machines are split into three different failure domains or zones
 There is a machine created as a bastion that helps us with the operations. It is the single entry point to the running infrastructure. This way all the cluster machines can live in a private network and expose the services running on them via explicit configuration.
 
 {{< tabs >}}
-{{< tab id="flags-openstack" title="OpenStack">}}
+{{< tab id="flags-openstack" title="OpenStack (CAPO)">}}
 
 The setup requires an external network configured in the project to allow the machines to pull images or route requests from containers to the Internet. On the other side, there is an internal network which interconnects all master and worker machines allowing the internal communication of all containers within the cluster. At the same time, it allocates the load balancers that are created dynamically as result of exposing a service in the cluster. In case the load balancer is external, a floating IP is allocated to enable the connection with external endpoints.
 
 {{< /tab >}}
-{{< tab id="flags-vsphere" title="vSphere">}}
+{{< tab id="flags-vsphere" title="vSphere (CAPV)">}}
 
 ### Compatibility
 
