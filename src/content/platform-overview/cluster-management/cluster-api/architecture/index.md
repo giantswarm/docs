@@ -135,7 +135,7 @@ In Giant Swarm we leverage the operator pattern to extend the management cluster
 
 This operator is in charge of reconciling `Organization` custom resources. The functionality of the operator is pretty straightforward. It creates and deletes the organization namespace when the given resource is created.
 
-To learn more about organizations please read [the related documentation]({{< relref "/platform-overview/organizations" >}}).
+To learn more about organizations please read [the related documentation]({{< relref "/platform-overview/multi-tenancy" >}}).
 
 *RBAC operator*
 
