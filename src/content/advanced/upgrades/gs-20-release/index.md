@@ -24,7 +24,7 @@ last_review_date: 2023-08-02
 
 ## Introduction
 
-As we prepare the Giant Swarm Release V20 we want to already give you a sneak preview of the upcoming changes.
+As we prepare the Giant Swarm Release v20 we want to already give you a sneak preview of the upcoming changes.
 One major change will be the upgrade to Kubernetes Version 1.25.0 for which we prepared our platform already extensively with the Giant Swarm Version 19,
 In this document we want to take a look at the upcoming changes and key highlights for the new Giant Swarm Version 20 and with that Kubernetes Version 1.25.0.
 
