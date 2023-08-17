@@ -37,6 +37,31 @@ There is a machine created as a bastion that helps us with the operations. It is
 The setup requires an external network configured in the project to allow the machines to pull images or route requests from containers to the Internet. On the other side, there is an internal network which interconnects all master and worker machines allowing the internal communication of all containers within the cluster. At the same time, it allocates the load balancers that are created dynamically as result of exposing a service in the cluster. In case the load balancer is external, a floating IP is allocated to enable the connection with external endpoints.
 
 {{< /tab >}}
+{{< tab id="flags-vsphere" title="VMware vSphere">}}
+
+### Compatibility
+
+The setup supports vSphere 6.7 Update 3 and above to have the Cloud Native Storage (CNS) feature. 
+
+### Authentication
+
+Cluster API Provider vSphere (CAPV), along with the associated Cloud Provider interface (CPI) and Container Storage interface (CSI), authenticate against the VMware vSphere API using credentials stored in a secret. 
+
+### Networking
+
+vSphere has no concept of load balancer so we leverage `kuve-vip` to provide load balancing in ARP mode (layer-2) for the kubernetes API, as well as the `kube-vip` cloud provider (CPI) for services of type `Load Balancer`.
+
+By default kube-vip requires to set IP addresses manually. To solve this, we install [cluster-api-ipam-provider-in-cluster](https://github.com/giantswarm/cluster-api-ipam-provider-in-cluster-app) in the clusters to control IP allocation through the use of `IPAddressClaims`. This has the benefit of being compatible with any vSphere environment, regardless of the network architecture, and avoid IP duplicates. This means that we recommend to reserve a layer 2 subnet per management cluster.
+
+### Failure Domains
+
+Virtual machines created on the infrastructure to run the Kubernetes nodes can be provisioned in different ways to account for different failure domains. CAPV supports spreading VMs on different nodes within the same cluster, different clusters within the same datacenter and on different datacenters within the same vCenter.
+
+### Storage
+
+In order to offer persistent storage that is decoupled from the virtual machines, the container storage interface creates a Container Volume in vSphere that can be attached or detached from the VM according to whether or not the persistent volume claim (PVC) is bound to a pod or not. Container Volumes support Read-Write-Only (RWO) and Read-Write-Many (RWX) if VSAN File Services is enabled.
+
+{{< /tab >}}
 {{< tab id="flags-clouddirector" title="VMware Cloud Director">}}
 
 ### Compatibility
