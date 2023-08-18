@@ -9,7 +9,7 @@ menu:
 weight: 100
 aliases:
   - /operations/autoscaling/vertical-pod-autoscaler
-last_review_date: 2023-03-01
+last_review_date: 2023-08-16
 user_questions:
   - What is the Vertical Pod Autoscaler?
   - How can I reduce resource usage of my pods?
