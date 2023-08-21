@@ -51,7 +51,7 @@ Cluster API Provider vSphere (CAPV), along with the associated Cloud Provider in
 
 vSphere has no concept of load balancer so we leverage `kuve-vip` to provide load balancing in ARP mode (layer-2) for the kubernetes API, as well as the `kube-vip` cloud provider (CPI) for services of type `Load Balancer`.
 
-By default kube-vip requires to set IP addresses manually. To solve this, we install [cluster-api-ipam-provider-in-cluster](https://github.com/giantswarm/cluster-api-ipam-provider-in-cluster-app) in the clusters to control IP allocation through the use of `IPAddressClaims`. This has the benefit of being compatible with any vSphere environment, regardless of the network architecture, and avoid IP duplicates. This means that we recommend to reserve a layer 2 subnet per management cluster.
+By default kube-vip requires to set IP addresses manually. To solve this, we install [cluster-api-ipam-provider-in-cluster](https://github.com/giantswarm/cluster-api-ipam-provider-in-cluster-app) in the clusters to control IP allocation through the use of `IPAddressClaims`. This has the benefit of being compatible with any vSphere environment, regardless of the network architecture, and avoid IP duplicates. This means that we recommend reserving a layer 2 subnet per management cluster.
 
 ### Failure Domains
 
