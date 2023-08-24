@@ -32,12 +32,37 @@ By default, the machines are split into three different failure domains or zones
 There is a machine created as a bastion that helps us with the operations. It is the single entry point to the running infrastructure. This way all the cluster machines can live in a private network and expose the services running on them via explicit configuration.
 
 {{< tabs >}}
-{{< tab id="flags-openstack" title="OpenStack">}}
+{{< tab id="cluster-capo" for-impl="capo" >}}
 
 The setup requires an external network configured in the project to allow the machines to pull images or route requests from containers to the Internet. On the other side, there is an internal network which interconnects all master and worker machines allowing the internal communication of all containers within the cluster. At the same time, it allocates the load balancers that are created dynamically as result of exposing a service in the cluster. In case the load balancer is external, a floating IP is allocated to enable the connection with external endpoints.
 
 {{< /tab >}}
-{{< tab id="flags-clouddirector" title="VMware Cloud Director">}}
+{{< tab id="cluster-capv" for-impl="capv" >}}
+
+### Compatibility
+
+The setup supports vSphere 6.7 Update 3 and above to have the Cloud Native Storage (CNS) feature. 
+
+### Authentication
+
+Cluster API Provider vSphere (CAPV), along with the associated Cloud Provider interface (CPI) and Container Storage interface (CSI), authenticate against the VMware vSphere API using credentials stored in a secret. 
+
+### Networking
+
+vSphere has no concept of load balancer so we leverage [`kube-vip`](https://kube-vip.io/) to provide load balancing in ARP mode (layer-2) for the kubernetes API, as well as the `kube-vip` cloud provider (CPI) for services with `type: LoadBalancer`.
+
+By default kube-vip requires to set IP addresses manually. To solve this, we install [cluster-api-ipam-provider-in-cluster](https://github.com/giantswarm/cluster-api-ipam-provider-in-cluster-app) in the clusters to control IP allocation through the use of `IPAddressClaims`. This has the benefit of being compatible with any vSphere environment, regardless of the network architecture, and avoid IP duplicates. This means that we recommend reserving a layer 2 subnet per management cluster.
+
+### Failure Domains
+
+Virtual machines created on the infrastructure to run the Kubernetes nodes can be provisioned in different ways to account for different failure domains. CAPV supports spreading VMs on different nodes within the same cluster, different clusters within the same datacenter and on different datacenters within the same vCenter.
+
+### Storage
+
+In order to offer persistent storage that is decoupled from the virtual machines, the container storage interface creates a Container Volume in vSphere that can be attached or detached from the VM according to whether or not the persistent volume claim (PVC) is bound to a pod or not. Container Volumes support Read-Write-Only (RWO) and Read-Write-Many (RWX) if VSAN File Services is enabled.
+
+{{< /tab >}}
+{{< tab id="cluster-capvcd" for-impl="capvcd" >}}
 
 ### Compatibility
 
@@ -62,15 +87,15 @@ The Kubernetes cluster is represented in VMware Cloud Directior by a vAPP of the
 In order to offer persistent storage that is decoupled from the virtual machines, the container storage interface creates a Named Disk that can be attached or detached from the VM according to whether or not the persistent volume claim (PVC) is bound to a pod or not. Named disks currently only support Read-Write-Only (RWO) with block storage backed named disks.
 
 {{< /tab >}}
-{{< tab id="flags-aws" title="AWS">}}
+{{< tab id="cluster-capa_ec2" for-impl="capa_ec2" >}}
 
 The setup uses a standalone VPC (though you can bring your own VPC) and creates private subnets for the machine in each availability zone. It uses NAT gateways for allowing machines to pull images or route requests from containers to the Internet. On the other side, it needs an Internet Gateway to route traffic from Internet to the containers. It leverages route tables to configure the routing for each subnet and gateways.
 
 {{< /tab >}}
-{{< tab id="flags-capz" title="Azure">}}
+{{< tab id="cluster-capz_vms" for-impl="capz_vms" >}}
 
 {{< /tab >}}
-{{< tab id="flags-gcp" title="GCP">}}
+{{< tab id="cluster-capg_vms" for-impl="capg_vms" >}}
 
 The setup uses the default network if none has been created upfront for the purpose. Every Google project always come with a default network. The network allows the machines to pull images or route requests from containers to the Internet. The machines are running in private subnets configured to use a Cloud NAT gateway to access the outside network. At the same time, Google uses Global Load Balancer to route external requests to the containers.
 
