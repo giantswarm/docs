@@ -32,7 +32,7 @@ Each of these approaches has pros and cons. Giant Swarm relies on the multi-dire
 
 There are many ways to separete your cluster configuration but over the years we have seen in most cases there are two main factors: stages and regions. You can always adapt further this to your own requirements following the same principles described below.
 
-Lets start creating a new folder in our `bases` root directory. We will call it `environments and we will add two new folders `stages` and `regions`.
+Lets start creating a new folder in our `bases` root directory. We will call it `environments` and we will add two new folders `stages` and `regions`.
 
 The `stages` folder is how we propose to group environment specifications. There is a good reason for this additional layer. You can use it for having multiple different clusters - like the dev, staging and production - but also to have multiple different regions where you want to spin these clusters up.
 
