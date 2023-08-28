@@ -18,6 +18,7 @@ aliases:
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-security
 last_review_date: 2023-06-30
+mermaid: true
 ---
 
 Two of the most central mechanisms to secure your cluster in Kubernetes are Role Based Access Control (RBAC) and Pod Security Standards (PSS). Together, they allow you to create fine-grained roles and policies to manage access control for users and software running on your cluster. Both are enabled by default on Giant Swarm clusters.
@@ -293,11 +294,11 @@ To learn more about builtin PSA, please refer to the [upstream Kubernetes Pod Se
 
 Instead of the Pod Security Admission controller, Giant Swarm clusters use Kyverno along with a set of Kyverno ClusterPolicies which map to the Kubernetes Pod Security Standards.
 
-```mermaid
+{{< mermaid >}}
 flowchart TD
     A["Pod Security Standards (PSS)"] -->|Enforced by| B("Kyverno <br/> (outside API Server)")
     A --> |Enforced by| C("Pod Security Admission (PSA) <br/> (inside API Server)")
-```
+{{< /mermaid >}}
 
 By default, Giant Swarm clusters enforce the `restricted` level Pod Security Standards. This level aligns with our "secure by default" principle, and is intended to ensure our clusters are hardened according to community best practices.
 
