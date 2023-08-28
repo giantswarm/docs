@@ -54,3 +54,11 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           title: markdownlint problems
           input: ./markdownlint-annotations.json
+
+      - name: Fail if markdownlint had findings
+        run: |
+          # If there are non-empty lines, we had linting findings
+          if [ "$(awk 1 < markdownlint.out | wc -l | awk '{print $1}')" != 0 ]; then
+            echo "ERROR: See markdownlint findings (annotated as errors in the PR when you click on 'Files changed')"
+            exit 1
+          fi
