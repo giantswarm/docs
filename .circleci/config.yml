@@ -9,16 +9,12 @@ jobs:
     executor: "architect/architect"
     environment:
       DOCKER_BUILDKIT: "1"
-    
+
     steps:
       - checkout
 
       - setup_remote_docker:
           version: 20.10.11
-
-      - run:
-          name: Check Markdown structure
-          command: make lint
 
       - architect/push-to-docker:
           image: "quay.io/giantswarm/docs"

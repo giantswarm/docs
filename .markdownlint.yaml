@@ -16,6 +16,13 @@ MD004:
 MD007:
   indent: 4
 
+# MD009/no-trailing-spaces
+#
+# We explicitly don't want trailing spaces. Authors' editors should be configured to trim them. The Markdown feature of
+# using two spaces at the end of a line should not be used (use the alternative `<br>` only if really necessary, or
+# better use normal paragraphs).
+MD009: true
+
 # Ignore front matter in headline linting
 MD025:
   front_matter_title: ""
@@ -35,3 +42,16 @@ MD034: false
 
 # Don't lint for line length
 MD013: false
+
+# MD051/link-fragments
+#
+# We use GitHub's format (`## My heading {#explicit-reference-name}`) in some cases but markdownlint only supports
+# the regular CommonMark specification for the aliases (see https://github.com/DavidAnson/markdownlint/blob/main/doc/md051.md).
+# The lint is therefore not helpful.
+MD051: false
+
+# MD052/reference-links-images
+#
+# We use the Hugo functionality such as `[1]: {{< relref "..." >}}` which markdownlint recognizes as undefined reference,
+# so the lint is not helpful.
+MD052: false
