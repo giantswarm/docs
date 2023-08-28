@@ -186,13 +186,14 @@ AWS is in the process of replacing ELBs with NLBs (Network Load Balancers) and A
 
 To be able to fully controll all NLB features, we're strongly recommend installing [AWS Load Balancer Controller](https://github.com/giantswarm/aws-load-balancer-controller-app) as the Kubernetes in-tree AWS Load Balancer implementation only supports [annotations for classic ELBs](https://github.com/kubernetes/kubernetes/blob/v1.26.0/staging/src/k8s.io/legacy-cloud-providers/aws/aws.go#L105-L246).
 
+The *AWS Load Balancer Controller* reconciles `Services` that have the `spec.loadBalancerClass` field defined:
+
 ```yaml
-metadata:
-  annotations:
-    service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+spec:
+  loadBalancerClass: service.k8s.aws/nlb
 ```
 
-Network load balancers will use [Subnet Discovery](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/deploy/subnet_discovery/) to attach to a suitable subnet.
+Network load balancers use [Subnet Discovery](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/deploy/subnet_discovery/) to attach to a suitable subnet.
 
 With the following [annotation](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/guide/service/annotations/#subnets) the subnet can be specified either by nameTag or subnetID:
 
@@ -203,6 +204,32 @@ metadata:
 ```
 
 Multiple subnets can be specified but each has to be in it's own availability zone.
+
+#### Changing AWS NLBs configuration
+
+Some parameters on AWS Load Balancers (LBs) cannot be updated gracefully. When these options are changed by updating the corresponding `Service` object in the Kubernetes cluster, the AWS Load Balancer controller has to re-create either the Target Group or the entire Load Balancer. The first case implies a disruption of traffic during the initialization process of the targets. In the latter scenario, a new LB means a new domain, which requires updating the DNS records or any external load balancer configurations.
+
+To avoid downtime, we can create an additional Kubernetes `Service` of type `LoadBalancer`, with the required configuration. This will generate a new, temporary LB on AWS. Traffic is then rerouted to this temporary LB by switching the DNS entry. Once all sessions on the old LB have closed, the original `Service` can be replaced. The DNS entry is then switched back. Once the temporary AWS LB is drained, the corresponding `Service` can be deleted.
+
+**Process for updating parameters in LoadBalancer Services**
+
+1. **Identify the LoadBalancer Service:** Begin by identifying the Kubernetes Service of type LoadBalancer that requires parameter changes.
+    
+2. **Prepare a temporary replacement:** Clone the existing Service or create a new temporary Service with the required new configuration. The goal is to create a new LoadBalancer (LB) with its own DNS on the provider's infrastructure. The Ingress Controller (e.g., nginx-ingress-controller) is agnostic to the source of its requests, ensuring that this process does not disrupt ongoing operations.
+
+3. **Redirect traffic to the temporary LoadBalancer service:** Once the temporary Service is set up and the new LoadBalancer can handle traffic, switch the DNS entry for the relevant domain to the new LoadBalancer. This seamlessly directs traffic originally intended for the old LoadBalancer to the new temporary one.
+    
+4. **Update the original Service:** Apply the configuration changes to the original Service in the Kubernetes cluster.
+    
+5. **Await propagation:** Allow time for this change to propagate through the provider's API.
+    
+6. **Switch back the DNS:** Now, revert the DNS entry back to the original LoadBalancer. This completes the process, ensuring that traffic is handled as expected and the immutable parameters have been successfully updated.
+
+7. **Clean up:** Once the temporary LoadBalancer is drained and no traffic passes through it, remove the temporary Service.
+    
+Always ensure to closely monitor the system throughout this entire process to minimize any unforeseen disruptions. Additionally, remember to perform these tasks during a maintenance window or a period of low traffic to minimize the impact on end users.
+
+---------------------------------------------------
 
 #### Other AWS ELB configuration options
 
