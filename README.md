@@ -12,7 +12,7 @@ If you are an employee of Giant Swarm you can get more information per [intranet
 
 ## Diagrams
 
-We use [mermaid]() for diagrams. You need to annotate the page previously in the frontmatter to load the mermaid code (`mermaid: true`). Then you can use the shortcode `{{< mermaid >}}` to add the diagram code.
+We use [mermaid](https://mermaid.js.org/) for diagrams. You need to annotate the page previously in the frontmatter to load the mermaid code (`mermaid: true`). Then you can use the shortcode `{{< mermaid >}}` to add the diagram code.
 
 ## License
 
