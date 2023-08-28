@@ -42,7 +42,7 @@ jobs:
 
           # Otherwise create annotations
           cat markdownlint.out \
-            | jq -R '[inputs | (. | capture("(?<filename>[^:]+):(?<line>[0-9]+)(:(?<col>[0-9]+))?\\s+(?<description>.+)") | {"file": .filename, "line": (.line | tonumber), "end_line": (.line | tonumber), "title": "markdownlint problem", "message": .description, "annotation_level": "error"})]' \
+            | jq -nR '[inputs | (. | capture("(?<filename>[^:]+):(?<line>[0-9]+)(:(?<col>[0-9]+))?\\s+(?<description>.+)") | {"file": .filename, "line": (.line | tonumber), "end_line": (.line | tonumber), "title": "markdownlint problem", "message": .description, "annotation_level": "error"})]' \
             > markdownlint-annotations.json
 
       - name: Print markdownlint annotations
