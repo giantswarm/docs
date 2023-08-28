@@ -87,6 +87,7 @@ In order to communicate with your on-premises data center or with other VPCs (ot
 ### Pod Networking
 
 #### AWS CNI
+
 CNI used until AWS release 18.
 
 [AWS CNI](https://github.com/aws/amazon-vpc-cni-k8s) enables container communication in separate subnets within the cluster leveraging the VPC network.
@@ -94,12 +95,12 @@ CNI used until AWS release 18.
 ![AWS CNI](awscni.png)
 
 #### Cilium CNI
+
 CNI Used from release [19](https://docs.giantswarm.io/advanced/upgrades/aws-19-release/).
 
 [Cilium CNI](https://docs.cilium.io/en/stable/overview/intro/) offers advanced EBPF networking without overlay.
 
 ![Cilium CNI](cilium.png)
-
 
 ### Worker node size
 

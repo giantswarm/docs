@@ -59,11 +59,11 @@ As a consequence, the only way to change the stack is to perform an upgrade, to 
 
 According to our workload cluster release versioning, three different levels of upgrades can occur:
 
-- *Patch upgrade*: Only the patch version number is increased.
+- _Patch upgrade_: Only the patch version number is increased.
 
-- *Minor upgrade*: The minor version number is increased, while the major version number stays the same.
+- _Minor upgrade_: The minor version number is increased, while the major version number stays the same.
 
-- *Major upgrade*: The major version number is increased.
+- _Major upgrade_: The major version number is increased.
 
 #### Patch upgrade {#patch-upgrade}
 

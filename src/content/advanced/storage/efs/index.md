@@ -63,24 +63,25 @@ To install the EFS CSI driver in the workload cluster, you will need to follow t
 6. Click the Configure & Install button. Make sure that the correct cluster is selected.
 7. Create and submit a configuration values file in case you want to deploy the storage class and controller (by default disable to allow a smooth transitation to CSI driver)
 
-Example configuration:
-```yaml
-storageClasses:
-- name: efs-sc
-  annotations:
-    storageclass.kubernetes.io/is-default-class: "true"
-  mountOptions:
-  - tls
-  parameters:
-    provisioningMode: efs-ap
-    fileSystemId: fs-92107666
-    directoryPerms: "700"
-    gidRangeStart: "1000"
-    gidRangeEnd: "2000"
-    
-controller:
-  create: true
-```
+    Example configuration:
+
+    ```yaml
+    storageClasses:
+    - name: efs-sc
+      annotations:
+        storageclass.kubernetes.io/is-default-class: "true"
+      mountOptions:
+      - tls
+      parameters:
+        provisioningMode: efs-ap
+        fileSystemId: fs-92107666
+        directoryPerms: "700"
+        gidRangeStart: "1000"
+        gidRangeEnd: "2000"
+
+    controller:
+      create: true
+    ```
 
 8. Click the Install App button.
 

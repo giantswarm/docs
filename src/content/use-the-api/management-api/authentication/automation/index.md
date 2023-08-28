@@ -103,7 +103,6 @@ kubectl --kubeconfig FILE config use-context gs-INSTALLATION
 
 As a result, in the path `FILE` you have a self-contained kubeconfig file for the Management API. This file includes the service account's authentication token.
 
-
 ### 8. Test the new kubeconfig
 
 ```nohighlight

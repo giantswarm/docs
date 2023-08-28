@@ -44,7 +44,6 @@ For AWS CAPI (`--provider capa`):
 - [`App (name=<cluster name>-default-apps)`]({{< relref "/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) (API version `application.giantswarm.io/v1alpha1`) - describes the Giant Swarm App which defines the helm release which in turn creates the preinstalled apps which run in the workload cluster.
 - `ConfigMap (name=<cluster name>-default-apps-userconfig)` - describes the configuration for the above preinstalled apps charts.
 
-
 {{< /tab >}}
 {{< tab id="flags-azure" title="Azure">}}
 
@@ -113,7 +112,6 @@ It supports the following flags:
 - `--control-plane-az` (optional) - Availability zone(s) of the control plane instance(s).
 - `--output` (optional) - The name of the file to write the output to instead of stdout.
 
-
   On AWS, it must be configured with AZ of the installation region. E.g. for region `eu-central-1`, a valid value is `eu-central-1a`.
 
   On Azure, it can be any of the 3 zones: `1`, `2`, `3`.
@@ -124,7 +122,7 @@ It supports the following flags:
 
 ### AWS CAPI specific flags
 
- - `--name` must only contain alphanumeric characters, start with a letter, and be no longer than 5 characters in length
+- `--name` must only contain alphanumeric characters, start with a letter, and be no longer than 5 characters in length
 
 ### AWS specific flags
 
@@ -157,8 +155,8 @@ It supports the following flags:
 - `--dns-nameservers` (optional) - A list of DNS nameservers to be used to resolve external names.
 - `--external-network-id` - UUID of the external network to be used. Only required if multiple external networks are available.
 - `--node-cidr` - CIDR defining the IP range of cluster nodes. When used, new network and subnet will be created.
-- `--network-name` (optional) - Name of existing network for the cluster. Can be used when `--node-cidr` is empty. 
-- `--subnet-name` (optional) - Name of existing subnet for the cluster. Can be used when `--node-cidr` is empty. 
+- `--network-name` (optional) - Name of existing network for the cluster. Can be used when `--node-cidr` is empty.
+- `--subnet-name` (optional) - Name of existing subnet for the cluster. Can be used when `--node-cidr` is empty.
 - `--bastion-boot-from-volume` - If true, bastion machine will use a persistent root volume instead of an ephemeral volume.
 - `--bastion-disk-size` - Size of root volume attached to the cluster bastion machine in gigabytes. Must be greater than or equal to the size of the bastion source image (`--bastion-image`).
 - `--bastion-image` - Bastion image name or root volume source UUID if --bastion-boot-from-volume is set.
@@ -208,9 +206,9 @@ Example command for an AWS CAPI cluster:
 
 ```nohighlight
 kubectl gs template cluster \
-  --provider capa \  
-  --control-plane-az eu-central-1a \  
-  --description "Development Cluster" \  
+  --provider capa \
+  --control-plane-az eu-central-1a \
+  --description "Development Cluster" \
   --name dev01 \
   --organization acme
 ```
@@ -228,6 +226,7 @@ kubectl gs template cluster \
   --label team=upstate \
   --service-priority lowest
 ```
+
 {{< /tab >}}
 {{< tab id="command-examples-gcp" title="GCP">}}
 
@@ -401,6 +400,7 @@ spec:
 
 {{< /tab >}}
 {{< tab id="command-output-aws-capi" title="AWS CAPI">}}
+
 ```yaml
 ---
 apiVersion: v1
@@ -506,6 +506,7 @@ spec:
       namespace: org-acme
   version: 0.5.4
 ```
+
 {{< /tab >}}
 {{< tab id="command-output-azure" title="Azure">}}
 

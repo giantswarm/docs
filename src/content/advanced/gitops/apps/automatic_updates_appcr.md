@@ -55,14 +55,14 @@ export APP_IMAGE_REGISTRY=APP_IMAGE_REGISTRY
     cd management-clusters/${MC_NAME}/organizations/${ORG_NAME}/workload-clusters/${WC_NAME}/mapi
     ```
 
-1. Create the `automatic-updates` directory there and enter it:
+2. Create the `automatic-updates` directory there and enter it:
 
     ```nohighlight
     mkdir automatic-updates
     cd automatic-updates
     ```
 
-1. Create the `imageupdate.yaml` file that defines an automation process for updating Git repository:
+3. Create the `imageupdate.yaml` file that defines an automation process for updating Git repository:
 
     ```nohighlight
     cat <<EOF > imageupdate.yaml
@@ -93,13 +93,13 @@ export APP_IMAGE_REGISTRY=APP_IMAGE_REGISTRY
     EOF
     ```
 
-1. Leave `automatic-updates` directory and go into the App directory:
+4. Leave `automatic-updates` directory and go into the App directory:
 
     ```nohighlight
     cd ../apps/${APP_NAME}
     ```
 
-1. Create the [ImageRepository CR](https://fluxcd.io/docs/components/image/imagerepositories/) to configure registry to
+5. Create the [ImageRepository CR](https://fluxcd.io/docs/components/image/imagerepositories/) to configure registry to
 scan for new tags:
 
     ```nohighlight
@@ -115,7 +115,7 @@ scan for new tags:
     EOF
     ```
 
-1. Create the [ImagePolicy CR](https://fluxcd.io/docs/components/image/imagepolicies/) with rules for tags selection:
+6. Create the [ImagePolicy CR](https://fluxcd.io/docs/components/image/imagepolicies/) with rules for tags selection:
 
     ```nohighlight
     cat <<EOF > imagepolicy.yaml
@@ -136,17 +136,17 @@ scan for new tags:
     EOF
     ```
 
-__Note__: the `filterTags` is processed first and gives the opportunity to filter the image tags before they are considered by the policy rule. Here, it is used to skip the heading `v` in the version upon passing it to the policy.
+    __Note__: the `filterTags` is processed first and gives the opportunity to filter the image tags before they are considered by the policy rule. Here, it is used to skip the heading `v` in the version upon passing it to the policy.
 
     Check [Flux docs](https://fluxcd.io/docs/components/image/imagepolicies/#examples) for more examples of possible policies.
 
-1. Go back to the `apps` directory:
+7. Go back to the `apps` directory:
 
     ```nohighlight
     cd ..
     ```
 
-1. Edit the `kustomization.yaml` file listing newly created files:
+8. Edit the `kustomization.yaml` file listing newly created files:
 
     ```nohighlight
     yq -i eval ".resources += [\"${APP_NAME}/imagepolicy.yaml\",\"${APP_NAME}/imagerepository.yaml\"] | .resources style=\"\"" kustomization.yaml
@@ -162,7 +162,7 @@ __Note__: the `filterTags` is processed first and gives the opportunity to filte
     - ${APP_NAME}/imagerepository.yaml
     ```
 
-1. Edit the `kustomization.yaml` file again, and add a patch for placing Flux' resources in the default namespace or one of your organization namespaces:
+9. Edit the `kustomization.yaml` file again, and add a patch for placing Flux' resources in the default namespace or one of your organization namespaces:
 
     ```yaml
     apiVersion: kustomize.config.k8s.io/v1beta1
@@ -209,13 +209,13 @@ __Note__: the `filterTags` is processed first and gives the opportunity to filte
     export DOCKER_CONFIG_JSON=PATH
     ```
 
-1. Go to the Management Cluster secrets directory:
+2. Go to the Management Cluster secrets directory:
 
     ```nohighlight
     cd management-clusters/${MC_NAME}/secrets
     ```
 
-1. Create Kubernetes Secret with Docker Registry credentials and save it into a file:
+3. Create Kubernetes Secret with Docker Registry credentials and save it into a file:
 
     ```nohighlight
     kubectl create secret docker-registry \
@@ -226,26 +226,26 @@ __Note__: the `filterTags` is processed first and gives the opportunity to filte
     -o yaml > pullsecrets.enc.yaml
     ```
 
-1. Import the master GPG public key and encrypt the Kubernetes Secret with it:
+4. Import the master GPG public key and encrypt the Kubernetes Secret with it:
 
     ```nohighlight
     gpg --import management-clusters/${MC_NAME}/.sops.keys/.sops.master.asc
     sops --encrypt --in-place pullsecrets.enc.yaml
     ```
 
-1. Edit `kustomization.yaml` and list newly created secret as resource:
+5. Edit `kustomization.yaml` and list newly created secret as resource:
 
     ```nohighlight
     yq -i eval '.resources += "pullsecrets.enc.yaml" | .resources style=""' kustomization.yaml
     ```
 
-1. Go to the App directory:
+6. Go to the App directory:
 
     ```nohighlight
     cd management-clusters/${MC_NAME}/organizations/${ORG_NAME}/workload-clusters/${WC_NAME}/mapi/apps/${APP_NAME}
     ```
 
-1. Edit the `imagerepository.yaml` file and reference the newly created secrets there:
+7. Edit the `imagerepository.yaml` file and reference the newly created secrets there:
 
     ```nohighlight
     yq -i eval '.spec.secretRef.name = "flux-pull-secrets"' imagerepository.yaml

@@ -39,13 +39,15 @@ The setup requires an external network configured in the project to allow the ma
 {{< /tab >}}
 {{< tab id="cluster-capv" for-impl="capv" >}}
 
+<!-- markdownlint-disable no-duplicate-heading -->
+
 ### Compatibility
 
-The setup supports vSphere 6.7 Update 3 and above to have the Cloud Native Storage (CNS) feature. 
+The setup supports vSphere 6.7 Update 3 and above to have the Cloud Native Storage (CNS) feature.
 
 ### Authentication
 
-Cluster API Provider vSphere (CAPV), along with the associated Cloud Provider interface (CPI) and Container Storage interface (CSI), authenticate against the VMware vSphere API using credentials stored in a secret. 
+Cluster API Provider vSphere (CAPV), along with the associated Cloud Provider interface (CPI) and Container Storage interface (CSI), authenticate against the VMware vSphere API using credentials stored in a secret.
 
 ### Networking
 
@@ -66,7 +68,7 @@ In order to offer persistent storage that is decoupled from the virtual machines
 
 ### Compatibility
 
-The setup supports organisation virtual datacenters (OVCDs) running on VMware Cloud Director 10.3 and above. It must be backed by backed with NSX-T and NSX advanced load balancer (ALB) with the load balancer feature enabled on the Edge gateway. 
+The setup supports organisation virtual datacenters (OVCDs) running on VMware Cloud Director 10.3 and above. It must be backed by backed with NSX-T and NSX advanced load balancer (ALB) with the load balancer feature enabled on the Edge gateway.
 
 ### Authentication
 
@@ -138,7 +140,7 @@ Net exporter is also a Prometheus exporter for exposing network information. It 
 
 ##### Metrics server
 
-Metrics Server is an upstream component that implements the [Kubernetes Metrics API](https://kubernetes.io/docs/tasks/debug/debug-cluster/resource-metrics-pipeline/#metrics-api) to provide basic data of the container running in the cluster. It gives us information about CPU and memory usage of every pod. It is also used by other components, like Horizontal Pod Autoscaler, for scaling decisions. 
+Metrics Server is an upstream component that implements the [Kubernetes Metrics API](https://kubernetes.io/docs/tasks/debug/debug-cluster/resource-metrics-pipeline/#metrics-api) to provide basic data of the container running in the cluster. It gives us information about CPU and memory usage of every pod. It is also used by other components, like Horizontal Pod Autoscaler, for scaling decisions.
 
 ##### Node exporter
 
@@ -152,9 +154,11 @@ There are three types of Giant Swarm components running on the management cluste
 
 ##### Operators (Custom Resource plus controller)
 
-The most common pattern to extend Kubernetes is called [Operator](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/). It allows to define a new [Kubernetes resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) (called Custom Resource) and apply functionality to it. 
+The most common pattern to extend Kubernetes is called [Operator](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/). It allows to define a new [Kubernetes resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) (called Custom Resource) and apply functionality to it.
 
 In Giant Swarm we leverage the operator pattern to extend the management cluster and provide a great user experience to our customers.
+
+ <!-- markdownlint-disable no-emphasis-as-heading -->
 
 *Organization operator*
 
@@ -196,7 +200,7 @@ This simple operator takes care of providing the basic configuration for our Man
 
 ##### Admission controllers
 
-The [Admission Controller](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) is another feature Kubernetes offers to extend its functionality. This time the idea is to intercept the API requests for validating or mutating the content. The main reason is to block users from submitting wrong data or  to default some of the properties for custom resources. 
+The [Admission Controller](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) is another feature Kubernetes offers to extend its functionality. This time the idea is to intercept the API requests for validating or mutating the content. The main reason is to block users from submitting wrong data or  to default some of the properties for custom resources.
 
 *App Admission Controller*
 
@@ -204,7 +208,7 @@ This admission controller gives the ability to our App Platform to ensure an App
 
 *Cluster API admission controllers*
 
-Each CAPI controller has its own admission to enhance the cluster management experience. Basically it performs same actions of validation and mutation. 
+Each CAPI controller has its own admission to enhance the cluster management experience. Basically it performs same actions of validation and mutation.
 
 *Management admission controller*
 
@@ -212,11 +216,11 @@ As we described before, organizations are used to organize clusters and apps, bu
 
 *Kyverno admission controller*
 
-[Pod Security Policies are deprecated](https://kubernetes.io/blog/2021/04/06/podsecuritypolicy-deprecation-past-present-and-future/) and from Kubernetes `1.25` they will not be valid anymore. In the past we relied on this functionality to harden the cluster and ensure containers run with the least privileges required. As a replacement we implemented equivalent policies in [Kyverno](https://kyverno.io/). 
+[Pod Security Policies are deprecated](https://kubernetes.io/blog/2021/04/06/podsecuritypolicy-deprecation-past-present-and-future/) and from Kubernetes `1.25` they will not be valid anymore. In the past we relied on this functionality to harden the cluster and ensure containers run with the least privileges required. As a replacement we implemented equivalent policies in [Kyverno](https://kyverno.io/).
 
 ##### Operational services
 
-Aside from operators and admission controllers we also deploy a set of tooling that ensure we have a nice delivery system, good hardening and clear observability.  
+Aside from operators and admission controllers we also deploy a set of tooling that ensure we have a nice delivery system, good hardening and clear observability.
 
 *Authentication Features of the Platform*
 
@@ -224,7 +228,7 @@ Giant Swarm configures the clusters in a secure way. [Role-Based Access Control 
 
 *Secure Features of the Platform*
 
-From our first versions, Giant Swarm has set up a secure baseline in all our customer clusters. In the early days, Kubernetes released [Pod Security Policies (PSPs)](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) to enforce pod security providing a new built-in resource where user can define the user group permissions or volume types allowed. In Kubernetes `1.25` this implementation is phased out instead of [Pod Security Admission(PSA)](https://kubernetes.io/docs/concepts/security/pod-security-admission/). We have not found an equivalent set of policies using that technology so for now we have decided to leverage on Kyverno to enforce our same restricted policies](https://www.giantswarm.io/blog/giant-swarms-farewell-to-psp). By default, users and workloads running in Giant Swarm clusters, are assigned a restrictive policy that disallows running containers as root or mounting host path volumes (these are just two examples). Cluster operators must enable applications to have higher security privileges on a case by case basis. 
+From our first versions, Giant Swarm has set up a secure baseline in all our customer clusters. In the early days, Kubernetes released [Pod Security Policies (PSPs)](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) to enforce pod security providing a new built-in resource where user can define the user group permissions or volume types allowed. In Kubernetes `1.25` this implementation is phased out instead of [Pod Security Admission(PSA)](https://kubernetes.io/docs/concepts/security/pod-security-admission/). We have not found an equivalent set of policies using that technology so for now we have decided to leverage on Kyverno to enforce our same restricted policies](https://www.giantswarm.io/blog/giant-swarms-farewell-to-psp). By default, users and workloads running in Giant Swarm clusters, are assigned a restrictive policy that disallows running containers as root or mounting host path volumes (these are just two examples). Cluster operators must enable applications to have higher security privileges on a case by case basis.
 
 In addition to the security policies, [Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/) define the communication policies to and from the applications in each namespace. All components to run a cluster provided by Giant Swarm come with strict policies by default. Our managed namespaces (“kube-system” and “giantswarm”) block all traffic in general, so only expected and specifically configured routes and ports are enabled. Customers can follow this approach and deny all communications by default in their application namespaces forcing each workload to define which communications are allowed. This [guide]({{< relref "/getting-started/network-policies" >}}) helps to understand how such a dynamic firewall works.
 
@@ -262,11 +266,11 @@ The process involves several steps that we will review briefly in the following 
 
 After the management cluster is ready we deliver all the details to customers to give them the access to the Management API. From this point we use the same mechanisms to control the management cluster lifecycle as we use for workload clusters.
 
-Cluster API offers a set of custom resources that define all the details of a cluster infrastructure and its configuration. 
+Cluster API offers a set of custom resources that define all the details of a cluster infrastructure and its configuration.
 
 ![Cluster API resources](CAPI_resources.png)
 
-Usually we have generic resources that define common configuration of the clusters and its components, and some infrastructure specific resources which will be tied to the provider we select. 
+Usually we have generic resources that define common configuration of the clusters and its components, and some infrastructure specific resources which will be tied to the provider we select.
 
 We have created a [kubectl plugin]({{< relref "/use-the-api/kubectl-gs/template-cluster" >}}) to help you template all the needed resources.
 
@@ -275,4 +279,3 @@ We have created a [kubectl plugin]({{< relref "/use-the-api/kubectl-gs/template-
 - [Giant Swarm support model]({{< relref "/support" >}})
 - [Giant Swarm operational layers]({{< relref "/platform-overview/security/operational-layers" >}})
 - [Giant Swarm VPN and secure cluster access]({{< relref "/platform-overview/security/cluster-security/cluster-access" >}})
-

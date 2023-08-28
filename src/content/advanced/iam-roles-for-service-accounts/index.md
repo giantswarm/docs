@@ -95,6 +95,7 @@ Please set the following permissons on the [`GiantSwarmAWSOperator` IAM role]({{
 ```
 
 ## Enable the feature on your cluster
+
 This is an alpha feature that has to be enabled by setting an annotation on the  [`AWSCluster`]({{< relref "/use-the-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) resource.
 
 Make sure the resource has the `alpha.aws.giantswarm.io/iam-roles-for-service-accounts` annotation **only right before** applying a new cluster or **just before** upgrading to the latest AWS release. **This is important** to remember as the lingering annotation without the activation can cause troubles in external-dns that also uses IRSA. The value can be anything you like, as only the presence of that annotation is checked. Here is an example:
@@ -136,7 +137,8 @@ If you have deployed additional ExternalDNS you have to make sure the role's **t
 The **trusted entity** of a IAM role need to contain a condition like the `sub` service account name of a JSON Web token (JWT). You need to ensure one of those conditions match against the JWT, which is used by one of your applications.
 
 This is a example JWT from `external-dns` which is verified against the `external-dns` IAM role.
-```
+
+```json
 {
   "aud": [
     "sts.amazonaws.com"
@@ -203,13 +205,14 @@ China:
 ```
 
 You need to fill real values for these placeholders:
-* `AWS_ACCOUNT` - aws account id, where is the cluster running
-* `CLUSTER_ID` - cluster id
-* `NAMESPACE` - Kubernetes namespace in cluster, where the pod and service account be used.
-* `SA_NAME` - Name of the Kubernetes Service Account which wil be using by the pod.
-* `REGION` - AWS region the OIDC provider is located in.
 
-#### AWS Release v18.x.x 
+- `AWS_ACCOUNT` - aws account id, where is the cluster running
+- `CLUSTER_ID` - cluster id
+- `NAMESPACE` - Kubernetes namespace in cluster, where the pod and service account be used.
+- `SA_NAME` - Name of the Kubernetes Service Account which wil be using by the pod.
+- `REGION` - AWS region the OIDC provider is located in.
+
+#### AWS Release v18.x.x
 
 To use the IAM role with a service account you need to create new or modify an existing AWS role and configure **trusted entities** with following statement:
 
@@ -258,15 +261,16 @@ China:
 ```
 
 You need to fill real values for these placeholders:
-* `AWS_ACCOUNT` - aws account id, where is the cluster running
-* `CLOUDFRONT_DOMAIN` - cloudfront domain of the cluster, you can find the information in the ConfigMap `clusterID-irsa-cloudfront` in the organization namespace inside the management cluster or via AWS console in `Cloudfront`
-* `CLUSTER_ID` - cluster id
-* `NAMESPACE` - Kubernetes namespace in cluster, where the pod and service account be used.
-* `SA_NAME` - Name of the Kubernetes Service Account which wil be using by the pod.
-* `REGION` - AWS region the OIDC provider is located in.
 
+- `AWS_ACCOUNT` - aws account id, where is the cluster running
+- `CLOUDFRONT_DOMAIN` - cloudfront domain of the cluster, you can find the information in the ConfigMap `clusterID-irsa-cloudfront` in the organization namespace inside the management cluster or via AWS console in `Cloudfront`
+- `CLUSTER_ID` - cluster id
+- `NAMESPACE` - Kubernetes namespace in cluster, where the pod and service account be used.
+- `SA_NAME` - Name of the Kubernetes Service Account which wil be using by the pod.
+- `REGION` - AWS region the OIDC provider is located in.
 
 ### Service account
+
 The service account has to be annotated with a full ARN of the IAM role. You can get the ARN of the role in the AWS console, when you check role details.
 The annotation key has to be `eks.amazonaws.com/role-arn`.
 
@@ -289,14 +293,17 @@ In order to assume roles cross AWS accounts you will need to create a new AWS Id
 ![Creating AWS Identity Provider](identity-provider.png)
 
 Login into the AWS on the account where the cluster is running:
+
 - Grab the URL of the Identity Provider in your current cluster `IAM > Identity Providers`. It will look like `https://s3.REGION.amazonaws.com/AWS_ACCOUNT-g8s-CLUSTER_ID-oidc-pod-identity-v2` or `https://CLOUDFRONT_ID.cloudfront.net`.
 
 Login into the account where the IAM role is located and create an Identity Provider in `IAM > Identity Providers`:
+
 - Set `Provider URL` to the previously gathered URL and click the `Get thumbprint` to import the certificate.
 - Set the `audience` to `sts.amazonaws.com` OR `sts.amazonaws.com.cn` for China regions.
 
+<!-- markdownlint-disable no-duplicate-heading -->
 
-#### AWS Release v17.x.x 
+#### AWS Release v17.x.x
 
 To use the IAM role on a different account than your cluster you need to create new or modify an existing AWS role and configure **trusted entities** with following statement:
 
@@ -314,7 +321,7 @@ Non-China:
             "Action": "sts:AssumeRoleWithWebIdentity",
             "Condition": {
                 "StringEquals": {
-                    "s3.CLUSTER_REGION.amazonaws.com/CLUSTER_AWS_ACCOUNT-g8s-CLUSTER_ID-oidc-pod-identity:aud": "sts.amazonaws.com" 
+                    "s3.CLUSTER_REGION.amazonaws.com/CLUSTER_AWS_ACCOUNT-g8s-CLUSTER_ID-oidc-pod-identity:aud": "sts.amazonaws.com"
                 }
             }
         }
@@ -336,7 +343,7 @@ China:
             "Action": "sts:AssumeRoleWithWebIdentity",
             "Condition": {
                 "StringEquals": {
-                    "s3.CLUSTER_REGION.amazonaws.com.cn/CLUSTER_AWS_ACCOUNT-g8s-CLUSTER_ID-oidc-pod-identity:aud": "sts.amazonaws.com.cn" 
+                    "s3.CLUSTER_REGION.amazonaws.com.cn/CLUSTER_AWS_ACCOUNT-g8s-CLUSTER_ID-oidc-pod-identity:aud": "sts.amazonaws.com.cn"
                 }
             }
         }
@@ -347,15 +354,16 @@ China:
 Instead of using `"s3.CLUSTER_REGION.amazonaws.com/CLUSTER_AWS_ACCOUNT-g8s-CLUSTER_ID-oidc-pod-identity:aud": "sts.amazonaws.com` you can use `"s3.CLUSTER_REGION.amazonaws.com/CLUSTER_AWS_ACCOUNT-g8s-CLUSTER_ID-oidc-pod-identity:sub": "system:serviceaccount:NAMESPACE:SA_NAME"` to make the permission more restrictive.
 
 You need to fill real values for these placeholders:
-* `CLUSTER_AWS_ACCOUNT` - AWS account id, where is the cluster running
-* `CLUSTER_ID` - cluster id
-* `CLUSTER_REGION` - AWS region where the cluster is located
-* `ROLE_REGION` - AWS region of the role
-* `ROLE_AWSACCOUNT` - AWS account where the role is located
-* `NAMESPACE` - Kubernetes namespace in cluster, where the pod and service account be used.
-* `SA_NAME` - Name of the Kubernetes Service Account which wil be using by the pod.
 
-#### AWS Release v18.x.x 
+- `CLUSTER_AWS_ACCOUNT` - AWS account id, where is the cluster running
+- `CLUSTER_ID` - cluster id
+- `CLUSTER_REGION` - AWS region where the cluster is located
+- `ROLE_REGION` - AWS region of the role
+- `ROLE_AWSACCOUNT` - AWS account where the role is located
+- `NAMESPACE` - Kubernetes namespace in cluster, where the pod and service account be used.
+- `SA_NAME` - Name of the Kubernetes Service Account which wil be using by the pod.
+
+#### AWS Release v18.x.x
 
 To use the IAM role on a different account than your cluster you need to create new or modify an existing AWS role and configure **trusted entities** with following statement:
 
@@ -395,7 +403,7 @@ China:
             "Action": "sts:AssumeRoleWithWebIdentity",
             "Condition": {
                 "StringEquals": {
-                    "s3.CLUSTER_REGION.amazonaws.com.cn/CLUSTER_AWS_ACCOUNT-g8s-CLUSTER_ID-oidc-pod-identity-v2:aud": "sts.amazonaws.com.cn" 
+                    "s3.CLUSTER_REGION.amazonaws.com.cn/CLUSTER_AWS_ACCOUNT-g8s-CLUSTER_ID-oidc-pod-identity-v2:aud": "sts.amazonaws.com.cn"
                 }
             }
         }
@@ -406,15 +414,14 @@ China:
 Instead of using `"CLOUDFRONT_DOMAIN:aud": "sts.amazonaws.com"` you can use `"CLOUDFRONT_DOMAIN:sub": "system:serviceaccount:NAMESPACE:SA_NAME"` to make the permission more restrictive.
 
 You need to fill real values for these placeholders:
-* `ROLE_AWSACCOUNT` - AWS account where the role is located
-* `CLOUDFRONT_DOMAIN` - cloudfront domain of the cluster, you can find the information in the ConfigMap `clusterID-irsa-cloudfront` in the organization namespace inside the management cluster or via AWS console in `Cloudfront`
-* `NAMESPACE` - Kubernetes namespace in cluster, where the pod and service account be used.
-* `SA_NAME` - Name of the Kubernetes Service Account which wil be using by the pod.
 
-
-
+- `ROLE_AWSACCOUNT` - AWS account where the role is located
+- `CLOUDFRONT_DOMAIN` - cloudfront domain of the cluster, you can find the information in the ConfigMap `clusterID-irsa-cloudfront` in the organization namespace inside the management cluster or via AWS console in `Cloudfront`
+- `NAMESPACE` - Kubernetes namespace in cluster, where the pod and service account be used.
+- `SA_NAME` - Name of the Kubernetes Service Account which wil be using by the pod.
 
 ## Verify your configuration is correct
+
 Once your pod is running with the configured service account, you should see a file in the pod called `/var/run/secrets/eks.amazonaws.com/serviceaccount/token`, which containts a JWT token with details of the role.
 
 The pod should also have configured enviroment variables `AWS_WEB_IDENTITY_TOKEN_FILE` and `AWS_ROLE_ARN`.
@@ -435,7 +442,7 @@ In case your application is not working you can always remove the annotation on 
 
 **!!!Non-China clusters only!!!**
 
-When upgrading to AWS Release `v18.4.0` you can additionally set a annotation on AWSCluster CR `alpha.aws.giantswarm.io/enable-cloudfront-alias: ""` to enable the usage of the Cloudfront alternate domain name beforehand. This is useful if you want to take immeditately actions replacing `Kiam`. 
+When upgrading to AWS Release `v18.4.0` you can additionally set a annotation on AWSCluster CR `alpha.aws.giantswarm.io/enable-cloudfront-alias: ""` to enable the usage of the Cloudfront alternate domain name beforehand. This is useful if you want to take immeditately actions replacing `Kiam`.
 
 ## AWS Release v19
 
@@ -499,7 +506,7 @@ China:
             "Action": "sts:AssumeRoleWithWebIdentity",
             "Condition": {
                 "StringEquals": {
-                    "s3.CLUSTER_REGION.amazonaws.com.cn/CLUSTER_AWS_ACCOUNT-g8s-CLUSTER_ID-oidc-pod-identity-v2:aud": "sts.amazonaws.com.cn" 
+                    "s3.CLUSTER_REGION.amazonaws.com.cn/CLUSTER_AWS_ACCOUNT-g8s-CLUSTER_ID-oidc-pod-identity-v2:aud": "sts.amazonaws.com.cn"
                 }
             }
         }
