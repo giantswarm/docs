@@ -18,25 +18,25 @@ user_questions:
 ---
 
 
-In Kubernetes environments, it can be quite easy to accidentally delete an important object with `kubectl delete`. 
-To mitigate such risks, Giant Swarm introduces a mechanism: the `giantswarm.io/prevent-deletion` label. 
+In Kubernetes environments, it can be quite easy to accidentally delete an important object with `kubectl delete`.
+To mitigate such risks, Giant Swarm introduces a mechanism: the `giantswarm.io/prevent-deletion` label.
 When applied, this label, in conjunction with our Kyverno policy, acts as a safeguard against accidental deletions.
-
 
 ## Usage
 
 To use this mechanism you have to do two things:
+
 1. Ensure that the resource type of the object you want to protect is in the [list of targeted resources](https://github.com/giantswarm/kyverno-policies-ux/blob/main/helm/kyverno-policies-ux/values.yaml).
    For more information about configuring the targeted resources look at the [Configure Target Resources]({{< relref "advanced/deletion-prevention#targeted-resource-configuration" >}}) section.
 2. Add the `giantswarm.io/prevent-deletion` label to the object with any value.
 
-
-
 ### Example
+
 The following `kubectl` commands show you how to apply the label to a cluster.
 {{< tabs >}}
 
 {{< tab id="capi" title="CAPI">}}
+
 ```nohighlight
 kubectl label app -n org-ORGANIZATION CLUSTER_NAME-default-apps \
   giantswarm.io/prevent-deletion=true
@@ -65,9 +65,6 @@ kubectl label cluster \
 {{< /tabs >}}
 
 You can find more details about labelling clusters in the [Labelling workload clusters]({{< relref "advanced/labelling-workload-clusters" >}}) article.
-
-
-
 
 ## Configure Targeted Resources {#targeted-resource-configuration}
 
