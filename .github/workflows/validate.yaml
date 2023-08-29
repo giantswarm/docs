@@ -3,11 +3,9 @@ on:
   pull_request:
     branches:
       - main
-    paths:
-      - 'src/**.md'
 
 jobs:
-  front-matter:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -22,12 +20,45 @@ jobs:
           git diff --name-only "refs/heads/${GITHUB_BASE_REF}" -- . | tee files.txt
           cat files.txt | python3 scripts/validate-front-matter/script.py
 
-      - name: Verify annotations
+      - name: Print front matter annotations
         run: cat ./annotations.json
 
-      - name: Send annotations
+      - name: Send front matter annotations
         uses: giantswarm/annotations-action@8028d6604d2db401d4dcd30c21a99fa26e662544
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           title: Front matter problems
           input: ./annotations.json
+
+      - name: markdownlint
+        run: |
+          make RUNNING_IN_CI=true lint || true
+
+          # Only fail if the run didn't work for technical reasons
+          if [ ! -e markdownlint.out ]; then
+            echo "ERROR: Linting did not write output file with findings"
+            exit 1
+          fi
+
+          # Otherwise create annotations
+          cat markdownlint.out \
+            | jq -R '[inputs | (. | capture("(?<filename>[^:]+):(?<line>[0-9]+)(:(?<col>[0-9]+))?\\s+(?<description>.+)") | {"file": .filename, "line": (.line | tonumber), "end_line": (.line | tonumber), "title": "markdownlint problem", "message": .description, "annotation_level": "error"})]' \
+            > markdownlint-annotations.json
+
+      - name: Print markdownlint annotations
+        run: cat ./markdownlint-annotations.json
+
+      - name: Send markdownlint annotations
+        uses: giantswarm/annotations-action@8028d6604d2db401d4dcd30c21a99fa26e662544
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          title: markdownlint problems
+          input: ./markdownlint-annotations.json
+
+      - name: Fail if markdownlint had findings
+        run: |
+          # If there are non-empty lines, we had linting findings
+          if [ "$(awk 1 < markdownlint.out | wc -l | awk '{print $1}')" != 0 ]; then
+            echo "ERROR: See markdownlint findings (annotated as errors in the PR when you click on 'Files changed')"
+            exit 1
+          fi
