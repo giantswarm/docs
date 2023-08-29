@@ -28,7 +28,7 @@ When applied, this label, in conjunction with our Kyverno policy, acts as a safe
 To use this mechanism you have to do two things:
 1. Ensure that the resource type of the object you want to protect is in the [list of targeted resources](https://github.com/giantswarm/kyverno-policies-ux/blob/main/helm/kyverno-policies-ux/values.yaml).
    For more information about configuring the targeted resources look at the [Configure Target Resources]({{< relref "advanced/deletion-prevention#targeted-resource-configuration" >}}) section.
-2. Add the `giantswarm.io/prevent-deletion` label to the object with any key.
+2. Add the `giantswarm.io/prevent-deletion` label to the object with any value.
 
 
 
