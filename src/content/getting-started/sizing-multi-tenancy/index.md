@@ -18,7 +18,7 @@ user_questions:
   - How should I separate concerns using several clusters?
   - How many worker nodes should my clusters have?
   - How many control plane nodes should I run?
-last_review_date: 2023-28-08
+last_review_date: 2023-08-28
 ---
 
 Keep in mind that these recommendations are just basic rules-of-thumb that you should adapt to your needs.
@@ -39,7 +39,7 @@ Furthermore, once you want to actually use the cluster productively, we would re
 "Working productively" includes working regularly with any kind of cluster, even if it's officially only a cluster for development or testing.
 You don't want your development environment to be down, because of a minor node failure.
 
-For production usage, the cluster should have at least 5 nodes and a buffer of 2 nodes. For further information on how to size your cluster please [read this learnk8s article](https://learnk8s.io/kubernetes-node-size) which dives into all variables to consider when you don`t know the type and number of nodes to configure for your cluster(s).
+For production usage, the cluster should have at least 5 nodes and a buffer of 2 nodes. For a deep dive on how to size your cluster, please [read this learnk8s.io article](https://learnk8s.io/kubernetes-node-size) which dives into all variables to consider when you don't know the type and number of nodes to configure for your cluster(s).
 
 #### Control plane nodes
 
