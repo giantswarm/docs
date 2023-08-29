@@ -18,7 +18,7 @@ user_questions:
 ---
 
 
-In Kubernetes environments it can be quite easy to accidentally delete an important object with `kubectl delete`. 
+In Kubernetes environments, it can be quite easy to accidentally delete an important object with `kubectl delete`. 
 To mitigate such risks, Giant Swarm introduces a mechanism: the `giantswarm.io/prevent-deletion` label. 
 When applied, this label, in conjunction with our Kyverno policy, acts as a safeguard against accidental deletions.
 
