@@ -37,7 +37,7 @@ Each customer has a dedicated Account Engineer who holds regular sync meetings t
 
 ## Operational support
 
-We trust in the DevOps principle "You build it, you run it" and for that reasons each part of the platform is operated for a different team in Giant Swarm. 
+We trust in the DevOps principle "You build it, you run it" and for that reasons each part of the platform is operated for a different team in Giant Swarm.
 
 Our on-call engineers watch over all alerts coming in from all environments where our customers run workloads. The on-call engineers are available 24/7. Thus, ensuring that issues are handled promptly, even on nights and weekends.
 
@@ -61,7 +61,7 @@ Treating every alert as an incident has many benefits: the information of the in
 
 ### Postmortem process
 
-The `postmortem` culture [was created by Google](https://sre.google/sre-book/postmortem-culture/) and was established in order to document a problem correctly, find the root cause and fix it across all installations permanently. Every time we close an incident, if it is not a false positive, we create a postmortem. 
+The `postmortem` culture [was created by Google](https://sre.google/sre-book/postmortem-culture/) and was established in order to document a problem correctly, find the root cause and fix it across all installations permanently. Every time we close an incident, if it is not a false positive, we create a postmortem.
 
 Postmortems are created during the whole week. On Mondays, the product team meets and distributes the postmortems across our product teams. As each team plans their weekly sprint they assign a specific engineer to each postmortem. Postmortems have priority over feature development and engineers are used to spending at least a day a week to solve these problems.
 

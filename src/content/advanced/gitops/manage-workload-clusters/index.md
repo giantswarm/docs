@@ -103,7 +103,7 @@ management-clusters
                 │   │    │    └── APP1
                 │   │    └── cluster
                 │   └── [out-of-band]       installed directly in the WC
-                └── WC_NAME2                     
+                └── WC_NAME2
 ```
 
 We provide a template repository where this structure is elaborated and explained in detail in [giantswarm/gitops-template](https://github.com/giantswarm/gitops-template). It is not necessary to clone the repository to follow this guide, but it can provide a good reference for every possible use case. We recommend copying, at least, the bases folder from that repository to your own repository because cluster creation uses them as templates as we will see later in this document.
@@ -111,7 +111,7 @@ We provide a template repository where this structure is elaborated and explaine
 ### Setting up sources
 
 First thing's first - create a bare-bones repository where we will store the resources that will be deployed. In this repository we need to create the structure described in the last section, and copy the bases for workload clusters and other apps in the Giant Swarm catalog. Follow these steps:
-  
+
 1. Copy bases folder from [giantswarm/gitops-template](https://github.com/giantswarm/gitops-template)
 
 2. Init the repository in order to create the first part of the structure and some git hooks. This will create a folder `management-clusters`. Use the command:
@@ -120,7 +120,7 @@ First thing's first - create a bare-bones repository where we will store the res
 kubectl gs gitops init
 ```
 
-__Note__: To learn more about Giant Swarm's kubectl plugin, visit [kubectl-gs documentation]({{< relref "/use-the-api/kubectl-gs/" >}}).
+**Note**: To learn more about Giant Swarm's kubectl plugin, visit [kubectl-gs documentation]({{< relref "/use-the-api/kubectl-gs/" >}}).
 
 ### Attach the repo to a management cluster
 
@@ -159,7 +159,7 @@ kubectl create -f management-clusters/MC_NAME/MC_NAME-git-repo.yaml
 We can see if the change was applied using `kubectl` (names will difer):
 
 ```nohiglight
-kubectl get gitrepositories -n default 
+kubectl get gitrepositories -n default
 NAME        URL                                       READY   STATUS                                                            AGE
 flux-demo   https://github.com/giantswarm/flux-demo   True    Fetched revision: main/74f8d19cc2ac9bee6f45660236344a054c63b71f   27s
 ```
@@ -167,7 +167,7 @@ flux-demo   https://github.com/giantswarm/flux-demo   True    Fetched revision: 
 or Flux CLI - `flux`:
 
 ```nohighlight
- flux get sources git -n default 
+ flux get sources git -n default
 NAME            READY   MESSAGE                                                         REVISION                                        SUSPENDED
 flux-demo       True    Fetched revision: main/74f8d19cc2ac9bee6f45660236344a054c63b71f main/74f8d19cc2ac9bee6f45660236344a054c63b71f   False
 ```
