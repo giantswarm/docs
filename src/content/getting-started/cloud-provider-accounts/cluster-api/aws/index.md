@@ -42,6 +42,7 @@ The screenshot below shows the entry form.
 ![Screenshot](aws-service-limits.png)
 
 These are the limit increases to be requested, grouped by limit type:
+
 - All AWS accounts
     - VPC
         - Routes per route table: **200**
@@ -71,6 +72,7 @@ These are the limit increases to be requested, grouped by limit type:
 (Please extend the list of EC2 instances to also contain the types you need frequently.)
 
 ## Configure the `AWSClusterRoleIdentity`
+
 When you want to create a new Cluster API workload cluster in a new AWS account you need to create a CR `AWSClusterRoleIdentity` which will reference the role in the new AWS Account.
 
 ```yaml
@@ -89,10 +91,11 @@ spec:
     kind: AWSClusterControllerIdentity
     name: default
 ```
-Where:
-* `${ROLE_NAME}` is a short unique name referencing AWS account (ie: `development`, `sandbox` or `staging2`)
-* `${ROLE_ARN}` is full ARN of the role created in previous step with `giantswarm-aws-account-prerequisites` repository.
 
+Where:
+
+- `${ROLE_NAME}` is a short unique name referencing AWS account (ie: `development`, `sandbox` or `staging2`)
+- `${ROLE_ARN}` is full ARN of the role created in previous step with `giantswarm-aws-account-prerequisites` repository.
 
 This CR needs to be created only once for each AWS Account. It can be then referenced in the `cluster-aws` repo in the value [`aws.awsClusterRoleIdentityName`](https://github.com/giantswarm/cluster-aws/blob/master/helm/cluster-aws/values.yaml#L14).
 

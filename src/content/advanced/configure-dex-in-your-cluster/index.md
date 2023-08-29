@@ -42,7 +42,7 @@ We need to set values for the OIDC Issuer URL and Client ID. You can define thos
 apiVersion: cluster.x-k8s.io/v1alpha3
 kind: Cluster
 metadata:
-  annotations:  
+  annotations:
     oidc.giantswarm.io/client-id: dex-k8s-authenticator
     oidc.giantswarm.io/issuer-url: https://dex.CLUSTER_NAME.BASE_DOMAIN
     oidc.giantswarm.io/group-claim: groups
@@ -282,12 +282,12 @@ __Note__: When applying the example in the snippet above, please replace the `CL
 
 Then submit the resource to the management API and the App operator will manage it to make the actual installation and configuration. You can log in now into the cluster API with your identity provider using the login endpoint that Dex creates for you. By default, it will be `https://login.CLUSTER_NAME.BASE_DOMAIN`.
 
-__Warning__: It is assumed that you have an [ingress controller and cert-manager]({{< relref "/getting-started/app-platform/deploy-app" >}}) running in your cluster in order to make Dex available for the callback request made by your identity provider securely. Both of these apps are offered in our managed app catalog. If you supply custom certificates when deploying Dex, then you can skip cert-manager installation. 
+__Warning__: It is assumed that you have an [ingress controller and cert-manager]({{< relref "/getting-started/app-platform/deploy-app" >}}) running in your cluster in order to make Dex available for the callback request made by your identity provider securely. Both of these apps are offered in our managed app catalog. If you supply custom certificates when deploying Dex, then you can skip cert-manager installation.
 
 ### Deploying Dex with custom certificates
 
-Dex gets certificates from the cert-manager by default. 
-In case the cert-manager is configured to use a custom certification authority, which is not publicly trusted, Dex needs to be configured to trust it. 
+Dex gets certificates from the cert-manager by default.
+In case the cert-manager is configured to use a custom certification authority, which is not publicly trusted, Dex needs to be configured to trust it.
 The custom certification authority needs to be stored in a `Secret` and referenced in the `trustedRootCA` section of the `Secret` or `ConfigMap` with configuration values for the Dex app.
 
 ```yaml
@@ -309,9 +309,9 @@ ingress:
 
 ### Running Dex in a private workload cluster
 
-When deploying Dex to a private workload cluster, it is required to specify a proxy configuration in order to ensure that Dex has access to the outside network. 
-Proxy setup can be provided in the `cluster.proxy` section of the `Secret` or `ConfigMap` with configuration values for the Dex app. 
-It is required to specify the URL of the HTTPS proxy in the `https` property and exclude Kubernetes API from running through the proxy by adding its IP address or network to the `noProxy` property.  
+When deploying Dex to a private workload cluster, it is required to specify a proxy configuration in order to ensure that Dex has access to the outside network.
+Proxy setup can be provided in the `cluster.proxy` section of the `Secret` or `ConfigMap` with configuration values for the Dex app.
+It is required to specify the URL of the HTTPS proxy in the `https` property and exclude Kubernetes API from running through the proxy by adding its IP address or network to the `noProxy` property.
 
 ```yaml
 cluster:
@@ -330,8 +330,7 @@ To get an overview on the authentication success and error rates of your Dex ins
 
 Once Dex is set up in your workload cluster, you can enable access via OIDC through our `kubectl` plugin [kubectl gs]({{< relref "/use-the-api/kubectl-gs" >}}).
 
-
-In order to communicate with the API, `kubectl gs` needs the clusters CA certificate as well as some cluster specific information, such as the management cluster name and the dex issuer URL. 
+In order to communicate with the API, `kubectl gs` needs the clusters CA certificate as well as some cluster specific information, such as the management cluster name and the dex issuer URL.
 On all Giant Swarm management clusters we use a public service called `Athena` to expose the CA certificate and some information on the installation to the client.
 For easy integration with `kubectl gs` you can install [Athena](https://github.com/giantswarm/athena) on your workload cluster via the [app platform]({{< relref "/getting-started/app-platform" >}}).
 
@@ -345,6 +344,7 @@ managementCluster:
 ```
 
 It is also possible to override the api and issuer addresses, CA as well as the cluster name and provider in case it is needed:
+
 ```yaml
 managementCluster:
   name: test
@@ -361,7 +361,9 @@ kubernetes:
 oidc:
   issuerAddress: https://dex.test.example.io
 ```
+
 Access to Athena can be restricted to certain CIDRs.
+
 ```yaml
 security:
   subnet:
@@ -372,7 +374,7 @@ security:
       gsAPI: true
 ```
 
-Athena also supports custom certificates, same as the Dex app. 
+Athena also supports custom certificates, same as the Dex app.
 The certificates need to be provided in the `ingress` section of the configuration:
 
 ```yaml
@@ -385,9 +387,10 @@ ingress:
 ```
 
 If both `Dex` and `Athena` are configured correctly and you have installed `kubectl gs` on your machine, you should be able to create a kubectl context using the management API URL.
-```
+
+```sh
 kubectl gs login https://api.test.example.io
-``` 
+```
 
 ## Further reading
 

@@ -8,7 +8,7 @@ menu:
     parent: getting-started-observability
 aliases:
   - /guides/kubernetes-heapster/
-  - /getting-started/metrics/  
+  - /getting-started/metrics/
 user_questions:
   - How can I activate metrics-server in my clusters?
 owner:
@@ -38,7 +38,7 @@ There are some common cases where Core Metrics are used by Kubernetes:
 
 - Horizontal Pod Autoscaler: it scales pods automatically based on CPU or custom metrics (not explained here). More information [here](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/).
 - `kubectl top`: the command `top` of our beloved Kubernetes CLI display metrics directly in the terminal.
-- Kubernetes dashboard: see Pod and Nodes metrics integrated into the main Kubernetes UI dashboard. 
+- Kubernetes dashboard: see Pod and Nodes metrics integrated into the main Kubernetes UI dashboard.
 - Scheduler: in the future, core metrics will be considered in order to schedule best-effort Pods.
 
 ## Further reading

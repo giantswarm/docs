@@ -73,7 +73,7 @@ spec:
               number: SERVICE_2_PORT
 ```
 
-__Note:__ If you are using TLS you also need each of the hosts in the `tls` section (see below) of the yaml.
+**Note:** If you are using TLS you also need each of the hosts in the `tls` section (see below) of the yaml.
 
 ### Path Based Fanout
 
@@ -106,7 +106,7 @@ spec:
               number: SERVICE_2_PORT
 ```
 
-__Note:__ Your applications need to be capable of running on a non-root path either by default or by setting the base path in their configuration.
+**Note:** Your applications need to be capable of running on a non-root path either by default or by setting the base path in their configuration.
 
 ### TLS
 
@@ -114,7 +114,7 @@ It is possible to configure TLS encryption in your Ingress objects. You can eith
 
 #### SSL passthrough
 
-__Warning:__ This feature was disabled by default in Ingress NGINX Controller managed by Giant Swarm. Reason is a potential [crash](https://github.com/kubernetes/ingress-nginx/issues/2354) of internal TCP proxier. We recommend to [terminate TLS in Ingress Controller](#terminating-tls-in-ingress-controller) instead.
+**Warning:** This feature was disabled by default in Ingress NGINX Controller managed by Giant Swarm. Reason is a potential [crash](https://github.com/kubernetes/ingress-nginx/issues/2354) of internal TCP proxier. We recommend to [terminate TLS in Ingress Controller](#terminating-tls-in-ingress-controller) instead.
 
 For SSL passthrough you need to set an annotation and enable TLS for the host:
 
@@ -143,7 +143,7 @@ spec:
               number: SERVICE_PORT
 ```
 
-__Note:__ SSL passthrough cannot work with path based routing based on the nature of SSL.
+**Note:** SSL passthrough cannot work with path based routing based on the nature of SSL.
 
 #### Terminating TLS in Ingress Controller
 
@@ -160,7 +160,7 @@ data:
   tls.key: BASE64_ENCODED_KEY
 ```
 
-__Note:__ the data keys must be named `tls.crt` and `tls.key`!
+**Note:** the data keys must be named `tls.crt` and `tls.key`!
 
 Referencing this secret in an Ingress will tell the Ingress Controller to secure the channel from the client to the loadbalancer using TLS:
 
@@ -188,7 +188,7 @@ spec:
               number: SERVICE_PORT
 ```
 
-__Tip:__ If you want to use [Let's Encrypt](https://letsencrypt.org/) certificates with your domains you can automate their creation and renewal with the help of [cert-manager](https://cert-manager.io/docs/). After configuring cert-manager there is only an annotation with your Ingresses needed and your web page will be secured by a valid `TLS` certificate. You can learn more about this behavior [here]({{< relref "/advanced/tls-certificates" >}}).
+**Tip:** If you want to use [Let's Encrypt](https://letsencrypt.org/) certificates with your domains you can automate their creation and renewal with the help of [cert-manager](https://cert-manager.io/docs/). After configuring cert-manager there is only an annotation with your Ingresses needed and your web page will be secured by a valid `TLS` certificate. You can learn more about this behavior [here]({{< relref "/advanced/tls-certificates" >}}).
 
 ### Authentication
 
@@ -317,7 +317,7 @@ By default the Ingress NGINX Controller redirects (301) to `HTTPS` if TLS is ena
 
 You can specify the allowed client IP source ranges through the `nginx.ingress.kubernetes.io/whitelist-source-range` annotation. The value is a comma separated list of [CIDRs](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing), e.g. `10.0.0.0/24,172.10.0.1`.
 
-__Note:__ Adding an annotation to an Ingress rule overrides any global restrictions set in the Ingress NGINX Controller.
+**Note:** Adding an annotation to an Ingress rule overrides any global restrictions set in the Ingress NGINX Controller.
 
 ### Custom max body size
 
@@ -348,7 +348,7 @@ spec:
 
 There are many other timeouts that can be customized when setting an ingress. Take a look at the [official docs](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#custom-timeouts).
 
-__Warning__: When running in cloud provider environments you may often rely on integrated services like AWS NLBs or Azure LBs. Those intermediate Load Balancers could have their own settings which can be in the request path conflicting with values defined in Ingress Resources. [Read how to configure Ingress NGINX Controller in cloud environments to avoid unexpected results]({{< relref "/advanced/ingress/service-type-loadbalancer/index.md" >}}#other-aws-elb-configuration-options).
+**Warning**: When running in cloud provider environments you may often rely on integrated services like AWS NLBs or Azure LBs. Those intermediate Load Balancers could have their own settings which can be in the request path conflicting with values defined in Ingress Resources. [Read how to configure Ingress NGINX Controller in cloud environments to avoid unexpected results]({{< relref "/advanced/ingress/service-type-loadbalancer/index.md" >}}#other-aws-elb-configuration-options).
 
 ### Session Affinity
 
@@ -422,7 +422,7 @@ NAME                        DATA      AGE
 ingress-nginx-user-values   0         11m
 ```
 
-__Warning:__
+**Warning:**
 
 Please do not edit any of the other Ingress NGINX Controller related ConfigMaps.
 
@@ -466,10 +466,9 @@ Do not copy all the defaults if you do not need to change them, that way we can 
 
 Do make sure you look at the right tag of that repository, when reading this file check that the tag corresponds to the version of the Ingress NGINX Controller running on your cluster.
 
----
 ### Configure Proxy Protocol
 
-__Warning:__
+**Warning:**
 
 We also allow setting `use-proxy-protocol: "true"/"false"`. This setting always applies globally for the Ingress NGINX Controller.
 

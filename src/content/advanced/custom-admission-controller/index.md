@@ -72,7 +72,7 @@ cd grumpy
 ./gen_cert.sh
 ```
 
-__Note:__ In case you are interested in what happened under the hood, the script above includes comments explaining the commands executed.
+**Note:** In case you are interested in what happened under the hood, the script above includes comments explaining the commands executed.
 
 For the purpose of this tutorial, our validation webhook configuration must contain an encoded certificate authority. Besides creating the certificates and the CA, the script later injects it into the manifest used to deploy our server.
 
@@ -188,7 +188,7 @@ In the example, we chose to create the admission controller in Go just because i
 
 Let's start creating an HTTP server with the certs mounted from the secret. The server will listen to the path `validate` as we defined in the webhook.
 
-__Note:__ The code examples have been stripped out to make it easier to understand. For a more detailed look, browse the [repository](https://github.com/giantswarm/grumpy).
+**Note:** The code examples have been stripped out to make it easier to understand. For a more detailed look, browse the [repository](https://github.com/giantswarm/grumpy).
 
 ```golang
 // Read the certs from the convined path and convert it to a X509 keypair

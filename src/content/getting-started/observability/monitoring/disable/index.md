@@ -78,4 +78,3 @@ spec:
     name: myclustername:
     namespace: default
 ```
-

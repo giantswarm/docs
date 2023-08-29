@@ -31,6 +31,7 @@ For a more in-depth introduction to audit logging, we advise you to read [this](
 ## At Giant Swarm
 
 In all Giant Swarm clusters, two kinds of audit logs are provided:
+
 - __Kubernetes audit logs__: logging all activity on the Kubernetes API Server
 - __Machine audit logs__: any system calls and file access happening on the host (e.g. login attempts, user commands, file system changes, etc...)
 
@@ -38,7 +39,7 @@ In all Giant Swarm clusters, two kinds of audit logs are provided:
 
 __Warning:__ This feature is currently unavailable on CAPI clusters.
 
-The Kubernetes api-server supports audit logging by default. This mechanism logs every request made to it by both service accounts and users. Customers can ingest these audit logs to detect if any suspicious behaviour (internal or by a 3rd party) is made to their Kubernetes clusters. 
+The Kubernetes api-server supports audit logging by default. This mechanism logs every request made to it by both service accounts and users. Customers can ingest these audit logs to detect if any suspicious behaviour (internal or by a 3rd party) is made to their Kubernetes clusters.
 
 __Example:__
 
@@ -256,7 +257,7 @@ To provide you with a better visibility and security, Giant Swarm offers you the
 This solution relies on the [Linux Audit Daemon](https://linux.die.net/man/8/auditd) to collect the logs of any execution happening on the machine.
 It is currently configured as such:
 
-```
+```nohighlight
 -a exit,always -F arch=b64 -S execve -k auditing # -k auditing gives those logs a key so we can easily retrieve them
 -a exit,always -F arch=b32 -S execve -k auditing
 ```
@@ -273,7 +274,7 @@ __Warning:__ Beware that the Linux Audit Daemon is quite verbose so when shippin
 
 ## How to ship your audit logs to a remote location
 
-We are currently working on our [Logging Infrastructure](https://github.com/giantswarm/roadmap/issues/311) and all the above audit logs (kubernetes audit and auditd logs) will be shipped there in the future. 
+We are currently working on our [Logging Infrastructure](https://github.com/giantswarm/roadmap/issues/311) and all the above audit logs (kubernetes audit and auditd logs) will be shipped there in the future.
 
 If you need the audit logs for your internal use cases (e.g. Security Information and Event Management system), you can use one of the following solutions:
 

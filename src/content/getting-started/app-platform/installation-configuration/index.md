@@ -35,9 +35,7 @@ The installation options are exposed via the corresponding `.spec.install` field
 
 ### SkipCRDs
 
-#### Description
-
-If set, no CRDs will be installed by the Helm. By default, CRDs are installed if not already present. Find the
+If set, no CRDs will be installed by Helm. By default, CRDs are installed if not already present. Find the
 example below.
 
 ```yaml
@@ -50,16 +48,14 @@ spec:
     skipCRDs: true
 ```
 
-#### Support
+Supported by:
 
 | Operator         | Version  |
 | ---------------- | -------- |
 | `app-operator`   | `v4.4.0` |
 | `chart-operator` | `v2.8.0` |
 
-### Timeout
-
-#### Description
+### Install timeout
 
 Time to wait for any individual Kubernetes operation (like Jobs for hooks). If not set, the default timeout of
 5 minutes is used.
@@ -74,7 +70,7 @@ spec:
     timeout: 10m
 ```
 
-#### Support
+Supported by:
 
 | Operator         | Version   |
 | ---------------- | --------- |
@@ -85,9 +81,7 @@ spec:
 
 The installation options are exposed via the corresponding `.spec.upgrade` field of the App CR.
 
-### Timeout
-
-#### Description
+### Upgrade timeout
 
 Time to wait for any individual Kubernetes operation (like Jobs for hooks). If not set, the default timeout of
 5 minutes is used.
@@ -102,7 +96,7 @@ spec:
     timeout: 10m
 ```
 
-#### Support
+Supported by:
 
 | Operator         | Version   |
 | ---------------- | --------- |
@@ -113,9 +107,7 @@ spec:
 
 The installation options are exposed via the corresponding `.spec.rollback` field of the App CR.
 
-### Timeout
-
-#### Description
+### Rollback timeout
 
 Time to wait for any individual Kubernetes operation (like Jobs for hooks). If not set, the default timeout of
 5 minutes is used.
@@ -130,7 +122,7 @@ spec:
     timeout: 10m
 ```
 
-#### Support
+Supported by:
 
 | Operator         | Version   |
 | ---------------- | --------- |
@@ -141,9 +133,7 @@ spec:
 
 The installation options are exposed via the corresponding `.spec.uninstall` field of the App CR.
 
-### Timeout
-
-#### Description
+### Uninstall timeout
 
 Time to wait for any individual Kubernetes operation (like Jobs for hooks). If not set, the default timeout of
 5 minutes is used.
@@ -158,7 +148,7 @@ spec:
     timeout: 10m
 ```
 
-#### Support
+Supported by:
 
 | Operator         | Version   |
 | ---------------- | --------- |
