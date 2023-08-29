@@ -52,7 +52,7 @@ kubectl label configmap -n org-ORGANIZATION CLUSTER_NAME-userconfig \
 ```
 
 {{< /tab >}}
-{{< tab id="vintage" title="Vintage">}}
+{{< tab id="vintage" for-impl="vintage_any">}}
 
 ```nohighlight
 kubectl label cluster \
