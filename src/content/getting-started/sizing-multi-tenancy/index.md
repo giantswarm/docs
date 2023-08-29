@@ -97,7 +97,7 @@ However, with a lot of teams, it might lead to a lot of wasted resources,
 In these cases, it might be better to have a single (or few) production (and a staging) cluster for everyone.
 The classification of these clusters should be rather by workloads than by teams.
 Thus, you could, for example, have a separate cluster for services that handle
- sensitive data, and/or one that holds services that need to fulfil certain compliance requirements.
+ sensitive data, and/or one that holds services that need to fulfill certain compliance requirements.
 
 Each team can still have a test cluster for themselves to be working independently.
 
