@@ -2,8 +2,9 @@ PROJECT=docs
 COMPANY=giantswarm
 REGISTRY=quay.io
 SHELL=bash
-MARKDOWNLINT_IMAGE=06kellyjac/markdownlint-cli:0.23.0-alpine
+MARKDOWNLINT_IMAGE=ghcr.io/igorshubovych/markdownlint-cli:v0.35.0@sha256:22cf4699a448a7bbc311a940e0600019423d7671cbedae9c35cd32b51f560350
 APPLICATION=docs-app
+RUNNING_IN_CI ?= false
 
 include Makefile.*.mk
 
@@ -56,11 +57,12 @@ lint:
 	  -v ${PWD}:/workdir \
 	  -w /workdir \
 	  $(MARKDOWNLINT_IMAGE) \
-	    --config .markdownlint.yaml \
-	    --ignore README.md \
-		--ignore ./src/content/changes \
-		--ignore ./src/content/use-the-api/management-api/crd \
-		./src
+	  --config .markdownlint.yaml \
+	  --ignore README.md \
+	  --ignore ./src/content/changes \
+	  --ignore ./src/content/use-the-api/management-api/crd \
+	  $$(if [ "$(RUNNING_IN_CI)" = "true" ]; then echo "--output markdownlint.out"; fi) \
+	  ./src
 
 # Validate front matter in all pages.
 validate-front-matter:
