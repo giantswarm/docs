@@ -74,8 +74,9 @@ You can find more details about this in the [Disable Monitoring]({{< relref "get
 ### Deletion Prevention
 
 To protect clusters from accidental deletion you can use the following label:
+
 ```nohighlight
-giantswarm.io/prevent-deletion
+giantswarm.io/prevent-deletion: ""
 ```
 
 For more information read the [Deletion Prevention]({{< relref "advanced/deletion-prevention" >}}) article.
