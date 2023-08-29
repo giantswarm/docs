@@ -35,7 +35,7 @@ To use this mechanism you have to do two things:
 The following `kubectl` commands show you how to apply the label to a cluster.
 {{< tabs >}}
 
-{{< tab id="capi" title="CAPI">}}
+{{< tab id="capi" for-impl="capi_any">}}
 
 ```nohighlight
 kubectl label app -n org-ORGANIZATION CLUSTER_NAME-default-apps \
