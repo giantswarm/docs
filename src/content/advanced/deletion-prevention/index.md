@@ -66,6 +66,11 @@ kubectl label cluster \
 
 You can find more details about labelling clusters in the [Labelling workload clusters]({{< relref "advanced/labelling-workload-clusters" >}}) article.
 
+__Warning__: Only resources with the assigned label are protected against
+deletion. Resources indirectly linked to the protected resource are not
+protected. For instance, node pools within a protected cluster can be deleted
+directly unless they too bear the label.
+
 ## Configure Targeted Resources {#targeted-resource-configuration}
 
 If the [list of targeted resources](https://github.com/giantswarm/kyverno-policies-ux/blob/main/helm/kyverno-policies-ux/values.yaml)
