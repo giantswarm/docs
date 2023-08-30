@@ -1717,7 +1717,7 @@ Support for KVM clusters has reached end of life and this CRD will be removed in
 </div>
 
 <div class="property-description">
-<p>Resource is structure holding arbitrary conditions of operatorkit resource implementations. Imagine an operator implements an instance resource. This resource may operates sequentially but has to operate based on a certain system state it manages. So it tracks the status as needed here specific to its own implementation and means in order to fulfill its premise.</p>
+<p>Resource is structure holding arbitrary conditions of operatorkit resource implementations. Imagine an operator implements an instance resource. This resource may operates sequentially but has to operate based on a certain system state it manages. So it tracks the status as needed here specific to its own implementation and means in order to fulfil its premise.</p>
 
 </div>
 
