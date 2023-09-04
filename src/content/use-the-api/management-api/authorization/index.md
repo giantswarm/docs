@@ -268,7 +268,7 @@ spec:
     organizationSelector: {}
 ```
 
-The following template will create a `RoleBinding` that grants admin access to particular subjects in each organization which carries the `add-additional-admins=true` label.
+The following template will create a `RoleBinding` that grants admin access to particular subjects in namespaces belonging to organizations which carry the `add-additional-admins=true` label.
 Please note that in the below example we want to give access to a specific `ServiceAccount` so we need to include its namespace explicitly.
 
 ```yaml
