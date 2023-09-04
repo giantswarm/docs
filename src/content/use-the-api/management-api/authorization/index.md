@@ -83,6 +83,8 @@ In addition there are two special cluster roles which don't define any permissio
 - **read-in-cluster-ns**: Used to assign read permissions to resources in all workload cluster namespaces belonging to the organization.
 - **write-in-cluster-ns**: Used to assign full permissions to resources in all workload cluster namespaces belonging to the organization.
 
+We'll explain the effect of binding these roles in the next section on RBAC automation.
+
 ## RBAC automation {#rbac-automation}
 
 As explained previously, various resources reside in different scopes and namespaces, and in the case of the workload cluster namespaces, they even come and go as clusters are created and deleted. To simplify authorization under these circumstances, we have some automation in place, provided by [rbac-operator](https://github.com/giantswarm/rbac-operator) running in the management cluster. Here is what it does.
