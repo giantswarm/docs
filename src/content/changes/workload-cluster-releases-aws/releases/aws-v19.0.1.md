@@ -20,7 +20,7 @@ This is a patch release that provides improved performance for in-cluster DNS re
 ## Change details
 
 
-### coredns [1.18.0](https://github.com/giantswarm/coredns-app/releases/tag/v1.18.0)
+### coredns [1.18.1](https://github.com/giantswarm/coredns-app/releases/tag/v1.18.1)
 
 #### Added
 - Add a new field `additionalLocalZones` which can be used to introduce more internal local zones, e.g. linkerd.
@@ -31,6 +31,8 @@ This is a patch release that provides improved performance for in-cluster DNS re
 - Adjust the min and max memory settings per Pod.
 - Enable cache inconditionaly for `.` and local zones.
 - Adjust the settings for upscaling HPA when hitting 80% Memory.
+#### Fixed
+- Remove fallthrough for reverse zones from kubernetes plugin.
 
 
 
