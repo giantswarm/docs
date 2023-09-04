@@ -105,7 +105,7 @@ In addition to the above automation, [rbac-operator](https://github.com/giantswa
 This custom resource allows users to dynamically apply and remove `RoleBindings` across organizations.
 
 The `spec.template` property is used to define the desired `RoleBinding` while the `spec.scopes` property allows to specify where it should be applied.
-It is possible to dynamically apply `RoleBindings` to a specific set of organizations using a label matcher in `spec.scopes.OrganizationSelector.matchLabels`.
+It is possible to dynamically apply `RoleBindings` to a specific set of organizations using a label matcher in `spec.scopes.organizationSelector.matchLabels`.
 If the label matcher is defined, the `RoleBinding` will be applied within the organization scopes of all `Organization` CRs that carry the label.
 If no label matcher is defined, the `RoleBinding` will be maintained across all organization scopes.
 An organization scope refers to the organization namespace as well as namespaces associated with clusters within the organization.
