@@ -7,7 +7,7 @@ menu:
   main:
     identifier: uiapi-managementapi-authorization
     parent: uiapi-managementapi
-last_review_date: 2022-02-24
+last_review_date: 2023-09-04
 aliases:
   - /reference/management-api/authorization/
   - /ui-api/management-api/authorization/
