@@ -6,7 +6,7 @@ changes_categories:
 - Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
-  url: https://github.com/giantswarm/releases/tree/master/aws/v19.0.0-beta1
+  url: https://github.com/giantswarm/releases/tree/master/aws/archived/v19.0.0-beta1
   version: 19.0.0-beta1
   version_tag: v19.0.0-beta1
 date: '2023-04-05T14:25:19+00:00'
