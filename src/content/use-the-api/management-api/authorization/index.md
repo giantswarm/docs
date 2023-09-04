@@ -247,7 +247,7 @@ Be aware that it is currently not possible to configure additional admins via ou
 
 As described above, a `RoleBindingTemplate` can be applied whenever identical access needs to be maintained across several or all organizations dynamically.
 
-The following template will create a `RoleBinding` that binds a role to a service account in all organizations dynamically.
+The following template will create a `RoleBinding` that binds a role to a service account in all organization namespaces dynamically.
 Since it is filled in dynamically, we do not give a namespace for the service account.
 
 ```yaml
