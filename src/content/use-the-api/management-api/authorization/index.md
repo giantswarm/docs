@@ -101,9 +101,8 @@ As explained previously, various resources reside in different scopes and namesp
 
 ### Role Binding Templates {#role-binding-templates}
 
-In addition to the above automation, [rbac-operator](https://github.com/giantswarm/rbac-operator) reconciles the [`RoleBindingTemplate`]({{< relref "/use-the-api/management-api/crd/rolebindingtemplates.auth.giantswarm.io.md" >}}) custom resource. 
+In addition to the above automation, [rbac-operator](https://github.com/giantswarm/rbac-operator) reconciles the [`RoleBindingTemplate`]({{< relref "/use-the-api/management-api/crd/rolebindingtemplates.auth.giantswarm.io.md" >}}) custom resource.
 This custom resource allows users to dynamically apply and remove `RoleBindings` across organizations.
-
 
 The `spec.template` property is used to define the desired `RoleBinding` while the `spec.scopes` property allows to specify where it should be applied.
 It is possible to dynamically apply `RoleBindings` to a specific set of organizations using a label matcher in `spec.scopes.OrganizationSelector.matchLabels`.
