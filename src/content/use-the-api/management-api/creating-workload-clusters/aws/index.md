@@ -292,3 +292,5 @@ These resources will not be deleted immediately. Our operators will start the de
 In order to review if a resource has been marked for deletion you can check if the resource has the attribute `deletionTimestamp` in the `metadata` field.
 
 The whole deletion process can take up to one hour.
+
+If you would like to protect your clusters from accidental deletion, take a look at our [deletion prevention mechanism]({{< relref "/advanced/deletion-prevention" >}}).
