@@ -115,4 +115,3 @@ kubectl label clusters.cluster.x-k8s.io/7g4di my-org/team=upstate
 ```
 
 Note that if the label already exists on the cluster, the `--overwrite` flag must be set. Otherwise the attempt to overwrite a label will result in an error.
-

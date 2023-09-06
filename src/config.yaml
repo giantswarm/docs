@@ -70,3 +70,6 @@ params:
     vintage_aws: "Vintage (AWS)"
     vintage_azure: "Vintage (Azure)"
     vintage_kvm: "Vintage (KVM)"
+  mermaid:
+      theme: "neutral"
+      align: "center"

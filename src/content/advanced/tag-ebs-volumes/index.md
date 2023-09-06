@@ -15,7 +15,7 @@ last_review_date: 2022-11-09
 
 If your application needs additional storage, you usually create a `Persistent Volume Claim` (PVC) object and add this volume claim name to your `Deployment` or `Stateful Set`.
 
-The `AWS-EBS-CSI-Driver`, which is installed by default in all workload clusters, is responsible for creating Elastic Block Storage (EBS) Volumes when creating EBS Persistent Volumes (PV) inside you cluster. 
+The `AWS-EBS-CSI-Driver`, which is installed by default in all workload clusters, is responsible for creating Elastic Block Storage (EBS) Volumes when creating EBS Persistent Volumes (PV) inside you cluster.
 
 To tag your EBS volumes there are currently two ways:
 
@@ -43,7 +43,7 @@ Whenever you create a new PVC with this Storage Class it will set those tags on 
 
 ### Use the `aws-ebs-volume-tagger` app
 
-The `aws-ebs-volume-tagger` is a optional app which can be applied to your cluster. It runs as a cronjob periodically (every 15 minutes) and checks if there are any PVs which need to be tagged in AWS. 
+The `aws-ebs-volume-tagger` is a optional app which can be applied to your cluster. It runs as a cronjob periodically (every 15 minutes) and checks if there are any PVs which need to be tagged in AWS.
 
 To tag all your PV's inside your cluster you need to add a `User level config` Yaml file with the following struct:
 

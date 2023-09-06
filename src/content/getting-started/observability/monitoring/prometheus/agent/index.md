@@ -21,7 +21,7 @@ aliases:
 
 In this article you will learn what is the Prometheus Agent running inside Giant Swarm clusters.
 
-__Note__: The Prometheus Agent is only running in releases starting from:
+**Note**: The Prometheus Agent is only running in releases starting from:
 
 | Provider      | Release version                    |
 |---------------|------------------------------------|
@@ -47,6 +47,7 @@ For users aware of what Prometheus is, the [Prometheus Agent](https://prometheus
 For historical reasons, Giant Swarm monitoring used to only be deployed on the Management cluster (1 dedicated Prometheus per cluster) and the scraping of our targets was going through the `kube-apiserver` acting as a proxy for the service discovery and scraping of the target metrics.
 
 However, with the evolution of Kubernetes and the arrival of CAPI clusters, our approach to scrape metrics from outside the cluster no longer works because:
+
 - in CAPI clusters, workload cluster nodes are not reachable from the management clusters (no peering/no route to host) so `kube-apiserver` behind a load balancer cannot be scraped from outside the cluster
 - in Kubernetes 1.22, `kube-scheduler` and `kube-controller-manager` metrics endpoint requires authentication that is stripped by the `kube-apiserver proxy`
 
@@ -57,12 +58,13 @@ Hence, we decided to release a Prometheus Agent alongside Giant Swarm managed [P
 ![Architecture diagram of the Prometheus Agent architecture](prometheus-agent-architecture.png)
 <!-- Source: https://drive.google.com/file/d/1Pr0J1x-nPF1klZEFfwJ3gZhxTRjuI1aM -->
 
-__Note__: We are using an ingress with Ingress NGINX Controller not represented here on the management cluster so the Prometheus Agent can send its data to the workload cluster Prometheus on the Management Cluster using the Remote Write API
+**Note**: We are using an ingress with Ingress NGINX Controller not represented here on the management cluster so the Prometheus Agent can send its data to the workload cluster Prometheus on the Management Cluster using the Remote Write API
 
-__Warning__: As of this writing, the agent is sending data to a Prometheus but we are thinking about moving to a Long Term Storage solution in the future.
+**Warning**: As of this writing, the agent is sending data to a Prometheus but we are thinking about moving to a Long Term Storage solution in the future.
 
 The Prometheus Agent is scrapping [`Service Monitors`](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/user-guides/getting-started.md#deploying-a-sample-application) in the workload clusters labelled with `application.giantswarm.io/team`.
 At the time of this writing, the targets include:
+
 - kubernetes core components (kube-apiserver, kube-scheduler and kube-controller-manager)
 - prometheus operator
 - the agent itself

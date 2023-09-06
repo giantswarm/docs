@@ -65,7 +65,7 @@ aws-operator creates an Auto Scaling Group (ASG) for every node pool. If the cre
  m6 | `m6a.12xlarge` | `m6a.12xlarge`,`m6i.12xlarge`,`m5a.12xlarge`,`m5.12xlarge` |
  m6 | `m6a.16xlarge` | `m6a.16xlarge`,`m6i.16xlarge`,`m5a.16xlarge`,`m5.16xlarge` |
  m6 | `m6a.24xlarge` | `m6a.24xlarge`,`m6i.24xlarge`,`m5.24xlarge`,`m5a.24xlarge` |
- m6 | `m6i.xlarge` | `m6i.xlarge`,`m6a.xlarge`,`m5a.xlarge`,`m5.xlarge` | 
+ m6 | `m6i.xlarge` | `m6i.xlarge`,`m6a.xlarge`,`m5a.xlarge`,`m5.xlarge` |
  m6 | `m6i.2xlarge` | `m6i.2xlarge`,`m6a.2xlarge`,`m5a.2xlarge`,`m5.2xlarge` |
  m6 | `m6i.4xlarge` | `m6i.4xlarge`,`m6a.4xlarge`,`m5a.4xlarge`,`m5.4xlarge` |
  m6 | `m6i.8xlarge` | `m6i.8xlarge`,`m6a.8xlarge`,`m5a.8xlarge`,`m5.8xlarge` |
@@ -93,7 +93,6 @@ aws-operator creates an Auto Scaling Group (ASG) for every node pool. If the cre
  r6 | `r6i.8xlarge` | `r6i.8xlarge`,`r6a.8xlarge`,`r5a.8xlarge`,`r5.8xlarge`,`r4.8xlarge` |
  r6 | `r6i.16xlarge` | `r6i.16xlarge`,`r6a.16xlarge`,`r5.16xlarge`,`r5a.16xlarge` |
  r6 | `r6i.24xlarge` | `r6i.24xlarge`,`r6a.24xlarge`,`r5.24xlarge`,`r5a.24xlarge` |
-
 
 If the type you are using for your node pool is not contained in the list above, activating the use of similar instance types has no effect.
 

@@ -74,7 +74,7 @@ In this example, the two constraints make sure, pods with the given labels are d
 
 The following fields are part of the `spec.template.spec` of Deployments, StatefulSets, and DaemonSets:
 
-```
+```yaml
 topologySpreadConstraints:
   - maxSkew: 1
     topologyKey: topology.kubernetes.io/zone
@@ -103,6 +103,7 @@ affinity:
 
 These constraints are checked during scheduling of new Pods. In case some dis-balancing happened because of other reasons, [Descheduler for Kubernetes](https://github.com/kubernetes-sigs/descheduler) can be used to re-schedule Pods to be more balanced.
 Please be aware of some undesirable edge-cases and caveats. These might show up on more complex `topologySpreadConstraints` and `affinity` setups. Discussions in issues [kubernetes/kubernetes#106127](https://github.com/kubernetes/kubernetes/issues/106127), [kubernetes/kubernetes#105977](https://github.com/kubernetes/kubernetes/issues/105977) and [kubernetes/kubernetes#105291](https://github.com/kubernetes/kubernetes/issues/105291) touch some of the problems that could arise.
+
 ## Get started
 
 You can create clusters in several ways:
