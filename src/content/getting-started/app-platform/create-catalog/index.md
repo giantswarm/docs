@@ -112,7 +112,7 @@ command and is the location of the Helm `index.yaml`.
 When registering your own app catalog served using GitHub Pages the URL is the
 same URL as the GitHub Pages website.
 
-You should create the Catalog CR in the [organization]({{< relref "/platform-overview/organizations" >}})
+You should create the Catalog CR in the [organization]({{< relref "/platform-overview/multi-tenancy" >}})
 namespace where the apps will be used. Or if it needs to be used in multiple
 organizations it can be created in the `default` namespace.
 

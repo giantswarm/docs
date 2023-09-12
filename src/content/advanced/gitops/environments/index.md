@@ -32,7 +32,7 @@ Each of these approaches has pros and cons. Giant Swarm relies on the multi-dire
 
 There are many ways to separete your cluster configuration but over the years we have seen in most cases there are two main factors: stages and regions. You can always adapt further this to your own requirements following the same principles described below.
 
-Lets start creating a new folder in our `bases` root directory. We will call it `environments and we will add two new folders `stages` and `regions`.
+Lets start creating a new folder in our `bases` root directory. We will call it `environments` and we will add two new folders `stages` and `regions`.
 
 The `stages` folder is how we propose to group environment specifications. There is a good reason for this additional layer. You can use it for having multiple different clusters - like the dev, staging and production - but also to have multiple different regions where you want to spin these clusters up.
 
@@ -53,7 +53,7 @@ Once your environment templates are ready, you can create new clusters by placin
 
 ### Stages
 
-Now, let's see how to put the explanation into practice. We create two cluster stage templates under `/bases/environments/stages`. 
+Now, let's see how to put the explanation into practice. We create two cluster stage templates under `/bases/environments/stages`.
 
 ```nohighlight
 mkdir -p bases/environments/stages/dev
@@ -250,7 +250,7 @@ bases/environments/stages/
 
 __Note__: In a similar way, we can base our stages on different cluster templates that we create from bases. We can create as many levels as we want, but take into account always to set the right priorities of the config files.
 
-#### Regions 
+#### Regions
 
 Following the same structure as stage environments, we create a new folder `regions` under the `environments` bases directory.
 
@@ -297,12 +297,12 @@ controlPlane:
     - eu-central-3
 nodeCIDR: "10.32.0.0/24"
 ```
-__Note__: These values are examples and need to be replaced by real values of the user account.
 
+__Note__: These values are examples and need to be replaced by real values of the user account.
 
 The kustomize plugin in Flux will create the new Config Map with the region values. Note that priority is set to `120` which will precede over the stage values.
 
-In case we have other region, for example `us-west`, we can create a `cluster_config.yaml` file with the different configuration. 
+In case we have other region, for example `us-west`, we can create a `cluster_config.yaml` file with the different configuration.
 
 ```yaml
 controlPlane:
@@ -324,7 +324,7 @@ bases/environments/regions
     └── kustomization.yaml
 ```
 
-## Use environment templates for your Workload Clusters 
+## Use environment templates for your Workload Clusters
 
 After having learnt how to create our own environment templates, lets create a cluster based one those. First, we need to get the cluster App custom resource running this command:
 
@@ -359,10 +359,10 @@ __Note__:  We use the 'extra configs` feature of App CR to patch additional laye
 For complex clusters, you can end up merging a lot of layers of templates and configurations. In order to keep sanity, it's very important to establish a good priority system and respect it every time. As an example, reserve priority values for different levels:
 
 - 100 for cluster base
-- 110 for stage environment 
-- 120 for the regional environment 
+- 110 for stage environment
+- 120 for the regional environment
 - 130 for specific cluster config
 
-We have published [gitops-template](https://github.com/giantswarm/gitops-template/tree/main/) repository which contains several examples of cluster bases and configuration layers. 
+We have published [gitops-template](https://github.com/giantswarm/gitops-template/tree/main/) repository which contains several examples of cluster bases and configuration layers.
 
 Furtherlly, you can find some helpers in the`tools` folder. For example, we have developed `fake-flux-build` scrip to render and inspect the final resources merging all values. For more information check `tools/README.md`.

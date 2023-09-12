@@ -85,49 +85,49 @@ kubectl create namespace efk-stack-app
 
 1. Save the .yaml lines below to a file called `config.yml`. Point `openid_connect_url` to the correct URL.
 
-```yaml=config.yml
----
-_meta:
-  type: "config"
-  config_version: 2
+    ```yaml=config.yml
+    ---
+    _meta:
+      type: "config"
+      config_version: 2
 
-config:
-  dynamic:
-    http:
-      anonymous_auth_enabled: false
-      xff:
-        enabled: false
-        internalProxies: ".*"
-        remoteIpHeader: "x-forwarded-for"
-    authc:
-      basic_internal_auth_domain:
-        description: "Authenticate via HTTP Basic against internal users database"
-        http_enabled: true
-        transport_enabled: true
-        order: 0
-        http_authenticator:
-          type: "basic"
-          challenge: false
-        authentication_backend:
-          type: "internal"
+    config:
+      dynamic:
+        http:
+          anonymous_auth_enabled: false
+          xff:
+            enabled: false
+            internalProxies: ".*"
+            remoteIpHeader: "x-forwarded-for"
+        authc:
+          basic_internal_auth_domain:
+            description: "Authenticate via HTTP Basic against internal users database"
+            http_enabled: true
+            transport_enabled: true
+            order: 0
+            http_authenticator:
+              type: "basic"
+              challenge: false
+            authentication_backend:
+              type: "internal"
 
-      openid_auth_domain:
-        http_enabled: true
-        transport_enabled: true
-        order: 1
-        http_authenticator:
-          type: "openid"
-          challenge: false
-          config:
-            enable_ssl: false
-            verify_hostnames: false
-            roles_key: groups
-            subject_key: preferred_username
-            openid_connect_url: https://login.microsoftonline.com/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/v2.0/.well-known/openid-configuration
-        authentication_backend:
-          type: noop
-    authz: {}
-```
+          openid_auth_domain:
+            http_enabled: true
+            transport_enabled: true
+            order: 1
+            http_authenticator:
+              type: "openid"
+              challenge: false
+              config:
+                enable_ssl: false
+                verify_hostnames: false
+                roles_key: groups
+                subject_key: preferred_username
+                openid_connect_url: https://login.microsoftonline.com/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/v2.0/.well-known/openid-configuration
+            authentication_backend:
+              type: noop
+        authz: {}
+    ```
 
 2. Check if secret was created correctly:
 
@@ -163,46 +163,46 @@ Similar to the previous section, we use a secret to add to opendistro-security p
 
 1. Save the .yaml lines below to a file called `internal_users.yml`. Modify the `password hashes`.
 
-It requires hashed passwords. Use `https://bcrypt-generator.com/` or refer to the [opendistro-security guide](https://opendistro.github.io/for-elasticsearch-docs/docs/security/configuration/yaml/#internal_usersyml).
+    It requires hashed passwords. Use `https://bcrypt-generator.com/` or refer to the [opendistro-security guide](https://opendistro.github.io/for-elasticsearch-docs/docs/security/configuration/yaml/#internal_usersyml).
 
-(Note: You will use these hashes as the admin password to be defined in the last section: "Configure OIDC backend for Kibana")
+    (Note: You will use these hashes as the admin password to be defined in the last section: "Configure OIDC backend for Kibana")
 
 2. Generate and deploy the secret to the efk-stack-app namespace:
 
-```bash=
-kubectl create secret generic -n efk-stack-app opendistro-internal-users --from-file=./internal_users.yml
-```
+    ```bash=
+    kubectl create secret generic -n efk-stack-app opendistro-internal-users --from-file=./internal_users.yml
+    ```
 
-```yaml=internal_users.yml
----
-# This is the internal user database
-# The hash value is a bcrypt hash and can be generated with plugin/tools/hash.sh or https://bcrypt-generator.com/
+    ```yaml=internal_users.yml
+    ---
+    # This is the internal user database
+    # The hash value is a bcrypt hash and can be generated with plugin/tools/hash.sh or https://bcrypt-generator.com/
 
-_meta:
-  type: "internalusers"
-  config_version: 2
+    _meta:
+      type: "internalusers"
+      config_version: 2
 
-## Demo users
-admin:
-  hash: "$2y$12$GVKPJmDPILWPR8EQoF90zOXmtquEyqlzEGkE4mwPcx1s55maulQTa" #bdmin
-  reserved: true
-  backend_roles:
-  - "admin"
-  description: "Demo admin user"
+    ## Demo users
+    admin:
+      hash: "$2y$12$GVKPJmDPILWPR8EQoF90zOXmtquEyqlzEGkE4mwPcx1s55maulQTa" #bdmin
+      reserved: true
+      backend_roles:
+      - "admin"
+      description: "Demo admin user"
 
-logstash:
-  hash: "$2y$12$zG9xarxF4as6ZvVEK8De/OC/3ErV/Um/szyHvASrTgzMv7SLq17Xq" #logstash
-  reserved: false
-  backend_roles:
-  - "logstash"
-  description: "Demo logstash user"
-```
+    logstash:
+      hash: "$2y$12$zG9xarxF4as6ZvVEK8De/OC/3ErV/Um/szyHvASrTgzMv7SLq17Xq" #logstash
+      reserved: false
+      backend_roles:
+      - "logstash"
+      description: "Demo logstash user"
+    ```
 
 3. Check if the secret was created correctly:
 
-```bash=
-kubectl get secret -n efk-stack-app opendistro-internal-users -o yaml
-```
+    ```bash=
+    kubectl get secret -n efk-stack-app opendistro-internal-users -o yaml
+    ```
 
 The results should look similar to this:
 
@@ -231,93 +231,93 @@ Here, the Azure AD group ID for group "kibana-admin" is mapped to the role "all_
 
 1. Save the .yaml lines below to a file called `roles_mapping.yml`. Make sure to add the group ID of the Azure AD group to the backend_roles section of the corresponding role.
 
-```bash=
-kubectl create secret generic -n efk-stack-app opendistro-roles-mapping --from-file=./roles_mapping.yml
-```
+    ```bash=
+    kubectl create secret generic -n efk-stack-app opendistro-roles-mapping --from-file=./roles_mapping.yml
+    ```
 
-```yaml=roles_mapping.yml
----
-_meta:
-  type: "rolesmapping"
-  config_version: 2
-all_access:
-  reserved: true
-  hidden: false
-  backend_roles:
-  - "admin"
-  - "ae208f58-48cf-4e38-9a42-fe33b454dc5c" # Group ID for kibana-admin
-  hosts: []
-  users: []
-  and_backend_roles: []
-  description: "Maps admin to all_access"
-manage_snapshots:
-  reserved: true
-  hidden: false
-  backend_roles:
-  - "snapshotrestore"
-  hosts: []
-  users: []
-  and_backend_roles: []
-logstash:
-  reserved: false
-  hidden: false
-  backend_roles:
-  - "logstash"
-  hosts: []
-  users: []
-  and_backend_roles: []
-own_index:
-  reserved: false
-  hidden: false
-  backend_roles: []
-  hosts: []
-  users:
-  - "*"
-  and_backend_roles: []
-  description: "Allow full access to an index named like the username"
-kibana_user:
-  reserved: false
-  hidden: false
-  backend_roles:
-  - "kibanauser"
-  - "7ad5de3e-dc0e-4710-bc89-59e5b88058b0" # Group ID for kibana-user
-  hosts: []
-  users: []
-  and_backend_roles: []
-  description: "Maps kibanauser to kibana_user"
-complex-role:
-  reserved: false
-  hidden: false
-  backend_roles:
-  - "ldap-analyst"
-  hosts: []
-  users:
-  - "new-user"
-  and_backend_roles: []
-readall:
-  reserved: true
-  hidden: false
-  backend_roles:
-  - "readall"
-  hosts: []
-  users: []
-  and_backend_roles: []
-kibana_server:
-  reserved: true
-  hidden: false
-  backend_roles: []
-  hosts: []
-  users:
-  - "kibanaserver"
-  and_backend_roles: []
-```
+    ```yaml=roles_mapping.yml
+    ---
+    _meta:
+      type: "rolesmapping"
+      config_version: 2
+    all_access:
+      reserved: true
+      hidden: false
+      backend_roles:
+      - "admin"
+      - "ae208f58-48cf-4e38-9a42-fe33b454dc5c" # Group ID for kibana-admin
+      hosts: []
+      users: []
+      and_backend_roles: []
+      description: "Maps admin to all_access"
+    manage_snapshots:
+      reserved: true
+      hidden: false
+      backend_roles:
+      - "snapshotrestore"
+      hosts: []
+      users: []
+      and_backend_roles: []
+    logstash:
+      reserved: false
+      hidden: false
+      backend_roles:
+      - "logstash"
+      hosts: []
+      users: []
+      and_backend_roles: []
+    own_index:
+      reserved: false
+      hidden: false
+      backend_roles: []
+      hosts: []
+      users:
+      - "*"
+      and_backend_roles: []
+      description: "Allow full access to an index named like the username"
+    kibana_user:
+      reserved: false
+      hidden: false
+      backend_roles:
+      - "kibanauser"
+      - "7ad5de3e-dc0e-4710-bc89-59e5b88058b0" # Group ID for kibana-user
+      hosts: []
+      users: []
+      and_backend_roles: []
+      description: "Maps kibanauser to kibana_user"
+    complex-role:
+      reserved: false
+      hidden: false
+      backend_roles:
+      - "ldap-analyst"
+      hosts: []
+      users:
+      - "new-user"
+      and_backend_roles: []
+    readall:
+      reserved: true
+      hidden: false
+      backend_roles:
+      - "readall"
+      hosts: []
+      users: []
+      and_backend_roles: []
+    kibana_server:
+      reserved: true
+      hidden: false
+      backend_roles: []
+      hosts: []
+      users:
+      - "kibanaserver"
+      and_backend_roles: []
+    ```
 
 2. Generate and deploy the secret to the efk-stack-app namespace:
 3. Check if the secret was created correctly:
 
-```bash=
-kubectl get secret -n efk-stack-app opendistro-roles-mapping -o yaml
-```
+    ```bash=
+    kubectl get secret -n efk-stack-app opendistro-roles-mapping -o yaml
+    ```
 
 The results should look similar to this:
 

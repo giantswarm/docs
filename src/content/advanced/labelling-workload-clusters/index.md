@@ -71,6 +71,16 @@ giantswarm.io/monitoring: "false"
 
 You can find more details about this in the [Disable Monitoring]({{< relref "getting-started/observability/monitoring/disable" >}}) article.
 
+### Deletion Prevention
+
+To protect clusters from accidental deletion you can use the following label:
+
+```nohighlight
+giantswarm.io/prevent-deletion: ""
+```
+
+For more information, please read the [Deletion Prevention]({{< relref "advanced/deletion-prevention" >}}) article.
+
 ## Setting labels when creating a cluster
 
 Depending on the method you use to create a cluster, you can specify labels when creating your cluster.
@@ -105,4 +115,3 @@ kubectl label clusters.cluster.x-k8s.io/7g4di my-org/team=upstate
 ```
 
 Note that if the label already exists on the cluster, the `--overwrite` flag must be set. Otherwise the attempt to overwrite a label will result in an error.
-

@@ -1,7 +1,7 @@
 ---
 linkTitle: As a user
 title: Authentication for the Management API as a user
-description: Here you learn how to log in to the Management API as a user, using signle sign-on (SSO), to use tools like kubectl.
+description: Here you learn how to log in to the Management API as a user, using single sign-on (SSO), to use tools like kubectl.
 weight: 10
 menu:
   main:

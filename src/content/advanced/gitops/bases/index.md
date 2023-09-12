@@ -75,16 +75,16 @@ In this example we are creating a custom version for capa base:
     mkdir -p bases/clusters/capa/v0.21.0
     ```
 
-1. Use the [kubectl gs template cluster](/use-the-api/kubectl-gs/template-cluster/) to template cluster resources, see an example for the `capa` provider below. Use arbitrary values for the mandatory fields, we will configure them later in our process:
+2. Use the [kubectl gs template cluster](/use-the-api/kubectl-gs/template-cluster/) to template cluster resources, see an example for the `capa` provider below. Use arbitrary values for the mandatory fields, we will configure them later in our process:
 
     ```nohighlight
     kubectl gs template cluster \
     --name mywcl \
     --organization myorg \
-    --provider capa | yq -s '.metadata.name' 
+    --provider capa | yq -s '.metadata.name'
     ```
 
-1. This creates four files but we are only interested in the cluster userconfig file `mywcl-userconfig.yml`. We will extract the values and create a new `cluster-config.yaml` file in our version folder:
+3. This creates four files but we are only interested in the cluster userconfig file `mywcl-userconfig.yml`. We will extract the values and create a new `cluster-config.yaml` file in our version folder:
 
     ```nohighlight
     cat mywcl-userconfig.yml | yq eval '.data.values' > bases/clusters/capa/v0.21.0/cluster_config.yaml
@@ -111,16 +111,16 @@ In this example we are creating a custom version for capa base:
     organization: myorg
     ```
 
-1. Replace `mywcl`, `myorg` values from the previous step with variables:
+4. Replace `mywcl`, `myorg` values from the previous step with variables:
 
     ```nohighlight
     sed -i "s/myorg/${organization}/g" bases/clusters/capa/0.21.0/cluster_config.yaml
     sed -i "s/mywcl/${cluster_name}/g" bases/clusters/capa/0.21.0/cluster_config.yaml
     ```
 
-1. Check `cluster_config.yaml` against the version-specific `values.yaml`, and tweak it if necessary to match the expected schema. At this point you may also provide extra configuration, like additional availability zones, node pools, etc. If you used `kubectl gs template` to get the values, this should be aligned with the latest version. If you were trying to create a different version, you might need to check proper values for that version.
+5. Check `cluster_config.yaml` against the version-specific `values.yaml`, and tweak it if necessary to match the expected schema. At this point you may also provide extra configuration, like additional availability zones, node pools, etc. If you used `kubectl gs template` to get the values, this should be aligned with the latest version. If you were trying to create a different version, you might need to check proper values for that version.
 
-1. Create a patch for the cluster App CR to provide the newly created configuration. For this create a file `patch_config.yaml` with this content:
+6. Create a patch for the cluster App CR to provide the newly created configuration. For this create a file `patch_config.yaml` with this content:
 
     ```nohighlight
     apiVersion: application.giantswarm.io/v1alpha1
@@ -136,7 +136,7 @@ In this example we are creating a custom version for capa base:
           priority: 55
     ```
 
-1. Create the `kustomization.yaml`, referencing the template, and generating the ConfigMap out of `cluster_config.yaml`:
+7. Create the `kustomization.yaml`, referencing the template, and generating the ConfigMap out of `cluster_config.yaml`:
 
     ```nohighlight
     apiVersion: kustomize.config.k8s.io/v1beta1

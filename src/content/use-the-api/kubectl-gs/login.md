@@ -46,6 +46,7 @@ No arguments.
 - By leaving the argument empty, the command will use the current selected kubectl context. In addition, an OIDC auth token will be refreshed and the name of the current context will be printed.
 
 ### b) `kubectl gs login [MANAGEMENT_CLUSTER]`
+
 For the `MANAGEMENT_CLUSTER` argument there are several options.
 
 1. **Management API endpoint URL:** The URL of the cluster's Kubernetes API endpoint. This can be also be a workload cluster, if OIDC has been set up for it.
@@ -55,7 +56,9 @@ For the `MANAGEMENT_CLUSTER` argument there are several options.
 3. **Context name:** Name of a Giant Swarm kubectl context, generated via one of the two methods above. The context name normally starts with the `gs-` prefix, however that prefix can be omitted for convenience. If no OIDC context can be found, an attempt to select a client certificate will be made.
 
 ### c) `kubectl gs login [MANAGEMENT_CLUSTER] [WORKLOAD_CLUSTER]`
+
 The `MANAGEMENT_CLUSTER` and `WORKLOAD_CLUSTER` names are used to find an existing context for a workload cluster.
+
 - **Context name:** Name of a Giant Swarm kubectl context. If no OIDC context can be found, an attempt to select a client certificate will be made.
 
 It is also possible to create client certificates for a workload cluster, by providing the right configuration flags. Please be aware that the recommended way to authenticate users for workload clusters is OIDC. Client certificates should only be a temporary replacement.
@@ -117,6 +120,7 @@ For subsequent logins, you can use that shorthand to easily select which install
 ```nohighlight
 kubectl gs login example
 ```
+
 ### Workload cluster
 
 If OIDC is set up on a workload cluster, the initial login can be done via the Management API endpoint URL as well.

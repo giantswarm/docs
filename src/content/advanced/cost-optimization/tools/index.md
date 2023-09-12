@@ -31,7 +31,7 @@ The adoption of Kubernetes still requires monitoring cost drivers. Improving res
     - [Azure Monitor data source integration](https://grafana.com/grafana/plugins/grafana-azure-monitor-datasource/)
 - [Goldilocks](https://github.com/FairwindsOps/goldilocks), a tool for refining and discovering the right application resource settings
 - There are multiple paid solutions offering dashboard-oriented services to track Kubernetes application costs or help to reduce cloud costs. For example:
-    - [Zesty](https://zesty.co/) Real-time controller that measures machine resource usage and adapts Reserved Instances using the AWS Marketplace. 
+    - [Zesty](https://zesty.co/) Real-time controller that measures machine resource usage and adapts Reserved Instances using the AWS Marketplace.
     - [Cloudability](https://www.apptio.com/products/cloudability/)
     - [Kubernetes Opex Analytics](https://github.com/rchakode/kube-opex-analytics)
     - [CloudHealth](https://www.cloudhealthtech.com/)
@@ -48,7 +48,7 @@ The adoption of Kubernetes still requires monitoring cost drivers. Improving res
 
 - [Janitor](https://codeberg.org/hjacobs/kube-janitor), a tool that leverages on resource annotations to clean and set TTL for your deployments, find out unused volumes,...
 - [Kubernetes Downscaler](https://codeberg.org/hjacobs/kube-downscaler) scales down deployments on your non-production cluster based on some conditions
-- [Cluster cleaner](https://github.com/giantswarm/cluster-cleaner) automatically removes workload clusters after a defined amount of time. 
+- [Cluster cleaner](https://github.com/giantswarm/cluster-cleaner) automatically removes workload clusters after a defined amount of time.
 
 ## Summary
 
