@@ -4,7 +4,10 @@
 *.pyc
 /.idea
 /.vscode
+/annotations.json
 /build/
+/markdownlint-annotations.json
+/markdownlint.out
 /vendor/
 /volumes
 /src/resources

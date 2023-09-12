@@ -1,6 +1,6 @@
 ---
 linkTitle: AWS Route 53 with static credentials
-title: External DNS with AWS Route 53 and static credentials 
+title: External DNS with AWS Route 53 and static credentials
 description: How to configure the External DNS service to use AWS Route 53 with static credentials.
 weight: 25
 menu:
@@ -23,7 +23,7 @@ You can find more information in the [AWS Route 53 - IAM Policy](https://github.
 
 ## Configuration
 
-There are two possible configurations described in this section. 
+There are two possible configurations described in this section.
 
 __Important:__ Independent of the cloud provider where the App is running, you must set the `provider` value as `aws`, as shown in the examples.
 
@@ -32,6 +32,7 @@ __Important:__ Independent of the cloud provider where the App is running, you m
 This method configures the App to mount the credentials file from an existing `external-dns-route53` secret.
 
 The secret must contain a file with the following format:
+
 ```nohighlight
 [default]
 aws_access_key_id = _REPLACE_WITH_ACCESS_KEY_ID_

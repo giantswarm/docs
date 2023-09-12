@@ -54,11 +54,11 @@ Giant Swarm releases for Kubernetes v1.25 and above will include Kyverno and a s
 
 ## Further notices
 
-### Deprecated API versions 
+### Deprecated API versions
 
 Deprecated API versions that are no longer served (use a newer one):
 
-```
+```nohighlight
 CronJob                 batch/v1beta1
 EndpointSlice           discovery.k8s.io/v1beta1
 Event                   events.k8s.io/v1beta1
@@ -77,10 +77,9 @@ General Stability and Bug Fixes
 
 As with any new release, Kubernetes v1.25 includes general stability improvements and bug fixes. These updates address various issues reported in earlier versions, ensuring a more reliable and robust Kubernetes experience.
 
-As always, we encourage you to explore [the official Kubernetes documentation](https://kubernetes.io/blog/2022/08/23/kubernetes-v1-25-release/) and reach out to our support teams for any assistance during the upgrade process. 
+As always, we encourage you to explore [the official Kubernetes documentation](https://kubernetes.io/blog/2022/08/23/kubernetes-v1-25-release/) and reach out to our support teams for any assistance during the upgrade process.
 
 Happy upgrading!
-
 
 ## Further reading
 

@@ -178,9 +178,9 @@ only _Programmatic access_ is enabled.
 
 ### 2. Review and create user {#iam-aws-operator-user-review}
 
-You should now review the user. Provided everything is correct, hit the *Create*
-button. On the following page, you will be presented with an *Access key ID* and
-a *Secret access key*. Click the 'show' link to display the access key secret,
+You should now review the user. Provided everything is correct, hit the _Create_
+button. On the following page, you will be presented with an _Access key ID_ and
+a _Secret access key_. Click the 'show' link to display the access key secret,
 and then copy both the key ID and key secret; these will need to be provided to
 us later.
 

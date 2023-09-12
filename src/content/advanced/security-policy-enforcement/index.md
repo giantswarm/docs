@@ -189,6 +189,8 @@ Policy source: https://kyverno.io/policies/pod-security/baseline/disallow-host-n
 This policy rejects Pods using host networking, host IPC, or host PID.
 If any of those fields are present in the Pod spec, they must be set to `false`.
 
+ <!-- markdownlint-disable no-duplicate-heading -->
+
 #### Examples
 
 This Pod satisfies the policy, because the Pod spec `hostNetwork` field is set to `false` and the `hostIPC` and `hostPID` fields are not set:
@@ -267,7 +269,7 @@ spec:
       name: config
   volumes:
   - name: config
-    configMap:    
+    configMap:
       name: my-configmap
 ```
 
@@ -289,7 +291,7 @@ spec:
       name: host-k8s
   volumes:
   - name: host-k8s
-    hostPath:    
+    hostPath:
       path: /etc/kubernetes
       type: ""
 ```
@@ -964,8 +966,6 @@ spec:
     image: nginx:1.14.2
 ```
 
-
-
 This Pod does NOT satisfy the policy, because it attempts to use the `Unconfined` profile:
 
 ```yaml
@@ -1021,7 +1021,7 @@ spec:
       name: config
   volumes:
   - name: config
-    configMap:    
+    configMap:
       name: my-configmap
 ```
 

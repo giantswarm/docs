@@ -228,4 +228,5 @@ Currently changing/adding config to already existing cluster is not fully suppor
 
 ## How to delete cluster via Control Plane API
 
-In order to delete your cluster created via the Cluster API on the Control Plane, simply delete the `Cluster` CR corresponding to the given cluster. This will result in starting the process of cluster deletion and clean up of all related CRs on the Control Plane.
+In order to delete your cluster created via the Cluster API on the Control Plane, simply delete the `Cluster` CR corresponding to the given cluster. This will result in starting the process of cluster deletion and clean up of all related CRs on the Control Plane.  
+If you would like to protect your clusters from accidental deletion, take a look at our [deletion prevention mechanism]({{< relref "/advanced/deletion-prevention" >}}).
