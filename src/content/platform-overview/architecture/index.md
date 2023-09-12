@@ -41,15 +41,15 @@ We leverage Kubernetes and its extension capabilities to expose the main functio
 
 Beyond the Management API, we recommend a [GitOps](https://www.giantswarm.io/blog/what-is-gitops)-based approach to ensure customers use solid principles for managing their workloads. Virtually all features of our platform can be described, configured, and stored in your repositories, maintaining a unified, declarative source of truth.
 
-Along with GitOps we have a [Web interface]({{< relref "/platform-overview/web-interface" >}}), that simplifies the life of the platform engineering teams in order to visualize infrastructure, apps, and permissions across the entire platform. 
+Along with GitOps we have a [Web Interface]({{< relref "/platform-overview/web-interface" >}}), that helps Platform Engineering teams by visualizing infrastructure, apps, and permissions across the entire platform in a single UI. 
 
 In addition, we offer a set of [templates](https://github.com/giantswarm/gitops-template) to start with the platform and a [documentation hub]({{< relref "/getting-started" >}}) including a step-by-step guide to completing a Dev Platform Journey. 
 
 ### Applications
 
-The capabilities of the platform are supported thanks to the fantastic selection Cloud Native tools available. At Giant Swarm, we use and manage a set of open-source tooling backed by the community, but we do not force you to stick to it. 
+The capabilities of the platform are supported thanks to an accurate selection of best-of-breed Cloud Native tools available. At Giant Swarm, we use and manage a set of open-source tooling backed by the community, but we do not force customers to stick to it. Indeed, our platform is freely extensible by our customers.
 
-There is a set of capabilities that customers can rely on today, but we are also continuously on the hunt for new use cases. Every customer has different needs, which evolve over time, and we intend for the platform to evolve in kind.
+There is a clear set of capabilities that customers can rely on as of now, and we are also continuously on the hunt for new use cases and useful tools to expand our offering. Every customer has different needs, which evolve over time, and we designed our platform to be able to evolve together with their and our needs.
 
 Today we can offer a set of different features for building your platform, including:
 
@@ -63,7 +63,7 @@ Today we can offer a set of different features for building your platform, inclu
 
 ### Infrastructure
 
-For managing the infrastructure, we run a management cluster per provider and region where you want to have your workloads. From that management cluster, you can spin up as many individual Kubernetes clusters, called workload clusters, as you want. Our operations team works to maintain all cluster components' health, and continuously releases new versions with new features and patches.
+For managing the infrastructure, we run a management cluster per provider and region where you want to have your workloads. From that management cluster, you can spin up as many individual Kubernetes clusters, called workload clusters, at will. Our operations team works to maintain all cluster components' health, and continuously releases new versions with new features and patches.
 
 Giant Swarm's cluster architecture is split into two logical parts. One encompasses the management cluster and all the components running there. The second part refers to the workload clusters that are created dynamically by the users to run their business workloads. In principle, the management cluster and workload cluster(s) are analogous in terms of infrastructure and configuration. The difference comes with the additional layers we deploy on top of the management cluster that helps manage your users and permissions, workload clusters, and the applications running on the workload clusters.
 
@@ -84,15 +84,15 @@ Although we try to maintain feature parity between infrastructure providers, off
 
 *Compatibility*
 
-The setup supports organization virtual datacenters (OVCDs) running on VMware Cloud Director 10.3 and above. It must be backed by backed with NSX-T and NSX advanced load balancer (ALB) with the load balancer feature enabled on the Edge gateway. 
+The setup supports organization virtual datacenters (OVCDs) running on VMware Cloud Director 10.3 and above. It must be backed by NSX-T and NSX advanced load balancer (ALB) with the load balancer feature enabled on the Edge gateway. 
 
 *Authentication*
 
-Cluster API Provider VMware Cloud Director (CAPVCD), along with the associated Cloud Provider interface (CPI) and Container Storage interface (CSI), authenticate against the VMware Cloud Director API using an API Token (sometimes also referred to as Refresh Token) which is stored in a secret. Such a token can be created by any user with the right permission and can be revoked at any time should there be suspicion of it being compromised.
+Cluster API Provider VMware Cloud Director (CAPVCD), along with the associated Cloud Provider interface (CPI) and Container Storage interface (CSI), authenticate against the VMware Cloud Director API using an API Token (sometimes also referred to as Refresh Token) which is stored in a secret. Such token can be created by any user with the right permissions and can be revoked at any time, should there be suspicion of it being compromised.
 
 *Networking*
 
-The kubernetes API and services of type `LoadBalancer` get IPs from a pool of external IPs available in the edge gateway. It can be set statically or takes the next available IP if unspecified. A virtual service is then created with the required IP/port and is associated with a load balancer pool that contains the relevant node IPs as members. For the CPI, we support the virtual service shared feature which was introduced in VCD 10.4 as well as the legacy method based on a single internal IP and multiple DNAT rules.
+The Kubernetes API and services of type `LoadBalancer` get IPs from a pool of external IPs available in the edge gateway. It can be set statically or takes the next available IP if unspecified. A virtual service is then created with the required IP/port and is associated with a load balancer pool that contains the relevant node IPs as members. For the CPI, we support the virtual service shared feature which was introduced in VCD 10.4 as well as the legacy method based on a single internal IP and multiple DNAT rules.
 
 A network needs to be specified in the cluster definition to identify where the default gateway will be and where to connect the virtual machines (VMs). It is also possible to add additional networks in order to connect multiple virtual interfaces to the nodes along with a list of static routes. The nodes must have internet access which is usually achieved with a SNAT rule or via an HTTP proxy. Note that it is also possible to specify NTP servers and pools (Ubuntu based nodes running `chrony`) in the cluster definition, which is particularly useful in air-gapped environments.
 
@@ -127,7 +127,7 @@ Giant Swarm configures clusters to be secure by default. [Role-Based Access Cont
 
 *Secure Features of the Platform*
 
-Since our earliest releases, Giant Swarm has set up a secure baseline in all our customer clusters. In the early days, Kubernetes supported [Pod Security Policies (PSPs)](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) to enforce pod security, which provided a built-in resource for a user to define permitted pod configurations or volume types. In Kubernetes `1.25`, this implementation has been phased out in favor of [Pod Security Admission(PSA)](https://kubernetes.io/docs/concepts/security/pod-security-admission/). We have not been able to maintain an equivalent set of capabilities using that technology, so, for now, we have [decided to leverage on Kyverno to enforce appropriately restricted and extensible policies](https://www.giantswarm.io/blog/giant-swarms-farewell-to-psp). By default, users and workloads running in Giant Swarm clusters are bound by a restrictive policy that disallows, among many others, behaviors like running containers as root or mounting host path volumes. Cluster operators must grant applications higher security privileges on a case by case basis.
+Since our earliest releases, Giant Swarm has set up a secure baseline in all our customer clusters. In the early days, Kubernetes supported [Pod Security Policies (PSPs)](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) to enforce pod security, which provided a built-in resource for a user to define permitted pod configurations or volume types. In Kubernetes `1.25`, this implementation has been phased out in favor of [Pod Security Admission(PSA)](https://kubernetes.io/docs/concepts/security/pod-security-admission/). We have not been able to maintain an equivalent set of capabilities using that technology, so, for now, we have [decided to leverage Kyverno to enforce appropriately restricted and extensible policies](https://www.giantswarm.io/blog/giant-swarms-farewell-to-psp). By default, users and workloads running in Giant Swarm clusters are bound by a restrictive policy that disallows, among many others, behaviors like running containers as root or mounting host path volumes. Cluster operators must grant applications higher security privileges on a case by case basis.
 
 In addition to the security policies, [Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/) define the communication policies to and from the applications in each namespace. All components to run a cluster provided by Giant Swarm come with strict policies by default. Our managed namespaces (“kube-system” and “giantswarm”) block all traffic in general, so only expected and specifically configured routes and ports are enabled. Customers can follow this approach and deny all communications by default in their application namespaces, forcing each workload to define which communications are allowed. This [guide]({{< relref "/getting-started/network-policies" >}}) helps to demonstrate how such a dynamic firewall works.
 
