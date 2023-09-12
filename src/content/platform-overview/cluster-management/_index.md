@@ -2,7 +2,7 @@
 title: Cluster management
 description: Supported cloud providers and cluster management features offered by Giant Swarm.
 last_review_date: 2023-07-03
-weight: 20
+weight: 30
 aliases:
   - /general/overview
   - /platform-overview/cluster-management/architecture/
