@@ -23,7 +23,7 @@ One of the main building blocks of the platform is the cluster management. Our c
 
 This is the latest and recommended generation.
 
-We run the [cluster-api (CAPI)](https://github.com/kubernetes-sigs/cluster-api/) operators and the respective cloud provider-specific operator, such as [cluster-api-provider-aws (CAPA)](https://github.com/kubernetes-sigs/cluster-api-provider-aws/) for the AWS cloud, on the management clusters. Our [Cluster API architecture page]({{< relref "/platform-overview/architecture" >}}) explains more details.
+We run [Cluster API (CAPI)](https://github.com/kubernetes-sigs/cluster-api/) operators and their respective cloud provider-specific operators, such as [cluster-api-provider-aws (CAPA)](https://github.com/kubernetes-sigs/cluster-api-provider-aws/) for the AWS cloud, on our Management Clusters. Our [Cluster API architecture page]({{< relref "/platform-overview/architecture" >}}) explains more details about the architecture of the platform.
 
 This generation has several benefits over the previous _Vintage_ generation:
 
