@@ -39,7 +39,7 @@ There are several entrypoints to the platform via our largely Kubernetes-based i
 
 We leverage Kubernetes and its extension capabilities to expose the main functionality. The [Management API]({{< relref "/platform-overview/management-api" >}}) is just a Kubernetes API enriched to enable to serve complete golden paths for developers.
 
-Beyond the management API, we recommend a [GitOps](https://www.giantswarm.io/blog/what-is-gitops)-based approach to ensure customers use solid principles for managing their workloads. Virtually all features of our platform can be described, configured, and stored in your repositories, maintaining a declarative source of truth.
+Beyond the Management API, we recommend a [GitOps](https://www.giantswarm.io/blog/what-is-gitops)-based approach to ensure customers use solid principles for managing their workloads. Virtually all features of our platform can be described, configured, and stored in your repositories, maintaining a unified, declarative source of truth.
 
 Along with GitOps we have a [Web interface]({{< relref "/platform-overview/web-interface" >}}), that simplifies the life of the platform engineering teams in order to visualize infrastructure, apps, and permissions across the entire platform. 
 
