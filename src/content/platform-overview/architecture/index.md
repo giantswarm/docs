@@ -17,7 +17,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-horizon
 ---
 
-Giant Swarm's mission is to empower our customers to innovate rapidly and confidently, and we do that by providing fully automated infrastructure, applications, and ongoing tailored services to help our customers maximize the value of their clusters. We traditionally work alongside or fill the role of a platform, ops, or SRE team, depending on the organization's terminology. 
+Giant Swarm's mission is to empower our customers to innovate rapidly and confidently, and we do that by providing fully automated infrastructure, applications, and ongoing tailored services to help our customers maximize the value of their clusters. We traditionally work alongside or fill the role of a platform, ops, or SRE team, depending on the organization's terminology.
 
 A natural extension of this mission is to offer support directly to those who stand to gain the most from a well-managed platform: the developers. Our customers reflect a broad range of internal capacity and priority for creating their own developer platforms, but all platforms teams are trying to solve the same set of problems -- things like: how developers securely build their applications, how to deploy these applications in an ephemeral environment easily or how to observe the behavior of these applications with minimal configuration. To that end, we want to build a platform that relies on the [good principles](https://www.giantswarm.io/blog/platform-engineering-its-not-about-a-tool-stack-its-a-set-of-capabilities) exposed by the community:
 
@@ -41,9 +41,9 @@ We leverage Kubernetes and its extension capabilities to expose the main functio
 
 Beyond the Management API, we recommend a [GitOps](https://www.giantswarm.io/blog/what-is-gitops)-based approach to ensure customers use solid principles for managing their workloads. Virtually all features of our platform can be described, configured, and stored in your repositories, maintaining a unified, declarative source of truth.
 
-Along with GitOps we have a [Web Interface]({{< relref "/platform-overview/web-interface" >}}), that helps Platform Engineering teams by visualizing infrastructure, apps, and permissions across the entire platform in a single UI. 
+Along with GitOps we have a [Web Interface]({{< relref "/platform-overview/web-interface" >}}), that helps Platform Engineering teams by visualizing infrastructure, apps, and permissions across the entire platform in a single UI.
 
-In addition, we offer a set of [templates](https://github.com/giantswarm/gitops-template) to start with the platform and a [documentation hub]({{< relref "/getting-started" >}}) including a step-by-step guide to completing a Dev Platform Journey. 
+In addition, we offer a set of [templates](https://github.com/giantswarm/gitops-template) to start with the platform and a [documentation hub]({{< relref "/getting-started" >}}) including a step-by-step guide to completing a Dev Platform Journey.
 
 ### Applications
 
@@ -82,25 +82,25 @@ Although we try to maintain feature parity between infrastructure providers, off
 {{< tabs >}}
 {{< tab id="flags-clouddirector" title="VMware Cloud Director">}}
 
-*Compatibility*
+##### Compatibility
 
-The setup supports organization virtual datacenters (OVCDs) running on VMware Cloud Director 10.3 and above. It must be backed by NSX-T and NSX advanced load balancer (ALB) with the load balancer feature enabled on the Edge gateway. 
+The setup supports organization virtual datacenters (OVCDs) running on VMware Cloud Director 10.3 and above. It must be backed by NSX-T and NSX advanced load balancer (ALB) with the load balancer feature enabled on the Edge gateway.
 
-*Authentication*
+##### Authentication
 
 Cluster API Provider VMware Cloud Director (CAPVCD), along with the associated Cloud Provider interface (CPI) and Container Storage interface (CSI), authenticate against the VMware Cloud Director API using an API Token (sometimes also referred to as Refresh Token) which is stored in a secret. Such token can be created by any user with the right permissions and can be revoked at any time, should there be suspicion of it being compromised.
 
-*Networking*
+##### Networking
 
 The Kubernetes API and services of type `LoadBalancer` get IPs from a pool of external IPs available in the edge gateway. It can be set statically or takes the next available IP if unspecified. A virtual service is then created with the required IP/port and is associated with a load balancer pool that contains the relevant node IPs as members. For the CPI, we support the virtual service shared feature which was introduced in VCD 10.4 as well as the legacy method based on a single internal IP and multiple DNAT rules.
 
 A network needs to be specified in the cluster definition to identify where the default gateway will be and where to connect the virtual machines (VMs). It is also possible to add additional networks in order to connect multiple virtual interfaces to the nodes along with a list of static routes. The nodes must have internet access which is usually achieved with a SNAT rule or via an HTTP proxy. Note that it is also possible to specify NTP servers and pools (Ubuntu based nodes running `chrony`) in the cluster definition, which is particularly useful in air-gapped environments.
 
-*Compute*
+##### Compute
 
 The Kubernetes cluster is represented in VMware Cloud Director by a vAPP of the same name that contains one virtual machine for each node. Note that our setup also supports naming conventions for virtual machine names based on go templates. When a node is created, a virtual machine is provisioned in the cluster's vAPP using a vAPP template stored in a specific catalog. When configuring the control plane nodes or a node class for a node pool, several parameters can be set for the virtual machines such as the sizing policy, placement policy, virtual disk size and storage profile.
 
-*Storage*
+##### Storage
 
 In order to offer persistent storage that is decoupled from the virtual machines, the container storage interface creates a Named Disk that can be attached or detached from the VM according to whether or not the persistent volume claim (PVC) is bound to a pod or not. Named disks currently only support Read-Write-Only (RWO) with block storage-backed named disks.
 
@@ -119,13 +119,13 @@ Internally, Cluster API (CAPI) uses kubeadm to configure all the machines accord
 
 ### Operations
 
-Aside from infrastructure and customer-facing applications, we also deploy a set of tooling that ensure we have a seamless delivery system, proper hardening, and clear observability.  
+Aside from infrastructure and customer-facing applications, we also deploy a set of tooling that ensure we have a seamless delivery system, proper hardening, and clear observability.
 
-*Authentication Features of the Platform*
+#### Authentication Features of the Platform
 
 Giant Swarm configures clusters to be secure by default. [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) is enabled by default and our customers can create their own roles or use the ones predefined in the cluster to gain access to manage their workloads. The concept of authenticated users and groups does not exist in Kubernetes, so it relies on an external solution to retrieve user/group information (e.g. via X.509 certificates or [OIDC](https://en.wikipedia.org/wiki/OpenID_Connect)). Although our platform allows users to access their clusters using certificates, we recommend using an OIDC compliant Identity Provider, such as Active Directory, to provide authentication. There are several advantages to using an OIDC provider, such as short lived tokens and taking advantage of existing user and group information. Once authentication is sorted out, the authorization part is handled with RBAC. RBAC, along with namespaces, lets users define granular permissions for each user or group. This [guide]({{< relref "/getting-started/rbac-and-psp" >}}) will walk you through it.
 
-*Secure Features of the Platform*
+#### Secure Features of the Platform
 
 Since our earliest releases, Giant Swarm has set up a secure baseline in all our customer clusters. In the early days, Kubernetes supported [Pod Security Policies (PSPs)](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) to enforce pod security, which provided a built-in resource for a user to define permitted pod configurations or volume types. In Kubernetes `1.25`, this implementation has been phased out in favor of [Pod Security Admission(PSA)](https://kubernetes.io/docs/concepts/security/pod-security-admission/). We have not been able to maintain an equivalent set of capabilities using that technology, so, for now, we have [decided to leverage Kyverno to enforce appropriately restricted and extensible policies](https://www.giantswarm.io/blog/giant-swarms-farewell-to-psp). By default, users and workloads running in Giant Swarm clusters are bound by a restrictive policy that disallows, among many others, behaviors like running containers as root or mounting host path volumes. Cluster operators must grant applications higher security privileges on a case by case basis.
 
@@ -133,13 +133,13 @@ In addition to the security policies, [Network Policies](https://kubernetes.io/d
 
 Currently, we run [Cilium](https://cilium.io/) as CNI in all our clusters which brings powerful new features to increase the security of our setups. Cilium extends Kubernetes network policies to allow us filter out based on domains and offers additional features for visibility and policy enforcement.
 
-*Monitoring Features of the Platform*
+#### Monitoring Features of the Platform
 
 Since we provide a **managed** Kubernetes platform, Giant Swarm keeps a close eye on the state of the platform, and is alerted for various types of unexpected events. To support our 24/7 operations, our management clusters run a [monitoring stack](https://www.giantswarm.io/blog/monitoring-on-demand-kubernetes-clusters-with-prometheus) to watch all workload clusters and ensure all managed components are healthy. In each workload cluster, there are several [exporters](https://prometheus.io/docs/instrumenting/exporters/) that gather and forward the metrics for each component.
 
 Our on-call engineers are paged in case anything happens to the cluster or its base components. They respond to the incident based on our run-books, which we have written (and continue to update) over years operating Cloud Native systems. We perform post-mortem analyses to identify the cause of platform issues or outages, and to identify opportunities to improve the platform's resiliency. In case there is an improvement to be made, a solution will be implemented by the same team which is responsible for operating it. Any patch or fix added to the platform is then released to all customers.
 
-*CI/CD Features of the Platform*
+#### CI/CD Features of the Platform
 
 Since the appearance of [GitOps](https://www.giantswarm.io/blog/what-is-gitops) we have been enthusiastic about it. It provides many benefits while relying on the same principles we were already advocating for. Giant Swarm uses [Flux](https://www.giantswarm.io/blog/gitops-with-flux-giant-swarm) to control the configuration and definition of infrastructure and the software on top of it.
 
