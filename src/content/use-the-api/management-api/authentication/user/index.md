@@ -23,7 +23,7 @@ As a user of the Management API for any given installation, you need:
 - A **user account** in the identity provider used by the installation (single sign-on).
 - The Management API **endpoint URL** of the installation. Alternatively, the web user interface URL.
 
-The recommended method for authentication, as it's the fastest and most convenient one, uses our `kubectl` plug-in and is explained next. Further down we also provide instructions for an [alternative method](#alternative-method) that does not require installing the plugin.
+For command-line access to the cluster using `kubectl`, authentication via our `kubectl` plugin is required. Detailed instructions are provided below. If you prefer a graphical interface, we also outline the Web UI login method.
 
 ## Using `kubectl gs login` {#kubectl-gs-login}
 
