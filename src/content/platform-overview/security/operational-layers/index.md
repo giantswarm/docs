@@ -62,7 +62,6 @@ A customer has *tenant admin* and *view* access via OpenID Connect (OIDC), confi
 #### Management API access for Customers
 
 The Kubernetes API on every management cluster has [dex](https://github.com/dexidp/dex) installed as an OIDC issuer. Dex is configured with an identity provider chosen by the customer. A list of supported providers can be found in the [dex github repository](https://github.com/dexidp/dex/tree/master/connector).
-[dex-k8s-authenticator](https://github.com/mintel/dex-k8s-authenticator) is also installed, it is a web app that helps in JWT token retrieval and kubectl configuration
 
 ##### Authorization
 
