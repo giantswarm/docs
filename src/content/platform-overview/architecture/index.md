@@ -152,5 +152,3 @@ To support customers in their use of Flux and the CI/CD features available to th
 - [Giant Swarm Management API]({{< relref "/platform-overview/management-api" >}})
 - [Giant Swarm support model]({{< relref "/support" >}})
 - [Giant Swarm operational layers]({{< relref "/platform-overview/security/operational-layers" >}})
-
-
