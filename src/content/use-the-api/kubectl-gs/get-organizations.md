@@ -14,7 +14,7 @@ owner:
 user_questions:
   - How can I list organizations in the management API using kubectl?
   - How can I inspect organizations using kubectl?
-last_review_date: 2022-09-07
+last_review_date: 2023-09-14
 ---
 
 Like with all `get` commands in `kubectl`, this command can be used to get details on one item, an organization in this case, or list several of them.
