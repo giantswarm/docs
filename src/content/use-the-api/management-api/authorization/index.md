@@ -7,7 +7,7 @@ menu:
   main:
     identifier: uiapi-managementapi-authorization
     parent: uiapi-managementapi
-last_review_date: 2022-02-24
+last_review_date: 2023-09-04
 aliases:
   - /reference/management-api/authorization/
   - /ui-api/management-api/authorization/
@@ -42,10 +42,11 @@ We'll explain next which resources are to be found in which scope or namespace.
 
 ### Cluster scope
 
-In Giant Swarm management clusters in particular, two resource types are cluster-scoped, so they are not residing in any namespace:
+In Giant Swarm management clusters in particular, three resource types are cluster-scoped, so they are not residing in any namespace:
 
 - [`Organization`]({{< relref "/use-the-api/management-api/crd/organizations.security.giantswarm.io.md" >}}) defines, well, an organization
 - [`Release`]({{< relref "/use-the-api/management-api/crd/releases.release.giantswarm.io.md" >}}) defines a workload cluster release to use when creating a new workload cluster, or to upgrade a workload cluster to.
+- [`RoleBindingTemplate`]({{< relref "/use-the-api/management-api/crd/rolebindingtemplates.auth.giantswarm.io.md" >}}) a template for roleBindings that are applied to certain or all organizations
 
 ### Namespace `default` {#default-namespace}
 
@@ -97,6 +98,17 @@ As explained previously, various resources reside in different scopes and namesp
 **Grant access to resources in workload cluster namespaces**. For every subject bound to the `read-in-cluster-ns` role in an organization namespace, we ensure read access to `App`, `ConfigMap` and `Secret` resources in the workload cluster namespaces belonging to the organization. Likewise, for subjects bound to the role `write-in-cluster-ns`, we ensure full permissions to these resources.
 
 **Grant access to the organization**. For every subject bound to any role in an organization's namespace, we ensure that the subject also has `get` permission to the `Organization` resource defining that organization. (Why? As this allows clients like our web UI to detect which organizations a user has access to, without requiring `list` permissions for organizations.)
+
+### Role Binding Templates {#role-binding-templates}
+
+In addition to the above automation, [rbac-operator](https://github.com/giantswarm/rbac-operator) reconciles the [`RoleBindingTemplate`]({{< relref "/use-the-api/management-api/crd/rolebindingtemplates.auth.giantswarm.io.md" >}}) custom resource.
+This custom resource allows users to dynamically apply and remove `RoleBindings` across organizations.
+
+The `spec.template` property is used to define the desired `RoleBinding` while the `spec.scopes` property allows to specify where it should be applied.
+It is possible to dynamically apply `RoleBindings` to a specific set of organizations using a label matcher in `spec.scopes.organizationSelector.matchLabels`.
+If the label matcher is defined, the `RoleBinding` will be applied within the organization scopes of all `Organization` CRs that carry the label.
+If no label matcher is defined, the `RoleBinding` will be maintained across all organization scopes.
+An organization scope refers to the organization namespace as well as namespaces associated with clusters within the organization.
 
 ## Typical use cases {#typical-use-cases}
 
@@ -230,3 +242,55 @@ subjects:
 ```
 
 Be aware that it is currently not possible to configure additional admins via our web UI.
+
+### Configure access automatically across organizations {#configure-across-organizations}
+
+As described above, a `RoleBindingTemplate` can be applied whenever identical access needs to be maintained across several or all organizations dynamically.
+
+The following template will create a `RoleBinding` that binds a role to a service account in all organization namespaces dynamically.
+Since it is filled in dynamically, we do not give a namespace for the service account.
+
+```yaml
+apiVersion: auth.giantswarm.io/v1alpha1
+kind: RoleBindingTemplate
+metadata:
+  name: bind-my-role-to-my-service-account
+spec:
+  template:
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: Role
+      name: my-role
+    subjects:
+    - kind: ServiceAccount
+      name: my-service-account
+  scopes:
+    organizationSelector: {}
+```
+
+The following template will create a `RoleBinding` that grants admin access to particular subjects in namespaces belonging to organizations which carry the `add-additional-admins=true` label.
+Please note that in the below example we want to give access to a specific `ServiceAccount` so we need to include its namespace explicitly.
+
+```yaml
+apiVersion: auth.giantswarm.io/v1alpha1
+kind: RoleBindingTemplate
+metadata:
+  name: bind-cluster-admin-in-organizations
+spec:
+  template:
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: ClusterRole
+      name: cluster-admin
+    subjects:
+    - kind: ServiceAccount
+      name: my-service-account
+      namespace: default
+    - apiGroup: rbac.authorization.k8s.io
+      kind: Group
+      name: customer:GROUPNAME
+  scopes:
+    organizationSelector:
+      matchLabels:
+        add-additional-admins: true
+```

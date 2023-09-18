@@ -114,7 +114,7 @@ If no name is specified for a workload cluster, a random one like `rfjh2` will b
 
 This will create a `cluster.yaml` file containing all the Custom Resources (CRs) necessary to create the cluster.
 
-For the [Cluster API (CAPI)]({{< relref "/platform-overview/cluster-management/cluster-api/architecture" >}}) product family, you will notice that clusters are templated exactly like managed apps (i.e. as `App` resource), with `kubectl-gs` filling certain default values into the configuration. This is different from vintage products.
+For the [Cluster API (CAPI)]({{< relref "/platform-overview/architecture" >}}) product family, you will notice that clusters are templated exactly like managed apps (i.e. as `App` resource), with `kubectl-gs` filling certain default values into the configuration. This is different from vintage products.
 
 In the vintage product family, no worker node pool is created by default, so you should attach one:
 
@@ -152,7 +152,11 @@ kubectl apply -f cluster.yaml
 kubectl apply -f nodepool.yaml
 ```
 
+### Deleting the workload cluster {#deleting-workload-cluster}
+
 Deletion works in the same way: run `kubectl delete -f FILENAME.yaml` and the operators in the management cluster will delete the resources in a few minutes. Please do not directly delete the CAPI custom resources (such as `Cluster`, `AWSCluster` or `MachineDeployment`) since this may leave resources behind or even lead to inadvertently recreating the cluster once the `App` is reconciled again. Deletion should be done exactly like the creation, using the original manifests. For the CAPI product family, our example output file `cluster.yaml` contains 2 `App` and 2 `ConfigMap` manifests.
+
+If you would like to protect your clusters from accidental deletion, take a look at our [deletion prevention mechanism]({{< relref "/advanced/deletion-prevention" >}}).
 
 ### Private workload clusters
 
