@@ -23,7 +23,7 @@ As a user of the Management API for any given installation, you need:
 - A **user account** in the identity provider used by the installation (single sign-on).
 - The Management API **endpoint URL** of the installation. Alternatively, the web user interface URL.
 
-The recommended method for authentication, as it's the fastest and most convenient one, uses our `kubectl` plug-in and is explained next. Further down we also provide instructions for an [alternative method](#alternative-method) that does not require installing the plugin.
+For command-line access to the cluster using `kubectl`, authentication via our `kubectl` plugin is required. Detailed instructions are provided below. If you prefer a graphical interface, we also outline the Web UI login method.
 
 ## Using `kubectl gs login` {#kubectl-gs-login}
 
@@ -62,36 +62,6 @@ gs-INSTALLATION_NAME
 This context is selected automatically as the current context, so you are ready to use kubectl with the Management API.
 
 When switching back to this context, it should not be necessary to go through the web-based authentication flow again. `kubectl` will automatically refresh the authentication token when needed, without your interaction.
-
-## Alternative method
-
-You can alternatively initiate the single sign-on authentication directly in a browser, without the need of installing the `kubectl gs` plug-in.
-
-We provide a web-based login helper utility named [Dex K8s Authenticator](https://github.com/mintel/dex-k8s-authenticator), available under a URL specific for each installation. If you know your installation's Management API endpoint URL, you can construct the utility's URL by prepending `login.` to it.
-
-If, for example, your Management API URL is
-
-```nohighlight
-https://g8s.example.domain.tld
-```
-
-then the login utility can be accessed via
-
-```nohighlight
-https://login.g8s.example.domain.tld
-```
-
-The tool will immediately redirect you to your identity provider's authentication flow where you proceed providing your credentials as usual. After that, or if you are already authenticated in the current browser, you will be redirected to a resulting page.
-
-The screenshot shows an example of that result page.
-
-![Login helper screenshot](login-utility-results.png)
-
-Here you can inspect the details that will be passed to the Management API as part of the ID token. You can use this to verify the details coming from your identity provider, especially the `email` (which is used as your user identifier) and `groups` claim.
-
-This page will also present your Management API endpoint's certificate authority (CA) certificate. In order to connect to your Management API endpoint, you should add this CA certificate to your client's trusted (root) certificates.
-
-The rest of the page helps you set up `kubectl` manually, adaptable for various operating systems.
 
 ## Web UI login {#web-ui}
 
