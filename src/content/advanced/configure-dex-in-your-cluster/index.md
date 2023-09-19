@@ -291,7 +291,7 @@ Then submit the resource to the management API and the App operator will manage 
 
 __Warning__: It is assumed that you have an [ingress controller and cert-manager]({{< relref "/getting-started/app-platform/deploy-app" >}}) running in your cluster in order to make Dex available for the callback request made by your identity provider securely. Both of these apps are offered in our managed app catalog. If you supply custom certificates when deploying Dex, then you can skip cert-manager installation.
 
-### Using Dex Group Filtering {#dex-group-filtering}
+### Using Dex group filtering {#dex-group-filtering}
 
 Group or team filtering is a valuable mechanism that instructs Dex to selectively include only a specific set of groups in the ID tokens' group claims.
 
