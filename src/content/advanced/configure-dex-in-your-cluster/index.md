@@ -294,6 +294,7 @@ __Warning__: It is assumed that you have an [ingress controller and cert-manager
 ### Using Dex Group Filtering {#dex-group-filtering}
 
 Group or team filtering is a valuable mechanism that instructs Dex to selectively include only a specific set of groups in the ID tokens' group claims.
+
 We highly recommend utilizing group filtering as the default setting for two compelling reasons:
 
 - Users who are not part of any preconfigured groups will be unable to acquire an ID token, ensuring tighter security.
