@@ -23,6 +23,9 @@ user_questions:
   - How can I rate-limit ingress requests?
   - How can I confgiure a different connection timeout for my ingress?
   - How can I change the Ingress NGINX Controller configmap?
+  - How can I use Ingress NGINX Controller as a Web Application Firewall?
+  - How can I protect my workload from malicious requests?
+  - How can I enable & configure ModSecurity inside of the Ingress NGINX Controller?
 aliases:
   - /guides/advanced-ingress-configuration/
 owner:
@@ -504,6 +507,135 @@ data:
       extraArgs:
         annotations-prefix: custom.prefix.io
 ```
+
+### Web Application Firewall
+
+Ingress NGINX Controller ships with the [ModSecurity](https://www.modsecurity.org) module which can be used for enhancing your Ingress NGINX Controller deployment by Web Application Firewall capabilities to protect your workload against malicious requests.
+
+While enabling those capabilities in the first step is quite easy, it might take some more effort to actually fine-tune it to your needs. Since especially in blocking mode even legal requests might get blocked, we recommend to first run ModSecurity in the detection mode and observe its logs while it already checks incoming traffic for malicious requests.
+
+The included configuration is split into two parts: One is used for the basic setup of the ModSecurity module, the other is the [OWASP ModSecurity Core Rule Set](https://coreruleset.org) which provides a collection of rules against common and well-known attack vectors. While both can be enabled in parallel, the former will keep the whole ModSecurity in the before mentioned detection mode by default until explicitly configured otherwise:
+
+```yaml
+data:
+  values: |
+    controller:
+      config:
+        # Enable ModSecurity.
+        enable-modsecurity: "true"
+
+        # Optional: Enable OWASP ModSecurity Core Rule Set.
+        enable-owasp-modsecurity-crs: "true"
+```
+
+Adding your own configuration, like for activating the blocking mode, requires a configuration snippet which - at the moment of writing this - [removes the inclusion](https://github.com/kubernetes/ingress-nginx/blob/main/rootfs/etc/nginx/template/nginx.tmpl#L156-L171) of the basic ModSecurity configuration from the resulting NGINX configuration (`nginx.conf`) inside your controller pods. Therefore we first need to re-include the default configuration before adding our own:
+
+```yaml
+data:
+  values: |
+    controller:
+      config:
+        # Enable ModSecurity.
+        enable-modsecurity: "true"
+
+        # Custom ModSecurity configuration.
+        modsecurity-snippet: |-
+          # Include defaults.
+          Include /etc/nginx/modsecurity/modsecurity.conf
+
+          # Enable rule engine. (Default: DetectionOnly)
+          #SecRuleEngine On
+
+          # Log to stdout. (Default: /var/log/modsec_audit.log)
+          SecAuditLog /dev/stdout
+          # Log serially. (Default: Concurrent)
+          SecAuditLogType Serial
+          # Log JSON. (Default: Native)
+          #SecAuditLogFormat JSON
+
+          # Disable rule 920350 due to false-positives on health checks.
+          SecRuleRemoveById 920350
+
+        # Optional: Enable OWASP ModSecurity Core Rule Set.
+        enable-owasp-modsecurity-crs: "true"
+```
+
+The above configuration snippet makes ModSecurity send its logs to `/dev/stdout`, so you can process them in the same way you're doing for access & error logs of Ingress NGINX Controller itself. Additionally it disables [rule 920350](https://github.com/coreruleset/coreruleset/blob/v3.3/master/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf#L708-L736), which blocks direct access by IP, which is required for the Kubernetes probes to work. Without disabling this rule, your Ingress NGINX Controller containers would start to repeatingly get killed the moment you activate the blocking mode. Apart from that, you would see a lot of spam regarding this false-positive in your logs even in detection mode.
+
+If you do not want to maintain your ModSecurity configuration inside this snippet, you can also mount it as a volume into the Ingress NGINX Controller pods and include it the same way we are including the default configuration above. In the following example we first create a `ConfigMap` containing your custom configuration in the same namespace as the Ingress NGINX Controller. This `ConfigMap` is then getting mounted into each of the Ingress NGINX Controller pods by adding the `controller.extraVolumeMounts` user value:
+
+```apacheconf
+# modsecurity.conf
+# Enable rule engine. (Default: DetectionOnly)
+#SecRuleEngine On
+
+# Log to stdout. (Default: /var/log/modsec_audit.log)
+SecAuditLog /dev/stdout
+# Log serially. (Default: Concurrent)
+SecAuditLogType Serial
+# Log JSON. (Default: Native)
+#SecAuditLogFormat JSON
+
+# Disable rule 920350 due to false-positives on health checks.
+SecRuleRemoveById 920350
+```
+
+```sh
+kubectl create configmap --namespace NAMESPACE ingress-nginx-controller-modsecurity --from-file modsecurity.conf
+```
+
+```yaml
+data:
+  values: |
+    controller:
+      # Additional volumes.
+      extraVolumes:
+      - name: modsecurity
+        configMap:
+          name: ingress-nginx-controller-modsecurity
+
+      # Additional volume mounts.
+      extraVolumeMounts:
+      - name: modsecurity
+        mountPath: /etc/nginx/modsecurity/custom/
+
+      config:
+        # Enable ModSecurity.
+        enable-modsecurity: "true"
+
+        # Custom ModSecurity configuration.
+        modsecurity-snippet: |-
+          # Include defaults.
+          Include /etc/nginx/modsecurity/modsecurity.conf
+
+          # Include custom configuration.
+          Include /etc/nginx/modsecurity/custom/modsecurity.conf
+
+        # Optional: Enable OWASP ModSecurity Core Rule Set.
+        enable-owasp-modsecurity-crs: "true"
+```
+
+Last but not least and when you've tested all your workloads and fine-tuned ModSecurity to your needs, you can enable the blocking mode by enabling `SecRuleEngine` either in the configuration snippet or the configuration file mounted into the Ingress NGINX Controller pods:
+
+```apacheconf
+# modsecurity.conf
+# Enable rule engine. (Default: DetectionOnly)
+SecRuleEngine On
+
+# Log to stdout. (Default: /var/log/modsec_audit.log)
+SecAuditLog /dev/stdout
+# Log serially. (Default: Concurrent)
+SecAuditLogType Serial
+# Log JSON. (Default: Native)
+#SecAuditLogFormat JSON
+
+# Disable rule 920350 due to false-positives on health checks.
+SecRuleRemoveById 920350
+```
+
+If you are currently writing Ingress NGINX Controller access logs as JSON, you might also be interested in setting the `SecAuditLogFormat` to `JSON`, too. This directive is already included in the before shown configuration examples.
+
+This section of the documentation is based on an article by Daniel Jimenez Garcia on System Weakness: [Kubernetes NGINX Ingress WAF with ModSecurity. From zero to hero!](https://systemweakness.com/nginx-ingress-waf-with-modsecurity-from-zero-to-hero-fa284cb6f54a)
 
 ## Further reading
 
