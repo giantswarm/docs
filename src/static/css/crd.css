@@ -73,6 +73,14 @@ dl.crd-meta {
   margin: 5px 0
 }
 
+.property-deprecated {
+  background-color: #ca7b05;
+  font-size: 14px;
+  line-height: 22px;
+  padding: 3px 6px;
+  text-transform: uppercase;
+}
+
 .property-type {
   background-color: #cacaca;
   font-family: Inconsolata;

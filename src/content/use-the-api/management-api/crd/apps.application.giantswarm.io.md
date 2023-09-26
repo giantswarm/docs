@@ -75,8 +75,6 @@ spec:
     skipCRDs: true
     timeout: 6m0s
   kubeConfig:
-    context:
-      name: f2def
     inCluster: false
     secret:
       name: f2def-kubeconfig
@@ -512,6 +510,7 @@ spec:
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">object</span>
+<span class="property-deprecated">Deprecated</span>
 
 </div>
 
@@ -530,7 +529,7 @@ spec:
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-<span class="property-required">Required</span>
+<span class="property-deprecated">Deprecated</span>
 </div>
 
 <div class="property-description">
@@ -1086,6 +1085,3 @@ spec:
 
 
 </div>
-
-
-
