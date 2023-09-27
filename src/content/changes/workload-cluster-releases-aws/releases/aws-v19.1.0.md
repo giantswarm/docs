@@ -92,13 +92,14 @@ _Nothing has changed._
 
     
 
-### cluster-operator [5.8.0](https://github.com/giantswarm/cluster-operator/releases/tag/v5.8.0)
+### cluster-operator [5.8.0-patch1](https://github.com/giantswarm/cluster-operator/releases/tag/v5.8.0-patch1)
 
 #### Added
 - Add ENI mode for Cilium on AWS.
 - Consider new control-plane label.
+- Create external-dns-cluster-values configmap on cluster creation.
 #### Changed
-- Propagate `global.podSecurityStandards.enforced` value set to `true` for PSS migration
+- Propagate `global.podSecurityStandards.enforced` value set to `false` for PSS migration
 - Rename function for better readbility.
 
 
