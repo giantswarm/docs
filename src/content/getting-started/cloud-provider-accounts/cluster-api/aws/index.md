@@ -5,8 +5,8 @@ description: This guide will walk you through all necessary steps to set up an A
 weight: 10
 menu:
   main:
-    identifier: gettingstarted-cloudprovider-clusterapi-aws
-    parent: gettingstarted-cloudprovider-clusterapi
+    identifier: gettingstarted-infraprovider-clusterapi-aws
+    parent: gettingstarted-infraprovider-clusterapi
 user_questions:
   - What are the recommended service limit/quotas for AWS accounts?
   - How prepare AWS account for the Cluster API clusters?

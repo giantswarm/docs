@@ -5,8 +5,8 @@ description: How to set up your AWS account or your Azure subscription in for Cl
 weight: 80
 menu:
   main:
-    identifier: gettingstarted-cloudprovider-clusterapi
-    parent: gettingstarted-cloudprovider
+    identifier: gettingstarted-infraprovider-clusterapi
+    parent: gettingstarted-infraprovider
 last_review_date: 2023-01-06
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs

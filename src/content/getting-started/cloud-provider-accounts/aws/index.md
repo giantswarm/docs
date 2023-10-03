@@ -5,8 +5,8 @@ description: This guide will walk you through all necessary steps to set up an A
 weight: 10
 menu:
   main:
-    identifier: gettingstarted-cloudprovider-aws
-    parent: gettingstarted-cloudprovider
+    identifier: gettingstarted-infraprovider-aws
+    parent: gettingstarted-infraprovider
 user_questions:
   - Where can I find the AWS account ID to use for running a installation?
   - Where I can find the AWS account ID to run workload clusters?
