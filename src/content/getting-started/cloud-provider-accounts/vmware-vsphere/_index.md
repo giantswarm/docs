@@ -11,3 +11,14 @@ last_review_date: 2023-10-03
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 ---
+In order to run the Giant Swarm platform in your VMware Cloud Director (VCD) environment, a number of prerequisites must be satisfied to support Cluster API.
+
+## vSphere infrastructure
+
+## vSphere User permissions
+
+## Networking
+
+## VM templates (node images)
+
+Giant Swarm must have the permissions to upload VM templates to deploy kubernetes nodes from. They will be named following this convention `ubuntu-2004-kube-v1.24.11`.
