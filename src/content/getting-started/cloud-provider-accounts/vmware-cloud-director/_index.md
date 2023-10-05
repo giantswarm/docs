@@ -56,4 +56,3 @@ VM Sizing Policies must be available to specify the flavour of the nodes when de
 | m1.large | 4 | 8GB |
 | m1.xlarge | 8 | 16GB |
 | m1.2xlarge | 16 | 64GB |
-
