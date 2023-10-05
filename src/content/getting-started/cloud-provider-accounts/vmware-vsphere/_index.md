@@ -3,6 +3,10 @@ linkTitle: Preparing VMware vSphere for CAPI
 title: Preparing VMware vSphere for Cluster API
 description: How to set up your VMware vSphere Cluster tenant to run Giant Swarm management clusters and workload clusters under your jurisdiction.
 weight: 80
+user_questions:
+  - What are the VMware vSphere prerequisites for use with Giant Swarm?
+  - What do I need to configure in VMware vSphere in order to run Giant Swarm clusters?
+  - What user permissions do I need to run Giant Swarm clusters in VMware vSphere?
 menu:
   main:
     identifier: gettingstarted-infraprovider-vsphere

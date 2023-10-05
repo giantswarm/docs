@@ -3,6 +3,10 @@ linkTitle: Preparing VMware Cloud Director for CAPI
 title: Preparing VMware Cloud Director for Cluster API
 description: How to set up your VMware Cloud Director Cluster tenant to run Giant Swarm management clusters and workload clusters under your jurisdiction.
 weight: 80
+user_questions:
+  - What are the VMware Cloud Director prerequisites for use with Giant Swarm?
+  - What do I need to configure in VMware Cloud Director in order to run Giant Swarm clusters?
+  - What user permissions do I need to run Giant Swarm clusters in VMware Cloud Director?
 menu:
   main:
     identifier: gettingstarted-infraprovider-clouddirector
