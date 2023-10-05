@@ -16,7 +16,7 @@ aliases:
   - /guides/prepare-aws-account/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2022-06-28
+last_review_date: 2023-10-05
 ---
 
 As detailed in the [Architecture]({{< relref "/platform-overview/cluster-management/vintage/aws" >}}) docs,
