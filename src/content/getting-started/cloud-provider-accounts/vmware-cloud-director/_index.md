@@ -15,7 +15,7 @@ last_review_date: 2023-10-03
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 ---
-In order to run the Giant Swarm platform in your VMware Cloud Director (VCD) environment, a number of prerequisites must be satisfied to support Cluster API Provider Vmware Cloud Director (CAPVCD).
+In order to run the Giant Swarm platform in your VMware Cloud Director (VCD) environment, a number of prerequisites must be satisfied to support Cluster API Provider VMware Cloud Director (CAPVCD).
 
 ## VCD infrastructure
 
