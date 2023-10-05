@@ -13,7 +13,7 @@ menu:
     parent: gettingstarted-infraprovider
 last_review_date: 2023-10-03
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-docs
+  - https://github.com/orgs/giantswarm/teams/team-rocket
 ---
 In order to run the Giant Swarm platform in your VMware Cloud Director (VCD) environment, a number of prerequisites must be satisfied to support Cluster API Provider VMware Cloud Director (CAPVCD).
 
@@ -47,7 +47,7 @@ Access to the internet is required for things like FluxCD pulling artifacts from
 
 ## vApp templates (node images)
 
-A catalog named `giantswarm` must be accessible to the CAPVCD user with vAPP templates for the nodes to deploy. The templates must be named following this convention `ubuntu-2004-kube-v1.24.11`.
+A vApp template catalog named `giantswarm` must be accessible to the CAPVCD user with vAPP templates for the nodes to deploy. The templates must be named following this convention `ubuntu-2004-kube-v1.24.11`.
 
 ## VM Sizing Policies
 

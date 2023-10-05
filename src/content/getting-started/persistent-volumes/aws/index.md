@@ -88,23 +88,15 @@ spec:
 
 Now we have an NGINX Pod which serves the contents of our EBS Volume.
 
-## Expanding Persistent Volume Claims
-
-Starting with Kubernetes v1.9 Persistent Volume Claims can be expanded by simply editing the claim and requesting a larger size. It will trigger an update in the underlying Persistent Volume and EBS Volume (Kubernetes always uses the existing one).
-
-In case the volume to be expanded contains a file system, the resizing is only performed when a new Pod is started using the Persistent Volume Claim in `ReadWrite` mode. In other words, if a volume being expanded is used in a Pod or Deployment, you will need to delete and recreate the pod for file system resizing to take place. File system resizing is only supported for XFS, Ext3, and Ext4.
-
-__Warning__: Expanding EBS volumes is a time consuming operation. Also, there is a per-volume quota of one modification every 6 hours.
-
 ## Deleting Persistent Volumes
 
-By default the Reclaim Policy of Persistent Volumes in your cluster is set to `Delete`. Thus, deleting the `PersistentVolume` resource will also delete the respective EBS Volume. Similarly, by default if you delete a `PersistenVolumeClaim` resource the respective Persistent Volume and EBS will get deleted.
+By default the Reclaim Policy of Persistent Volumes in your cluster is set to `Delete`. Thus, deleting the `PersistentVolume` resource will also delete the respective Named Disk. Similarly, by default if you delete a `PersistenVolumeClaim` resource the respective Persistent Volume and Named Disk will get deleted.
 
 Note that deleting an application that is using Persistent Volumes might not automatically also delete its storage, so in most cases you will have to manually delete the `PersistenVolumeClaim` resources to clean up.
 
 ## Further reading
 
-- [AWS Storage Classes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#aws)
+- [Storage Classes](https://kubernetes.io/docs/concepts/storage/persistent-volumes)
 - [Persistent Volumes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistent-volumes)
 - [Persistent Volume Claims](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims)
 - [Claim Persistent Volumes in Pods](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#claims-as-volumes)

@@ -13,7 +13,7 @@ menu:
     parent: gettingstarted-infraprovider
 last_review_date: 2023-10-03
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-docs
+  - https://github.com/orgs/giantswarm/teams/team-rocket
 ---
 In order to run the Giant Swarm platform in your VMware vSphere environment, a number of prerequisites must be satisfied to support Cluster API Provider vSphere (CAPV).
 
