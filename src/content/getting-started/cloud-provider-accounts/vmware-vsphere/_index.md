@@ -11,13 +11,69 @@ last_review_date: 2023-10-03
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 ---
-In order to run the Giant Swarm platform in your VMware Cloud Director (VCD) environment, a number of prerequisites must be satisfied to support Cluster API.
+In order to run the Giant Swarm platform in your VMware vSphere environment, a number of prerequisites must be satisfied to support Cluster API Provider vSphere (CAPV).
 
 ## vSphere infrastructure
 
+It is recommended to create resource pool for your cluster(s). However, it is possible to deploy them in the root resource pool (a.k.a. vSphere cluster).
+
+To use PersistentVolumes (PV), the cluster needs support for Cloud Native Storage (CNS), which is available in vSphere 6.7 Update 3 and later.
+
 ## vSphere User permissions
 
+The user role assigned to the CAPV user must have at least the following permissions:
+
+| Categorie | permissions |
+| -------- | -------- |
+| Datastore | `Allocate space`<br>`Browse datastore`<br>`Low level file operations` |
+| global | `Disable methods`<br>`Enable methods`<br>`Licenses` |
+| Network | `Assign network` |
+| Resource | `Assign virtual machine to resource pool` | 
+| Sessions | `Message`<br>`Validate session` |
+| Profile-driven storage | `Profile-driven storage view` |
+| vApp | `Import` |
+| Virtual machine | `Configuration/Change Configuration`<br>`Configuration/Add existing disk`<br>`Configuration/Add new disk`<br>`Configuration/Add or remove device`<br>`Configuration/Advanced configuration`<br>`Configuration/Change CPU count`<br>`Configuration/Change Memory`<br>`Configuration/Change Settings`<br>`Configuration/Configure Raw device`<br>`Configuration/Extend virtual disk`<br>`Configuration/Modify device settings`<br>`Configuration/Remove disk`<br>`Configuration/Create from existing`<br>`Configuration/Remove`<br>`Interaction/Power offPower off`<br>`Interaction/Power on`<br>`Provisioning/Deploy template` |
+
+The role must be assigned to the following objects:
+
+* vCenter Server
+* Datacenters or datacenter folders
+* Hosts and  clusters
+* VM templates
+* Resource pools  (With Propagate to children)
+* Distributed Port Group
+* Distributed Switch
+* VM and Template folders (With Propagate to children).
+
+### Considerations for single cluster failure domains
+
+If you want to leverage failure domains at the host level where a groupe of hosts is a failure domain (stretched cluster, racks, PDU distribution...), CAPV will need to work with Anti-Affinity rules.
+
+As a result the user requires the following permissions: `Host > Edit > Modifiy cluster`
+
 ## Networking
+
+DHCP service must be enabled in the primary VM Network to assign IP addresses to the network interfaces of the nodes.
+
+Because the base implementation of CAPV includes a layer-2 load balancer, some customers may prefer to use NSX ALB, especially if they already have it in the environment. As a result, the implementation may vary across customers.
+
+{{< tabs >}}
+{{< tab id="flags-kubevip" title="kube-vip">}}
+Since vSphere has no concept of load balancer out of the box, CAPV ships with [kube-vip](https://kube-vip.io/), a layer-2 load balancer that works with ARP requests. By default, `kube-vip` only handles the Kubernetes API access but at Giant Swarm, we also deploy the `kube-vip` cloud provider to offer the capability to create services of type load balancer.
+
+As a result, the network in which the cluster is deployed must have a range of the subnet that is outside of the DHCP scope and dedicated to `kube-vip`. We recommend one Management cluster per subnet to avoid mistakes leading to IP conflicts. Example below:
+
+![capv kubevip ipam](capv-kubevip-ipam.png)
+{{< /tab >}}
+
+{{< tab id="flags-nsxalb" title="NSX ALB">}}
+In the case of using NSX Advanced Load Balancer (NSX ALB), the virtual IP addresses management is handled by the Service Engine.
+
+Giant Swarm is currently working on adding support for Avi Kubernetes Operator (AKO) in the clusters to handle Kubernetes API access and services of type load balancer.
+{{< /tab >}}
+{{< /tabs >}}
+
+The network (nodes) must have access to the vCenter endpoint on port 443 for the controllers to manage the lifecycle of the cluster (CAPV, cloud provider interface, container storage interface).
 
 ## VM templates (node images)
 
