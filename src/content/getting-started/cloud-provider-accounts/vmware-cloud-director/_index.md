@@ -17,7 +17,7 @@ owner:
 ---
 In order to run the Giant Swarm platform in your VMware Cloud Director (VCD) environment, a number of prerequisites must be satisfied to support Cluster API Provider VMware Cloud Director (CAPVCD).
 
-## VCD infrastructure
+## Cloud Director infrastructure
 
 VMware Cloud Director must run with API version 36 compatibility at least. However, it is highly recommended to run VCD 10.4 or above as it includes shared virtual service IPs.
 
