@@ -1,5 +1,5 @@
 ---
-linkTitle: Preparing VMware Cloud Director for Cluster API
+linkTitle: Preparing VMware Cloud Director for CAPI
 title: Preparing VMware Cloud Director for Cluster API
 description: How to set up your VMware Cloud Director Cluster tenant to run Giant Swarm management clusters and workload clusters under your jurisdiction.
 weight: 80

@@ -1,5 +1,5 @@
 ---
-linkTitle: Preparing VMware vSphere for Cluster API
+linkTitle: Preparing VMware vSphere for CAPI
 title: Preparing VMware vSphere for Cluster API
 description: How to set up your VMware vSphere Cluster tenant to run Giant Swarm management clusters and workload clusters under your jurisdiction.
 weight: 80
