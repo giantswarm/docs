@@ -19,7 +19,7 @@ VMware Cloud Director must run with API version 36 compatibility at least. Howev
 
 ## VCD User permissions
 
-The CAPVCD controller doesn’t require to authenticate directly with the VCD API. This is done on a “per cluster” level as the user will specify a secret containing his/her credentials in the cluster manifest/app. This is so the VCD Resource quotas of each user apply when deploying clusters. 
+The CAPVCD controller doesn’t require to authenticate directly with the VCD API. This is done on a “per cluster” level as the user will specify a secret containing his/her credentials in the cluster manifest/app. This is so the VCD Resource quotas of each user apply when deploying clusters.
 
 The user configured for CAPVCD must have at least the following permissions attached to its user role in VCD:
 

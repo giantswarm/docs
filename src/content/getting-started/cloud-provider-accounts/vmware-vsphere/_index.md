@@ -28,7 +28,7 @@ The user role assigned to the CAPV user must have at least the following permiss
 | Datastore | `Allocate space`<br>`Browse datastore`<br>`Low level file operations` |
 | global | `Disable methods`<br>`Enable methods`<br>`Licenses` |
 | Network | `Assign network` |
-| Resource | `Assign virtual machine to resource pool` | 
+| Resource | `Assign virtual machine to resource pool` |
 | Sessions | `Message`<br>`Validate session` |
 | Profile-driven storage | `Profile-driven storage view` |
 | vApp | `Import` |
