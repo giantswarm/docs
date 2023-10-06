@@ -62,6 +62,6 @@ If, hypothetically, in the future, Giant Swarm chooses to stop managing Kyverno 
 
 The custom ClusterPolicy, and any configured Kyverno PolicyExceptions, would need to be adapted by the cluster administrator, or they would need to then manage Kyverno themselves.
 
-<!-- ### Working with the Giant Swarm Policy API --> 
+<!-- ### Working with the Giant Swarm Policy API -->
 
 [sec-policy-enforcement]: {{< relref "/advanced/security-policy-enforcement" >}}
