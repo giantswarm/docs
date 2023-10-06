@@ -6,6 +6,8 @@ weight: 60
 menu:
   main:
     parent: advanced
+aliases:
+  - /advanced/security-policy-enforcement/cluster-admin-guide
 user_questions:
  -  How can I exclude a workload from a Kyverno policy?
  -  What security policies are enforced in my cluster?
@@ -111,5 +113,5 @@ For now, here are some things to consider when deciding how to structure your or
 
 We are also interested in hearing about and learning from your experience with exception workflows. If our platform can enable a better exception experience for you, please reach out.
 
-[policy-api]: {{< relref "/advanced/security-policy-enforcement/policy-api.md" >}}
+[policy-api]: {{< relref "/advanced/security-policy-enforcement/policy-api" >}}
 [sec-policy-enforcement]: {{< relref "/advanced/security-policy-enforcement" >}}

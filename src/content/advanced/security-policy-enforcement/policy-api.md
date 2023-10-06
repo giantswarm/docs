@@ -6,6 +6,8 @@ weight: 60
 menu:
   main:
     parent: advanced
+aliases:
+  - /advanced/security-policy-enforcement/policy-api
 user_questions:
  -  How can I exclude a workload from a Kyverno policy?
  -  What security policies are enforced in my cluster?
