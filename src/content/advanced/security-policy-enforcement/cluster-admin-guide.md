@@ -111,5 +111,5 @@ For now, here are some things to consider when deciding how to structure your or
 
 We are also interested in hearing about and learning from your experience with exception workflows. If our platform can enable a better exception experience for you, please reach out.
 
-[policy-api]: {{< relref "/advanced/security-policy-enforcement/policy-api" >}}
+[policy-api]: {{< relref "/advanced/security-policy-enforcement/policy-api.md" >}}
 [sec-policy-enforcement]: {{< relref "/advanced/security-policy-enforcement" >}}
