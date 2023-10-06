@@ -36,7 +36,7 @@ Users who are unaware of those requirements may be surprised when their workload
 ### Kyverno
 
 Giant Swarm clusters currently use Kyverno to perform the actual enforcement of the policies we manage.
-Our Policy API, along with other platform internals, manage the Kyverno ClusterPolicy resources as well as any necessary Kyverno PolicyExceptions.
+Our [Policy API][policy-api], along with other platform internals, manage the Kyverno ClusterPolicy resources as well as any necessary Kyverno PolicyExceptions.
 
 Kyverno is an admission controller, which inspects incoming requests to the API server and checks them against configured policies.
 
@@ -1109,3 +1109,4 @@ Noteworthy pieces of this example:
 [k8s-pss]: https://kubernetes.io/docs/concepts/security/pod-security-standards/
 [k8s-sysctl]: https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/
 [kyverno-docs]: https://kyverno.io/docs/
+[policy-api]: {{< relref "/advanced/security-policy-enforcement/policy-api" >}}
