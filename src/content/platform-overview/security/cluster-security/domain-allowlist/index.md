@@ -32,6 +32,8 @@ Below is a list of the external domains we require access to for our clusters to
     - domains:
         - `giantswarm.azurecr.io`
         - `giantswarmpublic.azurecr.io`
+        - `.blob.core.windows.net`
+        - `azure.microsoft.com`
     - Container images and app catalogs are hosted on Azure Container Registry.
 - auth0.com
     - domains:
@@ -65,8 +67,8 @@ Below is a list of the external domains we require access to for our clusters to
     - Helm chart tarballs are pulled from GitHub Pages.
 - githubusercontent.com
     - domains:
-      - `raw.githubusercontent.com`
-    - Flux applies some manifests using the raw domain. 
+        - `raw.githubusercontent.com`
+    - Flux applies some manifests using the raw domain.
 - gcr.io
     - domains:
         - `k8s.gcr.io`
@@ -103,11 +105,11 @@ Below is a list of the external domains we require access to for our clusters to
     - cert-manager will request certificates from Lets Encrypt.
 - microsoft.com
     - domains:
-      - `graph.microsoft.com`
+        - `graph.microsoft.com`
     - Used when logging into the cluster with Microsoft AD.
 - microsoftonline.com
     - domains:
-      - `login.microsoftonline.com`
+        - `login.microsoftonline.com`
     - Used when logging into the cluster with Microsoft AD.
 - opsgenie.com
     - domains:

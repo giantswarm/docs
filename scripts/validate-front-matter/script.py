@@ -207,6 +207,7 @@ valid_keys = set((
     'layout',
     'linkTitle',
     'menu',
+    'mermaid',
     'owner',
     'search',
     'source_repository',

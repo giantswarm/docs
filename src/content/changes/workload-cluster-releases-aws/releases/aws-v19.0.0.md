@@ -159,23 +159,37 @@ We're aiming to provide a comprehensive blackbox monitoring tool that can valida
 
 
 
-### aws-operator [14.17.1-patch1](https://github.com/giantswarm/aws-operator/releases/tag/v14.17.1-patch1)
+### aws-operator [14.17.1-patch3](https://github.com/giantswarm/aws-operator/releases/tag/v14.17.1-patch3)
 
 #### Added
 - Add toleration for new control-plane taint.
 #### Fixed
 - Ensure `net.ipv4.conf.eth0.rp_filter` is set to `2` if aws-CNI is used.
 - Make `routes-fixer` script compatible with alpine.
+- Change AWS LB Controller Trust Policy for the new S3 bucket in China clusters.
+### Changed
+- Change Route53 Trust Policy to allow multiple applications to use the role.
+- Update IAM policy for AWS LoadBalancer Controller.
 
-
-### cluster-operator [5.6.1](https://github.com/giantswarm/cluster-operator/releases/tag/v5.6.1)
+### cluster-operator [5.6.1-patch1](https://github.com/giantswarm/cluster-operator/releases/tag/v5.6.1-patch1)
 
 #### Fixed
 - Don't enable Cilium network policies on Azure.
+#### Changed
+- Patch app operator version on all apps instead of just optional ones.
+
+### k8s-dns-node-cache-app [v2.3.1](https://github.com/giantswarm/k8s-dns-node-cache-app/releases/tag/v2.3.1)
+
+### Changed
+- Disable IPV6 queries.
+- Remove VPA.
+- Remove resource limits.
 
 
+### aws-cloud-controller-manager [1.24.1-gs9](https://github.com/giantswarm/aws-cloud-controller-manager-app/releases/tag/v1.24.1-gs9)
 
-### aws-cloud-controller-manager [1.24.1-gs7](https://github.com/giantswarm/aws-cloud-controller-manager-app/releases/tag/v1.24.1-gs7)
+#### Changed
+- Adjusted VerticalPodAutoscaler minimum allowed CPU and memory
 
 #### Fixed
 - Quote environment variables that contain numeric values, because it's required by kubernetes.
@@ -212,21 +226,23 @@ We're aiming to provide a comprehensive blackbox monitoring tool that can valida
 
 
 
-### cluster-autoscaler [1.24.0-gs2](https://github.com/giantswarm/cluster-autoscaler-app/releases/tag/v1.24.0-gs2)
+### cluster-autoscaler [1.24.0-gs3](https://github.com/giantswarm/cluster-autoscaler-app/releases/tag/v1.24.0-gs3)
 
 #### Changed
+- Adjusted VerticalPodAutoscaler minimum allowed CPU and memory
 - Add 'projected' volumes to the PSP.
 - Add new-pod-scale-up-delay variable.
 - Disable PSPs for k8s 1.25 and newer.
 
 
 
-### coredns [1.17.0](https://github.com/giantswarm/coredns-app/releases/tag/v1.17.0)
+### coredns [1.17.1](https://github.com/giantswarm/coredns-app/releases/tag/v1.17.1)
 
 #### Added
 - Add scaling based on custom metrics ([#209](https://github.com/giantswarm/coredns-app/pull/209)).
 #### Changed
 - Decouple PDB configuration from deployment updateStrategy ([#208](https://github.com/giantswarm/coredns-app/pull/208)).
+- Disable IPV6.
 
 
 
@@ -301,6 +317,16 @@ We're aiming to provide a comprehensive blackbox monitoring tool that can valida
 
 #### Added
 - Add overridability to the servicemonitors relabelings and metric_relabelings sections.
+
+
+
+### cert-manager [2.25.0](https://github.com/giantswarm/cert-manager-app/releases/tag/v2.25.0)
+
+### Changed
+
+- Remove control plane node toleration of CA injector deployment. This caused problems on single control plane node clusters. ([#362](https://github.com/giantswarm/cert-manager-app/pull/362))
+- Update container image versions to use [v1.12.4](https://github.com/cert-manager/cert-manager/releases/tag/v1.12.4)
+
 
 
 ### kubernetes [1.24.13](https://github.com/kubernetes/kubernetes/releases/tag/v1.24.13)

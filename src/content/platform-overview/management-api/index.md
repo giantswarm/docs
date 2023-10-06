@@ -2,23 +2,21 @@
 linkTitle: Management API
 title: Management API
 description: Introduction to the Giant Swarm Management API, the Kubernetes API of the management cluster in your Giant Swarm installation.
-weight: 20
+weight: 30
 menu:
   main:
     parent: platform-overview
 user_questions:
   - What is the Management API?
   - In what development stage is the Management API?
-last_review_date: 2022-02-15
+last_review_date: 2023-08-02
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bigmac
 ---
 
-## What it is
+In a Giant Swarm installation, the management cluster is a dedicated Kubernetes cluster that runs all the operational and monitoring workloads which are needed to create and manage the platform. On top, you install managed apps and create workload clusters to run your actual workloads.
 
-In a Giant Swarm installation, the management cluster is a dedicated Kubernetes cluster that runs all the operational and monitoring workloads which are needed to create and manage the platform. These are the clusters you create to run your actual workloads.
-
-Your platform is represented in the management cluster as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) (CRs). To access these, you use the Kubernetes API of the management cluster, or in short, the Management API.
+Your platform is represented in the management cluster as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) (CRs). To access these, you use the Kubernetes API of the management cluster, or in short, the _Management API_.
 
 ![Schema showing the Management API](management-api-diagram.png)
 
@@ -26,30 +24,30 @@ Your platform is represented in the management cluster as [custom resources](htt
 
 Apart from the CRs and custom resource definitions (CRDs) the Management API provides, its behavior is defined by admission controllers enforcing some policies and providing some defaulting.
 
-The concept of [organizations]({{<relref "/platform-overview/organizations" >}}) and the way namespaces are used play an important role for access control in the Management API. Together with our RBAC automation, they allow simple isolation of resources between tenants (or environments, teams, projects, purposes).
+The concept of [Multi-tenancy]({{<relref "/platform-overview/multi-tenancy" >}}) and the way namespaces are used play an important role for access control in the Management API. Together with our RBAC (Role-Based Access Control) automation, they allow simple isolation of resources between tenants (or environments, teams, projects, purposes).
 
-## How to gain access
+## Access to the Management API
 
 Access to the Giant Swarm Management API is secured using OIDC. Our [authentication]({{< relref "/use-the-api/management-api/authentication" >}}) section provides additional information both for admins and end users. Please contact your Account Engineer to sort out the details.
 
-## How to use
+## Usage of the Management API
 
-Currently (as of February 2022) most Giant Swarm customers already interact with the Management API when accessing our [web user interface]({{< relref "/platform-overview/web-interface" >}}). However, for customers that have not yet switched to single sign-on (SSO), the web interface uses the deprecated REST API.
+Customers already visually interact with the Management API through our [web user interface]({{< relref "/platform-overview/web-interface" >}}).
 
-Independent of the switch to SSO, all customers can use the Management API via `kubectl`. To facilitate this we provide a kubectl plug-in called [`kubectl gs`]({{< relref "/use-the-api/kubectl-gs" >}}).
+The Management API can also be used via `kubectl`. Our kubectl plug-in called [`kubectl gs`]({{< relref "/use-the-api/kubectl-gs" >}}) facilitates operations such as logging into the cluster or templating custom resources.
 
-Besides general Kubernetes know-how this will require only a bit of structural knowledge:
+### Organizing resources in namespaces
 
-### How we organize resources in namespaces
-
-We are working towards making [organization namespaces]({{< relref "/platform-overview/organizations/index.md" >}}) the default location for all resources associated with one organization. Please check [this dedicated section]({{< relref "/platform-overview/organizations/index.md" >}}#namespace-use) regarding the current progress towards this on various providers.
+_Organizations_ help keeping resources for different entities (e.g. teams) separated. We default to using a separate namespace for each organization within the management cluster. The article about [multi-tenancy]({{< relref "/platform-overview/multi-tenancy/index.md" >}}) explains more details.
 
 ### Which custom resources are used for what purpose
 
-Following are some resources that should help you:
+For the Vintage generation, please follow the guide [creating workload clusters via the Management API]({{< relref "/use-the-api/management-api/creating-workload-clusters" >}}) explains step by step how you can create a cluster and node pools via the Management API. Here you learn about all the custom resources a cluster comprises.
 
-- The guide [creating workload clusters via the Management API]({{< relref "/use-the-api/management-api/creating-workload-clusters" >}}) explains step by step how you can create a cluster and node pools via the Management API. Here you learn about all the custom resources a cluster comprises.
-- The [app platform]({{< relref "/platform-overview/app-platform" >}}) introduction outlines the several custom resources involved when managing app catalogs and apps.
+In the newer CAPI-based cluster management generation, it is even simpler:
+
+- Managed apps are represented as [`App`]({{< relref "/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) custom resources. Our [app platform introduction]({{< relref "/platform-overview/app-platform" >}}) covers working with Apps and App Catalogs.
+- Even workload clusters are represented as [`App`]({{< relref "/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) custom resources. As depicted in the above diagram, creating an [`App`]({{< relref "/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) resource deploys the necessary resources based on your desired configuration (such as the cluster size). For example, the [cluster-aws](https://github.com/giantswarm/cluster-aws) app is used for creating a CAPI-based Kubernetes cluster in the AWS cloud, and deploys CAPI custom resources such as `Cluster`, `AWSCluster`, `AWSMachinePool`. The operators running on the management cluster turn those into an actual workload cluster. Our Getting Started guide on [Creating a workload cluster]({{< relref "/getting-started/create-workload-cluster" >}}) explains how to easily configure and create an [`App`]({{< relref "/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) resource that represents a workload cluster.
 - Our [custom resource definitions (CRD) documentation]({{< relref "/use-the-api/management-api/crd" >}}) provides details on all the custom resources (CR) we use with the various providers and their versions and schema.
 
 ## Feedback is welcome

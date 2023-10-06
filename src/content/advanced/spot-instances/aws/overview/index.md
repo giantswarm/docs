@@ -30,7 +30,7 @@ There are two parameters on the node pool level that will allow you to configure
 
 - **On-demand base capacity**: controls how much of the initial capacity is made up of on-demand instances. Note that this capacity is static and does not automatically replace any unavailable spot instances.
 
-- **Spot instance percentage above base capacity**: controls the percentage of spot instances to be used for worker nodes beyond the number of *on-demand base capacity*.
+- **Spot instance percentage above base capacity**: controls the percentage of spot instances to be used for worker nodes beyond the number of _on-demand base capacity_.
 
 ## Notes on using spot instances
 

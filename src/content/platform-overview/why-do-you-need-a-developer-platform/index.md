@@ -2,7 +2,7 @@
 linkTitle: Why do you need a Developer Platform?
 title: Why do you need a Developer Platform?
 description: Self-service developer platforms enable your organization and this page helps you to understand why.
-weight: 10
+weight: 5
 menu:
   main:
     parent: platform-overview
@@ -32,7 +32,7 @@ However, managing a self-service and cloud-native developer platform can be comp
 
 1. Container Orchestration: This typically includes tools like Kubernetes to manage and scale applications across multiple cloud environments.
 
-2. Continuous Integration & Delivery: Allowing developers to continuously build, test and deploy code. 
+2. Continuous Integration & Delivery: Allowing developers to continuously build, test and deploy code.
 
 3. Cloud Infrastructure & Platform Services: This part of the platform helps developers create and manage cloud resources, such as databases, message queues and other services that are complex to manage.
 

@@ -87,17 +87,15 @@ together to enable the features of the Giant Swarm App Platform:
 ![A diagram showing an overview of various components and concepts that make up the Giant Swarm App Platform](app-platform-overview.png)
 <!-- Original version: https://docs.google.com/drawings/d/1V3KcUImxRdrrb2v_nIQnkapHiRkRM6t8PoYGCqWebYY/edit -->
 
-
 #### The Giant Swarm App Catalog
 
-This catalog contains our stable, fully managed apps, with SLA (e.g. the NGINX Ingress Controller).
+This catalog contains our stable, fully managed apps, with SLA (e.g. the Ingress NGINX Controller).
 
 The maturity levels of apps in this catalog are expressed through semantic versioning as follows:
 
 - Version with `-alpha` or `-beta` suffix - the application is only at a basic maturity level. There is no stable release. It is supported on a best effort basis,
 - Version with `-rc*` suffix - the application is at a preview maturity level. This allows customers to preview a new release of an application and evaluate new features. It is supported on a best effort basis.
 - version >= `v1.0.0` with no suffix - the specified version of the application is at a stable maturity level. It is available to our customers as a managed offering with support and SLA.
-
 
 ### What is a Managed App
 

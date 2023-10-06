@@ -14,7 +14,7 @@ owner:
 last_review_date: 2023-05-15
 ---
 
-After years of handling critical enterprise workloads in production, we have hardened our incident process based on our learnings. In this document we focus on critical incidents, called `Priority 1` (P1) incidents, though some of the steps could be part of regular incidents too. 
+After years of handling critical enterprise workloads in production, we have hardened our incident process based on our learnings. In this document we focus on critical incidents, called `Priority 1` (P1) incidents, though some of the steps could be part of regular incidents too.
 
 Giant Swarm classifies incidents as being either critical (`P1`) or routine (`P2`). Critical incidents are those which impair a customer production system. Routine incidents are all other regular incidents which don't impact production and which have a straightforward process.
 
@@ -30,21 +30,21 @@ At Giant Swarm we have two defined roles: Incident Coordinators and Operations E
 
 The Incident Coordinator (IC) holds the high-level state about the incident. They structure the incident response, assigning responsibilities according to need and priority. De facto, the IC holds all positions/responsibilities that they have not delegated. If appropriate, they can remove roadblocks that prevent Operations Engineers from working most effectively.
 
-The IC is the public face of our incident response. It is within the ICs duty to issue periodic updates to the team involved - both customer teams and within Giant Swarm - to act as the bridge between the customer and the team. The IC will need to be in the war rooms of our customers. For that reason, we have created a [Opsgenie team](https://support.atlassian.com/opsgenie/docs/what-are-teams-in-opsgenie/) grouping all members that can act as Incident Coordinators. 
+The IC is the public face of our incident response. It is within the ICs duty to issue periodic updates to the team involved - both customer teams and within Giant Swarm - to act as the bridge between the customer and the team. The IC will need to be in the war rooms of our customers. For that reason, we have created a [Opsgenie team](https://support.atlassian.com/opsgenie/docs/what-are-teams-in-opsgenie/) grouping all members that can act as Incident Coordinators.
 
 If there is a dedicated IC, the IC isn’t debugging systems and keeps the focus on coordinating the team to do so, while managing the customer communication.
 
 ### Operations Engineer
 
-The Operations Engineer (OE) works with the Incident Coordinator to respond to the incident and is the one responsible for debugging and applying changes to a system. 
+The Operations Engineer (OE) works with the Incident Coordinator to respond to the incident and is the one responsible for debugging and applying changes to a system.
 
 In case of Operations Engineers, we have multiple [Opsgenie teams](https://support.atlassian.com/opsgenie/docs/what-are-teams-in-opsgenie/) oncall 24/7.
 
 ## P1 Incident Process
 
-The process is inspired by the well-known [Incident Command System](https://en.wikipedia.org/wiki/Incident_Command_System) used by US firefighters to manage emergency situations. Obviously we have adapted to manage developer platforms. 
+The process is inspired by the well-known [Incident Command System](https://en.wikipedia.org/wiki/Incident_Command_System) used by US firefighters to manage emergency situations. Obviously we have adapted to manage developer platforms.
 
-Our main tenet is to have a simple process integrated with our incident tooling ([Incident.io](https://incident.io/)) to simplify the life of our engineers. Once a critical incident is declared, nobody wants to read a process, but be driven by it. 
+Our main tenet is to have a simple process integrated with our incident tooling ([Incident.io](https://incident.io/)) to simplify the life of our engineers. Once a critical incident is declared, nobody wants to read a process, but be driven by it.
 
 The process can be broken down in these steps:
 
@@ -98,7 +98,7 @@ After we have found the root cause of the problem we implement a solution to avo
 
 ### Monitoring
 
-Once the fix or workaround has been implemented, IC communicates with the customer and move the incident status to monitoring phase, where we stay in standby, the OE keeps an eye on the metrics and communication channel to confirm there is no regression. We leave the incident in this state for some time, which could be a day or two, until we agree with the customer there is no regression.  
+Once the fix or workaround has been implemented, IC communicates with the customer and move the incident status to monitoring phase, where we stay in standby, the OE keeps an eye on the metrics and communication channel to confirm there is no regression. We leave the incident in this state for some time, which could be a day or two, until we agree with the customer there is no regression.
 
 ### Closing up
 

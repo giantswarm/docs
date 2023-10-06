@@ -1,19 +1,19 @@
 ---
 linkTitle: AWS Route 53 with static credentials
-title: External DNS with AWS Route 53 and static credentials 
+title: External DNS with AWS Route 53 and static credentials
 description: How to configure the External DNS service to use AWS Route 53 with static credentials.
 weight: 25
 menu:
   main:
     parent: advanced-external-dns
-last_review_date: 2023-04-18
+last_review_date: 2023-07-26
 user_questions:
   - How can I customize the External DNS AWS authentication method?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
 ---
 
-External DNS in Giant Swarm is configured to authenticate against AWS using the method available on the cluster (KIAM or IRSA). But there are cases where this is no possible, for example, if you try to manage your DNS records in AWS Route 53 from a cluster running on a different provider.
+External DNS in Giant Swarm is configured to authenticate against AWS using the method available on the cluster (IRSA). But there are cases where this is no possible, for example, if you try to manage your DNS records in AWS Route 53 from a cluster running on a different provider.
 
 ## Credentials
 
@@ -23,7 +23,7 @@ You can find more information in the [AWS Route 53 - IAM Policy](https://github.
 
 ## Configuration
 
-There are two possible configurations described in this section. 
+There are two possible configurations described in this section.
 
 __Important:__ Independent of the cloud provider where the App is running, you must set the `provider` value as `aws`, as shown in the examples.
 
@@ -32,6 +32,7 @@ __Important:__ Independent of the cloud provider where the App is running, you m
 This method configures the App to mount the credentials file from an existing `external-dns-route53` secret.
 
 The secret must contain a file with the following format:
+
 ```nohighlight
 [default]
 aws_access_key_id = _REPLACE_WITH_ACCESS_KEY_ID_
@@ -78,26 +79,16 @@ This example is the equivalent configuration to the one outlined in the followin
 
 provider: aws
 
-aws:
-  baseDomain: <domain>
-
-env:
-  - name: AWS_ACCESS_KEY_ID
-    valueFrom:
-      secretKeyRef:
-        name: external-dns
-        key: aws_access_key_id
-  - name: AWS_SECRET_ACCESS_KEY
-    valueFrom:
-      secretKeyRef:
-        name: external-dns
-        key: aws_secret_access_key
+domainFilters: <domain>
 
 secretConfiguration:
   enabled: true
+  mountPath: /.aws
   data:
-    aws_access_key_id: <key_id>
-    aws_secret_access_key: <secret>
+    credentials: |
+      [default]
+      aws_access_key_id = _REPLACE_WITH_ACCESS_KEY_ID_
+      aws_secret_access_key = _REPLACE_WITH_ACCESS_KEY_SECRET_
 ```
 
 #### aws_access_key_id and aws_secret_access_key

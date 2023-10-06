@@ -29,5 +29,5 @@ If Keybase is your tool of choice for sharing secrets with us, ask your Account 
 [age](https://github.com/FiloSottile/age) is a simple command-line tool that allows for encrypting secrets easily and in a classic UNIX-style fashion.
 A lovely feature about `age` is the possibility to encrypt messages using the public key(s) associated with a GitHub profile.
 
-If `age` is your tool of choice for sharing secrets with us, ask your Account Engineer for their GitHub username, run a command such as 
+If `age` is your tool of choice for sharing secrets with us, ask your Account Engineer for their GitHub username, run a command such as
 `curl https://github.com/AE_USERNAME.keys | age --recipients-file - my_secret.txt > my_secret.txt.age` in your shell and share the `.age` file with your Account Engineer.

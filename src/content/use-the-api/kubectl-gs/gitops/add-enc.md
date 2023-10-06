@@ -68,7 +68,6 @@ Basic command syntax: `kubectl gs gitops add encryption FLAGS`
 
 {{% kubectl_gs_gitops_common_flags %}}
 
-
 ### Examples
 
 In each of the examples below it is assumed the `protected-dir` directory exists at the layer being configured.

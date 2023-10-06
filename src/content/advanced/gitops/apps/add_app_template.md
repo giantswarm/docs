@@ -22,7 +22,7 @@ To avoid duplication caused by adding the same application from scratch across a
 
 ## Example
 
-An example of an app template is available in the [gitops-template repository "bases/apps/nginx-ingress-controller"](https://github.com/giantswarm/gitops-template/tree/main/bases/apps/nginx-ingress-controller).
+An example of an app template is available in the [gitops-template repository "bases/apps/ingress-nginx"](https://github.com/giantswarm/gitops-template/tree/main/bases/apps/ingress-nginx).
 
 ## Export environment variables
 
@@ -47,7 +47,7 @@ export APP_USER_VALUES=CONFIGMAP_OR_SECRET_PATH
     mkdir ${APP_NAME}
     ```
 
-1. Navigate to the newly created directory and use [the kubectl-gs plugin](https://github.com/giantswarm/kubectl-gs) to generate the [App CR](https://docs.giantswarm.io/ui-api/kubectl-gs/template-app/):
+2. Navigate to the newly created directory and use [the kubectl-gs plugin](https://github.com/giantswarm/kubectl-gs) to generate the [App CR](https://docs.giantswarm.io/ui-api/kubectl-gs/template-app/):
 
     ```nohighlight
     cd ${APP_NAME}/
@@ -60,22 +60,22 @@ export APP_USER_VALUES=CONFIGMAP_OR_SECRET_PATH
     --version ${APP_VERSION} > appcr.yaml
     ```
 
-__Note__: you most likely want to provide a default configuration, and optionally additional secrets for your application. The flags below can be used to achieve this by adding them to the previous command:
+    __Note__: you most likely want to provide a default configuration, and optionally additional secrets for your application. The flags below can be used to achieve this by adding them to the previous command:
 
     ```nohighlight
     --user-configmap ${APP_USER_VALUES}
     --user-secret ${APP_USER_VALUES}
     ```
 
-__Note__: We're including `${cluster_name}` in the app name to avoid a problem when two or more clusters in the same organization want to deploy the same app with its default name.
+    __Note__: We're including `${cluster_name}` in the app name to avoid a problem when two or more clusters in the same organization want to deploy the same app with its default name.
 
-Reference [the App Configuration](https://docs.giantswarm.io/app-platform/app-configuration/) for more details about how to properly create the respective ConfigMaps or Secrets.
+    Reference [the App Configuration](https://docs.giantswarm.io/app-platform/app-configuration/) for more details about how to properly create the respective ConfigMaps or Secrets.
 
-In case you used `kubectl gs` command you realized the output is an App Custom Resource plus the ConfigMap. In case you want to manage the values in plain YAML, you could rely on the ConfigMap generator feature of [Kustomize](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/#generating-resources).
+    In case you used `kubectl gs` command you realized the output is an App Custom Resource plus the ConfigMap. In case you want to manage the values in plain YAML, you could rely on the ConfigMap generator feature of [Kustomize](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/#generating-resources).
 
-__Warning__: It can not be used for the Secrets as they need to be encrypted before commit into the Git Repository. Refer to our [adding an App](./add_appcr.md) docs to check how to add and encrypt a Secret.
+    __Warning__: It can not be used for the Secrets as they need to be encrypted before commit into the Git Repository. Refer to our [adding an App](./add_appcr.md) docs to check how to add and encrypt a Secret.
 
-1. Now it is time to create the `kustomization.yaml` file, adding the optional Secret/ConfigMap as resources and/or using a ConfigMapGenerator to manage plain configuration:
+3. Now it is time to create the `kustomization.yaml` file, adding the optional Secret/ConfigMap as resources and/or using a ConfigMapGenerator to manage plain configuration:
 
     ```yaml
     apiVersion: kustomize.config.k8s.io/v1beta1
@@ -85,7 +85,7 @@ __Warning__: It can not be used for the Secrets as they need to be encrypted bef
     configMapGenerator:
       - files:
         - values=default_config.yaml
-        name: ${cluster_name}-nginx-ingress-controller-values
+        name: ${cluster_name}-ingress-nginx-values
     generatorOptions:
       disableNameSuffixHash: true
     # default config block end

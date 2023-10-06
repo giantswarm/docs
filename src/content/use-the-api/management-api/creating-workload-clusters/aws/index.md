@@ -17,6 +17,12 @@ owner:
 last_review_date: 2023-03-15
 ---
 
+<div class="well disclaimer">
+
+<i class="fa fa-warning"></i> This article only covers cluster creation for the Vintage generation. For newer generations, please instead follow the [Getting started]({{< relref "/getting-started/" >}}) guide.
+
+</div>
+
 ## How cluster creation works
 
 Starting from version {{% first_aws_nodepools_version %}} on AWS, Giant Swarm introduced a feature to create multiple [node pools]({{< relref "/advanced/node-pools" >}}) on AWS.
@@ -286,3 +292,5 @@ These resources will not be deleted immediately. Our operators will start the de
 In order to review if a resource has been marked for deletion you can check if the resource has the attribute `deletionTimestamp` in the `metadata` field.
 
 The whole deletion process can take up to one hour.
+
+If you would like to protect your clusters from accidental deletion, take a look at our [deletion prevention mechanism]({{< relref "/advanced/deletion-prevention" >}}).

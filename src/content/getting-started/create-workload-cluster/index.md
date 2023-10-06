@@ -52,7 +52,7 @@ You will now create resources with `kubectl gs`. In particular, this tutorial us
 First, template a cluster ([command reference]({{< relref "/use-the-api/kubectl-gs/template-cluster" >}})):
 
 {{< tabs >}}
-{{< tab id="cluster-vintage-azure" title="Vintage (Azure)">}}
+{{< tab id="cluster-vintage-azure" for-impl="vintage_azure" >}}
 
 [Choose a release version here](https://docs.giantswarm.io/changes/workload-cluster-releases-for-azure), or use `kubectl gs get releases`, and fill it into this example command:
 
@@ -66,7 +66,7 @@ kubectl gs template cluster \
 ```
 
 {{< /tab >}}
-{{< tab id="cluster-vintage-aws" title="Vintage (AWS)">}}
+{{< tab id="cluster-vintage-aws" for-impl="vintage_aws">}}
 
 [Choose a release version here](https://docs.giantswarm.io/changes/workload-cluster-releases-for-aws), or use `kubectl gs get releases`, and fill it into this example command:
 
@@ -80,7 +80,7 @@ kubectl gs template cluster \
 ```
 
 {{< /tab >}}
-{{< tab id="cluster-capa-ec2" title="CAPA (AWS EC2)">}}
+{{< tab id="cluster-capa-ec2" for-impl="capa_ec2">}}
 
 This will automatically use the latest release of the relevant Helm charts [cluster-aws](https://github.com/giantswarm/cluster-aws/blob/master/CHANGELOG.md) and [default-apps-aws](https://github.com/giantswarm/default-apps-aws/blob/master/CHANGELOG.md) (bundle of default apps):
 
@@ -93,7 +93,7 @@ kubectl gs template cluster \
 ```
 
 {{< /tab >}}
-{{< tab id="cluster-capz-azure-vms" title="CAPZ (Azure VMs)">}}
+{{< tab id="cluster-capz-azure-vms" for-impl="capz_vms">}}
 
 This will automatically use the latest release of the relevant Helm charts [cluster-azure](https://github.com/giantswarm/cluster-azure/blob/master/CHANGELOG.md) and [default-apps-azure](https://github.com/giantswarm/default-apps-azure/blob/master/CHANGELOG.md) (bundle of default apps):
 
@@ -114,12 +114,12 @@ If no name is specified for a workload cluster, a random one like `rfjh2` will b
 
 This will create a `cluster.yaml` file containing all the Custom Resources (CRs) necessary to create the cluster.
 
-For the [Cluster API (CAPI)]({{< relref "/platform-overview/cluster-management/cluster-api/architecture" >}}) product family, you will notice that clusters are templated exactly like managed apps (i.e. as `App` resource), with `kubectl-gs` filling certain default values into the configuration. This is different from vintage products.
+For the [Cluster API (CAPI)]({{< relref "/platform-overview/architecture" >}}) product family, you will notice that clusters are templated exactly like managed apps (i.e. as `App` resource), with `kubectl-gs` filling certain default values into the configuration. This is different from vintage products.
 
 In the vintage product family, no worker node pool is created by default, so you should attach one:
 
 {{< tabs >}}
-{{< tab id="nodepool-vintage-azure" title="Vintage (Azure)">}}
+{{< tab id="nodepool-vintage-azure" for-impl="vintage_azure">}}
 
 ```sh
 kubectl gs template nodepool \
@@ -134,7 +134,7 @@ kubectl gs template nodepool \
 This will create a `nodepool.yaml` file with all the CRs needed for attaching a node pool to the cluster created in the previous step.
 
 {{< /tab >}}
-{{< tab id="nodepool-capi" title="CAPI (any)">}}
+{{< tab id="nodepool-capi" for-impl="capi_any">}}
 
 This is not needed for CAPI. The `nodePools` value in the cluster app has a default. For example, see [nodePools configuration for cluster-aws](https://github.com/giantswarm/cluster-aws/blob/master/helm/cluster-aws/README.md#node-pools) when using the CAPA-based product (AWS cloud).
 
@@ -152,7 +152,11 @@ kubectl apply -f cluster.yaml
 kubectl apply -f nodepool.yaml
 ```
 
+### Deleting the workload cluster {#deleting-workload-cluster}
+
 Deletion works in the same way: run `kubectl delete -f FILENAME.yaml` and the operators in the management cluster will delete the resources in a few minutes. Please do not directly delete the CAPI custom resources (such as `Cluster`, `AWSCluster` or `MachineDeployment`) since this may leave resources behind or even lead to inadvertently recreating the cluster once the `App` is reconciled again. Deletion should be done exactly like the creation, using the original manifests. For the CAPI product family, our example output file `cluster.yaml` contains 2 `App` and 2 `ConfigMap` manifests.
+
+If you would like to protect your clusters from accidental deletion, take a look at our [deletion prevention mechanism]({{< relref "/advanced/deletion-prevention" >}}).
 
 ### Private workload clusters
 
@@ -169,7 +173,7 @@ For the vintage product family, if you did not yet attach a node pool to the WC 
 Using the command line, you can also watch the creation and status of the workload cluster:
 
 {{< tabs >}}
-{{< tab id="status-vintage" title="Vintage (any)">}}
+{{< tab id="status-vintage" for-impl="vintage_any">}}
 
 ```sh
 kubectl gs get clusters -A
@@ -178,7 +182,7 @@ kubectl gs get nodepools -A
 ```
 
 {{< /tab >}}
-{{< tab id="status-capi" title="CAPI (any)">}}
+{{< tab id="status-capi" for-impl="capi_any">}}
 
 Either use kubectl-gs:
 

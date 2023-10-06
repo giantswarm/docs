@@ -49,10 +49,9 @@ There are currently ongoing discussion in the Crossplane community on how to mit
 - https://github.com/crossplane/crossplane/issues/3852
 - https://github.com/crossplane/crossplane/issues/2869
 
-
 ## Additional readings
 
 - [The Kubernetes Discovery Cache: Blessing and Curse](https://jonnylangefeld.com/blog/the-kubernetes-discovery-cache-blessing-and-curse)
 - Giant Swarm investigation on Crossplane performance issues:
-  - [Impact of Crossplane on control plane nodes](https://github.com/giantswarm/roadmap/issues/2061#issuecomment-1461657937)
-  - [Investigation around deleting and blocking CRDs](https://github.com/giantswarm/roadmap/issues/2061#issuecomment-1470139555)
+    - [Impact of Crossplane on control plane nodes](https://github.com/giantswarm/roadmap/issues/2061#issuecomment-1461657937)
+    - [Investigation around deleting and blocking CRDs](https://github.com/giantswarm/roadmap/issues/2061#issuecomment-1470139555)

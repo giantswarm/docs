@@ -13,6 +13,11 @@
   </div>
   <div class="col-xs-12 col-md-8 col-lg-7 base-content">
     <div class="content">
+      <!-- Add mermaid min js file -->
+      {{ if (.Params.mermaid) }}
+      {{ partial "mermaid.html" }}
+      {{ end }}
+      
       <p class="lastmod">Last modified {{ .Lastmod.Format "January 2, 2006" }}</p>
       <h1 id="title">{{ .Title }}</h1>
 

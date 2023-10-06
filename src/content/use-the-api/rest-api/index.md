@@ -1,6 +1,6 @@
 ---
-linkTitle: REST API
-title: The Giant Swarm REST API
+linkTitle: REST API (deprecated)
+title: The Giant Swarm REST API (deprecated)
 description: An overview of the APIs that provide you with programmatic access to resources like your workload clusters in a Giant Swarm installation. Namely the Rest API and the Management API.
 weight: 50
 menu:
@@ -11,7 +11,7 @@ user_questions:
   - How can I manage clusters via an API?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bigmac
-last_review_date: 2022-12-07
+last_review_date: 2023-08-29
 aliases:
   - /reference/rest-api/
   - /ui-api/rest-api/
@@ -23,4 +23,8 @@ Since its inception at Giant Swarm, we learned that there are always more use ca
 
 With this realization, we made the decision to **phase out the development of the REST API** in favor of providing access to the [Management API]({{< relref "/use-the-api/management-api" >}}) instead.
 
-As of now, there is no termination date for the REST API. As it might provide a much simpler and more accessible starting point, feel free to explore the [REST API documentation](/api/), knowing that one day you may have to switch to the Management API.
+As of now, there is no termination date for the REST API. It is however **not available anymore for [newer generations of the platform]({{< relref "/platform-overview/cluster-management/cloud-provider-implementations" >}})**.
+
+## Further reading
+
+- [REST API documentation](/api/)

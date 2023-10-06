@@ -76,21 +76,21 @@ files=""
 
 while read line
 do
-	if [ ! -n "$line" ]
-	then
-		continue
-	fi
+    if [ ! -n "$line" ]
+    then
+        continue
+    fi
 
-	grep -q "^sops:$" $line
-	if [ $? -ne 0 ]
-	then
-		files="${files}\n${line}"
-	fi
+    grep -q "^sops:$" $line
+    if [ $? -ne 0 ]
+    then
+        files="${files}\n${line}"
+    fi
 done <<< "$(find . -type f -name '*.enc.yaml')"
 
 if [ -n "$files" ]
 then
-	cat <<\EOF
+    cat <<\EOF
 !! WARNING !!
 
 Detected files missing the `sops` metadata key on them.
@@ -99,8 +99,8 @@ Please run the `sops --encrypt --in-place <path>` command against them to secure
 
 Find the list of affected files below.
 EOF
-	echo $files
-	exit 1
+    echo $files
+    exit 1
 fi
 ```
 

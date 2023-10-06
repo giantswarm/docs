@@ -25,8 +25,8 @@ Follow the instructions below to add a new App to a workload cluster managed in 
 Examples of creating apps are available in following locations:
 
 - An example of a directly configured App (the simplest use case - no configuration): an [app without configuration](https://github.com/giantswarm/gitops-template/tree/main//management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters/WC_NAME/apps/hello-world/)
-- An example of a directly configured App (with configuration): an [app that uses a configuration ConfigMap](https://github.com/giantswarm/gitops-template/tree/main//management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters/WC_NAME/apps/nginx-ingress-controller/)
-- An example of an App created from an App Template is available in [WC_NAME/apps/nginx-from-template](https://github.com/giantswarm/gitops-template/tree/main//management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters/WC_NAME/apps/nginx-from-template/).
+- An example of a directly configured App (with configuration): an [app that uses a configuration ConfigMap](https://github.com/giantswarm/gitops-template/tree/main//management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters/WC_NAME/apps/ingress-nginx/)
+- An example of an App created from an App Template is available in [WC_NAME/apps/ingress-nginx-from-template](https://github.com/giantswarm/gitops-template/tree/main//management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters/WC_NAME/apps/ingress-nginx-from-template/).
 
 ## Common steps
 
@@ -51,7 +51,7 @@ export APP_NAME="${WC_NAME}-APP_NAME"
     cd management-clusters/${MC_NAME}/organizations/${ORG_NAME}/workload-clusters/${WC_NAME}/mapi/apps
     ```
 
-1. Create new directory with a name corresponding to the App name:
+2. Create new directory with a name corresponding to the App name:
 
     ```nohighlight
     mkdir ${APP_NAME}
@@ -69,7 +69,7 @@ export APP_NAME="${WC_NAME}-APP_NAME"
     export APP_USER_VALUES=CONFIGMAP_OR_SECRET_PATH
     ```
 
-1. Go to the newly created directory and use [the kubectl-gs plugin](https://github.com/giantswarm/kubectl-gs) to generate the [App CR](https://docs.giantswarm.io/ui-api/kubectl-gs/template-app/):
+2. Go to the newly created directory and use [the kubectl-gs plugin](https://github.com/giantswarm/kubectl-gs) to generate the [App CR](https://docs.giantswarm.io/ui-api/kubectl-gs/template-app/):
 
     ```nohighlight
     cd ${APP_NAME}/
@@ -82,19 +82,18 @@ export APP_NAME="${WC_NAME}-APP_NAME"
     --version ${APP_VERSION} > appcr.yaml
     ```
 
-__Note__: you can optionally configure App with the user-provided values by adding the below flags to the previous command:
+    __Note__: you can optionally configure App with the user-provided values by adding the below flags to the previous command:
 
     ```nohighlight
     --user-configmap ${APP_USER_VALUES}
     --user-secret ${APP_USER_VALUES}
     ```
 
-__Note__: We're including `${cluster_name}` in the app name to avoid a problem when two or more clusters in the same organization want to deploy the same app with its default name.
+    __Note__: We're including `${cluster_name}` in the app name to avoid a problem when two or more clusters in the same organization want to deploy the same app with its default name.
 
-Reference [the App Configuration](https://docs.giantswarm.io/app-platform/app-configuration/) for more details on how to properly create respective ConfigMaps or Secrets.
+    Reference [the App Configuration](https://docs.giantswarm.io/app-platform/app-configuration/) for more details on how to properly create respective ConfigMaps or Secrets.
 
-1. (optional - if adding configuration) Place ConfigMap and Secrets with values as the `configmap.yaml`
-  and `secret.enc.yaml` files respectively:
+3. (optional - if adding configuration) Place ConfigMap and Secrets with values as the `configmap.yaml` and `secret.enc.yaml` files respectively:
 
     ```nohighlight
     # Use one of the two for respective kind
@@ -102,21 +101,22 @@ Reference [the App Configuration](https://docs.giantswarm.io/app-platform/app-co
     # cp ${APP_USER_VALUES} ./secret.enc.yaml
     ```
 
-1. (optional - if encrypting secrets) Import the regular GPG public key of the Workload Cluster and encrypt the `secret.enc.yaml` file:
+4. (optional - if encrypting secrets) Import the regular GPG public key of the Workload Cluster and encrypt the `secret.enc.yaml` file:
 
     ```nohighlight
     gpg --import management-clusters/${MC_NAME}/.sops.keys/.sops.${WC_NAME}.asc
     sops --encrypt --in-place secret.enc.yaml
     ```
-You can find more information on encrypting secrets in [this document](https://github.com/giantswarm/gitops-template/blob/main/docs/add_mc.md#flux-gpg-master-key-pair).
 
-1. Go back to the `apps` directory:
+    You can find more information on encrypting secrets in [this document](https://github.com/giantswarm/gitops-template/blob/main/docs/add_mc.md#flux-gpg-master-key-pair).
+
+5. Go back to the `apps` directory:
 
     ```nohighlight
     cd ..
     ```
 
-1. Edit the `kustomization.yaml` there adding all the newly created files as resources:
+6. Edit the `kustomization.yaml` there adding all the newly created files as resources:
 
     ```yaml
     apiVersion: kustomize.config.k8s.io/v1beta1
@@ -139,7 +139,7 @@ You can find more information on encrypting secrets in [this document](https://g
 
     Make sure your `APP_NAME` variable is set to the exact same name as used for the app in the App Template you're pointing to.
 
-1. In the current directory (`management-clusters/${MC_NAME}/organizations/${ORG_NAME}/workload-clusters/${WC_NAME}/mapi/apps/${APP_NAME}`) create a new `kustomization.yaml` with the following content:
+2. In the current directory (`management-clusters/${MC_NAME}/organizations/${ORG_NAME}/workload-clusters/${WC_NAME}/mapi/apps/${APP_NAME}`) create a new `kustomization.yaml` with the following content:
 
     ```nohighlight
     cat <<EOF > kustomization.yaml
@@ -181,11 +181,11 @@ Please note, that the block marked "configuration override block" is needed only
     EOF
     ```
 
-1. Additional notes
+2. Additional notes
 
     If you want to, you can use the same idea of App Templates to override any property (like app version) of base App Template by using [kustomize patches](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patches/).
 
-1. Everything is ready, commit the changes to the branch your Flux is using.
+3. Everything is ready, commit the changes to the branch your Flux is using.
 
 ## Recommended next steps
 

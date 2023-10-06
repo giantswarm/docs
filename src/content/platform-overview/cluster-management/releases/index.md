@@ -2,7 +2,7 @@
 linkTitle: Releases
 title: Workload cluster release versions
 description: Details on the workload cluster release offered by Giant Swarm and ways to look up even more details.
-last_review_date: 2022-04-12
+last_review_date: 2023-07-05
 weight: 30
 menu:
   main:
@@ -94,7 +94,7 @@ Once deprecated, you can still continue to use the workload cluster release with
 
 ### Pre-releases
 
-Pre-releases (when available) give you the option to test new features or use new functionality before the feature is released. At the same time helps the us release new features and test them in a realworld scenario with your help. When you test out a pre-release it helps find bugs or evaluate the impact of new functionality on the system. 
+Pre-releases (when available) give you the option to test new features or use new functionality before the feature is released. At the same time helps the us release new features and test them in a realworld scenario with your help. When you test out a pre-release it helps find bugs or evaluate the impact of new functionality on the system.
 
 Currently not all Giant Swarm releases become available as pre-releases. We communicate pre-releases, when they are available for customer testing.
 
@@ -114,7 +114,7 @@ You have several options to inspect workload cluster release details:
 
 - We announce new workload cluster releases in your Slack support channel. In each announcement, you will find a link to the corresponding release notes in our [changes and releases]({{< relref "/changes" >}}) section here on the docs site, where you can also find comprehensive release notes.
 
-- In the [web UI]({{< relref "/platform-overview/web-interface/" >}}), the cluster overview and the cluster details page show the release version number of the workload cluster. In the cluster details page you can click the release version number to get more information about a workload cluster release. 
+- In the [web UI]({{< relref "/platform-overview/web-interface/" >}}), the cluster overview and the cluster details page show the release version number of the workload cluster. In the cluster details page you can click the release version number to get more information about a workload cluster release.
 
 - In `gsctl`, our command line interface, commands like [`gsctl list clusters`]({{< relref "/use-the-api/gsctl/list-clusters" >}}) and [`gsctl show cluster`]({{< relref "/use-the-api/gsctl/show-cluster" >}}) reveal the release version number of an existing cluster. To get information on all available releases, use the [`gsctl list releases`]({{< relref "/use-the-api/gsctl/list-releases" >}}) command. The command `gsctl show release` gives you more details on a specific workload cluster release.
 
@@ -132,18 +132,18 @@ You have several options to inspect workload cluster release details:
 
 ### Preinstalled and optional Apps {#apps}
 
-Depending on your provider (AWS, Azure, or KVM), the apps NGINX IC, External DNS, and Cert Manager may be preinstalled, optional, or not available (n/a).
+Depending on your provider (AWS, Azure, or KVM), the apps Ingress NGINX Controller, External DNS and Cert Manager may be preinstalled, optional, or not available (n/a).
 
 Preinstalled apps are installed by default upon cluster creation. Optional apps can be installed from App Catalogs. In releases where they are not preinstalled, n/a apps (e.g. External DNS in certain releases) are currently not available to be installed as an optional app.
 
-| Workload cluster release version | NGINX IC      | External DNS  | Cert Manager |
-|:------------------------------:|:-------------:|:-------------:|:------------:|
-| **AWS v10.x.x+**               | optional      | preinstalled  | preinstalled |
-| **AWS legacy**                 | preinstalled  | n/a           | optional     |
-| **Azure v12.x.x+**             | optional      | preinstalled  | optional     |
-| **Azure legacy**               | preinstalled  | preinstalled  | optional     |
-| **KVM 12.2.x+**                | optional      | n/a           | optional     |
-| **KVM legacy**                 | preinstalled  | n/a           | optional     |
+| Workload cluster release version | Ingress NGINX Controller | External DNS  | Cert Manager |
+|:--------------------------------:|:------------------------:|:-------------:|:------------:|
+| **AWS v10.x.x+**                 | optional                 | preinstalled  | preinstalled |
+| **AWS legacy**                   | preinstalled             | n/a           | optional     |
+| **Azure v12.x.x+**               | optional                 | preinstalled  | optional     |
+| **Azure legacy**                 | preinstalled             | preinstalled  | optional     |
+| **KVM 12.2.x+**                  | optional                 | n/a           | optional     |
+| **KVM legacy**                   | preinstalled             | n/a           | optional     |
 
 ## Further reading
 

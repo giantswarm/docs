@@ -8,7 +8,7 @@ source_repositories:
   - url: https://github.com/giantswarm/apiextensions-application
     organization: giantswarm
     short_name: apiextensions-application
-    commit_reference: v0.6.0
+    commit_reference: v0.6.1
     crd_paths:
       - config/crd
     cr_paths:
@@ -508,3 +508,17 @@ source_repositories:
           - vsphere
         topics:
           - workloadcluster
+  - url: https://github.com/giantswarm/rbac-operator
+    organization: giantswarm
+    short_name: rbac-operator
+    commit_reference: v0.37.1
+    crd_paths:
+      - config/crd
+    cr_paths:
+      - docs/cr
+    metadata:
+      rolebindingtemplates.auth.giantswarm.io:
+        owner:
+          - https://github.com/orgs/giantswarm/teams/team-bigmac
+        topics:
+          - managementcluster

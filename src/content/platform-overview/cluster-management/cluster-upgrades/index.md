@@ -41,7 +41,7 @@ Among the third party components building a workload cluster stack are
 - [Project Calico](https://www.tigera.io/project-calico/) and [AWS CNI](https://github.com/aws/amazon-vpc-cni-k8s)/[Azure CNI](https://github.com/Azure/azure-container-networking)/[Flannel](https://github.com/flannel-io/flannel) for virtual networking
 - [CoreDNS](https://coredns.io/) for cluster-internal name resolution
 - [Prometheus node exporter](https://github.com/prometheus/node_exporter) for hardware and OS metrics
-- [NGINX Ingress Controller](https://github.com/kubernetes/ingress-nginx) for connecting services with load balancers
+- [Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx) for connecting services with load balancers
 
 as well as many operators and controllers created and maintained by Giant Swarm.
 
@@ -59,11 +59,11 @@ As a consequence, the only way to change the stack is to perform an upgrade, to 
 
 According to our workload cluster release versioning, three different levels of upgrades can occur:
 
-- *Patch upgrade*: Only the patch version number is increased.
+- _Patch upgrade_: Only the patch version number is increased.
 
-- *Minor upgrade*: The minor version number is increased, while the major version number stays the same.
+- _Minor upgrade_: The minor version number is increased, while the major version number stays the same.
 
-- *Major upgrade*: The major version number is increased.
+- _Major upgrade_: The major version number is increased.
 
 #### Patch upgrade {#patch-upgrade}
 
