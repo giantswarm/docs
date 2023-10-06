@@ -59,7 +59,7 @@ Kyverno policies and exceptions are more powerful and expressive than PSPs, and 
 However, many of the teams we work with would prefer not to manage Kyverno resources at all.
 We understand that sentiment, and agree that standard security features should "just work".
 So, to make things "just work" and hopefully make future migrations easier, we are introducing a Giant Swarm-specific abstraction called the Policy API which allows us to manage the underlying policies and exceptions which we believe are fundamental to running a healthy cluster.
-You can read more about the Policy API [on its dedicated docs page][policy-api].
+You can read more about the Policy API on its dedicated docs page.
 
 The rest of this guide assumes your migration will be done using our Policy API. However, if your team would prefer to manage Kyverno resources directly instead, that is still allowed by the platform, just with less future support.
 
@@ -113,5 +113,4 @@ For now, here are some things to consider when deciding how to structure your or
 
 We are also interested in hearing about and learning from your experience with exception workflows. If our platform can enable a better exception experience for you, please reach out.
 
-[policy-api]: {{< relref "/advanced/security-policy-enforcement/policy-api" >}}
 [sec-policy-enforcement]: {{< relref "/advanced/security-policy-enforcement" >}}
