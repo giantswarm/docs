@@ -22,7 +22,7 @@ last_review_date: 2023-03-21
 
 __Note__: this content is applicable to Giant Swarm v19.2.0 and above, which include PSS `baseline` and `restricted` policies deployed in `enforce` mode.
 
-__Note__: additional information for cluster admins can be found in a separate [cluster admin guide][cluster-admin-guide].
+__Note__: additional information for cluster admins can be found in a separate cluster admin guide.
 
 ## Compliance Scanning and Enforcement
 
@@ -36,7 +36,7 @@ Users who are unaware of those requirements may be surprised when their workload
 ### Kyverno
 
 Giant Swarm clusters currently use Kyverno to perform the actual enforcement of the policies we manage.
-Our [Policy API][policy-api], along with other platform internals, manage the Kyverno ClusterPolicy resources as well as any necessary Kyverno PolicyExceptions.
+Our Policy API, along with other platform internals, manage the Kyverno ClusterPolicy resources as well as any necessary Kyverno PolicyExceptions.
 
 Kyverno is an admission controller, which inspects incoming requests to the API server and checks them against configured policies.
 
@@ -1105,8 +1105,8 @@ Noteworthy pieces of this example:
 - A policy can contain multiple rules -- exceptions can be applied to individual rules so that the others remain in effect. Here, the workload is allowed to fail the `host-path` and `restricted-volumes` rules (and their automatically generated equivalents). A workload is only exempt from the rules listed in a `ruleNames` list. If a policy contains other rules not listed in the `PolicyException`, and the workload does not satisfy those rules, the workload will be rejected.
 - Cluster administrators can choose the namespace(s) where `PolicyExceptions` are stored. The correct namespace for a `PolicyException` might be different than the namespace for the Pod itself.
 
-[cluster-admin-guide]: {{< relref "/advanced/security-policy-enforcement/cluster-admin-guide" >}}
+<!-- [cluster-admin-guide]: {{< relref "/advanced/security-policy-enforcement/cluster-admin-guide" >}} -->
 [k8s-pss]: https://kubernetes.io/docs/concepts/security/pod-security-standards/
 [k8s-sysctl]: https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/
 [kyverno-docs]: https://kyverno.io/docs/
-[policy-api]: {{< relref "/advanced/security-policy-enforcement/policy-api" >}}
+<!-- [policy-api]: {{< relref "/advanced/security-policy-enforcement/policy-api" >}} -->
