@@ -24,6 +24,19 @@ __Note__: This guide is intended for cluster administrators running Giant Swarm 
 
 ## Managing cluster security policies with the Giant Swarm Policy API
 
+### At a glance
+
+The Policy API:
+
+- is an interface for configuring the various types of (mostly security-related) policies which Giant Swarm manages.
+- provides a way for cluster administrators to declare their intent about which policies to enforce and which resources are exempt from those policies.
+- is intended to manage additional policy types in the future, including networking, vulnerability management, anomaly detection, and others.
+- is _not_ a general purpose policy syntax language. Users cannot define custom policies via the Policy API. It can only be used to configure the policies Giant Swarm actively manages.
+- does _not_ hide the underlying implementations. Users are free to directly use the underlying tools or APIs. The only difference is that _Giant Swarm will not manage, migrate, or adopt any policies or configuration you create using the tools' native resources_.
+- generates native resources for the underlying implementations. These resources continue to function even if the Policy API controllers are removed.
+
+### Motivation
+
 The Policy API is an abstraction layer which orchestrates several other types of policy-related resources.
 
 The Giant Swarm platform is built on top of a number of independent tools, projects, and APIs supported by the CNCF and the surrounding Kubernetes ecosystem.
@@ -39,18 +52,7 @@ We expect that Kubernetes and third-party tooling will continue to evolve, and t
 
 So, we created the Policy API in order to allow Giant Swarm to more seamlessly and transparently move clusters between policy implementations, and to reduce the overall toil of dealing with common security configuration.
 
-### At a glance
-
-The Policy API:
-
-- is an interface for configuring the various types of (mostly security-related) policies which Giant Swarm manages.
-- provides a way for cluster administrators to declare their intent about which policies to enforce and which resources are exempt from those policies.
-- is intended to manage additional policy types in the future, including networking, vulnerability management, anomaly detection, and others.
-- is _not_ a general purpose policy syntax language. Users cannot define custom policies via the Policy API. It can only be used to configure the policies Giant Swarm actively manages.
-- does _not_ hide the underlying implementations. Users are free to directly use the underlying tools or APIs. The only difference is that _Giant Swarm will not manage, migrate, or adopt any policies or configuration you create using the tools' native resources_.
-- generates native resources for the underlying implementations. These resources continue to function even if the Policy API controllers are removed.
-  
-#### Managed and un-managed policies
+### Managed versus un-managed policies
 
 Giant Swarm provides a set of ready-made policies for many common cluster management use cases. The Policy API only orchestrates these standard policies, which Giant Swarm actively manages. It does not interfere with customer policies, exceptions, or configuration which are managed externally to the Policy API.
 
