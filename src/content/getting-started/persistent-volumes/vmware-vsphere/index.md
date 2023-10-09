@@ -1,27 +1,27 @@
 ---
-linkTitle: PVs on VMware Cloud Director
-title: Using persistent volumes on VMware Cloud Director
-description: Tutorial on how to use dynamically provisioned Persistent Volumes on a cluster running on VMware Cloud Director.
+linkTitle: PVs on VMware vSphere
+title: Using persistent volumes on VMware vSphere
+description: Tutorial on how to use dynamically provisioned Persistent Volumes on a cluster running on VMware vSphere.
 weight: 10
 menu:
   main:
-    identifier: gettingstarted-persistentvolumes-clouddirector
+    identifier: gettingstarted-persistentvolumes-vSphere
     parent: gettingstarted-persistentvolumes
 aliases:
-  - /guides/using-persistent-volumes-on-clouddirector/
-  - /ui-api/observability/prometheus/persistent-volumes/clouddirector/
+  - /guides/using-persistent-volumes-on-vSphere/
+  - /ui-api/observability/prometheus/persistent-volumes/vSphere/
 user_questions:
-  - How can I use persistent volumes in my VMware Cloud Director clusters?
+  - How can I use persistent volumes in my VMware vSphere clusters?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
 last_review_date: 2023-10-05
 ---
 
-If your cluster is running on VMware Cloud Director (VCD), it comes with a dynamic storage provisioner for Named Disks. This enables you to store data beyond the lifetime of a Pod into virtual disks.
+If your cluster is running on VMware vSphere, it comes with a dynamic storage provisioner for Cloud Native Storage disks (CNS). This enables you to store data beyond the lifetime of a Pod into virtual disks.
 
 ## Storage Classes
 
-Your Kubernetes cluster will have a default Storage Class `csi-vcd-sc-delete` deployed, which will automatically get selected if you do not specify the Storage Class in your Persistent Volumes. Another Storage Class `csi-vcd-sc-retain` is also created with `reclaimPolicy: Retain` which you must explicitely specify to use.
+Your Kubernetes cluster will have a default Storage Class `csi-vsphere-sc-delete` deployed, which will automatically get selected if you do not specify the Storage Class in your Persistent Volumes. Another Storage Class `csi-vsphere-sc-retain` is also created with `reclaimPolicy: Retain` which you must explicitely specify to use.
 
 As a Cluster Admin you can create additional Storage Classes or edit the default class to use different types of VMware Storage Profiles or for instance, add encryption.
 
@@ -33,11 +33,9 @@ The most straight forward way to create a Persistent Volume is to create a [Pers
 
 Alternatively, to be able to set more specific parameters on your PV you can first create a [Persistent Volume object](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistent-volumes) and then claim that PV using a Persistent Volume Claim (PVC).
 
-Under the hood, the Dynamic Storage Provisioner will take care that a corresponding Named Disk with the correct parameters is created in the VMware Cloud Director OVDC.
+Under the hood, the Dynamic Storage Provisioner will take care that a corresponding CNS disk with the correct parameters is created in VMware vSphere.
 
-The Named Disk and its data will persist as long as the corresponding PV resource exists. Deleting the resource will also delete the corresponding Named Disk, which means that all stored data will be lost at that point.
-
-_Note: Do not delete virtual machines that have a Named Disk attached or it will be left in an inconsistent state and the VCD admins will need to intervene to clean it up._
+The CNS disk and its data will persist as long as the corresponding PV resource exists. Deleting the resource will also delete the corresponding virtual disk, which means that all stored data will be lost at that point.
 
 ## Using Persistent Volumes in a Pod
 
@@ -45,7 +43,7 @@ Once you have a Persistent Volume Claim you can [claim it as a Volume](https://k
 
 Note that a Named Disk can only be used by a single Pod at the same time. Thus, the access mode of your PVC can only be `ReadWriteOnce`.
 
-Under the hood the Named Disk stays detached from the virtual machines as long as it is not claimed by a Pod. As soon as a Pod claims it, it gets attached to the virtual machine running the node that holds the Pod.
+Under the hood the CNS disk stays detached from the virtual machines as long as it is not claimed by a Pod and you can visualize it in the vSphere client by browsing `Cluster > Monitor > Cloud Native Storage > Container volumes`. As soon as a Pod claims it, it gets attached to the virtual machine running the node that holds the Pod.
 
 ## Example
 
@@ -66,7 +64,7 @@ spec:
 
 Note that the Access Mode, while being fixed with Named Disks, still needs to be defined as `ReadWriteOnce` in the manifest.
 
-Further, as we are not defining a Storage Class the Kubernetes cluster will just take the default storage class (here `csi-vcd-sc-delete`).
+Further, as we are not defining a Storage Class the Kubernetes cluster will just take the default storage class (here `csi-vsphere-sc-delete`).
 
 Now we can create a Pod that uses our PVC:
 
@@ -88,11 +86,15 @@ spec:
         claimName: myclaim
 ```
 
-Now we have an NGINX Pod which serves the contents of our Named Disks.
+Now we have an NGINX Pod which serves the contents of our CNS disk.
 
-## Expanding Persistent Volume Claims (not supported)
+## Expanding Persistent Volume Claims
 
-As of version 1.4.0 of the VCD Container Storage Interface (CSI), volume expansion is [currently not supported](https://github.com/vmware/cloud-director-named-disk-csi-driver/issues/27).
+vSphere Container Storage Plug-in supports volume expansion for block volumes that are created dynamically or statically.
+
+Persistent Volume Claims can be expanded in `Offline` and `Online` mode (PVC used by a pod and mounted on a node) by simply editing the claim and requesting a larger size.
+
+It will trigger an update in the underlying Persistent Volume and go through the events `Resizing` to `FileSystemResizeRequired` to `FileSystemResizeSuccessful`.
 
 ## Deleting Persistent Volumes
 
