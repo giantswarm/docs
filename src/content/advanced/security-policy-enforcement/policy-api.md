@@ -47,18 +47,18 @@ The Policy API:
 - provides a way for cluster administrators to declare their intent about which policies to enforce and which resources are exempt from those policies.
 - is intended to manage additional policy types in the future, including networking, vulnerability management, anomaly detection, and others.
 - is _not_ a general purpose policy syntax language. Users cannot define custom policies via the Policy API. It can only be used to configure the policies Giant Swarm actively manages.
-- does _not_ hide the underlying implementations. Users are free to directly use the underlying tools or APIs. The only difference is that _Giant Swarm will not manage, migrate, or adopt any policies or configuration passed directly_.
+- does _not_ hide the underlying implementations. Users are free to directly use the underlying tools or APIs. The only difference is that _Giant Swarm will not manage, migrate, or adopt any policies or configuration you create using the tools' native resources_.
 - generates native resources for the underlying implementations. These resources continue to function even if the Policy API controllers are removed.
   
 #### Managed and un-managed policies
 
-The Policy API only orchestrates policies which Giant Swarm actively manages. It does not interfere with customer policies, exceptions, or configuration which are managed externally to the Policy API.
+Giant Swarm provides a set of ready-made policies for many common cluster management use cases. The Policy API only orchestrates these standard policies, which Giant Swarm actively manages. It does not interfere with customer policies, exceptions, or configuration which are managed externally to the Policy API.
 
 For example, Giant Swarm enforces security policies in every cluster by default, and advises customers to use the Policy API to declare exceptions for any workloads which need them.
 We currently use Kyverno to enforce those policies, and the Policy API generates Kyverno PolicyExceptions based on the exceptions configured through the Policy API.
 
-A cluster administrator might choose to use that managed Kyverno to enforce their own additional policies, to enforce some business-specific logic, for instance.
-They can easily do that by creating a new Kyverno ClusterPolicy, and creating Kyverno PolicyExceptions for any approved exceptions.
+A cluster administrator might choose to use the pre-installed, managed Kyverno instance to enforce their own additional policies, for instance to enforce some business-specific logic.
+They can easily do that by creating a new Kyverno `ClusterPolicy`, and creating Kyverno `PolicyException`s for any approved exceptions.
 
 If, hypothetically, in the future, Giant Swarm chooses to stop managing Kyverno as part of our standard platform, we would use our Policy API controllers to move our managed policies and any relevant exceptions into a new implementation which maintains the desired behavior.
 
