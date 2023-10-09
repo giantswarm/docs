@@ -105,6 +105,27 @@ The Kubernetes cluster is represented in VMware Cloud Director by a vAPP of the 
 In order to offer persistent storage that is decoupled from the virtual machines, the container storage interface creates a Named Disk that can be attached or detached from the VM according to whether or not the persistent volume claim (PVC) is bound to a pod or not. Named disks currently only support Read-Write-Only (RWO) with block storage-backed named disks.
 
 {{< /tab >}}
+{{< tab id="flags-vsphere" title="VMware vSphere">}}
+
+##### Compatibility
+
+The setup supports vSphere 6.7 Update 3 and later only.
+
+##### Networking
+
+Our implementation of Cluster API Provider vSphere (CAPV) comes with Kube-vip out-of-the-box (layer-2 load balancer) to fill the lack of native load balancer in vSphere. It exposes the Kubernetes API on the same subnet as the nodes and offers a pool of IP addresses to use for services of type Load Balancer. Note that alternate external load balancers such as NSX Advanced Load Balancer (ALB) can be considered to replace it.
+
+A network needs to be specified in the cluster definition to identify where the default gateway will be and where to connect the virtual machines (VMs). The nodes must have internet access which can be achieved via an HTTP proxy if needed. Note that it is also possible to specify NTP servers and pools (Ubuntu based nodes running `chrony`) in the cluster definition, which is particularly useful in air-gapped environments.
+
+##### Compute
+
+The Kubernetes cluster is represented in VMware vSphere by a collection of virtual machines for each node. When configuring the control plane nodes or a node class for a node pool, several parameters can be set for the virtual machines such as the resources, storage policy, virtual disk size etc.
+
+##### Storage
+
+In order to offer persistent storage that is decoupled from the virtual machines, the container storage interface creates a Cloud Native Storage disk (CNS) that can be attached or detached from the VM according to whether or not the persistent volume claim (PVC) is bound to a pod or not. CNS disks currently only support Read-Write-Only (RWO) with block storage-backed named disks but vSAN File Services (NFS in the background) supports Read-Write-Many (RWX).
+
+{{< /tab >}}
 {{< tab id="flags-aws" title="AWS">}}
 
 The setup uses a standalone VPC (though you can bring your own VPC) and creates private subnets for the machine in each availability zone. It uses NAT gateways for allowing machines to pull images or route requests from containers to the Internet. On the other side, it needs an Internet Gateway to route traffic from Internet to the containers. It leverages route tables to configure the routing for each subnet and gateways.
