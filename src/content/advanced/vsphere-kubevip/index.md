@@ -1,7 +1,7 @@
 ---
 linkTitle: vSphere Kube-vip
 title: vSphere networking with Kube-vip
-description: Here we describe how to work with Kube-vip in CAPV clusters.
+description: Here we describe how to work with Kube-vip in Giant Swarm CAPV clusters.
 weight: 25
 menu:
   main:
