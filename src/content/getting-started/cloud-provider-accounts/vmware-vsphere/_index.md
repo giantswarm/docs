@@ -44,7 +44,7 @@ The role must be assigned to the following objects:
 * Datacenters or datacenter folders
 * Hosts and clusters
 * VM templates
-* Resource pools  (With Propagate to children)
+* Resource pools (With Propagate to children)
 * Distributed Port Group
 * Distributed Switch
 * VM and Template folders (With Propagate to children).
