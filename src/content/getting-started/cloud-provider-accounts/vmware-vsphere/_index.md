@@ -42,7 +42,7 @@ The role must be assigned to the following objects:
 
 * vCenter Server
 * Datacenters or datacenter folders
-* Hosts and  clusters
+* Hosts and clusters
 * VM templates
 * Resource pools  (With Propagate to children)
 * Distributed Port Group
