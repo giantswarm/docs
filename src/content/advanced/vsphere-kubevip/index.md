@@ -44,7 +44,7 @@ NAMESPACE        NAME    ADDRESS         POOL NAME   POOL KIND
 org-giantswarm   pssss   10.10.222.233   wc-cp-ips   GlobalInClusterIPPool
 ```
 
-You can find more details about how it works in [this blog](https://deploy-preview-8--jkremser.netlify.app/post/ipam-for-capv/).
+You can find more details about how it works in this [blog post](https://kremser.dev/post/ipam-for-capv/).
 
 ## Slicing the subnet
 
