@@ -119,7 +119,6 @@ Make sure to replace the relevant fields to fit your own VCD environment.
 
 This will install the relevant Helm charts [cluster-cloud-director](https://github.com/giantswarm/cluster-cloud-director) and [default-apps-cloud-director](https://github.com/giantswarm/default-apps-cloud-director) (bundle of default apps):
 
-
 {{< /tab >}}
 {{< tab id="cluster-capv" for-impl="capv">}}
 
@@ -128,7 +127,6 @@ The VMware vSphere provider is not yet supported by `kubectl gs template cluster
 Make sure to replace the relevant fields to fit your own vSphere environment. Getting the right IP address for the control plane and the right CIDR block for the Load balancers depends on how the DHCP range and how your subnet is sliced, get in touch with your platform team if you are unsure.
 
 This will install the relevant Helm charts [cluster-vsphere](https://github.com/giantswarm/cluster-cloud-director) and [default-apps-vsphere](https://github.com/giantswarm/default-apps-vsphere) (bundle of default apps):
-
 
 {{< /tab >}}
 {{< /tabs >}}

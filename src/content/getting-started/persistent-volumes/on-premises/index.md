@@ -1,7 +1,7 @@
 ---
 linkTitle: NFS
 title: Using persistent volumes with NFS
-description: Tutorial on how to use pre-created Persistent Volumes with NFS.
+description: Tutorial on how to use pre-created Persistent Volumes with NFS based storage.
 weight: 30
 menu:
   main:

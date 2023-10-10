@@ -31,7 +31,7 @@ The basic operations of `cluster-api-ipam-provider-in-cluster` work as follows:
 * Claim an IP by referencing the pool in a `ipaddressclaims` CR.
 * An `ipaddresses` CR is created and the `Free/Used` status of the `globalinclusterippools` CR is updated.
 
-```
+```sh
 > k get globalinclusterippools.ipam.cluster.x-k8s.io
 NAME        ADDRESSES                         TOTAL   FREE   USED
 wc-cp-ips   ["10.10.222.232-10.10.222.239"]   8       7      1
@@ -79,11 +79,11 @@ connectivity:
 
 ### Services of type Load Balancer
 
-Giant Swarm clusters are deployed with the `Kube-vip` cloud provider interface (CPI), meaning you can use an IP address from the underlying layer 2 subnet for services of type Load Balancer. However, as mentioned previously, those are not tracked by the `cluster-api-ipam-provider-in-cluster` controller, hence the importance of properly slicing your subnet. 
+Giant Swarm clusters are deployed with the `Kube-vip` cloud provider interface (CPI), meaning you can use an IP address from the underlying layer 2 subnet for services of type Load Balancer. However, as mentioned previously, those are not tracked by the `cluster-api-ipam-provider-in-cluster` controller, hence the importance of properly slicing your subnet.
 
 When deploying a CAPV workload cluster, specify a CIDR range to assign to the `Kube-vip` CPI in the workload cluster.
 
-```
+```yaml
     connectivity:
         loadBalancers:
           cidrBlocks:
