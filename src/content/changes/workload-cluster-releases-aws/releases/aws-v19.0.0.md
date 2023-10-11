@@ -320,20 +320,12 @@ We're aiming to provide a comprehensive blackbox monitoring tool that can valida
 
 
 
-### cert-manager [2.24.1](https://github.com/giantswarm/cert-manager-app/releases/tag/v2.24.1)
-
-### Added
-
-- Add `cluster-autoscaler safe-to-evict` annotation to `controller` and `cainjector`.
-- Add `CiliumNetworkPolicy`.
+### cert-manager [2.25.0](https://github.com/giantswarm/cert-manager-app/releases/tag/v2.25.0)
 
 ### Changed
 
-- Update cert-manager container image versions to use v1.12.1
-- Do not try to install PodSecurityPolicies if not available. This will make the Chart compatible with kubernetes >= 1.25
-- Change security contexts to make the chart work with PSS restricted profile
-- Install `giantswarm-selfsigned` ClusterIssuer regardless of `global.giantSwarmClusterIssuer.install` value. It is required as a default component for Giant Swarm cluster installations.
-- Add helm adoption annotations to CRD templates. This change is done in preparation of the next major chart release.
+- Remove control plane node toleration of CA injector deployment. This caused problems on single control plane node clusters. ([#362](https://github.com/giantswarm/cert-manager-app/pull/362))
+- Update container image versions to use [v1.12.4](https://github.com/cert-manager/cert-manager/releases/tag/v1.12.4)
 
 
 

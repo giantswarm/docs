@@ -20,20 +20,25 @@ last_review_date: 2023-03-21
 
 <!-- {{< platform_support_table aws="alpha=v17.2.0" aws="ga=v17.4.0">}} -->
 
-__Note__: this content is applicable only to clusters running Kyverno, with the PSS `baseline` and `restricted` policies deployed in `enforce` mode. This will become the default in future Giant Swarm clusters, but can already be enabled on demand. This page will be updated to indicate the platform version where this content becomes the standard.
+__Note__: this content is applicable to Giant Swarm v19.2.0 and above, which include PSS `baseline` and `restricted` policies deployed in `enforce` mode.
 
-To enforce security best practices, several Kyverno policies mapped to the [Kubernetes Pod Security Standards][k8s-pss] are pre-installed in Giant Swarm clusters.
+__Note__: additional information for cluster admins can be found in a separate cluster admin guide.
 
-Kyverno is an admission controller, which inspects incoming requests to the API server and checks them against configured policies.
+## Compliance Scanning and Enforcement
+
+To enforce security best practices, several policies mapped to the [Kubernetes Pod Security Standards][k8s-pss] are pre-installed in Giant Swarm clusters.
 
 These policies validate Pod and Pod controller (i.e. Deployment, DaemonSet, StatefulSet) resources and deny admission of the resource if it does not comply.
 Individual policies forbid deploying resources with various kinds of known risky configurations, and require some additional defensive options to be set in order to reduce the likelihood and/or impact of a workload becoming compromised.
 
 Users who are unaware of those requirements may be surprised when their workloads fail to deploy, so this guide attempts to outline a basic workflow for resolving failing policies.
 
-Much more extensive documentation about Kyverno configuration and policy behavior is available [in the official docs][kyverno-docs].
+### Kyverno
 
-## Compliance Scanning and Enforcement
+Giant Swarm clusters currently use Kyverno to perform the actual enforcement of the policies we manage.
+Our Policy API, along with other platform internals, manage the Kyverno ClusterPolicy resources as well as any necessary Kyverno PolicyExceptions.
+
+Kyverno is an admission controller, which inspects incoming requests to the API server and checks them against configured policies.
 
 Kyverno policies can be configured in two modes: `audit` and `enforce`.
 
@@ -48,6 +53,8 @@ Resources which fail a policy will receive an Event similar to the example below
 These Events are useful for evaluating which resources are affected by a policy or potential policy change.
 
 If a resource has these warning events for a given policy, it means that the resource would be rejected if that policy were to change to `enforce` mode.
+
+Much more extensive documentation about Kyverno configuration and policy behavior is available [in the official docs][kyverno-docs].
 
 ### Sample Policy Warnings
 
