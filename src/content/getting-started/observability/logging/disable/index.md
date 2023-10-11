@@ -21,11 +21,12 @@ In this article you will learn how you can disable logging for your cluster.
 
 ## Introduction to logging
 
-Each cluster created on the Giant Swarm platform benefits from our logging stack which allow us to retrieve logs from Kubernetes and GiantSwarm components.
+Since releases 19.1.0, cluster created on the Giant Swarm platform benefits from our logging stack which allow us to provide you with 24/7 support to ensure best quality of service.
 Hence we are able to follow components lifecycle and to debug incidents more efficiently.
 
-Each components deployed in `kube-system` and `giantswarm` namespaces has its logs scraped by the `promtail` pods.
-Logs are sent to `loki` on the management cluster and sent to an object storage S3 on AWS with a one-month retention.
+/!\ Disclaimer: the logging is enabled by default in 19.1.0.
+
+Each components logs deployed in the `kube-system` and `giantswarm` namespaces as well as kubernetes and machine audit logs are collected by our managed `promtail` pods and sent to a Loki instance running in your management cluster. You can access its logs by accessing our managed Grafana.
 
 ## Why would I like to disable logging?
 
