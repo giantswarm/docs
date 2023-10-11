@@ -21,7 +21,7 @@ In this article you will learn how you can disable logging for your cluster.
 
 ## Introduction to logging
 
-Each cluster created on the Giant Swarm platform benefits from our logging stack which allow us to retrieve logs from Kubernetes and GiantSwarm components. 
+Each cluster created on the Giant Swarm platform benefits from our logging stack which allow us to retrieve logs from Kubernetes and GiantSwarm components.
 Hence we are able to follow components lifecycle and to debug incidents more efficiently.
 
 Each components deployed in `kube-system` and `giantswarm` namespaces has its logs scraped by the `promtail` pods.
@@ -44,7 +44,7 @@ To disable logging for a cluster you need to label the Cluster CR with:
 giantswarm.io/logging: "false"
 ```
 
-You can achieve this by running the following command :
+You can achieve this by running the following command:
 
 ```nohighlight
 $ kubectl label clusters.cluster.x-k8s.io myclustername giantswarm.io/logging=false --overwrite
