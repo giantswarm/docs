@@ -57,9 +57,9 @@ First, template a cluster ([command reference]({{< relref "/use-the-api/kubectl-
 [Choose a release version here](https://docs.giantswarm.io/changes/workload-cluster-releases-for-azure), or use `kubectl gs get releases`, and fill it into this example command:
 
 ```sh
-# See hint about `--name` below!
 kubectl gs template cluster \
   --provider azure \
+  --name mycluster \
   --organization testing \
   --release 19.0.1 `# please fill in your desired release version` \
   > cluster.yaml
@@ -71,9 +71,9 @@ kubectl gs template cluster \
 [Choose a release version here](https://docs.giantswarm.io/changes/workload-cluster-releases-for-aws), or use `kubectl gs get releases`, and fill it into this example command:
 
 ```sh
-# See hint about `--name` below!
 kubectl gs template cluster \
   --provider aws \
+  --name mycluster \
   --organization testing \
   --release 19.0.0 `# please fill in your desired release version` \
   > cluster.yaml
@@ -85,9 +85,9 @@ kubectl gs template cluster \
 This will automatically use the latest release of the relevant Helm charts [cluster-aws](https://github.com/giantswarm/cluster-aws/blob/master/CHANGELOG.md) and [default-apps-aws](https://github.com/giantswarm/default-apps-aws/blob/master/CHANGELOG.md) (bundle of default apps):
 
 ```sh
-# See hint about `--name` below!
 kubectl gs template cluster \
   --provider capa \
+  --name mycluster \
   --organization testing \
   > cluster.yaml
 ```
@@ -98,9 +98,9 @@ kubectl gs template cluster \
 This will automatically use the latest release of the relevant Helm charts [cluster-azure](https://github.com/giantswarm/cluster-azure/blob/master/CHANGELOG.md) and [default-apps-azure](https://github.com/giantswarm/default-apps-azure/blob/master/CHANGELOG.md) (bundle of default apps):
 
 ```sh
-# See hint about `--name` below!
 kubectl gs template cluster \
   --provider capz \
+  --name mycluster \
   --organization testing \
   --region westeurope \
   --azure-subscription-id 00000000-0000-0000-0000-000000000000 `# fill in your subscription ID` \
