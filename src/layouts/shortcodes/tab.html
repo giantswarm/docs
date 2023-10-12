@@ -4,8 +4,11 @@
 {{/*
     For cluster management implementation names, you can use `for-impl` instead of `title`.
     This lookup is needed because Hugo does not support using a shortcode for the value of `title="..."`.
+
+    Sometimes, you want more distinction, such as "CAPA (private)", "CAPA (private with proxy)".
+    Use `for-impl="..." title-suffix=" (private)"` for such cases and mind using different tab `id`s.
 */}}
-{{ $title := default (.Get "title") (index (index $.Site.Params "impl_titles") (.Get "for-impl")) }}
+{{ $title := print (default (.Get "title") (index (index $.Site.Params "impl_titles") (.Get "for-impl"))) (default (.Get "title-suffix") "") }}
 {{ if not $title }}
 {{ errorf "Please use a valid `title` or `for-impl` value for tabs in %q (`for-impl` value %q must be listed in `src/config.yaml`)" .Page.File.Path (.Get "for-impl") }}
 {{ end }}

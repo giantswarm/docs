@@ -9,14 +9,14 @@ user_questions:
 - How do I make a workload cluster private?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2023-06-13
+last_review_date: 2023-10-12
 ---
 
 By default, Giant Swarm clusters expose the Kubernetes API endpoint publicly and the cluster workloads have internet access. In the following sections, we will explain different options to restrict inbound access to API or outbound connectivity to the internet within the clusters.
 
 **Note**: You can skip this article unless you plan on creating clusters with strictly-limited networking.
 
-The following products offer private cluster features:
+The following implementations offer private cluster features:
 
 - {{% impl_title "capa_ec2" %}}
 - {{% impl_title "capz_vms" %}}
@@ -33,14 +33,35 @@ At the moment, we have these [`kubectl gs template cluster` command line options
 
 - `--cluster-type`
 - `--vpc-mode`
-- `--dns-mode`
 - `--api-mode`
 - `--http-proxy`/`--https-proxy`
 
 We have a few provider-specific hints:
 
 {{< tabs >}}
-{{< tab id="private-cluster-capz-azure-vms" for-impl="capz_vms">}}
+{{< tab id="private-cluster-capa-ec2-proxy" for-impl="capa_ec2" title-suffix=" (private, with proxy)" >}}
+
+A proxy-private CAPA cluster uses a proxy to connect to the internet via HTTP/HTTPS. The cluster runs in a private VPC. The VPC CIDR (range of IPs) should be chosen such that it does not overlap with other VPCs that need to communicate with it. Please follow [Create a workload cluster]({{< relref "/getting-started/create-workload-cluster" >}}), adding certain parameters when running the cluster templating command:
+
+```sh
+kubectl gs template cluster \
+  --provider capa \
+  --name mycluster \
+  --organization testing \
+  \
+  `# The following parameters are specific to creating a proxy-private cluster` \
+  --cluster-type proxy-private \
+  --vpc-mode private \
+  --api-mode private \
+  --vpc-cidr 10.226.0.0/18 `# please fill a desired, free VPC CIDR` \
+  --http-proxy "http://my-http-proxy.example.com:8000" \
+  --https-proxy "http://my-http-proxy.example.com:8000" \
+  \
+  > cluster.yaml
+```
+
+{{< /tab >}}
+{{< tab id="private-cluster-capz-azure-vms" for-impl="capz_vms" title-suffix=" (private)" >}}
 
 As getting the correct CIDR depend on the installation, please get in contact with your platform team to check for the next CIDR range to use. This step might become obsolete once a dedicated IPAM operator got implemented for private Azure clusters.
 
