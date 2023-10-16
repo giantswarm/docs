@@ -62,7 +62,7 @@ Below is an example of what it could look like but you are free to adjust the ra
 
 ![kube-vip range](capv-kubevip-ipam.png)
 
-## IPs of Giant Swarm workload clusters
+## Workload cluster IPs
 
 ### Control plane
 
