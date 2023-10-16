@@ -86,7 +86,7 @@ When deploying a CAPV workload cluster, specify a CIDR range to assign to the `K
 
 ```yaml
     connectivity:
-        loadBalancers:
-          cidrBlocks:
-          - "10.10.222.180/30"
+      loadBalancers:
+        cidrBlocks:
+        - "10.10.222.180/30"
 ```
