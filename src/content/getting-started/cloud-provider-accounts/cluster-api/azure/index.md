@@ -25,8 +25,10 @@ This document consists of the instructions for setting up Azure subscriptions th
 
 Currently implemented Management Clusters bootstrap process [`mc-bootstrap`](https://github.com/giantswarm/mc-bootstrap)  with Cluster API for Azure (CAPZ) requires a `bootstrap Service Principal` to authenticate the `local capz` running in `kind` onto Azure. This is required to create the final result, that is the Management Cluster in the cloud provider and delegate the `capz controller responsabilities` to it.
 
-After the initial bootstrap is completed the `capz-controller` will use a `User Assigned managed identity` , created during the `mc-bootstrap` process for all further cloud interaction. 
+After the initial bootstrap is completed the `capz-controller` will use a `User Assigned managed identity` , created during the `mc-bootstrap` process for all further cloud interaction.
+
 This identity can:
+
 * Create Workload Clusters , and all the related resources, in the `same subscription` where the MC lives
 * Be `authorized by the Customer` to create Workload Clusters, and all the related resources, in _other subscriptions_ belonging to the same tenant - **NOTE** _this is not yet implemented_
 * Be `authorized by the Customer` to create Workload Clusters, and all the related resources, in _subscriptions that exist in other tenants_ - **NOTE** _this is not yet implemented_
@@ -38,12 +40,13 @@ To create and assign the role to Giant Swarm's Service Principal you need:
 - An account with [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner) or [User Access Administrator](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#user-access-administrator) role.
 - [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) installed.
 
-### 2. Create management cluster service principal for bootstraping
+### 2. Create management cluster service principal for bootstrapping
 
-First step is to create a `subscription` to host the `MC Cluster` and a `bootstrap SP` that will be used for the initial creation of the Cluster. 
+First step is to create a `subscription` to host the `MC Cluster` and a `bootstrap SP` that will be used for the initial creation of the Cluster.
 
 #### Step 1a - Create the `bootstrap sp` using AZ CLI
-**NOTE** Using `az add app create`, `az ad app credential reset`, `az ad sp create --id` we should be able to create a set of credential with a much shorter expiration date
+
+**NOTE** Using `az add app create`, `az ad app credential reset`, `az ad sp create --id` we should be able to create a set of credential with a much shorter expiration date.
 
 ```
 MC_SUBSCRIPTION_ID=XXXX-XXXX-XXXX-XXX
@@ -54,6 +57,7 @@ az account set -s ${MC_SUBSCRIPTION_ID}
 az ad sp create-for-rbac --role contributor --scopes="/subscriptions/${MC_SUBSCRIPTION_ID}" --display-name "${MC_NAME}-bootstrap" --years 1
 az role assignment create --assignee <APP_ID_FROM_COMMAND_ABOVE> --role "User Access Administrator" --scope "/subscriptions/${MC_SUBSCRIPTION_ID}"
 ```
+
 Store the output of `az ad sp create-for-rbac` , this needs to be provided to Giant Swarm in step 2.
 
 #### Step 1b - Create the `bootstrap sp` using the `Azure Portal`
@@ -73,6 +77,7 @@ Store the output of `az ad sp create-for-rbac` , this needs to be provided to Gi
   * click `Add Role Assignment` and add the `Contributor` role and the `User Access Administrator` role to the APP with the `subscription` Scope
 
 #### Step 2 - Provide generated credentials to Giant Swarm
+
 At the end of this process the following information need to be provided to Giant Swarm using a secure transport. 
 
 * ClientID
