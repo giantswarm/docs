@@ -8,7 +8,7 @@ menu:
     parent: advanced
 last_review_date: 2023-10-09
 user_questions:
-  - How to slice my subnet for Kube-vip with CAPV?
+  - How to divide my subnet for Kube-vip with CAPV?
   - What IP should I use for Kube-vip with CAPV?
   - How to set a range of IPs for load balancer in Kube-vip with CAPV?
   - Where can I see the IPs in use by Kube-vip?
@@ -17,13 +17,13 @@ aliases:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
 ---
-While most infrastructure providers offer a load balancer to use for the Kubernetes API and services of type Load Balancer (AWS, Azure, VMware Cloud Director...), vSphere is a bit different in that it is a hypervisor as opposed to a cloud provider. Advanced networking use cases such as routing, firewalling, load balancing and the likes are handled by VMware NSX. In order to offer multi-control plane nodes to all vSphere customers (even those without NSX), CAPV comes with `Kube-vip`, a layer-2 load balancer.
+While most infrastructure providers offer a load balancer to use for the Kubernetes API and services of type Load Balancer (AWS, Azure, VMware Cloud Director...), vSphere is a bit different in that it is a hypervisor as opposed to a cloud provider. Advanced networking use cases such as routing, firewalling, load balancing and the likes are handled by VMware NSX. In order to offer a highly-available Kubernetes API even to customers without NSX, CAPV comes with `kube-vip`, a layer-2 load balancer.
 
-As a result of working on layer 2, `Kube-vip` uses IP addresses in the same subnet as the nodes themselves and these IP addresses must be selected carefully to avoid collisions. This is particularly plausible if multiple operators collaborate on the platform.
+As a result of working on layer 2, `Kube-vip` uses IP addresses in the same subnet as the nodes themselves and these IP addresses must be selected carefully to avoid collisions. This is particularly plausible if multiple users collaborate on the platform and select the same IP for different clusters.
 
 ## IPAM controller
 
-in order to mitigate the risk of IP collisions, Giant Swarm CAPV clusters run `cluster-api-ipam-provider-in-cluster` to track IP addresses usage from within the management cluster (MC). For that reason, **we recommend running a maximum of one management cluster per subnet**.
+in order to mitigate this risk, Giant Swarm CAPV clusters run `cluster-api-ipam-provider-in-cluster` to track IP addresses usage from within the management cluster (MC). For that reason, **customers shouldn't run more than one management cluster per subnet**.
 
 The basic operations of `cluster-api-ipam-provider-in-cluster` work as follows:
 
@@ -31,30 +31,31 @@ The basic operations of `cluster-api-ipam-provider-in-cluster` work as follows:
 * Claim an IP by referencing the pool in a `ipaddressclaims` CR.
 * An `ipaddresses` CR is created and the `Free/Used` status of the `globalinclusterippools` CR is updated.
 
-```sh
-> k get globalinclusterippools.ipam.cluster.x-k8s.io
+```nohighlight
+$ kubectl get globalinclusterippools.ipam.cluster.x-k8s.io
 NAME        ADDRESSES                         TOTAL   FREE   USED
 wc-cp-ips   ["10.10.222.232-10.10.222.239"]   8       7      1
 
-> k get ipaddressclaims.ipam.cluster.x-k8s.io -A
+$ kubectl get ipaddressclaims.ipam.cluster.x-k8s.io -A
 NAMESPACE        NAME    POOL NAME   POOL KIND
 org-giantswarm   pssss   wc-cp-ips   GlobalInClusterIPPool
 
+$ kubectl get ipaddresses.ipam.cluster.x-k8s.io -A
 NAMESPACE        NAME    ADDRESS         POOL NAME   POOL KIND
 org-giantswarm   pssss   10.10.222.233   wc-cp-ips   GlobalInClusterIPPool
 ```
 
 You can find more details about how it works in this [blog post](https://kremser.dev/post/ipam-for-capv/).
 
-## Slicing the subnet
+## Dividing the subnet
 
-Here we will talk about how to "slice" the subnet where you will be deploying your workload clusters (provided they will all be on the same subnet of course).
+Here we will talk about how to "divide" the subnet where you will be deploying your workload clusters (provided they will all be on the same subnet of course).
 
 The main goal here is to avoid IP address collisions so we want the subnet to accomodate for:
 
 * DHCP range for node interface.
-* One IP for the management clusters' Kubernetes API.
-* One IP for the management clusters' Ingress.
+* One IP for the management clusters' Kubernetes API for use by kube-vip.
+* One IP for the management clusters' Ingress for use by kube-vip.
 * Pool of IPs for workload clusters' Kubernetes API.
 * Pool of IPs for workload clusters' Ingresses (untracked by IPAM controller).
 
@@ -79,7 +80,7 @@ connectivity:
 
 ### Services of type Load Balancer
 
-Giant Swarm clusters are deployed with the `Kube-vip` cloud provider interface (CPI), meaning you can use an IP address from the underlying layer 2 subnet for services of type Load Balancer. However, as mentioned previously, those are not tracked by the `cluster-api-ipam-provider-in-cluster` controller, hence the importance of properly slicing your subnet.
+Giant Swarm clusters are deployed with the `Kube-vip` cloud provider interface (CPI), meaning you can use an IP address from the underlying layer 2 subnet for services of type Load Balancer. However, as mentioned previously, those are not tracked by the `cluster-api-ipam-provider-in-cluster` controller, hence the importance of properly dividing your subnet.
 
 When deploying a CAPV workload cluster, specify a CIDR range to assign to the `Kube-vip` CPI in the workload cluster.
 
