@@ -73,13 +73,13 @@ Store the output of `az ad sp create-for-rbac` , this needs to be provided to Gi
 * Set expiration to 2 Days and click `Add`
 * Store the `Value` of the new secret , this needs to be provided to GiantSwarm later
 * Add RoleAssignment ot the newly created App
-  - Select the right `Subscription` for where the MC Should be created
-  - go to `Access control (IAM)`
-  - click `Add Role Assignment` and add the `Contributor` role and the `User Access Administrator` role to the APP with the `subscription` Scope
+    * Select the right `Subscription` for where the MC Should be created
+    * go to `Access control (IAM)`
+    * click `Add Role Assignment` and add the `Contributor` role and the `User Access Administrator` role to the APP with the `subscription` Scope
 
 #### Step 2 - Provide generated credentials to Giant Swarm
 
-At the end of this process the following information need to be provided to Giant Swarm using a secure transport. 
+At the end of this process the following information need to be provided to Giant Swarm using a secure transport:
 
 * ClientID
 * ClientSecret
