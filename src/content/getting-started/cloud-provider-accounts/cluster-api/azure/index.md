@@ -37,8 +37,8 @@ This identity can:
 
 To create and assign the role to Giant Swarm's Service Principal you need:
 
-- An account with [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner) or [User Access Administrator](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#user-access-administrator) role.
-- [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) installed.
+* An account with [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner) or [User Access Administrator](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#user-access-administrator) role.
+* [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) installed.
 
 ### 2. Create management cluster service principal for bootstrapping
 
@@ -48,7 +48,8 @@ First step is to create a `subscription` to host the `MC Cluster` and a `bootstr
 
 **NOTE** Using `az add app create`, `az ad app credential reset`, `az ad sp create --id` we should be able to create a set of credential with a much shorter expiration date.
 
-```
+```bash
+
 MC_SUBSCRIPTION_ID=XXXX-XXXX-XXXX-XXX
 MC_NAME=ZZZZ
 
@@ -72,9 +73,9 @@ Store the output of `az ad sp create-for-rbac` , this needs to be provided to Gi
 * Set expiration to 2 Days and click `Add`
 * Store the `Value` of the new secret , this needs to be provided to GiantSwarm later
 * Add RoleAssignment ot the newly created App
-  * Select the right `Subscription` for where the MC Should be created
-  * go to `Access control (IAM)`
-  * click `Add Role Assignment` and add the `Contributor` role and the `User Access Administrator` role to the APP with the `subscription` Scope
+  - Select the right `Subscription` for where the MC Should be created
+  - go to `Access control (IAM)`
+  - click `Add Role Assignment` and add the `Contributor` role and the `User Access Administrator` role to the APP with the `subscription` Scope
 
 #### Step 2 - Provide generated credentials to Giant Swarm
 
@@ -90,7 +91,7 @@ In order to deliver this information to Giant Swarm securely:
 * go to https://keybase.io/encrypt
 * Add as a `recipient` the handle for the GiantSwarm employees that are performing the mc-bootstrap
 * Add the Informations above into the `Message to encrypt` and click `Encrypt`
-* A GPG Encrypted message should appear , click on `Done - nuke the plaintext` 
+* A GPG Encrypted message should appear , click on `Done - nuke the plaintext`
 * Send the whole GPG Message to GiantSwarm
 
 ## Configure Subscription to allow access for Giant Swarm Support
@@ -132,4 +133,4 @@ This acceptance should be performed once for all subscriptions that are used to 
 
 ## Further reading
 
-- [Azure Lighthouse](https://docs.microsoft.com/en-us/azure/lighthouse/how-to/onboard-customer)
+* [Azure Lighthouse](https://docs.microsoft.com/en-us/azure/lighthouse/how-to/onboard-customer)
