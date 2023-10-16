@@ -19,11 +19,11 @@ Currently the Giant Swarm Cluster API for Azure implementation supports only run
 
 ## Overview
 
-
+This document consists of the instructions for setting up Azure subscriptions that are needed to run Cluster API for Azure with Giant Swarm.
 
 ## Procedure for Azure subscription configuration
 
-Currently implemented Management Clusters bootstrap process [`mc-bootstrap`](https://github.com/giantswarm/mc-bootstrap)  with Cluster API for Azure (CAPZ) requires a `bootstrap Service Principal` to authenticate the `local capz` running in kind onto Azure. This is required to create the final Cluster in the cloud provider and delegate the `capz controller responsabilities` to it.
+Currently implemented Management Clusters bootstrap process [`mc-bootstrap`](https://github.com/giantswarm/mc-bootstrap)  with Cluster API for Azure (CAPZ) requires a `bootstrap Service Principal` to authenticate the `local capz` running in `kind` onto Azure. This is required to create the final result, that is the Management Cluster in the cloud provider and delegate the `capz controller responsabilities` to it.
 
 After the initial bootstrap is completed the `capz-controller` will use a `User Assigned managed identity` , created during the `mc-bootstrap` process for all further cloud interaction. 
 This identity can:
