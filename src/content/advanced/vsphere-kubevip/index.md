@@ -23,7 +23,7 @@ As a result of working on layer 2, `Kube-vip` uses IP addresses in the same subn
 
 ## IPAM controller
 
-in order to mitigate this risk, Giant Swarm CAPV clusters run `cluster-api-ipam-provider-in-cluster` to track IP addresses usage from within the management cluster (MC). For that reason, **we recommend running a maximum of one management cluster per subnet**.
+in order to mitigate the risk of IP collisions, Giant Swarm CAPV clusters run `cluster-api-ipam-provider-in-cluster` to track IP addresses usage from within the management cluster (MC). For that reason, **we recommend running a maximum of one management cluster per subnet**.
 
 The basic operations of `cluster-api-ipam-provider-in-cluster` work as follows:
 
