@@ -7,7 +7,7 @@ menu:
   main:
     parent: getting-started-app-platform
     identifier: getting-started-app-platform-app-catalog
-last_review_date: 2022-01-25
+last_review_date: 2023-10-17
 aliases:
   - /app-platform/create-catalog
   - /developer-platform/app-platform/create-catalog
@@ -85,7 +85,7 @@ on:
 
 jobs:
   push_to_app_catalog:
-    uses: giantswarm/app-build-suite/.github/workflows/push-to-app-catalog.yaml@v1.1.0
+    uses: giantswarm/app-build-suite/.github/workflows/push-to-app-catalog.yaml@v1.2.1
     with:
       app_catalog: example-catalog
       chart: hello-world-app
