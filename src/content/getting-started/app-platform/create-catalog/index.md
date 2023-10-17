@@ -85,7 +85,7 @@ on:
 
 jobs:
   push_to_app_catalog:
-    uses: giantswarm/app-build-suite/.github/workflows/push-to-app-catalog.yaml@v1.1.0
+    uses: giantswarm/app-build-suite/.github/workflows/push-to-app-catalog.yaml@v1.2.0
     with:
       app_catalog: example-catalog
       chart: hello-world-app
