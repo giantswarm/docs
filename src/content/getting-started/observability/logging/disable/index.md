@@ -1,5 +1,5 @@
 ---
-linkTitle: Disable Managed Logging for a Workload cluster
+linkTitle: Disable Managed Logging
 title: Disable Managed Logging for a Workload cluster
 description: This article explains how to turn off all managed logging for an entire workload cluster.
 weight: 50
