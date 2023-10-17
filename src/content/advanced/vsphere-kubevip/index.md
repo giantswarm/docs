@@ -68,7 +68,7 @@ Below is an example of what it could look like but you are free to adjust the ra
 
 ### Control plane
 
-When deploying a CAPV workload cluster, you don't need to select an IP address for the control plane, you can leave the `host` field empty and specify a `globalinclusterippools` instead. If there are free IPs in the pool, the pre-install job will mutate the cluster with the claimed IP address.
+When creating a CAPV workload cluster, you don't need to select an IP address for the control plane, you can leave the `host` field empty and specify a `globalinclusterippools` instead. If there are free IPs in the pool, the pre-install job will mutate the cluster with the claimed IP address.
 
 ```yaml
 connectivity:
