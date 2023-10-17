@@ -41,7 +41,7 @@ The infrastructure backing the OVDC where the clusters will be deployed must be 
 
 The Load Balancer section must be enabled on the Edge gateway with a Service Engine Group (SEG). Note that it is recommended to set a dedicated SEG to properly isolate tenants from each other. A pool of external IPs must be available on the Edge gateway to create load balancers.
 
-The nodes need at least one network with DHCP or a static IP pool enabled  to obtain an IP when spinning up. They must have access to the VCD API endpoint for the controllers to work (CAPVCD, cloud provider interface and container storage interface). Note that we support connecting multiple networks to the nodes with static routes.
+The nodes need at least one network with DHCP or a static IP pool enabled to obtain an IP when spinning up. They must have access to the VCD API endpoint for the controllers to work (CAPVCD, cloud provider interface and container storage interface). Note that we support connecting multiple networks to the nodes with static routes.
 
 Access to the internet is required for things like FluxCD pulling artifacts from Github, reaching out to Lets Encrypt to validate DNS01 challenges or containerd pulling container images. We support HTTP proxies and we can provide the list of domains to whitelist on the corporate firewall. Also Giant Swarm is working on a local Registry as part of our efforts to reduce the need for internet connectivity.
 
