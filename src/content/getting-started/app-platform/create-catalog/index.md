@@ -7,7 +7,7 @@ menu:
   main:
     parent: getting-started-app-platform
     identifier: getting-started-app-platform-app-catalog
-last_review_date: 2022-01-25
+last_review_date: 2023-10-17
 aliases:
   - /app-platform/create-catalog
   - /developer-platform/app-platform/create-catalog
