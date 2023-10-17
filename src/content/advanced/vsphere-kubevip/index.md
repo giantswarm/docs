@@ -17,6 +17,7 @@ aliases:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
 ---
+
 While most infrastructure providers offer a load balancer to use for the Kubernetes API and services of type Load Balancer (AWS, Azure, VMware Cloud Director...), vSphere is a bit different in that it is a hypervisor as opposed to a cloud provider. Advanced networking use cases such as routing, firewalling, load balancing and the likes are handled by VMware NSX. In order to offer a highly-available Kubernetes API even to customers without NSX, CAPV comes with `kube-vip`, a layer-2 load balancer.
 
 As a result of working on layer 2, `Kube-vip` uses IP addresses in the same subnet as the nodes themselves and these IP addresses must be selected carefully to avoid collisions. This is particularly plausible if multiple users collaborate on the platform and select the same IP for different clusters.
