@@ -17,7 +17,7 @@ aliases:
   - /observability/logging/disable
 ---
 
-In this article you will learn how you can disable managed logging for your cluster (ie. logs of components to ensure the observability of the cluster).
+In this article you will learn how you can disable managed logging for your cluster (i.e. logs of components to ensure the observability of the cluster).
 
 ## Introduction to logging
 
