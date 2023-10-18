@@ -117,7 +117,7 @@ The VMware Cloud Director provider is not yet supported by `kubectl gs template 
 
 Make sure to replace the relevant fields to fit your own VCD environment.
 
-This will install the relevant Helm charts [cluster-cloud-director](https://github.com/giantswarm/cluster-cloud-director) and [default-apps-cloud-director](https://github.com/giantswarm/default-apps-cloud-director) (bundle of default apps):
+This will install the relevant Helm charts [cluster-cloud-director](https://github.com/giantswarm/cluster-cloud-director) and [default-apps-cloud-director](https://github.com/giantswarm/default-apps-cloud-director) (bundle of default apps).
 
 {{< /tab >}}
 {{< tab id="cluster-capv" for-impl="capv">}}
