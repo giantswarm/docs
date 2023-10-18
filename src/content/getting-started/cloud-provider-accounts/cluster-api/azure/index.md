@@ -1,7 +1,7 @@
 ---
 linkTitle: Azure
-title: Prepare an Azure subscriptions to run Cluster API Giant Swarm cluster
-description: This guide will walk you through all necessary steps to set up an Azure subscriptions with appropriate IAM roles for operating Cluster API Giant Swarm clusters.
+title: Prepare an Azure subscription to run Cluster API Giant Swarm cluster
+description: This guide will walk you through all necessary steps to set up an Azure subscription with appropriate IAM roles for operating Cluster API Giant Swarm clusters.
 menu:
   main:
     identifier: gettingstarted-cloudprovider-clusterapi-azure
@@ -15,88 +15,26 @@ owner:
 last_review_date: 2023-10-16
 ---
 
-Currently the Giant Swarm Cluster API for Azure implementation supports only running the Management and Workload Clusters in a single subscription.
+Currently, the Giant Swarm Cluster API for Azure implementation supports only running the Management and Workload Clusters in a single subscription.
 
 ## Overview
 
 This document consists of the instructions for setting up Azure subscriptions that are needed to run Cluster API for Azure with Giant Swarm.
 
-## Procedure for Azure subscription configuration
+## Prerequisites
 
-Currently implemented Management Clusters bootstrap process [`mc-bootstrap`](https://github.com/giantswarm/mc-bootstrap)  with Cluster API for Azure (CAPZ) requires a `bootstrap Service Principal` to authenticate the `local capz` running in `kind` onto Azure. This is required to create the final result, that is the Management Cluster in the cloud provider and delegate the `capz controller responsabilities` to it.
+There are two main groups of requirements to be met before going over next steps:
 
-After the initial bootstrap is completed the `capz-controller` will use a `User Assigned managed identity` , created during the `mc-bootstrap` process for all further cloud interaction.
+1. Azure subscription must be chosen from existing ones or created if needed in customer Azure account. For security reasons in terms of any sensitive data stored within customer accounts, we advise to use subscription only designated for Giant Swarm Azure resources management
 
-This identity can:
-
-* Create Workload Clusters , and all the related resources, in the `same subscription` where the MC lives
-* Be `authorized by the Customer` to create Workload Clusters, and all the related resources, in _other subscriptions_ belonging to the same tenant - **NOTE** _this is not yet implemented_
-* Be `authorized by the Customer` to create Workload Clusters, and all the related resources, in _subscriptions that exist in other tenants_ - **NOTE** _this is not yet implemented_
-
-### 1. Prerequisites
-
-To create and assign the role to Giant Swarm's Service Principal you need:
+2. An individual has to have following permissions and tools working within the designated Azure subscription:
 
 * An account with [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner) or [User Access Administrator](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#user-access-administrator) role.
 * [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) installed.
 
-### 2. Create management cluster service principal for bootstrapping
+## Configure subscription to allow access for Giant Swarm Support
 
-First step is to create a `subscription` to host the `MC Cluster` and a `bootstrap SP` that will be used for the initial creation of the Cluster.
-
-#### Step 1a - Create the `bootstrap sp` using AZ CLI
-
-**NOTE** Using `az add app create`, `az ad app credential reset`, `az ad sp create --id` we should be able to create a set of credential with a much shorter expiration date.
-
-```bash
-
-MC_SUBSCRIPTION_ID=XXXX-XXXX-XXXX-XXX
-MC_NAME=ZZZZ
-
-az login
-az account set -s ${MC_SUBSCRIPTION_ID}
-az ad sp create-for-rbac --role contributor --scopes="/subscriptions/${MC_SUBSCRIPTION_ID}" --display-name "${MC_NAME}-bootstrap" --years 1
-az role assignment create --assignee <APP_ID_FROM_COMMAND_ABOVE> --role "User Access Administrator" --scope "/subscriptions/${MC_SUBSCRIPTION_ID}"
-```
-
-Store the output of `az ad sp create-for-rbac` , this needs to be provided to Giant Swarm in step 2.
-
-#### Step 1b - Create the `bootstrap sp` using the `Azure Portal`
-
-* Login to [Azure Portal](https://portal.azure.com/)
-* Go to `Azure Active Directory` service
-* From the left pane, select the `App registrations` section then click `New registration` from the menu at the top of the page
-* Enter the name `<MC_NAME>-bootstrap`
-* Select `Accounts in any organizational directory (Any Azure AD directory - Multitenant)` as Supported account types
-* Click `Register`
-* Go to the `Certificates & secrets` section. Under the `Client secrets` part, create a new `Client Secret`
-* Set expiration to 2 Days and click `Add`
-* Store the `Value` of the new secret , this needs to be provided to GiantSwarm later
-* Add RoleAssignment ot the newly created App
-    * Select the right `Subscription` for where the MC Should be created
-    * go to `Access control (IAM)`
-    * click `Add Role Assignment` and add the `Contributor` role and the `User Access Administrator` role to the APP with the `subscription` Scope
-
-#### Step 2 - Provide generated credentials to Giant Swarm
-
-At the end of this process the following information need to be provided to Giant Swarm using a secure transport:
-
-* ClientID
-* ClientSecret
-* SubscriptionID
-* TenantID
-
-In order to deliver this information to Giant Swarm securely:
-
-* go to https://keybase.io/encrypt
-* Add as a `recipient` the handle for the GiantSwarm employees that are performing the mc-bootstrap
-* Add the Informations above into the `Message to encrypt` and click `Encrypt`
-* A GPG Encrypted message should appear , click on `Done - nuke the plaintext`
-* Send the whole GPG Message to GiantSwarm
-
-## Configure Subscription to allow access for Giant Swarm Support
-
-Last step while configuring your Subscription is to grant access for Giant Swarm Ops/Support to your subscription in order to provide 24/7 support. Access to the portal is important part of the provided support, where in some cases manual interventions have to take place.
+First necessary step of configuring the Azure environment is to grant access for Giant Swarm Ops/Support to your subscription in order to provide 24/7 support. Access to the portal is important part of the provided support, where in some cases manual interventions have to take place.
 Easiest way is to use the Azure Lighthouse service, that allows to delegate the management of resources to third parties. While following this part of the guide, you will allow the Giant Swarm Staff group to manage your resources. This is beneficial as you will not have to manage access for each person separately within your subscription, but you will be adding a managed group that is kept up to date with the current active Giant Swarm Staff from our side.
 
 We require a built in role `Contributor` to access the resources that Giant Swarm is deploying and it can be used by default from the [Azure RBAC](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles).
@@ -130,6 +68,72 @@ az vm image terms accept --offer flatcar-container-linux-free --plan stable --pu
 ```
 
 This acceptance should be performed once for all subscriptions that are used to run Giant Swarm workload clusters.
+
+## Configure Azure subscription configuration for Management and Workload Clusters deployments 
+
+Currently implementation of management cluster's bootstrap process with Cluster API for Azure (CAPZ) requires a [Azure Service Principal](https://learn.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals?tabs=browser#service-principal-object) which we will further refer to as _Giant Swarm Service Principal_. This service principal is required to be configured with all necessary permissions for creation and managing Azure resources. 
+
+During bootstrapping process a [User Assigned managed identity](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp) is created that is from that point used for any interactions with the cloud resources.  
+
+This identity can:
+
+* Create Workload Clusters , and all the related resources, in the `same subscription` where the MC lives
+* Be `authorized by the Customer` to create Workload Clusters, and all the related resources, in _other subscriptions_ belonging to the same tenant - **NOTE** _this is not yet implemented_
+* Be `authorized by the Customer` to create Workload Clusters, and all the related resources, in _subscriptions that exist in other tenants_ - **NOTE** _this is not yet implemented_
+
+### Create management cluster service principal for bootstrapping
+
+After the prerequisites are satisfied, we can continue to create the _Giant Swarm Service Principal_. The creation can be performed in two different ways, either via [Azure CLI](#create-the-service-principal-using-az-cli) or [Azure Portal](#create-the-service-principal-using-the-azure-portal).
+
+#### Step 1 - Create the service principal
+
+##### Create the service principal using AZ CLI
+
+```bash
+
+MC_SUBSCRIPTION_ID=XXXX-XXXX-XXXX-XXX
+MC_NAME=ZZZZ
+
+az login
+az account set -s ${MC_SUBSCRIPTION_ID}
+az ad sp create-for-rbac --role contributor --scopes="/subscriptions/${MC_SUBSCRIPTION_ID}" --display-name "${MC_NAME}-bootstrap"
+az role assignment create --assignee <APP_ID_FROM_COMMAND_ABOVE> --role "User Access Administrator" --scope "/subscriptions/${MC_SUBSCRIPTION_ID}"
+```
+
+Store the output of `az ad sp create-for-rbac` , this needs to be provided to Giant Swarm in step 2.
+
+##### Create the service principal using the Azure Portal
+
+* Login to [Azure Portal](https://portal.azure.com/)
+* Go to `Azure Active Directory` service
+* From the left pane, select the `App registrations` section then click `New registration` from the menu at the top of the page
+* Enter the name `<MC_NAME>-bootstrap`
+* Select `Accounts in any organizational directory (Any Azure AD directory - Multitenant)` as Supported account types
+* Click `Register`
+* Go to the `Certificates & secrets` section. Under the `Client secrets` part, create a new `Client Secret`
+* Set expiration to 2 Days and click `Add`
+* Store the `Value` of the new secret , this needs to be provided to GiantSwarm later
+* Add RoleAssignment ot the newly created App
+    * Select the right `Subscription` for where the MC Should be created
+    * go to `Access control (IAM)`
+    * click `Add Role Assignment` and add the `Contributor` role and the `User Access Administrator` role to the APP with the `subscription` Scope
+
+#### Step 2 - Provide generated credentials to Giant Swarm
+
+At the end of this process the following information need to be provided to Giant Swarm using a secure transport:
+
+* ClientID
+* ClientSecret
+* SubscriptionID
+* TenantID
+
+Please talk to our Account Engineer that will organize a secure transport of your convenience, one of the possible ways is to use [Keybase](https://keybase.io/).
+
+#### Step 3 - Post deployment clean up
+
+After all necessary information is provided, Giant Swarm will kick off the management cluster bootstrapping process. With provided permissions, engineers will be able to work within your subscription to automatically create and further validate the infrastructure. 
+As soon as all the checks from Giant Swarm as well as customer side are done, we can clean up part of the initial setup. The _Giant Swarm Principal_ created in this section can be deleted as it is used only for the initial bootstrap, where the [User Assigned managed identity](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp) is created. 
+From now on this identity will be used to further manage any future or present cloud resources, hence the _Giant Swarm Principal_ can now be deleted.
 
 ## Further reading
 
