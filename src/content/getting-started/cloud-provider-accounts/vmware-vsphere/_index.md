@@ -2,7 +2,7 @@
 linkTitle: Preparing VMware vSphere for CAPI
 title: Preparing VMware vSphere for Cluster API
 description: How to set up your VMware vSphere Cluster tenant to run Giant Swarm management clusters and workload clusters under your jurisdiction.
-weight: 80
+weight: 50
 user_questions:
   - What are the VMware vSphere prerequisites for use with Giant Swarm?
   - What do I need to configure in VMware vSphere in order to run Giant Swarm clusters?
@@ -17,9 +17,9 @@ owner:
 ---
 In order to run the Giant Swarm platform in your VMware vSphere environment, a number of prerequisites must be satisfied to support Cluster API Provider vSphere (CAPV).
 
-## vSphere infrastructure
+## vSphere infrastructure and minimum version
 
-It is recommended to create resource pool for your cluster(s). However, it is possible to deploy them in the root resource pool (a.k.a. vSphere cluster).
+It is recommended to create a resource pool to deploy your Kubernetes cluster(s) nodes. However, it is possible to deploy them in the implicit root resource pool located at the vSphere cluster level.
 
 To use PersistentVolumes (PV), the cluster needs support for Cloud Native Storage (CNS), which is available in vSphere 6.7 Update 3 and later.
 
