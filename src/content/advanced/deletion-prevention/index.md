@@ -8,7 +8,7 @@ menu:
     parent: advanced
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bigmac
-last_review_date: 2023-08-23
+last_review_date: 2023-10-10
 user_questions:
   - How can I prevent the accidental deletion of resources?
   - How can I protect resources from accidental deletion?
@@ -37,7 +37,7 @@ The following `kubectl` commands show you how to apply the label to a cluster.
 
 {{< tab id="capi" for-impl="capi_any">}}
 
-```nohighlight
+```sh
 kubectl label app -n org-ORGANIZATION CLUSTER_NAME-default-apps \
   giantswarm.io/prevent-deletion=true
 
@@ -54,11 +54,26 @@ kubectl label configmap -n org-ORGANIZATION CLUSTER_NAME-userconfig \
 {{< /tab >}}
 {{< tab id="vintage" for-impl="vintage_any">}}
 
-```nohighlight
+```sh
 kubectl label cluster \
   -n org-ORGANIZATION \
   CLUSTER_NAME \
   giantswarm.io/prevent-deletion=true
+```
+
+{{< /tab >}}
+{{< tab id="app" title="Managed app">}}
+
+You can use the `--prevent-deletion` parameter or alternatively set the label manually.
+
+```sh
+kubectl gs template app \
+  --cluster-name=your-workload-cluster \
+  --catalog=giantswarm \
+  --name=nginx-ingress-controller-app \
+  --version=3.0.1 \
+  --target-namespace=kube-system \
+  --prevent-deletion
 ```
 
 {{< /tab >}}
