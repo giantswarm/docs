@@ -28,7 +28,7 @@ Logs of components deployed in the `kube-system` and `giantswarm` namespaces, as
 ## Why would I like to disable logging?
 
 You might create clusters where you do not need support from our operations team, for instance because you might just want to try something new for a while, or you are running a playground cluster where you know what you are doing.
-You may also have storage constraints and therefore would like to turn logging off.
+You may also have storage or cost constraints and therefore would like to turn logging off.
 
 ## Implications
 
