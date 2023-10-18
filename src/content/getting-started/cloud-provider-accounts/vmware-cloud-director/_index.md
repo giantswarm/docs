@@ -43,7 +43,7 @@ The Load Balancer section must be enabled on the Edge gateway with a Service Eng
 
 The nodes need at least one network with DHCP or a static IP pool enabled to obtain an IP when spinning up. They must have access to the VCD API endpoint for the controllers to work (CAPVCD, cloud provider interface and container storage interface). Note that we support connecting multiple networks to the nodes with static routes.
 
-Access to the internet is required for things like Flux pulling artifacts from Github, reaching out to Lets Encrypt to validate DNS01 challenges or containerd pulling container images. We support HTTP proxies and we can provide the list of domains to whitelist on the corporate firewall. Also, Giant Swarm is working on a local artifact registry as part of our efforts to reduce the need for internet connectivity.
+Access to the internet is required for things like Flux (our continuous delivery tooling) pulling artifacts from GitHub, reaching out to Let's Encrypt for certificate issuing, or containerd pulling container images. We support HTTP proxies and can provide the list of domains to allowlist on the corporate firewall.
 
 ## vApp templates (node images)
 
