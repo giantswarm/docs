@@ -69,9 +69,9 @@ az vm image terms accept --offer flatcar-container-linux-free --plan stable --pu
 
 This acceptance should be performed once for all subscriptions that are used to run Giant Swarm workload clusters.
 
-## Configure Azure subscription configuration for Management and Workload Clusters deployments 
+## Configure Azure subscription configuration for Management and Workload Clusters deployments
 
-Currently implementation of management cluster's bootstrap process with Cluster API for Azure (CAPZ) requires a [Azure Service Principal](https://learn.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals?tabs=browser#service-principal-object) which we will further refer to as _Giant Swarm Service Principal_. This service principal is required to be configured with all necessary permissions for creation and managing Azure resources. 
+Currently implementation of management cluster's bootstrap process with Cluster API for Azure (CAPZ) requires a [Azure Service Principal](https://learn.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals?tabs=browser#service-principal-object) which we will further refer to as _Giant Swarm Service Principal_. This service principal is required to be configured with all necessary permissions for creation and managing Azure resources.
 
 During bootstrapping process a [User Assigned managed identity](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp) is created that is from that point used for any interactions with the cloud resources.  
 
@@ -131,8 +131,8 @@ Please talk to our Account Engineer that will organize a secure transport of you
 
 #### Step 3 - Post deployment clean up
 
-After all necessary information is provided, Giant Swarm will kick off the management cluster bootstrapping process. With provided permissions, engineers will be able to work within your subscription to automatically create and further validate the infrastructure. 
-As soon as all the checks from Giant Swarm as well as customer side are done, we can clean up part of the initial setup. The _Giant Swarm Principal_ created in this section can be deleted as it is used only for the initial bootstrap, where the [User Assigned managed identity](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp) is created. 
+After all necessary information is provided, Giant Swarm will kick off the management cluster bootstrapping process. With provided permissions, engineers will be able to work within your subscription to automatically create and further validate the infrastructure.
+As soon as all the checks from Giant Swarm as well as customer side are done, we can clean up part of the initial setup. The _Giant Swarm Principal_ created in this section can be deleted as it is used only for the initial bootstrap, where the [User Assigned managed identity](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp) is created.
 From now on this identity will be used to further manage any future or present cloud resources, hence the _Giant Swarm Principal_ can now be deleted.
 
 ## Further reading
