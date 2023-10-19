@@ -18,7 +18,7 @@ If your cluster is running on VMware Cloud Director (VCD), it comes with a dynam
 
 ## Storage Classes
 
-Your Kubernetes cluster will have a default Storage Class `csi-vcd-sc-delete` deployed, which will automatically get selected if you do not specify the Storage Class in your Persistent Volumes. Another Storage Class `csi-vcd-sc-retain` is also created with `reclaimPolicy: Retain` which you must explicitely specify to use.
+Your Kubernetes cluster will have a default Storage Class `csi-vcd-sc-delete` deployed, which will automatically get selected if you do not specify the Storage Class in your Persistent Volumes. On deletion of the volume, the data is deleted. In order to avoid deleting the data when the `PersistentVolume` object is deleted, you can use the Storage Class `csi-vcd-sc-retain` which is configured with `reclaimPolicy: Retain`.
 
 As a Cluster Admin you can create additional Storage Classes or edit the default class to use different types of VMware Storage Profiles or for instance, add encryption.
 
