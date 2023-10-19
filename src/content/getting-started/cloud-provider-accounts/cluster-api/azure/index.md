@@ -68,7 +68,7 @@ az vm image terms accept --offer flatcar-container-linux-free --plan stable --pu
 
 This acceptance should be performed once for a subscription that is used to run Giant Swarm workload clusters.
 
-## Configure Azure subscription configuration for Management and Workload Clusters deployments
+### Configure Azure subscription configuration for Management and Workload Cluster deployments
 
 Currently implementation of management cluster's bootstrap process with Cluster API for Azure (CAPZ) requires a [Azure Service Principal](https://learn.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals?tabs=browser#service-principal-object) which we will further refer to as _Giant Swarm Service Principal_. This service principal is required to be configured with all necessary permissions for creation and managing Azure resources.
 
