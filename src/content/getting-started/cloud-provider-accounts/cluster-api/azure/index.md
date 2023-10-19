@@ -57,7 +57,7 @@ The Delegated Resource Management template uses a [parameters file](https://raw.
 
 __Warning__: Please remember to change the `roleDefinitionId` in case you would like to use your custom role definition. Moreover, ask your Account Engineer so he can provide you with the `GiantSwarmPrincipalID` and `GiantSwarmTenantID` values.
 
-## Accept legal terms for deployment of Flatcar image
+### Accept legal terms for the deployment of Flatcar image
 
 Giant Swarm deploys [Flatcar](https://www.flatcar-linux.org/) image developed by Kinvolk from Azure Marketplace. In order to be able to run the image, it is required by Azure to accept the legal terms.
 Please run the following command prior to creating a cluster on a given subscription:
