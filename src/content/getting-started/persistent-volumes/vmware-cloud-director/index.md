@@ -7,9 +7,6 @@ menu:
   main:
     identifier: gettingstarted-persistentvolumes-clouddirector
     parent: gettingstarted-persistentvolumes
-aliases:
-  - /guides/using-persistent-volumes-on-clouddirector/
-  - /ui-api/observability/prometheus/persistent-volumes/clouddirector/
 user_questions:
   - How can I use persistent volumes in my VMware Cloud Director clusters?
 owner:
