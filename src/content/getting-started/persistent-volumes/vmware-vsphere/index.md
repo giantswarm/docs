@@ -2,7 +2,7 @@
 linkTitle: PVs on VMware vSphere
 title: Using persistent volumes on VMware vSphere
 description: Tutorial on how to use dynamically provisioned Persistent Volumes on a cluster running on VMware vSphere.
-weight: 10
+weight: 50
 menu:
   main:
     identifier: gettingstarted-persistentvolumes-vSphere
