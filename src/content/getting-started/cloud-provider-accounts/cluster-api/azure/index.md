@@ -76,9 +76,9 @@ During bootstrapping process a [User Assigned managed identity](https://learn.mi
 
 This identity can:
 
-- Create Workload Clusters, and all the related resources, in the `same subscription` where the MC lives
-- Be `authorized by the Customer` to create Workload Clusters, and all the related resources, in _other subscriptions_ belonging to the same tenant - **NOTE** _this is not yet implemented_
-- Be `authorized by the Customer` to create Workload Clusters, and all the related resources, in _subscriptions that exist in other tenants_ - **NOTE** _this is not yet implemented_
+* Create Workload Clusters, and all the related resources, in the `same subscription` where the MC lives
+* Be `authorized by the Customer` to create Workload Clusters, and all the related resources, in _other subscriptions_ belonging to the same tenant - __NOTE__ _this is not yet implemented_
+* Be `authorized by the Customer` to create Workload Clusters, and all the related resources, in _subscriptions that exist in other tenants_ - __NOTE__ _this is not yet implemented_
 
 ### Create management cluster service principal for bootstrapping
 
