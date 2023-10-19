@@ -59,7 +59,7 @@ As a result the user requires the following permissions: `Host > Edit > Modify c
 
 ## Networking
 
-DHCP service must be enabled in the primary VM Network to assign IP addresses to the network interfaces of the nodes.
+The DHCP service must be enabled in the primary VM Network to assign IP addresses to the network interfaces of the nodes.
 
 Because the base implementation of CAPV includes a layer-2 load balancer, some customers may prefer to use NSX ALB, especially if they already have it in the environment. As a result, the implementation may vary across customers.
 
