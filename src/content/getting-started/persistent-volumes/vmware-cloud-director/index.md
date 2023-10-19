@@ -61,7 +61,7 @@ spec:
 
 Note that the Access Mode, while being fixed with Named Disks, still needs to be defined as `ReadWriteOnce` in the manifest.
 
-Further, as we are not defining a Storage Class the Kubernetes cluster will just take the default storage class (here `csi-vcd-sc-delete`).
+Further, as we are not defining a Storage Class the Kubernetes cluster will use the default storage class (here `csi-vcd-sc-delete`).
 
 Now we can create a Pod that uses our PVC:
 
