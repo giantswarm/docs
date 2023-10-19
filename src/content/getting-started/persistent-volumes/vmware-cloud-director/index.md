@@ -36,7 +36,7 @@ __Note__: Do not delete virtual machines that have a Named Disk attached or it w
 
 ## Using Persistent Volumes in a Pod
 
-Once you have a Persistent Volume Claim you can [claim it as a Volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#claims-as-volumes) in your Pods.
+Once you have a Persistent Volume Claim you can [mount the volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#claims-as-volumes) in your pods.
 
 Note that a Named Disk can only be used by a single Pod at the same time. Thus, the access mode of your PVC can only be `ReadWriteOnce`.
 
