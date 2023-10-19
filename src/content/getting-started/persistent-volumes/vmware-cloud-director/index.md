@@ -91,7 +91,7 @@ As of version 1.4.0 of the VCD Container Storage Interface (CSI), volume expansi
 
 ## Deleting Persistent Volumes
 
-By default the Reclaim Policy of Persistent Volumes in your cluster is set to `Delete`. Thus, deleting the `PersistentVolume` resource will also delete the respective Named Disk. Similarly, by default if you delete a `PersistenVolumeClaim` resource the respective Persistent Volume and Named Disk will get deleted.
+The default storage class uses `reclaimPolicy: Delete`. Thus, deleting a `PersistentVolume` resource will also delete the respective Named Disk. Similarly, if you delete a `PersistenVtolumeClaim` resource, the respective `PersistentVolume` and Named Disk will get deleted.
 
 Note that deleting an application that is using Persistent Volumes might not automatically also delete its storage, so in most cases you will have to manually delete the `PersistenVolumeClaim` resources to clean up.
 
