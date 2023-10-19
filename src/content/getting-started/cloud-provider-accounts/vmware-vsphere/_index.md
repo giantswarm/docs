@@ -55,7 +55,7 @@ The role must be assigned to the following objects:
 
 If you want to leverage failure domains at the host level where a group of hosts is a failure domain (stretched cluster, racks, PDU distribution...), CAPV will need to work with Anti-Affinity rules.
 
-As a result the user requires the following permissions: `Host > Edit > Modifiy cluster`
+As a result the user requires the following permissions: `Host > Edit > Modify cluster`
 
 ## Networking
 
