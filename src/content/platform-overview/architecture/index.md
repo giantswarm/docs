@@ -119,7 +119,7 @@ A network needs to be specified in the cluster definition to identify where the 
 
 ##### vSphere Compute
 
-The Kubernetes cluster is represented in VMware vSphere by a collection of virtual machines for each node. When configuring the control plane nodes or a node class for a node pool, several parameters can be set for the virtual machines such as the resources, storage policy, virtual disk size etc.
+The Kubernetes cluster nodes are represented in VMware vSphere by a collection of virtual machines. When configuring the control plane nodes or a node class for a node pool, several parameters can be set for the virtual machines such as the resources, storage policy, virtual disk size etc.
 
 ##### vSphere Storage
 
