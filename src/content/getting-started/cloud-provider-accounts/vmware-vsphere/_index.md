@@ -83,4 +83,4 @@ The network (nodes) must have access to the vCenter endpoint on port 443 for the
 
 ## VM templates (node images)
 
-Giant Swarm must have the permissions to upload VM templates to deploy kubernetes nodes from. They will be named following this convention `ubuntu-2004-kube-v1.24.11`.
+Giant Swarm must have the permissions to upload VM templates to deploy Kubernetes nodes from. They will be named following the convention `ubuntu-2004-kube-v1.24.11`.
