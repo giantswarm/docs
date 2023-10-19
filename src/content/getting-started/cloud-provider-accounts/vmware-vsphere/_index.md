@@ -73,7 +73,7 @@ As a result, the network in which the cluster is deployed must have a range of t
 {{< /tab >}}
 
 {{< tab id="flags-nsxalb" title="NSX ALB">}}
-In the case of using NSX Advanced Load Balancer (NSX ALB), the virtual IP addresses management is handled by the Service Engine.
+In the case of using NSX Advanced Load Balancer (NSX ALB), the virtual IP addresses management is handled by the NSX ALB Service Engine.
 
 Giant Swarm is currently working on adding support for Avi Kubernetes Operator (AKO) in the clusters to handle Kubernetes API access and services of type load balancer.
 {{< /tab >}}
