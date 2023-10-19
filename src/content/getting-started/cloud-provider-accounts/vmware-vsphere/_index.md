@@ -25,7 +25,9 @@ To use PersistentVolumes (PV), the cluster needs support for Cloud Native Storag
 
 ## vSphere User permissions
 
-The user role assigned to the CAPV user must have at least the following permissions:
+In order to follow the principle of least privilege, it is recommended to create a user role with the minimum permissions required and assign it to a user that is dedicated to CAPV.
+
+You can create a user role in `Administration > Access Control > Roles > NEW`. This user role must have at least the following permissions:
 
 | Categorie | permissions |
 | -------- | -------- |
