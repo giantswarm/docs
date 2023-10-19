@@ -67,7 +67,7 @@ Because the base implementation of CAPV includes a layer-2 load balancer, some c
 {{< tab id="flags-kubevip" title="kube-vip">}}
 Since vSphere has no concept of load balancers out of the box, CAPV ships with [kube-vip]({{< relref "/advanced/vsphere-kubevipt" >}}), a layer-2 load balancer that works with ARP requests. By default, `kube-vip` only handles the Kubernetes API access but at Giant Swarm, we also deploy the `kube-vip` cloud provider to offer the capability to create services of type load balancer.
 
-As a result, the network in which the cluster is deployed must have a range of the subnet that is outside of the DHCP scope and dedicated to `kube-vip`. We recommend one Management cluster per subnet to avoid mistakes leading to IP conflicts. Example below:
+As a result, the network in which the cluster is deployed must have a range of the subnet that is outside of the DHCP scope and dedicated to `kube-vip`. We recommend one management cluster per subnet to avoid mistakes leading to IP conflicts. Example below:
 
 ![capv kubevip ipam](capv-kubevip-ipam.png)
 {{< /tab >}}
