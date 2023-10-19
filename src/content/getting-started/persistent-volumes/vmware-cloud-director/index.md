@@ -76,9 +76,9 @@ spec:
       image: nginx
       volumeMounts:
       - mountPath: "/var/www/html"
-        name: mypd
+        name: myvol
   volumes:
-    - name: mypd
+    - name: myvol
       persistentVolumeClaim:
         claimName: myclaim
 ```
