@@ -1,5 +1,5 @@
 ---
-linkTitle: PVs on VMware Cloud Director
+linkTitle: VMware Cloud Director
 title: Using persistent volumes on VMware Cloud Director
 description: Tutorial on how to use dynamically provisioned Persistent Volumes on a cluster running on VMware Cloud Director.
 weight: 10
