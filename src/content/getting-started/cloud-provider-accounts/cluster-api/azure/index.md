@@ -37,7 +37,7 @@ There are two main groups of requirements to be met before going over next steps
 Firstly, please grant access for Giant Swarm Ops/Support to your Azure subscription. Access to the portal is important for our 24/7 support, where in some cases investigation and manual interventions have to take place.
 The easiest way is to create an [Azure Deployment Environment](https://azure.microsoft.com/en-us/products/deployment-environments) to delegate the management of resources to third parties. In this case, you need to allow the Giant Swarm Staff group to manage your resources. This is beneficial as you will not have to manage access for each person separately within your subscription, but you will add a managed group that is kept up to date by Giant Swarm. Technically, an [Azure Lighthouse](https://docs.microsoft.com/en-us/azure/lighthouse/how-to/onboard-customer) template is used for resource delegation.
 
-We require a built in role `Contributor` to access the resources that Giant Swarm is deploying and it can be used by default from the [Azure RBAC](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles).
+We recommend choosing Azure's [built-in role `Contributor`](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles) to give Giant Swarm access and deployment permissions for resources within your subscription.
 
 Alternatively, you can create your own role assignment with restrictions to access specific Resource Groups, however it must be kept up to date so that Giant Swarm can provide full support also for newly-created clusters.
 
