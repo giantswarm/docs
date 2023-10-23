@@ -131,7 +131,7 @@ Please talk to our Account Engineer who will organize a secure, encrypted transp
 
 After all necessary information is provided, Giant Swarm will create the management cluster. With the provided permissions, engineers will be able to work within your subscription to automatically create and further validate the infrastructure.
 
-As soon as all the checks from Giant Swarm as well as the customer side are done, we can clean up part of the initial setup. The _Giant Swarm Service Principal_ created in this section can be deleted as it is used only for the initial bootstrap, during which the [User Assigned managed identity](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp) is created.
+As soon as all the checks from Giant Swarm as well as the customer side are done, we can clean up part of the initial setup. The _Giant Swarm Service Principal_ can be deleted as it is used only for the initial bootstrap, during which an [Azure user-assigned managed identity](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp) is created.
 
 From now on this identity will be used to further manage any future or present cloud resources, hence the _Giant Swarm Service Principal_ can now be deleted.
 
