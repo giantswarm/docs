@@ -30,7 +30,7 @@ There are two main groups of requirements to be met before going over next steps
 2. An individual has to have the following permissions and tools working within the designated Azure subscription:
 
 * An account with [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner) or [User Access Administrator](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#user-access-administrator) role.
-* [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) installed and configured to point to chosen subscription via [az account set](https://github.com/giantswarm/docs/pull/1940/files/30fc708bf40e2a33019bbdb267ca42b4817e14a8#diff-f643f08b715e952ecc3b1974979ace927c93b6abed1676f49aa73a4c91b7b768) command.
+* [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) installed and configured to point to chosen subscription via [az account set](https://learn.microsoft.com/en-us/cli/azure/account?view=azure-cli-latest#az-account-set) command.
 
 ### Configure subscription to allow access to Giant Swarm Support
 
