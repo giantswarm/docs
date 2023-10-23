@@ -71,9 +71,13 @@ ARP is a layer 2 protocol that is used to inform the network of the location of 
 
 ![capv kubevip](capv-kubevip.png)
 
-As a result, the network in which the cluster is deployed must have a range of the subnet that is outside of the DHCP scope and dedicated to `kube-vip`. We recommend one management cluster per subnet to avoid mistakes leading to IP conflicts. Example below:
+As a result, the network in which the cluster is deployed must have a range of the subnet outside of the DHCP scope and dedicated to `kube-vip`. We recommend one management cluster per subnet to avoid mistakes leading to IP conflicts. Example below:
 
 ![capv kubevip ipam](capv-kubevip-ipam.png)
+
+By default, when deploying a CAPV cluster, it will automatically pick up an IP from the ipam pool. However, you must explicitely set a CIDR located in the nodes' subnet to have available IPs for services of type load balancer in the workload cluster.
+
+Learn more about how to configure `kube-vip` for CAPV in the [advanced documentation]({{< relref "/advanced/vsphere-kubevip" >}}).
 {{< /tab >}}
 
 {{< tab id="flags-nsxalb" title="NSX ALB">}}
