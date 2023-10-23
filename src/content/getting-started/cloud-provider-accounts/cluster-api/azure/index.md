@@ -103,19 +103,20 @@ Store the output of `az ad sp create-for-rbac` , this needs to be provided to Gi
 
 ##### Create the service principal using the Azure Portal
 
-* Login to [Azure Portal](https://portal.azure.com/)
-* Go to `Azure Active Directory` service
-* From the left pane, select the `App registrations` section then click `New registration` from the menu at the top of the page
+* Login to the [Azure Portal](https://portal.azure.com/)
+* Go to "Azure Active Directory" service
+* From the left pane, select the "App registrations" section, then click "New registration" from the menu at the top of the page
 * Enter the name `<MC_NAME>-bootstrap`
-* Select `Accounts in any organizational directory (Any Azure AD directory - Multitenant)` as Supported account types
-* Click `Register`
-* Go to the `Certificates & secrets` section. Under the `Client secrets` part, create a new `Client Secret`
-* Set expiration to 2 Days and click `Add`
-* Store the `Value` of the new secret , this needs to be provided to GiantSwarm later
-* Add RoleAssignment ot the newly created App
-    * Select the right `Subscription` for where the MC Should be created
-    * go to `Access control (IAM)`
-    * click `Add Role Assignment` and add the `Contributor` role and the `User Access Administrator` role to the APP with the `subscription` Scope
+* Select "Accounts in any organizational directory (Any Azure AD directory - Multitenant)" as "Supported account types"
+* Click "Register"
+* Go to the "Certificates & secrets" section. Under the "Client secrets" part, create a new "Client Secret"
+* Set expiration to 2 Days and click "Add"
+* Store the "Value" of the new secret. This needs to be provided to Giant Swarm later.
+* Add "RoleAssignment" to the newly created App
+
+    * Select the right "Subscription" for where the management cluster (MC) should be created
+    * Go to "Access control (IAM)"
+    * Click "Add Role Assignment" and add the "Contributor" role and the "User Access Administrator" role to the App with the "subscription" Scope
 
 #### Step 2 - Provide generated credentials to Giant Swarm
 
