@@ -84,7 +84,7 @@ You can continue to create the _Giant Swarm Service Principal_. The creation can
 Please run the following command and keep the output for later usage.
 
 ```sh
-
+# Please fill in the details of the management cluster (MC) and Azure subscription
 MC_SUBSCRIPTION_ID=XXXX-XXXX-XXXX-XXX
 MC_NAME=ZZZZ
 
