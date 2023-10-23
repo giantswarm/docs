@@ -61,11 +61,15 @@ As a result the user requires the following permissions: `Host > Edit > Modify c
 
 A network needs to be specified in the cluster definition to identify where the default gateway will be and where to connect the virtual machines (VMs). The DHCP service must be enabled on this network to assign IP addresses to the nodes.
 
-Because the base implementation of CAPV includes a layer-2 load balancer, some customers may prefer to use NSX ALB, especially if they already have it in the environment. As a result, the implementation may vary across customers.
+Because vSphere has no concept of load balancer, the implementation of CAPV includes `kube-vip`, a layer-2 load balancer to address all environments, including those where NSX Advanced Load Balancer isn't available.
 
 {{< tabs >}}
 {{< tab id="flags-kubevip" title="kube-vip">}}
-Since vSphere has no concept of load balancers out of the box, CAPV ships with [kube-vip]({{< relref "/advanced/vsphere-kubevip" >}}), a layer-2 load balancer that works with ARP requests. By default, `kube-vip` only handles the Kubernetes API access but at Giant Swarm, we also deploy the `kube-vip` cloud provider to offer the capability to create services of type load balancer.
+Since vSphere has no concept of load balancers out of the box, CAPV ships with [kube-vip]({{< relref "/advanced/vsphere-kubevip" >}}), a layer-2 load balancer that works with ARP requests. By default, `kube-vip` only handles the Kubernetes API access but at Giant Swarm, we also deploy the `kube-vip` cloud provider to offer the capability to create services of type load balancer. 
+
+ARP is a layer 2 protocol that is used to inform the network of the location of a new address. `kube-vip` runs in-cluster as opposed to a more traditional external load-balancer that will forward IP packets to its backend servers.
+
+![capv kubevip](capv-kubevip.png)
 
 As a result, the network in which the cluster is deployed must have a range of the subnet that is outside of the DHCP scope and dedicated to `kube-vip`. We recommend one management cluster per subnet to avoid mistakes leading to IP conflicts. Example below:
 
@@ -75,7 +79,10 @@ As a result, the network in which the cluster is deployed must have a range of t
 {{< tab id="flags-nsxalb" title="NSX ALB">}}
 In the case of using NSX Advanced Load Balancer (NSX ALB), the virtual IP addresses management is handled by the NSX ALB Service Engine.
 
-Giant Swarm is currently working on adding support for Avi Kubernetes Operator (AKO) in the clusters to handle Kubernetes API access and services of type load balancer.
+Reconciliation of the NSX ALB resources can be done using Avi Kubernetes Operator (AKO) in the clusters to handle Kubernetes API access and services of type load balancer.
+
+![capv kubevip](capv-nsxalb.png)
+
 {{< /tab >}}
 {{< /tabs >}}
 
