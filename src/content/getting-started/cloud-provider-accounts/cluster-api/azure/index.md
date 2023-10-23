@@ -41,21 +41,24 @@ We recommend choosing Azure's [built-in role `Contributor`](https://docs.microso
 
 Alternatively, you can create your own role assignment with restrictions to access specific Resource Groups, however it must be kept up to date so that Giant Swarm can provide full support also for newly-created clusters.
 
-When all is set you can simply run this command:
+Please follow these instructions to create the Azure Deployment Environment:
 
-```nohighlight
-az deployment create --name <deploymentName (unique by subscription)> \
-                     --location <AzureRegion> \
-                     --template-file delegatedResourceManagement.json \
-                     --parameters delegatedResourceManagement.parameters.json \
-                     --verbose
-```
+* Download the template file [delegatedResourceManagement.json](https://raw.githubusercontent.com/giantswarm/azure-operator/master/docs/delegatedResourceManagement.json). This file is left unchanged.
+* Download the parameters example file [delegatedResourceManagement.parameters.json](https://raw.githubusercontent.com/giantswarm/azure-operator/master/docs/delegatedResourceManagement.parameters.json) and fill in the required fields:
 
-You will have to supply a general Delegated Resource Management [template file](https://raw.githubusercontent.com/giantswarm/azure-operator/master/docs/delegatedResourceManagement.json).
+    * Replace `<GiantSwarmTenantID>` and `<GiantSwarmPrincipalID>` with the values provided by Giant Swarm's Account Engineer
+    * Keep the value of `roleDefinitionId` if you are fine assigning the `Contributor` role. If a custom role is desired, please replace the value.
+* Now you can run this command to create the Deployment Environment:
 
-The Delegated Resource Management template uses a [parameters file](https://raw.githubusercontent.com/giantswarm/azure-operator/master/docs/delegatedResourceManagement.parameters.json) to supply the needed variables for configuration.
+    ```sh
+    az deployment create --name "giantswarm-access" \
+                         --location <AzureRegion> \
+                         --template-file delegatedResourceManagement.json \
+                         --parameters delegatedResourceManagement.parameters.json \
+                         --verbose
+    ```
 
-__Warning__: Please remember to change the `roleDefinitionId` in case you would like to use your custom role definition. Moreover, ask your Account Engineer so he can provide you with the `GiantSwarmPrincipalID` and `GiantSwarmTenantID` values.
+    The `--name` value can be freely chosen in case you prefer another name.
 
 ### Accept legal terms for the deployment of Flatcar Linux images
 
