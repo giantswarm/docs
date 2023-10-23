@@ -80,6 +80,14 @@ Besides the Kubernetes machines, we run a bastion host that helps us with the op
 Although we try to maintain feature parity between infrastructure providers, offering the same features and using the same configuration, there are some subtle differences depending on the underlying provider functionality.
 
 {{< tabs >}}
+{{< tab id="flags-aws" title="AWS">}}
+
+The setup uses a standalone VPC (though you can bring your own VPC) and creates private subnets for the machine in each availability zone. It uses NAT gateways for allowing machines to pull images or route requests from containers to the Internet. On the other side, it needs an Internet Gateway to route traffic from Internet to the containers. It leverages route tables to configure the routing for each subnet and gateways.
+
+{{< /tab >}}
+{{< tab id="flags-capz" title="Azure">}}
+
+{{< /tab >}}
 {{< tab id="flags-clouddirector" title="VMware Cloud Director">}}
 
 ##### VCD Compatibility
@@ -124,14 +132,6 @@ The Kubernetes cluster nodes are represented in VMware vSphere by a collection o
 ##### vSphere Storage
 
 In order to offer [persistent storage](../../getting-started/persistent-volumes/vmware-vsphere/index.md) that is decoupled from the virtual machines, the container storage interface creates a Cloud Native Storage disk (CNS) that can be attached or detached from the VM according to whether or not the persistent volume claim (PVC) is bound to a pod or not. CNS disks currently only support Read-Write-Only (RWO) with block storage-backed virtual disks but vSAN File Services (NFS in the background) supports Read-Write-Many (RWX).
-
-{{< /tab >}}
-{{< tab id="flags-aws" title="AWS">}}
-
-The setup uses a standalone VPC (though you can bring your own VPC) and creates private subnets for the machine in each availability zone. It uses NAT gateways for allowing machines to pull images or route requests from containers to the Internet. On the other side, it needs an Internet Gateway to route traffic from Internet to the containers. It leverages route tables to configure the routing for each subnet and gateways.
-
-{{< /tab >}}
-{{< tab id="flags-capz" title="Azure">}}
 
 {{< /tab >}}
 {{< /tabs >}}

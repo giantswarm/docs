@@ -6,8 +6,6 @@ weight: 40
 aliases:
   - /getting-started/capa-wlcluster-creation/
   - /getting-started/capz-cluster-creation/
-  - /getting-started/capv-cluster-creation/
-  - /getting-started/capvcd-cluster-creation/
   - /getting-started/kubectl-gs/
 menu:
   main:
