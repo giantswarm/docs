@@ -30,8 +30,6 @@ Alternatively, to be able to set more specific parameters on your PV you can fir
 
 Under the hood, the Dynamic Storage Provisioner will take care that a corresponding Named Disk with the correct parameters is created in the VMware Cloud Director OVDC.
 
-The Named Disk and its data will persist as long as the corresponding PV resource exists. Deleting the resource will also delete the corresponding Named Disk, which means that all stored data will be lost at that point.
-
 __Note__: Do not delete virtual machines that have a Named Disk attached or it will be left in an inconsistent state and the VCD admins will need to intervene to clean it up.
 
 ## Using Persistent Volumes in a Pod
