@@ -81,7 +81,9 @@ You can continue to create the _Giant Swarm Service Principal_. The creation can
 
 ##### Create the service principal using AZ CLI
 
-```bash
+Please run the following command and keep the output for later usage.
+
+```sh
 
 MC_SUBSCRIPTION_ID=XXXX-XXXX-XXXX-XXX
 MC_NAME=ZZZZ
