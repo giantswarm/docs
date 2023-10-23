@@ -133,8 +133,6 @@ After all necessary information is provided, Giant Swarm will create the managem
 
 As soon as all the checks from Giant Swarm as well as the customer side are done, we can clean up part of the initial setup. The _Giant Swarm Service Principal_ can be deleted as it is used only for the initial bootstrap, during which an [Azure user-assigned managed identity](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp) is created.
 
-From now on this identity will be used to further manage any future or present cloud resources, hence the _Giant Swarm Service Principal_ can now be deleted.
-
 ## Further reading
 
 * [Azure Lighthouse](https://docs.microsoft.com/en-us/azure/lighthouse/how-to/onboard-customer)
