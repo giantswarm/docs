@@ -12,8 +12,6 @@ user_questions:
   - What IP should I use for Kube-vip with CAPV?
   - How to set a range of IPs for load balancer in Kube-vip with CAPV?
   - Where can I see the IPs in use by Kube-vip?
-aliases:
-  - /guides/kube-vip-for-capv/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
 ---
