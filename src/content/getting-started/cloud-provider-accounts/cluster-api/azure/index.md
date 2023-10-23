@@ -131,7 +131,7 @@ Please talk to our Account Engineer that will organize a secure transport of you
 
 #### Step 3 - Post deployment clean up
 
-After all necessary information is provided, Giant Swarm will kick off the management cluster bootstrapping process. With the provided permissions, engineers will be able to work within your subscription to automatically create and further validate the infrastructure.
+After all necessary information is provided, Giant Swarm will create the management cluster. With the provided permissions, engineers will be able to work within your subscription to automatically create and further validate the infrastructure.
 
 As soon as all the checks from Giant Swarm as well as the customer side are done, we can clean up part of the initial setup. The _Giant Swarm Service Principal_ created in this section can be deleted as it is used only for the initial bootstrap, during which the [User Assigned managed identity](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp) is created.
 
