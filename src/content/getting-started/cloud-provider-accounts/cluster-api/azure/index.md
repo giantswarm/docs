@@ -91,7 +91,10 @@ MC_NAME=ZZZZ
 az login
 az account set -s ${MC_SUBSCRIPTION_ID}
 az ad sp create-for-rbac --role contributor --scopes="/subscriptions/${MC_SUBSCRIPTION_ID}" --display-name "${MC_NAME}-bootstrap"
-az role assignment create --assignee <APP_ID_FROM_COMMAND_ABOVE> --role "User Access Administrator" --scope "/subscriptions/${MC_SUBSCRIPTION_ID}"
+az role assignment create \
+    --assignee "<please fill in the app ID from the previous command output>" \
+    --role "User Access Administrator" \
+    --scope "/subscriptions/${MC_SUBSCRIPTION_ID}"
 ```
 
 Store the output of `az ad sp create-for-rbac` , this needs to be provided to Giant Swarm in step 2.
