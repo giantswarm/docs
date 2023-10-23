@@ -71,7 +71,7 @@ This acceptance needs to be performed only once for a subscription that is used 
 
 ### Configure Azure subscription for Management and Workload Cluster deployments
 
-Currently implementation of management cluster's bootstrap process with Cluster API for Azure (CAPZ) requires a [Azure Service Principal](https://learn.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals?tabs=browser#service-principal-object) which we will further refer to as _Giant Swarm Service Principal_. This service principal is required to be configured with all necessary permissions for creation and managing Azure resources.
+Cluster API for Azure (CAPZ), the open source component used to deploy clusters, requires an [Azure Service Principal](https://learn.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals?tabs=browser#service-principal-object) which we will further refer to as _Giant Swarm Service Principal_. This service principal requires certain permissions to create and manage Azure resources.
 
 During bootstrapping process a [User Assigned managed identity](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp) is created that is from that point used for any interactions with the cloud resources.  
 
