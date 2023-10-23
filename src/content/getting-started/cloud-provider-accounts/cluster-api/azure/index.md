@@ -97,7 +97,7 @@ az role assignment create \
     --scope "/subscriptions/${MC_SUBSCRIPTION_ID}"
 ```
 
-Store the output of `az ad sp create-for-rbac` , this needs to be provided to Giant Swarm in step 2.
+Store the output of `az ad sp create-for-rbac`. This needs to be provided to Giant Swarm in step 2.
 
 ##### Create the service principal using the Azure Portal
 
