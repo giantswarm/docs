@@ -129,7 +129,7 @@ At the end of this process the following information need to be provided to Gian
 
 Please talk to our Account Engineer that will organize a secure transport of your convenience, one of the possible ways is to use [Keybase](https://keybase.io/).
 
-#### Step 3 - Post deployment clean up
+#### Step 3 - Post deployment cleanup
 
 After all necessary information is provided, Giant Swarm will create the management cluster. With the provided permissions, engineers will be able to work within your subscription to automatically create and further validate the infrastructure.
 
