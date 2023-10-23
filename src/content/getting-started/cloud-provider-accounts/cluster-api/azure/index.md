@@ -120,7 +120,7 @@ Store the output of `az ad sp create-for-rbac` , this needs to be provided to Gi
 
 #### Step 2 - Provide generated credentials to Giant Swarm
 
-At the end of this process the following information need to be provided to Giant Swarm using a secure transport:
+The following information needs to be provided to Giant Swarm using a secure transport:
 
 * ClientID
 * ClientSecret
