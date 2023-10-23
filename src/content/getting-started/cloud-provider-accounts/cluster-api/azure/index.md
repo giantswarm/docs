@@ -75,9 +75,9 @@ Cluster API for Azure (CAPZ), the open source component used to deploy clusters,
 
 ### Create management cluster service principal for bootstrapping
 
-After the prerequisites are satisfied, we can continue to create the _Giant Swarm Service Principal_. The creation can be performed in two different ways, either via [Azure CLI](#create-the-service-principal-using-az-cli) or [Azure Portal](#create-the-service-principal-using-the-azure-portal).
-
 #### Step 1 - Create the service principal
+
+You can continue to create the _Giant Swarm Service Principal_. The creation can be performed in two different ways, either via Azure CLI or Azure Portal.
 
 ##### Create the service principal using AZ CLI
 
