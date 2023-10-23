@@ -39,7 +39,7 @@ The easiest way is to create an [Azure Deployment Environment](https://azure.mic
 
 We require a built in role `Contributor` to access the resources that Giant Swarm is deploying and it can be used by default from the [Azure RBAC](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles).
 
-You can also create your own role assignment with restrictions to access specific Resource Groups, however it needs to be remembered to refresh the role with every newly created cluster so we can provide full support starting from the clusters creation.
+Alternatively, you can create your own role assignment with restrictions to access specific Resource Groups, however it must be kept up to date so that Giant Swarm can provide full support also for newly-created clusters.
 
 When all is set you can simply run this command:
 
