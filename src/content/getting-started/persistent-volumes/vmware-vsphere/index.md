@@ -41,7 +41,9 @@ The CNS disk and its data will persist as long as the corresponding PV resource 
 
 Once you have a Persistent Volume Claim you can [claim it as a Volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#claims-as-volumes) in your Pods.
 
-Note that a Named Disk can only be used by a single Pod at the same time. Thus, the access mode of your PVC can only be `ReadWriteOnce`.
+Note that a CNS Disk can only be used by a single Pod at the same time. Thus, the access mode of your PVC can only be `ReadWriteOnce`.
+
+Note that CNS disks currently only support Read-Write-Only (RWO) with block storage-backed virtual disks but vSAN File Services (NFS in the background) supports Read-Write-Many (RWX) as an alternative.
 
 Under the hood the CNS disk stays detached from the virtual machines as long as it is not claimed by a Pod and you can visualize it in the vSphere client by browsing `Cluster > Monitor > Cloud Native Storage > Container volumes`. As soon as a Pod claims it, it gets attached to the virtual machine running the node that holds the Pod.
 
@@ -62,7 +64,7 @@ spec:
       storage: 6Gi
 ```
 
-Note that the Access Mode, while being fixed with Named Disks, still needs to be defined as `ReadWriteOnce` in the manifest.
+Note that the Access Mode, while being fixed with CNS Disks, still needs to be defined as `ReadWriteOnce` in the manifest.
 
 Further, as we are not defining a Storage Class the Kubernetes cluster will just take the default storage class (here `csi-vsphere-sc-delete`).
 
