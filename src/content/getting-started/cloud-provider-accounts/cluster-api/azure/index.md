@@ -127,7 +127,7 @@ At the end of this process the following information need to be provided to Gian
 * SubscriptionID
 * TenantID
 
-Please talk to our Account Engineer that will organize a secure transport of your convenience, one of the possible ways is to use [Keybase](https://keybase.io/).
+Please talk to our Account Engineer who will organize a secure, encrypted transport of your convenience. One of the possible ways is to use [Keybase](https://keybase.io/).
 
 #### Step 3 - Post deployment cleanup
 
