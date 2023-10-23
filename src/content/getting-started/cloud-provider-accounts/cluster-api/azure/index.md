@@ -27,7 +27,7 @@ There are two main groups of requirements to be met before going over next steps
 
 1. Azure subscription must be chosen from existing ones or created if needed in customer Azure account. For security reasons in terms of any sensitive data stored within customer accounts, we advise to use a subscription only designated for Giant Swarm Azure resources management.
 
-2. An individual has to have following permissions and tools working within the designated Azure subscription:
+2. An individual has to have the following permissions and tools working within the designated Azure subscription:
 
 * An account with [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner) or [User Access Administrator](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#user-access-administrator) role.
 * [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) installed.
