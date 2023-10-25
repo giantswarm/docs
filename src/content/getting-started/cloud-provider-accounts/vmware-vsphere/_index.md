@@ -69,11 +69,11 @@ Since vSphere has no concept of load balancers out of the box, CAPV ships with [
 
 ARP is a layer 2 protocol that is used to inform the network of the location of a new address. `kube-vip` runs in-cluster as opposed to a more traditional external load-balancer that will forward IP packets to its backend servers.
 
-![capv kubevip](capv-kubevip.png)
+![capv kubevip](capv-kubevip-excalidraw.png)
 
 As a result, the network in which the cluster is deployed must have a range of the subnet outside of the DHCP scope and dedicated to `kube-vip`. We recommend one management cluster per subnet to avoid mistakes leading to IP conflicts. Example below:
 
-![capv kubevip ipam](capv-kubevip-ipam.png)
+![capv kubevip ipam](capv-kubevip-ipam-excalidraw.png)
 
 By default, when deploying a CAPV cluster, it will automatically pick up an IP from the ipam pool. However, you must explicitely set a CIDR located in the nodes' subnet to have available IPs for services of type load balancer in the workload cluster.
 
@@ -85,7 +85,7 @@ In the case of using NSX Advanced Load Balancer (NSX ALB), the virtual IP addres
 
 Reconciliation of the NSX ALB resources can be done using Avi Kubernetes Operator (AKO) in the clusters to handle Kubernetes API access and services of type load balancer.
 
-![capv kubevip](capv-nsxalb.png)
+![capv kubevip](capv-nsxalb-excalidraw.png)
 
 {{< /tab >}}
 {{< /tabs >}}

@@ -62,7 +62,7 @@ The main goal here is to avoid IP address collisions so we want the subnet to ac
 
 Below is an example of what it could look like but you are free to adjust the ranges as you see fit:
 
-![kube-vip range](capv-kubevip-ipam.png)
+![kube-vip range](capv-kubevip-ipam-excalidraw.png)
 
 ## Workload cluster IPs
 
