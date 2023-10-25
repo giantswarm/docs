@@ -120,11 +120,17 @@ This will install the relevant Helm charts [cluster-cloud-director](https://gith
 {{< /tab >}}
 {{< tab id="cluster-capv" for-impl="capv">}}
 
-The VMware vSphere provider is not yet supported by `kubectl gs template cluster` but you can use the [example manifest](https://github.com/giantswarm/cluster-vsphere/tree/main/examples) provided in the cluster chart's repo.
+This will automatically use the latest release of the relevant Helm charts [cluster-vsphere](https://github.com/giantswarm/cluster-vsphere/blob/master/CHANGELOG.md) and [default-apps-vsphere](https://github.com/giantswarm/default-apps-vsphere/blob/master/CHANGELOG.md) (bundle of default apps):
 
-Make sure to replace the relevant fields to fit your own vSphere environment. Getting the right IP address for the control plane and the right CIDR block for the Load balancers depends on how the DHCP range and how your subnet is sliced, get in touch with your platform team if you are unsure.
-
-This will install the relevant Helm charts [cluster-vsphere](https://github.com/giantswarm/cluster-cloud-director) and [default-apps-vsphere](https://github.com/giantswarm/default-apps-vsphere) (bundle of default apps).
+```sh
+kubectl gs template cluster \
+  --provider vsphere \
+  --name mycluster \
+  --organization testing \
+  --vsphere-service-load-balancer-cidr <cidr_ip>/<netmask> \
+  --kubernetes-version=1.24.11
+  > cluster.yaml
+```
 
 {{< /tab >}}
 {{< /tabs >}}
