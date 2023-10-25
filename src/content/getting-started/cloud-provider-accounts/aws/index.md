@@ -5,8 +5,8 @@ description: This guide will walk you through all necessary steps to set up an A
 weight: 10
 menu:
   main:
-    identifier: gettingstarted-cloudprovider-aws
-    parent: gettingstarted-cloudprovider
+    identifier: gettingstarted-infraprovider-aws
+    parent: gettingstarted-infraprovider
 user_questions:
   - Where can I find the AWS account ID to use for running a installation?
   - Where I can find the AWS account ID to run workload clusters?
@@ -16,7 +16,7 @@ aliases:
   - /guides/prepare-aws-account/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2022-06-28
+last_review_date: 2023-10-05
 ---
 
 As detailed in the [Architecture]({{< relref "/platform-overview/cluster-management/vintage/aws" >}}) docs,
