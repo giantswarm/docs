@@ -12,7 +12,7 @@ crd:
   technical_name: apps.application.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions-application
-  source_repository_ref: v0.6.0
+  source_repository_ref: v0.6.1
   versions:
     - v1alpha1
   topics:
@@ -24,7 +24,7 @@ aliases:
   - /reference/cp-k8s-api/apps.application.giantswarm.io/
 technical_name: apps.application.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions-application
-source_repository_ref: v0.6.0
+source_repository_ref: v0.6.1
 ---
 
 # App
@@ -516,7 +516,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Context is the kubeconfig context.</p>
+<p>Deprecated: this field is no longer used.</p>
 
 </div>
 
@@ -534,7 +534,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Name is the name of the kubeconfig context. e.g. giantswarm-12345.</p>
+<p>Name is the name of the kubeconfig context e.g. giantswarm-12345.</p>
 
 </div>
 
