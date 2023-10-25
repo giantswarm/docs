@@ -121,7 +121,7 @@ The setup supports vSphere 6.7 Update 3 and later only.
 
 ##### vSphere Networking
 
-Our implementation of Cluster API Provider vSphere (CAPV) comes with [kube-vip]({{< relref "/advanced/vsphere-kubevip/index.md >}}) out-of-the-box (layer-2 load balancer) to fill the lack of native load balancer in vSphere. It exposes the Kubernetes API on the same subnet as the nodes and offers a pool of IP addresses to use for services of type Load Balancer. Note that alternate external load balancers such as NSX Advanced Load Balancer (ALB) can be considered to replace it.
+Our implementation of Cluster API Provider vSphere (CAPV) comes with [kube-vip]({{< relref "/advanced/vsphere-kubevip/index.md" >}}) out-of-the-box (layer-2 load balancer) to fill the lack of native load balancer in vSphere. It exposes the Kubernetes API on the same subnet as the nodes and offers a pool of IP addresses to use for services of type Load Balancer. Note that alternate external load balancers such as NSX Advanced Load Balancer (ALB) can be considered to replace it.
 
 A network needs to be specified in the cluster definition to identify where the default gateway will be and where to connect the virtual machines (VMs). The nodes must have internet access which can be achieved via an HTTP proxy if needed. Note that it is also possible to specify NTP servers and pools (Ubuntu based nodes running `chrony`) in the cluster definition, which is particularly useful in air-gapped environments.
 
