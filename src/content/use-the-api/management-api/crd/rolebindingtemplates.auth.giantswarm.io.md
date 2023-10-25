@@ -12,7 +12,7 @@ crd:
   technical_name: rolebindingtemplates.auth.giantswarm.io
   scope: Cluster
   source_repository: https://github.com/giantswarm/rbac-operator
-  source_repository_ref: v0.37.0
+  source_repository_ref: v0.37.1
   versions:
     - v1alpha1
   topics:
@@ -24,7 +24,7 @@ aliases:
   - /reference/cp-k8s-api/rolebindingtemplates.auth.giantswarm.io/
 technical_name: rolebindingtemplates.auth.giantswarm.io
 source_repository: https://github.com/giantswarm/rbac-operator
-source_repository_ref: v0.37.0
+source_repository_ref: v0.37.1
 ---
 
 # RoleBindingTemplate
@@ -51,6 +51,30 @@ source_repository_ref: v0.37.0
 <div class="crd-schema-version">
 <h2 id="v1alpha1">Version v1alpha1</h2>
 
+
+<h3 id="crd-example-v1alpha1">Example CR</h3>
+
+```yaml
+apiVersion: auth.giantswarm.io/v1alpha1
+kind: RoleBindingTemplate
+metadata:
+  name: rolebindingtemplate-sample
+spec:
+  template:
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: Role
+      name: example-role
+    subjects:
+    - kind: ServiceAccount
+      name: example-sa
+    - kind: Group
+      name: example-group
+  scopes:
+    organizationSelector:
+      matchLabels:
+        key: value
+```
 
 
 <h3 id="property-details-v1alpha1">Properties</h3>

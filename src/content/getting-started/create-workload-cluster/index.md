@@ -13,6 +13,7 @@ menu:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
   - https://github.com/orgs/giantswarm/teams/team-phoenix
+  - https://github.com/orgs/giantswarm/teams/team-rocket
 user_questions:
   - How do I use kubectl gs?
   - How can I create a workload cluster?
@@ -57,9 +58,9 @@ First, template a cluster ([command reference]({{< relref "/use-the-api/kubectl-
 [Choose a release version here](https://docs.giantswarm.io/changes/workload-cluster-releases-for-azure), or use `kubectl gs get releases`, and fill it into this example command:
 
 ```sh
-# See hint about `--name` below!
 kubectl gs template cluster \
   --provider azure \
+  --name mycluster \
   --organization testing \
   --release 19.0.1 `# please fill in your desired release version` \
   > cluster.yaml
@@ -71,9 +72,9 @@ kubectl gs template cluster \
 [Choose a release version here](https://docs.giantswarm.io/changes/workload-cluster-releases-for-aws), or use `kubectl gs get releases`, and fill it into this example command:
 
 ```sh
-# See hint about `--name` below!
 kubectl gs template cluster \
   --provider aws \
+  --name mycluster \
   --organization testing \
   --release 19.0.0 `# please fill in your desired release version` \
   > cluster.yaml
@@ -85,9 +86,9 @@ kubectl gs template cluster \
 This will automatically use the latest release of the relevant Helm charts [cluster-aws](https://github.com/giantswarm/cluster-aws/blob/master/CHANGELOG.md) and [default-apps-aws](https://github.com/giantswarm/default-apps-aws/blob/master/CHANGELOG.md) (bundle of default apps):
 
 ```sh
-# See hint about `--name` below!
 kubectl gs template cluster \
   --provider capa \
+  --name mycluster \
   --organization testing \
   > cluster.yaml
 ```
@@ -98,14 +99,32 @@ kubectl gs template cluster \
 This will automatically use the latest release of the relevant Helm charts [cluster-azure](https://github.com/giantswarm/cluster-azure/blob/master/CHANGELOG.md) and [default-apps-azure](https://github.com/giantswarm/default-apps-azure/blob/master/CHANGELOG.md) (bundle of default apps):
 
 ```sh
-# See hint about `--name` below!
 kubectl gs template cluster \
   --provider capz \
+  --name mycluster \
   --organization testing \
   --region westeurope \
   --azure-subscription-id 00000000-0000-0000-0000-000000000000 `# fill in your subscription ID` \
   > cluster.yaml
 ```
+
+{{< /tab >}}
+{{< tab id="cluster-capvcd" for-impl="capvcd">}}
+
+The VMware Cloud Director provider is not yet supported by `kubectl gs template cluster` but you can use the [example manifest](https://github.com/giantswarm/cluster-cloud-director/tree/main/examples) provided in the cluster chart's repo.
+
+Make sure to replace the relevant fields to fit your own VCD environment.
+
+This will install the relevant Helm charts [cluster-cloud-director](https://github.com/giantswarm/cluster-cloud-director) and [default-apps-cloud-director](https://github.com/giantswarm/default-apps-cloud-director) (bundle of default apps).
+
+{{< /tab >}}
+{{< tab id="cluster-capv" for-impl="capv">}}
+
+The VMware vSphere provider is not yet supported by `kubectl gs template cluster` but you can use the [example manifest](https://github.com/giantswarm/cluster-vsphere/tree/main/examples) provided in the cluster chart's repo.
+
+Make sure to replace the relevant fields to fit your own vSphere environment. Getting the right IP address for the control plane and the right CIDR block for the Load balancers depends on how the DHCP range and how your subnet is sliced, get in touch with your platform team if you are unsure.
+
+This will install the relevant Helm charts [cluster-vsphere](https://github.com/giantswarm/cluster-cloud-director) and [default-apps-vsphere](https://github.com/giantswarm/default-apps-vsphere) (bundle of default apps).
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -154,7 +173,12 @@ kubectl apply -f nodepool.yaml
 
 ### Deleting the workload cluster {#deleting-workload-cluster}
 
-Deletion works in the same way: run `kubectl delete -f FILENAME.yaml` and the operators in the management cluster will delete the resources in a few minutes. Please do not directly delete the CAPI custom resources (such as `Cluster`, `AWSCluster` or `MachineDeployment`) since this may leave resources behind or even lead to inadvertently recreating the cluster once the `App` is reconciled again. Deletion should be done exactly like the creation, using the original manifests. For the CAPI product family, our example output file `cluster.yaml` contains 2 `App` and 2 `ConfigMap` manifests.
+Deletion works in the same way: run `kubectl delete -f FILENAME.yaml` and the operators in the management cluster will delete the resources in a few minutes. Please do not directly delete the CAPI custom resources (such as `Cluster`, `AWSCluster` or `MachineDeployment`) since this may leave resources behind or even lead to inadvertently recreating the cluster once the `App` is reconciled again. Deletion should be done exactly like the creation, using the original manifests. For the CAPI product family, our example output file `cluster.yaml` contains 2 `App` and 2 `ConfigMap` manifests. If you no longer have the manifests at hand, delete the following:
+
+* `App/<cluster>`
+* `App/<cluster>-default-apps`
+* `ConfigMap/<cluster>-user-values`
+* `ConfigMap/<cluster>-default-apps-user-values`
 
 If you would like to protect your clusters from accidental deletion, take a look at our [deletion prevention mechanism]({{< relref "/advanced/deletion-prevention" >}}).
 

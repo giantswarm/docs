@@ -80,37 +80,58 @@ Besides the Kubernetes machines, we run a bastion host that helps us with the op
 Although we try to maintain feature parity between infrastructure providers, offering the same features and using the same configuration, there are some subtle differences depending on the underlying provider functionality.
 
 {{< tabs >}}
-{{< tab id="flags-clouddirector" title="VMware Cloud Director">}}
-
-##### Compatibility
-
-The setup supports organization virtual datacenters (OVCDs) running on VMware Cloud Director 10.3 and above. It must be backed by NSX-T and NSX advanced load balancer (ALB) with the load balancer feature enabled on the Edge gateway.
-
-##### Authentication
-
-Cluster API Provider VMware Cloud Director (CAPVCD), along with the associated Cloud Provider interface (CPI) and Container Storage interface (CSI), authenticate against the VMware Cloud Director API using an API Token (sometimes also referred to as Refresh Token) which is stored in a secret. Such token can be created by any user with the right permissions and can be revoked at any time, should there be suspicion of it being compromised.
-
-##### Networking
-
-The Kubernetes API and services of type `LoadBalancer` get IPs from a pool of external IPs available in the edge gateway. It can be set statically or takes the next available IP if unspecified. A virtual service is then created with the required IP/port and is associated with a load balancer pool that contains the relevant node IPs as members. For the CPI, we support the virtual service shared feature which was introduced in VCD 10.4 as well as the legacy method based on a single internal IP and multiple DNAT rules.
-
-A network needs to be specified in the cluster definition to identify where the default gateway will be and where to connect the virtual machines (VMs). It is also possible to add additional networks in order to connect multiple virtual interfaces to the nodes along with a list of static routes. The nodes must have internet access which is usually achieved with a SNAT rule or via an HTTP proxy. Note that it is also possible to specify NTP servers and pools (Ubuntu based nodes running `chrony`) in the cluster definition, which is particularly useful in air-gapped environments.
-
-##### Compute
-
-The Kubernetes cluster is represented in VMware Cloud Director by a vAPP of the same name that contains one virtual machine for each node. Note that our setup also supports naming conventions for virtual machine names based on go templates. When a node is created, a virtual machine is provisioned in the cluster's vAPP using a vAPP template stored in a specific catalog. When configuring the control plane nodes or a node class for a node pool, several parameters can be set for the virtual machines such as the sizing policy, placement policy, virtual disk size and storage profile.
-
-##### Storage
-
-In order to offer persistent storage that is decoupled from the virtual machines, the container storage interface creates a Named Disk that can be attached or detached from the VM according to whether or not the persistent volume claim (PVC) is bound to a pod or not. Named disks currently only support Read-Write-Only (RWO) with block storage-backed named disks.
-
-{{< /tab >}}
 {{< tab id="flags-aws" title="AWS">}}
 
 The setup uses a standalone VPC (though you can bring your own VPC) and creates private subnets for the machine in each availability zone. It uses NAT gateways for allowing machines to pull images or route requests from containers to the Internet. On the other side, it needs an Internet Gateway to route traffic from Internet to the containers. It leverages route tables to configure the routing for each subnet and gateways.
 
 {{< /tab >}}
 {{< tab id="flags-capz" title="Azure">}}
+
+{{< /tab >}}
+{{< tab id="flags-clouddirector" title="VMware Cloud Director">}}
+
+##### VCD Compatibility
+
+The setup supports organization virtual datacenters (OVCDs) running on VMware Cloud Director 10.3 and above. It must be backed by NSX-T and NSX advanced load balancer (ALB) with the load balancer feature enabled on the Edge gateway.
+
+##### VCD Authentication
+
+Cluster API Provider VMware Cloud Director (CAPVCD), along with the associated Cloud Provider interface (CPI) and Container Storage interface (CSI), authenticate against the VMware Cloud Director API using an API Token (sometimes also referred to as Refresh Token) which is stored in a secret. Such token can be created by any user with the right permissions and can be revoked at any time, should there be suspicion of it being compromised.
+
+##### VCD Networking
+
+The Kubernetes API and services of type `LoadBalancer` get IPs from a pool of external IPs available in the edge gateway. It can be set statically or takes the next available IP if unspecified. A virtual service is then created with the required IP/port and is associated with a load balancer pool that contains the relevant node IPs as members. For the CPI, we support the virtual service shared feature which was introduced in VCD 10.4 as well as the legacy method based on a single internal IP and multiple DNAT rules.
+
+A network needs to be specified in the cluster definition to identify where the default gateway will be and where to connect the virtual machines (VMs). It is also possible to add additional networks in order to connect multiple virtual interfaces to the nodes along with a list of static routes. The nodes must have internet access which is usually achieved with a SNAT rule or via an HTTP proxy. Note that it is also possible to specify NTP servers and pools (Ubuntu based nodes running `chrony`) in the cluster definition, which is particularly useful in air-gapped environments.
+
+##### VCD Compute
+
+The Kubernetes cluster is represented in VMware Cloud Director by a vAPP of the same name that contains one virtual machine for each node. Note that our setup also supports naming conventions for virtual machine names based on go templates. When a node is created, a virtual machine is provisioned in the cluster's vAPP using a vAPP template stored in a specific catalog. When configuring the control plane nodes or a node class for a node pool, several parameters can be set for the virtual machines such as the sizing policy, placement policy, virtual disk size and storage profile.
+
+##### VCD Storage
+
+In order to offer [persistent storage]({{< relref "/getting-started/persistent-volumes/vmware-cloud-director/index.md" >}}) that is decoupled from the virtual machines, the container storage interface creates a Named Disk that can be attached or detached from the VM according to whether or not the persistent volume claim (PVC) is bound to a pod or not. Named disks currently only support Read-Write-Only (RWO) with block storage-backed named disks.
+
+{{< /tab >}}
+{{< tab id="flags-vsphere" title="VMware vSphere">}}
+
+##### vSphere Compatibility
+
+The setup supports vSphere 6.7 Update 3 and later only.
+
+##### vSphere Networking
+
+Our implementation of Cluster API Provider vSphere (CAPV) comes with [kube-vip]({{< relref "/advanced/vsphere-kubevip/index.md" >}}) out-of-the-box (layer-2 load balancer) to fill the lack of native load balancer in vSphere. It exposes the Kubernetes API on the same subnet as the nodes and offers a pool of IP addresses to use for services of type Load Balancer. Note that alternate external load balancers such as NSX Advanced Load Balancer (ALB) can be considered to replace it.
+
+A network needs to be specified in the cluster definition to identify where the default gateway will be and where to connect the virtual machines (VMs). The nodes must have internet access which can be achieved via an HTTP proxy if needed. Note that it is also possible to specify NTP servers and pools (Ubuntu based nodes running `chrony`) in the cluster definition, which is particularly useful in air-gapped environments.
+
+##### vSphere Compute
+
+The Kubernetes cluster nodes are represented in VMware vSphere by a collection of virtual machines. When configuring the control plane nodes or a node class for a node pool, several parameters can be set for the virtual machines such as the resources, storage policy, virtual disk size etc.
+
+##### vSphere Storage
+
+In order to offer [persistent storage]({{< relref "/getting-started/persistent-volumes/vmware-vsphere/index.md" >}}) that is decoupled from the virtual machines, the container storage interface creates a Cloud Native Storage disk (CNS) that can be attached or detached from the VM according to whether or not the persistent volume claim (PVC) is bound to a pod or not. CNS disks currently only support Read-Write-Only (RWO) with block storage-backed virtual disks but vSAN File Services (NFS in the background) supports Read-Write-Many (RWX).
 
 {{< /tab >}}
 {{< /tabs >}}
