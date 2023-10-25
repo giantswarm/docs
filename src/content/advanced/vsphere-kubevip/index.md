@@ -18,7 +18,7 @@ owner:
 
 While most infrastructure providers offer a load balancer to use for the Kubernetes API and services of type Load Balancer (AWS, Azure, VMware Cloud Director...), vSphere is a bit different in that it is a hypervisor as opposed to a cloud provider. Advanced networking use cases such as routing, firewalling, load balancing and the likes are handled by VMware NSX which is sold as a separate product. In order to offer a highly-available Kubernetes API to customers without NSX, CAPV comes with `kube-vip`, a layer-2 load balancer.
 
-In order to inform the network of the location of a new address, `kube-vip` relies on [gratuitous ARP requests](https://www.practicalnetworking.net/series/arp/gratuitous-arp/) (layer 2 protocol) to ensure the network understands the link between the hardware address (MAC) and the logical address (IP). 
+In order to inform the network of the location of a new address, `kube-vip` relies on [gratuitous ARP requests](https://www.practicalnetworking.net/series/arp/gratuitous-arp/) (layer 2 protocol) to ensure the network understands the link between the hardware address (MAC) and the logical address (IP).
 
 As a result of working on layer 2, `Kube-vip` uses IP addresses in the same subnet as the nodes themselves and these IP addresses must be selected carefully to avoid collisions. This is particularly plausible if multiple users collaborate on the same platform and select the same IP for different clusters for instance.
 

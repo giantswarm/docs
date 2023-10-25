@@ -65,7 +65,7 @@ Because vSphere has no concept of load balancer, the implementation of CAPV incl
 
 {{< tabs >}}
 {{< tab id="flags-kubevip" title="kube-vip">}}
-Since vSphere has no concept of load balancers out of the box, CAPV ships with [kube-vip]({{< relref "/advanced/vsphere-kubevip" >}}), a layer-2 load balancer that works with ARP requests. By default, `kube-vip` only handles the Kubernetes API access but at Giant Swarm, we also deploy the `kube-vip` cloud provider to offer the capability to create services of type load balancer. 
+Since vSphere has no concept of load balancers out of the box, CAPV ships with [kube-vip]({{< relref "/advanced/vsphere-kubevip" >}}), a layer-2 load balancer that works with ARP requests. By default, `kube-vip` only handles the Kubernetes API access but at Giant Swarm, we also deploy the `kube-vip` cloud provider to offer the capability to create services of type load balancer.
 
 ARP is a layer 2 protocol that is used to inform the network of the location of a new address. `kube-vip` runs in-cluster as opposed to a more traditional external load-balancer that will forward IP packets to its backend servers.
 
