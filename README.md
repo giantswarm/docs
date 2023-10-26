@@ -10,6 +10,14 @@ Please review the [Contribution guidelines](CONTRIBUTING.md) for guidelines on s
 
 If you are an employee of Giant Swarm you can get more information per [intranet page](https://intranet.giantswarm.io/docs/product/docs/) with info on style and other pre-requisites.
 
+While making changes, please use
+
+```sh
+make dev
+```
+
+to render the results. This serves the web content on http://localhost:1313/ by default. Please check if your changes display correctly before opening a pull request.
+
 ## Diagrams
 
 We use [mermaid](https://mermaid.js.org/) for diagrams. You need to annotate the page previously in the frontmatter to load the mermaid code (`mermaid: true`). Then you can use the shortcode `{{< mermaid >}}` to add the diagram code.
