@@ -12,7 +12,7 @@ crd:
   technical_name: rolebindingtemplates.auth.giantswarm.io
   scope: Cluster
   source_repository: https://github.com/giantswarm/rbac-operator
-  source_repository_ref: v0.37.1
+  source_repository_ref: v0.39.0
   versions:
     - v1alpha1
   topics:
@@ -24,7 +24,7 @@ aliases:
   - /reference/cp-k8s-api/rolebindingtemplates.auth.giantswarm.io/
 technical_name: rolebindingtemplates.auth.giantswarm.io
 source_repository: https://github.com/giantswarm/rbac-operator
-source_repository_ref: v0.37.1
+source_repository_ref: v0.39.0
 ---
 
 # RoleBindingTemplate
@@ -74,6 +74,11 @@ spec:
     organizationSelector:
       matchLabels:
         key: value
+      matchExpressions:
+      - key: key
+        operator: In
+        values:
+        - value
 ```
 
 
@@ -177,6 +182,104 @@ spec:
 
 <div class="property-description">
 <p>ScopeSelector wraps a k8s label selector</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.scopes.organizationSelector.matchExpressions">.spec.scopes.organizationSelector.matchExpressions</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.scopes.organizationSelector.matchExpressions[*]">.spec.scopes.organizationSelector.matchExpressions[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.scopes.organizationSelector.matchExpressions[*].key">.spec.scopes.organizationSelector.matchExpressions[*].key</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>key is the label key that the selector applies to.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.scopes.organizationSelector.matchExpressions[*].operator">.spec.scopes.organizationSelector.matchExpressions[*].operator</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>operator represents a key&rsquo;s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.scopes.organizationSelector.matchExpressions[*].values">.spec.scopes.organizationSelector.matchExpressions[*].values</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-6">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.scopes.organizationSelector.matchExpressions[*].values[*]">.spec.scopes.organizationSelector.matchExpressions[*].values[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
 
 </div>
 
