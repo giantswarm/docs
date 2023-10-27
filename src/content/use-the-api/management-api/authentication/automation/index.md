@@ -141,8 +141,10 @@ CA_CERT=$(kubectl --context gs-$INSTALLATION --namespace default get secret $SEC
 # Fetch the Management API endpoint
 API_URL=$(kubectl --context gs-$INSTALLATION config view --minify -o jsonpath='{.clusters[0].cluster.server}')
 
-# Create the kubeconfig file
+# Save the CA in a file
+echo $CA_CERT | base64 -D > $INSTALLATION-ca.pem
 
+# Create the kubeconfig file
 kubectl --kubeconfig kubeconfig_$INSTALLATION.yaml config set-cluster default \
   --server $API_URL \
   --embed-certs \

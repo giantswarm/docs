@@ -106,8 +106,9 @@ This custom resource allows users to dynamically apply and remove `RoleBindings`
 
 The `spec.template` property is used to define the desired `RoleBinding` while the `spec.scopes` property allows to specify where it should be applied.
 It is possible to dynamically apply `RoleBindings` to a specific set of organizations using a label matcher in `spec.scopes.organizationSelector.matchLabels`.
-If the label matcher is defined, the `RoleBinding` will be applied within the organization scopes of all `Organization` CRs that carry the label.
-If no label matcher is defined, the `RoleBinding` will be maintained across all organization scopes.
+Furthermore, `spec.scopes.organizationSelector.matchExpressions` can be used for more advanced label matching. (e.g. excluding all organizations with a certain label)
+If a matcher is defined, the `RoleBinding` will be applied within the organization scopes of all `Organization` CRs with matching labels.
+If no matcher is defined, the `RoleBinding` will be maintained across all organization scopes.
 An organization scope refers to the organization namespace as well as namespaces associated with clusters within the organization.
 
 ## Typical use cases {#typical-use-cases}
@@ -294,3 +295,18 @@ spec:
       matchLabels:
         add-additional-admins: true
 ```
+
+Alternatively, the following scopes will result the roleBinding to be applied in namespaces belonging to organizations which _DO NOT_ carry the `add-additional-admins=false` label.
+
+```yaml
+...
+  scopes:
+    organizationSelector:
+      matchExpressions:
+      - key: add-additional-admins
+        operator: NotIn
+        values:
+        - false
+```
+
+`matchExpressions` supports `In`, `NotIn`, `Exists` and `DoesNotExist` as operators for advanced selectors.

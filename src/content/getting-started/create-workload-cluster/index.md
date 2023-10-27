@@ -13,6 +13,7 @@ menu:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
   - https://github.com/orgs/giantswarm/teams/team-phoenix
+  - https://github.com/orgs/giantswarm/teams/team-rocket
 user_questions:
   - How do I use kubectl gs?
   - How can I create a workload cluster?
@@ -108,6 +109,24 @@ kubectl gs template cluster \
 ```
 
 {{< /tab >}}
+{{< tab id="cluster-capvcd" for-impl="capvcd">}}
+
+The VMware Cloud Director provider is not yet supported by `kubectl gs template cluster` but you can use the [example manifest](https://github.com/giantswarm/cluster-cloud-director/tree/main/examples) provided in the cluster chart's repo.
+
+Make sure to replace the relevant fields to fit your own VCD environment.
+
+This will install the relevant Helm charts [cluster-cloud-director](https://github.com/giantswarm/cluster-cloud-director) and [default-apps-cloud-director](https://github.com/giantswarm/default-apps-cloud-director) (bundle of default apps).
+
+{{< /tab >}}
+{{< tab id="cluster-capv" for-impl="capv">}}
+
+The VMware vSphere provider is not yet supported by `kubectl gs template cluster` but you can use the [example manifest](https://github.com/giantswarm/cluster-vsphere/tree/main/examples) provided in the cluster chart's repo.
+
+Make sure to replace the relevant fields to fit your own vSphere environment. Getting the right IP address for the control plane and the right CIDR block for the Load balancers depends on how the DHCP range and how your subnet is sliced, get in touch with your platform team if you are unsure.
+
+This will install the relevant Helm charts [cluster-vsphere](https://github.com/giantswarm/cluster-cloud-director) and [default-apps-vsphere](https://github.com/giantswarm/default-apps-vsphere) (bundle of default apps).
+
+{{< /tab >}}
 {{< /tabs >}}
 
 If no name is specified for a workload cluster, a random one like `rfjh2` will be generated. We recommend you choose a naming scheme suiting your organization, and then stick to it. Add the `--name` parameter to specify the cluster name.
@@ -154,7 +173,12 @@ kubectl apply -f nodepool.yaml
 
 ### Deleting the workload cluster {#deleting-workload-cluster}
 
-Deletion works in the same way: run `kubectl delete -f FILENAME.yaml` and the operators in the management cluster will delete the resources in a few minutes. Please do not directly delete the CAPI custom resources (such as `Cluster`, `AWSCluster` or `MachineDeployment`) since this may leave resources behind or even lead to inadvertently recreating the cluster once the `App` is reconciled again. Deletion should be done exactly like the creation, using the original manifests. For the CAPI product family, our example output file `cluster.yaml` contains 2 `App` and 2 `ConfigMap` manifests.
+Deletion works in the same way: run `kubectl delete -f FILENAME.yaml` and the operators in the management cluster will delete the resources in a few minutes. Please do not directly delete the CAPI custom resources (such as `Cluster`, `AWSCluster` or `MachineDeployment`) since this may leave resources behind or even lead to inadvertently recreating the cluster once the `App` is reconciled again. Deletion should be done exactly like the creation, using the original manifests. For the CAPI product family, our example output file `cluster.yaml` contains 2 `App` and 2 `ConfigMap` manifests. If you no longer have the manifests at hand, delete the following:
+
+* `App/<cluster>`
+* `App/<cluster>-default-apps`
+* `ConfigMap/<cluster>-user-values`
+* `ConfigMap/<cluster>-default-apps-user-values`
 
 If you would like to protect your clusters from accidental deletion, take a look at our [deletion prevention mechanism]({{< relref "/advanced/deletion-prevention" >}}).
 
