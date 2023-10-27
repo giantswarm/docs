@@ -5,7 +5,7 @@ description: A serie of guides explaining how to interact with logs accessible w
 weight: 30
 menu:
   main:
-    identifier: getting-started-observability-logs
+    identifier: getting-started-observability-logging
     parent: getting-started-observability
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
