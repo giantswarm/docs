@@ -209,12 +209,17 @@ WARNING: this version requires Cilium to run because of the dependency on the Ci
 
 
 
-### aws-ebs-csi-driver [2.25.0](https://github.com/giantswarm/aws-ebs-csi-driver-app/releases/tag/v2.25.0)
+### aws-ebs-csi-driver [2.27.0](https://github.com/giantswarm/aws-ebs-csi-driver-app/releases/tag/v2.27.0)
 
 #### Changed
 - Updated ebs-csi-driver to `v1.21.0` and updated sidecar images.
+- Upgraded all components to latest release.
 
+#### Fixed
+- Fix RBAC issue with snapshots.
 
+#### Added
+- Add global.podSecurityStandards.enforced value for PSS migration.
 
 ### cluster-autoscaler [1.24.3](https://github.com/giantswarm/cluster-autoscaler-app/releases/tag/v1.24.3)
 
