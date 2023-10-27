@@ -2,9 +2,10 @@
 linkTitle: Security policy enforcement
 title: Security policy enforcement
 description: This article describes the security policies enforced in a cluster and how to resolve failing resources.
-weight: 60
+weight: 40
 menu:
   main:
+    identifier: security-policy-enforcement
     parent: advanced
 user_questions:
  -  Why won't my workload deploy?

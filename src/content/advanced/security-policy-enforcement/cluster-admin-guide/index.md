@@ -5,7 +5,7 @@ description: An overview of how to use Giant Swarm Policy types to enforce clust
 weight: 60
 menu:
   main:
-    parent: advanced
+    parent: security-policy-enforcement
 aliases:
   - /advanced/security-policy-enforcement/cluster-admin-guide
 user_questions:
