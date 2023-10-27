@@ -1,5 +1,5 @@
 ---
-linkTitle: Workload Cluster API access for automation
+linkTitle: Automation Workload Cluster API access
 title: Authentication for the Workload Cluster API in automation
 description: Using the Workload Cluster API from an automation requires a hands-free way to provide credentials to kubectl or any Kubernetes client. This article explains how to obtain a service account token to use in such a scenario.
 weight: 20
@@ -33,7 +33,7 @@ Before you proceed, make sure you have the following prerequisites:
 
 ### Create a Service Account
 
-You need to create a service account that represents your automation task. Ideally you select the right namespac eto live in (you could create a `automation` namespace):
+You need to create a service account that represents your automation task. Ideally you select the right namespace to live in (you could create a `automation` namespace):
 
 ```bash
 kubectl create serviceaccount <service-account-name> -n <namespace>
