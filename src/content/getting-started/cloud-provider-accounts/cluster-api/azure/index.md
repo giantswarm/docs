@@ -5,7 +5,7 @@ description: This guide will walk you through all necessary steps to set up an A
 menu:
   main:
     identifier: gettingstarted-cloudprovider-clusterapi-azure
-    parent: gettingstarted-cloudprovider-clusterapi
+    parent: gettingstarted-infraprovider-clusterapi
 weight: 20
 user_questions:
   - How do I prepare my Azure subscription for Cluster API?
