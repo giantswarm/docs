@@ -6,7 +6,7 @@ weight: 50
 menu:
   main:
     identifier: getting-started-observability-logs-auditlogging
-    parent: getting-started-observability-logs
+    parent: getting-started-observability-logging
 user_questions:
   - What are audit logs?
   - What is audit logging?
