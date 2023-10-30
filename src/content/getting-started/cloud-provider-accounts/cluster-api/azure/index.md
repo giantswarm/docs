@@ -21,6 +21,8 @@ Currently, the Giant Swarm Cluster API for Azure implementation supports only ru
 
 This document consists of the instructions for setting up Azure subscriptions that are needed to run Cluster API for Azure with Giant Swarm.
 
+Aside from the following prerequisites, please fill in the _Giant Swarm Pre-installation checklist for Azure (CAPZ) installations_, The document will be shared with you by your account engineer.
+
 ## Prerequisites
 
 There are two main groups of requirements to be met before going over next steps:
