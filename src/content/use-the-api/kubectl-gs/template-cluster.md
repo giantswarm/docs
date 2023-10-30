@@ -116,6 +116,11 @@ It supports the following flags:
 - `--description` (optional) - User-friendly description of the cluster's purpose.
 - `--control-plane-az` (optional) - Availability zone(s) of the control plane instance(s).
 - `--output` (optional) - The name of the file to write the output to instead of stdout.
+- `--oidc-issuer-url` (optional - CAPI) - This is the issuer URL for configuring OpenID connect in the cluster API.
+- `--oidc-ca-file` (optional - CAPI) - This is the CA file path in case is not used a trusted Certificate Authority for OIDC endpoint.
+- `--oidc-client-id` (optional - CAPI) - This is the client ID that is configured in the OIDC endpoint.
+- `--oidc-username-claim` (optional - CAPI) - This is the claim used to map the username identity of the user.
+- `--oidc-groups-claim` (optional - CAPI) - This is the claim used to map the group identity of the user.
 
   On AWS, it must be configured with AZ of the installation region. E.g. for region `eu-central-1`, a valid value is `eu-central-1a`.
 
@@ -152,7 +157,6 @@ It supports the following flags:
 - `--gcp-control-plane-sa-scopes` (optional) - The Google Cloud Platform API scopes the control-plane will have access to (default: `https://www.googleapis.com/auth/compute`).
 - `--gcp-machine-deployment-sa-email` (optional) - The Google Cloud Platform Service Account used by the worker nodes (default "default").
 - `--gcp-machine-deployment-sa-scopes` (optional) - The Scope of the worker nodes' Google Cloud Platform Service Account (default [https://www.googleapis.com/auth/compute]).
-
 - `--gcp-machine-deployment-name` (optional) - The name of the MachineDeployment (default: `worker1`).
 - `--gcp-machine-deployment-instance-type` (optional) - The Google Cloud Platform Instance Type for the default nodepool isntances (default: `n1-standard-4`).
 - `--gcp-machine-deployment-failure-domain` (optional) - The Google Cloud Platform zones where the cluster's default nodepool will be deployed. (default: `europe-west6-a`).
@@ -181,11 +185,6 @@ It supports the following flags:
 - `--control-plane-image` - Control plane image name or root volume source UUID if --control-plane-boot-from-volume is set.
 - `--control-plane-machine-flavor` - Flavor (a.k.a. size) of the worker node machines.
 - `--control-plane-replicas` - Number of control plane replicas. This should be 1 for a non-HA control plane or 3 for an HA control plane (etcd requires an odd number of members).
-- `--oidc-issuer-url` (optional) - This is the issuer URL for configuring OpenID connect in the cluster API.
-- `--oidc-ca-file` (optional) - This is the CA file path in case is not used a trusted Certificate Authority for OIDC endpoint.
-- `--oidc-client-id` (optional) - This is the client ID that is configured in the OIDC endpoint.
-- `--oidc-username-claim` (optional) - This is the claim used to map the username identity of the user.
-- `--oidc-groups-claim` (optional) - This is the claim used to map the group identity of the user.
 - `--worker-boot-from-volume` - If true, worker machines will use a persistent root volume instead of an ephemeral volume.
 - `--worker-disk-size` - Size of root volumes attached to each worker node machine in gigabytes. Must be greater than or equal to the size of the node source image (`--worker-image`).
 - `--worker-failure-domain` - Failure domain of worker nodes.
@@ -215,11 +214,6 @@ It supports the following flags:
 - `--vsphere-resource-pool` (optional) - Name of the vSphere resource pool to deploy the VMs to (default: cluster)
 - `--vsphere-image-template` (optional) - Name of the vSphere template to deploy the VMs from (default: `ubuntu-2004-kube-${kubernetes-version}`).
 - `--vsphere-credentials-secret-name` (optional) - Name of the kubernetes secret that should be associated to the cluster app. It should exist in the organization's namespace and should contain the credentials for vsphere.
-- `--oidc-issuer-url` (optional) - This is the issuer URL for configuring OpenID connect in the cluster API.
-- `--oidc-ca-file` (optional) - This is the CA file path in case is not used a trusted Certificate Authority for OIDC endpoint.
-- `--oidc-client-id` (optional) - This is the client ID that is configured in the OIDC endpoint.
-- `--oidc-username-claim` (optional) - This is the claim used to map the username identity of the user.
-- `--oidc-groups-claim` (optional) - This is the claim used to map the group identity of the user.
 
 ## Examples
 
