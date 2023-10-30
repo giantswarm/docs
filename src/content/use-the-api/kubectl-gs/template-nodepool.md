@@ -32,13 +32,13 @@ This command **does not support Cluster API** (CAPI) based workload clusters. It
 The resulting resources depend on the provider, set via the `--provider` flag.
 
 {{< tabs >}}
-{{< tab id="flags-aws" title="AWS">}}
+{{< tab id="flags-aws" for-impl="vintage_aws">}}
 
 - [`MachineDeployment`]({{< relref "/use-the-api/management-api/crd/machinedeployments.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1beta1`)
 - [`AWSMachineDeployment`]({{< relref "/use-the-api/management-api/crd/awsmachinedeployments.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`)
 
 {{< /tab >}}
-{{< tab id="flags-azure" title="Azure">}}
+{{< tab id="flags-azure" for-impl="vintage_azure">}}
 
 - [`MachinePool`]({{< relref "/use-the-api/management-api/crd/machinepools.exp.cluster.x-k8s.io.md" >}}) (API version `exp.cluster.x-k8s.io/v1alpha3`)
 - [`AzureMachinePool`]({{< relref "/use-the-api/management-api/crd/azuremachinepools.exp.infrastructure.cluster.x-k8s.io.md" >}}) (API version `exp.infrastructure.cluster.x-k8s.io/v1alpha3`)
@@ -84,7 +84,7 @@ Here are the supported flags:
 ## Examples
 
 {{< tabs >}}
-{{< tab id="command-examples-aws" title="AWS">}}
+{{< tab id="command-examples-aws" for-impl="vintage_aws">}}
 
 ```nohighlight
 kubectl gs template nodepool \
@@ -98,7 +98,7 @@ kubectl gs template nodepool \
 ```
 
 {{< /tab >}}
-{{< tab id="command-examples-azure" title="Azure">}}
+{{< tab id="command-examples-azure" for-impl="vintage_azure">}}
 
 ```nohighlight
 kubectl gs template nodepool \
@@ -117,7 +117,7 @@ kubectl gs template nodepool \
 The above example command would generate the following output:
 
 {{< tabs >}}
-{{< tab id="command-output-aws" title="AWS">}}
+{{< tab id="command-output-aws" for-impl="vintage_aws">}}
 
 ```yaml
 apiVersion: cluster.x-k8s.io/v1beta1
@@ -189,7 +189,7 @@ status:
 ```
 
 {{< /tab >}}
-{{< tab id="command-output-azure" title="Azure">}}
+{{< tab id="command-output-azure" for-impl="vintage_azure">}}
 
 ```yaml
 apiVersion: exp.infrastructure.cluster.x-k8s.io/v1alpha3
