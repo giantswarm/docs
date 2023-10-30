@@ -17,7 +17,7 @@ owner:
 user_questions:
   - How do I use kubectl gs?
   - How can I create a workload cluster?
-last_review_date: 2023-06-12
+last_review_date: 2023-10-30
 ---
 
 In a Giant Swarm installation, to run your business applications on Kubernetes, you need a workload cluster. The `kubectl-gs` tool ([reference]({{< relref "/use-the-api/kubectl-gs" >}})), as already installed in the [previous tutorial]({{< relref "/getting-started/management-cluster" >}}), is used to create such clusters.
