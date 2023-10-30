@@ -199,7 +199,7 @@ It supports the following flags:
 - `--cluster-version` (optional) - Version of `cluster-vsphere` helm chart to use. If not provided, the latest version will be used.
 - `--default-apps-catalog` (optional) - Name of the Giant Swarm app catalog that holds the default-apps' app release.
 - `--default-apps-version` (optional) - Version of `default-apps-vsphere` helm chart to use. If not provided, the latest version will be used.
-- `--kubernetes-version` (optional) - Cluster's Kubernetes version (default: 1.20.9).
+- `--kubernetes-version` (optional) - Cluster's Kubernetes version (default: 1.24.11).
 - `--vsphere-control-plane-ip` (optional) - Control plane IP, leave empty for auto allocation.
 - `--vsphere-service-load-balancer-cidr` (optional) - CIDR for Service LB within workload cluster.
 - `--vsphere-network-name` - Portgroup name in vCenter to connect the new VMs to.
@@ -322,7 +322,7 @@ kubectl gs template cluster \
 kubectl gs template cluster \
   --provider vsphere \
   --name demo1 \
-  --organization giantswarm \
+  --organization multi-project \
   --vsphere-service-load-balancer-cidr 10.10.222.238/30 \
   --vsphere-worker-memory-mib 4096 \
   --vsphere-worker-num-cpus 4 \
@@ -952,13 +952,14 @@ data:
       worker:
         class: default
         replicas: 3
-    organization: giantswarm
+    organization: multi-project
 kind: ConfigMap
 metadata:
+  creationTimestamp: null
   labels:
     giantswarm.io/cluster: demo1
   name: demo1-userconfig
-  namespace: org-giantswarm
+  namespace: org-multi-project
 ---
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
@@ -966,7 +967,7 @@ metadata:
   labels:
     app-operator.giantswarm.io/version: 0.0.0
   name: demo1
-  namespace: org-giantswarm
+  namespace: org-multi-project
 spec:
   catalog: cluster
   config:
@@ -989,27 +990,28 @@ spec:
       name: ""
       namespace: ""
   name: cluster-vsphere
-  namespace: org-giantswarm
+  namespace: org-multi-project
   userConfig:
     configMap:
       name: demo1-userconfig
-      namespace: org-giantswarm
+      namespace: org-multi-project
     secret:
       name: vsphere-credentials
-      namespace: org-giantswarm
+      namespace: org-multi-project
   version: 0.7.1
 ---
 apiVersion: v1
 data:
   values: |
     clusterName: demo1
-    organization: giantswarm
+    organization: multi-project
 kind: ConfigMap
 metadata:
+  creationTimestamp: null
   labels:
     giantswarm.io/cluster: demo1
   name: demo1-default-apps-userconfig
-  namespace: org-giantswarm
+  namespace: org-multi-project
 ---
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
@@ -1019,13 +1021,13 @@ metadata:
     giantswarm.io/cluster: demo1
     giantswarm.io/managed-by: cluster
   name: demo1-default-apps
-  namespace: org-giantswarm
+  namespace: org-multi-project
 spec:
   catalog: cluster
   config:
     configMap:
       name: demo1-cluster-values
-      namespace: org-giantswarm
+      namespace: org-multi-project
     secret:
       name: ""
       namespace: ""
@@ -1037,11 +1039,11 @@ spec:
       name: ""
       namespace: ""
   name: default-apps-vsphere
-  namespace: org-giantswarm
+  namespace: org-multi-project
   userConfig:
     configMap:
       name: demo1-default-apps-userconfig
-      namespace: org-giantswarm
+      namespace: org-multi-project
   version: 0.11.1
 ```
 
