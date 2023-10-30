@@ -23,6 +23,8 @@ on the customer's needs.
 
 ## Overview
 
+Aside from the following prerequisites, please fill in the _Giant Swarm Pre-installation checklist for AWS (CAPA) installations_, The document will be shared with you by your account engineer.
+
 In order to run Giant Swarm Cluster API clusters, all AWS account(s) need to fulfil these requirements (there is [repository](https://github.com/giantswarm/giantswarm-aws-account-prerequisites) that can help with creating the necessary resources in AWS)
 
 - Create [GiantSwarmAdmin](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/tree/master/admin-role) IAM role, which is used by Giant Swarm employees to support and debug Cluster API workload clusters via AWS console.
