@@ -79,12 +79,13 @@ This is how one can achieve it by using multiple Ingress NGINX Controllers:
 
     ```yaml
     controller:
+      ingressClass: nginx-internal
       ingressClassResource:
         name: nginx-internal
         controllerValue: k8s.io/ingress-nginx-internal
       service:
         public: false
-        subdomain: ingress-internal
+        subdomain: "*.ingress-internal"
     ```
 
     - on KVM
