@@ -8,11 +8,13 @@ menu:
     parent: advanced-spotinstances-aws
 user_questions:
   - Which EC2 instance types are used when I activate the use of similar instance types?
-owner:
-  - https://github.com/orgs/giantswarm/teams/team-phoenix
 last_review_date: 2023-04-04
 aliases:
   - /reference/similar-ec2-instance-types/
+  - /advanced/spot-instances/aws/similar-ec2-instance-types
+  - /guides/spot-instances/aws/similar-ec2-instance-types
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
 {{< platform_support_table aws="ga=11.2.0" >}}

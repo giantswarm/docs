@@ -2,13 +2,16 @@
 linkTitle: Getting started
 title: Getting started with Linkerd
 description: Basic setup and configuration of Linkerd Service Mesh on Giant Swarm workload clusters.
-last_review_date: 2023-04-12
 weight: 10
 menu:
   main:
     parent: service-mesh
 user_questions:
   - How can I install a Service Mesh on my cluster?
+last_review_date: 2023-11-03
+aliases:
+  - /advanced/service-mesh/getting-started
+  - /guides/service-mesh/getting-started
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
 ---

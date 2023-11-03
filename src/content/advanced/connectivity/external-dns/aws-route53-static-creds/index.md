@@ -6,9 +6,12 @@ weight: 25
 menu:
   main:
     parent: advanced-external-dns
-last_review_date: 2023-07-26
 user_questions:
   - How can I customize the External DNS AWS authentication method?
+last_review_date: 2023-11-03
+aliases:
+  - /guides/external-dns/aws-route53-static-creds/
+  - /advanced/external-dns/aws-route53-static-creds/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
 ---

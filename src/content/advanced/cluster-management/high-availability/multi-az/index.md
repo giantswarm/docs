@@ -20,7 +20,9 @@ user_questions:
 - How do I create clusters in multiple availability zones (AZ)?
 - How do I make sure my workload is distributed evenly over availability zones (AZ)?
 aliases:
-  - /basics/multiaz/
+  - /basics/multi-az/
+  - /guides/multi-az/
+  - /advanced/multi-az/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---

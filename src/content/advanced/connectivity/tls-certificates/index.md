@@ -9,9 +9,12 @@ menu:
 user_questions:
   - How do I install cert-manager?
   - How do I obtain TLS certificates?
+last_review_date: 2023-11-03
+aliases:
+  - /advanced/tls-certificates
+  - /guides/tls-certificates
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
-last_review_date: 2023-10-30
 ---
 
 Exposing HTTP services using an Ingress is a pretty straightforward task in Kubernetes. Using plain HTTP is, however, discouraged in favor of using HTTPS. `cert-manager` provides a simple, declarative way to automatically obtain TLS certificates for the endpoints we expose.

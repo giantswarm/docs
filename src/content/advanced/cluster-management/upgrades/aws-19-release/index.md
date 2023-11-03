@@ -6,8 +6,6 @@ weight: 10
 menu:
   main:
     parent: advanced-upgrades
-aliases:
-  - /guides/aws-release-v19/
 user_questions:
   - Where can I read about v19 changes?
   - What does v19 change?
@@ -15,9 +13,11 @@ user_questions:
   - What do i have to prepare for v19?
   - Whad do i have to do before IRSA migration?
   - How does the Cilium migration work?
+last_review_date: 2023-04-24
+aliases:
+  - /guides/aws-release-v19/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2023-04-24
 ---
 
 {{< platform_support_table aws="alpha=v19.0.0" >}}

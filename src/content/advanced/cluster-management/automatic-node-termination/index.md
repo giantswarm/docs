@@ -6,13 +6,15 @@ weight: 60
 menu:
   main:
     parent: advanced-cluster-management
-last_review_date: 2023-04-04
 user_questions:
   - How can I turn off automatic termination of unhealthy nodes?
   - Since what release are unhealthy nodes terminated automatically?
   - How are unhealthy worker nodes treated?
+last_review_date: 2023-11-03
 aliases:
   - /basics/automatic-termination-of-bad-nodes/
+  - /guides/automatic-node-termination/
+  - /advanced/automatic-node-termination/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---

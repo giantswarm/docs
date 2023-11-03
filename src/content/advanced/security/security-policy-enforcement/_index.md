@@ -14,9 +14,12 @@ user_questions:
  -  What security policies are enforced in my cluster?
  -  What are Pod Security Standards (PSS)?
  -  How do I migrate from PSPs to PSS?
+last_review_date: 2023-11-03
+aliases:
+  - /guides/security-policy-enforcement/
+  - /advanced/security-policy-enforcement/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
-last_review_date: 2023-03-21
 ---
 
 <!-- {{< platform_support_table aws="alpha=v17.2.0" aws="ga=v17.4.0">}} -->

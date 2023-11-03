@@ -7,9 +7,12 @@ menu:
     parent: advanced-cluster-management
 user_questions:
 - How do I make a workload cluster private?
+last_review_date: 2023-10-12
+aliases:
+  - /guides/private-clusters
+  - /advanced/private-clusters
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2023-10-12
 ---
 
 By default, Giant Swarm clusters expose the Kubernetes API endpoint publicly and the cluster workloads have internet access. In the following sections, we will explain different options to restrict inbound access to API or outbound connectivity to the internet within the clusters.

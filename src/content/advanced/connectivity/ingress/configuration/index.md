@@ -26,11 +26,12 @@ user_questions:
   - How can I use Ingress NGINX Controller as a Web Application Firewall?
   - How can I protect my workload from malicious requests?
   - How can I enable & configure ModSecurity inside of the Ingress NGINX Controller?
+last_review_date: 2023-11-03
 aliases:
   - /guides/advanced-ingress-configuration/
+  - /advanced/ingress/configuration/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
-last_review_date: 2023-09-21
 ---
 
 The [Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx) has additional configuration options and features that can be customized. The functionality is split into two categories:

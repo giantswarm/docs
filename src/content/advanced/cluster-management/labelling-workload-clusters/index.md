@@ -8,12 +8,13 @@ menu:
     parent: advanced-cluster-management
 user_questions:
   - How can I assign metadata to cluster?
+last_review_date: 2023-11-03
 aliases:
   - /guides/tenant-cluster-labelling/
   - /guides/workload-cluster-labelling/
+  - /advanced/labelling-clusters
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2022-05-31
 ---
 
 {{< platform_support_table aws="ga=v10.0.0" azure="ga=v13.0.0" >}}

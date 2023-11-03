@@ -7,11 +7,13 @@ menu:
   main:
     identifier: advanced-spotinstances
     parent: advanced-cluster-management
+last_review_date: 2023-11-03
 aliases:
   - /basics/spot-instances/
+  - /advanced/spot-instances/
+  - /guides/spot-instances/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2023-04-04
 ---
 
 {{< platform_support_table aws="ga=v11.2.0" azure="ga=v14.1.0" >}}

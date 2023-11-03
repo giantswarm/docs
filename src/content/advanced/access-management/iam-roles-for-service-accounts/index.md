@@ -9,9 +9,12 @@ menu:
 user_questions:
  -  How can I use IAM roles for service accounts?
  -  How can I migrate from KIAM to IAM roles for service accounts?
+last_review_date: 2023-03-14
+aliases:
+  - /guides/iam-roles-for-service-accounts/
+  - /advanced/iam-roles-for-service-accounts/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2023-03-14
 ---
 
 {{< platform_support_table aws="alpha=v17.2.0" aws="ga=v17.4.0">}}

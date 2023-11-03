@@ -10,11 +10,13 @@ user_questions:
 - What use cases are supported by the multi-account functionality?
 - How do I setup multi-account functionality?
 - How can I run workload clusters in different cloud provider accounts?
+last_review_date: 2023-11-03
 aliases:
   - /basics/multi-account/
+  - /advanced/multi-account
+  - /guides/multi-account
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2022-12-07
 ---
 
 The Giant Swarm architecture distinguishes between the management cluster and workload clusters. The management cluster enables the creation and operation of workload clusters and the workload cluster(s) run your Kubernetes workloads.

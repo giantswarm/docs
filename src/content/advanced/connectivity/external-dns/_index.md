@@ -7,7 +7,7 @@ menu:
   main:
     identifier: advanced-external-dns
     parent: advanced-connectivity
+last_review_date: 2023-11-03
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
-last_review_date: 2022-12-21
 ---

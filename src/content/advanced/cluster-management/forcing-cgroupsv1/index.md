@@ -1,5 +1,5 @@
 ---
-linkTitle: Use cgroups v1
+linkTitle: Forcing cgroups v1
 title: Forcing nodes to use legacy control croups (cgroups) v1
 description: This article describes how to force nodes to use legacy control groups (cgroups) v1 instead of the default v2.
 weight: 60
@@ -7,10 +7,13 @@ menu:
   main:
     parent: advanced-cluster-management
 user_questions:
- -  How can I enable cgroupsv1?
+ -  How can I enable cgroups v1?
+last_review_date: 2023-11-03
+aliases:
+  - /guides/forcing-cgroupsv1
+  - /advanced/forcing-cgroupsv1
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2023-04-04
 ---
 
 {{< platform_support_table aws="beta=v17.0.0" azure="beta=v17.0.0" >}}

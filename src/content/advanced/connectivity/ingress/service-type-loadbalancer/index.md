@@ -6,11 +6,6 @@ weight: 30
 menu:
   main:
     parent: advanced-ingress
-aliases:
-  - /guides/services-of-type-loadbalancer-and-multiple-ingress-controllers/
-  - /advanced/connectivity/ingress/service-type-loadbalancer-multi-ic/
-owner:
-  - https://github.com/orgs/giantswarm/teams/team-cabbage
 user_questions:
   - How can I expose Services to the internet?
   - How do I configure an Ingress Controller behind an ELB for traffic between services within the VPC?
@@ -18,7 +13,12 @@ user_questions:
   - How do I configure an internal Load Balancer on AWS?
   - How do I configure an internal Load Balancer on Azure?
   - How do I configure an internal Load Balancer on GCP?
-last_review_date: 2023-06-21
+last_review_date: 2023-11-03
+aliases:
+  - /guides/services-of-type-loadbalancer-and-multiple-ingress-controllers/
+  - /advanced/ingress/service-type-loadbalancer-multi-ic/
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-cabbage
 ---
 
 Next to using the default Ingress NGINX Controller, on cloud providers (currently AWS, Azure and GCP), you can expose services directly outside your cluster by using Services of type `LoadBalancer`.

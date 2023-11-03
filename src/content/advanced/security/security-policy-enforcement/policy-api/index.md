@@ -6,16 +6,17 @@ weight: 60
 menu:
   main:
     parent: security-policy-enforcement
-aliases:
-  - /advanced/security/security-policy-enforcement/policy-api
 user_questions:
  -  How can I exclude a workload from a Kyverno policy?
  -  What security policies are enforced in my cluster?
  -  How do I migrate from PSPs to PSS?
  -  What is the Policy API?
+last_review_date: 2023-11-03
+aliases:
+  - /guides/security-policy-enforcement/policy-api
+  - /advanced/security-policy-enforcement/policy-api
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
-last_review_date: 2023-10-04
 ---
 
 <!-- {{< platform_support_table aws="alpha=v17.2.0" aws="ga=v17.4.0">}} -->

@@ -6,13 +6,14 @@ weight: 10
 menu:
   main:
     parent: advanced-upgrades
-aliases:
-  - /guides/fine-tuning-upgrade-disruption-on-aws/
 user_questions:
   - How can I influence the disruption a cluster upgrade will cause?
+last_review_date: 2023-11-03
+aliases:
+  - /guides/fine-tuning-upgrade-disruption-on-aws/
+  - /advanced/fine-tuning-upgrade-disruption-on-aws/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2022-12-07
 ---
 
 {{< platform_support_table aws="alpha=v12.7.0" >}}

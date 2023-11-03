@@ -7,9 +7,12 @@ menu:
 user_questions:
 - What are the requirements for Crossplane?
 - What are the risks of using Crossplane?
+last_review_date: 2023-11-03
+aliases:
+  - /advanced/crossplane/requirements
+  - /guides/crossplane/requirements
 owner:
 - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2023-03-21
 ---
 
 ## Requirements

@@ -6,14 +6,15 @@ weight: 25
 menu:
   main:
     parent: advanced-connectivity
-last_review_date: 2022-10-04
 user_questions:
   - How can I override the default CoreDNS configuration?
   - How can I customize the CoreDNS configuration?
   - How can I adjust resource limits for CoreDNS?
   - Where is the user values ConfigMap for CoreDNS?
+last_review_date: 2023-11-03
 aliases:
   - /guides/advanced-coredns-configuration/
+  - /advanced/coredns/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---

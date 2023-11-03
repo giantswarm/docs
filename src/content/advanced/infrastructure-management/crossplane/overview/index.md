@@ -6,9 +6,12 @@ weight: 10
 menu:
 user_questions:
 - What is Crossplane?
+last_review_date: 2023-11-03
+aliases:
+  - /advanced/crossplane/overview
+  - /guides/crossplane/overview
 owner:
 - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2023-03-21
 ---
 
 ## Overview

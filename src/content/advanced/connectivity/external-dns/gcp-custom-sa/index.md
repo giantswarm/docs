@@ -6,9 +6,12 @@ weight: 25
 menu:
   main:
     parent: advanced-external-dns
-last_review_date: 2022-12-21
 user_questions:
   - How can I override GCP service account used by External DNS?
+last_review_date: 2023-11-03
+aliases:
+  - /guides/external-dns/gcp-custom-sa/
+  - /advanced/external-dns/gcp-custom-sa/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
 ---

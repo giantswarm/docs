@@ -11,9 +11,12 @@ user_questions:
 - How do I use External Secrets Operator?
 - What are the risks of running External Secrets Operator?
 - What resources does external secrets operator consume on my cluster?
+last_review_date: 2023-11-03
+aliases:
+  - /guides/external-secrets-operator/
+  - /advanced/external-secrets-operator/
 owner:
 - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2023-04-05
 ---
 
 ## What is External Secrets Operator

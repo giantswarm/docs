@@ -7,10 +7,13 @@ menu:
   main:
     identifier: advanced-workload-cluster-api-access-for-automation
     parent: advanced-cluster-management
-last_review_date: 2023-10-27
 user_questions:
   - How can I use the Workload Cluster API in a programmatic way?
   - How do I grant access to Kubernetes API from my CI system?
+last_review_date: 2023-11-03
+aliases:
+  - /guides/workload-cluster-api-access-for-automation/
+  - /advanced/workload-cluster-api-access-for-automation/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bigmac
 ---

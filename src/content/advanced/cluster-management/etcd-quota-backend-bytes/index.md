@@ -11,9 +11,12 @@ user_questions:
   - How do I set the quota-backend-bytes?
   - When to change the default value?
   - What are the side effects of setting a large Etcd database?
+last_review_date: 2023-11-03
+aliases:
+  - /guides/etcd-quota-backend-bytes/
+  - /advanced/etcd-quota-backend-bytes/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2023-03-19
 ---
 
 {{< platform_support_table aws="ga=v18.3.0" >}}

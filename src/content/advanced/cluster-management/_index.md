@@ -6,7 +6,7 @@ last_review_date: 2023-11-03
 weight: 10
 menu:
   main:
-    parent: advanced-cluster-management
+    parent: advanced
     identifier: advanced-cluster-management
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix

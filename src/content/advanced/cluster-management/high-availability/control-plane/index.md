@@ -15,6 +15,7 @@ user_questions:
 aliases:
   - /basics/ha-masters/
   - /advanced/high-availability/masters/
+  - /advanced/high-availability/control-plane/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---

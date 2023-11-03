@@ -8,12 +8,13 @@ menu:
     parent: advanced-security
 user_questions:
   - How is the Linux kernel of cluster nodes configured?
+last_review_date: 2023-11-03
+aliases:
+  - /guides/kernel-settings/
+  - /advanced/kernel-settings/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
   - https://github.com/orgs/giantswarm/teams/team-rocket
-last_review_date: 2022-07-12
-aliases:
-  - /reference/kernel-settings/
 ---
 
 We adjust some kernel settings of Flatcar Container Linux machines used as Kubernetes nodes to non-standard values. Here is a complete reference. For information on other Linux kernel settings, please refer to the [official documentation](https://www.kernel.org/doc/html/latest/).

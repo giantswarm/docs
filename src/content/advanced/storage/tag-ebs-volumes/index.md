@@ -8,9 +8,12 @@ menu:
     parent: advanced-storage
 user_questions:
  -  How can I tag persistent volumes on AWS?
+last_review_date: 2023-11-03
+aliases:
+  - /guides/tag-ebs-volumes/
+  - /advanced/tag-ebs-volumes/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2023-11-04
 ---
 
 If your application needs additional storage, you usually create a `Persistent Volume Claim` (PVC) object and add this volume claim name to your `Deployment` or `Stateful Set`.

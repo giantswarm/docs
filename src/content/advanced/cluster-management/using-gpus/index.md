@@ -6,12 +6,14 @@ weight: 130
 menu:
   main:
     parent: advanced-cluster-management
-aliases:
-  - /guides/kubernetes-gpu/
 user_questions:
   - How can I use GPUs with my Kubernetes clusters?
   - Which releases support the use of GPUs?
-last_review_date: 2023-03-06
+last_review_date: 2023-11-03
+aliases:
+  - /guides/kubernetes-gpu/
+  - /guides/using-gpus
+  - /advanced/using-gpus
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---

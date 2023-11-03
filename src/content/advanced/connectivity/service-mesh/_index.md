@@ -7,7 +7,10 @@ menu:
   main:
     identifier: service-mesh
     parent: advanced-connectivity
+last_review_date: 2023-11-03
+aliases:
+  - /advanced/service-mesh
+  - /guides/service-mesh
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
-last_review_date: 2023-04-12
 ---

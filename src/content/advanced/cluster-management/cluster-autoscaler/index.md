@@ -6,12 +6,14 @@ weight: 90
 menu:
   main:
     parent: advanced-cluster-management
-last_review_date: 2023-04-04
-aliases:
-  - /guides/advanced-cluster-autoscaler-configuration/
 user_questions:
   - Where can I find the ConfigMap to configure cluster-autoscaler?
   - What cluster-autoscaler options can I configure?
+last_review_date: 2023-11-03
+aliases:
+  - /guides/advanced-cluster-autoscaler-configuration/
+  - /guides/cluster-autoscaler/
+  - /advanced/cluster-autoscaler/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---

@@ -10,6 +10,9 @@ user_questions:
   - How can I configure OIDC in my cluster?
   - How can I add a new OIDC connector?
 last_review_date: 2023-09-13
+aliases:
+  - /guides/configure-dex-in-your-cluster/
+  - /advanced/configure-dex-in-your-cluster/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bigmac
 ---

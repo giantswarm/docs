@@ -6,18 +6,18 @@ weight: 10
 menu:
   main:
     parent: advanced-upgrades
-aliases:
-  - /guides/gs-release-v21/
 user_questions:
   - Where can I read about v21 changes?
   - What does v21 change?
   - What changes does Kubernetes Version 1.25 bring?
   - What do i have to prepare for v21?
   - How does the Kubernetes V1.25 migration work?
+last_review_date: 2023-08-02
+aliases:
+  - /guides/gs-release-v21/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
   - https://github.com/orgs/giantswarm/teams/team-turtles
-last_review_date: 2023-08-02
 ---
 
 {{< platform_support_table aws="alpha=v21.0.0" >}}

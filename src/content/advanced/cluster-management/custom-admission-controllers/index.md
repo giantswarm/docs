@@ -6,11 +6,13 @@ weight: 160
 menu:
   main:
     parent: advanced-cluster-management
-last_review_date: 2023-02-07
 user_questions:
   - How can I create and deploy my own admission controller?
+last_review_date: 2023-02-07
 aliases:
   - /guides/creating-your-own-admission-controller/
+  - /guides/custom-admission-controllers/
+  - /advanced/custom-admission-controllers/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
 ---

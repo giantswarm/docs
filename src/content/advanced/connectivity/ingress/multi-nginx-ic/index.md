@@ -6,17 +6,18 @@ weight: 20
 menu:
   main:
     parent: advanced-ingress
-aliases:
-  - /guides/multi-nginx/
-owner:
-  - https://github.com/orgs/giantswarm/teams/team-cabbage
 user_questions:
   - How do I install multiple Ingress NGINX Controllers?
   - How do I separate internal and external Services?
   - How do I configure Ingress NGINX Controller for internal traffic?
   - How do I override the NodePorts on KVM Ingresses?
   - How do I configure Ingress NGINX Controller to allow weak ciphers?
-last_review_date: 2023-06-21
+last_review_date: 2023-11-03
+aliases:
+  - /guides/multi-nginx/
+  - /advanced/multi-nginx/
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-cabbage
 ---
 
 Ingress NGINX Controller handles [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) resources, routing traffic from outside the Kubernetes cluster to services within the cluster.

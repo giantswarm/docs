@@ -32,7 +32,7 @@ menu:
     url: /getting-started/
     weight: 20
   - identifier: advanced
-    name: Advanced setup
+    name: Advanced
     url: /advanced/
     weight: 30
   - identifier: use-the-api

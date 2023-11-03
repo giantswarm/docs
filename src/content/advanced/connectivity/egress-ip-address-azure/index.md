@@ -6,11 +6,14 @@ weight: 125
 menu:
   main:
     parent: advanced-connectivity
-owner:
-  - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2021-07-13
 user_questions:
   - How can I customize the public IP address for egress traffic on Azure?
+last_review_date: 2023-11-03
+aliases:
+  - /guides/egress-ip-address-azure
+  - /advanced/egress-ip-address-azure
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
 Giant Swarm's workload clusters on Azure use [NAT gateways](https://docs.microsoft.com/en-us/azure/virtual-network/nat-gateway/nat-overview) to provide internet access to worker nodes.

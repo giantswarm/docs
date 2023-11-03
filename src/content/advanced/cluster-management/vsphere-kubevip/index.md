@@ -6,12 +6,15 @@ weight: 25
 menu:
   main:
     parent: advanced-cluster-management
-last_review_date: 2023-10-09
 user_questions:
   - How to divide my subnet for Kube-vip with CAPV?
   - What IP should I use for Kube-vip with CAPV?
   - How to set a range of IPs for load balancer in Kube-vip with CAPV?
   - Where can I see the IPs in use by Kube-vip?
+last_review_date: 2023-11-03
+aliases:
+  - /guides/vsphere-kubevip
+  - /advanced/vsphere-kubevip
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
 ---

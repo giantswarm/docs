@@ -6,15 +6,18 @@ weight: 110
 menu:
   main:
     parent: advanced-app-platform
-owner:
-  - https://github.com/orgs/giantswarm/teams/team-bigmac
-last_review_date: 2023-10-10
 user_questions:
   - How can I prevent the accidental deletion of resources?
   - How can I protect resources from accidental deletion?
   - How can I safeguard resources?
   - How can I protect clusters from accidental deletion?
   - How can I safeguard clusters?
+last_review_date: 2023-11-03
+aliases:
+  - /guides/deletion-prevention/
+  - /advanced/deletion-prevention/
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-bigmac
 ---
 
 

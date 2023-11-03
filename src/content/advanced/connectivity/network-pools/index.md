@@ -11,11 +11,13 @@ user_questions:
   - What are network pools?
   - In which cloud environments are network pools supported?
   - Which releases introduced network pools?
+last_review_date: 2023-11-03
 aliases:
   - /basics/networkpools/
+  - /guides/networkpools/
+  - /advanced/networkpools/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2023-04-04
 ---
 
 {{< platform_support_table aws="ga=v12.7.0" >}}

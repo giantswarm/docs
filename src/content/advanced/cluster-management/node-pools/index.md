@@ -13,6 +13,8 @@ user_questions:
   - Which workload cluster releases introduced node pools?
 aliases:
   - /basics/nodepools/
+  - /guides/nodepools/
+  - /advanced/nodepools/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 last_review_date: 2023-04-04

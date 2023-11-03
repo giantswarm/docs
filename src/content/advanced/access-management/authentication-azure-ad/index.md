@@ -12,6 +12,7 @@ user_questions:
 last_review_date: 2021-03-15
 aliases:
   - /guides/authenticating-with-microsoft-azure-active-directory/
+  - /advanced/authentication-azure-ad/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---

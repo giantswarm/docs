@@ -9,11 +9,12 @@ menu:
     parent: advanced-spotinstances-azure
 user_questions:
   - How can I use Azure spot VMs and fall back to on-demand if spot is unavailable?
+last_review_date: 2023-11-03
 aliases:
-  - /advanced/cluster-management/spot-instances/azure/on-demand-fallback/
+  - /advanced/spot-instances/azure/on-demand-fallback/
+  - /guides/cluster-management/spot-instances/azure/on-demand-fallback/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2021-01-01
 ---
 
 {{< platform_support_table azure="ga=v14.1.0" >}}
