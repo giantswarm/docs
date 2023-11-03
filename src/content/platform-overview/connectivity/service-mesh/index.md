@@ -18,4 +18,4 @@ last_review_date: 2022-12-13
 
 We offer linkerd for service mesh functionality in the platform. You can still use other service meshes within the platform but linkerd comes managed by Giant Swarm.
 
-To install, go to [Linkerd Quickstart Guide]({{< relref "/advanced/service-mesh/getting-started" >}}).
+To install, go to [Linkerd Quickstart Guide]({{< relref "/advanced/connectivity/service-mesh/getting-started" >}}).

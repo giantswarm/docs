@@ -15,17 +15,17 @@ description: Release notes for AWS workload cluster release v18.0.3, published o
 title: Workload cluster release v18.0.3 for AWS
 ---
 
-This release fixes a misconfiguration of IRSA that caused downtime in the API server during upgrades between v17 and v18 with IRSA feature enabled. 
+This release fixes a misconfiguration of IRSA that caused downtime in the API server during upgrades between v17 and v18 with IRSA feature enabled.
 
 ***IRSA highlights***
-- Please read the [updated documentation](https://docs.giantswarm.io/advanced/iam-roles-for-service-accounts/)
+- Please read the [updated documentation](https://docs.giantswarm.io/advanced/access-management/iam-roles-for-service-accounts/)
 - Prior to upgrades please reach out to your Account Engineer and GiantSwarm team will help you in seemless migration if you have already enabled IRSA.
-- Please remember to adapt the IAM policies prior to upgrade as specified in the [documentation](https://docs.giantswarm.io/advanced/iam-roles-for-service-accounts/)
+- Please remember to adapt the IAM policies prior to upgrade as specified in the [documentation](https://docs.giantswarm.io/advanced/access-management/iam-roles-for-service-accounts/)
 
 ***Features removed from v18.0.0***
 
 - Cilium CNI was rolled back, and this release still uses AWS CNI. This was done because of an upstream bug that prevented some advanced networking features to work properly.
-- Out-of-tree cloud controller manager was removed, and in-tree alternative was enabled again because of an upstream bug regarding AWS CNI. Bug is already fixed in 1.24 version of upstream repo. 
+- Out-of-tree cloud controller manager was removed, and in-tree alternative was enabled again because of an upstream bug regarding AWS CNI. Bug is already fixed in 1.24 version of upstream repo.
 
 ## Change details
 

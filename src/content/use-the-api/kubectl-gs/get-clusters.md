@@ -61,7 +61,7 @@ The standard tabular output format features these columns:
     - `UPDATED`: The cluster update is finished.
     - `DELETING`: The cluster is being deleted.
 - `RELEASE`: Workload cluster release version of the cluster.
-- `SERVICE PRIORITY`: [Service priority]({{< relref "/advanced/labelling-workload-clusters#service-priority" >}}) of the cluster.
+- `SERVICE PRIORITY`: [Service priority]({{< relref "/advanced/cluster-management/labelling-workload-clusters#service-priority" >}}) of the cluster.
 - `ORGANIZATION`: Organization owning the cluster.
 - `DESCRIPTION`: User-friendly description for the cluster.
 

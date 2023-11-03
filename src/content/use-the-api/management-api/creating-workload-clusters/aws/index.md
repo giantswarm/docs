@@ -25,7 +25,7 @@ last_review_date: 2023-03-15
 
 ## How cluster creation works
 
-Starting from version {{% first_aws_nodepools_version %}} on AWS, Giant Swarm introduced a feature to create multiple [node pools]({{< relref "/advanced/node-pools" >}}) on AWS.
+Starting from version {{% first_aws_nodepools_version %}} on AWS, Giant Swarm introduced a feature to create multiple [node pools]({{< relref "/advanced/cluster-management/node-pools" >}}) on AWS.
 Alongside node pools support, a new API version for cluster management was released.
 
 All the workload clusters, created with workload cluster release v{{% first_aws_nodepools_version %}} and newer, are managed as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) in the Control Plane.
@@ -293,4 +293,4 @@ In order to review if a resource has been marked for deletion you can check if t
 
 The whole deletion process can take up to one hour.
 
-If you would like to protect your clusters from accidental deletion, take a look at our [deletion prevention mechanism]({{< relref "/advanced/deletion-prevention" >}}).
+If you would like to protect your clusters from accidental deletion, take a look at our [deletion prevention mechanism]({{< relref "/advanced/app-platform/deletion-prevention" >}}).

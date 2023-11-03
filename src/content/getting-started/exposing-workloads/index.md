@@ -113,7 +113,7 @@ Once the ingress is up, you will be able to access your service publicly at a UR
 https://PREFIX.CLUSTER_ID.k8s.gigantic.io
 ```
 
-For additional features and options, please see our documentation around [advanced ingress configuration]({{< relref "/advanced/ingress/configuration" >}}).
+For additional features and options, please see our documentation around [advanced ingress configuration]({{< relref "/advanced/connectivity/ingress/configuration" >}}).
 
 ## Forwarding ports with `kubectl port-forward` {#port-forward}
 

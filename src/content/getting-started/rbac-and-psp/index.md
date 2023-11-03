@@ -520,4 +520,4 @@ Note that bindings that come with the cluster by default like `system:masters` c
 [farewell-psp-blog]: https://www.giantswarm.io/blog/giant-swarms-farewell-to-psp
 [upstream-psa]: https://kubernetes.io/docs/concepts/security/pod-security-admission/
 [upstream-pss]: https://kubernetes.io/docs/concepts/security/pod-security-standards/
-[policy-enforcement-guide]: {{< relref "/advanced/security-policy-enforcement" >}}
+[policy-enforcement-guide]: {{< relref "/advanced/security/security-policy-enforcement" >}}

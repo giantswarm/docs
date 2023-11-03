@@ -18,7 +18,7 @@ last_review_date: 2023-03-06
 
 {{% gsctl_deprecation_disclaimer %}}
 
-Giant Swarm allows you to run clusters in your own cloud provider account/subscription. We refer to this as [multi-account functionality]({{< relref "/advanced/multi-account" >}}). As a prerequisite, the organization that should own the clusters has to be prepared with cloud provider credentials.
+Giant Swarm allows you to run clusters in your own cloud provider account/subscription. We refer to this as [multi-account functionality]({{< relref "/advanced/infrastructure-management/multi-account" >}}). As a prerequisite, the organization that should own the clusters has to be prepared with cloud provider credentials.
 
 Please refer to our detailed guides on how to prepare roles and credentials in your AWS account or Azure subscription:
 
@@ -79,7 +79,7 @@ The flags mean:
 
 ## Related
 
-- [Basics and Concepts: Multi-Account Support]({{< relref "/advanced/multi-account" >}})
+- [Basics and Concepts: Multi-Account Support]({{< relref "/advanced/infrastructure-management/multi-account" >}})
 - [Guides: Prepare an AWS account to run Giant Swarm workload clusters]({{< relref "/getting-started/cloud-provider-accounts/aws" >}})
 - [Guides: Prepare an Azure subscription to run Giant Swarm workload clusters]({{< relref "/getting-started/cloud-provider-accounts/azure" >}})
 - [API: Set credentials](/api/#operation/addCredentials)
