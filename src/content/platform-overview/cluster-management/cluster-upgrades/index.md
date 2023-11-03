@@ -214,6 +214,8 @@ If a pod takes a long time for a proper shutdown, configure the `terminationGrac
 
 Configure [PodDisruptionBudgets](https://kubernetes.io/docs/tasks/run-application/configure-pdb/) for all your deployments. This tells Kubernetes to keep a minimum amount of Pods running at all times and is respected by the draining/eviction mechanisms during upgrades.
 
+**Note**: In the case of deployments where `replicas=1`, setting a `PodDisruptionBudgets` with `maxUnavailable=0` is not advised as it will hold the cluster upgrade since the node won't be able to be fully drained. Depending on the provider there will be a different timeout that will force-stop and evict pods from the node.
+
 ### Set scheduling priorities {#checklist-scheduling-priorities}
 
 Consider using Pod priority to ensure that higher priority Pods are scheduled favorably in times of resource pressure.
