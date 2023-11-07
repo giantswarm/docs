@@ -278,7 +278,7 @@ organization. These clusters' resources will be created in your AWS account.
 
 ## Further reading
 
-- [Basics and Concepts: Multi Account Support]({{< relref "/advanced/multi-account" >}})
+- [Basics and Concepts: Multi Account Support]({{< relref "/advanced/infrastructure-management/multi-account" >}})
 - [gsctl Reference: `update organization set-credentials`]({{< relref "/use-the-api/gsctl/update-org-set-credentials" >}})
 - [API: Set credentials](/api/#operation/addCredentials)
 - [Giant Swarm Architecture]({{< relref "/platform-overview/cluster-management/vintage/aws" >}})

@@ -15,7 +15,7 @@ description: Release notes for Azure workload cluster release v14.1.0, published
 title: Workload cluster release v14.1.0 for Azure
 ---
 
-This is the first workload cluster release to support [spot VMs](https://azure.microsoft.com/en-us/pricing/spot/) on Azure. Please refer to [Giant Swarm Azure Spot documentation](https://docs.giantswarm.io/advanced/spot-instances/azure/) for more information.
+This is the first workload cluster release to support [spot VMs](https://azure.microsoft.com/en-us/pricing/spot/) on Azure. Please refer to [Giant Swarm Azure Spot documentation](https://docs.giantswarm.io/advanced/cluster-management/spot-instances/azure/) for more information.
 
 With this release the `volumeBindingMode` for the following `storageClasses` will be changed to `WaitForFirstConsumer`:
 

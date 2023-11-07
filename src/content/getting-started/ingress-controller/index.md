@@ -43,5 +43,5 @@ More information about the Ingress NGINX Controller can be found in the [ingress
 ## Further reading
 
 - [Accessing pods and services from the outside]({{< relref "/getting-started/exposing-workloads/index.md" >}})
-- [Running multiple Ingress NGINX Controllers]({{< relref "/advanced/ingress/multi-nginx-ic/index.md" >}})
-- [Advanced ingress configuration]({{< relref "/advanced/ingress/configuration/index.md" >}})
+- [Running multiple Ingress NGINX Controllers]({{< relref "/advanced/connectivity/ingress/multi-nginx-ic/index.md" >}})
+- [Advanced ingress configuration]({{< relref "/advanced/connectivity/ingress/configuration/index.md" >}})

@@ -77,4 +77,4 @@ To remove a label, set its key to an empty string (`labeltodelete=`).
 - [API: Modify cluster (v4)](/api/#operation/modifyCluster)
 - [API: Modify cluster (v5)](/api/#operation/modifyClusterV5)
 - [API: Update cluster labels](/api/#operation/setClusterLabels)
-- [Labelling workload clusters]({{< relref "/advanced/labelling-workload-clusters" >}})
+- [Labelling workload clusters]({{< relref "/advanced/cluster-management/labelling-workload-clusters" >}})
