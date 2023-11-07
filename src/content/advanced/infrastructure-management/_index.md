@@ -1,7 +1,7 @@
 ---
 linkTitle: Infrastructure Management
 title: Advanced Infrastructure Management Guides
-description: Learn how Infrastructure Management works in deep.
+description: Take a look at the list of guides that delve into Infrastructure Management and its components.
 weight: 15
 menu:
   main:

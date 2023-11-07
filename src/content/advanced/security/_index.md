@@ -1,7 +1,7 @@
 ---
 linkTitle: Security
 title: Advanced Security Guides
-description: Here are a list of different guides that will help you to specific and advanced security tasks.
+description: Take a look at the list of guides that delve into Security and its components.
 weight: 30
 menu:
   main:

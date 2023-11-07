@@ -1,7 +1,7 @@
 ---
 linkTitle: Access Management
 title: Advanced Access Management Guides
-description: Learn how Access Management works in deep.
+description: Take a look at the list of guides that delve into Access Management and its components.
 weight: 12
 menu:
   main:

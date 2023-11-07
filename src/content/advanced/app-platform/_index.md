@@ -1,7 +1,7 @@
 ---
 linkTitle: App Platform
 title: Advanced App Platform Guides
-description: Learn how App Platform works in deep.
+description: Take a look at the list of guides that delve into App Platform and its components.
 weight: 15
 menu:
   main:
