@@ -32,10 +32,10 @@ This Giant Swarm release introduces Kubernetes 1.24, replaces the use of AWS CNI
 - Due to changes to CRs during upgrade the `gitops` automation will have to be suspended and any applied changes backported to the repos before resuming.
 
 :rotating_light: ***IRSA breaking changes***
-- Please read the [updated documentation](https://docs.giantswarm.io/advanced/iam-roles-for-service-accounts/)
+- Please read the [updated documentation](https://docs.giantswarm.io/advanced/access-management/iam-roles-for-service-accounts/)
 - Please remember that `kiam-app` will be removed by default during the upgrade.
-- Please remember to adapt the IAM policies prior to upgrade as specified in the [documentation](https://docs.giantswarm.io/advanced/iam-roles-for-service-accounts/)
-- There have been breaking changes introduced to the `Cloudfront domain alias` to provide greater predictability and enable easier automation of AWS IAM role creation by customers. Please adjust AWS IAM roles accordingly to the [documentation](https://docs.giantswarm.io/advanced/iam-roles-for-service-accounts/#aws-release-v19) prior to the upgrade.
+- Please remember to adapt the IAM policies prior to upgrade as specified in the [documentation](https://docs.giantswarm.io/advanced/access-management/iam-roles-for-service-accounts/)
+- There have been breaking changes introduced to the `Cloudfront domain alias` to provide greater predictability and enable easier automation of AWS IAM role creation by customers. Please adjust AWS IAM roles accordingly to the [documentation](https://docs.giantswarm.io/advanced/access-management/iam-roles-for-service-accounts/#aws-release-v19) prior to the upgrade.
 
 ***General highlights***
 - The [k8s-dns-node-cache-app](https://github.com/giantswarm/k8s-dns-node-cache-app/) is now deployed by default. After the upgrade please delete the application if you have deployed it through managed catalog. Afterwards the app will be installed automatically.

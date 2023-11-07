@@ -30,7 +30,7 @@ This feature can be enabled via the annotation `cilium.giantswarm.io/ipam-mode: 
 
 ## Kyverno by default
 
-This release prepares for the migration away from Pod Security Policies (PSP) in favor of Pod Security Standards (PSS) in Kubernetes 1.25. Our `security-bundle` is now installed by default, and will deploy `kyverno` and `restricted` level PSS policies in `audit` mode. These resources are provided in order to allow time to create exceptions for workloads which need them before the policies are changed to `enforce` in a future release. For more information about PSS please read our official [documentation](https://docs.giantswarm.io/advanced/security-policy-enforcement/). Please also take a look at the `kyverno` [documentation](https://docs.giantswarm.io/platform-overview/security/platform-security/#kyverno) to fully utilize its potential.
+This release prepares for the migration away from Pod Security Policies (PSP) in favor of Pod Security Standards (PSS) in Kubernetes 1.25. Our `security-bundle` is now installed by default, and will deploy `kyverno` and `restricted` level PSS policies in `audit` mode. These resources are provided in order to allow time to create exceptions for workloads which need them before the policies are changed to `enforce` in a future release. For more information about PSS please read our official [documentation](https://docs.giantswarm.io/advanced/security/security-policy-enforcement/). Please also take a look at the `kyverno` [documentation](https://docs.giantswarm.io/platform-overview/security/platform-security/#kyverno) to fully utilize its potential.
 
 > **WARNING:** If you are already running `kyverno` as Giant Swarm Managed App, the installation of `security-bundle` will fail. However the already existing `kyverno` deployment and its configuration can be adopted by the bundle after the upgrade is finished. Please talk to your Account Engineer if you have any questions.
 
@@ -74,13 +74,13 @@ _Nothing has changed._
 ### app-operator [6.8.0](https://github.com/giantswarm/app-operator/releases/tag/v6.8.0)
 
 #### Added
-- Add Service Monitor by default to make it complain with the latest monitoring improvements 
+- Add Service Monitor by default to make it complain with the latest monitoring improvements
 
 
 
 ### aws-operator [14.22.0](https://github.com/giantswarm/aws-operator/releases/tag/v14.22.0)
 
-#### Added 
+#### Added
 - Allow newer flatcar releases for node pools as provided by AWS release.
 - Add sigs.k8s.io/cluster-api-provider-aws/role tag to all subnets as preparation for migration to CAPI.
 
@@ -90,7 +90,7 @@ _Nothing has changed._
 - *cilium eni mode* - Only run aws-node, calico and kube-proxy on old nodes during migration to cilium.
 
 
-    
+
 
 ### cluster-operator [5.8.0-patch1](https://github.com/giantswarm/cluster-operator/releases/tag/v5.8.0-patch1)
 
@@ -107,17 +107,17 @@ _Nothing has changed._
 ### containerlinux [3510.2.7](https://www.flatcar-linux.org/releases/#release-3510.2.7)
 
  _Changes since **Stable 3510.2.6**_
- 
+
  #### Security fixes:
- 
+
  - Linux ([CVE-2022-40982](https://nvd.nist.gov/vuln/detail/CVE-2022-40982), [CVE-2022-41804](https://nvd.nist.gov/vuln/detail/CVE-2022-41804), [CVE-2023-1206](https://nvd.nist.gov/vuln/detail/CVE-2023-1206), [CVE-2023-20569](https://nvd.nist.gov/vuln/detail/CVE-2023-20569), [CVE-2023-4004](https://nvd.nist.gov/vuln/detail/CVE-2023-4004), [CVE-2023-4147](https://nvd.nist.gov/vuln/detail/CVE-2023-4147), [CVE-2023-20569](https://nvd.nist.gov/vuln/detail/CVE-2023-20569), [CVE-2023-23908](https://nvd.nist.gov/vuln/detail/CVE-2023-23908))
- 
+
  #### Bug fixes:
- 
+
  - Fixed the restart of Systemd services when the main process is being killed by a SIGHUP signal ([flatcar#1157](https://github.com/flatcar/Flatcar/issues/1157))
- 
+
  #### Updates:
- 
+
  - Linux ([5.15.125](https://lwn.net/Articles/940801) (includes [5.15.124](https://lwn.net/Articles/940339), [5.15.123](https://lwn.net/Articles/939424)))
 
 

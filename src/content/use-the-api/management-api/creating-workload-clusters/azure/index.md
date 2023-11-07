@@ -7,14 +7,14 @@ menu:
   main:
     identifier: uiapi-managementapi-creatingclusters-azure
     parent: uiapi-managementapi-creatingclusters
+user_questions:
+  - How can I create an Azure cluster via the Management API?
+last_review_date: 2023-11-07
 aliases:
   - /guides/creating-clusters-via-crs-on-azure/
   - /ui-api/management-api/creating-workload-clusters/azure
-user_questions:
-  - How can I create an Azure cluster via the Management API?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-celestial
-last_review_date: 2021-01-01
 ---
 
 <div class="well disclaimer">
@@ -25,7 +25,7 @@ last_review_date: 2021-01-01
 
 ## How does cluster creation work
 
-Starting from version {{% first_azure_nodepools_version %}} on Azure, Giant Swarm introduced a feature to create multiple [node pools]({{< relref "/advanced/node-pools" >}}) on Azure.
+Starting from version {{% first_azure_nodepools_version %}} on Azure, Giant Swarm introduced a feature to create multiple [node pools]({{< relref "/advanced/cluster-management/node-pools" >}}) on Azure.
 Alongside node pools support, a new API version for cluster management was released.
 
 All the workload clusters, created with workload cluster release v{{% first_azure_nodepools_version %}} and newer, are managed as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) in the Control Plane.
@@ -228,5 +228,5 @@ Currently changing/adding config to already existing cluster is not fully suppor
 
 ## How to delete cluster via Control Plane API
 
-In order to delete your cluster created via the Cluster API on the Control Plane, simply delete the `Cluster` CR corresponding to the given cluster. This will result in starting the process of cluster deletion and clean up of all related CRs on the Control Plane.  
-If you would like to protect your clusters from accidental deletion, take a look at our [deletion prevention mechanism]({{< relref "/advanced/deletion-prevention" >}}).
+In order to delete your cluster created via the Cluster API on the Control Plane, simply delete the `Cluster` CR corresponding to the given cluster. This will result in starting the process of cluster deletion and clean up of all related CRs on the Control Plane.
+If you would like to protect your clusters from accidental deletion, take a look at our [deletion prevention mechanism]({{< relref "/advanced/app-platform/deletion-prevention" >}}).

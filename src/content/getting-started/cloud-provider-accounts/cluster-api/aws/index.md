@@ -103,7 +103,7 @@ This CR needs to be created only once for each AWS Account. It can be then refer
 
 ## Further reading
 
-- [Basics and Concepts: Multi Account Support]({{< relref "/advanced/multi-account" >}})
+- [Basics and Concepts: Multi Account Support]({{< relref "/advanced/infrastructure-management/multi-account" >}})
 - [API: Set credentials](/api/#operation/addCredentials)
 - [Giant Swarm Architecture]({{< relref "/platform-overview/cluster-management/vintage/aws" >}})
 - [Giant Swarm REST API documentation](/api/)

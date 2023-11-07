@@ -139,7 +139,7 @@ It supports the following flags:
 - `--external-snat` - AWS CNI configuration to disable (is enabled by default) the [external source network address translation](https://docs.aws.amazon.com/eks/latest/userguide/external-snat.html).
 - `--pods-cidr` (optional) - CIDR applied to the pods. If this isn't provided, the installation default will be applied.
 - `--label` (optional) - workload cluster label in the form of `key=value`. Can be specified multiple times.
-- `--service-priority` (optional) - [Service priority]({{< relref "/advanced/labelling-workload-clusters#service-priority" >}}) of the cluster (one of: `highest`, `medium`, or `lowest`; default: `highest`).
+- `--service-priority` (optional) - [Service priority]({{< relref "/advanced/cluster-management/labelling-workload-clusters#service-priority" >}}) of the cluster (one of: `highest`, `medium`, or `lowest`; default: `highest`).
 - `--release-branch` (optional) - The Giant Swarm [releases repository](https://github.com/giantswarm/releases) branch to use to look up the workload cluster release set via the `--release` flag (default: `master`).
 - `--release` - Workload cluster release version.
 

@@ -6,15 +6,15 @@ weight: 40
 menu:
   main:
     parent: uiapi-kubectlgs
+user_questions:
+  - How can I list clusters using kubectl?
+  - How can I inspect clusters using kubectl?
+last_review_date: 2023-11-07
 aliases:
   - /reference/kubectl-gs/get-clusters/
   - /ui-api/kubectl-gs/get-clusters/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-user_questions:
-  - How can I list clusters using kubectl?
-  - How can I inspect clusters using kubectl?
-last_review_date: 2022-06-08
 ---
 
 Like with all `get` commands in `kubectl`, this command can be used to get details on one item, a cluster in this case, or list several of them.
@@ -61,7 +61,7 @@ The standard tabular output format features these columns:
     - `UPDATED`: The cluster update is finished.
     - `DELETING`: The cluster is being deleted.
 - `RELEASE`: Workload cluster release version of the cluster.
-- `SERVICE PRIORITY`: [Service priority]({{< relref "/advanced/labelling-workload-clusters#service-priority" >}}) of the cluster.
+- `SERVICE PRIORITY`: [Service priority]({{< relref "/advanced/cluster-management/labelling-workload-clusters#service-priority" >}}) of the cluster.
 - `ORGANIZATION`: Organization owning the cluster.
 - `DESCRIPTION`: User-friendly description for the cluster.
 

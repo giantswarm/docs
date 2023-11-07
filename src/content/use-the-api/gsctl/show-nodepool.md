@@ -18,7 +18,7 @@ last_review_date: 2023-03-06
 
 {{% gsctl_deprecation_disclaimer %}}
 
-The `gsctl show nodepool` command shows details on a [node pool]({{< relref "/advanced/node-pools" >}}).
+The `gsctl show nodepool` command shows details on a [node pool]({{< relref "/advanced/cluster-management/node-pools" >}}).
 
 ## Usage
 

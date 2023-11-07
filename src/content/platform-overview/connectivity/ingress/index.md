@@ -21,6 +21,6 @@ A few resources to learn more about the Ingress NGINX Controller:
 
 - [Installing an ingress controller]({{< relref "/getting-started/ingress-controller" >}})
 - [Exposing pods and services to the outside]({{< relref "/getting-started/exposing-workloads" >}})
-- [Advanced Ingress Configuration]({{< relref "/advanced/ingress" >}})
-- [TLS Certificates for Ingress with cert-manager]({{< relref "/advanced/tls-certificates" >}})
+- [Advanced Ingress Configuration]({{< relref "/advanced/connectivity/ingress" >}})
+- [TLS Certificates for Ingress with cert-manager]({{< relref "/advanced/connectivity/tls-certificates" >}})
 - [The Ingress NGINX Controller Helm chart on Github](https://github.com/giantswarm/ingress-nginx-app)

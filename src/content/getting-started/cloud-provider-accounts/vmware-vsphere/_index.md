@@ -65,7 +65,7 @@ Because vSphere has no concept of load balancer, the implementation of CAPV incl
 
 {{< tabs >}}
 {{< tab id="flags-kubevip" title="kube-vip">}}
-Since vSphere has no concept of load balancers out of the box, CAPV ships with [kube-vip]({{< relref "/advanced/vsphere-kubevip" >}}), a layer-2 load balancer that works with ARP requests. By default, `kube-vip` only handles the Kubernetes API access but at Giant Swarm, we also deploy the `kube-vip` cloud provider to offer the capability to create services of type load balancer.
+Since vSphere has no concept of load balancers out of the box, CAPV ships with [kube-vip]({{< relref "/advanced/cluster-management/vsphere-kubevip" >}}), a layer-2 load balancer that works with ARP requests. By default, `kube-vip` only handles the Kubernetes API access but at Giant Swarm, we also deploy the `kube-vip` cloud provider to offer the capability to create services of type load balancer.
 
 ARP is a layer 2 protocol that is used to inform the network of the location of a new address. `kube-vip` runs in-cluster as opposed to a more traditional external load-balancer that will forward IP packets to its backend servers.
 
@@ -77,7 +77,7 @@ As a result, the network in which the cluster is deployed must have a range of t
 
 By default, when deploying a CAPV cluster, it will automatically pick up an IP from the ipam pool. However, you must explicitely set a CIDR located in the nodes' subnet to have available IPs for services of type load balancer in the workload cluster.
 
-Learn more about how to configure `kube-vip` for CAPV in the [advanced documentation]({{< relref "/advanced/vsphere-kubevip" >}}).
+Learn more about how to configure `kube-vip` for CAPV in the [advanced documentation]({{< relref "/advanced/cluster-management/vsphere-kubevip" >}}).
 {{< /tab >}}
 
 {{< tab id="flags-nsxalb" title="NSX ALB">}}
