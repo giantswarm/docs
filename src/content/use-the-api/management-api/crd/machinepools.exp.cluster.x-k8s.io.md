@@ -1627,7 +1627,7 @@ spec:
 </div>
 
 <div class="annotation-description">
-<p>This annotation allows setting the max size of a node pool for autoscaling purposes. See <a href="https://docs.giantswarm.io/advanced/cluster-management/node-pools/">node pools</a></p>
+<p>This annotation allows setting the max size of a node pool for autoscaling purposes. See <a href="https://docs.giantswarm.io/advanced/node-pools/">node pools</a></p>
 
 </div>
 
@@ -1644,7 +1644,7 @@ spec:
 </div>
 
 <div class="annotation-description">
-<p>This annotation allows setting the min size of a node pool for autoscaling purposes. See <a href="https://docs.giantswarm.io/advanced/cluster-management/node-pools/">node pools</a></p>
+<p>This annotation allows setting the min size of a node pool for autoscaling purposes. See <a href="https://docs.giantswarm.io/advanced/node-pools/">node pools</a></p>
 
 </div>
 

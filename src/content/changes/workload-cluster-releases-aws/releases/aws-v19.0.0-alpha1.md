@@ -17,7 +17,7 @@ title: Workload cluster release v19.0.0-alpha1 for AWS
 
 ***THIS IS AN ALPHA RELEASE - SOLELY FOR THE PURPOSE OF CREATING NEW PLAYGROUND CLUSTERS ONLY***
 
-This Giant Swarm release introduces Kubernetes 1.24, replaces the use of AWS CNI with Cilium and upgrades most components. This release also deprecates and removes use of `kiam` by default in favor of `IAM Roles for Service Accounts (IRSA)`.
+This Giant Swarm release introduces Kubernetes 1.24, replaces the use of AWS CNI with Cilium and upgrades most components. This release also deprecates and removes use of `kiam` by default in favor of `IAM Roles for Service Accounts (IRSA)`. 
 
 > **_CNI Warning:_** The AWS CNI pod subnets are no longer used by Cilium. Please add custom routes with the node subnet(s) CIDR(s) instead of the AWS CNI pod subnets CIDR before upgrading to this release.
 
@@ -31,12 +31,12 @@ This Giant Swarm release introduces Kubernetes 1.24, replaces the use of AWS CNI
 - Due to changes to CRs during upgrade the `gitops` automation will have to be suspended and any applied changes backported to the repos before resuming.
 
 ***IRSA highlights***
-- Please read the [updated documentation](https://docs.giantswarm.io/advanced/access-management/iam-roles-for-service-accounts/)
-- Please remember to adapt the IAM policies prior to upgrade as specified in the [documentation](https://docs.giantswarm.io/advanced/access-management/iam-roles-for-service-accounts/)
-- There has been changes introduced to the `Cloudfront domain alias` to provide greater predictability and enable easier automation of AWS IAM role creation by customers. Please adjust AWS IAM roles accordingly to the [documentation](https://docs.giantswarm.io/advanced/access-management/iam-roles-for-service-accounts/#aws-release-v19) prior to the upgrade.
+- Please read the [updated documentation](https://docs.giantswarm.io/advanced/iam-roles-for-service-accounts/)
+- Please remember to adapt the IAM policies prior to upgrade as specified in the [documentation](https://docs.giantswarm.io/advanced/iam-roles-for-service-accounts/)
+- There has been changes introduced to the `Cloudfront domain alias` to provide greater predictability and enable easier automation of AWS IAM role creation by customers. Please adjust AWS IAM roles accordingly to the [documentation](https://docs.giantswarm.io/advanced/iam-roles-for-service-accounts/#aws-release-v19) prior to the upgrade.
 
 ***General highlights***
-- The [k8s-dns-node-cache-app](https://github.com/giantswarm/k8s-dns-node-cache-app/) is now deployed by default. After the upgrade please delete the application if you have deployed it through managed catalog. Afterwards the app will be installed automatically.
+- The [k8s-dns-node-cache-app](https://github.com/giantswarm/k8s-dns-node-cache-app/) is now deployed by default. After the upgrade please delete the application if you have deployed it through managed catalog. Afterwards the app will be installed automatically. 
 - The [prometheus-blackbox-exporter](https://github.com/giantswarm/prometheus-blackbox-exporter/) is a new monitoring component deployed by default. This is a blackbox monitoring tool that will validate internal, DNS and external connectivity.
 
 
@@ -395,7 +395,7 @@ Service `ClusterIP` are unique, hence, trying to create a Service with a `Cluste
 ##### Feature
 
 
-- Kubelet TCP and HTTP probes are more effective using networking resources: conntrack entries, sockets, ...
+- Kubelet TCP and HTTP probes are more effective using networking resources: conntrack entries, sockets, ... 
   This is achieved by reducing the TIME-WAIT state of the connection to 1 second, instead of the defaults 60 seconds. This allows kubelet to free the socket, and free conntrack entry and ephemeral port associated. ([#115143](https://github.com/kubernetes/kubernetes/pull/115143), [@aojea](https://github.com/aojea)) [SIG Network and Node]
 - Kubernetes is now built with Go 1.19.6 ([#115831](https://github.com/kubernetes/kubernetes/pull/115831), [@cpanato](https://github.com/cpanato)) [SIG Release and Testing]
 - Kubeadm: use the image registry registry.k8s.io instead of k8s.gcr.io for new clusters. During upgrade, migrate users to registry.k8s.io if they were using the default of k8s.gcr.io. ([#113395](https://github.com/kubernetes/kubernetes/pull/113395), [@neolit123](https://github.com/neolit123)) [SIG Cloud Provider and Cluster Lifecycle]
@@ -557,7 +557,7 @@ Service `ClusterIP` are unique, hence, trying to create a Service with a `Cluste
 - Fix JobTrackingWithFinalizers that:
   - was declaring a job finished before counting all the created pods in the status
   - was leaving pods with finalizers, blocking pod and job deletions
-
+  
   JobTrackingWithFinalizers is still disabled by default. ([#109486](https://github.com/kubernetes/kubernetes/pull/109486), [@alculquicondor](https://github.com/alculquicondor)) [SIG Apps and Testing]
 - Kubeadm: only taint control plane nodes when the legacy "master" taint is present. This avoids a bug where "kubeadm upgrade" will re-taint a control plane node with the new "control plane" taint even if the user explicitly untainted the node. ([#109841](https://github.com/kubernetes/kubernetes/pull/109841), [@neolit123](https://github.com/neolit123)) [SIG Cluster Lifecycle]
 - A node IP provided to kublet via `--node-ip` will now be preferred for when determining the node's primary IP and using the external cloud provider (CCM). ([#107750](https://github.com/kubernetes/kubernetes/pull/107750), [@stephenfin](https://github.com/stephenfin))

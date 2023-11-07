@@ -15,9 +15,9 @@ description: Release notes for Azure workload cluster release v19.1.0, published
 title: Workload cluster release v19.1.0 for Azure
 ---
 
-This is a maintainance and security release, featuring latest Flatcar Container Linux and Kubernetes versions.
+This is a maintainance and security release, featuring latest Flatcar Container Linux and Kubernetes versions. 
 
-This is the release preparing for the migration away from Pod Security Policies (PSP) in favor of Pod Security Standards (PSS) in Kubernetes 1.25. Our `security-bundle` is now installed by default, and will deploy `kyverno` and `restricted` level PSS policies in `audit` mode. These resources are provided in order to allow time to create exceptions for workloads which need them before the policies are changed to `enforce` in a future release. For more information about PSS please read our official [documentation](https://docs.giantswarm.io/advanced/security/security-policy-enforcement/). Please also take a look at the `kyverno` [documentation](https://docs.giantswarm.io/platform-overview/security/platform-security/#kyverno) to utilize fully its potential.
+This is the release preparing for the migration away from Pod Security Policies (PSP) in favor of Pod Security Standards (PSS) in Kubernetes 1.25. Our `security-bundle` is now installed by default, and will deploy `kyverno` and `restricted` level PSS policies in `audit` mode. These resources are provided in order to allow time to create exceptions for workloads which need them before the policies are changed to `enforce` in a future release. For more information about PSS please read our official [documentation](https://docs.giantswarm.io/advanced/security-policy-enforcement/). Please also take a look at the `kyverno` [documentation](https://docs.giantswarm.io/platform-overview/security/platform-security/#kyverno) to utilize fully its potential.
 
 > **WARNING:** If you are already running `kyverno` as Giant Swarm Managed App, the installation of `security-bundle` will fail. However the already existing `kyverno` deployment and its configuration can be adopted by the bundle after the upgrade is finished. Please talk to your Account Engineer if you have any questions.
 
@@ -76,19 +76,19 @@ _Nothing has changed._
 ### containerlinux [3510.2.2](https://www.flatcar-linux.org/releases/#release-3510.2.2)
 
  _Changes since **Stable 3510.2.1**_
-
+ 
 #### Security fixes:
-
+ 
  - Linux ([CVE-2023-1380](https://nvd.nist.gov/vuln/detail/CVE-2023-1380), [CVE-2023-1859](https://nvd.nist.gov/vuln/detail/CVE-2023-1859), [CVE-2023-2002](https://nvd.nist.gov/vuln/detail/CVE-2023-2002), [CVE-2023-2269](https://nvd.nist.gov/vuln/detail/CVE-2023-2269), [CVE-2023-31436](https://nvd.nist.gov/vuln/detail/CVE-2023-31436), [CVE-2023-32233](https://nvd.nist.gov/vuln/detail/CVE-2023-32233))
-
+ 
 #### Bug fixes:
-
-
+ 
+ 
 #### Changes:
-
-
+ 
+ 
 #### Updates:
-
+ 
  - Linux ([5.15.111](https://lwn.net/Articles/931652) (includes [5.15.110](https://lwn.net/Articles/930600), [5.15.109](https://lwn.net/Articles/930263), [5.15.108](https://lwn.net/Articles/929679), [5.15.107](https://lwn.net/Articles/929015)))
  - ca-certificates ([3.89.1](https://firefox-source-docs.mozilla.org/security/nss/releases/nss_3_89_1.html))
 
@@ -213,7 +213,7 @@ _Nothing has changed._
 
 #### Changed
 - Bumped dependencies.
-- Switched to go 1.18.
+- Switched to go 1.18. 
 
 
 
