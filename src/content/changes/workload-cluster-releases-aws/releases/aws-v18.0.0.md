@@ -24,9 +24,9 @@ This release provides support for Kubernetes 1.23, replaces the use of AWS CNI w
 - The AWS CNI pod subnets are no longer used by Cilium. Please add custom routes with the node subnet(s) CIDR(s) instead of the AWS CNI pod subnets CIDR before upgrading to this release.
 
 ***IRSA highlights***
-- Please read the [updated documentation](https://docs.giantswarm.io/advanced/access-management/iam-roles-for-service-accounts/)
+- Please read the [updated documentation](https://docs.giantswarm.io/advanced/iam-roles-for-service-accounts/)
 - Prior to upgrades please reach out to your Account Engineer and GiantSwarm team will help you in seemless migration if you have already enabled IRSA.
-- Please remember to adapt the IAM policies prior to upgrade as specified in the [documentation](https://docs.giantswarm.io/advanced/access-management/iam-roles-for-service-accounts/)
+- Please remember to adapt the IAM policies prior to upgrade as specified in the [documentation](https://docs.giantswarm.io/advanced/iam-roles-for-service-accounts/)
 
 ## Change details
 
@@ -141,7 +141,7 @@ After migration, Kubernetes users may continue to rely on all the functionality 
 - CSI Migration feature is turned on by default but stays in Beta for GCE PD, AWS EBS, and Azure Disk in 1.23.
 - CSI Migration is introduced as an Alpha feature for Ceph RBD and Portworx in 1.23.
 
-#### Urgent Upgrade Notes
+#### Urgent Upgrade Notes 
 
 ##### (No, really, you MUST read this before you upgrade)
 
@@ -184,8 +184,8 @@ Data corruption issue was found in etcd v3.5.0 release that was shipped with 1.2
 
 #### API Change
 
-- A new field `omitManagedFields` has been added to both `audit.Policy` and `audit.PolicyRule`
-  so cluster operators can opt in to omit managed fields of the request and response bodies from
+- A new field `omitManagedFields` has been added to both `audit.Policy` and `audit.PolicyRule` 
+  so cluster operators can opt in to omit managed fields of the request and response bodies from 
   being written to the API audit log. ([#94986](https://github.com/kubernetes/kubernetes/pull/94986), [@tkashem](https://github.com/tkashem)) [SIG API Machinery, Auth, Cloud Provider and Testing]
 - A small regression in Service updates was fixed. The circumstances are so unlikely that probably nobody would ever hit it. ([#104601](https://github.com/kubernetes/kubernetes/pull/104601), [@thockin](https://github.com/thockin))
 - Added a feature gate `StatefulSetAutoDeletePVC`, which allows PVCs automatically created for StatefulSet pods to be automatically deleted. ([#99728](https://github.com/kubernetes/kubernetes/pull/99728), [@mattcary](https://github.com/mattcary))
@@ -197,13 +197,13 @@ Data corruption issue was found in etcd v3.5.0 release that was shipped with 1.2
 - Implement support for recovering from volume expansion failures ([#106154](https://github.com/kubernetes/kubernetes/pull/106154), [@gnufied](https://github.com/gnufied)) [SIG API Machinery, Apps and Storage]
 - In kubelet, log verbosity and flush frequency can also be configured via the configuration file and not just via command line flags. In other commands (kube-apiserver, kube-controller-manager), the flags are listed in the "Logs flags" group and not under "Global" or "Misc". The type for `-vmodule` was made a bit more descriptive (`pattern=N,...` instead of `moduleSpec`). ([#106090](https://github.com/kubernetes/kubernetes/pull/106090), [@pohly](https://github.com/pohly)) [SIG API Machinery, Architecture, CLI, Cluster Lifecycle, Instrumentation, Node and Scheduling]
 - Introduce `OS` field in the PodSpec ([#104693](https://github.com/kubernetes/kubernetes/pull/104693), [@ravisantoshgudimetla](https://github.com/ravisantoshgudimetla))
-- Introduce `v1beta3` API for scheduler. This version
+- Introduce `v1beta3` API for scheduler. This version 
   - increases the weight of user specifiable priorities.
   The weights of following priority plugins are increased
     - `TaintTolerations` to 3 - as leveraging node tainting to group nodes in the cluster is becoming a widely-adopted practice
     - `NodeAffinity` to 2
     - `InterPodAffinity` to 2
-
+  
   - Won't have `HealthzBindAddress`, `MetricsBindAddress` fields ([#104251](https://github.com/kubernetes/kubernetes/pull/104251), [@ravisantoshgudimetla](https://github.com/ravisantoshgudimetla))
 - Introduce v1beta2 for Priority and Fairness with no changes in API spec. ([#104399](https://github.com/kubernetes/kubernetes/pull/104399), [@tkashem](https://github.com/tkashem))
 - JSON log output is configurable and now supports writing info messages to stdout and error messages to stderr. Info messages can be buffered in memory. The default is to write both to stdout without buffering, as before. ([#104873](https://github.com/kubernetes/kubernetes/pull/104873), [@pohly](https://github.com/pohly))
@@ -254,13 +254,13 @@ Data corruption issue was found in etcd v3.5.0 release that was shipped with 1.2
 - Add fish shell completion to kubectl. ([#92989](https://github.com/kubernetes/kubernetes/pull/92989), [@WLun001](https://github.com/WLun001))
 - Add mechanism to load simple sniffer class into fluentd-elasticsearch image ([#92853](https://github.com/kubernetes/kubernetes/pull/92853), [@cosmo0920](https://github.com/cosmo0920))
 - Add support for Portworx plugin to csi-translation-lib. Alpha release
-
+  
   Portworx CSI driver is required to enable migration.
   This PR adds support of the `CSIMigrationPortworx` feature gate, which can be enabled by:
-
-  1. Adding the feature flag to the kube-controller-manager `--feature-gates=CSIMigrationPortworx=true`
+  
+  1. Adding the feature flag to the kube-controller-manager `--feature-gates=CSIMigrationPortworx=true` 
   2. Adding the feature flag to the kubelet config:
-
+  
   featureGates:
     CSIMigrationPortworx: true ([#103447](https://github.com/kubernetes/kubernetes/pull/103447), [@trierra](https://github.com/trierra)) [SIG API Machinery, Apps, Auth, CLI, Cloud Provider, Cluster Lifecycle, Instrumentation, Network, Node, Release, Scalability, Scheduling, Storage, Testing and Windows]
 - Add support to generate client-side binaries for windows/arm64 platform ([#104894](https://github.com/kubernetes/kubernetes/pull/104894), [@pacoxu](https://github.com/pacoxu))
@@ -296,13 +296,13 @@ Data corruption issue was found in etcd v3.5.0 release that was shipped with 1.2
 - Integration testing now takes periodic Prometheus scrapes from the etcd server.
   There is a new script ,`hack/run-prometheus-on-etcd-scrapes.sh`, that runs a containerized Prometheus server against an archive of such scrapes. ([#106190](https://github.com/kubernetes/kubernetes/pull/106190), [@MikeSpreitzer](https://github.com/MikeSpreitzer)) [SIG API Machinery and Testing]
 - Introduce a feature gate `DisableKubeletCloudCredentialProviders` which allows disabling the in-tree kubelet credential providers.
-
+  
   The feature gate `DisableKubeletCloudCredentialProviders` is currently in Alpha, which means is currently disabled by default. Once this feature gate moves to beta, in-tree credential providers will be disabled by default, and users will need to migrate to use external credential providers. ([#102507](https://github.com/kubernetes/kubernetes/pull/102507), [@ostrain](https://github.com/ostrain))
 - Introduces a new metric: `admission_webhook_request_total` with the following labels: name (string) - the webhook name, type (string) - the admission type, operation (string) - the requested verb, code (int) - the HTTP status code, rejected (bool) - whether the request was rejected, namespace (string) - the namespace of the requested resource. ([#103162](https://github.com/kubernetes/kubernetes/pull/103162), [@rmoriar1](https://github.com/rmoriar1))
 - Kubeadm: add support for dry running `kubeadm join`. The new flag `kubeadm join --dry-run` is similar to the existing flag for `kubeadm init/upgrade` and allows you to see what changes would be applied. ([#103027](https://github.com/kubernetes/kubernetes/pull/103027), [@Haleygo](https://github.com/Haleygo))
 - Kubeadm: do not check if the `/etc/kubernetes/manifests` folder is empty on joining worker nodes during preflight ([#104942](https://github.com/kubernetes/kubernetes/pull/104942), [@SataQiu](https://github.com/SataQiu))
 - Kubectl will now provide shell completion choices for the `--output/-o` flag ([#105851](https://github.com/kubernetes/kubernetes/pull/105851), [@marckhouzam](https://github.com/marckhouzam))
-- Kubelet should reconcile `kubernetes.io/os` and `kubernetes.io/arch` labels on the node object. The side-effect of this is kubelet would deny admission to pod which has nodeSelector with label `kubernetes.io/os` or `kubernetes.io/arch` which doesn't match the underlying OS or arch on the host OS.
+- Kubelet should reconcile `kubernetes.io/os` and `kubernetes.io/arch` labels on the node object. The side-effect of this is kubelet would deny admission to pod which has nodeSelector with label `kubernetes.io/os` or `kubernetes.io/arch` which doesn't match the underlying OS or arch on the host OS. 
   - The label reconciliation happens as part of periodic status update which can be configured via flag `--node-status-update-frequency` ([#104613](https://github.com/kubernetes/kubernetes/pull/104613), [@ravisantoshgudimetla](https://github.com/ravisantoshgudimetla)) [SIG Node, Testing and Windows]
 - Kubernetes is now built with Golang 1.16.7. ([#104199](https://github.com/kubernetes/kubernetes/pull/104199), [@cpanato](https://github.com/cpanato))
 - Kubernetes is now built with Golang 1.17.1. ([#104904](https://github.com/kubernetes/kubernetes/pull/104904), [@cpanato](https://github.com/cpanato))
@@ -318,9 +318,9 @@ Data corruption issue was found in etcd v3.5.0 release that was shipped with 1.2
 - Support to enable Hyper-V in GCE Windows Nodes created with `kube-up` ([#105999](https://github.com/kubernetes/kubernetes/pull/105999), [@mauriciopoppe](https://github.com/mauriciopoppe))
 - The CPUManager policy options are now enabled, and we introduce a graduation path for the new CPU Manager policy options. ([#105012](https://github.com/kubernetes/kubernetes/pull/105012), [@fromanirh](https://github.com/fromanirh))
 - The Pods and Pod controllers that are exempted from the PodSecurity admission process are now marked with the `pod-security.kubernetes.io/exempt: user/namespace/runtimeClass` annotation, based on what caused the exemption.
-
+  
   The enforcement level that allowed or denied a Pod during PodSecurity admission is now marked by the `pod-security.kubernetes.io/enforce-policy` annotation.
-
+  
   The annotation that informs about audit policy violations changed from `pod-security.kubernetes.io/audit` to `pod-security.kubernetes.io/audit-violation`. ([#105908](https://github.com/kubernetes/kubernetes/pull/105908), [@stlaz](https://github.com/stlaz))
 - The `/openapi/v3` endpoint will be populated with OpenAPI v3 if the feature flag is enabled ([#105945](https://github.com/kubernetes/kubernetes/pull/105945), [@Jefftree](https://github.com/Jefftree))
 - The `CSIMigrationGCE` feature flag is turned `ON` by default ([#104722](https://github.com/kubernetes/kubernetes/pull/104722), [@leiyiz](https://github.com/leiyiz))
@@ -359,7 +359,7 @@ Data corruption issue was found in etcd v3.5.0 release that was shipped with 1.2
   - Limit the number of Pods tracked in a single Job sync to avoid starvation of small Jobs.
   - The metric `job_pod_finished_total` counts the number of finished Pods tracked by the Job controller. ([#105197](https://github.com/kubernetes/kubernetes/pull/105197), [@alculquicondor](https://github.com/alculquicondor))
 - When using `RequestedToCapacityRatio` ScoringStrategy, empty shape will cause error. ([#106169](https://github.com/kubernetes/kubernetes/pull/106169), [@kerthcet](https://github.com/kerthcet)) [SIG Scheduling]
-- `client-go` event library allows customizing spam filtering function.
+- `client-go` event library allows customizing spam filtering function. 
   It is now possible to override `SpamKeyFunc`, which is used by event filtering to detect spam in the events. ([#103918](https://github.com/kubernetes/kubernetes/pull/103918), [@olagacek](https://github.com/olagacek))
 - `client-go`, using log level 9, traces the following events of a HTTP request:
       - DNS lookup
@@ -547,7 +547,7 @@ Data corruption issue was found in etcd v3.5.0 release that was shipped with 1.2
 - Existing InTree AzureFile PVs which don't have a secret namespace defined will now work properly after enabling CSI migration - the namespace will be obtained from ClaimRef. ([#108000](https://github.com/kubernetes/kubernetes/pull/108000), [@RomanBednar](https://github.com/RomanBednar)) [SIG Cloud Provider and Storage]
 - Fix JobTrackingWithFinalizers that:
   - was declaring a job finished before counting all the created pods in the status
-  - was leaving pods with finalizers, blocking pod and job deletions
+  - was leaving pods with finalizers, blocking pod and job deletions    
   - JobTrackingWithFinalizers is still disabled by default. ([#109486](https://github.com/kubernetes/kubernetes/pull/109486), [@alculquicondor](https://github.com/alculquicondor)) [SIG Apps and Testing]
 - Fix a bug that out-of-tree plugin is misplaced when using scheduler v1beta3 config ([#108890](https://github.com/kubernetes/kubernetes/pull/108890), [@Huang-Wei](https://github.com/Huang-Wei)) [SIG Scheduling]
 - Fix kubectl completion zsh to use any command name rather than hardcoded kubectl ([#109235](https://github.com/kubernetes/kubernetes/pull/109235), [@soltysh](https://github.com/soltysh)) [SIG CLI]
