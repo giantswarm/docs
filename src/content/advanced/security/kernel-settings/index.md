@@ -8,7 +8,7 @@ menu:
     parent: advanced-security
 user_questions:
   - How is the Linux kernel of cluster nodes configured?
-last_review_date: 2023-11-03
+last_review_date: 2023-11-07
 aliases:
   - /guides/kernel-settings/
   - /advanced/kernel-settings/

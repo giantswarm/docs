@@ -9,7 +9,7 @@ menu:
 user_questions:
   - Where can I find the ConfigMap to configure cluster-autoscaler?
   - What cluster-autoscaler options can I configure?
-last_review_date: 2023-11-03
+last_review_date: 2023-11-07
 aliases:
   - /guides/advanced-cluster-autoscaler-configuration/
   - /guides/cluster-autoscaler/

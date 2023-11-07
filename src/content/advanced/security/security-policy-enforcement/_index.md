@@ -14,7 +14,7 @@ user_questions:
  -  What security policies are enforced in my cluster?
  -  What are Pod Security Standards (PSS)?
  -  How do I migrate from PSPs to PSS?
-last_review_date: 2023-11-03
+last_review_date: 2023-11-07
 aliases:
   - /guides/security-policy-enforcement/
   - /advanced/security-policy-enforcement/

@@ -7,7 +7,7 @@ menu:
   main:
     identifier: service-mesh
     parent: advanced-connectivity
-last_review_date: 2023-11-03
+last_review_date: 2023-11-07
 aliases:
   - /advanced/service-mesh
   - /guides/service-mesh

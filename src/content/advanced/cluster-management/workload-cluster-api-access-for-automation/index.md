@@ -10,7 +10,7 @@ menu:
 user_questions:
   - How can I use the Workload Cluster API in a programmatic way?
   - How do I grant access to Kubernetes API from my CI system?
-last_review_date: 2023-11-03
+last_review_date: 2023-11-07
 aliases:
   - /guides/workload-cluster-api-access-for-automation/
   - /advanced/workload-cluster-api-access-for-automation/

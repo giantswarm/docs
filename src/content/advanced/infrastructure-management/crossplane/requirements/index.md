@@ -7,7 +7,7 @@ menu:
 user_questions:
 - What are the requirements for Crossplane?
 - What are the risks of using Crossplane?
-last_review_date: 2023-11-03
+last_review_date: 2023-11-07
 aliases:
   - /advanced/crossplane/requirements
   - /guides/crossplane/requirements

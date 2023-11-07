@@ -8,7 +8,7 @@ menu:
     parent: advanced-connectivity
 user_questions:
   - How can I activate accelerated networking for my Azure clusters?
-last_review_date: 2023-11-03
+last_review_date: 2023-11-07
 aliases:
   - /basics/azure-accelerated-networking/
   - /advanced/azure-accelerated-networking/

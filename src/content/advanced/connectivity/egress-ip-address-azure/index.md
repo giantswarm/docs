@@ -8,7 +8,7 @@ menu:
     parent: advanced-connectivity
 user_questions:
   - How can I customize the public IP address for egress traffic on Azure?
-last_review_date: 2023-11-03
+last_review_date: 2023-11-07
 aliases:
   - /guides/egress-ip-address-azure
   - /advanced/egress-ip-address-azure

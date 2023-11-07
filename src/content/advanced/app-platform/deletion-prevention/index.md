@@ -12,7 +12,7 @@ user_questions:
   - How can I safeguard resources?
   - How can I protect clusters from accidental deletion?
   - How can I safeguard clusters?
-last_review_date: 2023-11-03
+last_review_date: 2023-11-07
 aliases:
   - /guides/deletion-prevention/
   - /advanced/deletion-prevention/

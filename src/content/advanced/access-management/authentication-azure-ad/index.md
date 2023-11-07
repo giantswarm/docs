@@ -9,7 +9,7 @@ menu:
 user_questions:
   - How can I use Azure Active Directory to authenticate workload cluster access?
   - How to use OIDC for workload cluster authentication?
-last_review_date: 2021-03-15
+last_review_date: 2023-11-07
 aliases:
   - /guides/authenticating-with-microsoft-azure-active-directory/
   - /advanced/authentication-azure-ad/

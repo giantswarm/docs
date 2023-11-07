@@ -8,7 +8,7 @@ menu:
     parent: advanced-storage
 user_questions:
  -  How can I tag persistent volumes on AWS?
-last_review_date: 2023-11-03
+last_review_date: 2023-11-07
 aliases:
   - /guides/tag-ebs-volumes/
   - /advanced/tag-ebs-volumes/

@@ -13,7 +13,7 @@ user_questions:
   - How do I configure an internal Load Balancer on AWS?
   - How do I configure an internal Load Balancer on Azure?
   - How do I configure an internal Load Balancer on GCP?
-last_review_date: 2023-11-03
+last_review_date: 2023-11-07
 aliases:
   - /guides/services-of-type-loadbalancer-and-multiple-ingress-controllers/
   - /advanced/ingress/service-type-loadbalancer-multi-ic/

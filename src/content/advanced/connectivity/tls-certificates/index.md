@@ -9,7 +9,7 @@ menu:
 user_questions:
   - How do I install cert-manager?
   - How do I obtain TLS certificates?
-last_review_date: 2023-11-03
+last_review_date: 2023-11-07
 aliases:
   - /advanced/tls-certificates
   - /guides/tls-certificates

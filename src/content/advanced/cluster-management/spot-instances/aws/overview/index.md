@@ -11,7 +11,7 @@ user_questions:
   - How can I use EC2 spot instances in my clusters?
   - As of which release are AWS EC2 spot instances supported?
   - What's the difference between spot instances and on-demand instances on AWS?
-last_review_date: 2023-11-03
+last_review_date: 2023-11-07
 aliases:
   - /advanced/spot-instances/aws/overview/
   - /guides/spot-instances/aws/overview/

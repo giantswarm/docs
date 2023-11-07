@@ -11,7 +11,7 @@ user_questions:
   - What are network pools?
   - In which cloud environments are network pools supported?
   - Which releases introduced network pools?
-last_review_date: 2023-11-03
+last_review_date: 2023-11-07
 aliases:
   - /basics/networkpools/
   - /guides/networkpools/

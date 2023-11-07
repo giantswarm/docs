@@ -7,14 +7,14 @@ menu:
   main:
     identifier: uiapi-managementapi-creatingclusters-azure
     parent: uiapi-managementapi-creatingclusters
+user_questions:
+  - How can I create an Azure cluster via the Management API?
+last_review_date: 2023-11-07
 aliases:
   - /guides/creating-clusters-via-crs-on-azure/
   - /ui-api/management-api/creating-workload-clusters/azure
-user_questions:
-  - How can I create an Azure cluster via the Management API?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-celestial
-last_review_date: 2021-01-01
 ---
 
 <div class="well disclaimer">

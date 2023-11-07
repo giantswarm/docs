@@ -9,7 +9,7 @@ menu:
 user_questions:
   - How can I use GPUs with my Kubernetes clusters?
   - Which releases support the use of GPUs?
-last_review_date: 2023-11-03
+last_review_date: 2023-11-07
 aliases:
   - /guides/kubernetes-gpu/
   - /guides/using-gpus

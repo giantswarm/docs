@@ -7,7 +7,7 @@ menu:
   main:
     identifier: advanced-spotinstances
     parent: advanced-cluster-management
-last_review_date: 2023-11-03
+last_review_date: 2023-11-07
 aliases:
   - /basics/spot-instances/
   - /advanced/spot-instances/

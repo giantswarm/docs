@@ -9,7 +9,7 @@ menu:
     parent: advanced-spotinstances-aws
 user_questions:
   - How can I use EC2 spot instances and fall back to on-demand?
-last_review_date: 2023-11-03
+last_review_date: 2023-11-07
 aliases:
   - /advanced/spot-instances/aws/on-demand-fallback/
   - /guides/spot-instances/aws/on-demand-fallback/

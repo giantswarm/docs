@@ -7,7 +7,7 @@ menu:
   main:
     identifier: advanced-spotinstances-azure
     parent: advanced-spotinstances
-last_review_date: 2023-11-03
+last_review_date: 2023-11-07
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---

@@ -11,7 +11,7 @@ user_questions:
   - What IP should I use for Kube-vip with CAPV?
   - How to set a range of IPs for load balancer in Kube-vip with CAPV?
   - Where can I see the IPs in use by Kube-vip?
-last_review_date: 2023-11-03
+last_review_date: 2023-11-07
 aliases:
   - /guides/vsphere-kubevip
   - /advanced/vsphere-kubevip

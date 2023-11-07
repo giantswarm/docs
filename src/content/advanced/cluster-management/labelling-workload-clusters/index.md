@@ -8,7 +8,7 @@ menu:
     parent: advanced-cluster-management
 user_questions:
   - How can I assign metadata to cluster?
-last_review_date: 2023-11-03
+last_review_date: 2023-11-07
 aliases:
   - /guides/tenant-cluster-labelling/
   - /guides/workload-cluster-labelling/

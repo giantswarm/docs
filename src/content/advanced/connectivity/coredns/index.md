@@ -11,7 +11,7 @@ user_questions:
   - How can I customize the CoreDNS configuration?
   - How can I adjust resource limits for CoreDNS?
   - Where is the user values ConfigMap for CoreDNS?
-last_review_date: 2023-11-03
+last_review_date: 2023-11-07
 aliases:
   - /guides/advanced-coredns-configuration/
   - /advanced/coredns/

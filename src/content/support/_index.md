@@ -6,7 +6,7 @@ weight: 60
 user_questions:
   - What should I know when working with Giant Swarm's support staff?
   - How is Giant Swarm organizing support?
-last_review_date: 2023-11-03
+last_review_date: 2023-11-07
 owner:
   - https://github.com/orgs/giantswarm/teams/team-horizon
 ---

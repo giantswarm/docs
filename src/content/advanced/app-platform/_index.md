@@ -9,5 +9,5 @@ menu:
     identifier: advanced-app-platform
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2023-11-03
+last_review_date: 2023-11-07
 ---

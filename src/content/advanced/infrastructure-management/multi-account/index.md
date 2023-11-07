@@ -10,7 +10,7 @@ user_questions:
 - What use cases are supported by the multi-account functionality?
 - How do I setup multi-account functionality?
 - How can I run workload clusters in different cloud provider accounts?
-last_review_date: 2023-11-03
+last_review_date: 2023-11-07
 aliases:
   - /basics/multi-account/
   - /advanced/multi-account

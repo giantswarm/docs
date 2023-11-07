@@ -8,7 +8,7 @@ menu:
     parent: uiapi-managementapi
 user_questions:
   - How to create workload cluster client certificates via the Management API?
-last_review_date: 2021-10-26
+last_review_date: 2023-11-07
 aliases:
   - /ui-api/management-api/wc-key-pairs/
 owner:

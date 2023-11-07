@@ -10,7 +10,7 @@ user_questions:
   - How can I turn off automatic termination of unhealthy nodes?
   - Since what release are unhealthy nodes terminated automatically?
   - How are unhealthy worker nodes treated?
-last_review_date: 2023-11-03
+last_review_date: 2023-11-07
 aliases:
   - /basics/automatic-termination-of-bad-nodes/
   - /guides/automatic-node-termination/

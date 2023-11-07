@@ -8,7 +8,7 @@ menu:
     parent: advanced-cluster-management
 user_questions:
  -  How can I enable cgroups v1?
-last_review_date: 2023-11-03
+last_review_date: 2023-11-07
 aliases:
   - /guides/forcing-cgroupsv1
   - /advanced/forcing-cgroupsv1
