@@ -7,7 +7,7 @@ menu:
     parent: advanced-cluster-management
 user_questions:
 - How do I make a workload cluster private?
-last_review_date: 2023-10-12
+last_review_date: 2023-11-08
 aliases:
   - /guides/private-clusters
   - /advanced/private-clusters
@@ -145,35 +145,48 @@ Usage:
 {{< tabs >}}
 {{< tab id="cluster-capa-ec2" for-impl="capa_ec2" >}}
 
-First of all, please [log into the management cluster]({{< relref "/getting-started/management-cluster" >}}) and fetch its outbound IPs (typically 3 NAT Gateway IPs):
+First of all, please [log into the management cluster]({{< relref "/getting-started/management-cluster" >}}).
+
+As part of our guide [Create a workload cluster]({{< relref "/getting-started/create-workload-cluster" >}}) to template the cluster manifest, you will be instructed to run the command `kubectl gs template cluster [...]`. Please add the parameter `--management-cluster NAME_OF_MC` and, one or multiple times, `--control-plane-load-balancer-ingress-allow-cidr-block CIDR` to specify IP ranges (CIDRs) that should be allowed to access the Kubernetes API.
+
+For example:
 
 ```sh
-kubectl get -n org-giantswarm AWSCluster name-of-management-cluster -o go-template='{{ range .status.networkStatus.natGatewaysIPs }}- {{ . }}/32{{ "\n" }}{{ end }}'
+kubectl gs template cluster \
+  --provider capa \
+  --name mycluster \
+  --organization testing \
+  \
+  `# Please fill in these values` \
+  --management-cluster NAME_OF_MC \
+  --control-plane-load-balancer-ingress-allow-cidr-block CIDR1 `# e.g. '1.2.3.4/30'` \
+  --control-plane-load-balancer-ingress-allow-cidr-block CIDR2 `# e.g. '5.6.7.8/30'` \
+  \
+  > cluster.yaml
 ```
 
-Please follow [Create a workload cluster]({{< relref "/getting-started/create-workload-cluster" >}}) to template the cluster manifest (`kubectl gs template cluster [...]`), but do not apply it yet. Add the allowlist named [`controlPlane.loadBalancerIngressAllowCidrBlocks`](https://github.com/giantswarm/cluster-aws/blob/master/helm/cluster-aws/README.md#control-plane) in the YAML file:
+The command will automatically fetch outbound IPs of the management cluster (typically 3 NAT Gateway IPs which are permanent) and add them to the list of IP ranges you provided. You will find the output in the list [`controlPlane.loadBalancerIngressAllowCidrBlocks`](https://github.com/giantswarm/cluster-aws/blob/master/helm/cluster-aws/README.md#control-plane) of the produced YAML:
 
 ```yaml
 apiVersion: v1
 data:
   values: |
-    # [... leave the rest untouched ...]
+    # [...]
     controlPlane:
       # [...]
 
-      # Add this field:
+      # This list gets added (without the comments)
       loadBalancerIngressAllowCidrBlocks:
         # Management cluster's outbound IPs (NAT Gateway IPs).
-        # Please copy-paste the above command output here.
         - a.b.c.d/32
         - e.f.g.h/32
         - i.j.k.l/32
 
-        # Your own list of IP ranges that should have access
+        # Your own, provided list of IP ranges that should have access
         - m.n.o.p/xx
         - q.r.s.t/yy
 
-    # [... leave the rest untouched ...]
+    # [...]
 kind: ConfigMap
 metadata:
   creationTimestamp: null
