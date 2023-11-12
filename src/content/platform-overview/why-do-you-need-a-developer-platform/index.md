@@ -26,7 +26,7 @@ Making the platform open-source can also provide several benefits. By sharing th
 
 ## Managed and Reliable
 
-However, managing a self-service and cloud-native developer platform can be complex and require a skilled team of site reliability engineers (SREs). SREs are responsible for ensuring the platform is reliable, scalable, and secure, which requires a deep understanding of the underlying infrastructure and software systems. They also play a key role in defining and implementing best practices for development, deployment, and monitoring, which can help to ensure the platform is effective and efficient. In short, having a good team of SREs is essential for ensuring the success and longevity of a self-service and cloud-native developer platform.
+Managing a self-service and cloud-native developer platform can be complex and require a skilled team of Site Reliability Engineers (SREs). SREs are responsible for ensuring the platform is reliable, scalable, and secure, which requires a deep understanding of the underlying infrastructure and software systems. They also play a key role in defining and implementing best practices for development, deployment, and monitoring, which can help to ensure the platform is effective and efficient. In short, having a good team of SREs is essential for ensuring the success and longevity of a self-service and cloud-native developer platform.
 
 ## What parts does a cloud-native developer platform consist of typically?
 
