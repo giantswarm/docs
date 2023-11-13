@@ -134,14 +134,6 @@ _Nothing has changed._
 - fix apparmor annotation
 
 
-
-### etcd-kubernetes-resources-count-exporter [1.5.0](https://github.com/giantswarm/etcd-kubernetes-resources-count-exporter/releases/tag/v1.5.0)
-
-#### Changed
-- Add Max memory (default 500Mi) for VPA.
-- Set `priorityClassName` to the deployment to mitigate scheduling issues.
-
-
 ### cilium-servicemonitors [0.1.2](https://github.com/giantswarm/cilium-servicemonitors-app/releases/tag/v0.1.2)
 
 #### Changed
@@ -243,13 +235,6 @@ WARNING: this version requires Cilium to run because of the dependency on the Ci
 #### Changed
 - Replace monitoring labels with ServiceMonitor ([#296](https://github.com/giantswarm/external-dns-app/pull/296)).
 - Update ATS to 0.4.1 and python deps ([#297](https://github.com/giantswarm/external-dns-app/pull/297)).
-
-
-
-### etcd-kubernetes-resources-count-exporter [1.4.0](https://github.com/giantswarm/etcd-kubernetes-resources-count-exporter/releases/tag/v1.4.0)
-
-#### Changed
-- Add Max memory (default 500Mi) for VPA.
 
 
 

@@ -292,11 +292,6 @@ We're aiming to provide a comprehensive blackbox monitoring tool that can valida
 
 
 
-### etcd-kubernetes-resources-count-exporter [1.2.0](https://github.com/giantswarm/etcd-kubernetes-resources-count-exporter/releases/tag/v1.2.0)
-
-#### Changed
-- Disable PSPs for k8s 1.25 and newer.
-
 
 
 ### observability-bundle [0.5.1](https://github.com/giantswarm/observability-bundle/releases/tag/v0.5.1)

@@ -197,12 +197,6 @@ _Changes compared to **Stable 3510.2.8**_
 
 
 
-### etcd-kubernetes-resources-count-exporter [1.7.0](https://github.com/giantswarm/etcd-kubernetes-resources-count-exporter/releases/tag/v1.7.0)
-
-#### Changed
-- Replace condition for PSP CR installation.
-- Disable debugging.
-
 
 
 ### coredns [1.19.0](https://github.com/giantswarm/coredns-app/releases/tag/v1.19.0)

@@ -48,3 +48,7 @@ This is a patch release to add missing Elastic File System (EFS) IAM permissions
 
 #### Changed
 - Update init container image to v3.16.2([#182](https://github.com/giantswarm/external-dns-app/pull/182))
+
+### etcd-kubernetes-resources-count-exporter [1.8.0](https://github.com/giantswarm/etcd-kubernetes-resources-count-exporter/releases/tag/v1.8.0)
+
+Bump to latest version to address security and performance issues.
