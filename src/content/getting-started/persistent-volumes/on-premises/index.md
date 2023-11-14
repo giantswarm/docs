@@ -1,7 +1,7 @@
 ---
-linkTitle: On-premises
-title: Using persistent volumes on-premises
-description: Tutorial on how to use pre-created Persistent Volumes on a cluster running on-premises (on bare metal).
+linkTitle: NFS
+title: Using persistent volumes with NFS
+description: Tutorial on how to use pre-created Persistent Volumes with NFS based storage.
 weight: 30
 menu:
   main:

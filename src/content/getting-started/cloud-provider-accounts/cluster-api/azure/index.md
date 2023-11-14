@@ -5,7 +5,7 @@ description: This guide will walk you through all necessary steps to set up an A
 menu:
   main:
     identifier: gettingstarted-cloudprovider-clusterapi-azure
-    parent: gettingstarted-cloudprovider-clusterapi
+    parent: gettingstarted-infraprovider-clusterapi
 weight: 20
 user_questions:
   - How do I prepare my Azure subscription for Cluster API?
@@ -20,6 +20,8 @@ Currently, the Giant Swarm Cluster API for Azure implementation supports only ru
 ## Overview
 
 This document consists of the instructions for setting up Azure subscriptions that are needed to run Cluster API for Azure with Giant Swarm.
+
+Aside from the following prerequisites, please fill in the _Giant Swarm Pre-installation checklist for Azure (CAPZ) installations_, The document will be shared with you by your account engineer.
 
 ## Prerequisites
 

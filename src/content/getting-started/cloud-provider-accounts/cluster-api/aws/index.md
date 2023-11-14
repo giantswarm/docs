@@ -5,8 +5,8 @@ description: This guide will walk you through all necessary steps to set up an A
 weight: 10
 menu:
   main:
-    identifier: gettingstarted-cloudprovider-clusterapi-aws
-    parent: gettingstarted-cloudprovider-clusterapi
+    identifier: gettingstarted-infraprovider-clusterapi-aws
+    parent: gettingstarted-infraprovider-clusterapi
 user_questions:
   - What are the recommended service limit/quotas for AWS accounts?
   - How prepare AWS account for the Cluster API clusters?
@@ -22,6 +22,8 @@ The Cluster API workload clusters (the clusters running your Kubernetes workload
 on the customer's needs.
 
 ## Overview
+
+Aside from the following prerequisites, please fill in the _Giant Swarm Pre-installation checklist for AWS (CAPA) installations_, The document will be shared with you by your account engineer.
 
 In order to run Giant Swarm Cluster API clusters, all AWS account(s) need to fulfil these requirements (there is [repository](https://github.com/giantswarm/giantswarm-aws-account-prerequisites) that can help with creating the necessary resources in AWS)
 
@@ -101,7 +103,7 @@ This CR needs to be created only once for each AWS Account. It can be then refer
 
 ## Further reading
 
-- [Basics and Concepts: Multi Account Support]({{< relref "/advanced/multi-account" >}})
+- [Basics and Concepts: Multi Account Support]({{< relref "/advanced/infrastructure-management/multi-account" >}})
 - [API: Set credentials](/api/#operation/addCredentials)
 - [Giant Swarm Architecture]({{< relref "/platform-overview/cluster-management/vintage/aws" >}})
 - [Giant Swarm REST API documentation](/api/)

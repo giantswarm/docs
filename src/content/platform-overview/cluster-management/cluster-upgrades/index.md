@@ -128,7 +128,7 @@ AWS resources are managed by the [aws-operator](https://github.com/giantswarm/aw
 
 The control plane node re-creation is started first. Meanwhile, the recreation of worker nodes starts, where all worker nodes are recreated in batches. During the upgrade, **up to 33 percent of the worker nodes may become unavailable**.
 
-From workload cluster release v12.7.0 some of the parameters of the upgrade can be configured. Check [Fine-tuning upgrade disruption on AWS]({{< relref "/advanced/upgrades/upgrade-disruption" >}}) guide for more details.
+From workload cluster release v12.7.0 some of the parameters of the upgrade can be configured. Check [Fine-tuning upgrade disruption on AWS]({{< relref "/advanced/cluster-management/upgrades/upgrade-disruption" >}}) guide for more details.
 
 After recreation, worker nodes are **not expected to have the same names** they had before.
 
@@ -214,6 +214,8 @@ If a pod takes a long time for a proper shutdown, configure the `terminationGrac
 
 Configure [PodDisruptionBudgets](https://kubernetes.io/docs/tasks/run-application/configure-pdb/) for all your deployments. This tells Kubernetes to keep a minimum amount of Pods running at all times and is respected by the draining/eviction mechanisms during upgrades.
 
+**Note**: In the case of deployments where `replicas=1`, setting a `PodDisruptionBudgets` with `maxUnavailable=0` is not advised as it will hold the cluster upgrade since the node won't be able to be fully drained. Depending on the provider there will be a different timeout that will force-stop and evict pods from the node.
+
 ### Set scheduling priorities {#checklist-scheduling-priorities}
 
 Consider using Pod priority to ensure that higher priority Pods are scheduled favorably in times of resource pressure.
@@ -226,7 +228,7 @@ To help the scheduler further with being able to correctly (re-)schedule your Po
 
 Some, but not all, cluster upgrades require nodes to be upgraded. With single node control planes, this causes a downtime of the Kubernetes API that can last a few minutes.
 
-If you are running Giant Swarm on AWS, since workload cluster release v{{% first_aws_ha_controlplane_version %}} you have the option to use a [high-availability control plane]({{< relref "/advanced/high-availability/control-plane" >}}) instead. This will keep the Kubernetes API available even during an upgrade where nodes are rolled.
+If you are running Giant Swarm on AWS, since workload cluster release v{{% first_aws_ha_controlplane_version %}} you have the option to use a [high-availability control plane]({{< relref "/advanced/cluster-management/high-availability/control-plane" >}}) instead. This will keep the Kubernetes API available even during an upgrade where nodes are rolled.
 
 Consider this option before performing an upgrade. However, keep in mind that a cluster cannot be converted back from using high-availability control plane to a single node control plane.
 

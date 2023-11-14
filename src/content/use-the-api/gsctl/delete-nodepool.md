@@ -18,7 +18,7 @@ last_review_date: 2023-03-06
 
 {{% gsctl_deprecation_disclaimer %}}
 
-The `gsctl delete nodepool` command deletes a [node pool]({{< relref "/advanced/node-pools" >}}).
+The `gsctl delete nodepool` command deletes a [node pool]({{< relref "/advanced/cluster-management/node-pools" >}}).
 
 Deleting a node pool means that all worker nodes in the pool will be drained,
 cordoned and then terminated.
