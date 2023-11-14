@@ -6,7 +6,7 @@ weight: 5
 menu:
   main:
     parent: platform-overview
-last_review_date: 2022-12-07
+last_review_date: 2023-11-14
 user_questions:
   - Why do you need a developer platform?
   - Why should a developer platform be self-service?
