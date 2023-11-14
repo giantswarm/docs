@@ -6,7 +6,7 @@ weight: 5
 menu:
   main:
     parent: platform-overview
-last_review_date: 2022-12-07
+last_review_date: 2023-11-14
 user_questions:
   - Why do you need a developer platform?
   - Why should a developer platform be self-service?
@@ -18,7 +18,7 @@ owner:
 
 ## Organizational Efficiency and Innovation
 
-A self-service and cloud-native developer platform can improve organizational efficiency and enable innovation in several ways. First, it allows developers to easily provision, manage, and deploy their applications without the need for extensive IT support. This reduces the time and resources required for development and deployment, which can lead to faster time to market and improved productivity. Additionally, a cloud-native platform can provide scalable and reliable infrastructure, which is essential for supporting the rapid growth and constant evolution of modern applications.
+A self-service and cloud-native developer platform can improve organizational efficiency and enable innovation in several ways. First, it allows developers to easily provision, manage, and deploy their applications without the need for extensive IT support. This reduces the time and resources required for development and deployment, which can lead to faster time to market and improved productivity. Additionally, a cloud-native developer platform can provide scalable and reliable infrastructure, which is essential for supporting the rapid growth and constant evolution of modern applications.
 
 ## Open Source and Sustainable
 
@@ -26,7 +26,7 @@ Making the platform open-source can also provide several benefits. By sharing th
 
 ## Managed and Reliable
 
-However, managing a self-service and cloud-native developer platform can be complex and require a skilled team of site reliability engineers (SREs). SREs are responsible for ensuring the platform is reliable, scalable, and secure, which requires a deep understanding of the underlying infrastructure and software systems. They also play a key role in defining and implementing best practices for development, deployment, and monitoring, which can help to ensure the platform is effective and efficient. In short, having a good team of SREs is essential for ensuring the success and longevity of a self-service and cloud-native developer platform.
+Managing a self-service and cloud-native developer platform can be complex and require a skilled team of Site Reliability Engineers (SREs). SREs are responsible for ensuring the platform is reliable, scalable, and secure, which requires a deep understanding of the underlying infrastructure and software systems. They also play a key role in defining and implementing best practices for development, deployment, and monitoring, which can help to ensure the platform is effective and efficient. In short, having a good team of SREs is essential for ensuring the success and longevity of a self-service and cloud-native developer platform.
 
 ## What parts does a cloud-native developer platform consist of typically?
 
