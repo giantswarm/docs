@@ -7,7 +7,7 @@ changes_entry:
   url: https://github.com/giantswarm/kong-app/releases/tag/v.0.7.0
   version: .0.7.0
   version_tag: v.0.7.0
-date: '2020-02-28T17:18:34'
+date: '2020-02-28T17:18:34+00:00'
 description: Changelog entry for giantswarm/kong-app version .0.7.0, published on
   28 February 2020, 17:18.
 title: kong-app release v.0.7.0
