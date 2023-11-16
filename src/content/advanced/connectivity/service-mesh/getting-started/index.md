@@ -40,7 +40,7 @@ step certificate create identity.linkerd.cluster.local issuer.crt issuer.key --p
 
 ### App Installation
 
-We recommend deploying linkerd using the `linkerd-bundle`, which includes `linkerd2-cni`, `linkerd-control-plane` and `linkerd-viz` by default. You can apply the following App CR (Custom Resource) onto your management cluster to start with a minimal configuration.
+We recommend deploying linkerd using the `service-mesh-bundle`, which includes `linkerd2-cni`, `linkerd-control-plane` and `linkerd-viz` by default. You can apply the following App CR (Custom Resource) onto your management cluster to start with a minimal configuration.
 
 ```yaml
 apiVersion: v1
@@ -64,31 +64,63 @@ stringData:
                 <contents of the ca.crt file>
 kind: Secret
 metadata:
-  name: <your-cluster-id>-linkerd-bundle-user-values
+  name: <your-cluster-id>-service-mesh-bundle-user-values
   namespace: <your-cluster-id>
 ---
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
   labels:
-    app.kubernetes.io/name: linkerd-bundle
+    app.kubernetes.io/name: service-mesh-bundle
     app-operator.giantswarm.io/version: 0.0.0
-  name: <your-cluster-id>-linkerd-bundle
+  name: <your-cluster-id>-service-mesh-bundle
   namespace: <your-cluster-id>
 spec:
-  catalog: giantswarm-playground
+  catalog: giantswarm
   kubeConfig:
     inCluster: true
-  name: linkerd-bundle
+  name: service-mesh-bundle
   namespace: <your-cluster-id>
   userConfig:
     secret:
-      name: <your-cluster-id>-linkerd-bundle-user-values
+      name: <your-cluster-id>-service-mesh-bundle-user-values
       namespace: <your-cluster-id>
-  version: 0.3.0
+  version: 0.7.0
 ```
 
-You can find more configuration examples [here](https://github.com/giantswarm/linkerd-bundle/tree/main/examples).
+You can find more configuration examples [here](https://github.com/giantswarm/service-mesh-bundle/tree/main/examples).
+
+### Tainting nodes
+
+In order to make node startup smooth, we introduced an experimental feature to our Linkerd CNI App which looks for the `node.giantswarm.io/mesh-not-ready` taint on the node and remove it once the agent is ready.
+
+To enable this feature, add the following ConfigMap to your Service Mesh Bundle App definition:
+
+```
+```yaml
+apiVersion: v1
+stringData:
+  values: |
+    apps:
+      linkerd2-cni:
+        userConfig:
+          configmap:
+            values: |
+              nodeTaint:
+                enabled: true
+kind: ConfigMap
+metadata:
+  name: <your-cluster-id>-service-mesh-bundle-user-values
+  namespace: <your-cluster-id>
+```
+
+Afterwards, configure your nodepool with the taint at startup as described here:
+
+```
+- key: node.giantswarm.io/mesh-not-ready
+  value: "true"
+  effect: NoExecute
+```
 
 ## Workload Configuration
 
@@ -102,9 +134,9 @@ Attention: Proxy containers are using EmptyDir volumes for storing ephemeral dat
 
 ## Further reading
 
-- [Linkerd Official documentation](https://linkerd.io/2.12/overview/)
-- [Automatic Proxy Injection](https://linkerd.io/2.12/features/proxy-injection/)
-- [linkerd Bundle](https://github.com/giantswarm/linkerd-bundle)
+- [Linkerd Official documentation](https://linkerd.io/2.14/overview/)
+- [Automatic Proxy Injection](https://linkerd.io/2.14/features/proxy-injection/)
+- [Service Mesh Bundle](https://github.com/giantswarm/service-mesh-bundle)
 - [linkerd2-cni App](https://github.com/giantswarm/linkerd2-cni-app)
 - [linkerd-control-plane App](https://github.com/giantswarm/linkerd-control-plane-app)
 - [linkerd-viz App](https://github.com/giantswarm/linkerd-viz-app)
