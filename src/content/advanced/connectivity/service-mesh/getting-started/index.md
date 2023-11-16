@@ -92,7 +92,7 @@ You can find more configuration examples [here](https://github.com/giantswarm/se
 
 ### Tainting nodes
 
-In order to make node startup smooth, we introduced an experimental feature to our Linkerd CNI App which looks for the `node.giantswarm.io/mesh-not-ready` taint on the node and remove it once the agent is ready.
+To ensure a smooth node startup, we have introduced an experimental feature to our Linkerd CNI App. This feature checks for the presence of the `node.giantswarm.io/mesh-not-ready` taint on the node and removes it once the agent is ready.
 
 To enable this feature, add the following ConfigMap to your Service Mesh Bundle App definition:
 
@@ -114,7 +114,7 @@ metadata:
   namespace: <your-cluster-id>
 ```
 
-Afterwards, configure your nodepool with the taint at startup as described here:
+Afterwards, configure your node pools with a taint at startup as described here:
 
 ```
 - key: node.giantswarm.io/mesh-not-ready
