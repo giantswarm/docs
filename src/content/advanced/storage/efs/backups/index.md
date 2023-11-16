@@ -5,7 +5,7 @@ description: Tutorial on how to use dynamically provisioned Persistent Volumes o
 weight: 30
 menu:
   main:
-    parent: advanced-storage
+    parent: advanced-storage-efs
 user_questions:
   - How do I install the EFS provisioner?
   - How do I provision an EFS instance on AWS?
