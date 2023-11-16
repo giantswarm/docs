@@ -8,7 +8,7 @@ menu:
     parent: service-mesh
 user_questions:
   - How can I install a Service Mesh on my cluster?
-last_review_date: 2023-11-07
+last_review_date: 2023-11-16
 aliases:
   - /advanced/service-mesh/getting-started
   - /guides/service-mesh/getting-started
