@@ -96,7 +96,6 @@ To ensure a smooth node startup, we have introduced an experimental feature to o
 
 To enable this feature, add the following ConfigMap to your Service Mesh Bundle App definition:
 
-```
 ```yaml
 apiVersion: v1
 stringData:
@@ -116,7 +115,7 @@ metadata:
 
 Afterwards, configure your node pools with a taint at startup as described here:
 
-```
+```yaml
 - key: node.giantswarm.io/mesh-not-ready
   value: "true"
   effect: NoExecute
