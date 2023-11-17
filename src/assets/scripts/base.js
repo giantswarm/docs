@@ -27,15 +27,17 @@ function getParameterByName(name) {
   return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
+var inkeepWidget = null;
+
 $(function() {
-  const inkeepWidget = Inkeep().embed({
+  inkeepWidget = Inkeep().embed({
     componentType: "SearchBar", // required
-    targetElement: document.getElementById("searchInput"), // required
+    targetElement: document.getElementById("searchInputMobile"), // required
     properties: {
       baseSettings: {
-        apiKey: "", // required
-        integrationId: "", // required
-        organizationId: "", // required
+        apiKey: "97dd6334a2ba9121a71ec3e88216e593670153eba46954b0", // required
+        integrationId: "cloykr9ap0000s601o7wc00xc", // required
+        organizationId: "org_glSX3NU5GkGXusqB", // required
         organizationDisplayName: "Inkeep",
         primaryBrandColor: "#522FC9"
       },
