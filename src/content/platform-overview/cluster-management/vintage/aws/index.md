@@ -106,7 +106,7 @@ CNI used until AWS release [19](https://docs.giantswarm.io/advanced/cluster-mana
 
 When it comes to sizing your worker nodes, there should generally be a preference for more, smaller nodes vs less, bigger ones. However, avoid node sizes of less than 4 cores and 8 GB RAM.
 
-To determine the right sizing in terms of cores and RAM, you need to know what kind of workloads will be run on the cluster and how much resources they need. Note that even if average load might be low, you should also account for peak load times as well as startup-peaks (i.e. some apps need a lot of resources just for their startup).
+To determine the right sizing in terms of cores and RAM, you need to know what kind of workloads will be running on the cluster and how much resources they need. Note that even if average load might be low, you should also account for peak load times as well as startup-peaks (i.e. some apps need a lot of resources just for their startup).
 
 ### Control resource assignment
 
