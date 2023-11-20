@@ -9,7 +9,7 @@ changes_entry:
   url: https://github.com/giantswarm/releases/tree/master/azure/archived/v13.0.2
   version: 13.0.2
   version_tag: v13.0.2
-date: '2020-12-16T08:16:50+00:00'
+date: '2020-12-16T08:16:50'
 description: Release notes for Azure workload cluster release v13.0.2, published on
   16 December 2020, 08:16.
 title: Workload cluster release v13.0.2 for Azure

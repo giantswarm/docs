@@ -9,7 +9,7 @@ changes_entry:
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v14.0.0
   version: 14.0.0
   version_tag: v14.0.0
-date: '2021-02-09T13:00:00+00:00'
+date: '2021-02-09T13:00:00'
 description: Release notes for AWS workload cluster release v14.0.0, published on
   09 February 2021, 13:00.
 title: Workload cluster release v14.0.0 for AWS

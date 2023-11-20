@@ -9,7 +9,7 @@ changes_entry:
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v16.3.1
   version: 16.3.1
   version_tag: v16.3.1
-date: '2022-01-19T10:23:42+00:00'
+date: '2022-01-19T10:23:42'
 description: Release notes for AWS workload cluster release v16.3.1, published on
   19 January 2022, 10:23.
 title: Workload cluster release v16.3.1 for AWS
