@@ -27,19 +27,20 @@ function getParameterByName(name) {
   return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
+/* Initialize Inkeep widget for the Search Box */
 var inkeepWidget = null;
-
 $(function() {
   inkeepWidget = Inkeep().embed({
     componentType: "SearchBar", // required
     targetElement: document.getElementById("searchInputMobile"), // required
     properties: {
+      stylesheetUrls: ["/css/inkeep.css"],
       baseSettings: {
         apiKey: "97dd6334a2ba9121a71ec3e88216e593670153eba46954b0", // required
         integrationId: "cloykr9ap0000s601o7wc00xc", // required
         organizationId: "org_glSX3NU5GkGXusqB", // required
-        organizationDisplayName: "Inkeep",
-        primaryBrandColor: "#522FC9"
+        organizationDisplayName: "Giant Swarm",
+        primaryBrandColor: "#386900"
       },
       modalSettings: {
         // optional InkeepModalSettings
@@ -140,7 +141,7 @@ $(document).ready(function(){
   // end of jQuery $(document).ready
 });
 
-// Add TOC sidebar behaviour
+// Add TOC sidebar behavior
 window.addEventListener("load", function() {
   if (!window.GSAside) return;
 
