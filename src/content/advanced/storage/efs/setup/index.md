@@ -16,7 +16,7 @@ aliases:
   - /guides/using-persistent-volumes-on-aws-with-efs-csi-driver/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2022-12-07
+last_review_date: 2023-11-20
 ---
 
 If your cluster is running in the cloud on Amazon Web Services (AWS) the most common way to store data is using EBS volumes with the [dynamic provisioner](/guides/using-persistent-volumes-on-aws-with-ebs-csi-driver/). Sometimes EBS is not the optimal solution.
@@ -127,8 +127,7 @@ spec:
       claimName: efs-claim
 ```
 
-**Warning:**
-By default, new EFS file systems are owned by root:root. You might need to change file system permissions if your container is not running as root. To learn about exposing separate data stores with independent ownership and permissions, check the AWS guide on [working with Amazon EFS Access Points](https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html).
+__Warning__: By default, new EFS file systems are owned by root:root. You might need to change file system permissions if your container is not running as root. To learn about exposing separate data stores with independent ownership and permissions, check the AWS guide on [working with Amazon EFS Access Points](https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html).
 
 ## Further reading
 

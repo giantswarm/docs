@@ -1,134 +1,88 @@
 ---
-linkTitle: Amazon Elastic File System (EFS)
-title: Using persistent volumes on AWS with EFS
-description: Tutorial on how to use dynamically provisioned Persistent Volumes on a cluster running on Amazon Web Services with EFS.
+linkTitle: AWS EFS backups using EBS
+title: AWS EFS backup using a temporal EBS volume and Kubernetes Volume Snapshots
+description: Tutorial explaining how to use a temporal EBS volume to backup your EFS filesystem without using AWS Backup.
 weight: 30
 menu:
   main:
     parent: advanced-storage-efs
 user_questions:
-  - How do I install the EFS provisioner?
-  - How do I provision an EFS instance on AWS?
-  - How do I test the efs storage class?
-  - How do I use EFS Volumes?
-  - What auto-provisioner for AWS do you recommend? EFS? EBS?
-aliases:
-  - /guides/using-persistent-volumes-on-aws-with-efs-csi-driver/
+  - How do I move my files from EFS to an EBS volume?
+  - How do I do a EFS backup?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2022-12-07
+  - https://github.com/orgs/giantswarm/teams/team-teddyfriends
+last_review_date: 2023-11-20
 ---
 
-If your cluster is running in the cloud on Amazon Web Services (AWS) the most common way to store data is using EBS volumes with the [dynamic provisioner](/guides/using-persistent-volumes-on-aws-with-ebs-csi-driver/). Sometimes EBS is not the optimal solution.
+The AWS Elastic File System is a storage solution that supports NFS (v4.0) and scales automatically based on user consumption. Once you want to back up a file system you need to use AWS Backup which allows you to configure many things on how to your files will be copy and maintained in the backup system. It is advisable to use in most of the use cases but when you just want a simple copy of your files AWS Backup may be too complex.
 
-The advantages of using EFS over EBS are:
+Next we explain on how to leverage on the [built-in Kubernetes Snapshots](https://kubernetes.io/docs/concepts/storage/volume-snapshots/) to copy your file system or part of it. Since there is no EFS compatibility with that feature we need a bridge EBS volume that allow us to rely on the feature automation.
 
-- EFS data can be accessed from all availability zones in the same region while EBS is tied to a single availability zone.
-- EFS has the capability to mount the same persistent volume to multiple pods at the same time using the ReadWriteMany [access mode](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes).
-- EFS will not hit the [AWS Instance Volume Limit](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/volume_limits.html) as it is a software mount and will avoid the [Impaired EBS]({{< relref "/advanced/storage/ebs-troubleshooting" >}}) issue.
-- EFS mount times are better than EBS.
-- EFS provides [encryption in transit](https://aws.amazon.com/blogs/aws/new-encryption-of-data-in-transit-for-amazon-efs/) support using TLS and it's enabled by default.
+## Create a tooling Job/Pod
 
-If you need to use EFS to provision volumes, be advised:
+In this section we show you a debug container that mounts a new EBS to hold the copy of our files.
 
-- All Kubernetes persistent volumes will be stored in the same EFS instance. You can deploy multiple provisioners per cluster, each having its own storage-class and EFS instance.
-- [EFS throughput](https://docs.aws.amazon.com/efs/latest/ug/performance.html) need to be set up accordingly in order to not have performance issues. We only recommend Provisioned Throughput, and if you need high performance you will need EBS.
-- EFS backups are done with [AWS Backup](https://aws.amazon.com/backup/) and it does not have the snapshot feature of EBS.
-- You cannot limit the amount of data stored in an EFS volume. The requested value in Kubernetes is ignored.
-- EFS mount targets are limited to 1 subnet per availability zone. Each NodePool will create a different subnet per AZ, plan accordingly.
-
-## Provision an EFS instance on AWS
-
-**Note:** Currently only static provisioning is supported. This means an AWS EFS file system needs to be created manually on AWS first. After that it can be mounted inside a container as a volume using the driver.
-
-Before installing the provisioner in Kubernetes we will need to create the EFS instance in the same AWS account:
-
-1. Open the [AWS management](https://aws.amazon.com/console/) console for the AWS account holding your cluster resources.
-2. From the `Services` menu, select `EFS`.
-3. Create a new file system and select the VPC where your cluster is located. The VPC can be identified by your cluster ID.
-4. Select the availability zone with the subnets your instances are located on and the security groups of your node pools. Subnets and security groups can be identified by you cluster ID.
-5. Choose the [throughput](https://docs.aws.amazon.com/efs/latest/ug/performance.html#throughput-modes) and [performance mode](https://docs.aws.amazon.com/efs/latest/ug/performance.html#performancemodes). Setting a file system policy or access points is optional.
-6. Create the instance and note the EFS instance ID.
-7. In case of dynamic provisioning, you need to [add the roles](https://github.com/kubernetes-sigs/aws-efs-csi-driver/blob/master/docs/iam-policy-example.json) to the instance profile or use service account annotation in controller to enable access to AWS EFS.
-
-## Installing the EFS CSI driver
-
-To install the EFS CSI driver in the workload cluster, you will need to follow these steps:
-
-1. Access the [web interface]({{< relref "/platform-overview/web-interface" >}}) and select the cluster on which you want to install the EFS CSI driver.
-2. Open the Apps tab.
-3. Click the Install App button
-4. Select the Giant Swarm Playground catalog.
-5. Select the App named `aws-efs-csi-driver`.
-6. Click the Configure & Install button. Make sure that the correct cluster is selected.
-7. Create and submit a configuration values file in case you want to deploy the storage class and controller (by default disable to allow a smooth transitation to CSI driver)
-
-    Example configuration:
-
-    ```yaml
-    storageClasses:
-    - name: efs-sc
-      annotations:
-        storageclass.kubernetes.io/is-default-class: "true"
-      mountOptions:
-      - tls
-      parameters:
-        provisioningMode: efs-ap
-        fileSystemId: fs-92107666
-        directoryPerms: "700"
-        gidRangeStart: "1000"
-        gidRangeEnd: "2000"
-
-    controller:
-      create: true
-    ```
-
-8. Click the Install App button.
-
-## Deploy a sample application
-
-In order to verify that the EFS CSI driver works as expected, we suggest to deploy a test workload based on the following manifests.
-
-First we apply a persistent volume claim with a capacity of 5 GB storage.
+__Note__: Make sure the
 
 ```yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: efs-claim
+  name: ebs-volume
 spec:
   accessModes:
-    - ReadWriteMany
-  storageClassName: efs-sc
+    - ReadWriteOnce
+  storageClassName: gp3
   resources:
     requests:
       storage: 5Gi
 ```
 
-And finally, we create a pod which repeatedly writes the current date into a file located in our EFS storage mount:
-
 ```yaml
-apiVersion: v1
-kind: Pod
+apiVersion: batch/v1
+kind: Job
 metadata:
-  name: efs-app
+  name: backup-efs
 spec:
-  containers:
-  - name: linux
-    image: amazonlinux:2
-    command: ["/bin/sh"]
-    args: ["-c", "while true; do echo $(date -u) >> /efs-data/out.txt; sleep 5; done"]
-    volumeMounts:
-    - name: efs-storage
-      mountPath: /efs-data
-  volumes:
-  - name: efs-storage
-    persistentVolumeClaim:
-      claimName: efs-claim
+  template:
+    metadata:
+      name: copy-pod
+    spec:
+      containers:
+      - name: copy-container
+        image: busybox:latest
+        command: ["/bin/sh", "-c"]
+        args: ["cp -r /efs/* /ebs/"]
+        volumeMounts:
+        - name: efs-volume
+          mountPath: /efs
+        - name: ebs-volume
+          mountPath: /ebs
+      volumes:
+      - name: efs-volume
+        persistentVolumeClaim:
+          claimName: efs-volume
+      - name: ebs-volume
+        persistentVolumeClaim:
+          claimName: ebs-volume
+      restartPolicy: Never
 ```
 
-**Warning:**
-By default, new EFS file systems are owned by root:root. You might need to change file system permissions if your container is not running as root. To learn about exposing separate data stores with independent ownership and permissions, check the AWS guide on [working with Amazon EFS Access Points](https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html).
+First check you have a `VolumeSnapshotClass` for EBS in the cluster installed running `kubectl get volumesnapshotclass -A`. If it is not the case, please [install the controller and the class following this recipe](https://aws.amazon.com/blogs/containers/using-ebs-snapshots-for-persistent-storage-with-your-eks-cluster/).
+
+```yaml
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshot
+metadata:
+  name: backup-efs
+spec:
+  volumeSnapshotClassName: test-snapclass
+  source:
+    persistentVolumeClaimName: ebs-volume
+```
+
+
+You can now do a ordinary k8s volume scnapshot for the new EBS volume
 
 ## Further reading
 
