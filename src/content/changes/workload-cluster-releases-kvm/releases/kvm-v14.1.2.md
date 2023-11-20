@@ -9,7 +9,7 @@ changes_entry:
   url: https://github.com/giantswarm/releases/tree/master/kvm/archived/v14.1.2
   version: 14.1.2
   version_tag: v14.1.2
-date: '2021-07-16T12:13:26+00:00'
+date: '2021-07-16T12:13:26'
 description: Release notes for KVM workload cluster release v14.1.2, published on
   16 July 2021, 12:13.
 title: Workload cluster release v14.1.2 for KVM

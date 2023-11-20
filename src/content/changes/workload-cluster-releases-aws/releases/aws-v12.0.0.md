@@ -9,7 +9,7 @@ changes_entry:
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v12.0.0
   version: 12.0.0
   version_tag: v12.0.0
-date: '2020-07-31T12:00:00+00:00'
+date: '2020-07-31T12:00:00'
 description: Release notes for AWS workload cluster release v12.0.0, published on
   31 July 2020, 12:00.
 title: Workload cluster release v12.0.0 for AWS

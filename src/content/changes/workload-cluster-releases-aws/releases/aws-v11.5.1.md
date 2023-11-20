@@ -9,7 +9,7 @@ changes_entry:
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v11.5.1
   version: 11.5.1
   version_tag: v11.5.1
-date: '2020-08-04T12:34:57+00:00'
+date: '2020-08-04T12:34:57'
 description: Release notes for AWS workload cluster release v11.5.1, published on
   04 August 2020, 12:34.
 title: Workload cluster release v11.5.1 for AWS

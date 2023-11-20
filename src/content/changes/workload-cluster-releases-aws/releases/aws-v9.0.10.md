@@ -9,7 +9,7 @@ changes_entry:
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v9.0.10
   version: 9.0.10
   version_tag: v9.0.10
-date: '2020-08-20T10:34:28+00:00'
+date: '2020-08-20T10:34:28'
 description: Release notes for AWS workload cluster release v9.0.10, published on
   20 August 2020, 10:34.
 title: Workload cluster release v9.0.10 for AWS

@@ -9,7 +9,7 @@ changes_entry:
   url: https://github.com/giantswarm/releases/tree/master/kvm/archived/v16.0.0
   version: 16.0.0
   version_tag: v16.0.0
-date: '2021-09-10T09:12:19+00:00'
+date: '2021-09-10T09:12:19'
 description: Release notes for KVM workload cluster release v16.0.0, published on
   10 September 2021, 09:12.
 title: Workload cluster release v16.0.0 for KVM
