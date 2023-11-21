@@ -726,7 +726,6 @@ data:
       subscriptionId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 kind: ConfigMap
 metadata:
-  creationTimestamp: null
   labels:
     giantswarm.io/cluster: dev01
   name: dev01-userconfig
