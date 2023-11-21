@@ -9,7 +9,7 @@ changes_entry:
   url: https://github.com/giantswarm/releases/tree/master/azure/archived/v15.0.0
   version: 15.0.0
   version_tag: v15.0.0
-date: '2021-06-14T11:40:38+00:00'
+date: '2021-06-14T11:40:38'
 description: Release notes for Azure workload cluster release v15.0.0, published on
   14 June 2021, 11:40.
 title: Workload cluster release v15.0.0 for Azure

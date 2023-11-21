@@ -9,7 +9,7 @@ changes_entry:
   url: https://github.com/giantswarm/releases/tree/master/azure/archived/v19.0.0
   version: 19.0.0
   version_tag: v19.0.0
-date: '2023-01-16T11:21:26+00:00'
+date: '2023-01-16T11:21:26'
 description: Release notes for Azure workload cluster release v19.0.0, published on
   16 January 2023, 11:21.
 title: Workload cluster release v19.0.0 for Azure

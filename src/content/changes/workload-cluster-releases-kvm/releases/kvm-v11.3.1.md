@@ -9,7 +9,7 @@ changes_entry:
   url: https://github.com/giantswarm/releases/tree/master/kvm/archived/v11.3.1
   version: 11.3.1
   version_tag: v11.3.1
-date: '2020-05-04T12:00:00+00:00'
+date: '2020-05-04T12:00:00'
 description: Release notes for KVM workload cluster release v11.3.1, published on
   04 May 2020, 12:00.
 title: Workload cluster release v11.3.1 for KVM

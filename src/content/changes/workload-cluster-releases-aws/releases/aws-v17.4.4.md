@@ -9,7 +9,7 @@ changes_entry:
   url: https://github.com/giantswarm/releases/tree/master/aws/v17.4.4
   version: 17.4.4
   version_tag: v17.4.4
-date: '2022-11-25T12:22:45+00:00'
+date: '2022-11-25T12:22:45'
 description: Release notes for AWS workload cluster release v17.4.4, published on
   25 November 2022, 12:22.
 title: Workload cluster release v17.4.4 for AWS
@@ -48,3 +48,7 @@ This is a patch release to add missing Elastic File System (EFS) IAM permissions
 
 #### Changed
 - Update init container image to v3.16.2([#182](https://github.com/giantswarm/external-dns-app/pull/182))
+
+### etcd-kubernetes-resources-count-exporter [1.8.0](https://github.com/giantswarm/etcd-kubernetes-resources-count-exporter/releases/tag/v1.8.0)
+
+Bump to latest version to address security and performance issues.
