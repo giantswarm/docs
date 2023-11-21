@@ -152,7 +152,6 @@ It supports the following flags:
 - `--region` - AWS region where cluster will be created.
 - `--vpc-cidr` (optional) - IPv4 address range to assign to this cluster's VPC, in CIDR notation.
 
-
 ### AWS Vintage specific flags
 
 - `--external-snat` - AWS CNI configuration to disable (is enabled by default) the [external source network address translation](https://docs.aws.amazon.com/eks/latest/userguide/external-snat.html).
