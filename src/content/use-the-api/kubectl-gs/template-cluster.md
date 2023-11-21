@@ -770,7 +770,6 @@ data:
     organization: acme
 kind: ConfigMap
 metadata:
-  creationTimestamp: null
   labels:
     giantswarm.io/cluster: dev01
   name: dev01-default-apps-userconfig
