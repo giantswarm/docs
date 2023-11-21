@@ -705,7 +705,7 @@ status:
 ```
 
 {{< /tab >}}
-{{< tab id="command-output-azure" for-impl="capz_vms">}}
+{{< tab id="command-output-azure-capi" for-impl="capz_vms">}}
 
 ```yaml
 ---
