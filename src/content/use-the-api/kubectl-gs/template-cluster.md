@@ -791,16 +791,8 @@ spec:
     configMap:
       name: dev01-cluster-values
       namespace: org-acme
-    secret:
-      name: ""
-      namespace: ""
   kubeConfig:
-    context:
-      name: ""
     inCluster: true
-    secret:
-      name: ""
-      namespace: ""
   name: default-apps-azure
   namespace: org-acme
   userConfig:
