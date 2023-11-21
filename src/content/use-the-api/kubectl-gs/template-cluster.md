@@ -296,7 +296,7 @@ kubectl gs template cluster \
 ```
 
 {{< /tab >}}
-{{< tab id="command-examples-azure-capi" for-impl="capz-vms">}}
+{{< tab id="command-examples-azure-capi" for-impl="capz_vms">}}
 
 Example command for an Azure CAPI cluster:
 
