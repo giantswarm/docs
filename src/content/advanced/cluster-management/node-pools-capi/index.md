@@ -35,8 +35,7 @@ common configuration. You can combine any type of node pool within one cluster. 
 - Availability zone distribution
 - Scaling configuration (number of nodes)
 
-A node pool is identified by a unique ID that is generated on creation and by a name that you can pick as a cluster
-administrator. The unique ID is set as a label on all nodes belonging to the pool.
+A node pool is identified by a name that you can pick as a cluster administrator. The name of the node pool is set as a label on all nodes belonging to the pool.
 
 ## Lifecycle
 
