@@ -9,7 +9,7 @@ changes_entry:
   url: https://github.com/giantswarm/releases/tree/master/azure/archived/v14.1.4
   version: 14.1.4
   version_tag: v14.1.4
-date: '2021-04-06T08:44:15+00:00'
+date: '2021-04-06T08:44:15'
 description: Release notes for Azure workload cluster release v14.1.4, published on
   06 April 2021, 08:44.
 title: Workload cluster release v14.1.4 for Azure

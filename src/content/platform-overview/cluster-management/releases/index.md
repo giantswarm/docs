@@ -94,7 +94,7 @@ Once deprecated, you can still continue to use the workload cluster release with
 
 ### Pre-releases
 
-Pre-releases (when available) give you the option to test new features or use new functionality before the feature is released. At the same time helps the us release new features and test them in a realworld scenario with your help. When you test out a pre-release it helps find bugs or evaluate the impact of new functionality on the system.
+Pre-releases (when available) give you the option to test new features or use new functionality before the feature is released. At the same time helps us release new features and test them in a realworld scenario with your help. When you test out a pre-release it helps find bugs or evaluate the impact of new functionality on the system.
 
 Currently not all Giant Swarm releases become available as pre-releases. We communicate pre-releases, when they are available for customer testing.
 
@@ -104,7 +104,7 @@ Use Cases for Pre-Releases:
 
 - A new feature with unclear impact is done and the team wants to test and evaluate its impact before deciding the scope of the release (alpha). Customers get early access to the functionality and see if it satisfies their requirements. Customers report back with bugs and additional commentary. This allows the functionality to be evaluated in a less controlled way than in our testing environments. It also identifies bugs that we may have not found, allowing us to fix them early. It also may bring about reconsidering the feature/solution in general.
 
-- A new high impact feature is done, but needs to wait for the next major release (beta). Customers get early access to the functionaliy and see that it sits well with their set-up. Customers report back with bugs as necessary. This allows us to make fixes to bugs that we may have not found.
+- A new high impact feature is done, but needs to wait for the next major release (beta). Customers get early access to the functionality and see that it sits well with their set-up. Customers report back with bugs as necessary. This allows us to make fixes to bugs that we may have not found.
 
 - A new high impact feature is done and is urgently needed by a customer (release candidate (rc)). The customer can get a pre-release to test and roll out ASAP. This release is complete and stable. It may not meet the quality bars of a general availaibility (GA) release.
 
@@ -124,11 +124,11 @@ You have several options to inspect workload cluster release details:
 
 ### Node pools {#nodepools}
 
-[Node pools]({{< relref "/advanced/node-pools" >}}) were introduced by the following workload cluster releases:
+[Node pools]({{< relref "/advanced/cluster-management/node-pools" >}}) were introduced by the following workload cluster releases:
 
-- AWS: **{{% first_aws_nodepools_version %}}**.
+- AWS: v{{% first_aws_nodepools_version %}}
 
-- Azure: **{{% first_azure_nodepools_version %}}**.
+- Azure: v{{% first_azure_nodepools_version %}}
 
 ### Preinstalled and optional Apps {#apps}
 

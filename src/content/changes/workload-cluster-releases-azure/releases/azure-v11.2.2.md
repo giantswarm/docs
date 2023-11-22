@@ -9,7 +9,7 @@ changes_entry:
   url: https://github.com/giantswarm/releases/tree/master/azure/archived/v11.2.2
   version: 11.2.2
   version_tag: v11.2.2
-date: '2020-04-08T12:00:00+00:00'
+date: '2020-04-08T12:00:00'
 description: Release notes for Azure workload cluster release v11.2.2, published on
   08 April 2020, 12:00.
 title: Workload cluster release v11.2.2 for Azure

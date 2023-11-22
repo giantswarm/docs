@@ -186,11 +186,11 @@ Deletion works in the same way: run `kubectl delete -f FILENAME.yaml` and the op
 * `ConfigMap/<cluster>-user-values`
 * `ConfigMap/<cluster>-default-apps-user-values`
 
-If you would like to protect your clusters from accidental deletion, take a look at our [deletion prevention mechanism]({{< relref "/advanced/deletion-prevention" >}}).
+If you would like to protect your clusters from accidental deletion, take a look at our [deletion prevention mechanism]({{< relref "/advanced/app-platform/deletion-prevention" >}}).
 
 ### Private workload clusters
 
-By default, the created Kubernetes cluster API endpoint is public. See [Private clusters]({{< relref "/advanced/private-clusters" >}}) if you want to limit networking to/from the cluster.
+By default, the created Kubernetes cluster API endpoint is public. See [Private clusters]({{< relref "/advanced/cluster-management/private-clusters" >}}) if you want to limit networking to/from the cluster.
 
 ## Step 3: Watch the status of workload clusters
 

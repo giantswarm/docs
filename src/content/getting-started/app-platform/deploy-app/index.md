@@ -256,7 +256,7 @@ spec:
 ```
 
 You can read more about app platform configuration [here]({{< relref "/getting-started/app-platform/app-configuration" >}})
-and about advanced ingress configuration [here]({{< relref "/advanced/ingress" >}}).
+and about advanced ingress configuration [here]({{< relref "/advanced/connectivity/ingress" >}}).
 
 ## Deleting an App CR
 

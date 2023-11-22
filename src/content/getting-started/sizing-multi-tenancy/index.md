@@ -43,7 +43,7 @@ For production usage, the cluster should have at least 5 nodes and a buffer of 2
 
 #### Control plane nodes
 
-Control plane nodes are more critical than worker nodes in achieving better availability and performance. Several worker nodes can be replaced at the same time with no downtime but the failure of a control plane node could cause a major issue if it is your only control plane node. [High-availability control planes]({{< relref "/advanced/high-availability/control-plane/index.md" >}}) can be used on AWS to reduce downtime to a minimum but still need to be sized correctly to avoid performance issues.
+Control plane nodes are more critical than worker nodes in achieving better availability and performance. Several worker nodes can be replaced at the same time with no downtime but the failure of a control plane node could cause a major issue if it is your only control plane node. [High-availability control planes]({{< relref "/advanced/cluster-management/high-availability/control-plane/index.md" >}}) can be used on AWS to reduce downtime to a minimum but still need to be sized correctly to avoid performance issues.
 
 The control plane nodes host critical components like the API, scheduler, Etcd, and many more. The load of these components will directly depend on the amount of resources they are managing, the number of API requests being served, and the events being generated in the cluster.
 
@@ -111,7 +111,7 @@ The downside to the multi-tenant single cluster approach is that it, as mentione
 
 - [Creating clusters with gsctl]({{< relref "/use-the-api/gsctl/create-cluster" >}})
 - [Cluster Size and Autoscaling]({{< relref "/getting-started/operations/autoscaling/cluster-size" >}})
-- [Preventing deletion of clusters]({{< relref "/advanced/deletion-prevention" >}})
+- [Preventing deletion of clusters]({{< relref "/advanced/app-platform/deletion-prevention" >}})
 - [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
 - [Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/)
 - [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)

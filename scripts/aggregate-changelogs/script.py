@@ -216,7 +216,7 @@ def link_commit_hashes(mkdwn, repo_shortname):
     result = re.sub(r'\b([a-f0-9]{40})\b', replace_hash, mkdwn)
     return result
 
-def generate_release_file(repo_shortname, repo_config, release):
+def generate_release_file(repo_shortname, repo_config, release, delete):
     """
     Write a release file with YAML front matter and Markdown body
     """
@@ -249,8 +249,13 @@ def generate_release_file(repo_shortname, repo_config, release):
 
     filepath = path.join(CONTENT_PATH, category_path, repo_id, filename)
 
+    if delete:
+        if os.path.exists(filepath):
+            os.remove(filepath)
+        return
+
     frontmatter = {
-        'date': release['date'].isoformat(),
+        'date': release['date'].strftime('%Y-%m-%dT%H:%M:%S'),
         'title': title,
         'description': description,
         'changes_entry': {
@@ -300,8 +305,9 @@ if __name__ == "__main__":
         catfile.write(dump(categories, Dumper=CDumper))
 
     # Write changelog items
-    for repo_short in conf['repositories']:
-        repo_conf = conf['repositories'][repo_short]
+    for repo_short in sorted(conf['repositories']):
+        print(f'Repo {repo_short}')
+        repo_conf = conf['repositories'][repo_short] or {}
 
         releases = []
 
@@ -341,4 +347,8 @@ if __name__ == "__main__":
                         print("WARNING: %s version %s entry in CHANGELOG.md is empty" % (repo_short, v))
 
         for release in releases:
-            generate_release_file(repo_short, repo_conf, release)
+            delete = False
+            if repo_conf.get('skip_if_body_is_one_of', ()) and release['body'].strip() in repo_conf['skip_if_body_is_one_of']:
+                delete = True
+
+            generate_release_file(repo_short, repo_conf, release, delete)

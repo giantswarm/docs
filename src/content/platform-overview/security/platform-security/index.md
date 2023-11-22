@@ -1,7 +1,7 @@
 ---
 linkTitle: Platform Security
 title: Platform Security
-description: Architecture and configuration information for the collection of security related platform features.
+description: Architecture and configuration information for the collection of security-related platform features.
 weight: 30
 menu:
   main:
@@ -12,7 +12,7 @@ aliases:
 #   - /guides/managed-security-stack/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
-last_review_date: 2023-06-28
+last_review_date: 2023-11-10
 user_questions:
   - How do I view and manage vulnerabilities in my cluster?
   - What UI options are there for vulnerability and policy reports?
@@ -24,7 +24,7 @@ user_questions:
 
 ## Overview
 
-Giant Swarm integrates a collection of open-source security tools which extend the basic security considerations outlined in our [RBAC and PSP tutorial][rbac-psp], [Network Policy tutorial][net-pols], and [security guide][security] and help you gain deeper observability and control over your developer platform.
+Giant Swarm integrates a collection of open-source security tools which extend the basic security considerations outlined in our [RBAC and PSS tutorial][rbac-psp], [Network Policy tutorial][net-pols], and [Security Guide][security] and help you gain deeper observability and control over your developer platform.
 
 The stack consists of multiple distinct components which are independently installable and configurable based on the user's security requirements.
 
@@ -194,7 +194,7 @@ We include Falco in our managed security stack as a detection mechanism for mali
 [linkerd-viz-app]: https://github.com/giantswarm/linkerd-viz-app
 [loki-app]: https://github.com/giantswarm/loki-app
 [net-pols]: {{< relref "/getting-started/network-policies" >}}
-[policy-enforcement]: {{< relref "/advanced/security-policy-enforcement" >}}
+[policy-enforcement]: {{< relref "/advanced/security/security-policy-enforcement" >}}
 [policy-reporter-upstream]: https://github.com/kyverno/policy-reporter
 [observability-bundle]: {{< relref "/platform-overview/observability" >}}
 [rbac-psp]: {{< relref "/getting-started/rbac-and-psp" >}}
