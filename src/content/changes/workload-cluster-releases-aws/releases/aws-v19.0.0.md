@@ -9,7 +9,7 @@ changes_entry:
   url: https://github.com/giantswarm/releases/tree/master/aws/v19.0.0
   version: 19.0.0
   version_tag: v19.0.0
-date: '2023-05-17T09:34:06+00:00'
+date: '2023-05-17T09:34:06'
 description: Release notes for AWS workload cluster release v19.0.0, published on
   17 May 2023, 09:34.
 title: Workload cluster release v19.0.0 for AWS
@@ -291,11 +291,6 @@ We're aiming to provide a comprehensive blackbox monitoring tool that can valida
 - in [#59](https://github.com/giantswarm/vertical-pod-autoscaler-crd/pull/59) removed duplicate resources for the CRDs definition causing errors during mc-bootstrap
 
 
-
-### etcd-kubernetes-resources-count-exporter [1.2.0](https://github.com/giantswarm/etcd-kubernetes-resources-count-exporter/releases/tag/v1.2.0)
-
-#### Changed
-- Disable PSPs for k8s 1.25 and newer.
 
 
 

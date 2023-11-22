@@ -9,7 +9,7 @@ changes_entry:
   url: https://github.com/giantswarm/releases/tree/master/azure/v20.0.0-beta1
   version: 20.0.0-beta1
   version_tag: v20.0.0-beta1
-date: '2023-05-16T07:47:34+00:00'
+date: '2023-05-16T07:47:34'
 description: Release notes for Azure workload cluster release v20.0.0-beta1, published
   on 16 May 2023, 07:47.
 title: Workload cluster release v20.0.0-beta1 for Azure

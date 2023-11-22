@@ -15,4 +15,5 @@ user_questions:
 aliases:
   - /reference/cp-k8s-api/
   - /ui-api/cp-k8s-api/
+  - /ui-api/management-api/crd/
 ---
