@@ -132,7 +132,25 @@ It supports the following flags:
 
 ### AWS CAPI specific flags
 
-- `--name` must only contain alphanumeric characters, start with a letter, and be no longer than 5 characters in length
+- `--aws-cluster-role-identity-name` (optional) - Refers to the IAM role used to create all AWS cloud resources when creating the cluster. The role can be in another AWS account in order to create all resources in that account (default: `default`).
+- `--az-usage-limit` (optional) - Maximum number of availability zones (AZ) that should be used in a region. If a region has more than this number of AZs then this number of AZs will be picked randomly when creating subnets (default: `3`).
+- `--bastion-instance-type` (optional) - Instance type used for the bastion machine (default: `t3.small`).
+- `--bastion-replicas` (optional) - Number of bastion instances to run.
+- `--control-plane-instance-type` (optional) - Instance type used for Control plane nodes (default: `r6i.xlarge`).
+- `--cluster-catalog` (optional) - Name of the Giant Swarm app catalog that holds the cluster's app release.
+- `--cluster-version` (optional) - Version of `cluster-vsphere` helm chart to use. If not provided, the latest version will be used.
+- `--default-apps-catalog` (optional) - Name of the Giant Swarm app catalog that holds the default-apps' app release.
+- `--default-apps-version` (optional) - Version of `default-apps-vsphere` helm chart to use. If not provided, the latest version will be used.
+- `--machine-pool-azs` (optional) - Availability zones for the machine pool.
+- `--machine-pool-custom-node-labels` (optional) - Labels to add to the nodes in the machine pool.
+- `--machine-pool-instance-type` (optional) - Instance type to use for the machine pool.
+- `--machine-pool-max-size` (optional) - Maximum size of the machine pool.
+- `--machine-pool-min-size` (optional) - Minimum size of the machine pool.
+- `--machine-pool-name` (optional) - Name of the machine pool.
+- `--machine-pool-root-volume-size-gb` (optional) - Size in GB of the root volume of the machines in the machine pool.
+- `--name` - must only contain alphanumeric characters, start with a letter, and be no longer than 20 characters in length.
+- `--region` - AWS region where cluster will be created.
+- `--vpc-cidr` (optional) - IPv4 address range to assign to this cluster's VPC, in CIDR notation.
 
 ### AWS Vintage specific flags
 
@@ -142,6 +160,18 @@ It supports the following flags:
 - `--service-priority` (optional) - [Service priority]({{< relref "/advanced/cluster-management/labelling-workload-clusters#service-priority" >}}) of the cluster (one of: `highest`, `medium`, or `lowest`; default: `highest`).
 - `--release-branch` (optional) - The Giant Swarm [releases repository](https://github.com/giantswarm/releases) branch to use to look up the workload cluster release set via the `--release` flag (default: `master`).
 - `--release` - Workload cluster release version.
+
+### Azure CAPI specific flags
+
+- `--azure-subscription-id` - Azure subscription ID to use.
+- `--bastion-instance-type` (optional) - Instance type used for the bastion machine (default: `Standard_D2s_v5`).
+- `--cluster-catalog` (optional) - Name of the Giant Swarm app catalog that holds the cluster's app release.
+- `--cluster-version` (optional) - Version of `cluster-vsphere` helm chart to use. If not provided, the latest version will be used.
+- `--control-plane-instance-type` (optional) - Instance type used for Control plane nodes (default: `Standard_D4s_v3`).
+- `--default-apps-catalog` (optional) - Name of the Giant Swarm app catalog that holds the default-apps' app release.
+- `--default-apps-version` (optional) - Version of `default-apps-vsphere` helm chart to use. If not provided, the latest version will be used.
+- `--name` - must only contain alphanumeric characters, start with a letter, and be no longer than 20 characters in length.
+- `--region` - Azure region where cluster will be created.
 
 ### Azure Vintage specific flags
 
@@ -199,21 +229,22 @@ It supports the following flags:
 - `--default-apps-catalog` (optional) - Name of the Giant Swarm app catalog that holds the default-apps' app release.
 - `--default-apps-version` (optional) - Version of `default-apps-vsphere` helm chart to use. If not provided, the latest version will be used.
 - `--kubernetes-version` (optional) - Cluster's Kubernetes version (default: 1.24.11).
-- `--vsphere-control-plane-ip` (optional) - Control plane IP, leave empty for auto allocation.
-- `--vsphere-service-load-balancer-cidr` (optional) - CIDR for Service LB within workload cluster.
-- `--vsphere-network-name` - Portgroup name in vCenter to connect the new VMs to.
 - `--vsphere-control-plane-disk-gib` (optional) - Disk size in GiB for individual control plane nodes (default: 50).
+- `--vsphere-control-plane-ip` (optional) - Control plane IP, leave empty for auto allocation.
 - `--vsphere-control-plane-ip-pool` (optional) - Name of `GlobalInClusterIpPool` CR from which to take an IP for the control plane (default: `wc-cp-ips`).
 - `--vsphere-control-plane-memory-mib` (optional) - Memory size in MiB for individual control plane nodes (default: 8096).
 - `--vsphere-control-plane-num-cpus` (optional) - Number of CPUs for individual control plane nodes (default: 4).
 - `--vsphere-control-plane-replicas` (optional) - Number of control plane replicas in odd number (default: 3).
+- `--vsphere-credentials-secret-name` (optional) - Name of the kubernetes secret that should be associated to the cluster app. It should exist in the organization's namespace and should contain the credentials for vsphere.
+- `--vsphere-image-template` (optional) - Name of the vSphere template to deploy the VMs from (default: `ubuntu-2004-kube-${kubernetes-version}`).
+- `--vsphere-network-name` - Portgroup name in vCenter to connect the new VMs to.
+- `--vsphere-resource-pool` (optional) - Name of the vSphere resource pool to deploy the VMs to (default: cluster)
+- `--vsphere-service-lb-pool` (optional) - Name of GlobalInClusterIpPool CR from which the IP for Service LB (kubevip) is taken (default "svc-lb-ips")
+- `--vsphere-service-load-balancer-cidr` (optional) - CIDR for Service LB within workload cluster.
 - `--vsphere-worker-disk-gib` (optional) - Disk size in GiB for individual worker nodes (default: 50).
 - `--vsphere-worker-memory-mib` (optional) - Memory size in MiB for individual worker nodes (default: 14144).
 - `--vsphere-worker-num-cpus` (optional) - Number of CPUs for individual worker nodes (default: 6).
 - `--vsphere-worker-replicas` (optional) - Number of worker replicas (default: 3).
-- `--vsphere-resource-pool` (optional) - Name of the vSphere resource pool to deploy the VMs to (default: cluster)
-- `--vsphere-image-template` (optional) - Name of the vSphere template to deploy the VMs from (default: `ubuntu-2004-kube-${kubernetes-version}`).
-- `--vsphere-credentials-secret-name` (optional) - Name of the kubernetes secret that should be associated to the cluster app. It should exist in the organization's namespace and should contain the credentials for vsphere.
 
 ## Examples
 
@@ -262,6 +293,21 @@ kubectl gs template cluster \
   --label environment=testing \
   --label team=upstate \
   --service-priority lowest
+```
+
+{{< /tab >}}
+{{< tab id="command-examples-azure-capi" for-impl="capz_vms">}}
+
+Example command for an Azure CAPI cluster:
+
+```nohighlight
+kubectl gs template cluster \
+  --provider capz \
+  --region germanywestcentral \
+  --azure-subscription-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
+  --description "Development Cluster" \
+  --name dev01 \
+  --organization acme
 ```
 
 {{< /tab >}}
@@ -656,6 +702,102 @@ spec:
   vmSize: Standard_D4s_v3
 status:
   ready: false
+```
+
+{{< /tab >}}
+{{< tab id="command-output-azure-capi" for-impl="capz_vms">}}
+
+```yaml
+---
+apiVersion: v1
+data:
+  values: |
+    connectivity:
+      bastion:
+        enabled: true
+    controlPlane:
+      replicas: 3
+    metadata:
+      description: Development Cluster
+      name: dev01
+      organization: acme
+    providerSpecific:
+      location: germanywestcentral
+      subscriptionId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+kind: ConfigMap
+metadata:
+  labels:
+    giantswarm.io/cluster: dev01
+  name: dev01-userconfig
+  namespace: org-acme
+---
+apiVersion: application.giantswarm.io/v1alpha1
+kind: App
+metadata:
+  labels:
+    app-operator.giantswarm.io/version: 0.0.0
+  name: dev01
+  namespace: org-acme
+spec:
+  catalog: cluster
+  config:
+    configMap:
+      name: ""
+      namespace: ""
+    secret:
+      name: ""
+      namespace: ""
+  kubeConfig:
+    context:
+      name: ""
+    inCluster: true
+    secret:
+      name: ""
+      namespace: ""
+  name: cluster-azure
+  namespace: org-acme
+  userConfig:
+    configMap:
+      name: dev01-userconfig
+      namespace: org-acme
+  version: 0.0.29
+---
+apiVersion: v1
+data:
+  values: |
+    clusterName: dev01
+    organization: acme
+kind: ConfigMap
+metadata:
+  labels:
+    giantswarm.io/cluster: dev01
+  name: dev01-default-apps-userconfig
+  namespace: org-acme
+---
+apiVersion: application.giantswarm.io/v1alpha1
+kind: App
+metadata:
+  labels:
+    app-operator.giantswarm.io/version: 0.0.0
+    giantswarm.io/cluster: dev01
+    giantswarm.io/managed-by: cluster
+  name: dev01-default-apps
+  namespace: org-acme
+spec:
+  catalog: cluster
+  config:
+    configMap:
+      name: dev01-cluster-values
+      namespace: org-acme
+  kubeConfig:
+    inCluster: true
+  name: default-apps-azure
+  namespace: org-acme
+  userConfig:
+    configMap:
+      name: dev01-default-apps-userconfig
+      namespace: org-acme
+  version: 0.4.0
 ```
 
 {{< /tab >}}
