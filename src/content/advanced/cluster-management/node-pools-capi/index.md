@@ -37,31 +37,72 @@ common configuration. You can combine any type of node pool within one cluster. 
 
 A node pool is identified by a name that you can pick as a cluster administrator. The name of the node pool is set as a label on all nodes belonging to the pool.
 
-## Lifecycle
+## Configuration
 
-Node pools can be created, deleted or updated by changing the configuration used when creating the cluster
+Node pools can be created, deleted or updated by changing the configuration used when creating the cluster using [`kubectl`]({{< relref "/getting-started/create-workload-cluster" >}})
 
-- via [`kubectl`]({{< relref "/getting-started/create-workload-cluster" >}})
+{{< tabs >}}
+{{< tab id="cluster-capa-ec2" for-impl="capa_ec2" >}}
 
-Once a node pool has been created, as soon as the workers are available, they will
-join the cluster and appear in your `kubectl get nodes` listing. You can identify the
-nodes' node pool using the `giantswarm.io/machine-pool` label on AWS EC2 (CAPA) clusters and `giantswarm.io/machine-deployment` label on Azure (CAPZ) clusters.
+```nohighlight
+kubectl gs template cluster --provider capa --name a1b2c3 \
+  --organization giantswarm \
+  --description "my test cluster" \
+  --machine-pool-name pool0 \
+  --machine-pool-min-size 3 \
+  --machine-pool-max-size 5 \
+  --machine-pool-instance-type r6i.xlarge
+```
 
-The example `kubectl` command below will list all nodes with role, node pool ID, and node name for an AWS EC2 (CAPA).
+The node pool name will be prepended by the cluster name. In the example above, the node pool name will be `a1b2c3-pool0`.
+
+All nodes in the node pool will be labeled with the node pool name, using the  `giantswarm.io/machine-pool` label.
+You can identify the nodes' node pool using that label.
+The example `kubectl` command below will list all nodes with role, node pool name, and node name.
 
 ```nohighlight
 kubectl get nodes \
   -o=jsonpath='{range .items[*]}{.metadata.labels.kubernetes\.io/role}{"\t"}{.metadata.labels.giantswarm\.io/machine-pool}{"\t"}{.metadata.name}{"\n"}{end}' | sort
 master         ip-10-1-5-55.eu-central-1.compute.internal
-worker  7zypn  ip-10-1-6-225.eu-central-1.compute.internal
-worker  7zypn  ip-10-1-6-67.eu-central-1.compute.internal
+worker  a1b2c3-pool0  ip-10-1-6-225.eu-central-1.compute.internal
+worker  a1b2c3-pool0  ip-10-1-6-67.eu-central-1.compute.internal
 ```
+
+{{< /tab >}}
+{{< tab id="cluster-capz-azure-vms" for-impl="capz_vms" >}}
+
+```nohighlight
+kubectl gs template cluster --provider capz --name test-cluster \
+  --organization giantswarm \
+  --description "my test cluster" \
+  --machine-pool-name pool0 \
+  --machine-pool-min-size 3 \
+  --machine-pool-max-size 5 \
+  --machine-pool-instance-type r6i.xlarge
+```
+
+The node pool name will be prepended by the cluster name. In the example above, the node pool name will be `a1b2c3-pool0`.
+
+All nodes in the node pool will be labeled with the node pool name, using the  `giantswarm.io/machine-deployment` label.
+You can identify the nodes' node pool using that label.
+The example `kubectl` command below will list all nodes with role, node pool name, and node name.
+
+```nohighlight
+kubectl get nodes \
+  -o=jsonpath='{range .items[*]}{.metadata.labels.kubernetes\.io/role}{"\t"}{.metadata.labels.giantswarm\.io/machine-deployment}{"\t"}{.metadata.name}{"\n"}{end}' | sort
+master         ip-10-1-5-55.eu-central-1.compute.internal
+worker  a1b2c3-pool0  ip-10-1-6-225.eu-central-1.compute.internal
+worker  a1b2c3-pool0  ip-10-1-6-67.eu-central-1.compute.internal
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Assigning workloads to node pools {#assigning-workloads}
 
-Knowing the node pool ID of the pool to use, you can use the `nodeSelector` method of assigning pods to the node pool.
+Knowing the node pool name of the pool to use, you can use the `nodeSelector` method of assigning pods to the node pool.
 
-Assuming that the node pool ID is `a1b2c`, your `nodeSelector` could for example look like this:
+Assuming that the node pool name is `pool0`, and the cluster name is `a1b2c3`, your `nodeSelector` could for example look like this:
 
 {{< tabs >}}
 {{< tab id="cluster-capa-ec2" for-impl="capa_ec2" >}}
@@ -76,7 +117,7 @@ spec:
   - name: nginx
     image: nginx
   nodeSelector:
-    giantswarm.io/machine-pool: a1b2c
+    giantswarm.io/machine-pool: a1b2c3-pool0
 ```
 
 {{< /tab >}}
@@ -95,7 +136,7 @@ spec:
   - name: nginx
     image: nginx
   nodeSelector:
-    giantswarm.io/machine-deployment: a1b2c
+    giantswarm.io/machine-deployment: a1b2c3-pool0
 ```
 
 {{< /tab >}}
@@ -108,11 +149,9 @@ For example: In a case where you have node pools with one instance type. Using a
 
 Another example: In a case where you have different node pools using different availability zones. With a `nodeSelector` using the label `topology.kubernetes.io/zone` you can assign your workload to the nodes in a particular availability zone.
 
-## Node pool deletion
+## Using mixed instance types {#mixed-instance-types}
 
-TBD
-
-## Using similar instance types {#similar-instance-types}
+**Note:** This feature was called ["Similar instance types" on vintage]({{< relref "/advanced/cluster-management/node-pools-vintage#similar-instance-types" >}}).
 
 On AWS EC2 (CAPA) you can override the instance type of the node pool to enable [mixed instances policy on AWS](https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_LaunchTemplateOverrides.html).
 This can provide Amazon EC2 Auto Scaling with a larger selection of instance types to choose from when fulfilling node capacities.
