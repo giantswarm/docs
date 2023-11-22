@@ -136,8 +136,19 @@ Our on-call engineers will be paged in case anything happens to the cluster or i
 
 Please note, while this document went into extensive details with regards to how Giant Swarm runs Kubernetes on AWS, we support [Azure]({{< relref "/platform-overview/cluster-management/vintage/azure" >}}) as well as [Bare Metal]({{< relref "/platform-overview/cluster-management/vintage/on-premises" >}}). For more details, please [contact us](https://www.giantswarm.io/contact).
 
+## App Platform
+
+Giant Swarm [has designed a system](https://www.giantswarm.io/app-platform) to ease the use of some common Cloud Native apps. The amount of components available in the landscape is huge, and [we have decided to include some of the projects in our catalog](https://www.giantswarm.io/blog/announcing-the-giant-swarm-app-platform) for our customers to rely on.
+
+Right now we have several managed apps to control the Ingress traffic ([Ingress NGINX Controller](https://github.com/giantswarm/ingress-nginx-app) and [Kong](https://github.com/giantswarm/kong-app)), collect and process logs ([EFK](https://github.com/giantswarm/efk-stack-app)) or automate the DNS setup ([external DNS](https://github.com/giantswarm/external-dns-app)).
+
+But at the same time we open the catalog to our customers and employees to use for their own apps. That is why, for instance, we are running a proof of concept for Loki, the “coolest” log collector. If you trust in a Cloud Native app and operating it does not add any value to your business, talk to us and we might take over its management for you, too.
+
+Please note, while this document went into extensive details with regards to how Giant Swarm runs Kubernetes on [Azure]({{< relref "/platform-overview/cluster-management/vintage/azure" >}}), we support [AWS]({{< relref "/platform-overview/cluster-management/vintage/aws" >}}) as well as [Bare Metal]({{< relref "/platform-overview/cluster-management/vintage/on-premises" >}}). For more details, please [contact us](https://www.giantswarm.io/contact).
+
 ## Further reading
 
 - [Giant Swarm support model]({{< relref "/support" >}})
 - [Giant Swarm operational layers]({{< relref "/platform-overview/security/operational-layers" >}})
+- [Giant Swarm App Catalog]({{< relref "/platform-overview/app-platform" >}})
 - [Giant Swarm VPN and secure cluster access]({{< relref "/platform-overview/security/cluster-security/cluster-access" >}})
