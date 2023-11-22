@@ -34,6 +34,12 @@ repositories:
     category: Cluster apps for OpenStack
   giantswarm/docs:
     category: Documentation
+
+    # Don't create useless PRs only for empty changelogs in `docs`
+    skip_if_body_is_one_of:
+      - ''
+      - '- Update generated content'
+      - '- Update changes and releases'
   giantswarm/efk-stack-app:
     category: Managed Apps
   giantswarm/falco-app:

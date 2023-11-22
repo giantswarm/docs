@@ -9,7 +9,7 @@ changes_entry:
   url: https://github.com/giantswarm/releases/tree/master/kvm/archived/v12.1.0
   version: 12.1.0
   version_tag: v12.1.0
-date: '2020-07-29T15:00:00+00:00'
+date: '2020-07-29T15:00:00'
 description: Release notes for KVM workload cluster release v12.1.0, published on
   29 July 2020, 15:00.
 title: Workload cluster release v12.1.0 for KVM

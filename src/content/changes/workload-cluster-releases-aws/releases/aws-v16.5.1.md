@@ -9,7 +9,7 @@ changes_entry:
   url: https://github.com/giantswarm/releases/tree/master/aws/v16.5.1
   version: 16.5.1
   version_tag: v16.5.1
-date: '2022-07-22T09:19:21+00:00'
+date: '2022-07-22T09:19:21'
 description: Release notes for AWS workload cluster release v16.5.1, published on
   22 July 2022, 09:19.
 title: Workload cluster release v16.5.1 for AWS

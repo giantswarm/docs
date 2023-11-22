@@ -12,7 +12,8 @@ last_review_date: 2023-11-07
 aliases:
   - /guides/tenant-cluster-labelling/
   - /guides/workload-cluster-labelling/
-  - /advanced/labelling-clusters
+  - /advanced/labelling-clusters/
+  - /advanced/labelling-workload-clusters/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
