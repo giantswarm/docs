@@ -149,6 +149,47 @@ For example: In a case where you have node pools with one instance type. Using a
 
 Another example: In a case where you have different node pools using different availability zones. With a `nodeSelector` using the label `topology.kubernetes.io/zone` you can assign your workload to the nodes in a particular availability zone.
 
+## Adding more node pools
+
+You can add new node pools at any time. You just need to update the cluster configuration and specify the details of the node pools that you want to add.
+
+For example, if this was the cluster configuration
+
+```yaml
+metadata:
+  description: "my cluster"
+  name: test-cluster
+  organization: giantswarm
+nodePools:
+  nodepool0:
+    maxSize: 4
+    minSize: 3
+    instanceTypeOverrides:
+    - r6i.xlarge
+    - r5.xlarge
+    - m5.xlarge
+```
+
+We can add a new node pool like this
+
+```yaml
+metadata:
+  description: "my cluster"
+  name: test-cluster
+  organization: giantswarm
+nodePools:
+  nodepool0:
+    instanceType: r6i.xlarge
+    maxSize: 4
+    minSize: 3
+  nodepool1:
+    instanceType: m5.xlarge
+    maxSize: 3
+    minSize: 1
+```
+
+All the nodes from each node pool will be labeled accordingly.
+
 ## Using mixed instance types {#mixed-instance-types}
 
 **Note:** This feature was called ["Similar instance types" on vintage]({{< relref "/advanced/cluster-management/node-pools-vintage#similar-instance-types" >}}).
