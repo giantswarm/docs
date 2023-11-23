@@ -180,6 +180,39 @@ metadata:
     service.beta.kubernetes.io/aws-load-balancer-connection-draining-timeout: "60"
 ```
 
+#### Other AWS ELB configuration options
+
+There are more annotations to manage Classic ELBs that are described below.
+
+```yaml
+metadata:
+  name: my-service
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout: "60"
+    # The time, in seconds, that the connection is allowed to be idle (no data has
+    # been sent over connection) before it is closed by the load balancer.
+    service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
+    # Specifies whether cross-zone load balancing is enabled for the load balancer.
+    service.beta.kubernetes.io/aws-load-balancer-additional-resource-tags: "environment=prod,owner=devops"
+    # A comma-separated list of key-value pairs which will be recorded as
+    # additional tags in the ELB.
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-healthy-threshold: ""
+    # The number of successive successful health checks required for a backend to
+    # be considered healthy for traffic. Defaults to 2, must be between 2 and 10.
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-unhealthy-threshold: "3"
+    # The number of unsuccessful health checks required for a backend to be
+    # considered unhealthy for traffic. Defaults to 6, must be between 2 and 10.
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-interval: "20"
+    # The approximate interval, in seconds, between health checks of an
+    # individual instance. Defaults to 10, must be between 5 and 300.
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-timeout: "5"
+    # The amount of time, in seconds, during which no response means a failed
+    # health check. This value must be less than the service.beta.kubernetesaws-load-balancer-healthcheck-interval
+    # value. Defaults to 5, must be between 2 and 60.
+    service.beta.kubernetes.io/aws-load-balancer-extra-security-groups: "sg-53fae93f,sg-42efd82e"
+    # A list of additional security groups to be added to the ELB.
+```
+
 #### AWS network load balancer
 
 AWS is in the process of replacing ELBs with NLBs (Network Load Balancers) and ALBs (Application Load Balancers). NLBs have a number of benefits over "classic" ELBs including scaling to many more requests.
@@ -230,39 +263,6 @@ To avoid downtime, we can create an additional Kubernetes `Service` of type `Loa
 Always ensure to closely monitor the system throughout this entire process to minimize any unforeseen disruptions. Additionally, remember to perform these tasks during a maintenance window or a period of low traffic to minimize the impact on end users.
 
 ---------------------------------------------------
-
-#### Other AWS ELB configuration options
-
-There are more annotations to manage Classic ELBs that are described below.
-
-```yaml
-metadata:
-  name: my-service
-  annotations:
-    service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout: "60"
-    # The time, in seconds, that the connection is allowed to be idle (no data has
-    # been sent over connection) before it is closed by the load balancer.
-    service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
-    # Specifies whether cross-zone load balancing is enabled for the load balancer.
-    service.beta.kubernetes.io/aws-load-balancer-additional-resource-tags: "environment=prod,owner=devops"
-    # A comma-separated list of key-value pairs which will be recorded as
-    # additional tags in the ELB.
-    service.beta.kubernetes.io/aws-load-balancer-healthcheck-healthy-threshold: ""
-    # The number of successive successful health checks required for a backend to
-    # be considered healthy for traffic. Defaults to 2, must be between 2 and 10.
-    service.beta.kubernetes.io/aws-load-balancer-healthcheck-unhealthy-threshold: "3"
-    # The number of unsuccessful health checks required for a backend to be
-    # considered unhealthy for traffic. Defaults to 6, must be between 2 and 10.
-    service.beta.kubernetes.io/aws-load-balancer-healthcheck-interval: "20"
-    # The approximate interval, in seconds, between health checks of an
-    # individual instance. Defaults to 10, must be between 5 and 300.
-    service.beta.kubernetes.io/aws-load-balancer-healthcheck-timeout: "5"
-    # The amount of time, in seconds, during which no response means a failed
-    # health check. This value must be less than the service.beta.kubernetesaws-load-balancer-healthcheck-interval
-    # value. Defaults to 5, must be between 2 and 60.
-    service.beta.kubernetes.io/aws-load-balancer-extra-security-groups: "sg-53fae93f,sg-42efd82e"
-    # A list of additional security groups to be added to the ELB.
-```
 
 ## Further reading
 
