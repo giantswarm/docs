@@ -190,6 +190,10 @@ nodePools:
 
 All the nodes from each node pool will be labeled accordingly.
 
+## Node pool deletion
+
+TBD
+
 ## Using mixed instance types {#mixed-instance-types}
 
 **Note:** This feature was called ["Similar instance types" on vintage]({{< relref "/advanced/cluster-management/node-pools-vintage#similar-instance-types" >}}).
