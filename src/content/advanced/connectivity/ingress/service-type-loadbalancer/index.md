@@ -302,6 +302,12 @@ Since the health check might get false negative when two pods are running on the
 
 At last this means there is currently no way of preserving the original client IP using internal AWS Network Load Balancers being accessed from inside the same cluster.
 
+##### Security Group configuration on internal AWS Network Load Balancers
+
+Last but not least there is one thing, you should take care of, left. If you are not accessing an internal AWS Network Load Balancer from inside your cluster and therefore can actually use the integrated client IP preservation, you might still want to access this load balancer from other internal sources, which is totally fine and working.
+
+But since their source IP addresses are not getting changed, they are hitting your nodes with their original IP addresses. This can become a problem when using the default Security Group configuration for your nodes. By default an AWS Network Load Balancer adds exceptions for both its own IP addresses and, if public, the internet (0.0.0.0/0). Unfortunately and in the case of internal AWS Network Load Balancer with client IP preservation enabled, your traffic matches none of them. Therefore you might need to manually add the source IP addresses of your other internal services accessing the load balancer to the nodes' Security Group configuration.
+
 ---------------------------------------------------
 
 ## Further reading
