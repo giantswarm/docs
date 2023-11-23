@@ -177,6 +177,8 @@ Please notice that when setting `instanceTypeOverrides`, the `instanceType` valu
 Also, the order in which we define the instance types in `instanceTypeOverrides` is important.
 The first instance type in the list that is available in the selected availability zone will be used.
 
+**Note:** Changing the `instanceTypeOverrides` value won't trigger a rolling update of the node pool.
+
 Using multiple instance types in a node pool has some benefits:
 
 - Together with spot instances, using multiple instance types allows better price optimization. Popular instance types tend to have more price adjustments. Allowing older-generation instance types that are less popular tends to result in lower costs and fewer interruptions.
