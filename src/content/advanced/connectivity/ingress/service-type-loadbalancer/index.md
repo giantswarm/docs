@@ -213,7 +213,7 @@ metadata:
     # A list of additional security groups to be added to the ELB.
 ```
 
-#### AWS network load balancer
+#### AWS Network Load Balancers
 
 AWS is in the process of replacing ELBs with NLBs (Network Load Balancers) and ALBs (Application Load Balancers). NLBs have a number of benefits over "classic" ELBs including scaling to many more requests.
 
@@ -261,6 +261,32 @@ To avoid downtime, we can create an additional Kubernetes `Service` of type `Loa
 7. **Clean up:** Once the temporary LoadBalancer is drained and no traffic passes through it, remove the temporary Service.
 
 Always ensure to closely monitor the system throughout this entire process to minimize any unforeseen disruptions. Additionally, remember to perform these tasks during a maintenance window or a period of low traffic to minimize the impact on end users.
+
+#### Pitfalls and known limitations of AWS Network Load Balancers
+
+There are several pitfalls and known limitations of AWS Network Load Balancers which can take a long time to troubleshoot.
+
+##### Martian Packets when using internal AWS Network Load Balancers
+
+When creating a service of type `LoadBalancer`, Kubernetes normally allocates node ports for each of the exposed ports. The cloud provider's load balancer then uses all your nodes in conjunction with those node ports in its target group to forward traffic into your cluster.
+
+In this so called target type `instance` the AWS Network Load Balancer by default preserves the client IP. Together with `externalTrafficPolicy: Local` your service will be able to see the untouched source IP address of your client. This is - theoretically - possible, because the traffic back to your client passes the AWS network and the AWS Network Load Balancer is probably a part of this, so can keep track of responses and handle them.
+
+This works perfectly fine for public client IP addresses, but gets a bit difficult especially for traffic egressing from nodes of the same cluster to internally addressed AWS Network Load Balancers:
+
+Imagine a pod requesting your AWS Network Load Balancer. The packet hits the load balancer using the node's IP it is running on. This source IP is not getting changed. If the target pod of the service called is running on the same node, the traffic is passing the load balancer and getting sent back to the same node. This node then only sees traffic coming from "somewhere else" with its own IP address. Suspicious, isn't it? Indeed! And because of this the traffic is getting dropped. In the end the whole connection (if TCP) won't be established and simply times out on the client side (both TCP & UDP).
+
+This whole circumstance is called "Martian Packets". If you are relying on accessing an internal AWS Network Load Balancer from inside the same cluster, you sadly need to disable the client IP preservation of your AWS Network Load Balancer by adding the following annotation:
+
+```yaml
+metadata:
+  name: my-service
+  annotations:
+    # Disable AWS Network Load Balancer client IP preservation.
+    service.beta.kubernetes.io/aws-load-balancer-target-group-attributes: preserve_client_ip.enabled=false
+```
+
+See [Target groups for your Network Load Balancers: Client IP preservation](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-target-groups.html#client-ip-preservation) for more information about this whole feature.
 
 ---------------------------------------------------
 
