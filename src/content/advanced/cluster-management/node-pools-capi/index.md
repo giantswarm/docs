@@ -165,7 +165,6 @@ metadata:
   organization: giantswarm
 nodePools:
   nodepool0:
-    instanceType: r6i.xlarge
     maxSize: 4
     minSize: 3
     instanceTypeOverrides:
@@ -173,6 +172,10 @@ nodePools:
     - r5.xlarge
     - m5.xlarge
 ```
+
+Please notice that when setting `instanceTypeOverrides`, the `instanceType` value will be ignored, and the instance types defined in `instanceTypeOverrides` will be used instead.
+Also, the order in which we define the instance types in `instanceTypeOverrides` is important.
+The first instance type in the list that is available in the selected availability zone will be used.
 
 Using multiple instance types in a node pool has some benefits:
 
