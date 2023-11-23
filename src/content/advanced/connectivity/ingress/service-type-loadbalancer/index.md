@@ -163,7 +163,7 @@ metadata:
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-access-log-enabled: true
     # The interval for publishing the access logs (can be 5 or 60 minutes).
-    service.beta.kubernetes.io/aws-load-balancer-access-log-emit-interval: 60
+    service.beta.kubernetes.io/aws-load-balancer-access-log-emit-interval: "60"
     service.beta.kubernetes.io/aws-load-balancer-access-log-s3-bucket-name: my-logs-bucket
     service.beta.kubernetes.io/aws-load-balancer-access-log-s3-bucket-prefix: logs/prod
 ```
