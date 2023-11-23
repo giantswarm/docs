@@ -267,11 +267,11 @@ This functionality is based on the [auth_request](https://nginx.org/en/docs/http
 
 ### CORS
 
-To enable Cross-Origin Resource Sharing (CORS) in an Ingress rule add the annotation `ingress.kubernetes.io/enable-cors: "true"`.
+To enable Cross-Origin Resource Sharing (CORS) in an Ingress rule add the annotation `nginx.ingress.kubernetes.io/enable-cors: "true"`.
 
 ### Rewrite
 
-In some scenarios the exposed URL in the backend service differs from the specified path in the Ingress rule. Without a rewrite any request will return 404. To circumvent this you can set the annotation `ingress.kubernetes.io/rewrite-target` to the path expected by the service.
+In some scenarios the exposed URL in the backend service differs from the specified path in the Ingress rule. Without a rewrite any request will return 404. To circumvent this you can set the annotation `nginx.ingress.kubernetes.io/rewrite-target` to the path expected by the service.
 
 This can for example be used together with path based routing, when the application expects to be on `/`:
 
@@ -297,11 +297,11 @@ spec:
               number: SERVICE_PORT
 ```
 
-If the application contains relative links it is possible to add an additional annotation `ingress.kubernetes.io/add-base-url` that will prepend a [`base` tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base) in the header of the returned HTML from the backend.
+If the application contains relative links it is possible to add an additional annotation `nginx.ingress.kubernetes.io/add-base-url` that will prepend a [`base` tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base) in the header of the returned HTML from the backend.
 
 ### Rate limiting
 
-The annotations `ingress.kubernetes.io/limit-connections` and `ingress.kubernetes.io/limit-rps` define a limit on the connections that can be opened by a single client IP address. This can be used to mitigate [DDoS Attacks](https://www.nginx.com/blog/mitigating-ddos-attacks-with-nginx-and-nginx-plus).
+The annotations `nginx.ingress.kubernetes.io/limit-connections` and `nginx.ingress.kubernetes.io/limit-rps` define a limit on the connections that can be opened by a single client IP address. This can be used to mitigate [DDoS Attacks](https://www.nginx.com/blog/mitigating-ddos-attacks-with-nginx-and-nginx-plus).
 
 `nginx.ingress.kubernetes.io/limit-connections`: Number of concurrent connections allowed from a single IP address.
 
