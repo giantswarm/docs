@@ -96,7 +96,7 @@ If you want the AWS ELB to be available only within your VPC (can be extended to
 metadata:
   name: my-service
   annotations:
-    service.beta.kubernetes.io/aws-load-balancer-internal: 0.0.0.0/0
+    service.beta.kubernetes.io/aws-load-balancer-internal: "true"
 ```
 
 On Azure you can configure internal Load Balancers like this.
