@@ -190,6 +190,24 @@ nodePools:
 
 All the nodes from each node pool will be labeled accordingly.
 
+## Updating an existing node pool
+
+Instances in the node pool will be rolled whenever these properties are changed in the node pool definition:
+- `instanceType`
+- `additionalSecurityGroups`
+
+Instances will also be rolled if these values are changed:
+- `providerSpecific.ami`
+
+### What happens when a node pool is updated
+
+When node pool instances need to be rolled, each instance receives a terminate signal from AWS.
+This is propagated as shutdown signal to the OS and then to each running process like the `kubelet`, which will send a `NodeShutDown` event to the pod.
+
+The `kubelet` will wait up to 5 minutes for all pods to terminate and after that it will terminate itself and the shutdown of the AWS EC2 instance will finally proceed.
+
+Please, be aware that it may happen that AWS decides to force terminate the instance before the 5 minutes.
+
 ## Node pool deletion
 
 TBD
