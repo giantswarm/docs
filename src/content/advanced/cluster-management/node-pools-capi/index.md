@@ -193,6 +193,35 @@ If you assign workloads to node pools as described [above](#assigning-workloads)
 
 In case there are workloads not assigned to any node pools, the autoscaler may pick any node pool for scaling. For details on the decision logic, please check the upstream FAQ for [AWS](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/README.md).
 
+## On-demand and spot instances {#on-demand-spot}
+
+{{< tabs >}}
+{{< tab id="cluster-capa-ec2" for-impl="capa_ec2" >}}
+
+Node pools can make use of [Amazon EC2 Spot Instances](https://aws.amazon.com/ec2/spot/). You just need to enable it and select the max price to pay on the node pool definition.
+
+```yaml
+metadata:
+  description: "my cluster"
+  name: test-cluster
+  organization: giantswarm
+nodePools:
+  pool0:
+    maxSize: 2
+    minSize: 2
+    spotInstances:
+      enabled: true
+      maxPrice: 1.2
+```
+
+{{< /tab >}}
+{{< tab id="cluster-capz-azure-vms" for-impl="capz_vms" >}}
+
+This is currently not supported.
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Limitations
 
 - Clusters without worker nodes (= without node pools) cannot be considered fully functional. In order to have all
