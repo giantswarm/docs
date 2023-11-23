@@ -27,6 +27,7 @@ The key benefits of EFS are:
 - EFS has the capability to mount the same persistent volume to multiple pods at the same time using the ReadWriteMany [access mode](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes).
 - EFS will not hit the [AWS Instance Volume Limit](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/volume_limits.html) as it is a software mount and will avoid the [Impaired EBS]({{< relref "/advanced/storage/ebs-troubleshooting" >}}) issue.
 - EFS mount times are better than EBS.
+- EFS provides [encryption in transit](https://aws.amazon.com/blogs/aws/new-encryption-of-data-in-transit-for-amazon-efs/) support using TLS and it's enabled by default.
 
 If you need to use EFS to provision volumes, be advised:
 
@@ -46,7 +47,7 @@ Before installing the provisioner in Kubernetes we will need to create the EFS i
 2. From the `Services` menu, select `EFS`.
 3. Create a new file system and select the VPC where your cluster is located. The VPC can be identified by your cluster name `vpc-$CLUSTER` or simply `$CLUSTER` for vintage clusters. Do not click on the `Create` button but  click on the `Customize` button instead.
 4. In the step 1, Choose options that best suites the needs for the EFS filesystem. In second step add Mount Target for each AZ your cluster is using and make sure to select private subnets in which the mount target will be provisioned. Select security group named `$CLUSTER-node`. For vintage clusters, the security group is named after the node pool name instead.
-7. Create the instance and note the EFS instance ID.
+5. Create the instance and note the EFS instance ID.
 
 ## Installing the EFS CSI driver
 
@@ -61,7 +62,7 @@ To install the EFS CSI driver in the workload cluster, you will need to follow t
 7. Create and submit a configuration values file in case you want to deploy the storage class and controller (by default disable to allow a smooth transitation to CSI driver). Do not forget to replace the `fileSystemID` with the one you created in the previous step, and the AWS account ID in the role ARN. The role is pre-created and ready to use.
 
     Example configuration:
-    
+
     ```yaml
     storageClasses:
     - name: efs
