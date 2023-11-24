@@ -36,8 +36,8 @@ $(function() {
     properties: {
       stylesheetUrls: ["/css/inkeep.css"],
       baseSettings: {
-        apiKey: "97dd6334a2ba9121a71ec3e88216e593670153eba46954b0", // required
-        integrationId: "cloykr9ap0000s601o7wc00xc", // required
+        apiKey: "edfd9409339b80d69b5e25c6f7d1765de5f4ea23d4f711ea", // required
+        integrationId: "clp8yzdn00010s601l08xlvth", // required
         organizationId: "org_glSX3NU5GkGXusqB", // required
         organizationDisplayName: "Giant Swarm",
         primaryBrandColor: "#386900"
