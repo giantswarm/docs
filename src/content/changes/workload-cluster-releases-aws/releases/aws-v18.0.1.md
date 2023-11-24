@@ -9,7 +9,7 @@ changes_entry:
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v18.0.1
   version: 18.0.1
   version_tag: v18.0.1
-date: '2022-08-24T08:28:27+00:00'
+date: '2022-08-24T08:28:27'
 description: Release notes for AWS workload cluster release v18.0.1, published on
   24 August 2022, 08:28.
 title: Workload cluster release v18.0.1 for AWS

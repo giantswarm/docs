@@ -9,7 +9,7 @@ changes_entry:
   url: https://github.com/giantswarm/releases/tree/master/azure/archived/v15.0.0-beta2
   version: 15.0.0-beta2
   version_tag: v15.0.0-beta2
-date: '2021-05-14T13:55:02+00:00'
+date: '2021-05-14T13:55:02'
 description: Release notes for Azure workload cluster release v15.0.0-beta2, published
   on 14 May 2021, 13:55.
 title: Workload cluster release v15.0.0-beta2 for Azure

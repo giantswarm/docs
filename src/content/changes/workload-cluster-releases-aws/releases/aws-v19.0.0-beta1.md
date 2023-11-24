@@ -9,7 +9,7 @@ changes_entry:
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v19.0.0-beta1
   version: 19.0.0-beta1
   version_tag: v19.0.0-beta1
-date: '2023-04-05T14:25:19+00:00'
+date: '2023-04-05T14:25:19'
 description: Release notes for AWS workload cluster release v19.0.0-beta1, published
   on 05 April 2023, 14:25.
 title: Workload cluster release v19.0.0-beta1 for AWS

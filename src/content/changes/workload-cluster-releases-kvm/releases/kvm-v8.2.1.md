@@ -9,7 +9,7 @@ changes_entry:
   url: https://github.com/giantswarm/releases/tree/master/kvm/archived/v8.2.1
   version: 8.2.1
   version_tag: v8.2.1
-date: '2019-06-24T10:00:00+00:00'
+date: '2019-06-24T10:00:00'
 description: Release notes for KVM workload cluster release v8.2.1, published on 24
   June 2019, 10:00.
 title: Workload cluster release v8.2.1 for KVM
