@@ -85,7 +85,7 @@ To install the EFS CSI driver in the workload cluster, you will need to follow t
           eks.amazonaws.com/role-arn: arn:aws:iam::000000000000:role/abcdx-efs-csi-driver-role
     ```
 
-    For EKS please add additional value to the controller object to allow controller to run on worker nodes, because EKS Cluster has no `control-plane` nodes):
+    For EKS please add additional value to the controller object to allow controller to run on worker nodes, because EKS Cluster has no `control-plane` nodes:
 
     ```yaml
     controller:
