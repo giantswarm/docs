@@ -145,9 +145,9 @@ spec:
 You can assign workloads to node pools in a more indirect way too. This is achieved by using other node attributes which are
 specified via the node pool and which are exposed as node labels.
 
-For example: In a case where you have node pools with one instance type. Using a `nodeSelector` with the label `node.kubernetes.io/instance-type` you can assign workloads to matching nodes only.
+For example: you have several node pools with different instance types. Using a `nodeSelector` with the label `node.kubernetes.io/instance-type`, you can assign workloads only to matching nodes.
 
-Another example: In a case where you have different node pools using different availability zones. With a `nodeSelector` using the label `topology.kubernetes.io/zone` you can assign your workload to the nodes in a particular availability zone.
+Another example: you have different node pools using different availability zones. With a `nodeSelector` using the label `topology.kubernetes.io/zone`, you can assign your workload to the nodes in a particular availability zone.
 
 ## Adding more node pools
 
