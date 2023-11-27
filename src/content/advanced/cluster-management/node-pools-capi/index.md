@@ -2,7 +2,7 @@
 linkTitle: Node pools (CAPI)
 title: Node pools (CAPI)
 description: A general description of node pools as a concept, its benefits, and some details you should be aware of.
-weight: 50
+weight: 45
 menu:
   main:
     parent: advanced-cluster-management
@@ -18,7 +18,8 @@ last_review_date: 2023-11-22
 
 ## Definition
 
-A node pool is a set of nodes within a Kubernetes cluster that share the same configuration (machine type, CIDR range, etc.). Each node in the pool is labeled by the node pool's name.
+A node pool is a set of nodes within a Kubernetes cluster that share the same configuration (machine type, operating system, etc.).
+Each node in the pool is labeled by the node pool's name.
 
 ## Advantages
 
@@ -34,18 +35,17 @@ common configuration. You can combine any type of node pool within one cluster. 
 - Machine type
 - Availability zone distribution
 - Scaling configuration (number of nodes)
-
-A node pool is identified by a name that you can pick as a cluster administrator. The name of the node pool is set as a label on all nodes belonging to the pool.
+- Node labels (the pool name is added as node label by default)
 
 ## Configuration
 
-Node pools can be created, deleted or updated by changing the configuration used when creating the cluster using [`kubectl`]({{< relref "/getting-started/create-workload-cluster" >}})
+Node pools can be created, deleted or updated by changing the configuration used when creating the cluster using [`kubectl-gs`]({{< relref "/getting-started/create-workload-cluster" >}})
 
 {{< tabs >}}
-{{< tab id="cluster-capa-ec2" for-impl="capa_ec2" >}}
+{{< tab id="nodepool-capa-config" for-impl="nodepool-config" >}}
 
 ```nohighlight
-kubectl gs template cluster --provider capa --name a1b2c3 \
+kubectl gs template cluster --provider capa --name mycluster \
   --organization giantswarm \
   --description "my test cluster" \
   --machine-pool-name pool0 \
@@ -54,9 +54,18 @@ kubectl gs template cluster --provider capa --name a1b2c3 \
   --machine-pool-instance-type r6i.xlarge
 ```
 
-The node pool name will be prepended by the cluster name. In the example above, the node pool name will be `a1b2c3-pool0`.
+A node pool is identified by a name that you can pick as a cluster administrator. The name must follow these rules:
 
-All nodes in the node pool will be labeled with the node pool name, using the  `giantswarm.io/machine-pool` label.
+- must be between 5 and 20 characters long
+- must start with a lowercase letter or number
+- must end with a lowercase letter or number
+- must contain only lowercase letters, numbers, and dashes
+
+For example, `pool0`, `group-1` are valid node pool names.
+
+The node pool name will be prepended by the cluster name. In the example above, the node pool name will be `mycluster-pool0`.
+
+All nodes in the node pool will be labeled with the node pool name, using the `giantswarm.io/machine-pool` label.
 You can identify the nodes' node pool using that label.
 The example `kubectl` command below will list all nodes with role, node pool name, and node name.
 
@@ -64,12 +73,12 @@ The example `kubectl` command below will list all nodes with role, node pool nam
 kubectl get nodes \
   -o=jsonpath='{range .items[*]}{.metadata.labels.kubernetes\.io/role}{"\t"}{.metadata.labels.giantswarm\.io/machine-pool}{"\t"}{.metadata.name}{"\n"}{end}' | sort
 master         ip-10-1-5-55.eu-central-1.compute.internal
-worker  a1b2c3-pool0  ip-10-1-6-225.eu-central-1.compute.internal
-worker  a1b2c3-pool0  ip-10-1-6-67.eu-central-1.compute.internal
+worker  mycluster-pool0  ip-10-1-6-225.eu-central-1.compute.internal
+worker  mycluster-pool0  ip-10-1-6-67.eu-central-1.compute.internal
 ```
 
 {{< /tab >}}
-{{< tab id="cluster-capz-azure-vms" for-impl="capz_vms" >}}
+{{< tab id="nodepool-capz-config" for-impl="nodepool-config" >}}
 
 ```nohighlight
 kubectl gs template cluster --provider capz --name test-cluster \
@@ -78,21 +87,21 @@ kubectl gs template cluster --provider capz --name test-cluster \
   --machine-pool-name pool0 \
   --machine-pool-min-size 3 \
   --machine-pool-max-size 5 \
-  --machine-pool-instance-type r6i.xlarge
+  --machine-pool-instance-type Standard_D4s_v5
 ```
 
-The node pool name will be prepended by the cluster name. In the example above, the node pool name will be `a1b2c3-pool0`.
+The node pool name will be prepended by the cluster name. In the example above, the node pool name will be `mycluster-pool0`.
 
-All nodes in the node pool will be labeled with the node pool name, using the  `giantswarm.io/machine-deployment` label.
+All nodes in the node pool will be labeled with the node pool name, using the `giantswarm.io/machine-deployment` label.
 You can identify the nodes' node pool using that label.
 The example `kubectl` command below will list all nodes with role, node pool name, and node name.
 
 ```nohighlight
 kubectl get nodes \
   -o=jsonpath='{range .items[*]}{.metadata.labels.kubernetes\.io/role}{"\t"}{.metadata.labels.giantswarm\.io/machine-deployment}{"\t"}{.metadata.name}{"\n"}{end}' | sort
-master         ip-10-1-5-55.eu-central-1.compute.internal
-worker  a1b2c3-pool0  ip-10-1-6-225.eu-central-1.compute.internal
-worker  a1b2c3-pool0  ip-10-1-6-67.eu-central-1.compute.internal
+master         mycluster-control-plane-34c45e6e-rrpnn
+worker  mycluster-pool0  mycluster-pool0-8268227a-56x9n
+worker  mycluster-pool0  mycluster-pool0-8268227a-hjf69
 ```
 
 {{< /tab >}}
@@ -100,12 +109,12 @@ worker  a1b2c3-pool0  ip-10-1-6-67.eu-central-1.compute.internal
 
 ## Assigning workloads to node pools {#assigning-workloads}
 
-Knowing the node pool name of the pool to use, you can use the `nodeSelector` method of assigning pods to the node pool.
+Knowing the node pool name of the pool to use, you can use the [`nodeSelector` method of assigning pods](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector) to the node pool.
 
-Assuming that the node pool name is `pool0`, and the cluster name is `a1b2c3`, your `nodeSelector` could for example look like this:
+Assuming that the node pool name is `pool0`, and the cluster name is `mycluster`, your `nodeSelector` could for example look like this:
 
 {{< tabs >}}
-{{< tab id="cluster-capa-ec2" for-impl="capa_ec2" >}}
+{{< tab id="nodepool-capa-scheduling" for-impl="nodepool-config" >}}
 
 ```yaml
 apiVersion: v1
@@ -117,11 +126,11 @@ spec:
   - name: nginx
     image: nginx
   nodeSelector:
-    giantswarm.io/machine-pool: a1b2c3-pool0
+    giantswarm.io/machine-pool: mycluster-pool0
 ```
 
 {{< /tab >}}
-{{< tab id="cluster-capz-azure-vms" for-impl="capz_vms" >}}
+{{< tab id="nodepool-capz-scheduling" for-impl="nodepool-config" >}}
 
 ```yaml
 A similar example for an Azure cluster:
@@ -136,14 +145,14 @@ spec:
   - name: nginx
     image: nginx
   nodeSelector:
-    giantswarm.io/machine-deployment: a1b2c3-pool0
+    giantswarm.io/machine-deployment: mycluster-pool0
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
 
-You can assign workloads to node pools in a more indirect way too. This is achieved by using other node attributes which are
-specified via the node pool and which are exposed as node labels.
+You can assign workloads to node pools in a more indirect way too.
+[There is a set of labels](https://kubernetes.io/docs/reference/labels-annotations-taints/) that are automatically added by Kubernetes to all nodes, that you can use for scheduling.
 
 For example: you have several node pools with different instance types. Using a `nodeSelector` with the label `node.kubernetes.io/instance-type`, you can assign workloads only to matching nodes.
 
@@ -179,9 +188,12 @@ metadata:
   organization: giantswarm
 nodePools:
   nodepool0:
-    instanceType: r6i.xlarge
     maxSize: 4
     minSize: 3
+    instanceTypeOverrides:
+      - r6i.xlarge
+      - r5.xlarge
+      - m5.xlarge
   nodepool1:
     instanceType: m5.xlarge
     maxSize: 3
@@ -257,7 +269,7 @@ In case there are workloads not assigned to any node pools, the autoscaler may p
 ## On-demand and spot instances {#on-demand-spot}
 
 {{< tabs >}}
-{{< tab id="cluster-capa-ec2" for-impl="capa_ec2" >}}
+{{< tab id="nodepool-capa-spot-instances" for-impl="nodepool-spot" >}}
 
 Node pools can make use of [Amazon EC2 Spot Instances](https://aws.amazon.com/ec2/spot/). On the node pool definition, you can enable it and select the maximum price to pay.
 
@@ -276,7 +288,7 @@ nodePools:
 ```
 
 {{< /tab >}}
-{{< tab id="cluster-capz-azure-vms" for-impl="capz_vms" >}}
+{{< tab id="nodepool-capz-spot-instances" for-impl="nodepool-spot" >}}
 
 This is currently not supported.
 
@@ -288,32 +300,6 @@ This is currently not supported.
 - Clusters without worker nodes (= without node pools) cannot be considered fully functional. In order to have all
 required components scheduled, worker nodes are required. For that reason, we deactivate any monitoring and alerts for
 these clusters and don't provide any proactive support.
-
-### Things to keep in mind
-
-{{< tabs >}}
-{{< tab id="cluster-capa-ec2" for-impl="capa_ec2" >}}
-
-- At times, the EC2 instance type required by a node pool can be unavailable in certain availability zones. This can
-result in node pools providing less than the desired number of nodes. The more availability zones a node pool spans,
-the less likely this problem is to occur.
-
-- By default, clusters can have up to 5 node pools. This is limited by the AWS service quota named "IPv4 CIDR blocks
-per VPC" in the [VPC section](https://docs.aws.amazon.com/vpc/latest/userguide/amazon-vpc-limits.html). As the AWS
-account owner, you can request an increase of this limit via the AWS console.
-
-- Node pools can span a maximum of four availability zones. This limit affects both the number of availability zones
-a single node pool can cover, as well as the number of different availability zones all node pools of a cluster can
-cover. Once an availability zone has been assigned for use in a cluster, either for a control plane node or for worker
-nodes, it cannot be unassigned from that cluster. It will remain assigned even if there are no more node pools using
-that availability zone.
-
-    - **Example:** The control plane node(s) are in availability zone A. Node pool 1 uses availability zones B and C. Node pool 2 uses
-  availability zone D. With A, B, C, and D, the limit of four availability zones assigned is reached. New node pools of this
-  cluster can only use these four availability zones.
-
-{{< /tab >}}
-{{< /tabs >}}
 
 ## Further reading
 
