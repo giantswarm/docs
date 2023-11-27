@@ -1,5 +1,5 @@
 ---
-linkTitle: Forcing cgroups v1
+linkTitle: Forcing Cgroups v1
 title: Forcing nodes to use legacy control croups (cgroups) v1
 description: This article describes how to force nodes to use legacy control groups (cgroups) v1 instead of the default v2.
 weight: 60

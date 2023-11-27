@@ -26,7 +26,7 @@ The _Giant Swarm App Platform_ is built on top of [Helm](https://helm.sh/) and a
 In this guide, we will install the Ingress NGINX Controller app. We will do this by using kubectl, to create
 an [App]({{< relref "/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) CR using the Kubernetes API of your management cluster.
 
-App CRs can be created this way via your automation or our Web UI (See: [guide]({{< relref "/getting-started/ingress-controller" >}})).
+App CRs can be created this way via your automation or our Web UI (See: [guide]({{< relref "/getting-started/connectivity/ingress-controller" >}})).
 
 In general, you can manage App CRs with any tool that can communicate with the Kubernetes API such as Helm or GitOps tools (like Argo CD or Flux CD).
 

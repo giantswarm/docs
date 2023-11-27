@@ -65,7 +65,7 @@ In above AWS example, these are two fields which both indicate AWS IAM role iden
 
 The first of the two identifies the IAM role to be assumed by Giant Swarm staff for operations tasks. The second one is used by `aws-operator`, which is the software in charge of automatic cluster management. Easily visible, they include the numeric AWS account ID and also the IAM role name to be assumed.
 
-We provide [detailed documentation]({{< relref "/getting-started/cloud-provider-accounts/aws" >}}) regarding how to configure these roles in your AWS account.
+We provide [detailed documentation]({{< relref "/getting-started/cloud-provider-accounts/vintage/aws" >}}) regarding how to configure these roles in your AWS account.
 
 {{< /tab >}}
 {{< tab title="Azure" >}}
@@ -103,7 +103,7 @@ Decoded example:
 
 In order for `azure-operator` to manage workload clusters using these credentials, it will need access to your `Subscription` using a `Service Principal`.
 
-We provide a [detailed guide]({{< relref "/getting-started/cloud-provider-accounts/azure" >}}) prepare and obtain this data.
+We provide a [detailed guide]({{< relref "/getting-started/cloud-provider-accounts/vintage/azure" >}}) prepare and obtain this data.
 
 {{< /tab >}}
 {{< /tabs >}}

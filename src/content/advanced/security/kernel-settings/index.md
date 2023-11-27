@@ -1,5 +1,5 @@
 ---
-linkTitle: Kernel settings
+linkTitle: Kernel Settings
 title: Kernel settings
 description: Complete list of the kernel settings we apply to all cluster nodes, be it control plane or worker.
 weight: 200

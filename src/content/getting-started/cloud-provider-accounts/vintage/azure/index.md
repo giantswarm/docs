@@ -5,14 +5,16 @@ description: Learn how to set up an Azure subscription with appropriate Role def
 menu:
   main:
     identifier: gettingstarted-infraprovider-azure
-    parent: gettingstarted-infraprovider
+    parent: gettingstarted-infraprovider-vintage
 weight: 20
 user_questions:
   - How do I prepare my Azure subscription for use with Giant Swarm?
   - What do I need to configure in Azure in order to run Giant Swarm clusters?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2023-03-06
+aliases:
+  - /getting-started/cloud-provider-accounts/azure/
+last_review_date: 2023-11-27
 ---
 
 In a Giant Swarm installation the workload clusters (the clusters running your Kubernetes workloads) can run in a separate Azure subscription from the management cluster. This gives greater flexibility depending on the requirements and the use case. For example, it allows the management cluster to be running in one Azure subscription, while workload clusters operate in different Azure subscriptions, depending on the customer entities using them.
@@ -127,7 +129,7 @@ You will have to supply a general Delegated Resource Management [template file](
 The Delegated Resource Management template uses a [parameters file](https://raw.githubusercontent.com/giantswarm/azure-operator/master/docs/delegatedResourceManagement.parameters.json) to supply the needed variables for configuration.
 Please remember to change the `roleDefinitionId` in case you would like to use your custom role definition. Moreover ask your Account Engineer so he can provide you the `GiantSwarmPrincipalID` and `GiantSwarmTenantID`
 
-This command should be run for all subscriptions that are used for Giant Swarm workload clusters as well as the management cluster that orchestrates it all.  
+This command should be run for all subscriptions that are used for Giant Swarm workload clusters as well as the management cluster that orchestrates it all.
 
 ## Accept legal terms for deployment of Flatcar image
 

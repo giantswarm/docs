@@ -1,8 +1,8 @@
 ---
-linkTitle: Deploy applications using App platform
-title: Deploy applications using the App platform
+linkTitle: App Platform
+title: Guides for using the App platform
 description: The app platform allows to manage app catalogs and apps, for simple and standardized deployment in all your workload clusters.
-last_review_date: 2022-11-12
+last_review_date: 2023-11-27
 weight: 60
 aliases:
   - /developer-platform/app-platform/

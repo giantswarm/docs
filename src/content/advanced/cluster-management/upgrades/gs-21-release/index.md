@@ -36,7 +36,7 @@ There are some significant changes and enhancements that come with this release,
 
 #### Goodbye, Pod Security Policy (PSP)
 
-Kubernetes v1.25 bids farewell to the long-standing Pod Security Policy feature. PSP has been a reliable tool for enforcing security policies at the pod level. However, it has also faced challenges with its complexity and lack of flexibility. With the continuous evolution of Kubernetes and the community's dedication to improving security, [a more adaptable and user-friendly solution has emerged](https://docs.giantswarm.io/getting-started/rbac-and-psp/#pod-security-standards-pss).
+Kubernetes v1.25 bids farewell to the long-standing Pod Security Policy feature. PSP has been a reliable tool for enforcing security policies at the pod level. However, it has also faced challenges with its complexity and lack of flexibility. With the continuous evolution of Kubernetes and the community's dedication to improving security, [a more adaptable and user-friendly solution has emerged](https://docs.giantswarm.io/getting-started/security#pod-security-standards-pss).
 
 #### Introducing Pod Security Standard (PSS) with Kyverno policies
 
@@ -84,7 +84,7 @@ Happy upgrading!
 ## Further reading
 
 - [Giant Swarm V19 Documentation](https://docs.giantswarm.io/advanced/upgrades/aws-19-release/)
-- [Pod Security Standards (PSS)](https://docs.giantswarm.io/getting-started/rbac-and-psp/#pod-security-standards-pss)
+- [Pod Security Standards (PSS)](https://docs.giantswarm.io/getting-started/security#pod-security-standards-pss)
 - [Farewell to PSP - Blog Post](https://www.giantswarm.io/blog/giant-swarms-farewell-to-psp)
 - [Default Policies in Policy Enforcement](https://docs.giantswarm.io/advanced/security/security-policy-enforcement/#default-policies)
 - [Giant Swarm Cilium migration steps from AWS CNI](https://handbook.giantswarm.io/docs/support-and-ops/ops-recipes/upgrade-to-cilium/)
