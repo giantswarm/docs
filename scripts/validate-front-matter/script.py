@@ -170,7 +170,7 @@ checks = (
     },
     {
         'id': INVALID_LAST_REVIEW_DATE,
-        'description': 'The last_review_date should be of format YYYY-MM-DD',
+        'description': 'The last_review_date should be in format YYYY-MM-DD and not in the future',
         'severity': SEVERITY_FAIL,
         'has_value': True,
     },
