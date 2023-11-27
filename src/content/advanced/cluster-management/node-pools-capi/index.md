@@ -188,8 +188,6 @@ nodePools:
     minSize: 1
 ```
 
-All the nodes from each node pool will be labeled accordingly.
-
 ## Updating an existing node pool
 
 Instances in the node pool will be rolled whenever these properties are changed in the node pool definition:
@@ -206,17 +204,17 @@ This is propagated as shutdown signal to the OS and then to each running process
 
 The `kubelet` will wait up to 5 minutes for all pods to terminate and after that it will terminate itself and the shutdown of the AWS EC2 instance will finally proceed.
 
-Please, be aware that it may happen that AWS decides to force terminate the instance before the 5 minutes.
+Please, be aware that it may happen that AWS decides to force-terminate the instance before the 5 minutes. We recommend draining the respective nodes and moving workloads to other nodes before such an update operation.
 
 ## Node pool deletion
 
 TBD
 
-## Using mixed instance types {#mixed-instance-types}
+## Using mixed instance types (only {{% impl_title "capa_ec2" %}}) {#mixed-instance-types}
 
 **Note:** This feature was called ["Similar instance types" on vintage]({{< relref "/advanced/cluster-management/node-pools-vintage#similar-instance-types" >}}).
 
-On AWS EC2 (CAPA) you can override the instance type of the node pool to enable [mixed instances policy on AWS](https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_LaunchTemplateOverrides.html).
+On {{% impl_title "capa_ec2" %}}, you can override the instance type of the node pool to enable [mixed instances policy on AWS](https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_LaunchTemplateOverrides.html).
 This can provide Amazon EC2 Auto Scaling with a larger selection of instance types to choose from when fulfilling node capacities.
 
 You can set the `instanceTypeOverrides` value when defining your node pool in the cluster values. For example:
@@ -250,7 +248,7 @@ Using multiple instance types in a node pool has some benefits:
 
 ## Node pools and autoscaling {#autoscaling}
 
-With node pools, you set the autoscaling range per node pool (suppported on AWS EC2 (CAPA) clusters only). The Kubernetes cluster autoscaler has to decide which node pool to scale under which circumstances.
+With node pools, you set the autoscaling range per node pool (suppported on {{% impl_title "capa_ec2" %}} clusters only). The Kubernetes cluster autoscaler has to decide which node pool to scale under which circumstances.
 
 If you assign workloads to node pools as described [above](#assigning-workloads) and the autoscaler finds pods in `Pending` state, it will decide based on the node selectors which node pools to scale up.
 
@@ -261,7 +259,7 @@ In case there are workloads not assigned to any node pools, the autoscaler may p
 {{< tabs >}}
 {{< tab id="cluster-capa-ec2" for-impl="capa_ec2" >}}
 
-Node pools can make use of [Amazon EC2 Spot Instances](https://aws.amazon.com/ec2/spot/). You just need to enable it and select the max price to pay on the node pool definition.
+Node pools can make use of [Amazon EC2 Spot Instances](https://aws.amazon.com/ec2/spot/). On the node pool definition, you can enable it and select the maximum price to pay.
 
 ```yaml
 metadata:
