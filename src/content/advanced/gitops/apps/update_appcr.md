@@ -43,7 +43,7 @@ export APP_NAME=APP_NAME
     cd management-clusters/${MC_NAME}/organizations/${ORG_NAME}/workload-clusters/${WC_NAME}/mapi/apps/${APP_NAME}
     ```
 
-2. Edit the `appcr.yaml` if you want to update the App CR fields, like version, catalog, etc. For all the supported fields reference [the App CRD schema](https://docs.giantswarm.io/ui-api/management-api/crd/apps.application.giantswarm.io/)
+2. Edit the `appcr.yaml` if you want to update the App CR fields, like version, catalog, etc. For all the supported fields reference [the App CRD schema](https://docs.giantswarm.io/use-the-api/management-api/crd/apps.application.giantswarm.io/)
 
 ### Updating ConfigMap-based user values
 
