@@ -300,7 +300,7 @@ But things change when using `externalTrafficPolicy: Local`: Local means the tra
 
 Since the health check might get false negative when two pods are running on the same node and one of them is not healthy (anymore), Kubernetes allocates a separate health check node port and configures it in the AWS Network Load Balancer. This health check node port and requests hitting it is handled by `kube-proxy` or its replacement (Cilium in our case). Unfortunately both of them are not able to handle PROXY protocol and therefore all health checks will fail starting the moment you enable PROXY protocol in your AWS Network Load Balancer in conjunction with `externalTrafficPolicy: Local`.
 
-At last this means there is currently no way of preserving the original client IP using internal AWS Network Load Balancers being accessed from inside the same cluster.
+At last this means there is currently no way of preserving the original client IP using internal AWS Network Load Balancers being accessed from inside the same cluster, except of using PROXY protocol and `externalTrafficPolicy: Cluster` which leads to the AWS Network Load Balancer balancing traffic across all nodes and adding an extra hop for distribution inside the cluster.
 
 ##### Security Group configuration on internal AWS Network Load Balancers
 
