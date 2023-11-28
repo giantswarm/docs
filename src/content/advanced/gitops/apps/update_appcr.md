@@ -29,6 +29,7 @@ export MC_NAME=CODENAME
 export ORG_NAME=ORGANIZATION
 export WC_NAME=CLUSTER_NAME
 export APP_NAME=APP_NAME
+```
 
 ## Updating App
 
