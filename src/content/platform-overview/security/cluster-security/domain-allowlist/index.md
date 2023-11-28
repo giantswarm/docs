@@ -130,7 +130,7 @@ Below is a list of the external domains we require access to for our clusters to
 - teleport.giantswarm.io
     - domains:
         - `teleport.giantswarm.io`
-    - Used to securely access Kubernetes cluster and SSH into nodes for troublshooting.
+    - Used to securely access Kubernetes cluster and SSH access to nodes.
 
 ## On-premise installations
 
