@@ -46,7 +46,7 @@ Before installing the provisioner in Kubernetes we will need to create the EFS i
 1. Open the [AWS management](https://aws.amazon.com/console/) console for the AWS account holding your cluster resources.
 2. From the `Services` menu, select `EFS`.
 3. Create a new file system and select the VPC where your cluster is located. The VPC can be identified by your cluster name `$CLUSTER-vpc` or simply `$CLUSTER` for vintage clusters. Do not click on the `Create` button but  click on the `Customize` button instead.
-4. In the step 1, Choose options that best suites the needs for the EFS filesystem. In make sure the right VPC is selected and double-check selected subnets to ensure they are private subnets. For EKS You should also be sure that the private node subnet is selected and not the ENI subnet. (ENI Subnet is from CIDR block `100.64.0.0/10` ). Select security group named `$CLUSTER-node` for classic CAPA cluster, and for EKS select security group named `eks-cluster-sg-$CLUSTER`. For vintage clusters, the security group is named after the node pool name instead.
+4. In step 1, choose options that best suit the needs of the EFS filesystem. Make sure the right VPC is selected and double-check selected subnets to ensure they are private subnets. For EKS You should also be sure that the private node subnet is selected and not the ENI subnet. (ENI Subnet is from CIDR block `100.64.0.0/10` ). Select a security group named `$CLUSTER-node` for the classic CAPA cluster, and for EKS select a security group named `eks-cluster-sg-$CLUSTER`. For vintage clusters, the security group is named after the node pool name instead.
 5. Create the instance and note the EFS instance ID.
 
 ## Installing the EFS CSI driver
@@ -59,7 +59,7 @@ To install the EFS CSI driver in the workload cluster, you will need to follow t
 4. Select the Giant Swarm catalog.
 5. Select the App named `aws-efs-csi-driver`.
 6. Click the Configure & Install button. Make sure that the correct cluster is selected.
-7. Create and submit a configuration values file in case you want to deploy the storage class and controller (by default disable to allow a smooth transitation to CSI driver). Do not forget to replace the `fileSystemID` with the one you created in the previous step, the AWS account ID in the role ARN, and the cluster name in IAM role. The role is pre-created and ready to use.
+Create and submit a configuration values file in case you want to deploy the storage class and controller (by default disabled to allow a smooth transition to CSI driver). Do not forget to replace the `fileSystemID` with the one you created in the previous step, the AWS account ID in the role ARN, and the cluster name in the IAM role. The role is pre-created and ready to use.
 
     Example configuration for cluster named `abcdx` and EFS id `fs-XXXXXXXXXXXX`:
 
