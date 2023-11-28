@@ -97,7 +97,7 @@ Create and submit a configuration values file in case you want to deploy the sto
           eks.amazonaws.com/role-arn: arn:aws:iam::000000000000:role/abcdx-efs-csi-driver-role
     ```
 
-8. Click the Install App button.
+7. Click the Install App button.
 
 ## Deploy a sample application
 
