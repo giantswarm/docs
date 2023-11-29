@@ -29,7 +29,7 @@ workflows:
             tags:
               only: /^v.*/
 
-      - container-test
+      - container-test:
           requires:
             - push-to-registries
 
