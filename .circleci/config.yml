@@ -3,36 +3,26 @@ version: 2.1
 orbs:
   architect: giantswarm/architect@4.35.5
 
-jobs:
-  container-test:
-    executor: architect/architect
-    environment:
-      DOCKER_BUILDKIT: "1"
-
-    steps:
-      - run:
-          name: Launch container for tests
-          command: |
-            IMAGE_TAG=$(cat .docker_image_tag)
-            echo "IMAGE_TAG: $IMAGE_TAG"
-            docker run -d --rm --name docs -p 8080:8080 gsoci.azureocr.io/giantswarm/docs:$IMAGE_TAG
-
-            CURL_OUTPUT=$(docker run --link docs quay.io/giantswarm/curl:7.81.0 curl --no-buffer http://docs:8080)
-            echo $CURL_OUTPUT | grep -q "Giant Swarm"
-
 workflows:
   build-workflow:
     jobs:
       - architect/push-to-registries:
           name: push-to-registries
           context: architect
+          push-to-aliyun: false
+          push-to-docker: false
           filters:
             tags:
               only: /^v.*/
+          steps:
+            - run:
+                name: Launch container for tests
+                command: |
+                  echo "DOCKER_IMAGE_TAG: $DOCKER_IMAGE_TAG"
+                  docker run -d --rm --name docs -p 8080:8080 gsoci.azureocr.io/giantswarm/docs:$DOCKER_IMAGE_TAG
 
-      - container-test:
-          requires:
-            - push-to-registries
+                  CURL_OUTPUT=$(docker run --link docs quay.io/giantswarm/curl:7.81.0 curl --no-buffer http://docs:8080)
+                  echo $CURL_OUTPUT | grep -q "Giant Swarm"
 
       - architect/push-to-app-catalog:
           context: architect
@@ -41,7 +31,7 @@ workflows:
           app_catalog_test: giantswarm-operations-platform-test-catalog
           chart: docs-app
           requires:
-            - container-test
+            - push-to-registries
           filters:
             tags:
               only: /^v.*/
