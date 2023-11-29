@@ -3,63 +3,34 @@ version: 2.1
 orbs:
   architect: giantswarm/architect@4.35.5
 
-
-jobs:
-  build:
-    executor: "architect/architect"
-    environment:
-      DOCKER_BUILDKIT: "1"
-
-    steps:
-      - checkout
-
-      - setup_remote_docker:
-          version: 20.10.11
-
-      - architect/push-to-docker:
-          image: "quay.io/giantswarm/docs"
-          tag-latest-branch: "main"
-          username_envar: "QUAY_USERNAME"
-          password_envar: "QUAY_PASSWORD"
+workflows:
+  build-workflow:
+    jobs:
+      - architect/push-to-registries:
+          name: push-to-registries
+          context: architect
+          filters:
+            tags:
+              only: /^v.*/
 
       - run:
-          name: Launch container for tests
+          name: container-test
           command: |
-            container_tag=$(architect project version)
-            echo "$container_tag"
-            docker run -d --rm --name docs -p 8080:8080 quay.io/giantswarm/docs:$container_tag
+            echo "$DOCKER_IMAGE_TAG"
+            docker run -d --rm --name docs -p 8080:8080 gsoci.azureocr.io/giantswarm/docs:$DOCKER_IMAGE_TAG
 
             CURL_OUTPUT=$(docker run --link docs quay.io/giantswarm/curl:7.81.0 curl --no-buffer http://docs:8080)
             echo $CURL_OUTPUT | grep -q "Giant Swarm"
 
-workflows:
-  version: 2
-
-  build-and-check:
-    jobs:
-      - build:
-          context: architect
-
-  package-and-push-chart-on-tag:
-    jobs:
-      - build:
-          context: architect
-          filters:  # required since `architect/push-to-app-catalog` has tag filters AND requires `build`
-            # Ignore all commits, but run when tagging a release.
-
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^v.*/
       - architect/push-to-app-catalog:
           context: architect
-          name: "package and push docs"
-          app_catalog: "giantswarm-operations-platform-catalog"
-          app_catalog_test: "giantswarm-operations-platform-test-catalog"
+          name: push-to-app-catalog
+          app_catalog: giantswarm-operations-platform-catalog
+          app_catalog_test: giantswarm-operations-platform-test-catalog
           chart: docs-app
-          # Trigger job on git tag.
+          requires:
+            - container-test
+            - push-to-registries
           filters:
             tags:
               only: /^v.*/
-          requires:
-            - build
