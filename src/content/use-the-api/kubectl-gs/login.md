@@ -80,6 +80,8 @@ For **OIDC** authentication, the following flags are available:
 
 - `--connector-id` - OIDC authentication prompts the user to select an authentication provider for the login process. The connector ID flag can be used to skip the prompt by providing an identifier of a specific authentication provider.
 
+- `--device-auth` - If this flag is set, OIDC authentication will be performed using the Device authentication flow. During the standard authentication flow a browser window opens automatically. The Device flow prints the authentication URL in the standard output instead. Opening a browser window is left up to the user, and therefore it can be done asynchronously, in a different environment or even on a different device. In the meantime the login process in kubectl-gs waits for the in-browser part of the authentication to complete. This approach is suitable for headless environments with no available web browser. More details can be found in the [example](#device-authentication-flow) below.  
+
 The following flags are related to creating **client certificates** for workload cluster access:
 
 - `--workload-cluster` - If present, `kubectl gs` will set up a kubectl context to work with a workload cluster via client certificate creation.
@@ -119,6 +121,46 @@ For subsequent logins, you can use that shorthand to easily select which install
 
 ```nohighlight
 kubectl gs login example
+```
+
+### Device authentication flow
+
+Run the `login` command with the `--device-auth` flag to authenticate using the device flow...
+
+```nohighlight
+kubectl gs login https://api.g8s.example.westeurope.azure.gigantic.io --device-auth
+```
+
+Watch the command's output. It will print the URL of the authentication endpoint:
+
+```nohighlight
+Open this URL in the browser to log in:
+https://dex.g8s.example.westeurope.azure.gigantic.io/device?user_code=USER-CODE
+
+The process will continue automatically once the in-browser login is completed
+```
+
+Copy the URL, open it in a browser and follow the on-screen steps to authenticate with your preferred provider.
+The in-browser authentication should eventually redirect you to a page, which says "Login Successful".
+
+At that point the in-browser authentication is complete, and you can go back to `kubectl-gs` and wait for the login process to finish.
+It should happen automatically after a few seconds.
+Once the entire login process is completed successfully, the command will print an additional output:
+
+```nohighlight
+Logged in successfully as 'user-device' on cluster 'example'.
+
+A new kubectl context 'gs-example' has been created and selected. To switch back to this context later, use either of these commands:
+
+  kubectl gs login example
+  kubectl config use-context gs-example
+```
+
+**Note:** In case you use a shorthand syntax to log in to an installation with an existing context and credentials, the `--device-auth` flag will be ignored - even in case the existing credentials were created using the standard authentication flow.
+In this case the command will output a warning:
+
+```nohighlight
+A valid `gs-example` context already exists, there is no need to log in again, ignoring the `device-flow` flag.
 ```
 
 ### Workload cluster
