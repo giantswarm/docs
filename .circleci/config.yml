@@ -13,8 +13,9 @@ jobs:
       - run:
           name: Launch container for tests
           command: |
-            echo "$DOCKER_IMAGE_TAG"
-            docker run -d --rm --name docs -p 8080:8080 gsoci.azureocr.io/giantswarm/docs:$DOCKER_IMAGE_TAG
+            IMAGE_TAG=$(cat .docker_image_tag)
+            echo "IMAGE_TAG: $IMAGE_TAG"
+            docker run -d --rm --name docs -p 8080:8080 gsoci.azureocr.io/giantswarm/docs:$IMAGE_TAG
 
             CURL_OUTPUT=$(docker run --link docs quay.io/giantswarm/curl:7.81.0 curl --no-buffer http://docs:8080)
             echo $CURL_OUTPUT | grep -q "Giant Swarm"
