@@ -84,7 +84,7 @@ The following diagram shows our Teleport architecture in more detail:
 
 Teleport cluster access is based on GitHub SSO with MFA. Only users in the GitHub Giant Swarm Organization are allowed to authenticate.
 
-We run highly resilient and available Teleport cluster on AWS with robust access and audit logs for each user session.
+We run a highly resilient and available Teleport cluster with robust access and audit logs for each user session.
 
 ## Admin access via VPN (deprecated)
 
