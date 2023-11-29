@@ -212,7 +212,7 @@ Instances will also be rolled if these values are changed:
 Please be aware that changing the name of a node pool will result in the deletion of the old node pool and the creation of a new one.
 If you still want to change the name of a node pool, we recommend adding a new node pool with the new name, waiting for it to be healthy, and then removing the old one.
 
-### What happens when a node pool is updated
+### What happens when a node pool is updated {#what-happens-when-rolling-nodes}
 
 When node pool instances need to be rolled, each instance receives a terminate signal from AWS.
 This is propagated as shutdown signal to the OS and then to each running process like the `kubelet`, which will send a `NodeShutDown` event to the pod.
@@ -223,7 +223,8 @@ Please, be aware that it may happen that AWS decides to force-terminate the inst
 
 ## Node pool deletion
 
-TBD
+In a similar way, you can remove a node pool at any time by removing its configuration from the values and updating the cluster.
+When a node pool is deleted, all instances in the node pool will be terminated, and a similar process [as described above]({{< relref "#what-happens-when-rolling-nodes" >}}) will take place.
 
 ## Using mixed instance types (only {{% impl_title "capa_ec2" %}}) {#mixed-instance-types}
 
