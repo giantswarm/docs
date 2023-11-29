@@ -58,11 +58,18 @@ The Kubernetes API of each workload cluster is exposed to customers. Authorized 
 
 ### What is Teleport?
 
-Teleport is an open-source solution for managing secure access to infrastructure using identity-aware reverse proxy and short-lived certificates instead of passwords or long-lived keys. This helps strengthen security and simplifies compliance with regulations and network topology.
+[Teleport](https://goteleport.com/) is an open-source solution for managing secure access to infrastructure using identity-aware reverse proxy and short-lived certificates instead of passwords or long-lived keys. This helps strengthen security and simplifies compliance with regulations and network topology.
+
+Some of the advantages of Teleport:
+- Simplify VPN architecture
+- Support more network layouts and overcome CIDR range limitations
+- Increase security
+- Audit logging
+- Access to audit logs for customers
 
 ### Teleport at Giant Swarm
 
-We use Teleport as a standard solution to maintain access to managed infrastructure for operational needs. Teleport offers us with robust audit and access logs which we lacked in our previous access management solution. Teleport's identity-aware reverse proxy with TLS routing simplifies and secures network access requirements, as VPN is no longer needed nor any additional ports needs to be open at customer network. As such, Teleport seamlessly works behind corporate firewalls, where only outbound HTTPS traffic to Giant Swarm hosted Teleport cluster needs to be allowed.
+We use Teleport as a standard solution to maintain access to managed infrastructure for operational needs. Teleport offers us with robust audit and access logs which we lacked in our previous access management solution. Teleport's identity-aware reverse proxy with TLS routing simplifies and secures network access requirements, as VPN is no longer needed nor any additional ports needs to be open at customer network, as such, Teleport works seamlessly behind corporate firewalls, where only outbound HTTPS traffic to Giant Swarm hosted Teleport cluster needs to be allowed.
 
 ### Teleport secured access points
 
