@@ -61,6 +61,7 @@ The Kubernetes API of each workload cluster is exposed to customers. Authorized 
 [Teleport](https://goteleport.com/) is an open-source solution for managing secure access to infrastructure using identity-aware reverse proxy and short-lived certificates instead of passwords or long-lived keys. This helps strengthen security and simplifies compliance with regulations and network topology.
 
 Some of the advantages of Teleport:
+
 - Simplify VPN architecture
 - Support more network layouts and overcome CIDR range limitations
 - Increase security
