@@ -42,7 +42,7 @@ common configuration. You can combine any type of node pool within one cluster. 
 Node pools can be created, deleted or updated by changing the configuration used when creating the cluster using [`kubectl-gs`]({{< relref "/getting-started/create-workload-cluster" >}})
 
 {{< tabs >}}
-{{< tab id="nodepool-capa-config" for-impl="nodepool-config" >}}
+{{< tab id="nodepool-capa-config" for-impl="capa_ec2" >}}
 
 ```nohighlight
 kubectl gs template cluster --provider capa --name mycluster \
@@ -78,7 +78,7 @@ worker  mycluster-pool0  ip-10-1-6-67.eu-central-1.compute.internal
 ```
 
 {{< /tab >}}
-{{< tab id="nodepool-capz-config" for-impl="nodepool-config" >}}
+{{< tab id="nodepool-capz-config" for-impl="capz_vms" >}}
 
 ```nohighlight
 kubectl gs template cluster --provider capz --name test-cluster \
@@ -114,7 +114,7 @@ Knowing the node pool name of the pool to use, you can use the [`nodeSelector` m
 Assuming that the node pool name is `pool0`, and the cluster name is `mycluster`, your `nodeSelector` could for example look like this:
 
 {{< tabs >}}
-{{< tab id="nodepool-capa-scheduling" for-impl="nodepool-config" >}}
+{{< tab id="nodepool-capa-scheduling" for-impl="capa_ec2" >}}
 
 ```yaml
 apiVersion: v1
@@ -130,7 +130,7 @@ spec:
 ```
 
 {{< /tab >}}
-{{< tab id="nodepool-capz-scheduling" for-impl="nodepool-config" >}}
+{{< tab id="nodepool-capz-scheduling" for-impl="capz_vms" >}}
 
 ```yaml
 A similar example for an Azure cluster:
@@ -209,6 +209,9 @@ Instances in the node pool will be rolled whenever these properties are changed 
 Instances will also be rolled if these values are changed:
 - `providerSpecific.ami`
 
+Please be aware that changing the name of a node pool will result in the deletion of the old node pool and the creation of a new one.
+If you still want to change the name of a node pool, we recommend adding a new node pool with the new name, waiting for it to be healthy, and then removing the old one.
+
 ### What happens when a node pool is updated
 
 When node pool instances need to be rolled, each instance receives a terminate signal from AWS.
@@ -269,7 +272,7 @@ In case there are workloads not assigned to any node pools, the autoscaler may p
 ## On-demand and spot instances {#on-demand-spot}
 
 {{< tabs >}}
-{{< tab id="nodepool-capa-spot-instances" for-impl="nodepool-spot" >}}
+{{< tab id="nodepool-capa-spot-instances" for-impl="capa_ec2" >}}
 
 Node pools can make use of [Amazon EC2 Spot Instances](https://aws.amazon.com/ec2/spot/). On the node pool definition, you can enable it and select the maximum price to pay.
 
@@ -288,7 +291,7 @@ nodePools:
 ```
 
 {{< /tab >}}
-{{< tab id="nodepool-capz-spot-instances" for-impl="nodepool-spot" >}}
+{{< tab id="nodepool-capz-spot-instances" for-impl="capz_vms" >}}
 
 This is currently not supported.
 
