@@ -3,6 +3,22 @@ version: 2.1
 orbs:
   architect: giantswarm/architect@4.35.5
 
+jobs:
+  container-test:
+    executor: architect/architect
+    environment:
+      DOCKER_BUILDKIT: "1"
+
+    steps:
+      - run:
+          name: Launch container for tests
+          command: |
+            echo "$DOCKER_IMAGE_TAG"
+            docker run -d --rm --name docs -p 8080:8080 gsoci.azureocr.io/giantswarm/docs:$DOCKER_IMAGE_TAG
+
+            CURL_OUTPUT=$(docker run --link docs quay.io/giantswarm/curl:7.81.0 curl --no-buffer http://docs:8080)
+            echo $CURL_OUTPUT | grep -q "Giant Swarm"
+
 workflows:
   build-workflow:
     jobs:
@@ -13,14 +29,7 @@ workflows:
             tags:
               only: /^v.*/
 
-      - run:
-          name: container-test
-          command: |
-            echo "$DOCKER_IMAGE_TAG"
-            docker run -d --rm --name docs -p 8080:8080 gsoci.azureocr.io/giantswarm/docs:$DOCKER_IMAGE_TAG
-
-            CURL_OUTPUT=$(docker run --link docs quay.io/giantswarm/curl:7.81.0 curl --no-buffer http://docs:8080)
-            echo $CURL_OUTPUT | grep -q "Giant Swarm"
+      - container-test
 
       - architect/push-to-app-catalog:
           context: architect
