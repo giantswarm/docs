@@ -70,7 +70,7 @@ We use Teleport as a standard solution to maintain access to managed infrastruct
 
 - **Kubernetes API** - Usage of the Kubernetes API on the management/workload cluster is also secured with Teleport (Kube Agent).
 
-The following diagram shows the Teleport architecture in more detail:
+The following diagram shows our Teleport architecture in more detail:
 
 ![Teleport Architecture](teleport.png)
 
