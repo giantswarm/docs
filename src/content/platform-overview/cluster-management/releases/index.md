@@ -124,7 +124,7 @@ You have several options to inspect workload cluster release details:
 
 ### Node pools {#nodepools}
 
-[Node pools]({{< relref "/advanced/cluster-management/node-pools" >}}) were introduced by the following workload cluster releases:
+[Node pools]({{< relref "/advanced/cluster-management/node-pools-vintage" >}}) were introduced by the following workload cluster releases:
 
 - AWS: v{{% first_aws_nodepools_version %}}
 
