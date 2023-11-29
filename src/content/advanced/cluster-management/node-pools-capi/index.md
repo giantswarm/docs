@@ -203,10 +203,12 @@ nodePools:
 ## Updating an existing node pool
 
 Instances in the node pool will be rolled whenever these properties are changed in the node pool definition:
+
 - `instanceType`
 - `additionalSecurityGroups`
 
 Instances will also be rolled if these values are changed:
+
 - `providerSpecific.ami`
 
 Please be aware that changing the name of a node pool will result in the deletion of the old node pool and the creation of a new one.
