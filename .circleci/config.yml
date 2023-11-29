@@ -30,6 +30,8 @@ workflows:
               only: /^v.*/
 
       - container-test
+          requires:
+            - push-to-registries
 
       - architect/push-to-app-catalog:
           context: architect
@@ -39,7 +41,6 @@ workflows:
           chart: docs-app
           requires:
             - container-test
-            - push-to-registries
           filters:
             tags:
               only: /^v.*/
