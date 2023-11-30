@@ -66,7 +66,7 @@ This enables use cases such as:
 
 - To make sure your pods and volumes end up on the same nodes, we recommend to specify `WaitForFirstConsumer` as `volumeBindingMode` in your storage classes. Your clusters come with a default storage class that contains this setting already. See the [Volume Binding Mode](https://kubernetes.io/docs/concepts/storage/storage-classes/#volume-binding-mode) section in the Kubernetes storage documentation for more information.
 
-Spreading worker nodes over multiple availability zones can be configured per [node pool]({{< relref "/advanced/cluster-management/node-pools" >}}) and independent of the choice of a single control plane node vs. using multiple control plane nodes (currently multiple control plane nodes are only supported on AWS).
+Spreading worker nodes over multiple availability zones can be configured per [node pool]({{< relref "/advanced/cluster-management/node-pools-vintage" >}}) and independent of the choice of a single control plane node vs. using multiple control plane nodes (currently multiple control plane nodes are only supported on AWS).
 
 ## Example Pod Topology Spread Constraints and Affinity
 

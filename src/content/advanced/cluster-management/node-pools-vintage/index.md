@@ -1,7 +1,7 @@
 ---
-linkTitle: Node pools
-title: Node pools
-description: A general description of node pools as a concept, it's benefits, and some details you should be aware of.
+linkTitle: Node pools (vintage)
+title: Node pools (vintage)
+description: A general description of node pools as a concept, its benefits, and some details you should be aware of.
 weight: 50
 menu:
   main:
@@ -15,6 +15,7 @@ aliases:
   - /basics/nodepools/
   - /guides/nodepools/
   - /advanced/nodepools/
+  - /advanced/cluster-management/nodepools/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 last_review_date: 2023-04-04

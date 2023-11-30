@@ -16,7 +16,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
 
-The `template nodepool` command allows to create [node pools]({{< relref "/advanced/cluster-management/node-pools" >}}), which are groups of worker nodes in a cluster sharing common configuration. The command creates a manifest for the custom resources that define a node pool. These are then meant to be applied to the management cluster, e. g. via `kubectl apply`.
+The `template nodepool` command allows to create [node pools]({{< relref "/advanced/cluster-management/node-pools-vintage" >}}), which are groups of worker nodes in a cluster sharing common configuration. The command creates a manifest for the custom resources that define a node pool. These are then meant to be applied to the management cluster, e. g. via `kubectl apply`.
 
 ## Provider support
 
