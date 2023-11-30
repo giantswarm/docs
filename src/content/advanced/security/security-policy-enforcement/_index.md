@@ -1,5 +1,5 @@
 ---
-linkTitle: Policy Enforcement
+linkTitle: Policy enforcement
 title: Security policy enforcement
 description: This article describes the security policies enforced in a cluster and how to resolve failing resources.
 weight: 40
