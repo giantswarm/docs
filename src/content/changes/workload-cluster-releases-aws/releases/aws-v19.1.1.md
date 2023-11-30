@@ -19,7 +19,7 @@ This is a patch release that provides new `security-bundle` version consisting o
 
 ## Change details
 
-### security-bundle [0.18.0](https://github.com/giantswarm/security-bundle/releases/tag/v0.18.0)
+### security-bundle [0.19.2](https://github.com/giantswarm/security-bundle/releases/tag/v0.19.2)
 
 #### Added
 - Add `exception-recommender` (app) to the security bundle to create Giant Swarm PolicyException recommendations.
