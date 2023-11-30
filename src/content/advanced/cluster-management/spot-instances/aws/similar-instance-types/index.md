@@ -23,7 +23,7 @@ owner:
 
 Handling of similar instance types is done in [aws-operator](https://github.com/giantswarm/aws-operator) since version 8.3.1, which has been introduced with workload cluster release v{{% first_aws_spotinstances_version %}} for AWS.
 
-Read more about the use of similar instance types in our general article about [node pools]({{< relref "/advanced/cluster-management/node-pools#similar-instance-types" >}}).
+Read more about the use of similar instance types in our general article about [node pools]({{< relref "/advanced/cluster-management/node-pools-vintage#similar-instance-types" >}}).
 
 aws-operator creates an Auto Scaling Group (ASG) for every node pool. If the creator of the node pool activates the use of similar instance types, aws-operator looks up a list of similar instance types and configures the ASG to use all of them.
 

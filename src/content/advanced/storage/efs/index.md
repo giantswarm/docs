@@ -16,7 +16,7 @@ aliases:
   - /guides/using-persistent-volumes-on-aws-with-efs-csi-driver/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2022-12-07
+last_review_date: 2023-11-24
 ---
 
 If your cluster is running in the cloud on Amazon Web Services (AWS) the most common way to store data is using EBS volumes with the [dynamic provisioner](/guides/using-persistent-volumes-on-aws-with-ebs-csi-driver/). Sometimes there is need for filesystem similar to NFS, which is allows multi-read and multi-mount.
@@ -45,8 +45,8 @@ Before installing the provisioner in Kubernetes we will need to create the EFS i
 
 1. Open the [AWS management](https://aws.amazon.com/console/) console for the AWS account holding your cluster resources.
 2. From the `Services` menu, select `EFS`.
-3. Create a new file system and select the VPC where your cluster is located. The VPC can be identified by your cluster name `vpc-$CLUSTER` or simply `$CLUSTER` for vintage clusters. Do not click on the `Create` button but  click on the `Customize` button instead.
-4. In the step 1, Choose options that best suites the needs for the EFS filesystem. In second step add Mount Target for each AZ your cluster is using and make sure to select private subnets in which the mount target will be provisioned. Select security group named `$CLUSTER-node`. For vintage clusters, the security group is named after the node pool name instead.
+3. Create a new file system and select the VPC where your cluster is located. The VPC can be identified by your cluster name `$CLUSTER-vpc` or simply `$CLUSTER` for vintage clusters. Do not click on the `Create` button but  click on the `Customize` button instead.
+4. In step 1, choose options that best suit the needs of the EFS filesystem. Make sure the right VPC is selected and double-check selected subnets to ensure they are private subnets. For EKS You should also be sure that the private node subnet is selected and not the ENI subnet. (ENI Subnet is from CIDR block `100.64.0.0/10` ). Select a security group named `$CLUSTER-node` for the classic CAPA cluster, and for EKS select a security group named `eks-cluster-sg-$CLUSTER`. For vintage clusters, the security group is named after the node pool name instead.
 5. Create the instance and note the EFS instance ID.
 
 ## Installing the EFS CSI driver
@@ -59,9 +59,9 @@ To install the EFS CSI driver in the workload cluster, you will need to follow t
 4. Select the Giant Swarm catalog.
 5. Select the App named `aws-efs-csi-driver`.
 6. Click the Configure & Install button. Make sure that the correct cluster is selected.
-7. Create and submit a configuration values file in case you want to deploy the storage class and controller (by default disable to allow a smooth transitation to CSI driver). Do not forget to replace the `fileSystemID` with the one you created in the previous step, and the AWS account ID in the role ARN. The role is pre-created and ready to use.
+Create and submit a configuration values file in case you want to deploy the storage class and controller (by default disabled to allow a smooth transition to CSI driver). Do not forget to replace the `fileSystemID` with the one you created in the previous step, the AWS account ID in the role ARN, and the cluster name in the IAM role. The role is pre-created and ready to use.
 
-    Example configuration:
+    Example configuration for cluster named `abcdx` and EFS id `fs-XXXXXXXXXXXX`:
 
     ```yaml
     storageClasses:
@@ -78,14 +78,26 @@ To install the EFS CSI driver in the workload cluster, you will need to follow t
     controller:
       serviceAccount:
         annotations:
-          eks.amazonaws.com/role-arn: arn:aws:iam::000000000000:role/vaclav-efs-csi-driver-role
+          eks.amazonaws.com/role-arn: arn:aws:iam::000000000000:role/abcdx-efs-csi-driver-role
     node:
       serviceAccount:
         annotations:
-          eks.amazonaws.com/role-arn: arn:aws:iam::000000000000:role/vaclav-efs-csi-driver-role
+          eks.amazonaws.com/role-arn: arn:aws:iam::000000000000:role/abcdx-efs-csi-driver-role
     ```
 
-8. Click the Install App button.
+    For EKS please add additional value to the controller object to allow controller to run on worker nodes, because EKS Cluster has no `control-plane` nodes:
+
+    ```yaml
+    controller:
+      nodeSelector:
+        "node-role.kubernetes.io/control-plane": null
+        "node-role.kubernetes.io/worker": ""
+      serviceAccount:
+        annotations:
+          eks.amazonaws.com/role-arn: arn:aws:iam::000000000000:role/abcdx-efs-csi-driver-role
+    ```
+
+7. Click the Install App button.
 
 ## Deploy a sample application
 

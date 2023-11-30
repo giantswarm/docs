@@ -77,7 +77,7 @@ the number of AZs in the region, the logic is:
 When [converting a cluster with a single control plane node to high availability](#conversion-to-ha),
 the AZ used by the control plane node before is re-used. Additional AZs are assigned
 by applying the logic described above. Here, the AZ assignment of existing
-worker [node pools]({{< relref "/advanced/cluster-management/node-pools" >}}) is taken into account.
+worker [node pools]({{< relref "/advanced/cluster-management/node-pools-vintage" >}}) is taken into account.
 
 ## Upgrades from previous releases {#upgrades}
 
