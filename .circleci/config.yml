@@ -3,6 +3,28 @@ version: 2.1
 orbs:
   architect: giantswarm/architect@4.35.5
 
+jobs:
+  test:
+    executor: "architect/architect"
+    environment:
+      DOCKER_BUILDKIT: "1"
+
+    steps:
+      - checkout
+
+      - setup_remote_docker:
+          version: 20.10.11
+
+      - run:
+          name: Launch container for tests
+          command: |
+            container_tag=$(architect project version)
+            echo "$container_tag"
+            docker run -d --rm --name docs -p 8080:8080 quay.io/giantswarm/docs:$container_tag
+
+            CURL_OUTPUT=$(docker run --link docs quay.io/giantswarm/curl:7.81.0 curl --no-buffer http://docs:8080)
+            echo $CURL_OUTPUT | grep -q "Giant Swarm"
+
 workflows:
   build-workflow:
     jobs:
@@ -27,11 +49,4 @@ workflows:
             tags:
               only: /^v.*/
 
-      - run:
-          name: Launch container for tests
-          command: |
-            container_tag=$(architect project version)
-            echo "$container_tag"
-            docker run -d --rm --name docs -p 8080:8080 quay.io/giantswarm/docs:$container_tag
-            CURL_OUTPUT=$(docker run --link docs quay.io/giantswarm/curl:7.81.0 curl --no-buffer http://docs:8080)
-            echo $CURL_OUTPUT | grep -q "Giant Swarm"
+      - test
