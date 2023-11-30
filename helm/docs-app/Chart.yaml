@@ -3,4 +3,6 @@ name: docs-app
 appVersion: 0.0.1
 description: Giant Swarm documentation published at https://docs.giantswarm.io/
 home: https://github.com/giantswarm/docs/
+annotations:
+  application.giantswarm.io/team: "sig-docs"
 version: "[[.Version]]"
