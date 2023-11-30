@@ -49,4 +49,6 @@ workflows:
             tags:
               only: /^v.*/
 
-      - test
+      - test:
+          requires:
+            - push-to-app-catalog
