@@ -26,3 +26,12 @@ workflows:
           filters:
             tags:
               only: /^v.*/
+
+      - run:
+          name: Launch container for tests
+          command: |
+            container_tag=$(architect project version)
+            echo "$container_tag"
+            docker run -d --rm --name docs -p 8080:8080 quay.io/giantswarm/docs:$container_tag
+            CURL_OUTPUT=$(docker run --link docs quay.io/giantswarm/curl:7.81.0 curl --no-buffer http://docs:8080)
+            echo $CURL_OUTPUT | grep -q "Giant Swarm"
