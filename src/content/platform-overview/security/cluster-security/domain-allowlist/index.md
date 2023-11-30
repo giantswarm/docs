@@ -127,6 +127,10 @@ Below is a list of the external domains we require access to for our clusters to
     - domains:
         - `hooks.slack.com`
     - Used to send alerts on slack channels
+- teleport.giantswarm.io
+    - domains:
+        - `teleport.giantswarm.io`
+    - Used to securely access Kubernetes cluster and SSH access to nodes.
 
 ## On-premise installations
 
