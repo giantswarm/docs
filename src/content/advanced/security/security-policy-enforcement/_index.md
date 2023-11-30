@@ -1081,7 +1081,7 @@ Giant Swarm currently suggests a "PolicyException per Workload" approach, which 
 apiVersion: policy.giantswarm.io/v1alpha1
 kind: PolicyException
 metadata:
-  name: my-workload-registry-exceptions
+  name: my-workload-exceptions
   namespace: my-namespace
 spec:
   policies: 
