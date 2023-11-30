@@ -22,11 +22,9 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 ---
 
-<!-- {{< platform_support_table aws="alpha=v17.2.0" aws="ga=v17.4.0">}} -->
-
 __Note__: this content is applicable to Giant Swarm v19.2.0 and above, which include PSS `baseline` and `restricted` policies deployed in `enforce` mode.
 
-__Note__: additional information for cluster admins can be found in a separate cluster admin guide.
+__Note__: additional information for cluster admins can be found in a separate [cluster admin guide][cluster-admin-guide].
 
 ## Compliance Scanning and Enforcement
 
@@ -40,7 +38,7 @@ Users who are unaware of those requirements may be surprised when their workload
 ### Kyverno
 
 Giant Swarm clusters currently use Kyverno to perform the actual enforcement of the policies we manage.
-Our Policy API, along with other platform internals, manage the Kyverno ClusterPolicy resources as well as any necessary Kyverno PolicyExceptions.
+Our [Policy API][policy-api], along with other platform internals, manage the Kyverno ClusterPolicy resources as well as any necessary Kyverno PolicyExceptions.
 
 Kyverno is an admission controller, which inspects incoming requests to the API server and checks them against configured policies.
 
@@ -1067,9 +1065,52 @@ __Note__: under most circumstances, only a cluster administrator will be able to
 
 To exclude a workload from a policy, create a `PolicyException` resource for that workload-policy combination.
 
+There are two ways to do this, depending on your cluster administrators' policy management preferences: via the Giant Swarm Policy API, or via native Kyverno resources.
+
+### Configuring exceptions with Policy API
+
+This is the preferred method for configuring exceptions to security policies in Giant Swarm clusters.
+
+The [Policy API][policy-api] provides a higher-level abstraction for configuring cluster policies which makes it easier for cluster admins and for Giant Swarm to manage policy lifecycles.
+
+To configure an exception for a workload, create a Giant Swarm PolicyException (`policy.giantswarm.io/v1alpha1/PolicyException`).
+
+Giant Swarm currently suggests a "PolicyException per Workload" approach, which looks like this:
+
+```yaml
+apiVersion: policy.giantswarm.io/v1alpha1
+kind: PolicyException
+metadata:
+  name: my-workload-registry-exceptions
+  namespace: my-namespace
+spec:
+  policies: 
+    - disallow-host-path
+    - restrict-volume-types
+  targets:
+    - kind: Deployment
+      namespaces:
+      - my-namespace
+      names:
+      - my-workload*
+```
+
+This example allows a Deployment (and the ReplicaSet and Pods it creates) named `my-workload` in the namespace `my-namespace` to be admitted even though it violates the `disallow-host-path` and `restrict-volume-types` policies.
+
+__Note__: creating a many-to-many exception (multiple targets excluded from multiple policies) is not currently permitted. Either `policies` or `targets` must contain exactly one entry.
+
+Various Policy API components watch these resources and make the corresponding changes in supported any lower-level policies.
+PSS policies are currently enforced using Kyverno, so when this Giant Swarm PolicyException is created, the Policy API controllers will ensure that a corresponding Kyverno PolicyException is created or updated to exclude the workload from the named policies.
+
+For policies which are enforced or audited by multiple distinct tools, a Giant Swarm PolicyException can be used to declaratively configure all of the underlying implementations simultaneously.
+
+### Configuring exceptions with Kyverno
+
+Cluster administrators may prefer to manage exceptions themselves. In this case, it is necessary to create the underlying Kyverno PolicyException directly.
+
 There are different ways to structure a `PolicyException`, and your cluster administrator may have a preferred format.
 
-Giant Swarm currently uses a "PolicyException per Workload" approach, which looks like this:
+Giant Swarm currently suggests a "PolicyException per Workload" approach, which looks like this:
 
 ```yaml
 apiVersion: kyverno.io/v2alpha1
@@ -1109,6 +1150,8 @@ Noteworthy pieces of this example:
 - A policy can contain multiple rules -- exceptions can be applied to individual rules so that the others remain in effect. Here, the workload is allowed to fail the `host-path` and `restricted-volumes` rules (and their automatically generated equivalents). A workload is only exempt from the rules listed in a `ruleNames` list. If a policy contains other rules not listed in the `PolicyException`, and the workload does not satisfy those rules, the workload will be rejected.
 - Cluster administrators can choose the namespace(s) where `PolicyExceptions` are stored. The correct namespace for a `PolicyException` might be different than the namespace for the Pod itself.
 
+[cluster-admin-guide]: {{< relref "/advanced/security-policy-enforcement/cluster-admin-guide" >}}
 [k8s-pss]: https://kubernetes.io/docs/concepts/security/pod-security-standards/
 [k8s-sysctl]: https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/
 [kyverno-docs]: https://kyverno.io/docs/
+[policy-api]: {{< relref "/advanced/security-policy-enforcement/policy-api" >}}
