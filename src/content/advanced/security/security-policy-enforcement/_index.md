@@ -1150,8 +1150,8 @@ Noteworthy pieces of this example:
 - A policy can contain multiple rules -- exceptions can be applied to individual rules so that the others remain in effect. Here, the workload is allowed to fail the `host-path` and `restricted-volumes` rules (and their automatically generated equivalents). A workload is only exempt from the rules listed in a `ruleNames` list. If a policy contains other rules not listed in the `PolicyException`, and the workload does not satisfy those rules, the workload will be rejected.
 - Cluster administrators can choose the namespace(s) where `PolicyExceptions` are stored. The correct namespace for a `PolicyException` might be different than the namespace for the Pod itself.
 
-[cluster-admin-guide]: {{< relref "/advanced/security-policy-enforcement/cluster-admin-guide" >}}
+[cluster-admin-guide]: {{< relref "/advanced/security/security-policy-enforcement/cluster-admin-guide" >}}
 [k8s-pss]: https://kubernetes.io/docs/concepts/security/pod-security-standards/
 [k8s-sysctl]: https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/
 [kyverno-docs]: https://kyverno.io/docs/
-[policy-api]: {{< relref "/advanced/security-policy-enforcement/policy-api" >}}
+[policy-api]: {{< relref "/advanced/security/security-policy-enforcement/policy-api" >}}
