@@ -9,7 +9,7 @@ changes_entry:
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v10.1.2
   version: 10.1.2
   version_tag: v10.1.2
-date: '2020-02-06T08:00:00+00:00'
+date: '2020-02-06T08:00:00'
 description: Release notes for AWS workload cluster release v10.1.2, published on
   06 February 2020, 08:00.
 title: Workload cluster release v10.1.2 for AWS

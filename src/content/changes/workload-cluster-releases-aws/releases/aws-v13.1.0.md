@@ -9,7 +9,7 @@ changes_entry:
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v13.1.0
   version: 13.1.0
   version_tag: v13.1.0
-date: '2021-03-29T06:34:36+00:00'
+date: '2021-03-29T06:34:36'
 description: Release notes for AWS workload cluster release v13.1.0, published on
   29 March 2021, 06:34.
 title: Workload cluster release v13.1.0 for AWS

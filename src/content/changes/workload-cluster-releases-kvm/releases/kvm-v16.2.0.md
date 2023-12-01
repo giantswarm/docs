@@ -9,7 +9,7 @@ changes_entry:
   url: https://github.com/giantswarm/releases/tree/master/kvm/v16.2.0
   version: 16.2.0
   version_tag: v16.2.0
-date: '2022-02-04T15:52:34+00:00'
+date: '2022-02-04T15:52:34'
 description: Release notes for KVM workload cluster release v16.2.0, published on
   04 February 2022, 15:52.
 title: Workload cluster release v16.2.0 for KVM

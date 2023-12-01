@@ -16,14 +16,14 @@ aliases:
   - /guides/using-persistent-volumes-on-aws-with-efs-csi-driver/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2022-12-07
+last_review_date: 2023-11-24
 ---
 
-If your cluster is running in the cloud on Amazon Web Services (AWS) the most common way to store data is using EBS volumes with the [dynamic provisioner](/guides/using-persistent-volumes-on-aws-with-ebs-csi-driver/). Sometimes EBS is not the optimal solution.
+If your cluster is running in the cloud on Amazon Web Services (AWS) the most common way to store data is using EBS volumes with the [dynamic provisioner](/guides/using-persistent-volumes-on-aws-with-ebs-csi-driver/). Sometimes there is need for filesystem similar to NFS, which is allows multi-read and multi-mount.
 
-The advantages of using EFS over EBS are:
+The key benefits of EFS are:
 
-- EFS data can be accessed from all availability zones in the same region while EBS is tied to a single availability zone.
+- EFS data can be accessed from all availability zones in the same region while one specific EBS volume is tied to a single availability zone.
 - EFS has the capability to mount the same persistent volume to multiple pods at the same time using the ReadWriteMany [access mode](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes).
 - EFS will not hit the [AWS Instance Volume Limit](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/volume_limits.html) as it is a software mount and will avoid the [Impaired EBS]({{< relref "/advanced/storage/ebs-troubleshooting" >}}) issue.
 - EFS mount times are better than EBS.
@@ -33,23 +33,21 @@ If you need to use EFS to provision volumes, be advised:
 
 - All Kubernetes persistent volumes will be stored in the same EFS instance. You can deploy multiple provisioners per cluster, each having its own storage-class and EFS instance.
 - [EFS throughput](https://docs.aws.amazon.com/efs/latest/ug/performance.html) need to be set up accordingly in order to not have performance issues. We only recommend Provisioned Throughput, and if you need high performance you will need EBS.
-- EFS backups are done with [AWS Backup](https://aws.amazon.com/backup/) and it does not have the snapshot feature of EBS.
+- EFS backups are done with [AWS Backup](https://aws.amazon.com/backup/), and it does not have the snapshot feature of EBS.
 - You cannot limit the amount of data stored in an EFS volume. The requested value in Kubernetes is ignored.
-- EFS mount targets are limited to 1 subnet per availability zone. Each NodePool will create a different subnet per AZ, plan accordingly.
+- EFS mount targets are limited to 1 subnet per availability zone. On vintage, each NodePool will create a different subnet per AZ, plan accordingly.
 
-## Provision an EFS instance on AWS
+### Provision EFS instance on AWS
 
-**Note:** Currently only static provisioning is supported. This means an AWS EFS file system needs to be created manually on AWS first. After that it can be mounted inside a container as a volume using the driver.
+**Note:** Currently only static provisioning is supported in the upstream app. This means an AWS EFS file system needs to be created manually on AWS first. After that it can be mounted inside a container as a volume using the driver.
 
 Before installing the provisioner in Kubernetes we will need to create the EFS instance in the same AWS account:
 
 1. Open the [AWS management](https://aws.amazon.com/console/) console for the AWS account holding your cluster resources.
 2. From the `Services` menu, select `EFS`.
-3. Create a new file system and select the VPC where your cluster is located. The VPC can be identified by your cluster ID.
-4. Select the availability zone with the subnets your instances are located on and the security groups of your node pools. Subnets and security groups can be identified by you cluster ID.
-5. Choose the [throughput](https://docs.aws.amazon.com/efs/latest/ug/performance.html#throughput-modes) and [performance mode](https://docs.aws.amazon.com/efs/latest/ug/performance.html#performancemodes). Setting a file system policy or access points is optional.
-6. Create the instance and note the EFS instance ID.
-7. In case of dynamic provisioning, you need to [add the roles](https://github.com/kubernetes-sigs/aws-efs-csi-driver/blob/master/docs/iam-policy-example.json) to the instance profile or use service account annotation in controller to enable access to AWS EFS.
+3. Create a new file system and select the VPC where your cluster is located. The VPC can be identified by your cluster name `$CLUSTER-vpc` or simply `$CLUSTER` for vintage clusters. Do not click on the `Create` button but  click on the `Customize` button instead.
+4. In step 1, choose options that best suit the needs of the EFS filesystem. Make sure the right VPC is selected and double-check selected subnets to ensure they are private subnets. For EKS You should also be sure that the private node subnet is selected and not the ENI subnet. (ENI Subnet is from CIDR block `100.64.0.0/10` ). Select a security group named `$CLUSTER-node` for the classic CAPA cluster, and for EKS select a security group named `eks-cluster-sg-$CLUSTER`. For vintage clusters, the security group is named after the node pool name instead.
+5. Create the instance and note the EFS instance ID.
 
 ## Installing the EFS CSI driver
 
@@ -58,32 +56,48 @@ To install the EFS CSI driver in the workload cluster, you will need to follow t
 1. Access the [web interface]({{< relref "/platform-overview/web-interface" >}}) and select the cluster on which you want to install the EFS CSI driver.
 2. Open the Apps tab.
 3. Click the Install App button
-4. Select the Giant Swarm Playground catalog.
+4. Select the Giant Swarm catalog.
 5. Select the App named `aws-efs-csi-driver`.
 6. Click the Configure & Install button. Make sure that the correct cluster is selected.
-7. Create and submit a configuration values file in case you want to deploy the storage class and controller (by default disable to allow a smooth transitation to CSI driver)
+Create and submit a configuration values file in case you want to deploy the storage class and controller (by default disabled to allow a smooth transition to CSI driver). Do not forget to replace the `fileSystemID` with the one you created in the previous step, the AWS account ID in the role ARN, and the cluster name in the IAM role. The role is pre-created and ready to use.
 
-    Example configuration:
+    Example configuration for cluster named `abcdx` and EFS id `fs-XXXXXXXXXXXX`:
 
     ```yaml
     storageClasses:
-    - name: efs-sc
-      annotations:
-        storageclass.kubernetes.io/is-default-class: "true"
+    - name: efs
       mountOptions:
       - tls
       parameters:
         provisioningMode: efs-ap
-        fileSystemId: fs-92107666
+        fileSystemId: fs-XXXXXXXXXXXX
         directoryPerms: "700"
         gidRangeStart: "1000"
         gidRangeEnd: "2000"
 
     controller:
-      create: true
+      serviceAccount:
+        annotations:
+          eks.amazonaws.com/role-arn: arn:aws:iam::000000000000:role/abcdx-efs-csi-driver-role
+    node:
+      serviceAccount:
+        annotations:
+          eks.amazonaws.com/role-arn: arn:aws:iam::000000000000:role/abcdx-efs-csi-driver-role
     ```
 
-8. Click the Install App button.
+    For EKS please add additional value to the controller object to allow controller to run on worker nodes, because EKS Cluster has no `control-plane` nodes:
+
+    ```yaml
+    controller:
+      nodeSelector:
+        "node-role.kubernetes.io/control-plane": null
+        "node-role.kubernetes.io/worker": ""
+      serviceAccount:
+        annotations:
+          eks.amazonaws.com/role-arn: arn:aws:iam::000000000000:role/abcdx-efs-csi-driver-role
+    ```
+
+7. Click the Install App button.
 
 ## Deploy a sample application
 
@@ -99,7 +113,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: efs-sc
+  storageClassName: efs
   resources:
     requests:
       storage: 5Gi
