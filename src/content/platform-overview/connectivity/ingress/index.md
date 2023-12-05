@@ -12,7 +12,7 @@ user_questions:
   - How do I do Ingress?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
-last_review_date: 2022-11-14
+last_review_date: 2023-12-05
 ---
 
 For ingress we offer a fully managed Ingress NGINX Controller. You can use any other ingress controller within the platform but the Ingress NGINX Controller comes managed with 24/7 support by Giant Swarm.
