@@ -6,7 +6,7 @@ weight: 10
 menu:
   main:
     parent: cluster-management-vintage
-last_review_date: 2022-11-18
+last_review_date: 2023-12-05
 user_questions:
   - What areas are covered in the Giant Swarm AWS platform?
   - Do I need a management cluster per AWS region?
