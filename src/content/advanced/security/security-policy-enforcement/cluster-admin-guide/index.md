@@ -19,7 +19,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 ---
 
-<!-- {{< platform_support_table aws="alpha=v17.2.0" aws="ga=v17.4.0">}} -->
+{{< platform_support_table aws="ga=v19.1.1">}}
 
 __Note__: This guide is intended for cluster administrators running Giant Swarm managed Kubernetes clusters. More general information about Pod Security Standards can be found on the [Security policy enforcement][sec-policy-enforcement] page.
 
@@ -50,7 +50,7 @@ The migration from PSP to PSS will span three releases:
 
 ### Administrative decisions
 
-Prior to starting PSS migration, teams should decide how to bring the new policy lifecycle under their existing security and change management processes.
+Prior to starting PSS migration, teams should decide how to bring the new policy life cycle under their existing security and change management processes.
 
 #### Decide whether to self-manage or use the Policy API
 
@@ -60,7 +60,7 @@ Kyverno policies and exceptions are more powerful and expressive than PSPs, and 
 However, many of the teams we work with would prefer not to manage Kyverno resources at all.
 We understand that sentiment, and agree that standard security features should "just work".
 So, to make things "just work" and hopefully make future migrations easier, we are introducing a Giant Swarm-specific abstraction called the Policy API which allows us to manage the underlying policies and exceptions which we believe are fundamental to running a healthy cluster.
-You can read more about the Policy API on its dedicated docs page.
+You can read more about the Policy API on its [dedicated docs page][policy-api].
 
 The rest of this guide assumes your migration will be done using our Policy API. However, if your team would prefer to manage Kyverno resources directly instead, that is still allowed by the platform, just with less future support.
 
@@ -88,15 +88,17 @@ Any existing processes and workflows for PSP-based exceptions will need to be re
 
 ##### Centralized and distributed models
 
+**Action item:** decide where your organization will track exceptions to cluster security policies. Specifically, you should identify one or more git repositories which will contain PolicyException resources.
+
 Conway's law suggests organizations build systems which resemble their internal structures. Security processes are no exception (ha!), and our customers vary widely with regard to the level of autonomy and self-service they afford to their developers.
 
 Organizations at the highly autonomous end of the spectrum choose to allow their application developers to manage their own PolicyExceptions from within their application repositories.
-Others choose to centralize the PolicyExceptions in a single place, typically controlled by the platform/infrastructure team.
+Others choose to centralize the PolicyExceptions in a single place, typically controlled by the platform/infrastructure team and reviewed by security.
 Some organizations require a mixed approach where, for example, different business units are responsible for exceptions stored in different locations.
 
-All of these are valid and workable approaches, but it is important to be deliberate when designing the exception workflow so that only exceptions approved by trusted processes can be deployed.
+All of these are valid and workable approaches, but it is important to be deliberate when designing the exception workflow so that only exceptions approved through trusted processes can be deployed.
 
-For new users of the platform who do not already have an established process for handling security exceptions, we suggest keeping the PolicyExceptions controlled centrally, in a GitOps repo configured to require review from any necessary stakeholders in order to modify exceptions.
+For new users of the platform who do not already have an established process for handling security exceptions, we suggest keeping the PolicyExceptions controlled centrally, in a GitOps repo configured to require review from any necessary stakeholders in order to grant or modify exceptions.
 
 If your organization already has an automated system for exception management, we'd like to hear from you about how you currently use it, and may use it with the Policy API in the future.
 
@@ -104,14 +106,18 @@ If your organization already has an automated system for exception management, w
 
 Giant Swarm plans to publish more extensive guidance about optimal policy and exception workflows in the future.
 
+We plan to eventually require cryptographically signed, time-limited exceptions in all clusters, and are developing a long-term plan to provide those features with minimal customer impact.
+
 For now, here are some things to consider when deciding how to structure your organization's exceptions:
 
 - Approval: what is the process for a user to receive a security exception?
 - Storage access: who has read access to the exception storage? Who can approve new or modified exception resources?
 - Cluster access: which cluster entities can create / read / update / delete exceptions in the cluster?
+- Distribution: will all exceptions be deployed to all clusters? Are they grouped by environment? Are they grouped by cluster? The storage location and layout must account for the distribution plan.
 - Duration: do you now or in the future want to impose time limits on an exception?
 - Provenance: do you now or in the future want to require that exceptions be cryptographically signed in order to be valid?
 
 We are also interested in hearing about and learning from your experience with exception workflows. If our platform can enable a better exception experience for you, please reach out.
 
+[policy-api]: {{< relref "/advanced/security/security-policy-enforcement/policy-api" >}}
 [sec-policy-enforcement]: {{< relref "/advanced/security/security-policy-enforcement" >}}
