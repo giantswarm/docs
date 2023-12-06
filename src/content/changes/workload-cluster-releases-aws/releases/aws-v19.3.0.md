@@ -200,11 +200,13 @@ Our docs offer additional information about [Pod Security Standards](https://doc
 
 
 
-### cert-manager [2.25.1](https://github.com/giantswarm/cert-manager-app/releases/tag/v2.25.1)
+### cert-manager [2.25.2](https://github.com/giantswarm/cert-manager-app/releases/tag/v2.25.2)
 
+### Added
 - Added support for PSS resolving issue on upgrade to newer v3+ releases
 
-
+### Changed
+- Changed conditional for PSPs to `{{- if not .global.podSecurityStandards.enforced }}`
 
 ### observability-bundle [0.10.1](https://github.com/giantswarm/observability-bundle/releases/tag/v0.10.1)
 
