@@ -28,7 +28,7 @@ Our docs offer additional information about [Pod Security Standards](https://doc
 ## Change details
 
 
-### aws-operator [14.24.0](https://github.com/giantswarm/aws-operator/releases/tag/v14.24.0)
+### aws-operator [14.24.1](https://github.com/giantswarm/aws-operator/releases/tag/v14.24.1)
 
 #### Added
 - Add `global.podSecurityStandards.enforced` value for PSS migration.
@@ -38,6 +38,7 @@ Our docs offer additional information about [Pod Security Standards](https://doc
 #### Changed
 - Bump k8scc to disable PSPs in preparation for switch to PSS.
 - Disable cluster autoscaler during rollouts of node pool ASGs.
+- Bump etcd-cluster-migrator to v1.2.0 to disable PSPs in preparation for switch to PSS
 
 
 
