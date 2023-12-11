@@ -316,5 +316,5 @@ But since their source IP addresses are not getting changed, they are hitting yo
 - [Services of type LoadBalancer](https://kubernetes.io/docs/concepts/services-networking/service/#type-loadbalancer)
 - [AWS Load Balancer Controller - Annotations](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/guide/service/annotations/)
 - [Running Multiple Ingress NGINX Controllers](https://github.com/kubernetes/ingress-nginx#running-multiple-ingress-controllers)
-- [Deploying the Ingress NGINX Controller]({{< relref "/content/getting-started/connectivity/ingress-controller/index.md" >}})
+- [Deploying the Ingress NGINX Controller]({{< relref "/getting-started/connectivity/ingress-controller/" >}})
 - [Google GCP LoadBalancer Service parameters](https://cloud.google.com/kubernetes-engine/docs/concepts/service-load-balancer-parameters)
