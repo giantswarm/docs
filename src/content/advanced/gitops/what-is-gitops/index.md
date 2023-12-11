@@ -15,8 +15,6 @@ owner:
 last_review_date: 2022-12-20
 ---
 
-## What is GitOps
-
 The GitOps Working Group [defines GitOps as a set of principles](https://github.com/open-gitops/documents/blob/release-v1.0.0/PRINCIPLES.md):
 > GitOps is a set of principles for operating and managing software systems. These principles are derived from modern software operations, but are also rooted in pre-existing and widely adopted best practices.
 > The desired state of a GitOps managed system must be:
