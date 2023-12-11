@@ -1,5 +1,5 @@
 ---
-linkTitle: High-Availability Control Plane
+linkTitle: High-availability control plane
 title: High-Availability Kubernetes control plane
 description: For production clusters with high availability requirements, Giant Swarm on AWS enables control planes with three control plane nodes and three etcd replicas spread over multiple availability zones.
 weight: 10
