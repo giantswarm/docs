@@ -8,7 +8,7 @@ menu:
     parent: uiapi-managementapi
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bigmac
-last_review_date: 2022-12-07
+last_review_date: 2023-12-11
 aliases:
   - /ui-api/management-api/credentials/
 user_questions:

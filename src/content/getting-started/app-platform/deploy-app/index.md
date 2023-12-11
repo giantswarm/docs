@@ -7,7 +7,7 @@ menu:
   main:
     parent: getting-started-app-platform
     identifier: getting-started-app-platform-deploy-app
-last_review_date: 2022-12-08
+last_review_date: 2023-12-11
 aliases:
   - /developer-platform/app-platform/getting-started
   - /app-platform/getting-started
@@ -18,8 +18,6 @@ user_questions:
   - How can I configure an App CR?
   - How can I see which apps are available using the Management API?
 ---
-
-## Overview
 
 The _Giant Swarm App Platform_ is built on top of [Helm](https://helm.sh/) and allows you to manage apps and their configurations represented by App Custom Resources (CRs) for multiple clusters, from a single place: the [Management API]({{< relref "/platform-overview/management-api" >}}).
 
