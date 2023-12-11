@@ -23,7 +23,7 @@ owner:
 Ingress NGINX Controller handles [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) resources, routing traffic from outside the Kubernetes cluster to services within the cluster.
 
 Starting with [Ingress NGINX Controller v1.8.0](/changes/managed-apps/nginx-ingress-controller-app/v1.8.0/), one can install multiple Ingress NGINX Controllers in a Kubernetes cluster. The optional Ingress NGINX Controller can be [installed as an App on your cluster]({{< relref "/content/getting-started/connectivity/ingress-controller/index.md" >}}).
-[Ingress NGINX Controller v2.2.0](/changes/managed-apps/nginx-ingress-controller-app/v2.2.0/) will start installing a IngressClass with default name `nginx` and controller value `k8s.io/ingress-nginx`.
+[Ingress NGINX Controller v2.2.0](/changes/managed-apps/nginx-ingress-controller-app/v2.2.0/) will start installing an `IngressClass` with default name `nginx` and controller value `k8s.io/ingress-nginx`.
 
 Some use cases for this might be:
 
