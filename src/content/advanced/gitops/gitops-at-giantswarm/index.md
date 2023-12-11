@@ -14,8 +14,6 @@ owner:
 last_review_date: 2023-03-17
 ---
 
-## GitOps at Giant Swarm?
-
 Here at Giant Swarm, we are dedicated to ensuring you have a successful GitOps journey.
 
 In order to achieve this, we run presentations and workshops with you to help get you started, offer an [opinionated template](https://github.com/giantswarm/gitops-template) which is crafted around our environments, and additional tooling to generate and validate your resource manifests before they are applied.

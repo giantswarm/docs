@@ -1,6 +1,6 @@
 ---
 linkTitle: Tooling
-title: Tooling to support the gitops journey
+title: Tooling to support the GitOps journey
 description: A description of the tools availble and how to use them to augment the GitOps journey.
 weight: 80
 menu:
@@ -12,10 +12,8 @@ user_questions:
 - How can I trace resources that flux controls?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2023-03-23
+last_review_date: 2023-12-11
 ---
-
-## GitOps tooling
 
 The following scripts and tools may be used to support you in understanding issues which may arise during the deployment
 of resources managed by flux. Some of these tools are introduced by us here at Giant Swarm, whilst others are provided
