@@ -141,7 +141,9 @@ spec:
 
 The `--name` parameter is the name of the app in the catalog and the name of
 the App CR. The App CR name can be changed via the `--app-name` parameter which
-allows installing multiple instances of an app.
+allows installing multiple instances of an app.  
+Keep in mind that the app name is subject to different length limits, depending on how the app is deployed.
+Using a name under 30 characters is recommended.
 
 ## Defaulting and App Status
 
