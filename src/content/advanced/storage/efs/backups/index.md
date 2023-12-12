@@ -11,18 +11,18 @@ user_questions:
   - How do I do a EFS backup?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-teddyfriends
-last_review_date: 2023-11-20
+last_review_date: 2023-12-12
 ---
 
-The AWS Elastic File System is a storage solution that supports NFS (v4.0) and scales automatically based on user consumption. Once you want to back up a file system you need to use AWS Backup which allows you to configure many things on how to your files will be copy and maintained in the backup system. It is advisable to use in most of the use cases but when you just want a simple copy of your files AWS Backup may be too complex.
+The AWS Elastic File System is a storage solution that supports NFS (v4.0) and scales automatically based on user consumption. According to official documentation, when you want to back up a file system you need to use AWS Backup. It allows you to configure many things on how your files will be copied and maintained in the backup system. It is the recommended approach, but in case you just want a simple copy of your files then AWS Backup may be too complex.
 
-Next we explain on how to leverage on the [built-in Kubernetes Snapshots](https://kubernetes.io/docs/concepts/storage/volume-snapshots/) to copy your file system or part of it. Since there is no EFS compatibility with that feature we need a bridge EBS volume that allow us to rely on the feature automation.
+Next, we explain how to leverage the [built-in Kubernetes Snapshots](https://kubernetes.io/docs/concepts/storage/volume-snapshots/) to copy your file system or part of it. Since there is no EFS compatibility with that feature we need a bridge EBS volume that allows us to rely on the feature automation.
 
 ## Create a tooling Job/Pod
 
-In this section we show you a debug container that mounts a new EBS to hold the copy of our files.
+In this section we define a debug container that will mount the existing EFS filesystem path and a new EBS to transfer a copy of our files.
 
-__Note__: Make sure the
+__Note__: Make sure the EBS volume has the space enough to hold all of your files.
 
 ```yaml
 apiVersion: v1
@@ -68,7 +68,17 @@ spec:
       restartPolicy: Never
 ```
 
-First check you have a `VolumeSnapshotClass` for EBS in the cluster installed running `kubectl get volumesnapshotclass -A`. If it is not the case, please [install the controller and the class following this recipe](https://aws.amazon.com/blogs/containers/using-ebs-snapshots-for-persistent-storage-with-your-eks-cluster/).
+## Creating a Volume Snapshot
+
+As requirement you need to have a valid `VolumeSnapshotClass` for EBS in the cluster to be able to create the backup automatically. The quickest way to check is running this command:
+
+```
+kubectl get volumesnapshotclass -A
+```
+
+__Note__: In the case there is not class installed, please [follow this tutorial from step 3 to deploy one](https://aws.amazon.com/blogs/containers/using-ebs-snapshots-for-persistent-storage-with-your-eks-cluster/). Optionally, you can use the AWS console to take a snapshot directly from the EBS volume. Maybe worthy in case it is a single action task.
+
+Once the controller class is there, taking a snapshot is as easy as creating a resource with the class and the persistent volume claim name.
 
 ```yaml
 apiVersion: snapshot.storage.k8s.io/v1
@@ -81,15 +91,11 @@ spec:
     persistentVolumeClaimName: ebs-volume
 ```
 
-
-You can now do a ordinary k8s volume scnapshot for the new EBS volume
+__Note__: After the task is completed you may want to delete the job and the persistent volume.
 
 ## Further reading
 
 - [AWS Elastic File System](https://docs.aws.amazon.com/efs/latest/ug/whatisefs.html)
-- [AWS Elastic File System Access Points Example](https://github.com/kubernetes-sigs/aws-efs-csi-driver/blob/master/examples/kubernetes/access_points/README.md)
 - [Persistent volumes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistent-volumes)
-- [Persistent volume claims](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims)
 - [Claim persistent volumes in pods](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#claims-as-volumes)
 - [Kubernetes CSI developer documentation](https://kubernetes-csi.github.io/docs/)
-- [Container Storage Interface (CSI) for Kubernetes GA](https://kubernetes.io/blog/2019/01/15/container-storage-interface-ga/)

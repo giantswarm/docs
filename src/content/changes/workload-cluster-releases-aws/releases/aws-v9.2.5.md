@@ -9,7 +9,7 @@ changes_entry:
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v9.2.5
   version: 9.2.5
   version_tag: v9.2.5
-date: '2020-04-24T12:00:00+00:00'
+date: '2020-04-24T12:00:00'
 description: Release notes for AWS workload cluster release v9.2.5, published on 24
   April 2020, 12:00.
 title: Workload cluster release v9.2.5 for AWS

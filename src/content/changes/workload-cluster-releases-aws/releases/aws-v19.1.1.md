@@ -9,7 +9,7 @@ changes_entry:
   url: https://github.com/giantswarm/releases/tree/master/aws/v19.1.1
   version: 19.1.1
   version_tag: v19.1.1
-date: '2023-10-10T10:22:01+00:00'
+date: '2023-10-10T10:22:01'
 description: Release notes for AWS workload cluster release v19.1.1, published on
   10 October 2023, 10:22.
 title: Workload cluster release v19.1.1 for AWS
@@ -19,7 +19,7 @@ This is a patch release that provides new `security-bundle` version consisting o
 
 ## Change details
 
-### security-bundle [0.18.0](https://github.com/giantswarm/security-bundle/releases/tag/v0.18.0)
+### security-bundle [0.19.2](https://github.com/giantswarm/security-bundle/releases/tag/v0.19.2)
 
 #### Added
 - Add `exception-recommender` (app) to the security bundle to create Giant Swarm PolicyException recommendations.

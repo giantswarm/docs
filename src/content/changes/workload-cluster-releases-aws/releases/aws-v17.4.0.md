@@ -9,7 +9,7 @@ changes_entry:
   url: https://github.com/giantswarm/releases/tree/master/aws/archived/v17.4.0
   version: 17.4.0
   version_tag: v17.4.0
-date: '2022-07-05T14:27:03+00:00'
+date: '2022-07-05T14:27:03'
 description: Release notes for AWS workload cluster release v17.4.0, published on
   05 July 2022, 14:27.
 title: Workload cluster release v17.4.0 for AWS

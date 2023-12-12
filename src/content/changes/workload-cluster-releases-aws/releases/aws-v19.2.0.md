@@ -9,7 +9,7 @@ changes_entry:
   url: https://github.com/giantswarm/releases/tree/master/aws/v19.2.0
   version: 19.2.0
   version_tag: v19.2.0
-date: '2023-10-11T08:27:27+00:00'
+date: '2023-10-11T08:27:27'
 description: Release notes for AWS workload cluster release v19.2.0, published on
   11 October 2023, 08:27.
 title: Workload cluster release v19.2.0 for AWS
@@ -196,12 +196,6 @@ _Changes compared to **Stable 3510.2.8**_
 - Make CRD install job compliant with PSS ([#309](https://github.com/giantswarm/external-dns-app/pull/309)).
 
 
-
-### etcd-kubernetes-resources-count-exporter [1.7.0](https://github.com/giantswarm/etcd-kubernetes-resources-count-exporter/releases/tag/v1.7.0)
-
-#### Changed
-- Replace condition for PSP CR installation.
-- Disable debugging.
 
 
 

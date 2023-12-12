@@ -36,7 +36,7 @@ to create clusters on bare metal (**KVM**). It is also needed for cluster creati
 AWS using a workload cluster release prior to v{{% first_aws_nodepools_version %}}, or on Azure using a workload cluster release prior to v{{% first_azure_nodepools_version %}}, basically to create a cluster without
 support for node pools.
 - [**v5**](#v5): This version has been introduced in October 2019 to support clusters with
-[node pools]({{< relref "/advanced/cluster-management/node-pools" >}}). The feature is available on AWS starting with workload cluster release
+[node pools]({{< relref "/advanced/cluster-management/node-pools-vintage" >}}). The feature is available on AWS starting with workload cluster release
 v{{% first_aws_nodepools_version %}}, or on Azure starting with workload cluster release v{{% first_azure_nodepools_version %}};
 
 As it's the case with the Giant Swarm REST API, cluster creation using the YAML definition only requires you
@@ -200,7 +200,7 @@ Coming from v4, you might want to understand how v5 is different from v4:
             - `on_demand_base_capacity`: Base capacity of on-demand EC2 instances to use for worker nodes in this pool. When this is larger than 0, this value defines a number of worker nodes that will be created using on-demand EC2 instances, regardless of the value configured as `on_demand_percentage_above_base_capacity`.
             - `on_demand_percentage_above_base_capacity`: Percentage of on-demand EC2 instances to use for worker nodes, instead of spot instances, for instances exceeding `on_demand_base_capacity`. For example, to have half of the worker nodes use spot instances and half use on-demand, set this value to 50.
         - `instance_type`: EC2 instance type to use for all worker nodes in this pool.
-        - `use_alike_instance_types`: Boolean defining whether similar instance types can be used. See [our node pools documentation]({{< relref "/advanced/cluster-management/node-pools#similar-instance-types" >}}) for details.
+        - `use_alike_instance_types`: Boolean defining whether similar instance types can be used. See [our node pools documentation]({{< relref "/advanced/cluster-management/node-pools-vintage#similar-instance-types" >}}) for details.
     - `azure`: Azure specific details.
         - `vm_size`:  The Azure VM size to use for all worker nodes in this pool.
 - `scaling`: Scaling or size range for the node pool. Setting `min` and `max` to the same value effectively disables autoscaling.
