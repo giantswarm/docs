@@ -72,7 +72,7 @@ spec:
 
 As requirement you need to have a valid `VolumeSnapshotClass` for EBS in the cluster to be able to create the backup automatically. The quickest way to check is running this command:
 
-```
+```bash
 kubectl get volumesnapshotclass -A
 ```
 
