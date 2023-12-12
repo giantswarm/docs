@@ -7,7 +7,7 @@ menu:
   main:
     parent: getting-started-app-platform
     identifier: getting-started-app-platform-deploy-app
-last_review_date: 2022-12-08
+last_review_date: 2023-12-12
 aliases:
   - /developer-platform/app-platform/getting-started
   - /app-platform/getting-started
@@ -141,7 +141,9 @@ spec:
 
 The `--name` parameter is the name of the app in the catalog and the name of
 the App CR. The App CR name can be changed via the `--app-name` parameter which
-allows installing multiple instances of an app.
+allows installing multiple instances of an app.  
+Keep in mind that the app name is subject to different length limits, depending on how the app is deployed.
+Using a name under 30 characters is recommended.
 
 ## Defaulting and App Status
 
