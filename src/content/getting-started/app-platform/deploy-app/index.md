@@ -7,7 +7,7 @@ menu:
   main:
     parent: getting-started-app-platform
     identifier: getting-started-app-platform-deploy-app
-last_review_date: 2022-12-08
+last_review_date: 2023-12-12
 aliases:
   - /developer-platform/app-platform/getting-started
   - /app-platform/getting-started
