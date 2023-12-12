@@ -22,7 +22,7 @@ Next, we explain how to leverage the [built-in Kubernetes Snapshots](https://kub
 
 In this section we define a debug container that will mount the existing EFS filesystem path and a new EBS to transfer a copy of our files.
 
-__Note__: Make sure the EBS volume has the space enough to hold all of your files.
+__Note__: Make sure the EBS volume has enough space to hold all of your files.
 
 ```yaml
 apiVersion: v1
