@@ -1,7 +1,7 @@
 ---
 linkTitle: Amazon Elastic File System
 title: Amazon Elastic File System (EFS)
-description: The Elastic File System is a managed file storage service offered by AWS
+description: The Elastic File System is a managed file storage service offered by AWS.
 weight: 30
 menu:
   main:
