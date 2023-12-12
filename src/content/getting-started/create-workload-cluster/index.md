@@ -17,7 +17,7 @@ owner:
 user_questions:
   - How do I use kubectl gs?
   - How can I create a workload cluster?
-last_review_date: 2023-10-30
+last_review_date: 2023-12-12
 ---
 
 In a Giant Swarm installation, to run your business applications on Kubernetes, you need a workload cluster. The `kubectl-gs` tool ([reference]({{< relref "/use-the-api/kubectl-gs" >}})), as already installed in the [previous tutorial]({{< relref "/getting-started/management-cluster" >}}), is used to create such clusters.
@@ -37,7 +37,7 @@ We use the management cluster name `wombat` as example in this tutorial.
 
 The commands in this section should be run in the management cluster's kubectl context.
 
-Since you have already logged in the MC, you can choose the context like this:
+Since you have already logged in to the MC, you can choose the context like this:
 
 ```sh
 kubectl config use-context gs-MC_NAME
@@ -48,9 +48,19 @@ kubectl config use-context gs-wombat
 
 ## Step 2: Template and create the workload cluster
 
-You will now create resources with `kubectl gs`. In particular, this tutorial uses the `kubectl gs template` command to create valid YAML for each resource. Alternatively, the Web UI provides a visual way to create clusters.
+First, please choose a name for the new workload cluster. We recommend you choose a naming scheme suiting your organization, and then stick to it.
 
-First, template a cluster ([command reference]({{< relref "/use-the-api/kubectl-gs/template-cluster" >}})):
+- The maximum cluster name length is 20 characters.
+- Letters, digits and dashes are allowed. Dashes are not possible at beginning or end.
+- For example, `dev-eu-central-1-a`, `dev-a`, `prod-b`, `ecommerce-dev-eu`, `prod-us` or `staging01` are all valid names.
+- The cluster name will be part of domain names such as `api.<cluster name>.<base domain>` (for instance: `api.mycluster.eu-west-1.aws.gigantic.io` or `ingress.mycluster.mycompany.com`). Since DNS records can normally be resolved publically by anyone, you should avoid encoding sensitive information into the cluster name (`mycluster` in our examples).
+- Clusters can't be renamed after creation.
+- Within one management cluster, all workload cluster names must be unique, even across namespaces. This is so that tooling and operators can look up workload clusters by their unique name without the chance of confusion.
+- We recommend specifying a cluster name explicitly using the `--name` parameter, as in the below instructions. If you really want a randomly-generated name, you can instead use `--generate-name`.
+
+You will now create resources with `kubectl gs`. In particular, this tutorial uses the `kubectl gs template` command to create valid YAML for each resource. The templating commands do not immediately create the cluster – the resulting YAML manifest must be applied in order to create the cluster. Alternatively, the Web UI provides a visual way to create clusters.
+
+You can template a cluster ([command reference]({{< relref "/use-the-api/kubectl-gs/template-cluster" >}})) as follows:
 
 {{< tabs >}}
 {{< tab id="cluster-vintage-azure" for-impl="vintage_azure" >}}
@@ -66,6 +76,8 @@ kubectl gs template cluster \
   > cluster.yaml
 ```
 
+For backward compatibility, vintage cluster templating does not require the `--name` parameter. If no name is specified, a random one like `zekfaewnxh` will be generated. The `--name` parameter becomes required with CAPI clusters, but you can also use `--generate-name` if a random name is really desired.
+
 {{< /tab >}}
 {{< tab id="cluster-vintage-aws" for-impl="vintage_aws">}}
 
@@ -79,6 +91,8 @@ kubectl gs template cluster \
   --release 19.0.0 `# please fill in your desired release version` \
   > cluster.yaml
 ```
+
+For backward compatibility, vintage cluster templating does not require the `--name` parameter. If no name is specified, a random one like `zekfaewnxh` will be generated. The `--name` parameter becomes required with CAPI clusters, but you can also use `--generate-name` if a random name is really desired.
 
 {{< /tab >}}
 {{< tab id="cluster-capa-ec2" for-impl="capa_ec2">}}
@@ -134,8 +148,6 @@ kubectl gs template cluster \
 
 {{< /tab >}}
 {{< /tabs >}}
-
-If no name is specified for a workload cluster, a random one like `rfjh2` will be generated. We recommend you choose a naming scheme suiting your organization, and then stick to it. Add the `--name` parameter to specify the cluster name.
 
 This will create a `cluster.yaml` file containing all the Custom Resources (CRs) necessary to create the cluster.
 
