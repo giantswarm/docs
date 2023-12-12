@@ -141,7 +141,7 @@ spec:
       claimName: efs-claim
 ```
 
-__Warning__: By default, new EFS file systems are owned by root:root. You might need to change file system permissions if your container is not running as root. To learn about exposing separate data stores with independent ownership and permissions, check the AWS guide on [working with Amazon EFS Access Points](https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html).
+**Warning**: By default, new EFS file systems are owned by `root:root`. You might need to change file system permissions if your container is not running as root. To learn about exposing separate data stores with independent ownership and permissions, check the AWS guide on [working with Amazon EFS Access Points](https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html).
 
 ## Further reading
 
