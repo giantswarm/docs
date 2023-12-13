@@ -58,7 +58,7 @@ First, please choose a name for the new workload cluster. We recommend you choos
 - Within one management cluster, all workload cluster names must be unique, even across namespaces. This is so that tooling and operators can look up workload clusters by their unique name without the chance of confusion.
 - We recommend specifying a cluster name explicitly using the `--name` parameter, as in the below instructions. If you really want a randomly-generated name, you can instead use `--generate-name`.
 
-You will now create resources with `kubectl gs`. In particular, this tutorial uses the `kubectl gs template` command to create valid YAML for each resource. The templating commands do not immediately create the cluster – the resulting YAML manifest must be applied in order to create the cluster. Alternatively, the Web UI provides a visual way to create clusters.
+You will now create resources with `kubectl gs`. In particular, this tutorial uses the `kubectl gs template` command to create valid YAML for each resource. The templating commands do not immediately create the cluster – the resulting YAML manifest must be applied to the management cluster API  in order to create the cluster. Alternatively, the Web UI provides a visual way to create clusters.
 
 You can template a cluster ([command reference]({{< relref "/use-the-api/kubectl-gs/template-cluster" >}})) as follows:
 
