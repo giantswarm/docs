@@ -64,7 +64,7 @@ First, please choose a name for the new workload cluster. We recommend you choos
 
 ## Step 3: Template and create the workload cluster
 
-You will now create resources with `kubectl gs`. In particular, this tutorial uses the `kubectl gs template` command to create valid YAML for each resource. The templating commands do not immediately create the cluster – the resulting YAML manifest must be applied to the management cluster API  in order to create the cluster. Alternatively, the Web UI provides a visual way to create clusters.
+You will now create resources with `kubectl gs`. In particular, this tutorial uses the `kubectl gs template` command to create valid YAML for each resource. The templating commands do not immediately create the cluster – the resulting YAML manifest must be applied to the management cluster API or committed to the Gitops repository in order to create the cluster. Alternatively, the Web UI provides a visual way to create clusters.
 
 You can template a cluster ([command reference]({{< relref "/use-the-api/kubectl-gs/template-cluster" >}})) as follows:
 
