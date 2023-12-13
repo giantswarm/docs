@@ -6,7 +6,7 @@ weight: 10
 menu:
   main:
     identifier: gettingstarted-infraprovider-aws
-    parent: gettingstarted-infraprovider
+    parent: gettingstarted-infraprovider-vintage
 user_questions:
   - Where can I find the AWS account ID to use for running a installation?
   - Where I can find the AWS account ID to run workload clusters?
@@ -14,9 +14,10 @@ user_questions:
 aliases:
   - /guides/prepare-aws-account-for-tenant-clusters/
   - /guides/prepare-aws-account/
+  - /getting-started/cloud-provider-accounts/aws/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2023-10-05
+last_review_date: 2023-11-27
 ---
 
 As detailed in the [Architecture]({{< relref "/platform-overview/cluster-management/vintage/aws" >}}) docs,
