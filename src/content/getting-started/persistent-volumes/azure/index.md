@@ -98,9 +98,9 @@ This is a limitation of Azure Cloud that does not apply to `Azure File Share`-ba
 ## Deleting Persistent Volumes
 
 By default the Reclaim Policy of Persistent Volumes in your cluster is set to `Delete`. Thus, deleting the `PersistentVolume` resource will also delete the respective Azure Disk or Azure File Share.
-Similarly, by default if you delete a `PersistenVolumeClaim` resource the respective Persistent Volume and Azure resource will get deleted.
+Similarly, by default if you delete a `PersistentVolumeClaim` resource the respective Persistent Volume and Azure resource will get deleted.
 
-Note that deleting an application that is using Persistent Volumes might not automatically also delete its storage, so in most cases you will have to manually delete the `PersistenVolumeClaim` resources to clean up.
+Note that deleting an application that is using Persistent Volumes might not automatically also delete its storage, so in most cases you will have to manually delete the `PersistentVolumeClaim` resources to clean up.
 
 ## Further reading
 

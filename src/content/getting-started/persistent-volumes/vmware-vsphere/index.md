@@ -100,9 +100,9 @@ It will trigger an update in the underlying Persistent Volume and go through the
 
 ## Deleting Persistent Volumes
 
-By default the Reclaim Policy of Persistent Volumes in your cluster is set to `Delete`. Thus, deleting the `PersistentVolume` resource will also delete the respective CNS disk. Similarly, by default if you delete a `PersistenVolumeClaim` resource the respective Persistent Volume and CNS disk will get deleted.
+By default the Reclaim Policy of Persistent Volumes in your cluster is set to `Delete`. Thus, deleting the `PersistentVolume` resource will also delete the respective CNS disk. Similarly, by default if you delete a `PersistentVolumeClaim` resource the respective Persistent Volume and CNS disk will get deleted.
 
-Note that deleting an application that is using Persistent Volumes might not automatically also delete its storage, so in most cases you will have to manually delete the `PersistenVolumeClaim` resources to clean up.
+Note that deleting an application that is using Persistent Volumes might not automatically also delete its storage, so in most cases you will have to manually delete the `PersistentVolumeClaim` resources to clean up.
 
 ## Further reading
 
