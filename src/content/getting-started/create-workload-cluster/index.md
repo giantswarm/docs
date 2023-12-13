@@ -114,6 +114,19 @@ kubectl gs template cluster \
 ```
 
 {{< /tab >}}
+{{< tab id="cluster-capa-eks" for-impl="capa_eks">}}
+
+This will automatically use the latest release of the relevant Helm charts [cluster-eks](https://github.com/giantswarm/cluster-eks/blob/master/CHANGELOG.md) and [default-apps-eks](https://github.com/giantswarm/default-apps-eks/blob/master/CHANGELOG.md) (bundle of default apps):
+
+```sh
+kubectl gs template cluster \
+  --provider eks \
+  --name mycluster \
+  --organization testing \
+  > cluster.yaml
+```
+
+{{< /tab >}}
 {{< tab id="cluster-capz-azure-vms" for-impl="capz_vms">}}
 
 This will automatically use the latest release of the relevant Helm charts [cluster-azure](https://github.com/giantswarm/cluster-azure/blob/master/CHANGELOG.md) and [default-apps-azure](https://github.com/giantswarm/default-apps-azure/blob/master/CHANGELOG.md) (bundle of default apps):
