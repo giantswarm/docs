@@ -46,17 +46,23 @@ kubectl config use-context gs-MC_NAME
 kubectl config use-context gs-wombat
 ```
 
-## Step 2: Template and create the workload cluster
+## Step 2: Choose a workload cluster name
 
 First, please choose a name for the new workload cluster. We recommend you choose a naming scheme suiting your organization, and then stick to it.
 
 - The maximum cluster name length is 20 characters.
 - Letters, digits and dashes are allowed. Dashes are not possible at beginning or end.
 - For example, `dev-eu-central-1-a`, `dev-a`, `prod-b`, `ecommerce-dev-eu`, `prod-us` or `staging01` are all valid names.
-- The cluster name will be part of domain names such as `api.<cluster name>.<base domain>` (for instance: `api.mycluster.eu-west-1.aws.gigantic.io` or `ingress.mycluster.mycompany.com`). Since DNS records can normally be resolved publically by anyone, you should avoid encoding sensitive information into the cluster name (`mycluster` in our examples).
+- The cluster name will be part of domain names such as `api.<cluster name>.<base domain>` (for instance: `api.mycluster.eu-west-1.aws.gigantic.io` or `ingress.mycluster.mycompany.com`). The _base domain_ is defined by the management cluster. Since DNS records can normally be resolved publically by anyone, you should avoid encoding sensitive information into the cluster name (`mycluster` in our examples).
 - Clusters can't be renamed after creation.
-- Within one management cluster, all workload cluster names must be unique, even across namespaces. This is so that tooling and operators can look up workload clusters by their unique name without the chance of confusion.
-- We recommend specifying a cluster name explicitly using the `--name` parameter, as in the below instructions. If you really want a randomly-generated name, you can instead use `--generate-name`.
+- Keep cluster names unique across your whole company. This is why:
+
+    - Within one management cluster, all workload cluster names must be unique, even across namespaces. This is so that tooling and operators can look up workload clusters by their unique name without the chance of confusion.
+    - Multiple management clusters can share the same base domain (see examples above), so workload cluster names should be unique across your company since their domains would otherwise clash.
+    - Using identical workload cluster names creates problems and risk. Imagine asking for support, or trying to resolve an incident, and Giant Swarm's or your team members confuse two clusters of the same name. Hence, cluster names should be unique, easily spellable and pronounceable by humans – for example during incident calls and in chat – and follow a somewhat consistent naming scheme.
+- We strongly recommend specifying a cluster name explicitly using the `--name` parameter, as in the below instructions. If you really want a randomly-generated name, you can instead use `--generate-name`.
+
+## Step 3: Template and create the workload cluster
 
 You will now create resources with `kubectl gs`. In particular, this tutorial uses the `kubectl gs template` command to create valid YAML for each resource. The templating commands do not immediately create the cluster – the resulting YAML manifest must be applied to the management cluster API  in order to create the cluster. Alternatively, the Web UI provides a visual way to create clusters.
 
@@ -204,7 +210,7 @@ If you would like to protect your clusters from accidental deletion, take a look
 
 By default, the created Kubernetes cluster API endpoint is public. See [Private clusters]({{< relref "/advanced/cluster-management/private-clusters" >}}) if you want to limit networking to/from the cluster.
 
-## Step 3: Watch the status of workload clusters
+## Step 4: Watch the status of workload clusters
 
 In the Web UI, click on the cluster's name to see its details. The workload cluster's name is shown on the top-left (in the screenshot: `o8r3r`).
 
@@ -250,7 +256,7 @@ Note how our example commands use the fully-qualified CRD name `clusters.cluster
 {{< /tab >}}
 {{< /tabs >}}
 
-## Step 4: Log in to the workload cluster
+## Step 5: Log in to the workload cluster
 
 Using the Web UI, click on the workload cluster and then the _Client certificates_ tab. Copy the command suggested at the _Create a client certificate_ step. As value for `--certificate-group`, you can use `system:masters`. More information about group certificates can be found in [Kubernetes RBAC: Default roles and role bindings](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#default-roles-and-role-bindings).
 
@@ -277,7 +283,7 @@ error: the server doesn't have a resource type "organizations"
 
 The WCs are where the "actual" work happens, i.e. where Giant Swarm-supported managed apps and your business applications are deployed. The easiest way to check whether an application is running is `kubectl get pods -A | grep APPLICATION_NAME`, for instance: `kubectl get pods -A | grep kong`.
 
-## Step 5: Template and deploy managed apps
+## Step 6: Template and deploy managed apps
 
 In addition to workload clusters, you can also template applications. Apps belong to catalogs. While you can define your own catalogs, we already provide two: `giantswarm` (_Giant Swarm Catalog_) contains applications that we know how to manage; `giantswarm-playground` (_Playground_) contains applications that we have integrated but are not managed by us. Other catalogs such as the _Giant Swarm Cluster Catalog_ are used for templating of clusters (which you did above).
 
@@ -331,7 +337,7 @@ kubectl gs template app \
 
 In general, whenever templating and/or installing an application, please read its documentation page on the Web UI to be sure you are configuring everything correctly.
 
-## Step 6: Updates of workload clusters and managed apps
+## Step 7: Updates of workload clusters and managed apps
 
 ### Updating an application
 
