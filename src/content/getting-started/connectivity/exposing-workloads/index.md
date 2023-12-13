@@ -4,7 +4,7 @@ description: You can access pods and services from outside your cluster either t
 weight: 80
 menu:
   main:
-    parent: getting-started
+    parent: gettingstarted-connectivity
 user_questions:
   - How can I connect to a pod running in a cluster?
   - How can I expose a TCP port of a pod to the internet?
@@ -12,9 +12,10 @@ user_questions:
   - How to configure the host name in ingress?
 aliases:
   - /guides/accessing-services-from-the-outside/
+  - /getting-started/exposing-workloads/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
-last_review_date: 2023-03-28
+last_review_date: 2023-11-27
 ---
 
 Once you have some workload running on your cluster, you might want to access it from outside your cluster. Creating an Ingress resource is the canonical way to do that:
@@ -57,7 +58,7 @@ To make the rest of the tutorial match your situation, please set your ingress b
 
 ### Setting up ingress {#setting-up-ingress}
 
-Your workload cluster needs an ingress controller installed. If you haven't done that yet, see [installing an ingress controller]({{< relref "/getting-started/ingress-controller" >}}) for instructions.
+Your workload cluster needs an ingress controller installed. If you haven't done that yet, see [installing an ingress controller]({{< relref "/getting-started/connectivity/ingress-controller" >}}) for instructions.
 
 You can expose services publicly by setting up a simple ingress. You can do this with an ingress manifest.
 

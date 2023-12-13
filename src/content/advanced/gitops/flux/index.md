@@ -2,7 +2,7 @@
 linkTitle: FluxCD
 title: What is FluxCD
 description: An explanation of the GitOps principles and a guide to managing Giant Swarm platform resources with FluxCD.
-weight: 30
+weight: 700
 menu:
   main:
     parent: advanced-gitops
@@ -13,10 +13,8 @@ aliases:
   - /advanced/fluxcd/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2022-12-20
+last_review_date: 2023-12-11
 ---
-
-## What is FluxCD
 
 The [FluxCD](https://fluxcd.io) website states:
 > Flux is a set of continuous and progressive delivery solutions for Kubernetes that are open and extensible.

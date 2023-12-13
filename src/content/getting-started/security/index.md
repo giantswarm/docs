@@ -1,5 +1,5 @@
 ---
-title: Securing your cluster with RBAC and PSS
+title: Security
 description: Introduction to using role-based access control (RBAC) and pod security standards (PSS) to secure your cluster and manage access control.
 weight: 110
 menu:
@@ -15,9 +15,11 @@ user_questions:
   - Why is my container lacking permission to use a persistent volume?
 aliases:
   - /guides/securing-with-rbac-and-psp/
+  - /getting-started/rbac-and-psp/
+  - /getting-started/securing-your-cluster
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-security
-last_review_date: 2023-06-30
+last_review_date: 2023-11-27
 mermaid: true
 ---
 
