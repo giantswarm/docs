@@ -113,6 +113,20 @@ kubectl gs template cluster \
   > cluster.yaml
 ```
 
+You can select the AWS account by specifying the `aws-cluster-role-identity-name` argument when templating the cluster.
+The name passed to `aws-cluster-role-identity-name` must match the name of [an existing `AWSClusterRoleIdentity`](https://docs.giantswarm.io/getting-started/cloud-provider-accounts/cluster-api/aws/#configure-the-awsclusterroleidentity).
+
+```sh
+kubectl gs template cluster \
+  --provider capa \
+  --name mycluster \
+  --organization testing \
+  --aws-cluster-role-identity-name=dev-account-role-identity
+  > cluster.yaml
+```
+
+If no `aws-cluster-role-identity-name` is passed, then we assume a `AWSClusterRoleIdentity` called `default` exists and will be used.
+
 {{< /tab >}}
 {{< tab id="cluster-capa-eks" for-impl="capa_eks">}}
 
@@ -125,6 +139,20 @@ kubectl gs template cluster \
   --organization testing \
   > cluster.yaml
 ```
+
+You can select the AWS account by specifying the `aws-cluster-role-identity-name` argument when templating the cluster.
+The name passed to `aws-cluster-role-identity-name` must match the name of [an existing `AWSClusterRoleIdentity`](https://docs.giantswarm.io/getting-started/cloud-provider-accounts/cluster-api/aws/#configure-the-awsclusterroleidentity).
+
+```sh
+kubectl gs template cluster \
+  --provider capa \
+  --name mycluster \
+  --organization testing \
+  --aws-cluster-role-identity-name=dev-account-role-identity
+  > cluster.yaml
+```
+
+If no `aws-cluster-role-identity-name` is passed, then we assume a `AWSClusterRoleIdentity` called `default` exists and will be used.
 
 {{< /tab >}}
 {{< tab id="cluster-capz-azure-vms" for-impl="capz_vms">}}
