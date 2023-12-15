@@ -22,8 +22,8 @@ owner:
 
 Ingress NGINX Controller handles [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) resources, routing traffic from outside the Kubernetes cluster to services within the cluster.
 
-Starting with [Ingress NGINX Controller v1.8.0](/changes/managed-apps/nginx-ingress-controller-app/v1.8.0/), one can install multiple Ingress NGINX Controllers in a Kubernetes cluster. The optional Ingress NGINX Controller can be [installed as an App on your cluster]({{< relref "/content/getting-started/ingress-controller/index.md" >}}).
-[Ingress NGINX Controller v2.2.0](/changes/managed-apps/nginx-ingress-controller-app/v2.2.0/) will start installing an IngressClass with default name `nginx` and controller value `k8s.io/ingress-nginx`.
+Starting with [Ingress NGINX Controller v1.8.0](/changes/managed-apps/nginx-ingress-controller-app/v1.8.0/), one can install multiple Ingress NGINX Controllers in a Kubernetes cluster. The optional Ingress NGINX Controller can be [installed as an App on your cluster]({{< relref "/content/getting-started/connectivity/ingress-controller/index.md" >}}).
+[Ingress NGINX Controller v2.2.0](/changes/managed-apps/nginx-ingress-controller-app/v2.2.0/) will start installing an `IngressClass` with default name `nginx` and controller value `k8s.io/ingress-nginx`.
 
 Some use cases for this might be:
 
@@ -143,7 +143,7 @@ For the second Ingress NGINX Controller installation, IngressClass name and host
 ## Additional resources
 
 - [Services of type LoadBalancer]({{< relref "/content/advanced/connectivity/ingress/service-type-loadbalancer/index.md" >}})
-- [Installing an Ingress Controller]({{< relref "/content/getting-started/ingress-controller/index.md" >}})
+- [Installing an Ingress Controller]({{< relref "/content/getting-started/connectivity/ingress-controller/index.md" >}})
 - [Ingress NGINX Controller configuration options](https://github.com/giantswarm/ingress-nginx-app/blob/main/helm/ingress-nginx/values.yaml)
 - [Upstream Ingress NGINX Controller configuration documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)
 - [Upstream Ingress NGINX Controller multi-nginx documentation](https://kubernetes.github.io/ingress-nginx/user-guide/multiple-ingress/)

@@ -113,7 +113,7 @@ Furthermore, to make the `kubeconfig` self-contained, you can replace `/path/to/
 When authenticating with AAD your user identifies to Kubernetes with a username and the groups you are a member of in AAD. A Cluster Admin can bind roles to these to grant access on a specific cluster.
 
 As explained in [Securing your Cluster with RBAC and PSP
-]({{< relref "/getting-started/rbac-and-psp" >}}) you can either use the default roles or define custom `Role` or `ClusterRole` resources to bind to subjects.
+]({{< relref "/getting-started/security" >}}) you can either use the default roles or define custom `Role` or `ClusterRole` resources to bind to subjects.
 
 In the following examples we'll use one of the default cluster roles.
 
@@ -174,6 +174,6 @@ Access is revoked as soon as the user has either been removed from a bound group
 ## Further reading
 
 - [Securing your Cluster with RBAC and PSP
-]({{< relref "/getting-started/rbac-and-psp" >}})
+]({{< relref "/getting-started/security" >}})
 - [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
 - [Azure Active Directory plugin for client authentication](https://github.com/jenkinsci/azure-credentials-plugin/blob/master/README.md)

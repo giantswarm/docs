@@ -5,14 +5,15 @@ description: In order to restrict how pods can communicate with other pods, serv
 weight: 140
 menu:
   main:
-    parent: getting-started
+    parent: gettingstarted-connectivity
 aliases:
   - /guides/limiting-pod-communication-with-network-policies/
+  - /getting-started/network-policies/
 user_questions:
   - How can I restrict a pod's network traffic?
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-security
-last_review_date: 2021-12-14
+last_review_date: 2023-11-27
 ---
 
 You can limit communication to Pods using the Network Policy API of Kubernetes.

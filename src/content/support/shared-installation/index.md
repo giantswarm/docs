@@ -61,7 +61,7 @@ It's up to you to decide for an organization name that represents you as a compa
 
 To create and manage workload clusters on your behalf, we ask you to prepare some configuration, roles, and quotas in your cloud provider account.
 
-We provide detailed guides both for [AWS]({{< relref "/getting-started/cloud-provider-accounts/aws" >}}) and [Azure]({{< relref "/getting-started/cloud-provider-accounts/azure" >}}). Note that we **only need an account for the workload clusters**, but not for a management cluster in the case of a shared installation.
+We provide detailed guides both for [AWS]({{< relref "/getting-started/cloud-provider-accounts/vintage/aws" >}}) and [Azure]({{< relref "/getting-started/cloud-provider-accounts/vintage/azure" >}}). Note that we **only need an account for the workload clusters**, but not for a management cluster in the case of a shared installation.
 
 When done, hand the account information to your Account Engineer at Giant Swarm.
 
