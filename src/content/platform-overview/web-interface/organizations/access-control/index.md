@@ -166,5 +166,5 @@ Make sure to repeat this for all relevant roles.
 
 ## Related
 
-- [Our own guide to role based access control (RBAC)]({{< relref "/getting-started/rbac-and-psp" >}})
+- [Our own guide to role based access control (RBAC)]({{< relref "/getting-started/security" >}})
 - [Kubernetes project documentation on using RBAC authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)

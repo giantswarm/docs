@@ -4,16 +4,17 @@ description: How to install the Ingress NGINX Controller using the Giant Swarm w
 weight: 70
 menu:
   main:
-    parent: getting-started
+    parent: gettingstarted-connectivity
 user_questions:
 - Which workload clusters ship with a pre-installed ingress controller?
 - How do I install my own ingress controller?
 - Which ingress controller is available via the Giant Swarm app platform?
 aliases:
   - /guides/installing-optional-ingress-controller/
+  - /getting-started/ingress-controller/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
-last_review_date: 2023-03-28
+last_review_date: 2023-11-27
 ---
 
 An ingress controller helps you expose your services to the outside world.
@@ -42,6 +43,6 @@ More information about the Ingress NGINX Controller can be found in the [ingress
 
 ## Further reading
 
-- [Accessing pods and services from the outside]({{< relref "/getting-started/exposing-workloads/index.md" >}})
+- [Accessing pods and services from the outside]({{< relref "/getting-started/connectivity/exposing-workloads/index.md" >}})
 - [Running multiple Ingress NGINX Controllers]({{< relref "/advanced/connectivity/ingress/multi-nginx-ic/index.md" >}})
 - [Advanced ingress configuration]({{< relref "/advanced/connectivity/ingress/configuration/index.md" >}})

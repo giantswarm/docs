@@ -5,7 +5,7 @@ description: Tutorial on how to use dynamically provisioned Persistent Volumes o
 weight: 30
 menu:
   main:
-    parent: advanced-storage
+    parent: advanced-storage-efs
 user_questions:
   - How do I install the EFS provisioner?
   - How do I provision an EFS instance on AWS?
@@ -16,7 +16,7 @@ aliases:
   - /guides/using-persistent-volumes-on-aws-with-efs-csi-driver/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2023-11-24
+last_review_date: 2023-12-12
 ---
 
 If your cluster is running in the cloud on Amazon Web Services (AWS) the most common way to store data is using EBS volumes with the [dynamic provisioner](/guides/using-persistent-volumes-on-aws-with-ebs-csi-driver/). Sometimes there is need for filesystem similar to NFS, which is allows multi-read and multi-mount.
@@ -141,8 +141,7 @@ spec:
       claimName: efs-claim
 ```
 
-**Warning:**
-By default, new EFS file systems are owned by root:root. You might need to change file system permissions if your container is not running as root. To learn about exposing separate data stores with independent ownership and permissions, check the AWS guide on [working with Amazon EFS Access Points](https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html).
+**Warning**: By default, new EFS file systems are owned by `root:root`. You might need to change file system permissions if your container is not running as root. To learn about exposing separate data stores with independent ownership and permissions, check the AWS guide on [working with Amazon EFS Access Points](https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html).
 
 ## Further reading
 
