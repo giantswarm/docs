@@ -18,13 +18,13 @@ owner:
 For limiting costs of workload clusters that are used periodically or have stale periods of time, there are use cases to scale down the worker nodes to zero. Such scenarios apply often for development clusters that are not being used over the weekends and there is limited possibility to scale down workloads completely.
 Moreover in order to maximize fully the cost optimization, there should be no workers running at all.  
 
-However as Giant Swarm is also running several components on the workload clusters that are being monitored, this can result in our Giant Swarm Oncall to be paged due to unavailability of such services.
+However as Giant Swarm is also running several components on the workload clusters that are being monitored, this can result in our Giant Swarm on-call to be paged due to unavailability of such services.
 The following tutorial describes a way to silence periodically alerts from specified clusters and scale down the worker nodes accordingly.
 
 ## Silences
 
 Internally Giant Swarm introduced a concept of Silence Custom Resources. They are utilized to silence either particular alerts or whole clusters in case of known persistent issues or alerts that can be omitted for a while.
-The resource consists of constraints and filters which define the silencing rules on defined alerts and clusters. Those are placed in a private github repository and are synced with every Management Cluster via [silence-operator](https://github.com/giantswarm/silence-operator).
+The resource consists of constraints and filters which define the silencing rules on defined alerts and clusters. Those are placed in a private GitHub repository and are synced with every Management Cluster via [silence-operator](https://github.com/giantswarm/silence-operator).
 
 The main determinant for the Cluster selection is the name of the Cluster Custom Resource that is a unique identified of the cluster itself. You can see the example of such Custom Resource below:
 
@@ -127,8 +127,8 @@ spec:
           restartPolicy: Never
 ```
 
-This CronJob will run accordingly to the specified schedule e.g. every Friday att 16:47 UTC. It will first create a silence for the whole cluster, such that the GS oncall is not paged by any incidents happening on the clusters.
-After the Silence creation, the annotations for mininum and maximum scaling limits for autoscaler will be adjusted to 0 what will result in 0 worker nodes in the Node Pool. The patch command in the CronJob can be repeated for multiple Node Pools to obtain 0 workers Wokload Clusters.
+This CronJob will run accordingly to the specified schedule e.g. every Friday at 16:47 UTC. It will first create a silence for the whole cluster, such that the GS on-call is not paged by any incidents happening on the clusters.
+After the Silence creation, the annotations for minimum and maximum scaling limits for autoscaler will be adjusted to 0 what will result in 0 worker nodes in the Node Pool. The patch command in the CronJob can be repeated for multiple Node Pools to obtain 0 workers workload clusters.
 Please remember to use your Node Pool Name in the patch command, which is the unique identified of the Machine Pool Custom Resource describing the Node Pool.
 
 ### Scale up and delete silence for the cluster
@@ -174,7 +174,7 @@ spec:
           restartPolicy: Never
 ```
 
-This CronJob will first patch the minimum and maximum values for scaling. After 10 minutes which are given for workers to come up it will then delete the silence and make the cluster fully supported with oncall by the Giant Swarm.
+This CronJob will first patch the minimum and maximum values for scaling. After 10 minutes which are given for workers to come up it will then delete the silence and make the cluster fully supported with on-call by the Giant Swarm.
 
 ### Important notes
 
@@ -185,8 +185,8 @@ This CronJob will first patch the minimum and maximum values for scaling. After 
 
 ## Summary
 
-Provided solution introduces a way to scale down and silence clusters for specifiied period of time, such as weekends to offload the costs of running resources.
-The silences themselves can be also created by hand in case of testing Workload Clusters in order to exclude them from the monitoring loop at Giant Swarm and unnecessary pages towards Oncall.
+Provided solution introduces a way to scale down and silence clusters for specified period of time, such as weekends to offload the costs of running resources.
+The silences themselves can be also created by hand in case of testing Workload Clusters in order to exclude them from the monitoring loop at Giant Swarm and unnecessary pages towards on-call.
 
 ## Further reading
 
