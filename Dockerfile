@@ -1,4 +1,4 @@
-FROM gsoci.azurecr.io/giantswarm/hugo:v0.104.3 AS build
+FROM gsoci.azurecr.io/giantswarm/hugo:v0.120.0-full AS build
 
 RUN apk --update --no-cache add findutils gzip
 
