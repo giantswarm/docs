@@ -28,7 +28,7 @@ kubectl patch psp restricted --type='json' -p='[{"op": "add", "path": "/spec/vol
 
 On CAPI clusters, Cilium needs to be aware of the `linkerd-cni`. To achieve this, it is necessary to configure the following block in your cluster's `userconfig`:
 
-```
+```yaml
     global:
       apps:
         cilium:
