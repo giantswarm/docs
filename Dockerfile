@@ -1,4 +1,4 @@
-FROM quay.io/giantswarm/hugo:v0.104.3 AS build
+FROM gsoci.azurecr.io/giantswarm/hugo:v0.104.3 AS build
 
 RUN apk --update --no-cache add findutils gzip
 
@@ -26,7 +26,7 @@ RUN find /public \
   -iregex '.*\.(css|csv|html?|js|svg|txt|xml|json|webmanifest|ttf)' \
   -exec gzip -9 -k '{}' \;
 
-FROM quay.io/giantswarm/nginx:1.23-alpine
+FROM gsoci.azurecr.io/giantswarm/nginx:1.23-alpine
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
