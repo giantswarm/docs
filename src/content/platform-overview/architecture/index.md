@@ -110,7 +110,7 @@ The Kubernetes cluster is represented in VMware Cloud Director by a vAPP of the 
 
 ##### VCD Storage
 
-In order to offer [persistent storage]({{< relref "/getting-started/persistent-volumes/vmware-cloud-director/index.md" >}}) that is decoupled from the virtual machines, the container storage interface creates a Named Disk that can be attached or detached from the VM according to whether or not the persistent volume claim (PVC) is bound to a pod or not. Named disks currently only support Read-Write-Only (RWO) with block storage-backed named disks.
+In order to offer [persistent storage]({{< relref "/getting-started/persistent-volumes" >}}) that is decoupled from the virtual machines, the container storage interface creates a Named Disk that can be attached or detached from the VM according to whether or not the persistent volume claim (PVC) is bound to a pod or not. Named disks currently only support Read-Write-Only (RWO) with block storage-backed named disks.
 
 {{< /tab >}}
 {{< tab id="flags-vsphere" title="VMware vSphere">}}
@@ -131,7 +131,7 @@ The Kubernetes cluster nodes are represented in VMware vSphere by a collection o
 
 ##### vSphere Storage
 
-In order to offer [persistent storage]({{< relref "/getting-started/persistent-volumes/vmware-vsphere/index.md" >}}) that is decoupled from the virtual machines, the container storage interface creates a Cloud Native Storage disk (CNS) that can be attached or detached from the VM according to whether or not the persistent volume claim (PVC) is bound to a pod or not. CNS disks currently only support Read-Write-Only (RWO) with block storage-backed virtual disks but vSAN File Services (NFS in the background) supports Read-Write-Many (RWX).
+In order to offer [persistent storage]({{< relref "/getting-started/persistent-volumes" >}}) that is decoupled from the virtual machines, the container storage interface creates a Cloud Native Storage disk (CNS) that can be attached or detached from the VM according to whether or not the persistent volume claim (PVC) is bound to a pod or not. CNS disks currently only support Read-Write-Only (RWO) with block storage-backed virtual disks but vSAN File Services (NFS in the background) supports Read-Write-Many (RWX).
 
 {{< /tab >}}
 {{< /tabs >}}
