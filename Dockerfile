@@ -1,7 +1,5 @@
 FROM gsoci.azurecr.io/giantswarm/hugo:v0.121.0-full AS build
 
-RUN apk --update --no-cache add findutils gzip
-
 WORKDIR /docs
 
 COPY . /docs
