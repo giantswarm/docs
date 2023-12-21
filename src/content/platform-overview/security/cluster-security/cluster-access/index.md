@@ -14,6 +14,7 @@ user_questions:
   - How does Giant Swarm access my cloud provider account?
   - How is admin access safeguarded?
   - What is admin access to a cluster?
+  - What is Teleport?
   - What is the difference between user access and admin access to clusters?
   - What is user access to a cluster?
   - Which APIs enable user access to the clusters?
@@ -53,7 +54,39 @@ Network access to the API endpoint is typically permitted only to a certain rang
 
 The Kubernetes API of each workload cluster is exposed to customers. Authorized users of the cluster can be managed by connecting an external identity provider to the Kubernetes API, or by provisioning them directly through the Giant Swarm REST API. In either case, you retain full control over user management.
 
-## Admin access
+## Admin access via Teleport
+
+### What is Teleport?
+
+[Teleport](https://goteleport.com/) is an open-source solution for managing secure access to infrastructure using identity-aware reverse proxy and short-lived certificates instead of passwords or long-lived keys. This helps strengthen security and simplifies compliance with regulations and network topology.
+
+Some advantages of Teleport:
+
+- Simplify VPN architecture
+- Support more network layouts and overcome CIDR range limitations
+- Increase security
+- Audit logging
+- Access to audit logs for customers
+
+### Teleport at Giant Swarm
+
+We use Teleport as a standard solution to maintain access to managed infrastructure for operational needs. Teleport offers us with robust audit and access logs which we lacked in our previous access management solution. Teleport's identity-aware reverse proxy with TLS routing simplifies and secures network access requirements, as VPN is no longer needed nor any additional ports needs to be open at customer network, as such, Teleport works seamlessly behind corporate firewalls, where only outbound HTTPS traffic to Giant Swarm hosted Teleport cluster needs to be allowed.
+
+### Teleport secured access points
+
+- **SSH** - SSH access is secured with Teleport (Node Agent).
+
+- **Kubernetes API** - Usage of the Kubernetes API on the management/workload cluster is also secured with Teleport (Kube Agent).
+
+The following diagram shows our Teleport architecture in more detail:
+
+![Teleport Architecture](teleport.png)
+
+Teleport cluster access is based on GitHub SSO with MFA. Only users in the GitHub Giant Swarm Organization are allowed to authenticate.
+
+We run a highly resilient and available Teleport cluster with robust access and audit logs for each user session.
+
+## Admin access via VPN (deprecated)
 
 Admin access is restricted to a VPN that is managed via certificates (public/private keys).
 

@@ -1,6 +1,6 @@
 ---
 linkTitle: High-availability control plane
-title: High-availability Kubernetes control plane
+title: High-Availability Kubernetes control plane
 description: For production clusters with high availability requirements, Giant Swarm on AWS enables control planes with three control plane nodes and three etcd replicas spread over multiple availability zones.
 weight: 10
 last_review_date: 2023-04-04
@@ -77,7 +77,7 @@ the number of AZs in the region, the logic is:
 When [converting a cluster with a single control plane node to high availability](#conversion-to-ha),
 the AZ used by the control plane node before is re-used. Additional AZs are assigned
 by applying the logic described above. Here, the AZ assignment of existing
-worker [node pools]({{< relref "/advanced/cluster-management/node-pools" >}}) is taken into account.
+worker [node pools]({{< relref "/advanced/cluster-management/node-pools-vintage" >}}) is taken into account.
 
 ## Upgrades from previous releases {#upgrades}
 

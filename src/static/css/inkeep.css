@@ -1,0 +1,4 @@
+.ikp-search-bar-trigger__wrapper--size_compact {
+  width: min(750px,100%);
+  height: min(40px,100%);
+}

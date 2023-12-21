@@ -13,7 +13,7 @@ user_questions:
   - How do I install linkerd?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
-last_review_date: 2022-12-13
+last_review_date: 2023-12-19
 ---
 
 We offer linkerd for service mesh functionality in the platform. You can still use other service meshes within the platform but linkerd comes managed by Giant Swarm.

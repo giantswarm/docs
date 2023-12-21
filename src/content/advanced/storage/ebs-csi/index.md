@@ -120,7 +120,7 @@ Note that deleting a pod that is using persistent volumes might not automaticall
 
 ## Further reading
 
-- [AWS storage classes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#aws)
+- [AWS storage classes](https://kubernetes.io/docs/concepts/storage/storage-classes/#aws-ebs)
 - [Persistent volumes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistent-volumes)
 - [Persistent volume claims](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims)
 - [Claim persistent volumes in pods](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#claims-as-volumes)

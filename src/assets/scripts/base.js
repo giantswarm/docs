@@ -27,224 +27,32 @@ function getParameterByName(name) {
   return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
-/**
- * Perform a search and display the result
- *
- * @param q  String     The user's search query
- */
-function doSearch(q) {
-  // reset search
-  $(".result").empty();
-  $(".searchinstructions").hide();
-
-  var limit = 100;
-  $("#searchInput").val(q);
-  // assemble the big query object for ElasticSearch
-  var postData = {
-    "from": 0,
-    "size": limit,
-    "sort": ["_score"],
-    "_source": {
-      "excludes": ["text", "breadcrumb_*"]
-    },
-    "query": {
-      "function_score": {
-        "query": {
-          "simple_query_string": {
-            "fields": ["title^5", "uri^5", "text"],
-            "default_operator": "AND",
-            "query": q
-          }
-        },
-        "functions": [
-          // changelog ranks low
-          {
-            "filter": {"term": {"breadcrumb_1": "changes"}},
-            "weight": 0.1
-          },
-          // REST API spec ranks low
-          {
-            "filter": {"term": {"breadcrumb_1": "api"}},
-            "weight": 0.3
-          },
-          // Blog posts rank a bit lower
-          {
-            "filter": {"term": {"breadcrumb_1": "blog"}},
-            "weight": 0.8
-          },
-          // Entries rank lower the older they are
-          {
-            "linear": {
-              "date": {
-                "scale": "100d",
-                "decay": 0.2
-              }
-            }
-          }
-        ]
+/* Initialize Inkeep widget for the Search Box */
+var inkeepWidget = null;
+$(function() {
+  inkeepWidget = Inkeep().embed({
+    componentType: "SearchBar", // required
+    targetElement: document.getElementById("searchInputMobile"), // required
+    properties: {
+      stylesheetUrls: ["/css/inkeep.css"],
+      baseSettings: {
+        apiKey: "edfd9409339b80d69b5e25c6f7d1765de5f4ea23d4f711ea", // required
+        integrationId: "clp8yzdn00010s601l08xlvth", // required
+        organizationId: "org_glSX3NU5GkGXusqB", // required
+        organizationDisplayName: "Giant Swarm",
+        primaryBrandColor: "#386900"
+      },
+      modalSettings: {
+        // optional InkeepModalSettings
+      },
+      searchSettings: {
+        // optional InkeepSearchSettings
+      },
+      aiChatSettings: {
+        // optional InkeepAIChatSettings
       }
     },
-    "highlight" : {
-      "fields" : {
-        "body" : {
-          "type": "unified",
-          "number_of_fragments" : 1,
-          "no_match_size": 200,
-          "fragment_size" : 150
-        },
-        "title": {
-          "type": "unified",
-          "number_of_fragments" : 1
-        }
-      }
-    },
-    "suggest": {
-      "phrase-suggester": {
-        "text": q,
-        "phrase": {
-          "field": "text.trigram",
-          "size": 1,
-          "gram_size": 3,
-          "direct_generator": [
-            {
-              "field": "text.trigram",
-              "suggest_mode": "popular",
-              "min_word_length": 3,
-            }
-          ],
-        }
-      }
-    }
-  };
-
-  $.ajax("/searchapi/", {
-    type: "POST",
-    data: JSON.stringify(postData),
-    contentType: "application/json",
-    dataType: "json",
-    error: function(jqXHR, textStatus, errorThrown){
-      console.warn("Error in ajax call to /searchapi/:", textStatus, errorThrown);
-    },
-    success: function(data){
-      // Display suggestions
-      var hasSuggestion = false;
-      var suggester = data.suggest["phrase-suggester"];
-      
-      if (suggester && suggester.length > 0 && suggester[0].options.length > 0) {
-        var suggestionElement = $(".suggestion");
-        suggestionElement.find("a").attr("href", "./?q=" + encodeURI(suggester[0].options[0].text)).text(suggester[0].options[0].text);
-        suggestionElement.show();
-        hasSuggestion = true;
-      }
-
-      if (!hasSuggestion) {
-        $(".searchinstructions").show();
-      }
-
-      if (data.hits.total == 0) {
-        // Display zero hits
-        $("h1").text("No results for '" + q + "', sorry.");
-
-        if (typeof ga !== 'undefined') {
-          ga('send', 'event', 'search', 'zerohits', q, 0);
-        }
-
-      } else {
-        // Display results
-        if (data.hits.total === 1) {
-          $("h1").text("1 hit for '" + q + "'");
-        } else {
-          $("h1").text(data.hits.total + " hits for '" + q + "'");
-
-          if (data.hits.total > limit) {
-            $('#result-is-limited').text('Showing the first '+ limit +' items only').show();
-          } else {
-            $('#result-is-limited').hide();
-          }
-        }
-
-        $.each(data.hits.hits, function(index, hit){
-          $(".result").append(renderSerpEntry(index, hit));
-        });
-
-        if (typeof ga !== 'undefined') {
-          ga('send', 'event', 'search', 'hits', q, data.hits.total);
-        }
-      }
-    }
   });
-}
-
-/**
- * Returns a jQuery DOM object for a given search result entry
- *
- * @param index  Int     Index number of this entry, starting with 0
- * @param data   Object  Result hit item as returned by elasticsearch
- */
-function renderSerpEntry(index, hit) {
-  d = $("<a class='item'></>").attr("href", hit._source.uri);
-  if (hit._source.url) {
-    d.attr("href", hit._source.url);
-  }
-  if (typeof hit.highlight !== "undefined" && typeof hit.highlight.title !== "undefined") {
-    d.append($("<h4></h4>").html((index + 1) + ". " + hit.highlight.title));
-  } else {
-    d.append($("<h4></h4>").html((index + 1) + ". " + hit._source.title));
-  }
-
-  if (typeof hit._source.breadcrumb !== "undefined" && hit._source.breadcrumb.length > 0) {
-    var top = hit._source.breadcrumb[0].toLowerCase();
-    if (top === 'blog') {
-      var breadcrumb = 'Blog post'
-      if (typeof hit._source.date !== "undefined") {
-        var dt = new Date(hit._source.date);
-        breadcrumb += ' published ' + months[dt.getMonth()];
-        breadcrumb += ' ' + dt.getDate();
-        breadcrumb += ', ' + dt.getFullYear();
-      }
-      d.append($("<p class='sbreadcrumb'></p>").html(breadcrumb));
-    } else if (top === 'changes') {
-      var dt = new Date(hit._source.date);
-      var breadcrumb = 'Release info published ' + months[dt.getMonth()];
-      breadcrumb += ' ' + dt.getDate();
-      breadcrumb += ', ' + dt.getFullYear();
-      d.append($("<p class='sbreadcrumb'></p>").html(breadcrumb));
-    } else {
-      d.append($("<p class='sbreadcrumb'></p>").html("/" + hit._source.breadcrumb.join("/") + "/"));
-    }
-  }
-
-  if (typeof hit.highlight !== "undefined" && typeof hit.highlight.body !== "undefined" && hit.highlight.body.length > 0) {
-    d.append($("<p class='snippet'></p>").html(hit.highlight.body.join(' <span class="hellip">[...]</span> ')));
-  }
-  return d;
-}
-
-/* handle search */
-$(document).ready(function(){
-
-  // click handler for search button
-  $("#searchsubmit").click(function(evt){
-    evt.preventDefault();
-    $("form.search").submit();
-  });
-
-  if (document.location.pathname !== "/search/") {
-    return;
-  }
-
-  var q = getParameterByName("q");
-
-  // sanitize query string by eleminating trailing / (PHP SimpleHTTPServer problem)
-  if (q.substr(q.length - 1) === "/") {
-    q = q.slice(0, -1);
-  }
-
-  if (typeof q === "undefined" || q == null || q === "") {
-    $(".feedback").hide();
-    return;
-  }
-  doSearch(q);
 });
 
 /** Remove TOC if empty **/
@@ -333,7 +141,7 @@ $(document).ready(function(){
   // end of jQuery $(document).ready
 });
 
-// Add TOC sidebar behaviour
+// Add TOC sidebar behavior
 window.addEventListener("load", function() {
   if (!window.GSAside) return;
 

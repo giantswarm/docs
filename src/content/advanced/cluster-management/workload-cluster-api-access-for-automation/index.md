@@ -28,7 +28,7 @@ This documentation entry provides step-by-step instructions on how to access the
 
 Before you proceed, make sure you have the following prerequisites:
 
-1. [Make sure you are logged in the right Workload Cluster]({{< relref "/getting-started/create-workload-cluster#step-4-log-in-to-the-workload-cluster" >}}).
+1. [Make sure you are logged in the right Workload Cluster]({{< relref "/getting-started/create-workload-cluster#step-5-log-in-to-the-workload-cluster" >}}).
 2. The [`kubectl`](https://kubernetes.io/docs/tasks/tools/#kubectl) command-line tool installed on your local machine.
 3. The necessary permissions to create and manage service accounts within the Kubernetes cluster.
 

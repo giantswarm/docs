@@ -13,7 +13,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I create a cluster manifest for the Management API?
-last_review_date: 2023-10-25
+last_review_date: 2023-12-12
 ---
 
 This command helps with creating a cluster by producing a manifest based on user input. This manifest can then optionally be modified and finally be applied to the Management API to create a cluster.
@@ -21,9 +21,19 @@ This command helps with creating a cluster by producing a manifest based on user
 The outcome depends on the provider, set via the `--provider` flag.
 
 {{< tabs >}}
+{{< tab id="flags-capi" for-impl="capi_any">}}
+
+For CAPI providers (`--provider {capa,capv,capvcd,capz,eks,...}`):
+
+- [`App (name=<cluster name>)`]({{< relref "/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) (API version `application.giantswarm.io/v1alpha1`) - describes the Giant Swarm App which defines the helm release which in turn creates the actual cluster resources.
+- `ConfigMap (name=<cluster name>-userconfig)` - describes the configuration for the above cluster chart. Please see [Creating a workload cluster]({{< relref "/getting-started/create-workload-cluster" >}}) for which cluster chart is used, depending on the cloud provider.
+- [`App (name=<cluster name>-default-apps)`]({{< relref "/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) (API version `application.giantswarm.io/v1alpha1`) - describes the Giant Swarm App which defines the helm release which in turn creates the preinstalled apps which run in the workload cluster.
+- `ConfigMap (name=<cluster name>-default-apps-userconfig)` - describes the configuration for the above preinstalled apps charts. Please see [Creating a workload cluster]({{< relref "/getting-started/create-workload-cluster" >}}) for which default apps chart is used, depending on the cloud provider.
+
+{{< /tab >}}
 {{< tab id="flags-aws" for-impl="vintage_aws">}}
 
-For AWS (`--provider aws`):
+For {{% impl_title "vintage_aws" %}} (`--provider aws`):
 
 - [`Cluster`]({{< relref "/use-the-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1beta1`) - holds the base cluster specification.
 - [`AWSCluster`]({{< relref "/use-the-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`) - holds AWS-specific configuration.
@@ -31,77 +41,16 @@ For AWS (`--provider aws`):
 - [`AWSControlPlane`]({{< relref "/use-the-api/management-api/crd/awscontrolplanes.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`) - specifies the control plane nodes with AWS-specific details
 
 {{< /tab >}}
-{{< tab id="flags-aws-capi" for-impl="capa_ec2">}}
-
-For AWS CAPI (`--provider capa`):
-
-- [`Cluster`]({{< relref "/use-the-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1beta1`) - holds the base cluster specification.
-- [`KubeadmControlPlane`]({{< relref "/use-the-api/management-api/crd/kubeadmcontrolplanes.controlplane.cluster.x-k8s.io.md" >}}) (API version `controlplane.cluster.x-k8s.io/v1beta1`) - specifies the control plane nodes.
-- [`MachineDeployment`]({{< relref "/use-the-api/management-api/crd/machinedeployments.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1beta1`) - holds the bastion host specification.
-- [`MachinePool`]({{< relref "/use-the-api/management-api/crd/machinepools.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1beta1`) - worker nodes machine pools.
-- [`App (name=<cluster name>)`]({{< relref "/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) (API version `application.giantswarm.io/v1alpha1`) - describes the Giant Swarm App which defines the helm release which in turn creates the actual cluster resources.
-- `ConfigMap (name=<cluster name>-userconfig)` - describes the configuration for the above cluster chart.
-- [`App (name=<cluster name>-default-apps)`]({{< relref "/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) (API version `application.giantswarm.io/v1alpha1`) - describes the Giant Swarm App which defines the helm release which in turn creates the preinstalled apps which run in the workload cluster.
-- `ConfigMap (name=<cluster name>-default-apps-userconfig)` - describes the configuration for the above preinstalled apps charts.
-
-{{< /tab >}}
 {{< tab id="flags-azure" for-impl="vintage_azure">}}
 
-For Azure (`--provider azure`):
+For {{% impl_title "vintage_azure" %}} (`--provider azure`):
 
 - [`Cluster`]({{< relref "/use-the-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1beta1`) - holds the base cluster specification.
 - [`AzureCluster`]({{< relref "/use-the-api/management-api/crd/azureclusters.infrastructure.cluster.x-k8s.io.md" >}}) (API version `infrastructure.cluster.x-k8s.io/v1beta1`) - holds Azure-specific configuration.
 - [`AzureMachine`]({{< relref "/use-the-api/management-api/crd/azuremachines.infrastructure.cluster.x-k8s.io.md" >}}) (API version `infrastructure.cluster.x-k8s.io/v1beta1`) - specifies the control plane nodes.
 
 {{< /tab >}}
-{{< tab id="flags-capz" for-impl="capz_vms">}}
-
-We also support creating clusters on Azure using ClusterAPI by selecting our `v20.0.0-alpha1` release  (`--provider azure --release v20.0.0-alpha1`).
-Please be aware that this is an early alpha release. Clusters created using this release won't be monitored by Giant Swarm and, they won't be able to be upgraded to newer stable releases.
-
-In this case the outcome is a bit different:
-
-- [`Cluster`]({{< relref "/use-the-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1beta1`) - holds the base cluster specification.
-- [`AzureCluster`]({{< relref "/use-the-api/management-api/crd/azureclusters.infrastructure.cluster.x-k8s.io.md" >}}) (API version `infrastructure.cluster.x-k8s.io/v1beta1`) - holds Azure-specific configuration.
-- [`KubeadmControlPlane`]({{< relref "/use-the-api/management-api/crd/kubeadmcontrolplanes.controlplane.cluster.x-k8s.io.md" >}}) (API version `controlplane.cluster.x-k8s.io/v1beta1`) - specifies the control plane nodes.
-- [`AzureMachineTemplate`]({{< relref "/use-the-api/management-api/crd/azuremachinetemplates.infrastructure.cluster.x-k8s.io.md" >}}) (API version `infrastructure.cluster.x-k8s.io/v1beta1`) - holds Azure-specific configuration for the control plane nodes.
-- [`MachineDeployment`]({{< relref "/use-the-api/management-api/crd/machinedeployments.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1beta1`) - holds the bastion host specification.
-- [`AzureMachineTemplate`]({{< relref "/use-the-api/management-api/crd/azuremachinetemplates.infrastructure.cluster.x-k8s.io.md" >}}) (API version `infrastructure.cluster.x-k8s.io/v1beta1`) - holds Azure-specific configuration for the bastion host.
-
-{{< /tab >}}
-{{< tab id="flags-gcp" for-impl="capg_vms">}}
-
-For Google Cloud Platform (`--provider gcp`):
-
-- [`App (name=<cluster name>)`]({{< relref "/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) (API version `application.giantswarm.io/v1alpha1`) - describes the Giant Swarm App which defines the helm release which in turn creates the actual cluster resources.
-- `ConfigMap (name=<cluster name>-userconfig)` - describes the configuration for the above cluster chart.
-- [`App (name=<cluster name>-default-apps)`]({{< relref "/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) (API version `application.giantswarm.io/v1alpha1`) - describes the Giant Swarm App which defines the helm release which in turn creates the preinstalled apps which run in the workload cluster.
-- `ConfigMap (name=<cluster name>-default-apps-userconfig)` - describes the configuration for the above preinstalled apps charts.
-
-{{< /tab >}}
-{{< tab id="flags-openstack" for-impl="capo">}}
-
-For OpenStack (`--provider openstack`):
-
-- [`App (name=<cluster name>-cluster)`]({{< relref "/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) (API version `application.giantswarm.io/v1alpha1`) - describes the Giant Swarm App which defines the helm release which in turn creates the actual cluster resources.
-- `ConfigMap (name=<cluster name>)` - describes the configuration for the above cluster chart.
-- [`App (name=<cluster name>-default-apps)`]({{< relref "/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) (API version `application.giantswarm.io/v1alpha1`) - describes the Giant Swarm App which defines the helm release which in turn creates the preinstalled apps which run in the workload cluster.
-- `ConfigMap (name=<cluster name>-default-apps)` - describes the configuration for the above preinstalled apps charts.
-
-{{< /tab >}}
-{{< tab id="flags-vsphere" for-impl="capv">}}
-
-For vSphere (`--provider vsphere`):
-
-- [`App (name=<cluster name>-cluster)`]({{< relref "/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) (API version `application.giantswarm.io/v1alpha1`) - describes the Giant Swarm App which defines the helm release which in turn creates the actual cluster resources.
-- `ConfigMap (name=<cluster name>-user-values)` - describes the configuration for the above cluster chart.
-- [`App (name=<cluster name>-default-apps)`]({{< relref "/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) (API version `application.giantswarm.io/v1alpha1`) - describes the Giant Swarm App which defines the helm release which in turn creates the preinstalled apps which run in the workload cluster.
-- `ConfigMap (name=<cluster name>-default-apps-user-values)` - describes the configuration for the above preinstalled apps charts.
-
-{{< /tab >}}
 {{< /tabs >}}
-
-**Note:** For OpenStack, vSphere and GCP one default nodepool will be created. For the other providers, the CRs generated by this command won't trigger the creation of any worker nodes. Please see the [template nodepool]({{< relref "/use-the-api/kubectl-gs/template-nodepool" >}}) for instructions on how to create worker node pools on all other providers.
 
 ## General CLI flags
 

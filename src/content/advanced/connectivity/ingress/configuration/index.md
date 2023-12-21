@@ -26,7 +26,7 @@ user_questions:
   - How can I use Ingress NGINX Controller as a Web Application Firewall?
   - How can I protect my workload from malicious requests?
   - How can I enable & configure ModSecurity inside of the Ingress NGINX Controller?
-last_review_date: 2023-11-07
+last_review_date: 2023-11-23
 aliases:
   - /guides/advanced-ingress-configuration/
   - /advanced/ingress/configuration/
@@ -39,7 +39,7 @@ The [Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx) has 
 - [Per-service options](#yaml) in each Ingress' YAML definition either directly or via [Annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) ([Complete list of supported Annotations](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/)).
 - [Global options](#configmap) that influence all Ingresses of a cluster via a ConfigMap ([Complete list of ConfigMap options](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/)).
 
-**Note**: Giant Swarm clusters do not come with an Ingress Controller pre-installed. See our [guide on how to install an Ingress Controller from the Giant Swarm Catalog]({{< relref "/getting-started/ingress-controller" >}}).
+**Note**: Giant Swarm clusters do not come with an Ingress Controller pre-installed. See our [guide on how to install an Ingress Controller from the Giant Swarm Catalog]({{< relref "/getting-started/connectivity/ingress-controller" >}}).
 
 ## Per-Service options {#yaml}
 
@@ -267,11 +267,11 @@ This functionality is based on the [auth_request](https://nginx.org/en/docs/http
 
 ### CORS
 
-To enable Cross-Origin Resource Sharing (CORS) in an Ingress rule add the annotation `ingress.kubernetes.io/enable-cors: "true"`.
+To enable Cross-Origin Resource Sharing (CORS) in an Ingress rule add the annotation `nginx.ingress.kubernetes.io/enable-cors: "true"`.
 
 ### Rewrite
 
-In some scenarios the exposed URL in the backend service differs from the specified path in the Ingress rule. Without a rewrite any request will return 404. To circumvent this you can set the annotation `ingress.kubernetes.io/rewrite-target` to the path expected by the service.
+In some scenarios the exposed URL in the backend service differs from the specified path in the Ingress rule. Without a rewrite any request will return 404. To circumvent this you can set the annotation `nginx.ingress.kubernetes.io/rewrite-target` to the path expected by the service.
 
 This can for example be used together with path based routing, when the application expects to be on `/`:
 
@@ -297,11 +297,9 @@ spec:
               number: SERVICE_PORT
 ```
 
-If the application contains relative links it is possible to add an additional annotation `ingress.kubernetes.io/add-base-url` that will prepend a [`base` tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base) in the header of the returned HTML from the backend.
-
 ### Rate limiting
 
-The annotations `ingress.kubernetes.io/limit-connections` and `ingress.kubernetes.io/limit-rps` define a limit on the connections that can be opened by a single client IP address. This can be used to mitigate [DDoS Attacks](https://www.nginx.com/blog/mitigating-ddos-attacks-with-nginx-and-nginx-plus).
+The annotations `nginx.ingress.kubernetes.io/limit-connections` and `nginx.ingress.kubernetes.io/limit-rps` define a limit on the connections that can be opened by a single client IP address. This can be used to mitigate [DDoS Attacks](https://www.nginx.com/blog/mitigating-ddos-attacks-with-nginx-and-nginx-plus).
 
 `nginx.ingress.kubernetes.io/limit-connections`: Number of concurrent connections allowed from a single IP address.
 
@@ -350,10 +348,6 @@ The annotation `nginx.ingress.kubernetes.io/affinity` enables and sets the affin
 #### Cookie affinity
 
 If you use the `cookie` type you can also specify the name of the cookie that will be used to route the requests with the annotation `nginx.ingress.kubernetes.io/session-cookie-name`. The default is to create a cookie named `route`.
-
-The annotation `nginx.ingress.kubernetes.io/session-cookie-hash` defines which algorithm will be used to hash the used upstream. Default value is `md5` and possible values are `md5`, `sha1` and `index`.
-
-The `index` option is not hashed, an in-memory index is used instead, it's quicker and the overhead is shorter. Warning: The matching against the upstream servers list is inconsistent. So, at reload, if upstreams servers have changed, index values are not guaranted to correspond to the same server as before! Use with caution and only if you need to!
 
 This feature is implemented by the third party module [nginx-sticky-module-ng](https://bitbucket.org/nginx-goodies/nginx-sticky-module-ng). The workflow used to define which upstream server will be used is explained in the [module documentation (PDF)](https://bitbucket.org/nginx-goodies/nginx-sticky-module-ng/raw/08a395c66e425540982c00482f55034e1fee67b6/docs/sticky.pdf).
 
