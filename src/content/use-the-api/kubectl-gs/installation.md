@@ -11,7 +11,7 @@ aliases:
   - /ui-api/kubectl-gs/installation/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2023-05-03
+last_review_date: 2023-12-21
 user_questions:
   - Where can I find the Giant Swarm plugin for kubectl?
   - How can I install the Giant Swarm plugin for kubectl?
@@ -22,15 +22,11 @@ user_questions:
 
 `kubectl-gs` is the Giant Swarm plug-in for `kubectl` with the official plug-in name `gs`.
 
-The latest version is v{{% kubectl_gs_version %}}.
+## Install using Krew
 
 The simplest way to manage `kubectl` plug-ins across platforms is using [Krew](https://krew.sigs.k8s.io/). If you don't have Krew installed, check the [Krew installation docs](https://krew.sigs.k8s.io/docs/user-guide/setup/install/) on how to get it installed.
 
-Further down you will also find instructions on installing kubectl-gs [without Krew](#without-krew) and additional platform-specific instructions.
-
-## Using Krew
-
-To install the `gs` plug-in, simply execute this command:
+To install the `kubectl-gs` plug-in, execute this command:
 
 ```nohighlight
 kubectl krew install gs
@@ -50,100 +46,34 @@ To upgrade to the latest version of the plug-in, use this command:
 kubectl krew upgrade gs
 ```
 
-## Without Krew
-
-For platform-specific instuctions, please select a platform below.
+## Install manually (without Krew)
 
 {{< tabs >}}
-{{< tab id="linux-amd64" title="Linux">}}
+{{< tab id="unix" title="Linux/macOS">}}
 
-1. Download the release binary
+1. Download the release package by going to the [latest kubectl-gs release](https://github.com/giantswarm/kubectl-gs/releases/latest) and selecting the right package for your architecture:
 
-    ```nohighlight
-    curl -L https://github.com/giantswarm/kubectl-gs/releases/download/v{{% kubectl_gs_version %}}/kubectl-gs-v{{% kubectl_gs_version %}}-linux-amd64.tar.gz -o kubectl-gs-v{{% kubectl_gs_version %}}-linux-amd64.tar.gz
-    ```
-
-2. Unpack the downloaded package
-
-    ```nohighlight
-    tar xzf kubectl-gs-v{{% kubectl_gs_version %}}-linux-amd64.tar.gz
-    ```
-
-3. Copy the executable into a folder included in your `PATH`
-
-    ```nohighlight
-    sudo cp kubectl-gs-v{{% kubectl_gs_version %}}-linux-amd64/kubectl-gs /usr/local/bin/
-    ```
-
-{{< /tab >}}
-{{< tab id="linux-arm64" title="Linux ARM">}}
-
-1. Download the release binary
-
-    ```nohighlight
-    curl -L https://github.com/giantswarm/kubectl-gs/releases/download/v{{% kubectl_gs_version %}}/kubectl-gs-v{{% kubectl_gs_version %}}-linux-arm64.tar.gz -o kubectl-gs-v{{% kubectl_gs_version %}}-linux-arm64.tar.gz
-    ```
+    - Linux and Intel/AMD-based processor – filename ends with `linux-amd64.tar.gz`
+    - Linux and ARM processor – filename ends with `linux-arm64.tar.gz`
+    - macOS and Intel-based processor – filename ends with `darwin-amd64.tar.gz`
+    - macOS and ARM processor (M1, M2, M3, and newer) – filename ends with `darwin-arm64.tar.gz`
 
 2. Unpack the downloaded package
 
     ```nohighlight
-    tar xzf kubectl-gs-v{{% kubectl_gs_version %}}-linux-arm64.tar.gz
+    tar xzf kubectl-gs-*.tar.gz
     ```
 
-3. Copy the executable into a folder included in your `PATH`
+3. Copy the executable into a directory included in your `PATH`
 
     ```nohighlight
-    sudo cp kubectl-gs-v{{% kubectl_gs_version %}}-linux-arm64/kubectl-gs /usr/local/bin/
-    ```
-
-{{< /tab >}}
-{{< tab id="darwin-amd64" title="macOS">}}
-
-1. Download the release binary
-
-    ```nohighlight
-    curl -L https://github.com/giantswarm/kubectl-gs/releases/download/v{{% kubectl_gs_version %}}/kubectl-gs-v{{% kubectl_gs_version %}}-darwin-amd64.tar.gz -o kubectl-gs-v{{% kubectl_gs_version %}}-darwin-amd64.tar.gz
-    ```
-
-2. Unpack the downloaded package
-
-    ```nohighlight
-    tar xzf kubectl-gs-v{{% kubectl_gs_version %}}-darwin-amd64.tar.gz
-    ```
-
-3. Copy the executable into a folder included in your `PATH`
-
-    ```nohighlight
-    sudo cp kubectl-gs-v{{% kubectl_gs_version %}}-darwin-amd64/kubectl-gs /usr/local/bin/
-    ```
-
-{{< /tab >}}
-{{< tab id="darwin-arm64" title="macOS M1">}}
-
-1. Download the release binary
-
-    ```nohighlight
-    curl -L https://github.com/giantswarm/kubectl-gs/releases/download/v{{% kubectl_gs_version %}}/kubectl-gs-v{{% kubectl_gs_version %}}-darwin-arm64.tar.gz -o kubectl-gs-v{{% kubectl_gs_version %}}-darwin-arm64.tar.gz
-    ```
-
-2. Unpack the downloaded package
-
-    ```nohighlight
-    tar xzf kubectl-gs-v{{% kubectl_gs_version %}}-darwin-arm64.tar.gz
-    ```
-
-3. Copy the executable into a folder included in your `PATH`
-
-    ```nohighlight
-    sudo cp kubectl-gs-v{{% kubectl_gs_version %}}-darwin-arm64/kubectl-gs /usr/local/bin/
+    sudo cp kubectl-gs-*/kubectl-gs /usr/local/bin/.
     ```
 
 {{< /tab >}}
 {{< tab id="windows-amd64" title="Windows">}}
 
-Please note that we only provide a 64bit release.
-
-1. Download the [release ZIP file](https://github.com/giantswarm/kubectl-gs/releases/download/v{{% kubectl_gs_version %}}/kubectl-gs-v{{% kubectl_gs_version %}}-windows-amd64.zip)
+1. Download the release package by going to the [latest kubectl-gs release](https://github.com/giantswarm/kubectl-gs/releases/latest) and selecting the package filename ending with `windows-amd64.zip`.
 
 2. Extract the downloaded ZIP file
 
@@ -154,7 +84,7 @@ Please note that we only provide a 64bit release.
     ```
 
 {{< /tab >}}
-{{< tab id="windows-wsl2" title="WSL2">}}
+{{< tab id="windows-wsl2" title="Windows (WSL2)">}}
 
 1. Install the kubectl-gs binary for Linux first. You can use the instructions using Krew shown above, or follow the Linux instructions without Krew.
 
@@ -169,16 +99,16 @@ Please note that we only provide a 64bit release.
 
 ## Docker
 
-We offer a Docker image via our public [Quay](https://quay.io/repository/giantswarm/kubectl-gs?tab=info) repository. The semantic release version number is used to tag images.
+We offer a Docker image via our public repository. The semantic release version number is used to tag images.
 
 1. Pull the image
 
     ```nohighlight
-    docker pull quay.io/giantswarm/kubectl-gs:{{% kubectl_gs_version %}}
+    docker pull gsoci.azurecr.io/giantswarm/kubectl-gs:latest
     ```
 
 2. Execute a command
 
     ```nohighlight
-    docker run --rm -ti quay.io/giantswarm/kubectl-gs:{{% kubectl_gs_version %}} help
+    docker run --rm -ti gsoci.azurecr.io/giantswarm/kubectl-gs:latest help
     ```
