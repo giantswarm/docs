@@ -32,8 +32,9 @@ On CAPI clusters, Cilium needs to be aware of the `linkerd-cni`. To achieve this
     global:
       apps:
         cilium:
-          cni:
-            exclusive: false
+          values:
+            cni:
+              exclusive: false
 ```
 
 ### Certificates
