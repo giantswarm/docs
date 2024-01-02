@@ -47,10 +47,6 @@ changes-test:
 update-crd-reference:
 	scripts/update-crd-reference/main.sh
 
-# Ensure that the CLI version mention in docs is actually the latest
-update-latest-versions:
-	scripts/update-latest-versions/main.sh
-
 lint:
 	@docker pull $(MARKDOWNLINT_IMAGE) > /dev/null
 	@docker run \
@@ -81,7 +77,7 @@ validate-last-reviewed:
 	  $(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
 	  /workdir/scripts/validate-front-matter/script.py --validation last-reviewed
 
-docker-build: update-latest-versions
+docker-build:
 	docker build -t $(REGISTRY)/$(COMPANY)/$(PROJECT):latest .
 
 docker-run:

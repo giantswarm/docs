@@ -23,7 +23,7 @@ user_questions:
 - What are the command line flags of gsctl?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2023-03-06
+last_review_date: 2023-12-21
 ---
 
 gsctl is the command line utility to manage your Giant Swarm clusters.
@@ -68,11 +68,7 @@ For finding out which version of `gsctl` you currently have installed, and other
 
 ## Installing and updating {#install}
 
-`gsctl` comes as a self-contained binary for Mac, Linux, and Windows. Below you find installation instructions for different platforms. If you want to build `gsctl` from source, find everything you need in its [GitHub repository](https://github.com/giantswarm/gsctl).
-
-<!-- markdownlint-disable no-bare-urls -->
-The current `gsctl` version is **{{% gsctl_version %}}**. Find details in the [release notes](https://github.com/giantswarm/gsctl/releases/tag/{{% gsctl_version %}}).
-<!-- markdownlint-enable no-bare-urls -->
+`gsctl` comes as a self-contained binary for Mac, Linux, and Windows. Below you find installation instructions for different platforms. If you want to build `gsctl` from source, find everything you need in its [GitHub repository](https://github.com/giantswarm/gsctl) and the [latest release](https://github.com/giantswarm/gsctl/releases/latest).
 
 {{< tabs >}}
 {{< tab title="macOS">}}
