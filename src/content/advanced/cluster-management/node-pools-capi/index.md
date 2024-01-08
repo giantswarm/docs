@@ -13,7 +13,7 @@ user_questions:
   - Which workload cluster releases introduced node pools?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2023-11-22
+last_review_date: 2023-12-21
 ---
 
 ## Definition
@@ -216,12 +216,25 @@ If you still want to change the name of a node pool, we recommend adding a new n
 
 ### What happens when a node pool is updated {#what-happens-when-rolling-nodes}
 
+{{< tabs >}}
+{{< tab id="nodepool-update-general" title="General" >}}
+
+On cluster update, nodes get replaced if their configuration changed (we call this "rolling nodes"). This means that pods running on the old nodes will be stopped and moved to new nodes automatically.
+
+Nodes may also get replaced involuntarily, for example if the node becomes unhealthy (e.g. disk full, out of memory), the cloud provider has a hardware fault, or you are using AWS spot instances that can shut down at any time. Therefore, please make sure that your applications can handle pod restarts gracefully. This topic is too large to cover here. We advise researching "zero-downtime deployments" and "stateless applications" since with those best practices, typical applications survive pod restarts without any problems.
+
+{{< /tab >}}
+{{< tab id="nodepool-update-capa" for-impl="capa_ec2" >}}
+
+During a cluster upgrade, it can be necessary to create new EC2 instances (we call this "rolling nodes"). That only happens if anything changed in the node configuration, such as configuration files or the AMI image (newer version of Kubernetes or Flatcar Linux). For such planned node replacements, we are using [instance warmup settings](https://github.com/search?q=repo%3Agiantswarm%2Fcluster-aws%20refreshPreferences&type=code) to ensure that AWS does not replace the old nodes too quickly all at once, but rather in steps so a human could still intervene if something goes wrong (e.g. roll back to previous version). For a small node pool, that would mean that one node would be replaced every 5 minutes. For bigger node pools, small groups of nodes would be replaced every 5 minutes.
+
 When node pool instances need to be rolled, each instance receives a terminate signal from AWS.
 This is propagated as shutdown signal to the OS and then to each running process like the `kubelet`, which will send a `NodeShutDown` event to the pod.
 
-The `kubelet` will wait up to 5 minutes for all pods to terminate and after that it will terminate itself and the shutdown of the AWS EC2 instance will finally proceed.
+The `kubelet` process will wait up to 5 minutes for all pods to terminate and after that, it will terminate itself and the shutdown of the AWS EC2 instance will finally proceed. AWS may decide to force-terminate the instance before the 5 minutes.
 
-Please, be aware that it may happen that AWS decides to force-terminate the instance before the 5 minutes. We recommend draining the respective nodes and moving workloads to other nodes before such an update operation.
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Node pool deletion
 
