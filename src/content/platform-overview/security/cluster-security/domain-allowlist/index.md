@@ -32,6 +32,8 @@ Below is a list of the external domains we require access to for our clusters to
     - domains:
         - `giantswarm.azurecr.io`
         - `giantswarmpublic.azurecr.io`
+        - `gsoci.azurecr.io`
+        - `gsociprivate.azurecr.io`
         - `.blob.core.windows.net`
         - `azure.microsoft.com`
     - Container images and app catalogs are hosted on Azure Container Registry.
