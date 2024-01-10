@@ -499,7 +499,7 @@ Log in into AWS on the account where the cluster is running:
 
 - Grab the URL of the Identity Provider in your current cluster `IAM > Identity Providers`. It will look like `https://irsa.CLUSTER_ID.k8s.INSTALLATION_NAME.BASE_DOMAIN`.
 
-Login into the account where the IAM role is located and create an Identity Provider in `IAM > Identity Providers`:
+Log into the account where the IAM role is located and create an Identity Provider in `IAM > Identity Providers`:
 
 - Set `Provider URL` to the previously gathered URL and click the `Get thumbprint` to import the certificate.
 - Set the `audience` to `sts.amazonaws.com` OR `sts.amazonaws.com.cn` for China regions.
