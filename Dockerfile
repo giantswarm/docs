@@ -24,11 +24,11 @@ RUN find /public \
   -iregex '.*\.(css|csv|html?|js|svg|txt|xml|json|webmanifest|ttf)' \
   -exec gzip -9 -k '{}' \;
 
-# Remove uncompressed HTML files from the changes directory
+# Remove uncompressed HTML files
 # to reduce storage requirements and image size.
-RUN find /public/changes \
+RUN find /public \
   -type f \
-  -name '*.html' \
+  -name 'index.html' \
   -delete
 
 FROM gsoci.azurecr.io/giantswarm/nginx:1.23-alpine
