@@ -495,7 +495,7 @@ Modify the trust entity of your AWS IAM roles with the new identity provider URL
 
 For cross account roles please follow the [guide](#cross-account) above and replace the `CLOUDFRONT_DOMAIN` with the new `CLOUDFRONT_ALTERNATE_DOMAIN`.
 
-Login into the AWS on the account where the cluster is running:
+Log in into AWS on the account where the cluster is running:
 
 - Grab the URL of the Identity Provider in your current cluster `IAM > Identity Providers`. It will look like `https://irsa.CLUSTER_ID.k8s.INSTALLATION_NAME.BASE_DOMAIN`.
 
