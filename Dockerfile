@@ -17,12 +17,19 @@ RUN hugo \
       --destination /public \
       --cleanDestinationDir
 
-# Compress static files above 512 bytes using gzip
+# Compress files using gzip
+# (creates a copy and leaves the uncompressed version in place)
 RUN find /public \
   -type f -regextype posix-extended \
-  -size +512c \
   -iregex '.*\.(css|csv|html?|js|svg|txt|xml|json|webmanifest|ttf)' \
   -exec gzip -9 -k '{}' \;
+
+# Remove uncompressed HTML files from the changes directory
+# to reduce storage requirements and image size.
+RUN find /public/changes \
+  -type f \
+  -name '*.html' \
+  -delete
 
 FROM gsoci.azurecr.io/giantswarm/nginx:1.23-alpine
 
