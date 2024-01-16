@@ -493,7 +493,7 @@ Modify the trust entity of your AWS IAM roles with the new identity provider URL
 }
 ```
 
-For cross acount roles you need to create a new AWS Identity Provider (OpenID Connect) in the AWS account where the IAM role is located with the new `CLOUDFRONT_ALTERNATE_DOMAIN`.
+For cross account roles, you need to create a new AWS Identity Provider (OpenID Connect) in the AWS account where the IAM role is located with the new `CLOUDFRONT_ALTERNATE_DOMAIN`.
 
 ![Creating AWS Identity Provider](identity-provider.png)
 
