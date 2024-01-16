@@ -493,7 +493,18 @@ Modify the trust entity of your AWS IAM roles with the new identity provider URL
 }
 ```
 
-For cross account roles please follow the [guide](#cross-account) above and replace the `CLOUDFRONT_DOMAIN` with the new `CLOUDFRONT_ALTERNATE_DOMAIN`.
+For cross account roles, you need to create a new AWS Identity Provider (OpenID Connect) in the AWS account where the IAM role is located with the new `CLOUDFRONT_ALTERNATE_DOMAIN`.
+
+![Creating AWS Identity Provider](identity-provider.png)
+
+Log in into AWS on the account where the cluster is running:
+
+- Grab the URL of the Identity Provider in your current cluster `IAM > Identity Providers`. It will look like `https://irsa.CLUSTER_ID.k8s.INSTALLATION_NAME.BASE_DOMAIN`.
+
+Log into the account where the IAM role is located and create an Identity Provider in `IAM > Identity Providers`:
+
+- Set `Provider URL` to the previously gathered URL and click the `Get thumbprint` to import the certificate.
+- Set the `audience` to `sts.amazonaws.com` OR `sts.amazonaws.com.cn` for China regions.
 
 China:
 
