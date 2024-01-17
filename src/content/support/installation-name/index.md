@@ -10,7 +10,7 @@ menu:
 user_questions:
   - How do I determine the name for my Giant Swarm installation?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-rainbow
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 last_review_date: 2022-09-08
 aliases:
   - /getting-started/installation-name/

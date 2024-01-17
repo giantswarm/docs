@@ -6,7 +6,7 @@ weight: 20
 menu:
   main:
     parent: platform-overview-security
-last_review_date: 2022-12-07
+last_review_date: 2023-12-11
 user_questions:
   - What are the Giant Swarm operational layers?
   - Why does Giant Swarm use several operational layers?
@@ -106,6 +106,6 @@ Giant Swarm operational layers are the means which we use to keep a separation o
 
 ## Further reading
 
-- [Securing your Cluster with RBAC and PSP]({{< relref "/getting-started/rbac-and-psp" >}})
+- [Securing your Cluster with RBAC and PSP]({{< relref "/getting-started/security" >}})
 - [Creating a kubeconfig with gsctl]({{< relref "/use-the-api/gsctl/create-kubeconfig" >}})
 - [Creating a key pair with gsctl]({{< relref "/use-the-api/gsctl/create-keypair" >}})

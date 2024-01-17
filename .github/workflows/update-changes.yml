@@ -27,12 +27,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         run: make changes
-      
+
       - name: Update CRD pages
         run: make update-crd-reference
-      
-      - name: Update CLI versions
-        run: make update-latest-versions
 
       - name: Update website header and footer
         run: make update-website-content

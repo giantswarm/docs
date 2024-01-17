@@ -8,7 +8,7 @@ menu:
     parent: service-mesh
 user_questions:
   - How can I install a Service Mesh on my cluster?
-last_review_date: 2023-11-16
+last_review_date: 2023-12-19
 aliases:
   - /advanced/service-mesh/getting-started
   - /guides/service-mesh/getting-started
@@ -24,6 +24,17 @@ For security reasons, Giant Swarm - by default - forbids the usage of emptyDir v
 
 ```sh
 kubectl patch psp restricted --type='json' -p='[{"op": "add", "path": "/spec/volumes/-", "value": "emptyDir"}]'
+```
+
+On CAPI clusters, Cilium needs to be aware of the `linkerd-cni`. To achieve this, it is necessary to configure the following block in your cluster's `userconfig`:
+
+```yaml
+    global:
+      apps:
+        cilium:
+          values:
+            cni:
+              exclusive: false
 ```
 
 ### Certificates

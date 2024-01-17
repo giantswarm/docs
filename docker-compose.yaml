@@ -3,7 +3,7 @@ services:
 
   docs-app:
     # to build this image locally, execute 'make docker-build'
-    image: quay.io/giantswarm/docs:latest
+    image: gsoci.azurecr.io/giantswarm/docs:latest
 
   sitesearch-app:
     image: elasticsearch:6.8.6
@@ -22,10 +22,10 @@ services:
       - $PWD/volumes/elasticsearch-data:/usr/share/elasticsearch/logs
 
   api-spec-app:
-    image: quay.io/giantswarm/api-spec:latest
+    image: gsoci.azurecr.io/giantswarm/api-spec:latest
 
   proxy:
-    image: quay.io/giantswarm/docs-proxy:latest
+    image: gsoci.azurecr.io/giantswarm/docs-proxy:latest
     depends_on:
       - sitesearch-app
       - docs-app
@@ -36,7 +36,7 @@ services:
       - "8000:8000"
 
   internal-search-proxy-app:
-    image: quay.io/giantswarm/oauth2_proxy:v5.1.0
+    image: gsoci.azurecr.io/giantswarm/oauth2_proxy:v5.1.0
     command: >
       --provider=github
       --github-org=giantswarm
@@ -54,7 +54,7 @@ services:
       - "4180:4180"
 
   indexer-docs:
-    image: quay.io/giantswarm/docs-indexer:latest
+    image: gsoci.azurecr.io/giantswarm/docs-indexer:latest
     command: hugo
     restart: "no"
     depends_on:
@@ -72,7 +72,7 @@ services:
       API_SPEC_FILES: yaml/spec.yaml,yaml/definitions.yaml,yaml/parameters.yaml,yaml/responses.yaml
 
   indexer-intranet:
-    image: quay.io/giantswarm/docs-indexer:latest
+    image: gsoci.azurecr.io/giantswarm/docs-indexer:latest
     command: hugo
     restart: "no"
     depends_on:
@@ -88,7 +88,7 @@ services:
       BASE_URL: https://intranet.giantswarm.io
 
   indexer-handbook:
-    image: quay.io/giantswarm/docs-indexer:latest
+    image: gsoci.azurecr.io/giantswarm/docs-indexer:latest
     command: hugo
     restart: "no"
     depends_on:
@@ -103,7 +103,7 @@ services:
       BASE_URL: https://handbook.giantswarm.io
 
   indexer-blog:
-    image: quay.io/giantswarm/docs-indexer:latest
+    image: gsoci.azurecr.io/giantswarm/docs-indexer:latest
     command: blog
     restart: "no"
     depends_on:

@@ -1,5 +1,5 @@
 ---
-linkTitle: What is GitOps
+linkTitle: What is it?
 title: What is GitOps
 description: A brief explanation of the GitOps principles and the main features they provide.
 weight: 10
@@ -14,8 +14,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 last_review_date: 2022-12-20
 ---
-
-## What is GitOps
 
 The GitOps Working Group [defines GitOps as a set of principles](https://github.com/open-gitops/documents/blob/release-v1.0.0/PRINCIPLES.md):
 > GitOps is a set of principles for operating and managing software systems. These principles are derived from modern software operations, but are also rooted in pre-existing and widely adopted best practices.

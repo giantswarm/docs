@@ -235,4 +235,4 @@ You can manually add the CA file and key pair via the _Tools / Options / Advance
 
 ## Related
 
-- [Accessing pods and services from the outside]({{< relref "/getting-started/exposing-workloads" >}})
+- [Accessing pods and services from the outside]({{< relref "/getting-started/connectivity/exposing-workloads" >}})

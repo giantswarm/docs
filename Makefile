@@ -1,6 +1,6 @@
 PROJECT=docs
 COMPANY=giantswarm
-REGISTRY=quay.io
+REGISTRY=gsoci.azurecr.io
 SHELL=bash
 MARKDOWNLINT_IMAGE=ghcr.io/igorshubovych/markdownlint-cli:v0.35.0@sha256:22cf4699a448a7bbc311a940e0600019423d7671cbedae9c35cd32b51f560350
 APPLICATION=docs-app
@@ -15,7 +15,7 @@ export-csv:
 	docker run --rm \
 	  --volume=${PWD}:/workdir \
 	  -w /workdir \
-	  quay.io/giantswarm/docs-scriptrunner:latest \
+	  $(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
 	  /workdir/scripts/export-csv/script.py
 
 # Update content from external repositories that gets copied in here.
@@ -32,24 +32,20 @@ changes:
 	  --volume=${PWD}/src/data:/data:rw \
 	  -w /workdir \
 	  --env GITHUB_TOKEN \
-	  quay.io/giantswarm/docs-scriptrunner:latest \
+	  $(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
 	  /workdir/script.py /workdir/config.yaml /output /data
 
 changes-test:
 	docker run --rm \
 	  --volume=${PWD}/scripts/aggregate-changelogs:/workdir:ro \
 	  -w /workdir \
-	  quay.io/giantswarm/docs-scriptrunner:latest \
+	  $(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
 	  /workdir/test_script.py foo bar baz
 
 # Generate the reference documentation for the custom resource
 # definitions (CRD) used in the Management API.
 update-crd-reference:
 	scripts/update-crd-reference/main.sh
-
-# Ensure that the CLI version mention in docs is actually the latest
-update-latest-versions:
-	scripts/update-latest-versions/main.sh
 
 lint:
 	@docker pull $(MARKDOWNLINT_IMAGE) > /dev/null
@@ -69,7 +65,7 @@ validate-front-matter:
 	docker run --rm \
 	  --volume=${PWD}:/workdir:ro \
 	  -w /workdir \
-	  quay.io/giantswarm/docs-scriptrunner:latest \
+	  $(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
 	  /workdir/scripts/validate-front-matter/script.py
 
 # Print a report of pages with a last_review_date that's
@@ -78,10 +74,10 @@ validate-last-reviewed:
 	docker run --rm \
 	  --volume=${PWD}:/workdir:ro \
 	  -w /workdir \
-	  quay.io/giantswarm/docs-scriptrunner:latest \
+	  $(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
 	  /workdir/scripts/validate-front-matter/script.py --validation last-reviewed
 
-docker-build: update-latest-versions
+docker-build:
 	docker build -t $(REGISTRY)/$(COMPANY)/$(PROJECT):latest .
 
 docker-run:
