@@ -12,7 +12,7 @@ aliases:
   - /app-platform/installation-configuration
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2022-11-18
+last_review_date: 2024-01-18
 user_questions:
   - How can I configure custom timeouts for installations and upgrades?
 ---
@@ -52,8 +52,8 @@ Supported by:
 
 | Operator         | Version  |
 | ---------------- | -------- |
-| `app-operator`   | `v4.4.0` |
-| `chart-operator` | `v2.8.0` |
+| `app-operator`   | `>= v4.4.0` |
+| `chart-operator` | `>= v2.8.0` |
 
 ### Install timeout
 
@@ -74,8 +74,8 @@ Supported by:
 
 | Operator         | Version   |
 | ---------------- | --------- |
-| `app-operator`   | `v6.4.0`  |
-| `chart-operator` | `v2.30.0` |
+| `app-operator`   | `>= v6.4.0`  |
+| `chart-operator` | `>= v2.30.0` |
 
 ## Upgrade
 
@@ -100,8 +100,8 @@ Supported by:
 
 | Operator         | Version   |
 | ---------------- | --------- |
-| `app-operator`   | `v6.4.0`  |
-| `chart-operator` | `v2.30.0` |
+| `app-operator`   | `>= v6.4.0`  |
+| `chart-operator` | `>= v2.30.0` |
 
 ## Rollback
 
@@ -126,8 +126,8 @@ Supported by:
 
 | Operator         | Version   |
 | ---------------- | --------- |
-| `app-operator`   | `v6.4.0`  |
-| `chart-operator` | `v2.30.0` |
+| `app-operator`   | `>= v6.4.0`  |
+| `chart-operator` | `>= v2.30.0` |
 
 ## Uninstall
 
@@ -152,5 +152,5 @@ Supported by:
 
 | Operator         | Version   |
 | ---------------- | --------- |
-| `app-operator`   | `v6.4.0`  |
-| `chart-operator` | `v2.30.0` |
+| `app-operator`   | `>= v6.4.0`  |
+| `chart-operator` | `>= v2.30.0` |
