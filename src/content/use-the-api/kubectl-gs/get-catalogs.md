@@ -9,7 +9,7 @@ menu:
 aliases:
   - /reference/kubectl-gs/get-catalogs/
   - /ui-api/kubectl-gs/get-catalogs/
-last_review_date: 2021-06-30
+last_review_date: 2024-01-18
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -95,7 +95,7 @@ However by default we hide internal catalogs in the `giantswarm` namespace.
 
 #### YAML output {#yaml}
 
-To inspect a catalogs's main custom resource in YAML notation, add the `--output yaml` flag (or `-o yaml` in short) to the command.
+To inspect a catalogs main custom resource in YAML notation, add the `--output yaml` flag (or `-o yaml` in short) to the command.
 
 The following example command would print the main resource for catalog `giantswarm`. It would return the [Catalog]({{< relref "/use-the-api/management-api/crd/catalogs.application.giantswarm.io.md" >}}) resource.
 
