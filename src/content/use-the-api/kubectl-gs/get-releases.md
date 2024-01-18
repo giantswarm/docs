@@ -17,6 +17,9 @@ aliases:
   - /ui-api/kubectl-gs/get-releases/
 ---
 
+**Note** This command relates to our vintage product and is not relevant for
+Clusters based on Cluster API.
+
 Like with all `get` commands in `kubectl`, this command can be used to get details on one item, a release in this case, or list several of them.
 
 ## Usage

@@ -49,7 +49,6 @@ owner:
 Deprecated commands:
 
 - [`get appcatalogs`][100] -- replaced by [`get catalogs`][3]
-- [`template appcatalog`][101] -- replaced by [`template catalog`][7]
 
 ## Flags {#flags}
 
@@ -118,7 +117,6 @@ As a Giant Swarm customer, feel free to use your Slack channel to give feedback,
 [10]: {{< relref "/use-the-api/kubectl-gs/template-organization" >}}
 [11]: {{< relref "/use-the-api/kubectl-gs/get-releases" >}}
 [100]: {{< relref "/use-the-api/kubectl-gs/get-appcatalogs" >}}
-[101]: {{< relref "/use-the-api/kubectl-gs/template-appcatalog" >}}
 [12]: {{< relref "/use-the-api/kubectl-gs/update-app" >}}
 [13]: {{< relref "/use-the-api/kubectl-gs/update-cluster" >}}
 [14]: {{< relref "/use-the-api/kubectl-gs/gitops" >}}
