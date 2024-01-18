@@ -9,7 +9,7 @@ menu:
 aliases:
   - /reference/kubectl-gs/template-app/
   - /ui-api/kubectl-gs/template-app/
-last_review_date: 2022-09-14
+last_review_date: 2024-01-18
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
