@@ -46,7 +46,7 @@ NAME                 VERSION   LAST DEPLOYED   STATUS     NOTES
 cert-exporter        1.6.1     11m             deployed   Deployment failed for `1.7.0` with `not-installed`: `pulling chart <TARBALL-URL> failed`
 ```
 
-See blow for details on the output columns.
+See below for details on the output columns.
 
 ### Get a specific app
 
