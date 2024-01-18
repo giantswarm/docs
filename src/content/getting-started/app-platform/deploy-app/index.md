@@ -7,7 +7,7 @@ menu:
   main:
     parent: getting-started-app-platform
     identifier: getting-started-app-platform-deploy-app
-last_review_date: 2023-12-12
+last_review_date: 2024-01-18
 aliases:
   - /developer-platform/app-platform/getting-started
   - /app-platform/getting-started
@@ -197,7 +197,7 @@ shows that this version of the app is deploying `v0.45.0` of the upstream
 The app is now deployed but what if we want to configure it with our own
 settings? App platform is built on top of [Helm](https://helm.sh/docs/) and
 your app is deployed as a Helm chart with values YAML. You can add custom
-configuation as YAML and it will be merged with the rest of the configuation
+configuration as YAML and it will be merged with the rest of the configuration
 we provide.
 
 For this example we will do something simple and increase the log level from

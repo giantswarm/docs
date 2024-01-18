@@ -6,7 +6,7 @@ weight: 15
 menu:
   main:
     parent: uiapi-kubectlgs
-last_review_date: 2022-12-07
+last_review_date: 2024-01-18
 aliases:
   - /reference/kubectl-gs/faq
   - /ui-api/kubectl-gs/faq
@@ -16,7 +16,7 @@ user_questions:
   - How can I create a cluster or node pool with kubectl-gs?
   - How can I install an app in a workload cluster with kubectl-gs?
   - Can kubectl-gs work without kubectl?
-  - Do you provide a Docker image for kubectl-gs?
+  - Do you provide a container image for kubectl-gs?
   - What commands replace my old gsctl command?
   - How can I find out my Management API endpoint for 'kubectl gs login'?
   - "What does 'Error: Token renewal failed' mean?"
@@ -27,7 +27,7 @@ user_questions:
 
 ### How can I create a cluster or node pool
 
-`kubectl-gs` provides the `template` family of commands, to create manifests for clusters, node pools and more. The resulting manifests are meant to be applied by `kubectl apply` to actually resources. Check the [template cluster]({{< relref "/use-the-api/kubectl-gs/template-cluster.md" >}}) and [template nodepool]({{< relref "/use-the-api/kubectl-gs/template-cluster.md" >}}) reference pages. We also provide more verbose tutorials for [AWS]({{< relref "/use-the-api/management-api/creating-workload-clusters/aws" >}}) and [Azure]({{< relref "/use-the-api/management-api/creating-workload-clusters/azure" >}}).
+`kubectl-gs` provides the `template` family of commands, to create manifests for clusters, node pools and more. The resulting manifests are meant to be applied by `kubectl apply` to actually create resources. Check the [template cluster]({{< relref "/use-the-api/kubectl-gs/template-cluster.md" >}}) and [template nodepool]({{< relref "/use-the-api/kubectl-gs/template-cluster.md" >}}) reference pages. We also provide more verbose tutorials for [AWS]({{< relref "/use-the-api/management-api/creating-workload-clusters/aws" >}}) and [Azure]({{< relref "/use-the-api/management-api/creating-workload-clusters/azure" >}}).
 
 ### How can I install an app in a workload cluster
 
@@ -37,7 +37,7 @@ Check the [kubectl gs template app]({{< relref "/use-the-api/kubectl-gs/template
 
 Yes, you can execute the binary as `kubectl-gs`, too. However, most commands expect a kubectl configuration to be present.
 
-### Do you provide a Docker image for kubectl-gs
+### Do you provide a container image for kubectl-gs
 
 Yes, please check the [installation]({{< relref "/use-the-api/kubectl-gs/installation.md#docker" >}}) page for details.
 
