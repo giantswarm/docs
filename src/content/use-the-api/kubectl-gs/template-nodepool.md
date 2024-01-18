@@ -8,7 +8,7 @@ menu:
     parent: uiapi-kubectlgs
 user_questions:
   - How can I create a node pool manifest for the Management API?
-last_review_date: 2023-11-07
+last_review_date: 2024-01-18
 aliases:
   - /reference/kubectl-gs/template-nodepool/
   - /ui-api/kubectl-gs/template-nodepool/
@@ -16,7 +16,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
 
-The `template nodepool` command allows to create [node pools]({{< relref "/advanced/cluster-management/node-pools-vintage" >}}), which are groups of worker nodes in a cluster sharing common configuration. The command creates a manifest for the custom resources that define a node pool. These are then meant to be applied to the management cluster, e. g. via `kubectl apply`.
+The `template nodepool` command allows to create [node pools]({{< relref "/advanced/cluster-management/node-pools-vintage" >}}), which are groups of worker nodes in a cluster sharing common configuration. The command creates a manifest for the custom resources that define a node pool. These are then meant to be applied to the management cluster, e.g. via `kubectl apply`.
 
 ## Provider support
 
@@ -58,7 +58,7 @@ kubectl gs template nodepool
 Here are the supported flags:
 
 - `--provider` - The infrastructure provider, either `aws` or `azure`.
-- `--availability-zones` - list of availability zones to use, instead of setting a number. Use comma to separate values. (e. g. `eu-central-1a,eu-central-1b`)
+- `--availability-zones` - list of availability zones to use, instead of setting a number. Use comma to separate values. (e.g. `eu-central-1a,eu-central-1b`)
 - `--cluster-name` - Unique identifier of the cluster the node pool should be added to.
 - `--description` - User-friendly description of the purpose of the node pool. (default *Unnamed node pool*)
 - `--nodes-max` - maximum number of worker nodes for the node pool. (default 10)
@@ -69,7 +69,7 @@ Here are the supported flags:
 
 ### AWS specific
 
-- `--aws-instance-type` - EC2 instance type to use for workers, e. g. *m5.2xlarge*. (default *m5.xlarge*)
+- `--aws-instance-type` - EC2 instance type to use for workers, e.g. *m5.2xlarge*. (default *m5.xlarge*)
 - `--use-alike-instance-types` - Enables the use of instance types similar to the one specified via `--aws-instance-type` (default: false). This can increase the likelihood of getting the required instances, especially when requesting spot instances. See [our reference]({{< relref "/advanced/cluster-management/spot-instances/aws/similar-instance-types" >}}) for details.
 - `--on-demand-percentage-above-base-capacity` - To use only on-demand instances, set this to 100. For any other value, the remainder to 100 will be filled with spot instances. For example, 50 will create a node pool that is half spot and half on-demand instances. 0 (zero) will use only spot instances. See [our AWS spot instances docs]({{< relref "/advanced/cluster-management/spot-instances/aws" >}}) for more information.
 - `--on-demand-base-capacity` - Can be used to set a fixed number of on-demand instances, regardless of the percentage (see above) of spot vs. on-demand to be used otherwise.
