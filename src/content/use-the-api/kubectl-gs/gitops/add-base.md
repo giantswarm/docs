@@ -29,14 +29,15 @@ Your GitOps repository should provide the following structural layers:
 The structure created by this command is presented below.
 
 ```nohighlight
-base
+bases
 └── clusters
-    ├── ORG_NAME.yaml
-    └── [PROVIDER]
-        ├── cluster.yaml
-        ├── cluster_config.yaml
-        ├── ...
-        └── kustomization.yaml
+    └── capa
+        └── template
+            ├── cluster.yaml
+            ├── cluster_config.yaml
+            ├── default_apps.yaml
+            ├── default_apps_config.yaml
+            └── kustomization.yaml
 ```
 
 ## Usage
