@@ -46,7 +46,7 @@ NAME                 VERSION   LAST DEPLOYED   STATUS     NOTES
 cert-exporter        1.6.1     11m             deployed   Deployment failed for `1.7.0` with `not-installed`: `pulling chart <TARBALL-URL> failed`
 ```
 
-The `VERSION`, `LAST DEPLOYED` and `STATUS` columns always contain the actual, current status of the deployment. The `NOTES` column contains information on the status of the last attempted deployment. Taking the above example output version `1.6.1` of `cert-exporter` was successfully deployed. At some point App was updated to use version `1.7.0` which is the current desired state. However, the deployment for version `1.7.0` failed to deploy because the chart tarball failed to pull. Therefore the actual status of our App is that version `1.6.1` is still deployed and the status of the last attempted deployment is visible in the `NOTES` column. If all is well, the `NOTES` column is empty for the given App.
+See blow for details on the output columns.
 
 ### Get a specific app
 
@@ -64,11 +64,11 @@ The standard tabular output format features these columns:
 
 - `NAME`: Name of the app.
 - `VERSION`: Version of the app.
-- `LAST DEPLOYED`: When the app was last deployed.
+- `LAST DEPLOYED`: When the current version of the app was deployed.
 - `STATUS`: Status of the app.
 - `NOTES`: Notes on the last attempted deployment in case there was an error, empty otherwise.
 
-Note: The `NOTES` column is available since `v2.11.0`.
+The `VERSION`, `LAST DEPLOYED`, and `STATUS` columns always contain the actual, current status of the deployment. The `NOTES` column contains information on the status of the last attempted deployment. Taking the above example output version `1.6.1` of `cert-exporter` was successfully deployed. At some point App was updated to use version `1.7.0` which is the current desired state. However, the deployment for version `1.7.0` failed to deploy because the chart tarball failed to pull. Therefore the actual status of our App is that version `1.6.1` is still deployed and the status of the last attempted deployment is visible in the `NOTES` column. If all is well, the `NOTES` column is empty for the given App.
 
 ## Flags {#flags}
 
