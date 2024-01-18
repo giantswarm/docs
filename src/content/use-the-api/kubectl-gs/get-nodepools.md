@@ -19,6 +19,8 @@ last_review_date: 2022-05-13
 
 Like with all `get` commands in `kubectl`, this command can be used to get details on one item, a node pool in this case, or list several of them.
 
+**Note:** Currently this command can only be used with vintage installations. We [intend](https://github.com/giantswarm/roadmap/issues/1519) to make it available for CAPI installations, to.
+
 ## Usage
 
 ### Get a list of node pools {#list}
