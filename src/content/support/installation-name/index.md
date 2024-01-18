@@ -11,28 +11,37 @@ user_questions:
   - How do I determine the name for my Giant Swarm installation?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2022-09-08
+last_review_date: 2024-01-18
 aliases:
   - /getting-started/installation-name/
 ---
 
-A Giant Swarm installation includes a management cluster, bastion hosts, the workload clusters (depending on your viewpoint) and a few more components specific to the cloud provider used.
+A Giant Swarm installation includes a management cluster, bastion hosts, the workload
+clusters (depending on your viewpoint) and a few more components specific to the cloud provider used.
 
 ## Why an installation name
 
-Every Giant Swarm installation has a unique name. This name is part of the DNS zone used for all endpoints of this installation.
+Every Giant Swarm installation has an unique name. This name is part of the DNS
+zone used for all endpoints of this installation.
 
-When we set up a new installation for you, we want you to pick a name for it. Think of this name as your handy alias for everything you do with Giant Swarm in a specific cloud provider region, e.g. _Google Cloud Finland (europe-north1)_.
+When we set up a new installation for you, we want you to pick a name for it.
+Think of this name as your handy alias for everything you do with Giant Swarm
+in a specific cloud provider region, e.g. _Google Cloud Finland (europe-north1)_.
 
-Once a name is decided on, you will use it often in your communication with Giant Swarm. Of course, we encourage you to also use it in internal communication.
+Once a name is decided on, you will use it often in your communication with Giant Swarm.
+Of course, we encourage you to also use it in internal communication.
 
 ## Criteria for good installation names
 
-Besides being usable in DNS, there are many criteria which distinguish a good installation name. It should be easy to pronounce in an English language context, easy to type, and ideally easy to memorize. On the other hand, it should not reveal information about you as a customer.
+Besides being usable in DNS, there are many criteria which distinguish a good installation name.
+It should be easy to pronounce in an English language context, easy to type, and ideally easy to memorize.
+On the other hand, it should not reveal information about you as a customer.
 
-Installation names cannot be changed. So the best names are long-lasting, even in the case of context changes. For example, changing the purpose of the installation, or even a company name change.
+Installation names cannot be changed. So the best names are long-lasting, even in the case of context changes.
+For example, changing the purpose of the installation, or even a company name change
 
-We provide a GitHub repository with [installation name candidates](https://github.com/giantswarm/installation-names) available for you to pick from. The names offered there should fulfill all of our criteria for a name.
+We provide a GitHub repository with [installation name candidates](https://github.com/giantswarm/installation-names) available for you to pick from.
+The names offered there should fulfill all of our criteria for a name.
 
 ## How to select a name
 
