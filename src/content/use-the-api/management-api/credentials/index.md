@@ -8,7 +8,7 @@ menu:
     parent: uiapi-managementapi
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bigmac
-last_review_date: 2023-12-11
+last_review_date: 2024-01-18
 aliases:
   - /ui-api/management-api/credentials/
 user_questions:
@@ -16,6 +16,8 @@ user_questions:
   - How can I provide Azure identity details to use with my workload clusters?
   - How can I set cloud provider credentials via the Management API?
 ---
+
+### Notice: This document describes how to configure cloud provider credentials for _vintage_ Giant Swarm Clusters. For _CAPI_ Clusters, upstream documentation is available for [CAPA](https://cluster-api-aws.sigs.k8s.io/topics/multitenancy) and [CAPZ](https://capz.sigs.k8s.io/topics/multitenancy).
 
 In order to manage workload clusters in your cloud provider accounts/subscriptions, the Giant Swarm controllers require some configuration so they are able to act on your behalf.
 
