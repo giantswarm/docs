@@ -12,7 +12,7 @@ aliases:
   - /app-platform/namespace-configuration
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2022-11-18
+last_review_date: 2024-01-18
 user_questions:
   - How can I label an app CR's target namespace?
   - How can I annotate an app CR's target namespace?
@@ -29,7 +29,7 @@ This is simpler and easier than using other solutions such as triggering a Kuber
 You can use `.spec.namespaceConfig` to configure the namespace metadata. You can set `.spec.namespaceConfig.annotations` and / or
 `spec.namespaceConfig.labels` and provide the values as a key/value map. App platform then ensures the namespace exists and has this metadata.
 
-For example, if you want to add an annotation `linked.io/inject: enabled` to the target namespace `loki1` add this to the app CR.
+For example, if you want to add an annotation `linked.io/inject: enabled` to the target namespace `loki` add this to the app CR.
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
