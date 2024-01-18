@@ -29,7 +29,7 @@ Simply execute
 kubectl gs get clusters
 ```
 
-to list some information on all clusters available to you in the current installation.
+to list some information on all clusters available to you in the current installation. Use `--all-namespace` (if you have the permission to do so) or specify a namespace using the `--namespace` flag.
 
 Here is some example output:
 
