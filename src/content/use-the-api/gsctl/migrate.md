@@ -11,7 +11,7 @@ user_questions:
 - How can I replace gsctl with kubectl-gs?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2021-11-23
+last_review_date: 2024-01-18
 aliases:
   - /reference/gsctl/migrate/
   - /ui-api/gsctl/migrate/
