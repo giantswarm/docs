@@ -14,7 +14,7 @@ owner:
 user_questions:
   - How can I list apps using kubectl?
   - How can I inspect apps using kubectl?
-last_review_date: 2021-01-01
+last_review_date: 2024-01-18
 ---
 
 Like with all `get` commands in `kubectl`, this command can be used to get details on one item, an [App]({{< relref "/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}})
