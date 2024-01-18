@@ -31,7 +31,15 @@ kubectl gs get clusters
 
 to list some information on all clusters available to you in the current installation. Use `--all-namespace` (if you have the permission to do so) or specify a namespace using the `--namespace` flag.
 
-Here is some example output:
+For a Cluster API management cluster, the result looks like this:
+
+```nohighlight
+NAME         AGE   CONDITION   CLUSTER VERSION   PREINSTALLED APPS VERSION   SERVICE PRIORITY   ORGANIZATION            DESCRIPTION
+operations   64d   READY                                                     highest            giantswarm-production   Operations cluster
+gazelle      89d   READY                                                     highest            giantswarm              Management cluster
+```
+
+Here is some example output from a vintage management cluster:
 
 ```nohighlight
 NAME    AGE  CONDITION   RELEASE   SERVICE PRIORITY   ORGANIZATION   DESCRIPTION
