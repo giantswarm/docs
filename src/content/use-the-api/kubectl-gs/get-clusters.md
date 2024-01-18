@@ -64,14 +64,17 @@ The standard tabular output format features these columns:
 - `AGE`: How long ago was the cluster created.
 - `CONDITION`: Latest condition reported for the cluster. Either of:
     - `CREATING`: The cluster is currently being created.
-    - `CREATED`: Cluster creation is finished.
+    - `CREATED`: Cluster creation is finished (on vintage only).
     - `UPDATING`: The cluster is currently being updated, e. g. during an upgrade.
     - `UPDATED`: The cluster update is finished.
     - `DELETING`: The cluster is being deleted.
-- `RELEASE`: Workload cluster release version of the cluster.
+    - `READY`: The cluster is running (on Cluster API only).
+- `RELEASE`: Workload cluster release version of the cluster. Only on vintage management clusters.
 - `SERVICE PRIORITY`: [Service priority]({{< relref "/advanced/cluster-management/labelling-workload-clusters#service-priority" >}}) of the cluster.
 - `ORGANIZATION`: Organization owning the cluster.
 - `DESCRIPTION`: User-friendly description for the cluster.
+
+The columns `CLUSTER VERSION` and `PREINSTALLED APPS VERSION` shown on Cluster API are currently not used.
 
 ## Flags {#flags}
 
