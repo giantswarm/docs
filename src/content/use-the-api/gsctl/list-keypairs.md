@@ -21,7 +21,7 @@ last_review_date: 2023-03-06
 The `gsctl list keypairs` command lists information on key pairs for a cluster. This is useful to
 understand which key pairs have been issued when and, if details are given,
 for what purpose. It is also helpful for setting up
-[role based access control]({{< relref "/getting-started/rbac-and-psp" >}}) (RBAC) rules
+[role based access control]({{< relref "/getting-started/security" >}}) (RBAC) rules
 in the cluster.
 
 Note that key pair information can only by shown as long as the key pair has
@@ -77,13 +77,13 @@ Example output:
 ```nohighlight
 CREATED                 EXPIRES                 ID          DESCRIPTION                                                         CN                        O
 2018 Apr 09, 14:05 UTC  2018 May 09, 14:05 UTC  4f16e3ac4…  Added by user abc123@giantswarm.io using 'gsctl create kubeconfig'  abc123@giantswarm.io.us…  system:masters
-2018 Apr 10, 08:24 UTC  2018 May 10, 08:24 UTC  4ce4d5469…  Added by user def456@giantswarm.io using 'gsctl create kubeconfig'  def456@giantswarm.io.us…  
+2018 Apr 10, 08:24 UTC  2018 May 10, 08:24 UTC  4ce4d5469…  Added by user def456@giantswarm.io using 'gsctl create kubeconfig'  def456@giantswarm.io.us…
 ```
 
 ## Related
 
 - [`gsctl create keypair`]({{< relref "/use-the-api/gsctl/create-keypair" >}})
 - [`gsctl create kubeconfig`]({{< relref "/use-the-api/gsctl/create-kubeconfig" >}})
-- [Securing your cluster with RBAC and PSP]({{< relref "/getting-started/rbac-and-psp" >}})
+- [Securing your cluster with RBAC and PSP]({{< relref "/getting-started/security" >}})
 - [API: Get key pairs](/api/#operation/getKeyPairs)
 - [X.509 on Wikipedia](https://en.wikipedia.org/wiki/X.509)

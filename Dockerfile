@@ -1,6 +1,4 @@
-FROM quay.io/giantswarm/hugo:v0.104.3 AS build
-
-RUN apk --update --no-cache add findutils gzip
+FROM gsoci.azurecr.io/giantswarm/hugo:v0.121.0-full AS build
 
 WORKDIR /docs
 
@@ -19,14 +17,21 @@ RUN hugo \
       --destination /public \
       --cleanDestinationDir
 
-# Compress static files above 512 bytes using gzip
+# Compress files using gzip
+# (creates a copy and leaves the uncompressed version in place)
 RUN find /public \
   -type f -regextype posix-extended \
-  -size +512c \
   -iregex '.*\.(css|csv|html?|js|svg|txt|xml|json|webmanifest|ttf)' \
   -exec gzip -9 -k '{}' \;
 
-FROM quay.io/giantswarm/nginx:1.23-alpine
+# Remove uncompressed HTML files
+# to reduce storage requirements and image size.
+RUN find /public \
+  -type f \
+  -name 'index.html' \
+  -delete
+
+FROM gsoci.azurecr.io/giantswarm/nginx:1.23-alpine
 
 COPY nginx.conf /etc/nginx/nginx.conf
 

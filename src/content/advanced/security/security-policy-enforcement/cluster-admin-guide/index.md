@@ -36,8 +36,8 @@ To migrate a cluster from PSP to PSS, cluster admins need to:
 4. Deploy the Giant Swarm `PolicyException` resources to the cluster.
     - An operator in the cluster will automatically create Kyverno `PolicyException` resources from the Giant Swarm `PolicyExceptions`.
 5. Repeat steps 2-4 until all workloads are compliant.
-6. Upgrade the cluster to Giant Swarm v19.2.x. This upgrade will enable enforcement of PSS policies.
-7. While the cluster is in version 19.2.x, remove all PSPs not managed by Giant Swarm from the cluster. Any Helm release which includes a PSP will fail after the next upgrade.
+6. Upgrade the cluster to Giant Swarm v19.3.x. This upgrade will enable enforcement of PSS policies.
+7. While the cluster is in version 19.3.x, remove all PSPs not managed by Giant Swarm from the cluster. Any Helm release which includes a PSP will fail after the next upgrade.
 8. Upgrade the cluster to Giant Swarm v20.0.0. This upgrade will fully remove the PSP API.
 
 ### Migration path
@@ -45,7 +45,7 @@ To migrate a cluster from PSP to PSS, cluster admins need to:
 The migration from PSP to PSS will span three releases:
 
 - v19.1.x - during this phase, PSS policies are deployed in audit mode. Teams must make all workloads compliant or deploy exceptions for failing workloads.
-- v19.2.x - during this phase, PSS policies are enforced. Non-compliant resources will be rejected. Teams must remove all PSPs from the cluster.
+- v19.3.x - during this phase, PSS policies are enforced. Non-compliant resources will be rejected. Teams must remove all PSPs from the cluster.
 - v20.0.x - this is the target release of Kubernetes v1.25, which fully removes the PSP API. Migration is considered complete.
 
 ### Administrative decisions

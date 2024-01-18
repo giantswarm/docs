@@ -37,7 +37,7 @@ We use the management cluster name `wombat` as example in this tutorial.
 
 The commands in this section should be run in the management cluster's kubectl context.
 
-Since you have already logged in the MC, you can choose the context like this:
+Since you have already logged in to the MC, you can choose the context like this:
 
 ```sh
 kubectl config use-context gs-MC_NAME
@@ -46,11 +46,27 @@ kubectl config use-context gs-MC_NAME
 kubectl config use-context gs-wombat
 ```
 
-## Step 2: Template and create the workload cluster
+## Step 2: Choose a workload cluster name
 
-You will now create resources with `kubectl gs`. In particular, this tutorial uses the `kubectl gs template` command to create valid YAML for each resource. Alternatively, the Web UI provides a visual way to create clusters.
+First, please choose a name for the new workload cluster. We recommend you choose a naming scheme suiting your organization, and then stick to it.
 
-First, template a cluster ([command reference]({{< relref "/use-the-api/kubectl-gs/template-cluster" >}})):
+- The maximum cluster name length is 20 characters.
+- Letters, digits and dashes are allowed. Dashes are not possible at beginning or end.
+- For example, `dev-eu-central-1-a`, `dev-a`, `prod-b`, `ecommerce-dev-eu`, `prod-us` or `staging01` are all valid names.
+- The cluster name will be part of domain names such as `api.<cluster name>.<base domain>` (for instance: `api.mycluster.eu-west-1.aws.gigantic.io` or `ingress.mycluster.mycompany.com`). The _base domain_ is defined by the management cluster. Since DNS records can normally be resolved publically by anyone, you should avoid encoding sensitive information into the cluster name (`mycluster` in our examples).
+- Clusters can't be renamed after creation.
+- Keep cluster names unique across your whole company. This is why:
+
+    - Within one management cluster, all workload cluster names must be unique, even across namespaces. This is so that tooling and operators can look up workload clusters by their unique name without the chance of confusion.
+    - Multiple management clusters can share the same base domain (see examples above), so workload cluster names should be unique across your company since their domains would otherwise clash.
+    - Using identical workload cluster names creates problems and risk. Imagine asking for support, or trying to resolve an incident, and Giant Swarm's or your team members confuse two clusters of the same name. Hence, cluster names should be unique, easily spellable and pronounceable by humans – for example during incident calls and in chat – and follow a somewhat consistent naming scheme.
+- We strongly recommend specifying a cluster name explicitly using the `--name` parameter, as in the below instructions. If you really want a randomly-generated name, you can instead use `--generate-name`.
+
+## Step 3: Template and create the workload cluster
+
+You will now create resources with `kubectl gs`. In particular, this tutorial uses the `kubectl gs template` command to create valid YAML for each resource. The templating commands do not immediately create the cluster – the resulting YAML manifest must be applied to the management cluster API or committed to the GitOps repository in order to create the cluster. Alternatively, the Web UI provides a visual way to create clusters.
+
+You can template a cluster ([command reference]({{< relref "/use-the-api/kubectl-gs/template-cluster" >}})) as follows:
 
 {{< tabs >}}
 {{< tab id="cluster-vintage-azure" for-impl="vintage_azure" >}}
@@ -66,6 +82,8 @@ kubectl gs template cluster \
   > cluster.yaml
 ```
 
+For backward compatibility, vintage cluster templating does not require the `--name` parameter. If no name is specified, a random one like `zekfaewnxh` will be generated. The `--name` parameter becomes required with CAPI clusters, but you can also use `--generate-name` if a random name is really desired.
+
 {{< /tab >}}
 {{< tab id="cluster-vintage-aws" for-impl="vintage_aws">}}
 
@@ -80,6 +98,8 @@ kubectl gs template cluster \
   > cluster.yaml
 ```
 
+For backward compatibility, vintage cluster templating does not require the `--name` parameter. If no name is specified, a random one like `zekfaewnxh` will be generated. The `--name` parameter becomes required with CAPI clusters, but you can also use `--generate-name` if a random name is really desired.
+
 {{< /tab >}}
 {{< tab id="cluster-capa-ec2" for-impl="capa_ec2">}}
 
@@ -93,6 +113,20 @@ kubectl gs template cluster \
   > cluster.yaml
 ```
 
+You can select the AWS account by specifying the `aws-cluster-role-identity-name` argument when templating the cluster.
+The name passed to `aws-cluster-role-identity-name` must match the name of [an existing `AWSClusterRoleIdentity`](https://docs.giantswarm.io/getting-started/cloud-provider-accounts/cluster-api/aws/#configure-the-awsclusterroleidentity).
+
+```sh
+kubectl gs template cluster \
+  --provider capa \
+  --name mycluster \
+  --organization testing \
+  --aws-cluster-role-identity-name=dev-account-role-identity
+  > cluster.yaml
+```
+
+If no `aws-cluster-role-identity-name` is passed, then we assume a `AWSClusterRoleIdentity` called `default` exists and will be used.
+
 {{< /tab >}}
 {{< tab id="cluster-capa-eks" for-impl="capa_eks">}}
 
@@ -105,6 +139,20 @@ kubectl gs template cluster \
   --organization testing \
   > cluster.yaml
 ```
+
+You can select the AWS account by specifying the `aws-cluster-role-identity-name` argument when templating the cluster.
+The name passed to `aws-cluster-role-identity-name` must match the name of [an existing `AWSClusterRoleIdentity`](https://docs.giantswarm.io/getting-started/cloud-provider-accounts/cluster-api/aws/#configure-the-awsclusterroleidentity).
+
+```sh
+kubectl gs template cluster \
+  --provider capa \
+  --name mycluster \
+  --organization testing \
+  --aws-cluster-role-identity-name=dev-account-role-identity
+  > cluster.yaml
+```
+
+If no `aws-cluster-role-identity-name` is passed, then we assume a `AWSClusterRoleIdentity` called `default` exists and will be used.
 
 {{< /tab >}}
 {{< tab id="cluster-capz-azure-vms" for-impl="capz_vms">}}
@@ -147,8 +195,6 @@ kubectl gs template cluster \
 
 {{< /tab >}}
 {{< /tabs >}}
-
-If no name is specified for a workload cluster, a random one like `rfjh2` will be generated. We recommend you choose a naming scheme suiting your organization, and then stick to it. Add the `--name` parameter to specify the cluster name.
 
 This will create a `cluster.yaml` file containing all the Custom Resources (CRs) necessary to create the cluster.
 
@@ -194,10 +240,10 @@ kubectl apply -f nodepool.yaml
 
 Deletion works in the same way: run `kubectl delete -f FILENAME.yaml` and the operators in the management cluster will delete the resources in a few minutes. Please do not directly delete the CAPI custom resources (such as `Cluster`, `AWSCluster` or `MachineDeployment`) since this may leave resources behind or even lead to inadvertently recreating the cluster once the `App` is reconciled again. Deletion should be done exactly like the creation, using the original manifests. For the CAPI product family, our example output file `cluster.yaml` contains 2 `App` and 2 `ConfigMap` manifests. If you no longer have the manifests at hand, delete the following:
 
-* `App/<cluster>`
-* `App/<cluster>-default-apps`
-* `ConfigMap/<cluster>-user-values`
-* `ConfigMap/<cluster>-default-apps-user-values`
+- `App/<cluster>`
+- `App/<cluster>-default-apps`
+- `ConfigMap/<cluster>-user-values`
+- `ConfigMap/<cluster>-default-apps-user-values`
 
 If you would like to protect your clusters from accidental deletion, take a look at our [deletion prevention mechanism]({{< relref "/advanced/app-platform/deletion-prevention" >}}).
 
@@ -205,7 +251,7 @@ If you would like to protect your clusters from accidental deletion, take a look
 
 By default, the created Kubernetes cluster API endpoint is public. See [Private clusters]({{< relref "/advanced/cluster-management/private-clusters" >}}) if you want to limit networking to/from the cluster.
 
-## Step 3: Watch the status of workload clusters
+## Step 4: Watch the status of workload clusters
 
 In the Web UI, click on the cluster's name to see its details. The workload cluster's name is shown on the top-left (in the screenshot: `o8r3r`).
 
@@ -251,7 +297,7 @@ Note how our example commands use the fully-qualified CRD name `clusters.cluster
 {{< /tab >}}
 {{< /tabs >}}
 
-## Step 4: Log in to the workload cluster
+## Step 5: Log in to the workload cluster
 
 Using the Web UI, click on the workload cluster and then the _Client certificates_ tab. Copy the command suggested at the _Create a client certificate_ step. As value for `--certificate-group`, you can use `system:masters`. More information about group certificates can be found in [Kubernetes RBAC: Default roles and role bindings](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#default-roles-and-role-bindings).
 
@@ -278,7 +324,7 @@ error: the server doesn't have a resource type "organizations"
 
 The WCs are where the "actual" work happens, i.e. where Giant Swarm-supported managed apps and your business applications are deployed. The easiest way to check whether an application is running is `kubectl get pods -A | grep APPLICATION_NAME`, for instance: `kubectl get pods -A | grep kong`.
 
-## Step 5: Template and deploy managed apps
+## Step 6: Template and deploy managed apps
 
 In addition to workload clusters, you can also template applications. Apps belong to catalogs. While you can define your own catalogs, we already provide two: `giantswarm` (_Giant Swarm Catalog_) contains applications that we know how to manage; `giantswarm-playground` (_Playground_) contains applications that we have integrated but are not managed by us. Other catalogs such as the _Giant Swarm Cluster Catalog_ are used for templating of clusters (which you did above).
 
@@ -332,7 +378,7 @@ kubectl gs template app \
 
 In general, whenever templating and/or installing an application, please read its documentation page on the Web UI to be sure you are configuring everything correctly.
 
-## Step 6: Updates of workload clusters and managed apps
+## Step 7: Updates of workload clusters and managed apps
 
 ### Updating an application
 

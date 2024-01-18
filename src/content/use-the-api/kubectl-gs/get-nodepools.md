@@ -14,10 +14,12 @@ owner:
 user_questions:
   - How can I list node pools in a cluster using kubectl?
   - How can I inspect node pools using kubectl?
-last_review_date: 2022-05-13
+last_review_date: 2024-01-18
 ---
 
 Like with all `get` commands in `kubectl`, this command can be used to get details on one item, a node pool in this case, or list several of them.
+
+**Note:** Currently this command can only be used with vintage installations. We [intend](https://github.com/giantswarm/roadmap/issues/1519) to make it available for CAPI installations, to.
 
 ## Usage
 

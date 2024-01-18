@@ -7,7 +7,7 @@ menu:
   main:
     parent: getting-started-app-platform
     identifier: getting-started-app-platform-deploy-app
-last_review_date: 2022-12-08
+last_review_date: 2023-12-12
 aliases:
   - /developer-platform/app-platform/getting-started
   - /app-platform/getting-started
@@ -19,14 +19,12 @@ user_questions:
   - How can I see which apps are available using the Management API?
 ---
 
-## Overview
-
 The _Giant Swarm App Platform_ is built on top of [Helm](https://helm.sh/) and allows you to manage apps and their configurations represented by App Custom Resources (CRs) for multiple clusters, from a single place: the [Management API]({{< relref "/platform-overview/management-api" >}}).
 
 In this guide, we will install the Ingress NGINX Controller app. We will do this by using kubectl, to create
 an [App]({{< relref "/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) CR using the Kubernetes API of your management cluster.
 
-App CRs can be created this way via your automation or our Web UI (See: [guide]({{< relref "/getting-started/ingress-controller" >}})).
+App CRs can be created this way via your automation or our Web UI (See: [guide]({{< relref "/getting-started/connectivity/ingress-controller" >}})).
 
 In general, you can manage App CRs with any tool that can communicate with the Kubernetes API such as Helm or GitOps tools (like Argo CD or Flux CD).
 
@@ -141,7 +139,9 @@ spec:
 
 The `--name` parameter is the name of the app in the catalog and the name of
 the App CR. The App CR name can be changed via the `--app-name` parameter which
-allows installing multiple instances of an app.
+allows installing multiple instances of an app.  
+Keep in mind that the app name is subject to different length limits, depending on how the app is deployed.
+Using a name under 30 characters is recommended.
 
 ## Defaulting and App Status
 

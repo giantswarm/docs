@@ -39,7 +39,7 @@ The [Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx) has 
 - [Per-service options](#yaml) in each Ingress' YAML definition either directly or via [Annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) ([Complete list of supported Annotations](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/)).
 - [Global options](#configmap) that influence all Ingresses of a cluster via a ConfigMap ([Complete list of ConfigMap options](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/)).
 
-**Note**: Giant Swarm clusters do not come with an Ingress Controller pre-installed. See our [guide on how to install an Ingress Controller from the Giant Swarm Catalog]({{< relref "/getting-started/ingress-controller" >}}).
+**Note**: Giant Swarm clusters do not come with an Ingress Controller pre-installed. See our [guide on how to install an Ingress Controller from the Giant Swarm Catalog]({{< relref "/getting-started/connectivity/ingress-controller" >}}).
 
 ## Per-Service options {#yaml}
 

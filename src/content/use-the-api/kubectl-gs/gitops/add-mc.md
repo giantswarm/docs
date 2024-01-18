@@ -6,7 +6,7 @@ weight: 15
 menu:
   main:
     parent: kubectlgs-gitops
-last_review_date: 2022-09-29
+last_review_date: 2024-01-18
 aliases:
   - /reference/kubectl-gs/gitops/add-mc
   - /ui-api/kubectl-gs/gitops/add-mc
@@ -40,8 +40,8 @@ management-clusters
 
 ```
 
-**Note**, in a default mode the creation of SOPS GPG key pair is skipped. It is because in its most basic form GitOps
-repository can be driven without encryption. To enable the keys creation pass the `--gen-master-key` flag
+**Note**, in a default mode the creation of SOPS GPG key pair is skipped. It is because in its most basic form, a GitOps
+repository can be driven without encryption. To enable the keys creation, pass the `--gen-master-key` flag
 when adding the cluster. When skipped at this point, encryption can still be added later by the [`add encryption`]({{< relref "/use-the-api/kubectl-gs/gitops/add-enc" >}})
 command.
 
