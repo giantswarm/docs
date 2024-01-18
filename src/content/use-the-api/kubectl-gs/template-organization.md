@@ -15,10 +15,9 @@ owner:
 user_questions:
   - How can I create an organization manifest for the Management API?
 ---
-
-The `template organization` command creates an [organization]({{< relref "/platform-overview/multi-tenancy/index.md" >}}) 
-manifest which can be applied to a management cluster, e. g. via `kubectl apply`. 
-The manifest will define an [`Organization`]({{< relref "/use-the-api/management-api/crd/organizations.security.giantswarm.io.md" >}}) 
+The `template organization` command creates an [organization]({{< relref "/platform-overview/multi-tenancy/index.md" >}})
+manifest which can be applied to a management cluster, e. g. via `kubectl apply`.
+The manifest will define an [`Organization`]({{< relref "/use-the-api/management-api/crd/organizations.security.giantswarm.io.md" >}})
 resource (API group/version `security.giantswarm.io/v1alpha1`).
 
 ## Usage
