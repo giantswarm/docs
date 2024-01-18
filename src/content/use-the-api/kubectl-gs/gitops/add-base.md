@@ -6,7 +6,7 @@ weight: 20
 menu:
   main:
     parent: kubectlgs-gitops
-last_review_date: 2023-01-12
+last_review_date: 2024-01-18
 aliases:
   - /reference/kubectl-gs/gitops/add-org
   - /ui-api/kubectl-gs/gitops/add-org
@@ -63,7 +63,8 @@ Output:
 ./bases
 ./bases/clusters
 ./bases/clusters/gcp
-./bases/clusters/gcp/kustomization.yaml
+./bases/clusters/gcp/template
+./bases/clusters/gcp/template/kustomization.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 buildMetadata: [originAnnotations]
 configMapGenerator:
@@ -82,7 +83,7 @@ resources:
   - cluster.yaml
   - default_apps.yaml
 
-./bases/clusters/gcp/cluster.yaml
+./bases/clusters/gcp/template/cluster.yaml
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
@@ -114,7 +115,7 @@ spec:
       namespace: org-${organization}
   version: ${cluster_release}
 
-./bases/clusters/gcp/cluster_config.yaml
+./bases/clusters/gcp/template/cluster_config.yaml
 clusterName: ${cluster_name}
 controlPlane:
   containerdVolume: {}
@@ -127,11 +128,12 @@ gcp: {}
 machineDeployments:
 - containerdVolume: {}
   kubeletVolume: {}
+  name: machine-pool0
   rootVolume: {}
   serviceAccount: {}
 organization: ${organization}
 
-./bases/clusters/gcp/default_apps.yaml
+./bases/clusters/gcp/template/default_apps.yaml
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
@@ -165,7 +167,7 @@ spec:
       namespace: org-${organization}
   version: ${default_apps_release}
 
-./bases/clusters/gcp/default_apps_config.yaml
+./bases/clusters/gcp/template/default_apps_config.yaml
 clusterName: ${cluster_name}
 organization: ${organization}
 
