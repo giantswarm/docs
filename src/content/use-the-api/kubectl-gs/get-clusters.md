@@ -9,7 +9,7 @@ menu:
 user_questions:
   - How can I list clusters using kubectl?
   - How can I inspect clusters using kubectl?
-last_review_date: 2023-11-07
+last_review_date: 2024-01-18
 aliases:
   - /reference/kubectl-gs/get-clusters/
   - /ui-api/kubectl-gs/get-clusters/
@@ -29,9 +29,17 @@ Simply execute
 kubectl gs get clusters
 ```
 
-to list some information on all clusters available to you in the current installation.
+to list some information on all clusters available to you in the current installation. Use `--all-namespace` (if you have the permission to do so) or specify a namespace using the `--namespace` flag.
 
-Here is some example output:
+For a Cluster API management cluster, the result looks like this:
+
+```nohighlight
+NAME         AGE   CONDITION   CLUSTER VERSION   PREINSTALLED APPS VERSION   SERVICE PRIORITY   ORGANIZATION            DESCRIPTION
+operations   64d   READY                                                     highest            giantswarm-production   Operations cluster
+gazelle      89d   READY                                                     highest            giantswarm              Management cluster
+```
+
+Here is some example output from a vintage management cluster:
 
 ```nohighlight
 NAME    AGE  CONDITION   RELEASE   SERVICE PRIORITY   ORGANIZATION   DESCRIPTION
@@ -56,14 +64,17 @@ The standard tabular output format features these columns:
 - `AGE`: How long ago was the cluster created.
 - `CONDITION`: Latest condition reported for the cluster. Either of:
     - `CREATING`: The cluster is currently being created.
-    - `CREATED`: Cluster creation is finished.
+    - `CREATED`: Cluster creation is finished (on vintage only).
     - `UPDATING`: The cluster is currently being updated, e. g. during an upgrade.
     - `UPDATED`: The cluster update is finished.
     - `DELETING`: The cluster is being deleted.
-- `RELEASE`: Workload cluster release version of the cluster.
+    - `READY`: The cluster is running (on Cluster API only).
+- `RELEASE`: Workload cluster release version of the cluster. Only on vintage management clusters.
 - `SERVICE PRIORITY`: [Service priority]({{< relref "/advanced/cluster-management/labelling-workload-clusters#service-priority" >}}) of the cluster.
 - `ORGANIZATION`: Organization owning the cluster.
 - `DESCRIPTION`: User-friendly description for the cluster.
+
+The columns `CLUSTER VERSION` and `PREINSTALLED APPS VERSION` shown on Cluster API are currently not used.
 
 ## Flags {#flags}
 
