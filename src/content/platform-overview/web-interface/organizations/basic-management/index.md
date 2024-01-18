@@ -10,7 +10,7 @@ aliases:
   - /ui-api/web/organisations/basic-management
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2022-12-07
+last_review_date: 2024-01-18
 user_questions:
   - Where can I manage organizations in the web UI?
   - How can I add an organization using the web UI?

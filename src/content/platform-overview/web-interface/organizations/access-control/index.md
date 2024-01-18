@@ -14,7 +14,7 @@ user_questions:
   - How can I inspect roles and permissions bound to an org-namespace?
   - How can I create a service account in the web interface?
   - How can I bind a service account to an org-namespace in the web interface?
-last_review_date: 2023-03-08
+last_review_date: 2024-01-18
 ---
 
 Learn how to quickly grant and revoke access to an organization's resources via the web user interface, using Kubernetes role based access control (RBAC) mechanisms.
