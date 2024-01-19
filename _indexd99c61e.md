@@ -1,0 +1,1 @@
+<@U06EP9H9KSP> has joined the channel
