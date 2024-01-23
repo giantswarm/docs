@@ -7,7 +7,7 @@ menu:
   main:
     identifier: advanced-gitops
     parent: advanced
-last_review_date: 2022-12-20
+last_review_date: 2024-01-23
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
