@@ -11,7 +11,7 @@ menu:
   main:
     identifier: uiapi-kubectlgs
     parent: use-the-api
-last_review_date: 2022-09-14
+last_review_date: 2024-01-25
 user_questions:
   - Which commands does kubectl-gs offer?
 aliases:
