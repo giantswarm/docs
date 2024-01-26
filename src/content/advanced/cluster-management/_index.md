@@ -1,8 +1,8 @@
 ---
 linkTitle: Cluster Management
 title: Advanced Cluster Management Guides
-description: Here are a list of different guides that will help you to specific and advanced task running clusters.
-last_review_date: 2023-11-07
+description: Here you find all the information about cluster management with the Giant Swarm platform.
+last_review_date: 2024-01-26
 weight: 10
 menu:
   main:
@@ -10,5 +10,6 @@ menu:
     identifier: advanced-cluster-management
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
+  - https://github.com/orgs/giantswarm/teams/team-rocket
   - https://github.com/orgs/giantswarm/teams/team-turtles
 ---
