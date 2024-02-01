@@ -17,6 +17,7 @@ owner:
 {{< platform_support_table aws="ga=v21.0.0,ga=v21.0.0" azure="ga=v21.0.0" >}}
 
 ## Embracing Kubernetes Cluster API
+
 ### A Journey to a Unified Cluster Management Platform
 
 Two years ago, we embarked on a significant journey to transition our Kubernetes cluster management infrastructure from our own custom operators to the upstream Cluster API (CAPI) implementation. This decision was driven by a number of compelling factors, including the broader adoption and development of CAPI within the Kubernetes community, its ability to provide greater flexibility and configurability, and its commitment to future-proofing our platform.
