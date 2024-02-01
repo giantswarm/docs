@@ -43,7 +43,7 @@ Yes, please check the [installation]({{< relref "/use-the-api/kubectl-gs/install
 
 ### Why do I see "API rate limit exceeded" errors
 
-kubectl-gs accesses the GitHub API to check whether the user is running the latest version of kubectl-gs. If the user, or someone in their network, has been executing many requests against the GitHub API already within a certain time window, the network might get blocked to to [rate limiting](https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api?apiVersion=2022-11-28).
+kubectl-gs accesses the GitHub API to check whether the user is running the latest version of kubectl-gs. If the user, or someone in their network, has been executing many requests against the GitHub API already within a certain time window, the network might get blocked due to [rate limiting](https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api?apiVersion=2022-11-28).
 
 To circumvent this problem, you can execute every command with the `--disable-version-check` flag. As an alternative, you can set the `GITHUB_TOKEN` environment variable to a GitHub token, and make the request count towards your personal rate limit, not the (lower) IP based one.
 
