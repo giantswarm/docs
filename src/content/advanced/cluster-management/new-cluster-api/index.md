@@ -24,7 +24,7 @@ Two years ago, we embarked on a significant journey to transition our Kubernetes
 
 ## Motivations for Transitioning to CAPI
 
- * **Community-Driven Development**: CAPI is a widely adopted and actively developed project within the Kubernetes community. By embracing CAPI, we benefit from the collective expertise of many contributors, ensuring the continued advancement and reliability of our cluster management solution.
+* **Community-Driven Development**: CAPI is a widely adopted and actively developed project within the Kubernetes community. By embracing CAPI, we benefit from the collective expertise of many contributors, ensuring the continued advancement and reliability of our cluster management solution.
  * **Vendor-Neutrality and Future-Proofing**: CAPI adheres to a neutral and open API, shielding our customers from vendor lock-in and ensuring their ability to seamlessly integrate with the evolving cloud landscape. This open approach also facilitates faster innovation and integration with new technologies.
  * **Greater Flexibility and Customization**: CAPI provides a more expressive and flexible API for defining and managing Kubernetes clusters. With CAPI, we can cater to diverse customer requirements, enabling them to deploy into existing infrastructure and customize cluster configurations to suit their specific needs.
  * **Expanded Tooling Ecosystem**: CAPI is compatible with a vast array of tools and solutions developed by the community. By adopting CAPI, we gain access to a rich toolkit for cluster management, automation, and orchestration.
