@@ -44,7 +44,7 @@ The transition to Kubernetes Cluster API (CAPI) introduces several noteworthy di
 
 ### Cluster CRs Packaged as Helm Charts
 
-CAPI-based cluster configuration is now encapsulated within Helm charts, providing a more controlled and maintainable approach. This approach offers several benefits:
+The CAPI-based cluster configuration is now encapsulated within [Helm charts](https://helm.sh/docs/topics/charts/), providing a more controlled and maintainable approach. It has several benefits:
 
 * **Limited Configuration Exposure:** Only tested and stable configuration options are exposed, ensuring a consistent and reliable cluster experience.
 
@@ -54,7 +54,7 @@ CAPI-based cluster configuration is now encapsulated within Helm charts, providi
 
 * **Documented Configuration Options:** Comprehensive documentation is provided as part of the JSON schema, ensuring easy understanding and reference.
 
-* **Happa UI-Based Cluster Creation:** The Happa UI streamlines cluster creation from the JSON schema, enhancing user experience.
+* **Happa UI-Based Cluster Creation:** The [Happa UI](https://github.com/giantswarm/happa#happa) streamlines cluster creation from the JSON schema, enhancing user experience.
 
 ### Configurable Registries with Credentials and Mirrors
 
