@@ -68,7 +68,7 @@ The legacy cluster management operators have been removed due to several limitat
 
 * **Lack of On-Demand Updates:** Operator bug fixes required a full release and upgrade cycle for both GS and customers, hindering timely remediation.
 
-CAPI addresses these limitations with a new approach:
+The Cluster API implementation addresses these limitations with a new approach:
 
 * **Cross-Version Compatibility:** New operator versions can manage all previously provisioned clusters, ensuring ongoing support for existing deployments.
 
