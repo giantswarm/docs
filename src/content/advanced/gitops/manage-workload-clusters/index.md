@@ -13,10 +13,10 @@ user_questions:
   - How to ensure security by combining FluxCD with the Management API permission model?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2023-01-20
+last_review_date: 2024-01-25
 ---
 
-In this document you will learn how to manage infrastructure and applications by utilizing FluxCD - a set of GitOps operators installed in Giant Swarm management clusters.
+In this document you will learn how to manage infrastructure and applications by utilizing Flux CD - a set of GitOps operators installed in Giant Swarm management clusters.
 
 ## Managing resources with Flux
 
@@ -156,7 +156,7 @@ Time to apply the generated YAML:
 kubectl create -f management-clusters/MC_NAME/MC_NAME-git-repo.yaml
 ```
 
-We can see if the change was applied using `kubectl` (names will difer):
+We can see if the change was applied using `kubectl` (names will differ):
 
 ```nohiglight
 kubectl get gitrepositories -n default
@@ -233,7 +233,7 @@ The configuration is structured in such a way that each layer can modify the con
 - Environments that implement config modifications in the bases
 - Clusters that implement specific configurations
 
-There are a bunch of advantages to createing clusters starting from a base (using different versions):
+There are a bunch of advantages to creating clusters starting from a base (using different versions):
 
 - We can group clusters in logical groups that match our infra (dev, pre, prod...)
 - Modifying the base, we modify all the clusters that implement it (batch update)
@@ -297,4 +297,4 @@ Commit the newly generated files back to your git repository and push the change
 
 To learn more about how to utilize and configure Managed Apps, please refer to [the documentation]({{< relref "/platform-overview/app-platform">}}).
 
-This completes the guide. If you no longer need them you can delete the organization and cluster.
+This completes the guide. If you no longer need them, you can delete the organization and cluster.

@@ -11,11 +11,14 @@ owner:
 user_questions:
   - How can I list releases in a cluster using kubectl?
   - How can I inspect releases using kubectl?
-last_review_date: 2021-10-04
+last_review_date: 2024-01-18
 aliases:
   - /reference/kubectl-gs/get-releases/
   - /ui-api/kubectl-gs/get-releases/
 ---
+
+**Note** This command relates to our vintage product and is not relevant for
+Clusters based on Cluster API.
 
 Like with all `get` commands in `kubectl`, this command can be used to get details on one item, a release in this case, or list several of them.
 

@@ -13,7 +13,7 @@ user_questions:
   - What can I do with the web UI?
   - Where can I find the web UI source code?
   - How can I give feedback on the web UI?
-last_review_date: 2023-03-08
+last_review_date: 2024-01-18
 aliases:
    - /ui-api/web/overview
 owner:
@@ -39,10 +39,11 @@ the application.
 Our web interface lets you do the following things. Some topics link to more
 detailed information:
 
-- View and manage organizations
+- [View and manage organizations]({{< relref "/platform-overview/web-interface/organizations" >}})
 - View and manage clusters
 - Learn how to get started with your workload clusters by following a guide
 - [Add, remove and configure Apps on your clusters]({{< relref "/platform-overview/web-interface/app-platform" >}})
+- [Inspect permissions]({{< relref "/platform-overview/web-interface/permissions" >}})
 
 ## Usage data recording
 

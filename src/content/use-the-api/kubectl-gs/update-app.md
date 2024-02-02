@@ -9,7 +9,7 @@ menu:
 aliases:
   - /reference/kubectl-gs/update-app/
   - /ui-api/kubectl-gs/update-app/
-last_review_date: 2022-11-18
+last_review_date: 2024-01-18
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:

@@ -5,7 +5,7 @@ description: The Elastic File System is a managed file storage service offered b
 weight: 30
 menu:
   main:
-    id: advanced-storage-efs
+    identifier: advanced-storage-efs
     parent: advanced-storage
 user_questions:
   - How do I transfer my files from an EFS volume to an EBS volume?
@@ -14,5 +14,5 @@ aliases:
   - /guides/using-persistent-volumes-on-aws-with-efs-csi-driver/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2023-12-12
+last_review_date: 2024-01-18
 ---
