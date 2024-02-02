@@ -1,4 +1,4 @@
-{{- if .Values.global.podSecurityStandards.enforced }}
+{{- if (((.Values.global).podSecurityStandards).enforced) }}
 ---
 apiVersion: policy.giantswarm.io/v1alpha1
 kind: PolicyException
