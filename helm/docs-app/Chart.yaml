@@ -1,8 +1,9 @@
 apiVersion: v1
-name: docs-app
+annotations:
+  application.giantswarm.io/team: "sig-docs"
 appVersion: 0.0.1
 description: Giant Swarm documentation published at https://docs.giantswarm.io/
 home: https://github.com/giantswarm/docs/
-annotations:
-  application.giantswarm.io/team: "sig-docs"
+icon: https://s.giantswarm.io/app-icons/giantswarm/1/light.svg
+name: docs-app
 version: "[[.Version]]"
