@@ -9,7 +9,7 @@ description: |
 {{- end }}
 weight: {{ .Weight }}
 layout: cluster-app
-owner: ""
+owner: []
 source_repository: {{ .SourceRepository }}
 source_repository_ref: {{ .SourceRepositoryRef }}
 ---
