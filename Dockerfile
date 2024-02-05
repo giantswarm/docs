@@ -21,8 +21,8 @@ RUN hugo \
 # (creates a copy and leaves the uncompressed version in place)
 RUN find /public \
   -type f -regextype posix-extended \
-  -iregex '.*\.(css|csv|html?|js|svg|txt|xml|json|webmanifest|ttf)' \
-  -exec gzip -9 -k '{}' \;
+  -iregex '.*\.(css|csv|html?|js|svg|txt|xml|json|webmanifest|ttf)'  | \
+    xargs gzip -9 -k
 
 # Remove uncompressed HTML files
 # to reduce storage requirements and image size.
