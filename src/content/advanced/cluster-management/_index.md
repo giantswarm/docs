@@ -2,7 +2,7 @@
 linkTitle: Cluster Management
 title: Advanced Cluster Management Guides
 description: Here you find all the information about cluster management with the Giant Swarm platform.
-last_review_date: 2024-01-26
+last_review_date: 2024-02-05
 weight: 10
 menu:
   main:
