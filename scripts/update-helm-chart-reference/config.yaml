@@ -1,0 +1,8 @@
+template_path: ./chart.template
+
+# List of repositories containing Cluster Apps.
+source_repositories:
+  - url: https://github.com/giantswarm/cluster
+    organization: giantswarm
+    name: cluster
+    commit_reference: v0.7.0

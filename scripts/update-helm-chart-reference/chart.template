@@ -1,0 +1,17 @@
+---
+title: {{ .Title }} Cluster App configuration reference
+linkTitle: {{ .Title }}
+description: |
+{{- if .Description }}
+{{ .Description | indent 2 }}
+{{- else }}
+  Cluster App configuration page for {{ .Title }}.
+{{- end }}
+weight: {{ .Weight }}
+layout: cluster-app
+owner: ""
+source_repository: {{ .SourceRepository }}
+source_repository_ref: {{ .SourceRepositoryRef }}
+---
+
+{{ .Content }}
