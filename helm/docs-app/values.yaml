@@ -4,3 +4,6 @@ image:
   name: docs
   tag: "[[.Version]]"
   sha: "[[.SHA]]"
+global:
+  podSecurityStandards:
+    enforced: false
