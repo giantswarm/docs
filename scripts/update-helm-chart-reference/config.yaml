@@ -4,5 +4,7 @@ template_path: ./chart.template
 source_repositories:
   - url: https://github.com/giantswarm/cluster
     organization: giantswarm
+    introduction: |
+      The Cluster App is the main entry point for the Giant Swarm platform. It is the first app that is installed on a new cluster. It is responsible for setting up the basic infrastructure and installing the necessary components to make the cluster operational.
     name: cluster
     commit_reference: v0.7.0
