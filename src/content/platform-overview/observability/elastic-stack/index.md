@@ -14,7 +14,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
   - How can I configure the efk-stack-app for single sign-on (SSO)?
-last_review_date: 2022-11-18
+last_review_date: 2024-02-08
 ---
 
 To manage access to the efk-stack-app using your company's user and group directories, the opendistro security plugin provides integration with different authentication backends.
