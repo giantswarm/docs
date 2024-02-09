@@ -345,7 +345,7 @@ cluster:
 
 ## Dex Observability
 
-To get an overview on the authentication success and error rates of your Dex instances, we offer a Grafana dashboard named "Dex" as part of our [observability setup]({{< relref "/getting-started/observability/grafana/access" >}}).
+To get an overview on the authentication success and error rates of your Dex instances, we offer a Grafana dashboard named "Dex" as part of our [observability setup]({{< relref "/getting-started/observability/visualization/access" >}}).
 
 ## Logging into your workload cluster via `kubectl gs` with `Athena`
 
