@@ -1,7 +1,7 @@
 ---
 linkTitle: Visualization
 title: Visualization
-description: Guide explaining how to interact with our installation level grafana (how to access grafana, how to explore logs and metrics).
+description: Advanced usage and customization guide for Giant Swarm platform observability features.
 menu:
   main:
     identifier: advanced-observability-visualization
