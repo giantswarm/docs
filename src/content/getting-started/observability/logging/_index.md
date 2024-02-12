@@ -9,7 +9,7 @@ menu:
     parent: getting-started-observability
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
-last_review_date: 2023-01-30
+last_review_date: 2024-02-12
 aliases:
   - /ui-api/observability/logs/
 ---
