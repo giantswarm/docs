@@ -6,7 +6,7 @@ weight: 50
 menu:
   main:
     identifier: advanced-observability-logging-disable
-    parent: advancedobservability-logging
+    parent: advanced-observability-logging
 user_questions:
   - How can I disable logging on my cluster?
 owner:
