@@ -18,23 +18,32 @@ repositories:
     category: Management API
   giantswarm/cert-manager-app:
     category: Managed Apps
+  giantswarm/cluster:
+    category: Cluster apps for CAPI
   giantswarm/cluster-aws:
     category: Cluster apps for AWS
-  giantswarm/cluster-gcp:
-    category: Cluster apps for GCP
-  giantswarm/cluster-openstack:
-    category: Cluster apps for OpenStack
+  giantswarm/cluster-azure:
+    category: Cluster apps for Azure
+  giantswarm/cluster-cloud-director:
+    category: Cluster apps for VMware Cloud Director
+  giantswarm/cluster-eks:
+    category: Cluster apps for AWS EKS
+  giantswarm/cluster-vsphere:
+    category: Cluster apps for VMware vSphere
   giantswarm/dashboards:
     category: Dashboards
   giantswarm/default-apps-aws:
     category: Cluster apps for AWS
-  giantswarm/default-apps-gcp:
-    category: Cluster apps for GCP
-  giantswarm/default-apps-openstack:
-    category: Cluster apps for OpenStack
+  giantswarm/default-apps-azure:
+    category: Cluster apps for Azure
+  giantswarm/default-apps-cloud-director:
+    category: Cluster apps for VMware Cloud Director
+  giantswarm/default-apps-eks:
+    category: Cluster apps for AWS EKS
+  giantswarm/default-apps-vsphere:
+    category: Cluster apps for VMware vSphere
   giantswarm/docs:
     category: Documentation
-
     # Don't create useless PRs only for empty changelogs in `docs`
     skip_if_body_is_one_of:
       - ''
