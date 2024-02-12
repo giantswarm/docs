@@ -1,5 +1,5 @@
 ---
-title: {{ .Title | title }} Chart Reference
+title: {{ .Title | title }} chart reference
 linkTitle: {{ .Title }} chart reference
 description: |
 {{- if .Description }}
