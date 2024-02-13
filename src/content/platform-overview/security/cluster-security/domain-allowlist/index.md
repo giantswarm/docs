@@ -59,6 +59,10 @@ Below is a list of the external domains we require access to for our clusters to
     - domains:
         - `*.flatcar-linux.org`
     - Flatcar OS images and signing keys.
+- ghcr.io
+    - domains:
+        - `ghcr.io`
+    - Official Falco rules are hosted at `ghcr.io/falcosecurity`. This domain is optional if official rulesets are disabled or hosted elsewhere.
 - github.com
     - domains:
         - `*.github.com`
@@ -70,7 +74,9 @@ Below is a list of the external domains we require access to for our clusters to
 - githubusercontent.com
     - domains:
         - `raw.githubusercontent.com`
+        - `pkg-containers.githubusercontent.com`
     - Flux applies some manifests using the raw domain.
+    - Falco optionally loads resources from the pkg-containers domain.
 - gcr.io
     - domains:
         - `k8s.gcr.io`
@@ -125,6 +131,10 @@ Below is a list of the external domains we require access to for our clusters to
     - domains:
         - `o346224.ingest.sentry.io`
     - Monitoring and crash reporting for `happa`.
+- sigstore.dev
+    - domains:
+        - `*.sigstore.dev`
+    - Used to verify signatures on artifacts signed with the cosign keyless signing method.
 - slack.com
     - domains:
         - `hooks.slack.com`
