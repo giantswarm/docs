@@ -28,6 +28,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         run: make changes
 
+      - name: Update Cluster Apps pages
+        run: make update-cluster-app-reference
+
       - name: Update CRD pages
         run: make update-crd-reference
 

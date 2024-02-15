@@ -11,7 +11,7 @@ aliases:
  - /reference/app-configuration/
  - /app-platform/app-configuration
  - /developer-platform/app-platform/app-configuration
-last_review_date: 2022-08-18
+last_review_date: 2024-01-18
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:

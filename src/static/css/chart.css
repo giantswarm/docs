@@ -1,0 +1,5 @@
+/* Styles for the helm chart documentation */
+
+._use-the-api_management-api_cluster-apps_default-apps-aws_ .content {
+  overflow-x:auto;
+}

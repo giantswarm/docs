@@ -64,8 +64,8 @@ These are the limit increases to be requested, grouped by limit type:
 - AWS account intended to run public clusters (outgoing traffic goes to public internet)
     - VPC
         - NAT Gateway per Availability Zone per region: **50**
-    - Elastic IP
-        - New VPC Elastic IP Address Limit per region: **50**
+    - Amazon Elastic Compute Cloud (Amazon EC2)
+        - EC2-VPC Elastic IPs: **50**
 
 - AWS account intended to run private clusters (outgoing traffic goes to public internet only thru proxy)
     - Route 53 Resolver

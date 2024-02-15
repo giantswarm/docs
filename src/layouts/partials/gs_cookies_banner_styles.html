@@ -21,9 +21,16 @@ div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a#hs-eu-confir
 div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a#hs-eu-decline-button { color: rgb(66, 91, 118); font-family: inherit; font-size: inherit; line-height: inherit; text-align: left; border: 1px solid rgb(66, 91, 118) !important; font-weight: 400 !important; text-shadow: none !important; }
 div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a#hs-eu-cookie-settings-button { color: rgb(66, 91, 118) !important; }
 div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner p { margin: 0px 72px 12px; color: rgb(51, 71, 91); font-family: inherit; font-size: inherit; line-height: inherit; text-align: left; font-weight: 400 !important; text-shadow: none !important; }
+#hs-eu-close-button-container { display: flex; justify-content: end; margin-top: 8px; margin-right: 8px; }
+#hs-eu-close-button-container a#hs-eu-close-button[role="button"] { float: right; width: 1.5rem; cursor: pointer; font-size: 40px !important; text-align: center !important; color: rgb(139, 133, 137) !important; }
+#hs-eu-close-button-container a#hs-eu-close-button[role="button"]:hover { color: rgb(0, 145, 174); font-family: inherit; font-size: inherit; line-height: inherit; text-align: left; background: none !important; border: none !important; box-shadow: none !important; font-weight: 400 !important; text-shadow: none !important; text-decoration: none !important; }
 @media (max-width: 800px) {
 div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner div#hs-en-cookie-confirmation-buttons-area { justify-content: center; margin-right: 0px; }
 div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner p { margin: 0px 20px 12px; }
+#hs-eu-close-button-container a#hs-eu-close-button[role="button"] { margin-right: 10px; font-size: 30px; line-height: 50px; }
+}
+@media (min-width: 800px) {
+#hs-eu-close-button-container a#hs-eu-close-button[role="button"] { margin-bottom: 10px; }
 }
 @media screen and (max-width: 480px) {
 div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner { padding: 8px 14px 14px !important; }

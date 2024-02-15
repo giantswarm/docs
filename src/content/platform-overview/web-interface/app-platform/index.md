@@ -2,7 +2,7 @@
 linkTitle: App platform
 title: The Giant Swarm App Platform in the web interface
 description: What the Giant Swarm App Platform looks like on our web interface and how to use it.
-last_review_date: 2022-11-18
+last_review_date: 2024-01-18
 weight: 50
 menu:
   main:
@@ -30,21 +30,18 @@ If you'd like to know more about the App Platform in general, go here for an [ov
 ## Viewing all App Catalogs
 
 Our web interface lets you browse the App Catalogs installed on your Management Cluster API (MAPI).
-Click on "App Catalogs" in the navigation menu. The "App Catalogs" link will only be visible if your MAPI has at least one App Catalog installed on it.
+Click on "Apps" in the navigation menu. The "Apps" link will only be visible if your MAPI has at least one App Catalog installed on it.
 
-The screenshot below shows what the "App Catalogs" page looks like with two app catalogs
-installed:
+The screenshot below shows what the "Apps" page looks like:
 
-![A screenshot of our web interface, showing a list of available app catalogs](app-catalogs.png)
+![A screenshot of our web interface, showing a list of apps in selected app catalogs](apps.png)
 
 ## Installing an App
 
 Click on the catalog you'd like to install from. Only apps in the Managed catalog will be monitored and managed by us. More info about Managed App [here]({{< relref "/platform-overview/app-platform" >}}).
 
-![A screenshot of our web interface, showing a list of apps in an app catalog](apps.png)
-
 Once you know what app you'd like to install, click on that app, and then on
-"Configure & Install"
+"Install in cluster"
 
 ![A screenshot of our web interface, showing the detail page for a specific app, in this case Grafana](app-detail-page.png)
 
@@ -83,4 +80,4 @@ app you would like to edit.
 
 Once there you should see a dropdown that you can use to pick a different version.
 
-![A screenshot showing where you can edit the app's version](app-version-picker.png#width-60)
+![A screenshot showing where you can edit the app's version](app-details.png#width-60)

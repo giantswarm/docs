@@ -1,0 +1,70 @@
+template_path: ./chart.template
+
+# List of repositories containing Cluster Apps.
+source_repositories:
+  - url: https://github.com/giantswarm/cluster
+    organization: giantswarm
+    introduction: |
+      The `cluster` chart is the main entry point for the Giant Swarm platform. It is the first app that is installed on a new cluster. It is responsible for setting up the basic infrastructure and installing the necessary components to make the cluster operational.
+    name: cluster
+    commit_reference: v0.7.0
+  - url: https://github.com/giantswarm/cluster-aws
+    organization: giantswarm
+    introduction: |
+      The `cluster-aws` chart templates all the AWS infrastructure resources that are necessary to create a Cluster API cluster.
+    name: cluster-aws
+    commit_reference: v0.60.1
+  - url: https://github.com/giantswarm/cluster-eks
+    organization: giantswarm
+    introduction: |
+      The `cluster-eks` chart templates all the AWS infrastructure resources that are necessary to create a Cluster API EKS cluster.
+    name: cluster-eks
+    commit_reference: v0.12.0
+  - url: https://github.com/giantswarm/cluster-azure
+    organization: giantswarm
+    introduction: |
+      The `cluster-azure` chart templates all the Azure infrastructure resources that are necessary to create a Cluster API Azure cluster.
+    name: cluster-azure
+    commit_reference: v0.0.35
+  - url: https://github.com/giantswarm/cluster-vsphere
+    organization: giantswarm
+    introduction: |
+      The `default-apps-vsphere` chart templates all the VMware infrastructure resources that are necessary to create a Cluster API vSphere cluster.
+    name: cluster-vsphere
+    commit_reference: v0.9.8
+  - url: https://github.com/giantswarm/cluster-cloud-director
+    organization: giantswarm
+    introduction: |
+      The `default-apps-cloud-director` chart templates all the VMware infrastructure resources that are necessary to create a Cluster API VCD cluster.
+    name: cluster-cloud-director
+    commit_reference: v0.14.2
+  - url: https://github.com/giantswarm/default-apps-aws
+    organization: giantswarm
+    introduction: |
+      The `default-apps-aws` chart templates all the components required for a Cluster API AWS cluster like External DNS or CoreDNS.
+    name: default-apps-aws
+    commit_reference: v0.48.0
+  - url: https://github.com/giantswarm/default-apps-eks
+    organization: giantswarm
+    introduction: |
+      The `default-apps-eks` chart templates all the components required for a Cluster API EKS cluster like External DNS or CoreDNS.
+    name: default-apps-eks
+    commit_reference: v0.5.1
+  - url: https://github.com/giantswarm/default-apps-azure
+    organization: giantswarm
+    introduction: |
+      The `default-apps-azure` chart templates all the components required for a Cluster API Azure cluster like External DNS or CoreDNS.
+    name: default-apps-azure
+    commit_reference: v0.8.3
+  - url: https://github.com/giantswarm/default-apps-vsphere
+    organization: giantswarm
+    introduction: |
+      The `default-apps-vsphere` chart templates all the components required for a Cluster API VMware cluster like External DNS or CoreDNS.
+    name: default-apps-vsphere
+    commit_reference: v0.12.1
+  - url: https://github.com/giantswarm/default-apps-cloud-director
+    organization: giantswarm
+    introduction: |
+      The `default-apps-cloud-director` chart templates all the components required for a Cluster API VMware cluster like External DNS or CoreDNS.
+    name: default-apps-cloud-director
+    commit_reference: v0.7.3

@@ -11,7 +11,7 @@ aliases:
   - /ui-api/web/organisations
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2022-12-07
+last_review_date: 2024-01-18
 ---
 
 {{% organization_mgmt_mapi_disclaimer %}}

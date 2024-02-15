@@ -6,7 +6,7 @@ weight: 20
 menu:
   main:
     parent: kubectlgs-gitops
-last_review_date: 2022-09-29
+last_review_date: 2024-01-18
 aliases:
   - /reference/kubectl-gs/gitops/add-org
   - /ui-api/kubectl-gs/gitops/add-org
