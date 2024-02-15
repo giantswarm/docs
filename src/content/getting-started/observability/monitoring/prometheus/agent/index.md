@@ -85,4 +85,4 @@ You should see the following:
 
 ### Access to the metrics
 
-The metrics of the Prometheus Agent can be found on the [grafana instance]({{< relref "/getting-started/observability/grafana/access" >}}) running on your management cluster under the `Prometheus / Remote Write` and `Ingress NGINX Controller` dashboards
+The metrics of the Prometheus Agent can be found on the [grafana instance]({{< relref "/getting-started/observability/visualization/access" >}}) running on your management cluster under the `Prometheus / Remote Write` and `Ingress NGINX Controller` dashboards

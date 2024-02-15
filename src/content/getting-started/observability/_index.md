@@ -6,7 +6,8 @@ menu:
   main:
     identifier: getting-started-observability
     parent: getting-started
-last_review_date: 2022-09-12
+weight: 60
+last_review_date: 2024-02-09
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 aliases:
