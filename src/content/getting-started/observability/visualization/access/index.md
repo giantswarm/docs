@@ -1,33 +1,38 @@
 ---
-linkTitle: Access to Grafana
-title: Accessing Grafana dashboards
+linkTitle: How to access Grafana
+title: How to access Grafana and it's dashboards
 description: Guide explaining how to get access to the data we collect on your management and workload clusters.
 menu:
   main:
-    identifier: getting-started-observability-grafana-access
-    parent: getting-started-observability-grafana
+    identifier: getting-started-observability-visualization-access
+    parent: getting-started-observability-visualization
 weight: 40
 aliases:
   - /observability/grafana/access
   - /ui-api/observability/grafana/access
-last_review_date: 2022-09-12
+  - /observability/visualization/access
+  - /ui-api/observability/visualization/access
+last_review_date: 2024-02-09
 user_questions:
   - How can I access Grafana for my installation?
   - How can I access metrics from my installation?
+  - How can I access logs from my installation?
   - Where can I find workload cluster metrics?
+  - Where can I find workload cluster logs?
   - Which dashboards do I have access to?
   - Which metrics are gathered in my installation?
+  - Which logs are gathered in my installation?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 ---
 
-Giant Swarm runs a monitoring stack in each installation, based on [Prometheus](https://prometheus.io/), collecting data from most management cluster components, as well as many workload cluster metrics.
+Giant Swarm runs an observability stack in each installation, based on [Prometheus](https://prometheus.io/) for metrics, and [Loki](https://grafana.com/docs/loki/latest/) for logs, collecting data from most of the management and workload cluster components.
 
-For accessing these metrics, both for you as customers and for our staff we provide a [Grafana](https://grafana.com/) instance per installation.
+To access these metrics and logs, both for you as customers and for our staff we provide a [Grafana](https://grafana.com/) instance per installation.
 
 ![Home dashboard](home-dashboard.png)
 
-We aim to provide a useful set of dashboards for you to quickly explore all metrics relevant to you, giving you access to the same information that we use for operations, support, and billing.
+We aim to provide a useful set of dashboards for you to quickly explore all observability data relevant to you, giving you access to the same information that we use for operations, support, and billing.
 
 ## Accessing dashboards
 
@@ -69,4 +74,4 @@ You can easily track changes in that repository directly from the Home dashboard
 
 ## Limitations
 
-Grafana access is currently not available in shared installations, where several customer's metrics would be available from the same Grafana instance.
+Grafana access is currently not available in shared installations, where several customer's observability data would be available from the same Grafana instance.
