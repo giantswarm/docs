@@ -16,7 +16,7 @@ user_questions:
 last_review_date: 2024-01-18
 aliases:
   - /platform-overview/web-interface
-   - /ui-api/web/overview
+  - /ui-api/web/overview
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
