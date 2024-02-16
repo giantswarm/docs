@@ -7,6 +7,8 @@ user_questions:
   - What are the VMware vSphere prerequisites for use with Giant Swarm?
   - What do I need to configure in VMware vSphere in order to run Giant Swarm clusters?
   - What user permissions do I need to run Giant Swarm clusters in VMware vSphere?
+aliases:
+  - /getting-started/cloud-provider-accounts/vmware-vsphere
 menu:
   main:
     identifier: gettingstarted-infraprovider-vsphere

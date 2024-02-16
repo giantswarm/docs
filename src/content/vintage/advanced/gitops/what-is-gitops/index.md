@@ -3,6 +3,8 @@ linkTitle: What is it?
 title: What is GitOps
 description: A brief explanation of the GitOps principles and the main features they provide.
 weight: 10
+aliases:
+  - /advanced/gitops/what-is-gitops
 menu:
   main:
     parent: advanced-gitops

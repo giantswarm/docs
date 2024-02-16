@@ -11,6 +11,7 @@ menu:
 # to avoid automatic listing of all sub pages.
 layout: single
 aliases:
+  - /use-the-api/gsctl
   - /reference/gsctl/
   - /ui-api/gsctl/
 user_questions:

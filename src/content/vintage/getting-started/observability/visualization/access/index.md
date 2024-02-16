@@ -8,6 +8,7 @@ menu:
     parent: getting-started-observability-visualization
 weight: 40
 aliases:
+  - /getting-started/observability/visualization/access
   - /observability/grafana/access
   - /ui-api/observability/grafana/access
   - /observability/visualization/access

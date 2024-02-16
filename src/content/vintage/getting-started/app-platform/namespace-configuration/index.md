@@ -8,6 +8,7 @@ menu:
     parent: getting-started-app-platform
     identifier: getting-started-app-platform-namespace-config
 aliases:
+  - /getting-started/app-platform/namespace-configuration
   - /developer-platform/app-platform/namespace-configuration
   - /app-platform/namespace-configuration
 owner:

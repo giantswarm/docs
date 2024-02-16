@@ -11,6 +11,7 @@ user_questions:
  -  How can I migrate from KIAM to IAM roles for service accounts?
 last_review_date: 2023-03-14
 aliases:
+  - /advanced/access-management/iam-roles-for-service-accounts
   - /guides/iam-roles-for-service-accounts/
   - /advanced/iam-roles-for-service-accounts/
 owner:

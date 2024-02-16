@@ -10,6 +10,7 @@ user_questions:
   - How can I override GCP service account used by External DNS?
 last_review_date: 2023-11-07
 aliases:
+  - /advanced/connectivity/external-dns/gcp-custom-sa
   - /guides/external-dns/gcp-custom-sa/
   - /advanced/external-dns/gcp-custom-sa/
 owner:

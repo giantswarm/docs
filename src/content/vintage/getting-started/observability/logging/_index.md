@@ -11,5 +11,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 last_review_date: 2024-02-12
 aliases:
+  - /getting-started/observability/logging
   - /ui-api/observability/logs/
 ---

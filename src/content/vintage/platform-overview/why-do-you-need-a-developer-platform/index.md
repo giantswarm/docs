@@ -3,6 +3,8 @@ linkTitle: Why do you need a Developer Platform?
 title: Why do you need a Developer Platform?
 description: Self-service developer platforms enable your organization and this page helps you to understand why.
 weight: 5
+aliases:
+  - /platform-overview/why-do-you-need-a-developer-platform
 menu:
   main:
     parent: platform-overview

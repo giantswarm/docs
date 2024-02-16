@@ -7,6 +7,7 @@ menu:
   main:
     parent: uiapi-kubectlgs
 aliases:
+  - /use-the-api/kubectl-gs
   - /reference/kubectl-gs/installation/
   - /ui-api/kubectl-gs/installation/
 owner:

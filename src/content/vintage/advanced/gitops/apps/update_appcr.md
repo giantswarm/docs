@@ -3,6 +3,8 @@ linkTitle: Update an existing App
 title: Update an existing App
 description: Learn how to update an App already deployed in a workload cluster with GitOps.
 weight: 50
+aliases:
+  - /advanced/gitops/apps
 menu:
   main:
     identifier: advanced-gitops-apps-app-update

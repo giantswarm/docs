@@ -17,6 +17,7 @@ user_questions:
   - How can I setup a workload cluser?
   - What makes up the service architecture?
 aliases:
+  - /on-premises
   - /basics/onprem-architecture/
   - /general/architcture/on-premises/
   - /general/architecture/on-premises/

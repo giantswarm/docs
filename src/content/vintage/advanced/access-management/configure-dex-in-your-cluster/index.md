@@ -11,6 +11,7 @@ user_questions:
   - How can I add a new OIDC connector?
 last_review_date: 2023-09-13
 aliases:
+  - /advanced/access-management/configure-dex-in-your-cluster
   - /guides/configure-dex-in-your-cluster/
   - /advanced/configure-dex-in-your-cluster/
 owner:

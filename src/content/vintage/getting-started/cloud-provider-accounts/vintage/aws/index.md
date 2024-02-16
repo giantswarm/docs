@@ -12,6 +12,7 @@ user_questions:
   - Where I can find the AWS account ID to run workload clusters?
   - What are the recommended service limit/quotas for AWS accounts?
 aliases:
+  - /aws
   - /guides/prepare-aws-account-for-tenant-clusters/
   - /guides/prepare-aws-account/
   - /getting-started/cloud-provider-accounts/aws/

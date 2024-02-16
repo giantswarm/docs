@@ -7,6 +7,7 @@ menu:
   main:
     parent: platform-overview-cluster-management
 aliases:
+  - /platform-overview/cluster-management/cluster-upgrades
   - /general/cluster-upgrades/
   - /reference/cluster-upgrades/
 user_questions:

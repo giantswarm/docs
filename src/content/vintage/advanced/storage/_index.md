@@ -3,6 +3,8 @@ linkTitle: Storage
 title: Storage
 description: Advanced usage of persistent volumes, especially for Cloud Provider users.
 weight: 20
+aliases:
+  - /advanced/storage
 menu:
   main:
     identifier: advanced-storage

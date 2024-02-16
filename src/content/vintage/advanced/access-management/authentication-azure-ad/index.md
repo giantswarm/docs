@@ -11,6 +11,7 @@ user_questions:
   - How to use OIDC for workload cluster authentication?
 last_review_date: 2023-11-07
 aliases:
+  - /advanced/access-management/authentication-azure-ad
   - /guides/authenticating-with-microsoft-azure-active-directory/
   - /advanced/authentication-azure-ad/
 owner:

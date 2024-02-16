@@ -3,6 +3,8 @@ linkTitle: Add a new App to a Workload Cluster
 title: Add a new App to a Workload Cluster
 description: Learn how to deploy and configure applications into workload clusters using GitOps.
 weight: 50
+aliases:
+  - /advanced/gitops/apps
 menu:
   main:
     identifier: advanced-gitops-apps-add-app-cr

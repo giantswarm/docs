@@ -27,6 +27,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
   - https://github.com/orgs/giantswarm/teams/team-rocket
 aliases:
+  - /use-the-api/management-api/crd
   - /reference/cp-k8s-api/machinedeployments.cluster.x-k8s.io/
 technical_name: machinedeployments.cluster.x-k8s.io
 source_repository: https://github.com/giantswarm/apiextensions

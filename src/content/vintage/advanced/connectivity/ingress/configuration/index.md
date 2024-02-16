@@ -28,6 +28,7 @@ user_questions:
   - How can I enable & configure ModSecurity inside of the Ingress NGINX Controller?
 last_review_date: 2023-11-23
 aliases:
+  - /advanced/connectivity/ingress/configuration
   - /guides/advanced-ingress-configuration/
   - /advanced/ingress/configuration/
 owner:

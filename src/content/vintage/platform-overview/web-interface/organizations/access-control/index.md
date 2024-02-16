@@ -9,6 +9,7 @@ menu:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 aliases:
+  - /platform-overview/web-interface/organizations/access-control
   - /ui-api/web/organisations/access-control
 user_questions:
   - How can I inspect roles and permissions bound to an org-namespace?

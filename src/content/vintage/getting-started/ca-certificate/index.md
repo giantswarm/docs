@@ -6,6 +6,7 @@ menu:
   main:
     parent: getting-started
 aliases:
+  - /getting-started/ca-certificate
   - /guides/importing-certificates/
 user_questions:
   - How can I set my cluster's CA certificate to be trusted by my system?

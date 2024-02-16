@@ -9,6 +9,7 @@ user_questions:
 - How do I make a workload cluster private?
 last_review_date: 2023-11-08
 aliases:
+  - /advanced/cluster-management/private-clusters
   - /guides/private-clusters
   - /advanced/private-clusters
 owner:

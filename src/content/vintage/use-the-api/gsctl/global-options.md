@@ -7,6 +7,7 @@ menu:
   main:
     parent: uiapi-gsctl
 aliases:
+  - /use-the-api/gsctl
   - /reference/gsctl/global-options/
   - /ui-api/gsctl/global-options/
 owner:

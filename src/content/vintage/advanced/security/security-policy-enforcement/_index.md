@@ -16,6 +16,7 @@ user_questions:
  -  How do I migrate from PSPs to PSS?
 last_review_date: 2023-11-07
 aliases:
+  - /advanced/security/security-policy-enforcement
   - /guides/security-policy-enforcement/
   - /advanced/security-policy-enforcement/
 owner:

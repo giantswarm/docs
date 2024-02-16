@@ -11,6 +11,7 @@ user_questions:
   - What cluster-autoscaler options can I configure?
 last_review_date: 2023-11-07
 aliases:
+  - /advanced/cluster-management/cluster-autoscaler
   - /guides/advanced-cluster-autoscaler-configuration/
   - /guides/cluster-autoscaler/
   - /advanced/cluster-autoscaler/

@@ -10,6 +10,7 @@ menu:
 user_questions:
   - What is FluxCD?
 aliases:
+  - /advanced/gitops/flux
   - /advanced/fluxcd/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger

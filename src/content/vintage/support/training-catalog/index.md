@@ -13,6 +13,7 @@ user_questions:
   - How can I learn about Cloud Native topics?
   - How can I fully fully utilize my Giant Swarm setup?
 aliases:
+  - /support/training-catalog
   - /general/training-catalog
 owner:
   - https://github.com/orgs/giantswarm/teams/team-teddyfriends

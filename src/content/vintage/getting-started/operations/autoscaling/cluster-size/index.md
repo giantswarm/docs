@@ -9,6 +9,7 @@ menu:
     parent: getting-started-operations-autoscaling
 last_review_date: 2023-03-01
 aliases:
+  - /getting-started/operations/autoscaling/cluster-size
   - /basics/cluster-size-autoscaling/
   - /kubernetes/cluster-size-autoscaling/
   - /operations/autoscaling/cluster-size

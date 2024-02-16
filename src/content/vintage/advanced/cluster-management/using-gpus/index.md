@@ -11,6 +11,7 @@ user_questions:
   - Which releases support the use of GPUs?
 last_review_date: 2023-11-07
 aliases:
+  - /advanced/cluster-management/using-gpus
   - /guides/kubernetes-gpu/
   - /guides/using-gpus
   - /advanced/using-gpus

@@ -11,6 +11,7 @@ user_questions:
 - How do I login with gsctl manually?
 - How do I login with gsctl in a script?
 aliases:
+  - /use-the-api/gsctl
   - /reference/gsctl/login/
   - /ui-api/gsctl/login/
 owner:

@@ -3,6 +3,8 @@ linkTitle: AWS EFS backups using EBS
 title: AWS EFS backup using a temporal EBS volume and Kubernetes Volume Snapshots
 description: Tutorial explaining how to use a temporal EBS volume to backup your EFS filesystem without using AWS Backup.
 weight: 30
+aliases:
+  - /advanced/storage/efs/backups
 menu:
   main:
     parent: advanced-storage-efs

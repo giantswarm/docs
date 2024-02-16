@@ -22,6 +22,7 @@ user_questions:
   - How are workloads secured on AWS clusters?
   - Why does Giant Swarm run a monitoring stack on my AWS management cluster?
 aliases:
+  - /aws
   - /basics/aws-architecture/
   - /general/architcture/aws/
   - /general/architecture/aws/

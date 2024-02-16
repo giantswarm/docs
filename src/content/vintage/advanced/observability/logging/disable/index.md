@@ -13,6 +13,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 last_review_date: 2024-02-12
 aliases:
+  - /advanced/observability/logging/disable
   - /ui-api/observability/logging/disable
   - /observability/logging/disable
 ---

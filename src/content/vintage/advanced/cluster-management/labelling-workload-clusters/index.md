@@ -10,6 +10,7 @@ user_questions:
   - How can I assign metadata to cluster?
 last_review_date: 2023-11-07
 aliases:
+  - /advanced/cluster-management/labelling-workload-clusters
   - /guides/tenant-cluster-labelling/
   - /guides/workload-cluster-labelling/
   - /advanced/labelling-clusters/

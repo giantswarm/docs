@@ -12,6 +12,7 @@ user_questions:
   - In which cloud environments are node pools supported?
   - Which workload cluster releases introduced node pools?
 aliases:
+  - /advanced/cluster-management/node-pools-vintage
   - /basics/nodepools/
   - /guides/nodepools/
   - /advanced/nodepools/

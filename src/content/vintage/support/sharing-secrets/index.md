@@ -13,6 +13,7 @@ user_questions:
   - How do I share cloud provider credentials with Giant Swarm?
 last_review_date: 2022-12-13
 aliases:
+  - /support/sharing-secrets
   - /getting-started/sharing-secrets/
 ---
 

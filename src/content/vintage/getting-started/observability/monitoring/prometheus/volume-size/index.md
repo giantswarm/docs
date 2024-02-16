@@ -12,6 +12,7 @@ user_questions:
   - How can I expand the persistent volume of the Giant Swarm managed Prometheus?
   - Why would I resize the Giant Swarm managed Prometheus persistent volume ?
 aliases:
+  - /getting-started/observability/monitoring/prometheus/volume-size
   - /observability/prometheus/volume-size
   - /observability/monitoring/prometheus/volume-size
   - /ui-api/observability/prometheus/volume-size

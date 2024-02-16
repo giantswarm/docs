@@ -4,6 +4,7 @@ title: Creating a workload cluster and installing applications
 description: The Giant Swarm Management API is easily accessible by means of kubectl-gs, a kubectl plugin developed by Giant Swarm. This tutorial guides you throughout some of the most important features of the tool.
 weight: 40
 aliases:
+  - /getting-started/create-workload-cluster
   - /getting-started/capa-wlcluster-creation/
   - /getting-started/capz-cluster-creation/
   - /getting-started/kubectl-gs/

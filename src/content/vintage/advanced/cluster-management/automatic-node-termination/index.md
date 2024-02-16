@@ -12,6 +12,7 @@ user_questions:
   - How are unhealthy worker nodes treated?
 last_review_date: 2023-11-07
 aliases:
+  - /advanced/cluster-management/automatic-node-termination
   - /basics/automatic-termination-of-bad-nodes/
   - /guides/automatic-node-termination/
   - /advanced/automatic-node-termination/

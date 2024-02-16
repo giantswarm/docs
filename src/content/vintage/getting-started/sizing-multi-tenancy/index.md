@@ -7,6 +7,7 @@ menu:
   main:
     parent: support-training
 aliases:
+  - /getting-started/sizing-multi-tenancy
   - /getting-started/best-practices/
   - /guides/recommendations-and-best-practices/
   - /kubernetes/best-practices/

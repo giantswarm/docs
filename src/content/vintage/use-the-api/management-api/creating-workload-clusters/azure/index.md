@@ -11,6 +11,7 @@ user_questions:
   - How can I create an Azure cluster via the Management API?
 last_review_date: 2023-11-07
 aliases:
+  - /use-the-api/management-api/creating-workload-clusters/azure
   - /guides/creating-clusters-via-crs-on-azure/
   - /ui-api/management-api/creating-workload-clusters/azure
 owner:

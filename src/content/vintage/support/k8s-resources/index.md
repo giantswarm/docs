@@ -8,6 +8,7 @@ menu:
     parent: support-training
 last_review_date: 2022-12-13
 aliases:
+  - /support/k8s-resources
   - /basics/kubernetes-resources/
   - /kubernetes/resources/
   - /kubernetes/resource-qos/

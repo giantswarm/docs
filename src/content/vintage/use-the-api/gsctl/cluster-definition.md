@@ -7,6 +7,7 @@ menu:
   main:
     parent: uiapi-gsctl
 aliases:
+  - /use-the-api/gsctl
   - /reference/cluster-definition/
   - /ui-api/gsctl/cluster-definition/
 user_questions:

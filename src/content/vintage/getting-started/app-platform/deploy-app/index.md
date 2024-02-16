@@ -9,6 +9,7 @@ menu:
     identifier: getting-started-app-platform-deploy-app
 last_review_date: 2024-01-18
 aliases:
+  - /getting-started/app-platform/deploy-app
   - /developer-platform/app-platform/getting-started
   - /app-platform/getting-started
 owner:

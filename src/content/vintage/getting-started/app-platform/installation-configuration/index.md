@@ -8,6 +8,7 @@ menu:
     parent: getting-started-app-platform
     identifier: getting-started-app-platform-config-install
 aliases:
+  - /getting-started/app-platform/installation-configuration
   - /developer-platform/app-platform/installation-configuration
   - /app-platform/installation-configuration
 owner:

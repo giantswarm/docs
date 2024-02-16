@@ -7,6 +7,7 @@ menu:
   main:
     parent: platform-overview-observability
 aliases:
+  - /platform-overview/observability/elastic-stack
   - /guides/efk-stack-app-oidc/
   - /app-platform/apps/elastic-stack/
   - /developer-platform/observability/elastic-stack/

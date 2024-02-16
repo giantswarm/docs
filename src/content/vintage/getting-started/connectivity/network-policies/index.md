@@ -7,6 +7,7 @@ menu:
   main:
     parent: gettingstarted-connectivity
 aliases:
+  - /getting-started/connectivity/network-policies
   - /guides/limiting-pod-communication-with-network-policies/
   - /getting-started/network-policies/
 user_questions:

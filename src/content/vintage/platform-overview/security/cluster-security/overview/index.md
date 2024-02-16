@@ -11,6 +11,7 @@ last_review_date: 2022-12-07
 user_questions:
   - In which was does Giant Swarm ensure system security?
 aliases:
+  - /platform-overview/security/cluster-security/overview
   - /security/overview
   - /basics/security/
 owner:

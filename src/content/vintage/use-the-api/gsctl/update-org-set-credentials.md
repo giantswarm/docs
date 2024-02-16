@@ -7,6 +7,7 @@ menu:
   main:
     parent: uiapi-gsctl
 aliases:
+  - /use-the-api/gsctl
   - /reference/gsctl/update-org-set-credentials/
   - /ui-api/gsctl/update-org-set-credentials/
 owner:

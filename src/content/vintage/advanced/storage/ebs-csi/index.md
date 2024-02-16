@@ -12,6 +12,7 @@ user_questions:
   - How do I test the EBS CSI storage class?
   - How do I use EBS CSI volumes?
 aliases:
+  - /advanced/storage/ebs-csi
   - /guides/using-persistent-volumes-on-aws-with-ebs-csi-driver/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix

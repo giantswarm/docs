@@ -13,6 +13,7 @@ user_questions:
   - Where can I see the IPs in use by Kube-vip?
 last_review_date: 2023-11-07
 aliases:
+  - /advanced/cluster-management/vsphere-kubevip
   - /guides/vsphere-kubevip
   - /advanced/vsphere-kubevip
 owner:

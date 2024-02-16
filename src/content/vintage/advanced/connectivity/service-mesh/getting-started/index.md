@@ -10,6 +10,7 @@ user_questions:
   - How can I install a Service Mesh on my cluster?
 last_review_date: 2023-12-19
 aliases:
+  - /advanced/connectivity/service-mesh/getting-started
   - /advanced/service-mesh/getting-started
   - /guides/service-mesh/getting-started
 owner:

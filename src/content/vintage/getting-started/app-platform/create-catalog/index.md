@@ -9,6 +9,7 @@ menu:
     identifier: getting-started-app-platform-app-catalog
 last_review_date: 2023-10-17
 aliases:
+  - /getting-started/app-platform/create-catalog
   - /app-platform/create-catalog
   - /developer-platform/app-platform/create-catalog
 owner:

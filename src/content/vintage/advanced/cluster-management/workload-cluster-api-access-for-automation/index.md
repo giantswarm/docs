@@ -12,6 +12,7 @@ user_questions:
   - How do I grant access to Kubernetes API from my CI system?
 last_review_date: 2023-11-07
 aliases:
+  - /advanced/cluster-management/workload-cluster-api-access-for-automation
   - /guides/workload-cluster-api-access-for-automation/
   - /advanced/workload-cluster-api-access-for-automation/
 owner:

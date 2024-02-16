@@ -3,6 +3,8 @@ linkTitle: P1 Incident Process
 title: P1 incident process
 description: The process used by the Giant Swarm support team when a priority one incident is called.
 weight: 100
+aliases:
+  - /support/p1-process
 menu:
   main:
     parent: support-training

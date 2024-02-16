@@ -3,6 +3,8 @@ linkTitle: Tooling
 title: Tooling to support the GitOps journey
 description: A description of the tools availble and how to use them to augment the GitOps journey.
 weight: 80
+aliases:
+  - /advanced/gitops/tools
 menu:
   main:
     parent: advanced-gitops

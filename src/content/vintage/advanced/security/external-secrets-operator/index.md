@@ -13,6 +13,7 @@ user_questions:
 - What resources does external secrets operator consume on my cluster?
 last_review_date: 2023-11-07
 aliases:
+  - /advanced/security/external-secrets-operator
   - /guides/external-secrets-operator/
   - /advanced/external-secrets-operator/
 owner:

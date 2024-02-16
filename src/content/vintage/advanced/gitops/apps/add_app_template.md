@@ -3,6 +3,8 @@ linkTitle: Add a new App Template
 title: Add a new App Template
 description: Learn how to create application templates to deploy apps using GitOps.
 weight: 50
+aliases:
+  - /advanced/gitops/apps
 menu:
   main:
     identifier: advanced-gitops-apps-add-app-template

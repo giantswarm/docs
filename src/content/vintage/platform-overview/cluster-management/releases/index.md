@@ -22,6 +22,7 @@ user_questions:
   - What is a beta release?
   - What is a release candidate?
 aliases:
+  - /platform-overview/cluster-management/releases
   - /general/releases
   - /reference/release-versions/
   - /reference/tenant-cluster-release-versions/

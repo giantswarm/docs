@@ -10,5 +10,6 @@ last_review_date: 2023-03-01
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 aliases:
+  - /getting-started/operations
   - /operations/
 ---

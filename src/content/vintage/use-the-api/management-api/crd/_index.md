@@ -13,6 +13,7 @@ user_questions:
   - What is a Custom Resource (CR)?
   - Where can I find links to Giant Swarm CRs/CRDs?
 aliases:
+  - /use-the-api/management-api/crd
   - /reference/cp-k8s-api/
   - /ui-api/cp-k8s-api/
   - /ui-api/management-api/crd/

@@ -7,6 +7,7 @@ menu:
   main:
     parent: uiapi-kubectlgs
 aliases:
+  - /use-the-api/kubectl-gs
   - /reference/kubectl-gs/update-app/
   - /ui-api/kubectl-gs/update-app/
 last_review_date: 2024-01-18

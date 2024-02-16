@@ -7,6 +7,7 @@ menu:
   main:
     parent: uiapi-gsctl
 aliases:
+  - /use-the-api/gsctl
   - /reference/gsctl/list-keypairs/
   - /ui-api/gsctl/list-keypairs/
 owner:

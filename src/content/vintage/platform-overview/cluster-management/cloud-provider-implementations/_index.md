@@ -5,6 +5,7 @@ description: Providers for which we support cluster management, and the differen
 last_review_date: 2023-07-03
 weight: 30
 aliases:
+  - /platform-overview/cluster-management/cloud-provider-implementations
 menu:
   main:
     parent: platform-overview-cluster-management

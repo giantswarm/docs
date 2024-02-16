@@ -13,6 +13,7 @@ user_questions:
   - What are the side effects of setting a large Etcd database?
 last_review_date: 2023-11-07
 aliases:
+  - /advanced/cluster-management/etcd-quota-backend-bytes
   - /guides/etcd-quota-backend-bytes/
   - /advanced/etcd-quota-backend-bytes/
 owner:

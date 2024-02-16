@@ -10,6 +10,7 @@ user_questions:
   - How can I influence the disruption a cluster upgrade will cause?
 last_review_date: 2023-11-07
 aliases:
+  - /advanced/cluster-management/upgrades/upgrade-disruption
   - /guides/fine-tuning-upgrade-disruption-on-aws/
   - /advanced/fine-tuning-upgrade-disruption-on-aws/
 owner:

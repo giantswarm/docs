@@ -12,6 +12,7 @@ user_questions:
   - How Prometheus RemoteWrite works?
   - How do I get access to management cluster metrics?
 aliases:
+  - /getting-started/observability/monitoring/prometheus/remotewrite
   - /observability/prometheus/remotewrite
   - /observability/monitoring/prometheus/remotewrite
   - /ui-api/observability/prometheus/remotewrite

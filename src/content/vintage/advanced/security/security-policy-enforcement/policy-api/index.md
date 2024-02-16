@@ -13,6 +13,7 @@ user_questions:
  -  What is the Policy API?
 last_review_date: 2023-11-07
 aliases:
+  - /advanced/security/security-policy-enforcement/policy-api
   - /guides/security-policy-enforcement/policy-api
   - /advanced/security-policy-enforcement/policy-api
 owner:

@@ -7,6 +7,7 @@ menu:
   main:
     parent: uiapi-gsctl
 aliases:
+  - /use-the-api/gsctl
   - /reference/gsctl/update-nodepool/
   - /ui-api/gsctl/update-nodepool/
 owner:

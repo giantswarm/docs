@@ -8,6 +8,7 @@ menu:
     parent: platform-overview-security-cluster
 last_review_date: 2022-12-07
 aliases:
+  - /platform-overview/security/cluster-security/cluster-access
   - /security/cluster-access
   - /basics/secured-access-to-clusters/
 user_questions:

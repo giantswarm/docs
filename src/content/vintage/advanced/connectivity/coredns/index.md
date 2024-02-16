@@ -13,6 +13,7 @@ user_questions:
   - Where is the user values ConfigMap for CoreDNS?
 last_review_date: 2023-11-07
 aliases:
+  - /advanced/connectivity/coredns
   - /guides/advanced-coredns-configuration/
   - /advanced/coredns/
 owner:

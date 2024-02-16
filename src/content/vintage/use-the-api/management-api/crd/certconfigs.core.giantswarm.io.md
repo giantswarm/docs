@@ -22,6 +22,7 @@ layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 aliases:
+  - /use-the-api/management-api/crd
   - /reference/cp-k8s-api/certconfigs.core.giantswarm.io/
 technical_name: certconfigs.core.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions

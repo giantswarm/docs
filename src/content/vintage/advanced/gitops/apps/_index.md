@@ -3,6 +3,8 @@ linkTitle: Managing apps
 title: Managing Apps with Gitops
 description: Learn how to deploy applications in different clusters and environments using GitOps.
 weight: 70
+aliases:
+  - /advanced/gitops/apps
 menu:
   main:
     identifier: advanced-gitops-apps

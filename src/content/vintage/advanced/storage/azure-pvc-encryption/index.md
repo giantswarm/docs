@@ -11,6 +11,7 @@ user_questions:
   - How do I secure data on Persistent Volumes?
   - How do I use Azure Key Vault?
 aliases:
+  - /advanced/storage/azure-pvc-encryption
   - /guides/encrypting-persistent-volumes-on-azure-with-azure-key-vault/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix

@@ -11,6 +11,7 @@ last_review_date: 2022-09-26
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 aliases:
+  - /getting-started/app-platform/configuring-default-apps
   - /developer-platform/app-platform/configuring-default-apps
   - /app-platform/configuring-default-apps
 user_questions:

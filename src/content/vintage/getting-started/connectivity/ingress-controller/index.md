@@ -10,6 +10,7 @@ user_questions:
 - How do I install my own ingress controller?
 - Which ingress controller is available via the Giant Swarm app platform?
 aliases:
+  - /getting-started/connectivity/ingress-controller
   - /guides/installing-optional-ingress-controller/
   - /getting-started/ingress-controller/
 owner:

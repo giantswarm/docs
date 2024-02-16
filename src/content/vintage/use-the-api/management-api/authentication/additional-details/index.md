@@ -9,6 +9,7 @@ menu:
     parent: uiapi-managementapi-authentication
 last_review_date: 2023-05-02
 aliases:
+  - /use-the-api/management-api/authentication/additional-details
   - /reference/management-api/authentication/additional-details
   - /ui-api/management-api/authentication/additional-details
 user_questions:

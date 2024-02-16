@@ -14,6 +14,7 @@ user_questions:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 aliases:
+  - /use-the-api/kubectl-gs/gitops
   - /reference/kubectl-gs/gitops
   - /ui-api/kubectl-gs/gitops
 ---

@@ -3,6 +3,8 @@ linkTitle: Environments
 title: Creating environments for GitOps resources
 description: How to deploy resources, with different configurations or versions across several environments.
 weight: 70
+aliases:
+  - /advanced/gitops/environments
 menu:
   main:
     parent: advanced-gitops

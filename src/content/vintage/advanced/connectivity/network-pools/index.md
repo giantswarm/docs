@@ -13,6 +13,7 @@ user_questions:
   - Which releases introduced network pools?
 last_review_date: 2023-11-07
 aliases:
+  - /advanced/connectivity/network-pools
   - /basics/networkpools/
   - /guides/networkpools/
   - /advanced/networkpools/

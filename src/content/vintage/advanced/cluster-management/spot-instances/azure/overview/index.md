@@ -14,6 +14,7 @@ user_questions:
   - What's the difference between spot VMs and on-demand VMs on Azure?
 last_review_date: 2023-11-07
 aliases:
+  - /advanced/cluster-management/spot-instances/azure/overview
   - /advanced/spot-instances/aws/overview/
   - /guides/spot-instances/aws/overview/
 owner:

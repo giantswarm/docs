@@ -13,6 +13,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-bigmac
 last_review_date: 2023-08-29
 aliases:
+  - /use-the-api/rest-api
   - /reference/rest-api/
   - /ui-api/rest-api/
 ---

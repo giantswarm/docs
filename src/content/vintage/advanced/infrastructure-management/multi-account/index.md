@@ -12,6 +12,7 @@ user_questions:
 - How can I run workload clusters in different cloud provider accounts?
 last_review_date: 2023-11-07
 aliases:
+  - /advanced/infrastructure-management/multi-account
   - /basics/multi-account/
   - /advanced/multi-account
   - /guides/multi-account

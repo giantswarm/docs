@@ -11,6 +11,7 @@ user_questions:
   - How do I obtain TLS certificates?
 last_review_date: 2023-11-07
 aliases:
+  - /advanced/connectivity/tls-certificates
   - /advanced/tls-certificates
   - /guides/tls-certificates
 owner:

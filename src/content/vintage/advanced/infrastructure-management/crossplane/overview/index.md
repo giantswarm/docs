@@ -8,6 +8,7 @@ user_questions:
 - What is Crossplane?
 last_review_date: 2023-11-07
 aliases:
+  - /advanced/infrastructure-management/crossplane/overview
   - /advanced/crossplane/overview
   - /guides/crossplane/overview
 owner:

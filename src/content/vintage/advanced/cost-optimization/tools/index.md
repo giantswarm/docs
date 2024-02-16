@@ -11,6 +11,7 @@ user_questions:
 - What cost optimization tools do you recommend?
 - How can I tune my setup to optimize for cost?
 aliases:
+  - /advanced/cost-optimization/tools
 owner:
   - https://github.com/orgs/giantswarm/teams/team-horizon
 ---

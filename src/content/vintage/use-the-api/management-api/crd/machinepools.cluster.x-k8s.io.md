@@ -25,6 +25,7 @@ layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 aliases:
+  - /use-the-api/management-api/crd
   - /reference/cp-k8s-api/machinepools.cluster.x-k8s.io/
 technical_name: machinepools.cluster.x-k8s.io
 source_repository: https://github.com/giantswarm/apiextensions

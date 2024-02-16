@@ -7,6 +7,7 @@ menu:
   main:
     parent: advanced-storage
 aliases:
+  - /advanced/storage/ebs-troubleshooting
   - /guides/aws-impaired-volumes/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix

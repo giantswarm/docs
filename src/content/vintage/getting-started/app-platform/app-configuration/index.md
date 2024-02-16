@@ -8,24 +8,25 @@ menu:
     identifier: getting-started-app-platform-app-config
 weight: 30
 aliases:
- - /reference/app-configuration/
- - /app-platform/app-configuration
- - /developer-platform/app-platform/app-configuration
+  - /getting-started/app-platform/app-configuration
+  - /reference/app-configuration/
+  - /app-platform/app-configuration
+  - /developer-platform/app-platform/app-configuration
 last_review_date: 2024-01-18
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
- - What tool is used to deploy applications?
- - What configurations are required on an App in order to make it ready to deploy?
- - What app configuration levels exist?
- - Why are there multiple app configuration levels?
- - What are the configuration values that I can change for Apps?
- - What is the logic behind setting the final configuration of an App?
- - What happens if I don't customize configurations?
- - What is the correct App configuration level to use?
- - What are the limitations around secrets when configuring them for an App?
- - How are configuration values stored and referenced in the Control Plane?
- - How can I provide configuration values for apps?
+  - What tool is used to deploy applications?
+  - What configurations are required on an App in order to make it ready to deploy?
+  - What app configuration levels exist?
+  - Why are there multiple app configuration levels?
+  - What are the configuration values that I can change for Apps?
+  - What is the logic behind setting the final configuration of an App?
+  - What happens if I don't customize configurations?
+  - What is the correct App configuration level to use?
+  - What are the limitations around secrets when configuring them for an App?
+  - How are configuration values stored and referenced in the Control Plane?
+  - How can I provide configuration values for apps?
 ---
 
 Giant Swarm's [App Platform]({{< relref "/vintage/platform-overview/app-platform" >}}) allows you to easily install Apps across your entire

@@ -7,6 +7,7 @@ menu:
   main:
     parent: uiapi-kubectlgs
 aliases:
+  - /use-the-api/kubectl-gs
   - /reference/kubectl-gs/get-nodepools/
   - /ui-api/kubectl-gs/get-nodepools/
 owner:

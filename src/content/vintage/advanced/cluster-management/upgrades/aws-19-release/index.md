@@ -15,6 +15,7 @@ user_questions:
   - How does the Cilium migration work?
 last_review_date: 2023-04-24
 aliases:
+  - /advanced/cluster-management/upgrades/aws-19-release
   - /guides/aws-release-v19/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix

@@ -8,6 +8,7 @@ menu:
     parent: getting-started
 last_review_date: 2023-12-19
 aliases:
+  - /getting-started/persistent-volumes
   - /getting-started/persistent-volumes/aws/
   - /getting-started/persistent-volumes/azure/
   - /getting-started/persistent-volumes/on-premises/

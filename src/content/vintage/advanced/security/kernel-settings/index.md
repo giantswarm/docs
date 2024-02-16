@@ -10,6 +10,7 @@ user_questions:
   - How is the Linux kernel of cluster nodes configured?
 last_review_date: 2023-11-07
 aliases:
+  - /advanced/security/kernel-settings
   - /guides/kernel-settings/
   - /advanced/kernel-settings/
 owner:

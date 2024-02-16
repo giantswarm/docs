@@ -7,6 +7,7 @@ menu:
   main:
     parent: platform-overview-connectivity
 aliases:
+  - /platform-overview/connectivity/api-gateway
   - /developer-platform/connectivity/api-gateway
   - /app-platform/apps/kong
 user_questions:

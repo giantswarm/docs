@@ -9,6 +9,7 @@ user_questions:
 - What are the risks of using Crossplane?
 last_review_date: 2023-11-07
 aliases:
+  - /advanced/infrastructure-management/crossplane/requirements
   - /advanced/crossplane/requirements
   - /guides/crossplane/requirements
 owner:

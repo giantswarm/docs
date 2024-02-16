@@ -13,6 +13,7 @@ menu:
     identifier: support-training-overview
     weight: 1
 aliases:
+  - /support/overview
   - /general/support
   - /basics/giant-swarm-support/
 owner:

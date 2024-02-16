@@ -8,6 +8,7 @@ menu:
     parent: platform-overview
     identifier: platform-overview-observability
 aliases:
+  - /platform-overview/observability
   - /developer-platform/observability/
   - /app-platform/apps/observability/
 owner:

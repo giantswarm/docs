@@ -12,6 +12,7 @@ weight: 40
 user_questions:
   - What domains do Giant Swarm clusters need access to?
 aliases:
+  - /platform-overview/security/cluster-security/domain-allowlist
   - /security/domain-allowlist
   - /reference/domain-allowlist/
 ---

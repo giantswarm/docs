@@ -7,6 +7,7 @@ menu:
   main:
     parent: uiapi-gsctl
 aliases:
+  - /use-the-api/gsctl
   - /reference/gsctl/select-endpoint/
   - /ui-api/gsctl/select-endpoint/
 owner:

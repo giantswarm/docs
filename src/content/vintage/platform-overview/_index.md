@@ -4,6 +4,7 @@ title: Platform Overview
 description: If you know little about Giant Swarm and are about to get started with our product, this is where you can find some introductory and high-level description of what to expect.
 last_review_date: 2022-12-07
 aliases:
+  - /platform-overview
   - /general
 owner:
   - https://github.com/orgs/giantswarm/teams/team-horizon

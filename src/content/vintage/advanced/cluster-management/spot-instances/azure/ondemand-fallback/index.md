@@ -11,6 +11,7 @@ user_questions:
   - How can I use Azure spot VMs and fall back to on-demand if spot is unavailable?
 last_review_date: 2023-11-07
 aliases:
+  - /advanced/cluster-management/spot-instances/azure/ondemand-fallback
   - /advanced/spot-instances/azure/on-demand-fallback/
   - /guides/cluster-management/spot-instances/azure/on-demand-fallback/
 owner:

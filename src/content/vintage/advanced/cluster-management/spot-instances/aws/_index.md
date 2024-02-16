@@ -3,6 +3,8 @@ linkTitle: AWS
 title: Spot instances on AWS
 description: A general description of spot instances, it's benefits, usage and differences from on-demand instance types.
 weight: 10
+aliases:
+  - /advanced/cluster-management/spot-instances/aws
 menu:
   main:
     identifier: advanced-spotinstances-aws

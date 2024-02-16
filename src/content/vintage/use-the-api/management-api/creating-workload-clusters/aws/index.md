@@ -8,6 +8,7 @@ menu:
     identifier: uiapi-managementapi-creatingclusters-aws
     parent: uiapi-managementapi-creatingclusters
 aliases:
+  - /use-the-api/management-api/creating-workload-clusters/aws
   - /guides/creating-clusters-via-crs-on-aws/
   - /ui-api/management-api/creating-workload-clusters/aws
 user_questions:

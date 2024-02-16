@@ -10,6 +10,7 @@ user_questions:
   - How can I customize the External DNS AWS authentication method?
 last_review_date: 2023-11-07
 aliases:
+  - /advanced/connectivity/external-dns/aws-route53-static-creds
   - /guides/external-dns/aws-route53-static-creds/
   - /advanced/external-dns/aws-route53-static-creds/
 owner:

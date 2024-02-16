@@ -13,6 +13,7 @@ user_questions:
   - How do I use EFS Volumes?
   - What auto-provisioner for AWS do you recommend? EFS? EBS?
 aliases:
+  - /advanced/storage/efs/setup
   - /guides/using-persistent-volumes-on-aws-with-efs-csi-driver/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix

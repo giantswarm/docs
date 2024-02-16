@@ -7,6 +7,7 @@ menu:
   main:
     parent: uiapi-gsctl
 aliases:
+  - /use-the-api/gsctl
   - /reference/gsctl/scale-cluster/
   - /ui-api/gsctl/scale-cluster/
 owner:

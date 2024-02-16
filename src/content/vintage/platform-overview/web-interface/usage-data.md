@@ -7,6 +7,7 @@ menu:
   main:
     parent: platform-overview-web
 aliases:
+  - /platform-overview/web-interface
    - /ui-api/web/usage-data
    - /reference/web-interface/usage-data/
 owner:

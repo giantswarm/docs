@@ -10,6 +10,7 @@ user_questions:
   - How can I create and deploy my own admission controller?
 last_review_date: 2023-02-07
 aliases:
+  - /advanced/cluster-management/custom-admission-controllers
   - /guides/creating-your-own-admission-controller/
   - /guides/custom-admission-controllers/
   - /advanced/custom-admission-controllers/

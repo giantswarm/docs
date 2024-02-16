@@ -14,6 +14,7 @@ user_questions:
   - Why are my containers failing to access some resources?
   - Why is my container lacking permission to use a persistent volume?
 aliases:
+  - /getting-started/security
   - /guides/securing-with-rbac-and-psp/
   - /getting-started/rbac-and-psp/
   - /getting-started/securing-your-cluster

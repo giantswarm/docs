@@ -24,6 +24,7 @@ user_questions:
   - How is access to the management cluster authorized?
   - How do users access workload clusters?
 aliases:
+  - /platform-overview/security/operational-layers
   - /security/operational-layers
   - /basics/giant-swarm-operational-layers/
 owner:

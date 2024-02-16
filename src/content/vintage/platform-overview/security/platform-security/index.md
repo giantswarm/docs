@@ -7,6 +7,7 @@ menu:
   main:
     parent: platform-overview-security
 aliases:
+  - /platform-overview/security/platform-security
   - /developer-platform/security/
   - /app-platform/apps/security/
 #   - /guides/managed-security-stack/

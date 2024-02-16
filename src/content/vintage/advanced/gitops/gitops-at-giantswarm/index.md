@@ -3,6 +3,8 @@ linkTitle: At Giant Swarm
 title: GitOps at Giant Swarm
 description: A brief explanation of how Giant Swarm supports the GitOps journey for our customers.
 weight: 10
+aliases:
+  - /advanced/gitops/gitops-at-giantswarm
 menu:
   main:
     parent: advanced-gitops

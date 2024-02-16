@@ -14,6 +14,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 last_review_date: 2022-12-13
 aliases:
+  - /support/shared-installation
   - /getting-started/shared-installation/
 ---
 

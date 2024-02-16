@@ -13,6 +13,7 @@ user_questions:
   - How can I access Kubernetes audit logs?
   - How do I ship audit logs to a remote locations?
 aliases:
+  - /getting-started/observability/logging/audit-logs
   - /ui-api/observability/logs/audit-logging
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas

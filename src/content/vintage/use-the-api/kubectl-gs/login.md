@@ -8,6 +8,7 @@ menu:
     identifier: uiapi-kubectlgs-login
     parent: uiapi-kubectlgs
 aliases:
+  - /use-the-api/kubectl-gs
   - /reference/kubectl-gs/login/
   - /ui-api/kubectl-gs/login/
 owner:

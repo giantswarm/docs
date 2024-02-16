@@ -3,6 +3,8 @@ linkTitle: Security
 title: Advanced Security Guides
 description: Take a look at the list of guides that delve into Security and its components.
 weight: 30
+aliases:
+  - /advanced/security
 menu:
   main:
     identifier: advanced-security

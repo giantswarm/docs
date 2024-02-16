@@ -13,6 +13,7 @@ user_questions:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 aliases:
+  - /azure
   - /getting-started/cloud-provider-accounts/azure/
 last_review_date: 2023-11-27
 ---

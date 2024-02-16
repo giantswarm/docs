@@ -8,6 +8,7 @@ menu:
     parent: advanced-observability-visualization
 weight: 40
 aliases:
+  - /advanced/observability/visualization/custom-dashboards
   - /observability/grafana/custom-dashboards
   - /observability/visualization/custom-dashboards
   - /ui-api/observability/grafana/custom-dashboards

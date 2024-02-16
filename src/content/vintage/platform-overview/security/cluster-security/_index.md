@@ -5,6 +5,7 @@ description: Information on how Giant Swarm keeps your clusters safe by default,
 last_review_date: 2024-01-26
 weight: 20d
 aliases:
+  - /platform-overview/security/cluster-security
   - /security
 menu:
   main:

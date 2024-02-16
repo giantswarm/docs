@@ -7,6 +7,7 @@ menu:
   main:
     parent: platform-overview-connectivity
 aliases:
+  - /platform-overview/connectivity/ingress
   - /developer-platform/connectivity/ingress
 user_questions:
   - How do I do Ingress?

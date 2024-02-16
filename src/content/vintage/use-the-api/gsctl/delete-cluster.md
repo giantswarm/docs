@@ -7,6 +7,7 @@ menu:
   main:
     parent: uiapi-gsctl
 aliases:
+  - /use-the-api/gsctl
   - /reference/gsctl/delete-cluster/
   - /ui-api/gsctl/delete-cluster/
 owner:

@@ -10,6 +10,7 @@ user_questions:
   - How to create workload cluster client certificates via the Management API?
 last_review_date: 2023-11-07
 aliases:
+  - /use-the-api/management-api/wc-key-pairs
   - /ui-api/management-api/wc-key-pairs/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bigmac

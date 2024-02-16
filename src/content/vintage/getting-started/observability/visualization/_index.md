@@ -9,6 +9,7 @@ menu:
 weight: 40
 last_review_date: 2024-02-09
 aliases:
+  - /getting-started/observability/visualization
   - /ui-api/observability/grafana
   - /ui-api/observability/visualization
 owner:

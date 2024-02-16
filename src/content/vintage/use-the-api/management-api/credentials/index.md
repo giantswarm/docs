@@ -10,6 +10,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-bigmac
 last_review_date: 2024-01-18
 aliases:
+  - /use-the-api/management-api/credentials
   - /ui-api/management-api/credentials/
 user_questions:
   - How can I provide AWS identity details to use with my workload clusters?

@@ -11,6 +11,7 @@ user_questions:
   - How can I expose a service to the internet?
   - How to configure the host name in ingress?
 aliases:
+  - /getting-started/connectivity/exposing-workloads
   - /guides/accessing-services-from-the-outside/
   - /getting-started/exposing-workloads/
 owner:

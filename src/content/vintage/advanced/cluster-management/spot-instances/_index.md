@@ -9,6 +9,7 @@ menu:
     parent: advanced-cluster-management
 last_review_date: 2023-11-07
 aliases:
+  - /advanced/cluster-management/spot-instances
   - /basics/spot-instances/
   - /advanced/spot-instances/
   - /guides/spot-instances/

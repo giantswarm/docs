@@ -7,6 +7,8 @@ user_questions:
   - What are the VMware Cloud Director prerequisites for use with Giant Swarm?
   - What do I need to configure in VMware Cloud Director in order to run Giant Swarm clusters?
   - What user permissions do I need to run Giant Swarm clusters in VMware Cloud Director?
+aliases:
+  - /getting-started/cloud-provider-accounts/vmware-cloud-director
 menu:
   main:
     identifier: gettingstarted-infraprovider-clouddirector

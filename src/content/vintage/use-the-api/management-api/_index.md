@@ -11,6 +11,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-bigmac
 last_review_date: 2023-03-08
 aliases:
+  - /use-the-api/management-api
   - /reference/management-api/
   - /ui-api/management-api/
   - /ui-api/management-api/overview/

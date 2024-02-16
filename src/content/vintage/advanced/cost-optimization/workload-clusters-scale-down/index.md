@@ -11,6 +11,7 @@ user_questions:
 - How can I scale down cluster nodes to 0?
 - How can I silence alerts from the clusters?
 aliases:
+  - /advanced/cost-optimization/workload-clusters-scale-down
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---

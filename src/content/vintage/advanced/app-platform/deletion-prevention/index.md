@@ -14,6 +14,7 @@ user_questions:
   - How can I safeguard clusters?
 last_review_date: 2023-11-07
 aliases:
+  - /advanced/app-platform/deletion-prevention
   - /guides/deletion-prevention/
   - /advanced/deletion-prevention/
 owner:

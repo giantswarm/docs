@@ -2,6 +2,8 @@
 title: Access to the management cluster
 description: The Giant Swarm Management API is easily accessible by means of kubectl-gs, a kubectl plugin developed by Giant Swarm. This tutorial guides you throughout some of the most important features of the tool.
 weight: 30
+aliases:
+  - /getting-started/management-cluster
 menu:
   main:
     parent: getting-started

@@ -13,6 +13,7 @@ user_questions:
   - Can I switch from a high-availability control plane to a single node control plane?
   - How can I switch a cluster to use a high-availability control plane?
 aliases:
+  - /advanced/cluster-management/high-availability/control-plane
   - /basics/ha-masters/
   - /advanced/high-availability/masters/
   - /advanced/high-availability/control-plane/

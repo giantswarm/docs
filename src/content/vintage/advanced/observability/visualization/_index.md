@@ -2,6 +2,8 @@
 linkTitle: Visualization
 title: Visualization
 description: Advanced usage and customization guide for Giant Swarm platform observability features.
+aliases:
+  - /advanced/observability/visualization
 menu:
   main:
     identifier: advanced-observability-visualization

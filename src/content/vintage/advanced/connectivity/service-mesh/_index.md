@@ -9,6 +9,7 @@ menu:
     parent: advanced-connectivity
 last_review_date: 2023-11-07
 aliases:
+  - /advanced/connectivity/service-mesh
   - /advanced/service-mesh
   - /guides/service-mesh
 owner:

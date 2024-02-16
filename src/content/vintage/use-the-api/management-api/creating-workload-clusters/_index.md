@@ -8,6 +8,7 @@ menu:
     identifier: uiapi-managementapi-creatingclusters
     parent: uiapi-managementapi
 aliases:
+  - /use-the-api/management-api/creating-workload-clusters
   - /guides/creating-clusters-via-crs/
   - /ui-api/management-api/creating-workload-clusters/
 owner:

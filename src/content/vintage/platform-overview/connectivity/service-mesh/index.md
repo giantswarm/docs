@@ -7,6 +7,7 @@ menu:
   main:
     parent: platform-overview-connectivity
 aliases:
+  - /platform-overview/connectivity/service-mesh
   - /developer-platform/connectivity/service-mesh
 user_questions:
   - How do I install a service mesh?

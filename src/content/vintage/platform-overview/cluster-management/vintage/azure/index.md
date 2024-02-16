@@ -8,6 +8,7 @@ menu:
     parent: cluster-management-vintage
 last_review_date: 2023-12-11
 aliases:
+  - /azure
   - /basics/azure-architecture/
   - /general/architcture/azure/
   - /general/architecture/azure/

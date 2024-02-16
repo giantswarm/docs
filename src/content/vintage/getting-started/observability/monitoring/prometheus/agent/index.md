@@ -15,6 +15,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 last_review_date: 2023-02-22
 aliases:
+  - /getting-started/observability/monitoring/prometheus/agent
   - /ui-api/observability/monitoring/prometheus/agent
   - /observability/monitoring/prometheus/agent
 ---

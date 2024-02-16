@@ -3,6 +3,8 @@ linkTitle: Base templates
 title: Creating a base template for CAPI workload clusters
 description: How to create a base template to create workload clusters with different configurations.
 weight: 70
+aliases:
+  - /advanced/gitops/bases
 menu:
   main:
     parent: advanced-gitops

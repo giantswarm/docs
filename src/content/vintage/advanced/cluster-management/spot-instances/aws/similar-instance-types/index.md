@@ -10,6 +10,7 @@ user_questions:
   - Which EC2 instance types are used when I activate the use of similar instance types?
 last_review_date: 2023-04-04
 aliases:
+  - /advanced/cluster-management/spot-instances/aws/similar-instance-types
   - /reference/similar-ec2-instance-types/
   - /advanced/spot-instances/aws/similar-ec2-instance-types
   - /guides/spot-instances/aws/similar-ec2-instance-types

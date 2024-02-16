@@ -13,6 +13,7 @@ user_questions:
   - What's the difference between spot instances and on-demand instances on AWS?
 last_review_date: 2023-11-07
 aliases:
+  - /advanced/cluster-management/spot-instances/aws/overview
   - /advanced/spot-instances/aws/overview/
   - /guides/spot-instances/aws/overview/
 owner:

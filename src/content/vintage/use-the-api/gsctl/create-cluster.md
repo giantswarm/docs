@@ -11,6 +11,7 @@ user_questions:
   - What are the defaults for the 'gsctl create cluster' flags?
   - How does an example call of 'gsctl create cluster' look like?
 aliases:
+  - /use-the-api/gsctl
   - /reference/gsctl/create-cluster/
   - /ui-api/gsctl/create-cluster/
 owner:

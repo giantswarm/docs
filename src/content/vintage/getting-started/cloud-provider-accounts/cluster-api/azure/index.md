@@ -2,6 +2,8 @@
 linkTitle: Azure
 title: Prepare an Azure subscription to run Cluster API Giant Swarm cluster
 description: This guide will walk you through all necessary steps to set up an Azure subscription with appropriate IAM roles for operating Cluster API Giant Swarm clusters.
+aliases:
+  - /getting-started/cloud-provider-accounts/cluster-api/azure
 menu:
   main:
     identifier: gettingstarted-cloudprovider-clusterapi-azure

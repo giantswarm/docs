@@ -13,6 +13,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 last_review_date: 2024-01-18
 aliases:
+  - /use-the-api/gsctl
   - /reference/gsctl/migrate/
   - /ui-api/gsctl/migrate/
 ---

@@ -3,6 +3,8 @@ linkTitle: Node pools (CAPI)
 title: Node pools (CAPI)
 description: A general description of node pools as a concept, its benefits, and some details you should be aware of.
 weight: 45
+aliases:
+  - /advanced/cluster-management/node-pools-capi
 menu:
   main:
     parent: advanced-cluster-management

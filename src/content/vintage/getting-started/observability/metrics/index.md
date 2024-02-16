@@ -7,6 +7,7 @@ menu:
   main:
     parent: getting-started-observability
 aliases:
+  - /getting-started/observability/metrics
   - /guides/kubernetes-heapster/
   - /getting-started/metrics/
 user_questions:

@@ -4,6 +4,7 @@ description: Supported cloud providers and cluster management features offered b
 last_review_date: 2023-07-03
 weight: 30
 aliases:
+  - /platform-overview/cluster-management
   - /general/overview
   - /platform-overview/cluster-management/architecture/
   - /platform-overview/cluster-management/overview/

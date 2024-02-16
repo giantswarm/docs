@@ -9,6 +9,7 @@ menu:
 weight: 40
 last_review_date: 2023-03-01
 aliases:
+  - /getting-started/operations/autoscaling
   - /operations/autoscaling
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas

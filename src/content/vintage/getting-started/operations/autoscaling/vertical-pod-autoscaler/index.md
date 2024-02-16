@@ -8,6 +8,7 @@ menu:
     parent: getting-started-operations-autoscaling
 weight: 100
 aliases:
+  - /getting-started/operations/autoscaling/vertical-pod-autoscaler
   - /operations/autoscaling/vertical-pod-autoscaler
 last_review_date: 2023-08-16
 user_questions:

@@ -15,6 +15,7 @@ user_questions:
   - How do I configure an internal Load Balancer on GCP?
 last_review_date: 2023-11-23
 aliases:
+  - /advanced/connectivity/ingress/service-type-loadbalancer
   - /guides/services-of-type-loadbalancer-and-multiple-ingress-controllers/
   - /advanced/ingress/service-type-loadbalancer-multi-ic/
 owner:

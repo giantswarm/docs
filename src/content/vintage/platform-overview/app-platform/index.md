@@ -5,6 +5,7 @@ description: The app platform allows to manage app catalogs and apps, for simple
 last_review_date: 2023-03-31
 weight: 50
 aliases:
+  - /platform-overview/app-platform
   - /developer-platform/app-platform/
   - /basics/app-platform/
   - /app-platform
