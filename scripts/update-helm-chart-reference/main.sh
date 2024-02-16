@@ -1,7 +1,7 @@
 #!/bin/bash
 
 HELM_CHART_DOCS_GENERATOR_VERSION=0.1.0
-DESTINATION=src/content/use-the-api/management-api/cluster-apps
+DESTINATION=src/content/vintage/use-the-api/management-api/cluster-apps
 
 # Clear output folder
 find ${DESTINATION} -type f -not -name "_index.md" | xargs -I '{}' rm '{}'
