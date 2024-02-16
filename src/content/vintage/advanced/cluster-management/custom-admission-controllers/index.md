@@ -8,7 +8,7 @@ menu:
     parent: advanced-cluster-management
 user_questions:
   - How can I create and deploy my own admission controller?
-last_review_date: 2023-02-07
+last_review_date: 2024-02-16
 aliases:
   - /advanced/cluster-management/custom-admission-controllers
   - /guides/creating-your-own-admission-controller/
