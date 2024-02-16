@@ -14,7 +14,7 @@ user_questions:
   - What do I need to configure in Azure in order to run Cluster API Giant Swarm clusters?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2023-10-16
+last_review_date: 2024-02-16
 ---
 
 Currently, the Giant Swarm Cluster API for Azure implementation supports only running the Management and Workload Clusters in a single subscription.

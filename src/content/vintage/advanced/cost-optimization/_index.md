@@ -9,7 +9,7 @@ menu:
   main:
     identifier: cost-optimization
     parent: advanced
-last_review_date: 2022-12-07
+last_review_date: 2024-02-16
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 ---

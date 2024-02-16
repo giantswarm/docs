@@ -16,9 +16,9 @@ user_questions:
   - What is a major upgrade?
   - What is a minor upgrade?
   - What is a patch upgrade?
-last_review_date: 2022-12-07
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
+last_review_date: 2024-02-16
 ---
 
 A workload cluster (formerly called _tenant cluster_) in a Giant Swarm installation is running a stack comprising many software components, provided by the Kubernetes project and other open source projects or software vendors, as well as by Giant Swarm.

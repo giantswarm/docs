@@ -7,7 +7,6 @@ menu:
   main:
     parent: getting-started-app-platform
     identifier: getting-started-app-platform-app-default-apps
-last_review_date: 2022-09-26
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 aliases:
@@ -17,6 +16,7 @@ aliases:
 user_questions:
   - How can I customize preinstalled apps configuration?
   - How can I customize default apps configuration?
+last_review_date: 2024-02-16
 ---
 
 ## Overview

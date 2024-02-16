@@ -9,7 +9,7 @@ menu:
   main:
     identifier: advanced-gitops-apps-add-app-cr
     parent: advanced-gitops-apps
-last_review_date: 2023-02-10
+last_review_date: 2024-02-16
 user_questions:
   - How can I add an app to a workload cluster with GitOps?
 owner:

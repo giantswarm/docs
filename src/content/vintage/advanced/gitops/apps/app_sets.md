@@ -9,7 +9,7 @@ menu:
   main:
     identifier: advanced-gitops-apps-app-sets
     parent: advanced-gitops-apps
-last_review_date: 2023-02-10
+last_review_date: 2024-02-16
 user_questions:
   - How can I create and use App Sets in GitOps?
 owner:

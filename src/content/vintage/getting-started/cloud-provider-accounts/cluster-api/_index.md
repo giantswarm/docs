@@ -9,7 +9,7 @@ menu:
   main:
     identifier: gettingstarted-infraprovider-clusterapi
     parent: gettingstarted-infraprovider
-last_review_date: 2023-01-06
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
+last_review_date: 2024-02-16
 ---

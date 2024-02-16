@@ -13,7 +13,7 @@ user_questions:
   - How can I manage different environments with GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2023-02-10
+last_review_date: 2024-02-16
 ---
 
 

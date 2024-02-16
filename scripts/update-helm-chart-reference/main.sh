@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HELM_CHART_DOCS_GENERATOR_VERSION=0.0.1
+HELM_CHART_DOCS_GENERATOR_VERSION=0.1.0
 DESTINATION=src/content/use-the-api/management-api/cluster-apps
 
 # Clear output folder
@@ -15,11 +15,14 @@ docker run --rm \
 
 for file in ${DESTINATION}/*.md; do
   if grep -q '\--&gt;' $file; then
-    sed -i.bak 's/\&lt;.*\&gt;//g' $file
+    # Remove HTML comment lines
+    perl -i -pe "BEGIN{undef $/;} s/\&lt;.*\&gt;//gsm" $file
+    # Remove empty lines
+    awk 'NF > 0 || NR == 1 {blank=0} NF == 0 {blank++} blank < 2 {print}' $file > $file
+    # Remove trailing whitespace
+    sed -i 's/[ \t]*$//' $file
     if [ $? -ne 0 ]; then
       echo "An error occurred removing HTML comment lines from $file"
     fi
   fi
 done
-
-rm ${DESTINATION}/*.bak

@@ -15,7 +15,7 @@ aliases:
   - /guides/encrypting-persistent-volumes-on-azure-with-azure-key-vault/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2021-01-01
+last_review_date: 2024-02-16
 ---
 
 If your cluster is running in Azure infrastructure, the most common way to provision Persistent Volumes (PVs) is by using Azure Disks.
@@ -56,7 +56,7 @@ After replacing the placeholder below with your Encryption Set Resource ID, you 
 
 ```yaml
 kind: StorageClass
-apiVersion: storage.k8s.io/v1  
+apiVersion: storage.k8s.io/v1
 metadata:
   name: EncryptedDisks
 provisioner: kubernetes.io/azure-disk
