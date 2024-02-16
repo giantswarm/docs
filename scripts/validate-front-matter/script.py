@@ -15,7 +15,7 @@ except ImportError:
 # Some path config
 path         = 'src/content'
 changes_path = 'src/content/changes/'
-crds_path    = 'src/content/use-the-api/management-api/crd/'
+crds_path    = 'src/content/vintage/use-the-api/management-api/crd/'
 docs_host    = 'https://github.com/giantswarm/docs/blob/main/'
 
 todays_date = datetime.date.today()

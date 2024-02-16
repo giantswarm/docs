@@ -60,7 +60,7 @@ lint:
 	  --config .markdownlint.yaml \
 	  --ignore README.md \
 	  --ignore ./src/content/changes \
-	  --ignore ./src/content/use-the-api/management-api/crd \
+	  --ignore ./src/content/vintage/use-the-api/management-api/crd \
 	  $$(if [ "$(RUNNING_IN_CI)" = "true" ]; then echo "--output markdownlint.out"; fi) \
 	  ./src
 

@@ -1,1 +1,1 @@
-https://github.com/giantswarm/kubernetes-gpu.git src/content/advanced/gpu
+https://github.com/giantswarm/kubernetes-gpu.git src/content/vintage/advanced/gpu
