@@ -8,8 +8,8 @@ menu:
     parent: platform-overview-web
 aliases:
   - /platform-overview/web-interface
-   - /ui-api/web/usage-data
-   - /reference/web-interface/usage-data/
+  - /ui-api/web/usage-data
+  - /reference/web-interface/usage-data/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
