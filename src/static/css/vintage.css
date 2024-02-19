@@ -1,0 +1,28 @@
+#disclaimer-banner {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #e1d876;
+  color: rgb(57, 50, 50);
+  text-align: center;
+  padding: 40px;
+  z-index: 1000;
+  font-size: 14px;
+  font-style: oblique;
+}
+
+#close-link {
+  color: black;
+  border: none;
+  background: none;
+  float: right;
+  cursor: pointer;
+}
+
+#close-link::before {
+  content: "X";
+  display: inline-block;
+  margin-right: 5px;
+  font-style: normal;
+}
