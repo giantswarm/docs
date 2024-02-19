@@ -6,7 +6,7 @@ weight: 30
 menu:
   main:
     parent: cluster-management-vintage
-last_review_date: 2022-12-07
+last_review_date: 2024-02-19
 user_questions:
   - Do you run on bare metal?
   - Can you run on virtual machines (e.g. VMWare)?
