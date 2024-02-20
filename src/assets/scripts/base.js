@@ -56,20 +56,20 @@ $(function() {
 });
 
 $(function() {
-  $('#close-link').click(function() {
+  var disclaimerShown = document.cookie.replace(/(?:(?:^|.*;\s*)disclaimerShown\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+  var isVintage = window.location.pathname.startsWith("/vintage");
+  console.log("disclaimerShown: " + !disclaimerShown);
+  console.log("isVintage: " + isVintage);
 
-    var disclaimerShown = document.cookie.replace(/(?:(?:^|.*;\s*)disclaimerShown\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+  if (!disclaimerShown && isVintage) {
+    $('#vintage-disclaimer').show();
+  }
 
-    if (!disclaimerShown && window.location.pathname.startsWith("/vintage")) {
-        $('#disclaimer-banner').show();
-    }
-
-    $('#close-button').click(function() {
-        $('#disclaimer-banner').hide();
-        var date = new Date();
-        date.setFullYear(date.getFullYear() + 1); // Cookie expires after 1 year
-        document.cookie = "disclaimerShown=true;expires=" + date.toUTCString() + ";path=/";
-    });
+  $('#vintage-disclaimer-button').click(function() {
+      $('#vintage-disclaimer').hide();
+      var date = new Date();
+      date.setFullYear(date.getDay() + 1); // Cookie expires after 1 day
+      document.cookie = "disclaimerShown=true;expires=" + date.toUTCString() + ";path=/";
   });
 });
 
