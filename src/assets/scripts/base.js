@@ -58,8 +58,6 @@ $(function() {
 $(function() {
   var disclaimerShown = document.cookie.replace(/(?:(?:^|.*;\s*)disclaimerShown\s*\=\s*([^;]*).*$)|^.*$/, "$1");
   var isVintage = window.location.pathname.startsWith("/vintage");
-  console.log("disclaimerShown: " + !disclaimerShown);
-  console.log("isVintage: " + isVintage);
 
   if (!disclaimerShown && isVintage) {
     $('#vintage-disclaimer').show();
