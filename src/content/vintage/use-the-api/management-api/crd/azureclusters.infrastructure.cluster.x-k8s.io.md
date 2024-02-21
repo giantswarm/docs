@@ -25,8 +25,7 @@ layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 aliases:
-  - /use-the-api/management-api/crd
-  - /reference/cp-k8s-api/azureclusters.infrastructure.cluster.x-k8s.io/
+  - /use-the-api/management-api/crd/azureclusters.infrastructure.cluster.x-k8s.io/
 technical_name: azureclusters.infrastructure.cluster.x-k8s.io
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v5.0.0
@@ -1400,27 +1399,6 @@ spec:
 </div>
 
 
-
-
-<h3 id="annotation-details-v1alpha3">Annotations</h3>
-
-
-<div class="annotation">
-<div class="annotation-header">
-<h3 class="annotation-path" id="v1alpha3-giantswarm.io/workers-egress-external-public-ip">giantswarm.io/workers-egress-external-public-ip</h3>
-</div>
-<div class="annotation-body">
-<div class="annotation-meta">
-<span class="annotation-release">Since 15.1.0</span>
-</div>
-
-<div class="annotation-description">
-<p>This annotation allows reusing an existing public IP address for egress traffic of worker nodes. See <a href="https://docs.giantswarm.io/advanced/egress-ip-address-azure/">Setting an egress IP address on Azure</a></p>
-
-</div>
-
-</div>
-</div>
 
 
 

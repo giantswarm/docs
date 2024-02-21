@@ -20,7 +20,7 @@ layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 aliases:
-  - /reference/cp-k8s-api/policyexceptiondrafts.policy.giantswarm.io/
+  - /use-the-api/management-api/crd/policyexceptiondrafts.policy.giantswarm.io/
 technical_name: policyexceptiondrafts.policy.giantswarm.io
 source_repository: https://github.com/giantswarm/exception-recommender
 source_repository_ref: v0.1.1

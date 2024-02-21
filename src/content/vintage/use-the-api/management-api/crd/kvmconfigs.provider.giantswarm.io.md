@@ -25,8 +25,7 @@ layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
 aliases:
-  - /use-the-api/management-api/crd
-  - /reference/cp-k8s-api/kvmconfigs.provider.giantswarm.io/
+  - /use-the-api/management-api/crd/kvmconfigs.provider.giantswarm.io/
 technical_name: kvmconfigs.provider.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v5.0.0
