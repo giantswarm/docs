@@ -22,7 +22,6 @@ layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 aliases:
-  - /use-the-api/management-api/crd
   - /reference/cp-k8s-api/configs.core.giantswarm.io/
 technical_name: configs.core.giantswarm.io
 source_repository: https://github.com/giantswarm/config-controller
