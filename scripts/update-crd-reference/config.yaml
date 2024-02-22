@@ -522,3 +522,23 @@ source_repositories:
           - https://github.com/orgs/giantswarm/teams/team-bigmac
         topics:
           - managementcluster
+  - url: https://github.com/giantswarm/kyverno-policy-operator
+    organization: giantswarm
+    short_name: kyverno-policy-operator
+    commit_reference: v0.0.7
+    crd_paths:
+      - helm
+    metadata:
+      policyexceptions.policy.giantswarm.io:
+        owner:
+          - https://github.com/orgs/giantswarm/teams/team-shield
+  - url: https://github.com/giantswarm/exception-recommender
+    organization: giantswarm
+    short_name: exception-recommender
+    commit_reference: v0.1.1
+    crd_paths:
+      - helm
+    metadata:
+      policyexceptiondrafts.policy.giantswarm.io:
+        owner:
+          - https://github.com/orgs/giantswarm/teams/team-shield

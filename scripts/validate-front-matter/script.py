@@ -14,8 +14,9 @@ except ImportError:
 
 # Some path config
 path         = 'src/content'
+vintage_path = 'src/content/vintage'
 changes_path = 'src/content/changes/'
-crds_path    = 'src/content/use-the-api/management-api/crd/'
+crds_path    = 'src/content/vintage/use-the-api/management-api/crd/'
 docs_host    = 'https://github.com/giantswarm/docs/blob/main/'
 
 todays_date = datetime.date.today()
@@ -166,6 +167,7 @@ checks = (
         'id': REVIEW_TOO_LONG_AGO,
         'description': 'The last review date is too long ago',
         'severity': SEVERITY_WARN,
+        'ignore_paths': [vintage_path],
         'has_value': True,
     },
     {
@@ -625,7 +627,7 @@ def validate(content, fpath, validation):
                         'owner': fm['owner'] or [],
                         'value': fm['last_review_date'],
                     })
-            else:
+            elif not ignored_path(fpath, INVALID_LAST_REVIEW_DATE):
                 result['checks'].append({
                     'check': INVALID_LAST_REVIEW_DATE,
                     'title': fm['title'] or "",

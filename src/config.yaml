@@ -25,23 +25,23 @@ menu:
   main:
   - identifier: platform-overview
     name: Platform Overview
-    url: /platform-overview/
+    url: /vintage/platform-overview/
     weight: 10
   - identifier: getting-started
     name: Getting started
-    url: /getting-started/
+    url: /vintage/getting-started/
     weight: 20
   - identifier: advanced
     name: Advanced
-    url: /advanced/
+    url: /vintage/advanced/
     weight: 30
   - identifier: use-the-api
     name: Use the API
-    url: /use-the-api/
+    url: /vintage/use-the-api/
     weight: 40
   - identifier: support-training
     name: Support & Training
-    url: /support/
+    url: /vintage/support/
     weight: 50
   - identifier: changes
     name: Changes and releases

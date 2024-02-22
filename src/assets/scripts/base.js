@@ -55,6 +55,22 @@ $(function() {
   });
 });
 
+$(function() {
+  var disclaimerShown = document.cookie.replace(/(?:(?:^|.*;\s*)disclaimerShown\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+  var isVintage = window.location.pathname.startsWith("/vintage");
+
+  if (!disclaimerShown && isVintage) {
+    $('#vintage-disclaimer').show();
+  }
+
+  $('#vintage-disclaimer-button').click(function() {
+      $('#vintage-disclaimer').hide();
+      var date = new Date();
+      date.setFullYear(date.getDay() + 1); // Cookie expires after 1 day
+      document.cookie = "disclaimerShown=true;expires=" + date.toUTCString() + ";path=/";
+  });
+});
+
 /** Remove TOC if empty **/
 var toc = $('#TableOfContents');
 if (toc.length !== 0) {

@@ -2,8 +2,8 @@
 
 set -e
 
-CRD_DOCS_GENERATOR_VERSION=0.10.0
-DESTINATION=src/content/use-the-api/management-api/crd
+CRD_DOCS_GENERATOR_VERSION=0.11.0
+DESTINATION=src/content/vintage/use-the-api/management-api/crd
 
 # Clear output folder
 find ${DESTINATION} -type f -not -name "_index.md" | xargs -I '{}' rm '{}'
