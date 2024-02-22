@@ -51,6 +51,7 @@ owner:
 {{- end }}
 aliases:
   - /reference/cp-k8s-api/{{ .NamePlural }}.{{ .Group }}/
+  - /use-the-api/management-api/crd/{{ .NamePlural }}.{{ .Group }}/
 technical_name: {{ .NamePlural }}.{{ .Group }}
 source_repository: {{ .SourceRepository }}
 source_repository_ref: {{ .SourceRepositoryRef }}
