@@ -66,7 +66,7 @@ $(function() {
   $('#vintage-disclaimer-button').click(function() {
       $('#vintage-disclaimer').hide();
       var date = new Date();
-      date.setFullYear(date.getDay() + 1); // Cookie expires after 1 day
+      date.setDate(date.getDate() + 1); // Cookie expires after 1 day
       document.cookie = "disclaimerShown=true;expires=" + date.toUTCString() + ";path=/";
   });
 });
