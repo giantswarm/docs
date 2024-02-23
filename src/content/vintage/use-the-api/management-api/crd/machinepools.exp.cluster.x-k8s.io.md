@@ -23,7 +23,6 @@ layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 aliases:
-  - /use-the-api/management-api/crd
   - /reference/cp-k8s-api/machinepools.exp.cluster.x-k8s.io/
 technical_name: machinepools.exp.cluster.x-k8s.io
 source_repository: https://github.com/giantswarm/apiextensions
@@ -1613,44 +1612,6 @@ spec:
 </div>
 
 
-
-
-<h3 id="annotation-details-v1alpha3">Annotations</h3>
-
-
-<div class="annotation">
-<div class="annotation-header">
-<h3 class="annotation-path" id="v1alpha3-cluster.k8s.io/cluster-api-autoscaler-node-group-max-size">cluster.k8s.io/cluster-api-autoscaler-node-group-max-size</h3>
-</div>
-<div class="annotation-body">
-<div class="annotation-meta">
-<span class="annotation-release">Since Azure 13.1.0</span>
-</div>
-
-<div class="annotation-description">
-<p>This annotation allows setting the max size of a node pool for autoscaling purposes. See <a href="https://docs.giantswarm.io/advanced/node-pools/">node pools</a></p>
-
-</div>
-
-</div>
-</div>
-
-<div class="annotation">
-<div class="annotation-header">
-<h3 class="annotation-path" id="v1alpha3-cluster.k8s.io/cluster-api-autoscaler-node-group-min-size">cluster.k8s.io/cluster-api-autoscaler-node-group-min-size</h3>
-</div>
-<div class="annotation-body">
-<div class="annotation-meta">
-<span class="annotation-release">Since Azure 13.1.0</span>
-</div>
-
-<div class="annotation-description">
-<p>This annotation allows setting the min size of a node pool for autoscaling purposes. See <a href="https://docs.giantswarm.io/advanced/node-pools/">node pools</a></p>
-
-</div>
-
-</div>
-</div>
 
 
 
