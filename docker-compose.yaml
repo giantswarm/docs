@@ -1,8 +1,9 @@
 version: "3"
 services:
   docs-app:
-    # to build this image locally, execute 'make docker-build'
-    image: gsoci.azurecr.io/giantswarm/docs:latest
+    #image: gsoci.azurecr.io/giantswarm/docs:latest
+    build:
+      context: .
     container_name: docs-app
     ports:
       - "8080:8080"
