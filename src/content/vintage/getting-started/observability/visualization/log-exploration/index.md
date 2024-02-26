@@ -44,6 +44,13 @@ __Note__: The live mode feature of Grafana Loki is not available at the moment b
 
 ### Query anatomy
 
+A typical Loki LogQL query consists of two parts:
+
+1) Log Stream Selector: This part of the query is used to filter logs based on their metadata, also known as labels. It uses curly braces {} to encapsulate the label selectors and can include operators like =, !=, =~, and !~. 
+
+2) Filter Expression (Optional): This part is optionally used to filter the logs based on their content. It comes after the log stream selector and uses operators like |=, !=, |~, and !~. 
+
+
 ![Loki Query Anatomy](loki-query-anatomy.png)
 
 ### Log stream selectors
