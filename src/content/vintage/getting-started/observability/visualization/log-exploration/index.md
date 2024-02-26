@@ -48,13 +48,16 @@ Here are a few LogQL basics to help you get started.
 
 ### Log stream selectors
 
-Used to filter the log stream by labels
+Log stream selectors are used to filter the log stream by labels. Labels are key-value pairs that can be attached to each log stream. These selectors are used to find specific log streams where the labels match certain conditions.
 
 ```nohighlight
-=  : equals
-!= : not equals
-=~ : regex matches
-!~ : regex does not match
+=  : This operator checks for label values that are exactly equal to the specified value. It returns all log streams where the label value equals the specified value.
+
+!= : This operator checks for label values that are not equal to the specified value. It returns all log streams where the label value does not equal the specified value.
+
+=~ : This operator is used for regex (regular expression) matching on label values. It returns all log streams where the label value matches the specified regular expression pattern.
+
+!~ : This operator is used when the regular expression does not match the label value. It returns all log streams where the label value does not match the specified regular expression pattern.
 ```
 
 ### Filter operators
