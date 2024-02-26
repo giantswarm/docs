@@ -1,6 +1,6 @@
 ---
-linkTitle: Exploring logs with LogQL
-title: How to exploring logs with LogQL
+linkTitle: How to explore logs with LogQL
+title: Exploring logs with LogQL
 description: Guide explaining how to get explore logs of your management and workload clusterrs stored in Giant Swarm managed Loki.
 menu:
   main:
@@ -27,13 +27,14 @@ This guide provides you with the basics to get started with exploring Logs using
 Once you have [access to your management cluster's grafana]({{< relref "/vintage/getting-started/observability/visualization/access" >}}), you should:
 
 1. Go to `Explore` item in the `Home` menu
+![Grafana Explore](loki-explore.png)
+
 2. Select `Loki` datasource on the top left corner
+![Loki datasource](loki-datasource-query.png)
+
 3. Choose how you prefer to build your queries:
    * `builder` and play with the dropdowns to build your query
    * `code` to write your query using [LogQL](https://grafana.com/docs/loki/latest/logql/)
-
-<img src="images/loki-explore.png" width="300" >
-<img src="images/loki-datasource-query.png" width="600" >
 
 __Note__: The live mode feature of Grafana Loki is not available at the moment because we use multi-tenancy (c.f. https://github.com/grafana/loki/issues/9493) 😢
 
@@ -43,7 +44,7 @@ Here are a few LogQL basics to help you get started.
 
 ### Query anatomy
 
-<img src="loki-query-anatomy.png" width="300" >
+![Loki Query Anatomy](loki-query-anatomy.png)
 
 ### Log stream selectors
 
@@ -74,45 +75,52 @@ Here are a few LogQL queries you can test and play with to understand the syntax
 ### Basic pod logs
 
 * Look for all `k8s-api-server` logs on `myInstallation` MC:
-```
+
+```promql
 {installation="myInstallation", cluster_id="myInstallation", pod=~"k8s-api-server-ip-.*"}
 ```
 
 * Let's filter out "unable to load root certificate" logs:
-```
+
+```promql
 {installation="myInstallation", cluster_id="myInstallation", pod=~"k8s-api-server-ip-.*"} != "unable to load root certificate"
 ```
 
 * Let's only keep lines containing "url:/apis/application.giantswarm.io/.*/appcatalogentries" (regex):
-```
+
+```promql
 {installation="myInstallation", cluster_id="myInstallation", pod=~"k8s-api-server-ip-.*"} |~ "url:/apis/application.giantswarm.io/.*/appcatalogentries"
 ```
 
-### json manipulation
+### JSON manipulations
 
 * With json logs, filter on the json field `resource` contents:
-```
+
+```promql
 {installation="myInstallation", cluster_id="myInstallation", pod=~"prometheus-meta-operator-.*"} | json | resource=~"remotewrite.*"
 ```
 
 * from the above query, only keep field `message`:
-```
+
+```promql
 {installation="myInstallation", cluster_id="myInstallation", pod=~"prometheus-meta-operator-.*"} | json | resource=~"remotewrite.*" | line_format "{{.message}}"
 ```
+
 ### Audit logs
 
-* Get audit logs using json filter to get only the ones owned by a specific user
+* Get audit logs using the `json` filter to get only the ones owned by a specific user
 
-```
+```promql
 {cluster_id="myCluster",scrape_job="audit-logs"} |= `` | json | user_username=`fernando@giantswarm.io`
 ```
 
-__Note__: In json filter to access nested properties you use `_` for getting a child property as the example above (user.username -> user_username).
+__Note__: When using the `json` filter to access nested properties you use `_` for getting a child property as the example above (user.username -> user_username).
 
 ### System logs
 
 * Look at `containerd` logs for node `10.0.5.119` on `myInstallation` MC:
-```
+
+```promql
 {installation="myInstallation", cluster_id="myInstallation", systemd_unit="containerd.service", node_name="ip-10-0-5-119.eu-west-1.compute.internal"}
 ```
 
@@ -121,18 +129,21 @@ __Note__: In json filter to access nested properties you use `_` for getting a c
 You can also generate metrics from logs.
 
 * Count number of logs per node
-```
+
+```promql
 sum(count_over_time({installation="myInstallation", cluster_id="myInstallation", node_name=~"ip-.*"}[10m])) by (node_name)
 ```
 
 * Top 10 number of log lines per scrape_job, app, component and systemd_unit
 /!\ This query is heavy in terms of performance, please be careful /!\
-```
+
+```promql
 topk(10, sum(rate({cluster_id="myCluster"}[5m])) by (cluster_id, scrape_job, app, component, systemd_unit))
 ```
 
 * Rate of logs per syslog identifier
 /!\ This query is heavy in terms of performance, please be careful /!\
-```
+
+```promql
 sum(rate({cluster_id="myCluster", scrape_job="system-logs"}[5m] |= `` | json)) by (SYSLOG_IDENTIFIER)
 ```
