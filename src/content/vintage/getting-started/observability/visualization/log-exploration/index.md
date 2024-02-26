@@ -59,13 +59,13 @@ Used to filter the log stream by labels
 
 ### Filter operators
 
-Used to filter text within the log stream
+Filter operators are used to refine the selection of text within the log stream. They help you narrow down the results by matching specific patterns or excluding certain data.
 
 ```nohighlight
-|= : contains
-!= : does not contain
-|~ : regex matches
-!~ : regex does not match
+|= : This operator is used when the log stream contains a specific string. It returns all log lines that contain the specified string.
+!= : This operator is used when the log stream does not contain a specific string. It filters out and excludes all log lines that contain the specified string.
+|~ : This operator is used for regex (regular expression) matching. It returns all log lines where the specified regular expression pattern matches.
+!~ : This operator is used when the regular expression does not match the log stream. It filters out and excludes all log lines where the specified regular expression pattern matches.
 ```
 
 ## Example of useful LogQL queries
