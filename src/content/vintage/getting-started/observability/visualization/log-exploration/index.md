@@ -40,7 +40,7 @@ __Note__: The live mode feature of Grafana Loki is not available at the moment b
 
 ## LogQL basics
 
-Here are a few LogQL basics to help you get started.
+[LogQL](https://grafana.com/docs/loki/latest/query/) is a powerful querying language for the Loki logging system. It allows users to filter and aggregate log data to facilitate data analysis and troubleshooting. Here you have the basics to help you get started.
 
 ### Query anatomy
 
