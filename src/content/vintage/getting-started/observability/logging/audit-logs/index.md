@@ -17,7 +17,7 @@ aliases:
   - /ui-api/observability/logs/audit-logging
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
-last_review_date: 2024-02-16
+last_review_date: 2024-02-26
 ---
 
 In this document you will learn what are audit logs, which kind is available on Giant Swarm clusters and how to access / ship them to a remote location.
