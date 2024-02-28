@@ -15,7 +15,9 @@ description: Release notes for AWS workload cluster release v19.3.2, published o
 title: Workload cluster release v19.3.2 for AWS
 ---
 
-This patch release introduces latest stable Flatcar release that includes important CVEs, especially the Leaky Vessels for the containerd version [CVE-2024-21626](https://nvd.nist.gov/vuln/detail/CVE-2024-21626).
+This patch release includes the latest stable Flatcar release containing important CVE patches, most notably the Leaky Vessels [CVE-2024-21626](https://nvd.nist.gov/vuln/detail/CVE-2024-21626) affecting `containerd`. It also includes an update to the `security-bundle` intended to improve upgrade stability. 
+
+**Note:** This release does _not_ include patches for the other 3 Leaky Vessels BuildKit CVEs affecting `docker`. Normal cluster operations (e.g. pulling images) do not use `docker`, but if you run untrusted workloads which mount or use `docker` directly, please get in touch to discuss other mitigation options.
 
 ## Change details
 
@@ -130,3 +132,20 @@ This patch release introduces latest stable Flatcar release that includes import
  - containerd ([1.7.13](https://github.com/containerd/containerd/releases/tag/v1.7.13))
  - docker ([24.0.9](https://github.com/moby/moby/releases/tag/v24.0.9))
  - runc ([1.1.12](https://github.com/opencontainers/runc/releases/tag/v1.1.12))
+
+### security-bundle [v1.6.2](https://github.com/giantswarm/security-bundle/blob/main/CHANGELOG.md#162---2024-02-22)
+
+_Changes since v1.4.2_
+
+#### Added
+
+- A new Helm value `global.namespace` was added to allow setting the namespace for all security-bundle apps (except Kyverno).
+
+#### Changed
+
+- Kyverno (app) was updated to [v0.17.6](https://github.com/giantswarm/kyverno-app/blob/main/CHANGELOG.md#0176---2024-02-22), which includes several Cilium-related improvements, enables API priority and fairness features to improve API stability in large clusters, and upgrades Kyverno to v1.11.4, containing several bug fixes for generate rules.
+- exception-recommender was updated to [v0.1.1](https://github.com/giantswarm/exception-recommender/blob/main/CHANGELOG.md#011---2024-02-07), supporting the new Kyverno (v1.11+) report structure.
+- Trivy Operator (app) was updated to [v0.7.2](https://github.com/giantswarm/trivy-operator-app/blob/main/CHANGELOG.md#072---2024-01-31), upgrading to v0.18.3, and including improvements to Cilium network policies and benchmark scanning behavior.
+- Falco (app) was updated to [v0.8.0](https://github.com/giantswarm/falco-app/blob/main/CHANGELOG.md#080---2024-01-25), including improvements for Cilium network policies.
+- kyverno-policy-operator was updated to [v0.0.7](https://github.com/giantswarm/falco-app/blob/main/CHANGELOG.md#080---2024-01-25), updating the generated Kyverno PolicyException resources to `policyexceptions.kyverno.io/v2beta1`.
+- starboard-exporter was updated to [v0.7.8](https://github.com/giantswarm/starboard-exporter/blob/main/CHANGELOG.md#078---2024-01-16), adding KEDA scaling support.
