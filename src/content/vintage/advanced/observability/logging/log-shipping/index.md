@@ -16,7 +16,7 @@ aliases:
   - /advanced/observability/logging/log-shipping
 ---
 
-In this article you will learn how you can forward your audit logs to a remote location (e.g. Security Information and Event Management system).
+In this article you will learn how to forward audit logs to external storage, like a Security Information and Event Management (SIEM) system.
 
 If you want to learn about the audit logs Giant Swarm provides, take a look [here]({{< relref "/vintage/getting-started/observability/logging/audit-logs" >}})
 
