@@ -32,7 +32,7 @@ To that end, you can use one of the following solutions:
 
 Giant Swarm provides a custom [Fluent-bit](https://fluentbit.io/) configuration packaged as a Managed App named [`fluent-logshipping-app`](https://github.com/giantswarm/fluent-logshipping-app)
 
-Fluent-bit's main advantage is that it can be used for all kinds of cases (shipping to rsyslog, elasticsearch, loki and so on) and provides a lot of configurability with it's plugin system.
+Fluent-bit's main advantage is that it can be used for all kinds of cases (shipping to rsyslog, elasticsearch, loki, and so on) and provides a lot of configurability with its plugin system.
 
 ### Promtail
 
