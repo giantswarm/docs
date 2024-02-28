@@ -30,7 +30,7 @@ To summarize, for observability, we recommend and provide these tools:
 
 ## Loki for logging
 
-To store, index and make logs (containers, kubernetes events, audit logs) searchable. You can also install our [Loki App](https://github.com/giantswarm/loki-app/blob/master/README.md) on your clusters.
+To store, index, and make logs (containers, kubernetes events, audit logs) searchable. You can also install our [Loki App](https://github.com/giantswarm/loki-app/blob/master/README.md) on your clusters.
 
 ## Prometheus for monitoring
 
