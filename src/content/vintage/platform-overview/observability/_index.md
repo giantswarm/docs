@@ -20,7 +20,7 @@ user_questions:
 last_review_date: 2024-02-28
 ---
 
-Observability is based on four main data sources: __logs__, __metrics__, __traces__ and __profiles__. To cover these needs Giant Swarm provides its customers with a fully managed observability platform provided with 24//7 monitoring and alerting The tools included in the observabily platform are listed below.
+Observability is based on four main data sources: __logs__, __metrics__, __traces__ and __profiles__. To cover these needs, Giant Swarm provides its customers with a fully managed observability platform supported by 24//7 monitoring and alerting The tools included in the observabily platform are listed below.
 
 We chose these applications based on our general principles of preferring open source over proprietary solutions, as well as simplicity, performance, and speed over complexity.
 
