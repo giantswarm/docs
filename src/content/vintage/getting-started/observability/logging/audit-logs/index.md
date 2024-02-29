@@ -1,6 +1,6 @@
 ---
-linkTitle: Audit logging
-title: Audit logging
+linkTitle: Audit logs
+title: Audit logs
 description: A guide explaining how to interact with audit logs on Giant Swarm clusters.
 weight: 50
 menu:
@@ -11,13 +11,12 @@ user_questions:
   - What are audit logs?
   - What is audit logging?
   - How can I access Kubernetes audit logs?
-  - How do I ship audit logs to a remote locations?
 aliases:
   - /getting-started/observability/logging/audit-logs
   - /ui-api/observability/logs/audit-logging
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
-last_review_date: 2024-02-26
+last_review_date: 2024-02-28
 ---
 
 In this document you will learn what are audit logs, which kind is available on Giant Swarm clusters and how to access / ship them to a remote location.
@@ -37,8 +36,6 @@ In all Giant Swarm clusters, two kinds of audit logs are provided:
 - __Machine audit logs__: any system calls and file access happening on the host (e.g. login attempts, user commands, file system changes, etc...)
 
 ### Kubernetes audit logs
-
-__Warning:__ This feature is currently unavailable on CAPI clusters.
 
 The Kubernetes api-server supports audit logging by default. This mechanism logs every request made to it by both service accounts and users. Customers can ingest these audit logs to detect if any suspicious behaviour (internal or by a 3rd party) is made to their Kubernetes clusters.
 
@@ -71,11 +68,17 @@ __Example:__
 
 For more information on Kubernetes audit logs, we suggest you to read [this](https://kubernetes.io/docs/tasks/debug/debug-cluster/audit/)
 
-At the moment, Kubernetes audit logs can be found on `control-plane` nodes at `/var/log/apiserver/audit*.log`.
+Kubernetes audit logs can be found on `control-plane` nodes at `/var/log/apiserver/audit*.log`.
 
 #### Giant Swarm default audit policy
 
-Here is the Giant Swarm audit policy configured by default on all our clusters (management and workload clusters alike):
+##### CAPI clusters
+
+In __capi__ clusters, the default kubernetes policy defined on all our clusters is defined [here](https://github.com/giantswarm/cluster/blob/main/helm/cluster/files/etc/kubernetes/policies/audit-policy.yaml) and can be configured by overriding the value of `internal.advancedConfiguration.controlPlane.apiServer.auditPolicy.extraRule` in the cluster helm chart.
+
+##### Vintage clusters
+
+In __vintage__ clusters, the default kubernetes policy defined on all our clusters (management and workload clusters alike) is the following:
 
 ```yaml
 apiVersion: audit.k8s.io/v1
@@ -241,13 +244,13 @@ rules:
       - "RequestReceived"
 ```
 
-#### Custom configuration
+###### Custom configuration
 
-If the Giant Swarm default Kubernetes Audit Policy is not sufficient for your use case, you can configure as you want.
+If the Giant Swarm default Kubernetes Audit Policy is not sufficient for your use case, you can configure it as you want.
 
 To configure the policy for your management cluster, get in touch with your Account engineer and we will help you sort it out.
 
-For your workload clusters, you can deploy the [k8s-initiator-app](https://github.com/giantswarm/k8s-initiator-app) App to your cluster to deploy the whatever Audit Policy configuration you want.
+For your Vintage workload clusters, you can deploy the [k8s-initiator-app](https://github.com/giantswarm/k8s-initiator-app) App to your cluster to deploy the whatever Audit Policy configuration you want.
 
 __Warning:__ Beware that the k8s-initiator-app can change Kubernetes api server settings and any misconfiguration might cause it to go down. We advise you to ask your Account Engineer for help to configure it safely.
 
@@ -272,21 +275,3 @@ Feb 06 09:57:37 ip-10-0-5-34.eu-central-1.compute.internal kernel: audit: type=1
 The Linux Audit Daemon logs are kernel logs which are stored in `journald` and can be accessed with `journalctl -kauditing`.
 
 __Warning:__ Beware that the Linux Audit Daemon is quite verbose so when shipping those logs you will need to ensure enough storage and bandwidth are available in order to process them.
-
-## How to ship your audit logs to a remote location
-
-We are currently working on our [Logging Infrastructure](https://github.com/giantswarm/roadmap/issues/311) and all the above audit logs (kubernetes audit and auditd logs) will be shipped there in the future.
-
-If you need the audit logs for your internal use cases (e.g. Security Information and Event Management system), you can use one of the following solutions:
-
-__Note__: You can also access the ship the audit logs for the management clusters but this is not something we provide by default (at least for now). Please contact your Account Engineer to sort out the details.
-
-### Fluent bit
-
-Giant Swarm provides a custom [Fluent-bit](https://fluentbit.io/) configuration packaged as a Managed App named [`fluent-logshipping-app`](https://github.com/giantswarm/fluent-logshipping-app)
-
-Fluent-bit's main advantage is that it can be used for all kinds of cases (shipping to rsyslog, elasticsearch, loki and so on) and provides a lot of configurability with it's plugin system.
-
-### Promtail
-
-[Promtail](https://github.com/giantswarm/promtail-app) can only be used with Loki. It provides a better integration with Kubernetes via its discovery mechanism and enriches logs with metadata by default. It can also be used to read files on the machines like the audit logs described [here](https://github.com/giantswarm/promtail-app#configuration).
