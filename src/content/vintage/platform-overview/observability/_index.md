@@ -47,7 +47,7 @@ We are currently offering Grafana Tempo a part of our observability platform on 
 ## Pyroscope for continuous profiling
 
 Profiling is quite a new kid on the block when it comes to observability.
-Same as with Grafana Tempo, we are currently offering Grafana Tempo a part of our observability platform on demand and without any availability garantees due to the low priority it has with our customers.
+Same as with Grafana Tempo, we are currently offering Grafana Pyroscope a part of our observability platform on demand and without any availability garantees due to the low priority it has with our customers.
 
 ---
 
