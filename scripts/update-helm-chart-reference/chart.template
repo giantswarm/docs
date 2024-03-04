@@ -3,7 +3,7 @@ title: {{ .Title | title }} chart reference
 linkTitle: {{ .Title }} chart reference
 description: |
 {{- if .Description }}
-{{ .Description | indent 2 }}.
+{{ .Description | indent 2 }}; Check here the different properties of the chart.
 {{- else }}
   Cluster App chart configuration page for {{ .Title }}.
 {{- end }}

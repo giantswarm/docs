@@ -2,7 +2,7 @@
 title: Default-Apps-Azure chart reference
 linkTitle: default-apps-azure chart reference
 description: |
-  A Helm chart defining the preinstalled apps running in all Giant Swarm Azure clusters..
+  A Helm chart defining the preinstalled apps running in all Giant Swarm Azure clusters.; Check here the different properties of the chart.
 weight: 100
 menu:
   main:

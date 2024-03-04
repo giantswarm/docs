@@ -2,7 +2,7 @@
 title: Cluster-Vsphere chart reference
 linkTitle: cluster-vsphere chart reference
 description: |
-  A helm chart for creating Cluster API clusters with the vSphere provider (CAPV)..
+  A helm chart for creating Cluster API clusters with the vSphere provider (CAPV).; Check here the different properties of the chart.
 weight: 100
 menu:
   main:
