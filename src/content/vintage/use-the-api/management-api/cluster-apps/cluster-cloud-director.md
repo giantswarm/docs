@@ -1,13 +1,14 @@
 ---
-title: cluster-cloud-director chart reference
+title: Cluster-Cloud-Director chart reference
 linkTitle: cluster-cloud-director
 description:  A helm chart for creating Cluster API clusters with the VMware Cloud Director (VCD) infrastructure provider (CAPVCD).; Check here the different properties of the chart.
 weight: 100
 menu:
   main:
-    identifier: uiapi-cluster-apps-cluster-cloud-director
+    identifier: cluster-cloud-director
     parent: uiapi-cluster-apps
 layout: cluster-app
+last_review_date: 2024-03-04
 user_questions:
  - What properties can I configure for cluster-cloud-director?
 owner:
@@ -17,6 +18,11 @@ source_repository_ref: v0.14.2
 ---
 
 The `default-apps-cloud-director` chart templates all the VMware infrastructure resources that are necessary to create a Cluster API VCD cluster.
+
+# cluster-cloud-director values
+
+<!-- DOCS_START -->
+
 
 <div class="crd-schema-version">
   <h2 class="headline-with-link">
@@ -2017,7 +2023,9 @@ The `default-apps-cloud-director` chart templates all the VMware infrastructure 
     </div>
   </div></div>
 
+
 <!-- DOCS_END -->
+
 
 ## Further reading
 

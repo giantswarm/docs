@@ -1,13 +1,14 @@
 ---
-title: default-apps-azure chart reference
+title: Default-Apps-Azure chart reference
 linkTitle: default-apps-azure
 description:  A Helm chart defining the preinstalled apps running in all Giant Swarm Azure clusters.; Check here the different properties of the chart.
 weight: 100
 menu:
   main:
-    identifier: uiapi-cluster-apps-default-apps-azure
+    identifier: default-apps-azure
     parent: uiapi-cluster-apps
 layout: cluster-app
+last_review_date: 2024-03-04
 user_questions:
  - What properties can I configure for default-apps-azure?
 owner:
@@ -17,6 +18,13 @@ source_repository_ref: v0.8.3
 ---
 
 The `default-apps-azure` chart templates all the components required for a Cluster API Azure cluster like External DNS or CoreDNS.
+
+# Values schema documentation
+
+This page lists all available configuration options, based on the [configuration values schema](values.schema.json).
+
+<!-- DOCS_START -->
+
 
 <div class="crd-schema-version">
   <h2 class="headline-with-link">
@@ -1691,7 +1699,9 @@ The `default-apps-azure` chart templates all the components required for a Clust
     </div>
   </div></div>
 
+
 <!-- DOCS_END -->
+
 
 ## Further reading
 

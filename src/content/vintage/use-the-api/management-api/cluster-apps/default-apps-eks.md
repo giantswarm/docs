@@ -1,13 +1,14 @@
 ---
-title: default-apps-eks chart reference
+title: Default-Apps-Eks chart reference
 linkTitle: default-apps-eks
 description:  A Helm chart for default-apps-eks; Check here the different properties of the chart.
 weight: 100
 menu:
   main:
-    identifier: uiapi-cluster-apps-default-apps-eks
+    identifier: default-apps-eks
     parent: uiapi-cluster-apps
 layout: cluster-app
+last_review_date: 2024-03-04
 user_questions:
  - What properties can I configure for default-apps-eks?
 owner:
@@ -17,6 +18,13 @@ source_repository_ref: v0.5.1
 ---
 
 The `default-apps-eks` chart templates all the components required for a Cluster API EKS cluster like External DNS or CoreDNS.
+
+# Values schema documentation
+
+This page lists all available configuration options, based on the [configuration values schema](values.schema.json).
+
+<!-- DOCS_START -->
+
 
 <div class="crd-schema-version">
   <h2 class="headline-with-link">
@@ -1748,7 +1756,9 @@ The `default-apps-eks` chart templates all the components required for a Cluster
     </div>
   </div></div>
 
+
 <!-- DOCS_END -->
+
 
 ## Further reading
 
