@@ -21,7 +21,6 @@ layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bigmac
 aliases:
-  - /use-the-api/management-api/crd
   - /reference/cp-k8s-api/organizations.security.giantswarm.io/
 technical_name: organizations.security.giantswarm.io
 source_repository: https://github.com/giantswarm/organization-operator
