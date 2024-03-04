@@ -23,191 +23,1639 @@ This page lists all available configuration options, based on the [configuration
 
 Note that configuration options can change between releases. Use the GitHub function for selecting a branch/tag to view the documentation matching your cluster-eks version.
 
-&lt;!-- Update the content below by executing (from the repo root directory)
+<!-- Update the content below by executing (from the repo root directory)
 
 schemadocs generate helm/cluster-eks/values.schema.json -o helm/cluster-eks/README.md
 
---&gt;
+-->
 
-&lt;!-- DOCS_START --&gt;
-
-### AWS settings
-Properties within the `.global.providerSpecific` object
-
-| **Property** | **Description** | **More Details** |
-| :----------- | :-------------- | :--------------- |
-| `global.providerSpecific.additionalResourceTags` | **Additional resource tags** - Additional tags to add to AWS resources created by the cluster.|**Type:** `object`&lt;br/&gt;|
-| `global.providerSpecific.additionalResourceTags.*` | **Tag value**|**Type:** `string`&lt;br/&gt;**Value pattern:** `^[ a-zA-Z0-9\._:/=&#43;-@]&#43;$`&lt;br/&gt;|
-| `global.providerSpecific.ami` | **Amazon machine image (AMI)** - If specified, this image will be used to provision EC2 instances.|**Type:** `string`&lt;br/&gt;|
-| `global.providerSpecific.awsAccountId` | **AWS account ID** - AWS Account ID of the AWSClusterRoleIdentity IAM role, recommendation is to leave this value empty as it will be automatically calculated. This value is needed for tests.|**Type:** `string`&lt;br/&gt;**Value pattern:** `^[0-9]{0,12}$`&lt;br/&gt;**Default:** `&#34;&#34;`|
-| `global.providerSpecific.awsClusterRoleIdentityName` | **Cluster role identity name** - Name of an AWSClusterRoleIdentity object. This in turn refers to the IAM role used to create all AWS cloud resources when creating the cluster. The role can be in another AWS account in order to create all resources in that account. Note: This name does not refer directly to an IAM role name/ARN.|**Type:** `string`&lt;br/&gt;**Value pattern:** `^[-a-zA-Z0-9_\.]{1,63}$`&lt;br/&gt;**Default:** `&#34;default&#34;`|
-| `global.providerSpecific.region` | **Region**|**Type:** `string`&lt;br/&gt;|
-
-### Connectivity
-Properties within the `.global.connectivity` object
-
-| **Property** | **Description** | **More Details** |
-| :----------- | :-------------- | :--------------- |
-| `global.connectivity.availabilityZoneUsageLimit` | **Availability zones** - Maximum number of availability zones (AZ) that should be used in a region. If a region has more than this number of AZs then this number of AZs will be picked randomly when creating subnets.|**Type:** `integer`&lt;br/&gt;**Default:** `3`|
-| `global.connectivity.baseDomain` | **Base DNS domain**|**Type:** `string`&lt;br/&gt;|
-| `global.connectivity.network` | **Network**|**Type:** `object`&lt;br/&gt;|
-| `global.connectivity.network.pods` | **Pods**|**Type:** `object`&lt;br/&gt;|
-| `global.connectivity.network.pods.cidrBlocks` | **Pod subnets**|**Type:** `array`&lt;br/&gt;**Default:** `[&#34;100.64.0.0/16&#34;]`|
-| `global.connectivity.network.pods.cidrBlocks[*]` | **Pod subnet** - IPv4 address range for pods, in CIDR notation. Must be within the 100.64.0.0/10 or 198.19.0.0/16 range. The CIDR block size must be betwen /16 and /28.|**Type:** `string`&lt;br/&gt;**Example:** `&#34;100.64.0.0/16&#34;`&lt;br/&gt;|
-| `global.connectivity.network.services` | **Services**|**Type:** `object`&lt;br/&gt;|
-| `global.connectivity.network.services.cidrBlocks` | **K8s Service subnets**|**Type:** `array`&lt;br/&gt;**Default:** `[&#34;172.31.0.0/16&#34;]`|
-| `global.connectivity.network.services.cidrBlocks[*]` | **Service subnet** - IPv4 address range for kubernetes services, in CIDR notation.|**Type:** `string`&lt;br/&gt;**Example:** `&#34;172.31.0.0/16&#34;`&lt;br/&gt;|
-| `global.connectivity.network.vpcCidr` | **VPC subnet** - IPv4 address range to assign to this cluster&#39;s VPC, in CIDR notation.|**Type:** `string`&lt;br/&gt;**Default:** `&#34;10.0.0.0/16&#34;`|
-| `global.connectivity.podSubnets` | **Pod Subnets** - Pod Subnets are created and tagged based on this definition.|**Type:** `array`&lt;br/&gt;**Default:** `[{&#34;cidrBlocks&#34;:[{&#34;availabilityZone&#34;:&#34;a&#34;,&#34;cidr&#34;:&#34;100.64.0.0/18&#34;,&#34;tags&#34;:{&#34;sigs.k8s.io/cluster-api-provider-aws/association&#34;:&#34;secondary&#34;}},{&#34;availabilityZone&#34;:&#34;b&#34;,&#34;cidr&#34;:&#34;100.64.64.0/18&#34;,&#34;tags&#34;:{&#34;sigs.k8s.io/cluster-api-provider-aws/association&#34;:&#34;secondary&#34;}},{&#34;availabilityZone&#34;:&#34;c&#34;,&#34;cidr&#34;:&#34;100.64.128.0/18&#34;,&#34;tags&#34;:{&#34;sigs.k8s.io/cluster-api-provider-aws/association&#34;:&#34;secondary&#34;}}]}]`|
-| `global.connectivity.podSubnets[*]` | **Subnet**|**Type:** `object`&lt;br/&gt;|
-| `global.connectivity.podSubnets[*].cidrBlocks` | **Network**|**Type:** `array`&lt;br/&gt;|
-| `global.connectivity.podSubnets[*].cidrBlocks[*]` |**None**|**Type:** `object`&lt;br/&gt;|
-| `global.connectivity.podSubnets[*].cidrBlocks[*].availabilityZone` | **Availability zone**|**Type:** `string`&lt;br/&gt;**Example:** `&#34;a&#34;`&lt;br/&gt;|
-| `global.connectivity.podSubnets[*].cidrBlocks[*].cidr` | **Address range** - IPv4 address range, in CIDR notation.|**Type:** `string`&lt;br/&gt;|
-| `global.connectivity.podSubnets[*].cidrBlocks[*].tags` | **Tags** - AWS resource tags to assign to this subnet.|**Type:** `object`&lt;br/&gt;|
-| `global.connectivity.podSubnets[*].cidrBlocks[*].tags.*` | **Tag value**|**Type:** `string`&lt;br/&gt;**Value pattern:** `^[ a-zA-Z0-9\._:/=&#43;-@]&#43;$`&lt;br/&gt;|
-| `global.connectivity.podSubnets[*].tags` | **Tags** - AWS resource tags to assign to this CIDR block.|**Type:** `object`&lt;br/&gt;|
-| `global.connectivity.podSubnets[*].tags.*` | **Tag value**|**Type:** `string`&lt;br/&gt;**Value pattern:** `^[ a-zA-Z0-9\._:/=&#43;-@]&#43;$`&lt;br/&gt;|
-| `global.connectivity.proxy` | **Proxy** - Whether/how outgoing traffic is routed through proxy servers.|**Type:** `object`&lt;br/&gt;|
-| `global.connectivity.proxy.enabled` | **Enable**|**Type:** `boolean`&lt;br/&gt;|
-| `global.connectivity.proxy.httpProxy` | **HTTP proxy** - To be passed to the HTTP_PROXY environment variable in all hosts.|**Type:** `string`&lt;br/&gt;|
-| `global.connectivity.proxy.httpsProxy` | **HTTPS proxy** - To be passed to the HTTPS_PROXY environment variable in all hosts.|**Type:** `string`&lt;br/&gt;|
-| `global.connectivity.proxy.noProxy` | **No proxy** - To be passed to the NO_PROXY environment variable in all hosts.|**Type:** `string`&lt;br/&gt;|
-| `global.connectivity.subnets` | **Subnets** - Subnets are created and tagged based on this definition.|**Type:** `array`&lt;br/&gt;**Default:** `[{&#34;cidrBlocks&#34;:[{&#34;availabilityZone&#34;:&#34;a&#34;,&#34;cidr&#34;:&#34;10.0.0.0/20&#34;},{&#34;availabilityZone&#34;:&#34;b&#34;,&#34;cidr&#34;:&#34;10.0.16.0/20&#34;},{&#34;availabilityZone&#34;:&#34;c&#34;,&#34;cidr&#34;:&#34;10.0.32.0/20&#34;}],&#34;isPublic&#34;:true},{&#34;cidrBlocks&#34;:[{&#34;availabilityZone&#34;:&#34;a&#34;,&#34;cidr&#34;:&#34;10.0.64.0/18&#34;},{&#34;availabilityZone&#34;:&#34;b&#34;,&#34;cidr&#34;:&#34;10.0.128.0/18&#34;},{&#34;availabilityZone&#34;:&#34;c&#34;,&#34;cidr&#34;:&#34;10.0.192.0/18&#34;}],&#34;isPublic&#34;:false}]`|
-| `global.connectivity.subnets[*]` | **Subnet**|**Type:** `object`&lt;br/&gt;|
-| `global.connectivity.subnets[*].cidrBlocks` | **Network**|**Type:** `array`&lt;br/&gt;|
-| `global.connectivity.subnets[*].cidrBlocks[*]` |**None**|**Type:** `object`&lt;br/&gt;|
-| `global.connectivity.subnets[*].cidrBlocks[*].availabilityZone` | **Availability zone**|**Type:** `string`&lt;br/&gt;**Example:** `&#34;a&#34;`&lt;br/&gt;|
-| `global.connectivity.subnets[*].cidrBlocks[*].cidr` | **Address range** - IPv4 address range, in CIDR notation.|**Type:** `string`&lt;br/&gt;|
-| `global.connectivity.subnets[*].cidrBlocks[*].tags` | **Tags** - AWS resource tags to assign to this subnet.|**Type:** `object`&lt;br/&gt;|
-| `global.connectivity.subnets[*].cidrBlocks[*].tags.*` | **Tag value**|**Type:** `string`&lt;br/&gt;**Value pattern:** `^[ a-zA-Z0-9\._:/=&#43;-@]&#43;$`&lt;br/&gt;|
-| `global.connectivity.subnets[*].isPublic` | **Public**|**Type:** `boolean`&lt;br/&gt;|
-| `global.connectivity.subnets[*].tags` | **Tags** - AWS resource tags to assign to this CIDR block.|**Type:** `object`&lt;br/&gt;|
-| `global.connectivity.subnets[*].tags.*` | **Tag value**|**Type:** `string`&lt;br/&gt;**Value pattern:** `^[ a-zA-Z0-9\._:/=&#43;-@]&#43;$`&lt;br/&gt;|
-
-### Control plane
-Properties within the `.global.controlPlane` object
-
-| **Property** | **Description** | **More Details** |
-| :----------- | :-------------- | :--------------- |
-| `global.controlPlane.apiMode` | **API mode** - Whether the Kubernetes API server load balancer should be reachable from the internet (public) or internal only (private).|**Type:** `string`&lt;br/&gt;**Default:** `&#34;public&#34;`|
-| `global.controlPlane.logging` | **Logging**|**Type:** `object`&lt;br/&gt;|
-| `global.controlPlane.logging.apiServer` | **Api Server** - Enable or disable Api server logging to CloudWatch (https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html).|**Type:** `boolean`&lt;br/&gt;**Default:** `true`|
-| `global.controlPlane.logging.audit` | **Audit** - Enable or disable audit logging to CloudWatch (https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html).|**Type:** `boolean`&lt;br/&gt;**Default:** `true`|
-| `global.controlPlane.logging.authenticator` | **Authenticator** - Enable or disable IAM Authenticator logging to CloudWatch (https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html).|**Type:** `boolean`&lt;br/&gt;**Default:** `true`|
-| `global.controlPlane.logging.controllerManager` | **Controller Manager** - Enable or disable Controller Manager logging to CloudWatch (https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html).|**Type:** `boolean`&lt;br/&gt;**Default:** `true`|
-| `global.controlPlane.oidcIdentityProviderConfig` | **OIDC identity provider config** - OIDC identity provider configuration for the Kubernetes API server.|**Type:** `object`&lt;br/&gt;|
-| `global.controlPlane.oidcIdentityProviderConfig.clientId` | **Client ID** - Client ID of the OIDC identity provider.|**Type:** `string`&lt;br/&gt;|
-| `global.controlPlane.oidcIdentityProviderConfig.groupsClaim` | **Groups claim** - Claim to use for mapping groups.|**Type:** `string`&lt;br/&gt;|
-| `global.controlPlane.oidcIdentityProviderConfig.groupsPrefix` | **Groups prefix** - Prefix to use for mapping groups.|**Type:** `string`&lt;br/&gt;|
-| `global.controlPlane.oidcIdentityProviderConfig.identityProviderConfigName` | **Identity provider config name** - Name of the OIDC identity provider config.|**Type:** `string`&lt;br/&gt;|
-| `global.controlPlane.oidcIdentityProviderConfig.issuerUrl` | **Issuer URL** - URL of the OIDC identity provider.|**Type:** `string`&lt;br/&gt;|
-| `global.controlPlane.oidcIdentityProviderConfig.requiredClaims` | **Required claims** - Required claims for the OIDC identity provider.|**Type:** `object`&lt;br/&gt;|
-| `global.controlPlane.oidcIdentityProviderConfig.requiredClaims.*` | **Claim**|**Type:** `string`&lt;br/&gt;|
-| `global.controlPlane.oidcIdentityProviderConfig.tags` | **Tags** - AWS resource tags to assign to the IAM OIDC provider.|**Type:** `object`&lt;br/&gt;|
-| `global.controlPlane.oidcIdentityProviderConfig.tags.*` | **Tag value**|**Type:** `string`&lt;br/&gt;**Value pattern:** `^[ a-zA-Z0-9\._:/=&#43;-@]&#43;$`&lt;br/&gt;|
-| `global.controlPlane.oidcIdentityProviderConfig.usernameClaim` | **Username claim** - Claim to use for mapping usernames.|**Type:** `string`&lt;br/&gt;|
-| `global.controlPlane.oidcIdentityProviderConfig.usernamePrefix` | **Username prefix** - Prefix to use for mapping usernames.|**Type:** `string`&lt;br/&gt;|
-| `global.controlPlane.roleMapping` | **Role mappings**|**Type:** `array`&lt;br/&gt;|
-| `global.controlPlane.roleMapping[*]` | **Role mapping** - Maps AWS IAM role to Kubernetes role.|**Type:** `object`&lt;br/&gt;|
-| `global.controlPlane.roleMapping[*].groups` | **Groups** - Kubernetes groups.|**Type:** `array`&lt;br/&gt;|
-| `global.controlPlane.roleMapping[*].groups[*]` | **Group** - Kubernetes group, for example `system:masters`.|**Type:** `string`&lt;br/&gt;|
-| `global.controlPlane.roleMapping[*].rolearn` | **AWS Role ARN** - Full ARN of the AWS IAM role.|**Type:** `string`&lt;br/&gt;|
-| `global.controlPlane.roleMapping[*].username` | **Kubernetes username** - Kubernetes username, for example `cluster-admin`.|**Type:** `string`&lt;br/&gt;|
-
-### Internal
-Properties within the `.internal` top-level object
-For Giant Swarm internal use only, not stable, or not supported by UIs.
-
-| **Property** | **Description** | **More Details** |
-| :----------- | :-------------- | :--------------- |
-| `internal.hashSalt` | **Hash salt** - If specified, this token is used as a salt to the hash suffix of some resource names. Can be used to force-recreate some resources.|**Type:** `string`&lt;br/&gt;|
-| `internal.kubernetesVersion` | **Kubernetes version**|**Type:** `string`&lt;br/&gt;**Example:** `&#34;1.24.7&#34;`&lt;br/&gt;**Default:** `&#34;1.24.10&#34;`|
-| `internal.nodePools` | **Default node pool**|**Type:** `object`&lt;br/&gt;**Default:** `{&#34;def00&#34;:{&#34;customNodeLabels&#34;:[&#34;label=default&#34;],&#34;instanceType&#34;:&#34;r6i.xlarge&#34;,&#34;maxSize&#34;:4,&#34;minSize&#34;:3}}`|
-| `internal.nodePools.PATTERN` | **Node pool**|**Type:** `object`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;|
-| `internal.nodePools.PATTERN.availabilityZones` | **Availability zones**|**Type:** `array`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;|
-| `internal.nodePools.PATTERN.availabilityZones[*]` | **Availability zone**|**Type:** `string`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;|
-| `internal.nodePools.PATTERN.customNodeLabels` | **Custom node labels**|**Type:** `array`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;|
-| `internal.nodePools.PATTERN.customNodeLabels[*]` | **Label**|**Type:** `string`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;|
-| `internal.nodePools.PATTERN.customNodeTaints` | **Custom node taints**|**Type:** `array`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;|
-| `internal.nodePools.PATTERN.customNodeTaints[*]` |**None**|**Type:** `object`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;|
-| `internal.nodePools.PATTERN.customNodeTaints[*].effect` | **Effect**|**Type:** `string`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;|
-| `internal.nodePools.PATTERN.customNodeTaints[*].key` | **Key**|**Type:** `string`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;|
-| `internal.nodePools.PATTERN.customNodeTaints[*].value` | **Value**|**Type:** `string`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;|
-| `internal.nodePools.PATTERN.instanceType` | **EC2 instance type**|**Type:** `string`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;|
-| `internal.nodePools.PATTERN.maxSize` | **Maximum number of nodes**|**Type:** `integer`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;|
-| `internal.nodePools.PATTERN.minSize` | **Minimum number of nodes**|**Type:** `integer`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;|
-| `internal.nodePools.PATTERN.rootVolumeSizeGB` | **Root volume size (GB)**|**Type:** `integer`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;|
-| `internal.nodePools.PATTERN.subnetTags` | **Subnet tags** - Tags to filter which AWS subnets will be used for this node pool.|**Type:** `array`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;|
-| `internal.nodePools.PATTERN.subnetTags[*]` | **Subnet tag**|**Type:** `object`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;|
-| `internal.nodePools.PATTERN.subnetTags[*].*` | **Tag value**|**Type:** `string`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;**Value pattern:** `^[ a-zA-Z0-9\._:/=&#43;-@]&#43;$`&lt;br/&gt;|
-| `internal.sandboxContainerImage` | **Kubectl image**|**Type:** `object`&lt;br/&gt;|
-| `internal.sandboxContainerImage.name` | **Repository**|**Type:** `string`&lt;br/&gt;**Default:** `&#34;giantswarm/pause&#34;`|
-| `internal.sandboxContainerImage.registry` | **Registry**|**Type:** `string`&lt;br/&gt;**Default:** `&#34;quay.io&#34;`|
-| `internal.sandboxContainerImage.tag` | **Tag**|**Type:** `string`&lt;br/&gt;**Default:** `&#34;3.9&#34;`|
-
-### Kubectl image
-Properties within the `.kubectlImage` top-level object
-
-| **Property** | **Description** | **More Details** |
-| :----------- | :-------------- | :--------------- |
-| `kubectlImage.name` | **Repository**|**Type:** `string`&lt;br/&gt;**Default:** `&#34;giantswarm/kubectl&#34;`|
-| `kubectlImage.registry` | **Registry**|**Type:** `string`&lt;br/&gt;**Default:** `&#34;quay.io&#34;`|
-| `kubectlImage.tag` | **Tag**|**Type:** `string`&lt;br/&gt;**Default:** `&#34;1.23.5&#34;`|
-
-### Metadata
-Properties within the `.global.metadata` object
-
-| **Property** | **Description** | **More Details** |
-| :----------- | :-------------- | :--------------- |
-| `global.metadata.description` | **Cluster description** - User-friendly description of the cluster&#39;s purpose.|**Type:** `string`&lt;br/&gt;|
-| `global.metadata.name` | **Cluster name** - Unique identifier, cannot be changed after creation.|**Type:** `string`&lt;br/&gt;|
-| `global.metadata.organization` | **Organization**|**Type:** `string`&lt;br/&gt;|
-| `global.metadata.preventDeletion` | **Prevent cluster deletion**|**Type:** `boolean`&lt;br/&gt;**Default:** `false`|
-| `global.metadata.servicePriority` | **Service priority** - The relative importance of this cluster.|**Type:** `string`&lt;br/&gt;**Default:** `&#34;highest&#34;`|
-
-### Node pools
-Properties within the `.global.nodePools` object
-Node pools of the cluster. If not specified, this defaults to the value of `internal.nodePools`.
-
-| **Property** | **Description** | **More Details** |
-| :----------- | :-------------- | :--------------- |
-| `global.nodePools.PATTERN` | **Node pool**|**Type:** `object`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;|
-| `global.nodePools.PATTERN.availabilityZones` | **Availability zones**|**Type:** `array`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;|
-| `global.nodePools.PATTERN.availabilityZones[*]` | **Availability zone**|**Type:** `string`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;|
-| `global.nodePools.PATTERN.customNodeLabels` | **Custom node labels**|**Type:** `array`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;|
-| `global.nodePools.PATTERN.customNodeLabels[*]` | **Label**|**Type:** `string`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;|
-| `global.nodePools.PATTERN.customNodeTaints` | **Custom node taints**|**Type:** `array`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;|
-| `global.nodePools.PATTERN.customNodeTaints[*]` |**None**|**Type:** `object`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;|
-| `global.nodePools.PATTERN.customNodeTaints[*].effect` | **Effect**|**Type:** `string`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;|
-| `global.nodePools.PATTERN.customNodeTaints[*].key` | **Key**|**Type:** `string`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;|
-| `global.nodePools.PATTERN.customNodeTaints[*].value` | **Value**|**Type:** `string`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;|
-| `global.nodePools.PATTERN.instanceType` | **EC2 instance type**|**Type:** `string`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;|
-| `global.nodePools.PATTERN.maxSize` | **Maximum number of nodes**|**Type:** `integer`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;|
-| `global.nodePools.PATTERN.minSize` | **Minimum number of nodes**|**Type:** `integer`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;|
-| `global.nodePools.PATTERN.rootVolumeSizeGB` | **Root volume size (GB)**|**Type:** `integer`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;|
-| `global.nodePools.PATTERN.subnetTags` | **Subnet tags** - Tags to filter which AWS subnets will be used for this node pool.|**Type:** `array`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;|
-| `global.nodePools.PATTERN.subnetTags[*]` | **Subnet tag**|**Type:** `object`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;|
-| `global.nodePools.PATTERN.subnetTags[*].*` | **Tag value**|**Type:** `string`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`&lt;br/&gt;**Value pattern:** `^[ a-zA-Z0-9\._:/=&#43;-@]&#43;$`&lt;br/&gt;|
-
-### Other global
-
-| **Property** | **Description** | **More Details** |
-| :----------- | :-------------- | :--------------- |
-| `global.managementCluster` | **Management cluster** - Name of the Cluster API cluster managing this workload cluster.|**Type:** `string`&lt;br/&gt;|
-
-### Other
-
-| **Property** | **Description** | **More Details** |
-| :----------- | :-------------- | :--------------- |
-| `baseDomain` | **Base DNS domain**|**Type:** `string`&lt;br/&gt;|
-| `cluster-shared` | **Library chart**|**Type:** `object`&lt;br/&gt;|
-| `managementCluster` | **Management cluster** - Name of the Cluster API cluster managing this workload cluster.|**Type:** `string`&lt;br/&gt;|
-| `provider` | **Cluster API provider name**|**Type:** `string`&lt;br/&gt;|
+<!-- DOCS_START -->
 
 
+<div class="crd-schema-version">
+  <h2 class="headline-with-link">
+    <a class="header-link" href="#">
+      <i class="fa fa-link"></i>
+    </a>Chart Configuration Reference
+  </h2>
+  <h3 class="headline-with-link">
+    <a class="header-link" href="#AWS-settings">
+      <i class="fa fa-link"></i>
+    </a>AWS settings
+  </h3>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-providerSpecific-additionalResourceTags">
+          <i class="fa fa-link"></i>
+        </a>.global.providerSpecific.additionalResourceTags</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Additional resource tags</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description">Additional tags to add to AWS resources created by the cluster.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-providerSpecific-additionalResourceTags-*">
+          <i class="fa fa-link"></i>
+        </a>.global.providerSpecific.additionalResourceTags.*</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Tag value</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-providerSpecific-ami">
+          <i class="fa fa-link"></i>
+        </a>.global.providerSpecific.ami</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Amazon machine image (AMI)</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">If specified, this image will be used to provision EC2 instances.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-providerSpecific-awsAccountId">
+          <i class="fa fa-link"></i>
+        </a>.global.providerSpecific.awsAccountId</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">AWS account ID</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">AWS Account ID of the AWSClusterRoleIdentity IAM role, recommendation is to leave this value empty as it will be automatically calculated. This value is needed for tests.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-providerSpecific-awsClusterRoleIdentityName">
+          <i class="fa fa-link"></i>
+        </a>.global.providerSpecific.awsClusterRoleIdentityName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Cluster role identity name</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Name of an AWSClusterRoleIdentity object. This in turn refers to the IAM role used to create all AWS cloud resources when creating the cluster. The role can be in another AWS account in order to create all resources in that account. Note: This name does not refer directly to an IAM role name/ARN.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-providerSpecific-region">
+          <i class="fa fa-link"></i>
+        </a>.global.providerSpecific.region</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Region</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <h3 class="headline-with-link">
+    <a class="header-link" href="#Connectivity">
+      <i class="fa fa-link"></i>
+    </a>Connectivity
+  </h3>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-availabilityZoneUsageLimit">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.availabilityZoneUsageLimit</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Availability zones</span><br /><span class="property-type">integer</span>&nbsp;
+      </div>
+      <div class="property-description">Maximum number of availability zones (AZ) that should be used in a region. If a region has more than this number of AZs then this number of AZs will be picked randomly when creating subnets.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-baseDomain">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.baseDomain</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Base DNS domain</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-network">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.network</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Network</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-network-pods">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.network.pods</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Pods</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-network-pods-cidrBlocks">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.network.pods.cidrBlocks</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Pod subnets</span><br /><span class="property-type">array</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-network-pods-cidrBlocks[*]">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.network.pods.cidrBlocks[*]</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Pod subnet</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">IPv4 address range for pods, in CIDR notation. Must be within the 100.64.0.0/10 or 198.19.0.0/16 range. The CIDR block size must be betwen /16 and /28.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-network-services">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.network.services</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Services</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-network-services-cidrBlocks">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.network.services.cidrBlocks</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">K8s Service subnets</span><br /><span class="property-type">array</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-network-services-cidrBlocks[*]">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.network.services.cidrBlocks[*]</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Service subnet</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">IPv4 address range for kubernetes services, in CIDR notation.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-network-vpcCidr">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.network.vpcCidr</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">VPC subnet</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">IPv4 address range to assign to this cluster's VPC, in CIDR notation.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-podSubnets">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.podSubnets</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Pod Subnets</span><br /><span class="property-type">array</span>&nbsp;
+      </div>
+      <div class="property-description">Pod Subnets are created and tagged based on this definition.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-podSubnets[*]">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.podSubnets[*]</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Subnet</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-podSubnets[*]-cidrBlocks">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.podSubnets[*].cidrBlocks</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Network</span><br /><span class="property-type">array</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-podSubnets[*]-cidrBlocks[*]">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.podSubnets[*].cidrBlocks[*]</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-podSubnets[*]-cidrBlocks[*]-availabilityZone">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.podSubnets[*].cidrBlocks[*].availabilityZone</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Availability zone</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-podSubnets[*]-cidrBlocks[*]-cidr">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.podSubnets[*].cidrBlocks[*].cidr</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Address range</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">IPv4 address range, in CIDR notation.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-podSubnets[*]-cidrBlocks[*]-tags">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.podSubnets[*].cidrBlocks[*].tags</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Tags</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description">AWS resource tags to assign to this subnet.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-podSubnets[*]-cidrBlocks[*]-tags-*">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.podSubnets[*].cidrBlocks[*].tags.*</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Tag value</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-podSubnets[*]-tags">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.podSubnets[*].tags</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Tags</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description">AWS resource tags to assign to this CIDR block.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-podSubnets[*]-tags-*">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.podSubnets[*].tags.*</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Tag value</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-proxy">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.proxy</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Proxy</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description">Whether/how outgoing traffic is routed through proxy servers.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-proxy-enabled">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.proxy.enabled</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Enable</span><br /><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-proxy-httpProxy">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.proxy.httpProxy</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">HTTP proxy</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">To be passed to the HTTP_PROXY environment variable in all hosts.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-proxy-httpsProxy">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.proxy.httpsProxy</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">HTTPS proxy</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">To be passed to the HTTPS_PROXY environment variable in all hosts.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-proxy-noProxy">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.proxy.noProxy</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">No proxy</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">To be passed to the NO_PROXY environment variable in all hosts.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-subnets">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.subnets</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Subnets</span><br /><span class="property-type">array</span>&nbsp;
+      </div>
+      <div class="property-description">Subnets are created and tagged based on this definition.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-subnets[*]">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.subnets[*]</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Subnet</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-subnets[*]-cidrBlocks">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.subnets[*].cidrBlocks</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Network</span><br /><span class="property-type">array</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-subnets[*]-cidrBlocks[*]">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.subnets[*].cidrBlocks[*]</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-subnets[*]-cidrBlocks[*]-availabilityZone">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.subnets[*].cidrBlocks[*].availabilityZone</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Availability zone</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-subnets[*]-cidrBlocks[*]-cidr">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.subnets[*].cidrBlocks[*].cidr</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Address range</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">IPv4 address range, in CIDR notation.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-subnets[*]-cidrBlocks[*]-tags">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.subnets[*].cidrBlocks[*].tags</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Tags</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description">AWS resource tags to assign to this subnet.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-subnets[*]-cidrBlocks[*]-tags-*">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.subnets[*].cidrBlocks[*].tags.*</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Tag value</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-subnets[*]-isPublic">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.subnets[*].isPublic</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Public</span><br /><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-subnets[*]-tags">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.subnets[*].tags</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Tags</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description">AWS resource tags to assign to this CIDR block.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-connectivity-subnets[*]-tags-*">
+          <i class="fa fa-link"></i>
+        </a>.global.connectivity.subnets[*].tags.*</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Tag value</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <h3 class="headline-with-link">
+    <a class="header-link" href="#Control-plane">
+      <i class="fa fa-link"></i>
+    </a>Control plane
+  </h3>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-controlPlane-apiMode">
+          <i class="fa fa-link"></i>
+        </a>.global.controlPlane.apiMode</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">API mode</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Whether the Kubernetes API server load balancer should be reachable from the internet (public) or internal only (private).</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-controlPlane-logging">
+          <i class="fa fa-link"></i>
+        </a>.global.controlPlane.logging</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Logging</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-controlPlane-logging-apiServer">
+          <i class="fa fa-link"></i>
+        </a>.global.controlPlane.logging.apiServer</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Api Server</span><br /><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description">Enable or disable Api server logging to CloudWatch (https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html).</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-controlPlane-logging-audit">
+          <i class="fa fa-link"></i>
+        </a>.global.controlPlane.logging.audit</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Audit</span><br /><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description">Enable or disable audit logging to CloudWatch (https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html).</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-controlPlane-logging-authenticator">
+          <i class="fa fa-link"></i>
+        </a>.global.controlPlane.logging.authenticator</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Authenticator</span><br /><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description">Enable or disable IAM Authenticator logging to CloudWatch (https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html).</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-controlPlane-logging-controllerManager">
+          <i class="fa fa-link"></i>
+        </a>.global.controlPlane.logging.controllerManager</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Controller Manager</span><br /><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description">Enable or disable Controller Manager logging to CloudWatch (https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html).</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-controlPlane-oidcIdentityProviderConfig">
+          <i class="fa fa-link"></i>
+        </a>.global.controlPlane.oidcIdentityProviderConfig</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">OIDC identity provider config</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description">OIDC identity provider configuration for the Kubernetes API server.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-controlPlane-oidcIdentityProviderConfig-clientId">
+          <i class="fa fa-link"></i>
+        </a>.global.controlPlane.oidcIdentityProviderConfig.clientId</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Client ID</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Client ID of the OIDC identity provider.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-controlPlane-oidcIdentityProviderConfig-groupsClaim">
+          <i class="fa fa-link"></i>
+        </a>.global.controlPlane.oidcIdentityProviderConfig.groupsClaim</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Groups claim</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Claim to use for mapping groups.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-controlPlane-oidcIdentityProviderConfig-groupsPrefix">
+          <i class="fa fa-link"></i>
+        </a>.global.controlPlane.oidcIdentityProviderConfig.groupsPrefix</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Groups prefix</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Prefix to use for mapping groups.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-controlPlane-oidcIdentityProviderConfig-identityProviderConfigName">
+          <i class="fa fa-link"></i>
+        </a>.global.controlPlane.oidcIdentityProviderConfig.identityProviderConfigName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Identity provider config name</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Name of the OIDC identity provider config.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-controlPlane-oidcIdentityProviderConfig-issuerUrl">
+          <i class="fa fa-link"></i>
+        </a>.global.controlPlane.oidcIdentityProviderConfig.issuerUrl</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Issuer URL</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">URL of the OIDC identity provider.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-controlPlane-oidcIdentityProviderConfig-requiredClaims">
+          <i class="fa fa-link"></i>
+        </a>.global.controlPlane.oidcIdentityProviderConfig.requiredClaims</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Required claims</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description">Required claims for the OIDC identity provider.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-controlPlane-oidcIdentityProviderConfig-requiredClaims-*">
+          <i class="fa fa-link"></i>
+        </a>.global.controlPlane.oidcIdentityProviderConfig.requiredClaims.*</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Claim</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-controlPlane-oidcIdentityProviderConfig-tags">
+          <i class="fa fa-link"></i>
+        </a>.global.controlPlane.oidcIdentityProviderConfig.tags</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Tags</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description">AWS resource tags to assign to the IAM OIDC provider.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-controlPlane-oidcIdentityProviderConfig-tags-*">
+          <i class="fa fa-link"></i>
+        </a>.global.controlPlane.oidcIdentityProviderConfig.tags.*</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Tag value</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-controlPlane-oidcIdentityProviderConfig-usernameClaim">
+          <i class="fa fa-link"></i>
+        </a>.global.controlPlane.oidcIdentityProviderConfig.usernameClaim</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Username claim</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Claim to use for mapping usernames.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-controlPlane-oidcIdentityProviderConfig-usernamePrefix">
+          <i class="fa fa-link"></i>
+        </a>.global.controlPlane.oidcIdentityProviderConfig.usernamePrefix</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Username prefix</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Prefix to use for mapping usernames.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-controlPlane-roleMapping">
+          <i class="fa fa-link"></i>
+        </a>.global.controlPlane.roleMapping</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Role mappings</span><br /><span class="property-type">array</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-controlPlane-roleMapping[*]">
+          <i class="fa fa-link"></i>
+        </a>.global.controlPlane.roleMapping[*]</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Role mapping</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description">Maps AWS IAM role to Kubernetes role.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-controlPlane-roleMapping[*]-groups">
+          <i class="fa fa-link"></i>
+        </a>.global.controlPlane.roleMapping[*].groups</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Groups</span><br /><span class="property-type">array</span>&nbsp;
+      </div>
+      <div class="property-description">Kubernetes groups.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-controlPlane-roleMapping[*]-groups[*]">
+          <i class="fa fa-link"></i>
+        </a>.global.controlPlane.roleMapping[*].groups[*]</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Group</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Kubernetes group, for example `system:masters`.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-controlPlane-roleMapping[*]-rolearn">
+          <i class="fa fa-link"></i>
+        </a>.global.controlPlane.roleMapping[*].rolearn</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">AWS Role ARN</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Full ARN of the AWS IAM role.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-controlPlane-roleMapping[*]-username">
+          <i class="fa fa-link"></i>
+        </a>.global.controlPlane.roleMapping[*].username</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Kubernetes username</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Kubernetes username, for example `cluster-admin`.</div>
+    </div>
+  </div>
+  <h3 class="headline-with-link">
+    <a class="header-link" href="#Internal">
+      <i class="fa fa-link"></i>
+    </a>Internal
+  </h3>
+  <h4 class="headline-with-link">
+    <a class="header-link" href="#">
+      <i class="fa fa-link"></i>
+    </a>For Giant Swarm internal use only, not stable, or not supported by UIs.
+  </h4>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-hashSalt">
+          <i class="fa fa-link"></i>
+        </a>.internal.hashSalt</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Hash salt</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">If specified, this token is used as a salt to the hash suffix of some resource names. Can be used to force-recreate some resources.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-kubernetesVersion">
+          <i class="fa fa-link"></i>
+        </a>.internal.kubernetesVersion</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Kubernetes version</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-nodePools">
+          <i class="fa fa-link"></i>
+        </a>.internal.nodePools</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Default node pool</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-nodePools-PATTERN">
+          <i class="fa fa-link"></i>
+        </a>.internal.nodePools.PATTERN</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Node pool</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-nodePools-PATTERN-availabilityZones">
+          <i class="fa fa-link"></i>
+        </a>.internal.nodePools.PATTERN.availabilityZones</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Availability zones</span><br /><span class="property-type">array</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-nodePools-PATTERN-availabilityZones[*]">
+          <i class="fa fa-link"></i>
+        </a>.internal.nodePools.PATTERN.availabilityZones[*]</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Availability zone</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-nodePools-PATTERN-customNodeLabels">
+          <i class="fa fa-link"></i>
+        </a>.internal.nodePools.PATTERN.customNodeLabels</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Custom node labels</span><br /><span class="property-type">array</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-nodePools-PATTERN-customNodeLabels[*]">
+          <i class="fa fa-link"></i>
+        </a>.internal.nodePools.PATTERN.customNodeLabels[*]</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Label</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-nodePools-PATTERN-customNodeTaints">
+          <i class="fa fa-link"></i>
+        </a>.internal.nodePools.PATTERN.customNodeTaints</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Custom node taints</span><br /><span class="property-type">array</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-nodePools-PATTERN-customNodeTaints[*]">
+          <i class="fa fa-link"></i>
+        </a>.internal.nodePools.PATTERN.customNodeTaints[*]</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-nodePools-PATTERN-customNodeTaints[*]-effect">
+          <i class="fa fa-link"></i>
+        </a>.internal.nodePools.PATTERN.customNodeTaints[*].effect</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Effect</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-nodePools-PATTERN-customNodeTaints[*]-key">
+          <i class="fa fa-link"></i>
+        </a>.internal.nodePools.PATTERN.customNodeTaints[*].key</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Key</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-nodePools-PATTERN-customNodeTaints[*]-value">
+          <i class="fa fa-link"></i>
+        </a>.internal.nodePools.PATTERN.customNodeTaints[*].value</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Value</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-nodePools-PATTERN-instanceType">
+          <i class="fa fa-link"></i>
+        </a>.internal.nodePools.PATTERN.instanceType</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">EC2 instance type</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-nodePools-PATTERN-maxSize">
+          <i class="fa fa-link"></i>
+        </a>.internal.nodePools.PATTERN.maxSize</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Maximum number of nodes</span><br /><span class="property-type">integer</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-nodePools-PATTERN-minSize">
+          <i class="fa fa-link"></i>
+        </a>.internal.nodePools.PATTERN.minSize</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Minimum number of nodes</span><br /><span class="property-type">integer</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-nodePools-PATTERN-rootVolumeSizeGB">
+          <i class="fa fa-link"></i>
+        </a>.internal.nodePools.PATTERN.rootVolumeSizeGB</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Root volume size (GB)</span><br /><span class="property-type">integer</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-nodePools-PATTERN-subnetTags">
+          <i class="fa fa-link"></i>
+        </a>.internal.nodePools.PATTERN.subnetTags</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Subnet tags</span><br /><span class="property-type">array</span>&nbsp;
+      </div>
+      <div class="property-description">Tags to filter which AWS subnets will be used for this node pool.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-nodePools-PATTERN-subnetTags[*]">
+          <i class="fa fa-link"></i>
+        </a>.internal.nodePools.PATTERN.subnetTags[*]</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Subnet tag</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-nodePools-PATTERN-subnetTags[*]-*">
+          <i class="fa fa-link"></i>
+        </a>.internal.nodePools.PATTERN.subnetTags[*].*</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Tag value</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-sandboxContainerImage">
+          <i class="fa fa-link"></i>
+        </a>.internal.sandboxContainerImage</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Kubectl image</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-sandboxContainerImage-name">
+          <i class="fa fa-link"></i>
+        </a>.internal.sandboxContainerImage.name</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Repository</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-sandboxContainerImage-registry">
+          <i class="fa fa-link"></i>
+        </a>.internal.sandboxContainerImage.registry</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Registry</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-sandboxContainerImage-tag">
+          <i class="fa fa-link"></i>
+        </a>.internal.sandboxContainerImage.tag</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Tag</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <h3 class="headline-with-link">
+    <a class="header-link" href="#Kubectl-image">
+      <i class="fa fa-link"></i>
+    </a>Kubectl image
+  </h3>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#kubectlImage-name">
+          <i class="fa fa-link"></i>
+        </a>.kubectlImage.name</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Repository</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#kubectlImage-registry">
+          <i class="fa fa-link"></i>
+        </a>.kubectlImage.registry</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Registry</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#kubectlImage-tag">
+          <i class="fa fa-link"></i>
+        </a>.kubectlImage.tag</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Tag</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <h3 class="headline-with-link">
+    <a class="header-link" href="#Metadata">
+      <i class="fa fa-link"></i>
+    </a>Metadata
+  </h3>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-metadata-description">
+          <i class="fa fa-link"></i>
+        </a>.global.metadata.description</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Cluster description</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">User-friendly description of the cluster's purpose.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-metadata-name">
+          <i class="fa fa-link"></i>
+        </a>.global.metadata.name</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Cluster name</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Unique identifier, cannot be changed after creation.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-metadata-organization">
+          <i class="fa fa-link"></i>
+        </a>.global.metadata.organization</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Organization</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-metadata-preventDeletion">
+          <i class="fa fa-link"></i>
+        </a>.global.metadata.preventDeletion</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Prevent cluster deletion</span><br /><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-metadata-servicePriority">
+          <i class="fa fa-link"></i>
+        </a>.global.metadata.servicePriority</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Service priority</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">The relative importance of this cluster.</div>
+    </div>
+  </div>
+  <h3 class="headline-with-link">
+    <a class="header-link" href="#Node-pools">
+      <i class="fa fa-link"></i>
+    </a>Node pools
+  </h3>
+  <h4 class="headline-with-link">
+    <a class="header-link" href="#">
+      <i class="fa fa-link"></i>
+    </a>Node pools of the cluster. If not specified, this defaults to the value of `internal.nodePools`.
+  </h4>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-nodePools-PATTERN">
+          <i class="fa fa-link"></i>
+        </a>.global.nodePools.PATTERN</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Node pool</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-nodePools-PATTERN-availabilityZones">
+          <i class="fa fa-link"></i>
+        </a>.global.nodePools.PATTERN.availabilityZones</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Availability zones</span><br /><span class="property-type">array</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-nodePools-PATTERN-availabilityZones[*]">
+          <i class="fa fa-link"></i>
+        </a>.global.nodePools.PATTERN.availabilityZones[*]</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Availability zone</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-nodePools-PATTERN-customNodeLabels">
+          <i class="fa fa-link"></i>
+        </a>.global.nodePools.PATTERN.customNodeLabels</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Custom node labels</span><br /><span class="property-type">array</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-nodePools-PATTERN-customNodeLabels[*]">
+          <i class="fa fa-link"></i>
+        </a>.global.nodePools.PATTERN.customNodeLabels[*]</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Label</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-nodePools-PATTERN-customNodeTaints">
+          <i class="fa fa-link"></i>
+        </a>.global.nodePools.PATTERN.customNodeTaints</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Custom node taints</span><br /><span class="property-type">array</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-nodePools-PATTERN-customNodeTaints[*]">
+          <i class="fa fa-link"></i>
+        </a>.global.nodePools.PATTERN.customNodeTaints[*]</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-nodePools-PATTERN-customNodeTaints[*]-effect">
+          <i class="fa fa-link"></i>
+        </a>.global.nodePools.PATTERN.customNodeTaints[*].effect</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Effect</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-nodePools-PATTERN-customNodeTaints[*]-key">
+          <i class="fa fa-link"></i>
+        </a>.global.nodePools.PATTERN.customNodeTaints[*].key</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Key</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-nodePools-PATTERN-customNodeTaints[*]-value">
+          <i class="fa fa-link"></i>
+        </a>.global.nodePools.PATTERN.customNodeTaints[*].value</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Value</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-nodePools-PATTERN-instanceType">
+          <i class="fa fa-link"></i>
+        </a>.global.nodePools.PATTERN.instanceType</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">EC2 instance type</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-nodePools-PATTERN-maxSize">
+          <i class="fa fa-link"></i>
+        </a>.global.nodePools.PATTERN.maxSize</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Maximum number of nodes</span><br /><span class="property-type">integer</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-nodePools-PATTERN-minSize">
+          <i class="fa fa-link"></i>
+        </a>.global.nodePools.PATTERN.minSize</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Minimum number of nodes</span><br /><span class="property-type">integer</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-nodePools-PATTERN-rootVolumeSizeGB">
+          <i class="fa fa-link"></i>
+        </a>.global.nodePools.PATTERN.rootVolumeSizeGB</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Root volume size (GB)</span><br /><span class="property-type">integer</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-nodePools-PATTERN-subnetTags">
+          <i class="fa fa-link"></i>
+        </a>.global.nodePools.PATTERN.subnetTags</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Subnet tags</span><br /><span class="property-type">array</span>&nbsp;
+      </div>
+      <div class="property-description">Tags to filter which AWS subnets will be used for this node pool.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-nodePools-PATTERN-subnetTags[*]">
+          <i class="fa fa-link"></i>
+        </a>.global.nodePools.PATTERN.subnetTags[*]</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Subnet tag</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-nodePools-PATTERN-subnetTags[*]-*">
+          <i class="fa fa-link"></i>
+        </a>.global.nodePools.PATTERN.subnetTags[*].*</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Tag value</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <h3 class="headline-with-link">
+    <a class="header-link" href="#Other-global">
+      <i class="fa fa-link"></i>
+    </a>Other global
+  </h3>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-managementCluster">
+          <i class="fa fa-link"></i>
+        </a>.global.managementCluster</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Management cluster</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Name of the Cluster API cluster managing this workload cluster.</div>
+    </div>
+  </div>
+  <h3 class="headline-with-link">
+    <a class="header-link" href="#Other">
+      <i class="fa fa-link"></i>
+    </a>Other
+  </h3>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#baseDomain">
+          <i class="fa fa-link"></i>
+        </a>.baseDomain</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Base DNS domain</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#cluster-shared">
+          <i class="fa fa-link"></i>
+        </a>.cluster-shared</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Library chart</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#managementCluster">
+          <i class="fa fa-link"></i>
+        </a>.managementCluster</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Management cluster</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Name of the Cluster API cluster managing this workload cluster.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#provider">
+          <i class="fa fa-link"></i>
+        </a>.provider</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Cluster API provider name</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div></div>
 
-&lt;!-- DOCS_END --&gt;
+
+<!-- DOCS_END -->
 
 
 ## Further reading

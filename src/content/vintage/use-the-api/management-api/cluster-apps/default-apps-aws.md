@@ -21,249 +21,2906 @@ The `default-apps-aws` chart templates all the components required for a Cluster
 
 This page lists all available configuration options, based on the [configuration values schema](values.schema.json).
 
-&lt;!-- DOCS_START --&gt;
+<!-- DOCS_START -->
 
-### User Config
 
-Properties within the `.userConfig` top-level object
+<div class="crd-schema-version">
+  <h2 class="headline-with-link">
+    <a class="header-link" href="#">
+      <i class="fa fa-link"></i>
+    </a>Chart Configuration Reference
+  </h2>
+  <h3 class="headline-with-link">
+    <a class="header-link" href="#">
+      <i class="fa fa-link"></i>
+    </a>
+  </h3>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-aws-pod-identity-webhook">
+          <i class="fa fa-link"></i>
+        </a>.apps.aws-pod-identity-webhook</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-aws-pod-identity-webhook-appName">
+          <i class="fa fa-link"></i>
+        </a>.apps.aws-pod-identity-webhook.appName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-aws-pod-identity-webhook-catalog">
+          <i class="fa fa-link"></i>
+        </a>.apps.aws-pod-identity-webhook.catalog</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-aws-pod-identity-webhook-chartName">
+          <i class="fa fa-link"></i>
+        </a>.apps.aws-pod-identity-webhook.chartName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-aws-pod-identity-webhook-clusterValues">
+          <i class="fa fa-link"></i>
+        </a>.apps.aws-pod-identity-webhook.clusterValues</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-aws-pod-identity-webhook-clusterValues-configMap">
+          <i class="fa fa-link"></i>
+        </a>.apps.aws-pod-identity-webhook.clusterValues.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-aws-pod-identity-webhook-clusterValues-secret">
+          <i class="fa fa-link"></i>
+        </a>.apps.aws-pod-identity-webhook.clusterValues.secret</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-aws-pod-identity-webhook-dependsOn">
+          <i class="fa fa-link"></i>
+        </a>.apps.aws-pod-identity-webhook.dependsOn</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-aws-pod-identity-webhook-enabled">
+          <i class="fa fa-link"></i>
+        </a>.apps.aws-pod-identity-webhook.enabled</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-aws-pod-identity-webhook-namespace">
+          <i class="fa fa-link"></i>
+        </a>.apps.aws-pod-identity-webhook.namespace</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-aws-pod-identity-webhook-version">
+          <i class="fa fa-link"></i>
+        </a>.apps.aws-pod-identity-webhook.version</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-capi-node-labeler">
+          <i class="fa fa-link"></i>
+        </a>.apps.capi-node-labeler</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-capi-node-labeler-appName">
+          <i class="fa fa-link"></i>
+        </a>.apps.capi-node-labeler.appName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-capi-node-labeler-catalog">
+          <i class="fa fa-link"></i>
+        </a>.apps.capi-node-labeler.catalog</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-capi-node-labeler-chartName">
+          <i class="fa fa-link"></i>
+        </a>.apps.capi-node-labeler.chartName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-capi-node-labeler-clusterValues">
+          <i class="fa fa-link"></i>
+        </a>.apps.capi-node-labeler.clusterValues</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-capi-node-labeler-clusterValues-configMap">
+          <i class="fa fa-link"></i>
+        </a>.apps.capi-node-labeler.clusterValues.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-capi-node-labeler-clusterValues-secret">
+          <i class="fa fa-link"></i>
+        </a>.apps.capi-node-labeler.clusterValues.secret</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-capi-node-labeler-enabled">
+          <i class="fa fa-link"></i>
+        </a>.apps.capi-node-labeler.enabled</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-capi-node-labeler-namespace">
+          <i class="fa fa-link"></i>
+        </a>.apps.capi-node-labeler.namespace</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-capi-node-labeler-version">
+          <i class="fa fa-link"></i>
+        </a>.apps.capi-node-labeler.version</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-certExporter">
+          <i class="fa fa-link"></i>
+        </a>.apps.certExporter</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-certExporter-appName">
+          <i class="fa fa-link"></i>
+        </a>.apps.certExporter.appName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-certExporter-catalog">
+          <i class="fa fa-link"></i>
+        </a>.apps.certExporter.catalog</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-certExporter-chartName">
+          <i class="fa fa-link"></i>
+        </a>.apps.certExporter.chartName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-certExporter-clusterValues">
+          <i class="fa fa-link"></i>
+        </a>.apps.certExporter.clusterValues</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-certExporter-clusterValues-configMap">
+          <i class="fa fa-link"></i>
+        </a>.apps.certExporter.clusterValues.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-certExporter-clusterValues-secret">
+          <i class="fa fa-link"></i>
+        </a>.apps.certExporter.clusterValues.secret</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-certExporter-enabled">
+          <i class="fa fa-link"></i>
+        </a>.apps.certExporter.enabled</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-certExporter-namespace">
+          <i class="fa fa-link"></i>
+        </a>.apps.certExporter.namespace</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-certExporter-version">
+          <i class="fa fa-link"></i>
+        </a>.apps.certExporter.version</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-certManager">
+          <i class="fa fa-link"></i>
+        </a>.apps.certManager</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-certManager-appName">
+          <i class="fa fa-link"></i>
+        </a>.apps.certManager.appName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-certManager-catalog">
+          <i class="fa fa-link"></i>
+        </a>.apps.certManager.catalog</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-certManager-chartName">
+          <i class="fa fa-link"></i>
+        </a>.apps.certManager.chartName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-certManager-clusterValues">
+          <i class="fa fa-link"></i>
+        </a>.apps.certManager.clusterValues</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-certManager-clusterValues-configMap">
+          <i class="fa fa-link"></i>
+        </a>.apps.certManager.clusterValues.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-certManager-clusterValues-secret">
+          <i class="fa fa-link"></i>
+        </a>.apps.certManager.clusterValues.secret</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-certManager-dependsOn">
+          <i class="fa fa-link"></i>
+        </a>.apps.certManager.dependsOn</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-certManager-enabled">
+          <i class="fa fa-link"></i>
+        </a>.apps.certManager.enabled</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-certManager-namespace">
+          <i class="fa fa-link"></i>
+        </a>.apps.certManager.namespace</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-certManager-version">
+          <i class="fa fa-link"></i>
+        </a>.apps.certManager.version</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-chartOperatorExtensions">
+          <i class="fa fa-link"></i>
+        </a>.apps.chartOperatorExtensions</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-chartOperatorExtensions-appName">
+          <i class="fa fa-link"></i>
+        </a>.apps.chartOperatorExtensions.appName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-chartOperatorExtensions-catalog">
+          <i class="fa fa-link"></i>
+        </a>.apps.chartOperatorExtensions.catalog</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-chartOperatorExtensions-chartName">
+          <i class="fa fa-link"></i>
+        </a>.apps.chartOperatorExtensions.chartName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-chartOperatorExtensions-clusterValues">
+          <i class="fa fa-link"></i>
+        </a>.apps.chartOperatorExtensions.clusterValues</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-chartOperatorExtensions-clusterValues-configMap">
+          <i class="fa fa-link"></i>
+        </a>.apps.chartOperatorExtensions.clusterValues.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-chartOperatorExtensions-clusterValues-secret">
+          <i class="fa fa-link"></i>
+        </a>.apps.chartOperatorExtensions.clusterValues.secret</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-chartOperatorExtensions-dependsOn">
+          <i class="fa fa-link"></i>
+        </a>.apps.chartOperatorExtensions.dependsOn</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-chartOperatorExtensions-enabled">
+          <i class="fa fa-link"></i>
+        </a>.apps.chartOperatorExtensions.enabled</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-chartOperatorExtensions-namespace">
+          <i class="fa fa-link"></i>
+        </a>.apps.chartOperatorExtensions.namespace</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-chartOperatorExtensions-version">
+          <i class="fa fa-link"></i>
+        </a>.apps.chartOperatorExtensions.version</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-cluster-autoscaler">
+          <i class="fa fa-link"></i>
+        </a>.apps.cluster-autoscaler</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-cluster-autoscaler-appName">
+          <i class="fa fa-link"></i>
+        </a>.apps.cluster-autoscaler.appName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-cluster-autoscaler-catalog">
+          <i class="fa fa-link"></i>
+        </a>.apps.cluster-autoscaler.catalog</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-cluster-autoscaler-chartName">
+          <i class="fa fa-link"></i>
+        </a>.apps.cluster-autoscaler.chartName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-cluster-autoscaler-clusterValues">
+          <i class="fa fa-link"></i>
+        </a>.apps.cluster-autoscaler.clusterValues</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-cluster-autoscaler-clusterValues-configMap">
+          <i class="fa fa-link"></i>
+        </a>.apps.cluster-autoscaler.clusterValues.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-cluster-autoscaler-clusterValues-secret">
+          <i class="fa fa-link"></i>
+        </a>.apps.cluster-autoscaler.clusterValues.secret</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-cluster-autoscaler-enabled">
+          <i class="fa fa-link"></i>
+        </a>.apps.cluster-autoscaler.enabled</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-cluster-autoscaler-namespace">
+          <i class="fa fa-link"></i>
+        </a>.apps.cluster-autoscaler.namespace</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-cluster-autoscaler-version">
+          <i class="fa fa-link"></i>
+        </a>.apps.cluster-autoscaler.version</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-etcdKubernetesResourceCountExporter">
+          <i class="fa fa-link"></i>
+        </a>.apps.etcdKubernetesResourceCountExporter</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-etcdKubernetesResourceCountExporter-appName">
+          <i class="fa fa-link"></i>
+        </a>.apps.etcdKubernetesResourceCountExporter.appName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-etcdKubernetesResourceCountExporter-catalog">
+          <i class="fa fa-link"></i>
+        </a>.apps.etcdKubernetesResourceCountExporter.catalog</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-etcdKubernetesResourceCountExporter-chartName">
+          <i class="fa fa-link"></i>
+        </a>.apps.etcdKubernetesResourceCountExporter.chartName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-etcdKubernetesResourceCountExporter-clusterValues">
+          <i class="fa fa-link"></i>
+        </a>.apps.etcdKubernetesResourceCountExporter.clusterValues</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-etcdKubernetesResourceCountExporter-clusterValues-configMap">
+          <i class="fa fa-link"></i>
+        </a>.apps.etcdKubernetesResourceCountExporter.clusterValues.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-etcdKubernetesResourceCountExporter-clusterValues-secret">
+          <i class="fa fa-link"></i>
+        </a>.apps.etcdKubernetesResourceCountExporter.clusterValues.secret</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-etcdKubernetesResourceCountExporter-enabled">
+          <i class="fa fa-link"></i>
+        </a>.apps.etcdKubernetesResourceCountExporter.enabled</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-etcdKubernetesResourceCountExporter-namespace">
+          <i class="fa fa-link"></i>
+        </a>.apps.etcdKubernetesResourceCountExporter.namespace</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-etcdKubernetesResourceCountExporter-version">
+          <i class="fa fa-link"></i>
+        </a>.apps.etcdKubernetesResourceCountExporter.version</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-externalDns">
+          <i class="fa fa-link"></i>
+        </a>.apps.externalDns</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-externalDns-appName">
+          <i class="fa fa-link"></i>
+        </a>.apps.externalDns.appName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-externalDns-catalog">
+          <i class="fa fa-link"></i>
+        </a>.apps.externalDns.catalog</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-externalDns-chartName">
+          <i class="fa fa-link"></i>
+        </a>.apps.externalDns.chartName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-externalDns-clusterValues">
+          <i class="fa fa-link"></i>
+        </a>.apps.externalDns.clusterValues</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-externalDns-clusterValues-configMap">
+          <i class="fa fa-link"></i>
+        </a>.apps.externalDns.clusterValues.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-externalDns-clusterValues-secret">
+          <i class="fa fa-link"></i>
+        </a>.apps.externalDns.clusterValues.secret</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-externalDns-enabled">
+          <i class="fa fa-link"></i>
+        </a>.apps.externalDns.enabled</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-externalDns-namespace">
+          <i class="fa fa-link"></i>
+        </a>.apps.externalDns.namespace</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-externalDns-version">
+          <i class="fa fa-link"></i>
+        </a>.apps.externalDns.version</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-metricsServer">
+          <i class="fa fa-link"></i>
+        </a>.apps.metricsServer</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-metricsServer-appName">
+          <i class="fa fa-link"></i>
+        </a>.apps.metricsServer.appName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-metricsServer-catalog">
+          <i class="fa fa-link"></i>
+        </a>.apps.metricsServer.catalog</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-metricsServer-chartName">
+          <i class="fa fa-link"></i>
+        </a>.apps.metricsServer.chartName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-metricsServer-clusterValues">
+          <i class="fa fa-link"></i>
+        </a>.apps.metricsServer.clusterValues</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-metricsServer-clusterValues-configMap">
+          <i class="fa fa-link"></i>
+        </a>.apps.metricsServer.clusterValues.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-metricsServer-clusterValues-secret">
+          <i class="fa fa-link"></i>
+        </a>.apps.metricsServer.clusterValues.secret</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-metricsServer-enabled">
+          <i class="fa fa-link"></i>
+        </a>.apps.metricsServer.enabled</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-metricsServer-namespace">
+          <i class="fa fa-link"></i>
+        </a>.apps.metricsServer.namespace</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-metricsServer-version">
+          <i class="fa fa-link"></i>
+        </a>.apps.metricsServer.version</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-netExporter">
+          <i class="fa fa-link"></i>
+        </a>.apps.netExporter</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-netExporter-appName">
+          <i class="fa fa-link"></i>
+        </a>.apps.netExporter.appName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-netExporter-catalog">
+          <i class="fa fa-link"></i>
+        </a>.apps.netExporter.catalog</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-netExporter-chartName">
+          <i class="fa fa-link"></i>
+        </a>.apps.netExporter.chartName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-netExporter-clusterValues">
+          <i class="fa fa-link"></i>
+        </a>.apps.netExporter.clusterValues</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-netExporter-clusterValues-configMap">
+          <i class="fa fa-link"></i>
+        </a>.apps.netExporter.clusterValues.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-netExporter-clusterValues-secret">
+          <i class="fa fa-link"></i>
+        </a>.apps.netExporter.clusterValues.secret</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-netExporter-enabled">
+          <i class="fa fa-link"></i>
+        </a>.apps.netExporter.enabled</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-netExporter-namespace">
+          <i class="fa fa-link"></i>
+        </a>.apps.netExporter.namespace</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-netExporter-version">
+          <i class="fa fa-link"></i>
+        </a>.apps.netExporter.version</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-nodeExporter">
+          <i class="fa fa-link"></i>
+        </a>.apps.nodeExporter</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-nodeExporter-appName">
+          <i class="fa fa-link"></i>
+        </a>.apps.nodeExporter.appName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-nodeExporter-catalog">
+          <i class="fa fa-link"></i>
+        </a>.apps.nodeExporter.catalog</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-nodeExporter-chartName">
+          <i class="fa fa-link"></i>
+        </a>.apps.nodeExporter.chartName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-nodeExporter-clusterValues">
+          <i class="fa fa-link"></i>
+        </a>.apps.nodeExporter.clusterValues</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-nodeExporter-clusterValues-configMap">
+          <i class="fa fa-link"></i>
+        </a>.apps.nodeExporter.clusterValues.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-nodeExporter-clusterValues-secret">
+          <i class="fa fa-link"></i>
+        </a>.apps.nodeExporter.clusterValues.secret</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-nodeExporter-enabled">
+          <i class="fa fa-link"></i>
+        </a>.apps.nodeExporter.enabled</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-nodeExporter-namespace">
+          <i class="fa fa-link"></i>
+        </a>.apps.nodeExporter.namespace</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-nodeExporter-version">
+          <i class="fa fa-link"></i>
+        </a>.apps.nodeExporter.version</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-observabilityBundle">
+          <i class="fa fa-link"></i>
+        </a>.apps.observabilityBundle</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-observabilityBundle-appName">
+          <i class="fa fa-link"></i>
+        </a>.apps.observabilityBundle.appName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-observabilityBundle-catalog">
+          <i class="fa fa-link"></i>
+        </a>.apps.observabilityBundle.catalog</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-observabilityBundle-chartName">
+          <i class="fa fa-link"></i>
+        </a>.apps.observabilityBundle.chartName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-observabilityBundle-clusterValues">
+          <i class="fa fa-link"></i>
+        </a>.apps.observabilityBundle.clusterValues</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-observabilityBundle-clusterValues-configMap">
+          <i class="fa fa-link"></i>
+        </a>.apps.observabilityBundle.clusterValues.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-observabilityBundle-clusterValues-secret">
+          <i class="fa fa-link"></i>
+        </a>.apps.observabilityBundle.clusterValues.secret</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-observabilityBundle-enabled">
+          <i class="fa fa-link"></i>
+        </a>.apps.observabilityBundle.enabled</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-observabilityBundle-inCluster">
+          <i class="fa fa-link"></i>
+        </a>.apps.observabilityBundle.inCluster</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-observabilityBundle-namespace">
+          <i class="fa fa-link"></i>
+        </a>.apps.observabilityBundle.namespace</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-observabilityBundle-version">
+          <i class="fa fa-link"></i>
+        </a>.apps.observabilityBundle.version</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-securityBundle">
+          <i class="fa fa-link"></i>
+        </a>.apps.securityBundle</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-securityBundle-appName">
+          <i class="fa fa-link"></i>
+        </a>.apps.securityBundle.appName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-securityBundle-catalog">
+          <i class="fa fa-link"></i>
+        </a>.apps.securityBundle.catalog</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-securityBundle-chartName">
+          <i class="fa fa-link"></i>
+        </a>.apps.securityBundle.chartName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-securityBundle-clusterValues">
+          <i class="fa fa-link"></i>
+        </a>.apps.securityBundle.clusterValues</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-securityBundle-clusterValues-configMap">
+          <i class="fa fa-link"></i>
+        </a>.apps.securityBundle.clusterValues.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-securityBundle-clusterValues-secret">
+          <i class="fa fa-link"></i>
+        </a>.apps.securityBundle.clusterValues.secret</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-securityBundle-namespace">
+          <i class="fa fa-link"></i>
+        </a>.apps.securityBundle.namespace</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-securityBundle-version">
+          <i class="fa fa-link"></i>
+        </a>.apps.securityBundle.version</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-teleport-kube-agent">
+          <i class="fa fa-link"></i>
+        </a>.apps.teleport-kube-agent</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-teleport-kube-agent-appName">
+          <i class="fa fa-link"></i>
+        </a>.apps.teleport-kube-agent.appName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-teleport-kube-agent-catalog">
+          <i class="fa fa-link"></i>
+        </a>.apps.teleport-kube-agent.catalog</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-teleport-kube-agent-chartName">
+          <i class="fa fa-link"></i>
+        </a>.apps.teleport-kube-agent.chartName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-teleport-kube-agent-clusterValues">
+          <i class="fa fa-link"></i>
+        </a>.apps.teleport-kube-agent.clusterValues</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-teleport-kube-agent-clusterValues-configMap">
+          <i class="fa fa-link"></i>
+        </a>.apps.teleport-kube-agent.clusterValues.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-teleport-kube-agent-clusterValues-secret">
+          <i class="fa fa-link"></i>
+        </a>.apps.teleport-kube-agent.clusterValues.secret</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-teleport-kube-agent-enabled">
+          <i class="fa fa-link"></i>
+        </a>.apps.teleport-kube-agent.enabled</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-teleport-kube-agent-extraConfigs">
+          <i class="fa fa-link"></i>
+        </a>.apps.teleport-kube-agent.extraConfigs</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">array</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-teleport-kube-agent-extraConfigs[*]">
+          <i class="fa fa-link"></i>
+        </a>.apps.teleport-kube-agent.extraConfigs[*]</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-teleport-kube-agent-extraConfigs[*]-kind">
+          <i class="fa fa-link"></i>
+        </a>.apps.teleport-kube-agent.extraConfigs[*].kind</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-teleport-kube-agent-extraConfigs[*]-name">
+          <i class="fa fa-link"></i>
+        </a>.apps.teleport-kube-agent.extraConfigs[*].name</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-teleport-kube-agent-extraConfigs[*]-namespace">
+          <i class="fa fa-link"></i>
+        </a>.apps.teleport-kube-agent.extraConfigs[*].namespace</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-teleport-kube-agent-forceUpgrade">
+          <i class="fa fa-link"></i>
+        </a>.apps.teleport-kube-agent.forceUpgrade</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-teleport-kube-agent-namespace">
+          <i class="fa fa-link"></i>
+        </a>.apps.teleport-kube-agent.namespace</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-teleport-kube-agent-version">
+          <i class="fa fa-link"></i>
+        </a>.apps.teleport-kube-agent.version</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-vpa">
+          <i class="fa fa-link"></i>
+        </a>.apps.vpa</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-vpa-appName">
+          <i class="fa fa-link"></i>
+        </a>.apps.vpa.appName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-vpa-catalog">
+          <i class="fa fa-link"></i>
+        </a>.apps.vpa.catalog</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-vpa-chartName">
+          <i class="fa fa-link"></i>
+        </a>.apps.vpa.chartName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-vpa-clusterValues">
+          <i class="fa fa-link"></i>
+        </a>.apps.vpa.clusterValues</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-vpa-clusterValues-configMap">
+          <i class="fa fa-link"></i>
+        </a>.apps.vpa.clusterValues.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-vpa-clusterValues-secret">
+          <i class="fa fa-link"></i>
+        </a>.apps.vpa.clusterValues.secret</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-vpa-dependsOn">
+          <i class="fa fa-link"></i>
+        </a>.apps.vpa.dependsOn</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-vpa-enabled">
+          <i class="fa fa-link"></i>
+        </a>.apps.vpa.enabled</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-vpa-namespace">
+          <i class="fa fa-link"></i>
+        </a>.apps.vpa.namespace</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-vpa-version">
+          <i class="fa fa-link"></i>
+        </a>.apps.vpa.version</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <h3 class="headline-with-link">
+    <a class="header-link" href="#">
+      <i class="fa fa-link"></i>
+    </a>
+  </h3>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-certManager">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.certManager</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-certManager-configMap">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.certManager.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-certManager-configMap-values">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.certManager.configMap.values</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-certManager-configMap-values-ciliumNetworkPolicy">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.certManager.configMap.values.ciliumNetworkPolicy</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-certManager-configMap-values-ciliumNetworkPolicy-enabled">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.certManager.configMap.values.ciliumNetworkPolicy.enabled</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-certManager-configMap-values-controller">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.certManager.configMap.values.controller</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-certManager-configMap-values-controller-extraArgs">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.certManager.configMap.values.controller.extraArgs</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">array</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-certManager-configMap-values-controller-extraArgs[*]">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.certManager.configMap.values.controller.extraArgs[*]</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-certManager-configMap-values-dns01RecursiveNameserversOnly">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.certManager.configMap.values.dns01RecursiveNameserversOnly</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-cluster-autoscaler">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.cluster-autoscaler</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-cluster-autoscaler-configMap">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.cluster-autoscaler.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-cluster-autoscaler-configMap-values">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.cluster-autoscaler.configMap.values</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-cluster-autoscaler-configMap-values-serviceAccount">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.cluster-autoscaler.configMap.values.serviceAccount</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-cluster-autoscaler-configMap-values-serviceAccount-annotations">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.cluster-autoscaler.configMap.values.serviceAccount.annotations</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-cluster-autoscaler-configMap-values-serviceAccount-annotations-eks-amazonaws-com/role-arn">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.cluster-autoscaler.configMap.values.serviceAccount.annotations.eks.amazonaws.com/role-arn</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.etcdKubernetesResourceCountExporter</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter-configMap">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.etcdKubernetesResourceCountExporter.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter-configMap-values">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.etcdKubernetesResourceCountExporter.configMap.values</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter-configMap-values-etcd">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.etcdKubernetesResourceCountExporter.configMap.values.etcd</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter-configMap-values-etcd-cacertpath">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.etcdKubernetesResourceCountExporter.configMap.values.etcd.cacertpath</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter-configMap-values-etcd-certpath">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.etcdKubernetesResourceCountExporter.configMap.values.etcd.certpath</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter-configMap-values-etcd-hostPath">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.etcdKubernetesResourceCountExporter.configMap.values.etcd.hostPath</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter-configMap-values-etcd-keypath">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.etcdKubernetesResourceCountExporter.configMap.values.etcd.keypath</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter-configMap-values-etcd-prefix">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.etcdKubernetesResourceCountExporter.configMap.values.etcd.prefix</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter-configMap-values-events">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.etcdKubernetesResourceCountExporter.configMap.values.events</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter-configMap-values-events-prefix">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.etcdKubernetesResourceCountExporter.configMap.values.events.prefix</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-annotationFilter">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.annotationFilter</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-aws">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.aws</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-aws-batchChangeInterval">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.aws.batchChangeInterval</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">null</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-aws-irsa">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.aws.irsa</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-ciliumNetworkPolicy">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.ciliumNetworkPolicy</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-ciliumNetworkPolicy-enabled">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.ciliumNetworkPolicy.enabled</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-domainFilters">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.domainFilters</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">array</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-domainFilters[*]">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.domainFilters[*]</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-extraArgs">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.extraArgs</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">array</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-extraArgs[*]">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.extraArgs[*]</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-provider">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.provider</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-serviceAccount">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.serviceAccount</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-serviceAccount-annotations">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.serviceAccount.annotations</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-serviceAccount-annotations-eks-amazonaws-com/role-arn">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.serviceAccount.annotations.eks.amazonaws.com/role-arn</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-sources">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.sources</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">array</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-sources[*]">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.sources[*]</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-txtOwnerId">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.txtOwnerId</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-txtPrefix">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.txtPrefix</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-metricsServer">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.metricsServer</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-metricsServer-configMap">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.metricsServer.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-metricsServer-configMap-values">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.metricsServer.configMap.values</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-metricsServer-configMap-values-ciliumNetworkPolicy">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.metricsServer.configMap.values.ciliumNetworkPolicy</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-metricsServer-configMap-values-ciliumNetworkPolicy-enabled">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.metricsServer.configMap.values.ciliumNetworkPolicy.enabled</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-netExporter">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.netExporter</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-netExporter-configMap">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.netExporter.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-netExporter-configMap-values">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.netExporter.configMap.values</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-netExporter-configMap-values-NetExporter">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.netExporter.configMap.values.NetExporter</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-netExporter-configMap-values-NetExporter-NTPServers">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.netExporter.configMap.values.NetExporter.NTPServers</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-netExporter-configMap-values-ciliumNetworkPolicy">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.netExporter.configMap.values.ciliumNetworkPolicy</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-netExporter-configMap-values-ciliumNetworkPolicy-enabled">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.netExporter.configMap.values.ciliumNetworkPolicy.enabled</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <h3 class="headline-with-link">
+    <a class="header-link" href="#Other">
+      <i class="fa fa-link"></i>
+    </a>Other
+  </h3>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#clusterName">
+          <i class="fa fa-link"></i>
+        </a>.clusterName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#organization">
+          <i class="fa fa-link"></i>
+        </a>.organization</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div></div>
 
-| **Property** | **Description** | **More Details** |
-| :----------- | :-------------- | :--------------- |
-| `userConfig.certManager` |**None**|**Type:** `object`&lt;br/&gt;|
-| `userConfig.certManager.configMap` |**None**|**Type:** `object`&lt;br/&gt;|
-| `userConfig.certManager.configMap.values` |**None**|**Type:** `object`&lt;br/&gt;|
-| `userConfig.certManager.configMap.values.ciliumNetworkPolicy` |**None**|**Type:** `object`&lt;br/&gt;|
-| `userConfig.certManager.configMap.values.ciliumNetworkPolicy.enabled` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `userConfig.certManager.configMap.values.controller` |**None**|**Type:** `object`&lt;br/&gt;|
-| `userConfig.certManager.configMap.values.controller.extraArgs` |**None**|**Type:** `array`&lt;br/&gt;|
-| `userConfig.certManager.configMap.values.controller.extraArgs[*]` |**None**|**Type:** `string`&lt;br/&gt;|
-| `userConfig.certManager.configMap.values.dns01RecursiveNameserversOnly` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `userConfig.cluster-autoscaler` |**None**|**Type:** `object`&lt;br/&gt;|
-| `userConfig.cluster-autoscaler.configMap` |**None**|**Type:** `object`&lt;br/&gt;|
-| `userConfig.cluster-autoscaler.configMap.values` |**None**|**Type:** `object`&lt;br/&gt;|
-| `userConfig.cluster-autoscaler.configMap.values.serviceAccount` |**None**|**Type:** `object`&lt;br/&gt;|
-| `userConfig.cluster-autoscaler.configMap.values.serviceAccount.annotations` |**None**|**Type:** `object`&lt;br/&gt;|
-| `userConfig.cluster-autoscaler.configMap.values.serviceAccount.annotations.eks.amazonaws.com/role-arn` |**None**|**Type:** `string`&lt;br/&gt;|
-| `userConfig.etcdKubernetesResourceCountExporter` |**None**|**Type:** `object`&lt;br/&gt;|
-| `userConfig.etcdKubernetesResourceCountExporter.configMap` |**None**|**Type:** `object`&lt;br/&gt;|
-| `userConfig.etcdKubernetesResourceCountExporter.configMap.values` |**None**|**Type:** `object`&lt;br/&gt;|
-| `userConfig.etcdKubernetesResourceCountExporter.configMap.values.etcd` |**None**|**Type:** `object`&lt;br/&gt;|
-| `userConfig.etcdKubernetesResourceCountExporter.configMap.values.etcd.cacertpath` |**None**|**Type:** `string`&lt;br/&gt;|
-| `userConfig.etcdKubernetesResourceCountExporter.configMap.values.etcd.certpath` |**None**|**Type:** `string`&lt;br/&gt;|
-| `userConfig.etcdKubernetesResourceCountExporter.configMap.values.etcd.hostPath` |**None**|**Type:** `string`&lt;br/&gt;|
-| `userConfig.etcdKubernetesResourceCountExporter.configMap.values.etcd.keypath` |**None**|**Type:** `string`&lt;br/&gt;|
-| `userConfig.etcdKubernetesResourceCountExporter.configMap.values.etcd.prefix` |**None**|**Type:** `string`&lt;br/&gt;|
-| `userConfig.etcdKubernetesResourceCountExporter.configMap.values.events` |**None**|**Type:** `object`&lt;br/&gt;|
-| `userConfig.etcdKubernetesResourceCountExporter.configMap.values.events.prefix` |**None**|**Type:** `string`&lt;br/&gt;|
-| `userConfig.externalDns` |**None**|**Type:** `object`&lt;br/&gt;|
-| `userConfig.externalDns.configMap` |**None**|**Type:** `object`&lt;br/&gt;|
-| `userConfig.externalDns.configMap.values` |**None**|**Type:** `object`&lt;br/&gt;|
-| `userConfig.externalDns.configMap.values.annotationFilter` |**None**|**Type:** `string`&lt;br/&gt;|
-| `userConfig.externalDns.configMap.values.aws` |**None**|**Type:** `object`&lt;br/&gt;|
-| `userConfig.externalDns.configMap.values.aws.batchChangeInterval` |**None**|**Type:** `null`&lt;br/&gt;|
-| `userConfig.externalDns.configMap.values.aws.irsa` |**None**|**Type:** `string`&lt;br/&gt;|
-| `userConfig.externalDns.configMap.values.ciliumNetworkPolicy` |**None**|**Type:** `object`&lt;br/&gt;|
-| `userConfig.externalDns.configMap.values.ciliumNetworkPolicy.enabled` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `userConfig.externalDns.configMap.values.domainFilters` |**None**|**Type:** `array`&lt;br/&gt;|
-| `userConfig.externalDns.configMap.values.domainFilters[*]` |**None**|**Type:** `string`&lt;br/&gt;|
-| `userConfig.externalDns.configMap.values.extraArgs` |**None**|**Type:** `array`&lt;br/&gt;|
-| `userConfig.externalDns.configMap.values.extraArgs[*]` |**None**|**Type:** `string`&lt;br/&gt;|
-| `userConfig.externalDns.configMap.values.provider` |**None**|**Type:** `string`&lt;br/&gt;|
-| `userConfig.externalDns.configMap.values.serviceAccount` |**None**|**Type:** `object`&lt;br/&gt;|
-| `userConfig.externalDns.configMap.values.serviceAccount.annotations` |**None**|**Type:** `object`&lt;br/&gt;|
-| `userConfig.externalDns.configMap.values.serviceAccount.annotations.eks.amazonaws.com/role-arn` |**None**|**Type:** `string`&lt;br/&gt;|
-| `userConfig.externalDns.configMap.values.sources` |**None**|**Type:** `array`&lt;br/&gt;|
-| `userConfig.externalDns.configMap.values.sources[*]` |**None**|**Type:** `string`&lt;br/&gt;|
-| `userConfig.externalDns.configMap.values.txtOwnerId` |**None**|**Type:** `string`&lt;br/&gt;|
-| `userConfig.externalDns.configMap.values.txtPrefix` |**None**|**Type:** `string`&lt;br/&gt;|
-| `userConfig.metricsServer` |**None**|**Type:** `object`&lt;br/&gt;|
-| `userConfig.metricsServer.configMap` |**None**|**Type:** `object`&lt;br/&gt;|
-| `userConfig.metricsServer.configMap.values` |**None**|**Type:** `object`&lt;br/&gt;|
-| `userConfig.metricsServer.configMap.values.ciliumNetworkPolicy` |**None**|**Type:** `object`&lt;br/&gt;|
-| `userConfig.metricsServer.configMap.values.ciliumNetworkPolicy.enabled` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `userConfig.netExporter` |**None**|**Type:** `object`&lt;br/&gt;|
-| `userConfig.netExporter.configMap` |**None**|**Type:** `object`&lt;br/&gt;|
-| `userConfig.netExporter.configMap.values` |**None**|**Type:** `object`&lt;br/&gt;|
-| `userConfig.netExporter.configMap.values.NetExporter` |**None**|**Type:** `object`&lt;br/&gt;|
-| `userConfig.netExporter.configMap.values.NetExporter.NTPServers` |**None**|**Type:** `string`&lt;br/&gt;|
-| `userConfig.netExporter.configMap.values.ciliumNetworkPolicy` |**None**|**Type:** `object`&lt;br/&gt;|
-| `userConfig.netExporter.configMap.values.ciliumNetworkPolicy.enabled` |**None**|**Type:** `boolean`&lt;br/&gt;|
 
-### Apps
-
-Properties within the `.apps` top-level object
-
-| **Property** | **Description** | **More Details** |
-| :----------- | :-------------- | :--------------- |
-| `apps.aws-pod-identity-webhook` |**None**|**Type:** `object`&lt;br/&gt;|
-| `apps.aws-pod-identity-webhook.appName` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.aws-pod-identity-webhook.catalog` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.aws-pod-identity-webhook.chartName` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.aws-pod-identity-webhook.clusterValues` |**None**|**Type:** `object`&lt;br/&gt;|
-| `apps.aws-pod-identity-webhook.clusterValues.configMap` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.aws-pod-identity-webhook.clusterValues.secret` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.aws-pod-identity-webhook.dependsOn` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.aws-pod-identity-webhook.enabled` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.aws-pod-identity-webhook.namespace` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.aws-pod-identity-webhook.version` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.capi-node-labeler` |**None**|**Type:** `object`&lt;br/&gt;|
-| `apps.capi-node-labeler.appName` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.capi-node-labeler.catalog` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.capi-node-labeler.chartName` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.capi-node-labeler.clusterValues` |**None**|**Type:** `object`&lt;br/&gt;|
-| `apps.capi-node-labeler.clusterValues.configMap` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.capi-node-labeler.clusterValues.secret` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.capi-node-labeler.enabled` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.capi-node-labeler.namespace` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.capi-node-labeler.version` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.certExporter` |**None**|**Type:** `object`&lt;br/&gt;|
-| `apps.certExporter.appName` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.certExporter.catalog` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.certExporter.chartName` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.certExporter.clusterValues` |**None**|**Type:** `object`&lt;br/&gt;|
-| `apps.certExporter.clusterValues.configMap` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.certExporter.clusterValues.secret` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.certExporter.enabled` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.certExporter.namespace` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.certExporter.version` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.certManager` |**None**|**Type:** `object`&lt;br/&gt;|
-| `apps.certManager.appName` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.certManager.catalog` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.certManager.chartName` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.certManager.clusterValues` |**None**|**Type:** `object`&lt;br/&gt;|
-| `apps.certManager.clusterValues.configMap` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.certManager.clusterValues.secret` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.certManager.dependsOn` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.certManager.enabled` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.certManager.namespace` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.certManager.version` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.chartOperatorExtensions` |**None**|**Type:** `object`&lt;br/&gt;|
-| `apps.chartOperatorExtensions.appName` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.chartOperatorExtensions.catalog` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.chartOperatorExtensions.chartName` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.chartOperatorExtensions.clusterValues` |**None**|**Type:** `object`&lt;br/&gt;|
-| `apps.chartOperatorExtensions.clusterValues.configMap` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.chartOperatorExtensions.clusterValues.secret` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.chartOperatorExtensions.dependsOn` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.chartOperatorExtensions.enabled` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.chartOperatorExtensions.namespace` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.chartOperatorExtensions.version` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.cluster-autoscaler` |**None**|**Type:** `object`&lt;br/&gt;|
-| `apps.cluster-autoscaler.appName` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.cluster-autoscaler.catalog` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.cluster-autoscaler.chartName` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.cluster-autoscaler.clusterValues` |**None**|**Type:** `object`&lt;br/&gt;|
-| `apps.cluster-autoscaler.clusterValues.configMap` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.cluster-autoscaler.clusterValues.secret` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.cluster-autoscaler.enabled` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.cluster-autoscaler.namespace` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.cluster-autoscaler.version` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.etcdKubernetesResourceCountExporter` |**None**|**Type:** `object`&lt;br/&gt;|
-| `apps.etcdKubernetesResourceCountExporter.appName` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.etcdKubernetesResourceCountExporter.catalog` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.etcdKubernetesResourceCountExporter.chartName` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.etcdKubernetesResourceCountExporter.clusterValues` |**None**|**Type:** `object`&lt;br/&gt;|
-| `apps.etcdKubernetesResourceCountExporter.clusterValues.configMap` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.etcdKubernetesResourceCountExporter.clusterValues.secret` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.etcdKubernetesResourceCountExporter.enabled` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.etcdKubernetesResourceCountExporter.namespace` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.etcdKubernetesResourceCountExporter.version` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.externalDns` |**None**|**Type:** `object`&lt;br/&gt;|
-| `apps.externalDns.appName` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.externalDns.catalog` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.externalDns.chartName` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.externalDns.clusterValues` |**None**|**Type:** `object`&lt;br/&gt;|
-| `apps.externalDns.clusterValues.configMap` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.externalDns.clusterValues.secret` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.externalDns.enabled` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.externalDns.namespace` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.externalDns.version` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.metricsServer` |**None**|**Type:** `object`&lt;br/&gt;|
-| `apps.metricsServer.appName` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.metricsServer.catalog` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.metricsServer.chartName` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.metricsServer.clusterValues` |**None**|**Type:** `object`&lt;br/&gt;|
-| `apps.metricsServer.clusterValues.configMap` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.metricsServer.clusterValues.secret` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.metricsServer.enabled` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.metricsServer.namespace` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.metricsServer.version` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.netExporter` |**None**|**Type:** `object`&lt;br/&gt;|
-| `apps.netExporter.appName` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.netExporter.catalog` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.netExporter.chartName` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.netExporter.clusterValues` |**None**|**Type:** `object`&lt;br/&gt;|
-| `apps.netExporter.clusterValues.configMap` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.netExporter.clusterValues.secret` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.netExporter.enabled` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.netExporter.namespace` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.netExporter.version` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.nodeExporter` |**None**|**Type:** `object`&lt;br/&gt;|
-| `apps.nodeExporter.appName` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.nodeExporter.catalog` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.nodeExporter.chartName` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.nodeExporter.clusterValues` |**None**|**Type:** `object`&lt;br/&gt;|
-| `apps.nodeExporter.clusterValues.configMap` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.nodeExporter.clusterValues.secret` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.nodeExporter.enabled` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.nodeExporter.namespace` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.nodeExporter.version` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.observabilityBundle` |**None**|**Type:** `object`&lt;br/&gt;|
-| `apps.observabilityBundle.appName` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.observabilityBundle.catalog` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.observabilityBundle.chartName` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.observabilityBundle.clusterValues` |**None**|**Type:** `object`&lt;br/&gt;|
-| `apps.observabilityBundle.clusterValues.configMap` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.observabilityBundle.clusterValues.secret` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.observabilityBundle.enabled` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.observabilityBundle.inCluster` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.observabilityBundle.namespace` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.observabilityBundle.version` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.securityBundle` |**None**|**Type:** `object`&lt;br/&gt;|
-| `apps.securityBundle.appName` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.securityBundle.catalog` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.securityBundle.chartName` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.securityBundle.clusterValues` |**None**|**Type:** `object`&lt;br/&gt;|
-| `apps.securityBundle.clusterValues.configMap` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.securityBundle.clusterValues.secret` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.securityBundle.namespace` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.securityBundle.version` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.teleport-kube-agent` |**None**|**Type:** `object`&lt;br/&gt;|
-| `apps.teleport-kube-agent.appName` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.teleport-kube-agent.catalog` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.teleport-kube-agent.chartName` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.teleport-kube-agent.clusterValues` |**None**|**Type:** `object`&lt;br/&gt;|
-| `apps.teleport-kube-agent.clusterValues.configMap` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.teleport-kube-agent.clusterValues.secret` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.teleport-kube-agent.enabled` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.teleport-kube-agent.extraConfigs` |**None**|**Type:** `array`&lt;br/&gt;|
-| `apps.teleport-kube-agent.extraConfigs[*]` |**None**|**Type:** `object`&lt;br/&gt;|
-| `apps.teleport-kube-agent.extraConfigs[*].kind` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.teleport-kube-agent.extraConfigs[*].name` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.teleport-kube-agent.extraConfigs[*].namespace` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.teleport-kube-agent.forceUpgrade` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.teleport-kube-agent.namespace` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.teleport-kube-agent.version` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.vpa` |**None**|**Type:** `object`&lt;br/&gt;|
-| `apps.vpa.appName` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.vpa.catalog` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.vpa.chartName` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.vpa.clusterValues` |**None**|**Type:** `object`&lt;br/&gt;|
-| `apps.vpa.clusterValues.configMap` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.vpa.clusterValues.secret` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.vpa.dependsOn` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.vpa.enabled` |**None**|**Type:** `boolean`&lt;br/&gt;|
-| `apps.vpa.namespace` |**None**|**Type:** `string`&lt;br/&gt;|
-| `apps.vpa.version` |**None**|**Type:** `string`&lt;br/&gt;|
-
-### Other
-
-| **Property** | **Description** | **More Details** |
-| :----------- | :-------------- | :--------------- |
-| `clusterName` |**None**|**Type:** `string`&lt;br/&gt;|
-| `organization` |**None**|**Type:** `string`&lt;br/&gt;|
-
-&lt;!-- DOCS_END --&gt;
+<!-- DOCS_END -->
 
 
 ## Further reading

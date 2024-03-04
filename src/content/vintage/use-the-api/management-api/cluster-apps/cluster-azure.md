@@ -23,170 +23,1442 @@ This page lists all available configuration options, based on the [configuration
 
 Note that configuration options can change between releases. Use the GitHub function for selecting a branch/tag to view the documentation matching your cluster-aws version.
 
-&lt;!-- Update the content below by executing (from the repo root directory)
+<!-- Update the content below by executing (from the repo root directory)
 
 schemadocs generate helm/cluster-azure/values.schema.json -o helm/cluster-azure/README.md
 
---&gt;
+-->
 
-&lt;!-- DOCS_START --&gt;
-
-### Azure settings
-Properties within the `.providerSpecific` top-level object
-
-| **Property** | **Description** | **More Details** |
-| :----------- | :-------------- | :--------------- |
-| `providerSpecific.azureClusterIdentity` | **Identity** - AzureClusterIdentity resource to use for this cluster.|**Type:** `object`&lt;br/&gt;|
-| `providerSpecific.azureClusterIdentity.name` | **Name**|**Type:** `string`&lt;br/&gt;**Default:** `&#34;cluster-identity&#34;`|
-| `providerSpecific.azureClusterIdentity.namespace` | **Namespace**|**Type:** `string`&lt;br/&gt;**Default:** `&#34;org-giantswarm&#34;`|
-| `providerSpecific.location` | **Location**|**Type:** `string`&lt;br/&gt;**Default:** `&#34;westeurope&#34;`|
-| `providerSpecific.network` | **Azure network settings** - Azure VNet peering and other Azure-specific network settings.|**Type:** `object`&lt;br/&gt;|
-| `providerSpecific.network.peerings` | **VNet peerings** - Specifying VNets (their resource groups and names) to which the peering is established.|**Type:** `array`&lt;br/&gt;**Default:** `[]`|
-| `providerSpecific.network.peerings[*]` | **VNet peering**|**Type:** `object`&lt;br/&gt;|
-| `providerSpecific.network.peerings[*].remoteVnetName` | **VNet name** - Name of the remote VNet to which the peering is established.|**Type:** `string`&lt;br/&gt;**Value pattern:** `^[-\w\._]&#43;$`&lt;br/&gt;|
-| `providerSpecific.network.peerings[*].resourceGroup` | **Resource group name** - Resource group for the remote VNet to which the peering is established.|**Type:** `string`&lt;br/&gt;**Value pattern:** `^[-\w\._\(\)]&#43;$`&lt;br/&gt;|
-| `providerSpecific.subscriptionId` | **Subscription ID** - ID of the Azure subscription this cluster will run in.|**Type:** `string`&lt;br/&gt;**Example:** `&#34;291bba3f-e0a5-47bc-a099-3bdcb2a50a05&#34;`&lt;br/&gt;**Value pattern:** `^[a-fA-F0-9][-a-fA-F0-9]&#43;[a-fA-F0-9]$`&lt;br/&gt;|
-
-### Connectivity
-Properties within the `.connectivity` top-level object
-
-| **Property** | **Description** | **More Details** |
-| :----------- | :-------------- | :--------------- |
-| `connectivity.allowedCIDRs` | **List of CIDRs which have to been allowed to connect to the API Server endpoint**|**Type:** `array`&lt;br/&gt;**Default:** `[]`|
-| `connectivity.allowedCIDRs[*]` |**None**|**Type:** `string`&lt;br/&gt;|
-| `connectivity.containerRegistries` | **Container registries** - Endpoints and credentials configuration for container registries.|**Type:** `object`&lt;br/&gt;**Default:** `{&#34;docker.io&#34;:[{&#34;endpoint&#34;:&#34;registry-1.docker.io&#34;},{&#34;endpoint&#34;:&#34;giantswarm.azurecr.io&#34;}]}`|
-| `connectivity.containerRegistries.*` | **Registries** - Container registries and mirrors|**Type:** `array`&lt;br/&gt;|
-| `connectivity.containerRegistries.*[*]` | **Registry**|**Type:** `object`&lt;br/&gt;|
-| `connectivity.containerRegistries.*[*].credentials` | **Credentials**|**Type:** `object`&lt;br/&gt;|
-| `connectivity.containerRegistries.*[*].credentials.auth` | **Auth** - Base64-encoded string from the concatenation of the username, a colon, and the password.|**Type:** `string`&lt;br/&gt;|
-| `connectivity.containerRegistries.*[*].credentials.identitytoken` | **Identity token** - Used to authenticate the user and obtain an access token for the registry.|**Type:** `string`&lt;br/&gt;|
-| `connectivity.containerRegistries.*[*].credentials.password` | **Password** - Used to authenticate for the registry with username/password.|**Type:** `string`&lt;br/&gt;|
-| `connectivity.containerRegistries.*[*].credentials.username` | **Username** - Used to authenticate for the registry with username/password.|**Type:** `string`&lt;br/&gt;|
-| `connectivity.containerRegistries.*[*].endpoint` | **Endpoint** - Endpoint for the container registry.|**Type:** `string`&lt;br/&gt;|
-| `connectivity.network` | **Network**|**Type:** `object`&lt;br/&gt;|
-| `connectivity.network.controlPlane` | **Control plane**|**Type:** `object`&lt;br/&gt;|
-| `connectivity.network.controlPlane.cidr` | **Subnet**|**Type:** `string`&lt;br/&gt;**Default:** `&#34;10.0.0.0/20&#34;`|
-| `connectivity.network.hostCidr` | **Node subnet** - IPv4 address range for nodes, in CIDR notation.|**Type:** `string`&lt;br/&gt;**Default:** `&#34;10.0.0.0/16&#34;`|
-| `connectivity.network.mode` | **Network mode** - Specifying if the cluster resources are publicly accessible or not.|**Type:** `string`&lt;br/&gt;**Default:** `&#34;public&#34;`|
-| `connectivity.network.podCidr` | **Pod subnet** - IPv4 address range for pods, in CIDR notation.|**Type:** `string`&lt;br/&gt;**Default:** `&#34;192.168.0.0/16&#34;`|
-| `connectivity.network.serviceCidr` | **Service subnet** - IPv4 address range for services, in CIDR notation.|**Type:** `string`&lt;br/&gt;**Default:** `&#34;172.31.0.0/16&#34;`|
-| `connectivity.network.workers` | **Workers**|**Type:** `object`&lt;br/&gt;|
-| `connectivity.network.workers.cidr` | **Subnet**|**Type:** `string`&lt;br/&gt;**Default:** `&#34;10.0.16.0/20&#34;`|
-
-### Control plane
-Properties within the `.controlPlane` top-level object
-
-| **Property** | **Description** | **More Details** |
-| :----------- | :-------------- | :--------------- |
-| `controlPlane.containerdVolumeSizeGB` | **Containerd volume size (GB)**|**Type:** `integer`&lt;br/&gt;**Default:** `100`|
-| `controlPlane.encryptionAtHost` | **Encryption at host** - Enable encryption at host for the control plane nodes.|**Type:** `boolean`&lt;br/&gt;**Default:** `false`|
-| `controlPlane.etcdVolumeSizeGB` | **Etcd volume size (GB)**|**Type:** `integer`&lt;br/&gt;**Default:** `100`|
-| `controlPlane.instanceType` | **Node VM size**|**Type:** `string`&lt;br/&gt;**Default:** `&#34;Standard_D4s_v3&#34;`|
-| `controlPlane.kubeletVolumeSizeGB` | **Kubelet volume size (GB)**|**Type:** `integer`&lt;br/&gt;**Default:** `100`|
-| `controlPlane.oidc` | **OIDC authentication**|**Type:** `object`&lt;br/&gt;|
-| `controlPlane.oidc.caPem` | **Certificate authority** - Identity provider&#39;s CA certificate in PEM format.|**Type:** `string`&lt;br/&gt;**Default:** `&#34;&#34;`|
-| `controlPlane.oidc.clientId` | **Client ID**|**Type:** `string`&lt;br/&gt;**Default:** `&#34;&#34;`|
-| `controlPlane.oidc.groupsClaim` | **Groups claim**|**Type:** `string`&lt;br/&gt;**Default:** `&#34;&#34;`|
-| `controlPlane.oidc.issuerUrl` | **Issuer URL**|**Type:** `string`&lt;br/&gt;**Default:** `&#34;&#34;`|
-| `controlPlane.oidc.usernameClaim` | **Username claim**|**Type:** `string`&lt;br/&gt;**Default:** `&#34;&#34;`|
-| `controlPlane.replicas` | **Number of nodes**|**Type:** `integer`&lt;br/&gt;**Default:** `3`|
-| `controlPlane.rootVolumeSizeGB` | **Root volume size (GB)**|**Type:** `integer`&lt;br/&gt;**Default:** `50`|
-
-### Internal settings
-Properties within the `.internal` top-level object
-
-| **Property** | **Description** | **More Details** |
-| :----------- | :-------------- | :--------------- |
-| `internal.defaults` | **Default settings**|**Type:** `object`&lt;br/&gt;|
-| `internal.defaults.evictionMinimumReclaim` | **Default settings for eviction minimum reclaim**|**Type:** `string`&lt;br/&gt;**Default:** `&#34;imagefs.available=5%,memory.available=100Mi,nodefs.available=5%&#34;`|
-| `internal.defaults.hardEvictionThresholds` | **Default settings for hard eviction thresholds**|**Type:** `string`&lt;br/&gt;**Default:** `&#34;memory.available\u003c200Mi,nodefs.available\u003c10%,nodefs.inodesFree\u003c3%,imagefs.available\u003c10%,pid.available\u003c20%&#34;`|
-| `internal.defaults.softEvictionGracePeriod` | **Default settings for soft eviction grace period**|**Type:** `string`&lt;br/&gt;**Default:** `&#34;memory.available=30s,nodefs.available=2m,nodefs.inodesFree=1m,imagefs.available=2m,pid.available=1m&#34;`|
-| `internal.defaults.softEvictionThresholds` | **Default settings for soft eviction thresholds**|**Type:** `string`&lt;br/&gt;**Default:** `&#34;memory.available\u003c500Mi,nodefs.available\u003c15%,nodefs.inodesFree\u003c5%,imagefs.available\u003c15%,pid.available\u003c30%&#34;`|
-| `internal.enableVpaResources` | **Enable VPA Resources in helmreleases**|**Type:** `boolean`&lt;br/&gt;**Default:** `true`|
-| `internal.identity` | **Identity**|**Type:** `object`&lt;br/&gt;|
-| `internal.identity.attachCapzControllerUserAssignedIdentity` | **Attach CAPZ controller UserAssigned identity**|**Type:** `boolean`&lt;br/&gt;**Default:** `false`|
-| `internal.identity.systemAssignedScope` | **Scope of SystemAssignedIdentity**|**Type:** `string`&lt;br/&gt;**Default:** `&#34;ResourceGroup&#34;`|
-| `internal.identity.type` | **Type of Identity**|**Type:** `string`&lt;br/&gt;**Default:** `&#34;SystemAssigned&#34;`|
-| `internal.identity.userAssignedCustomIdentities` | **List of custom UserAssigned Identities to attach to all nodes**|**Type:** `array`&lt;br/&gt;**Default:** `[]`|
-| `internal.image` | **Node Image**|**Type:** `object`&lt;br/&gt;|
-| `internal.image.gallery` | **Gallery** - Name of the community gallery hosting the image|**Type:** `string`&lt;br/&gt;**Default:** `&#34;gsCapzFlatcar-41c2d140-ac44-4d8b-b7e1-7b2f1ddbe4d0&#34;`|
-| `internal.image.name` | **Image Definition** - Name of the image definition in the Gallery|**Type:** `string`&lt;br/&gt;**Default:** `&#34;&#34;`|
-| `internal.image.version` | **Image version**|**Type:** `string`&lt;br/&gt;**Default:** `&#34;3510.2.5&#34;`|
-| `internal.kubectlImage` | **Kubectl Image settings**|**Type:** `object`&lt;br/&gt;|
-| `internal.kubectlImage.name` | **Image name** - Name of the image Registry|**Type:** `string`&lt;br/&gt;**Default:** `&#34;giantswarm/kubectl&#34;`|
-| `internal.kubectlImage.registry` | **Kubectl Image Registry** - Registry for the kubectl image|**Type:** `string`&lt;br/&gt;**Default:** `&#34;gsoci.azurecr.io&#34;`|
-| `internal.kubectlImage.tag` | **Image tag**|**Type:** `string`&lt;br/&gt;**Default:** `&#34;1.23.5&#34;`|
-| `internal.kubernetesVersion` | **Kubernetes version**|**Type:** `string`&lt;br/&gt;**Default:** `&#34;1.24.17&#34;`|
-| `internal.network` | **Network configuration** - Internal network configuration that is susceptible to more frequent change|**Type:** `object`&lt;br/&gt;|
-| `internal.network.subnets` | **VNet spec** - Customize subnets configuration|**Type:** `object`&lt;br/&gt;**Default:** `{}`|
-| `internal.network.subnets.controlPlaneSubnetName` | **ControlPlane subnet name** - Name of the control plane subnet.|**Type:** `string`&lt;br/&gt;**Value pattern:** `^[-\w\._]&#43;$`&lt;br/&gt;|
-| `internal.network.subnets.nodeSubnetNatGatewayName` | **Nodes subnet nat-gateway name** - Name of the nat gateway on the nodes subnet.|**Type:** `string`&lt;br/&gt;**Value pattern:** `^[-\w\._]&#43;$`&lt;br/&gt;|
-| `internal.network.subnets.nodesSubnetName` | **Nodes subnet name** - Name of the nodes subnet.|**Type:** `string`&lt;br/&gt;**Value pattern:** `^[-\w\._]&#43;$`&lt;br/&gt;|
-| `internal.network.vnet` | **VNet spec** - Existing VNet configuration. This is susceptible to more frequent change or removal.|**Type:** `object`&lt;br/&gt;**Default:** `{}`|
-| `internal.network.vnet.name` | **VNet name** - Name of the existing VNet.|**Type:** `string`&lt;br/&gt;**Value pattern:** `^[-\w\._]&#43;$`&lt;br/&gt;|
-| `internal.network.vnet.resourceGroup` | **Resource group name** - Resource group where the existing VNet is deployed.|**Type:** `string`&lt;br/&gt;**Value pattern:** `^[-\w\._\(\)]&#43;$`&lt;br/&gt;|
-| `internal.network.vpn` | **VPN configuration** - Internal VPN configuration that is susceptible to more frequent change|**Type:** `object`&lt;br/&gt;|
-| `internal.network.vpn.gatewayMode` | **VPN gateway mode**|**Type:** `string`&lt;br/&gt;**Default:** `&#34;none&#34;`|
-| `internal.sandboxContainerImage` | **The image used by sandbox / pause container**|**Type:** `object`&lt;br/&gt;|
-| `internal.sandboxContainerImage.name` | **Repository**|**Type:** `string`&lt;br/&gt;**Default:** `&#34;giantswarm/pause&#34;`|
-| `internal.sandboxContainerImage.registry` | **Registry**|**Type:** `string`&lt;br/&gt;**Default:** `&#34;gsoci.azurecr.io&#34;`|
-| `internal.sandboxContainerImage.tag` | **Tag**|**Type:** `string`&lt;br/&gt;**Default:** `&#34;3.9&#34;`|
-| `internal.teleport` | **Teleport**|**Type:** `object`&lt;br/&gt;|
-| `internal.teleport.enabled` | **Enable teleport**|**Type:** `boolean`&lt;br/&gt;**Default:** `true`|
-| `internal.teleport.proxyAddr` | **Teleport proxy address**|**Type:** `string`&lt;br/&gt;**Default:** `&#34;teleport.giantswarm.io:443&#34;`|
-| `internal.teleport.version` | **Teleport version**|**Type:** `string`&lt;br/&gt;**Default:** `&#34;14.1.3&#34;`|
-
-### Metadata
-Properties within the `.metadata` top-level object
-
-| **Property** | **Description** | **More Details** |
-| :----------- | :-------------- | :--------------- |
-| `metadata.description` | **Cluster description** - User-friendly description of the cluster&#39;s purpose.|**Type:** `string`&lt;br/&gt;|
-| `metadata.labels` | **Labels** - These labels are added to the Kubernetes resources defining this cluster.|**Type:** `object`&lt;br/&gt;|
-| `metadata.labels.PATTERN` | **Label**|**Type:** `string`&lt;br/&gt;**Key pattern:**&lt;br/&gt;`PATTERN`=`^[a-zA-Z0-9/\._-]&#43;$`&lt;br/&gt;**Value pattern:** `^[a-zA-Z0-9\._-]&#43;$`&lt;br/&gt;|
-| `metadata.name` | **Cluster name** - Unique identifier, cannot be changed after creation.|**Type:** `string`&lt;br/&gt;|
-| `metadata.organization` | **Organization**|**Type:** `string`&lt;br/&gt;|
-| `metadata.servicePriority` | **Service priority** - The relative importance of this cluster.|**Type:** `string`&lt;br/&gt;**Default:** `&#34;highest&#34;`|
-
-### Node pools
-Properties within the `.nodePools` top-level object
-
-| **Property** | **Description** | **More Details** |
-| :----------- | :-------------- | :--------------- |
-| `nodePools[*].customNodeLabels` | **Custom node labels**|**Type:** `array`&lt;br/&gt;|
-| `nodePools[*].customNodeLabels[*]` | **Label**|**Type:** `string`&lt;br/&gt;|
-| `nodePools[*].customNodeTaints` | **Custom node taints**|**Type:** `array`&lt;br/&gt;|
-| `nodePools[*].customNodeTaints[*]` | **Node taint**|**Type:** `object`&lt;br/&gt;|
-| `nodePools[*].customNodeTaints[*].effect` | **Effect**|**Type:** `string`&lt;br/&gt;|
-| `nodePools[*].customNodeTaints[*].key` | **Key**|**Type:** `string`&lt;br/&gt;|
-| `nodePools[*].customNodeTaints[*].value` | **Value**|**Type:** `string`&lt;br/&gt;|
-| `nodePools[*].disableHealthCheck` | **Disable HealthChecks for the MachineDeployment**|**Type:** `boolean`&lt;br/&gt;|
-| `nodePools[*].encryptionAtHost` | **Encryption at host** - Enable encryption at host for the worker nodes.|**Type:** `boolean`&lt;br/&gt;**Default:** `false`|
-| `nodePools[*].failureDomain` | **Availability zone**|**Type:** `string`&lt;br/&gt;|
-| `nodePools[*].instanceType` | **VM size**|**Type:** `string`&lt;br/&gt;|
-| `nodePools[*].name` | **Name** - Unique identifier, cannot be changed after creation.|**Type:** `string`&lt;br/&gt;**Value pattern:** `^[-\w\._]&#43;$`&lt;br/&gt;|
-| `nodePools[*].replicas` | **Number of nodes**|**Type:** `integer`&lt;br/&gt;|
-| `nodePools[*].rootVolumeSizeGB` | **Root volume size (GB)**|**Type:** `integer`&lt;br/&gt;|
-
-### Pod Security Standards
-Properties within the `.global.podSecurityStandards` object
-
-| **Property** | **Description** | **More Details** |
-| :----------- | :-------------- | :--------------- |
-| `global.podSecurityStandards.enforced` | **Enforced Pod Security Standards** - Use PSSs instead of PSPs.|**Type:** `boolean`&lt;br/&gt;**Default:** `false`|
-
-### Other
-
-| **Property** | **Description** | **More Details** |
-| :----------- | :-------------- | :--------------- |
-| `baseDomain` | **Base DNS domain**|**Type:** `string`&lt;br/&gt;**Default:** `&#34;azuretest.gigantic.io&#34;`|
-| `cluster-shared` | **Library chart**|**Type:** `object`&lt;br/&gt;|
-| `managementCluster` | **The capi MC managing this cluster**|**Type:** `string`&lt;br/&gt;|
-| `provider` | **Cluster API provider name**|**Type:** `string`&lt;br/&gt;|
+<!-- DOCS_START -->
 
 
+<div class="crd-schema-version">
+  <h2 class="headline-with-link">
+    <a class="header-link" href="#">
+      <i class="fa fa-link"></i>
+    </a>Chart Configuration Reference
+  </h2>
+  <h3 class="headline-with-link">
+    <a class="header-link" href="#Azure-settings">
+      <i class="fa fa-link"></i>
+    </a>Azure settings
+  </h3>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#providerSpecific-azureClusterIdentity">
+          <i class="fa fa-link"></i>
+        </a>.providerSpecific.azureClusterIdentity</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Identity</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description">AzureClusterIdentity resource to use for this cluster.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#providerSpecific-azureClusterIdentity-name">
+          <i class="fa fa-link"></i>
+        </a>.providerSpecific.azureClusterIdentity.name</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Name</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#providerSpecific-azureClusterIdentity-namespace">
+          <i class="fa fa-link"></i>
+        </a>.providerSpecific.azureClusterIdentity.namespace</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Namespace</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#providerSpecific-location">
+          <i class="fa fa-link"></i>
+        </a>.providerSpecific.location</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Location</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#providerSpecific-network">
+          <i class="fa fa-link"></i>
+        </a>.providerSpecific.network</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Azure network settings</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description">Azure VNet peering and other Azure-specific network settings.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#providerSpecific-network-peerings">
+          <i class="fa fa-link"></i>
+        </a>.providerSpecific.network.peerings</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">VNet peerings</span><br /><span class="property-type">array</span>&nbsp;
+      </div>
+      <div class="property-description">Specifying VNets (their resource groups and names) to which the peering is established.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#providerSpecific-network-peerings[*]">
+          <i class="fa fa-link"></i>
+        </a>.providerSpecific.network.peerings[*]</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">VNet peering</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#providerSpecific-network-peerings[*]-remoteVnetName">
+          <i class="fa fa-link"></i>
+        </a>.providerSpecific.network.peerings[*].remoteVnetName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">VNet name</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Name of the remote VNet to which the peering is established.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#providerSpecific-network-peerings[*]-resourceGroup">
+          <i class="fa fa-link"></i>
+        </a>.providerSpecific.network.peerings[*].resourceGroup</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Resource group name</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Resource group for the remote VNet to which the peering is established.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#providerSpecific-subscriptionId">
+          <i class="fa fa-link"></i>
+        </a>.providerSpecific.subscriptionId</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Subscription ID</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">ID of the Azure subscription this cluster will run in.</div>
+    </div>
+  </div>
+  <h3 class="headline-with-link">
+    <a class="header-link" href="#Connectivity">
+      <i class="fa fa-link"></i>
+    </a>Connectivity
+  </h3>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#connectivity-allowedCIDRs">
+          <i class="fa fa-link"></i>
+        </a>.connectivity.allowedCIDRs</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">List of CIDRs which have to been allowed to connect to the API Server endpoint</span><br /><span class="property-type">array</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#connectivity-allowedCIDRs[*]">
+          <i class="fa fa-link"></i>
+        </a>.connectivity.allowedCIDRs[*]</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#connectivity-containerRegistries">
+          <i class="fa fa-link"></i>
+        </a>.connectivity.containerRegistries</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Container registries</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description">Endpoints and credentials configuration for container registries.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#connectivity-containerRegistries-*">
+          <i class="fa fa-link"></i>
+        </a>.connectivity.containerRegistries.*</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Registries</span><br /><span class="property-type">array</span>&nbsp;
+      </div>
+      <div class="property-description">Container registries and mirrors</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#connectivity-containerRegistries-*[*]">
+          <i class="fa fa-link"></i>
+        </a>.connectivity.containerRegistries.*[*]</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Registry</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#connectivity-containerRegistries-*[*]-credentials">
+          <i class="fa fa-link"></i>
+        </a>.connectivity.containerRegistries.*[*].credentials</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Credentials</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#connectivity-containerRegistries-*[*]-credentials-auth">
+          <i class="fa fa-link"></i>
+        </a>.connectivity.containerRegistries.*[*].credentials.auth</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Auth</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Base64-encoded string from the concatenation of the username, a colon, and the password.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#connectivity-containerRegistries-*[*]-credentials-identitytoken">
+          <i class="fa fa-link"></i>
+        </a>.connectivity.containerRegistries.*[*].credentials.identitytoken</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Identity token</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Used to authenticate the user and obtain an access token for the registry.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#connectivity-containerRegistries-*[*]-credentials-password">
+          <i class="fa fa-link"></i>
+        </a>.connectivity.containerRegistries.*[*].credentials.password</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Password</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Used to authenticate for the registry with username/password.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#connectivity-containerRegistries-*[*]-credentials-username">
+          <i class="fa fa-link"></i>
+        </a>.connectivity.containerRegistries.*[*].credentials.username</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Username</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Used to authenticate for the registry with username/password.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#connectivity-containerRegistries-*[*]-endpoint">
+          <i class="fa fa-link"></i>
+        </a>.connectivity.containerRegistries.*[*].endpoint</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Endpoint</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Endpoint for the container registry.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#connectivity-network">
+          <i class="fa fa-link"></i>
+        </a>.connectivity.network</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Network</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#connectivity-network-controlPlane">
+          <i class="fa fa-link"></i>
+        </a>.connectivity.network.controlPlane</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Control plane</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#connectivity-network-controlPlane-cidr">
+          <i class="fa fa-link"></i>
+        </a>.connectivity.network.controlPlane.cidr</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Subnet</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#connectivity-network-hostCidr">
+          <i class="fa fa-link"></i>
+        </a>.connectivity.network.hostCidr</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Node subnet</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">IPv4 address range for nodes, in CIDR notation.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#connectivity-network-mode">
+          <i class="fa fa-link"></i>
+        </a>.connectivity.network.mode</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Network mode</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Specifying if the cluster resources are publicly accessible or not.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#connectivity-network-podCidr">
+          <i class="fa fa-link"></i>
+        </a>.connectivity.network.podCidr</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Pod subnet</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">IPv4 address range for pods, in CIDR notation.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#connectivity-network-serviceCidr">
+          <i class="fa fa-link"></i>
+        </a>.connectivity.network.serviceCidr</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Service subnet</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">IPv4 address range for services, in CIDR notation.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#connectivity-network-workers">
+          <i class="fa fa-link"></i>
+        </a>.connectivity.network.workers</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Workers</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#connectivity-network-workers-cidr">
+          <i class="fa fa-link"></i>
+        </a>.connectivity.network.workers.cidr</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Subnet</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <h3 class="headline-with-link">
+    <a class="header-link" href="#Control-plane">
+      <i class="fa fa-link"></i>
+    </a>Control plane
+  </h3>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#controlPlane-containerdVolumeSizeGB">
+          <i class="fa fa-link"></i>
+        </a>.controlPlane.containerdVolumeSizeGB</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Containerd volume size (GB)</span><br /><span class="property-type">integer</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#controlPlane-encryptionAtHost">
+          <i class="fa fa-link"></i>
+        </a>.controlPlane.encryptionAtHost</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Encryption at host</span><br /><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description">Enable encryption at host for the control plane nodes.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#controlPlane-etcdVolumeSizeGB">
+          <i class="fa fa-link"></i>
+        </a>.controlPlane.etcdVolumeSizeGB</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Etcd volume size (GB)</span><br /><span class="property-type">integer</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#controlPlane-instanceType">
+          <i class="fa fa-link"></i>
+        </a>.controlPlane.instanceType</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Node VM size</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#controlPlane-kubeletVolumeSizeGB">
+          <i class="fa fa-link"></i>
+        </a>.controlPlane.kubeletVolumeSizeGB</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Kubelet volume size (GB)</span><br /><span class="property-type">integer</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#controlPlane-oidc">
+          <i class="fa fa-link"></i>
+        </a>.controlPlane.oidc</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">OIDC authentication</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#controlPlane-oidc-caPem">
+          <i class="fa fa-link"></i>
+        </a>.controlPlane.oidc.caPem</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Certificate authority</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Identity provider's CA certificate in PEM format.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#controlPlane-oidc-clientId">
+          <i class="fa fa-link"></i>
+        </a>.controlPlane.oidc.clientId</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Client ID</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#controlPlane-oidc-groupsClaim">
+          <i class="fa fa-link"></i>
+        </a>.controlPlane.oidc.groupsClaim</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Groups claim</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#controlPlane-oidc-issuerUrl">
+          <i class="fa fa-link"></i>
+        </a>.controlPlane.oidc.issuerUrl</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Issuer URL</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#controlPlane-oidc-usernameClaim">
+          <i class="fa fa-link"></i>
+        </a>.controlPlane.oidc.usernameClaim</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Username claim</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#controlPlane-replicas">
+          <i class="fa fa-link"></i>
+        </a>.controlPlane.replicas</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Number of nodes</span><br /><span class="property-type">integer</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#controlPlane-rootVolumeSizeGB">
+          <i class="fa fa-link"></i>
+        </a>.controlPlane.rootVolumeSizeGB</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Root volume size (GB)</span><br /><span class="property-type">integer</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <h3 class="headline-with-link">
+    <a class="header-link" href="#Internal-settings">
+      <i class="fa fa-link"></i>
+    </a>Internal settings
+  </h3>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-defaults">
+          <i class="fa fa-link"></i>
+        </a>.internal.defaults</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Default settings</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-defaults-evictionMinimumReclaim">
+          <i class="fa fa-link"></i>
+        </a>.internal.defaults.evictionMinimumReclaim</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Default settings for eviction minimum reclaim</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-defaults-hardEvictionThresholds">
+          <i class="fa fa-link"></i>
+        </a>.internal.defaults.hardEvictionThresholds</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Default settings for hard eviction thresholds</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-defaults-softEvictionGracePeriod">
+          <i class="fa fa-link"></i>
+        </a>.internal.defaults.softEvictionGracePeriod</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Default settings for soft eviction grace period</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-defaults-softEvictionThresholds">
+          <i class="fa fa-link"></i>
+        </a>.internal.defaults.softEvictionThresholds</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Default settings for soft eviction thresholds</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-enableVpaResources">
+          <i class="fa fa-link"></i>
+        </a>.internal.enableVpaResources</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Enable VPA Resources in helmreleases</span><br /><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-identity">
+          <i class="fa fa-link"></i>
+        </a>.internal.identity</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Identity</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-identity-attachCapzControllerUserAssignedIdentity">
+          <i class="fa fa-link"></i>
+        </a>.internal.identity.attachCapzControllerUserAssignedIdentity</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Attach CAPZ controller UserAssigned identity</span><br /><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-identity-systemAssignedScope">
+          <i class="fa fa-link"></i>
+        </a>.internal.identity.systemAssignedScope</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Scope of SystemAssignedIdentity</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-identity-type">
+          <i class="fa fa-link"></i>
+        </a>.internal.identity.type</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Type of Identity</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-identity-userAssignedCustomIdentities">
+          <i class="fa fa-link"></i>
+        </a>.internal.identity.userAssignedCustomIdentities</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">List of custom UserAssigned Identities to attach to all nodes</span><br /><span class="property-type">array</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-image">
+          <i class="fa fa-link"></i>
+        </a>.internal.image</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Node Image</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-image-gallery">
+          <i class="fa fa-link"></i>
+        </a>.internal.image.gallery</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Gallery</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Name of the community gallery hosting the image</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-image-name">
+          <i class="fa fa-link"></i>
+        </a>.internal.image.name</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Image Definition</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Name of the image definition in the Gallery</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-image-version">
+          <i class="fa fa-link"></i>
+        </a>.internal.image.version</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Image version</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-kubectlImage">
+          <i class="fa fa-link"></i>
+        </a>.internal.kubectlImage</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Kubectl Image settings</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-kubectlImage-name">
+          <i class="fa fa-link"></i>
+        </a>.internal.kubectlImage.name</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Image name</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Name of the image Registry</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-kubectlImage-registry">
+          <i class="fa fa-link"></i>
+        </a>.internal.kubectlImage.registry</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Kubectl Image Registry</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Registry for the kubectl image</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-kubectlImage-tag">
+          <i class="fa fa-link"></i>
+        </a>.internal.kubectlImage.tag</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Image tag</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-kubernetesVersion">
+          <i class="fa fa-link"></i>
+        </a>.internal.kubernetesVersion</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Kubernetes version</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-network">
+          <i class="fa fa-link"></i>
+        </a>.internal.network</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Network configuration</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description">Internal network configuration that is susceptible to more frequent change</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-network-subnets">
+          <i class="fa fa-link"></i>
+        </a>.internal.network.subnets</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">VNet spec</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description">Customize subnets configuration</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-network-subnets-controlPlaneSubnetName">
+          <i class="fa fa-link"></i>
+        </a>.internal.network.subnets.controlPlaneSubnetName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">ControlPlane subnet name</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Name of the control plane subnet.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-network-subnets-nodeSubnetNatGatewayName">
+          <i class="fa fa-link"></i>
+        </a>.internal.network.subnets.nodeSubnetNatGatewayName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Nodes subnet nat-gateway name</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Name of the nat gateway on the nodes subnet.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-network-subnets-nodesSubnetName">
+          <i class="fa fa-link"></i>
+        </a>.internal.network.subnets.nodesSubnetName</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Nodes subnet name</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Name of the nodes subnet.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-network-vnet">
+          <i class="fa fa-link"></i>
+        </a>.internal.network.vnet</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">VNet spec</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description">Existing VNet configuration. This is susceptible to more frequent change or removal.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-network-vnet-name">
+          <i class="fa fa-link"></i>
+        </a>.internal.network.vnet.name</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">VNet name</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Name of the existing VNet.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-network-vnet-resourceGroup">
+          <i class="fa fa-link"></i>
+        </a>.internal.network.vnet.resourceGroup</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Resource group name</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Resource group where the existing VNet is deployed.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-network-vpn">
+          <i class="fa fa-link"></i>
+        </a>.internal.network.vpn</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">VPN configuration</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description">Internal VPN configuration that is susceptible to more frequent change</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-network-vpn-gatewayMode">
+          <i class="fa fa-link"></i>
+        </a>.internal.network.vpn.gatewayMode</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">VPN gateway mode</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-sandboxContainerImage">
+          <i class="fa fa-link"></i>
+        </a>.internal.sandboxContainerImage</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">The image used by sandbox / pause container</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-sandboxContainerImage-name">
+          <i class="fa fa-link"></i>
+        </a>.internal.sandboxContainerImage.name</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Repository</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-sandboxContainerImage-registry">
+          <i class="fa fa-link"></i>
+        </a>.internal.sandboxContainerImage.registry</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Registry</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-sandboxContainerImage-tag">
+          <i class="fa fa-link"></i>
+        </a>.internal.sandboxContainerImage.tag</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Tag</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-teleport">
+          <i class="fa fa-link"></i>
+        </a>.internal.teleport</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Teleport</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-teleport-enabled">
+          <i class="fa fa-link"></i>
+        </a>.internal.teleport.enabled</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Enable teleport</span><br /><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-teleport-proxyAddr">
+          <i class="fa fa-link"></i>
+        </a>.internal.teleport.proxyAddr</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Teleport proxy address</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#internal-teleport-version">
+          <i class="fa fa-link"></i>
+        </a>.internal.teleport.version</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Teleport version</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <h3 class="headline-with-link">
+    <a class="header-link" href="#Metadata">
+      <i class="fa fa-link"></i>
+    </a>Metadata
+  </h3>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#metadata-description">
+          <i class="fa fa-link"></i>
+        </a>.metadata.description</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Cluster description</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">User-friendly description of the cluster's purpose.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#metadata-labels">
+          <i class="fa fa-link"></i>
+        </a>.metadata.labels</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Labels</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description">These labels are added to the Kubernetes resources defining this cluster.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#metadata-labels-PATTERN">
+          <i class="fa fa-link"></i>
+        </a>.metadata.labels.PATTERN</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Label</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#metadata-name">
+          <i class="fa fa-link"></i>
+        </a>.metadata.name</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Cluster name</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Unique identifier, cannot be changed after creation.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#metadata-organization">
+          <i class="fa fa-link"></i>
+        </a>.metadata.organization</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Organization</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#metadata-servicePriority">
+          <i class="fa fa-link"></i>
+        </a>.metadata.servicePriority</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Service priority</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">The relative importance of this cluster.</div>
+    </div>
+  </div>
+  <h3 class="headline-with-link">
+    <a class="header-link" href="#Node-pools">
+      <i class="fa fa-link"></i>
+    </a>Node pools
+  </h3>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#nodePools[*]-customNodeLabels">
+          <i class="fa fa-link"></i>
+        </a>.nodePools[*].customNodeLabels</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Custom node labels</span><br /><span class="property-type">array</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#nodePools[*]-customNodeLabels[*]">
+          <i class="fa fa-link"></i>
+        </a>.nodePools[*].customNodeLabels[*]</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Label</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#nodePools[*]-customNodeTaints">
+          <i class="fa fa-link"></i>
+        </a>.nodePools[*].customNodeTaints</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Custom node taints</span><br /><span class="property-type">array</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#nodePools[*]-customNodeTaints[*]">
+          <i class="fa fa-link"></i>
+        </a>.nodePools[*].customNodeTaints[*]</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Node taint</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#nodePools[*]-customNodeTaints[*]-effect">
+          <i class="fa fa-link"></i>
+        </a>.nodePools[*].customNodeTaints[*].effect</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Effect</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#nodePools[*]-customNodeTaints[*]-key">
+          <i class="fa fa-link"></i>
+        </a>.nodePools[*].customNodeTaints[*].key</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Key</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#nodePools[*]-customNodeTaints[*]-value">
+          <i class="fa fa-link"></i>
+        </a>.nodePools[*].customNodeTaints[*].value</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Value</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#nodePools[*]-disableHealthCheck">
+          <i class="fa fa-link"></i>
+        </a>.nodePools[*].disableHealthCheck</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Disable HealthChecks for the MachineDeployment</span><br /><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#nodePools[*]-encryptionAtHost">
+          <i class="fa fa-link"></i>
+        </a>.nodePools[*].encryptionAtHost</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Encryption at host</span><br /><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description">Enable encryption at host for the worker nodes.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#nodePools[*]-failureDomain">
+          <i class="fa fa-link"></i>
+        </a>.nodePools[*].failureDomain</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Availability zone</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#nodePools[*]-instanceType">
+          <i class="fa fa-link"></i>
+        </a>.nodePools[*].instanceType</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">VM size</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#nodePools[*]-name">
+          <i class="fa fa-link"></i>
+        </a>.nodePools[*].name</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Name</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description">Unique identifier, cannot be changed after creation.</div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#nodePools[*]-replicas">
+          <i class="fa fa-link"></i>
+        </a>.nodePools[*].replicas</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Number of nodes</span><br /><span class="property-type">integer</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#nodePools[*]-rootVolumeSizeGB">
+          <i class="fa fa-link"></i>
+        </a>.nodePools[*].rootVolumeSizeGB</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Root volume size (GB)</span><br /><span class="property-type">integer</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <h3 class="headline-with-link">
+    <a class="header-link" href="#Pod-Security-Standards">
+      <i class="fa fa-link"></i>
+    </a>Pod Security Standards
+  </h3>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#global-podSecurityStandards-enforced">
+          <i class="fa fa-link"></i>
+        </a>.global.podSecurityStandards.enforced</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Enforced Pod Security Standards</span><br /><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description">Use PSSs instead of PSPs.</div>
+    </div>
+  </div>
+  <h3 class="headline-with-link">
+    <a class="header-link" href="#Other">
+      <i class="fa fa-link"></i>
+    </a>Other
+  </h3>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#baseDomain">
+          <i class="fa fa-link"></i>
+        </a>.baseDomain</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Base DNS domain</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#cluster-shared">
+          <i class="fa fa-link"></i>
+        </a>.cluster-shared</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Library chart</span><br /><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#managementCluster">
+          <i class="fa fa-link"></i>
+        </a>.managementCluster</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">The capi MC managing this cluster</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#provider">
+          <i class="fa fa-link"></i>
+        </a>.provider</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-title">Cluster API provider name</span><br /><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div></div>
 
-&lt;!-- DOCS_END --&gt;
+
+<!-- DOCS_END -->
 
 
 ## Further reading
