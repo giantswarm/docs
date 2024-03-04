@@ -13,7 +13,7 @@ aliases:
   - /ui-api/observability/grafana/access
   - /observability/visualization/access
   - /ui-api/observability/visualization/access
-last_review_date: 2024-02-09
+last_review_date: 2024-02-26
 user_questions:
   - How can I access Grafana for my installation?
   - How can I access metrics from my installation?

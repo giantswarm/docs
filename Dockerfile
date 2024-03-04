@@ -31,24 +31,12 @@ RUN find /public \
   -name 'index.html' \
   -delete
 
-COPY src/robots.txt /public/robots.txt
+FROM gsoci.azurecr.io/giantswarm/nginx:1.25-alpine
 
-FROM gsoci.azurecr.io/giantswarm/nginx:1.23-alpine
+# Delete default config (which we have no control over)
+RUN rm -r /etc/nginx/conf.d && rm /etc/nginx/nginx.conf
 
 COPY nginx.conf /etc/nginx/nginx.conf
-
-# Development mode
-# RUN sed -i \
-#     -e 's|listen       80;|listen 8080;|' \
-#     -e 's|listen  [::]:80;||' \
-#     /etc/nginx/conf.d/default.conf
-
-# Production mode
-RUN rm /docker-entrypoint.d/* && \
-  sed -i \
-    -e 's|listen       80;|listen 8080;|' \
-    -e 's|listen  [::]:80;||' \
-    /etc/nginx/conf.d/default.conf
 
 RUN nginx -t -c /etc/nginx/nginx.conf && \
     rm -rf /tmp/nginx.pid

@@ -29,7 +29,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 aliases:
-  - /use-the-api/management-api/crd
   - /reference/cp-k8s-api/clusters.cluster.x-k8s.io/
 technical_name: clusters.cluster.x-k8s.io
 source_repository: https://github.com/giantswarm/apiextensions
@@ -941,44 +940,6 @@ source_repository_ref: v5.0.0
 </div>
 
 
-
-
-<h3 id="annotation-details-v1alpha3">Annotations</h3>
-
-
-<div class="annotation">
-<div class="annotation-header">
-<h3 class="annotation-path" id="v1alpha3-alpha.giantswarm.io/update-schedule-target-release">alpha.giantswarm.io/update-schedule-target-release</h3>
-</div>
-<div class="annotation-body">
-<div class="annotation-meta">
-
-</div>
-
-<div class="annotation-description">
-<p>This annotation is used to define the desired target release for a scheduled upgrade of the cluster. The upgrade to the specified version will be applied if the &ldquo;update-schedule-target-time&rdquo; annotation has been set and the time defined there has been reached. The value has to be only the desired release version, e.g &ldquo;15.2.1&rdquo;.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="annotation">
-<div class="annotation-header">
-<h3 class="annotation-path" id="v1alpha3-alpha.giantswarm.io/update-schedule-target-time">alpha.giantswarm.io/update-schedule-target-time</h3>
-</div>
-<div class="annotation-body">
-<div class="annotation-meta">
-
-</div>
-
-<div class="annotation-description">
-<p>This annotation is used to define the desired target time for a scheduled upgrade of the cluster. The upgrade will be applied at the specified time if the &ldquo;update-schedule-target-release&rdquo; annotation has been set to the target release version. The value has to be in RFC822 Format and UTC time zone. e.g. &ldquo;30 Jan 21 15:04 UTC&rdquo;</p>
-
-</div>
-
-</div>
-</div>
 
 
 

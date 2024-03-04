@@ -25,7 +25,6 @@ layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 aliases:
-  - /use-the-api/management-api/crd
   - /reference/cp-k8s-api/appcatalogs.application.giantswarm.io/
 technical_name: appcatalogs.application.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions-application

@@ -11,7 +11,7 @@ user_questions:
   - How can I disable logging on my cluster?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
-last_review_date: 2024-02-12
+last_review_date: 2024-02-28
 aliases:
   - /advanced/observability/logging/disable
   - /ui-api/observability/logging/disable

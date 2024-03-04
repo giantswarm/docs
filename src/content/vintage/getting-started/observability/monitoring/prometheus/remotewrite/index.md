@@ -19,7 +19,7 @@ aliases:
   - /ui-api/observability/monitoring/prometheus/remotewrite
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
-last_review_date: 2023-02-22
+last_review_date: 2024-02-26
 ---
 
 In this document you will learn how to set up your Prometheus remote write integration.

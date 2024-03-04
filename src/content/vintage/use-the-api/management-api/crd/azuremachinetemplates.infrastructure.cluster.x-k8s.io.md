@@ -26,7 +26,6 @@ layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 aliases:
-  - /use-the-api/management-api/crd
   - /reference/cp-k8s-api/azuremachinetemplates.infrastructure.cluster.x-k8s.io/
 technical_name: azuremachinetemplates.infrastructure.cluster.x-k8s.io
 source_repository: https://github.com/giantswarm/apiextensions
