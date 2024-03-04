@@ -1,6 +1,6 @@
 ---
 title: Cluster-Eks chart reference
-linkTitle: cluster-eks chart reference
+linkTitle: cluster-eks
 description:  A helm chart for creating Cluster API EKS clusters with the AWS infrastructure provider (CAPA).; Check here the different properties of the chart.
 weight: 100
 menu:
@@ -16,14 +16,23 @@ owner:
 source_repository: https://github.com/giantswarm/cluster-eks
 source_repository_ref: v0.12.0
 ---
+
 The `cluster-eks` chart templates all the AWS infrastructure resources that are necessary to create a Cluster API EKS cluster.
+
 # Values schema documentation
+
 This page lists all available configuration options, based on the [configuration values schema](values.schema.json).
+
 Note that configuration options can change between releases. Use the GitHub function for selecting a branch/tag to view the documentation matching your cluster-eks version.
+
 <!-- Update the content below by executing (from the repo root directory)
+
 schemadocs generate helm/cluster-eks/values.schema.json -o helm/cluster-eks/README.md
+
 -->
+
 <!-- DOCS_START -->
+
 <div class="crd-schema-version">
   <h2 class="headline-with-link">
     <a class="header-link" href="#">
@@ -1645,6 +1654,9 @@ schemadocs generate helm/cluster-eks/values.schema.json -o helm/cluster-eks/READ
       <div class="property-description"></div>
     </div>
   </div></div>
+
 <!-- DOCS_END -->
+
 ## Further reading
+
 - [Source repository](https://github.com/giantswarm/cluster-eks)

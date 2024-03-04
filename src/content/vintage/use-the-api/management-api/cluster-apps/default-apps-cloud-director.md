@@ -16,10 +16,15 @@ owner:
 source_repository: https://github.com/giantswarm/default-apps-cloud-director
 source_repository_ref: v0.7.3
 ---
+
 The `default-apps-cloud-director` chart templates all the components required for a Cluster API VMware cluster like External DNS or CoreDNS.
+
 # Values schema documentation
+
 This page lists all available configuration options, based on the [configuration values schema](values.schema.json).
+
 <!-- DOCS_START -->
+
 <div class="crd-schema-version">
   <h2 class="headline-with-link">
     <a class="header-link" href="#">
@@ -1978,6 +1983,9 @@ This page lists all available configuration options, based on the [configuration
       <div class="property-description"></div>
     </div>
   </div></div>
+
 <!-- DOCS_END -->
+
 ## Further reading
+
 - [Source repository](https://github.com/giantswarm/default-apps-cloud-director)

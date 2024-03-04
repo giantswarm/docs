@@ -1,6 +1,6 @@
 ---
 title: Cluster-Azure chart reference
-linkTitle: cluster-azure chart reference
+linkTitle: cluster-azure
 description:  A helm chart for creating Cluster API clusters with the Azure infrastructure provider (CAPZ).; Check here the different properties of the chart.
 weight: 100
 menu:
@@ -16,14 +16,23 @@ owner:
 source_repository: https://github.com/giantswarm/cluster-azure
 source_repository_ref: v0.0.35
 ---
+
 The `cluster-azure` chart templates all the Azure infrastructure resources that are necessary to create a Cluster API Azure cluster.
+
 # Values schema documentation
+
 This page lists all available configuration options, based on the [configuration values schema](values.schema.json).
+
 Note that configuration options can change between releases. Use the GitHub function for selecting a branch/tag to view the documentation matching your cluster-aws version.
+
 <!-- Update the content below by executing (from the repo root directory)
+
 schemadocs generate helm/cluster-azure/values.schema.json -o helm/cluster-azure/README.md
+
 -->
+
 <!-- DOCS_START -->
+
 <div class="crd-schema-version">
   <h2 class="headline-with-link">
     <a class="header-link" href="#">
@@ -1448,6 +1457,9 @@ schemadocs generate helm/cluster-azure/values.schema.json -o helm/cluster-azure/
       <div class="property-description"></div>
     </div>
   </div></div>
+
 <!-- DOCS_END -->
+
 ## Further reading
+
 - [Source repository](https://github.com/giantswarm/cluster-azure)
