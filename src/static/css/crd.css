@@ -73,6 +73,10 @@ dl.crd-meta {
   margin: 5px 0
 }
 
+.property-title {
+  font-style: italic;
+}
+
 .property-type {
   background-color: #cacaca;
   font-family: Inconsolata;
