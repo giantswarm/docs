@@ -1,7 +1,7 @@
 ---
 title: Default-Apps-Aws chart reference
 linkTitle: default-apps-aws chart reference
-description: A Helm chart for default-apps-aws; Check here the different properties of the chart.
+description:  A Helm chart for default-apps-aws; Check here the different properties of the chart.
 weight: 100
 menu:
   main:
@@ -16,16 +16,10 @@ owner:
 source_repository: https://github.com/giantswarm/default-apps-aws
 source_repository_ref: v0.48.0
 ---
-
 The `default-apps-aws` chart templates all the components required for a Cluster API AWS cluster like External DNS or CoreDNS.
-
 # Values schema documentation
-
 This page lists all available configuration options, based on the [configuration values schema](values.schema.json).
-
 <!-- DOCS_START -->
-
-
 <div class="crd-schema-version">
   <h2 class="headline-with-link">
     <a class="header-link" href="#">
@@ -2920,11 +2914,6 @@ This page lists all available configuration options, based on the [configuration
       <div class="property-description"></div>
     </div>
   </div></div>
-
-
 <!-- DOCS_END -->
-
-
 ## Further reading
-
 - [Source repository](https://github.com/giantswarm/default-apps-aws)

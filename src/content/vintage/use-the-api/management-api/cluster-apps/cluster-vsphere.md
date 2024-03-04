@@ -1,7 +1,7 @@
 ---
 title: Cluster-Vsphere chart reference
 linkTitle: cluster-vsphere chart reference
-description: A helm chart for creating Cluster API clusters with the vSphere provider (CAPV).; Check here the different properties of the chart.
+description:  A helm chart for creating Cluster API clusters with the vSphere provider (CAPV).; Check here the different properties of the chart.
 weight: 100
 menu:
   main:
@@ -12,20 +12,14 @@ last_review_date: 2024-03-04
 user_questions:
  - What properties can I configure for cluster-vsphere?
 owner:
-- https://github.com/orgs/giantswarm/teams/team-rocket
+- https://github.com/orgs/giantswarm/teams/team-rocke
 source_repository: https://github.com/giantswarm/cluster-vsphere
 source_repository_ref: v0.9.8
 ---
-
 The `default-apps-vsphere` chart templates all the VMware infrastructure resources that are necessary to create a Cluster API vSphere cluster.
-
 # Values schema documentation
-
 This page lists all available configuration options, based on the [configuration values schema](values.schema.json).
-
 <!-- DOCS_START -->
-
-
 <div class="crd-schema-version">
   <h2 class="headline-with-link">
     <a class="header-link" href="#">
@@ -978,10 +972,6 @@ This page lists all available configuration options, based on the [configuration
       <div class="property-description"></div>
     </div>
   </div></div>
-
-
 <!-- DOCS_END -->
-
 ## Further reading
-
 - [Source repository](https://github.com/giantswarm/cluster-vsphere)

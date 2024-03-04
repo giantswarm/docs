@@ -1,7 +1,7 @@
 ---
 title: Default-Apps-Vsphere chart reference
 linkTitle: default-apps-vsphere chart reference
-description: A Helm chart which defines the pre-installed apps in all Giant Swarm vSphere clusters; Check here the different properties of the chart.
+description:  A Helm chart which defines the pre-installed apps in all Giant Swarm vSphere clusters; Check here the different properties of the chart.
 weight: 100
 menu:
   main:
@@ -12,26 +12,259 @@ last_review_date: 2024-03-04
 user_questions:
  - What properties can I configure for default-apps-vsphere?
 owner:
-- https://github.com/orgs/giantswarm/teams/team-rocket
+- https://github.com/orgs/giantswarm/teams/team-rocke
 source_repository: https://github.com/giantswarm/default-apps-vsphere
 source_repository_ref: v0.12.1
 ---
-
 The `default-apps-vsphere` chart templates all the components required for a Cluster API VMware cluster like External DNS or CoreDNS.
-
 # Values schema documentation
-
 This page lists all available configuration options, based on the [configuration values schema](values.schema.json).
-
 <!-- DOCS_START -->
-
-
 <div class="crd-schema-version">
   <h2 class="headline-with-link">
     <a class="header-link" href="#">
       <i class="fa fa-link"></i>
     </a>Chart Configuration Reference
   </h2>
+  <h3 class="headline-with-link">
+    <a class="header-link" href="#">
+      <i class="fa fa-link"></i>
+    </a>
+  </h3>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-certExporter">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.certExporter</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-certExporter-configMap">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.certExporter.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-certExporter-configMap-values">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.certExporter.configMap.values</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>, <span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-certManager">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.certManager</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-certManager-configMap">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.certManager.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-certManager-configMap-values">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.certManager.configMap.values</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>, <span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-metricsServer">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.metricsServer</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-metricsServer-configMap">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.metricsServer.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-metricsServer-configMap-values">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.metricsServer.configMap.values</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>, <span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-netExporter">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.netExporter</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-netExporter-configMap">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.netExporter.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-netExporter-configMap-values">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.netExporter.configMap.values</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>, <span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-nodeExporter">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.nodeExporter</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-nodeExporter-configMap">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.nodeExporter.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-nodeExporter-configMap-values">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.nodeExporter.configMap.values</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>, <span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-vpa">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.vpa</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-vpa-configMap">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.vpa.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-vpa-configMap-values">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.vpa.configMap.values</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>, <span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
   <h3 class="headline-with-link">
     <a class="header-link" href="#">
       <i class="fa fa-link"></i>
@@ -1494,245 +1727,6 @@ This page lists all available configuration options, based on the [configuration
     </div>
   </div>
   <h3 class="headline-with-link">
-    <a class="header-link" href="#">
-      <i class="fa fa-link"></i>
-    </a>
-  </h3>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-certExporter">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.certExporter</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-certExporter-configMap">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.certExporter.configMap</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-certExporter-configMap-values">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.certExporter.configMap.values</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>, <span class="property-type">string</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-certManager">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.certManager</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-certManager-configMap">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.certManager.configMap</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-certManager-configMap-values">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.certManager.configMap.values</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>, <span class="property-type">string</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-metricsServer">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.metricsServer</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-metricsServer-configMap">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.metricsServer.configMap</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-metricsServer-configMap-values">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.metricsServer.configMap.values</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>, <span class="property-type">string</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-netExporter">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.netExporter</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-netExporter-configMap">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.netExporter.configMap</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-netExporter-configMap-values">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.netExporter.configMap.values</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>, <span class="property-type">string</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-nodeExporter">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.nodeExporter</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-nodeExporter-configMap">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.nodeExporter.configMap</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-nodeExporter-configMap-values">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.nodeExporter.configMap.values</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>, <span class="property-type">string</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-vpa">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.vpa</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-vpa-configMap">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.vpa.configMap</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-vpa-configMap-values">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.vpa.configMap.values</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>, <span class="property-type">string</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <h3 class="headline-with-link">
     <a class="header-link" href="#Other">
       <i class="fa fa-link"></i>
     </a>Other
@@ -1776,11 +1770,6 @@ This page lists all available configuration options, based on the [configuration
       <div class="property-description"></div>
     </div>
   </div></div>
-
-
 <!-- DOCS_END -->
-
-
 ## Further reading
-
 - [Source repository](https://github.com/giantswarm/default-apps-vsphere)

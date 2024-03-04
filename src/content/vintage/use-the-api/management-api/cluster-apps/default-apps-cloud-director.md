@@ -1,7 +1,7 @@
 ---
 title: Default-Apps-Cloud-Director chart reference
 linkTitle: default-apps-cloud-director chart reference
-description: A Helm chart which defines the pre-installed apps in all Giant Swarm Cloud Director (VCD) clusters; Check here the different properties of the chart.
+description:  A Helm chart which defines the pre-installed apps in all Giant Swarm Cloud Director (VCD) clusters; Check here the different properties of the chart.
 weight: 100
 menu:
   main:
@@ -12,20 +12,14 @@ last_review_date: 2024-03-04
 user_questions:
  - What properties can I configure for default-apps-cloud-director?
 owner:
-- https://github.com/orgs/giantswarm/teams/team-rocket
+- https://github.com/orgs/giantswarm/teams/team-rocke
 source_repository: https://github.com/giantswarm/default-apps-cloud-director
 source_repository_ref: v0.7.3
 ---
-
 The `default-apps-cloud-director` chart templates all the components required for a Cluster API VMware cluster like External DNS or CoreDNS.
-
 # Values schema documentation
-
 This page lists all available configuration options, based on the [configuration values schema](values.schema.json).
-
 <!-- DOCS_START -->
-
-
 <div class="crd-schema-version">
   <h2 class="headline-with-link">
     <a class="header-link" href="#">
@@ -1984,11 +1978,6 @@ This page lists all available configuration options, based on the [configuration
       <div class="property-description"></div>
     </div>
   </div></div>
-
-
 <!-- DOCS_END -->
-
-
 ## Further reading
-
 - [Source repository](https://github.com/giantswarm/default-apps-cloud-director)
