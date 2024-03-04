@@ -1986,7 +1986,7 @@ schemadocs generate helm/cluster/values.schema.json -o helm/cluster/README.md
     <div class="property-body">
       <div class="property-meta"><span class="property-title">Device</span><br /><span class="property-type">string</span>&nbsp;
       </div>
-      <div class="property-description">The absolute path to the device. Devices are typically referenced by the /dev/disk/by-* symlinks.</div>
+      <div class="property-description">The absolute path to the device. Devices are typically referenced by the "/dev/disk/by-*" symlinks.</div>
     </div>
   </div>
   <div class="property depth-0">
@@ -3117,7 +3117,7 @@ schemadocs generate helm/cluster/values.schema.json -o helm/cluster/README.md
     <div class="property-body">
       <div class="property-meta"><span class="property-title">Device</span><br /><span class="property-type">string</span>&nbsp;
       </div>
-      <div class="property-description">The absolute path to the device. Devices are typically referenced by the /dev/disk/by-* symlinks.</div>
+      <div class="property-description">The absolute path to the device. Devices are typically referenced by the "/dev/disk/by-*" symlinks.</div>
     </div>
   </div>
   <div class="property depth-0">
@@ -4092,7 +4092,7 @@ schemadocs generate helm/cluster/values.schema.json -o helm/cluster/README.md
     <div class="property-body">
       <div class="property-meta"><span class="property-title">Device</span><br /><span class="property-type">string</span>&nbsp;
       </div>
-      <div class="property-description">The absolute path to the device. Devices are typically referenced by the /dev/disk/by-* symlinks.</div>
+      <div class="property-description">The absolute path to the device. Devices are typically referenced by the "/dev/disk/by-*" symlinks.</div>
     </div>
   </div>
   <div class="property depth-0">
@@ -5158,7 +5158,7 @@ schemadocs generate helm/cluster/values.schema.json -o helm/cluster/README.md
     <div class="property-body">
       <div class="property-meta"><span class="property-title">Device</span><br /><span class="property-type">string</span>&nbsp;
       </div>
-      <div class="property-description">The absolute path to the device. Devices are typically referenced by the /dev/disk/by-* symlinks.</div>
+      <div class="property-description">The absolute path to the device. Devices are typically referenced by the "/dev/disk/by-*" symlinks.</div>
     </div>
   </div>
   <div class="property depth-0">
