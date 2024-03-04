@@ -1,8 +1,7 @@
 ---
 title: Default-Apps-Vsphere chart reference
 linkTitle: default-apps-vsphere chart reference
-description: |
-  A Helm chart which defines the pre-installed apps in all Giant Swarm vSphere clusters; Check here the different properties of the chart.
+description: A Helm chart which defines the pre-installed apps in all Giant Swarm vSphere clusters; Check here the different properties of the chart.
 weight: 100
 menu:
   main:

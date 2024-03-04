@@ -1,8 +1,7 @@
 ---
 title: Default-Apps-Aws chart reference
 linkTitle: default-apps-aws chart reference
-description: |
-  A Helm chart for default-apps-aws; Check here the different properties of the chart.
+description: A Helm chart for default-apps-aws; Check here the different properties of the chart.
 weight: 100
 menu:
   main:

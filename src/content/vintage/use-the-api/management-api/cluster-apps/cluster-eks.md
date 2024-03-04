@@ -1,8 +1,7 @@
 ---
 title: Cluster-Eks chart reference
 linkTitle: cluster-eks chart reference
-description: |
-  A helm chart for creating Cluster API EKS clusters with the AWS infrastructure provider (CAPA).; Check here the different properties of the chart.
+description: A helm chart for creating Cluster API EKS clusters with the AWS infrastructure provider (CAPA).; Check here the different properties of the chart.
 weight: 100
 menu:
   main:

@@ -1,8 +1,7 @@
 ---
 title: Default-Apps-Eks chart reference
 linkTitle: default-apps-eks chart reference
-description: |
-  A Helm chart for default-apps-eks; Check here the different properties of the chart.
+description: A Helm chart for default-apps-eks. Check here the different properties of the chart.
 weight: 100
 menu:
   main:

@@ -1,8 +1,7 @@
 ---
 title: Cluster-Aws chart reference
 linkTitle: cluster-aws chart reference
-description: |
-  A helm chart for creating Cluster API clusters with the AWS infrastructure provider (CAPA).; Check here the different properties of the chart.
+description: A helm chart for creating Cluster API clusters with the AWS infrastructure provider (CAPA).; Check here the different properties of the chart.
 weight: 100
 menu:
   main:

@@ -1,8 +1,7 @@
 ---
 title: Cluster chart reference
 linkTitle: cluster chart reference
-description: |
-  Giant Swarm cluster chart with provider-independent cluster resources; Check here the different properties of the chart.
+description: Giant Swarm cluster chart with provider-independent cluster resources; Check here the different properties of the chart.
 weight: 100
 menu:
   main:
