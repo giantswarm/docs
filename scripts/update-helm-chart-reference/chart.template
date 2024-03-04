@@ -3,7 +3,7 @@ title: {{ .Title | title }} chart reference
 linkTitle: {{ .Title }} chart reference
 description: |
 {{- if .Description }}
-{{ .Description | indent 2 }}
+{{ .Description | indent 2 }}.
 {{- else }}
   Cluster App chart configuration page for {{ .Title }}.
 {{- end }}
@@ -13,6 +13,9 @@ menu:
     identifier: {{ .Title | nospace }}
     parent: uiapi-cluster-apps
 layout: cluster-app
+last_review_date: {{currentDate "2006-01-02"}}
+user_questions:
+ - What properties can I configure for {{ .Title }}?
 {{- if .Team }}
 owner:
 - https://github.com/orgs/giantswarm/teams/team-{{ .Team }}

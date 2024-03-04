@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HELM_CHART_DOCS_GENERATOR_VERSION=0.2.0
+HELM_CHART_DOCS_GENERATOR_VERSION=0.1.0-5ce174bd36ccd3d6ecdf5e580c6aa58b36680c31
 DESTINATION=src/content/vintage/use-the-api/management-api/cluster-apps
 
 # Clear output folder

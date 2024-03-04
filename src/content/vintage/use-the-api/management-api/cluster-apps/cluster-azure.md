@@ -2,13 +2,16 @@
 title: Cluster-Azure chart reference
 linkTitle: cluster-azure chart reference
 description: |
-  A helm chart for creating Cluster API clusters with the Azure infrastructure provider (CAPZ).
+  A helm chart for creating Cluster API clusters with the Azure infrastructure provider (CAPZ)..
 weight: 100
 menu:
   main:
     identifier: cluster-azure
     parent: uiapi-cluster-apps
 layout: cluster-app
+last_review_date: 2024-03-04
+user_questions:
+ - What properties can I configure for cluster-azure?
 owner:
 - https://github.com/orgs/giantswarm/teams/team-phoenix
 source_repository: https://github.com/giantswarm/cluster-azure

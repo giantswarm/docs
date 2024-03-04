@@ -2,13 +2,16 @@
 title: Cluster chart reference
 linkTitle: cluster chart reference
 description: |
-  Giant Swarm cluster chart with provider-independent cluster resources
+  Giant Swarm cluster chart with provider-independent cluster resources.
 weight: 100
 menu:
   main:
     identifier: cluster
     parent: uiapi-cluster-apps
 layout: cluster-app
+last_review_date: 2024-03-04
+user_questions:
+ - What properties can I configure for cluster?
 owner:
 - https://github.com/orgs/giantswarm/teams/team-turtles
 source_repository: https://github.com/giantswarm/cluster

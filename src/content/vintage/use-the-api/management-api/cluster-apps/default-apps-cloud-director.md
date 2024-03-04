@@ -2,13 +2,16 @@
 title: Default-Apps-Cloud-Director chart reference
 linkTitle: default-apps-cloud-director chart reference
 description: |
-  A Helm chart which defines the pre-installed apps in all Giant Swarm Cloud Director (VCD) clusters
+  A Helm chart which defines the pre-installed apps in all Giant Swarm Cloud Director (VCD) clusters.
 weight: 100
 menu:
   main:
     identifier: default-apps-cloud-director
     parent: uiapi-cluster-apps
 layout: cluster-app
+last_review_date: 2024-03-04
+user_questions:
+ - What properties can I configure for default-apps-cloud-director?
 owner:
 - https://github.com/orgs/giantswarm/teams/team-rocket
 source_repository: https://github.com/giantswarm/default-apps-cloud-director

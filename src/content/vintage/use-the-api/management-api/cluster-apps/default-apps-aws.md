@@ -2,13 +2,16 @@
 title: Default-Apps-Aws chart reference
 linkTitle: default-apps-aws chart reference
 description: |
-  A Helm chart for default-apps-aws
+  A Helm chart for default-apps-aws.
 weight: 100
 menu:
   main:
     identifier: default-apps-aws
     parent: uiapi-cluster-apps
 layout: cluster-app
+last_review_date: 2024-03-04
+user_questions:
+ - What properties can I configure for default-apps-aws?
 owner:
 - https://github.com/orgs/giantswarm/teams/team-phoenix
 source_repository: https://github.com/giantswarm/default-apps-aws
