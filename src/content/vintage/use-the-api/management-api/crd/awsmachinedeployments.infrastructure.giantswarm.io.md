@@ -24,7 +24,7 @@ layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 aliases:
-  - /reference/cp-k8s-api/awsmachinedeployments.infrastructure.giantswarm.io/
+  - /use-the-api/management-api/crd/awsmachinedeployments.infrastructure.giantswarm.io/
 technical_name: awsmachinedeployments.infrastructure.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v5.0.0

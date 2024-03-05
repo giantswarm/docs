@@ -21,7 +21,7 @@ layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 aliases:
-  - /reference/cp-k8s-api/silences.monitoring.giantswarm.io/
+  - /use-the-api/management-api/crd/silences.monitoring.giantswarm.io/
 technical_name: silences.monitoring.giantswarm.io
 source_repository: https://github.com/giantswarm/silence-operator
 source_repository_ref: v0.4.0
