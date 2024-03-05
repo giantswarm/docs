@@ -14,15 +14,10 @@ docker run --rm \
         --config /opt/helm-chart-docs-generator/config/config.yaml
 
 for file in ${DESTINATION}/*.md; do
-  if grep -q '\--&gt;' $file; then
-    # Remove HTML comment lines
-    perl -i -pe "BEGIN{undef $/;} s/\&lt;.*\&gt;//gsm" $file
-    # Remove empty lines
-    awk 'NF > 0 || NR == 1 {blank=0} NF == 0 {blank++} blank < 2 {print}' $file > $file
-    # Remove trailing whitespace
-    sed -i 's/[ \t]*$//' $file
-    if [ $? -ne 0 ]; then
-      echo "An error occurred removing HTML comment lines from $file"
-    fi
-  fi
+  # Remove empty lines
+  awk 'NF > 0 || NR == 1 {blank=0} NF == 0 {blank++} blank < 2 {print}' $file > $file
+  # Remove trailing whitespace
+  sed -i 's/[ \t]*$//' $file
+  # quote storage * expressions
+  sed -i 's/\/dev\/disk\/by-*/"&"/g' $file
 done
