@@ -9,7 +9,7 @@ menu:
   main:
     identifier: uiapi-cluster-apps
     parent: uiapi-managementapi
-last_review_date: 2024-02-09
+last_review_date: 2024-03-01
 owner:
   - https://github.com/orgs/giantswarm/teams/team-horizon
 ---
