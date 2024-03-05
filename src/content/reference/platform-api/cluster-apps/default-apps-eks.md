@@ -8,6 +8,7 @@ menu:
     identifier: default-apps-eks
     parent: reference-cluster-apps
 layout: cluster-app
+last_review_date: 2024-03-05
 user_questions:
  - What properties can I configure for default-apps-eks?
 owner:
