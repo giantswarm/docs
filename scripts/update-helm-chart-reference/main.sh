@@ -15,7 +15,9 @@ docker run --rm \
 
 for file in ${DESTINATION}/*.md; do
   # Remove empty lines
-  awk 'NF > 0 || NR == 1 {blank=0} NF == 0 {blank++} blank < 2 {print}' $file > $file
+  awk 'NF > 0 || NR == 1 {blank=0} NF == 0 {blank++} blank < 2 {print}'  $file > /tmp/_back.md && mv /tmp/_back.md $file
   # Remove trailing whitespace
   sed -i 's/[ \t]*$//' $file
+  # quote storage * expressions
+  sed -i 's/\/dev\/disk\/by-*/"&"/g' $file
 done
