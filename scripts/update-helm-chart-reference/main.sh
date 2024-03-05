@@ -18,6 +18,6 @@ for file in ${DESTINATION}/*.md; do
   awk 'NF > 0 || NR == 1 {blank=0} NF == 0 {blank++} blank < 2 {print}'  $file > /tmp/_back.md && mv /tmp/_back.md $file
   # Remove trailing whitespace
   sed -i 's/[ \t]*$//' $file
-  # quote storage * expressions
-  sed -i 's/\/dev\/disk\/by-*/"&"/g' $file
+  # quote storage * expressions (hack to fix https://github.com/giantswarm/docs/actions/runs/8155151741)
+  sed -i 's/\/dev\/disk\/by-\*/"&"/g' $file
 done
