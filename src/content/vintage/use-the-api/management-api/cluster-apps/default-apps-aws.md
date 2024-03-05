@@ -8,7 +8,7 @@ menu:
     identifier: default-apps-aws
     parent: uiapi-cluster-apps
 layout: cluster-app
-last_review_date: 2024-03-04
+last_review_date: 2024-03-05
 user_questions:
  - What properties can I configure for default-apps-aws?
 owner:
@@ -31,6 +31,778 @@ This page lists all available configuration options, based on the [configuration
       <i class="fa fa-link"></i>
     </a>Chart Configuration Reference
   </h2>
+  <h3 class="headline-with-link">
+    <a class="header-link" href="#">
+      <i class="fa fa-link"></i>
+    </a>
+  </h3>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-certManager">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.certManager</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-certManager-configMap">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.certManager.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-certManager-configMap-values">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.certManager.configMap.values</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-certManager-configMap-values-ciliumNetworkPolicy">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.certManager.configMap.values.ciliumNetworkPolicy</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-certManager-configMap-values-ciliumNetworkPolicy-enabled">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.certManager.configMap.values.ciliumNetworkPolicy.enabled</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-certManager-configMap-values-controller">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.certManager.configMap.values.controller</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-certManager-configMap-values-controller-extraArgs">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.certManager.configMap.values.controller.extraArgs</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">array</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-certManager-configMap-values-controller-extraArgs[*]">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.certManager.configMap.values.controller.extraArgs[*]</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-certManager-configMap-values-dns01RecursiveNameserversOnly">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.certManager.configMap.values.dns01RecursiveNameserversOnly</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-cluster-autoscaler">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.cluster-autoscaler</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-cluster-autoscaler-configMap">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.cluster-autoscaler.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-cluster-autoscaler-configMap-values">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.cluster-autoscaler.configMap.values</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-cluster-autoscaler-configMap-values-serviceAccount">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.cluster-autoscaler.configMap.values.serviceAccount</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-cluster-autoscaler-configMap-values-serviceAccount-annotations">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.cluster-autoscaler.configMap.values.serviceAccount.annotations</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-cluster-autoscaler-configMap-values-serviceAccount-annotations-eks-amazonaws-com/role-arn">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.cluster-autoscaler.configMap.values.serviceAccount.annotations.eks.amazonaws.com/role-arn</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.etcdKubernetesResourceCountExporter</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter-configMap">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.etcdKubernetesResourceCountExporter.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter-configMap-values">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.etcdKubernetesResourceCountExporter.configMap.values</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter-configMap-values-etcd">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.etcdKubernetesResourceCountExporter.configMap.values.etcd</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter-configMap-values-etcd-cacertpath">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.etcdKubernetesResourceCountExporter.configMap.values.etcd.cacertpath</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter-configMap-values-etcd-certpath">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.etcdKubernetesResourceCountExporter.configMap.values.etcd.certpath</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter-configMap-values-etcd-hostPath">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.etcdKubernetesResourceCountExporter.configMap.values.etcd.hostPath</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter-configMap-values-etcd-keypath">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.etcdKubernetesResourceCountExporter.configMap.values.etcd.keypath</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter-configMap-values-etcd-prefix">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.etcdKubernetesResourceCountExporter.configMap.values.etcd.prefix</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter-configMap-values-events">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.etcdKubernetesResourceCountExporter.configMap.values.events</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter-configMap-values-events-prefix">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.etcdKubernetesResourceCountExporter.configMap.values.events.prefix</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-annotationFilter">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.annotationFilter</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-aws">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.aws</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-aws-batchChangeInterval">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.aws.batchChangeInterval</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">null</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-aws-irsa">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.aws.irsa</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-ciliumNetworkPolicy">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.ciliumNetworkPolicy</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-ciliumNetworkPolicy-enabled">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.ciliumNetworkPolicy.enabled</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-domainFilters">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.domainFilters</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">array</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-domainFilters[*]">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.domainFilters[*]</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-extraArgs">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.extraArgs</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">array</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-extraArgs[*]">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.extraArgs[*]</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-provider">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.provider</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-serviceAccount">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.serviceAccount</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-serviceAccount-annotations">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.serviceAccount.annotations</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-serviceAccount-annotations-eks-amazonaws-com/role-arn">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.serviceAccount.annotations.eks.amazonaws.com/role-arn</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-sources">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.sources</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">array</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-sources[*]">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.sources[*]</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-txtOwnerId">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.txtOwnerId</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values-txtPrefix">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values.txtPrefix</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-metricsServer">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.metricsServer</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-metricsServer-configMap">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.metricsServer.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-metricsServer-configMap-values">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.metricsServer.configMap.values</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-metricsServer-configMap-values-ciliumNetworkPolicy">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.metricsServer.configMap.values.ciliumNetworkPolicy</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-metricsServer-configMap-values-ciliumNetworkPolicy-enabled">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.metricsServer.configMap.values.ciliumNetworkPolicy.enabled</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-netExporter">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.netExporter</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-netExporter-configMap">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.netExporter.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-netExporter-configMap-values">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.netExporter.configMap.values</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-netExporter-configMap-values-NetExporter">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.netExporter.configMap.values.NetExporter</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-netExporter-configMap-values-NetExporter-NTPServers">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.netExporter.configMap.values.NetExporter.NTPServers</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-netExporter-configMap-values-ciliumNetworkPolicy">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.netExporter.configMap.values.ciliumNetworkPolicy</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-netExporter-configMap-values-ciliumNetworkPolicy-enabled">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.netExporter.configMap.values.ciliumNetworkPolicy.enabled</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
   <h3 class="headline-with-link">
     <a class="header-link" href="#">
       <i class="fa fa-link"></i>
@@ -2112,778 +2884,6 @@ This page lists all available configuration options, based on the [configuration
     </div>
     <div class="property-body">
       <div class="property-meta"><span class="property-type">string</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <h3 class="headline-with-link">
-    <a class="header-link" href="#">
-      <i class="fa fa-link"></i>
-    </a>
-  </h3>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-certManager">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.certManager</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-certManager-configMap">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.certManager.configMap</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-certManager-configMap-values">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.certManager.configMap.values</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-certManager-configMap-values-ciliumNetworkPolicy">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.certManager.configMap.values.ciliumNetworkPolicy</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-certManager-configMap-values-ciliumNetworkPolicy-enabled">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.certManager.configMap.values.ciliumNetworkPolicy.enabled</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-certManager-configMap-values-controller">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.certManager.configMap.values.controller</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-certManager-configMap-values-controller-extraArgs">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.certManager.configMap.values.controller.extraArgs</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">array</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-certManager-configMap-values-controller-extraArgs[*]">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.certManager.configMap.values.controller.extraArgs[*]</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">string</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-certManager-configMap-values-dns01RecursiveNameserversOnly">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.certManager.configMap.values.dns01RecursiveNameserversOnly</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-cluster-autoscaler">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.cluster-autoscaler</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-cluster-autoscaler-configMap">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.cluster-autoscaler.configMap</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-cluster-autoscaler-configMap-values">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.cluster-autoscaler.configMap.values</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-cluster-autoscaler-configMap-values-serviceAccount">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.cluster-autoscaler.configMap.values.serviceAccount</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-cluster-autoscaler-configMap-values-serviceAccount-annotations">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.cluster-autoscaler.configMap.values.serviceAccount.annotations</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-cluster-autoscaler-configMap-values-serviceAccount-annotations-eks-amazonaws-com/role-arn">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.cluster-autoscaler.configMap.values.serviceAccount.annotations.eks.amazonaws.com/role-arn</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">string</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.etcdKubernetesResourceCountExporter</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter-configMap">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.etcdKubernetesResourceCountExporter.configMap</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter-configMap-values">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.etcdKubernetesResourceCountExporter.configMap.values</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter-configMap-values-etcd">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.etcdKubernetesResourceCountExporter.configMap.values.etcd</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter-configMap-values-etcd-cacertpath">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.etcdKubernetesResourceCountExporter.configMap.values.etcd.cacertpath</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">string</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter-configMap-values-etcd-certpath">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.etcdKubernetesResourceCountExporter.configMap.values.etcd.certpath</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">string</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter-configMap-values-etcd-hostPath">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.etcdKubernetesResourceCountExporter.configMap.values.etcd.hostPath</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">string</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter-configMap-values-etcd-keypath">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.etcdKubernetesResourceCountExporter.configMap.values.etcd.keypath</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">string</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter-configMap-values-etcd-prefix">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.etcdKubernetesResourceCountExporter.configMap.values.etcd.prefix</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">string</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter-configMap-values-events">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.etcdKubernetesResourceCountExporter.configMap.values.events</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter-configMap-values-events-prefix">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.etcdKubernetesResourceCountExporter.configMap.values.events.prefix</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">string</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-externalDns">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.externalDns</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-externalDns-configMap">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.externalDns.configMap</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-externalDns-configMap-values">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.externalDns.configMap.values</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-externalDns-configMap-values-annotationFilter">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.externalDns.configMap.values.annotationFilter</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">string</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-externalDns-configMap-values-aws">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.externalDns.configMap.values.aws</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-externalDns-configMap-values-aws-batchChangeInterval">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.externalDns.configMap.values.aws.batchChangeInterval</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">null</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-externalDns-configMap-values-aws-irsa">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.externalDns.configMap.values.aws.irsa</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">string</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-externalDns-configMap-values-ciliumNetworkPolicy">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.externalDns.configMap.values.ciliumNetworkPolicy</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-externalDns-configMap-values-ciliumNetworkPolicy-enabled">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.externalDns.configMap.values.ciliumNetworkPolicy.enabled</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-externalDns-configMap-values-domainFilters">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.externalDns.configMap.values.domainFilters</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">array</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-externalDns-configMap-values-domainFilters[*]">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.externalDns.configMap.values.domainFilters[*]</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">string</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-externalDns-configMap-values-extraArgs">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.externalDns.configMap.values.extraArgs</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">array</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-externalDns-configMap-values-extraArgs[*]">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.externalDns.configMap.values.extraArgs[*]</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">string</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-externalDns-configMap-values-provider">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.externalDns.configMap.values.provider</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">string</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-externalDns-configMap-values-serviceAccount">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.externalDns.configMap.values.serviceAccount</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-externalDns-configMap-values-serviceAccount-annotations">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.externalDns.configMap.values.serviceAccount.annotations</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-externalDns-configMap-values-serviceAccount-annotations-eks-amazonaws-com/role-arn">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.externalDns.configMap.values.serviceAccount.annotations.eks.amazonaws.com/role-arn</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">string</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-externalDns-configMap-values-sources">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.externalDns.configMap.values.sources</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">array</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-externalDns-configMap-values-sources[*]">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.externalDns.configMap.values.sources[*]</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">string</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-externalDns-configMap-values-txtOwnerId">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.externalDns.configMap.values.txtOwnerId</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">string</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-externalDns-configMap-values-txtPrefix">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.externalDns.configMap.values.txtPrefix</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">string</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-metricsServer">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.metricsServer</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-metricsServer-configMap">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.metricsServer.configMap</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-metricsServer-configMap-values">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.metricsServer.configMap.values</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-metricsServer-configMap-values-ciliumNetworkPolicy">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.metricsServer.configMap.values.ciliumNetworkPolicy</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-metricsServer-configMap-values-ciliumNetworkPolicy-enabled">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.metricsServer.configMap.values.ciliumNetworkPolicy.enabled</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-netExporter">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.netExporter</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-netExporter-configMap">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.netExporter.configMap</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-netExporter-configMap-values">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.netExporter.configMap.values</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-netExporter-configMap-values-NetExporter">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.netExporter.configMap.values.NetExporter</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-netExporter-configMap-values-NetExporter-NTPServers">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.netExporter.configMap.values.NetExporter.NTPServers</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">string</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-netExporter-configMap-values-ciliumNetworkPolicy">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.netExporter.configMap.values.ciliumNetworkPolicy</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-netExporter-configMap-values-ciliumNetworkPolicy-enabled">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.netExporter.configMap.values.ciliumNetworkPolicy.enabled</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
       </div>
       <div class="property-description"></div>
     </div>

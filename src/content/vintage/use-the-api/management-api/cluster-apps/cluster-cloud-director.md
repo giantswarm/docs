@@ -8,11 +8,11 @@ menu:
     identifier: cluster-cloud-director
     parent: uiapi-cluster-apps
 layout: cluster-app
-last_review_date: 2024-03-04
+last_review_date: 2024-03-05
 user_questions:
  - What properties can I configure for cluster-cloud-director?
 owner:
-- https://github.com/orgs/giantswarm/teams/team-rocke
+- https://github.com/orgs/giantswarm/teams/team-rocket
 source_repository: https://github.com/giantswarm/cluster-cloud-director
 source_repository_ref: v0.14.2
 ---
