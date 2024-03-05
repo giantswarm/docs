@@ -1964,7 +1964,7 @@ The `cluster` chart is the main entry point for the Giant Swarm platform. It is 
     <div class="property-body">
       <div class="property-meta"><span class="property-title">Device</span><br /><span class="property-type">string</span>&nbsp;
       </div>
-      <div class="property-description">The absolute path to the device. Devices are typically referenced by the "/dev/disk/by-"* symlinks.</div>
+      <div class="property-description">The absolute path to the device. Devices are typically referenced by the "/dev/disk/by-*" symlinks.</div>
     </div>
   </div>
   <div class="property depth-0">
@@ -3095,7 +3095,7 @@ The `cluster` chart is the main entry point for the Giant Swarm platform. It is 
     <div class="property-body">
       <div class="property-meta"><span class="property-title">Device</span><br /><span class="property-type">string</span>&nbsp;
       </div>
-      <div class="property-description">The absolute path to the device. Devices are typically referenced by the "/dev/disk/by-"* symlinks.</div>
+      <div class="property-description">The absolute path to the device. Devices are typically referenced by the "/dev/disk/by-*" symlinks.</div>
     </div>
   </div>
   <div class="property depth-0">
@@ -4070,7 +4070,7 @@ The `cluster` chart is the main entry point for the Giant Swarm platform. It is 
     <div class="property-body">
       <div class="property-meta"><span class="property-title">Device</span><br /><span class="property-type">string</span>&nbsp;
       </div>
-      <div class="property-description">The absolute path to the device. Devices are typically referenced by the "/dev/disk/by-"* symlinks.</div>
+      <div class="property-description">The absolute path to the device. Devices are typically referenced by the "/dev/disk/by-*" symlinks.</div>
     </div>
   </div>
   <div class="property depth-0">
@@ -5136,7 +5136,7 @@ The `cluster` chart is the main entry point for the Giant Swarm platform. It is 
     <div class="property-body">
       <div class="property-meta"><span class="property-title">Device</span><br /><span class="property-type">string</span>&nbsp;
       </div>
-      <div class="property-description">The absolute path to the device. Devices are typically referenced by the "/dev/disk/by-"* symlinks.</div>
+      <div class="property-description">The absolute path to the device. Devices are typically referenced by the "/dev/disk/by-*" symlinks.</div>
     </div>
   </div>
   <div class="property depth-0">
