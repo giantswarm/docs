@@ -27,7 +27,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
   - https://github.com/orgs/giantswarm/teams/team-rocket
 aliases:
-  - /reference/cp-k8s-api/kubeadmconfigs.bootstrap.cluster.x-k8s.io/
+  - /use-the-api/management-api/crd/kubeadmconfigs.bootstrap.cluster.x-k8s.io/
 technical_name: kubeadmconfigs.bootstrap.cluster.x-k8s.io
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v5.0.0
