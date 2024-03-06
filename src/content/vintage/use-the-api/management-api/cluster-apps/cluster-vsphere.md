@@ -8,7 +8,6 @@ menu:
     identifier: cluster-vsphere
     parent: uiapi-cluster-apps
 layout: cluster-app
-last_review_date: 2024-03-06
 user_questions:
  - What properties can I configure for cluster-vsphere?
 owner:
