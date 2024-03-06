@@ -12,7 +12,6 @@ menu:
     identifier: {{ .Title | nospace }}
     parent: uiapi-cluster-apps
 layout: cluster-app
-last_review_date: {{currentDate "2006-01-02"}}
 user_questions:
  - What properties can I configure for {{ .Title }}?
 {{- if .Team }}
