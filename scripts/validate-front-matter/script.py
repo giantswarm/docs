@@ -13,11 +13,12 @@ except ImportError:
     from yaml import Loader
 
 # Some path config
-path         = 'src/content'
-vintage_path = 'src/content/vintage'
-changes_path = 'src/content/changes'
-crds_path    = 'src/content/vintage/use-the-api/management-api/crd'
-docs_host    = 'https://github.com/giantswarm/docs/blob/main/'
+path              = 'src/content'
+vintage_path      = 'src/content/vintage'
+changes_path      = 'src/content/changes'
+crds_path         = 'src/content/vintage/use-the-api/management-api/crd'
+cluster_apps_path = 'src/content/vintage/use-the-api/management-api/cluster-apps'  
+docs_host         = 'https://github.com/giantswarm/docs/blob/main/'
 
 todays_date = datetime.date.today()
 
@@ -160,14 +161,14 @@ checks = (
     {
         'id': NO_LAST_REVIEW_DATE,
         'description': 'The page should have a last_review_date',
-        'ignore_paths': [crds_path, changes_path],
+        'ignore_paths': [crds_path, changes_path, cluster_apps_path],
         'severity': SEVERITY_WARN,
     },
     {
         'id': REVIEW_TOO_LONG_AGO,
         'description': 'The last review date is too long ago',
         'severity': SEVERITY_WARN,
-        'ignore_paths': [vintage_path],
+        'ignore_paths': [vintage_path, cluster_apps_path],
         'has_value': True,
     },
     {
