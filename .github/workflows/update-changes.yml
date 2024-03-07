@@ -9,8 +9,8 @@ name: Update generated content
 # Trigger by cronjob
 on:
   schedule:
-    # Every 20 minutes on Monday to Friday, between 7:00 and 18:00 UTC
-    - cron: "13,33,53 7-18 * * MON-FRI"
+    # Every hour from 7:13 to 18:13 on Monday to Friday
+    - cron: "13 7-18 * * MON-FRI"
   workflow_dispatch: {} # Allow manual triggering
 
 jobs:
