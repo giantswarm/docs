@@ -7,7 +7,7 @@ menu:
     identifier: getting-started-observability-visualization
     parent: getting-started-observability
 weight: 40
-last_review_date: 2024-02-09
+last_review_date: 2024-02-26
 aliases:
   - /getting-started/observability/visualization
   - /ui-api/observability/grafana
