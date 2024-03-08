@@ -19,7 +19,7 @@ aliases:
   - /ui-api/observability/monitoring/prometheus/volume-size
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
-last_review_date: 2023-02-22
+last_review_date: 2024-02-26
 ---
 
 In this document you will learn how to size the Prometheus persistent volume.

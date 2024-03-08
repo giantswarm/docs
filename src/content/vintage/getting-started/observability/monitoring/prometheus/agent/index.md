@@ -13,7 +13,7 @@ user_questions:
   - What does the prometheus agent imply for my clusters?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
-last_review_date: 2023-02-22
+last_review_date: 2024-02-26
 aliases:
   - /getting-started/observability/monitoring/prometheus/agent
   - /ui-api/observability/monitoring/prometheus/agent
