@@ -28,6 +28,10 @@ The commit SHA representing the state of the source repository providing the app
 
 - TODO. Found on App and AppCatalog (application.giantswarm.io/v1alpha1) resources in management clusters. Value is a Semver version number. Value is sometimes `0.0.0`.
 
+### `app-operator.giantswarm.io/watching`
+
+- TODO. Value is always `"true"`.
+
 ### `application.giantswarm.io/catalog`
 
 Used on AppCatalogEntry resources, to indicate which catalog it is associated with. The value is the name of the Catalog resource.

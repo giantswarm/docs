@@ -5,6 +5,7 @@ description: Overview of Kubernetes resource annotations used by Giant Swarm, an
 layout: single
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
+last_review_date: 2024-03-08
 ---
 
 **Disclaimer:** Annotations on Kubernetes resources can have many meanings. In this overview we make an attempt to describe our reasons for using certain annotations, and which values or value format is expected. Please be aware that this effort cannot be complete, since there could always be one missing tool that uses or expects a certain label on a certain type of resource.
