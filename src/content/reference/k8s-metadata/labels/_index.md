@@ -2,23 +2,27 @@
 linkTitle: Labels
 title: Kubernetes resource labels reference
 description: Overview of Kubernetes resource labels used by Giant Swarm, and their meaning.
+layout: single
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+last_review_date: 2024-03-08
 ---
 
-**Disclaimer:** Labels on Kubernetes resources can have many meanings. In this overview we make an attempt to describe our reasons for using certain labels, and which values or value format is expected. Please be aware that this effort cannot be complete, since there could always be one missing tool that uses or expects a certain label on a certain type of resource.
+**Notice:** Labels on Kubernetes resources are set by many different parties, and for various reasons. In this overview we explain our reasons for using a relevant set of labels, and which values or value format is expected. If you are missing information, please consult upstream documentation  from Kubernetes etc., or ask a Giant Swarm contact for more information.
 
 As an additional source, our Go library [k8smetadata](https://github.com/giantswarm/k8smetadata) contains a list of labels and annotations that we use in our Go code.
 
-Please also refer to the Kubernetes [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints/) documentation section for upstream information.
+Common Kubernetes labels are explained on the upstream documentation page [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints/).
 
 ## Key includes `giantswarm.io`
 
 ### `app.giantswarm.io/branch`
 
-- TODO. Value often "HEAD", sometimes empty string. On various resource kinds.
+Name of the branch of the source repository providing the app/chart the resource is part of. In production applications built from the default branch, the value is expected to be `HEAD`.
 
 ### `app.giantswarm.io/commit`
 
-- TODO. Value often resembles 40 character git commit SHA. On various resource kinds.
+The commit SHA representing the state of the source repository providing the app/chart the resource is part of. The value is expected to be 40 characters long.
 
 ### `app-operator.giantswarm.io/version`
 
@@ -26,7 +30,7 @@ Please also refer to the Kubernetes [Well-Known Labels, Annotations and Taints](
 
 ### `application.giantswarm.io/catalog`
 
-- TODO. Found on AppCatalogEntry resources. Value is the name of the AppCatalog resource this entry belongs to.
+Used on AppCatalogEntry resources, to indicate which catalog it is associated with. The value is the name of the Catalog resource.
 
 ### `application.giantswarm.io/catalog-type`
 
@@ -115,4 +119,4 @@ Name of the Giant Swarm team responsible for the application.
 
 [Source](https://github.com/giantswarm/k8smetadata/blob/v0.24.0/pkg/label/ui.go#L11)
 
-Affects whether or not a resource is intended for display in a user interface like the Giant Swarm web UI. For example, it can be used to hide irrelevant RBAC system roles from users. The value can either be `"true"` (to display a resource) or `"false"` (for hiding it). The default behaviour depends on the context.
+Affects whether or not a resource is intended for display in a user interface like the Giant Swarm web UI. For example, it can be used to hide irrelevant RBAC system roles from users. The value can either be `"true"` (to display a resource) or `"false"` (for hiding it). The default behavior depends on the context.

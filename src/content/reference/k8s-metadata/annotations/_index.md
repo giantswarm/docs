@@ -2,6 +2,9 @@
 linkTitle: Annotations
 title: Kubernetes resource annotations reference
 description: Overview of Kubernetes resource annotations used by Giant Swarm, and their meaning.
+layout: single
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
 
 **Disclaimer:** Annotations on Kubernetes resources can have many meanings. In this overview we make an attempt to describe our reasons for using certain annotations, and which values or value format is expected. Please be aware that this effort cannot be complete, since there could always be one missing tool that uses or expects a certain label on a certain type of resource.
