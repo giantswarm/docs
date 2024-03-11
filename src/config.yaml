@@ -47,6 +47,31 @@ menu:
     name: Changes and releases
     url: /changes/
     weight: 90
+  principal:
+  - identifier: overview
+    name: Overview
+    url: /overview/
+    weight: 10
+  - identifier: getting-started
+    name: Getting started
+    url: /getting-started/
+    weight: 20
+  - identifier: tutorials
+    name: Tutorials
+    url: /tutorials/
+    weight: 30
+  - identifier: reference
+    name: Reference
+    url: /reference/
+    weight: 40
+  - identifier: support
+    name: Support
+    url: /support/
+    weight: 50
+  - identifier: changes
+    name: Changes and releases
+    url: /changes/
+    weight: 90
 
 taxonomies:
   changes_category: changes_categories
