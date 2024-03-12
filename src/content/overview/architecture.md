@@ -6,7 +6,7 @@ menu:
   main:
     parent: overview
 user_questions:
-  - ?
+  - TBD?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-horizon
 last_review_date: 2024-03-12
