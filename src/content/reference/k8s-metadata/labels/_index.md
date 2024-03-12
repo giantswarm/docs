@@ -20,14 +20,17 @@ Common Kubernetes labels are explained on the upstream documentation page [Well-
 
 ### app-operator.giantswarm.io/version
 
-- TODO. Found on App and AppCatalog (application.giantswarm.io/v1alpha1) resources in management clusters. Value is a Semver version number. Value is sometimes `0.0.0` which means that the "unique" operator is handling these.
-- Source: https://github.com/giantswarm/k8smetadata/blob/v0.24.0/pkg/label/version.go
-- TODO: link to more detailed documentation on this logic, maybe https://docs.giantswarm.io/vintage/getting-started/app-platform/app-bundle/#high-overview
+Labels in the form `OPERATOR_NAME.giantswarm.io/version` are used to specify the version of the operator that should reconcile the resource. The operator name is the name of the operator that should reconcile the resource, and the version is the version of the operator that should reconcile the resource.
+
+If the operator name is `app-operator`, the label is `app-operator.giantswarm.io/version`. The value of the label is a Semver version number. The special value `0.0.0` means that the resource is handled by the "unique" operator, which is an instance of the operator deployed to the `giantswarm` namespace of the cluster.
+
+[Source](https://github.com/giantswarm/k8smetadata/blob/v0.24.0/pkg/label/version.go#L7)
 
 ### app-operator.giantswarm.io/watching
 
-- TODO. Found on ConfigMap and Secret resources in management clusters. Value is always `"true"`.
-- Source and explanation: https://github.com/giantswarm/k8smetadata/blob/v0.24.0/pkg/label/app.go#L5
+The label of the format `OPERATOR_NAME.giantswarm.io/watching` is used on ConfigMap and Secret resources to enable the operator to watch the resource. The operator name is the name of the operator that should watch the resource. If the operator name is `app-operator`, the label is `app-operator.giantswarm.io/watching`. The value of the label must be `true`.
+
+[Source](https://github.com/giantswarm/k8smetadata/blob/v0.24.0/pkg/label/app.go#L5)
 
 ### application.giantswarm.io/branch
 
@@ -43,11 +46,15 @@ The commit SHA representing the state of the source repository providing the app
 
 ### application.giantswarm.io/catalog-type
 
-- TODO. Found on AppCatalog and AppCatalogEntry resources. Value is the type of the AppCatalog resource this entry belongs to. Value is `stable`, `test`, or `community`. Need documentation source for these values.
+Used on Catalog resources and on AppCatalogEntry resources to indicate the type of source for this catalog or app. Value is either `stable`, `test`, or `community`.
+
+[Source](https://github.com/giantswarm/k8smetadata/blob/v0.24.0/pkg/label/catalog.go#L9)
 
 ### application.giantswarm.io/catalog-visibility
 
-- TODO. Found on AppCatalog and Catalog resources. Value is the visibility of the Catalog resource this entry belongs to. Value is `public` (deployed to `default` namespace) or `internal` (deployed to `giantswarm` namespace).
+Used on Catalog resources to indicate the target audience of the catalog. Value is `public` (deployed to `default` namespace) or `internal` (deployed to `giantswarm` namespace).
+
+[Source](https://github.com/giantswarm/k8smetadata/blob/v0.24.0/pkg/label/catalog.go#L13)
 
 ### application.giantswarm.io/team
 
@@ -55,25 +62,31 @@ Name of the Giant Swarm team responsible for the application.
 
 ### chart-operator.giantswarm.io/version
 
-Used on Chart (charts.application.giantswarm.io/v1alpha1) resources to specify the chart-operator version to reconcile this resource. Value is a version string.
+Labels in the form `OPERATOR_NAME.giantswarm.io/version` are used to specify the version of the operator that should reconcile the resource. The operator name is the name of the operator that should reconcile the resource, and the version is the version of the operator that should reconcile the resource.
 
-TODO: Source link
+If the operator name is `chart-operator`, the label is `chart-operator.giantswarm.io/version`. The value of the label is a Semver version number. The special value `0.0.0` means that the resource is handled by the "unique" operator, which is an instance of the operator deployed to the `giantswarm` namespace of the cluster.
+
+[Source](https://github.com/giantswarm/k8smetadata/blob/v0.24.0/pkg/label/version.go#L13)
 
 ### cluster-apps-operator.giantswarm.io/watching
 
-- TODO. Found on management clusters on Cluster and HelmRelease resources. Value is always empty.
+The label of the format `OPERATOR_NAME.giantswarm.io/watching` is used on resources to enable the operator to watch the resource. The operator name is the name of the operator that should watch the resource. If the operator name is `cluster-apps-operator`, the label is `cluster-apps-operator.giantswarm.io/watching`. The value of the label must be `true`.
+
+[Source](https://github.com/giantswarm/k8smetadata/blob/v0.24.0/pkg/label/app.go#L9)
 
 ### giantswarm.io/aws-ebs-limit
 
 - TODO. Used on EBS csi-node pods. Meaning unclear. Introduced in aws-ebs-csi-driver-app via https://github.com/giantswarm/aws-ebs-csi-driver-app/pull/37
+- Ask Nick
 
 ### giantswarm.io/cluster
 
-- TODO. Found in a variety of resources in management clusters, and in workload clusters mostly on Chart (charts.application.giantswarm.io/v1alpha1) resources. Value is a cluster name. Associates the resource with a cluster.
+Used on a variety of resources to associate the resource with a specific cluster. The value is the name of the cluster.
 
 ### giantswarm.io/logging
 
 - TODO. Found on a Cluster resource, value is "true".
+- Ask Atlas
 
 ### giantswarm.io/machine-pool
 
@@ -89,7 +102,7 @@ Associates the resource or the node with a node pool, using the name of the node
 ### giantswarm.io/monitoring
 
 - TODO Appears on a variety of resources. Value is always "true".
-- Talk to Atlas. Seem to be deprecated.
+- Talk to Atlas. Seems to be deprecated.
 
 ### giantswarm.io/monitoring_basic_sli
 
@@ -98,7 +111,7 @@ Associates the resource or the node with a node pool, using the name of the node
 
 ### giantswarm.io/organization
 
-- TODO Found on a variety of resources in both MC and WC. Value is the name of the organization the resource is assigned to.
+An organization is a key concept in the Giant Swarm platform, used to isolate [tenants]({{< relref "/vintage/platform-overview/multi-tenancy" >}}). This label is used on a variety of resources to associate them with one organization. The value is the name of the organization.
 
 ### giantswarm.io/prevent-deletion
 
@@ -107,6 +120,7 @@ Can be set on certain resource types to prevent deletion. See [Prevent accidenta
 ### giantswarm.io/service-type
 
 - TODO Found on various resources in management and workload clusters. [fmt](https://github.com/giantswarm/fmt/blob/278eb4b3318c454e50f24413e7ef2250159f28d6/kubernetes/annotations_and_labels.md?plain=1#L49) has an explanation. Value is mostly `managed`, also found occurrence `manual` in an [ops recipe](https://github.com/giantswarm/giantswarm/blob/0d16eb4ebb0440608bb1bfd0636d34afa6352cc6/content/docs/support-and-ops/ops-recipes/cilium-rate-limit-issue.md?plain=1#L39). Value `system` is also documented.
+- Ask Atlas
 
 ### giantswarm.io/service-priority
 
