@@ -1,19 +1,19 @@
 ---
 title: Introduction to Giant Swarm
-description: Giant Swarm is a platform that helps engineering teams to build Cloud Native Developer Platform and operate them without much hassle.
+description: Giant Swarm give platform engineering teams the ability to build cloud-native developer platforms and operate them without much hassle.
 weight: 10
 menu:
   main:
     parent: overview
 user_questions:
-  - What is a Cloud Native Developer Platform?
-  - How does Giant Swarm offer?
+  - What is a cloud-native developer platform?
+  - How does Giant Swarm help engineering teams?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-horizon
-last_review_date: 2024-03-08
+last_review_date: 2024-03-12
 ---
 
-Giant Swarm's mission is to empower customers to build their own Cloud Native Developer Platforms. Most engineering teams today want to build a [platform](https://tag-app-delivery.cncf.io/whitepapers/platforms/#what-is-a-platform) and there are [many reasons](https://tag-app-delivery.cncf.io/whitepapers/platforms/#why-platforms) why a unified platform actually makes sense, but the teams should also be aware that the complexity in today's cloud-native landscape is overwhelming.
+Giant Swarm's mission is to empower our customers to build their own cloud-native developer platforms. Most engineering teams today want to build a [platform](https://tag-app-delivery.cncf.io/whitepapers/platforms/#what-is-a-platform) and there are [many reasons](https://tag-app-delivery.cncf.io/whitepapers/platforms/#why-platforms) why a unified platform actually makes sense, but the teams should also be aware that the complexity in today's cloud-native landscape is overwhelming.
 
 Ultimately, developers want to deploy an app into production without having to worry too much about security or compliance, but still have good monitoring and deployment options. Our goal is to help the engineers who build and maintain the platform meet developers' expectations without compromising their organizations' security posture.
 
@@ -21,13 +21,13 @@ Giant Swarm addresses this challenge by providing a flexible base platform. The 
 
 ## Our platform your platform
 
-You may be wondering: How does Giant Swarm achieve flexibility and standardization at the same time? Giant Swarm does not offer a one-size-fits-all platform that, in the most optimistic scenario, covers 80% of use cases and ignores the rest of your business. Instead, we trust the Cloud Native ecosystem to provide a set of features that help platform teams build a developer platform that fits the company's constraints, processes, and unique features. We believe that there is no universal [internal developer platform](https://internaldeveloperplatform.org/) that can cover all needs, especially in the enterprise world, and for this reason we make our solution composable and customizable.
+You may be wondering: How does Giant Swarm achieve flexibility and standardization at the same time? Giant Swarm does not offer a one-size-fits-all platform that, in the most optimistic scenario, covers 80% of use cases and ignores the rest of your business. Instead, we trust the cloud-native ecosystem to provide a set of features that help platform teams build a developer platform that fits the company's constraints, processes, and unique features. We believe that there is no universal [internal developer platform](https://internaldeveloperplatform.org/) that can cover all needs, especially in the enterprise world, and for this reason we make our solution composable and customizable.
 
 Our approach gives you the ability to define team-specific policies, flexible application delivery processes, or different traffic routing setups. We help you create templates tailored to your team's needs while ensuring excellent visibility and control over their activities.
 
 ## Working with our customers
 
-We offer a product that lets you start quickly with a platform. But our team works with your engineers every day to build something together from this starting point. There is a common baseline that your security and governance team can trust upon. And specific requirements will be discussed and configured in collaboration. Good communication and support is key and this is exactly what we are good at.
+We offer a product that lets you start quickly with a production-ready platform. But our team works with your engineers every day to build something together from this starting point. There is a common baseline that your security and governance team can trust upon. And specific requirements will be discussed and configured in collaboration. Good communication and support is key and this is exactly what we are good at.
 
 At Giant Swarm, we take full responsibility for the components of the platform. We operate this 24/7 and offer you upgrades and support. Even in cases where your application does not work as expected rest assured, we will troubleshoot the errors together until they are resolved.
 
