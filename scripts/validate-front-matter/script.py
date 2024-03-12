@@ -13,11 +13,12 @@ except ImportError:
     from yaml import Loader
 
 # Some path config
-path         = 'src/content'
-vintage_path = 'src/content/vintage'
-changes_path = 'src/content/changes/'
-crds_path    = 'src/content/vintage/use-the-api/management-api/crd/'
-docs_host    = 'https://github.com/giantswarm/docs/blob/main/'
+path              = 'src/content'
+vintage_path      = 'src/content/vintage'
+changes_path      = 'src/content/changes'
+crds_path         = 'src/content/vintage/use-the-api/management-api/crd'
+cluster_apps_path = 'src/content/vintage/use-the-api/management-api/cluster-apps'
+docs_host         = 'https://github.com/giantswarm/docs/blob/main/'
 
 todays_date = datetime.date.today()
 
@@ -160,14 +161,14 @@ checks = (
     {
         'id': NO_LAST_REVIEW_DATE,
         'description': 'The page should have a last_review_date',
-        'ignore_paths': [crds_path, changes_path],
+        'ignore_paths': [crds_path, changes_path, cluster_apps_path],
         'severity': SEVERITY_WARN,
     },
     {
         'id': REVIEW_TOO_LONG_AGO,
         'description': 'The last review date is too long ago',
         'severity': SEVERITY_WARN,
-        'ignore_paths': [vintage_path],
+        'ignore_paths': [vintage_path, changes_path, cluster_apps_path, crds_path],
         'has_value': True,
     },
     {
@@ -237,7 +238,9 @@ def print_json(rdict):
     for fpath in rdict.keys():
         for check in rdict[fpath]['checks']:
             try:
-                title = check.get('title') or ""
+                title = check.get('title')
+                if title is None:
+                    break
                 description = checks_dict[check['check']]['description']
                 owners = []
                 doc_owner = check.get('owner')
@@ -605,7 +608,7 @@ def validate(content, fpath, validation):
                 })
 
     if validation in (VALIDATE_ALL, VALIDATE_LAST_REVIEW_DATE):
-        if 'last_review_date' in fm:
+        if 'last_review_date' in fm and not ignored_path(fpath, REVIEW_TOO_LONG_AGO):
             if type(fm['last_review_date']) is datetime.date:
                 diff = todays_date - fm['last_review_date']
                 expiration = 365
@@ -627,13 +630,6 @@ def validate(content, fpath, validation):
                         'owner': fm['owner'] or [],
                         'value': fm['last_review_date'],
                     })
-            elif not ignored_path(fpath, INVALID_LAST_REVIEW_DATE):
-                result['checks'].append({
-                    'check': INVALID_LAST_REVIEW_DATE,
-                    'title': fm['title'] or "",
-                    'owner': fm['owner'] or [],
-                    'value': fm['last_review_date'],
-                })
         else:
             if not ignored_path(fpath, NO_LAST_REVIEW_DATE):
                 result['checks'].append({

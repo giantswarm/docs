@@ -26,7 +26,7 @@ layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 aliases:
-  - /reference/cp-k8s-api/g8scontrolplanes.infrastructure.giantswarm.io/
+  - /use-the-api/management-api/crd/g8scontrolplanes.infrastructure.giantswarm.io/
 technical_name: g8scontrolplanes.infrastructure.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v5.0.0

@@ -31,8 +31,6 @@ RUN find /public \
   -name 'index.html' \
   -delete
 
-COPY src/robots.txt /public/robots.txt
-
 FROM gsoci.azurecr.io/giantswarm/nginx:1.25-alpine
 
 # Delete default config (which we have no control over)
