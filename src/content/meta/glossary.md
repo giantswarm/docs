@@ -5,21 +5,21 @@ search: false
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:
-  - "What is a Cloud Native Developer Platform?"
-  - "What is a Developer Environment?"
-  - "What is a Management Cluster?"
-  - "What is a Managed App?"
-  - "What is the Platform API?"
-  - "What is a Platform Operator?"
-  - "What is Smart Platform Engineering?"
-  - "What is a Workload Cluster?"
+  - "What is a cloud-native developer platform?"
+  - "What is a developer environment?"
+  - "What is a management cluster?"
+  - "What is a managed app?"
+  - "What is the platform API?"
+  - "What is a platform operator?"
+  - "What is smart platform engineering?"
+  - "What is a workload cluster?"
 ---
 
 We use a set of terms across our documentation that could be unclear to readers. In the following article we define those terms to clarify their meaning in the context of Giant Swarm.
 
-## Cloud Native developer platform
+## Cloud native developer platform
 
-A Cloud Native Developer Platform is an integrated collection of capabilities exposed through intuitive interfaces that facilitate the application development lifecycle. It offers flexible configuration to build a system that encodes your company practices. It integrates with different open source solutions to enable automation, connectivity, observability, and security for your workloads.
+A cloud-native developer platform is an integrated collection of capabilities exposed through intuitive interfaces that facilitate the application development lifecycle. It offers flexible configuration to build a system that encodes your company practices. It integrates with different open source solutions to enable automation, connectivity, observability, and security for your workloads.
 
 ## Developer environment
 
@@ -35,11 +35,11 @@ The managed apps are a set of curated diverse components that can be used in the
 
 ## Platform API
 
-Is the entrypoint of the [Cloud Native Developer Platform](#cloud-native-developer-platform). Everything in the platform is exposed via the API, allowing the automation of processes and fostering standardization. The Platform API is a fully compliant Kubernetes API extended with some custom resources to enable a variety of use cases. [Know more here](#future-link-to-platform-api-intro-page).
+Is the entrypoint of the [cloud-native developer platform](#cloud-native-developer-platform). Everything in the platform is exposed via the API, allowing the automation of processes and fostering standardization. The Platform API is a fully compliant Kubernetes API extended with some custom resources to enable a variety of use cases. [Know more here](#future-link-to-platform-api-intro-page).
 
 ## Platform operator
 
-The platform operator is the person or team that is in charge of the operation of the [Cloud Native Developer Platform](#cloud-native-developer-platform). They are responsible for the management of the [management cluster](#management-cluster) and its capabilities.
+The platform operator is the person or team that is in charge of the operation of the [cloud-native developer platform](#cloud-native-developer-platform). They are responsible for the management of the [management cluster](#management-cluster) and its capabilities.
 
 ## Smart platform engineering
 
