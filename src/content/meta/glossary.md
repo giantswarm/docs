@@ -4,6 +4,7 @@ description: A page with the term definitions Giant Swarm uses in the documentat
 search: false
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
+<<<<<<< HEAD
 user_questions:
   - "What is a Cloud Native Developer Platform?"
   - "What is a Developer Environment?"
@@ -13,16 +14,20 @@ user_questions:
   - "What is a Platform Operator?"
   - "What is Smart Platform Engineering?"
   - "What is a Workload Cluster?"
+=======
+last_review_date: 2024-03-08
+>>>>>>> 620846e822947de7dfcdc326d1e4c2bda5fc1a95
 ---
 
-We used a set of terms across our documentation that could be no clear to readers. In the following article we define of those terms to clarify the complexity that could carry.
+We use a set of terms across our documentation that could be unclear to readers. In the following article we define those terms to clarify their meaning in the context of Giant Swarm.
 
 ## Cloud Native developer platform
 
-A Cloud Native Developer Platform is an integrated collection of capabilities exposed by intuitive interface that facilitates the application development lifecycle. It offers a flexible configuration to build a system that encodes your company practices. It integrates with different open source solutions to enable automation, observability and security for your workloads.
+A Cloud Native Developer Platform is an integrated collection of capabilities exposed through intuitive interfaces that facilitate the application development lifecycle. It offers flexible configuration to build a system that encodes your company practices. It integrates with different open source solutions to enable automation, connectivity, observability, and security for your workloads.
 
 ## Developer environment
 
+<<<<<<< HEAD
 In our context, a developer environment is the entity that defines the space where the developers will deploy their applications. It can be mapped to a Kubernetes namespace(s) or a cluster. The Platform capabilities like access management, security or observability are related to those environments.
 
 ## Management cluster
@@ -32,6 +37,9 @@ It is a Kubernetes cluster that acts a central point of the platform. It is in c
 ## Managed app
 
 The managed apps are a set of curated diverse components that can be used in the [platform](#cloud-native-developer-platform) to enable capabilities across the [developer environments](#developer-environment). As an example, in case the developers want to allocate dynamically DNS records for their services they can leverage in [external-dns](https://github.com/giantswarm/external-dns-app/). The managed apps are operated by us and we provide regular upgrades to avoid security vulnerabilities and bugs.
+=======
+Smart Platform Engineering refers to the design and development of intelligent platforms that help you create the desired Developer Platform for your teams in a quick fashion. Instead of starting from scratch building an entire platform piece by piece while you operate it 24/7, you can leverage our knowledge, product, and support to reach your goals in a much shorter amount of time.
+>>>>>>> 620846e822947de7dfcdc326d1e4c2bda5fc1a95
 
 ## Platform API
 
@@ -39,7 +47,11 @@ Is the entrypoint of the [Cloud Native Developer Platform](#cloud-native-develop
 
 ## Platform operator
 
+<<<<<<< HEAD
 The platform operator is the person or team that is in charge of the operation of the [Cloud Native Developer Platform](#cloud-native-developer-platform). They are responsible for the management of the [management cluster](#management-cluster) and its capabilities.
+=======
+It is a Kubernetes cluster that acts as a central point of the platform. It is in charge of hosting platform wide services like observability or security and to ensure visualization and compliance over all the workloads in all workload clusters.
+>>>>>>> 620846e822947de7dfcdc326d1e4c2bda5fc1a95
 
 ## Smart platform engineering
 
