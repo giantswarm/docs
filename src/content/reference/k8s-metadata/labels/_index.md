@@ -76,8 +76,7 @@ The label of the format `OPERATOR_NAME.giantswarm.io/watching` is used on resour
 
 ### giantswarm.io/aws-ebs-limit
 
-- TODO. Used on EBS csi-node pods. Meaning unclear. Introduced in aws-ebs-csi-driver-app via https://github.com/giantswarm/aws-ebs-csi-driver-app/pull/37
-- Ask Nick
+This label is set on EBS CSI driver pods (on AWS) by [aws-ebs-csi-volume-limiter](https://github.com/giantswarm/aws-ebs-csi-volume-limiter/blob/v0.1.0/main.go#L86-L90). It informs about the maximum number of EBS volumes that can be attached to the respective node.
 
 ### giantswarm.io/cluster
 
