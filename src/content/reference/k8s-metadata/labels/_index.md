@@ -16,7 +16,7 @@ Common Kubernetes labels are explained on the upstream documentation page [Well-
 
 ### app.giantswarm.io/kind
 
-- TODO. Found on ConfigMap and Secret resources in management clusters. Value is either "dashboard" or "datasource". Talk to Atlas.
+Set on ConfigMap and Secret resources in management clusters for Grafana, to indicate how to use the according resource.
 
 ### app-operator.giantswarm.io/version
 
@@ -84,8 +84,7 @@ Used on a variety of resources to associate the resource with a specific cluster
 
 ### giantswarm.io/logging
 
-- TODO. Found on a Cluster resource, value is "true".
-- Ask Atlas
+With this label on the Cluster resource, logging via Loki can be disabled. The default value `true` means that logging is enabled. Setting it to `false` disables logging for the entire cluster.
 
 ### giantswarm.io/machine-pool
 
@@ -100,13 +99,15 @@ Associates the resource or the node with a node pool, using the name of the node
 
 ### giantswarm.io/monitoring
 
-- TODO Appears on a variety of resources. Value is always "true".
-- Talk to Atlas. Seems to be deprecated.
+This label set on the Cluster resource with the value `false` can be used to disable the gathering of Prometheus metrics for the entire cluster, and id prevents deployment of Prometheus for this cluster.
+
+On other resources, the label serves as a discovery mechanism for metrics scraping. We are replacing this mechanism by service monitors.
 
 ### giantswarm.io/monitoring_basic_sli
 
 - TODO Appears on a variety of resources. Value is always "true".
-- Talk to Atlas.
+- Quentin thinks this is introduced by Honeybadger, could be removed at some point.
+- Use example: https://github.com/giantswarm/prometheus-rules/blob/d440f5cc724d9ad2fe4c7f85c9f0b54090a6858e/helm/prometheus-rules/templates/recording-rules/service-level.rules.yml#L175
 
 ### giantswarm.io/organization
 
@@ -118,8 +119,12 @@ Can be set on certain resource types to prevent deletion. See [Prevent accidenta
 
 ### giantswarm.io/service-type
 
-- TODO Found on various resources in management and workload clusters. [fmt](https://github.com/giantswarm/fmt/blob/278eb4b3318c454e50f24413e7ef2250159f28d6/kubernetes/annotations_and_labels.md?plain=1#L49) has an explanation. Value is mostly `managed`, also found occurrence `manual` in an [ops recipe](https://github.com/giantswarm/giantswarm/blob/0d16eb4ebb0440608bb1bfd0636d34afa6352cc6/content/docs/support-and-ops/ops-recipes/cilium-rate-limit-issue.md?plain=1#L39). Value `system` is also documented.
-- Ask Atlas
+- TODO Found on various resources in management and workload clusters.
+- [fmt](https://github.com/giantswarm/fmt/blob/278eb4b3318c454e50f24413e7ef2250159f28d6/kubernetes/annotations_and_labels.md?plain=1#L49) has an explanation.
+Value is mostly `managed`
+- also found occurrence `manual` in an [ops recipe](https://github.com/giantswarm/giantswarm/blob/0d16eb4ebb0440608bb1bfd0636d34afa6352cc6/content/docs/support-and-ops/ops-recipes/cilium-rate-limit-issue.md?plain=1#L39).
+- Value `system` is also documented.
+- Example use: [PrometheusRule](https://github.com/giantswarm/prometheus-rules/blob/d440f5cc724d9ad2fe4c7f85c9f0b54090a6858e/helm/prometheus-rules/templates/recording-rules/gs-managed-app-deployment-status.rules.yml#L16) - Here it seems to be used to differentiate workloads managed by Giant Swarm from other workloads.
 
 ### giantswarm.io/service-priority
 
