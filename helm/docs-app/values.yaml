@@ -5,6 +5,15 @@ image:
   name: docs
   tag: "[[.Version]]"
   sha: "[[.SHA]]"
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 5M
+  limits:
+    cpu: 500m
+    memory: 20M
+
 global:
   podSecurityStandards:
     enforced: false
