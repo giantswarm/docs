@@ -1,6 +1,6 @@
 ---
 title: Security
-description: An overview of the security capabilities of the Giant Swarm platform.
+description: Description of the security features integrated within the Giant Swarm platform.
 weight: 60
 last_review_date: 2024-03-18
 owner:
