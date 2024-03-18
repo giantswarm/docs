@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HELM_CHART_DOCS_GENERATOR_VERSION=0.1.0
+HELM_CHART_DOCS_GENERATOR_VERSION=0.2.0
 DESTINATION=src/content/vintage/use-the-api/management-api/cluster-apps
 
 # Clear output folder
@@ -14,15 +14,10 @@ docker run --rm \
         --config /opt/helm-chart-docs-generator/config/config.yaml
 
 for file in ${DESTINATION}/*.md; do
-  if grep -q '\--&gt;' $file; then
-    # Remove HTML comment lines
-    perl -i -pe "BEGIN{undef $/;} s/\&lt;.*\&gt;//gsm" $file
-    # Remove empty lines
-    awk 'NF > 0 || NR == 1 {blank=0} NF == 0 {blank++} blank < 2 {print}' $file > $file
-    # Remove trailing whitespace
-    sed -i 's/[ \t]*$//' $file
-    if [ $? -ne 0 ]; then
-      echo "An error occurred removing HTML comment lines from $file"
-    fi
-  fi
+  # Remove empty lines
+  awk 'NF > 0 || NR == 1 {blank=0} NF == 0 {blank++} blank < 2 {print}'  $file > /tmp/_back.md && mv /tmp/_back.md $file
+  # Remove trailing whitespace
+  sed -i 's/[ \t]*$//' $file
+  # quote storage * expressions (hack to fix https://github.com/giantswarm/docs/actions/runs/8155151741)
+  sed -i 's/\/dev\/disk\/by-\*/"&"/g' $file
 done

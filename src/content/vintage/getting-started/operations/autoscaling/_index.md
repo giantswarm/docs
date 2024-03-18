@@ -7,10 +7,10 @@ menu:
     identifier: getting-started-operations-autoscaling
     parent: getting-started-operations
 weight: 40
-last_review_date: 2023-03-01
+last_review_date: 2024-03-04
 aliases:
   - /getting-started/operations/autoscaling
   - /operations/autoscaling
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-atlas
+  - https://github.com/orgs/giantswarm/teams/team-turtles
 ---
