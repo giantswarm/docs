@@ -13,7 +13,7 @@ owner:
 last_review_date: 2024-03-12
 ---
 
-Giant Swarm's mission is to empower our customers to build their own cloud-native developer platforms. Most engineering teams today want to build a [platform](https://tag-app-delivery.cncf.io/whitepapers/platforms/#what-is-a-platform) and there are [many reasons](https://tag-app-delivery.cncf.io/whitepapers/platforms/#why-platforms) why a unified platform actually makes sense, but the teams should also be aware that the complexity in today's cloud-native landscape is overwhelming.
+Giant Swarm's mission is to empower our customers to build their own cloud-native [developer platform](https://tag-app-delivery.cncf.io/whitepapers/platforms/#what-is-a-platform). As engineering teams grow and their environments expand, they often face exponentially growing complexity within the cloud-native ecosystem. This can be overwhelming. We believe that in most cases, having a [unified platform](https://tag-app-delivery.cncf.io/whitepapers/platforms/#why-platforms) plays a crucial role in keeping or gaining control over the entropic nature of such complex environments, while also significantly enhancing the users experience in using them.
 
 Ultimately, developers want to deploy an app into production without having to worry too much about security or compliance, but still have good monitoring and deployment options. Our goal is to help the engineers who build and maintain the platform meet developers' expectations without compromising their organizations' security posture.
 
