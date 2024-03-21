@@ -63,7 +63,7 @@ The reasons that lead us to using Grafana Loki in favor of its competitors (whic
 
 First, we are **strong believers in Open Source** so the full Elastic stack is obviously out of the question.
 
-Second, we are quite used to the Grafana ecosystem and the different tools are made to work with one another whereas the existing logging solutions are either supposed to work on their own (like OpenDistro) or need to use the full-fledged solution (i.e. being able to **collect and correlate all observability data**) which is rarely open-source (coming back to the first point above).
+Second, we are quite used to the Grafana ecosystem, where the **individual tools are made to work with one another without requiring a closed ecosystem**. Alternative logging solutions are either intended to work in isolation (like OpenDistro) or need to use a full-fledged solution (i.e. being able to collect and correlate all observability data), which is rarely open-source (coming back to the first point above).
 
 Third, we are full-fledged users of Prometheus and PromQL and **LogQL, the Loki Query Language is a natural extension to PromQL**, which makes it easy for our platform engineers to use and love.
 
