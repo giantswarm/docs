@@ -24,12 +24,22 @@ Logging is an important pillar of observability and it is thus only natural that
 
 This documentation will give you an overview of how logging is managed by Giant Swarm : which logs are stored, which tools we use to ship and store them as well as why we chose those tools in the first place.
 
-## Overview of the logging pipeline
+## Overview of the logging platform
 
-Here is an architecture diagram of our current logging platform.
+Here is an architecture diagram of our current logging platform:
 
 ![Logging pipeline architecture overview](logging-architecture.png)
 <!-- Source: https://drive.google.com/file/d/1Gzl0mTdJcaui_zIC9QuHcgMX3QJygALo -->
+
+In this diagram, you can see that we run the following tools in each management cluster as part of our logging platform:
+
+- `Grafana Loki` that is accessible through our managed Grafana instance.
+- `multi-tenant-proxy`, a proxy component used to handle multi-tenancy for Loki.
+- A couple of loggings agents (`Grafana Promtail` and `Grafana Agent`) that run on the management cluster and your workload clusters alike. We currently need two different tools for different purposes.
+    - Promtail is used to retrieve the container and kubernetes audit logs
+    - Grafana Agent to retrieve the kubernetes events.
+
+If you want to play with Loki, you should definitely check out our guides explaining [how to access Grafana]({{< relref "/vintage/getting-started/observability/visualization/access" >}}) and how to [explore logs with LogQL]({{< relref "/vintage/getting-started/observability/visualization/log-exploration" >}})
 
 ## Logs stored by Giant Swarm
 
