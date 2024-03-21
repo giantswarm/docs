@@ -47,9 +47,9 @@ Kubernetes clusters produce a vast amount of machine and container logs.
 
 The logging agents that we have deployed on management and workload clusters currently send the following logs to Loki:
 
-- `Kubernetes container logs` in the `kube-system` and `giantswarm` namespaces.
-- `Kubernetes events` happenning in the `kube-system` and `giantswarm` namespaces.
-- [`Kubernetes audit logs`]({{< relref "./audit-logs#kubernetes-audit-logs" >}})
+- Kubernetes Pod logs from the `kube-system` and `giantswarm` namespaces.
+- Kubernetes Events created in the `kube-system` and `giantswarm` namespaces.
+- [Kubernetes audit logs]({{< relref "./audit-logs#kubernetes-audit-logs" >}})
 
 In the future, we will also store the following logs:
 
