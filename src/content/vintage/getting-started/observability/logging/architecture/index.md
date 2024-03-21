@@ -50,7 +50,7 @@ First, we are **strong believers in Open Source** so the full Elastic stack is o
 
 Second, we are quite used to the Grafana ecosystem and the different tools are made to work with one another whereas the existing logging solutions are either supposed to work on their own (like OpenDistro) or you need to use the full fledge solution (i.e. being able to **collect and correlate all observability data**) which is rarely open-source (coming back to the first point above).
 
-Third, we are full-fledge users of Prometheus and PromQL and **LogQL, the Loki Query Language is a natural extension to PromQL**, which makes it easy for our platform engineers to use and love.
+Third, we are full-fledged users of Prometheus and PromQL and **LogQL, the Loki Query Language is a natural extension to PromQL**, which makes it easy for our platform engineers to use and love.
 
 The fourth reason is **cost and resource consumption** as Loki is cheaper to run than because it does not rely that much on persistent storage and uses Object storage instead which is always cheaper in the cloud. The storage of the index is also cheaper for Loki as it uses label-based indexing which is definitely smaller than any kind of text-based indexing solution that full-text search engine can provide.
 
