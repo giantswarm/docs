@@ -44,7 +44,7 @@ In the future, we will also store the following logs:
 
 ## Why we prefer Loki over its competitors
 
-The reasons that lead us to using Grafana Loki in favor of its competitors (which is mostly opendistro in our case) are numerous.
+The reasons that lead us to using Grafana Loki in favor of its competitors (which boil down to only opendistro in our case) are numerous.
 
 First, we are **strong believers in Open Source** so the full Elastic stack is obviously out of the question.
 
