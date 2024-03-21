@@ -35,7 +35,7 @@ In this diagram, you can see that we run the following tools in each management 
 
 - `Grafana Loki` that is accessible through our managed Grafana instance.
 - `multi-tenant-proxy`, a proxy component used to handle multi-tenancy for Loki.
-- A couple of loggings agents (`Grafana Promtail` and `Grafana Agent`) that run on the management cluster and your workload clusters alike. We currently need two different tools for different purposes.
+- A couple of logging agents (`Grafana Promtail` and `Grafana Agent`) that run on the management cluster and your workload clusters alike. We currently need two different tools for different purposes.
     - Promtail is used to retrieve the container and kubernetes audit logs
     - Grafana Agent to retrieve the kubernetes events.
 
