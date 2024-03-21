@@ -26,29 +26,34 @@ This documentation will give you an overview of how logging is managed by Giant 
 
 ## Overview of the logging pipeline
 
-Logging agents, Loki and grafana, log pipeline overall.
+Here is an architecture diagram of our current logging platform.
+
+![Logging pipeline architecture overview](logging-architecture.png)
+<!-- Source: https://drive.google.com/file/d/1Gzl0mTdJcaui_zIC9QuHcgMX3QJygALo -->
 
 ## Logs stored by Giant Swarm
 
 Kubernetes clusters produces a vast amount of logs, whether they come from machines or containers.
 
 The loggings agents that we have deployed on both management and workload clusters currently send the following logs to Loki:
+
 - `Kubernetes container logs` in the `kube-system` and `giantswarm` namespaces.
 - `Kubernetes events` happenning in the `kube-system` and `giantswarm` namespaces.
 - [`Kubernetes audit logs`]({{< relref "./audit-logs#kubernetes-audit-logs" >}})
 
 In the future, we will also store the following logs:
+
 - [`Machine audit logs`]({{< relref "./audit-logs#machine-audit-logs" >}})
 - `Teleport audit logs` currently being worked on here: https://github.com/giantswarm/roadmap/issues/3250
 - Giant Swarm `customer workload logs` as part of our observability platform being worked on https://github.com/giantswarm/roadmap/issues/2771
 
 ## Why we prefer Loki over its competitors
 
-The reasons that lead us to using Grafana Loki in favor of its competitors (which boil down to only opendistro in our case) are numerous.
+The reasons that lead us to using Grafana Loki in favor of its competitors (which boils down to only opendistro in our case) are numerous.
 
 First, we are **strong believers in Open Source** so the full Elastic stack is obviously out of the question.
 
-Second, we are quite used to the Grafana ecosystem and the different tools are made to work with one another whereas the existing logging solutions are either supposed to work on their own (like OpenDistro) or need to use the full fledged solution (i.e. being able to **collect and correlate all observability data**) which is rarely open-source (coming back to the first point above).
+Second, we are quite used to the Grafana ecosystem and the different tools are made to work with one another whereas the existing logging solutions are either supposed to work on their own (like OpenDistro) or need to use the full-fledged solution (i.e. being able to **collect and correlate all observability data**) which is rarely open-source (coming back to the first point above).
 
 Third, we are full-fledged users of Prometheus and PromQL and **LogQL, the Loki Query Language is a natural extension to PromQL**, which makes it easy for our platform engineers to use and love.
 
