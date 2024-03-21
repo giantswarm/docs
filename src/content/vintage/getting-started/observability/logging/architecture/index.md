@@ -45,7 +45,7 @@ If you want to play with Loki, you should definitely check out our guides explai
 
 Kubernetes clusters produce a vast amount of machine and container logs.
 
-The loggings agents that we have deployed on both management and workload clusters currently send the following logs to Loki:
+The logging agents that we have deployed on management and workload clusters currently send the following logs to Loki:
 
 - `Kubernetes container logs` in the `kube-system` and `giantswarm` namespaces.
 - `Kubernetes events` happenning in the `kube-system` and `giantswarm` namespaces.
