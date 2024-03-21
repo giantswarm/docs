@@ -22,7 +22,7 @@ last_review_date: 2024-03-21
 
 Logging is an important pillar of observability and it is thus only natural that Giant Swarm provides and manages a logging solution for operational purposes.
 
-This documentation will give you an overview of how logging is managed by Giant Swarm : which logs are stored, which tools we use to ship and store them as well as why we chose those tools in the first place.
+This document gives an overview of how logging is managed by Giant Swarm, including which logs are stored, which tools we use to ship and store them, as well as why we chose those tools in the first place.
 
 ## Overview of the logging platform
 
