@@ -43,7 +43,7 @@ If you want to play with Loki, you should definitely check out our guides explai
 
 ## Logs stored by Giant Swarm
 
-Kubernetes clusters produces a vast amount of logs, whether they come from machines or containers.
+Kubernetes clusters produce a vast amount of machine and container logs.
 
 The loggings agents that we have deployed on both management and workload clusters currently send the following logs to Loki:
 
