@@ -53,9 +53,9 @@ The logging agents that we have deployed on management and workload clusters cur
 
 In the future, we will also store the following logs:
 
-- [`Machine audit logs`]({{< relref "./audit-logs#machine-audit-logs" >}})
-- `Teleport audit logs` currently being worked on here: https://github.com/giantswarm/roadmap/issues/3250
-- Giant Swarm `customer workload logs` as part of our observability platform being worked on https://github.com/giantswarm/roadmap/issues/2771
+- [Machine (Node) audit logs]({{< relref "./audit-logs#machine-audit-logs" >}})
+- Teleport audit logs, tracked in https://github.com/giantswarm/roadmap/issues/3250
+- Giant Swarm customer workload logs as part of our observability platform, tracked in https://github.com/giantswarm/roadmap/issues/2771
 
 ## Why we prefer Loki over its competitors
 
