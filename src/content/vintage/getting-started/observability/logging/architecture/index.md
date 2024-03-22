@@ -10,7 +10,7 @@ menu:
 user_questions:
   - What is the logging architecture?
   - Why is Giant Swarm using Loki?
-  - Why is Giant Swarm recommending loki?
+  - Why is Giant Swarm recommending Loki?
   - Which logs are stored by Giant Swarm?
   - Where are the logs stored by Giant Swarm?
 aliases:
