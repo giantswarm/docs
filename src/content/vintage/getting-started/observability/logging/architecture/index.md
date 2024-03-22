@@ -9,7 +9,7 @@ menu:
     parent: getting-started-observability-logging
 user_questions:
   - What is the logging architecture?
-  - Why is Giant Swarm using loki?
+  - Why is Giant Swarm using Loki?
   - Why is Giant Swarm recommending loki?
   - Which logs are stored by Giant Swarm?
   - Where are the logs stored by Giant Swarm?
