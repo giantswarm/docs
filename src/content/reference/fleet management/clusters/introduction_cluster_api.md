@@ -38,6 +38,6 @@ On top of that, we have some additional features that are not part of the Cluste
 
 Once you want to create a cluster, you will need to define a set of resources that will be used to create the cluster. Obviously, you can create these resources manually exploring every single specification field that is possible to use, but we offer a more convenient way to do that. We have a set of apps that are ready to be used to provision a cluster correctly.
 
-An [`App` is custom resource]() which help us to group the all needed resources allowing expose the configuration in way it can be validated, defaulted and documented properly.
+An [`App` is a custom resource](https://docs.giantswarm.io/vintage/getting-started/app-platform/app-bundle/) which helps us to group all needed resources allowing exposure to the configuration in a way that can be validated, defaulted and documented properly.
 
-Learn more reading how to [create your first workload cluster]() or check the cluster app definitions we offer in our [catalog]()
+Learn more by reading how to [create your first workload cluster](https://docs.giantswarm.io/vintage/getting-started/create-workload-cluster/) or check the cluster app definitions we offer in our [catalog](https://docs.giantswarm.io/vintage/use-the-api/management-api/cluster-apps/)
