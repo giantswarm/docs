@@ -18,7 +18,7 @@ title: Workload cluster release v19.0.0 for AWS
 > **WARNING:** Please talk to your Account Engineer prior to upgrading. You will be provided with a checklist to follow and validate your clusters.
 
 This release includes upgrades of components and Kubernetes version to 1.24. The upgrade to `v19.0.0` involve two major changes for customers, namely the migration from the AWS VPC CNI to Cilium and the replacement of Kiam with IAM Roles for Service Accounts(IRSA) for authenticating pods against the AWS API.
-Next sections are describing important changes we will introduce with the new release, the key benefits, what customers can do to prepare and how to avoid downtime during this crucial upgrade. 
+Next sections are describing important changes we will introduce with the new release, the key benefits, what customers can do to prepare and how to avoid downtime during this crucial upgrade.
 
 ***IAM Permissions Requirements***
 The minimal requirement for the IAM permissions is [Version 3.3.0](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/blob/master/CHANGELOG.md#330---2023-05-11) of [giantswarm-aws-account-prerequisites](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/) repository.
@@ -31,20 +31,20 @@ Say goodbye to slow network initialization times and hello to lightning-fast per
 
 - Service Mesh integration: `Cilium` is designed to work seamlessly with popular service meshes like `Istio`, `Linkerd`, and `Envoy`. This allows for more advanced networking and security features, such as mTLS encryption and observability.
 - `Cilium` uses a virtual network which provides more flexibility, faster network initialization, and more advanced networking features compared to `AWS CNI` affecting the IP addresses.
-- Advanced networking features: `Cilium` supports advanced networking features such as load balancing, network segmentation, and eBPF-based packet filtering. These features allow for more granular control over network traffic and improve security. 
+- Advanced networking features: `Cilium` supports advanced networking features such as load balancing, network segmentation, and eBPF-based packet filtering. These features allow for more granular control over network traffic and improve security.
 - Scalability: `Cilium's` eBPF-based data plane is highly scalable and performs well even at scale. It is also highly efficient, reducing overhead and maximizing performance.
 - Improvements in pods time to come up due to cilium endpoint refresh substituting the kubeproxy refresh of iptables.
 - More efficient usage of IP space - fully described in `Cilium and IP space` section below.
 
 ### What changes with Cilium?
 
-With `Cilium`, you'll no longer be using the `AWS CNI` Pod subnets, so be sure to add custom routes with the `Node subnet(s) CIDR(s)` instead. 
+With `Cilium`, you'll no longer be using the `AWS CNI` Pod subnets, so be sure to add custom routes with the `Node subnet(s) CIDR(s)` instead.
 
 Additionally, while `Cilium's Network Policy` provides powerful security features, support for setting `ipBlock` with `Pod IPs` is not implemented in Cilium, so be sure to inspect your workloads and configure `Network Policies` carefully. The Account Engineers will reach out to you and help to provide the `CiliumNetworkPolicies` before the upgrade in order to have no downtime during the switch. [Cilium-prerequisites](https://github.com/giantswarm/cilium-prerequisites) app that installs the `CiliumNetworkPolicy` CRD is available in the catalog as well as will be installed with GS version `v18.4.0` to provide seemless upgrade experience.
 
 It's important to note that due to changes to `Cluster CR's` during the upgrade process, `GitOps` automation will have to be suspended and any applied changes backported to the repos before resuming. Keep this in mind as you prepare for the upgrade. This needs to be evaluated on a case-by-case basis, since different GitOps implementations might only keep _some_ parts of `Cluster` CRs in Git. Feel free to reach out to your Account Engineer to understand more about these changes.
 
-To ensure a smooth transition to `Cilium`, we've prepared a [comprehensive upgrade process](https://handbook.giantswarm.io/docs/support-and-ops/ops-recipes/upgrade-to-cilium/) that explains every migration step in detail, so you can feel confident in following the process and avoid any potential issues. We have also extended our [documentation](https://docs.giantswarm.io/platform-overview/cluster-management/vintage/aws/#pod-networking) which describes differences between `AWS CNI` and `Cilium`
+To ensure a smooth transition to `Cilium`, we've prepared a [comprehensive upgrade process](https://handbook.giantswarm.io/docs/support-and-ops/ops-recipes/upgrade-to-cilium/) that explains every migration step in detail, so you can feel confident in following the process and avoid any potential issues. We have also extended our [documentation](https://docs.giantswarm.io/vintage/platform-overview/cluster-management/vintage/aws/#pod-networking) which describes differences between `AWS CNI` and `Cilium`
 
 #### Cilium and AWS Load Balancer Controller
 
@@ -86,7 +86,7 @@ We have included a small [ops-recipe](https://handbook.giantswarm.io/docs/suppor
 
 ## IAM roles for service accounts (IRSA)
 
-By switching from `KIAM` to `IAM Roles for Service Accounts (IRSA)`, we're making it easier and more secure for your Kubernetes workloads to interact with AWS services. 
+By switching from `KIAM` to `IAM Roles for Service Accounts (IRSA)`, we're making it easier and more secure for your Kubernetes workloads to interact with AWS services.
 
 ### Key Highlights
 
@@ -98,7 +98,7 @@ By switching from `KIAM` to `IAM Roles for Service Accounts (IRSA)`, we're makin
 
 During the upgrade, we are removing `KIAM` as a default app in your workload clusters but it is possible to install it optionally. If you need to keep using KIAM in v19 clusters, please reach out to your SA.
 
-Additionally, we are creating a `Cloudfront Domain Alias` (except China) for each cluster which is used as the [OpenID Connect (OIDC) identity provider](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc.html) to improve predictability and simplify IAM role creation. 
+Additionally, we are creating a `Cloudfront Domain Alias` (except China) for each cluster which is used as the [OpenID Connect (OIDC) identity provider](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc.html) to improve predictability and simplify IAM role creation.
 
 To ensure that your applications can assume the appropriate IAM roles, you need to add the `Cloudfront Domain Alias` to those roles as a [trust entity](https://docs.giantswarm.io/advanced/iam-roles-for-service-accounts/#aws-release-v19).
 
@@ -122,7 +122,7 @@ If you previously deployed `k8s-dns-node-cache-app` through the managed catalog,
 
 ### Prometheus Blackbox Exporter
 
-The [prometheus-blackbox-exporter](https://github.com/giantswarm/prometheus-blackbox-exporter-app) is a new monitoring component installed by default with release `v19`. 
+The [prometheus-blackbox-exporter](https://github.com/giantswarm/prometheus-blackbox-exporter-app) is a new monitoring component installed by default with release `v19`.
 
 #### Key Highlights
 
@@ -510,7 +510,7 @@ Service `ClusterIP` are unique, hence, trying to create a Service with a `Cluste
 ##### Feature
 
 - Kubernetes is now built with Go 1.19.8 ([#117132](https://github.com/kubernetes/kubernetes/pull/117132), [@xmudrii](https://github.com/xmudrii)) [SIG Release and Testing]
-- Kubelet TCP and HTTP probes are more effective using networking resources: conntrack entries, sockets, ... 
+- Kubelet TCP and HTTP probes are more effective using networking resources: conntrack entries, sockets, ...
   This is achieved by reducing the TIME-WAIT state of the connection to 1 second, instead of the defaults 60 seconds. This allows kubelet to free the socket, and free conntrack entry and ephemeral port associated. ([#115143](https://github.com/kubernetes/kubernetes/pull/115143), [@aojea](https://github.com/aojea)) [SIG Network and Node]
 - Kubeadm: use the image registry registry.k8s.io instead of k8s.gcr.io for new clusters. During upgrade, migrate users to registry.k8s.io if they were using the default of k8s.gcr.io. ([#113395](https://github.com/kubernetes/kubernetes/pull/113395), [@neolit123](https://github.com/neolit123)) [SIG Cloud Provider and Cluster Lifecycle]
 - Kubernetes is now built with Go 1.19.5 ([#115012](https://github.com/kubernetes/kubernetes/pull/115012), [@cpanato](https://github.com/cpanato)) [SIG Release and Testing]- A new Priority and Fairness metric 'apiserver_flowcontrol_work_estimate_seats_samples' has been added that tracks the estimated seats associated with a request. ([#106628](https://github.com/kubernetes/kubernetes/pull/106628), [@tkashem](https://github.com/tkashem))
@@ -674,7 +674,7 @@ Service `ClusterIP` are unique, hence, trying to create a Service with a `Cluste
 - Fix JobTrackingWithFinalizers that:
   - was declaring a job finished before counting all the created pods in the status
   - was leaving pods with finalizers, blocking pod and job deletions
-  
+
   JobTrackingWithFinalizers is still disabled by default. ([#109486](https://github.com/kubernetes/kubernetes/pull/109486), [@alculquicondor](https://github.com/alculquicondor)) [SIG Apps and Testing]
 - Kubeadm: only taint control plane nodes when the legacy "master" taint is present. This avoids a bug where "kubeadm upgrade" will re-taint a control plane node with the new "control plane" taint even if the user explicitly untainted the node. ([#109841](https://github.com/kubernetes/kubernetes/pull/109841), [@neolit123](https://github.com/neolit123)) [SIG Cluster Lifecycle]
 - A node IP provided to kublet via `--node-ip` will now be preferred for when determining the node's primary IP and using the external cloud provider (CCM). ([#107750](https://github.com/kubernetes/kubernetes/pull/107750), [@stephenfin](https://github.com/stephenfin))
