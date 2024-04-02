@@ -23,7 +23,7 @@ Giant Swarm addresses this challenge by providing a flexible base platform. The 
 
 You may be wondering: How does Giant Swarm achieve flexibility and standardization at the same time? Giant Swarm does not offer a one-size-fits-all platform that, in the most optimistic scenario, covers 80% of use cases and ignores the rest of your business. Instead, we trust the cloud-native ecosystem to provide a set of features that help platform teams build a developer platform that fits the company's constraints, processes, and unique features. We believe that there is no universal [internal developer platform](https://internaldeveloperplatform.org/) that can cover all needs, especially in the enterprise world, and for this reason we make our solution composable and customizable.
 
-Our approach gives you the ability to define team-specific policies, flexible application delivery processes, or different traffic routing setups. We help you create templates tailored to your team's needs while ensuring excellent visibility and control over their activities.
+Our approach gives you the ability to define team-specific policies, flexible application delivery processes, or different traffic routing setups – just to name a few of the options. We help you create templates tailored to your team's needs while ensuring excellent visibility and control over their activities.
 
 ## Working with our customers
 
