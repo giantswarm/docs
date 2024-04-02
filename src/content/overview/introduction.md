@@ -19,7 +19,7 @@ Ultimately, developers want to deploy an app into production without having to w
 
 Giant Swarm addresses this challenge by providing a flexible base platform. The platform enables technology departments to ensure governance and control over development processes and operations, while allowing developers to smoothly manage their development cycle. Check out the documentation below to learn how we make this possible.
 
-## Our platform your platform
+## Our platform, your platform
 
 You may be wondering: How does Giant Swarm achieve flexibility and standardization at the same time? Giant Swarm does not offer a one-size-fits-all platform that, in the most optimistic scenario, covers 80% of use cases and ignores the rest of your business. Instead, we trust the cloud-native ecosystem to provide a set of features that help platform teams build a developer platform that fits the company's constraints, processes, and unique features. We believe that there is no universal [internal developer platform](https://internaldeveloperplatform.org/) that can cover all needs, especially in the enterprise world, and for this reason we make our solution composable and customizable.
 
