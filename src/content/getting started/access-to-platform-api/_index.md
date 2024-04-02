@@ -1,8 +1,8 @@
 ---
 title: Access to the platform API
-description: An explanation of how to users can win access to the platform API.
+description: An explanation of how to users can win access to the platform API to manage your workloads.
 weight: 30
-last_review_date: 2024-03-19
+last_review_date: 2024-04-01
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:

@@ -2,7 +2,7 @@
 title: Configure and provision your first workload cluster
 description: Guide to configure and provision your first workload cluster.
 weight: 40
-last_review_date: 2024-03-19
+last_review_date: 2024-04-01
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:

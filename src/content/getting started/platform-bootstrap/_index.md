@@ -1,8 +1,8 @@
 ---
 title: Platform bootstrap
-description: Brief description of how the platform bootstrap process works.
+description: Brief description of how the platform bootstrap process works to set up a new installation.
 weight: 20
-last_review_date: 2024-03-19
+last_review_date: 2024-04-01
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:

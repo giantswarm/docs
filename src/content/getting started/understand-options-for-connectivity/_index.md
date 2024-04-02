@@ -1,8 +1,8 @@
 ---
 title: Understand options for service connectivity
-description: Explanation of how basic connectivity works in the platform.
+description: Explanation of how basic connectivity works in the platform using an example app.
 weight: 60
-last_review_date: 2024-03-19
+last_review_date: 2024-04-01
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:
