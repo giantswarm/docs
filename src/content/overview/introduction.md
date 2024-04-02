@@ -1,5 +1,5 @@
 ---
-title: Introduction to Giant Swarm
+title: Introduction to Giant Swarm and the Giant Swarm platform
 description: Giant Swarm give platform engineering teams the ability to build cloud-native developer platforms and operate them without much hassle.
 weight: 10
 menu:
