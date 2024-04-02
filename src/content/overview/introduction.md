@@ -29,6 +29,6 @@ Our approach gives you the ability to define team-specific policies, flexible ap
 
 We offer a product that lets you start quickly with a production-ready platform. But our team works with your engineers every day to build something together from this starting point. There is a common baseline that your security and governance team can trust upon. And specific requirements will be discussed and configured in collaboration. Good communication and support is key and this is exactly what we are good at.
 
-At Giant Swarm, we take full responsibility for the components of the platform. We operate this 24/7 and offer you upgrades and support. Even in cases where your application does not work as expected rest assured, we will troubleshoot the errors together until they are resolved.
+At Giant Swarm, we take full responsibility for the components of the platform. We operate this 24/7 and offer you upgrades and support. Even in cases where your application does not work as expected, rest assured, we will troubleshoot the errors together until they are resolved.
 
 Keen to learn more? Take a look at the [main architecture of the platform]({{< relref "/overview/architecture" >}}).
