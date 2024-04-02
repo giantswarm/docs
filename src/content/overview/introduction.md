@@ -17,7 +17,7 @@ Giant Swarm's mission is to empower our customers to build their own cloud-nativ
 
 Ultimately, developers want to deploy an app into production without having to worry too much about security or compliance, but still have good monitoring and deployment options. Our goal is to help the engineers who build and maintain the platform meet developers' expectations without compromising their organizations' security posture.
 
-Giant Swarm addresses this challenge by providing a flexible base platform. The platform enables technology departments to ensure governance and control over development processes and operations, while allowing developers to smoothly manage their development cycle. Check out the documentation below to learn how we make this possible.
+Giant Swarm addresses this challenge by providing a flexible base platform. The platform enables technology departments to ensure governance and control over development processes and operations, while providing developers a smooth development cycle. Check out the documentation to learn how we make this possible.
 
 ## Our platform, your platform
 
