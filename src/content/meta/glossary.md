@@ -17,8 +17,6 @@ user_questions:
 
 <!-- All headings must be sorted alphabetically -->
 
-We use a set of terms across our documentation that could be unclear to readers. In the following article we define those terms to clarify their meaning in the context of Giant Swarm.
-
 ## Cloud native developer platform
 
 A cloud-native developer platform is an integrated collection of capabilities exposed through intuitive interfaces that facilitate the application development lifecycle. It offers flexible configuration to build a system that encodes your company practices. It integrates with different open source solutions to enable automation, connectivity, observability, and security for your workloads. You may be familiar with the term ["internal developer platform"](https://internaldeveloperplatform.org/) which is fairly similar but in our case we emphasize the betting for cloud-native technologies to accomplish the desired goals.
