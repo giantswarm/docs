@@ -39,7 +39,7 @@ Is the entrypoint of the [cloud-native developer platform](#cloud-native-develop
 
 ## Platform operator
 
-The platform operator is the person or team that is in charge of the operation of the [cloud-native developer platform](#cloud-native-developer-platform). They are responsible for the management of the [management cluster](#management-cluster) and its capabilities.
+The platform team is a team that is in charge of providing the [cloud-native developer platform](#cloud-native-developer-platform). With the help of Giant Swarms managed platform they compose, manage and customize the platform for the specific needs of the development teams within their company.
 
 ## Smart platform engineering
 
