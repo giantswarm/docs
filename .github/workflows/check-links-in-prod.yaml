@@ -26,7 +26,7 @@ jobs:
             ghcr.io/linkchecker/linkchecker:latest \
             https://docs.giantswarm.io/getting-started/ \
             --check-extern \
-            -t 1-r 2
+            -t 1 -r 2
 
       - name: Check links in tutorials pages
         run: |
