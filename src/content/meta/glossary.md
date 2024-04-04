@@ -29,7 +29,7 @@ In our context, a developer environment is the entity that defines the space whe
 
 ## Managed app
 
-The managed apps are a set of curated diverse components that can be used in the [platform](#cloud-native-developer-platform) to enable capabilities across the [developer environments](#developer-environment). As an example, in case the developers want to allocate dynamically DNS records for their services they can leverage in [external-dns](https://github.com/giantswarm/external-dns-app/). The managed apps are operated by us and we provide regular upgrades to avoid security vulnerabilities and bugs.
+The managed apps are a set of curated components that can optionally be used in the [platform](#cloud-native-developer-platform) to enable diverse capabilities across the [developer environments](#developer-environment). As an example, in case the developers want to dynamically allocate DNS records for their services, they can leverage [external-dns](https://github.com/giantswarm/external-dns-app/). The managed apps are operated by us and we provide regular upgrades to avoid security vulnerabilities and bugs.
 
 ## Management cluster
 
@@ -37,15 +37,15 @@ A management cluster is a Kubernetes cluster that acts as a central management p
 
 ## Platform API
 
-Is the entrypoint of the [cloud-native developer platform](#cloud-native-developer-platform). Everything in the platform is exposed via the API, allowing the automation of processes and fostering standardization. The [Platform API](#link-to-platform-api-page) is a fully compliant Kubernetes API extended with some custom resources to enable a variety of use cases. [Know more here](#future-link-to-platform-api-intro-page).
+The Platform API is the entrypoint of Giant Swarm's [cloud-native developer platform](#cloud-native-developer-platform). Everything in the platform is exposed via the Platform API, allowing the automation of processes, including GitOps support, and fostering standardization. The Platform API is the Kubernetes API of the Management Cluster, extended with custom resources such as [`App`](#managed-apps] to enable a variety of use cases. [Learn more here](#future-link-to-platform-api-intro-page).
 
 ## Platform team
 
-The platform team is the person or team that is in charge of the operation of the [cloud-native developer platform](#cloud-native-developer-platform). They are responsible for the management of the [management cluster](#management-cluster) and its capabilities.
+The platform team is a team that is in charge of providing the [cloud-native developer platform](#cloud-native-developer-platform). With the help of Giant Swarms managed platform they compose, manage and customize the platform for the specific needs of the development teams within their company.
 
 ## Smart platform engineering
 
-Smart Platform Engineering refers to the design and development of intelligent platforms that help you to create the desired Developer Platform for your teams in a quick fashion. Instead of starting from scratch to build piece by piece an entire platform meanwhile you operate it 24/7, leverage in our knowledge, product and support to reach your goals in a decent amount of time.
+Smart Platform Engineering is the design and development of intelligent platforms that help create a developer platform for your teams. Instead of starting from scratch and building an entire platform piece by piece while running it 24/7, use our knowledge, products and support to achieve your goals faster.
 
 ## Workload cluster
 
