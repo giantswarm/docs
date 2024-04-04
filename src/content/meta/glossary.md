@@ -35,7 +35,7 @@ The managed apps are a set of curated diverse components that can be used in the
 
 ## Platform API
 
-Is the entrypoint of the [cloud-native developer platform](#cloud-native-developer-platform). Everything in the platform is exposed via the API, allowing the automation of processes and fostering standardization. The Platform API is a fully compliant Kubernetes API extended with some custom resources to enable a variety of use cases. [Know more here](#future-link-to-platform-api-intro-page).
+The Platform API is the entrypoint of Giant Swarm's [cloud-native developer platform](#cloud-native-developer-platform). Everything in the platform is exposed via the Platform API, allowing the automation of processes, including GitOps support, and fostering standardization. The Platform API is the Kubernetes API of the Management Cluster, extended with custom resources such as [`App`](#managed-apps] to enable a variety of use cases. [Learn more here](#future-link-to-platform-api-intro-page).
 
 ## Platform operator
 
