@@ -18,7 +18,7 @@ Custom Resource Definitions (CRDs) are extensions of the Kubernetes API that all
 
 ## Giant Swarm flavor
 
-The Giant Swarm platform offers additional capabilities on top of Cluster API that we consider as must-have for a complete production system.
+The Giant Swarm platform offers additional capabilities on top of Cluster API that we consider as must-have for a complete production system and those are not part of the upstream project, yet.
 
 We leverage these features of Cluster API:
 
@@ -30,11 +30,11 @@ We leverage these features of Cluster API:
 
 On top of that, we have some additional features that are not part of the Cluster API standard:
 
-- DNS management: we provide a DNS operator to create DNS assets for the clusters.
-- Provider credentials management: our implementation has the ability to configure credentials needed to talk to the provider API.
-- Encryption configuration: we have create an operator that deals with all the logic needed to create cryptographic assets and configure them properly making sure they are rotated and updated as needed.
-- Cluster API monitoring: we have a extended service that is able to monitor the cluster API specific resources.
-- Further, we have some other operators that are provider specific and helps to automate all parts of the cluster lifecycle like VPC provisioning, security groups, etc.
+- DNS management: we provide a DNS operator to manage DNS assets for the clusters dynamically.
+- Provider credentials management: we have automated the credentials management to operate the provider infrastructure in a secure way.
+- Encryption configuration: we have designed an operator that controls the cryptographic assets for workload clusters and configure them properly making sure they are rotated and updated as needed.
+- Cluster API monitoring: we monitor all the cluster API specific resources letting us know the status of the cluster creation and the health of the cluster.
+- Further, we have some other operators that are provider specific and helps to automate all parts of the cluster lifecycle, like VPC provisioning or security groups management, when upstream Cluster API does not provide it.
 
 ## Wrapping resources in apps
 
