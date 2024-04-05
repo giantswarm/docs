@@ -1,6 +1,6 @@
 ---
 title: Introduction
-description: Description of what Giant Swarm offers as a product and service. How do we work with our customers, our basic principle and main concepts of our product.
+description: Giant Swarm's product and service offering, how we work with customers and our core principles and concepts to build a platform with you.
 weight: 5
 last_review_date: 2024-03-18
 owner:
