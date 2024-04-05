@@ -1,6 +1,6 @@
 ---
 title: Migration to Cluster API
-description: An explanation of how the migration from our old vintage management clusters to Cluster API works.
+description: How the migration from our old vintage management and workload clusters to Cluster API works.
 weight: 20
 last_review_date: 2024-03-14
 owner:
@@ -12,7 +12,7 @@ user_questions:
 
 From the outset, Giant Swarm has utilized Kubernetes to build platforms. In the early years, everybody was still figuring out how to effectively manage Kubernetes lifecycle across a fleet of clusters. We built our own tooling, largely based on [operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/), which worked well for us and our customers. As the Kubernetes project and the community around it evolved, it became clear that many companies in the ecosystem were trying to solve the same fundamental challenges regarding cluster lifecycle management. With our extensive experience, we saw an opportunity to contribute to a broader solution. We pushed for a joint effort to build a standardized method for cluster lifecycle management. [Cluster API]({{< relref "/reference/fleet-management/introduction" >}}) is backed by the Kubernetes community and covers different providers like AWS, Azure, GCP, and others.
 
-This guide outlines the migration path from our vintage platform to the [Cluster API](https://cluster-api.sigs.k8s.io/) (CAPI) standard, ensuring a seamless transition for customers workload clusters from the traditional system to the modern CAPI framework. Within this document, you'll find a comprehensive overview of the migration procedure, including its prerequisites and strategic advice, all aimed at facilitating a smooth and successful transition.```
+This guide outlines the migration path from our vintage platform to the [Cluster API](https://cluster-api.sigs.k8s.io/) (CAPI) standard, ensuring a seamless transition for customer workload clusters from the previous system to the modern CAPI framework. Within this document, you'll find an overview of the migration procedure, including its prerequisites and strategic advice, all aimed at facilitating a smooth and successful transition.
 
 ## Pre-migration requirements
 
@@ -25,7 +25,7 @@ __Note:__ The `CAPI_MC_NAME` is the name of the management cluster (MC) where th
 
 ## Recommendations for a smooth migration
 
-We also recommend increasing the size of your "master" node instance type to 2x or 3x its normal size for the duration of the migration. (e.g. `mx.large` to `mx.4xlarge`). This ensures the API server can effectively handle the load during the migration since there might only be one node to handle the traffic at certain points throughout the process.
+We also recommend increasing the size of your "master" node instance type to 2x or 3x its normal size for the duration of the migration. (e.g. `m5.large` to `m5.4xlarge`). This ensures the API server can effectively handle the load during the migration since there might only be one node to handle the traffic at certain points throughout the process.
 
 ## The migration process
 
@@ -39,6 +39,6 @@ The migration process consists of several steps:
 
 ## Post-migration cleanup
 
-Our engineer will check that all resources and infrastructure are correctly migrated and that the new cluster is working as expected.
+Our engineers will check that all resources and infrastructure are correctly migrated and that the new cluster is working as expected.
 
 By following this process, you can ensure a smooth and efficient migration of your Kubernetes clusters to the Cluster API. If you encounter any issues during the migration process, our team is ready to assist you.
