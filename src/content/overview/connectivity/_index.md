@@ -1,6 +1,6 @@
 ---
 title: Connectivity
-description: An overview of the connectivity capabilities of the Giant Swarm platform.
+description: Public or private access to your workload applications through ingress. Secure connections between your distributed applications or microservices through a service mesh or API gateway.
 weight: 70
 last_review_date: 2024-03-18
 owner:
