@@ -1,7 +1,7 @@
 ---
 title: Prepare your provider account for VMware vSphere
-linkTitle: Prepare your account for VMware vSphere
-description: How to prepare your VMware vSphere account for starting to build your cloud-native developer platform.
+linkTitle: Prepare your vSphere account
+description: The actions need to be done to prepare your VMware installation for starting to build your cloud-native developer platform.
 weight: 10
 last_review_date: 2024-04-01
 owner:

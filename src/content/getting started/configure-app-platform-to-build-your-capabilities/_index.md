@@ -1,8 +1,9 @@
 ---
-title: Configure the app platform to build your capabilities
-description: Manual to configure the app platform to build your capabilities.
+title: Configure the app platform to build the platform capabilities
+linkTitle: Start with the app platform
+description: Deploy your first application with the app platform and learn how it works.
 weight: 50
-last_review_date: 2024-03-19
+last_review_date: 2024-04-05
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:

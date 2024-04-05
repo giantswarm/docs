@@ -1,8 +1,8 @@
 ---
-title: Observe the platform metrics and logs for my application
-description: A illustrated guide to understand how to observe the platform metrics and logs for your application.
+title: Observe how your app is performing
+description: Check your app metrics and logs with the platform built-in observability tools.
 weight: 70
-last_review_date: 2024-04-01
+last_review_date: 2024-04-05
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:

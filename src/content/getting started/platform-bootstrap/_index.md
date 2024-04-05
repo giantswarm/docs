@@ -1,8 +1,8 @@
 ---
 title: Platform bootstrap
-description: Brief description of how the platform bootstrap process works to set up a new installation.
+description: Comprehend the different phases of the platform bootstrap process, how the management cluster is built and how the configuration is applied.
 weight: 20
-last_review_date: 2024-04-01
+last_review_date: 2024-04-05
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:
