@@ -1,6 +1,6 @@
 ---
 title: Continuous delivery
-description: An brief introduction how do Giant Swarm uses Flux CD to provide continuous delivery capabilities.
+description: Continuous delivery and GitOps capabilities for deploying and upgrading your applications and clusters efficiently.
 weight: 50
 last_review_date: 2024-03-18
 owner:
