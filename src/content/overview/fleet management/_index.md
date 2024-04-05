@@ -1,6 +1,6 @@
 ---
 title: Fleet management
-description: An overview of the fleet management capabilities of the Giant Swarm platform.
+description: Supported cloud providers and management of clusters on the Giant Swarm platform.
 weight: 40
 last_review_date: 2024-03-18
 owner:
