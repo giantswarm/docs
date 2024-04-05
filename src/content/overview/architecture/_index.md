@@ -1,6 +1,6 @@
 ---
 title: Architecture
-description: High overview about how our platform is built and how you can interact with it.
+description: Technical overview of the Giant Swarm platform components and how a customer's developer platform can use them successfully.
 weight: 20
 last_review_date: 2024-03-18
 owner:
