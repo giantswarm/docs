@@ -1,6 +1,6 @@
 ---
 title: Developer portal
-description: An introduction how Giant Swarm uses Backstage to provide a developer portal.
+description: The central Giant Swarm self-service portal for your platform engineers and developers.
 weight: 30
 last_review_date: 2024-03-18
 owner:
