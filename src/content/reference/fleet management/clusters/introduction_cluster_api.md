@@ -1,6 +1,6 @@
 ---
 title: Introduction to Cluster API
-description: A throughout explanation of how our platform implements Cluster API standard.
+description: How the Giant Swarm platform leverages the Cluster API standard.
 weight: 100
 last_review_date: 2024-03-07
 owner:
@@ -10,21 +10,23 @@ user_questions:
   - What other services are needed in a platform to complete Cluster API?
 ---
 
-The [Cluster API project](https://cluster-api.sigs.k8s.io/) is indeed a Kubernetes sub-project that presents an innovative approach to provisioning, configuring, and managing clusters. It employs a declarative model, which means that users can define the desired state of their clusters, and the system will automatically work to achieve that state. This powerful tool offers a standard mechanism to handle Kubernetes clusters, simplifying operations and increasing efficiency.
+The [Cluster API project](https://cluster-api.sigs.k8s.io/) is a Kubernetes sub-project that presents an innovative approach to provisioning, configuring, and managing clusters. It employs a declarative model, which means that users can define the desired state of their clusters, and the system will automatically work to achieve that state. This powerful tool offers a standard mechanism to handle Kubernetes clusters, simplifying operations and increasing efficiency.
 
 Cluster API leverages the concept of operators and Custom Resource Definitions (CRDs) to manage Kubernetes clusters. An operator is essentially a controller that responds to cluster lifecycle events, allowing for automated creation, configuration, and management of clusters.
 
-Custom Resource Definitions (CRDs) are extensions of the Kubernetes API that allow the creation of new resources - in this case, the cluster resources. When a user defines a cluster configuration using these custom resources, the Cluster API operator reacts to this declarative statement and works to achieve the desired state of the cluster. This includes tasks such as provisioning infrastructure, bootstrapping nodes, and applying configurations.
+Custom Resource Definitions (CRDs) are extensions of the Kubernetes API that allow the creation of new resources – in this case, the cluster resources. When a user defines such cluster resources, the Cluster API operator reacts to this declarative statement and works to achieve the desired state of the cluster. This includes tasks such as provisioning infrastructure, bootstrapping nodes, and applying configuration.
 
-## Giant Swarm flavour
+## Giant Swarm flavor
 
-In our platform we offer the Cluster API features with some additional sugar on top to complete some capabilities we consider as must-have for a complete production system. Next we list the features coming with our Cluster API implementation:
+The Giant Swarm platform offers additional capabilities on top of Cluster API that we consider as must-have for a complete production system.
 
-- Certificate management: Cluster API does provide a way to manage certificates that are needed for all components in a Kubernetes cluster like kubelet or etcd.
-- Node bootstrap: the implementation generates a cloud-init file that is used to bootstrap the nodes in the cluster.
-- Infrastructure provisioning: the operator talks to the provider specfic API to create the infrastructure needed for the cluster.
-- Cluster autoscaling: by default Cluster API integrates with the [cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler) project to allow clusters to grow or shrinks based on different policies.
-- Health checks: the operator is able to check the health of the machines and take actions to avoid manual intervention.
+We leverage these features of Cluster API:
+
+- Certificate management: Cluster API manages important certificates in a Kubernetes cluster, like for kubelet or etcd.
+- Node bootstrap: the operator correctly bootstraps nodes in the cluster from the defined configuration.
+- Infrastructure provisioning: the operator talks to the provider-specfic API (e.g. AWS API) to create the infrastructure needed for the cluster.
+- Cluster autoscaling: Cluster API integrates with the [cluster-autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler) project to allow clusters to grow or shrink based on different policies.
+- Health checks: the operator is able to check the health of the nodes and take actions to avoid manual intervention.
 
 On top of that, we have some additional features that are not part of the Cluster API standard:
 
@@ -36,8 +38,8 @@ On top of that, we have some additional features that are not part of the Cluste
 
 ## Wrapping resources in apps
 
-Once you want to create a cluster, you will need to define a set of resources that will be used to create the cluster. Obviously, you can create these resources manually exploring every single specification field that is possible to use, but we offer a more convenient way to do that. We have a set of apps that are ready to be used to provision a cluster correctly.
+For creating a cluster using Cluster API, you would need to define a set of resources that will be used to create the cluster. For example: `Cluster`, `AWSCluster`, `KubeadmControlPlane`, `MachinePool`, `AWSMachinePool`, etc. as standardized by the Cluster API custom resource definitions. You _could_ create these resources manually, exploring every single specification field that is possible to use, but we offer a more convenient way to do that: we have a set of apps that are ready to be used to provision a cluster correctly. For those, we provide proper release management, documentation and testing, such that you can trust that minor upgrades go smoothly, or breaking changes are described and happening only in major releases.
 
 An [`App` is a custom resource](https://docs.giantswarm.io/vintage/getting-started/app-platform/app-bundle/) which helps us to group all needed resources allowing exposure to the configuration in a way that can be validated, defaulted and documented properly.
 
-Learn more by reading how to [create your first workload cluster](https://docs.giantswarm.io/vintage/getting-started/create-workload-cluster/) or check the cluster app definitions we offer in our [catalog](https://docs.giantswarm.io/vintage/use-the-api/management-api/cluster-apps/)
+Learn more by reading how to [create your first workload cluster](https://docs.giantswarm.io/vintage/getting-started/create-workload-cluster/) or check the cluster apps we offer in our [catalog](https://docs.giantswarm.io/vintage/use-the-api/management-api/cluster-apps/).
