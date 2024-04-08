@@ -139,7 +139,7 @@ For non-interactive patching:
 
 ```nohighlight
 kubectl patch g8scontrolplanes.infrastructure.giantswarm.io <NAME> \
-  --type merge -p '{"spec": {"replicas": 3}}
+  --type merge -p '{"spec": {"replicas": 3}}'
 ```
 
 Once that is done, the operators will reconcile the desired state and create the
