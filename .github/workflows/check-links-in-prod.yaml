@@ -73,23 +73,23 @@ jobs:
       - name: Report errors
         run: |
           if [[ $failed1 == "true" ]]; then
-            echo "There has been some errors in overview checks"
+            echo "There has been some errors in overview checks, please check the step."
           fi
           if [[ $failed2 == "true" ]]; then
-            echo "There has been some errors in getting started checks"
+            echo "There has been some errors in getting started checks, please check the step."
           fi
           if [[ $failed3 == "true" ]]; then
-            echo "There has been some errors in tutorials checks"
+            echo "There has been some errors in tutorials checks, please check the step."
           fi
           if [[ $failed4 == "true" ]]; then
-            echo "There has been some errors in reference checks"
+            echo "There has been some errors in reference checks, please check the step."
           fi
           if [[ $failed5 == "true" ]]; then
-            echo "There has been some errors in support checks"
+            echo "There has been some errors in support checks, please check the step."
           fi
           if [[ $failed6 "true" ]]; then
-            echo "There has been some errors in changelogs checks"
+            echo "There has been some errors in changelogs checks, please check the step."
           fi
-          if [[ $failed1 == "true" ]] || [[ $failed1 }}" == "true" ]] || [[ $failed1 == "true" ]] || [[ $failed1 == "true" ]] || [[ $failed1 == "true" ]] || [[ $failed1 "true" ]]; then
+          if [[ $failed1 == "true" ]] || [[ $failed2  == "true" ]] || [[ $failed3 == "true" ]] || [[ $failed4 == "true" ]] || [[ $failed5 == "true" ]] || [[ $failed6 "true" ]]; then
             exit 1
           fi
