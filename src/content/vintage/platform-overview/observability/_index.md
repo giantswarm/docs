@@ -17,7 +17,7 @@ user_questions:
   - What app do you recommend for monitoring?
   - What app do you recommend for logging?
   - What app do you recommend for tracing?
-last_review_date: 2024-02-28
+last_review_date: 2024-03-21
 ---
 
 Observability is based on four main data sources: __logs__, __metrics__, __traces__ and __profiles__. To cover these needs, Giant Swarm provides its customers with a fully managed observability platform supported by 24//7 monitoring and alerting. The tools included in the observabily platform are listed below.

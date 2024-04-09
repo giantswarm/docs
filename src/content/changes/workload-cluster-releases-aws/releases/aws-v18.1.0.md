@@ -6,7 +6,7 @@ changes_categories:
 - Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
-  url: https://github.com/giantswarm/releases/tree/master/aws/v18.1.0
+  url: https://github.com/giantswarm/releases/tree/master/aws/archived/v18.1.0
   version: 18.1.0
   version_tag: v18.1.0
 date: '2022-11-15T13:27:55'
