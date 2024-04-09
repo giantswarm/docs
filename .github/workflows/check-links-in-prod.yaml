@@ -18,7 +18,7 @@ jobs:
             ghcr.io/linkchecker/linkchecker:latest \
             https://docs.giantswarm.io/overview/ \
             --check-extern \
-            -t 1 -r 2 || echo "::set-output name=failed::true"
+            -t 1 -r 2 || echo "failed=true" >> "$GITHUB_OUTPUT"
         continue-on-error: true
 
       - name: check-links-in-getting-started-pages
@@ -27,7 +27,7 @@ jobs:
             ghcr.io/linkchecker/linkchecker:latest \
             https://docs.giantswarm.io/getting-started/ \
             --check-extern \
-            -t 1 -r 2 || echo "::set-output name=failed::true"
+            -t 1 -r 2 || echo "failed=true" >> "$GITHUB_OUTPUT"
         continue-on-error: true
 
       - name: check-links-in-tutorials-pages
@@ -36,7 +36,7 @@ jobs:
             ghcr.io/linkchecker/linkchecker:latest \
             https://docs.giantswarm.io/tutorials/ \
             --check-extern \
-            -t 1 -r 2 || echo "::set-output name=failed::true"
+            -t 1 -r 2 || echo "failed=true" >> "$GITHUB_OUTPUT"
         continue-on-error: true
 
       - name: check-links-in-reference-pages
@@ -45,7 +45,7 @@ jobs:
             ghcr.io/linkchecker/linkchecker:latest \
             https://docs.giantswarm.io/reference/ \
             --check-extern \
-            -t 1 -r 2 || echo "::set-output name=failed::true"
+            -t 1 -r 2 || echo "failed=true" >> "$GITHUB_OUTPUT"
         continue-on-error: true
 
       - name: check-links-in-support-pages
@@ -54,7 +54,7 @@ jobs:
             ghcr.io/linkchecker/linkchecker:latest \
             https://docs.giantswarm.io/support/ \
             --check-extern \
-            -t 1 -r 2 || echo "::set-output name=failed::true"
+            -t 1 -r 2 || echo "failed=true" >> "$GITHUB_OUTPUT"
         continue-on-error: true
 
       - name: check-links-in-changelogs
@@ -67,7 +67,7 @@ jobs:
             --ignore-url="^https://.*example\.com/.*" \
             --ignore-url="^https://my-org\.github\.com/.*" \
             --ignore-url="^https://github\.com/giantswarm/giantswarm/.*" \
-            --ignore-url=".*gigantic\.io.*" || echo "::set-output name=failed::true"
+            --ignore-url=".*gigantic\.io.*" || echo "failed=true" >> "$GITHUB_OUTPUT"
         continue-on-error: true
 
       - name: Report errors
@@ -90,6 +90,6 @@ jobs:
           if [[ "${{ steps.check-links-in-changelogs.outputs.failed }}" == "true" ]]; then
             echo "There has been some errors in changelogs checks"
           fi
-          if [[ "${{ steps.check-links-in-overview-pages.outputs.failed }}" == "true" ]] || [[ "${{ steps.check-links-in-getting-started-pages.outputs.failed }}" == "true" ]] || [[ "${{ steps.check-links-in-tutorials-pages.outputs.failed }}" == "true" || [[ "${{ steps.check-links-in-reference-pages.outputs.failed }}" == "true" || [[ "${{ steps.check-links-in-support-pages.outputs.failed }}" == "true" ]] || [[ "${{ steps.check-links-in-changelogs.outputs.failed }}" == "true" ]]; then
+          if [[ "${{ steps.check-links-in-overview-pages.outputs.failed }}" == "true" ]] || [[ "${{ steps.check-links-in-getting-started-pages.outputs.failed }}" == "true" ]] || [[ "${{ steps.check-links-in-tutorials-pages.outputs.failed }}" == "true" ]] || [[ "${{ steps.check-links-in-reference-pages.outputs.failed }}" == "true" ]] || [[ "${{ steps.check-links-in-support-pages.outputs.failed }}" == "true" ]] || [[ "${{ steps.check-links-in-changelogs.outputs.failed }}" == "true" ]]; then
             exit 1
           fi
