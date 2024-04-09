@@ -1,8 +1,8 @@
 ---
 title: Getting started
-description: First steps new customers need to perform in order to have their Cloud Native Developer Platform ready to be used by their teams.
+description: Start building your cloud-native developer platform based on the Giant Swarm platform.
 weight: 80
-last_review_date: 2024-03-07
+last_review_date: 2024-03-18
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 ---
