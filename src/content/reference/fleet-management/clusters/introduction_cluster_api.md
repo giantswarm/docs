@@ -34,7 +34,7 @@ On top of that, we have some additional features that are not part of the Cluste
 - Provider credentials management: we have automated the credentials management to operate the provider infrastructure in a secure way.
 - Encryption configuration: we have designed an operator that controls the cryptographic assets for workload clusters and configure them properly making sure they are rotated and updated as needed.
 - Cluster API monitoring: we monitor all the cluster API specific resources letting us know the status of the cluster creation and the health of the cluster.
-- Further, we have some other operators that are provider specific and helps to automate all parts of the cluster lifecycle, like VPC provisioning or security groups management, when upstream Cluster API does not provide it.
+- Further, we have some other operators that are provider specific and helps to automate all parts of the cluster lifecycle, like VPC provisioning or security group management, when upstream Cluster API does not provide it.
 
 ## Wrapping resources in apps
 
