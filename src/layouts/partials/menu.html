@@ -63,6 +63,7 @@
             {{ range .Site.Menus.principal }}
                 {{ $pageForItem1 := $site.GetPage .URL }}
                 {{ if .HasChildren }}
+                children
                     <li class="has-children">
                         <div class="acnav__label{{ if or ($currentPage.HasMenuCurrent "main" .) (eq $pageForItem1.Name $currentPage.Name) }} active{{ end }}"><a href="{{ .URL }}" class="{{ if $currentPage.IsMenuCurrent "main" . }}current{{ end }}">{{ .Name }}</a></div>
                         {{ if or ($currentPage.IsDescendant $pageForItem1) (eq $pageForItem1.Name $currentPage.Name) }}
@@ -102,6 +103,7 @@
                         {{ end }}
                     </li>
                 {{ else }}
+                no children
                     <li><a class="acnav__link{{ if $currentPage.IsMenuCurrent "main" . }} current{{ end }}" href="{{ .URL }}">{{ .Name }}</a></li>
                 {{ end }}
             {{ end }}
