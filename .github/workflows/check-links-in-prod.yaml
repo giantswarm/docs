@@ -12,47 +12,52 @@ jobs:
       - name: Pull images
         run: docker pull ghcr.io/linkchecker/linkchecker:latest
 
-      - name: Check links in overview pages
+      - name: check-links-in-overview-pages
         run: |
           docker run --rm --name linkchecker \
             ghcr.io/linkchecker/linkchecker:latest \
             https://docs.giantswarm.io/overview/ \
             --check-extern \
-            -t 1 -r 2
+            -t 1 -r 2 || echo "::set-output name=failed::true"
+        continue-on-error: true
 
-      - name: Check links in getting-started pages
+      - name: check-links-in-getting-started-pages
         run: |
           docker run --rm --name linkchecker \
             ghcr.io/linkchecker/linkchecker:latest \
             https://docs.giantswarm.io/getting-started/ \
             --check-extern \
-            -t 1 -r 2
+            -t 1 -r 2 || echo "::set-output name=failed::true"
+        continue-on-error: true
 
-      - name: Check links in tutorials pages
+      - name: check-links-in-tutorials-pages
         run: |
           docker run --rm --name linkchecker \
             ghcr.io/linkchecker/linkchecker:latest \
             https://docs.giantswarm.io/tutorials/ \
             --check-extern \
-            -t 1 -r 2
+            -t 1 -r 2 || echo "::set-output name=failed::true"
+        continue-on-error: true
 
-      - name: Check links in reference pages
+      - name: check-links-in-reference-pages
         run: |
           docker run --rm --name linkchecker \
             ghcr.io/linkchecker/linkchecker:latest \
             https://docs.giantswarm.io/reference/ \
             --check-extern \
-            -t 1 -r 2
+            -t 1 -r 2 || echo "::set-output name=failed::true"
+        continue-on-error: true
 
-      - name: Check links in support pages
+      - name: check-links-in-support-pages
         run: |
           docker run --rm --name linkchecker \
             ghcr.io/linkchecker/linkchecker:latest \
             https://docs.giantswarm.io/support/ \
             --check-extern \
-            -t 1 -r 2
+            -t 1 -r 2 || echo "::set-output name=failed::true"
+        continue-on-error: true
 
-      - name: Check links in changelogs
+      - name: check-links-in-changelogs
         run: |
           docker run --rm --name linkchecker \
             ghcr.io/linkchecker/linkchecker:latest \
@@ -62,4 +67,29 @@ jobs:
             --ignore-url="^https://.*example\.com/.*" \
             --ignore-url="^https://my-org\.github\.com/.*" \
             --ignore-url="^https://github\.com/giantswarm/giantswarm/.*" \
-            --ignore-url=".*gigantic\.io.*"
+            --ignore-url=".*gigantic\.io.*" || echo "::set-output name=failed::true"
+        continue-on-error: true
+
+      - name: Report errors
+        run: |
+          if [[ "${{ steps.check-links-in-overview-pages.outputs.failed }}" == "true" ]]; then
+            echo "There has been some errors in overview checks"
+          fi
+          if [[ "${{ steps.check-links-in-getting-started-pages.outputs.failed }}" == "true" ]]; then
+            echo "There has been some errors in getting started checks"
+          fi
+          if [[ "${{ steps.check-links-in-tutorials-pages.outputs.failed }}" == "true" ]]; then
+            echo "There has been some errors in tutorials checks"
+          fi
+          if [[ "${{ steps.check-links-in-reference-pages.outputs.failed }}" == "true" ]]; then
+            echo "There has been some errors in reference checks"
+          fi
+          if [[ "${{ steps.check-links-in-support-pages.outputs.failed }}" == "true" ]]; then
+            echo "There has been some errors in support checks"
+          fi
+          if [[ "${{ steps.check-links-in-changelogs.outputs.failed }}" == "true" ]]; then
+            echo "There has been some errors in changelogs checks"
+          fi
+          if [[ "${{ steps.check-links-in-overview-pages.outputs.failed }}" == "true" ]] || [[ "${{ steps.check-links-in-getting-started-pages.outputs.failed }}" == "true" ]] || [[ "${{ steps.check-links-in-tutorials-pages.outputs.failed }}" == "true" || [[ "${{ steps.check-links-in-reference-pages.outputs.failed }}" == "true" || [[ "${{ steps.check-links-in-support-pages.outputs.failed }}" == "true" ]] || [[ "${{ steps.check-links-in-changelogs.outputs.failed }}" == "true" ]]; then
+            exit 1
+          fi
