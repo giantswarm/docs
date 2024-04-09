@@ -1,6 +1,6 @@
 ---
 title: Migration to Cluster API
-description: How the migration from our old AWS vintage management and workload clusters to Cluster API works.
+description: How the migration from our old AWS vintage management clusters to Cluster API works.
 weight: 20
 last_review_date: 2024-03-14
 owner:
@@ -20,7 +20,7 @@ Before you begin the migration:
 
 1. Your cluster should be at least on a AWS vintage version [`20.0.0`]({{< relref "/changes/workload-cluster-releases-aws/releases/aws-v20.0.0/" >}}).
 2. The AWS IAM role, with the specific name `giantswarm-{CAPI_MC_NAME}-capa-controller`, must be created for the workload cluster's (WC) AWS account before starting the migration. [For more information please refer to this guide]({{< relref "/vintage/getting-started/cloud-provider-accounts/cluster-api/aws/#overview" >}}).
-3. In case of using GitOps, Flux must be turned off during the migration since some of the custom resources will be modified or removed by the migration scripts.
+3. In case of using GitOps, Flux must be turned off during the migration since some of the cluster custom resources will be modified or removed by the migration scripts.
 
 __Note:__ The `CAPI_MC_NAME` is the name of the management cluster (MC) where the Cluster API controllers are installed.
 
@@ -36,21 +36,17 @@ The migration process consists of several steps:
 1. __Initialization:__ Necessary Kubernetes access credentials and AWS credentials are retrieved. The Vault client is created to interact with the Vault instance containing all security assets of the cluster.
 2. __Preparation:__ Migration of secrets to the CAPI management cluster, including CA certs, encryption provider secrets, and service account secrets. Migration scripts are created as secrets in the CAPI management cluster. Additionally, AWS credentials for the cluster are migrated by creating an `AWSClusterRoleIdentity` in the CAPI management cluster. Certain operations are performed to avoid conflicts during migration, such as disabling machine health check on the vintage cluster resources, scaling down the app operator for the migrated workload cluster, or cleaning up certain charts.
 3. __Stopping vintage cluster resource reconciliation:__ To avoid conflicts, vintage reconciliation is stopped by removing all `aws-operator` labels from the vintage cluster resource.
-4. __Cluster API cluster provisioning:__ Generation and application of CAPI cluster templates. A separate routine runs in the background to ensure the old load balancer remains active. The tool waits until at least one CAPI control-plane node joins the cluster and is in a Ready state. Various operations are performed to ensure a smooth transition, such as stopping control-plane components on the vintage cluster, cordoning all vintage control-planes, and deleting certain pods to speed up installation and updates.
+4. __Cluster API cluster provisioning:__ Generation and application of CAPI cluster templates. A separate routine runs in the background to ensure the old load balancer remains active. The tool waits until at least one CAPI control-plane node joins the cluster and is in a `Ready` state. Various operations are performed to ensure a smooth transition, such as stopping control-plane components on the vintage cluster, cordoning all vintage control-planes, and deleting certain pods to speed up installation and updates.
 5. __Cleaning the vintage cluster:__ All vintage control-plane nodes are drained, vintage auto scaling groups are deleted, and all worker nodes for each node pool are drained and deleted.
 
 __Note:__ The migration process is automated and executed by our engineers. The process is monitored and controlled by a set of scripts and tools to ensure a smooth transition. We don't expect any downtime for the workload clusters during the migration process.
 
-## Migration facts
-
-- The DNS setup will change for the workload clusters. The new management cluster will have a new host zone allocated in AWS. In the vintage setup, the host zone contained the workload cluster name meanwhile in the CAPI setup the DNS structure will be more flexible not containing the workload cluster name. Both the old and new host zones will be available for a certain period to ensure a smooth transition.
-
 ## Post-migration tasks
 
-Our engineers will check that all resources and infrastructure are correctly migrated and that the new cluster is working as expected.
+Our engineers will check that all resources and infrastructure are correctly migrated and that the new cluster is working as expected. There are some reminding tasks needed to be done by the customer:
 
-In case of using GitOps or any other tool pushing the state to the management cluster, the tool should be reconfigured to use the new customer resources used by Cluster API. In order to know which resources need to be updated, created or removed please run `kubectl gs template cluster --provider capa` and compare the output with the current resources in the management cluster.
+- The DNS setup changes for the workload clusters. The new management cluster has a new host zone allocated in AWS. In the vintage setup, the host zone contained the workload cluster name meanwhile in the CAPI setup the DNS structure is more flexible not containing the workload cluster name. Both the old and new host zones will be available for a certain period to ensure a smooth transition, but customers should migrate the DNS records to the new host zone as soon as possible in case they are using cluster wildcard DNS records.
 
-Our customers will need to migrate the DNS records to the new host zone created for the new management cluster. This is a manual step that needs to be performed by the customer engineers.
+- In case of using GitOps or any other tool pushing the state to the management cluster, the tool should be reconfigured to use the new customer resources used by Cluster API. In order to know which resources need to be updated, created or removed please run `kubectl gs template cluster --provider capa` and compare the output with the current resources in the management cluster. Our account engineers will help with this process providing the exact resources that need to be updated.
 
-Some customers have been using [k8s-initiator-app]() to configure some aspects of the cluster API. In Cluster API all the features enabled by the app are now supported natively by the platform. The app should be removed and moved to the new syntax. Our account engineers will help with this process.
+- Some customers have been using [k8s-initiator-app](https://github.com/giantswarm/k8s-initiator-app/) to configure some aspects of the workload cluster APIs. In the new Cluster API implementation all the features enabled by the app are now supported natively by the platform. The app should be removed and moved to the new syntax. Our account engineers will help with this process.
