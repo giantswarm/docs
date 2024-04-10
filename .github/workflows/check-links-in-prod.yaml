@@ -17,6 +17,7 @@ jobs:
       - name: check-links-in-overview-pages
         run: |
           docker run --rm --name linkchecker \
+            --volume ${PWD}:/workdir --workdir /workdir \
             ghcr.io/linkchecker/linkchecker:latest \
             https://docs.giantswarm.io/overview/ \
             --check-extern \
@@ -30,6 +31,7 @@ jobs:
       - name: check-links-in-getting-started-pages
         run: |
           docker run --rm --name linkchecker \
+            --volume ${PWD}:/workdir --workdir /workdir \
             ghcr.io/linkchecker/linkchecker:latest \
             https://docs.giantswarm.io/getting-started/ \
             --check-extern \
@@ -43,6 +45,7 @@ jobs:
       - name: check-links-in-tutorials-pages
         run: |
           docker run --rm --name linkchecker \
+            --volume ${PWD}:/workdir --workdir /workdir \
             ghcr.io/linkchecker/linkchecker:latest \
             https://docs.giantswarm.io/tutorials/ \
             --check-extern \
@@ -56,6 +59,7 @@ jobs:
       - name: check-links-in-reference-pages
         run: |
           docker run --rm --name linkchecker \
+            --volume ${PWD}:/workdir --workdir /workdir \
             ghcr.io/linkchecker/linkchecker:latest \
             https://docs.giantswarm.io/reference/ \
             --check-extern \
@@ -69,6 +73,7 @@ jobs:
       - name: check-links-in-support-pages
         run: |
           docker run --rm --name linkchecker \
+            --volume ${PWD}:/workdir --workdir /workdir \
             ghcr.io/linkchecker/linkchecker:latest \
             https://docs.giantswarm.io/support/ \
             --check-extern \
@@ -82,6 +87,7 @@ jobs:
       - name: check-links-in-changelogs
         run: |
           docker run --rm --name linkchecker \
+            --volume ${PWD}:/workdir --workdir /workdir \
             ghcr.io/linkchecker/linkchecker:latest \
             https://docs.giantswarm.io/changes/ \
             --threads 1 \
