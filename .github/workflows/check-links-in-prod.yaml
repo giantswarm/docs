@@ -102,6 +102,11 @@ jobs:
             || echo "failed6=true" >> "$GITHUB_ENV"
         continue-on-error: true
 
+      - name: Debugging files
+        run: |
+          pwd
+          ls -la
+      
       - name: Store reports as artifacts
         uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4.3.2
         with:
