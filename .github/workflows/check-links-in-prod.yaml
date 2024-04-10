@@ -13,11 +13,16 @@ jobs:
     steps:
       - name: Pull image
         run: docker pull ghcr.io/linkchecker/linkchecker:latest
+      
+      - name: Create output folder
+        run: |
+          mkdir -p output
+          chmod 777 output
 
       - name: check-links-in-overview-pages
         run: |
           docker run --rm --name linkchecker \
-            --volume ${PWD}:/workdir --workdir /workdir \
+            --volume ${PWD}/output:/workdir --workdir /workdir \
             ghcr.io/linkchecker/linkchecker:latest \
             https://docs.giantswarm.io/overview/ \
             --check-extern \
@@ -31,7 +36,7 @@ jobs:
       - name: check-links-in-getting-started-pages
         run: |
           docker run --rm --name linkchecker \
-            --volume ${PWD}:/workdir --workdir /workdir \
+            --volume ${PWD}/output:/workdir --workdir /workdir \
             ghcr.io/linkchecker/linkchecker:latest \
             https://docs.giantswarm.io/getting-started/ \
             --check-extern \
@@ -45,7 +50,7 @@ jobs:
       - name: check-links-in-tutorials-pages
         run: |
           docker run --rm --name linkchecker \
-            --volume ${PWD}:/workdir --workdir /workdir \
+            --volume ${PWD}/output:/workdir --workdir /workdir \
             ghcr.io/linkchecker/linkchecker:latest \
             https://docs.giantswarm.io/tutorials/ \
             --check-extern \
@@ -59,7 +64,7 @@ jobs:
       - name: check-links-in-reference-pages
         run: |
           docker run --rm --name linkchecker \
-            --volume ${PWD}:/workdir --workdir /workdir \
+            --volume ${PWD}/output:/workdir --workdir /workdir \
             ghcr.io/linkchecker/linkchecker:latest \
             https://docs.giantswarm.io/reference/ \
             --check-extern \
@@ -73,7 +78,7 @@ jobs:
       - name: check-links-in-support-pages
         run: |
           docker run --rm --name linkchecker \
-            --volume ${PWD}:/workdir --workdir /workdir \
+            --volume ${PWD}/output:/workdir --workdir /workdir \
             ghcr.io/linkchecker/linkchecker:latest \
             https://docs.giantswarm.io/support/ \
             --check-extern \
@@ -87,7 +92,7 @@ jobs:
       - name: check-links-in-changelogs
         run: |
           docker run --rm --name linkchecker \
-            --volume ${PWD}:/workdir --workdir /workdir \
+            --volume ${PWD}/output:/workdir --workdir /workdir \
             ghcr.io/linkchecker/linkchecker:latest \
             https://docs.giantswarm.io/changes/ \
             --threads 1 \
@@ -105,13 +110,13 @@ jobs:
       - name: Debugging files
         run: |
           pwd
-          ls -la
+          ls -la ./output
       
       - name: Store reports as artifacts
         uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4.3.2
         with:
           name: link-check-reports
-          path: "."
+          path: ./output
           if-no-files-found: warn
           retention-days: 14
       
