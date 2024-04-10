@@ -3,7 +3,9 @@
 name: Check links
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: {}
+  schedule:
+    - cron: '39 0 20 * *' # every 20th of the month at 00:39
 
 jobs:
   check-links:
