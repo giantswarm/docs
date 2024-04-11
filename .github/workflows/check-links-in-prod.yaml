@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Pull image
         run: docker pull ghcr.io/linkchecker/linkchecker:latest
-      
+
       - name: Create output folder
         run: |
           mkdir -p output
@@ -106,7 +106,7 @@ jobs:
             --ignore-url=".*gigantic\.io.*" \
             || echo "failed6=true" >> "$GITHUB_ENV"
         continue-on-error: true
-      
+
       - name: Store reports as artifacts
         uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4.3.2
         with:
@@ -114,7 +114,7 @@ jobs:
           path: ./output
           if-no-files-found: warn
           retention-days: 14
-      
+
       - name: Report errors
         run: |
           if [[ $failed1 == "true" ]]; then
@@ -137,7 +137,7 @@ jobs:
             echo "There has been some errors in support checks, please check the step."
             failed=true
           fi
-          if [[ $failed6 "true" ]]; then
+          if [[ $failed6 == "true" ]]; then
             echo "There has been some errors in changelogs checks, please check the step."
             failed=true
           fi
