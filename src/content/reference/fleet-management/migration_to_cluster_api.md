@@ -18,8 +18,8 @@ This guide outlines the migration path from our AWS vintage platform to the [Clu
 
 Before you begin the migration:
 
-1. Your cluster should be at least on a AWS vintage version [`20.0.0`]({{< relref "/changes/workload-cluster-releases-aws/releases/aws-v20.0.0/" >}}).
-2. The AWS IAM role, with the specific name `giantswarm-{CAPI_MC_NAME}-capa-controller`, must be created for the workload cluster's (WC) AWS account before starting the migration. [For more information please refer to this guide]({{< relref "/vintage/getting-started/cloud-provider-accounts/cluster-api/aws/#overview" >}}).
+1. Your cluster should be at least on a AWS vintage version [`20.0.0`](https://docs.giantswarm.io/changes/workload-cluster-releases-aws/releases/aws-v20.0.0/).
+2. The AWS IAM role, with the specific name `giantswarm-{CAPI_MC_NAME}-capa-controller`, must be created for the workload cluster's (WC) AWS account before starting the migration. [For more information please refer to this guide]({{< relref "/vintage/getting-started/cloud-provider-accounts/cluster-api/aws/" >}}).
 3. In case of using GitOps, Flux must be turned off during the migration since some of the cluster custom resources will be modified or removed by the migration scripts.
 
 __Note:__ The `CAPI_MC_NAME` is the name of the management cluster (MC) where the Cluster API controllers are installed.
