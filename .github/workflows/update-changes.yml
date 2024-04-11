@@ -1,4 +1,4 @@
-# This workflow, when done, is supposed to automatically update all
+# This workflow, when done, is supposed to update automatically
 # generated content in these sections:
 # - Changes and releases
 # - CRDs (Management API)
@@ -9,8 +9,8 @@ name: Update generated content
 # Trigger by cronjob
 on:
   schedule:
-    # Every hour from 7:13 to 18:13 on Monday to Friday
-    - cron: "13 7-18 * * MON-FRI"
+    # It runs at 7:00 every weekday
+    - cron: "00 7 * * MON-FRI"
   workflow_dispatch: {} # Allow manual triggering
 
 jobs:
@@ -45,6 +45,8 @@ jobs:
         with:
           title: Semi-automatic update of generated content
           branch: "automatic-update-of-generated-content"
+          assignees: @taylorbot
+          reviewers: @pipo02mix
           body: |
             This PR has been created automatically by the 'Update generated content' Github workflow
             to keep
@@ -56,7 +58,5 @@ jobs:
 
             up-to-date.
 
-            If you see relevant additions in the 'Files' tab, feel free to **Approve** this PR.
-
-            If not, leave the PR open. It will be updated periodically as new entries arrive in the
-            Changes and releases section or as CRD page sections are updated.
+            This PR is opened every Monday morning and merged on Friday automatically 
+            if it has not been manually merged.
