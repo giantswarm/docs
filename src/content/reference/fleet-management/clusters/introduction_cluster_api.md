@@ -1,6 +1,6 @@
 ---
 title: Introduction to Cluster API
-description: How the Giant Swarm platform leverages the Cluster API standard.
+description: How the Giant Swarm platform leverages the Cluster API standard for managing Kubernetes clusters across infrastructure providers.
 weight: 100
 last_review_date: 2024-03-07
 owner:
@@ -18,7 +18,7 @@ Custom Resource Definitions (CRDs) are extensions of the Kubernetes API that all
 
 ## Giant Swarm flavor
 
-The Giant Swarm platform offers additional capabilities on top of Cluster API that we consider as must-have for a complete production system and those are not part of the upstream project, yet.
+The Giant Swarm platform offers additional capabilities on top of Cluster API that we consider as must-have for a complete production system, but are not part of the upstream project, yet.
 
 We leverage these features of Cluster API:
 
@@ -34,7 +34,7 @@ On top of that, we have some additional features that are not part of the Cluste
 - Provider credentials management: we have automated the credentials management to operate the provider infrastructure in a secure way.
 - Encryption configuration: we have designed an operator that controls the cryptographic assets for workload clusters and configure them properly making sure they are rotated and updated as needed.
 - Cluster API monitoring: we monitor all the cluster API specific resources letting us know the status of the cluster creation and the health of the cluster.
-- Further, we have some other operators that are provider specific and helps to automate all parts of the cluster lifecycle, like VPC provisioning or security group management, when upstream Cluster API does not provide it.
+- Further, we have some other operators that are provider specific and help to automate all parts of the cluster lifecycle, like VPC provisioning or security group management, when upstream Cluster API does not provide it.
 
 ## Wrapping resources in apps
 
