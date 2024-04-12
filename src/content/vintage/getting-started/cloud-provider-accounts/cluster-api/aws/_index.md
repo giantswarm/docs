@@ -7,6 +7,7 @@ menu:
   main:
     identifier: gettingstarted-infraprovider-clusterapi-aws
     parent: gettingstarted-infraprovider-clusterapi
+last_review_date: 2024-04-12
 user_questions:
   - What are the recommended service limit/quotas for AWS accounts?
   - How prepare AWS account for the Cluster API clusters?
@@ -16,7 +17,6 @@ aliases:
   - /guides/prepare-aws-account/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2024-02-16
 ---
 
 The Cluster API workload clusters (the clusters running your Kubernetes workloads) in a Giant Swarm installation can run in an AWS account separate from the management cluster. This gives great flexibility depending on requirements and usage scenarios. For example, it allows the management cluster to be running in an AWS account dedicated to it, whilst workload clusters operate in several different AWS accounts, depending
