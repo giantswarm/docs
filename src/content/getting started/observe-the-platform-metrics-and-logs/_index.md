@@ -1,6 +1,6 @@
 ---
-title: Observe how your app is performing
-description: Check your app metrics and logs with the platform built-in observability tools.
+title: Observe your clusters and apps
+description: Check cluster and app metrics and logs with the observability tools provided with the Giant Swarm platform.
 weight: 70
 last_review_date: 2024-04-05
 owner:

@@ -1,7 +1,6 @@
 ---
-title: Configure the app platform to build the platform capabilities
-linkTitle: Start with the app platform
-description: Deploy your first application with the app platform and learn how it works.
+title: Install an application using the app platform
+description: Add capabilities to your platform by deploying applications from our catalog.
 weight: 50
 last_review_date: 2024-04-05
 owner:
@@ -11,4 +10,4 @@ user_questions:
   - What do I need to do to configure the app platform to build my capabilities?
 ---
 
-<!-- Explain briefly how do we configure our environment to deploy a component in one of our clusters (For example ESO) -->
+<!-- Choice of apps from catalog (e.g. via happa), configuration with values (often defaults are recommended), installation with kubectl-gs templating and apply (we should use a very commonly used example such as nginx-ingress or ESO) -->

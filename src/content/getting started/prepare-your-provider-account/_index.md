@@ -1,6 +1,6 @@
 ---
 title: Prepare your provider account
-description: Understand the requisites to be completed for having the provider account ready to build the cloud-native developer platform.
+description: Set up your infrastructure provider (e.g. AWS account) in order to run a Giant Swarm management cluster and workload clusters, all remaining under your ownership.
 weight: 10
 last_review_date: 2024-04-05
 owner:

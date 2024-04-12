@@ -1,6 +1,6 @@
 ---
 title: Access to the platform API
-description: Learn how engineers access the platform API to provision new workload clusters or deployed applications.
+description: How engineers can access the platform API to provision new workload clusters or deploy applications.
 weight: 30
 last_review_date: 2024-04-01
 owner:

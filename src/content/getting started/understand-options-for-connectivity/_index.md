@@ -1,6 +1,6 @@
 ---
 title: Expose your app to the internet
-description: Use the platform capabilities to expose your application to the internet.
+description: Make your application accessible from the outside using an ingress controller.
 weight: 60
 last_review_date: 2024-04-05
 owner:
