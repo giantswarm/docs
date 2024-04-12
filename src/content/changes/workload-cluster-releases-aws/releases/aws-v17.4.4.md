@@ -6,7 +6,7 @@ changes_categories:
 - Workload cluster releases for AWS
 changes_entry:
   repository: giantswarm/releases
-  url: https://github.com/giantswarm/releases/tree/master/aws/v17.4.4
+  url: https://github.com/giantswarm/releases/tree/master/aws/archived/v17.4.4
   version: 17.4.4
   version_tag: v17.4.4
 date: '2022-11-25T12:22:45'
