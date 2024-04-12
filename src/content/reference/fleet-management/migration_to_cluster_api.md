@@ -43,7 +43,7 @@ __Note:__ The migration process is automated and executed by our engineers. The 
 
 ## Post-migration tasks
 
-Our engineers will check that all resources and infrastructure are correctly migrated and that the new cluster is working as expected. There are some reminding tasks needed to be done by the customer:
+Our engineers will check that all resources and infrastructure are correctly migrated and that the new cluster is working as expected. There are some remaining tasks that need to be done by the customer:
 
 - The DNS setup changes for the workload clusters. The new management cluster has a new host zone allocated in AWS. In the vintage setup, the host zone contained the management and the workload cluster name in the domain, for API and other components, meanwhile in the CAPI setup the DNS structure is more flexible not containing the management cluster name. Both the old and new host zones will be available for a certain period to ensure a smooth transition, but customers should migrate the DNS records to the new host zone as soon as possible in case they are using cluster wildcard DNS records.
 
