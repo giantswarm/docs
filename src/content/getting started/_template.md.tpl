@@ -1,7 +1,7 @@
 ---
-title: Short title case for this page, it is shown as title in upper section and menu
-description: More than 70 chars describing the goal of the page.
-weight: from 10 to 100. Lower is higher in the list.
+title: Short title for this page, it is shown as title in upper section and menu
+description: At least 70 characters that describe the purpose of this page.
+weight: from 10 to 100. Lower is higher in the menu.
 last_review_date: 2024-03-19
 owner:
   - https://github.com/orgs/giantswarm/teams/${OWNER}

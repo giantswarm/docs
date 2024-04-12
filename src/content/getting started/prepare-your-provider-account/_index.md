@@ -10,3 +10,4 @@ user_questions:
   - What do I need to do to prepare my provider account for the cloud-native developer platform?
 ---
 
+<!-- Mention in the end of article that next step is provisioning a management cluster and it is done by Giant Swarm. Until it is done, the platform API is not accessible. -->

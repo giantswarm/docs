@@ -18,5 +18,5 @@ Topics
 - Default network policies
 - Ingress and egress
 
-Maybe example of an application that needs to connect to a database to show how it works
+Maybe example of an application with helo world example https://github.com/giantswarm/hello-world-app/
 -->

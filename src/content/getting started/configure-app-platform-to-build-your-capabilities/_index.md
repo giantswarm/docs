@@ -2,7 +2,7 @@
 title: Install an application using the app platform
 description: Add capabilities to your platform by deploying applications from our catalog.
 weight: 50
-last_review_date: 2024-04-05
+last_review_date: 2024-04-12
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:

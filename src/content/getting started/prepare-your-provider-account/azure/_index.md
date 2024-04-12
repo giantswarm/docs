@@ -1,7 +1,7 @@
 ---
 title: Prepare your provider account for Azure
 linkTitle: Prepare your Azure account
-description: The actions need to be done to prepare your Azure account for starting to build your cloud-native developer platform.
+description: Prepare your Azure account to start building your cloud-native developer platform with Giant Swarm.
 weight: 20
 last_review_date: 2024-04-05
 owner:
