@@ -3,93 +3,144 @@
 name: Check links
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: {}
+  schedule:
+    - cron: '39 0 20 * *' # every 20th of the month at 00:39
 
 jobs:
   check-links:
     runs-on: ubuntu-latest
     steps:
-      - name: Pull images
+      - name: Pull image
         run: docker pull ghcr.io/linkchecker/linkchecker:latest
+
+      - name: Create output folder
+        run: |
+          mkdir -p output
+          chmod 777 output
 
       - name: check-links-in-overview-pages
         run: |
           docker run --rm --name linkchecker \
+            --volume ${PWD}/output:/workdir --workdir /workdir \
             ghcr.io/linkchecker/linkchecker:latest \
             https://docs.giantswarm.io/overview/ \
             --check-extern \
-            -t 1 -r 2 || echo "failed1=true" >> "$GITHUB_ENV"
+            --threads 1 \
+            --recursion-level 2 \
+            --no-status \
+            --file-output html/utf8/overview.html \
+            || echo "failed1=true" >> "$GITHUB_ENV"
         continue-on-error: true
 
       - name: check-links-in-getting-started-pages
         run: |
           docker run --rm --name linkchecker \
+            --volume ${PWD}/output:/workdir --workdir /workdir \
             ghcr.io/linkchecker/linkchecker:latest \
             https://docs.giantswarm.io/getting-started/ \
             --check-extern \
-            -t 1 -r 2 || echo "failed2=true" >> "$GITHUB_ENV"
+            --threads 1 \
+            --recursion-level 2 \
+            --no-status \
+            --file-output html/utf8/getting-started.html \
+            || echo "failed2=true" >> "$GITHUB_ENV"
         continue-on-error: true
 
       - name: check-links-in-tutorials-pages
         run: |
           docker run --rm --name linkchecker \
+            --volume ${PWD}/output:/workdir --workdir /workdir \
             ghcr.io/linkchecker/linkchecker:latest \
             https://docs.giantswarm.io/tutorials/ \
             --check-extern \
-            -t 1 -r 2 || echo "failed3=true" >> "$GITHUB_ENV"
+            --threads 1 \
+            --recursion-level 2 \
+            --no-status \
+            --file-output html/utf8/tutorials.html \
+            || echo "failed3=true" >> "$GITHUB_ENV"
         continue-on-error: true
 
       - name: check-links-in-reference-pages
         run: |
           docker run --rm --name linkchecker \
+            --volume ${PWD}/output:/workdir --workdir /workdir \
             ghcr.io/linkchecker/linkchecker:latest \
             https://docs.giantswarm.io/reference/ \
             --check-extern \
-            -t 1 -r 2 || echo "failed4=true" >> "$GITHUB_ENV"
+            --threads 1 \
+            --recursion-level 2 \
+            --no-status \
+            --file-output html/utf8/reference.html \
+             || echo "failed4=true" >> "$GITHUB_ENV"
         continue-on-error: true
 
       - name: check-links-in-support-pages
         run: |
           docker run --rm --name linkchecker \
+            --volume ${PWD}/output:/workdir --workdir /workdir \
             ghcr.io/linkchecker/linkchecker:latest \
             https://docs.giantswarm.io/support/ \
             --check-extern \
-            -t 1 -r 2 || echo "failed5=true" >> "$GITHUB_ENV"
+            --threads 1 \
+            --recursion-level 2 \
+            --no-status \
+            --file-output html/utf8/support.html \
+            || echo "failed5=true" >> "$GITHUB_ENV"
         continue-on-error: true
 
       - name: check-links-in-changelogs
         run: |
           docker run --rm --name linkchecker \
+            --volume ${PWD}/output:/workdir --workdir /workdir \
             ghcr.io/linkchecker/linkchecker:latest \
             https://docs.giantswarm.io/changes/ \
-            -t 1 -r 2 \
+            --threads 1 \
+            --recursion-level 2 \
+            --no-status \
+            --file-output html/utf8/changes.html \
             --ignore-url="^https://github.com/giantswarm/docs/.*" \
             --ignore-url="^https://.*example\.com/.*" \
             --ignore-url="^https://my-org\.github\.com/.*" \
             --ignore-url="^https://github\.com/giantswarm/giantswarm/.*" \
-            --ignore-url=".*gigantic\.io.*" || echo "failed6=true" >> "$GITHUB_ENV"
+            --ignore-url=".*gigantic\.io.*" \
+            || echo "failed6=true" >> "$GITHUB_ENV"
         continue-on-error: true
+
+      - name: Store reports as artifacts
+        uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4.3.2
+        with:
+          name: link-check-reports
+          path: ./output
+          if-no-files-found: warn
+          retention-days: 14
 
       - name: Report errors
         run: |
           if [[ $failed1 == "true" ]]; then
             echo "There has been some errors in overview checks, please check the step."
+            failed=true
           fi
           if [[ $failed2 == "true" ]]; then
             echo "There has been some errors in getting started checks, please check the step."
+            failed=true
           fi
           if [[ $failed3 == "true" ]]; then
             echo "There has been some errors in tutorials checks, please check the step."
+            failed=true
           fi
           if [[ $failed4 == "true" ]]; then
             echo "There has been some errors in reference checks, please check the step."
+            failed=true
           fi
           if [[ $failed5 == "true" ]]; then
             echo "There has been some errors in support checks, please check the step."
+            failed=true
           fi
-          if [[ $failed6 "true" ]]; then
+          if [[ $failed6 == "true" ]]; then
             echo "There has been some errors in changelogs checks, please check the step."
+            failed=true
           fi
-          if [[ $failed1 == "true" ]] || [[ $failed2  == "true" ]] || [[ $failed3 == "true" ]] || [[ $failed4 == "true" ]] || [[ $failed5 == "true" ]] || [[ $failed6 "true" ]]; then
+          if [[ $failed == "true" ]]; then
             exit 1
           fi
