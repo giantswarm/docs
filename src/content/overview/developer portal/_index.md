@@ -30,3 +30,5 @@ The Developer Portal provides the following features:
 ## Cloud-native applications
 
 Mention how do we integrate with the cloud-native ecosystem. Backstage and other tools we may use.
+
+Some inspiration could be taken from the [our intenal docs](https://handbook.giantswarm.io/docs/dev-and-releng/devportal/).
