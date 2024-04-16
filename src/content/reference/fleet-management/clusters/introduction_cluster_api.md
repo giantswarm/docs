@@ -1,8 +1,12 @@
 ---
 title: Introduction to Cluster API
 description: How the Giant Swarm platform leverages the Cluster API standard for managing Kubernetes clusters across infrastructure providers.
-weight: 100
-last_review_date: 2024-03-07
+weight: 10
+menu:
+  principal:
+    parent: reference-fleet-management-clusters
+    identifier: reference-fleet-management-introduction-to-cluster-api
+last_review_date: 2024-04-16
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:
