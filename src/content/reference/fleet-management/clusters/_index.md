@@ -1,6 +1,6 @@
 ---
 title: Clusters
-description: Management of clusters across different regions and cloud providers.
+description: Management of workload clusters across different regions and cloud providers.
 weight: 20
 menu:
   principal:
