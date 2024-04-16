@@ -1,5 +1,6 @@
 ---
 title: Architecture of a cloud-native developer platform
+linkTitle: Architecture of the platform
 description: An overview of the architecture of our cloud-native developer platform.
 weight: 20
 menu:
