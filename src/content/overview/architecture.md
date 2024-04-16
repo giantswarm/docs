@@ -1,13 +1,13 @@
 ---
-title: Architecture of a Cloud Native Developer Platform
-description: TBD.
+title: Architecture of a cloud-native developer platform
+description: An overview of the architecture of a cloud-native developer platform.
 weight: 20
 menu:
   main:
     parent: overview
 user_questions:
-  - TBD?
+  - What is the architecture of a cloud-native developer platform?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-horizon
-last_review_date: 2024-03-12
+last_review_date: 2024-04-16
 ---
