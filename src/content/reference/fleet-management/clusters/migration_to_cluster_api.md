@@ -2,7 +2,11 @@
 title: Migration to Cluster API
 description: How the migration from our old AWS vintage management clusters to Cluster API works.
 weight: 20
-last_review_date: 2024-03-14
+menu:
+  principal:
+    parent: reference-fleet-management-clusters
+    identifier: reference-fleet-management-migration-to-cluster-api
+last_review_date: 2024-04-16
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:
@@ -10,7 +14,7 @@ user_questions:
   - What are the recommendations for a smooth migration?
 ---
 
-From the outset, Giant Swarm has utilized Kubernetes to build platforms. In the early years, everybody was still figuring out how to effectively manage Kubernetes lifecycle across a fleet of clusters. We built our own tooling, largely based on [operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/), which worked well for us and our customers. As the Kubernetes project and the community around it evolved, it became clear that many companies in the ecosystem were trying to solve the same fundamental challenges regarding cluster lifecycle management. With our extensive experience, we saw an opportunity to contribute to a broader solution. We pushed for a joint effort to build a standardized method for cluster lifecycle management. [Cluster API]({{< relref "/reference/fleet-management/introduction" >}}) is backed by the Kubernetes community and covers different providers like AWS, Azure, GCP, and others.
+From the outset, Giant Swarm has utilized Kubernetes to build platforms. In the early years, everybody was still figuring out how to effectively manage Kubernetes lifecycle across a fleet of clusters. We built our own tooling, largely based on [operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/), which worked well for us and our customers. As the Kubernetes project and the community around it evolved, it became clear that many companies in the ecosystem were trying to solve the same fundamental challenges regarding cluster lifecycle management. With our extensive experience, we saw an opportunity to contribute to a broader solution. We pushed for a joint effort to build a standardized method for cluster lifecycle management. [Cluster API]({{< relref "/reference/fleet-management/" >}}) is backed by the Kubernetes community and covers different providers like AWS, Azure, GCP, and others.
 
 This guide outlines the migration path from our AWS vintage platform to the [Cluster API](https://cluster-api.sigs.k8s.io/) (CAPI) standard, ensuring a seamless transition for customer workload clusters from the previous system to the modern CAPI framework. Within this document, you'll find an overview of the migration procedure in AWS, including its prerequisites and strategic advice, all aimed at facilitating a smooth and successful transition.
 
