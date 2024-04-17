@@ -45,8 +45,8 @@ jobs:
         with:
           title: Semi-automatic update of generated content
           branch: "automatic-update-of-generated-content"
-          assignees: @taylorbot
-          reviewers: @pipo02mix
+          assignees: taylorbot
+          reviewers: pipo02mix
           body: |
             This PR has been created automatically by the 'Update generated content' Github workflow
             to keep
