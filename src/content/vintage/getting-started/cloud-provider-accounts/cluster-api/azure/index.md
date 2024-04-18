@@ -78,7 +78,7 @@ This acceptance needs to be performed only once for a subscription that is used 
 
 ### Enable encryption at host for virtual machines
 
-To satisfy security departments requirements, there is a possibility to enable [encryption of data stored on Vitrual Machine host](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/disks-enable-host-based-encryption-cli). The data will be encrypted at rest with platform-managed keys to ensure the security of the data.
+To satisfy security department requirements, there is a possibility to enable [encryption of data stored on a virtual machine host](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/disks-enable-host-based-encryption-cli). The data will be encrypted at rest with platform-managed keys to ensure the security of the data.
 
 Please run the following command prior to creating a cluster on a given subscription:
 
