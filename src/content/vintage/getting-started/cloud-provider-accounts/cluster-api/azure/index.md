@@ -76,6 +76,16 @@ az vm image terms accept --offer flatcar-container-linux-free --plan stable --pu
 
 This acceptance needs to be performed only once for a subscription that is used to run Giant Swarm workload clusters.
 
+### Enable Encryption at Host for Virtual Machines
+
+To satisfy security departments requirements, there is a possibility to enable [encryption of data stored on Vitrual Machine host](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/disks-enable-host-based-encryption-cli). The data will be encrypted at rest with platform-managed keys to ensure the security of the data.
+
+Please run the following command prior to creating a cluster on a given subscription:
+
+```sh
+az feature register --name EncryptionAtHost  --namespace Microsoft.Compute --subscription $YOUR_SUBSCRIPTION_ID
+```
+
 ### Configure Azure subscription for Management and Workload Cluster deployments
 
 Cluster API for Azure (CAPZ), the open source component used to deploy clusters, requires an [Azure Service Principal](https://learn.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals?tabs=browser#service-principal-object) which we will further refer to as _Giant Swarm Service Principal_. This service principal requires certain permissions to create and manage Azure resources.
