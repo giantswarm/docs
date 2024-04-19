@@ -11,6 +11,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/sig-product
 ---
 
+<!-- AUDIENCE: HIGH LEVEL, like a C-level person intro -->
 
 Check first the template (https://github.com/giantswarm/docs/pull/2180/files) it is still on development and you feedback is welcome, but you can take it as a reference.
 
