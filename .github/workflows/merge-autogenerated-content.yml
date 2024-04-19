@@ -25,6 +25,8 @@ jobs:
       run: |
         PR_TITLE="Semi-automatic update of generated content"
 
+        gh auth login
+
         # List all open pull requests
         PRS=$(gh pr list -S "open" -R ${{ github.repository }} -L 100 | awk '{print $1}')
 
@@ -32,7 +34,8 @@ jobs:
         do
           # Get the title of the current pull request
           CURRENT_PR_TITLE=$(gh pr view $PR -R ${{ github.repository }} --json title -q '.title')
-
+          echo "PR TITLE -> #CURRENT_PR_TITLE"
+          
           if [ "$CURRENT_PR_TITLE" = "$PR_TITLE" ]
           then
             # Merge the pull request
