@@ -32,11 +32,12 @@ jobs:
         do
           # Get the title of the current pull request
           CURRENT_PR_TITLE=$(gh pr view $PR -R ${{ github.repository }} --json title -q '.title')
-
+          echo "PR TITLE -> $CURRENT_PR_TITLE"
+          
           if [ "$CURRENT_PR_TITLE" = "$PR_TITLE" ]
           then
             # Merge the pull request
-            gh pr merge $PR -R ${{ github.repository }} --merge
+            gh pr merge $PR -R ${{ github.repository }} --merge --admin
             echo "Merged pull request #$PR"
             break
           fi
