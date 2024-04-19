@@ -25,8 +25,6 @@ jobs:
       run: |
         PR_TITLE="Semi-automatic update of generated content"
 
-        gh auth login
-
         # List all open pull requests
         PRS=$(gh pr list -S "open" -R ${{ github.repository }} -L 100 | awk '{print $1}')
 
