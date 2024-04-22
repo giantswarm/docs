@@ -31,5 +31,4 @@ jobs:
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          reviewdog -version
           reviewdog -f=rdjsonl -name=Vale -reporter=github-pr-annotations -fail-on-error=true -filter-mode=added -level=info < out.jsonl
