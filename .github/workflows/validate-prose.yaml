@@ -7,9 +7,12 @@ jobs:
     name: vale
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@1d96c772d19495a3b5c517cd2bc0cb401ea0529f # v4.1.3
-      - uses: errata-ai/vale-action@38bf078c328061f59879b347ca344a718a736018 # 2.1.0
+      - name: Checkout
+        uses: actions/checkout@1d96c772d19495a3b5c517cd2bc0cb401ea0529f # v4.1.3
+
+      - name: Vale
+        uses: errata-ai/vale-action@38bf078c328061f59879b347ca344a718a736018 # 2.1.0
         with:
           files: src/content
-          vale_flags: "--config=.vale.ini --glob='!{src/content/vintage/**,src/content/changes/**}'"
+          vale_flags: "--config=./.vale.ini --glob='!{src/content/vintage/**,src/content/changes/**}'"
 
