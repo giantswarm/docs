@@ -16,3 +16,8 @@ jobs:
           files: src/content
           vale_flags: "--config=./.vale.ini --glob='!{src/content/vintage/**,src/content/changes/**}'"
           fail_on_error: true
+
+      - name: Debugging
+        run: |
+          pwd
+          ls -la
