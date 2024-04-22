@@ -15,9 +15,19 @@ jobs:
           wget -q https://github.com/errata-ai/vale/releases/download/v3.4.1/vale_3.4.1_Linux_64-bit.tar.gz
           mkdir bin && tar -xvzf vale_3.4.1_Linux_64-bit.tar.gz -C bin
           ls -la bin
-          bin/vale --config=./.vale.ini --glob '!{src/content/vintage/**,src/content/changes/**}' --no-wrap src/content
+          bin/vale --config=./.vale.ini sync
+          bin/vale --config=./.vale.ini \
+            --glob '!{src/content/vintage/**,src/content/changes/**}' \
+            --no-wrap \
+            --output ./.vale/styles/rdjsonl.tmpl \
+            src/content > out.jsonl
 
-      - name: Debugging
+      - name: Install reviewdog
+        uses: reviewdog/action-setup@3f401fe1d58fe77e10d665ab713057375e39b887 # v1.3.0
+        with:
+          reviewdog_version: latest
+      
+      - name: Create annotations on touched files
         run: |
-          pwd
-          ls -la
+          reviewdog -version
+          reviewdog -f=rdjsonl -name=Vale -reporter=github-pr-annotations -fail-on-error=true -filter-mode=added -level=info < out.jsonl
