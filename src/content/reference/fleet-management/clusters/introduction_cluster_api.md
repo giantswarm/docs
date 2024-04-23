@@ -14,7 +14,7 @@ user_questions:
   - What other services are needed in a platform to complete Cluster API?
 ---
 
-The [Cluster API project](https://cluster-api.sigs.k8s.io/) is a K8s sub-project that presents an innovative approach to provisioning, configuring, and managing clusters. It employs a declarative model, which means that users can define the desired state of their clusters, and the system will automatically work to achieve that state. This powerful tool offers a standard mechanism to handle Kubernetes clusters, simplifying operations and increasing efficiency.
+The [Cluster API project](https://cluster-api.sigs.k8s.io/) is a Kubernetes sub-project that presents an innovative approach to provisioning, configuring, and managing clusters. It employs a declarative model, which means that users can define the desired state of their clusters, and the system will automatically work to achieve that state. This powerful tool offers a standard mechanism to handle Kubernetes clusters, simplifying operations and increasing efficiency.
 
 Cluster API leverages the concept of operators and custom resource definitions to manage Kubernetes clusters. An operator is essentially a controller that responds to cluster lifecycle events, allowing for automated creation, configuration, and management of clusters.
 
