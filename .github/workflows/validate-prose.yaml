@@ -15,7 +15,6 @@ jobs:
           wget -q https://github.com/errata-ai/vale/releases/download/v3.4.1/vale_3.4.1_Linux_64-bit.tar.gz
           mkdir bin && tar -xvzf vale_3.4.1_Linux_64-bit.tar.gz -C bin
           ls -la bin
-          bin/vale --config=./.vale.ini sync
           bin/vale --config=./.vale.ini \
             --glob '!{src/content/vintage/**,src/content/changes/**}' \
             --no-exit \

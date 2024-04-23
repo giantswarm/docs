@@ -28,6 +28,8 @@ make lint-prose
 
 When editing content in Microsoft Visual Studio Code, you can also use the [vale-vscode](https://marketplace.visualstudio.com/items?itemName=ChrisChinchilla.vale-vscode) extension to see errors and editing suggestions while you write.
 
+To keep third party style rules up-to-date, please run `make lint-prose-update` and commit the resulting changes.
+
 ## Search
 
 The search functionality works since last Nov 2023 using a third-party system called [Inkeep](https://inkeep.com/) which makes use of Artificial Intelligence to index all the content of our docs and serve good results. Also, it allows to have a conversational interface to get a faster response in our wide documentation hub.
