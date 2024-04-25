@@ -9,7 +9,7 @@ menu:
 user_questions:
   - How can I configure OIDC in my cluster?
   - How can I add a new OIDC connector?
-last_review_date: 2023-09-13
+last_review_date: 2024-04-25
 aliases:
   - /advanced/access-management/configure-dex-in-your-cluster
   - /guides/configure-dex-in-your-cluster/
