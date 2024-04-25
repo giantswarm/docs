@@ -1,6 +1,6 @@
 ---
 title: Short title for this page, it is shown as title in upper section and menu
-description: At least 70 characters that describe the purpose of this page.
+description: At least 70 characters that describe the purpose of this page. Do not repeat the `title`, and do not use fill words such as "Overview of" or "A short explanation how we".
 weight: A number from 10 to 100 defining the order in the menu. Lower number = top of menu, higher number = bottom of menu. Use multiples of 10 (= 20, 30, 40, ...) when adding a page so that we can later easily put things in between, if necessary, without changing the weight in several files.
 last_review_date: 2024-04-16
 owner:
