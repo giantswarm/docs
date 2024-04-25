@@ -9,7 +9,7 @@ menu:
 user_questions:
   - How can I configure OIDC in my cluster?
   - How can I add a new OIDC connector?
-last_review_date: 2023-09-13
+last_review_date: 2024-04-25
 aliases:
   - /advanced/access-management/configure-dex-in-your-cluster
   - /guides/configure-dex-in-your-cluster/
@@ -91,7 +91,7 @@ spec:
 ```
 
 {{< /tab >}}
-{{< tab title="Cluster API">}}
+{{< tab title="Cluster API (any)">}}
 
 ```yaml
 # Config map with values for the Workload Cluster app
@@ -100,11 +100,33 @@ kind: ConfigMap
 data:
   values: |
     ...
-    oidc:
-      issuerUrl: https://dex.CLUSTER_NAME.BASE_DOMAIN
-      clientId: dex-k8s-authenticator
-      usernameClaim: email
-      groupsClaim: groups
+    global:
+      controlPlane:
+        oidc:
+          issuerUrl: https://dex.CLUSTER_NAME.BASE_DOMAIN
+          clientId: dex-k8s-authenticator
+          usernameClaim: email
+          groupsClaim: groups
+```
+
+{{< /tab >}}
+{{< tab title="Cluster API (AWS EKS)">}}
+
+```yaml
+# Config map with values for the Workload Cluster app
+apiVersion: v1
+kind: ConfigMap
+data:
+  values: |
+    ...
+    global:
+      controlPlane:
+        oidcIdentityProviderConfig:
+          issuerUrl: https://dex.CLUSTER_NAME.BASE_DOMAIN
+          clientId: dex-k8s-authenticator
+          usernameClaim: email
+          groupsClaim: groups
+          identityProviderConfigName: dex-k8s-authenticator
 ```
 
 {{< /tab >}}
@@ -382,6 +404,14 @@ kubernetes:
     address: https://api.test.example.io
 oidc:
   issuerAddress: https://dex.test.example.io
+```
+
+__warning__: For workload cluster using [Cluster API `EKS`](https://github.com/giantswarm/cluster-eks) provider, you'll need to configure Athena to use an AWS-managed EKS API server endpoint. This API server endpoint is uniquely allocated to your EKS cluster and can be easily accessed through the AWS EKS console by navigating to the `Overview` tab and under the `Details` section from the EKS cluster information page. For example:
+
+```yaml
+kubernetes
+  api:
+    address: https://6EAE2F2E28XUD92EXZF54DFEF7C37081D.gr7.eu-central-1.eks.amazonaws.com
 ```
 
 Access to Athena can be restricted to certain CIDRs.
