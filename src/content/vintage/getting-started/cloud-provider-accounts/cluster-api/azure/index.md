@@ -14,7 +14,7 @@ user_questions:
   - What do I need to configure in Azure in order to run Cluster API Giant Swarm clusters?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2024-02-16
+last_review_date: 2024-04-18
 ---
 
 Currently, the Giant Swarm Cluster API for Azure implementation supports only running the Management and Workload Clusters in a single subscription.
@@ -75,6 +75,16 @@ az vm image terms accept --offer flatcar-container-linux-free --plan stable --pu
 ```
 
 This acceptance needs to be performed only once for a subscription that is used to run Giant Swarm workload clusters.
+
+### Enable encryption at host for virtual machines
+
+To satisfy security department requirements, there is a possibility to enable [encryption of data stored on a virtual machine host](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/disks-enable-host-based-encryption-cli). The data will be encrypted at rest with platform-managed keys to ensure the security of the data.
+
+Please run the following command prior to creating a cluster on a given subscription:
+
+```sh
+az feature register --name EncryptionAtHost  --namespace Microsoft.Compute --subscription $YOUR_SUBSCRIPTION_ID
+```
 
 ### Configure Azure subscription for Management and Workload Cluster deployments
 

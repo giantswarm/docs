@@ -82,12 +82,20 @@ This release will also be used as a base for the migration from `Giant Swarm Vin
 
 
 
-### aws-ebs-csi-driver [2.28.1](https://github.com/giantswarm/aws-ebs-csi-driver-app/releases/tag/v2.28.1)
+### aws-ebs-csi-driver [2.30.1](https://github.com/giantswarm/aws-ebs-csi-driver-app/releases/tag/v2.30.1)
 
 #### Changed
 - Configure `gsoci.azurecr.io` as the default container image registry.
 
+### Fixed
 
+- Disable PSPs for CRD job when `podSecurityStandards` are enforced.
+
+### Removed
+
+- Remove unused service for controller.
+- Add `Port` definition for metrics port in controller.
+- Remove legacy monitoring labels.
 
 ### cluster-autoscaler [1.25.1-gs2](https://github.com/giantswarm/cluster-autoscaler-app/releases/tag/v1.25.1-gs2)
 
