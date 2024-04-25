@@ -91,7 +91,7 @@ spec:
 ```
 
 {{< /tab >}}
-{{< tab title="Cluster API">}}
+{{< tab title="Cluster API (any)">}}
 
 ```yaml
 # Config map with values for the Workload Cluster app
@@ -100,11 +100,33 @@ kind: ConfigMap
 data:
   values: |
     ...
-    oidc:
-      issuerUrl: https://dex.CLUSTER_NAME.BASE_DOMAIN
-      clientId: dex-k8s-authenticator
-      usernameClaim: email
-      groupsClaim: groups
+    global:
+      controlPlane:
+        oidc:
+          issuerUrl: https://dex.CLUSTER_NAME.BASE_DOMAIN
+          clientId: dex-k8s-authenticator
+          usernameClaim: email
+          groupsClaim: groups
+```
+
+{{< /tab >}}
+{{< tab title="Cluster API (AWS EKS)">}}
+
+```yaml
+# Config map with values for the Workload Cluster app
+apiVersion: v1
+kind: ConfigMap
+data:
+  values: |
+    ...
+    global:
+      controlPlane:
+        oidcIdentityProviderConfig:
+          issuerUrl: https://dex.CLUSTER_NAME.BASE_DOMAIN
+          clientId: dex-k8s-authenticator
+          usernameClaim: email
+          groupsClaim: groups
+          identityProviderConfigName: dex-k8s-authenticator
 ```
 
 {{< /tab >}}
