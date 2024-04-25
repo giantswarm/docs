@@ -1,8 +1,13 @@
 ---
 title: Install an application using the app platform
+linkTitle: Install an application
 description: Add capabilities to your platform by deploying applications from our catalog.
 weight: 50
-last_review_date: 2024-04-12
+last_review_date: 2024-04-25
+menu:
+  principal:
+    parent: getting-started
+    identifier: getting-started-install-app
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:
