@@ -19,16 +19,16 @@ jobs:
           ref: "automatic-update-of-generated-content"
           fetch-depth: 0
 
+      - name: Update self-generated content branch with main branch changes
+        uses: prompt/actions-merge-branch@v2
+        with:
+          from: "origin/main"
+
       - name: Find Pull Request
         uses: juliangruber/find-pull-request-action@v1
         id: find-pull-request
         with:
           branch: automatic-update-of-generated-content
-
-      - name: Update self-generated content branch with main branch changes
-        uses: prompt/actions-merge-branch@v2
-        with:
-          from: "origin/main"
 
       - name: Approve Pull Request
         uses: juliangruber/approve-pull-request-action@v2
