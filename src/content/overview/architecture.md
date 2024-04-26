@@ -7,7 +7,7 @@ menu:
   main:
     parent: overview
 user_questions:
-  - What is the architecture of a cloud-native developer platform?
+  - What is the architecture of the Giant Swarm cloud-native developer platform?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-horizon
 last_review_date: 2024-04-16
