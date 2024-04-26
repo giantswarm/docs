@@ -8,7 +8,7 @@ menu:
     identifier: cluster-aws
     parent: uiapi-cluster-apps
 layout: cluster-app
-last_review_date: 2024-03-05
+last_review_date: 2024-03-04
 user_questions:
  - What properties can I configure for cluster-aws?
 owner:
