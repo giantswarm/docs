@@ -34,13 +34,13 @@ To keep third party style rules up-to-date, please run `make lint-prose-update` 
 
 The search functionality works since last Nov 2023 using a third-party system called [Inkeep](https://inkeep.com/) which makes use of Artificial Intelligence to index all the content of our docs and serve good results. Also, it allows to have a conversational interface to get a faster response in our wide documentation hub.
 
-In [the internal portal](https://portal.inkeep.com/) we have defined our docs as main source of content for the Large Language Model(LLM) instance which will be scrapped weekly to digest new content. Access is granted via OIDC and Google.
+In [the internal portal](https://portal.inkeep.com/) we've defined our docs as main source of content for the Large Language Model(LLM) instance which will be scrapped weekly to digest new content. Access is granted via OIDC and Google.
 
-Since we use Inkeep for more uses cases the project for docs is called "Giant Swarm customer facing". There in the integration you can see our docs and the configuration keys needed to bootstrap the widget. The code that triggers the render the widget is in `/src/assets/scripts/base.js` and the styles are part of `/static/css/inkeep.css`. Most of the options for the widget are defaulted and only style has be customized to fit our docs's layout.
+Since we use Inkeep for more uses cases the project for docs is called "Giant Swarm customer facing". There in the integration you can see our docs and the configuration keys needed to bootstrap the widget. The code that triggers the render the widget is in `/src/assets/scripts/base.js` and the styles are part of `/static/css/inkeep.css`. Most of the options for the widget are defaulted and only style has be customized to fit our documentation's layout.
 
 ## Diagrams
 
-We use [mermaid](https://mermaid.js.org/) for diagrams. You need to annotate the page previously in the frontmatter to load the mermaid code (`mermaid: true`). Then you can use the shortcode `{{< mermaid >}}` to add the diagram code.
+We use [mermaid](https://mermaid.js.org/) for diagrams. You need to annotate the page previously in the front matter to load the mermaid code (`mermaid: true`). Then you can use the shortcode `{{< mermaid >}}` to add the diagram code.
 
 ## License
 
