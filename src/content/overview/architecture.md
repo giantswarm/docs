@@ -1,7 +1,7 @@
 ---
-title: Architecture of a cloud-native developer platform
+title: Architecture of the Giant Swarm cloud-native developer platform
 linkTitle: Architecture of the platform
-description: An overview of the architecture of our cloud-native developer platform.
+description: Components, capabilities, supported cloud providers, and the Management API of the Giant Swarm platform.
 weight: 20
 menu:
   main:
