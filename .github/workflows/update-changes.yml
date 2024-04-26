@@ -16,14 +16,12 @@ on:
 
 jobs:
   update-generated-content:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Aggregate releases
         env:
@@ -44,8 +42,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
-          title: Semi-automatic update of generated content
+          title: "Semi-automatic update of generated content"
           branch: "automatic-update-of-generated-content"
+          commit-message: "Update self-generated content"
           assignees: taylorbot
           reviewers: pipo02mix
           body: |
