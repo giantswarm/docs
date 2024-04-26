@@ -16,7 +16,6 @@ jobs:
         with:
           ref: "automatic-update-of-generated-content"
           fetch-depth: 0
-          persist-credentials: false
 
       - name: Find Pull Request
         uses: juliangruber/find-pull-request-action@v1
