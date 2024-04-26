@@ -82,12 +82,20 @@ This release will also be used as a base for the migration from `Giant Swarm Vin
 
 
 
-### aws-ebs-csi-driver [2.28.1](https://github.com/giantswarm/aws-ebs-csi-driver-app/releases/tag/v2.28.1)
+### aws-ebs-csi-driver [2.30.1](https://github.com/giantswarm/aws-ebs-csi-driver-app/releases/tag/v2.30.1)
 
 #### Changed
 - Configure `gsoci.azurecr.io` as the default container image registry.
 
+### Fixed
 
+- Disable PSPs for CRD job when `podSecurityStandards` are enforced.
+
+### Removed
+
+- Remove unused service for controller.
+- Add `Port` definition for metrics port in controller.
+- Remove legacy monitoring labels.
 
 ### cluster-autoscaler [1.25.1-gs2](https://github.com/giantswarm/cluster-autoscaler-app/releases/tag/v1.25.1-gs2)
 
@@ -162,7 +170,7 @@ This release will also be used as a base for the migration from `Giant Swarm Vin
 
 
 
-### observability-bundle [1.3.0](https://github.com/giantswarm/observability-bundle/releases/tag/v1.3.0)
+### observability-bundle [1.3.2](https://github.com/giantswarm/observability-bundle/releases/tag/v1.3.2)
 
 #### Changed
 - *Breaking change*: Simplify configuration for the bundled apps. See our [upgrade guide](https://github.com/giantswarm/observability-bundle/blob/main/docs/upgrade.md)
@@ -170,11 +178,11 @@ This release will also be used as a base for the migration from `Giant Swarm Vin
   - Rename `prometheus-operator-app` to `kube-prometheus-stack`
   - Rename `promtail-app` to `promtail`
 
+- Upgrade promtail to 1.5.3 - Adjust CPU settings and set RAM limit to 2x requests
 - Upgrade `kube-prometheus-stack` to 9.1.0.
 - Upgrade `prometheus-operator-crd` to 9.0.0.
-- Add the global.podSecurityStandards.enforced value back to be able to work on CAPI WCs.
+- Add the `global.podSecurityStandards.enforced` value back to be able to work on CAPI WCs.
 - Add dependency on prometheus-operator-crd to all apps.
-- Upgrade `promtail` to 1.5.1.
 - Upgrade `grafana-agent` to 0.4.1.
 - upgrade `prometheus-agent` to 0.6.9.
 - Enforce `Cilium Network Policy` by default.
