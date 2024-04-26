@@ -1,12 +1,14 @@
 ---
-title: Architecture
-description: Technical overview of the Giant Swarm platform components and how a customer's developer platform can use them successfully.
+title: Architecture of the Giant Swarm cloud-native developer platform
+linkTitle: Architecture of the platform
+description: Components, capabilities, supported cloud providers, and the Management API of the Giant Swarm platform.
 weight: 20
 menu:
-  principal:
+  main:
     parent: overview
-    identifier: overview-architecture
-last_review_date: 2024-03-18
+user_questions:
+  - What is the architecture of the Giant Swarm cloud-native developer platform?
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-product
+  - https://github.com/orgs/giantswarm/teams/team-horizon
+last_review_date: 2024-04-26
 ---
