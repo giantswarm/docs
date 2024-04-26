@@ -8,6 +8,7 @@ menu:
     identifier: cluster-azure
     parent: uiapi-cluster-apps
 layout: cluster-app
+last_review_date: 2024-03-05
 user_questions:
  - What properties can I configure for cluster-azure?
 owner:
