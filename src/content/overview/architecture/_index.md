@@ -4,8 +4,9 @@ linkTitle: Architecture of the platform
 description: Components, capabilities, supported cloud providers, and the Management API of the Giant Swarm platform.
 weight: 20
 menu:
-  main:
+  principal:
     parent: overview
+    identifier: overview-architecture
 user_questions:
   - What is the architecture of the Giant Swarm cloud-native developer platform?
 owner:
