@@ -406,10 +406,10 @@ oidc:
   issuerAddress: https://dex.test.example.io
 ```
 
-__warning__: For workload cluster using [Cluster API `EKS`](https://github.com/giantswarm/cluster-eks) provider, you'll need to configure Athena to use an AWS-managed EKS API server endpoint. This API server endpoint is uniquely allocated to your EKS cluster and can be easily accessed through the AWS EKS console by navigating to the `Overview` tab and under the `Details` section from the EKS cluster information page. For example:
+__Warning__: For workload cluster using [Cluster API `EKS`](https://github.com/giantswarm/cluster-eks) provider, you'll need to configure Athena to use an AWS-managed EKS API server endpoint. This API server endpoint is uniquely allocated to your EKS cluster and can be easily accessed through the AWS EKS console by navigating to the `Overview` tab and under the `Details` section from the EKS cluster information page. For example:
 
 ```yaml
-kubernetes
+kubernetes:
   api:
     address: https://6EAE2F2E28XUD92EXZF54DFEF7C37081D.gr7.eu-central-1.eks.amazonaws.com
 ```
