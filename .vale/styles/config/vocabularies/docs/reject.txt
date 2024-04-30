@@ -1,3 +1,2 @@
-giantnetes
-k8s
-K8s
+[gG]iantnetes
+[kK]8s(?!-initiator-app)
