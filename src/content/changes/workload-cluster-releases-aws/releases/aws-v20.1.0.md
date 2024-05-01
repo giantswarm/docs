@@ -34,14 +34,15 @@ This release provides security updates for container linux and a fix for IMDSv2 
 
 
 
-### cluster-operator [5.11.0](https://github.com/giantswarm/cluster-operator/releases/tag/v5.11.0)
+### cluster-operator [5.11.1](https://github.com/giantswarm/cluster-operator/releases/tag/v5.11.1)
 
 #### Changed
 - Configure `gsoci.azurecr.io` as the default container image registry.
 #### Added
 - Add team label in resources.
 - Add `global.podSecurityStandards.enforced` value for PSS migration.
-
+### Fixed
+- Fix release version check for PSS enforcement.
 
 
 ### containerlinux [3815.2.2](https://www.flatcar-linux.org/releases/#release-3815.2.2)
