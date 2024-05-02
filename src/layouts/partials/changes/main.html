@@ -29,8 +29,8 @@
     </div>
   </div>
   <div class="col-sm-12 col-md-8 base-content">
-    
-    {{ if .Paginator }}
+
+    {{ if ne (len .Paginator.Pages) 1 }}
     {{ partial "changes/list" . }}
     {{ else }}
     {{ partial "changes/single" . }}
