@@ -16,13 +16,12 @@ A workload cluster can be configured to choose pod IPs from an AWS-allocated IP 
 
 ## Advantages
 
-- The separate CIDR, and the separate subnets created for the pods, can be used for handling pod traffic separately. For example, firewalling or peering can be done only for those IPs.
-- Pod traffic is not translated by NAT inside the cluster. If you have existing security tooling, for instance, that is not adapted to Kubernetes, it can show the pod IPs as if they were a regular server on your network. On clusters not running in Cilium ENI mode, you would typically see the node IP instead of the pod IP. Mind that modern observability tooling such as Prometheus integrates well with Kubernetes so that pod names and IPs can easily be exposed, for example as metric labels.
-- Similar behavior to the default CNI of AWS EKS clusters ([AWS VPC CNI](https://docs.aws.amazon.com/eks/latest/userguide/managing-vpc-cni.html)), in case you require compatibility with existing clusters
+- Pods get directly assigned IPs, belong to an AWS subnet and are assigned to a separate security group. This allows handling pod traffic separately, for example firewalling or peering.
+- Pod traffic is not translated by NAT. The pod IPs can be visible in a peered VPC or behind a transit gateway.
 
 ## Disadvantages
 
-- Strong limitation for number of pods – each AWS EC2 instance type has a certain maximum number of ENIs (Elastic Network Interfaces) and each of those has a maximum number of assignable IPs (see [AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html#AvailableIpPerENI)). For example, instance type XXX can host up to YYY ENIs and therefore ZZZ pods. This can lead to higher costs because fewer pods can be run on each node, given this networking restriction, even if more would fit based on available CPU and memory.
+- Strong limitation for number of pods – each AWS EC2 instance type has a certain maximum number of ENIs (Elastic Network Interfaces) and each of those has a maximum number of assignable IPs (see [AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html#AvailableIpPerENI)). For example, instance type XXX can host up to YYY ENIs and therefore ZZZ pods (TODO). This can lead to higher costs because fewer pods can be run on each node, given this networking restriction, even if more would fit based on available CPU and memory.
 - A large CIDR is recommended for the pod network, as each pod will use one IP. This could be a problem if your chosen CIDR must not overlap with others in your network, and you don't have enough CIDRs left to choose from.
 
 ## Creating an AWS workload cluster with Cilium ENI IPAM mode
