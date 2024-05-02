@@ -1,12 +1,12 @@
 ---
-title: Clusters
+title: Cluster Management
 description: Management of workload clusters across different regions and cloud providers.
 weight: 20
 menu:
   principal:
-    parent: reference-fleet-management
-    identifier: reference-fleet-management-clusters
-last_review_date: 2024-04-16
+    parent: tutorials-fleet-management
+    identifier: tutorials-fleet-management-clusters
+last_review_date: 2024-05-02
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:
