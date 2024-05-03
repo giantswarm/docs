@@ -24,7 +24,7 @@ Concepts come to my mind when I think on connectivity (worthy to mention here wi
 - DNS
 - egress proxy
 
-Write a brief description of the the connectivity in general from introductory point of view.
+The main idea is to write a brief description of connectivity and networking in general from an introductory point of view setting the high-level goals we would like to achieve.
 
 ## Features
 
