@@ -24,7 +24,7 @@ Concepts come to my mind when I think on continuous delivery (worthy to mention 
 - secret mgmt
 
 
-Write a brief description of the continuous delivery in general from introductory point of view.
+The main idea is to write a brief description of continuous delivery in general from an introductory point of view setting the high-level goals we would like to achieve.
 
 ## Features
 
