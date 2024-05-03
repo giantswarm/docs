@@ -21,7 +21,7 @@ Concepts come to my mind when I think on observability (worthy to mention here w
 - Alerting
 - Profiling
 
-Write a brief description of the the observability in general from introductory point of view.
+The main idea is to write a brief description of observability in general from an introductory point of view setting the high-level goals we would like to achieve.
 
 ## Features
 
