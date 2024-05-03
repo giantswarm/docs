@@ -8,7 +8,7 @@ menu:
     identifier: overview-security
 last_review_date: 2024-04-18
 owner:
-  - https://github.com/orgs/giantswarm/teams/shield
+  - https://github.com/orgs/giantswarm/teams/team-shield
 ---
 
 <!-- AUDIENCE: HIGH LEVEL, like a C-level person intro -->
