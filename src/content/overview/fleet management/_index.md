@@ -15,13 +15,13 @@ Our experience tells us that managing a large microservices platform is not easy
 
 ## Features
 
-The fleet management features that our product offers are:
+The Giant Swarm platform offers these fleet management features:
 
-- **Multi-environment**: We support multiple providers, regions and environments. Platform engineers can map their company structure to our platform structure in order to ease the management of their teams and workloads.
-- **Configuration management**: We rely on GitOps principles to manage the configuration of your clusters, environments and workloads having multiple layers of configuration.
-- **Cluster lifecycle management**: We provide a way to manage the lifecycle of your clusters, from creation to deletion, including upgrades and scaling.
+- **Multi-environment**: Deploy to multiple providers, regions and environments. Platform engineers can [[[map their company structure to our platform structure]]] <== I HAVE NO IDEA WHAT THIS MEANS in order to ease the management of their teams and workloads.
+- **Configuration management**: Manage configuration of your clusters, environments and workloads with GitOps, a versioned, single source of truth repository that shows the currently deployed state.
+- **Cluster lifecycle management**: Creation and deletion of clusters is only a matter of minutes. Giant Swarm offers well-tested releases so make upgrades smooth and fully-automated. Scaling features for clusters are built-in.
 - **Workload management**: We have developed a solution to help your developers to configure and deploy their applications in a cloud-native way.
 
 ## Cloud-native applications
 
-We have rely on Cluster API implementation to manage the lifecycle of your clusters. Together with the app platform, we provide a way to manage your workloads in a cloud-native way.
+The Giant Swarm platform uses [Cluster API](https://cluster-api.sigs.k8s.io/), an open-source, well-supported subproject of Kubernetes, to manage the lifecycle of your clusters. Together with the app platform, we provide a way to manage your workloads in a [[[cloud-native way]]] <= VAGUE TERM WHICH NEWCOMERS TO THE K8S WORLD MAY NOT UNDERSTAND LET'S RATHER EXPLAIN BENEFITS EXPLICITLY.
