@@ -1,6 +1,6 @@
 ---
 title: Cilium ENI IPAM mode for AWS
-description: Allocate pod IPs directly on the AWS network using a second VPC CIDR.
+description: Allocate pod IPs directly on the AWS network using a second VPC CIDR with separate security group and subnets.
 weight: 10
 last_review_date: 2024-05-02
 owner:
