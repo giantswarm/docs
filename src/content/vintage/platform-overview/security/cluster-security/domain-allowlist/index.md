@@ -138,7 +138,7 @@ Below is a list of the external domains we require access to for our clusters to
     - Used for verifying signatures on artifacts signed with the cosign keyless signing method.
 - slack.com
     - domains:
-        - `hooks.slack.com`
+        - `*.slack.com`
     - Used to send alerts on slack channels
 - teleport.giantswarm.io
     - domains:
