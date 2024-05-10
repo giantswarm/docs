@@ -1,0 +1,41 @@
+# This workflow, when done, creates automatically
+# a pull request with all highlights comming from selected apps
+# in .github repository.
+name: Create highlight PR
+
+# Trigger by cronjob
+on:
+  schedule:
+    # It runs at 7:00 every weekday
+    - cron: "0 7 * * THU"
+  workflow_dispatch: {} # Allow manual triggering
+
+jobs:
+  update-generated-content:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Collect changelog entries
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        run: make collect-changelog-entries
+
+      - name: Create or update highlight pull request
+        uses: gr2m/create-or-update-pull-request-action@v1.9.4
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        with:
+          title: "Weekly highlights update"
+          branch: "automatic-highlight-update"
+          commit-message: "Update highlights"
+          assignees: taylorbot
+          reviewers: giantswarm/product-owners
+          body: |
+            This PR has been created automatically by the 'Create highlight PR' Github workflow
+            to publish the weekly highlights.
+
+            This action is triggered every Thrusday morning to collect all the highlights from the selected apps in giantswarm/github repository. The highlights are collected from the changelog entries of the selected apps.
