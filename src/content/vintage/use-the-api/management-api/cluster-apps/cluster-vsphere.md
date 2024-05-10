@@ -18,13 +18,6 @@ source_repository_ref: v0.9.8
 
 The `default-apps-vsphere` chart templates all the VMware infrastructure resources that are necessary to create a Cluster API vSphere cluster.
 
-<!-- INTRO_END -->
-# Values schema documentation
-
-This page lists all available configuration options, based on the [configuration values schema](values.schema.json).
-
-<!-- DOCS_START -->
-
 <div class="crd-schema-version">
   <h2 class="headline-with-link">
     <a class="header-link" href="#">

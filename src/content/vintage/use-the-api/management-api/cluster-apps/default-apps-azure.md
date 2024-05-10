@@ -18,13 +18,6 @@ source_repository_ref: v0.8.3
 
 The `default-apps-azure` chart templates all the components required for a Cluster API Azure cluster like External DNS or CoreDNS.
 
-<!-- INTRO_END -->
-# Values schema documentation
-
-This page lists all available configuration options, based on the [configuration values schema](values.schema.json).
-
-<!-- DOCS_START -->
-
 <div class="crd-schema-version">
   <h2 class="headline-with-link">
     <a class="header-link" href="#">

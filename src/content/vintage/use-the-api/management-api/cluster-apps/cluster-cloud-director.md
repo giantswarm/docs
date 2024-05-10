@@ -18,11 +18,6 @@ source_repository_ref: v0.14.2
 
 The `default-apps-cloud-director` chart templates all the VMware infrastructure resources that are necessary to create a Cluster API VCD cluster.
 
-<!-- INTRO_END -->
-# cluster-cloud-director values
-
-<!-- DOCS_START -->
-
 <div class="crd-schema-version">
   <h2 class="headline-with-link">
     <a class="header-link" href="#">
