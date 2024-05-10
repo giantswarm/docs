@@ -1,5 +1,5 @@
 ---
-title: Cluster-Vsphere chart reference
+title: cluster-vsphere chart reference
 linkTitle: cluster-vsphere
 description:  A helm chart for creating Cluster API clusters with the vSphere provider (CAPV).; Check here the different properties of the chart.
 weight: 100
@@ -18,6 +18,7 @@ source_repository_ref: v0.9.8
 
 The `default-apps-vsphere` chart templates all the VMware infrastructure resources that are necessary to create a Cluster API vSphere cluster.
 
+<!-- INTRO_END -->
 # Values schema documentation
 
 This page lists all available configuration options, based on the [configuration values schema](values.schema.json).

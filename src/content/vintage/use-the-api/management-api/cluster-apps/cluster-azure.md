@@ -1,5 +1,5 @@
 ---
-title: Cluster-Azure chart reference
+title: cluster-azure chart reference
 linkTitle: cluster-azure
 description:  A helm chart for creating Cluster API clusters with the Azure infrastructure provider (CAPZ).; Check here the different properties of the chart.
 weight: 100
@@ -18,6 +18,7 @@ source_repository_ref: v0.0.35
 
 The `cluster-azure` chart templates all the Azure infrastructure resources that are necessary to create a Cluster API Azure cluster.
 
+<!-- INTRO_END -->
 # Values schema documentation
 
 This page lists all available configuration options, based on the [configuration values schema](values.schema.json).

@@ -1,5 +1,5 @@
 ---
-title: Default-Apps-Eks chart reference
+title: default-apps-eks chart reference
 linkTitle: default-apps-eks
 description:  A Helm chart for default-apps-eks; Check here the different properties of the chart.
 weight: 100
@@ -18,6 +18,7 @@ source_repository_ref: v0.5.1
 
 The `default-apps-eks` chart templates all the components required for a Cluster API EKS cluster like External DNS or CoreDNS.
 
+<!-- INTRO_END -->
 # Values schema documentation
 
 This page lists all available configuration options, based on the [configuration values schema](values.schema.json).

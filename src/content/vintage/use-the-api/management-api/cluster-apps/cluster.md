@@ -1,5 +1,5 @@
 ---
-title: Cluster chart reference
+title: cluster chart reference
 linkTitle: cluster
 description:  Giant Swarm cluster chart with provider-independent cluster resources; Check here the different properties of the chart.
 weight: 100
@@ -18,6 +18,7 @@ source_repository_ref: v0.7.0
 
 The `cluster` chart is the main entry point for the Giant Swarm platform. It is the first app that is installed on a new cluster. It is responsible for setting up the basic infrastructure and installing the necessary components to make the cluster operational.
 
+<!-- INTRO_END -->
 # Values schema documentation
 
 This page lists all available configuration options, based on the [configuration values schema](values.schema.json).

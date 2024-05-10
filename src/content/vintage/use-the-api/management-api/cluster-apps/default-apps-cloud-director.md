@@ -1,5 +1,5 @@
 ---
-title: Default-Apps-Cloud-Director chart reference
+title: default-apps-cloud-director chart reference
 linkTitle: default-apps-cloud-director
 description:  A Helm chart which defines the pre-installed apps in all Giant Swarm Cloud Director (VCD) clusters; Check here the different properties of the chart.
 weight: 100
@@ -18,6 +18,7 @@ source_repository_ref: v0.7.3
 
 The `default-apps-cloud-director` chart templates all the components required for a Cluster API VMware cluster like External DNS or CoreDNS.
 
+<!-- INTRO_END -->
 # Values schema documentation
 
 This page lists all available configuration options, based on the [configuration values schema](values.schema.json).
