@@ -6,7 +6,7 @@ menu:
   principal:
     parent: overview
     identifier: overview-fleet-management
-last_review_date: 2024-04-18
+last_review_date: 2024-05-10
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-product
 ---
@@ -24,4 +24,4 @@ The fleet management features that our product offers are:
 
 ## Cloud-native applications
 
-We have rely on Cluster API implementation to manage the lifecycle of your clusters. Together with the app platform, we provide a way to manage your workloads in a cloud-native way.
+We have rely on [Cluster API implementation]({{ relref "" }}) to manage the lifecycle of your clusters. Together with the app platform, we provide a way to manage your workloads in a cloud-native way.
