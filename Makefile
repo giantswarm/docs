@@ -80,7 +80,6 @@ lint-prose:
 		-w /workdir \
 		$(VALE_IMAGE) \
 		--config=/workdir/.vale.ini \
-		--glob '!{src/content/vintage/**,src/content/changes/**}' \
 		--no-wrap \
 		src/content
 

@@ -4,9 +4,9 @@ description: Management of developer environments, applications, and configurati
 weight: 20
 menu:
   principal:
-    parent: reference
-    identifier: reference-fleet-management
-last_review_date: 2024-04-16
+    parent: tutorials
+    identifier: tutorials-fleet-management
+last_review_date: 2024-05-02
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:
