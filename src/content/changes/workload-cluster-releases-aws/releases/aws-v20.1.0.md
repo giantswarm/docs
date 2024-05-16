@@ -105,10 +105,43 @@ This release provides security updates for container linux and a fix for IMDSv2 
 
 
 
-### vertical-pod-autoscaler [5.2.1](https://github.com/giantswarm/vertical-pod-autoscaler-app/releases/tag/v5.2.1)
+### vertical-pod-autoscaler [5.1.0](https://github.com/giantswarm/vertical-pod-autoscaler-app/releases/tag/v5.1.0)
+
+#### Added
+
+- Repository: Add ATS. ([#267](https://github.com/giantswarm/vertical-pod-autoscaler-app/pull/267))
 
 #### Changed
-- Chart: Update `appVersion` and `README.md`. ([#281](https://github.com/giantswarm/vertical-pod-autoscaler-app/pull/281))
+
+- Chart: Improve readability of image tag. ([#263](https://github.com/giantswarm/vertical-pod-autoscaler-app/pull/263))
+- Repository: Chores. ([#266](https://github.com/giantswarm/vertical-pod-autoscaler-app/pull/266))
+    - Repository: Move `.kube-linter.yaml`.
+    - Repository: Rework ABS.
+    - Repository: Rework CircleCI.
+    - Repository: Rework README.
+    - Chart: Regenerate values schema JSON.
+    - Chart: Rework `Chart.yaml`.
+    - Chart: Rework `README.md.gotmpl`.
+- Chart: Rework chart. ([#269](https://github.com/giantswarm/vertical-pod-autoscaler-app/pull/269))
+    - Chart: Rework helpers.
+    - Chart: Rework vertical pod autoscalers.
+    - Chart: Rework policy exceptions.
+    - Chart: Rework network policies.
+    - Chart: Rework CRD patch.
+- Chart: PSS compliance. ([#270](https://github.com/giantswarm/vertical-pod-autoscaler-app/pull/270))
+
+#### Removed
+
+- Repository: Chores. ([#266](https://github.com/giantswarm/vertical-pod-autoscaler-app/pull/266))
+    - Repository: Remove unused script.
+    - Repository: Remove `.nancy-ignore*`.
+    - Repository: Remove images.
+    - Repository: Remove config.
+    - Repository: Remove `.gitignore`.
+    - Chart: Remove `.helmignore`.
+    - Chart: Remove useless CI values.
+- Chart: Rework chart. ([#269](https://github.com/giantswarm/vertical-pod-autoscaler-app/pull/269))
+    - Chart: Remove global network policies.
 
 
 
@@ -117,12 +150,6 @@ This release provides security updates for container linux and a fix for IMDSv2 
 #### Changed 
 - Set min VPA settings and adjust CPU and memory resources.
 - Use PodMonitor instead of legacy labels for monitoring.
-
-
-
-### vertical-pod-autoscaler-crd [3.1.0](https://github.com/giantswarm/vertical-pod-autoscaler-crd/releases/tag/v3.1.0)
-
-- Chart: Sync CRDs to VPA v1.1.0. ([#93](https://github.com/giantswarm/vertical-pod-autoscaler-crd/pull/93))
 
 
 
