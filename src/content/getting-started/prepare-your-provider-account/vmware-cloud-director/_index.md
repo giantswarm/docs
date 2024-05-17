@@ -15,7 +15,7 @@ In order to run the Giant Swarm platform in your VMware Cloud Director (VCD) env
 
 ## Requirements
 
-Our solution has some requirements from the VCD environment and the same time that the controllers that provision the infrastructure need some permissions again the VCD API.
+The solution has some requirements from the VCD environment, and at the same time, the controllers that provision the infrastructure need some permissions again from the VCD API.
 
 ### VMware Cloud Director
 

@@ -3,7 +3,7 @@ title: Prepare your provider account for VMware vSphere
 linkTitle: Prepare your vSphere account
 description: Prepare your VMware vSphere setup to start building your cloud-native developer platform with Giant Swarm.
 weight: 10
-last_review_date: 2024-04-01
+last_review_date: 2024-05-17
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:
@@ -11,19 +11,33 @@ user_questions:
   - What do I need to do to prepare my VMware vSphere account for the cloud-native developer platform?
 ---
 
-In order to run the Giant Swarm platform in your VMware vSphere environment, a number of prerequisites must be satisfied to support Cluster API Provider vSphere (CAPV).
+In order to run the Giant Swarm platform in your VMware vSphere environment, several prerequisites must be satisfied to support Cluster API Provider VMware Cloud Director (CAPVCD).
 
-## vSphere infrastructure and minimum version
+## Requirements
 
-It is recommended to create a resource pool to deploy your Kubernetes cluster(s) nodes. However, it is possible to deploy them in the implicit root resource pool located at the vSphere cluster level.
+The solution has some requirements from the vCenter side, and at the same time, the controllers that provision the infrastructure need some permissions again from the vCenter server API.
 
-To use PersistentVolumes (PV), the cluster needs support for Cloud Native Storage (CNS), which is available in vSphere 6.7 Update 3 and later.
+### VMware vSphere
 
-## vSphere User permissions
+The minimum version of vSphere required is 6.7 Update 3. It is recommended to run vSphere 7.0 or above. That versions support the Cloud Native Storage (CNS) feature needed for PersistentVolumes (PV) in Kubernetes.
 
-In order to follow the principle of least privilege, it is recommended to create a user role with the minimum permissions required and assign it to a user that is dedicated to CAPV.
+| VMware product | Required version |
+|------|------|
+| VMware virtual hardware | 13 or later |
+| vSphere ESXi hosts | 6.7 Update 3 or later |
+| vCenter host | 6.7 Update 3 or later |
 
-You can create a user role in `Administration > Access Control > Roles > NEW`. This user role must have at least the following permissions:
+### Resource pool
+
+It is recommended to create one resource pool across the hosts where the workload cluster virtual machines will run. However, in case of inconvenience, it is possible to run the virtual machines in the implicit root resource pool located at the vSphere cluster level.
+
+## Controller permissions
+
+The Cluster API controller that provisions the infrastructure in the vSphere environment needs a role with a set of permissions. To follow the principle of least privilege, it is recommended that a specific user and role be created for the controller.
+
+<!-- Xavier can we provide a text here to create the user too? -->
+
+Create the user role browsing to `Administration > Access Control > Roles`and clicking `NEW`. The role must have at least the following permissions:
 
 | Categorie | permissions |
 | -------- | -------- |
@@ -36,7 +50,7 @@ You can create a user role in `Administration > Access Control > Roles > NEW`. T
 | vApp | `Import` |
 | Virtual machine | `Configuration/Change Configuration`<br>`Configuration/Add existing disk`<br>`Configuration/Add new disk`<br>`Configuration/Add or remove device`<br>`Configuration/Advanced configuration`<br>`Configuration/Change CPU count`<br>`Configuration/Change Memory`<br>`Configuration/Change Settings`<br>`Configuration/Configure Raw device`<br>`Configuration/Extend virtual disk`<br>`Configuration/Modify device settings`<br>`Configuration/Remove disk`<br>`Configuration/Create from existing`<br>`Configuration/Remove`<br>`Interaction/Power off`<br>`Interaction/Power on`<br>`Provisioning/Deploy template` |
 
-The role must be assigned to the following objects:
+Apart of the permissions you need to assign the role to the following objects:
 
 * vCenter Server
 * Datacenters or datacenter folders
@@ -47,47 +61,45 @@ The role must be assigned to the following objects:
 * Distributed Switch
 * VM and Template folders (With Propagate to children).
 
-### Considerations for single cluster failure domains
-
-If you want to leverage failure domains at the host level where a group of hosts is a failure domain (stretched cluster, racks, PDU distribution...), CAPV will need to work with Anti-Affinity rules.
-
-As a result the user requires the following permissions: `Host > Edit > Modify cluster`
+__Warning__: In case you want to leverage failure domains at the host level where a group of hosts is a failure domain (datacenters, racks, PDU distribution, etcd), Cluster API implementation needs permissions to work with `anti-affinity` rules. As a result the role requires the following permissions: `Host > Edit > Modify cluster`.
 
 ## Networking
 
-A network needs to be specified in the cluster definition to identify where the default gateway will be and where to connect the virtual machines (VMs). The DHCP service must be enabled on this network to assign IP addresses to the nodes.
+In the cluster definition, you need to specify a network for the controller to provision the default gateway and connect the virtual machines (VMs). The DHCP service must be enabled on this network to assign IP addresses to the cluster nodes automatically.
 
-Because vSphere has no concept of load balancer, the implementation of CAPV includes `kube-vip`, a layer-2 load balancer to address all environments, including those where NSX Advanced Load Balancer isn't available.
+A vSphere environment has no concept of the load balancer, which Kubernetes requires to expose services of the type load balancer and the API in a highly available mode. As a result, the Cluster API implementation includes `kube-vip`, a layer-2 load balancer to address all environments. The other option is to use NSX Advanced Load Balancer when available in your environment.
 
 {{< tabs >}}
 {{< tab id="flags-kubevip" title="kube-vip">}}
-Since vSphere has no concept of load balancers out of the box, CAPV ships with [kube-vip]({{< relref "/vintage/advanced/cluster-management/vsphere-kubevip" >}}), a layer-2 load balancer that works with ARP requests. By default, `kube-vip` only handles the Kubernetes API access but at Giant Swarm, we also deploy the `kube-vip` cloud provider to offer the capability to create services of type load balancer.
+Since vSphere has no concept of load balancers out of the box, Cluster API ships with [kube-vip]({{< relref "/vintage/advanced/cluster-management/vsphere-kubevip" >}}), a layer two load balancer that works with [ARP](https://en.wikipedia.org/wiki/Address_Resolution_Protocol) requests. By default, `kube-vip` only handles the Kubernetes API access. Still, at Giant Swarm, we also deploy the `kube-vip` provider to offer the capability to create services of type load balancer.
 
-ARP is a layer 2 protocol that is used to inform the network of the location of a new address. `kube-vip` runs in-cluster as opposed to a more traditional external load-balancer that will forward IP packets to its backend servers.
+The ARP layer two protocol informs the network of the location of a new host address. `kube-vip` runs in-cluster as opposed to a more traditional external load-balancer that will forward IP packets to its backend servers.
 
 ![capv kubevip](capv-kubevip-excalidraw.png)
 
-As a result, the network in which the cluster is deployed must have a range of the subnet outside of the DHCP scope and dedicated to `kube-vip`. We recommend one management cluster per subnet to avoid mistakes leading to IP conflicts. Example below:
+Due to the in-cluster operation of `kube-vip`, the cluster network where this component is deployed must have a dedicated subnet range outside of the DHCP scope. To avoid IP conflicts, we recommend having one subnet per management cluster.
 
 ![capv kubevip ipam](capv-kubevip-ipam-excalidraw.png)
 
-By default, when deploying a CAPV cluster, it will automatically pick up an IP from the ipam pool. However, you must explicitely set a CIDR located in the nodes' subnet to have available IPs for services of type load balancer in the workload cluster.
+When deploying a Cluster API cluster, it automatically selects an IP from the IP pool by default. However, to have available IPs for services of type load balancer in the workload cluster, you must explicitly set a CIDR in the nodes' subnet.
 
-Learn more about how to configure `kube-vip` for CAPV in the [advanced documentation]({{< relref "/vintage/advanced/cluster-management/vsphere-kubevip" >}}).
+Learn more about how to configure `kube-vip` in the [advanced documentation]({{< relref "/vintage/advanced/cluster-management/vsphere-kubevip" >}}).
 {{< /tab >}}
 
 {{< tab id="flags-nsxalb" title="NSX ALB">}}
-In the case of using NSX Advanced Load Balancer (NSX ALB), the virtual IP addresses management is handled by the NSX ALB Service Engine.
+When using NSX Advanced Load Balancer (NSX ALB), [there are several components](https://docs.vmware.com/en/VMware-vSphere/7.0/vmware-vsphere-with-tanzu/GUID-A247F5F2-AC7E-48E7-B615-F8D361C7292A.html) involved to enable load balancer capabilities in Kubernetes.
 
-Reconciliation of the NSX ALB resources can be done using Avi Kubernetes Operator (AKO) in the clusters to handle Kubernetes API access and services of type load balancer.
+The `controller` in NSX ALB plays a pivotal role. It is responsible for communicating the operations requested to the vCenter Server, ensuring the smooth functioning of the load balancer. Additionally, there is a `service engine` to manage virtual IP addresses and a Kubernetes `operator` to reconcile the NSX ALB resources in the clusters.
 
 ![capv kubevip](capv-nsxalb-excalidraw.png)
 
 {{< /tab >}}
 {{< /tabs >}}
 
-The network (nodes) must have access to the vCenter endpoint on port 443 for the controllers to manage the lifecycle of the cluster (CAPV, cloud provider interface, container storage interface).
+__Note__: The cluster nodes must have access to the vCenter endpoint on port 443 so that the controllers can manage the cluster's lifecycle.
 
-## VM templates (node images)
+## Virtual machine templates
 
-Giant Swarm must have the permissions to upload VM templates to deploy Kubernetes nodes from. They will be named following the convention `ubuntu-2004-kube-v1.24.11`.
+To provision the virtual machines (VMs) for the cluster nodes, Giant Swarm needs permissions to upload `VM templates` to vCenter Server. The templates use a convention with the Linux distribution and Kubernetes version on the name (e.g., `flatcar-stable-3815.2.1-kube-v1.25.16`).
+
+<!-- Xavier here we dont have to mention anything about the VM sizing? -->
