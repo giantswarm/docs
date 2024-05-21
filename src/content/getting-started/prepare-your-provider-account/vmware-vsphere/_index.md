@@ -73,7 +73,7 @@ A vSphere environment has no concept of the load balancer, which Kubernetes requ
 {{< tab id="flags-kubevip" title="kube-vip">}}
 Since vSphere has no concept of load balancers out of the box, Cluster API ships with [kube-vip]({{< relref "/vintage/advanced/cluster-management/vsphere-kubevip" >}}), a layer two load balancer that works with [ARP](https://en.wikipedia.org/wiki/Address_Resolution_Protocol) requests. By default, `kube-vip` only handles the Kubernetes API access. Still, at Giant Swarm, we also deploy the `kube-vip` provider to offer the capability to create services of type load balancer.
 
-The ARP layer two protocol informs the network of the location of a new host address. `kube-vip` runs in-cluster as opposed to a more traditional external load-balancer that will forward IP packets to its backend servers.
+The ARP layer two protocol informs the network of the location of a new host address. `kube-vip` runs in-cluster as opposed to a more traditional external load-balancer that will forward IP packets to its upstream servers.
 
 ![CAPV kubevip](capv-kubevip-excalidraw.png)
 
