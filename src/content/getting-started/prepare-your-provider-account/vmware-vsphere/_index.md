@@ -52,16 +52,16 @@ Create the user role browsing to `Administration > Access Control > Roles`and cl
 
 Apart of the permissions you need to assign the role to the following objects:
 
-* vCenter Server
-* Datacenters or datacenter folders
-* Hosts and clusters
-* VM templates
-* Resource pools (With Propagate to children)
-* Distributed Port Group
-* Distributed Switch
-* VM and Template folders (With Propagate to children).
+- vCenter Server
+- Data centers or data center folders
+- Hosts and clusters
+- VM templates
+- Resource pools (With Propagate to children)
+- Distributed Port Group
+- Distributed Switch
+- VM and Template folders (With Propagate to children).
 
-__Warning__: In case you want to leverage failure domains at the host level where a group of hosts is a failure domain (datacenters, racks, PDU distribution, etcd), Cluster API implementation needs permissions to work with `anti-affinity` rules. As a result the role requires the following permissions: `Host > Edit > Modify cluster`.
+__Warning__: In case you want to leverage failure domains at the host level where a group of hosts is a failure domain (data centers, racks, PDU distribution, Etcd), Cluster API implementation needs permissions to work with `anti-affinity` rules. As a result the role requires the following permissions: `Host > Edit > Modify cluster`.
 
 ## Networking
 
@@ -75,11 +75,11 @@ Since vSphere has no concept of load balancers out of the box, Cluster API ships
 
 The ARP layer two protocol informs the network of the location of a new host address. `kube-vip` runs in-cluster as opposed to a more traditional external load-balancer that will forward IP packets to its backend servers.
 
-![capv kubevip](capv-kubevip-excalidraw.png)
+![CAPV kubevip](capv-kubevip-excalidraw.png)
 
 Due to the in-cluster operation of `kube-vip`, the cluster network where this component is deployed must have a dedicated subnet range outside of the DHCP scope. To avoid IP conflicts, we recommend having one subnet per management cluster.
 
-![capv kubevip ipam](capv-kubevip-ipam-excalidraw.png)
+![CAPV kubevip IPAM](capv-kubevip-ipam-excalidraw.png)
 
 When deploying a Cluster API cluster, it automatically selects an IP from the IP pool by default. However, to have available IPs for services of type load balancer in the workload cluster, you must explicitly set a CIDR in the nodes' subnet.
 
@@ -91,7 +91,7 @@ When using NSX Advanced Load Balancer (NSX ALB), [there are several components](
 
 The `controller` in NSX ALB plays a pivotal role. It's responsible for communicating the operations requested to the vCenter Server, ensuring the smooth functioning of the load balancer. Additionally, there is a `service engine` to manage virtual IP addresses and a Kubernetes `operator` to reconcile the NSX ALB resources in the clusters.
 
-![capv kubevip](capv-nsxalb-excalidraw.png)
+![CAPV kubevip](capv-nsxalb-excalidraw.png)
 
 {{< /tab >}}
 {{< /tabs >}}
