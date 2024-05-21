@@ -5,3 +5,6 @@ kubelet
 VMware
 IP[s]
 VM[s]
+vSphere
+vCenter
+ESXi

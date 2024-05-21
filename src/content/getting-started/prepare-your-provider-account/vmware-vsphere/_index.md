@@ -19,7 +19,7 @@ The solution has some requirements from the vCenter side, and at the same time, 
 
 ### VMware vSphere
 
-The minimum version of vSphere required is 6.7 Update 3. It is recommended to run vSphere 7.0 or above. That versions support the Cloud Native Storage (CNS) feature needed for PersistentVolumes (PV) in Kubernetes.
+The minimum version of vSphere required is 6.7 Update 3. It's recommended to run vSphere 7.0 or above. That versions support the Cloud Native Storage (CNS) feature needed for PersistentVolumes (PV) in Kubernetes.
 
 | VMware product | Required version |
 |------|------|
@@ -29,11 +29,11 @@ The minimum version of vSphere required is 6.7 Update 3. It is recommended to ru
 
 ### Resource pool
 
-It is recommended to create one resource pool across the hosts where the workload cluster virtual machines will run. However, in case of inconvenience, it is possible to run the virtual machines in the implicit root resource pool located at the vSphere cluster level.
+It's recommended to create one resource pool across the hosts where the workload cluster virtual machines will run. However, in case of inconvenience, it's possible to run the virtual machines in the implicit root resource pool located at the vSphere cluster level.
 
 ## Controller permissions
 
-The Cluster API controller that provisions the infrastructure in the vSphere environment needs a role with a set of permissions. To follow the principle of least privilege, it is recommended that a specific user and role be created for the controller.
+The Cluster API controller that provisions the infrastructure in the vSphere environment needs a role with a set of permissions. To follow the principle of least privilege, it's recommended that a specific user and role be created for the controller.
 
 <!-- Xavier can we provide a text here to create the user too? -->
 
@@ -89,7 +89,7 @@ Learn more about how to configure `kube-vip` in the [advanced documentation]({{<
 {{< tab id="flags-nsxalb" title="NSX ALB">}}
 When using NSX Advanced Load Balancer (NSX ALB), [there are several components](https://docs.vmware.com/en/VMware-vSphere/7.0/vmware-vsphere-with-tanzu/GUID-A247F5F2-AC7E-48E7-B615-F8D361C7292A.html) involved to enable load balancer capabilities in Kubernetes.
 
-The `controller` in NSX ALB plays a pivotal role. It is responsible for communicating the operations requested to the vCenter Server, ensuring the smooth functioning of the load balancer. Additionally, there is a `service engine` to manage virtual IP addresses and a Kubernetes `operator` to reconcile the NSX ALB resources in the clusters.
+The `controller` in NSX ALB plays a pivotal role. It's responsible for communicating the operations requested to the vCenter Server, ensuring the smooth functioning of the load balancer. Additionally, there is a `service engine` to manage virtual IP addresses and a Kubernetes `operator` to reconcile the NSX ALB resources in the clusters.
 
 ![capv kubevip](capv-nsxalb-excalidraw.png)
 
