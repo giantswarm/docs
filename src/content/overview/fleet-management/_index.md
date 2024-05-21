@@ -11,17 +11,17 @@ owner:
   - https://github.com/orgs/giantswarm/teams/sig-product
 ---
 
-Based on our extensive experience, we understand that orchestrating a large-scale microservices platform poses significant challenges. Ideally, workloads should be designed for seamless execution in the cloud, tailor-made to optimize the container lifecycle. However, the task becomes exponentially more complex when juggling multiple providers, regions, and environments. Recognizing this, we've developed several abstraction layers to help streamline management and tackle this complexity more effectively.
+Based on our extensive experience, we understand that orchestrating a large-scale microservices platform poses significant challenges. Ideally, workloads should be designed for seamless execution in the cloud and in containers. However, this becomes exponentially more complex when juggling multiple providers, regions, clusters and environments. Recognizing this, we've developed abstractions to help manage and tackle this complexity effectively.
 
-## Features
+## Capabilities
 
 Our product is designed to offer a comprehensive set of features to support the construction of robust Cloud Native Platforms. Key features include:
 
-- **Multi-Environment Support**: Every enterprise has unique requirements and constraints, influencing how they design their developer platforms. Platform engineers often struggle to align their organization's structure and processes with the platform while maintaining the system's ability to foster speed and quality, all in compliance with company standards. Our solution, Giant Swarm, simplifies this process. It empowers you to provide developers with various environments, across different regions and providers, tailored to your organization's needs.
+- **Multi-Environment Support**: Every enterprise has unique requirements and constraints, influencing how they design their developer platforms. Platform engineers often struggle to align their organization's structure and processes with the platform while maintaining the system's ability to foster speed and quality, all in compliance with company standards. Our solution, the Giant Swarm platform, simplifies this process. It empowers you to provide developers with various environments, across different regions and providers, flexibly adapted to your organization's needs.
 
 - **Robust Configuration Management**: Manage your clusters, environments, and workloads with flexibility and precision using our robust configuration management framework. This framework facilitates structured platform configuration with multiple layers of control, all from a single repository. It's crafted to adhere to the principles of GitOps, ensuring seamless and efficient management.
 
-- **Standardized Cluster Lifecycle Management**: Experience a standardized approach to managing the lifecycle of your clusters. Developed in collaboration with the community, Giant Swarm offers a cloud-native solution for cluster lifecycle management. We leverage the Cluster API implementation to streamline lifecycle management, enabling versioning and configuration of clusters as code, thus ensuring consistency and reliability.
+- **Standardized cluster lifecycle management**: Experience a standardized approach to managing the lifecycle of your clusters. Giant Swarm leverages the Cluster API implementation, a Kubernetes subproject developed by the open source community, including Giant Swarm engineers as regular contributors. It allows for consistent and reliable cluster lifecycle management, enabling versioning and configuration of clusters as code.
 
 ## Cloud-native applications
 
