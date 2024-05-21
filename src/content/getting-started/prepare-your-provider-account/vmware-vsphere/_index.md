@@ -75,11 +75,11 @@ Since vSphere has no concept of load balancers out of the box, Cluster API ships
 
 The ARP layer two protocol informs the network of the location of a new host address. `kube-vip` runs in-cluster as opposed to a more traditional external load-balancer that will forward IP packets to its upstream servers.
 
-![CAPV kubevip](capv-kubevip-excalidraw.png)
+![CAPV kube-vip](capv-kubevip-excalidraw.png)
 
 Due to the in-cluster operation of `kube-vip`, the cluster network where this component is deployed must have a dedicated subnet range outside of the DHCP scope. To avoid IP conflicts, we recommend having one subnet per management cluster.
 
-![CAPV kubevip IPAM](capv-kubevip-ipam-excalidraw.png)
+![CAPV kube-vip IPAM](capv-kubevip-ipam-excalidraw.png)
 
 When deploying a Cluster API cluster, it automatically selects an IP from the IP pool by default. However, to have available IPs for services of type load balancer in the workload cluster, you must explicitly set a CIDR in the nodes' subnet.
 
@@ -91,7 +91,7 @@ When using NSX Advanced Load Balancer (NSX ALB), [there are several components](
 
 The `controller` in NSX ALB plays a pivotal role. It's responsible for communicating the operations requested to the vCenter Server, ensuring the smooth functioning of the load balancer. Additionally, there is a `service engine` to manage virtual IP addresses and a Kubernetes `operator` to reconcile the NSX ALB resources in the clusters.
 
-![CAPV kubevip](capv-nsxalb-excalidraw.png)
+![CAPV kube-vip](capv-nsxalb-excalidraw.png)
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -100,6 +100,6 @@ __Note__: The cluster nodes must have access to the vCenter endpoint on port 443
 
 ## Virtual machine templates
 
-To provision the virtual machines (VMs) for the cluster nodes, Giant Swarm needs permissions to upload `VM templates` to vCenter Server. The templates use a convention with the Linux distribution and Kubernetes version on the name (e.g., `flatcar-stable-3815.2.1-kube-v1.25.16`).
+To provision the virtual machines (VMs) for the cluster nodes, Giant Swarm needs permissions to upload `VM templates` to vCenter Server. The templates use a convention with the Linux distribution and Kubernetes version on the name (for example `flatcar-stable-3815.2.1-kube-v1.25.16`).
 
 <!-- Xavier here we dont have to mention anything about the VM sizing? -->
