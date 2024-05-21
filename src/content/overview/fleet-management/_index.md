@@ -15,13 +15,13 @@ Based on our extensive experience, we understand that orchestrating a large-scal
 
 ## Capabilities
 
-Our product is designed to offer a comprehensive set of features to support the construction of robust Cloud Native Platforms. Key features include:
+Our product is designed to offer a comprehensive set of features to support the construction of robust cloud-native platforms. Key features include:
 
-- **Multi-Environment Support**: Every enterprise has unique requirements and constraints, influencing how they design their developer platforms. Platform engineers often struggle to align their organization's structure and processes with the platform while maintaining the system's ability to foster speed and quality, all in compliance with company standards. Our solution, the Giant Swarm platform, simplifies this process. It empowers you to provide developers with various environments, across different regions and providers, flexibly adapted to your organization's needs.
+- **Multi-environment support**: Every enterprise has unique requirements and constraints, influencing how they design their developer platforms. Platform engineers often struggle to align their organization's structure and processes with the platform while maintaining the system's ability to foster speed and quality, all in compliance with company standards. Our solution, the Giant Swarm platform, simplifies this process. It empowers you to provide developers with various environments, across different regions and providers, flexibly adapted to your organization's needs.
 
-- **Robust Configuration Management**: Manage your clusters, environments, and workloads with flexibility and precision using our robust configuration management framework. This framework facilitates structured platform configuration with multiple layers of control, all from a single repository. It's crafted to adhere to the principles of GitOps, ensuring seamless and efficient management.
+- **Robust configuration management**: Our bullet-proof configuration management system allows you to manage your clusters, environments, and workloads with flexibility and precision. The system facilitates structured platform configuration with multiple control layers, all from a single repository. It's crafted to adhere to the principles of GitOps, ensuring seamless and efficient management.
 
-- **Standardized cluster lifecycle management**: Experience a standardized approach to managing the lifecycle of your clusters. Giant Swarm leverages the Cluster API implementation, a Kubernetes subproject developed by the open source community, including Giant Swarm engineers as regular contributors. It allows for consistent and reliable cluster lifecycle management, enabling versioning and configuration of clusters as code.
+- **Standardized cluster lifecycle management**: Experience a standardized approach to managing your clusters' lifecycle. Giant Swarm leverages the Cluster API implementation, a Kubernetes subproject developed by the open-source community, including Giant Swarm engineers as regular contributors. It allows consistent and reliable cluster lifecycle management, enabling versioning and configuring clusters as code.
 
 ## Cloud-native applications
 
