@@ -2,3 +2,4 @@ Etcd
 gsctl
 kubectl
 kubelet
+VMware
