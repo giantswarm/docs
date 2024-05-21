@@ -71,3 +71,4 @@ To define the set of instance types available to the users when deploying cluste
 | m1.2xlarge | 16 | 64GB |
 
 After all requirements are met, you can [create your first cluster following this guide]({{< relref "/vintage/getting-started/create-workload-cluster" >}}).
+
