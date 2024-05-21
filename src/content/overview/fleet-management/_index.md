@@ -23,8 +23,8 @@ Our product is designed to offer a comprehensive set of features to support the 
 
 - **Standardized cluster lifecycle management**: Experience a standardized approach to managing your clusters' lifecycle. Giant Swarm leverages the Cluster API implementation, a Kubernetes subproject developed by the open-source community, including Giant Swarm engineers as regular contributors. It allows consistent and reliable cluster lifecycle management, enabling versioning and configuring clusters as code.
 
-## Cloud-native applications
+## Cloud-native technologies
 
-The platform is heavily relying on [Cluster API implementation]({{< relref "/overview/fleet-management/introduction_cluster-api" >}}) to manage the lifecycle of your clusters. It opens up the possibility to manage your clusters in many providers adapting to the infrastructure nuances of each solution while keeping a consistent experience for the user.
+Our solution is built on top of cloud-native technologies and best practices. We leverage [Kubernetes](https://kubernetes.io/docs/concepts/overview/), the de facto standard for container orchestration, to provide a robust and scalable platform for your workloads. At the same time, Kubernetes is cloud-agnostic, allowing us serve the same interfaces to target multiple cloud providers. For managing the cluster lifecycle, as we mentioned above, we rely on [Cluster API]({{< relref "/overview/fleet-management/introduction_cluster-api" >}}) since it's a Kubernetes subproject driven by the community in order to bring declarative, Kubernetes-style APIs to cluster creation, configuration, and management.
 
-Every company requires a different level of control over their infrastructure and its configuration. We work with upstream to offer you a platform that is compliant with all the standards and processes your company imposes.
+On the other side we run [Flux](https://www.giantswarm.io/blog/gitops-with-flux-giant-swarm) to bring GitOps to the platform. Giant Swarm has built a convention to help you manage all your infrastructure and configuration in a single source of truth. Enjoy the benefits of a fully automated and auditable platform, where changes are made through pull requests and automatically applied to your clusters and applications.
