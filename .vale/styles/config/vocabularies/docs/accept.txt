@@ -3,3 +3,5 @@ gsctl
 kubectl
 kubelet
 VMware
+IP[s]
+VM[s]

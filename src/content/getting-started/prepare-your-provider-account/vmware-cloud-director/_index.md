@@ -19,15 +19,15 @@ The solution has some requirements from the VCD environment, and at the same tim
 
 ### VMware Cloud Director
 
-VMware Cloud Director must run at least with API version v36.0 compatibility (minimum version VCD v10.3). It is highly recommended to run VCD v10.4 or above as it includes shared virtual service IPs.
+VMware Cloud Director must run at least with API version v36.0 compatibility (minimum version VCD v10.3). It's highly recommended to run VCD v10.4 or above as it includes shared virtual service IPs.
 
 ### Networking
 
 In terms of virtual networking, the following requirements must be met:
 
-- Your Organization Virtual Datacenter (OVDC), where the clusters will run, must be backed by VMware NSX-T and NSX Advanced Load Balancer (ALB). The deprecated NSX-V is not supported.
+- Your Organization Virtual Data Center (oVDC), where the clusters will run, must be backed by VMware NSX-T and NSX Advanced Load Balancer (ALB). The deprecated NSX-V isn't supported.
 
-- The load balancer section must be enabled on the Edge Gateway with a Service Engine Group (SEG). A dedicated SEG is recommended to properly isolate tenants from each other. A pool of external IPs must be available on the Edge Gateway to create load balancers.
+- The load balancer section must be enabled on the Edge Gateway with a Service Engine Group (SEG). A dedicated SEG is recommended to isolate tenants from each other. A pool of external IPs must be available on the Edge Gateway to create load balancers.
 
 ![VCD Networking](vcd-networking.png)
 
@@ -35,7 +35,7 @@ In terms of virtual networking, the following requirements must be met:
 
 - The virtual machines (VMs) must have access to the VCD API endpoint for the controllers to work.
 
-- Access to the Internet is required for some of our automation to pull artifacts from the registry or get new certificates from Let's Encrypt. It is possible to configure an egress HTTP proxy to control the traffic. You can check the list of domains that need to be accessible [here]({{< relref "/vintage/platform-overview/security/cluster-security/domain-allowlist/#on-premise-installations" >}}).
+- Access to the Internet is required for some of our automation to pull artifacts from the registry or get new certificates from Let's Encrypt. It's possible to configure an egress HTTP proxy to control the traffic. You can check the list of domains that need to be accessible [here]({{< relref "/vintage/platform-overview/security/cluster-security/domain-allowlist/#on-premise-installations" >}}).
 
 ### Controller permissions
 
@@ -45,16 +45,16 @@ __Warning__: Take into account that every user is tied to its own VCD Resource q
 
 To obtain the credentials, you need to create a new role by browsing to `Administration > Access Control > Roles > Check vApp Author` and then click `Clone`. The suggestion is to name the role `CAPVCD`. Apart of the default permissions inherit from `vApp Author` role, the controller requires the following permissions:
 
-* `User > Manage user's API token`
-* `vApp > Preserve All ExtraConfig Elements During OVF Import and Export`
-* `Gateway > View Gateway`
-* `Gateway Services > NAT Configure, LoadBalancer Configure`
-* `Organization VDC => Create a Shared Disk`
-* `User > Manage user's API token`
+- `User > Manage user's API token`
+- `vApp > Preserve All ExtraConfig Elements During OVF Import and Export`
+- `Gateway > View Gateway`
+- `Gateway Services > NAT Configure, LoadBalancer Configure`
+- `Organization VDC => Create a Shared Disk`
+- `User > Manage user's API token`
 
 ### Virtual machine templates
 
-To provision the virtual machines (VMs) for the cluster nodes, the necessary `vApp templates` must be provided in the `giantswarm` organization's catalog. The templates use a convention with the Linux distribution and Kubernetes version on the name (e.g., `flatcar-stable-3815.2.1-kube-v1.25.16`).
+To provision the virtual machines (VMs) for the cluster nodes, the necessary `vApp templates` must be provided in the `giantswarm` organization's catalog. The templates use a convention with the Linux distribution and Kubernetes version on the name (for example `flatcar-stable-3815.2.1-kube-v1.25.16`).
 
 __Note__: Our engineers can upload the `vApp templates` to the `giantswarm` catalog or provide you with them, as uploads can fail over a WAN connection in some VCD environments.
 
