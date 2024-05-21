@@ -8,3 +8,6 @@ VM[s]
 vSphere
 vCenter
 ESXi
+kube-vip
+subnet
+vApp

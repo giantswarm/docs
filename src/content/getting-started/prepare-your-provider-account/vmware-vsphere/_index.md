@@ -39,16 +39,16 @@ The Cluster API controller that provisions the infrastructure in the vSphere env
 
 Create the user role browsing to `Administration > Access Control > Roles`and clicking `NEW`. The role must have at least the following permissions:
 
-| Categorie | permissions |
+| Category | permissions |
 | -------- | -------- |
-| Datastore | `Allocate space`<br>`Browse datastore`<br>`Low level file operations` |
-| global | `Disable methods`<br>`Enable methods`<br>`Licenses` |
-| Network | `Assign network` |
-| Resource | `Assign virtual machine to resource pool` |
-| Sessions | `Message`<br>`Validate session` |
-| Profile-driven storage | `Profile-driven storage view` |
-| vApp | `Import` |
-| Virtual machine | `Configuration/Change Configuration`<br>`Configuration/Add existing disk`<br>`Configuration/Add new disk`<br>`Configuration/Add or remove device`<br>`Configuration/Advanced configuration`<br>`Configuration/Change CPU count`<br>`Configuration/Change Memory`<br>`Configuration/Change Settings`<br>`Configuration/Configure Raw device`<br>`Configuration/Extend virtual disk`<br>`Configuration/Modify device settings`<br>`Configuration/Remove disk`<br>`Configuration/Create from existing`<br>`Configuration/Remove`<br>`Interaction/Power off`<br>`Interaction/Power on`<br>`Provisioning/Deploy template` |
+| `Datastore` | `Allocate space`<br>`Browse datastore`<br>`Low level file operations` |
+| `Global` | `Disable methods`<br>`Enable methods`<br>`Licenses` |
+| `Network` | `Assign network` |
+| `Resource` | `Assign virtual machine to resource pool` |
+| `Sessions` | `Message`<br>`Validate session` |
+| `Profile` driven storage | `Profile-driven storage view` |
+| `vApp` | `Import` |
+| `Virtual machine` | `Configuration/Change Configuration`<br>`Configuration/Add existing disk`<br>`Configuration/Add new disk`<br>`Configuration/Add or remove device`<br>`Configuration/Advanced configuration`<br>`Configuration/Change CPU count`<br>`Configuration/Change Memory`<br>`Configuration/Change Settings`<br>`Configuration/Configure Raw device`<br>`Configuration/Extend virtual disk`<br>`Configuration/Modify device settings`<br>`Configuration/Remove disk`<br>`Configuration/Create from existing`<br>`Configuration/Remove`<br>`Interaction/Power off`<br>`Interaction/Power on`<br>`Provisioning/Deploy template` |
 
 Apart of the permissions you need to assign the role to the following objects:
 
