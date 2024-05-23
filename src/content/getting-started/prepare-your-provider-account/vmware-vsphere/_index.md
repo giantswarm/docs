@@ -19,7 +19,7 @@ The solution has some requirements from the vCenter side, and at the same time, 
 
 ### VMware vSphere
 
-The minimum version of vSphere required is 6.7 Update 3. It's recommended to run vSphere 7.0 or above. That versions support the Cloud Native Storage (CNS) feature needed for PersistentVolumes (PV) in Kubernetes.
+The minimum version of vSphere required is 6.7 Update 3. It's recommended to run vSphere 7.0 or above. That versions support the `Cloud Native Storage` (CNS) feature needed for PersistentVolumes (PV) in Kubernetes.
 
 | VMware product | Required version |
 |------|------|
