@@ -37,7 +37,7 @@ In terms of virtual networking, the following requirements must be met:
 
 - Access to the Internet is required for some of our automation to pull artifacts from the registry or get new certificates from Let's Encrypt. It's possible to configure an egress HTTP proxy to control the traffic. You can check the list of domains that need to be accessible [here]({{< relref "/vintage/platform-overview/security/cluster-security/domain-allowlist/#on-premise-installations" >}}).
 
-### Controller permissions
+### Permissions
 
 The credentials for authentication against the VCD API are configured by cluster. The controller that interacts with the VCD API uses those credentials from a secret provided in the cluster app definition.
 

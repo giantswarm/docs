@@ -68,7 +68,7 @@ The `controller` in NSX ALB plays a pivotal role. It's responsible for communica
 {{< /tab >}}
 {{< /tabs >}}
 
-## Controller permissions
+## Permissions
 
 The Cluster API controller that provisions the infrastructure in the vSphere environment needs a role with a set of permissions. To follow the principle of least privilege, it's recommended that a specific user and role be created for the controller.
 
