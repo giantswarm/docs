@@ -96,7 +96,10 @@ The `controller` in NSX ALB plays a pivotal role. It's responsible for communica
 {{< /tab >}}
 {{< /tabs >}}
 
-__Note__: The cluster nodes must have access to the vCenter endpoint on port 443 so that the controllers can manage the cluster's lifecycle.
+Network traffic requirements. The cluster nodes must have access to:
+
+- vCenter endpoint on port 443 so that the controllers can manage the cluster's lifecycle.
+- Internet on port 443 to pull artifacts from Github, download CVE databases, pull container images, etc. We support authenticated HTTP proxies and we provide a [domain allowlist](https://docs.giantswarm.io/vintage/platform-overview/security/cluster-security/domain-allowlist/) for firewall whitelisting.
 
 ## Virtual machine templates
 
