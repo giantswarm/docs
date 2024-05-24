@@ -29,7 +29,7 @@ Outline
     - Improved deployment speed
     - Increased resilience
 - Noteworthy:
-    - The registry in the management cluster is not intended for long-term storage of images.
+    - The registry in the management cluster isn't intended for long-term storage of images.
     - Storage is limited, but can be adjusted according to customer needs.
     - TODO: something about access control and security.
 - Giant Swarm provides a Zot app to deploy a registry in workload clusters.
