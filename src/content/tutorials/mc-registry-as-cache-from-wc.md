@@ -1,5 +1,6 @@
 ---
 title: Using the registry in the management cluster as a pull-through cache from the workload cluster
+linkTitle: Local registry as pull-through cache
 description: For faster deployments, higher resilience, and reduced bandwidth usage, you can use the container registry in the management cluster as a pull-through cache from the workload cluster.
 weight: 100
 last_review_date: 2024-05-24
