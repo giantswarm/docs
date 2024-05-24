@@ -2,3 +2,5 @@ Etcd
 gsctl
 kubectl
 kubelet
+Containerd
+Zot
