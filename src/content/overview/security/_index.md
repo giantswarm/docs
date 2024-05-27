@@ -16,9 +16,9 @@ Security is paramount for any organization, especially those running workloads i
 
 ## Capabilities
 
-- **Policy enforcement**: Implement fine-grained security policies to control and restrict resource access. It includes Role-Based Access Control (RBAC), network policies, and Pod Security Standards (PSS) to ensure that only authorized users and approved applications can run on the platform.
+- **Policy enforcement**: Implement fine-grained security policies to control and restrict resource access. It includes Role-Based Access Control (RBAC), Network Policies, and Pod Security Standards (PSS) to ensure that only authorized users and approved applications can run on the platform.
 
-- Image scanning and provenance: Ensure the safety and integrity of container images by scanning them for vulnerabilities using tools like Clair or Trivy, and verifying their provenance by checking their source and history before deployment. This helps to prevent the use of compromised or malicious images in your environment, thereby reducing the risk of security threats.
+- Image scanning and provenance: Ensure the safety and integrity of container images by scanning them for vulnerabilities and verifying their provenance by checking their source and history before deployment. This helps to prevent the use of compromised or malicious images in your environment, thereby reducing the risk of security threats.
 
 - **Cloud security posture**: Maintain a strong security posture by continuously monitoring your cloud infrastructure for compliance with security best practices and standards. Identify and remediate misconfigurations and vulnerabilities to reduce the attack surface.
 
