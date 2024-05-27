@@ -11,7 +11,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/sig-product
 ---
 
-Based on our extensive experience, we understand that orchestrating a large-scale microservices platform poses significant challenges. Ideally, workloads should be designed for seamless execution in the cloud and containers. However, this becomes exponentially more complex when juggling multiple infrastructure providers, regions, clusters and environments. 
+Based on our extensive experience, we understand that orchestrating a large-scale microservices platform poses significant challenges. Ideally, workloads should be designed for seamless execution in the cloud and containers. However, this becomes exponentially more complex when juggling multiple infrastructure providers, regions, clusters and environments.
 
 With such complexity, you need to streamline the management of your platform in a declarative and simplified way. You will want to manage your fleet coherently and transparently, relying on capabilities that help you define standards and implement governance globally.
 
@@ -29,6 +29,6 @@ Our product is designed to offer a comprehensive set of features to support the 
 
 ## Cloud-native technologies
 
-Our solution is built on top of cloud-native technologies and best practices. We leverage [Kubernetes](https://kubernetes.io/docs/concepts/overview/), the de facto standard for container orchestration, to provide a robust and scalable platform for your workloads. At the same time, Kubernetes is cloud-agnostic, allowing us serve the same interfaces to target multiple cloud providers. For managing the cluster lifecycle, as we mentioned above, we rely on [Cluster API]({{< relref "/overview/fleet-management/introduction_cluster-api" >}}) since it's a Kubernetes subproject driven by the community in order to bring declarative, Kubernetes-style APIs to cluster creation, configuration, and management.
+Our solution is built on top of cloud-native technologies and best practices. We leverage [Kubernetes](https://kubernetes.io/docs/concepts/overview/), the de facto standard for container orchestration, to provide a robust and scalable platform for your workloads. At the same time, Kubernetes is cloud-agnostic, allowing us serve the same interfaces to target multiple cloud providers. For managing the cluster lifecycle, as we mentioned above, we rely on [Cluster API]({{< relref "/overview/fleet-management/cluster-management/introduction-cluster-api" >}}) since it's a Kubernetes subproject driven by the community in order to bring declarative, Kubernetes-style APIs to cluster creation, configuration, and management.
 
 On the other side we run [Flux](https://www.giantswarm.io/blog/gitops-with-flux-giant-swarm) to bring GitOps to the platform. Giant Swarm has built a convention to help you manage all your infrastructure and configuration in a single source of truth. Enjoy the benefits of a fully automated and auditable platform, where changes are made through pull requests and automatically applied to your clusters and applications.
