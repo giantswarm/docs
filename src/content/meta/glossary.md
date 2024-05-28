@@ -23,7 +23,7 @@ A cloud-native developer platform is an integrated collection of capabilities ex
 
 ## Developer environment
 
-In our context, a developer environment is the entity that defines the space where the developers will deploy their applications. It can be mapped to a Kubernetes namespace(s) or a cluster. The Platform capabilities like access management, security or observability are related to those environments.
+In our context, a developer environment is the entity that defines the space where developers will deploy their applications. It can be mapped to a Kubernetes namespace or cluster. Platform capabilities like access management, security, or observability are related to those environments.
 
 ## Managed app
 
@@ -39,7 +39,7 @@ The Platform API is the entrypoint of Giant Swarm's [cloud-native developer plat
 
 ## Platform team
 
-The platform team is a team that is in charge of providing the [cloud-native developer platform](#cloud-native-developer-platform). With the help of Giant Swarms managed platform they compose, manage and customize the platform for the specific needs of the development teams within their company.
+The platform team is in charge of providing the [cloud-native developer platform](#cloud-native-developer-platform). With the help of the Giant Swarms managed platform, they compose, manage and customize the platform for the specific needs of the development teams within their company.
 
 ## Smart platform engineering
 
@@ -47,4 +47,4 @@ Smart Platform Engineering is the design and development of intelligent platform
 
 ## Workload cluster
 
-The customer platform teams can define several clusters where the developers can run their applications based on different requirements like location (Ireland, US, China), stage (dev, staging, production) or isolation (payments, ecommerce).
+The customer platform teams can define several clusters where the developers can run their applications based on different requirements, such as location (Ireland, US, China), stage (development, staging, production), or isolation (payments, e-commerce).
