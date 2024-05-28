@@ -2,3 +2,12 @@ Etcd
 gsctl
 kubectl
 kubelet
+VMware
+IP[s]
+VM[s]
+vSphere
+vCenter
+ESXi
+kube-vip
+subnet
+vApp
