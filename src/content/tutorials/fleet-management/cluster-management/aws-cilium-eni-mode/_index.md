@@ -86,7 +86,7 @@ Edit the values in the YAML file:
 - Set value [`global.connectivity.network.pods.cidrBlocks`](https://github.com/giantswarm/cluster-aws/blob/main/helm/cluster-aws/README.md#connectivity) to the CIDR you want for the pods. This will be associated as secondary CIDR to the VPC.
 
   In this example, we use the value `10.1.0.0/16`. It must not overlap with the primary VPC CIDR (default `global.connectivity.network.vpcCidr=10.0.0.0/16`).
-- If you chose a different CIDR than `10.1.0.0/16`, please also set [`global.connectivity.eniModePodSubnets`](https://github.com/giantswarm/cluster-aws/blob/main/helm/cluster-aws/README.md#connectivity), for example by copy-pasting the documented default list of subnets and changing the CIDR split (default: `10.1.0.0/16` split into three subnet blocks `10.1.0.0/18`, `10.1.64.0/18`, `10.1.128.0/18`).
+- If you chose a different CIDR than `10.1.0.0/16`, please also set [`global.connectivity.eniModePodSubnets`](https://github.com/giantswarm/cluster-aws/blob/main/helm/cluster-aws/README.md#connectivity), for example by copy-pasting the documented default list of subnets and changing the CIDR split (default: `10.1.0.0/16` split into three subnet blocks `10.1.0.0/18`, `10.1.64.0/18`, `10.1.128.0/18`). Also check [AWS IPv4 CIDR block association restrictions](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-cidr-blocks.html#add-cidr-block-restrictions) before making choices.
 
 The changed values should look like this, while the rest stays the same:
 
