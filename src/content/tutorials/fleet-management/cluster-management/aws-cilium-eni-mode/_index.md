@@ -90,6 +90,7 @@ Edit the values in the YAML file:
 
 The changed values should look like this, while the rest stays the same:
 
+<!-- markdownlint-disable MD003 MD022 MD046 -->
 {{< highlight yaml "hl_lines=9-20" >}}
 ---
 apiVersion: v1
