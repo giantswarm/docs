@@ -10,18 +10,18 @@ user_questions:
   - How do I change the pod network CIDR?
 ---
 
-By default, AWS workload clusters on the Giant Swarm platform use the [`ipam: kubernetes` mode](https://docs.cilium.io/en/latest/network/concepts/ipam/kubernetes/) of the Cilium CNI (Container Network Interface). This mode allocates pod IPs from the single range `100.64.0.0/12` across nodes (configurable with [`global.connectivity.network.pods.cidrBlocks`](https://github.com/giantswarm/cluster-aws/tree/main/helm/cluster-aws#connectivity)). In this way, pod IPs are not visible on the AWS network. The number of pods can be very high, since no limits apart from the CIDR size apply. **We therefore recommend using this default mode unless you have specific requirements, as listed below.**
+By default, AWS workload clusters on the Giant Swarm platform use the [`ipam: kubernetes` mode](https://docs.cilium.io/en/latest/network/concepts/ipam/kubernetes/) of the Cilium CNI (Container Network Interface). This mode allocates pod IPs from the single range `100.64.0.0/12` across nodes (configurable with [`global.connectivity.network.pods.cidrBlocks`](https://github.com/giantswarm/cluster-aws/tree/main/helm/cluster-aws#connectivity)). In this way, pod IPs aren't visible on the AWS network. The number of pods can be high, since no limits apart from the CIDR size apply. **We therefore recommend using this default mode unless you have specific requirements, as listed below.**
 
 A workload cluster can be configured to deviate from this default and choose pod IPs from an AWS-allocated IP range (CIDR). **The [Cilium ENI IPAM mode](https://docs.cilium.io/en/latest/network/concepts/ipam/eni/) creates ENIs (Elastic Network Interfaces) and allocates pod IPs directly on those interfaces.**
 
 ## Advantages of Cilium ENI IPAM mode
 
 - Pods get directly assigned IPs, belong to an AWS subnet and are assigned to a separate security group `<mycluster>-pods`. This allows handling pod traffic separately, for example firewalling or peering.
-- Pod traffic is not encapsulated or translated by NAT. The pod IPs can be visible in a peered VPC or behind a transit gateway.
+- Pod traffic isn't encapsulated or translated by NAT. The pod IPs can be visible in a peered VPC or behind a transit gateway.
 
 ## Disadvantages of Cilium ENI IPAM mode
 
-- Strong limitation for number of pods – each AWS EC2 instance type has a certain maximum number of ENIs (Elastic Network Interfaces) and each of those has a maximum number of assignable IPs (see [AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html#AvailableIpPerENI)). For example, instance type `m5.xlarge` can host up to 4 ENIs (of which one is already used for the node IP CIDR), 15 IP addresses per ENI and therefore `(4 - 1 ENIs) * 15 IPs per ENI = 45` pods. This can lead to higher costs because fewer pods can be run on each node, even if more would fit based on available CPU and memory.
+- Strong limitation for number of pods: each AWS EC2 instance type has a certain maximum number of ENIs (Elastic Network Interfaces) and each of those has a maximum number of assignable IPs (see [AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html#AvailableIpPerENI)). For example, instance type `m5.xlarge` can host up to 4 ENIs (of which one is already used for the node IP CIDR), 15 IP addresses per ENI and therefore `(4 - 1 ENIs) * 15 IPs per ENI = 45` pods. This can lead to higher costs because fewer pods can be run on each node, even if more would fit based on available CPU and memory.
 - A large CIDR is recommended for the pod network, as each pod will use one IP. This could be a problem if you don't have enough CIDRs left to choose from, for example if the CIDR must not overlap with others in your network.
 
 ## Creating an AWS workload cluster with Cilium ENI IPAM mode
@@ -38,7 +38,7 @@ kubectl gs template cluster \
   > cluster.yaml
 ```
 
-Open the YAML file in an editor. It should look roughly like this:
+Open the YAML file in an editor. It should look like this:
 
 ```yaml
 ---
