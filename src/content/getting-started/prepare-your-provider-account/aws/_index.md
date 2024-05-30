@@ -14,7 +14,7 @@ In order to run the Giant Swarm platform in your AWS accounts, several prerequis
 
 ## Requirements
 
-In AWS environments you can run the management cluster and workload clusters in the same account or in separate accounts. Most of the requirements are related to configure `Identity and Access Management (IAM)` roles and service quotas.
+In AWS environments, you can run the management cluster and workload clusters in the same account or in separate accounts. Most of the requirements are related to configure _Identity and Access Management (IAM)_ roles and service quotas.
 
 ![AWS Setup Diagram](aws_onboarding.png)
 
