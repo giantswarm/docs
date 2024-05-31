@@ -1,6 +1,10 @@
 API[s]
+auditable
+CIDRs
+ENIs
 ESXi
 Etcd
+firewalling
 Falco
 Grafana
 gsctl
