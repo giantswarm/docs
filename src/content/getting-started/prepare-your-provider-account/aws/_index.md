@@ -83,7 +83,7 @@ dynamically based on traffic, hence the high numbers of EC2 instances requested.
 
 There are two types of IAM roles that need to be created in the AWS account. First, the controller role which is used by the CAPA controller in the management cluster to provision all infrastructure to manage workload clusters. Second, the staff role is used by Giant Swarm engineers to access the AWS account for support purposes.
 
-Here are the mandatory steps to create the required IAM resources but we advocate to follow the [automated option](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/pull/97/files#diff-753f90d7d7a4184925899b887c6ba1de4cdc834c9865f1a6d47cb4137f85124f). There you have terraform or cloudformation templates to create the necessary IAM roles and policies (single click-install).
+Here are the mandatory steps to create the required IAM resources but we advocate to follow one of the [automated options](https://github.com/giantswarm/giantswarm-aws-account-prerequisites). There you have terraform or cloudformation templates to create the necessary IAM roles and policies.
 
 #### Controller permissions {#iam-capa-controller-role}
 
