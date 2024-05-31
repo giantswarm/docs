@@ -1,13 +1,19 @@
+# Please keep this list sorted (alphabetically, case-insensitive)
+APIs
+auditable
+CIDRs
+ENIs
+ESXi
 Etcd
+firewalling
 gsctl
+IP[s]
+kube-vip
 kubectl
 kubelet
-VMware
-IP[s]
-VM[s]
-vSphere
-vCenter
-ESXi
-kube-vip
 subnet
 vApp
+vCenter
+VM[s]
+VMware
+vSphere
