@@ -15,39 +15,25 @@ In order to run the Giant Swarm platform in your Azure subscriptions, several pr
 
 ## Requirements
 
-In order to run Giant Swarm platform, an Azure subscription needs:
-
-- to invite Giant Swarm `azure-operator`'s service principal to the Active Directory your `Subscription` belongs to;
-- to assign Giant Swarm `azure-operator`'s service principal an appropriate role on the `Subscription`.
-
-
-### Service quotas {#quotas}
-
-### Permissions
-
-#### Controller permissions {#iam-aws-operator-role}
-
-### Staff permissions {#iam-staff-role}
-
-
-
-
-
-
-## Procedure
-
-In order to perform necessary actions to deploy and maintain workload clusters in your Azure subscription, `azure-operator`
-needs to access the subscription using a Service Principal.
-Below we detail the steps necessary to set it up.
-
-### 1. Prerequisites
-
 To create and assign the role to Giant Swarm's Service Principal you need:
 
 - An account with [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner) or [User Access Administrator](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#user-access-administrator) role.
 - [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) installed.
 
-### 2. Create the role definition
+### Service quotas {#quotas}
+
+<!-- DO WE NEED TO DO THAT BY DEFAULT LIKE IN AWS? -->
+
+### Permissions
+
+#### Controller permissions {#iam-azure-operator-role}
+
+<!-- SHOULD BE THGIS CHANGE BY https://capz.sigs.k8s.io/topics/getting-started or we have some docs -->
+
+In order to perform necessary actions to deploy and maintain workload clusters in your Azure subscription, `azure-operator` needs to access the subscription using a Service Principal. Below we detail the steps necessary to set it up.
+
+
+##### 2. Create the role definition
 
 Download our Role definition template:
 
@@ -66,7 +52,6 @@ Download our Role definition template:
   ]
 }
 ```
-
 Open it and replace `${SUBSCRIPTION_ID}` with your subscription id.
 
 To find out your subscription ID you can use [the Azure portal](https://portal.azure.com/#blade/Microsoft_Azure_Billing/SubscriptionsBlade), as shown in the screenshot below:
@@ -90,7 +75,7 @@ az role definition create --role-definition @guest.json
 
 On success this command prints the created role definition.
 
-### 3. Invite Giant Swarm's service principal to your Active Directory
+##### 3. Invite Giant Swarm's service principal to your Active Directory
 
 By visiting the following link you can invite GiantSwarm's Service Principal and authorize it to the Tenant AD on behalf
 of your organization. You just need to replace `${TENANT_ID}` with your Tenant ID, and `${SERVICE_PRINCIPAL_ID}` with the
@@ -102,16 +87,19 @@ https://login.microsoftonline.com/${TENANT_ID}/oauth2/authorize?client_id=${SERV
 
 Please note that the above URL will forward you to the `microsoft.com` home page on success. This is intended.
 
-### 4. Assign the right role to the Giant Swarm service principal
+##### 4. Assign the right role to the Giant Swarm service principal
 
 Now you need to give Giant Swarm's Service Principal permission to access resources belonging to your subscription.
+
 In your subscription, go to "Access Control (IAM)" and click the "Add Role" button, then select "Add role assignment".
+
 In the right sidebar that pops up, please select the `azure-operator` role.
 
 If the `Subscription` where the `Management Cluster` is deployed is not the same as the one that will host Workload Clusters,
 you also need to give `Network Contributor` role to the Service Principal on the `Management Cluster` subscription.
 
-## Configure Subscription to allow access for Giant Swarm Support
+
+### Staff permissions {#iam-staff-role}
 
 Last step while configuring your Subscription is to grant access for Giant Swarm Ops/Support to your subscription in order to provide 24/7 support. Access to the portal is important part of the provided support, where in some cases manual interventions have to take place.
 Easiest way is to use the Azure Lighthouse service, that allows to delegate the management of resources to third parties. While following this part of the guide, you will allow the Giant Swarm Staff group to manage your resources. This is beneficial as you will not have to manage access for each person separately within your subscription, but you will be adding a managed group that is kept up to date with the current active Giant Swarm Staff from our side.
@@ -137,9 +125,9 @@ Please remember to change the `roleDefinitionId` in case you would like to use y
 
 This command should be run for all subscriptions that are used for Giant Swarm workload clusters as well as the management cluster that orchestrates it all.
 
-## Accept legal terms for deployment of Flatcar image
+## Virtual machine templates
 
-Giant Swarm deploys [Flatcar](https://www.flatcar-linux.org/) image developed by Kinvolk from Azure Marketplace. In order to be able to run the image, it is required by Azure to accept the legal terms.
+Giant Swarm deploys [Flatcar](https://www.flatcar-linux.org/) images developed by Kinvolk from Azure Marketplace. In order to be able to run the image, it is required by Azure to accept the legal terms.
 Please run the following command prior to creating a cluster on a given subscription:
 
 ```nohighlight
