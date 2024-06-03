@@ -4,7 +4,7 @@ description: Supported cloud providers and management of clusters on the Giant S
 weight: 40
 menu:
   principal:
-    parent: overview
+    parent: overview-fleet-management
     identifier: overview-fleet-management-clusters
 last_review_date: 2024-05-02
 owner:
