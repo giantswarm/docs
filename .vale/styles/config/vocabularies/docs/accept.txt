@@ -1,0 +1,21 @@
+# Please keep this list sorted (alphabetically, case-insensitive)
+APIs
+auditable
+CIDRs
+Crossplane
+declaratively
+ENIs
+ESXi
+Etcd
+firewalling
+gsctl
+IP[s]
+kube-vip
+kubectl
+kubelet
+subnet
+vApp
+vCenter
+VM[s]
+VMware
+vSphere

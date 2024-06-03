@@ -18,7 +18,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-horizon
 ---
 
-One of the main building blocks of the platform is the cluster management. Our cluster management implementations come in different generations which are designed to be compatible with each other and integrate well with our [app platform]({{< relref "/vintage/platform-overview/app-platform" >}}). Development focuses on the latest generation: cluster management based on the Kubernetes subproject [Cluster API (CAPI)]({{< relref "/vintage/platform-overview/architecture" >}}). We are planning and supporting the migration of customer clusters to this generation in the long term. The previous generation is called _Vintage_. Depending on the generation, we support certain cloud providers.
+One of the main building blocks of the platform is the cluster management. Our cluster management implementations come in different generations which are designed to be compatible with each other and integrate well with our [app platform]({{< relref "/vintage/platform-overview/app-platform" >}}). Development focuses on the latest generation: cluster management based on the Kubernetes sub-project [Cluster API (CAPI)]({{< relref "/vintage/platform-overview/architecture" >}}). We are planning and supporting the migration of customer clusters to this generation in the long term. The previous generation is called _Vintage_. Depending on the generation, we support certain cloud providers.
 
 ## Cluster API (CAPI) generation
 
