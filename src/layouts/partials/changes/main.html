@@ -29,11 +29,11 @@
     </div>
   </div>
   <div class="col-sm-12 col-md-8 base-content">
-    
-    {{ if .Paginator }}
-    {{ partial "changes/list" . }}
+
+    {{ if and (ne .Kind "page") (gt .Paginator.TotalPages 1) }}
+      {{ partial "changes/list" . }}
     {{ else }}
-    {{ partial "changes/single" . }}
+      {{ partial "changes/single" . }}
     {{ end }}
 
   </div>

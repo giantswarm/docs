@@ -14,6 +14,8 @@ docker run --rm \
         --config /opt/helm-chart-docs-generator/config/config.yaml
 
 for file in ${DESTINATION}/*.md; do
+  ## Remove all content before the docs line
+  sed -i '/<!-- INTRO_END -->/,/<!-- DOCS_START -->/d' $file
   # Remove empty lines
   awk 'NF > 0 || NR == 1 {blank=0} NF == 0 {blank++} blank < 2 {print}'  $file > /tmp/_back.md && mv /tmp/_back.md $file
   # Remove trailing whitespace
