@@ -5,13 +5,13 @@ weight: 50
 menu:
   principal:
     parent: overview
-    identifier: overview-continuous-delivery
+    identifier: overview-continuous-deployment
 last_review_date: 2024-06-03
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-product
 ---
 
-Continuous Delivery (CD) is a crucial practice in modern software development, enabling teams to deliver features, fixes, and updates to their users fast and reliably. Giant Swarm has designed a platform that embraces continuous delivery capabilities to allow customers to deploy changes to their applications seamlessly, maintaining high quality and security standards.
+Continuous Delivery (CD) is a crucial practice in modern software development, enabling teams to deliver features, fixes, and updates to their users fast and reliably. Giant Swarm has designed a platform that embraces continuous deployment capabilities to allow customers to deploy changes to their applications seamlessly, maintaining high quality and security standards.
 
 ## Capabilities
 
@@ -23,10 +23,10 @@ Continuous Delivery (CD) is a crucial practice in modern software development, e
 
 ## Cloud-Native Technologies
 
-- **FluxCD**: It implements the GitOps methodology, allowing continuous delivery through automated synchronization of Git repositories with Kubernetes clusters. It ensures that the desired state defined in Git is always reflected in the deployed infrastructure and applications, providing a reliable and secure way to manage deployments.
+- **FluxCD**: It implements the GitOps methodology, allowing continuous deployment through automated synchronization of Git repositories with Kubernetes clusters. It ensures that the desired state defined in Git is always reflected in the deployed infrastructure and applications, providing a reliable and secure way to manage deployments.
 
 - **External Secrets Operator**: This is an open-source operator that integrates with various secret management solutions, such as AWS Secrets Manager, Azure Key Vault, and HashiCorp Vault. ESO retrieves secrets from these external sources and injects them into Kubernetes secrets, enabling secure and dynamic secret management in cloud-native environments.
 
 - **Crossplane**: It enables the management of infrastructure and services using Kubernetes-native APIs. It supports the declarative management of cloud resources, facilitating the implementation of Infrastructure as Code (IaC) practices. Crossplane allows seamless integration with existing Kubernetes workflows, providing a unified approach to managing applications and infrastructure.
 
-Learn how to start with continuous delivery on Giant Swarm by visiting our [getting started continuous delivery page]({{< relref "getting-started/install-an-application/" >}}).
+Learn how to start with continuous deployment on Giant Swarm by visiting our [getting started continuous deployment page]({{< relref "getting-started/install-an-application/" >}}).
