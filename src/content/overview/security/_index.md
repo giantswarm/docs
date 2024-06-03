@@ -11,17 +11,19 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 ---
 
-Security is paramount for any organization, especially those running workloads in the fast-paced cloud-native space. As you will see, Giant Swarm prioritizes security at every platform layer. The security features ensure that your applications and data are protected against threats, comply with industry standards, and maintain integrity throughout their lifecycle. This overview will detail the capabilities of our security offerings and the cloud-native technologies that enable them.
+Security is paramount for any organization, especially those running workloads in the fast-paced cloud-native space. Giant Swarm clusters follow a secure-by-default ideology, meaning every cluster starts with a production-ready security posture.
+
+The platform's security features ensure that your applications and data are protected against threats, comply with industry standards, and maintain integrity throughout their lifecycle. This overview details the capabilities of our security offerings and the cloud-native technologies that enable them.
 
 ## Capabilities
 
-- **Policy enforcement**: Implement fine-grained security policies to control and restrict resource access. It includes Role-Based Access Control (RBAC), Network Policies, and Pod Security Standards (PSS) to ensure that only authorized users and approved applications can run on the platform.
+- **Policy enforcement**: Implement fine-grained security policies to restrict resource access and prevent running risky workloads. This includes native Kubernetes Role-Based Access Control (RBAC), Network Policies, and Pod Security Standards (PSS), as well as platform support for a vast range of optional and custom policies.
 
-- Image scanning and provenance: Ensure the safety and integrity of container images by scanning them for vulnerabilities and verifying their provenance by checking their source and history before deployment. This helps to prevent the use of compromised or malicious images in your environment, thereby reducing the risk of security threats.
+- Image scanning and provenance: Ensure the safety of container images by scanning them for vulnerabilities, identifying improperly handled secrets, and verifying the authenticity and integrity of the image before deployment. This helps to prevent the use of compromised or malicious images in your environment, thereby reducing the risk of security threats.
 
 - **Cloud security posture**: Maintain a strong security posture by continuously monitoring your cloud infrastructure for compliance with security best practices and standards. Identify and remediate wrong configurations and vulnerabilities to reduce the attack surface.
 
-- **Runtime anomalies**: Detect and respond to abnormal behavior during runtime, which refers to any action detected that deviates from the expected or normal operation of the system. This includes monitoring for unusual activity, such as unexpected process executions, file system changes, and network connections, which could indicate a security breach or unauthorized access.
+- **Runtime anomalies**: Detect and respond to abnormal behavior during runtime. This includes monitoring for unusual activity, such as unexpected process executions, file system changes, network connections, or other events that deviate from the expected or normal operation of the system and could indicate a security breach or unauthorized access.
 
 - **Log alerting**: Enhance visibility and awareness by setting up alerts based on log data. It enables timely detection and response to security incidents, addressing suspicious activity.
 
@@ -31,14 +33,14 @@ Security is paramount for any organization, especially those running workloads i
 
 Our platform leverages several cloud-native technologies to deliver these security capabilities:
 
-- **Kyverno**: Facilitates policy enforcement by allowing you to define and enforce fine-grained security policies across all your clusters.
+- **Kyverno**: Facilitates policy enforcement by allowing you to define and enforce fine-grained security policies across all your clusters. Prevent unsafe configuration, require organization-specific best practices, and enforce supply chain security policies like image signature verification before admitting an image to the cluster.
 
-- **Trivy and Sigstore**: Rely on our ready-to-use apps to provide image scanning and provenance, ensuring that container images are free from vulnerabilities and their sources are verified.
+- **Trivy**: Scans workloads (and more) for vulnerabilities, exposed secrets, insecure configurations, and performs various types of benchmarks to provide visibility into the cluster and all of its workloads.
 
 - **Falco**: An open-source runtime security project, Falco monitors your Kubernetes environment for runtime anomalies, providing real-time detection of suspicious activities.
 
 - **Prometheus and Grafana**: Used for log alerting and monitoring, Prometheus collects and stores metrics, while Grafana provides a customizable dashboard for visualizing and setting up alerts based on these metrics.
 
-- **Cilium**: These container networking solutions provide advanced network capabilities, including network policies and internal encryption to secure communication within your clusters.
+- **Cilium**: Container networking plugin that provides advanced network capabilities, including DNS-based network policies and traffic encryption to secure communication within your clusters.
 
 Learn how to start with Security on Giant Swarm by visiting our [getting started security page]({{< relref "overview/security/platform-security/" >}}).
