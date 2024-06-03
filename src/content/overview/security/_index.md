@@ -21,9 +21,7 @@ The platform's security features ensure that your applications and data are prot
 
 - Image scanning and provenance: Ensure the safety of container images by scanning them for vulnerabilities, identifying improperly handled secrets, and verifying the authenticity and integrity of the image before deployment. This helps to prevent the use of compromised or malicious images in your environment, thereby reducing the risk of security threats.
 
-- **Cloud security posture**: Maintain a strong security posture by continuously monitoring your cloud infrastructure for compliance with security best practices and standards. Identify and remediate wrong configurations and vulnerabilities to reduce the attack surface.
-
-- **Runtime anomalies**: Detect and respond to abnormal behavior during runtime. This includes monitoring for unusual activity, such as unexpected process executions, file system changes, network connections, or other events that deviate from the expected or normal operation of the system and could indicate a security breach or unauthorized access.
+- **Runtime anomalies**: Detect and respond to abnormal behaviour during runtime. This includes monitoring for unusual activity, such as unexpected process executions, file system changes, network connections, or other events that deviate from the expected or regular operation of the system and could indicate a security breach or unauthorized access.
 
 - **Log alerting**: Enhance visibility and awareness by setting up alerts based on log data. It enables timely detection and response to security incidents, addressing suspicious activity.
 
