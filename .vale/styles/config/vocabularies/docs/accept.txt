@@ -1,11 +1,12 @@
+# Please keep this list sorted (alphabetically, case-insensitive)
 API[s]
 auditable
 CIDRs
 ENIs
 ESXi
 Etcd
-firewalling
 Falco
+firewalling
 Grafana
 gsctl
 IP[s]
