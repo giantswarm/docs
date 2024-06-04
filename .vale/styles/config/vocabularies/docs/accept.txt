@@ -1,14 +1,11 @@
-<<<<<<< HEAD
-az
-CLI
-=======
 # Please keep this list sorted (alphabetically, case-insensitive)
 API[s]
 auditable
+az
 CIDRs
+CLI
 ENIs
 ESXi
->>>>>>> 7fea75d2d28f7c283b0c874a16d842c2c02dfe56
 Etcd
 Falco
 firewalling
