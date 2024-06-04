@@ -41,9 +41,9 @@ The Platform API is the entrypoint of Giant Swarm's [cloud-native developer plat
 
 The platform team is in charge of providing a [cloud-native developer platform](#cloud-native-developer-platform). With the help of the Giant Swarms managed platform, they compose, manage and customize the platform for the specific needs of the development teams within their company.
 
-## Smart platform engineering
+## Smarter platform engineering
 
-Smart Platform Engineering is designing and developing intelligent platforms that help create a developer platform for your teams. Instead of starting from scratch and building an entire platform piece by piece while running it every day, use our knowledge, products and support to achieve your goals faster.
+Smarter Platform Engineering is designing and developing intelligent platforms that help create a developer platform for your teams. Instead of starting from scratch and building an entire platform piece by piece while running it every day, use our knowledge, products and support to achieve your goals faster.
 
 ## Workload cluster
 
