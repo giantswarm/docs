@@ -1,3 +1,5 @@
+az
+CLI
 Etcd
 gsctl
 kubectl
