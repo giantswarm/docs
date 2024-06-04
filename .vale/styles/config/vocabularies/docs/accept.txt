@@ -11,6 +11,8 @@ Falco
 firewalling
 Grafana
 gsctl
+Keybase
+Kinvolk
 IP[s]
 kube-vip
 kubectl

@@ -54,7 +54,7 @@ There are two permissions roles that need to be created in the Azure subscriptio
 
 Firstly, you need to grant access to Giant Swarm Ops/Support to your Azure subscription. Access to the portal is important for our every day support, where investigation and manual interventions are sometimes necessary.
 
-The easiest way is to create an [Azure Deployment Environment](https://azure.microsoft.com/en-us/products/deployment-environments) to delegate resource management to third parties. In this case, you must allow the Giant Swarm Staff group to manage your resources. This is beneficial as you don't have to manage access for each person separately within your subscription, instead you add a managed group that is kept up to date by Giant Swarm. There is a solution available called [Azure Lighthouse](https://learn.microsoft.com/en-us/azure/lighthouse/overview), which allows to delegate resource managements towards service providers such as Giant Swarm.
+The easiest way is to create an [Azure Deployment Environment](https://azure.microsoft.com/en-us/products/deployment-environments) to delegate resource management to third parties. In this case, you must allow the Giant Swarm Staff group to manage your resources. This is beneficial as you don't have to manage access for each person separately within your subscription, instead you add a managed group that's kept up to date by Giant Swarm. There is a solution available called [Azure Lighthouse](https://learn.microsoft.com/en-us/azure/lighthouse/overview), which allows to delegate resource managements towards service providers such as Giant Swarm.
 
 The recommendation is to choose Azure's [built-in role `Contributor`](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles) to give Giant Swarm access and deployment permissions for resources within your subscription.
 
@@ -88,7 +88,7 @@ On the other hand, the automation requires an [Azure Service Principal](https://
 
 The _Giant Swarm Service Principal_ can be created in two different ways: via Azure CLI or Azure Portal.
 
-##### Using AZ CLI
+##### Using az CLI
 
 Please run the following command and keep the output for later usage.
 
@@ -134,7 +134,7 @@ The following information needs to be provided to Giant Swarm:
 * SubscriptionID
 * TenantID
 
-**Note**: contact tou your Account Engineer, who will help you to find a secure way to share this information. Our recommended tool is [Keybase](https://keybase.io/).
+**Note**: contact to your Account Engineer, who will help you to find a secure way to share this information. Our recommended tool is [Keybase](https://keybase.io/).
 
 #### Step 3 - Post deployment cleanup
 
