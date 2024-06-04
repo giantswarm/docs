@@ -25,9 +25,9 @@ A cloud-native developer platform is an integrated collection of capabilities ex
 
 In our context, a developer environment defines the space where developers will deploy their applications. It can be mapped to a particular namespace or cluster. Platform capabilities like access management, security, or observability are related to those environments.
 
-## Managed app
+## Managed capabilities
 
-The managed apps are a set of curated components that can optionally be used in the [platform](#cloud-native-developer-platform) to enable diverse capabilities across the [developer environments](#developer-environment). As an example, in case the developers want to dynamically allocate DNS records for their services, they can leverage [external-dns](https://github.com/giantswarm/external-dns-app/). The managed apps are operated by us and we provide regular upgrades to avoid security vulnerabilities and bugs.
+Managed capabilities are a set of curated components that can be used in the [platform](#cloud-native-developer-platform) to enable capabilities across [developer environments](#developer-environment). As an example, in case the developers want to allocate DNS records for their services dynamically they can leverage [external-dns](https://github.com/giantswarm/external-dns-app/). Managed capabilities and the components that comprise them are operated by us and we provide regular upgrades to avoid security vulnerabilities and bugs.
 
 ## Management cluster
 
