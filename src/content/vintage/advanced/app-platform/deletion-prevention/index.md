@@ -42,13 +42,7 @@ The following `kubectl` commands show you how to apply the label to a cluster.
 {{< tab id="capi" for-impl="capi_any">}}
 
 ```sh
-kubectl label app -n org-ORGANIZATION CLUSTER_NAME-default-apps \
-  giantswarm.io/prevent-deletion=true
-
 kubectl label app -n org-ORGANIZATION CLUSTER_NAME \
-  giantswarm.io/prevent-deletion=true
-
-kubectl label configmap -n org-ORGANIZATION CLUSTER_NAME-default-apps-userconfig \
   giantswarm.io/prevent-deletion=true
 
 kubectl label configmap -n org-ORGANIZATION CLUSTER_NAME-userconfig \
