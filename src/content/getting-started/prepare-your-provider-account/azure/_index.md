@@ -42,7 +42,7 @@ If your current quotas are insufficient, you can request an increase. In the por
 * Click on pencil button to **request an update**.
 * Fill the new limit and submit the request.
 
-<img src="./quota_editing.png" style="border: solid 1px aliceblue; margin: 8px 0;" alt="Azure quotas edit" />
+![Azure quotas edit](quota_editing.png)
 
 You can follow the request status in the **Quotas** section.
 
