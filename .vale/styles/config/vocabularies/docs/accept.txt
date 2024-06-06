@@ -1,9 +1,12 @@
 # Please keep this list sorted (alphabetically, case-insensitive)
+Alertmanager
 API[s]
 auditable
 az
 CIDRs
 CLI
+Crossplane
+declaratively
 ENIs
 ESXi
 Etcd
