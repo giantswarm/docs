@@ -26,7 +26,7 @@ In addition to the following prerequisites, your account engineer will provide y
 
 ### Service quotas {#quotas}
 
-Azure enforces [service quota through all the cloud services](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits). The following overview lists the usual resources you may adjust depending on number of clusters and their size planned to be deployed:
+Azure enforces [service quota through all cloud services](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits). The following overview lists the usual resources you may adjust depending on number of clusters and their size planned to be deployed:
 
 ![Azure quotas list](./quotas_general.png)
 
