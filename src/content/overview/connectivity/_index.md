@@ -29,14 +29,14 @@ Our platform offers a range of capabilities to address your networking requireme
 
 ## Cloud-native technologies
 
-Our platform leverages various projects under the cloud-native initiative that help us offer aforementioned capabilities:
+Our platform leverages various projects under the cloud-native initiative that help us offer the aforementioned capabilities:
 
 - **Kubernetes**: the backbone of our platform, Kubernetes give a good foundation for container communication and networking discovery.
-- **Cilium**: a container network interface providing secure communication between your pods and scales reliably with your cluster.
-- **Kong**: an open-source API gateway that helps in managing your API traffic efficiently, ensuring reliable routing of external traffic to your services.
-- **Nginx**: ingres controller that helps in managing your ingress traffic efficiently, ensuring reliable routing of external traffic to your services.
+- **Cilium**: a container network interface providing reliable and secure communication between your pods and scales with your cluster.
+- **Kong**: an open-source API gateway that helps you manage your API traffic efficiently and ensures reliable external traffic routing to your services.
+- **Nginx**: an ingress controller that helps to manage and route external traffic to your services with robustness and stability.
 - **CoreDNS**: flexible DNS server improves service discovery within your clusters, aiding in efficient internal DNS management.
-- **Node Local DNS**: extension to CoreDNS that provides a scalable DNS solution where ever the size of the cluster is. Improve speed and reliability of DNS resolution for your workloads and the same time reduce the load on the CoreDNS.
-- **External DNS**: extends Kubernetes resources adding the option to manage DNS records for external services.
+- **Node Local DNS**: an extension to CoreDNS that provides a scalable DNS solution regardless of the cluster's size. It improves the speed and reliability of DNS resolution for your workloads while reducing the load on CoreDNS.
+- **External DNS**: extends Kubernetes resources, adding the option to manage DNS records for external services.
 
 Learn how to expose your workloads on Giant Swarm by visiting our [getting started page]({{< relref "getting-started/expose-your-app/" >}}).
