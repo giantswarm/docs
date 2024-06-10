@@ -14,7 +14,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I create a cluster manifest for the Management API?
-last_review_date: 2024-01-18
+last_review_date: 2024-06-10
 ---
 
 This command helps with creating a cluster by producing a manifest based on user input. This manifest can then optionally be modified and finally be applied to the Management API to create a cluster.
@@ -314,13 +314,12 @@ kubectl gs template cluster \
   --name demo1 \
   --organization multi-project \
   --vsphere-service-load-balancer-cidr 10.10.222.238/30 \
+  --vsphere-network-name demo1 \
   --vsphere-worker-memory-mib 4096 \
   --vsphere-worker-num-cpus 4 \
   --vsphere-worker-replicas 3 \
   --vsphere-control-plane-num-cpus 8 \
   --vsphere-control-plane-memory-mib 12000 \
-  --vsphere-image-template ubuntu-2004-kube-v1.24.11 \
-  --kubernetes-version=1.24.11
 ```
 
 {{< /tab >}}
@@ -989,56 +988,51 @@ spec:
 apiVersion: v1
 data:
   values: |
-    baseDomain: test.gigantic.io
-    cluster:
-      kubernetesVersion: 1.24.11
-    connectivity:
-      network:
-        allowAllEgress: true
-        controlPlaneEndpoint:
-          host: ""
-          ipPoolName: wc-cp-ips
-          port: 6443
-        loadBalancers:
-          cidrBlocks:
-          - 10.10.222.238/30
-    controlPlane:
-      image:
-        repository: registry.k8s.io
-      machineTemplate:
-        cloneMode: linkedClone
-        diskGiB: 50
-        memoryMiB: 12000
+    global:
+      connectivity:
+        baseDomain: test.gigantic.io
         network:
-          devices:
-          - dhcp4: true
-        numCPUs: 8
-        resourcePool: '*/Resources'
-        template: ubuntu-2004-kube-v1.24.11
-      replicas: 3
-    helmReleases:
-      cilium:
-        interval: 20s
-      coredns:
-        interval: 30s
-      cpi:
-        interval: 30s
-    nodeClasses:
-      default:
-        cloneMode: linkedClone
-        diskGiB: 50
-        memoryMiB: 4096
-        network:
-          devices:
-          - dhcp4: true
-        numCPUs: 4
-        resourcePool: '*/Resources'
-        template: ubuntu-2004-kube-v1.24.11
-    nodePools:
-      worker:
-        class: default
+          controlPlaneEndpoint:
+            host: ""
+            ipPoolName: wc-cp-ips
+            port: 6443
+          loadBalancers:
+            cidrBlocks:
+            - 10.10.222.238/30
+            ipPoolName: svc-lb-ips
+      controlPlane:
+        image:
+          repository: gsoci.azurecr.io/giantswarm
+        machineTemplate:
+          cloneMode: linkedClone
+          diskGiB: 50
+          memoryMiB: 12000
+          network:
+            devices:
+            - dhcp4: true
+              networkName: demo1
+          numCPUs: 8
+          resourcePool: '*/Resources'
+          template: flatcar-stable-3602.2.1-kube-v1.24.12-gs
         replicas: 3
-    organization: multi-project
+      metadata:
+        organization: multi-project
+      nodeClasses:
+        default:
+          cloneMode: linkedClone
+          diskGiB: 50
+          memoryMiB: 4096
+          network:
+            devices:
+            - dhcp4: true
+              networkName: demo1
+          numCPUs: 4
+          resourcePool: '*/Resources'
+          template: flatcar-stable-3602.2.1-kube-v1.24.12-gs
+      nodePools:
+        worker:
+          class: default
+          replicas: 3
 kind: ConfigMap
 metadata:
   creationTimestamp: null
@@ -1084,7 +1078,7 @@ spec:
     secret:
       name: vsphere-credentials
       namespace: org-multi-project
-  version: 0.7.1
+  version: 0.53.1
 ---
 apiVersion: v1
 data:
@@ -1130,7 +1124,7 @@ spec:
     configMap:
       name: demo1-default-apps-userconfig
       namespace: org-multi-project
-  version: 0.11.1
+  version: 0.14.0
 ```
 
 {{< /tab >}}
