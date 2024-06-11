@@ -103,3 +103,9 @@ __Warning__: In case you want to leverage failure domains at the host level wher
 ## Virtual machine templates
 
 To provision the virtual machines (VMs) for the cluster nodes, Giant Swarm needs permissions to upload `VM templates` to vCenter Server. The templates use a convention with the Linux distribution and Kubernetes version on the name (for example `flatcar-stable-3815.2.1-kube-v1.25.16`).
+
+## Next steps
+
+If you are running these steps for the first time and still don't have a management cluster, Giant Swarm will provide it in the next few days.
+
+If you already have a management cluster, you can proceed with the next step and learn how to [access to platform API]({{< relref "/getting-started/access--to-platform-api" >}}).

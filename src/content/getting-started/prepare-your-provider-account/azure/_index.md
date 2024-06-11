@@ -168,4 +168,6 @@ az feature register --name EncryptionAtHost  --namespace Microsoft.Compute --sub
 
 ## Next steps
 
-Once the management cluster is ready, you can proceed with the [creation of the workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}).
+If you are running these steps for the first time and still don't have a management cluster, Giant Swarm will provide it in the next few days.
+
+If you already have a management cluster, you can proceed with the next step and learn how to [access to platform API]({{< relref "/getting-started/access--to-platform-api" >}}).
