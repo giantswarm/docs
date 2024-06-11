@@ -166,8 +166,8 @@ Please run the following command prior to creating a cluster on a given subscrip
 az feature register --name EncryptionAtHost  --namespace Microsoft.Compute --subscription $YOUR_SUBSCRIPTION_ID
 ```
 
-## Next steps
+## Next step
 
 If you are running these steps for the first time and still don't have a management cluster, Giant Swarm will provide it in the next few days.
 
-If you already have a management cluster, you can proceed with the next step and learn how to [access to platform API]({{< relref "/getting-started/access--to-platform-api" >}}).
+If you already have a management cluster, you can proceed with the next step and learn how to [access to platform API]({{< relref "/getting-started/access-to-platform-api" >}}).
