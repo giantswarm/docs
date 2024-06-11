@@ -64,7 +64,7 @@ Organization names (technically, organization CR names) must follow these rules:
     - start with an alphanumeric character
     - end with an alphanumeric character
 
-Since each organization will have a namespace created prefixed with `org-', we recommend against using the same `org-` prefix in the organization name to avoid confusion.
+Since each organization has a namespace created prefixed with `org-`, we recommend against using the same `org-` prefix in the organization name to avoid confusion.
 
 ## Organization namespace {#namespace}
 

@@ -5,6 +5,7 @@ auditable
 az
 CIDRs
 CLI
+CR[s]
 Crossplane
 declaratively
 ENIs
@@ -16,11 +17,13 @@ Grafana
 gsctl
 Keybase
 Kinvolk
+krew
 IP[s]
 kube-vip
 kubectl
 kubelet
 Kyverno
+namespace[s]
 Trivy
 Sigstore
 subnet

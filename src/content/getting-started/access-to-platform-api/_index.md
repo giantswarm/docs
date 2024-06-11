@@ -50,7 +50,7 @@ kubectl krew install gs
 
 ## Step 2: Log in to the platform API
 
-A special command to log in to the platform API is `kubectl gs login`. You need to provide the URL of the management cluster's API endpoint, which is usually provided by Giant Swarm.
+A special command to log in to the platform API is `kubectl gs login`. You need to provide the address of the management cluster's API endpoint, which is usually provided by Giant Swarm.
 
 ```text
 $ kubectl gs login "https://api.<management cluster domain>/"
@@ -106,7 +106,7 @@ You may notice some important points:
 
 1. A cluster belonging to an organization called `x` will be represented in the Kubernetes namespace `org-x` in the management cluster (that's why we use the `-A` flag to see all the namespaces)
 2. Organizations may not have any clusters attached to them (yet)
-3. There is a `giantswarm` organization in which we define the management cluster and its configuration. Customers are not supported to make changes in here.
+3. There is a `giantswarm` organization in which we define the management cluster and its configuration. Customers aren't supported to make changes in here.
 
 Finally, you can see the YAML definition of a cluster (in this example, cluster `rfjh2` in organization `testing`) by running:
 
