@@ -15,31 +15,15 @@ user_questions:
   - What do I need to do to configure and provision my first workload cluster?
 ---
 
-Once you have access to the platform API, you can create a workload cluster easily.
+Once you have access to the platform API, the most natural next step is to create a workload cluster to understand how the platform works. This guide will describe step-by-step how to do it.
 
-gitops
-kgs
-happa
+Although our recommendable approach to manage your platform is to use [GitOps](https://www.giantswarm.io/blog/what-is-gitops) here we describe the process using the CLI to make it easier to understand the concepts. Translating these steps to GitOps is straightforward and you can follow our dedicated tutorial on [how to manage your workload clusters using GitOps]({{< relref "/vintage/advanced/app-platform/gitops" >}}).
 
-```
-DOWN -> Move this to specific page
-## Step 2: Choose a workload cluster name
+## Requirements
 
-First, please choose a name for the new workload cluster. We recommend you choose a naming scheme suiting your organization, and then stick to it.
+In case you have not installed the `kubectl-gs` CLI plugin yet, please follow the [installation instructions]({{< relref "https://docs.giantswarm.io/getting-started/access-to-platform-api#step-1%3A-Install-the-necessary-tools" >}}).
 
-- The maximum cluster name length is 20 characters.
-- Letters, digits and dashes are allowed. Dashes are not possible at beginning or end.
-- For example, `dev-eu-central-1-a`, `dev-a`, `prod-b`, `ecommerce-dev-eu`, `prod-us` or `staging01` are all valid names.
-- The cluster name will be part of domain names such as `api.<cluster name>.<base domain>` (for instance: `api.mycluster.eu-west-1.aws.gigantic.io` or `ingress.mycluster.mycompany.com`). The _base domain_ is defined by the management cluster. Since DNS records can normally be resolved publically by anyone, you should avoid encoding sensitive information into the cluster name (`mycluster` in our examples).
-- Clusters can't be renamed after creation.
-- Keep cluster names unique across your whole company. This is why:
-
-    - Within one management cluster, all workload cluster names must be unique, even across namespaces. This is so that tooling and operators can look up workload clusters by their unique name without the chance of confusion.
-    - Multiple management clusters can share the same base domain (see examples above), so workload cluster names should be unique across your company since their domains would otherwise clash.
-    - Using identical workload cluster names creates problems and risk. Imagine asking for support, or trying to resolve an incident, and Giant Swarm's or your team members confuse two clusters of the same name. Hence, cluster names should be unique, easily spellable and pronounceable by humans – for example during incident calls and in chat – and follow a somewhat consistent naming scheme.
-- We strongly recommend specifying a cluster name explicitly using the `--name` parameter, as in the below instructions. If you really want a randomly-generated name, you can instead use `--generate-name`.
-
-## Step 3: Template and create the workload cluster
+## Step 1: template the workload cluster
 
 You will now create resources with `kubectl gs`. In particular, this tutorial uses the `kubectl gs template` command to create valid YAML for each resource. The templating commands do not immediately create the cluster – the resulting YAML manifest must be applied to the management cluster API or committed to the GitOps repository in order to create the cluster. Alternatively, the Web UI provides a visual way to create clusters.
 
