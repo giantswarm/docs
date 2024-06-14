@@ -1,8 +1,5 @@
 # Please keep this list sorted (alphabetically, case-insensitive)
-<<<<<<< HEAD
 Alertmanager
-=======
->>>>>>> 0b11536db28eb56bfc32883dc0b0667f757de3fb
 API[s]
 auditable
 az
