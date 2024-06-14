@@ -14,7 +14,7 @@ In this guide, you will find the necessary steps to prepare your AWS accounts to
 
 ## Requirements
 
-In AWS environments, you can run the management and workload clusters in the same account or separate accounts. Most requirements are related to configuring _Identity and Access Management (IAM)_ roles and service quotas.
+In AWS environments, you can run the management and workload clusters in the same account or separate accounts. To help you take the decision read our [multi-account article]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/multi-account" >}}) where we explain the pros and cons of both approaches. Most requirements are related to configuring _Identity and Access Management (IAM)_ roles and service quotas.
 
 ![AWS Setup Diagram](aws_onboarding.png)
 
@@ -35,11 +35,13 @@ Next, there is the list of quotas to be modified, grouped by type:
 ```nohighlight
     - VPC
         - VPCs per region: **50**
-        - NAT Gateway per Availability Zone per region: **50**
+        - NAT Gateway per Availability Zone per region: **50** (not needed if you are creating a [private cluster]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/private-cluster" >}}))
         - IPv4 CIDR blocks per VPC: **50**
         - Routes per route table: **200**
+    - Route 53 Resolver
+        - Endpoints per AWS region: **100** (needed if you are creating a [private cluster]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/private-cluster" >}}))
     - Elastic IP
-        - New VPC Elastic IP Address Limit per region: **50** (not needed if you are creating a [private cluster]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts#private-cluster" >}}))
+        - New VPC Elastic IP Address Limit per region: **50** (not needed if you are creating a [private cluster]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/private-cluster" >}}))
     - Elastic Load Balancers
         - Application and Classic Load Balancers per region: **100**
     - Auto Scaling
@@ -179,31 +181,36 @@ Name this role:
 GiantSwarmAdmin
 ```
 
-## Step 3: Configure the organization {#configure-org}
+## Step 3: Configure the cluster role identity {#configure-cluster-role-identity}
 
+Remember that `default` AWSClusterRoleIdentity is needed but you can additional add more with specific names. (LETS INCLUDE THIS IN CAPZ TOO)
 
-Pillarlo de aqui https://docs.giantswarm.io/vintage/getting-started/cloud-provider-accounts/cluster-api/aws/#configure-the-awsclusterroleidentity
+```need to be updated
+When you want to create a new Cluster API workload cluster in a new AWS account you need to create a CR AWSClusterRoleIdentity which will reference the role in the new AWS Account.
 
-<!-- IS THIS STILL VALID??-->
-In the previous sections, we explained how to create two IAM roles in the
-AWS account that's going to run the Giant Swarm workload clusters.
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+kind: AWSClusterRoleIdentity
+metadata:
+  labels:
+    cluster.x-k8s.io/watch-filter: capi
+  name: ${ROLE_NAME}
+spec:
+  allowedNamespaces:
+    list: null
+    selector: {}
+  roleARN: ${ROLE_ARN}
+  sourceIdentityRef:
+    kind: AWSClusterControllerIdentity
+    name: default
+Where:
 
-Giant Swarm workload clusters are owned by _organizations_, which allows you to control
-access to clusters. Only members of the owner organization have access to
-the management functions of a cluster.
+${ROLE_NAME} is a short unique name referencing AWS account (ie: development, sandbox or staging2)
+${ROLE_ARN} is full ARN of the role created in previous step with giantswarm-aws-account-prerequisites repository.
+This CR needs to be created only once for each AWS Account. It can be then referenced in the cluster-aws repo in the value aws.awsClusterRoleIdentityName.
+```
 
-In order to run a workload cluster in your AWS account, the organization owning
-your cluster has to know about the roles you just created.
-
-If you have direct access to the Giant Swarm REST API, please set the credentials of
-your organization with our CLI [gsctl]({{< relref "/vintage/use-the-api/gsctl" >}}). Look for the
-[`update organization set-credentials`]({{< relref "/vintage/use-the-api/gsctl/update-org-set-credentials" >}})/#aws)
-command.
 
 **Note**: In case you are working with a Giant Swarm partner, you might not have access to the platform API. In that case, please provide the role ARNs values, capa controller and staff, to your partner contact.
-
-After the organization's credentials are set, you can create clusters owned by that
-organization. These clusters' resources will be created in your AWS account.
 
 ## Next steps
 
