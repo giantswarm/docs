@@ -2,7 +2,7 @@
 title: Prepare your AWS account
 description: Prepare your AWS account to start building your cloud-native developer platform with Giant Swarm.
 weight: 10
-last_review_date: 2024-05-28
+last_review_date: 2024-06-14
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:
@@ -33,16 +33,13 @@ Below is a screenshot of a service quota entry form.
 Next, there is the list of quotas to be modified, grouped by type:
 
 ```nohighlight
-- management cluster account:
-    - VPC
-        - Routes per route table: **200** ??
-- workload cluster account:
     - VPC
         - VPCs per region: **50**
         - NAT Gateway per Availability Zone per region: **50**
         - IPv4 CIDR blocks per VPC: **50**
+        - Routes per route table: **200**
     - Elastic IP
-        - New VPC Elastic IP Address Limit per region: **50**
+        - New VPC Elastic IP Address Limit per region: **50** (not needed if you are creating a [private cluster]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts#private-cluster" >}}))
     - Elastic Load Balancers
         - Application and Classic Load Balancers per region: **100**
     - Auto Scaling
@@ -115,7 +112,7 @@ __Warning__: Remember to replace the `INSTALLATION_NAME` placeholder with the na
 
 __Note__: All policy names contain the installation name to make easier identifying the policies and avoid conflicts with other installations running within the same account.
 
-##### 2. Create the role metadata {#iam-capa-controller-role-basic}
+#### 2. Create the role metadata {#iam-capa-controller-role-basic}
 
 Now move to the IAM [Roles](https://console.aws.amazon.com/iam/home#/roles) subsection, and hit the **Create role** button. In the following screen, when asked to _Select type of trusted entity_ chose _AWS account_.
 
@@ -145,7 +142,7 @@ giantswarm-${INSTALLATION_NAME}-capa-controller
 
 __Note__: The role name also contains the installation name to make easier identifying across other roles and avoid conflicts with other installations running within the same account.
 
-## Step 3: Staff permissions {#iam-staff-role}
+### Staff permissions {#iam-staff-role}
 
 Finally, we create an IAM role for Giant Swarm support staff to assume in order to
 access both AWS accounts. This role must have Giant Swarm's account as a trusted
@@ -154,7 +151,7 @@ entity, and we recommend that it enforces multi-factor authentication.
 Giant Swarm staff require access to **all** accounts, so **the following steps must
 be duplicated in both the management cluster and workload cluster accounts**.
 
-### 1. Create the admin policy {#iam-staff-policy}
+#### 1. Create the admin policy {#iam-staff-policy}
 
 Go to the [Policies](https://console.aws.amazon.com/iam/home#/policies) subsection and select **Create policy** to set the admin permissions. Use the [admin JSON policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/master/admin-role/iam-policy.json) file as the policy content. This time, call the policy
 
@@ -162,7 +159,7 @@ Go to the [Policies](https://console.aws.amazon.com/iam/home#/policies) subsecti
 GiantSwarmAdmin
 ```
 
-### 2. Create the admin role {#iam-staff-role}
+#### 2. Create the admin role {#iam-staff-role}
 
 Enter again in the [Roles](https://console.aws.amazon.com/iam/home#/roles) subsection of the AWS console and select **Create role**. When asked to **Select type of trusted entity** choose **AWS account**.
 
@@ -170,11 +167,11 @@ Enter again in the [Roles](https://console.aws.amazon.com/iam/home#/roles) subse
 - **Do not** enable **Require external ID**.
 - It is strongly recommended to check the option **Require MFA** (multi factor authentication). This adds an extra authentication step for users to assume the role, which increases security.
 
-### 3. Attach policy to role {#iam-staff-role-policy}
+#### 3. Attach policy to role {#iam-staff-role-policy}
 
 Attach the newly created `GiantSwarmAdmin` policy to the role you are creating.
 
-### 4. Name the role {#iam-staff-role-name}
+#### 4. Name the role {#iam-staff-role-name}
 
 Name this role:
 
@@ -182,7 +179,11 @@ Name this role:
 GiantSwarmAdmin
 ```
 
-## Step 4: Configure the organization {#configure-org}
+## Step 3: Configure the organization {#configure-org}
+
+
+Pillarlo de aqui https://docs.giantswarm.io/vintage/getting-started/cloud-provider-accounts/cluster-api/aws/#configure-the-awsclusterroleidentity
+
 <!-- IS THIS STILL VALID??-->
 In the previous sections, we explained how to create two IAM roles in the
 AWS account that's going to run the Giant Swarm workload clusters.
@@ -199,10 +200,7 @@ your organization with our CLI [gsctl]({{< relref "/vintage/use-the-api/gsctl" >
 [`update organization set-credentials`]({{< relref "/vintage/use-the-api/gsctl/update-org-set-credentials" >}})/#aws)
 command.
 
-In case you are working with a Giant Swarm partner, you might not have
-access to the Giant Swarm REST API. In that case, please provide the role ARNs for
-the `GiantSwarmAWSOperator` role and the `GiantSwarmAdmin` role to your partner
-contact.
+**Note**: In case you are working with a Giant Swarm partner, you might not have access to the platform API. In that case, please provide the role ARNs values, capa controller and staff, to your partner contact.
 
 After the organization's credentials are set, you can create clusters owned by that
 organization. These clusters' resources will be created in your AWS account.
