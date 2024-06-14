@@ -1,13 +1,21 @@
+# Please keep this list sorted (alphabetically, case-insensitive)
+Alertmanager
 API[s]
 auditable
+az
 CIDRs
+CLI
+Crossplane
+declaratively
 ENIs
 ESXi
 Etcd
-firewalling
 Falco
+firewalling
 Grafana
 gsctl
+Keybase
+Kinvolk
 IP[s]
 kubectl
 kubelet
