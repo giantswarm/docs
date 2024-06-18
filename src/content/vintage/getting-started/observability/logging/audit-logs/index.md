@@ -74,7 +74,7 @@ Kubernetes audit logs can be found on `control-plane` nodes at `/var/log/apiserv
 
 ##### CAPI clusters
 
-In __capi__ clusters, the default kubernetes policy defined on all our clusters is defined [here](https://github.com/giantswarm/cluster/blob/main/helm/cluster/files/etc/kubernetes/policies/audit-policy.yaml) and can be configured by overriding the value of `internal.advancedConfiguration.controlPlane.apiServer.auditPolicy.extraRule` in the cluster helm chart.
+In __capi__ clusters, the default kubernetes policy defined on all our clusters is defined [here](https://github.com/giantswarm/cluster/blob/main/helm/cluster/files/etc/kubernetes/policies/audit-policy.yaml).
 
 ##### Vintage clusters
 
