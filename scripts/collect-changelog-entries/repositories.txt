@@ -1,2 +1,0 @@
-cluster-aws
-cluster-azure

@@ -47,6 +47,7 @@ collect-changelog-entries:
 	docker run --rm \
 	  --volume=${PWD}:/workdir \
 	  -w /workdir \
+		-e GITHUB_TOKEN \
 	  $(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
 	  /workdir/scripts/collect-changelog-entries/script.py
 
