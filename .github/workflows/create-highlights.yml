@@ -38,4 +38,6 @@ jobs:
             This PR has been created automatically by the 'Create highlight PR' Github workflow
             to publish the weekly highlights.
 
-            This action is triggered every Thrusday morning to collect all the highlights from the selected apps in giantswarm/github repository. The highlights are collected from the changelog entries of the selected apps.
+            This action is triggered every Thrusday morning to collect all the highlights from the selected apps in giantswarm/github repository. The highlights are collected from the changelog entries from .github repository apps.
+
+            Please review the changes, group the entries for each app making sure it is digestible for the customers and highlight the breaking changes in the top.
