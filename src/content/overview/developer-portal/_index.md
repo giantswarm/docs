@@ -21,7 +21,8 @@ The Developer Portal provides the following features:
 
 - **Service catalog**: a catalog of all the services available on your platform, including documentation, metrics, and other information.
 - **Application management**: the ability to create golden paths or template to boost the application development process and the same time you can observe the status of your applications.
-- **Documentation**: A central location for all your platform documentation, including guides, tutorials, and API references.
+- **Environment provision**: as a platform owner, you can create environment templates with policies, permissions, or external cloud resources attached, ready for your developers to use.
+- **Documentation**: a central location for all your platform documentation, including guides, tutorials, and API references.
 - **Metrics and monitoring**: basic metrics and monitoring capabilities for your applications and connection to extended monitoring tools.
 - **Alerts and notifications**: define alerts and notifications for your applications and services in a common place.
 
