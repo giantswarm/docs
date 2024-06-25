@@ -25,6 +25,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 aliases:
   - /use-the-api/management-api/crd/networkpools.infrastructure.giantswarm.io/
+  - /reference/cp-k8s-api/networkpools.infrastructure.giantswarm.io/
 technical_name: networkpools.infrastructure.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v5.0.0
