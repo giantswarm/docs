@@ -67,7 +67,7 @@ Since each organization has a namespace created prefixed with `org-`, we recomme
 
 ## Organization namespace {#namespace}
 
-The management cluster creates a namespace for each organization. The namespace is named after the organization CR name, prefixed with `org—'.
+For each organization there exists a namespace in the management cluster. The namespace is named after the organization CR name, prefixed with `org—'.
 
 For example, for an organization `acme`, there is the defining organization CR named `acme`. In addition, the organization-operator ensures the existence of the namespace `org-acme` in the management cluster.
 
