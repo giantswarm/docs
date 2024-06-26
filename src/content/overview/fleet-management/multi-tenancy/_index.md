@@ -23,7 +23,6 @@ The organization concept makes use of some well-known building blocks of Kuberne
 Typical use cases for organizations are:
 
 - Separating clusters for development, experimentation, and testing from those used for staging and production purposes.
-
 - Isolating teams, business units, or even legal entities.
 
 At Giant Swarm, for example, we run several shared installations where we allow different customers access to only one organization, usually before they get their installation. This way, we can ensure that each customer, while using the same management cluster, can only access their workload clusters and resources.
