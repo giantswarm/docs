@@ -24,7 +24,7 @@ In addition to the following prerequisites, your account engineer will provide y
     * An account with [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner) or [User Access Administrator](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#user-access-administrator) role.
     * [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) installed and configured to point to chosen subscription via [`az account set`](https://learn.microsoft.com/en-us/cli/azure/account?view=azure-cli-latest#az-account-set) command.
 
-### Service quotas {#quotas}
+## Step 1: Service quotas {#quotas}
 
 Azure enforces [service quota through all cloud services](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits). The following overview lists the usual resources you may adjust depending on number of clusters and their size planned to be deployed:
 
@@ -46,7 +46,7 @@ If your current quotas are insufficient, you can request an increase. In the Azu
 
 You can follow the request status in the **Quotas** section.
 
-### Permissions
+## Step 2: Permissions
 
 There are two permission roles that need to be created in the Azure subscription. One for the Giant Swarm controller used by the CAPZ controller in the management cluster to provision all infrastructure to manage workload clusters, and the other for Giant Swarm engineers to access the Azure account for support purposes.
 
@@ -166,6 +166,8 @@ Please run the following command prior to creating a cluster on a given subscrip
 az feature register --name EncryptionAtHost  --namespace Microsoft.Compute --subscription $YOUR_SUBSCRIPTION_ID
 ```
 
-## Next steps
+## Next step
 
-Once the management cluster is ready, you can proceed with the [creation of the workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}).
+If you are running these steps for the first time and still don't have a management cluster, Giant Swarm will provide it in the next few days.
+
+If you already have a management cluster, you can proceed with the next step and learn how to [access to platform API]({{< relref "/getting-started/access-to-platform-api" >}}).
