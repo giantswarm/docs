@@ -46,7 +46,7 @@ If your current quotas are insufficient, you can request an increase. In the Azu
 
 You can follow the request status in the **Quotas** section.
 
-## Step 2:## Permissions
+## Step 2: Permissions
 
 There are two permission roles that need to be created in the Azure subscription. One for the Giant Swarm controller used by the CAPZ controller in the management cluster to provision all infrastructure to manage workload clusters, and the other for Giant Swarm engineers to access the Azure account for support purposes.
 
