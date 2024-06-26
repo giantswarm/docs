@@ -53,7 +53,7 @@ kubectl krew install gs
 A special command to log in to the platform API is `kubectl gs login`. You need to provide the address of the management cluster's API endpoint, which is usually provided by Giant Swarm.
 
 ```text
-$ kubectl gs login "https://api.<management cluster domain>/"
+$ kubectl gs login "https://api.<management cluster base domain>/"
 [...]
 A new kubectl context named 'gs-wombat' has been created and selected. To switch back to this context later, use either of these commands:
  kubectl gs login wombat
