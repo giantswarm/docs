@@ -27,6 +27,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 aliases:
   - /use-the-api/management-api/crd/azuremachinetemplates.infrastructure.cluster.x-k8s.io/
+  - /reference/cp-k8s-api/azuremachinetemplates.infrastructure.cluster.x-k8s.io/
 technical_name: azuremachinetemplates.infrastructure.cluster.x-k8s.io
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v5.0.0
