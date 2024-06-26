@@ -26,7 +26,7 @@ To interact with the platform API, you have three options:
 
 This guide focuses on the second option, using the `kubectl` command-line tool. However, you can find more information about the other options in the [tutorials](https://docs.giantswarm.io/tutorials/).
 
-## Step 1: Install the necessary tools
+## Requirements
 
 Select your operating system:
 
@@ -48,7 +48,7 @@ kubectl krew install gs
 {{< /tab >}}
 {{< /tabs >}}
 
-## Step 2: Log in to the platform API
+## Step 1: Log in to the platform API
 
 A special command to log in to the platform API is `kubectl gs login`. You need to provide the address of the management cluster's API endpoint, which is usually provided by Giant Swarm.
 
@@ -60,28 +60,13 @@ A new kubectl context named 'gs-wombat' has been created and selected. To switch
  kubectl config use-context gs-wombat
 ```
 
-When logging in, you must authenticate in your browser using the configured identity provider (for example, by signing into an Active Directory or GitHub user account).
+When logging in, you must authenticate in your browser using the configured identity provider (for example, by signing into an Active Directory or GitHub user account). To learn more about the different authentication methods, see the [authentication page]({{< relref "/overview/architecture/authentication" >}}).
 
-## Step 3: View resources on the management cluster
+## Step 2: Explore the platform
 
 Let's run some commands and understand what's happening under the hood.
 
-The first command is `kubectl get nodes`, which shows how the nodes make up our management cluster.
-
-```text
-$ kubectl get nodes
-NAME                                          STATUS   ROLES                  AGE   VERSION
-ip-10-0-106-27.eu-west-2.compute.internal    Ready    control-plane,master   32d     v1.25.16
-ip-10-0-152-147.eu-west-2.compute.internal   Ready    control-plane,master   47d     v1.25.16
-ip-10-0-227-255.eu-west-2.compute.internal   Ready    control-plane,master   47d     v1.25.16
-ip-10-0-69-91.eu-west-2.compute.internal     Ready    worker                 21h     v1.25.16
-ip-10-0-82-78.eu-west-2.compute.internal     Ready    worker                 13h     v1.25.16
-ip-10-0-97-66.eu-west-2.compute.internal     Ready    worker                 19m     v1.25.16
-```
-
-There are two roles: `control-plane` and `worker`. Note that this still relates to the management cluster. None of your business applications should ever run on the management cluster's nodes, unless you want to run custom operators.
-
-The second command we suggest running is `kubectl get orgs`, which lists the organizations defined in your management cluster.
+The first command we suggest running is `kubectl get orgs`, which lists the organizations defined in your management cluster.
 
 ```text
 $ kubectl get orgs
@@ -93,7 +78,7 @@ giantswarm              97d
 
 Organizations are a way to separate and isolate clusters, apps, etc., between different teams or environments. More information can be found in [multi-tenancy page]({{< relref "/vintage/platform-overview/multi-tenancy" >}}).
 
-Finally, run the `kubectl gs get clusters -A` command, which shows all the clusters managed by your management cluster, the `-A` flag stands for all namespaces.
+Secondly, run the `kubectl gs get clusters -A` command, which shows all the clusters managed by your management cluster, the `-A` flag stands for all namespaces.
 
 ```text
 $ kubectl gs get clusters -A
@@ -106,14 +91,28 @@ You may notice some important points:
 
 1. A cluster belonging to an organization called `x` will be represented in the Kubernetes namespace `org-x` in the management cluster (that's why we use the `-A` flag to see all the namespaces)
 2. Organizations may not have any clusters attached to them (yet)
-3. There is a `giantswarm` organization in which we define the management cluster and its configuration. Customers aren't supported to make changes in here.
+3. There is a `giantswarm` organization in which we define the current management cluster and its configuration. Customers aren't supported to make changes in here.
 
-Finally, you can see the YAML definition of a cluster (in this example, cluster `rfjh2` in organization `testing`) by running:
+On the other hand, you can see the YAML definition of a cluster (in this example, cluster `rfjh2` in organization `testing`) by running:
 
 ```sh
 kubectl gs get cluster rfjh2 -n org-testing -o yaml
 ```
 
+Finally, you can see the apps deployed in a cluster by running:
+
+```sh
+$ kubectl gs get app -n org-giantswarm
+NAME                     VERSION     LAST DEPLOYED     STATUS
+golem-capa-karpenter      0.3.0          50d          deployed
+golem-capi-node-labeler   0.5.0          54d          deployed
+golem-cert-exporter       2.8.5          54d          deployed
+golem-cert-manager        3.7.2          39d          deployed
+...
+```
+
+You can notice that the apps are deployed in the `org-x` namespace and are prefixed with the cluster name to avoid conflicts between different clusters living in the same organization. This is a good practice to follow when deploying apps in your clusters.
+
 ## Next step
 
-Now that access to the platform API is verified, you are ready to [create a workload cluster]({{< relref "/vintage/getting-started/create-workload-cluster" >}}).
+Now that you have access to the platform API and know a bit more about it, you are ready to [create a workload cluster]({{< relref "/vintage/getting-started/create-workload-cluster" >}}).
