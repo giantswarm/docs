@@ -111,7 +111,7 @@ You may notice some important points:
 Finally, you can see the YAML definition of a cluster (in this example, cluster `rfjh2` in organization `testing`) by running:
 
 ```sh
-kubectl get cluster rfjh2 -n org-testing -o yaml
+kubectl gs get cluster rfjh2 -n org-testing -o yaml
 ```
 
 ## Next step
