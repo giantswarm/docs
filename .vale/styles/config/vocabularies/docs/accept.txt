@@ -24,8 +24,9 @@ kubectl
 kubelet
 Kyverno
 namespace[s]
-nodePools
+nodepool[s]
 Trivy
+templated
 Sigstore
 subnet
 vApp

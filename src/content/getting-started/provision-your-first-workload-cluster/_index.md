@@ -133,7 +133,7 @@ kubectl gs template cluster \
 {{< /tab >}}
 {{< tab id="cluster-capvcd" for-impl="capvcd">}}
 
-The VMware Cloud Director provider isn't yet supported by `kubectl gs template cluster` but you can use the [example manifest](https://github.com/giantswarm/cluster-cloud-director/tree/main/examples) provided in the cluster chart's repo.
+The VMware Cloud Director provider isn't yet supported by `kubectl gs template cluster` but you can use the [example manifest](https://github.com/giantswarm/cluster-cloud-director/tree/main/examples) provided in the cluster chart's repository.
 
 Make sure to replace the relevant fields to fit your own VCD environment.
 
@@ -188,7 +188,7 @@ This isn't needed for CAPI. The `nodePools` value in the cluster app has a defau
 
 Templating these and other resources as YAML files is reasonable if you prefer deployments using GitOps (YAML manifests committed and deployed from a Git control repository) or want to develop/deploy using scripts or the command line, without manual steps in the web interface. We recommend running `kubectl gs template [...] --help` and the online [reference]({{< relref "/vintage/use-the-api/kubectl-gs" >}}) to see available parameters. For clusters and node pools, you probably want to choose a different instance size (varies in CPU, memory, pricing), maximum number of nodes, cloud provider region, or IP CIDRs. Instead of the kubectl-gs command line, you can also manually edit the YAML file with the help of our documentation for cluster configuration options (example: [configuration options for cluster-aws](https://github.com/giantswarm/cluster-aws/blob/master/helm/cluster-aws/README.md)).
 
-To _actually_ create the resources – the workload cluster and (only for vintage product family) worker node pool – you need to apply the manifests. Ensure you are still pointing to the management cluster's kubectl context and run:
+To _actually_ create the resources–the workload cluster and (only for vintage product family) worker node pool–you need to apply the manifests. Ensure you are still pointing to the management cluster's kubectl context and run:
 
 ```sh
 kubectl apply -f cluster.yaml
@@ -285,7 +285,7 @@ The workload clusters are where the "actual" work happens, where Giant Swarm-sup
 
 ## Step 6: Template and deploy managed apps
 
-In addition to workload clusters, you can also template applications. Apps belong to catalogs. While you can define your own catalogs, we already provide two: `giantswarm` (_Giant Swarm Catalog_) contains applications that we know how to manage; `giantswarm-playground` (_Playground_) contains applications that we have integrated but aren't managed by us. Other catalogs such as the _Giant Swarm Cluster Catalog_ are used for templating of clusters (which you did above).
+In addition to workload clusters, you can also template applications. Apps belong to catalogs. While you can define your own catalogs, we already provide two: `giantswarm` (_Giant Swarm Catalog_) contains applications that we know how to manage; `giantswarm-playground` (_Playground_) contains applications that we've integrated but aren't managed by us. Other catalogs such as the _Giant Swarm Cluster Catalog_ are used for templating of clusters (which you did above).
 
 You can easily surf catalogs from the _Apps_ section in the Web UI:
 
@@ -317,7 +317,7 @@ kubectl apply -f kong-app.yaml
 
 Notice that by running `kubectl gs template app --help` you can list all the options that can be useful when templating an app. For instance, the `--user-configmap` and `--user-secret` options allow for adding YAML files containing useful configurations or secrets.
 
-Here is an example which disables the config flag `proxy.enabled` for Kong:
+Here is an example which disables the configuration flag `proxy.enabled` for Kong:
 
 ```sh
 cat > kong-config.yaml <<EOF
@@ -365,6 +365,6 @@ kubectl gs update app \
 
 ### Updating a cluster
 
-Cluster updates can be easily performed straight away or scheduled for a specific moment in time. The latter is a feature in the vintage product family that many customers find very useful because it allows them to schedule updates without the need to physically be there to "press the button".
+Cluster updates can be easily performed straight away or scheduled for a specific moment in time. The latter is a feature in the vintage product family that many customers find very useful because it allows them to schedule updates without the need to physically be there to "press the button."
 
 More information on updating a cluster can be found [in the kubectl-gs reference]({{< relref "/vintage/use-the-api/kubectl-gs/update-cluster" >}}).
