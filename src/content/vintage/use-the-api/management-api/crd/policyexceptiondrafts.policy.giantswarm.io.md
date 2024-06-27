@@ -21,6 +21,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 aliases:
   - /use-the-api/management-api/crd/policyexceptiondrafts.policy.giantswarm.io/
+  - /reference/cp-k8s-api/policyexceptiondrafts.policy.giantswarm.io/
 technical_name: policyexceptiondrafts.policy.giantswarm.io
 source_repository: https://github.com/giantswarm/exception-recommender
 source_repository_ref: v0.1.1
