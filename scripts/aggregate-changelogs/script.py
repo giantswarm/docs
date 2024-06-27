@@ -144,7 +144,7 @@ def get_cluster_releases(repo_shortname):
 
         provider = None
         for root, _, files in os.walk(tmpdir):
-            if os.path.basename(root) in ('aws', 'azure', 'kvm'):
+            if os.path.basename(root) in ('aws', 'azure', 'kvm', 'capa', 'capz', 'capv', 'capvcd'):
                 provider = os.path.basename(root)
 
             relative_dir_path = root[len(tmpdir + "/" + repo):]
@@ -238,7 +238,11 @@ def generate_release_file(repo_shortname, repo_config, release, delete):
         categories = [f'Workload cluster releases for {provider_label}']
         title = f'Workload cluster release v{version} for {provider_label}'
         description = f'Release notes for {provider_label} workload cluster release v{version}, published on {release["date"].strftime("%d %B %Y, %H:%M")}.'
-        filename = f"{release['provider']}-{release['version_tag']}.md"
+        # CAPI releases already have provider
+        if release['provider'] in ['capa', 'capz', 'capv', 'capvcd']:
+            filename = f"{release['version_tag']}.md"
+        else:
+            filename = f"{release['provider']}-{release['version_tag']}.md"
         category_path = f"workload-cluster-releases-{provider_label.lower()}"
         aliases = [f"/changes/tenant-cluster-releases-{provider_label.lower()}/releases/{provider_label.lower()}-{release['version_tag']}/"]
     else:
