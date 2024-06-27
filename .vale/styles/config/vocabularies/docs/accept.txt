@@ -3,6 +3,7 @@ Alertmanager
 [Aa]gent
 API[s]?
 auditable
+ARN[s]?
 [Aa][Ww][Ss]
 az
 backbone
