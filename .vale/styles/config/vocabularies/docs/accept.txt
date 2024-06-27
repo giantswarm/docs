@@ -5,7 +5,9 @@ auditable
 az
 CIDRs
 CLI
+cluster-vsphere
 Crossplane
+CRs
 declaratively
 ENIs
 ESXi
@@ -22,6 +24,7 @@ kubectl
 kubelet
 Kyverno
 namespace[s]
+nodePools
 Trivy
 Sigstore
 subnet

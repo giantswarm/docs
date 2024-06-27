@@ -3,7 +3,7 @@ title: Create a workload cluster and install applications
 linkTitle: Provision your first workload cluster
 description: Experience the steps to configure and provision your first workload cluster using the platform API.
 weight: 40
-last_review_date: 2024-06-13
+last_review_date: 2024-06-26
 menu:
   principal:
     parent: getting-started
@@ -21,11 +21,11 @@ Although our recommendable approach to manage your platform is to use [GitOps](h
 
 ## Requirements
 
-In case you have not installed the `kubectl-gs` CLI plugin yet, please follow the [installation instructions]({{< relref "https://docs.giantswarm.io/getting-started/access-to-platform-api#step-1%3A-Install-the-necessary-tools" >}}).
+In case you haven't installed the `kubectl-gs` CLI plugin yet, please follow the [installation instructions]({{< relref "https://docs.giantswarm.io/getting-started/access-to-platform-api#step-1%3A-Install-the-necessary-tools" >}}).
 
-## Step 1: template the workload cluster
+## Step 1: Template the workload cluster
 
-You will now create resources with `kubectl gs`. In particular, this tutorial uses the `kubectl gs template` command to create valid YAML for each resource. The templating commands do not immediately create the cluster – the resulting YAML manifest must be applied to the management cluster API or committed to the GitOps repository in order to create the cluster. Alternatively, the Web UI provides a visual way to create clusters.
+You will now create resources with `kubectl gs`. In particular, this tutorial uses the `kubectl gs template` command to create valid YAML for each resource. The template commands don't immediately create the cluster–the resulting YAML manifest must be applied to the management cluster API or committed to the GitOps repository in order to create the cluster. Alternatively, the Web UI provides a visual way to create clusters.
 
 You can template a cluster ([command reference]({{< relref "/vintage/use-the-api/kubectl-gs/template-cluster" >}})) as follows:
 
@@ -43,7 +43,7 @@ kubectl gs template cluster \
   > cluster.yaml
 ```
 
-For backward compatibility, vintage cluster templating does not require the `--name` parameter. If no name is specified, a random one like `zekfaewnxh` will be generated. The `--name` parameter becomes required with CAPI clusters, but you can also use `--generate-name` if a random name is really desired.
+For backward compatibility, vintage cluster templating doesn't require the `--name` parameter. If no name is specified, a random one like `zekfaewnxh` will be generated. The `--name` parameter becomes required with CAPI clusters, but you can also use `--generate-name` if a random name is really desired.
 
 {{< /tab >}}
 {{< tab id="cluster-vintage-aws" for-impl="vintage_aws">}}
@@ -59,7 +59,7 @@ kubectl gs template cluster \
   > cluster.yaml
 ```
 
-For backward compatibility, vintage cluster templating does not require the `--name` parameter. If no name is specified, a random one like `zekfaewnxh` will be generated. The `--name` parameter becomes required with CAPI clusters, but you can also use `--generate-name` if a random name is really desired.
+For backward compatibility, vintage cluster templating doesn't require the `--name` parameter. If no name is specified, a random one like `zekfaewnxh` will be generated. The `--name` parameter becomes required with CAPI clusters, but you can also use `--generate-name` if a random name is really desired.
 
 {{< /tab >}}
 {{< tab id="cluster-capa-ec2" for-impl="capa_ec2">}}
@@ -133,7 +133,7 @@ kubectl gs template cluster \
 {{< /tab >}}
 {{< tab id="cluster-capvcd" for-impl="capvcd">}}
 
-The VMware Cloud Director provider is not yet supported by `kubectl gs template cluster` but you can use the [example manifest](https://github.com/giantswarm/cluster-cloud-director/tree/main/examples) provided in the cluster chart's repo.
+The VMware Cloud Director provider isn't yet supported by `kubectl gs template cluster` but you can use the [example manifest](https://github.com/giantswarm/cluster-cloud-director/tree/main/examples) provided in the cluster chart's repo.
 
 Make sure to replace the relevant fields to fit your own VCD environment.
 
@@ -159,7 +159,7 @@ kubectl gs template cluster \
 
 This will create a `cluster.yaml` file containing all the Custom Resources (CRs) necessary to create the cluster.
 
-For the [Cluster API (CAPI)]({{< relref "/vintage/platform-overview/architecture" >}}) product family, you will notice that clusters are templated exactly like managed apps (i.e. as `App` resource), with `kubectl-gs` filling certain default values into the configuration. This is different from vintage products.
+For the [Cluster API (CAPI)]({{< relref "/vintage/platform-overview/architecture" >}}) product family, you will notice that clusters are templated exactly like managed apps (as `App` resource), with `kubectl-gs` filling certain default values into the configuration. This is different from vintage products.
 
 In the vintage product family, no worker node pool is created by default, so you should attach one:
 
@@ -181,7 +181,7 @@ This will create a `nodepool.yaml` file with all the CRs needed for attaching a 
 {{< /tab >}}
 {{< tab id="nodepool-capi" for-impl="capi_any">}}
 
-This is not needed for CAPI. The `nodePools` value in the cluster app has a default. For example, see [nodePools configuration for cluster-aws](https://github.com/giantswarm/cluster-aws/blob/master/helm/cluster-aws/README.md#node-pools) when using the CAPA-based product (AWS cloud).
+This isn't needed for CAPI. The `nodePools` value in the cluster app has a default. For example, see [nodePools configuration for cluster-aws](https://github.com/giantswarm/cluster-aws/blob/master/helm/cluster-aws/README.md#node-pools) when using the CAPA-based product (AWS cloud).
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -199,7 +199,7 @@ kubectl apply -f nodepool.yaml
 
 ### Deleting the workload cluster {#deleting-workload-cluster}
 
-Deletion works in the same way: run `kubectl delete -f FILENAME.yaml` and the operators in the management cluster will delete the resources in a few minutes. Please do not directly delete the CAPI custom resources (such as `Cluster`, `AWSCluster` or `MachineDeployment`) since this may leave resources behind or even lead to inadvertently recreating the cluster once the `App` is reconciled again. Deletion should be done exactly like the creation, using the original manifests. For the CAPI product family, our example output file `cluster.yaml` contains 2 `App` and 2 `ConfigMap` manifests. If you no longer have the manifests at hand, delete the following:
+Deletion works in the same way: run `kubectl delete -f FILENAME.yaml` and the operators in the management cluster will delete the resources in a few minutes. Please don't directly delete the CAPI custom resources (such as `Cluster`, `AWSCluster` or `MachineDeployment`) since this may leave resources behind or even lead to inadvertently recreating the cluster once the `App` is reconciled again. Deletion should be done exactly like the creation, using the original manifests. For the CAPI product family, our example output file `cluster.yaml` contains 2 `App` and 2 `ConfigMap` manifests. If you no longer have the manifests at hand, delete the following:
 
 - `App/<cluster>`
 - `ConfigMap/<cluster>-userconfig`
@@ -216,7 +216,7 @@ In the Web UI, click on the cluster's name to see its details. The workload clus
 
 ![Adding a nodepool](nodepool.png)
 
-For the vintage product family, if you did not yet attach a node pool to the WC as shown above, you can now add one by clicking the "Add node pool" button.
+For the vintage product family, if you didn't yet attach a node pool to the WC as shown above, you can now add one by clicking the "Add node pool" button.
 
 Using the command line, you can also watch the creation and status of the workload cluster:
 
@@ -251,7 +251,7 @@ kubectl krew install tree
 kubectl tree clusters.cluster.x-k8s.io -n org-testing name-of-workload-cluster
 ```
 
-Note how our example commands use the fully-qualified CRD name `clusters.cluster.x-k8s.io`. The shorthands `cluster` or `clusters` also work as long as there are no CRDs with a conflicting name installed.
+Note how our example commands use the fully qualified CRD name `clusters.cluster.x-k8s.io`. The shorthands `cluster` or `clusters` also work as long as there are no [custom resource definitions](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) with a conflicting name installed.
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -274,18 +274,18 @@ kubectl gs login gs-wombat \
 
 At this point, you are logged in to the workload cluster, with full access. Try `kubectl get pod -A`, for example, to take a look into the cluster.
 
-Some of the custom resource definitions (CRDs) available in the management cluster are not available in the WC because those concepts do not exist in workload clusters. For instance, if we try to get the organizations, we get an error, because they are a concept that makes sense in the MC but not in the WC:
+Some of the [custom resource definitions](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) available in the management cluster aren't available in the WC because those concepts don't exist in workload clusters. For instance, if we try to get the organizations, we get an error, because they're a concept that makes sense in the MC but not in the WC:
 
 ```text
 $ kubectl get orgs
 error: the server doesn't have a resource type "organizations"
 ```
 
-The WCs are where the "actual" work happens, i.e. where Giant Swarm-supported managed apps and your business applications are deployed. The easiest way to check whether an application is running is `kubectl get pods -A | grep APPLICATION_NAME`, for instance: `kubectl get pods -A | grep kong`.
+The workload clusters are where the "actual" work happens, where Giant Swarm-supported managed apps and your business applications are deployed. The easiest way to check whether an application is running is `kubectl get pods -A | grep APPLICATION_NAME`, for instance: `kubectl get pods -A | grep kong`.
 
 ## Step 6: Template and deploy managed apps
 
-In addition to workload clusters, you can also template applications. Apps belong to catalogs. While you can define your own catalogs, we already provide two: `giantswarm` (_Giant Swarm Catalog_) contains applications that we know how to manage; `giantswarm-playground` (_Playground_) contains applications that we have integrated but are not managed by us. Other catalogs such as the _Giant Swarm Cluster Catalog_ are used for templating of clusters (which you did above).
+In addition to workload clusters, you can also template applications. Apps belong to catalogs. While you can define your own catalogs, we already provide two: `giantswarm` (_Giant Swarm Catalog_) contains applications that we know how to manage; `giantswarm-playground` (_Playground_) contains applications that we have integrated but aren't managed by us. Other catalogs such as the _Giant Swarm Cluster Catalog_ are used for templating of clusters (which you did above).
 
 You can easily surf catalogs from the _Apps_ section in the Web UI:
 
