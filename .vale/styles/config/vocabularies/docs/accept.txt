@@ -1,8 +1,9 @@
 # Please keep this list sorted (alphabetically, case-insensitive)
 Alertmanager
-API[s]
+API[s]?
 auditable
 az
+backbone
 CIDRs
 CLI
 cluster-vsphere
@@ -18,19 +19,20 @@ Grafana
 gsctl
 Keybase
 Kinvolk
-IP[s]
+IP[s]?
 kube-vip
 kubectl
 kubelet
 Kyverno
-namespace[s]
-nodepool[s]
+namespace[s]?
+node[pP]ool[s]?
+[Nn]ginx
 Trivy
 templated
 Sigstore
 subnet
 vApp
 vCenter
-VM[s]
+VM[s]?
 VMware
 vSphere
