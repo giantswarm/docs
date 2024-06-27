@@ -13,7 +13,7 @@ user_questions:
   - Why should I use multi-account clusters in the Giant Swarm platform?
 ---
 
-The Giant Swarm architecture distinguishes between the management cluster and workload clusters. The management cluster enables the creation and operation of workload clusters and the workload cluster(s) run your Kubernetes workloads.
+The Giant Swarm architecture distinguishes between the management cluster and workload clusters. The management cluster enables the creation and operation of workload clusters, and the workload clusters run your Kubernetes workloads.
 
 {{< platform_support_table aws="ga" azure="ga" >}}
 
@@ -23,7 +23,7 @@ NEEDS TO BE REWRITTEN
 
 Both on AWS and Azure, workload cluster resources usually exist in an account (or in Azure terms: a subscription) separate from the one hosting the management cluster resources. We configure a default account to use for all workload clusters in an installation. Both accounts, the one for the management cluster and the default one for workload clusters, are under the customer's jurisdiction.
 
-**Note:** Some customers use the same account/subscription for both management cluster and workload clusters. This choice does not affect the capabilities described below.
+**Note:** Some customers use the same account/subscription for both management cluster and workload clusters. This choice doesn't affect the capabilities described below.
 
 With multi-account support you can have more fine-grained control over the accounts used by workload clusters. Each Giant Swarm organization in an installation can have an individual configuration of which cloud provider account to use.
 
@@ -53,9 +53,9 @@ Details of the implementation differ between AWS and Azure.
 
 - Cloud provider account/subscription credentials are specified on the (Giant Swarm) **organization level**.
 
-- Cloud provider credentials are **immutable**. Once specified on an organization, cloud provider credentials cannot be modified or deleted. In order to switch to new cloud provider credentials you'll have to create a new organization and migrate to new clusters owned by that organization.
+- Cloud provider credentials are __immutable__ Once specified in an organization, cloud provider credentials can't be modified or deleted. In order to switch to new cloud provider credentials, you'll have to create a new organization and migrate to new clusters owned by that organization.
 
-- If an organization does not yet have provider credentials configured but already has workload clusters, these clusters are run in the default workload cluster account. Setting credentials for this organization does not affect the workload clusters created already.
+- If an organization doesn't yet have provider credentials configured but already has workload clusters, these clusters are run in the default workload cluster account. Setting credentials for this organization doesn't affect the workload clusters created already.
 
 ## Get started
 
@@ -74,4 +74,4 @@ You can then assign the credentials to your organization in several ways:
 
 All workload clusters created for that organization will then use the credentials provided to the organization and will reside in the account/subscription associated with them.
 
-When inspecting details of such a cluster, or using the [`gsctl show cluster`]({{< relref "/vintage/use-the-api/gsctl/show-cluster" >}}) command, we display cloud provider details in the case the workload cluster does not reside in the default account.
+When inspecting details of such a cluster, or using the [`gsctl show cluster`]({{< relref "/vintage/use-the-api/gsctl/show-cluster" >}}) command, we display cloud provider details in the case the workload cluster doesn't reside in the default account.

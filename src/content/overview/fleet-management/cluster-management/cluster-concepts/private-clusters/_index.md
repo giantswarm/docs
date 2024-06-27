@@ -13,4 +13,4 @@ user_questions:
   - What are private clusters in the Giant Swarm platform?
 ---
 
-When we talk about private clusters in the Giant Swarm platform, we refer to Kubernetes clusters which has not API endpoint exposed to the public internet. This means that the cluster is only accessible from within the private network of the organization that owns the cluster.
+When we talk about private clusters in the Giant Swarm platform, we refer to Kubernetes clusters, which have no API endpoint exposed to the public internet. This means that the cluster is only accessible from within the private network of the organization that owns the cluster.
