@@ -96,7 +96,7 @@ Here are the mandatory steps to create the required IAM resources but we advocat
 
 Open the [IAM section](https://console.aws.amazon.com/iam/home) of the AWS console and go to the [Policies](https://console.aws.amazon.com/iam/home#/policies) subsection.
 
-Our platform needs different permissions to manage various resources on the AWS side. Here is the list of policies that need to be created. Click __Create policy__ and copy the policy content into the JSON editor field. Hit the **Next** button and add the policy name matching the policy link name. Repeat this process for each policy:
+Our platform needs different permissions to manage various resources on the AWS side. Here is the list of policies that need to be created. Click __Create policy__ and copy the policy content into the JSON editor field. Hit the `Next` button and add the policy name matching the policy link name. Repeat this process for each policy:
 
 - [giantswarm-${INSTALLATION_NAME}-capa-controller-policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/master/capa-controller-role/capa-controller-policy.json)
 - [giantswarm-${INSTALLATION_NAME}-crossplane-policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/master/capa-controller-role/crossplane-policy.json)
@@ -122,7 +122,7 @@ Now move to the IAM [Roles](https://console.aws.amazon.com/iam/home#/roles) subs
 
 The __Account ID__ you enter is the ID of the AWS account where the management cluster is running. Could it be the current account in case you are running all your infrastructure in a single account or a different one if you are using separate accounts for management and workload clusters?
 
-It is crucial that the __Require external ID__ and __Require MFA__ options remain unchecked!
+It's crucial that the __Require external ID__ and __Require MFA__ options remain unchecked!
 
 Then, please go ahead and proceed to the next step.
 
@@ -165,8 +165,8 @@ GiantSwarmAdmin
 Enter again in the [Roles](https://console.aws.amazon.com/iam/home#/roles) subsection of the AWS console and select __Create role__ When asked to __Select type of trusted entity__ choose __AWS account__.
 
 - In __Account ID__ enter the value `084190472784`.
-- Do not enable __Require external ID__.
-- It is strongly recommended to check the option __Require MFA__ (multi factor authentication). This adds an extra authentication step for users to assume the role, which increases security.
+- Don't enable __Require external ID__.
+- It 's strongly recommended to check the option __Require MFA__ (multi factor authentication). This adds an extra authentication step for users to assume the role, which increases security.
 
 #### 3. Attach policy to role {#iam-staff-role-policy}
 
@@ -206,8 +206,7 @@ Where:
 ${ROLE_NAME} is a short unique name referencing AWS account (ie: development, sandbox or staging2)
 ${ROLE_ARN} is full ARN of the role created in previous step with giantswarm-aws-account-prerequisites repository.
 This CR needs to be created only once for each AWS Account. It can be then referenced in the cluster-aws repo in the value aws.awsClusterRoleIdentityName.
-```
-**Note**: In case you are working with a Giant Swarm partner, you might not have access to the platform API. In that case, please provide the role ARNs values, capa controller and staff, to your partner contact.
+**Note**: In case you are working with a Giant Swarm partner, you might not have access to the platform API. In that case, please provide the role ARNs values, CAPA controller and staff to your partner contact.
 
 ## Next steps
 
