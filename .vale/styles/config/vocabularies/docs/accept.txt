@@ -9,7 +9,7 @@ backbone
 CIDR[s]?
 CLI
 cluster-vsphere
-Crossplane
+[Cc]rossplane
 CRs
 declaratively
 easily
