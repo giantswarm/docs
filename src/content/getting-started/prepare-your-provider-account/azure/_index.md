@@ -26,7 +26,7 @@ In addition to the following prerequisites, your account engineer will provide y
 
 ## Step 1: Service quotas {#quotas}
 
-Azure enforces [service quota through all cloud services](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits). The following overview lists the usual resources you may adjust depending on number of clusters and their size planned to be deployed:
+Azure enforces [service quota through all cloud services](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits). The following overview lists the usual resources you may adjust, depending on number and size of clusters planned to be deployed:
 
 ![Azure quotas list](./quotas_general.png)
 
@@ -129,7 +129,7 @@ az role assignment create \
 
 The following information needs to be provided to Giant Swarm:
 
-```
+```text
 * ClientID
 * ClientSecret
 * SubscriptionID
@@ -160,7 +160,7 @@ az vm image terms accept --offer flatcar-container-linux-free --plan stable --pu
 
 ### Enable encryption at host
 
-If your security requirements demand this, there is a possibility to enable [encryption of data stored a virtual machine hosts](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/disks-enable-host-based-encryption-cli). With this enabled, your data will be stored and transferred between storage and host encrypted, adding additional protecting from unauthorized access to your data.
+If your security requirements demand this, there is a possibility to enable [encryption of data stored on virtual machine hosts](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/disks-enable-host-based-encryption-cli). With this enabled, your data will be stored and transferred between storage and host encrypted, adding additional protection from unauthorized access.
 
 Please run the following command prior to creating a cluster on a given subscription:
 

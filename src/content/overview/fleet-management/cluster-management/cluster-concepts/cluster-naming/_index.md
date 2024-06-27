@@ -1,6 +1,6 @@
 ---
 title: Cluster naming
-description: The specifications for naming clusters in the Giant Swarm platform.
+description: The specifications for naming workload clusters in the Giant Swarm platform.
 weight: 10
 menu:
   principal:
