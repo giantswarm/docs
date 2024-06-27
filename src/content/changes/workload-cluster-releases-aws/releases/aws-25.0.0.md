@@ -10,9 +10,9 @@ changes_entry:
   version: aws-25.0.0
   version_tag: aws-25.0.0
 date: '2024-06-20T18:00:00'
-description: Release notes for AWS workload cluster release vaws-25.0.0, published
+description: Release notes for AWS workload cluster release aws-25.0.0, published
   on 20 June 2024, 18:00.
-title: Workload cluster release vaws-25.0.0 for AWS
+title: Workload cluster release aws-25.0.0 for AWS
 ---
 
 We are happy to announce our first `Cluster API for AWS` (CAPA) release v25. 
