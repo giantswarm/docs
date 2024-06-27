@@ -21,6 +21,7 @@ kube-vip
 kubectl
 kubelet
 Kyverno
+namespace[s]
 Trivy
 Sigstore
 subnet
