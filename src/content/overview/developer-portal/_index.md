@@ -11,7 +11,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/sig-product
 ---
 
-The Giant Swarm Developer Portal is your all-in-one self-service hub, empowering platform engineers and developers to efficiently manage and build applications on your Giant Swarm platform. It provides seamless access to all the essential tools and resources needed for a streamlined development experience.
+The Giant Swarm developer portal is your all-in-one self-service hub, empowering platform engineers and developers to efficiently manage and build applications on your Giant Swarm platform. It provides seamless access to all the essential tools and resources for a streamlined development experience.
 
 Giant Swarm uses [Backstage](https://www.cncf.io/projects/backstage/) as the foundation for the developer portal. Backstage is an open-source platform for building developer portals. It provides a unified view of all your software development tools and services, navigate across the documentation even creating custom plugins to integrate with your existing tools.
 
