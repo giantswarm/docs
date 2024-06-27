@@ -1114,7 +1114,7 @@ There are different ways to structure a `PolicyException`, and your cluster admi
 Giant Swarm currently suggests a "PolicyException per Workload" approach, which looks like this:
 
 ```yaml
-apiVersion: kyverno.io/v2alpha1
+apiVersion: kyverno.io/v2beta1
 kind: PolicyException
 metadata:
   name: my-workload-exceptions

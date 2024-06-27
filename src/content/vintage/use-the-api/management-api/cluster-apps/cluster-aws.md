@@ -1,5 +1,5 @@
 ---
-title: Cluster-Aws chart reference
+title: cluster-aws chart reference
 linkTitle: cluster-aws
 description:  A helm chart for creating Cluster API clusters with the AWS infrastructure provider (CAPA).; Check here the different properties of the chart.
 weight: 100
@@ -18,20 +18,6 @@ source_repository_ref: v0.60.1
 ---
 
 The `cluster-aws` chart templates all the AWS infrastructure resources that are necessary to create a Cluster API cluster.
-
-# Values schema documentation
-
-This page lists all available configuration options, based on the [configuration values schema](values.schema.json).
-
-Note that configuration options can change between releases. Use the GitHub function for selecting a branch/tag to view the documentation matching your cluster-aws version.
-
-<!-- Update the content below by executing (from the repo root directory)
-
-schemadocs generate helm/cluster-aws/values.schema.json -o helm/cluster-aws/README.md
-
--->
-
-<!-- DOCS_START -->
 
 <div class="crd-schema-version">
   <h2 class="headline-with-link">

@@ -1,5 +1,5 @@
 ---
-title: Default-Apps-Vsphere chart reference
+title: default-apps-vsphere chart reference
 linkTitle: default-apps-vsphere
 description:  A Helm chart which defines the pre-installed apps in all Giant Swarm vSphere clusters; Check here the different properties of the chart.
 weight: 100
@@ -17,12 +17,6 @@ source_repository_ref: v0.12.1
 ---
 
 The `default-apps-vsphere` chart templates all the components required for a Cluster API VMware cluster like External DNS or CoreDNS.
-
-# Values schema documentation
-
-This page lists all available configuration options, based on the [configuration values schema](values.schema.json).
-
-<!-- DOCS_START -->
 
 <div class="crd-schema-version">
   <h2 class="headline-with-link">

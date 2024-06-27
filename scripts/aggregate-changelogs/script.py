@@ -169,6 +169,7 @@ def get_cluster_releases(repo_shortname):
 
                 # Add release notes
                 release_notes_path = os.path.join(root, "README.md")
+                release['body'] = "\n"
                 if os.path.exists(release_notes_path):
                     with open(release_notes_path, 'r') as release_notes_file:
                         release_notes = release_notes_file.read().strip()
