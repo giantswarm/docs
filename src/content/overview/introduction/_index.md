@@ -29,7 +29,7 @@ Our approach gives you the ability to define team-specific policies, flexible ap
 
 ## Working with our customers
 
-We offer a product that lets you start easily with a total open-source production-ready platform, no vendor locking, and no commercial license. Our team will work with your engineers every day to build something that's tailor-made to meet the challenges of your business head-on. There is a common baseline that your security and governance team can trust on. Your specific requirements will be discussed and configured in collaboration with our subject matter experts. Good communication and support are key, which is exactly what we're good at. [Our customers endorse the collaborative effort to create a cloud-native developer platform](https://www.giantswarm.io/customers) together.
+Get started quickly with our fully open-source, production-ready platform – no vendor lock-in, no commercial license. Our team collaborates daily with your engineers to create a customized solution that tackles your unique business challenges head-on. We provide a trusted foundation for your security and governance teams, and our experts work closely with you to understand and configure your specific needs. We pride ourselves on excellent communication and support, which our customers consistently praise. [See how we've partnered with others to build successful cloud-native platforms](https://www.giantswarm.io/customers).
 
 At Giant Swarm, we take full responsibility for keeping the platform components healthy. We operate and monitor them on a continual basis and offer you upgrades and support. Even in cases where **your** application doesn't work as expected, we'll assist you to the best of our considerable abilities, until they do.
 
