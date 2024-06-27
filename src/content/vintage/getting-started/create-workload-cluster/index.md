@@ -104,7 +104,7 @@ For backward compatibility, vintage cluster templating does not require the `--n
 {{< /tab >}}
 {{< tab id="cluster-capa-ec2" for-impl="capa_ec2">}}
 
-This will automatically use the latest release of the relevant Helm charts [cluster-aws](https://github.com/giantswarm/cluster-aws/blob/master/CHANGELOG.md) and [default-apps-aws](https://github.com/giantswarm/default-apps-aws/blob/master/CHANGELOG.md) (bundle of default apps):
+This will automatically use the latest release of the relevant Helm chart [cluster-aws](https://github.com/giantswarm/cluster-aws/blob/master/CHANGELOG.md):
 
 ```sh
 kubectl gs template cluster \
@@ -131,7 +131,7 @@ If no `aws-cluster-role-identity-name` is passed, then we assume a `AWSClusterRo
 {{< /tab >}}
 {{< tab id="cluster-capa-eks" for-impl="capa_eks">}}
 
-This will automatically use the latest release of the relevant Helm charts [cluster-eks](https://github.com/giantswarm/cluster-eks/blob/master/CHANGELOG.md) and [default-apps-eks](https://github.com/giantswarm/default-apps-eks/blob/master/CHANGELOG.md) (bundle of default apps):
+This will automatically use the latest release of the relevant Helm chart [cluster-eks](https://github.com/giantswarm/cluster-eks/blob/master/CHANGELOG.md):
 
 ```sh
 kubectl gs template cluster \
@@ -158,7 +158,7 @@ If no `aws-cluster-role-identity-name` is passed, then we assume a `AWSClusterRo
 {{< /tab >}}
 {{< tab id="cluster-capz-azure-vms" for-impl="capz_vms">}}
 
-This will automatically use the latest release of the relevant Helm charts [cluster-azure](https://github.com/giantswarm/cluster-azure/blob/master/CHANGELOG.md) and [default-apps-azure](https://github.com/giantswarm/default-apps-azure/blob/master/CHANGELOG.md) (bundle of default apps):
+This will automatically use the latest release of the relevant Helm chart [cluster-azure](https://github.com/giantswarm/cluster-azure/blob/master/CHANGELOG.md):
 
 ```sh
 kubectl gs template cluster \
@@ -177,12 +177,12 @@ The VMware Cloud Director provider is not yet supported by `kubectl gs template 
 
 Make sure to replace the relevant fields to fit your own VCD environment.
 
-This will install the relevant Helm charts [cluster-cloud-director](https://github.com/giantswarm/cluster-cloud-director) and [default-apps-cloud-director](https://github.com/giantswarm/default-apps-cloud-director) (bundle of default apps).
+This will install the relevant Helm chart [cluster-cloud-director](https://github.com/giantswarm/cluster-cloud-director).
 
 {{< /tab >}}
 {{< tab id="cluster-capv" for-impl="capv">}}
 
-This will automatically use the latest release of the relevant Helm charts [cluster-vsphere](https://github.com/giantswarm/cluster-vsphere/blob/master/CHANGELOG.md) and [default-apps-vsphere](https://github.com/giantswarm/default-apps-vsphere/blob/master/CHANGELOG.md) (bundle of default apps):
+This will automatically use the latest release of the relevant Helm chart [cluster-vsphere](https://github.com/giantswarm/cluster-vsphere/blob/master/CHANGELOG.md):
 
 ```sh
 kubectl gs template cluster \
@@ -242,9 +242,7 @@ kubectl apply -f nodepool.yaml
 Deletion works in the same way: run `kubectl delete -f FILENAME.yaml` and the operators in the management cluster will delete the resources in a few minutes. Please do not directly delete the CAPI custom resources (such as `Cluster`, `AWSCluster` or `MachineDeployment`) since this may leave resources behind or even lead to inadvertently recreating the cluster once the `App` is reconciled again. Deletion should be done exactly like the creation, using the original manifests. For the CAPI product family, our example output file `cluster.yaml` contains 2 `App` and 2 `ConfigMap` manifests. If you no longer have the manifests at hand, delete the following:
 
 - `App/<cluster>`
-- `App/<cluster>-default-apps`
-- `ConfigMap/<cluster>-user-values`
-- `ConfigMap/<cluster>-default-apps-user-values`
+- `ConfigMap/<cluster>-userconfig`
 
 If you would like to protect your clusters from accidental deletion, take a look at our [deletion prevention mechanism]({{< relref "/vintage/advanced/app-platform/deletion-prevention" >}}).
 
