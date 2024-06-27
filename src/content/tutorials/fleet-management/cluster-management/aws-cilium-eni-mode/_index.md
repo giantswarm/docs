@@ -3,7 +3,7 @@ title: Separate the pod network on AWS using Cilium ENI IPAM mode
 linkTitle: Cilium ENI IPAM mode
 description: Allocate pod IPs directly on the AWS network using a second VPC CIDR with separate security group and subnets.
 weight: 10
-last_review_date: 2024-05-02
+last_review_date: 2024-06-26
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 user_questions:
@@ -11,7 +11,7 @@ user_questions:
   - How do I change the pod network CIDR?
 ---
 
-By default, AWS workload clusters on the Giant Swarm platform use the [`ipam: kubernetes` mode](https://docs.cilium.io/en/latest/network/concepts/ipam/kubernetes/) of the Cilium CNI (Container Network Interface). This mode allocates pod IPs from the single range `100.64.0.0/12` across nodes (configurable with [`global.connectivity.network.pods.cidrBlocks`](https://github.com/giantswarm/cluster-aws/tree/main/helm/cluster-aws#connectivity)). In this way, pod IPs aren't visible on the AWS network. The number of pods can be high, since no limits apart from the CIDR size apply. **We therefore recommend using this default mode unless you have specific requirements, as listed below.**
+By default, AWS workload clusters on the Giant Swarm platform use the [`ipam: kubernetes` mode](https://docs.cilium.io/en/latest/network/concepts/ipam/kubernetes/) of the Cilium container network interface. This mode allocates pod IPs from the single range `100.64.0.0/12` across nodes (configurable with [`global.connectivity.network.pods.cidrBlocks`](https://github.com/giantswarm/cluster-aws/tree/main/helm/cluster-aws#connectivity)). In this way, pod IPs aren't visible on the AWS network. The number of pods can be high, since no limits apart from the CIDR size apply. **We therefore recommend using this default mode unless you have specific requirements, as listed below.**
 
 A workload cluster can be configured to deviate from this default and choose pod IPs from an AWS-allocated IP range (CIDR). **The [Cilium ENI IPAM mode](https://docs.cilium.io/en/latest/network/concepts/ipam/eni/) creates ENIs (Elastic Network Interfaces) and allocates pod IPs directly on those interfaces.**
 
