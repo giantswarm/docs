@@ -444,7 +444,9 @@ If both `Dex` and `Athena` are configured correctly and you have installed `kube
 kubectl gs login https://api.test.example.io
 ```
 
-Additionally, here's an example on how you can map the user/group to role in the cluster.
+## Mapping Users and Groups to Roles
+
+The following YAML examples demonstrate how you can map a users or groups to roles in the cluster for access.
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -461,6 +463,8 @@ subjects:
   apiGroup: rbac.authorization.k8s.io
 ```
 
+This example grants cluster adin privileges to the user "you@example.io".
+
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -475,6 +479,8 @@ subjects:
   name: customer:example-admin
   apiGroup: rbac.authorization.k8s.io
 ```
+
+This example grants cluster admin privileges to members of the group "customer:example-admin".
 
 ## Further reading
 
