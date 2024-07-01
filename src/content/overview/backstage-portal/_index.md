@@ -11,7 +11,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
 
-[Backstage](https://backstage.io/) is your engineer's front end to the platform. We provide our self-service user interface as plugins for Backstage, so that engineers using your platform find all the information they need in the right place.
+[Backstage](https://www.cncf.io/projects/backstage/) is your engineer's front end to the platform. We provide our self-service user interface as plugins for Backstage, so that engineers using your platform find all the information they need in the right place.
 
 Depending on where you are in your journey towards your own Backstage portal, Giant Swarm can assist you in various ways. We provide a pre-configured Backstage instance as a starting point to customers who don't run their own instance yet. We also provide plugins that can be used to extend the functionality of your Backstage instance.
 
