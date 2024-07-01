@@ -438,10 +438,42 @@ ingress:
     keyPemB64: ...
 ```
 
-If both `Dex` and `Athena` are configured correctly and you have installed `kubectl gs` on your machine, you should be able to create a kubectl context using the management API URL.
+If both `Dex` and `Athena` are configured correctly and you have installed `kubectl gs` on your machine, you should be able to create a  kubectl context using the management API URL.
 
 ```sh
 kubectl gs login https://api.test.example.io
+```
+
+Additionally, here's an example on how you can map the user/group to role in the cluster.
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: dex-user-to-cluster-role
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: User
+  name: you@example.io
+  apiGroup: rbac.authorization.k8s.io
+```
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: dex-group-to-cluster-role
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: Group
+  name: customer:example-admin
+  apiGroup: rbac.authorization.k8s.io
 ```
 
 ## Further reading
