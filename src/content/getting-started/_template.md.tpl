@@ -9,15 +9,15 @@ user_questions:
   - List of questions that users might ask about this topic.
 ---
 
-Today, `getting started` pages are about guiding a new user, or platform engineer, to build their platform with Giant Swarm. The articles are ordered to be followed one after the other to show all features we offer from the suffice. Dont go to deep into the topics, we have tutorials or reference pages for that purpose, here is just an introduction.
+Today, the `getting started` pages are about guiding a new user or platform engineer to build their platform with Giant Swarm. The articles are ordered to be followed one after the other to show all the features we offer from the suffice. If you want to go deeper into the topics, we have tutorials or reference pages for that purpose. Here is just an introduction.
 
 Recommended sections can help you to start with the article:
 
-## Introduction
+## Introduction (does not need the header)
 
-General definition of the area/topic you are going to develop. Since this is a step across the getting started section it has a previous and after page entry, so be aware it has continuity.
+General description of the goal you want to achieve. Since this is a step across the getting started section it has a previous and after page entry, so be aware it has continuity.
 
-## Prerequisites
+## Requirements
 
 Indicate if the user needs to have installed any specific tool or should have read or prepared their local environment before.
 
@@ -25,6 +25,6 @@ Indicate if the user needs to have installed any specific tool or should have re
 
 List of sequence steps that users will follow to accomplish the goal described in the introduction.
 
-## Conclusion
+## Next steps
 
-Wrap-up of what has been done. Comment what it is next, so the user can continue the journey
+Wrap-up of what has been done and what is the next natural step in user journey.
