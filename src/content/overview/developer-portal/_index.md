@@ -1,17 +1,17 @@
 ---
-title: Backstage portal
-description: Backstage is your engineer's front end to the platform. We provide our self-service user interface as plugins for Backstage, so engineers using your platform find all the information they need in the right place.
+title: Developer portal
+description: Our Backstage-based developer portal is your engineer's front end to the platform. We provide our self-service user interface as plugins for Backstage, so engineers using your platform find all the information they need in the right place.
 weight: 30
 menu:
   principal:
     parent: overview
-    identifier: overview-backstage-portal
+    identifier: overview-developer-portal
 last_review_date: 2024-07-01
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
 
-[Backstage](https://www.cncf.io/projects/backstage/) is your engineer's front end to the platform. We provide our self-service user interface as plugins for Backstage, so that engineers using your platform find all the information they need in the right place.
+Our developer portal absed on [Backstage](https://www.cncf.io/projects/backstage/) is your engineer's front end to the platform. We provide our self-service user interface as plugins for Backstage, so that engineers using your platform find all the information they need in the right place.
 
 Giant Swarm can assist you in various ways depending on where you are in your journey towards your own developer portal. We provide a pre-configured Backstage instance as a starting point to customers who don't run their own instance yet. We also provide plugins that can be used to extend the functionality of your Backstage instance.
 
