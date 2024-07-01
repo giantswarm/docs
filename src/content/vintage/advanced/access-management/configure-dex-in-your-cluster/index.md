@@ -176,7 +176,7 @@ oidc:
         - email
         - groups
         - profile
-        issuer: https://KEYCLOAK_HOST/auth/realms/master
+        issuer: https://KEYCLOAK_HOST/realms/master
         redirectURI: https://dex.CLUSTER_NAME.BASE_DOMAIN/callback
 ```
 
