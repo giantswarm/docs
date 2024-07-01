@@ -438,7 +438,7 @@ ingress:
     keyPemB64: ...
 ```
 
-If both `Dex` and `Athena` are configured correctly and you have installed `kubectl gs` on your machine, you should be able to create a  kubectl context using the management API URL.
+If both `Dex` and `Athena` are configured correctly and you have installed `kubectl gs` on your machine, you should be able to create a kubectl context using the management API URL.
 
 ```sh
 kubectl gs login https://api.test.example.io
