@@ -444,9 +444,9 @@ If both `Dex` and `Athena` are configured correctly and you have installed `kube
 kubectl gs login https://api.test.example.io
 ```
 
-## Mapping Users and Groups to Roles
+## Assign Users or Groups to Roles
 
-The following YAML examples demonstrate how you can map users or groups to roles in the cluster for access.
+The following YAML examples showcase how to assign roles to users or groups in the cluster, granting them specific access permissions. Refer to the [Kubernetes RBAC documentation]((https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding).) for a deeper understanding of RBAC concepts.
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -463,7 +463,8 @@ subjects:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-This example grants cluster admin privileges to the user "you@example.io".
+__Warning__: This example assigns the `cluster-admin` role to the user `you@example.io`. The `cluster-admin` is a powerful role granting extensive access to the cluster and should only be used with caution and for specific purposes.
+
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -480,7 +481,9 @@ subjects:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-This example grants cluster admin privileges to members of the group "customer:example-admin".
+This example assigns the `cluster-admin` role to members of the group `customer:example-admin`.
+
+__Want to simplify initial access setup?__ Use our [RBAC bootstrap app](https://github.com/giantswarm/rbac-bootstrap-app). This app helps you easily configure the users and groups that will initially have access to the cluster.
 
 ## Further reading
 
