@@ -465,7 +465,6 @@ subjects:
 
 __Warning__: This example assigns the `cluster-admin` role to the user `you@example.io`. The `cluster-admin` is a powerful role granting extensive access to the cluster and should only be used with caution and for specific purposes.
 
-
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
