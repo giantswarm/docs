@@ -463,7 +463,7 @@ subjects:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-This example grants cluster adin privileges to the user "you@example.io".
+This example grants cluster admin privileges to the user "you@example.io".
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
