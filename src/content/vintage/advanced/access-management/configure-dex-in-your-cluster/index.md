@@ -446,7 +446,7 @@ kubectl gs login https://api.test.example.io
 
 ## Assign Users or Groups to Roles
 
-The following YAML examples showcase how to assign roles to users or groups in the cluster, granting them specific access permissions. Refer to the [Kubernetes RBAC documentation]((https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding).) for a deeper understanding of RBAC concepts.
+The following YAML examples showcase how to assign roles to users or groups in the cluster, granting them specific access permissions. Refer to the [Kubernetes RBAC documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding) for a deeper understanding of RBAC concepts.
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
