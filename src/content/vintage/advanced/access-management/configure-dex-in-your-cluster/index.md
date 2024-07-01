@@ -168,7 +168,7 @@ oidc:
     - id: customer
       connectorName: test
       connectorType: oidc
-      connectorConfig: >-
+      connectorConfig: |
         clientID: CLIENT_ID
         clientSecret: CLIENT_SECRET
         insecureEnableGroups: true
@@ -197,7 +197,7 @@ oidc:
     - id: customer
       connectorName: test
       connectorType: github
-      connectorConfig: >-
+      connectorConfig: |
         clientID: CLIENT_ID
         clientSecret: CLIENT_SECRET
         loadAllGroups: false
@@ -230,7 +230,7 @@ oidc:
     - id: customer
       connectorName: test
       connectorType: microsoft
-      connectorConfig: >-
+      connectorConfig: |
         clientID: CLIENT_ID
         clientSecret: CLIENT_SECRET
         tenant: TENANT
@@ -259,7 +259,7 @@ oidc:
     - id: customer
       connectorName: test
       connectorType: oidc
-      connectorConfig: >-
+      connectorConfig: |
         clientID: CLIENT_ID
         clientSecret: CLIENT_SECRET
         insecureEnableGroups: true
