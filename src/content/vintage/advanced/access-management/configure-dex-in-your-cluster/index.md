@@ -401,7 +401,7 @@ kubernetes:
     M...=
     -----END CERTIFICATE-----
   api:
-    address: https://api.test.example.io
+    address: https://api.test.example.io:6443
 oidc:
   issuerAddress: https://dex.test.example.io
 ```
