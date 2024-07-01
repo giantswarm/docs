@@ -446,7 +446,7 @@ kubectl gs login https://api.test.example.io
 
 ## Mapping Users and Groups to Roles
 
-The following YAML examples demonstrate how you can map a users or groups to roles in the cluster for access.
+The following YAML examples demonstrate how you can map users or groups to roles in the cluster for access.
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
