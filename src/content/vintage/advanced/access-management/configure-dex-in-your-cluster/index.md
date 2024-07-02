@@ -405,6 +405,7 @@ kubernetes:
 oidc:
   issuerAddress: https://dex.test.example.io
 ```
+
 __Note__: For workload cluster using [Cluster API `AWS`](https://github.com/giantswarm/cluster-aws) (CAPA) provider, use `443` instead of `6443` for the API address port.
 
 __Warning__: For workload cluster using [Cluster API `EKS`](https://github.com/giantswarm/cluster-eks) provider, you'll need to configure Athena to use an AWS-managed EKS API server endpoint. This API server endpoint is uniquely allocated to your EKS cluster and can be easily accessed through the AWS EKS console by navigating to the `Overview` tab and under the `Details` section from the EKS cluster information page. For example:
