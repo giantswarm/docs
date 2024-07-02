@@ -3,13 +3,14 @@ Alertmanager
 [Aa]gent
 API[s]?
 auditable
+ARN[s]?
 [Aa][Ww][Ss]
 az
 backbone
 CIDR[s]?
 CLI
 cluster-vsphere
-Crossplane
+[Cc]rossplane
 CRs
 declaratively
 easily
@@ -29,6 +30,7 @@ IPAM
 kube-vip
 kubectl
 kubelet
+kube-vip
 Kyverno
 namespace[s]?
 node[pP]ool[s]?
@@ -49,3 +51,6 @@ VM[s]?
 VMware
 VPC
 vSphere
+vCenter
+vApp
+VMware
