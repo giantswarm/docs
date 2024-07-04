@@ -20,6 +20,7 @@ CONTENT_PATH = sys.argv[2]
 DATA_PATH = sys.argv[3]
 
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+print(f'GITHUB_TOKEN: {GITHUB_TOKEN}')
 
 RELEASES_REPO = 'giantswarm/releases'
 
@@ -311,6 +312,7 @@ if __name__ == "__main__":
 
     # Write changelog items
     for repo_short in sorted(conf['repositories']):
+        repo_short = "giantswarm/releases"
         print(f'Repo {repo_short}')
         repo_conf = conf['repositories'][repo_short] or {}
 

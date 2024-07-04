@@ -16,32 +16,38 @@ repositories:
     category: Management API
   giantswarm/azure-admission-controller:
     category: Management API
+  giantswarm/athena:
+    category: Managed Apps
+  giantswarm/auth-bundle:
+    category: Managed Apps
+  giantswarm/aws-efs-csi-driver:
+    category: Managed Apps
+  giantswarm/aws-load-balancer-controller-app:
+    category: Managed Apps
+  giantswarm/aws-node-termination-handler-app:
+    category: Managed Apps
+  giantswarm/backstage:
+    category: Web UI
+  giantswarm/capa-karpenter-taint-remover:
+    category: Managed Apps
   giantswarm/cert-manager-app:
     category: Managed Apps
-  giantswarm/cluster:
-    category: Cluster apps for CAPI
-  giantswarm/cluster-aws:
-    category: Cluster apps for AWS
-  giantswarm/cluster-azure:
-    category: Cluster apps for Azure
-  giantswarm/cluster-cloud-director:
-    category: Cluster apps for VMware Cloud Director
-  giantswarm/cluster-eks:
-    category: Cluster apps for AWS EKS
-  giantswarm/cluster-vsphere:
-    category: Cluster apps for VMware vSphere
+  giantswarm/cilium-healthcheck:
+    category: Managed Apps
+  giantswarm/cilium-prerequisites:
+    category: Managed Apps
+  giantswarm/cloudflared-app:
+    category: Managed Apps
+  giantswarm/cloudnative-pg-app:
+    category: Managed Apps
+  giantswarm/coredns-app:
+    category: Managed Apps
+  giantswarm/datadog-app:
+    category: Managed Apps
   giantswarm/dashboards:
     category: Dashboards
-  giantswarm/default-apps-aws:
-    category: Cluster apps for AWS
-  giantswarm/default-apps-azure:
-    category: Cluster apps for Azure
-  giantswarm/default-apps-cloud-director:
-    category: Cluster apps for VMware Cloud Director
-  giantswarm/default-apps-eks:
-    category: Cluster apps for AWS EKS
-  giantswarm/default-apps-vsphere:
-    category: Cluster apps for VMware vSphere
+  giantswarm/dex-app:
+    category: Dashboards
   giantswarm/docs:
     category: Documentation
     # Don't create useless PRs only for empty changelogs in `docs`
@@ -49,17 +55,49 @@ repositories:
       - ''
       - '- Update generated content'
       - '- Update changes and releases'
-  giantswarm/efk-stack-app:
+  giantswarm/exception-recommender-app:
+    category: Managed Apps
+  giantswarm/external-dns-app:
+    category: Managed Apps
+  giantswarm/external-dns-bundle:
+    category: Managed
+  giantswarm/external-dns-crossplane-resources:
+    category: Managed Apps
+  giantswarm/external-secrets:
     category: Managed Apps
   giantswarm/falco-app:
     category: Managed Apps
+  giantswarm/fluent-logshipping-app:
+    category: Managed Apps
+  giantswarm/flux-app:
+    category: Managed Apps
+  giantswarm/gateway-api-app:
+    category: Managed Apps
+  giantswarm/gitops-server-app:
+    category: Managed Apps
   giantswarm/goldilocks-app:
+    category: Managed Apps
+  giantswarm/grafana-app:
+    category: Managed Apps
+  giantswarm/grafana-agent-app:
     category: Managed Apps
   giantswarm/happa:
     category: Web UI
   giantswarm/hello-world-app:
     category: Managed Apps
+  giantswarm/ingress-nginx-app:
+    category: Managed Apps
+  giantswarm/jiralert-app:
+    category: Managed Apps
+  giantswarm/k8s-dns-node-cache-app:
+    category: Managed Apps
+  giantswarm/karpenter-bundle:
+    category: Managed Apps
+  giantswarm/keda-app:
+    category: Managed Apps
   giantswarm/kong-app:
+    category: Managed Apps
+  giantswarm/kube-prometheus-stack-app:
     category: Managed Apps
   giantswarm/kubectl-gs:
     category: kubectl gs
@@ -69,17 +107,17 @@ repositories:
     category: Management API
   giantswarm/management-cluster-admission:
     category: Management API
-  giantswarm/ingress-nginx-app:
-    category: Managed Apps
   giantswarm/prometheus-operator-app:
     category: Managed Apps
-  giantswarm/grafana-app:
-    category: Managed Apps
   giantswarm/loki-app:
+    category: Managed Apps
+  giantswarm/linkerd-bundle:
     category: Managed Apps
   giantswarm/oauth2-proxy-app:
     category: Managed Apps
   giantswarm/promtail-app:
+    category: Managed Apps
+  giantswarm/rbac-bootstrap-app:
     category: Managed Apps
   giantswarm/rook-operator-app:
     category: Managed Apps
@@ -89,71 +127,31 @@ repositories:
     category: Managed Apps
   giantswarm/trivy-app:
     category: Managed Apps
-  giantswarm/external-dns-app:
-    category: Managed Apps
-  giantswarm/fluent-logshipping-app:
-    category: Managed Apps
-  giantswarm/flux-app:
-    category: Managed Apps
-  giantswarm/cloudflared-app:
-    category: Managed Apps
-  giantswarm/app-mesh-app:
-    category: Playground Apps
-  giantswarm/azure-ad-pod-identity-app:
-    category: Playground Apps
-  giantswarm/dex-app:
-    category: Managed Apps
-  giantswarm/eventrouter-app:
-    category: Playground Apps
-  giantswarm/gatling-app:
-    category: Playground Apps
-  giantswarm/giantswarm-todo-app:
-    category: Playground Apps
-  giantswarm/inlets-operator-app:
-    category: Playground Apps
-  giantswarm/jaeger-operator-app:
-    category: Playground Apps
-  giantswarm/k8s-initiator-app:
-    category: Playground Apps
-  giantswarm/spark-operator:
-    category: Playground Apps
-  giantswarm/keda-app:
-    category: Playground Apps
-  giantswarm/kibana-oss-app:
-    category: Playground Apps
-  giantswarm/kubernetes-gpu:
-    category: Playground Apps
   giantswarm/linkerd2-app:
     category: Managed Apps
   giantswarm/linkerd2-cni-app:
     category: Managed Apps
-  giantswarm/loki-stack-app:
-    category: Playground Apps
-  giantswarm/opencensus-collector-app:
-    category: Playground Apps
   giantswarm/organization-operator:
     category: Management API
-  giantswarm/rbac-bootstrap-app:
-    category: Playground Apps
   giantswarm/rbac-operator:
     category: Management API
   giantswarm/strimzi-kafka-operator-app:
     category: Managed Apps
+  giantswarm/teleport-kube-agent-app:
+    category: Managed Apps
+  giantswarm/teleport-tbot:
+    category: Managed Apps
+  giantswarm/tempo-app:
+    category: Managed Apps
   giantswarm/vertical-pod-autoscaler-app:
     category: Managed Apps
-  giantswarm/velero-app:
-    category: Playground Apps
+  giantswarm/zot:
+    category: Managed Apps
 
 # Here we define the colors for categories.
 categories:
   - name: Management API
     color: "#b47fb0"
-  - name: Cluster apps for AWS
-    color: "#e4dcd4"
-  - name: Cluster apps for GCP
-    color: "#e4dcd4"
-  - name: Cluster apps for OpenStack
-    color: "#e4dcd4"
   - name: Dashboards
     color: "#e461a9"
   - name: Documentation
@@ -164,13 +162,17 @@ categories:
     color: "#8081b2"
   - name: Managed Apps
     color: "#7ac271"
-  - name: Playground Apps
-    color: "#bfffb8"
   - name: Workload cluster releases for AWS
     color: "#ff9900"
+  - name: Workload cluster releases for CAPA
+    color: "#ff9900"
+  - name: Workload cluster releases for CAPZ
+    color: "#ff9900"
   - name: Workload cluster releases for Azure
-    color: "#1773bd"
-  - name: Workload cluster releases for KVM
-    color: "#cccccc"
+    color: "#ff9900"
+  - name: Workload cluster releases for CAPV
+    color: "#ff9900"
+  - name: Workload cluster releases for CAPVCD
+    color: "#ff9900"
   - name: Web UI
     color: "#8098b2"
