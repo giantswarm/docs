@@ -55,7 +55,7 @@ repositories:
       - ''
       - '- Update generated content'
       - '- Update changes and releases'
-  giantswarm/exception-recommender-app:
+  giantswarm/exception-recommender:
     category: Managed Apps
   giantswarm/external-dns-app:
     category: Managed Apps
@@ -167,8 +167,6 @@ categories:
   - name: Workload cluster releases for CAPA
     color: "#ff9900"
   - name: Workload cluster releases for CAPZ
-    color: "#ff9900"
-  - name: Workload cluster releases for Azure
     color: "#ff9900"
   - name: Workload cluster releases for CAPV
     color: "#ff9900"
