@@ -60,7 +60,7 @@ repositories:
   giantswarm/external-dns-app:
     category: Managed Apps
   giantswarm/external-dns-bundle:
-    category: Managed
+    category: Managed Apps
   giantswarm/external-dns-crossplane-resources:
     category: Managed Apps
   giantswarm/external-secrets:
