@@ -47,6 +47,6 @@ When implementing authorization for your workload cluster, consider the followin
 
 By utilizing these tools and following best practices, you can create a secure, manageable, and flexible authorization system for your workload cluster that meets your organization's specific needs and security requirements.
 
-## We are here to help
+## We're here to help
 
 At Giant Swarm, we understand that configuring authentication and authorization can be complex, especially when dealing with multiple clusters, diverse organizational structures, and varying security requirements. Don't hesitate to reach out to our support channels. Our goal is to ensure you have a secure, well-configured environment that meets your specific requirements while adhering to best practices in cloud-native security.
