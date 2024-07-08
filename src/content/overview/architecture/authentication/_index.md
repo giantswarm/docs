@@ -17,23 +17,23 @@ During the management cluster installation, Giant Swarm sets up authentication a
 
 ## Platform API
 
-### Authentication
+### Authentication: Platform API
 
 The platform API is a Kubernetes API that operates on the management cluster. To allow access to the platform API, Giant Swarm sets up a [dex](https://github.com/giantswarm/dex-app) instance in the management cluster, configured with some default connectors that grant our staff access and additional connectors that can be configured by the customer.
 
 Dex acts as a portal to other identity providers (idP) through connectors. The supported connectors are [listed in the official dex documentation](https://dexidp.io/docs/connectors/) and we can walk you through the setup of any of them.
 
-### Authorization
+### Authorization: Platform API
 
 We utilize Kubernetes-native RBAC to control access to resources in the platform API. Resources are segregated into organizations, each represented by a dedicated namespace, enabling improved access control. This approach allows for fine-grained permissions at both the organization and namespace levels. For more detailed information on this topic, you can refer to our comprehensive [multi-tenancy documentation](https://docs.giantswarm.io/vintage/platform-overview/multi-tenancy/).
 
 ## Workload Cluster
 
-### Authentication
+### Authentication: Workload Cluster
 
 For workload cluster - where you run your applications - we don't enforce any specific OpenID Connect (OIDC) tool to enable single sign-on (SSO). However, if you wish to implement SSO for accessing your workload cluster, we provide a detailed guide on how to configure Dex for this purpose, you can follow our comprehensive guide: [Configure OIDC using Dex to access your clusters](https://docs.giantswarm.io/vintage/advanced/access-management/configure-dex-in-your-cluster/).
 
-### Authorization
+### Authorization: Workload Cluster
 
 We provide managed apps and tools designed to simplify and automate RBAC configuration for your workload cluster.
 
