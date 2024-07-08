@@ -13,6 +13,7 @@ cluster-vsphere
 Crossplane
 CRs
 declaratively
+[Dd]ex
 easily
 effectively
 ENI[s]?

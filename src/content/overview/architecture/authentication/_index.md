@@ -21,7 +21,7 @@ During the management cluster installation, Giant Swarm sets up authentication a
 
 The platform API is a Kubernetes API that operates on the management cluster. To allow access to the platform API, Giant Swarm sets up a [dex](https://github.com/giantswarm/dex-app) instance in the management cluster, configured with some default connectors that grant our staff access and additional connectors that can be configured by the customer.
 
-Dex acts as a portal to other identity providers (idP) through "connectors". The supported connectors are [listed in the official dex documentation](https://dexidp.io/docs/connectors/) and we can walk you through the setup of any of them.
+Dex acts as a portal to other identity providers (idP) through connectors. The supported connectors are [listed in the official dex documentation](https://dexidp.io/docs/connectors/) and we can walk you through the setup of any of them.
 
 ### Authorization
 
@@ -31,7 +31,7 @@ We utilize Kubernetes-native RBAC to control access to resources in the platform
 
 ### Authentication
 
-For workload cluster - where you run your applications - we do not enforce any specific OpenID Connect (OIDC) tool to enable single sign-on (SSO). However, if you wish to implement SSO for accessing your workload cluster, we provide a detailed guide on how to configure Dex for this purpose, you can follow our comprehensive guide: [Configure OIDC using Dex to access your clusters](https://docs.giantswarm.io/vintage/advanced/access-management/configure-dex-in-your-cluster/).
+For workload cluster - where you run your applications - we don't enforce any specific OpenID Connect (OIDC) tool to enable single sign-on (SSO). However, if you wish to implement SSO for accessing your workload cluster, we provide a detailed guide on how to configure Dex for this purpose, you can follow our comprehensive guide: [Configure OIDC using Dex to access your clusters](https://docs.giantswarm.io/vintage/advanced/access-management/configure-dex-in-your-cluster/).
 
 ### Authorization
 
@@ -40,6 +40,7 @@ We provide managed apps and tools designed to simplify and automate RBAC configu
 One of the key tools we offer is the [rbac-bootstrap-app](https://github.com/giantswarm/rbac-bootstrap-app). This app allows you to create role bindings on workload cluster directly from the management cluster. This centralized approach simplifies RBAC management across multiple clusters.
 
 When implementing authorization for your workload cluster, consider the following best practices:
+
 - Implement the principle of least privilege: Assign the minimum necessary permissions to users and groups.
 - Regularly review and audit permissions to ensure they remain appropriate.
 - Use group-based access control where possible for easier management.
