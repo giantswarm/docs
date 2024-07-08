@@ -39,7 +39,6 @@ The open-source cloud infrastructure providers of CAPI are separate projects –
 
 - **{{% impl_title "capa_ec2" %}}**
 - **{{% impl_title "capa_eks" %}}**
-- **{{% impl_title "capg_vms" %}}**
 - **{{% impl_title "capv" %}}**
 - **{{% impl_title "capvcd" %}}**
 - **{{% impl_title "capz_vms" %}}**
@@ -51,8 +50,6 @@ This is the previous generation and is still in production with many of our cust
 We offer the following cloud provider-specific implementations:
 
 - **{{% impl_title "vintage_aws" %}}**
-- **{{% impl_title "vintage_azure" %}}**
-- **{{% impl_title "vintage_kvm" %}}** – _deprecated and being phased out_
 
 ## Choice of cloud provider and implementation
 
