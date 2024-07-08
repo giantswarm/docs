@@ -39,13 +39,6 @@ The resulting resources depend on the provider, set via the `--provider` flag.
 - [`AWSMachineDeployment`]({{< relref "/vintage/use-the-api/management-api/crd/awsmachinedeployments.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`)
 
 {{< /tab >}}
-{{< tab id="flags-azure" for-impl="vintage_azure">}}
-
-- [`MachinePool`]({{< relref "/vintage/use-the-api/management-api/crd/machinepools.exp.cluster.x-k8s.io.md" >}}) (API version `exp.cluster.x-k8s.io/v1alpha3`)
-- [`AzureMachinePool`]({{< relref "/vintage/use-the-api/management-api/crd/azuremachinepools.exp.infrastructure.cluster.x-k8s.io.md" >}}) (API version `exp.infrastructure.cluster.x-k8s.io/v1alpha3`)
-- [`Spark`]({{< relref "/vintage/use-the-api/management-api/crd/sparks.core.giantswarm.io.md" >}}) (API version `core.giantswarm.io/v1alpha1`)
-
-{{< /tab >}}
 {{< /tabs >}}
 
 ## Usage
@@ -96,18 +89,6 @@ kubectl gs template nodepool \
   --availability-zones eu-central-1a \
   --aws-instance-type m5.4xlarge \
   --release 17.0.0
-```
-
-{{< /tab >}}
-{{< tab id="command-examples-azure" for-impl="vintage_azure">}}
-
-```nohighlight
-kubectl gs template nodepool \
-  --provider azure \
-  --organization acme \
-  --cluster-name a1b2c \
-  --description "General purpose" \
-  --release 16.0.2
 ```
 
 {{< /tab >}}
@@ -187,99 +168,6 @@ spec:
 status:
   provider:
     worker: {}
-```
-
-{{< /tab >}}
-{{< tab id="command-output-azure" for-impl="vintage_azure">}}
-
-```yaml
-apiVersion: exp.infrastructure.cluster.x-k8s.io/v1alpha3
-kind: AzureMachinePool
-metadata:
-  creationTimestamp: null
-  labels:
-    azure-operator.giantswarm.io/version: 5.10.0
-    cluster.x-k8s.io/cluster-name: a1c2b
-    giantswarm.io/cluster: a1c2b
-    giantswarm.io/machine-pool: bm44c
-    giantswarm.io/organization: acme
-    release.giantswarm.io/version: 16.0.2
-  name: bm44c
-  namespace: org-acme
-spec:
-  location: ""
-  template:
-    osDisk:
-      diskSizeGB: 0
-      managedDisk:
-        storageAccountType: ""
-      osType: ""
-    sshPublicKey: ""
-    vmSize: Standard_D4s_v3
-status:
-  ready: false
-  replicas: 0
-  version: ""
----
-apiVersion: exp.cluster.x-k8s.io/v1alpha3
-kind: MachinePool
-metadata:
-  annotations:
-    cluster.k8s.io/cluster-api-autoscaler-node-group-max-size: "10"
-    cluster.k8s.io/cluster-api-autoscaler-node-group-min-size: "3"
-    machine-pool.giantswarm.io/name: General purpose
-  creationTimestamp: null
-  labels:
-    azure-operator.giantswarm.io/version: 5.10.0
-    cluster.x-k8s.io/cluster-name: a1c2b
-    giantswarm.io/cluster: a1c2b
-    giantswarm.io/machine-pool: bm44c
-    giantswarm.io/organization: acme
-    release.giantswarm.io/version: 16.0.2
-  name: bm44c
-  namespace: org-acme
-spec:
-  clusterName: a1c2b
-  replicas: 3
-  template:
-    metadata: {}
-    spec:
-      bootstrap:
-        configRef:
-          apiVersion: core.giantswarm.io/v1alpha1
-          kind: Spark
-          name: bm44c
-          namespace: org-acme
-      clusterName: a1c2b
-      infrastructureRef:
-        apiVersion: exp.infrastructure.cluster.x-k8s.io/v1alpha3
-        kind: AzureMachinePool
-        name: bm44c
-        namespace: org-acme
-status:
-  bootstrapReady: false
-  infrastructureReady: false
-  replicas: 0
----
-apiVersion: core.giantswarm.io/v1alpha1
-kind: Spark
-metadata:
-  creationTimestamp: null
-  labels:
-    cluster.x-k8s.io/cluster-name: a1c2b
-    giantswarm.io/cluster: a1c2b
-    release.giantswarm.io/version: 16.0.2
-  name: bm44c
-  namespace: org-acme
-spec: {}
-status:
-  dataSecretName: ""
-  failureMessage: ""
-  failureReason: ""
-  ready: false
-  verification:
-    algorithm: ""
-    hash: ""
 ```
 
 {{< /tab >}}
