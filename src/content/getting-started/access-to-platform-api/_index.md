@@ -83,8 +83,8 @@ Secondly, run the `kubectl gs get clusters -A` command, which shows all the clus
 ```text
 $ kubectl gs get clusters -A
 NAMESPACE          NAME    AGE    CONDITION   SERVICE PRIORITY  RELEASE   ORGANIZATION  DESCRIPTION
-org-testing        rfjh2   84d    UPDATED     lowest            25.1.0    testing       Testing cluster
-org-production     jn88t   91d    CREATED     highest           25.0.1    production    Production cluster
+org-testing        test1   84d    UPDATED     lowest            25.1.0    testing       Testing cluster
+org-production     prod1   91d    CREATED     highest           25.0.1    production    Production cluster
 ```
 
 You may notice some important points:
@@ -93,10 +93,10 @@ You may notice some important points:
 2. Organizations may not have any clusters attached to them (yet)
 3. There is a `giantswarm` organization in which we define the current management cluster and its configuration. Customers aren't supported to make changes in here.
 
-On the other hand, you can see the YAML definition of a cluster (in this example, cluster `rfjh2` in organization `testing`) by running:
+On the other hand, you can see the YAML definition of a cluster (in this example, cluster `test1` in organization `testing`) by running:
 
 ```sh
-kubectl gs get cluster rfjh2 -n org-testing -o yaml
+kubectl gs get cluster test1 -n org-testing -o yaml
 ```
 
 Finally, you can see the apps deployed in a cluster by running:
