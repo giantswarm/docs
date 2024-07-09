@@ -76,7 +76,7 @@ testing                 97d
 giantswarm              97d
 ```
 
-Organizations are a way to separate and isolate clusters, apps, etc., between different teams or environments. More information can be found in [multi-tenancy page]({{< relref "/vintage/platform-overview/multi-tenancy" >}}).
+Organizations are a way to separate and isolate clusters, apps, etc., between different teams or environments. More information can be found in [Multi-tenancy]({{< relref "/vintage/platform-overview/multi-tenancy" >}}).
 
 Secondly, run the `kubectl gs get clusters -A` command, which shows all the clusters managed by your management cluster, the `-A` flag stands for all namespaces.
 
