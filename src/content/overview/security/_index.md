@@ -41,4 +41,4 @@ Our platform leverages several cloud-native technologies to deliver these securi
 
 - **Cilium**: Container networking plugin that provides advanced network capabilities, including DNS-based network policies and traffic encryption to secure communication within your clusters.
 
-Learn how to start with Security on Giant Swarm by visiting our [getting started security page]({{< relref "vintage/platform-overview/security/platform-security/" >}}).
+Learn how to start with Security on Giant Swarm by visiting our [getting started security page]({{< relref "vintage/platform-overview/security/platform-security/index.md" >}}).
