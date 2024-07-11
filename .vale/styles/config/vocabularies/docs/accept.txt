@@ -39,8 +39,11 @@ Trivy
 templated
 randomly
 really
+runbook
+runbooks
 separately
 Sigstore
+Spotify
 subnet
 vApp
 very
