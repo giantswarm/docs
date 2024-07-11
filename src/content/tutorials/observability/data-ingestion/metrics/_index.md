@@ -64,6 +64,6 @@ __Warning:__ The ServiceMonitor needs to be labeled with `application.giantswarm
 
 To make sure that your containers are being scraped by the monitoring agents, you can check either the `ServiceMonitors Overview` or `ServiceMonitors Details` dashboards in your installations Grafana.
 
-## When should I use a PodMonitor?
+## ServiceMonitor vs. PodMonitor
 
 In most cases, a ServiceMonitor should cover most of your monitoring use cases but it can happen on rare occasions that a container doesn't need a service to run and it doesn't make sense to create one just for the sake of monitoring it. That's when the PodMonitor comes into action. You can find a few other examples where PodMonitor makes sense [in this discussion](https://github.com/prometheus-operator/prometheus-operator/issues/3119) in the Prometheus Operator Project.
