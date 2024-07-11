@@ -66,4 +66,4 @@ To make sure that your containers are being scraped by the monitoring agents, yo
 
 ## When should I use a PodMonitor?
 
-In most cases, a ServiceMonitor should cover most of your monitoring use cases but it can happen on rare occasions that a container doesn't need a service to run and it doesn't make sense to create one just for the sake of monitoring it. That's when the PodMonitor come into action. You can find a few other examples where PodMonitor makes sense [upstream](https://github.com/prometheus-operator/prometheus-operator/issues/3119).
+In most cases, a ServiceMonitor should cover most of your monitoring use cases but it can happen on rare occasions that a container doesn't need a service to run and it doesn't make sense to create one just for the sake of monitoring it. That's when the PodMonitor comes into action. You can find a few other examples where PodMonitor makes sense [in this discussion](https://github.com/prometheus-operator/prometheus-operator/issues/3119) in the Prometheus Operator Project.
