@@ -45,7 +45,7 @@ metadata:
   labels:
     ## This label is important as it is required for the Prometheus Agent to discover it.
     ## The team name should be the name of your internal team.
-    application.giantswarm.io/team: team-name
+    application.giantswarm.io/team: my-team
     app.kubernetes.io/instance: my-service
   name: my-service
   namespace: monitoring
