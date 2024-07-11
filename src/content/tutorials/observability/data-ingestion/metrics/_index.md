@@ -26,7 +26,7 @@ Those allow you to:
 - Define where the metrics you want to ingest are (for example the container or port)
 - Transform metrics before ingesting them (for example dropping unneeded data, adding extra labels)
 
-If you want to read more about the CRDs, feel free to look at their [API](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md).
+You can learn more about the `ServiceMonitor` and `PodMonitor` CRDs by checking the [Prometheus Operator API Docs](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md).
 
 ## Prerequisites
 
