@@ -19,7 +19,7 @@ user_questions:
 
 By default, all Giant Swarm clusters are equiped with the [Prometheus Operator](https://prometheus-operator.dev/) and a set of multiple [Prometheus](https://prometheus.io/) shards in `agent mode` functioning as monitoring agents to be able to collect and forward cluster critical and workload metrics to a central [Grafana Mimir](https://grafana.com/oss/mimir/) instance running on the management cluster.
 
-No workload is the same, especially in the way it exposes its metrics, so the Observability Platform's monitoring configuration needs to be flexible. That's why it is based on the `ServiceMonitor` and `PodMonitor` Custom Resource Definitions (CRDs) provided by the Prometheus Operator. 
+No workload is the same, especially in the way it exposes its metrics, so the Observability Platform's monitoring configuration needs to be flexible. That's why it's based on the `ServiceMonitor` and `PodMonitor` Custom Resource Definitions (CRDs) provided by the Prometheus Operator.
 
 Those allow you to:
 
