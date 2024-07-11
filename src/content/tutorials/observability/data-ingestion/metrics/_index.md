@@ -60,7 +60,7 @@ spec:
       app.kubernetes.io/instance: my-service
 ```
 
-__Warning:__ The ServiceMonitor needs to be labeled with `application.giantswarm.io/team: team-name` for the Prometheus Agent to be able to discover it and start collecting metrics.
+__Warning:__ The ServiceMonitor needs to be labeled with `application.giantswarm.io/team: <YOUR-TEAM-NAME>` for the Prometheus Agent to be able to discover it and start collecting metrics.
 
 To make sure that your containers are being scraped by the monitoring agents, we can only advise you to access your management cluster Grafana and access either the `ServiceMonitors Overview` or `ServiceMonitors Details` dashboards.
 
