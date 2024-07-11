@@ -34,7 +34,7 @@ Before you start to ingest data from a container running in your clusters, you n
 
 ## Creating a ServiceMonitor
 
-Here is an example showing how to create a [ServiceMonitor](https://github.com/helm/charts/blob/master/stable/prometheus-operator/crds/crd-servicemonitor.yaml) that targets an existing service named `my-service` in the `monitoring` namespace, but the manifests should be similar with any workload as long as you deploy a service.
+Here is an example showing how to create a [ServiceMonitor](https://github.com/helm/charts/blob/master/stable/prometheus-operator/crds/crd-servicemonitor.yaml) for the team `my-name` that targets an existing service named `my-service` in the `monitoring` namespace, but the manifests should be similar with any workload as long as you deploy a service.
 
 The bare minimum for a ServiceMonitor looks like this:
 
