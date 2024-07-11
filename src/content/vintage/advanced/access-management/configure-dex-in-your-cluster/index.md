@@ -401,10 +401,12 @@ kubernetes:
     M...=
     -----END CERTIFICATE-----
   api:
-    address: https://api.test.example.io
+    address: https://api.test.example.io:6443
 oidc:
   issuerAddress: https://dex.test.example.io
 ```
+
+__Note__: For workload cluster using [Cluster API `AWS`](https://github.com/giantswarm/cluster-aws) (CAPA) provider, use `443` instead of `6443` for the API address port.
 
 __Warning__: For workload cluster using [Cluster API `EKS`](https://github.com/giantswarm/cluster-eks) provider, you'll need to configure Athena to use an AWS-managed EKS API server endpoint. This API server endpoint is uniquely allocated to your EKS cluster and can be easily accessed through the AWS EKS console by navigating to the `Overview` tab and under the `Details` section from the EKS cluster information page. For example:
 
@@ -443,6 +445,46 @@ If both `Dex` and `Athena` are configured correctly and you have installed `kube
 ```sh
 kubectl gs login https://api.test.example.io
 ```
+
+## Assign Users or Groups to Roles
+
+The following YAML examples showcase how to assign roles to users or groups in the cluster, granting them specific access permissions. Refer to the [Kubernetes RBAC documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding) for a deeper understanding of RBAC concepts.
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: dex-user-to-cluster-role
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: User
+  name: you@example.io
+  apiGroup: rbac.authorization.k8s.io
+```
+
+__Warning__: This example assigns the `cluster-admin` role to the user `you@example.io`. The `cluster-admin` is a powerful role granting extensive access to the cluster and should only be used with caution and for specific purposes.
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: dex-group-to-cluster-role
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: Group
+  name: customer:example-admin
+  apiGroup: rbac.authorization.k8s.io
+```
+
+This example assigns the `cluster-admin` role to members of the group `customer:example-admin`.
+
+__Want to simplify initial access setup?__ Use our [RBAC bootstrap app](https://github.com/giantswarm/rbac-bootstrap-app). This app helps you easily configure the users and groups that will initially have access to the cluster.
 
 ## Further reading
 

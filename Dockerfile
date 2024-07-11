@@ -8,7 +8,7 @@ COPY . /docs
 ENV HUGO_DOCS_VERSION $CIRCLE_TAG
 
 RUN hugo \
-      --verbose \
+      --logLevel info \
       --gc \
       --minify \
       --source src \

@@ -46,18 +46,6 @@ Your Kubernetes cluster will have a default Storage Class `gp3` deployed. It is 
 As a cluster admin, you can create additional Storage Classes or edit the default class to use different types of EBS volumes, or add encryption, for example. For this, you need to create (or edit) [`StorageClass` objects](https://kubernetes.io/docs/concepts/storage/storage-classes/#aws-ebs).
 
 {{< /tab >}}
-{{< tab id="storage-classes-vintage-azure" for-impl="vintage_azure" >}}
-
-If your cluster is running in the cloud on Azure, it comes with four dynamic storage provisioners using different flavors of Azure Managed Disks and Azure File shares. This enables you to store data beyond the lifetime of a pod.
-
-The pre-installed storage classes are:
-
-- `managed-premium` (default): Provisions a `Premium LRS` [Managed disk](https://learn.microsoft.com/en-us/azure/virtual-machines/managed-disks-overview) and thus can be used only on Kubernetes nodes that run on supported VM types (those with an `s` in their name).
-- `managed-standard`: Provisions a `Standard LRS` [Managed disk](https://learn.microsoft.com/en-us/azure/virtual-machines/managed-disks-overview) and can be used on any VM instance type.
-- `af-premium`: Provisions a volume backed by the [Azure File Share](https://azure.microsoft.com/en-us/products/storage/files/) service within a `Premium LRS` storage account.
-- `af-standard`: Provisions a volume backed by the [Azure File Share](https://azure.microsoft.com/en-us/products/storage/files/) service within a `Standard LRS` storage account.
-
-{{< /tab >}}
 {{< tab id="storage-classes-capz" for-impl="capz_vms" >}}
 
 The pre-installed and default storage class is `managed-premium`. It provisions a `Premium LRS` [Managed disk](https://learn.microsoft.com/en-us/azure/virtual-machines/managed-disks-overview) and thus can be used only on Kubernetes nodes that run on supported VM types (those with an `s` in their name).

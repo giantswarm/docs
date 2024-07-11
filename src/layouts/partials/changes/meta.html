@@ -1,6 +1,7 @@
 <div class="meta">
     <a class="permalink" href="{{ .RelPermalink }}" title="Permalink"><i class="fa fa-link"></i>{{ .Date.Format "Jan 2, 2006" }}</a>
     {{ $entry := .Params.changes_entry }}
+
     {{- with .Params.changes_categories }}
         {{- range . }}
             {{- $cat := urlize . }}
