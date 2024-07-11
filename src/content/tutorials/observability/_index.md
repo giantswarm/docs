@@ -11,4 +11,5 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
   - How can I interact with the observability platform?
+  - How to use the observability platform?
 ---
