@@ -23,7 +23,7 @@ No workload is the same, especially in the way it exposes its metrics, so the Ob
 
 Those allow you to:
 
-- define where the metrics we want to ingest are (e.g. container, port)
+- Define where the metrics you want to ingest are (for example the container or port)
 - transform metrics before ingesting them (e.g. dropping unneeded data, adding extra labels)
 
 If you want to read more about the CRDs, feel free to look at their [API](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md).
