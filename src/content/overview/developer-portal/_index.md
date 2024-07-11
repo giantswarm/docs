@@ -11,7 +11,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
 
-Our developer portal based on [Backstage](https://www.cncf.io/projects/backstage/) is your engineer's front end to the platform. We provide our self-service user interface as plugins for Backstage, so that engineers using your platform find all the information they need in the right place.
+Our developer portal based on [Backstage](https://www.cncf.io/projects/backstage/) is your engineer's front end to the platform. We provide our self-service user interface as plugins for Backstage, so that engineers using your platform find all the information they need in the place they visit frequently.
 
 Giant Swarm can assist you in various ways depending on where you are in your journey towards your own developer portal. We provide a pre-configured Backstage instance as a starting point to customers who don't run their own instance yet. We also provide plugins that can be used to extend the functionality of your Backstage instance.
 
