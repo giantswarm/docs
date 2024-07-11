@@ -65,7 +65,7 @@ spec:
 
 __Warning:__ The ServiceMonitor needs to be labeled with `application.giantswarm.io/team: <YOUR-TEAM-NAME>` for the Prometheus Agent to be able to discover it and start collecting metrics.
 
-To make sure that your containers are being scraped by the monitoring agents, you can check either the `ServiceMonitors Overview` or `ServiceMonitors Details` dashboards in your installations Grafana.
+To make sure that your containers are being scraped by the monitoring agents, you can check either the `ServiceMonitors Overview` or `ServiceMonitors Details` dashboards in your installation's Grafana.
 
 ## ServiceMonitor vs. PodMonitor
 
