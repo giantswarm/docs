@@ -38,7 +38,8 @@ You can check the resource usage related to your ServiceMonitor and PodMonitor i
 
 ## Creating a ServiceMonitor
 
-Here is an example showing how to create a [ServiceMonitor](https://github.com/helm/charts/blob/master/stable/prometheus-operator/crds/crd-servicemonitor.yaml) for the team `my-name` that targets an existing service named `my-service` in the `monitoring` namespace, but the manifests should be similar with any workload as long as you deploy a service.
+Here is an example showing how to create a [ServiceMonitor](https://github.com/helm/charts/blob/master/stable/prometheus-operator/crds/crd-servicemonitor.yaml).
+This one targets a service named `my-service` in the `monitoring` namespace, and will route alerts to team `my-team`.  The manifests should be similar with any workload as long as you have a service that exposes the app's metrics.
 
 The bare minimum for a ServiceMonitor looks like this:
 
