@@ -34,7 +34,8 @@ Before you start to ingest data from a container running in your clusters, you n
 
 Keep in mind that ingesting new metrics into the Observability Platform comes with a cost. The resource consumption of the central Mimir is related to the amount of metrics it has to handle. This means ingesting more metrics also leads to higher resource consumption of the Observability Platform overall.
 
-You can check the resource usage related to your ServiceMonitor and PodMonitor in the  `ServiceMonitors Overview` dashboard in your installations Grafana.
+You can check the resource usage related to your ServiceMonitor and PodMonitor in the  `ServiceMonitors Overview` dashboard in your installation's Grafana.
+
 ## Creating a ServiceMonitor
 
 Here is an example showing how to create a [ServiceMonitor](https://github.com/helm/charts/blob/master/stable/prometheus-operator/crds/crd-servicemonitor.yaml) for the team `my-name` that targets an existing service named `my-service` in the `monitoring` namespace, but the manifests should be similar with any workload as long as you deploy a service.
