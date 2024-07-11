@@ -11,4 +11,5 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
   - How can I ingest observability data?
+  - How to add new data into the observability platform?
 ---
