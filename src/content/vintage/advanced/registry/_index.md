@@ -1,7 +1,7 @@
 ---
 linkTitle: Registry
 title: Registry Guides
-description: Take a look at the list of guides that delve into registries.
+description: Take a look at the list of guides that delve into configuring registries.
 weight: 15
 aliases:
   - /advanced/registry

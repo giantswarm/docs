@@ -1,7 +1,7 @@
 ---
 linkTitle: In-cluster image caching with Zot
 title: In-cluster image caching with Zot
-description: Caching container images close to the cluster and as backup within the cluster. 
+description: Caching container images close to the cluster and as backup within the cluster.
 weight: 110
 menu:
   main:
