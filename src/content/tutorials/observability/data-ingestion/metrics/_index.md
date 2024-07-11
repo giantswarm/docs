@@ -1,7 +1,7 @@
 ---
 title: Ingest metrics into the Observability Platform
 linkTitle: Metrics
-description: How to make new metrics available in the Observability Platform in self-service
+description: How to make new metrics available in the Observability Platform in self-service.
 menu:
   principal:
     parent: tutorials-observability-data-ingestion
