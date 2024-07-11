@@ -21,11 +21,11 @@ The Giant Swarm platform combines capabilities provided by a variety of open sou
 
 ## Why Backstage
 
-Backstage, originally developed by Spotify and donated to the Cloud Native Computing Foundation in 2020, is an open-source framework for building developer portals. With more than 1.500 contributors and a fast-paced release cycle, Backstage is improving and extending its capabilities rapidly. More and more enterprises are adopting Backstage as their foundation for developer portals, creating [plugins](https://backstage.io/plugins/) and open-sourcing them to the community.
+Backstage, originally developed by Spotify and donated to the Cloud Native Computing Foundation in 2020, is an open-source framework for building developer portals. With more than 1500 contributors and a fast-paced release cycle, Backstage is improving and extending its capabilities rapidly. More and more enterprises are adopting Backstage as their foundation for developer portals, creating [plugins](https://backstage.io/plugins/) and open-sourcing them to the community.
 
-## Core features
+## Capabilities
 
-Backstage as we provide it to customers and as we run it internally at Giant Swarm comes with a set of core features:
+The pre-configured Backstage instance provides the following functionality:
 
 - **Cluster overview**: An overview of all Kubernetes clusters managed through the Giant Swarm platform.
 - **Catalog**: A catalog of all applications that Giant Swarm publishes in app catalogs. As a customer, you can extend this catalog with your own applications, services, and more.
