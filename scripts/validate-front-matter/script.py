@@ -608,22 +608,30 @@ def validate(content, fpath, validation):
                 })
 
     if validation in (VALIDATE_ALL, VALIDATE_LAST_REVIEW_DATE):
-        if 'last_review_date' in fm and not ignored_path(fpath, REVIEW_TOO_LONG_AGO):
-            if type(fm['last_review_date']) is datetime.date:
-                diff = todays_date - fm['last_review_date']
-                expiration = 365
-                if 'expiration_in_days' in fm and type(fm['expiration_in_days']) is int:
-                    expiration = fm['expiration_in_days']
+        if 'last_review_date' in fm:
+            if not ignored_path(fpath, REVIEW_TOO_LONG_AGO):
+                if type(fm['last_review_date']) is datetime.date:
+                    diff = todays_date - fm['last_review_date']
+                    expiration = 365
+                    if 'expiration_in_days' in fm and type(fm['expiration_in_days']) is int:
+                        expiration = fm['expiration_in_days']
 
-                if diff > datetime.timedelta(days=expiration):
-                    result['checks'].append({
-                        'check': REVIEW_TOO_LONG_AGO,
-                        'title': fm['title'] or "",
-                        'owner': fm['owner'] or [],
-                        'value': fm['last_review_date'],
-                    })
-                elif diff < datetime.timedelta(seconds=0):
-                    # in the future
+                    if diff > datetime.timedelta(days=expiration):
+                        result['checks'].append({
+                            'check': REVIEW_TOO_LONG_AGO,
+                            'title': fm['title'] or "",
+                            'owner': fm['owner'] or [],
+                            'value': fm['last_review_date'],
+                        })
+                    elif diff < datetime.timedelta(seconds=0):
+                        # in the future
+                        result['checks'].append({
+                            'check': INVALID_LAST_REVIEW_DATE,
+                            'title': fm['title'] or "",
+                            'owner': fm['owner'] or [],
+                            'value': fm['last_review_date'],
+                        })
+                else:
                     result['checks'].append({
                         'check': INVALID_LAST_REVIEW_DATE,
                         'title': fm['title'] or "",
