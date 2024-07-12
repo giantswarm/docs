@@ -22,14 +22,13 @@ A registry cache within the cluster can provide several benefits.
 - Faster boot times simply because of being closer to the cluster
 
 Here we explain how to set up a registry, using the [Zot](https://zotregistry.dev/) app provided by Giant Swarm. Zot is an OCI-native container image registry. The [Giant Swarm packaged version](https://github.com/giantswarm/zot) extends it with opinionated components like
-auto-scaling, monitoring, Cilium network policies, etc.
+autoscaling, monitoring, Cilium network policies, etc.
 
-We explain how to deploy apps in our [app platform docs]({{ relref "/vintage/getting-started/app-platform/deploy-app/#creating-an-app-cr" }}).
+We explain how to deploy apps in our [app platform docs]({{< relref "/vintage/getting-started/app-platform/deploy-app/#creating-an-app-cr" >}}).
 
 ### Zot configuration
 
-The Zot binary itself can be configured via `.configFiles.config.json` Helm value as JSON.
-The `.mountConfig` values must be set to `true` to enable mounting the configuration file.
+The Zot binary itself can be configured via `.configFiles.config.json` Helm value as JSON. The `.mountConfig` values must be set to `true` to enable mounting the configuration file.
 
 ```yaml
 configFiles:
@@ -46,9 +45,9 @@ The Zot project provides a [full configuration reference](https://zotregistry.de
 You can configure either active or on-demand replication via the Zot configuration file.
 
 - **Active** (`onDemand: false`) means that Zot will actively sync images from the upstream registry, to have it available when needed.
-- **On-demand** (`onDemand: true`) means that Zot will only pull the image when it is requested, and then cache it.
+- **On-demand** (`onDemand: true`) means that Zot will only pull the image when it's requested, and then cache it.
 
-The below example configures `docker.io` as on-demand mirror, while the `my-registry.example.org` registry it is set to actively sync all `6.*` tagged images for `my-organization/my-image`.
+The below example configures `docker.io` as on-demand mirror, while the `my-registry.example.org` registry it's set to actively sync all `6.*` tagged images for `my-organization/my-image`.
 
 ```json
 {
@@ -91,19 +90,19 @@ The below example configures `docker.io` as on-demand mirror, while the `my-regi
 }
 ```
 
-<!-- Please update the section below once containerd mirroring config is settled -->
+<!-- Please update the section below once containerd mirroring configuration is settled -->
 
 **Note:** For Zot to be used on the cluster, you need to for example configure containerd on the nodes to use Zot as a mirror for given upstream registries. The containerd configuration in Giant Swarm clusters is currently subject to change. Please reach out to Giant Swarm support for the latest information.
 
-For the full mirroring documentation, chek the [upstream documentation](https://zotregistry.dev/latest/articles/mirroring/).
+For the full mirroring documentation, check the [upstream documentation](https://zotregistry.dev/latest/articles/mirroring/).
 
 ### Restricting access to container images
 
 If not configured specifically, access to the registry is public for anonymous users. This means that all workloads within the cluster can pull images from it.
 
-To restrict access, you have to add configuration. Since Zot supports a veriety of authentication mechanisms, we only provide an example here, using Basic authentication. For all the possible authentication methods, please refer to the [Zot authentication docs](https://zotregistry.dev/latest/admin-guide/admin-configuration/#authentication).
+To restrict access, you have to add configuration. Since Zot supports a variety of authentication mechanisms, we only provide an example here, using Basic authentication. For all the possible authentication methods, please refer to the [Zot authentication docs](https://zotregistry.dev/latest/admin-guide/admin-configuration/#authentication).
 
-To configure Basic authentication, set the `.secretFiles` Helm value and make sure `.mountSecret` is set to `true`, as shown in the example below. The `.secretFiles` content represents an htpasswd file with one user and password per line.
+To configure Basic authentication, set the `.secretFiles` Helm value and make sure `.mountSecret` is set to `true`, as shown in the example below. The `.secretFiles` content represents an  `htpasswd` file with one user and password per line.
 
 To generate the user entries, use the `htpasswd` tool like here, where we create two different users named `admin` and `reader`:
 
@@ -180,11 +179,11 @@ secretFiles:
       "my-registry.example.org": {
         "username": "my-user",
         "password": "my-token"
-      }      
+      }
     }
 ```
 
-Then configure the `sync` extension to use that file as a source to authenticate towards registries via the Zot config file.
+Then configure the `sync` extension to use that file as a source to authenticate towards registries via the Zot configuration file.
 
 ```json
 {
@@ -204,7 +203,7 @@ Depending on your use of Zot, please consider these additional recommendations f
 
 #### Memory constraints
 
-Zot can take up a lot of memory over time. In the Giant Swarm packaged app you you can deploy it with a vertical pod autoscaler (VPA). You can set the resource constraints like shown here:
+Zot can take up a lot of memory over time. In the Giant Swarm packaged app you can deploy it with a vertical pod autoscaler (VPA). You can set the resource constraints like shown here:
 
 ```yaml
 giantswarm:
@@ -232,11 +231,11 @@ resources:
 ```
 
 In case of an out-of-memory kill, VPA controller will dynamically stretch the limits on the deployment based on Prometheus metrics
-up to what is set under `.giantswarm.verticalPodAutoscaler.maxAllowed`.
+up to what's set under `.giantswarm.verticalPodAutoscaler.maxAllowed`.
 
-In certain scenarios - in our experience - it is better, more stable to run with a fixed amount of memory. You can
+In certain scenarios - in our experience - it's better, more stable to run with a fixed amount of memory. You can
 enforce the constraint by setting the memory request and limit to the same value and configuring the
-Go garbage collector. Do not forget to disable the VPA in this case!
+Go garbage collector. Don't forget to disable the VPA in this case!
 
 ```yaml
 giantswarm:
@@ -264,7 +263,7 @@ For more details on this approach, we recommend to read the [Guide to the Go Gar
 #### Deployment strategies
 
 Some extension, like `search` can create file locks on the data volume mount. With the `RollingUpdate` strategy,
-this will cause the new pods failing to stand up. In such scenarios it is recommended to set it to `Recreate`.
+this will cause the new pods failing to stand up. In such scenarios it's recommended to set it to `Recreate`.
 
 ```yaml
 strategy:
