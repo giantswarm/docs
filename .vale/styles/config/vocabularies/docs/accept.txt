@@ -39,8 +39,7 @@ Trivy
 templated
 randomly
 really
-runbook
-runbooks
+runbook[s]?
 separately
 Sigstore
 Spotify
