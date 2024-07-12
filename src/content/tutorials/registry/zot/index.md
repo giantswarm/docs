@@ -5,16 +5,14 @@ description: A registry cache within the cluster can provide benefits for availa
 weight: 110
 menu:
   main:
-    parent: advanced-registry
+    parent: tutorials-registry
+    identifier: tutorials-registry-in-cluster-cache-using-zot
 user_questions:
   - How can I cache container images within the cluster?
   - How can I have a backup registry for container images?
-last_review_date: 2024-07-11
-aliases:
-  - /guides/in-cluster-container-image-caching/
-  - /advanced/in-cluster-container-image-caching/
+last_review_date: 2024-07-12
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-bigmac
+  - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
 
 A registry cache within the cluster can provide several benefits.

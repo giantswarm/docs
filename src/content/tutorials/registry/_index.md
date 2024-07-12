@@ -4,12 +4,12 @@ title: Registry Guides
 description: Take a look at the list of guides that delve into configuring registries.
 weight: 15
 aliases:
-  - /advanced/registry
+  - /tutorials/registry
 menu:
   main:
-    parent: advanced
-    identifier: advanced-registry
+    parent: tutorials
+    identifier: tutorials-registry
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2024-07-11
+last_review_date: 2024-07-12
 ---
