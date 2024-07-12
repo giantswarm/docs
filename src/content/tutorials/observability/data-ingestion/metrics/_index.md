@@ -30,7 +30,7 @@ You can learn more about the `ServiceMonitor` and `PodMonitor` CRDs by checking 
 
 ## Prerequisites
 
-Before you start to ingest data from a container running in your clusters, you need to make sure that your application is already [instrumented](https://opentelemetry.io/docs/concepts/instrumentation/) to export metrics and make sure the metrics it provides are useful to you.
+Before you start to ingest data from a running container, you need to make sure that your application is already [instrumented](https://opentelemetry.io/docs/concepts/instrumentation/) to export metrics and make sure the metrics it provides are useful to you.
 
 Keep in mind that ingesting new metrics into the Observability Platform comes with a cost. The resource consumption of the central Mimir is related to the amount of metrics it has to handle. This means ingesting more metrics also leads to higher resource consumption of the Observability Platform overall.
 
