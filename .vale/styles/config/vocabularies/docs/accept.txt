@@ -2,8 +2,8 @@
 Alertmanager
 [Aa]gent
 API[s]?
-auditable
 ARN[s]?
+auditable
 [Aa][Ww][Ss]
 az
 backbone

@@ -10,11 +10,11 @@ user_questions:
   - What do I need to do to prepare my AWS account for the cloud-native developer platform?
 ---
 
-In this guide, you will find the necessary steps to prepare your AWS accounts to run our platform. There are several requirements must be satisfied to support Cluster API Provider for AWS (CAPA).
+In this guide, you will find the necessary steps to prepare your AWS accounts to run our platform, including Cluster API Provider for AWS (CAPA).
 
 ## Requirements
 
-In AWS environments, you can run the management and workload clusters in the same account or separate accounts. To help you take the decision read our [multi-account article]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/multi-account" >}}) where we explain the pros and cons of both approaches. Most requirements are related to configuring _Identity and Access Management (IAM)_ roles and service quotas.
+In AWS environments, you can run the management and workload clusters in the same account or separate accounts. To help you take the decision, please read our [multi-account article]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/multi-account" >}}) where we explain the pros and cons of both approaches. Most requirements are related to configuring _Identity and Access Management (IAM)_ roles and service quotas.
 
 ![AWS Setup Diagram](aws_onboarding.png)
 
@@ -24,39 +24,52 @@ You will need access to AWS console or having AWS CLI installed and pointing to 
 
 AWS establishes default quotas for all your cloud services as described in the [provider documentation](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html). The following overview lists the quotas you must adjust to use the account to operate Giant Swarm clusters.
 
-Adjusting a service quota requires issuing a support case in the [AWS Support Center](https://console.aws.amazon.com/support/home), where you will find a specific entry form for each type of case. Each quota type requires a separate case. Log in to the proper account and select the correct region when creating these.
+Adjusting a service quota requires issuing a support case in the [AWS Support Center](https://console.aws.amazon.com/support/home), where you will find a specific entry form for each type of case. Each quota type requires a separate case. Log in to the proper account and select the correct region when creating these. If you plan to deploy clusters to multiple regions, ensure the quotas are raised for each region.
 
 Below is a screenshot of a service quota entry form.
 
 ![AWS service quota screenshot](aws-service-limits.png)
 
-Next, there is the list of quotas to be modified, grouped by type:
+Please request an increase of the following quotas (grouped by type):
 
-```nohighlight
-    - VPC
-        - VPCs per region: **50**
-        - NAT Gateway per Availability Zone per region: **50** (not needed if you are creating a [private cluster]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/private-cluster" >}}))
-        - IPv4 CIDR blocks per VPC: **50**
-        - Routes per route table: **200**
-    - Route 53 Resolver
-        - Endpoints per AWS region: **100** (needed if you are creating a [private cluster]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/private-cluster" >}}))
-    - Elastic IP
-        - New VPC Elastic IP Address Limit per region: **50** (not needed if you are creating a [private cluster]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/private-cluster" >}}))
-    - Elastic Load Balancers
-        - Application and Classic Load Balancers per region: **100**
-    - Auto Scaling
-        - Auto Scaling Groups per region: **250**
-        - Launch Configurations per region: **500**
-    - S3
-        - Buckets per Account: **1000**
-    - EC2 Spot Instances
-        - For every primary instance type you tend to use spot instances with, set the limit according to your needs.
-    - EC2 Instances
-        - m4.xlarge per region: **250**
-        - m4.2xlarge per region: **250**
-        - m5.2xlarge per region: **250**
-        - other instance types to be used as workers: increase accordingly
-```
+- VPC
+
+  - VPCs per region: **50**
+  - NAT Gateway per Availability Zone per region: **50** (not needed if you are creating a [private cluster]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/private-cluster" >}}))
+  - IPv4 CIDR blocks per VPC: **50**
+  - Routes per route table: **200**
+
+- Route 53 Resolver
+
+  - Endpoints per AWS region: **100** (needed if you are creating a [private cluster]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/private-cluster" >}}))
+
+- Elastic IP
+
+  - New VPC Elastic IP Address Limit per region: **50** (not needed if you are creating a [private cluster]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/private-cluster" >}}))
+
+- Elastic Load Balancers
+
+  - Application and Classic Load Balancers per region: **100**
+
+- Auto Scaling
+
+  - Auto Scaling Groups per region: **250**
+  - Launch Configurations per region: **500**
+
+- S3
+
+  - Buckets per Account: **1000**
+
+- EC2 Spot Instances
+
+  - For every primary instance type you tend to use spot instances with, set the limit according to your needs.
+
+- EC2 Instances
+
+  - m4.xlarge per region: **250**
+  - m4.2xlarge per region: **250**
+  - m5.2xlarge per region: **250**
+  - other instance types to be used as workers: increase accordingly
 
 __Note__: Please extend the list of EC2 instances to contain the frequently needed types.
 
@@ -122,36 +135,27 @@ Now move to the IAM [Roles](https://console.aws.amazon.com/iam/home#/roles) subs
 
 The __Account ID__ you enter is the ID of the AWS account where the management cluster is running. Could it be the current account in case you are running all your infrastructure in a single account or a different one if you are using separate accounts for management and workload clusters?
 
-It's crucial that the __Require external ID__ and __Require MFA__ options remain unchecked!
-
-Then, please go ahead and proceed to the next step.
-
+It's crucial that the _Require external ID_ and _Require MFA_ options remain unchecked so that CAPA can run without requiring human intervention.
 #### 3. Attach all policies to role {#iam-capa-controller-role-policy}
 
-Now, you must go through all the policies created before and attach them to the node. Search for the installation name, select the policies and hit the __Next__ button.
+Now, you must go through all the policies created before and attach them to the role. Search for the installation name, select the policies and hit the _Next_ button.
 
 ![AWS IAM console: Attach policies](aws-roles-attach-policy.png)
 
 #### 4. Name the role {#iam-capa-controller-role-name}
 
-The last step of role creation requires you to set a name for the role. Same as with the policies, please use the name changing the INSTALLATION_NAME placeholder to the name of your installation.
+The last step of role creation requires you to set a name for the role. Same as with the policies, please use the name changing the `INSTALLATION_NAME` placeholder to the name of your management cluster.
 
 ```nohighlight
 giantswarm-${INSTALLATION_NAME}-capa-controller
 ```
 
 ![AWS IAM console: Review](aws-roles-review.png)
-
-__Note__: The role name also contains the installation name to make easier identifying across other roles and avoid conflicts with other installations running within the same account.
-
 ### Staff permissions {#iam-staff-role}
 
 Finally, we create an IAM role for Giant Swarm support staff to assume in order to
-access both AWS accounts. This role must have Giant Swarm's account as a trusted
+access both the management cluster's and workload clusters' AWS accounts. This role must have Giant Swarm's account as a trusted
 entity, and we recommend that it enforces multi-factor authentication.
-
-Giant Swarm staff require access to all accounts, so the following steps must be duplicated in both the management cluster and workload cluster accounts.
-
 #### 1. Create the admin policy {#iam-staff-policy}
 
 Go to the [Policies](https://console.aws.amazon.com/iam/home#/policies) subsection and select __Create policy__ to set the admin permissions. Use the [admin JSON policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/master/admin-role/iam-policy.json) file as the policy content. This time, call the policy
@@ -179,6 +183,8 @@ Name this role:
 ```nohighlight
 GiantSwarmAdmin
 ```
+
+Giant Swarm staff require access to all management cluster and workload cluster-related AWS accounts, so please repeat the above steps in each account.
 
 ## Step 3: Configure the cluster role identity {#configure-cluster-role-identity}
 
